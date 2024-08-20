@@ -80,7 +80,8 @@ public class ResourceStatus {
   }
 
   /**
-   * s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+   * Date et heure à laquelle le SMUR quitte sa base.  s&#39;exprime au format
+   *ISO 8601 YYY-MM-DDThh:mm:ss
    * @return departSmur
    **/
   @JsonProperty(JSON_PROPERTY_DEPART_SMUR)
@@ -103,7 +104,8 @@ public class ResourceStatus {
   }
 
   /**
-   * s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+   * Date et heure à laquelle le SMUR arrive sur les lieux de
+   *l&#39;intervention.  s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
    * @return arrivedSmur
    **/
   @JsonProperty(JSON_PROPERTY_ARRIVED_SMUR)
@@ -126,7 +128,8 @@ public class ResourceStatus {
   }
 
   /**
-   * s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+   * Date et heure à laquelle le SMUR quitte les lieux de l&#39;intervention.
+   *s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
    * @return departLocation
    **/
   @JsonProperty(JSON_PROPERTY_DEPART_LOCATION)
@@ -149,7 +152,8 @@ public class ResourceStatus {
   }
 
   /**
-   * s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+   * Date et heure à laquelle le SMUR qui transporte arrive à destination.
+   *s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
    * @return arrivedDestination
    **/
   @JsonProperty(JSON_PROPERTY_ARRIVED_DESTINATION)
@@ -172,7 +176,9 @@ public class ResourceStatus {
   }
 
   /**
-   * s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+   * Date et heure à laquelle le SMUR est disponible (dispose de tout les
+   *équipements pour faire une autre intervention).  s&#39;exprime au format ISO
+   *8601 YYY-MM-DDThh:mm:ss
    * @return teamAvailable
    **/
   @JsonProperty(JSON_PROPERTY_TEAM_AVAILABLE)
@@ -195,7 +201,8 @@ public class ResourceStatus {
   }
 
   /**
-   * s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+   * Date et heure à laquelle le SMUR est de retour à la base.  s&#39;exprime au
+   *format ISO 8601 YYY-MM-DDThh:mm:ss
    * @return returnSmur
    **/
   @JsonProperty(JSON_PROPERTY_RETURN_SMUR)

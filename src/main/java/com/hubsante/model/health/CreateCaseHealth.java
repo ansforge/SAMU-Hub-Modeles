@@ -36,6 +36,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.health.AdditionalInformation;
 import com.hubsante.model.health.Alert;
+import com.hubsante.model.health.Decision;
 import com.hubsante.model.health.Location;
 import com.hubsante.model.health.MedicalNote;
 import com.hubsante.model.health.Patient;
@@ -61,6 +62,7 @@ import java.util.Objects;
                     CreateCaseHealth.JSON_PROPERTY_OWNER,
                     CreateCaseHealth.JSON_PROPERTY_PATIENT,
                     CreateCaseHealth.JSON_PROPERTY_MEDICAL_NOTE,
+                    CreateCaseHealth.JSON_PROPERTY_DECISION,
                     CreateCaseHealth.JSON_PROPERTY_ADDITIONAL_INFORMATION})
 @JsonTypeName("createCaseHealth")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -175,6 +177,9 @@ public class CreateCaseHealth {
 
   public static final String JSON_PROPERTY_MEDICAL_NOTE = "medicalNote";
   private List<MedicalNote> medicalNote;
+
+  public static final String JSON_PROPERTY_DECISION = "decision";
+  private List<Decision> decision;
 
   public static final String JSON_PROPERTY_ADDITIONAL_INFORMATION =
       "additionalInformation";
@@ -485,6 +490,45 @@ public class CreateCaseHealth {
     this.medicalNote.addAll(medicalNote);
   }
 
+  public CreateCaseHealth decision(List<Decision> decision) {
+
+    this.decision = decision;
+    return this;
+  }
+
+  public CreateCaseHealth addDecisionItem(Decision decisionItem) {
+    if (this.decision == null) {
+      this.decision = new ArrayList<>();
+    }
+    this.decision.add(decisionItem);
+    return this;
+  }
+
+  /**
+   * Get decision
+   * @return decision
+   **/
+  @JsonProperty(JSON_PROPERTY_DECISION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<Decision> getDecision() {
+    return decision;
+  }
+
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_DECISION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDecision(List<Decision> decision) {
+    if (decision == null) {
+      return;
+    }
+    if (this.decision == null) {
+      this.decision = new ArrayList<>();
+    }
+    this.decision.addAll(decision);
+  }
+
   public CreateCaseHealth
   additionalInformation(AdditionalInformation additionalInformation) {
 
@@ -531,6 +575,7 @@ public class CreateCaseHealth {
         Objects.equals(this.owner, createCaseHealth.owner) &&
         Objects.equals(this.patient, createCaseHealth.patient) &&
         Objects.equals(this.medicalNote, createCaseHealth.medicalNote) &&
+        Objects.equals(this.decision, createCaseHealth.decision) &&
         Objects.equals(this.additionalInformation,
                        createCaseHealth.additionalInformation);
   }
@@ -539,7 +584,8 @@ public class CreateCaseHealth {
   public int hashCode() {
     return Objects.hash(caseId, senderCaseId, creation, perimeter,
                         interventionType, qualification, location, initialAlert,
-                        owner, patient, medicalNote, additionalInformation);
+                        owner, patient, medicalNote, decision,
+                        additionalInformation);
   }
 
   @Override
@@ -569,6 +615,7 @@ public class CreateCaseHealth {
     sb.append("    medicalNote: ")
         .append(toIndentedString(medicalNote))
         .append("\n");
+    sb.append("    decision: ").append(toIndentedString(decision)).append("\n");
     sb.append("    additionalInformation: ")
         .append(toIndentedString(additionalInformation))
         .append("\n");

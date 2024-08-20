@@ -36,7 +36,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,5}
+          pattern: fr(\.[\w-]+){3}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -2330,12 +2330,12 @@ components:
           description: "A valoriser avec  l'origine du canal \xE9tabli : PERSONNE,\
             \ APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL"
           enum:
-          - PERSONNE
           - APPLICATION
-          - DAU
           - BAU
-          - DEFIBRILLATEUR
+          - DAU
+          - 'DEFIBRILLATEUR, '
           - ECALL
+          - PERSONNE
           examples:
           - PERSONNE
         type:

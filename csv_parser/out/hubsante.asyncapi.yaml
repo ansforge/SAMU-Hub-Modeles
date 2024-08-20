@@ -306,7 +306,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,5}
+          pattern: fr(\.[\w-]+){3}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -396,7 +396,8 @@ components:
       title: Lieu d'intervention
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - detailedAddress
       properties:
         type:
           type: string
@@ -594,7 +595,8 @@ components:
           x-cols: 6
           example: example.json#/intervention/location/finessGeo
           description: "Finess g\xE9ographique et juridique de l\u2019\xE9tablissement\
-            \ de sant\xE9"
+            \ de sant\xE9. \nA renseigner uniquement si l'intervention a lieu dans\
+            \ un \xE9tablissement de sant\xE9. "
           examples:
           - None
         unit:
@@ -603,7 +605,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/location/unit
-          description: "Unit\xE9 fonctionnelle de l'\xE9tablissement de sant\xE9"
+          description: "Unit\xE9 fonctionnelle de l'\xE9tablissement de sant\xE9.\
+            \ \nA renseigner uniquement si l'intervention a lieu dans un \xE9tablissement\
+            \ de sant\xE9. "
           examples:
           - None
         detailedAddress:
@@ -1452,15 +1456,15 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - cityCode
+      - inseeCode
       - city
       properties:
-        cityCode:
+        inseeCode:
           type: string
           title: Code INSEE de la commune
           x-health-only: false
           x-cols: 6
-          example: example.json#/intervention/location/detailedAddress/cityCode
+          example: example.json#/intervention/location/detailedAddress/inseeCode
           description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
             \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
             \ renseign\xE9.\nLe Code INSEE peut \xE9galement pr\xE9cis\xE9 le pays\
@@ -1480,7 +1484,7 @@ components:
       additionalProperties: false
       example: example.json#/intervention/location/detailedAddress
       examples:
-      - cityCode: 92300
+      - inseeCode: 92300
         city: Levallois-Perret
     city:
       type: object
@@ -2525,7 +2529,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,5}
+          pattern: fr(\.[\w-]+){3}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -2600,7 +2604,7 @@ components:
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
             \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
             \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
-          pattern: fr(\.[\w-]+){2,4}
+          pattern: fr(\.[\w-]+){2}
           examples:
           - fr.health.samu440
         patient:
@@ -2611,6 +2615,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/medicalNote'
+        decision:
+          type: array
+          items:
+            $ref: '#/components/schemas/decision'
         additionalInformation:
           $ref: '#/components/schemas/additionalInformation'
       additionalProperties: false
@@ -2634,7 +2642,7 @@ components:
             \ qui engage le SMUR}.{ID du DRM}.P{num\xE9ro d\u2019ordre chronologique}\
             \ : fr.health.samu690.DRFR15DDXAAJJJ00001.P01"
           examples:
-          - fr.health.samu690.DRFR15DDXAAJJJ00001.P01
+          - fr.health.samu690.patient.DRFR15DDXAAJJJ00001.1
         birthDate:
           type: string
           title: Date de naissance
@@ -2659,16 +2667,6 @@ components:
           - INCONNU
           examples:
           - F
-        nir:
-          type: number
-          title: NIR
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/nir
-          description: "Num\xE9ro d'inscription au R\xE9pertoire ou num\xE9ro de s\xE9\
-            curit\xE9 sociale, unique, transmis par la CNIL"
-          examples:
-          - 278112B050002
         residentialAddress:
           $ref: '#/components/schemas/residentialAddress'
       additionalProperties: false
@@ -2680,6 +2678,7 @@ components:
       x-health-only: false
       required:
       - operator
+      - idObs
       - freetext
       properties:
         idPat:
@@ -2695,7 +2694,7 @@ components:
             me \xE9metteur}\n\nOU, si un n\xB0patient unique n'existe pas dans le\
             \ syst\xE8me \xE9metteur :\n{ID \xE9metteur}.{senderCaseId}.patient.{num\xE9\
             ro d\u2019ordre chronologique au dossier}"
-          pattern: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}
+          pattern: ([\w-]+\.){3}patient(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu690.patient.P23AZ59
 
@@ -2717,14 +2716,14 @@ components:
             ro chronologique de l\u2019observation}\n\nCet identifiant a vocation\
             \ \xE0 devenir obligatoire pour permettre les mises \xE0 jour, il est\
             \ laiss\xE9 en facultatif temporairement.\n"
-          pattern: ([\w-]+\.?){3}medicalNote(\.[\w-]+){1,2}
+          pattern: ([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu540.medicalNote.46585A
 
             fr.health.samu540.medicalNote.DRFR15540241600125.20'
         creation:
           type: string
-          title: "Date Heure de cr\xE9ation de l'observation"
+          title: Date Heure de l'observation
           x-health-only: false
           x-cols: 6
           example: example.json#/medicalNote/0/creation
@@ -2747,6 +2746,131 @@ components:
           - None
       additionalProperties: false
       example: example.json#/medicalNote/0
+    decision:
+      type: object
+      title: Transport
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - resourceCategory
+      - resourceType
+      - teamCare
+      properties:
+        resourceCategory:
+          type: string
+          title: Moyen de transport
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/decision/resourceCategory
+          description: "Pr\xE9cise le type de moyen engag\xE9 dans l'intervention\
+            \ (SMUR, TSU, HOSPIT, etc.). \nA valoriser par un code de la nomenclature\
+            \ SI SAMU-TYPE_MOYEN."
+          enum:
+          - SMUR
+          - HOSPIT
+          - LIB
+          - 'TSU '
+          - SIS
+          - AASC
+          - FDO
+          - AUTRE
+          examples:
+          - SMUR
+        resourceType:
+          type: string
+          title: Type de vecteur de transport
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/decision/resourceType
+          description: "Pr\xE9cise le type de v\xE9hicule terrestre / a\xE9rien /\
+            \ maritime engag\xE9 dans l'intervention.\nA valoriser par un code de\
+            \ la nomenclature CISU-TYPE_VECTEUR."
+          enum:
+          - AASC
+          - VLSC
+          - VPSP
+          - AUTRESC
+          - AUTREVEC
+          - TAXI
+          - TRANSP
+          - TRAIN
+          - AVION
+          - PERSO
+          - APIED
+          - AUTRE
+          - AUTRETRA
+          - FSI
+          - HELIFSI
+          - VLFSI
+          - FFSI
+          - VHFSI
+          - LIB
+          - MEDV
+          - INF
+          - AUTREPRO
+          - SIS
+          - VSAV
+          - GRIMP
+          - VPL
+          - SRSIS
+          - FEUSIS
+          - VPMA
+          - VCH
+          - VR
+          - PCSIS
+          - VLISP
+          - VLMSP
+          - VLCG
+          - VLSIS
+          - DRAGON
+          - AVSC
+          - MOYSSE
+          - AUTRESIS
+          - NAVISIS
+          - SMUR
+          - VLM
+          - VL
+          - PSM1
+          - PSM2
+          - PSM3
+          - PSMP
+          - VPC
+          - AR
+          - AR-BAR
+          - AR-PED
+          - HELISMUR
+          - HELISAN
+          - AVSMUR
+          - AVSAN
+          - NAVISMUR
+          - TSU
+          - VSL
+          - AMB-GV
+          - AMB-PV
+          - AMB-BAR
+          - AMB
+          examples:
+          - AR, VLM, VSAV
+        teamCare:
+          type: string
+          title: "Niveau de m\xE9dicalisation du transport"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/decision/teamCare
+          description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, secouriste).\n\
+            A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN."
+          enum:
+          - MED
+          - PARAMED
+          - SECOURS
+          examples:
+          - PARAMED
+      additionalProperties: false
+      example: example.json#/orientation/decision
+      examples:
+      - resourceCategory: SMUR
+        resourceType: AR, VLM, VSAV
+        teamCare: PARAMED
     caseDetails:
       type: object
       title: "D\xE9tails du dossier "
@@ -2754,6 +2878,27 @@ components:
       x-health-only: false
       required: []
       properties:
+        status:
+          type: string
+          title: Etat du dossier
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/qualification/details/status
+          description: "A valoriser avec l'\xE9tat du dossier dans le syst\xE8me \xE9\
+            metteur\nSp\xE9cificit\xE9 15-15 : peut \xEAtre ignor\xE9 en r\xE9ception,\
+            \ partag\xE9 \xE0 titre indicatif uniquement\nSp\xE9cificit\xE9 15-SMUR\
+            \ : \xE0 utiliser \xE0 minima pour transmettre le statut CLOTURE \xE0\
+            \ la tablette"
+          enum:
+          - PROGRAMME
+          - ' ACTIF'
+          - ACHEVE
+          - VALIDE
+          - CLOTURE
+          - CLASSE
+          - ARCHIVE
+          examples:
+          - None
         priority:
           type: string
           title: "Priorit\xE9 de r\xE9gulation m\xE9dicale"
@@ -2790,7 +2935,8 @@ components:
       additionalProperties: false
       example: example.json#/qualification/details
       examples:
-      - priority: P1
+      - status: None
+        priority: P1
         careLevel: R1
     highway:
       type: object
@@ -2868,7 +3014,7 @@ components:
       required: []
       properties:
         weight:
-          type: integer
+          type: number
           title: Poids
           x-health-only: false
           x-cols: 6
@@ -2877,7 +3023,7 @@ components:
           examples:
           - 31
         height:
-          type: integer
+          type: number
           title: Taille
           x-health-only: false
           x-cols: 6
@@ -3097,8 +3243,17 @@ components:
       required:
       - role
       properties:
-        detailedName:
-          $ref: '#/components/schemas/detailedName'
+        label:
+          type: string
+          title: Label
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/medicalNote/0/operator/label
+          description: "A valoriser si besoin avec la valeur souhait\xE9e, en fonction\
+            \ des pr\xE9f\xE9rences de chaque partenaire : cela peut \xEAtre le nom\
+            \ et pr\xE9nom de l'op\xE9rateur, ou un identifiant."
+          examples:
+          - None
         role:
           type: string
           title: "R\xF4le"
@@ -3112,14 +3267,14 @@ components:
           - ARM
           - INFIRMIER
           - MEDECIN
-          - INCONNU
           - AUTRE
+          - INCONNU
           examples:
           - ARM
       additionalProperties: false
       example: example.json#/medicalNote/0/operator
       examples:
-      - detailedName: {}
+      - label: None
         role: ARM
     createCaseHealthUpdate:
       $id: classpath:/json-schema/schema#
@@ -3145,7 +3300,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,5}
+          pattern: fr(\.[\w-]+){3}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -3189,7 +3344,7 @@ components:
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
             \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
             \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
-          pattern: fr(\.[\w-]+){2,4}
+          pattern: fr(\.[\w-]+){2}
           examples:
           - fr.health.samu440
         patient:
@@ -3200,6 +3355,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/medicalNote'
+        decision:
+          type: array
+          items:
+            $ref: '#/components/schemas/decision'
         freetext:
           type: string
           title: "Informations suppl\xE9mentaires modifi\xE9es"
@@ -3516,192 +3675,27 @@ components:
             \ EMSI pour caract\xE9riser la mission en cours."
           enum:
           - SAV/ASC
-          - FSTT/TA/FR_DIFFICULTACCSS
-          - GEN/RECVRY
-          - RSC/SAR/FR_VLN
-          - SAV/ASC/FR_PPL/LIFT
-          - SAV/RHD
-          - SAV/RTA
-          - SAV/SARCSL
-          - FFST/FR_FIRE
-          - FSTT/RRHAZ/FR_CO
-          - FSTT/TA/FR_ANI/DGR
-          - FSTT/TA/FR_ANI/INJ
-          - INT/RECCE/FR_CBRNHZ
-          - INT/RECCE/FR_DIS/LNDSLD
-          - INT/RECCE/FR_DIS/SDCLPS
-          - INT/RECCE/FR_FLD
-          - INT/RECCE/FR_SMLL
-          - FSTT/TA/FR_DRG/MIND
           - FR_MED/REGLTN
           - GEN/SUPRTN
-          - REC/PRVCNP
-          - RSC/MEDEVC
-          - SAV/AR/FR_CNT
           - SAV/AR/FR_MED
           - SAV/AR/FR_PARAMD
-          - SAV/AR/FR_PPL/GRP
-          - SAV/AR/FR_PSYPHY
-          - INT/RECCE
           - SAV
-          - FSTT/TA/FR_TRNSPN/AMB
           - GEN/TRNSPN
+          - SAV/SARCSL
+          - SAV/ASC/FR_PPL/LIFT
+          - GEN/RECVRY
+          - SAV/RHD
+          - FFST/FR_FIRE
+          - FSTT/RRHAZ/FR_CO
+          - CBRN/TSA
+          - INT/RECCE/FR_SMLL
+          - FSTT/TA
+          - SAV/AR/FR_PPL/GRP
+          - INT/RECCE
           - GEN/TRNSPN/FR_SECNDRY
           - OPR/LOG
           - SAV/AR/FR_PPL/OBS
           - FSTT/TA/FR_CLRACCSS
-          - C2
-          - CBRN
-          - FF
-          - FSTT
-          - GEN
-          - INT
-          - MAC
-          - MIL
-          - NET
-          - OPR
-          - POL
-          - REC
-          - RSC
-          - SCS
-          - SOC
-          - C2/DEBRIF
-          - C2/DNRSKA
-          - C2/INASSM
-          - C2/OIC
-          - C2/POA
-          - C2/THRTAS
-          - CBRN/CBRNCH
-          - CBRN/CBRNDC
-          - CBRN/NTRCH
-          - CBRN/NUCWS
-          - FF/IN
-          - FF/OA
-          - FF/SALVAG
-          - FF/STR
-          - FF/TRP
-          - FSTT/DI
-          - FSTT/RRHAZ
-          - FSTT/TA
-          - GEN/AIRLAU
-          - GEN/ASSMBL
-          - GEN/CRWDCT
-          - GEN/DEMO
-          - GEN/DEPLOY
-          - GEN/DSTRBT
-          - GEN/FINANC
-          - GEN/MARKNG
-          - GEN/MOVE
-          - GEN/RECVRN
-          - GEN/REDPLN
-          - GEN/REORGN
-          - GEN/REPAIR
-          - GEN/RESPLN
-          - GEN/RESTNG
-          - GEN/RETIRE
-          - GEN/RLFPLC
-          - GEN/RNDZVS
-          - GEN/SCNMNG
-          - GEN/SECRNG
-          - GEN/STNGUP
-          - INT/BIOSMP
-          - INT/CHMSMP
-          - INT/IDENT
-          - INT/ILLUMN
-          - INT/LOCTNG
-          - INT/NUCSMP
-          - INT/OBSRNG
-          - INT/PLUMOD
-          - INT/PTRLNG
-          - INT/SRVMET
-          - INT/SRVSEN
-          - INT/WITNSN
-          - MAC/AII
-          - MAC/COL
-          - MIL/BCESC
-          - MIL/BLOCKN
-          - MIL/BOMBNG
-          - MIL/CAPTUR
-          - MIL/CTRATK
-          - MIL/DEFEND
-          - MIL/DISENG
-          - MIL/DIVRSN
-          - MIL/DLBATK
-          - MIL/DSRPTN
-          - MIL/ENVLPN
-          - MIL/FIX
-          - MIL/HARASS
-          - MIL/HIDE
-          - MIL/HLDDEF
-          - MIL/HLDOFF
-          - MIL/INFLTN
-          - MIL/INTCPN
-          - MIL/INTDCT
-          - MIL/MASFOR
-          - MIL/MIL
-          - MIL/WPNFIR
-          - NET/COMDEA
-          - NET/DATTRF
-          - NET/NETJAM
-          - NET/NETSEI
-          - NET/SGNC
-          - NET/SGNLE
-          - POL/NTRCOM
-          - POL/NTREXP
-          - POL/SCNMNG
-          - POL/SCNPRS
-          - POL/SHELTR
-          - POL/SUSHOS
-          - POL/WITDRL
-          - REC/CLROBS
-          - REC/COMACT
-          - REC/COMRES
-          - REC/CONSTN
-          - REC/ENGCN
-          - REC/ENGCNN
-          - REC/PROCUR
-          - REC/PRVACC
-          - REC/PRVAGR
-          - REC/PRVBDD
-          - REC/PRVCMP
-          - REC/PRVCNS
-          - REC/PRVDCN
-          - REC/PRVEDU
-          - REC/PRVHLT
-          - REC/PRVHSN
-          - REC/PRVINF
-          - REC/PRVLND
-          - REC/PRVRPR
-          - REC/PRVSCY
-          - REC/PRVSHL
-          - REC/PRVSTG
-          - REC/PRVTRS
-          - REC/PSO
-          - REC/SPLLDB
-          - REC/SPLWAT
-          - REC/UTILTY
-          - REC/WATER
-          - RSC/COVERN
-          - RSC/FRFGTN
-          - RSC/SAR
-          - SAV/AR
-          - SAV/SARHHA
-          - SAV/SRW
-          - SAV/USAR
-          - SAV/UW
-          - SCS/EDU
-          - SOC/CNDCNF
-          - SOC/CNDMED
-          - SOC/CNDRCR
-          - SOC/CNDSCL
-          - SOC/CNDSPT
-          - SOC/ISSMDA
-          - SOC/ISSMDD
-          - SOC/ISSPRS
-          - SOC/MN
-          - SOC/PUBMDA
-          - SOC/PUBMDD
-          - SOC/PUBPRS
           examples:
           - SAV/ASC
         FREETEXT:
@@ -3938,6 +3932,7 @@ components:
             \ de ressource ne peut pas \xEAtre garanti par l'organisation propri\xE9\
             taire :\n{orgID}.resource.{sendercaseId}.{n\xB0 d\u2019ordre chronologique\
             \ de la ressource}"
+          pattern: ([\w-]+\.){3}resource(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu770.resource.VLM250
 
@@ -3954,6 +3949,7 @@ components:
             \ de la demande dans le syst\xE8me \xE9metteur}\nOU - si un ID unique\
             \ de la demande n'\xE9tait pas disponible : \n{OrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
+          pattern: ([\w-]+\.){3}request(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu770.request.1249875
 
@@ -4003,14 +3999,12 @@ components:
           - SIS
           - AASC
           - FDO
-          - ADM
-          - DAE
           - AUTRE
           examples:
           - SMUR
         vehiculeType:
           type: string
-          title: Type de moyen
+          title: Type de vecteur
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/vehiculeType
@@ -4021,8 +4015,7 @@ components:
           - VLSC
           - VPSP
           - AUTRESC
-          - AUTREVECT
-          - CONSEIL
+          - AUTREVEC
           - TAXI
           - TRANSP
           - TRAIN
@@ -4030,22 +4023,15 @@ components:
           - PERSO
           - APIED
           - AUTRE
-          - AUTRETRANS
-          - INCONNU
-          - DEFIB
-          - DAE
+          - AUTRETRA
           - FSI
           - HELIFSI
           - VLFSI
           - FFSI
           - VHFSI
           - LIB
-          - MEDC
           - MEDV
-          - PHARMA
           - INF
-          - MEDSPE
-          - DENT
           - AUTREPRO
           - SIS
           - VSAV
@@ -5960,6 +5946,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
+          pattern: fr(\.[\w-]+){3}
           examples:
           - fr.health.samu440.DRFR15440241550012
         mobilizedResource:
@@ -6107,10 +6094,24 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
+          pattern: fr(\.[\w-]+){3}
           examples:
           - fr.health.samu440.DRFR15440241550012
         request:
           $ref: '#/components/schemas/request'
+        status:
+          type: string
+          title: Etat annulation
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/status
+          description: "A valoriser avec la valeur ANNULEE uniquement pour signifier\
+            \ l'annulation d'une demande de ressources. Les autres champs de la demande\
+            \ sont remplis \xE0 l'identique de la demande initiale envoy\xE9e."
+          enum:
+          - ANNULEE
+          examples:
+          - ANNULEE
       additionalProperties: false
     request:
       type: object
@@ -6135,6 +6136,7 @@ components:
             \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
             \ pas disponible : \n{OrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
+          pattern: ([\w-]+\.){3}request(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu770.request.1249875
 
@@ -6201,8 +6203,20 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/request/deadline
-          description: "A valoriser avec le d\xE9lai d'intervention souhait\xE9 en\
-            \ minutes "
+          description: "A valoriser avec le d\xE9lai d'intervention maximum souhait\xE9\
+            \ (cf. nomenclature associ\xE9e)"
+          enum:
+          - DEL0
+          - ASAP
+          - DEL30M
+          - DEL45M
+          - DEL1H
+          - DEL2H
+          - DEL4H
+          - DEL8H
+          - DEL12H
+          - DEL24H
+          - RDV
           examples:
           - 10
         freetext:
@@ -6251,6 +6265,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
+          pattern: fr(\.[\w-]+){3}
           examples:
           - fr.health.samu440.DRFR15440241550012
         requestId:
@@ -6266,6 +6281,7 @@ components:
             \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
             \ pas disponible : \nOrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
+          pattern: ([\w-]+\.){3}request(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu770.request.1249875
 
@@ -6303,8 +6319,8 @@ components:
             \ associ\xE9e\nACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE"
           enum:
           - ACCEPTEE
-          - REFUSEE
           - PARTIELLE
+          - REFUSEE
           - DIFFEREE
           examples:
           - ACCEPTEE
@@ -6314,8 +6330,11 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/response/deadline
-          description: "A valoriser avec le d\xE9lai de r\xE9ponse auquel s'engage\
-            \ l'exp\xE9diteur (en minutes),"
+          description: "A valoriser avec le d\xE9lai de r\xE9ponse maximum auquel\
+            \ s'engage l'exp\xE9diteur (en minutes) \nCas particulier : en cas de\
+            \ r\xE9ponse \"Partielle\" car le d\xE9lai souhait\xE9 ne peut pas \xEA\
+            tre respect\xE9,  \xE0 valoriser obligatoirement avec le d\xE9lai de r\xE9\
+            ponse maximum auquel s'engage l'exp\xE9diteur de la r\xE9ponse (en minutes).\n"
           examples:
           - 10
         freetext:
@@ -6406,6 +6425,8 @@ components:
           $ref: '#/components/schemas/location'
         team:
           $ref: '#/components/schemas/team'
+        smurStatus:
+          $ref: '#/components/schemas/resourceStatus'
         actionsSMUR:
           type: array
           x-health-only: false
@@ -6441,8 +6462,6 @@ components:
             \ Diagnostic SMUR."
           examples:
           - 8B22.1
-        smurStatus:
-          $ref: '#/components/schemas/resourceStatus'
       additionalProperties: false
       example: example.json#/intervention
     orientation:
@@ -6464,26 +6483,6 @@ components:
             \ la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.\nSi le type d'orientation\
             \ est sans transport associ\xE9, les objets Destination et Transport sont\
             \ facultatifs. "
-          enum:
-          - OK
-          - TEMP
-          - SEUL
-          - AFAMILLE
-          - AMED
-          - AFDO
-          - ATIERS
-          - MOYPERSO
-          - Code vecteur choisi
-          - REFPAT
-          - REFFAM
-          - PASREAKO
-          - PASREAOK
-          - REA
-          - TRANSPOR
-          - ADM
-          - FUGUE
-          - REFAUTRE
-          - RAS
           examples:
           - TEMP
         destination:
@@ -6498,15 +6497,15 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - cityCode
+      - inseeCode
       - city
       properties:
-        cityCode:
+        inseeCode:
           type: string
           title: "Code INSEE de la commune de r\xE9sidence"
           x-health-only: false
           x-cols: 6
-          example: example.json#/patient/residentialAddress/cityCode
+          example: example.json#/patient/residentialAddress/inseeCode
           description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
             \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
             \ renseign\xE9.\nLe Code INSEE peut \xE9galement pr\xE9cis\xE9 le pays\
@@ -6526,7 +6525,7 @@ components:
       additionalProperties: false
       example: example.json#/patient/residentialAddress
       examples:
-      - cityCode: 92300
+      - inseeCode: 92300
         city: Levallois-Perret
     resourceStatus:
       type: object
@@ -6544,7 +6543,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/smurStatus/departSmur
-          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          description: "Date et heure \xE0 laquelle le SMUR quitte sa base. \ns'exprime\
+            \ au format ISO 8601 YYY-MM-DDThh:mm:ss"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -6555,7 +6555,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/smurStatus/arrivedSmur
-          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          description: "Date et heure \xE0 laquelle le SMUR arrive sur les lieux de\
+            \ l'intervention. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -6566,7 +6567,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/smurStatus/departLocation
-          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          description: "Date et heure \xE0 laquelle le SMUR quitte les lieux de l'intervention.\
+            \ \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -6577,7 +6579,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/smurStatus/arrivedDestination
-          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          description: "Date et heure \xE0 laquelle le SMUR qui transporte arrive\
+            \ \xE0 destination. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -6588,7 +6591,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/smurStatus/teamAvailable
-          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          description: "Date et heure \xE0 laquelle le SMUR est disponible (dispose\
+            \ de tout les \xE9quipements pour faire une autre intervention). \ns'exprime\
+            \ au format ISO 8601 YYY-MM-DDThh:mm:ss"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -6599,7 +6604,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/smurStatus/returnSmur
-          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          description: "Date et heure \xE0 laquelle le SMUR est de retour \xE0 la\
+            \ base. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -6910,141 +6916,6 @@ components:
         destinationCategory: None
         healthcareType: None
         finess: None
-    decision:
-      type: object
-      title: Transport
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - resourceCategory
-      - resourceType
-      - teamCare
-      properties:
-        resourceCategory:
-          type: string
-          title: Moyen de transport
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/orientation/decision/resourceCategory
-          description: "Pr\xE9cise le type de moyen engag\xE9 dans l'intervention\
-            \ (SMUR, TSU, HOSPIT, etc.). \nA valoriser par un code de la nomenclature\
-            \ SI SAMU-TYPE_MOYEN."
-          enum:
-          - SMUR
-          - HOSPIT
-          - LIB
-          - 'TSU '
-          - SIS
-          - AASC
-          - FDO
-          - ADM
-          - DAE
-          - AUTRE
-          examples:
-          - SMUR
-        resourceType:
-          type: string
-          title: Type de vecteur de transport
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/orientation/decision/resourceType
-          description: "Pr\xE9cise le type de v\xE9hicule terrestre / a\xE9rien /\
-            \ maritime engag\xE9 dans l'intervention.\nA valoriser par un code de\
-            \ la nomenclature CISU-TYPE_VECTEUR."
-          enum:
-          - AASC
-          - VLSC
-          - VPSP
-          - AUTRESC
-          - AUTREVECT
-          - CONSEIL
-          - TAXI
-          - TRANSP
-          - TRAIN
-          - AVION
-          - PERSO
-          - APIED
-          - AUTRE
-          - AUTRETRANS
-          - INCONNU
-          - DEFIB
-          - DAE
-          - FSI
-          - HELIFSI
-          - VLFSI
-          - FFSI
-          - VHFSI
-          - LIB
-          - MEDC
-          - MEDV
-          - PHARMA
-          - INF
-          - MEDSPE
-          - DENT
-          - AUTREPRO
-          - SIS
-          - VSAV
-          - GRIMP
-          - VPL
-          - SRSIS
-          - FEUSIS
-          - VPMA
-          - VCH
-          - VR
-          - PCSIS
-          - VLISP
-          - VLMSP
-          - VLCG
-          - VLSIS
-          - DRAGON
-          - AVSC
-          - MOYSSE
-          - AUTRESIS
-          - NAVISIS
-          - SMUR
-          - VLM
-          - VL
-          - PSM1
-          - PSM2
-          - PSM3
-          - PSMP
-          - VPC
-          - AR
-          - AR-BAR
-          - AR-PED
-          - HELISMUR
-          - HELISAN
-          - AVSMUR
-          - AVSAN
-          - NAVISMUR
-          - TSU
-          - VSL
-          - AMB-GV
-          - AMB-PV
-          - AMB-BAR
-          - AMB
-          examples:
-          - AR, VLM, VSAV
-        teamCare:
-          type: string
-          title: "Niveau de m\xE9dicalisation du transport"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/orientation/decision/teamCare
-          description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, secouriste).\n\
-            A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN."
-          enum:
-          - MED
-          - PARAMED
-          - SECOURS
-          examples:
-          - PARAMED
-      additionalProperties: false
-      example: example.json#/orientation/decision
-      examples:
-      - resourceCategory: SMUR
-        resourceType: AR, VLM, VSAV
-        teamCare: PARAMED
     customContent:
       $id: classpath:/json-schema/schema#
       x-id: customContent.schema.json#
@@ -7083,6 +6954,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
+          pattern: fr(\.[\w-]+){3}
           examples:
           - fr.health.samu440.DRFR15440241550012
         resourceId:
@@ -7097,6 +6969,7 @@ components:
             \ ne peut pas \xEAtre garanti par l'organisation propri\xE9taire :\n{orgID}.R.{ID\
             \ du dossier partag\xE9}.{num\xE9ro d\u2019ordre chronologique ressource}\n\
             \nN.B. Il s'agit de l'orgId de l'organisation \xE0 qui appartient la ressource"
+          pattern: ([\w-]+\.){3}resource(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu770.resource.VLM250 ;
 

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RPIS.schema.json#",
-    "version": "24.07.23",
+    "version": "24.08.20",
     "example": "example.json#",
     "type": "object",
     "title": "rpis",
@@ -186,14 +186,6 @@
                         "INCONNU"
                     ]
                 },
-                "nir": {
-                    "type": "number",
-                    "title": "NIR",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/nir",
-                    "description": "Numéro d'inscription au Répertoire ou numéro de sécurité sociale, unique, transmis par la CNIL"
-                },
                 "residentialAddress": {
                     "$ref": "#/definitions/residentialAddress"
                 }
@@ -217,6 +209,9 @@
                 },
                 "team": {
                     "$ref": "#/definitions/team"
+                },
+                "smurStatus": {
+                    "$ref": "#/definitions/resourceStatus"
                 },
                 "actionsSMUR": {
                     "type": "array",
@@ -245,9 +240,6 @@
                     "x-cols": 6,
                     "example": "example.json#/intervention/associatedDiagnosis",
                     "description": "Thésaurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature Diagnostic SMUR."
-                },
-                "smurStatus": {
-                    "$ref": "#/definitions/resourceStatus"
                 }
             },
             "additionalProperties": false,
@@ -268,28 +260,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/orientation/type",
-                    "description": "Indique si le patient est transporté ou non (Sans transport associé / avec transport associé). \nA valoriser par un code de la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.\nSi le type d'orientation est sans transport associé, les objets Destination et Transport sont facultatifs. ",
-                    "enum": [
-                        "OK",
-                        "TEMP",
-                        "SEUL",
-                        "AFAMILLE",
-                        "AMED",
-                        "AFDO",
-                        "ATIERS",
-                        "MOYPERSO",
-                        "Code vecteur choisi",
-                        "REFPAT",
-                        "REFFAM",
-                        "PASREAKO",
-                        "PASREAOK",
-                        "REA",
-                        "TRANSPOR",
-                        "ADM",
-                        "FUGUE",
-                        "REFAUTRE",
-                        "RAS"
-                    ]
+                    "description": "Indique si le patient est transporté ou non (Sans transport associé / avec transport associé). \nA valoriser par un code de la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.\nSi le type d'orientation est sans transport associé, les objets Destination et Transport sont facultatifs. "
                 },
                 "destination": {
                     "$ref": "#/definitions/destination"
@@ -722,16 +693,16 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "cityCode",
+                "inseeCode",
                 "city"
             ],
             "properties": {
-                "cityCode": {
+                "inseeCode": {
                     "type": "string",
                     "title": "Code INSEE de la commune de résidence",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/patient/residentialAddress/cityCode",
+                    "example": "example.json#/patient/residentialAddress/inseeCode",
                     "description": "Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.\nLe Code INSEE peut également précisé le pays de résidence, si étranger. ",
                     "pattern": "[0-9]{5}"
                 },
@@ -752,7 +723,9 @@
             "title": "Lieu d'intervention",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "detailedAddress"
+            ],
             "properties": {
                 "type": {
                     "type": "string",
@@ -949,7 +922,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/location/finessGeo",
-                    "description": "Finess géographique et juridique de l’établissement de santé"
+                    "description": "Finess géographique et juridique de l’établissement de santé. \nA renseigner uniquement si l'intervention a lieu dans un établissement de santé. "
                 },
                 "unit": {
                     "type": "string",
@@ -957,7 +930,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/location/unit",
-                    "description": "Unité fonctionnelle de l'établissement de santé"
+                    "description": "Unité fonctionnelle de l'établissement de santé. \nA renseigner uniquement si l'intervention a lieu dans un établissement de santé. "
                 },
                 "detailedAddress": {
                     "$ref": "#/definitions/detailedAddress"
@@ -1022,7 +995,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/departSmur",
-                    "description": "s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
+                    "description": "Date et heure à laquelle le SMUR quitte sa base. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -1032,7 +1005,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/arrivedSmur",
-                    "description": "s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
+                    "description": "Date et heure à laquelle le SMUR arrive sur les lieux de l'intervention. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -1042,7 +1015,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/departLocation",
-                    "description": "s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
+                    "description": "Date et heure à laquelle le SMUR quitte les lieux de l'intervention. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -1052,7 +1025,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/arrivedDestination",
-                    "description": "s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
+                    "description": "Date et heure à laquelle le SMUR qui transporte arrive à destination. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -1062,7 +1035,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/teamAvailable",
-                    "description": "s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
+                    "description": "Date et heure à laquelle le SMUR est disponible (dispose de tout les équipements pour faire une autre intervention). \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -1072,7 +1045,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/returnSmur",
-                    "description": "s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
+                    "description": "Date et heure à laquelle le SMUR est de retour à la base. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 }
@@ -1086,16 +1059,16 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "cityCode",
+                "inseeCode",
                 "city"
             ],
             "properties": {
-                "cityCode": {
+                "inseeCode": {
                     "type": "string",
                     "title": "Code INSEE de la commune",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/intervention/location/detailedAddress/cityCode",
+                    "example": "example.json#/intervention/location/detailedAddress/inseeCode",
                     "description": "Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.\nLe Code INSEE peut également précisé le pays d'intervention, si étranger. ",
                     "pattern": "[0-9]{5}"
                 },
@@ -1428,8 +1401,6 @@
                         "SIS",
                         "AASC",
                         "FDO",
-                        "ADM",
-                        "DAE",
                         "AUTRE"
                     ]
                 },
@@ -1445,8 +1416,7 @@
                         "VLSC",
                         "VPSP",
                         "AUTRESC",
-                        "AUTREVECT",
-                        "CONSEIL",
+                        "AUTREVEC",
                         "TAXI",
                         "TRANSP",
                         "TRAIN",
@@ -1454,22 +1424,15 @@
                         "PERSO",
                         "APIED",
                         "AUTRE",
-                        "AUTRETRANS",
-                        "INCONNU",
-                        "DEFIB",
-                        "DAE",
+                        "AUTRETRA",
                         "FSI",
                         "HELIFSI",
                         "VLFSI",
                         "FFSI",
                         "VHFSI",
                         "LIB",
-                        "MEDC",
                         "MEDV",
-                        "PHARMA",
                         "INF",
-                        "MEDSPE",
-                        "DENT",
                         "AUTREPRO",
                         "SIS",
                         "VSAV",

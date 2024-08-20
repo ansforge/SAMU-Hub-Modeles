@@ -84,7 +84,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
                 path_file = os.path.join("..", "nomenclature_parser", "out", "latest", "csv", filename)
 
         if path_file != '':
-            df_nomenclature = pd.read_csv(path_file, sep=",", keep_default_na=False, na_values=['_'], encoding="utf-8")
+            df_nomenclature = pd.read_csv(path_file, sep=",", keep_default_na=False, na_values=['_'], encoding="utf-8",
+                                          dtype={'code': str})   
             L_ret = df_nomenclature["code"].values.tolist()
         # ToDo: ajouter un bloc dans le elseif pour détecter des https:// et aller chercher les nomenclatures publiées en ligne (MOS/NOs par exemple)
         else:
@@ -116,7 +117,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     # Column validation
     REQUIRED_COLUMNS = [
         *[f"Donnée (Niveau {i})" for i in range(1, DATA_DEPTH + 1)],
-        'ID', 'Description', 'Cardinalité', 'Balise', 'Objet', 'Format (ou type)'
+        'ID', 'Description', 'Exemples', 'Balise', 'Cardinalité', 'Objet', 'Format (ou type)', 'Détails de format',
+        *([perimeter_filter] if perimeter_filter else [])
     ]
     if not (set(REQUIRED_COLUMNS) <= set(df.columns)):
         print(f"{Color.RED}ERROR: some key columns are missing:{Color.ORANGE}")
@@ -136,9 +138,12 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         df.drop(df.columns[i], axis=1, inplace=True)
 
     # Storing input data in a file to track versions
-    # Before storing, we remove the first column (ID), and we also do not want to write line index to the file,
-    # hence index=False
-    df.drop(df.columns[0], axis=1).to_csv(f'out/{name}/{name}.input.csv', index=False)
+    # Before storing, we keep only useful columns and we also do not want to write line index to the file (index=False)
+    INPUT_CSV_COLUMNS = REQUIRED_COLUMNS.copy()
+    INPUT_CSV_COLUMNS.remove("ID")
+    if perimeter_filter:
+        INPUT_CSV_COLUMNS.remove(perimeter_filter)
+    df[INPUT_CSV_COLUMNS].to_csv(f'out/{name}/{name}.input.csv', index=False)
 
     # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
     df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(

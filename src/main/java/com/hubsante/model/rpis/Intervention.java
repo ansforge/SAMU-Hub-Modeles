@@ -48,10 +48,10 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({Intervention.JSON_PROPERTY_LOCATION,
                     Intervention.JSON_PROPERTY_TEAM,
+                    Intervention.JSON_PROPERTY_SMUR_STATUS,
                     Intervention.JSON_PROPERTY_ACTIONS_S_M_U_R,
                     Intervention.JSON_PROPERTY_MAIN_DIAGNOSIS,
-                    Intervention.JSON_PROPERTY_ASSOCIATED_DIAGNOSIS,
-                    Intervention.JSON_PROPERTY_SMUR_STATUS})
+                    Intervention.JSON_PROPERTY_ASSOCIATED_DIAGNOSIS})
 @JsonTypeName("intervention")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -62,6 +62,9 @@ public class Intervention {
   public static final String JSON_PROPERTY_TEAM = "team";
   private Team team;
 
+  public static final String JSON_PROPERTY_SMUR_STATUS = "smurStatus";
+  private ResourceStatus smurStatus;
+
   public static final String JSON_PROPERTY_ACTIONS_S_M_U_R = "actionsSMUR";
   private List<String> actionsSMUR;
 
@@ -71,9 +74,6 @@ public class Intervention {
   public static final String JSON_PROPERTY_ASSOCIATED_DIAGNOSIS =
       "associatedDiagnosis";
   private String associatedDiagnosis;
-
-  public static final String JSON_PROPERTY_SMUR_STATUS = "smurStatus";
-  private ResourceStatus smurStatus;
 
   public Intervention() {}
 
@@ -121,6 +121,29 @@ public class Intervention {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTeam(Team team) {
     this.team = team;
+  }
+
+  public Intervention smurStatus(ResourceStatus smurStatus) {
+
+    this.smurStatus = smurStatus;
+    return this;
+  }
+
+  /**
+   * Get smurStatus
+   * @return smurStatus
+   **/
+  @JsonProperty(JSON_PROPERTY_SMUR_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public ResourceStatus getSmurStatus() {
+    return smurStatus;
+  }
+
+  @JsonProperty(JSON_PROPERTY_SMUR_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSmurStatus(ResourceStatus smurStatus) {
+    this.smurStatus = smurStatus;
   }
 
   public Intervention actionsSMUR(List<String> actionsSMUR) {
@@ -210,29 +233,6 @@ public class Intervention {
     this.associatedDiagnosis = associatedDiagnosis;
   }
 
-  public Intervention smurStatus(ResourceStatus smurStatus) {
-
-    this.smurStatus = smurStatus;
-    return this;
-  }
-
-  /**
-   * Get smurStatus
-   * @return smurStatus
-   **/
-  @JsonProperty(JSON_PROPERTY_SMUR_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public ResourceStatus getSmurStatus() {
-    return smurStatus;
-  }
-
-  @JsonProperty(JSON_PROPERTY_SMUR_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSmurStatus(ResourceStatus smurStatus) {
-    this.smurStatus = smurStatus;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -244,17 +244,17 @@ public class Intervention {
     Intervention intervention = (Intervention)o;
     return Objects.equals(this.location, intervention.location) &&
         Objects.equals(this.team, intervention.team) &&
+        Objects.equals(this.smurStatus, intervention.smurStatus) &&
         Objects.equals(this.actionsSMUR, intervention.actionsSMUR) &&
         Objects.equals(this.mainDiagnosis, intervention.mainDiagnosis) &&
         Objects.equals(this.associatedDiagnosis,
-                       intervention.associatedDiagnosis) &&
-        Objects.equals(this.smurStatus, intervention.smurStatus);
+                       intervention.associatedDiagnosis);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(location, team, actionsSMUR, mainDiagnosis,
-                        associatedDiagnosis, smurStatus);
+    return Objects.hash(location, team, smurStatus, actionsSMUR, mainDiagnosis,
+                        associatedDiagnosis);
   }
 
   @Override
@@ -263,6 +263,9 @@ public class Intervention {
     sb.append("class Intervention {\n");
     sb.append("    location: ").append(toIndentedString(location)).append("\n");
     sb.append("    team: ").append(toIndentedString(team)).append("\n");
+    sb.append("    smurStatus: ")
+        .append(toIndentedString(smurStatus))
+        .append("\n");
     sb.append("    actionsSMUR: ")
         .append(toIndentedString(actionsSMUR))
         .append("\n");
@@ -271,9 +274,6 @@ public class Intervention {
         .append("\n");
     sb.append("    associatedDiagnosis: ")
         .append(toIndentedString(associatedDiagnosis))
-        .append("\n");
-    sb.append("    smurStatus: ")
-        .append(toIndentedString(smurStatus))
         .append("\n");
     sb.append("}");
     return sb.toString();
