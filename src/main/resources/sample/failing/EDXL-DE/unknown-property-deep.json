@@ -31,9 +31,12 @@
                 "URI": "hubex:fr.health.samuB"
               }
             ],
-            "reference": {
+            "technical": {
               "unexpectedUnknownProperty": "This property is not defined in the schema and is not expected to be present in the message",
-              "distributionID": "samuB_2607723d-507d-4cbf-bf74-12345f7064cd"
+              "requiredStringField": "value",
+              "requiredArray": [
+                "value"
+              ]
             }
           }
         }
