@@ -225,14 +225,14 @@ public class Position {
    * @return id
    **/
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getId() {
     return id;
   }
 
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -248,14 +248,14 @@ public class Position {
    * @return datetime
    **/
   @JsonProperty(JSON_PROPERTY_DATETIME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getDatetime() {
     return datetime;
   }
 
   @JsonProperty(JSON_PROPERTY_DATETIME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDatetime(OffsetDateTime datetime) {
     this.datetime = datetime;
   }

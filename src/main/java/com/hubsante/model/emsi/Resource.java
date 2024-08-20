@@ -287,14 +287,14 @@ public class Resource {
    * @return RTYPE
    **/
   @JsonProperty(JSON_PROPERTY_R_T_Y_P_E)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Rtype getRTYPE() {
     return RTYPE;
   }
 
   @JsonProperty(JSON_PROPERTY_R_T_Y_P_E)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRTYPE(Rtype RTYPE) {
     this.RTYPE = RTYPE;
   }

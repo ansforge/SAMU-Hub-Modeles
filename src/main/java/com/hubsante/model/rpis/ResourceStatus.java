@@ -85,14 +85,14 @@ public class ResourceStatus {
    * @return departSmur
    **/
   @JsonProperty(JSON_PROPERTY_DEPART_SMUR)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getDepartSmur() {
     return departSmur;
   }
 
   @JsonProperty(JSON_PROPERTY_DEPART_SMUR)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDepartSmur(OffsetDateTime departSmur) {
     this.departSmur = departSmur;
   }
@@ -182,14 +182,14 @@ public class ResourceStatus {
    * @return teamAvailable
    **/
   @JsonProperty(JSON_PROPERTY_TEAM_AVAILABLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getTeamAvailable() {
     return teamAvailable;
   }
 
   @JsonProperty(JSON_PROPERTY_TEAM_AVAILABLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTeamAvailable(OffsetDateTime teamAvailable) {
     this.teamAvailable = teamAvailable;
   }
@@ -206,14 +206,14 @@ public class ResourceStatus {
    * @return returnSmur
    **/
   @JsonProperty(JSON_PROPERTY_RETURN_SMUR)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getReturnSmur() {
     return returnSmur;
   }
 
   @JsonProperty(JSON_PROPERTY_RETURN_SMUR)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReturnSmur(OffsetDateTime returnSmur) {
     this.returnSmur = returnSmur;
   }

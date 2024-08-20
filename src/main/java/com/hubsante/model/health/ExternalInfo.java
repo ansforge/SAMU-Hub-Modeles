@@ -147,14 +147,14 @@ public class ExternalInfo {
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public FreetextEnum getFreetext() {
     return freetext;
   }
 
   @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFreetext(FreetextEnum freetext) {
     this.freetext = freetext;
   }
@@ -195,14 +195,14 @@ public class ExternalInfo {
    * @return uri
    **/
   @JsonProperty(JSON_PROPERTY_URI)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getUri() {
     return uri;
   }
 
   @JsonProperty(JSON_PROPERTY_URI)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUri(String uri) {
     this.uri = uri;
   }

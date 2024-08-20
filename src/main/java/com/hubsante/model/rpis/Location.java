@@ -533,14 +533,14 @@ public class Location {
    * @return detailedAddress
    **/
   @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public DetailedAddress getDetailedAddress() {
     return detailedAddress;
   }
 
   @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDetailedAddress(DetailedAddress detailedAddress) {
     this.detailedAddress = detailedAddress;
   }

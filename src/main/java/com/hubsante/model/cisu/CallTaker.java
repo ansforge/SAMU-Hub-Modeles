@@ -82,14 +82,14 @@ public class CallTaker {
    * @return organization
    **/
   @JsonProperty(JSON_PROPERTY_ORGANIZATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getOrganization() {
     return organization;
   }
 
   @JsonProperty(JSON_PROPERTY_ORGANIZATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOrganization(String organization) {
     this.organization = organization;
   }
@@ -105,14 +105,14 @@ public class CallTaker {
    * @return controlRoom
    **/
   @JsonProperty(JSON_PROPERTY_CONTROL_ROOM)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getControlRoom() {
     return controlRoom;
   }
 
   @JsonProperty(JSON_PROPERTY_CONTROL_ROOM)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setControlRoom(String controlRoom) {
     this.controlRoom = controlRoom;
   }
