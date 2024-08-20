@@ -123,7 +123,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
                 </simpleType>
             </element>
             <element name="operator" type="x:operator"/>
-            <element minOccurs="0" name="idObs">
+            <element name="idObs">
                 <annotation>
                     <documentation>Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation
 Il est valorisé comme suit lors de sa création : 
@@ -160,40 +160,13 @@ Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jo
                     <documentation>A valoriser avec l'ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="patientStatus">
-                <annotation>
-                    <documentation>A valoriser avec le type de devenir du patient (cf. nomenclature associée)</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="OK"/>
-                        <enumeration value="TEMP"/>
-                        <enumeration value="SEUL"/>
-                        <enumeration value="AFAMILLE"/>
-                        <enumeration value="AMED"/>
-                        <enumeration value="AFDO"/>
-                        <enumeration value="ATIERS"/>
-                        <enumeration value="MOYPERSO"/>
-                        <enumeration value="VECTEUR"/>
-                        <enumeration value="REFPAT"/>
-                        <enumeration value="REFFAM"/>
-                        <enumeration value="PASREAKO"/>
-                        <enumeration value="PASREAOK"/>
-                        <enumeration value="REA"/>
-                        <enumeration value="TRANSPOR"/>
-                        <enumeration value="ADM"/>
-                        <enumeration value="FUGUE"/>
-                        <enumeration value="REFAUTRE"/>
-                        <enumeration value="RAS"/>
-                    </restriction>
-                </simpleType>
-            </element>
             <element name="creation" type="dateTime">
                 <annotation>
                     <documentation>A valoriser avec le groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
                 </annotation>
             </element>
-            <element name="type">
+            <element name="operator" type="x:operator"/>
+            <element name="decisionType">
                 <annotation>
                     <documentation>A valoriser avec le type de décision prise (cf.nomenclature associée)</documentation>
                 </annotation>
@@ -207,9 +180,119 @@ Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jo
                     </restriction>
                 </simpleType>
             </element>
-            <element name="operator" type="x:operator"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="engagementDetails" type="x:decisionDetails"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="transportDetails" type="x:decisionDetails"/>
+            <element minOccurs="0" name="resourceType">
+                <annotation>
+                    <documentation>A valoriser avec le type de ressource souhaitée ou engagée (cf.nomenclature associée) - en fonction du type de décision.
+A fournir obligatoirement pour une décision d'intervention ou de transport/orientation.</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="SMUR"/>
+                        <enumeration value="HOSPIT"/>
+                        <enumeration value="LIB"/>
+                        <enumeration value="TSU "/>
+                        <enumeration value="SIS"/>
+                        <enumeration value="AASC"/>
+                        <enumeration value="FDO"/>
+                        <enumeration value="AUTRE"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="vehiculeType">
+                <annotation>
+                    <documentation>A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée) en fonction du type de décision.
+A fournir obligatoirement pour une décision d'intervention ou de transport/orientation.</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="AASC"/>
+                        <enumeration value="VLSC"/>
+                        <enumeration value="VPSP"/>
+                        <enumeration value="AUTRESC"/>
+                        <enumeration value="AUTREVEC"/>
+                        <enumeration value="TAXI"/>
+                        <enumeration value="TRANSP"/>
+                        <enumeration value="TRAIN"/>
+                        <enumeration value="AVION"/>
+                        <enumeration value="PERSO"/>
+                        <enumeration value="APIED"/>
+                        <enumeration value="AUTRE"/>
+                        <enumeration value="AUTRETRA"/>
+                        <enumeration value="FSI"/>
+                        <enumeration value="HELIFSI"/>
+                        <enumeration value="VLFSI"/>
+                        <enumeration value="FFSI"/>
+                        <enumeration value="VHFSI"/>
+                        <enumeration value="LIB"/>
+                        <enumeration value="MEDV"/>
+                        <enumeration value="INF"/>
+                        <enumeration value="AUTREPRO"/>
+                        <enumeration value="SIS"/>
+                        <enumeration value="VSAV"/>
+                        <enumeration value="GRIMP"/>
+                        <enumeration value="VPL"/>
+                        <enumeration value="SRSIS"/>
+                        <enumeration value="FEUSIS"/>
+                        <enumeration value="VPMA"/>
+                        <enumeration value="VCH"/>
+                        <enumeration value="VR"/>
+                        <enumeration value="PCSIS"/>
+                        <enumeration value="VLISP"/>
+                        <enumeration value="VLMSP"/>
+                        <enumeration value="VLCG"/>
+                        <enumeration value="VLSIS"/>
+                        <enumeration value="DRAGON"/>
+                        <enumeration value="AVSC"/>
+                        <enumeration value="MOYSSE"/>
+                        <enumeration value="AUTRESIS"/>
+                        <enumeration value="NAVISIS"/>
+                        <enumeration value="SMUR"/>
+                        <enumeration value="VLM"/>
+                        <enumeration value="VL"/>
+                        <enumeration value="PSM1"/>
+                        <enumeration value="PSM2"/>
+                        <enumeration value="PSM3"/>
+                        <enumeration value="PSMP"/>
+                        <enumeration value="VPC"/>
+                        <enumeration value="AR"/>
+                        <enumeration value="AR-BAR"/>
+                        <enumeration value="AR-PED"/>
+                        <enumeration value="HELISMUR"/>
+                        <enumeration value="HELISAN"/>
+                        <enumeration value="AVSMUR"/>
+                        <enumeration value="AVSAN"/>
+                        <enumeration value="NAVISMUR"/>
+                        <enumeration value="TSU"/>
+                        <enumeration value="VSL"/>
+                        <enumeration value="AMB-GV"/>
+                        <enumeration value="AMB-PV"/>
+                        <enumeration value="AMB-BAR"/>
+                        <enumeration value="AMB"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="medicalTransport" type="boolean">
+                <annotation>
+                    <documentation>A valoriser obligatoirement en cas de décision de transport, pour indiquer si ce dernier est médicalisé.
+True = transport médicalisé
+False = transport non médicalisé</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="orientationType">
+                <annotation>
+                    <documentation>Indique le type de destination en cas de décision d'orientation (cf. nomenclature associée)</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="URGENCES"/>
+                        <enumeration value="SANTE"/>
+                        <enumeration value="CABINET"/>
+                        <enumeration value="DOMICILE"/>
+                        <enumeration value="EPHAD"/>
+                        <enumeration value="AUTRE"/>
+                    </restriction>
+                </simpleType>
+            </element>
         </sequence>
     </complexType>
     <complexType name="additionalInformation">
@@ -460,12 +543,12 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="patientDetail">
         <sequence>
-            <element minOccurs="0" name="weight" type="int">
+            <element minOccurs="0" name="weight" type="decimal">
                 <annotation>
                     <documentation>A valoriser avec le poids en kilogrammes</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="height" type="int">
+            <element minOccurs="0" name="height" type="decimal">
                 <annotation>
                     <documentation>A valoriser avec la taille en centimètres du patient</documentation>
                 </annotation>
@@ -614,7 +697,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element minOccurs="0" name="label" type="string">
                 <annotation>
-                    <documentation>A valoriser si besoin avec la valeur souhaitée, en fonction de chaque CRRA : cela peut être le nom et prénom de l'opérateur, ou un identifiant.</documentation>
+                    <documentation>A valoriser si besoin avec la valeur souhaitée, en fonction des préférences de chaque partenaire : cela peut être le nom et prénom de l'opérateur, ou un identifiant.</documentation>
                 </annotation>
             </element>
             <element name="role">
@@ -632,132 +715,6 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                     </restriction>
                 </simpleType>
             </element>
-        </sequence>
-    </complexType>
-    <complexType name="decisionDetails">
-        <sequence>
-            <element name="categoryType">
-                <annotation>
-                    <documentation>A valoriser avec le type de ressource souhaité / demandé (cf.nomenclature associée)</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="SMUR"/>
-                        <enumeration value="HOSPIT"/>
-                        <enumeration value="LIB"/>
-                        <enumeration value="TSU "/>
-                        <enumeration value="SIS"/>
-                        <enumeration value="AASC"/>
-                        <enumeration value="FDO"/>
-                        <enumeration value="AUTRE"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element minOccurs="0" name="resourceType">
-                <annotation>
-                    <documentation>A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée).</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="AASC"/>
-                        <enumeration value="VLSC"/>
-                        <enumeration value="VPSP"/>
-                        <enumeration value="AUTRESC"/>
-                        <enumeration value="AUTREVEC"/>
-                        <enumeration value="TAXI"/>
-                        <enumeration value="TRANSP"/>
-                        <enumeration value="TRAIN"/>
-                        <enumeration value="AVION"/>
-                        <enumeration value="PERSO"/>
-                        <enumeration value="APIED"/>
-                        <enumeration value="AUTRE"/>
-                        <enumeration value="AUTRETRA"/>
-                        <enumeration value="FSI"/>
-                        <enumeration value="HELIFSI"/>
-                        <enumeration value="VLFSI"/>
-                        <enumeration value="FFSI"/>
-                        <enumeration value="VHFSI"/>
-                        <enumeration value="LIB"/>
-                        <enumeration value="MEDV"/>
-                        <enumeration value="INF"/>
-                        <enumeration value="AUTREPRO"/>
-                        <enumeration value="SIS"/>
-                        <enumeration value="VSAV"/>
-                        <enumeration value="GRIMP"/>
-                        <enumeration value="VPL"/>
-                        <enumeration value="SRSIS"/>
-                        <enumeration value="FEUSIS"/>
-                        <enumeration value="VPMA"/>
-                        <enumeration value="VCH"/>
-                        <enumeration value="VR"/>
-                        <enumeration value="PCSIS"/>
-                        <enumeration value="VLISP"/>
-                        <enumeration value="VLMSP"/>
-                        <enumeration value="VLCG"/>
-                        <enumeration value="VLSIS"/>
-                        <enumeration value="DRAGON"/>
-                        <enumeration value="AVSC"/>
-                        <enumeration value="MOYSSE"/>
-                        <enumeration value="AUTRESIS"/>
-                        <enumeration value="NAVISIS"/>
-                        <enumeration value="SMUR"/>
-                        <enumeration value="VLM"/>
-                        <enumeration value="VL"/>
-                        <enumeration value="PSM1"/>
-                        <enumeration value="PSM2"/>
-                        <enumeration value="PSM3"/>
-                        <enumeration value="PSMP"/>
-                        <enumeration value="VPC"/>
-                        <enumeration value="AR"/>
-                        <enumeration value="AR-BAR"/>
-                        <enumeration value="AR-PED"/>
-                        <enumeration value="HELISMUR"/>
-                        <enumeration value="HELISAN"/>
-                        <enumeration value="AVSMUR"/>
-                        <enumeration value="AVSAN"/>
-                        <enumeration value="NAVISMUR"/>
-                        <enumeration value="TSU"/>
-                        <enumeration value="VSL"/>
-                        <enumeration value="AMB-GV"/>
-                        <enumeration value="AMB-PV"/>
-                        <enumeration value="AMB-BAR"/>
-                        <enumeration value="AMB"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element name="teamCareInitial">
-                <annotation>
-                    <documentation>A valoriser avec le niveau de prise en charge souhaité (cf.nomenclature associée)</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="MED"/>
-                        <enumeration value="PARAMED"/>
-                        <enumeration value="SECOURS"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element minOccurs="0" name="destination" type="x:destination"/>
-        </sequence>
-    </complexType>
-    <complexType name="destination">
-        <sequence>
-            <element minOccurs="0" name="type">
-                <annotation>
-                    <documentation>Indique le type de destination (cf. nomenclature associée)</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="URGENCES"/>
-                        <enumeration value="SANTE"/>
-                        <enumeration value="CABINET"/>
-                        <enumeration value="DOMICILE"/>
-                        <enumeration value="EPHAD"/>
-                        <enumeration value="AUTRE"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element minOccurs="0" name="location" type="x:location"/>
         </sequence>
     </complexType>
     <complexType name="customMap">

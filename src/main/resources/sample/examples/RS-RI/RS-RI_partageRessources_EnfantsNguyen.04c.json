@@ -1,0 +1,34 @@
+{
+  "resourcesInfo": {
+    "mobilizedResource": [
+      {
+        "contact": {
+          "details": "+33712318965",
+          "type": "TEL"
+        },
+        "team": {
+          "teamCare": "MED",
+          "name": "Equipe Buse1"
+        },
+        "state": [
+          {
+            "datetime": "2024-08-06T16:45:00+02:00",
+            "status": "DECISION"
+          },
+          {
+            "datetime": "2024-08-06T16:55:00+02:00",
+            "status": "DECLENCHE"
+          }
+        ],
+        "datetime": "2024-08-01T16:55:00+02:00",
+        "requestId": "fr.health.samu76A.request.af78b21",
+        "resourceId": "fr.health.samu800.resource.Heli80bec6",
+        "orgId": "fr.health.samu800",
+        "resourceType": "SMUR",
+        "vehiculeType": "HELISMUR",
+        "name": "HELISMUR 80 - BEC6"
+      }
+    ],
+    "caseId": "fr.health.samu800.DRFR158002421400215"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "createCaseHealthUpdate": {
+    "qualification": {
+      "details": {
+        "status": "CLOTURE"
+      }
+    },
+    "caseId": "fr.fire.cga-044.SC-20240526-044-cga-AL8"
+  }
+}

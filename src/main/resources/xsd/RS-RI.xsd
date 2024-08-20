@@ -2,7 +2,7 @@
     <element name="resourcesInfo" type="x:resourcesInfo"/>
     <complexType name="resourcesInfo">
         <sequence>
-            <element name="caseId" type="string">
+            <element name="caseId">
                 <annotation>
                     <documentation>A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
 Il est valorisé comme suit lors de sa création : 
@@ -11,6 +11,11 @@ Il est valorisé comme suit lors de sa création :
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="fr(\.[\w-]+){3}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element maxOccurs="unbounded" minOccurs="1" name="mobilizedResource" type="x:resource"/>
         </sequence>
@@ -22,21 +27,31 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                     <documentation>A valoriser avec la date et heure d'engagement de la ressource/du vecteur</documentation>
                 </annotation>
             </element>
-            <element name="resourceId" type="string">
+            <element name="resourceId">
                 <annotation>
                     <documentation>A valoriser avec l'identifiant partagé unique de la ressource engagée, normé comme suit :
 {orgID}.resource.{ID unique de la ressource partagée}
 OU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :
 {orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="([\w-]+\.){3}resource(\.[\w-]+){1,2}"/>
+                    </restriction>
+                </simpleType>
             </element>
-            <element minOccurs="0" name="requestId" type="string">
+            <element minOccurs="0" name="requestId">
                 <annotation>
                     <documentation>A valoriser avec l'identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), normé comme suit :
 {orgID}.request.{ID unique de la demande dans le système émetteur}
 OU - si un ID unique de la demande n'était pas disponible : 
 {OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="([\w-]+\.){3}request(\.[\w-]+){1,2}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="missionId" type="string">
                 <annotation>

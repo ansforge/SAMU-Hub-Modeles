@@ -287,6 +287,7 @@ components:
       x-health-only: false
       required:
       - operator
+      - idObs
       - freetext
       properties:
         idPat:
@@ -331,7 +332,7 @@ components:
             fr.health.samu540.medicalNote.DRFR15540241600125.20'
         creation:
           type: string
-          title: "Date Heure de cr\xE9ation de l'observation"
+          title: Date Heure de l'observation
           x-health-only: false
           x-cols: 6
           example: example.json#/medicalNote/0/creation
@@ -356,13 +357,13 @@ components:
       example: example.json#/medicalNote/0
     decision:
       type: object
-      title: "D\xE9cisions"
+      title: "D\xE9cision"
       x-display: expansion-panels
       x-health-only: false
       required:
       - creation
-      - type
       - operator
+      - decisionType
       properties:
         idPat:
           type: string
@@ -377,39 +378,9 @@ components:
           - 'fr.health.samu690.patient.P23AZ59
 
             fr.health.samu690.patient.DRFR15690242370035.1'
-        patientStatus:
-          type: string
-          title: Type de devenir du patient
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/patientStatus
-          description: "A valoriser avec le type de devenir du patient (cf. nomenclature\
-            \ associ\xE9e)"
-          enum:
-          - OK
-          - TEMP
-          - SEUL
-          - AFAMILLE
-          - AMED
-          - AFDO
-          - ATIERS
-          - MOYPERSO
-          - VECTEUR
-          - REFPAT
-          - REFFAM
-          - PASREAKO
-          - PASREAOK
-          - REA
-          - TRANSPOR
-          - ADM
-          - FUGUE
-          - REFAUTRE
-          - RAS
-          examples:
-          - "laiss\xE9 sur place, d\xE9c\xE9d\xE9, ou transport\xE9"
         creation:
           type: string
-          title: "Date Heure de cr\xE9ation de la d\xE9cision"
+          title: "Date Heure de la d\xE9cision"
           x-health-only: false
           x-cols: 6
           example: example.json#/decision/0/creation
@@ -420,12 +391,14 @@ components:
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
-        type:
+        operator:
+          $ref: '#/components/schemas/operator'
+        decisionType:
           type: string
           title: "Type de d\xE9cision"
           x-health-only: false
           x-cols: 6
-          example: example.json#/decision/0/type
+          example: example.json#/decision/0/decisionType
           description: "A valoriser avec le type de d\xE9cision prise (cf.nomenclature\
             \ associ\xE9e)"
           enum:
@@ -437,18 +410,144 @@ components:
           examples:
           - "conseil m\xE9dical  / d\xE9cision d\u2019intervention / d\xE9cision d\u2019\
             orientation et de transport / Pas de d\xE9cision suppl\xE9mentaire"
-        operator:
-          $ref: '#/components/schemas/operator'
-        engagementDetails:
-          type: array
-          items:
-            $ref: '#/components/schemas/decisionDetails'
-        transportDetails:
-          type: array
-          items:
-            $ref: '#/components/schemas/decisionDetails'
+        resourceType:
+          type: string
+          title: Type de ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/resourceType
+          description: "A valoriser avec le type de ressource souhait\xE9e ou engag\xE9\
+            e (cf.nomenclature associ\xE9e) - en fonction du type de d\xE9cision.\n\
+            A fournir obligatoirement pour une d\xE9cision d'intervention ou de transport/orientation."
+          enum:
+          - SMUR
+          - HOSPIT
+          - LIB
+          - 'TSU '
+          - SIS
+          - AASC
+          - FDO
+          - AUTRE
+          examples:
+          - SMUR, Pompiers
+        vehiculeType:
+          type: string
+          title: Type de vecteur
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/vehiculeType
+          description: "A valoriser avec le type de vecteur souhait\xE9 / demand\xE9\
+            \ (cf.nomenclature associ\xE9e) en fonction du type de d\xE9cision.\n\
+            A fournir obligatoirement pour une d\xE9cision d'intervention ou de transport/orientation."
+          enum:
+          - AASC
+          - VLSC
+          - VPSP
+          - AUTRESC
+          - AUTREVEC
+          - TAXI
+          - TRANSP
+          - TRAIN
+          - AVION
+          - PERSO
+          - APIED
+          - AUTRE
+          - AUTRETRA
+          - FSI
+          - HELIFSI
+          - VLFSI
+          - FFSI
+          - VHFSI
+          - LIB
+          - MEDV
+          - INF
+          - AUTREPRO
+          - SIS
+          - VSAV
+          - GRIMP
+          - VPL
+          - SRSIS
+          - FEUSIS
+          - VPMA
+          - VCH
+          - VR
+          - PCSIS
+          - VLISP
+          - VLMSP
+          - VLCG
+          - VLSIS
+          - DRAGON
+          - AVSC
+          - MOYSSE
+          - AUTRESIS
+          - NAVISIS
+          - SMUR
+          - VLM
+          - VL
+          - PSM1
+          - PSM2
+          - PSM3
+          - PSMP
+          - VPC
+          - AR
+          - AR-BAR
+          - AR-PED
+          - HELISMUR
+          - HELISAN
+          - AVSMUR
+          - AVSAN
+          - NAVISMUR
+          - TSU
+          - VSL
+          - AMB-GV
+          - AMB-PV
+          - AMB-BAR
+          - AMB
+          examples:
+          - AR, VLM, VSAV
+        medicalTransport:
+          type: boolean
+          title: "Transport m\xE9dicalis\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/medicalTransport
+          description: "A valoriser obligatoirement en cas de d\xE9cision de transport,\
+            \ pour indiquer si ce dernier est m\xE9dicalis\xE9.\nTrue = transport\
+            \ m\xE9dicalis\xE9\nFalse = transport non m\xE9dicalis\xE9"
+          examples:
+          - 'True'
+        orientationType:
+          type: string
+          title: Type d'orientation
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/orientationType
+          description: "Indique le type de destination en cas de d\xE9cision d'orientation\
+            \ (cf. nomenclature associ\xE9e)"
+          enum:
+          - URGENCES
+          - SANTE
+          - CABINET
+          - DOMICILE
+          - EPHAD
+          - AUTRE
+          examples:
+          - EPHAD
       additionalProperties: false
       example: example.json#/decision/0
+      examples:
+      - idPat: 'fr.health.samu690.patient.P23AZ59
+
+          fr.health.samu690.patient.DRFR15690242370035.1'
+        creation: '2022-09-27T08:23:34+02:00'
+        operator: {}
+        decisionType: "conseil m\xE9dical  / d\xE9cision d\u2019intervention / d\xE9\
+          cision d\u2019orientation et de transport / Pas de d\xE9cision suppl\xE9\
+          mentaire"
+        resourceType: SMUR, Pompiers
+        vehiculeType: AR, VLM, VSAV
+        medicalTransport: 'True'
+        orientationType: EPHAD
     additionalInformation:
       type: object
       title: "Informations compl\xE9mentaires"
@@ -2281,7 +2380,7 @@ components:
       required: []
       properties:
         weight:
-          type: integer
+          type: number
           title: Poids
           x-health-only: false
           x-cols: 6
@@ -2290,7 +2389,7 @@ components:
           examples:
           - 31
         height:
-          type: integer
+          type: number
           title: Taille
           x-health-only: false
           x-cols: 6
@@ -2517,8 +2616,8 @@ components:
           x-cols: 6
           example: example.json#/medicalNote/0/operator/label
           description: "A valoriser si besoin avec la valeur souhait\xE9e, en fonction\
-            \ de chaque CRRA : cela peut \xEAtre le nom et pr\xE9nom de l'op\xE9rateur,\
-            \ ou un identifiant."
+            \ des pr\xE9f\xE9rences de chaque partenaire : cela peut \xEAtre le nom\
+            \ et pr\xE9nom de l'op\xE9rateur, ou un identifiant."
           examples:
           - None
         role:
@@ -2543,156 +2642,6 @@ components:
       examples:
       - label: None
         role: ARM
-    decisionDetails:
-      type: object
-      title: "D\xE9tails d\xE9cision d'intervention"
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - categoryType
-      - teamCareInitial
-      properties:
-        categoryType:
-          type: string
-          title: Type de ressource
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/engagementDetails/0/categoryType
-          description: "A valoriser avec le type de ressource souhait\xE9 / demand\xE9\
-            \ (cf.nomenclature associ\xE9e)"
-          enum:
-          - SMUR
-          - HOSPIT
-          - LIB
-          - 'TSU '
-          - SIS
-          - AASC
-          - FDO
-          - AUTRE
-          examples:
-          - SMUR, Pompiers
-        resourceType:
-          type: string
-          title: Type de vecteur
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/engagementDetails/0/resourceType
-          description: "A valoriser avec le type de vecteur souhait\xE9 / demand\xE9\
-            \ (cf.nomenclature associ\xE9e)."
-          enum:
-          - AASC
-          - VLSC
-          - VPSP
-          - AUTRESC
-          - AUTREVEC
-          - TAXI
-          - TRANSP
-          - TRAIN
-          - AVION
-          - PERSO
-          - APIED
-          - AUTRE
-          - AUTRETRA
-          - FSI
-          - HELIFSI
-          - VLFSI
-          - FFSI
-          - VHFSI
-          - LIB
-          - MEDV
-          - INF
-          - AUTREPRO
-          - SIS
-          - VSAV
-          - GRIMP
-          - VPL
-          - SRSIS
-          - FEUSIS
-          - VPMA
-          - VCH
-          - VR
-          - PCSIS
-          - VLISP
-          - VLMSP
-          - VLCG
-          - VLSIS
-          - DRAGON
-          - AVSC
-          - MOYSSE
-          - AUTRESIS
-          - NAVISIS
-          - SMUR
-          - VLM
-          - VL
-          - PSM1
-          - PSM2
-          - PSM3
-          - PSMP
-          - VPC
-          - AR
-          - AR-BAR
-          - AR-PED
-          - HELISMUR
-          - HELISAN
-          - AVSMUR
-          - AVSAN
-          - NAVISMUR
-          - TSU
-          - VSL
-          - AMB-GV
-          - AMB-PV
-          - AMB-BAR
-          - AMB
-          examples:
-          - AR, VLM, VSAV
-        teamCareInitial:
-          type: string
-          title: Niveau de prise en charge
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/engagementDetails/0/teamCareInitial
-          description: "A valoriser avec le niveau de prise en charge souhait\xE9\
-            \ (cf.nomenclature associ\xE9e)"
-          enum:
-          - MED
-          - PARAMED
-          - SECOURS
-          examples:
-          - "M\xE9dical, param\xE9dical, secouriste"
-        destination:
-          $ref: '#/components/schemas/destination'
-      additionalProperties: false
-      example: example.json#/decision/0/engagementDetails/0
-      examples:
-      - categoryType: SMUR, Pompiers
-        resourceType: AR, VLM, VSAV
-        teamCareInitial: "M\xE9dical, param\xE9dical, secouriste"
-    destination:
-      type: object
-      title: Destination
-      x-display: expansion-panels
-      x-health-only: false
-      required: []
-      properties:
-        type:
-          type: string
-          title: Type de destination
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/engagementDetails/0/destination/type
-          description: "Indique le type de destination (cf. nomenclature associ\xE9\
-            e)"
-          enum:
-          - URGENCES
-          - SANTE
-          - CABINET
-          - DOMICILE
-          - EPHAD
-          - AUTRE
-        location:
-          $ref: '#/components/schemas/location'
-      additionalProperties: false
-      example: example.json#/decision/0/engagementDetails/0/destination
     customMap:
       type: object
       title: "Cl\xE9 valeur adaptable"
