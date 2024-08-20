@@ -1633,7 +1633,7 @@ components:
       - datetime
       properties:
         datetime:
-          type: string
+          type: obsDatime
           title: "Heure du dernier relev\xE9"
           x-health-only: false
           x-cols: 6
@@ -1641,8 +1641,6 @@ components:
           description: "A valoriser avec le groupe date heure de renseignement des\
             \ coordonn\xE9es du point cl\xE9 de la localisation. \nPermet de conna\xEE\
             tre la fra\xEEcheur et donc la pertinence des informations pour intervenir."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
-          format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
         point:

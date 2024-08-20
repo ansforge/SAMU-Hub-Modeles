@@ -1509,14 +1509,12 @@
             ],
             "properties": {
                 "datetime": {
-                    "type": "string",
+                    "type": "obsDatime",
                     "title": "Heure du dernier relevé",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/datetime",
-                    "description": "A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. \nPermet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
-                    "format": "date-time"
+                    "description": "A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. \nPermet de connaître la fraîcheur et donc la pertinence des informations pour intervenir."
                 },
                 "point": {
                     "$ref": "#/definitions/point"

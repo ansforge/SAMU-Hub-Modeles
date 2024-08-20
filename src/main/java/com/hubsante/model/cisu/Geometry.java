@@ -34,8 +34,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.cisu.ObsDatime;
 import com.hubsante.model.cisu.Point;
-import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -51,7 +51,7 @@ import java.util.Objects;
 
 public class Geometry {
   public static final String JSON_PROPERTY_DATETIME = "datetime";
-  private OffsetDateTime datetime;
+  private ObsDatime datetime = null;
 
   public static final String JSON_PROPERTY_POINT = "point";
   private Point point;
@@ -61,7 +61,7 @@ public class Geometry {
 
   public Geometry() {}
 
-  public Geometry datetime(OffsetDateTime datetime) {
+  public Geometry datetime(ObsDatime datetime) {
 
     this.datetime = datetime;
     return this;
@@ -76,13 +76,13 @@ public class Geometry {
   @JsonProperty(JSON_PROPERTY_DATETIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public OffsetDateTime getDatetime() {
+  public ObsDatime getDatetime() {
     return datetime;
   }
 
   @JsonProperty(JSON_PROPERTY_DATETIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDatetime(OffsetDateTime datetime) {
+  public void setDatetime(ObsDatime datetime) {
     this.datetime = datetime;
   }
 
