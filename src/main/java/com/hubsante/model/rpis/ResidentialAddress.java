@@ -68,14 +68,14 @@ public class ResidentialAddress {
    * @return inseeCode
    **/
   @JsonProperty(JSON_PROPERTY_INSEE_CODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getInseeCode() {
     return inseeCode;
   }
 
   @JsonProperty(JSON_PROPERTY_INSEE_CODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInseeCode(String inseeCode) {
     this.inseeCode = inseeCode;
   }
@@ -91,14 +91,14 @@ public class ResidentialAddress {
    * @return city
    **/
   @JsonProperty(JSON_PROPERTY_CITY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getCity() {
     return city;
   }
 
   @JsonProperty(JSON_PROPERTY_CITY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCity(String city) {
     this.city = city;
   }

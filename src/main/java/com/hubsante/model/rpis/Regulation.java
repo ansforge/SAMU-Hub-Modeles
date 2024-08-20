@@ -111,14 +111,14 @@ public class Regulation {
    * @return whatsHappen
    **/
   @JsonProperty(JSON_PROPERTY_WHATS_HAPPEN)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public WhatsHappen getWhatsHappen() {
     return whatsHappen;
   }
 
   @JsonProperty(JSON_PROPERTY_WHATS_HAPPEN)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setWhatsHappen(WhatsHappen whatsHappen) {
     this.whatsHappen = whatsHappen;
   }
@@ -134,14 +134,14 @@ public class Regulation {
    * @return healthMotive
    **/
   @JsonProperty(JSON_PROPERTY_HEALTH_MOTIVE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public HealthMotive getHealthMotive() {
     return healthMotive;
   }
 
   @JsonProperty(JSON_PROPERTY_HEALTH_MOTIVE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHealthMotive(HealthMotive healthMotive) {
     this.healthMotive = healthMotive;
   }
@@ -160,14 +160,14 @@ public class Regulation {
    * @return initialTeamCare
    **/
   @JsonProperty(JSON_PROPERTY_INITIAL_TEAM_CARE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public InitialTeamCareEnum getInitialTeamCare() {
     return initialTeamCare;
   }
 
   @JsonProperty(JSON_PROPERTY_INITIAL_TEAM_CARE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInitialTeamCare(InitialTeamCareEnum initialTeamCare) {
     this.initialTeamCare = initialTeamCare;
   }

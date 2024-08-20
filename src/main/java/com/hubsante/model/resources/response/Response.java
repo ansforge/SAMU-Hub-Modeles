@@ -112,14 +112,14 @@ public class Response {
    * @return datetime
    **/
   @JsonProperty(JSON_PROPERTY_DATETIME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getDatetime() {
     return datetime;
   }
 
   @JsonProperty(JSON_PROPERTY_DATETIME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDatetime(OffsetDateTime datetime) {
     this.datetime = datetime;
   }
@@ -136,14 +136,14 @@ public class Response {
    * @return answer
    **/
   @JsonProperty(JSON_PROPERTY_ANSWER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public AnswerEnum getAnswer() {
     return answer;
   }
 
   @JsonProperty(JSON_PROPERTY_ANSWER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAnswer(AnswerEnum answer) {
     this.answer = answer;
   }

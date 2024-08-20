@@ -589,14 +589,14 @@ public class Destination {
    * @return destinationCountry
    **/
   @JsonProperty(JSON_PROPERTY_DESTINATION_COUNTRY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public DestinationCountryEnum getDestinationCountry() {
     return destinationCountry;
   }
 
   @JsonProperty(JSON_PROPERTY_DESTINATION_COUNTRY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDestinationCountry(DestinationCountryEnum destinationCountry) {
     this.destinationCountry = destinationCountry;
   }
@@ -612,14 +612,14 @@ public class Destination {
    * @return destinationCategory
    **/
   @JsonProperty(JSON_PROPERTY_DESTINATION_CATEGORY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getDestinationCategory() {
     return destinationCategory;
   }
 
   @JsonProperty(JSON_PROPERTY_DESTINATION_CATEGORY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDestinationCategory(String destinationCategory) {
     this.destinationCategory = destinationCategory;
   }
@@ -635,14 +635,14 @@ public class Destination {
    * @return healthcareType
    **/
   @JsonProperty(JSON_PROPERTY_HEALTHCARE_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getHealthcareType() {
     return healthcareType;
   }
 
   @JsonProperty(JSON_PROPERTY_HEALTHCARE_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHealthcareType(String healthcareType) {
     this.healthcareType = healthcareType;
   }
@@ -658,14 +658,14 @@ public class Destination {
    * @return finess
    **/
   @JsonProperty(JSON_PROPERTY_FINESS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getFiness() {
     return finess;
   }
 
   @JsonProperty(JSON_PROPERTY_FINESS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFiness(String finess) {
     this.finess = finess;
   }
