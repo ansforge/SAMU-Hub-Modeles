@@ -1,118 +1,133 @@
-asyncapi: '2.5.0'
+asyncapi: 3.0.0
 info:
   title: Hub Sante AMQP API
   version: '0.9'
-  description: |
-    L'API Hub Sante AMQP permet le partage d'informations entre acteurs du monde de la santé.
+  description: >
+    L'API Hub Sante AMQP permet le partage d'informations entre acteurs du monde
+    de la santé.
   license:
     name: Apache 2.0
-    url: https://www.apache.org/licenses/LICENSE-2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0'
+defaultContentType: application/json
 servers:
   remote:
-    url: messaging.hub.esante.gouv.fr:5671
+    host: 'messaging.hub.esante.gouv.fr:5671'
     protocol: amqps
-    protocolVersion: '0-9-1'
+    protocolVersion: 0-9-1
     description: Instance "bac à sable" du Hub Sante déployée dans le Cloud.
     security:
-      - tlsAuth: [ ]
+      - $ref: '#/components/securitySchemes/tlsAuth'
   local:
-    url: localhost:5671
+    host: 'localhost:5671'
     protocol: amqps
-    protocolVersion: '0-9-1'
+    protocolVersion: 0-9-1
     description: Instance locale du Hub Sante portée par `minikube` dans le repo du Hub
     security:
-      - tlsAuth: [ ]
-defaultContentType: application/json
+      - $ref: '#/components/securitySchemes/tlsAuth'
 channels:
-  "{clientId}.message":
+  '{clientId}':
+    address: '{clientId}.message'
+    messages:
+      edxlMessage:
+        $ref: '#/components/messages/edxlMessage'
+    description: Topic spécifique à chaque client pour l'envoi de messages
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    bindings:
+      amqp:
+        is: routingKey
+        exchange:
+          name: hubsante
+          type: topic
+          durable: true
+          autoDelete: false
+          vhost: /
+  '{clientId}.message':
+    address: '{clientId}.message'
+    messages:
+      edxlMessage:
+        $ref: '#/components/messages/edxlMessage'
     description: File spécifique à chaque client pour la réception de messages
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
-    subscribe:
-      summary: Message fonctionnel
-      operationId: receiveMessage
-      message:
-        $ref: '#/components/messages/edxlMessage'
-    publish:
-      summary: Message fonctionnel
-      operationId: publishMessage
-      message:
-        $ref: '#/components/messages/edxlMessage'
     bindings:
       amqp:
-        is: routingKey
-        exchange:
-          name: hubsante
-          type: topic
-          durable: true
-          autoDelete: false
-          vhost: /
-
-  "{clientId}.ack":
-    description: File spécifique à chaque client pour la réception des acquittements de bonne réception
+        queue:
+          name: '{clientId}.message'
+  '{clientId}.ack':
+    address: '{clientId}.ack'
+    messages:
+      edxlMessage:
+        $ref: '#/components/messages/edxlMessage'
+    description: >-
+      File spécifique à chaque client pour la réception des acquittements de réception finale
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
-    subscribe:
-      summary: Acquittement fonctionnel
-      operationId: receiveAck
-      message:
-        $ref: '#/components/messages/edxlMessage'
-    publish:
-      summary: Acquittements de bonne réception
-      operationId: publishAck
-      message:
-        $ref: '#/components/messages/edxlMessage'
     bindings:
       amqp:
-        is: routingKey
-        exchange:
-          name: hubsante
-          type: topic
-          durable: true
-          autoDelete: false
-          vhost: /
-
-  "{clientId}.info":
-    description: File spécifique à chaque client pour la réception des informations complémentaires liées au fonctionnement et aux échanges portés par le Hub Santé
+        queue:
+          name: '{clientId}.ack'
+  '{clientId}.info':
+    address: '{clientId}.info'
+    messages:
+      edxlMessage:
+        $ref: '#/components/messages/edxlMessage'
+    description: >-
+      File spécifique à chaque client pour la réception des informations et erreurs
+      complémentaires liées au fonctionnement et aux échanges portés par le Hub Santé
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
-    subscribe:
-      summary: Informations complémentaires
-      operationId: receiveInfo
-      message:
-        $ref: '#/components/messages/edxlMessage'
-    publish:
-      summary: Informations complémentaires
-      operationId: publishInfo
-      message:
-        $ref: '#/components/messages/edxlMessage'
     bindings:
       amqp:
-        is: routingKey
-        exchange:
-          name: hubsante
-          type: topic
-          durable: true
-          autoDelete: false
-          vhost: /
-
+        queue:
+          name: '{clientId}.info'
+operations:
+  publish:
+    action: send
+    channel:
+      $ref: '#/channels/{clientId}'
+    summary: Message fonctionnel
+    messages:
+      - $ref: '#/channels/{clientId}/messages/edxlMessage'
+  receiveMessage:
+    action: receive
+    channel:
+      $ref: '#/channels/{clientId}.message'
+    summary: Message fonctionnel
+    messages:
+      - $ref: '#/channels/{clientId}.message/messages/edxlMessage'
+  receiveAck:
+    action: receive
+    channel:
+      $ref: '#/channels/{clientId}.ack'
+    summary: Acquittement fonctionnel
+    messages:
+      - $ref: '#/channels/{clientId}.ack/messages/edxlMessage'
+  receiveInfo:
+    action: receive
+    channel:
+      $ref: '#/channels/{clientId}.info'
+    summary: Informations complémentaires
+    messages:
+      - $ref: '#/channels/{clientId}.info/messages/edxlMessage'
 components:
   securitySchemes:
     tlsAuth:
       type: X509
-      description: Un certificat issu d'une AC validée par le Hub est nécessaire pour l'authentification mTLS
+      description: >-
+        Un certificat issu d'une AC validée par le Hub est nécessaire pour l'authentification mTLS
   parameters:
     clientId:
       description: L'identifiant du client
-      schema:
-        type: string
   messages:
     edxlMessage:
       title: Message au standard EDXL
-      summary: Message au standard EDXL transportable par le Hub, comportant une partie adressage et une partie contenu. La partie contenu peut respecter différentes spécifications fonctionnelles.
+      summary: >- 
+        Message au standard EDXL transportable par le Hub, comportant une partie adressage et une partie contenu. La partie contenu peut respecter différentes spécifications fonctionnelles.
       payload:
         $ref: '#/components/schemas/EdxlMessage'
   schemas:
@@ -146,29 +161,32 @@ components:
         - distributionKind
         - descriptor
         - content
-    Content:
-      properties:
-        contentObject:
-          $ref: '#/components/schemas/ContentObject'
-      additionalProperties: false
-      required:
-        - contentObject
-    ContentObject:
-      oneOf:
-        - $ref: '#/components/schemas/JsonContent'
-        - $ref: '#/components/schemas/ContentXML'
-    JsonContent:
-      properties:
-        JsonContent:
-          $ref: '#/components/schemas/EmbeddedJsonContent'
-    ContentXML:
-      properties:
-        contentXML:
-          $ref: '#/components/schemas/EmbeddedXMLContent'
-    EmbeddedJsonContent:
-      oneOf:
-    EmbeddedXMLContent:
-      oneOf:
+    DistributionStatus:
+      type: string
+      enum:
+        - Actual
+        - Exercise
+        - System
+        - Test
+        - Unknown
+        - NoAppropriateDefault
+    DistributionKind:
+      type: string
+      enum:
+        - Report
+        - Update
+        - Cancel
+        - Request
+        - Response
+        - Dispatch
+        - Ack
+        - Error
+        - SensorConfiguration
+        - SensorControl
+        - SensorStatus
+        - SensorDetection
+        - Unknown
+        - NoAppropriateDefault
     Descriptor:
       properties:
         language:
@@ -189,31 +207,29 @@ components:
       required:
         - explicitAddressScheme
         - explicitAddressValue
-    DistributionKind:
-      type: string
-      enum:
-        - Report
-        - Update
-        - Cancel
-        - Request
-        - Response
-        - Dispatch
-        - Ack
-        - Error
-        - SensorConfiguration
-        - SensorControl
-        - SensorStatus
-        - SensorDetection
-        - Unknown
-        - NoAppropriateDefault
-    DistributionStatus:
-      type: string
-      enum:
-        - Actual
-        - Exercise
-        - System
-        - Test
-        - Unknown
-        - NoAppropriateDefault
+    Content:
+      properties:
+        contentObject:
+          $ref: '#/components/schemas/ContentObject'
+      additionalProperties: false
+      required:
+        - contentObject
+    ContentObject:
+      oneOf:
+        - $ref: '#/components/schemas/JsonContent'
+        - $ref: '#/components/schemas/ContentXML'
+    JsonContent:
+      properties:
+        JsonContent:
+          $ref: '#/components/schemas/EmbeddedJsonContent'
+    ContentXML:
+      properties:
+        contentXML:
+          $ref: '#/components/schemas/EmbeddedXMLContent'
+#    EmbeddedJsonContent:
+#      oneOf: null
+#    EmbeddedXMLContent:
+#      oneOf: null
+
 
 
