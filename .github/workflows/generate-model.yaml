@@ -135,6 +135,10 @@ jobs:
       - name: Apply license
         run: ./gradlew licenseFormat
 
+      - name: Generate XML files
+        run: |
+          ./gradlew generateXml
+
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
