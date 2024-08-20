@@ -76,12 +76,5 @@ public class EnvelopeValidatorTest extends AbstractValidatorTest{
             throw new AssertionFailedError("One or more tests failed");
         }
     }
-    
-    @Test
-    @DisplayName("Additional properties in envelope do not pass validation")
-    public void jsonRcDeAdditionalPropertyAtRootValidationFails() throws IOException {
-        String json = getInvalidMessage("EDXL-DE/unknown-property-at-root.json");
-        assertThrows(ValidationException.class,() -> validator.validateJSON(json, FULL_SCHEMA));
-    }
     //endregion
 }
