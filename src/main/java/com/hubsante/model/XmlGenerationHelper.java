@@ -62,15 +62,15 @@ public class XmlGenerationHelper {
                         try {
                             convertJsonToXml(jsonFile);
                         } catch (IOException e) {
-                            log.error("Could not convert file {} to XML", jsonFile.getFileName());
+                            log.error("Could not convert file {} to XML, {}", jsonFile.getFileName(), e.getMessage());
                         }
                     }
                 } catch (IOException e) {
-                    log.error("Error during file streaming in subfolder {}", subfolder.getFileName());
+                    log.error("Error during file streaming in subfolder {}, {}", subfolder.getFileName(), e.getMessage());
                 }
             });
         } catch (IOException e) {
-            log.error("Error during file streaming in folder {}", examplesDir.getFileName());
+            log.error("Error during file streaming in folder {}, {}", examplesDir.getFileName(), e.getMessage());
         }
     }
 
