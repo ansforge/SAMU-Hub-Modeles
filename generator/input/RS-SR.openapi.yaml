@@ -35,7 +35,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3}
+          pattern: fr(\.[\w-]+){3,4}
           examples:
           - fr.health.samu440.DRFR15440241550012
         resourceId:
@@ -50,7 +50,7 @@ components:
             \ ne peut pas \xEAtre garanti par l'organisation propri\xE9taire :\n{orgID}.R.{ID\
             \ du dossier partag\xE9}.{num\xE9ro d\u2019ordre chronologique ressource}\n\
             \nN.B. Il s'agit de l'orgId de l'organisation \xE0 qui appartient la ressource"
-          pattern: ([\w-]+\.){3}resource(\.[\w-]+){1,2}
+          pattern: ([\w-]+\.){3,4}resource(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu770.resource.VLM250 ;
 
