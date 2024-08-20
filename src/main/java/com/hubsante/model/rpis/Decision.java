@@ -332,14 +332,14 @@ public class Decision {
    * @return resourceCategory
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_CATEGORY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public ResourceCategoryEnum getResourceCategory() {
     return resourceCategory;
   }
 
   @JsonProperty(JSON_PROPERTY_RESOURCE_CATEGORY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setResourceCategory(ResourceCategoryEnum resourceCategory) {
     this.resourceCategory = resourceCategory;
   }
@@ -357,14 +357,14 @@ public class Decision {
    * @return resourceType
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public ResourceTypeEnum getResourceType() {
     return resourceType;
   }
 
   @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setResourceType(ResourceTypeEnum resourceType) {
     this.resourceType = resourceType;
   }
@@ -381,14 +381,14 @@ public class Decision {
    * @return teamCare
    **/
   @JsonProperty(JSON_PROPERTY_TEAM_CARE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public TeamCareEnum getTeamCare() {
     return teamCare;
   }
 
   @JsonProperty(JSON_PROPERTY_TEAM_CARE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTeamCare(TeamCareEnum teamCare) {
     this.teamCare = teamCare;
   }

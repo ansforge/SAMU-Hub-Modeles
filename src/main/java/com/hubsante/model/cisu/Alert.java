@@ -152,14 +152,14 @@ public class Alert {
    * @return id
    **/
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getId() {
     return id;
   }
 
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -175,14 +175,14 @@ public class Alert {
    * @return reception
    **/
   @JsonProperty(JSON_PROPERTY_RECEPTION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getReception() {
     return reception;
   }
 
   @JsonProperty(JSON_PROPERTY_RECEPTION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReception(OffsetDateTime reception) {
     this.reception = reception;
   }
@@ -203,14 +203,14 @@ public class Alert {
    * @return reporting
    **/
   @JsonProperty(JSON_PROPERTY_REPORTING)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public ReportingEnum getReporting() {
     return reporting;
   }
 
   @JsonProperty(JSON_PROPERTY_REPORTING)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReporting(ReportingEnum reporting) {
     this.reporting = reporting;
   }
@@ -265,14 +265,14 @@ public class Alert {
    * @return caller
    **/
   @JsonProperty(JSON_PROPERTY_CALLER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Caller getCaller() {
     return caller;
   }
 
   @JsonProperty(JSON_PROPERTY_CALLER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCaller(Caller caller) {
     this.caller = caller;
   }
@@ -288,14 +288,14 @@ public class Alert {
    * @return location
    **/
   @JsonProperty(JSON_PROPERTY_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Location getLocation() {
     return location;
   }
 
   @JsonProperty(JSON_PROPERTY_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLocation(Location location) {
     this.location = location;
   }
@@ -311,14 +311,14 @@ public class Alert {
    * @return qualification
    **/
   @JsonProperty(JSON_PROPERTY_QUALIFICATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Qualification getQualification() {
     return qualification;
   }
 
   @JsonProperty(JSON_PROPERTY_QUALIFICATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setQualification(Qualification qualification) {
     this.qualification = qualification;
   }
@@ -334,14 +334,14 @@ public class Alert {
    * @return callTaker
    **/
   @JsonProperty(JSON_PROPERTY_CALL_TAKER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public CallTaker getCallTaker() {
     return callTaker;
   }
 
   @JsonProperty(JSON_PROPERTY_CALL_TAKER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCallTaker(CallTaker callTaker) {
     this.callTaker = callTaker;
   }

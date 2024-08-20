@@ -88,14 +88,14 @@ public class Intervention {
    * @return location
    **/
   @JsonProperty(JSON_PROPERTY_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Location getLocation() {
     return location;
   }
 
   @JsonProperty(JSON_PROPERTY_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLocation(Location location) {
     this.location = location;
   }
@@ -111,14 +111,14 @@ public class Intervention {
    * @return team
    **/
   @JsonProperty(JSON_PROPERTY_TEAM)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Team getTeam() {
     return team;
   }
 
   @JsonProperty(JSON_PROPERTY_TEAM)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTeam(Team team) {
     this.team = team;
   }
@@ -174,14 +174,14 @@ public class Intervention {
    * @return mainDiagnosis
    **/
   @JsonProperty(JSON_PROPERTY_MAIN_DIAGNOSIS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getMainDiagnosis() {
     return mainDiagnosis;
   }
 
   @JsonProperty(JSON_PROPERTY_MAIN_DIAGNOSIS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMainDiagnosis(String mainDiagnosis) {
     this.mainDiagnosis = mainDiagnosis;
   }

@@ -133,14 +133,14 @@ public class Operator {
    * @return role
    **/
   @JsonProperty(JSON_PROPERTY_ROLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public RoleEnum getRole() {
     return role;
   }
 
   @JsonProperty(JSON_PROPERTY_ROLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRole(RoleEnum role) {
     this.role = role;
   }

@@ -164,14 +164,14 @@ public class Rgeo {
    * @return TYPE
    **/
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public TYPEEnum getTYPE() {
     return TYPE;
   }
 
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTYPE(TYPEEnum TYPE) {
     this.TYPE = TYPE;
   }

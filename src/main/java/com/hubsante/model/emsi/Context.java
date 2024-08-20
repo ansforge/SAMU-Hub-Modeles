@@ -299,14 +299,14 @@ public class Context {
    * @return ID
    **/
   @JsonProperty(JSON_PROPERTY_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getID() {
     return ID;
   }
 
   @JsonProperty(JSON_PROPERTY_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setID(String ID) {
     this.ID = ID;
   }
@@ -322,14 +322,14 @@ public class Context {
    * @return MODE
    **/
   @JsonProperty(JSON_PROPERTY_M_O_D_E)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public MODEEnum getMODE() {
     return MODE;
   }
 
   @JsonProperty(JSON_PROPERTY_M_O_D_E)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMODE(MODEEnum MODE) {
     this.MODE = MODE;
   }
@@ -347,14 +347,14 @@ public class Context {
    * @return MSGTYPE
    **/
   @JsonProperty(JSON_PROPERTY_M_S_G_T_Y_P_E)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public MSGTYPEEnum getMSGTYPE() {
     return MSGTYPE;
   }
 
   @JsonProperty(JSON_PROPERTY_M_S_G_T_Y_P_E)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMSGTYPE(MSGTYPEEnum MSGTYPE) {
     this.MSGTYPE = MSGTYPE;
   }
