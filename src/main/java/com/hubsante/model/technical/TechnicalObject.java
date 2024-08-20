@@ -122,14 +122,14 @@ public class TechnicalObject {
    * @return objectPropertyRequiredString
    **/
   @JsonProperty(JSON_PROPERTY_OBJECT_PROPERTY_REQUIRED_STRING)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getObjectPropertyRequiredString() {
     return objectPropertyRequiredString;
   }
 
   @JsonProperty(JSON_PROPERTY_OBJECT_PROPERTY_REQUIRED_STRING)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void
   setObjectPropertyRequiredString(String objectPropertyRequiredString) {
     this.objectPropertyRequiredString = objectPropertyRequiredString;
