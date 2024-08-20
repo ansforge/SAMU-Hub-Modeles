@@ -619,14 +619,14 @@ public class Location {
    * @return locID
    **/
   @JsonProperty(JSON_PROPERTY_LOC_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getLocID() {
     return locID;
   }
 
   @JsonProperty(JSON_PROPERTY_LOC_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLocID(String locID) {
     this.locID = locID;
   }
@@ -867,14 +867,14 @@ public class Location {
    * @return country
    **/
   @JsonProperty(JSON_PROPERTY_COUNTRY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public CountryEnum getCountry() {
     return country;
   }
 
   @JsonProperty(JSON_PROPERTY_COUNTRY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCountry(CountryEnum country) {
     this.country = country;
   }

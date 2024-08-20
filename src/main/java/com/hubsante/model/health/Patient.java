@@ -91,14 +91,14 @@ public class Patient {
    * @return idPat
    **/
   @JsonProperty(JSON_PROPERTY_ID_PAT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getIdPat() {
     return idPat;
   }
 
   @JsonProperty(JSON_PROPERTY_ID_PAT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIdPat(String idPat) {
     this.idPat = idPat;
   }
