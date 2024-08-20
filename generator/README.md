@@ -1,5 +1,5 @@
 ### génération des classes
-les fichiers [cisu-generator-config.json](cisu-generator-config.json) et [cisu-root-messages-config.json](cisu-root-messages-config.json) contiennent la configuration de la génération des classes Java :
+les fichiers [RS-EDA.generator-config.json](config/RS-EDA/RS-EDA.generator-config.json), [RS-EDA.usecase.generator.config.json](config/RS-EDA/RS-EDA.usecase.generator-config.json) et [RS-EDA.wrapper.generator-config.json](config/RS-EDA/RS-EDA.wrapper.generator-config.json) contiennent la configuration de la génération des classes Java :
 - le chemin du descripteur du modèle : 'inputSpec'
 - le chemin de sortie des classes Java : 'outputDir'
 - le chemin du répertoire de templates de génération : 'templateDir'

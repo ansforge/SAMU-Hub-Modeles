@@ -190,14 +190,14 @@ public class Request {
    * @return requestId
    **/
   @JsonProperty(JSON_PROPERTY_REQUEST_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getRequestId() {
     return requestId;
   }
 
   @JsonProperty(JSON_PROPERTY_REQUEST_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRequestId(String requestId) {
     this.requestId = requestId;
   }
@@ -213,14 +213,14 @@ public class Request {
    * @return datetime
    **/
   @JsonProperty(JSON_PROPERTY_DATETIME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getDatetime() {
     return datetime;
   }
 
   @JsonProperty(JSON_PROPERTY_DATETIME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDatetime(OffsetDateTime datetime) {
     this.datetime = datetime;
   }
@@ -261,14 +261,14 @@ public class Request {
    * @return purpose
    **/
   @JsonProperty(JSON_PROPERTY_PURPOSE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public PurposeEnum getPurpose() {
     return purpose;
   }
 
   @JsonProperty(JSON_PROPERTY_PURPOSE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPurpose(PurposeEnum purpose) {
     this.purpose = purpose;
   }

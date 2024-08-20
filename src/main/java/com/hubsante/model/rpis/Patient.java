@@ -120,14 +120,14 @@ public class Patient {
    * @return patientId
    **/
   @JsonProperty(JSON_PROPERTY_PATIENT_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getPatientId() {
     return patientId;
   }
 
   @JsonProperty(JSON_PROPERTY_PATIENT_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPatientId(String patientId) {
     this.patientId = patientId;
   }
@@ -143,14 +143,14 @@ public class Patient {
    * @return birthDate
    **/
   @JsonProperty(JSON_PROPERTY_BIRTH_DATE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getBirthDate() {
     return birthDate;
   }
 
   @JsonProperty(JSON_PROPERTY_BIRTH_DATE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBirthDate(String birthDate) {
     this.birthDate = birthDate;
   }
@@ -167,14 +167,14 @@ public class Patient {
    * @return sex
    **/
   @JsonProperty(JSON_PROPERTY_SEX)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public SexEnum getSex() {
     return sex;
   }
 
   @JsonProperty(JSON_PROPERTY_SEX)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSex(SexEnum sex) {
     this.sex = sex;
   }

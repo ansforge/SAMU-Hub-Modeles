@@ -124,14 +124,14 @@ public class Qualification {
    * @return whatsHappen
    **/
   @JsonProperty(JSON_PROPERTY_WHATS_HAPPEN)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public WhatsHappen getWhatsHappen() {
     return whatsHappen;
   }
 
   @JsonProperty(JSON_PROPERTY_WHATS_HAPPEN)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setWhatsHappen(WhatsHappen whatsHappen) {
     this.whatsHappen = whatsHappen;
   }

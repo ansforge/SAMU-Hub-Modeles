@@ -154,14 +154,14 @@ public class Contact {
    * @return channel
    **/
   @JsonProperty(JSON_PROPERTY_CHANNEL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public ChannelEnum getChannel() {
     return channel;
   }
 
   @JsonProperty(JSON_PROPERTY_CHANNEL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChannel(ChannelEnum channel) {
     this.channel = channel;
   }
@@ -177,14 +177,14 @@ public class Contact {
    * @return type
    **/
   @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public TypeEnum getType() {
     return type;
   }
 
   @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(TypeEnum type) {
     this.type = type;
   }
@@ -201,14 +201,14 @@ public class Contact {
    * @return detail
    **/
   @JsonProperty(JSON_PROPERTY_DETAIL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getDetail() {
     return detail;
   }
 
   @JsonProperty(JSON_PROPERTY_DETAIL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDetail(String detail) {
     this.detail = detail;
   }

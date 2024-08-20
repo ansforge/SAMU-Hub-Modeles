@@ -154,14 +154,14 @@ public class Attachment {
    * @return URI
    **/
   @JsonProperty(JSON_PROPERTY_U_R_I)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getURI() {
     return URI;
   }
 
   @JsonProperty(JSON_PROPERTY_U_R_I)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setURI(String URI) {
     this.URI = URI;
   }

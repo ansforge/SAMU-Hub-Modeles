@@ -71,14 +71,14 @@ public class Team {
    * @return doctor
    **/
   @JsonProperty(JSON_PROPERTY_DOCTOR)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Boolean getDoctor() {
     return doctor;
   }
 
   @JsonProperty(JSON_PROPERTY_DOCTOR)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDoctor(Boolean doctor) {
     this.doctor = doctor;
   }
@@ -96,14 +96,14 @@ public class Team {
    * @return nurse
    **/
   @JsonProperty(JSON_PROPERTY_NURSE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Boolean getNurse() {
     return nurse;
   }
 
   @JsonProperty(JSON_PROPERTY_NURSE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNurse(Boolean nurse) {
     this.nurse = nurse;
   }
@@ -121,14 +121,14 @@ public class Team {
    * @return driver
    **/
   @JsonProperty(JSON_PROPERTY_DRIVER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Boolean getDriver() {
     return driver;
   }
 
   @JsonProperty(JSON_PROPERTY_DRIVER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDriver(Boolean driver) {
     this.driver = driver;
   }

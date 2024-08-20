@@ -63,14 +63,14 @@ public class Point {
    * @return coord
    **/
   @JsonProperty(JSON_PROPERTY_COORD)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Coord getCoord() {
     return coord;
   }
 
   @JsonProperty(JSON_PROPERTY_COORD)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCoord(Coord coord) {
     this.coord = coord;
   }
