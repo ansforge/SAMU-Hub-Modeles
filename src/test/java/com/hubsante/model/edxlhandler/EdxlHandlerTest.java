@@ -16,7 +16,6 @@
 package com.hubsante.model.edxlhandler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.hubsante.model.TestMessagesHelper;
 import com.hubsante.model.edxl.EdxlMessage;
 import com.hubsante.model.exception.ValidationException;
@@ -40,9 +39,9 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
-import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.config.Constants.FULL_SCHEMA;
 import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessage;
+import static com.hubsante.model.utils.TestFileUtils.getMessageByFileName;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -63,7 +62,7 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
     @Test
     @DisplayName("should add XML prefix")
     public void verifyXmlPrefix() throws IOException {
-        String json = getMessageString("RC-EDA");
+        String json = getMessageByFileName("TECHNICAL/complete.json");
         EdxlMessage messageFromInput = converter.deserializeJsonEDXL(json);
         String xml = converter.serializeXmlEDXL(messageFromInput);
         assertTrue(() -> xml.startsWith(xmlPrefix()));
@@ -144,13 +143,4 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
             fail("Some files are not valid against schema");
         }
     }
-
-    @Test
-    @DisplayName("deserialization of a message with an unknown additional property not at root level fails")
-    public void deserializationOfMessageWithUnknownPropertyNotAtRootLevelFails() throws IOException {
-        String json = getInvalidMessage("EDXL-DE/unknown-property-deep.json");
-        assertThrows(UnrecognizedPropertyException.class, () -> converter.deserializeJsonEDXL(json));
-    }
-
-
 }

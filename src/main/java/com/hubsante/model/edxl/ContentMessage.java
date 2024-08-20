@@ -33,6 +33,7 @@ import com.hubsante.model.resources.response.ResourcesResponseWrapper;
 import com.hubsante.model.resources.status.ResourcesStatusWrapper;
 import com.hubsante.model.rpis.RpisWrapper;
 import com.hubsante.model.technical.TechnicalWrapper;
+import com.hubsante.model.technical.noreq.TechnicalNoreqWrapper;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({
@@ -52,6 +53,7 @@ import com.hubsante.model.technical.TechnicalWrapper;
         @JsonSubTypes.Type(ResourcesStatusWrapper.class),
         @JsonSubTypes.Type(RpisWrapper.class),
         @JsonSubTypes.Type(TechnicalWrapper.class),
+        @JsonSubTypes.Type(TechnicalNoreqWrapper.class)
 })
 public class ContentMessage {
 

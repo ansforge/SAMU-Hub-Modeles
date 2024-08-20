@@ -17,8 +17,8 @@
       "jsonContent": {
         "embeddedJsonContent": {
           "message": {
-            "customContent": {
-              "key": "value"
+            "technicalNoreq": {
+              "optionalStringField": "value"
             }
           }
         }
@@ -28,8 +28,8 @@
       "jsonContent": {
         "embeddedJsonContent": {
           "message": {
-            "customContent": {
-              "otherKey": "other_value"
+            "technicalNoreq": {
+              "integerField": 1
             }
           }
         }
