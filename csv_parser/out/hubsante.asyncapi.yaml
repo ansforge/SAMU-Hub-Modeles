@@ -306,7 +306,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3}
+          pattern: fr(\.[\w-]+){3,4}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -325,13 +325,13 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/creation
-          description: "A valoriser avec le groupe date heure de d\xE9but de partage\
-            \ li\xE9 \xE0 la cr\xE9ation de l'affaire (et donc de g\xE9n\xE9ration\
-            \ du caseId). \nLors de l'ajout d'une nouvelle alerte, la valeur de ce\
-            \ champ ne doit pas \xEAtre modifi\xE9e.  \nL'indicateur de fuseau horaire\
-            \ Z ne doit pas \xEAtre utilis\xE9.\n\nSp\xE9cificit\xE9 15-18 :\nIl doit\
-            \ \xEAtre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation de\
-            \ la premi\xE8re alerte."
+          description: "A valoriser avec le groupe date heure de cr\xE9ation du dossier/affaire.\n\
+            \nSp\xE9cificit\xE9 15-18 : A valoriser avec le groupe date heure de d\xE9\
+            but de partage li\xE9 \xE0 la cr\xE9ation de l'affaire (et donc de g\xE9\
+            n\xE9ration du caseId). \nLors de l'ajout d'une nouvelle alerte, la valeur\
+            \ de ce champ ne doit pas \xEAtre modifi\xE9e.  \nL'indicateur de fuseau\
+            \ horaire Z ne doit pas \xEAtre utilis\xE9.\nIl doit \xEAtre renseign\xE9\
+            \ \xE0 la fin du processus de la  cr\xE9ation de la premi\xE8re alerte."
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -1630,14 +1630,14 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - obsDatime
+      - datetime
       properties:
-        obsDatime:
+        datetime:
           type: string
           title: "Heure du dernier relev\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/geometry/obsDatime
+          example: example.json#/location/geometry/datetime
           description: "A valoriser avec le groupe date heure de renseignement des\
             \ coordonn\xE9es du point cl\xE9 de la localisation. \nPermet de conna\xEE\
             tre la fra\xEEcheur et donc la pertinence des informations pour intervenir."
@@ -2529,7 +2529,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3}
+          pattern: fr(\.[\w-]+){3,4}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -2548,13 +2548,13 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/creation
-          description: "A valoriser avec le groupe date heure de d\xE9but de partage\
-            \ li\xE9 \xE0 la cr\xE9ation de l'affaire (et donc de g\xE9n\xE9ration\
-            \ du caseId). \nLors de l'ajout d'une nouvelle alerte, la valeur de ce\
-            \ champ ne doit pas \xEAtre modifi\xE9e.  \nL'indicateur de fuseau horaire\
-            \ Z ne doit pas \xEAtre utilis\xE9.\n\nSp\xE9cificit\xE9 15-18 :\nIl doit\
-            \ \xEAtre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation de\
-            \ la premi\xE8re alerte."
+          description: "A valoriser avec le groupe date heure de cr\xE9ation du dossier/affaire.\n\
+            \nSp\xE9cificit\xE9 15-18 : A valoriser avec le groupe date heure de d\xE9\
+            but de partage li\xE9 \xE0 la cr\xE9ation de l'affaire (et donc de g\xE9\
+            n\xE9ration du caseId). \nLors de l'ajout d'une nouvelle alerte, la valeur\
+            \ de ce champ ne doit pas \xEAtre modifi\xE9e.  \nL'indicateur de fuseau\
+            \ horaire Z ne doit pas \xEAtre utilis\xE9.\nIl doit \xEAtre renseign\xE9\
+            \ \xE0 la fin du processus de la  cr\xE9ation de la premi\xE8re alerte."
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -2604,7 +2604,7 @@ components:
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
             \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
             \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
-          pattern: fr(\.[\w-]+){2}
+          pattern: fr(\.[\w-]+){2,3}
           examples:
           - fr.health.samu440
         patient:
@@ -2694,7 +2694,7 @@ components:
             me \xE9metteur}\n\nOU, si un n\xB0patient unique n'existe pas dans le\
             \ syst\xE8me \xE9metteur :\n{ID \xE9metteur}.{senderCaseId}.patient.{num\xE9\
             ro d\u2019ordre chronologique au dossier}"
-          pattern: ([\w-]+\.){3}patient(\.[\w-]+){1,2}
+          pattern: ([\w-]+\.){3,4}patient(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu690.patient.P23AZ59
 
@@ -3300,7 +3300,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3}
+          pattern: fr(\.[\w-]+){3,4}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -3344,7 +3344,7 @@ components:
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
             \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
             \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
-          pattern: fr(\.[\w-]+){2}
+          pattern: fr(\.[\w-]+){2,3}
           examples:
           - fr.health.samu440
         patient:
@@ -3932,7 +3932,7 @@ components:
             \ de ressource ne peut pas \xEAtre garanti par l'organisation propri\xE9\
             taire :\n{orgID}.resource.{sendercaseId}.{n\xB0 d\u2019ordre chronologique\
             \ de la ressource}"
-          pattern: ([\w-]+\.){3}resource(\.[\w-]+){1,2}
+          pattern: ([\w-]+\.){3,4}resource(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu770.resource.VLM250
 
@@ -3949,7 +3949,7 @@ components:
             \ de la demande dans le syst\xE8me \xE9metteur}\nOU - si un ID unique\
             \ de la demande n'\xE9tait pas disponible : \n{OrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
-          pattern: ([\w-]+\.){3}request(\.[\w-]+){1,2}
+          pattern: ([\w-]+\.){3,4}request(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu770.request.1249875
 
@@ -5946,7 +5946,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3}
+          pattern: fr(\.[\w-]+){3,4}
           examples:
           - fr.health.samu440.DRFR15440241550012
         mobilizedResource:
@@ -6094,7 +6094,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3}
+          pattern: fr(\.[\w-]+){3,4}
           examples:
           - fr.health.samu440.DRFR15440241550012
         request:
@@ -6136,7 +6136,7 @@ components:
             \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
             \ pas disponible : \n{OrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
-          pattern: ([\w-]+\.){3}request(\.[\w-]+){1,2}
+          pattern: ([\w-]+\.){3,4}request(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu770.request.1249875
 
@@ -6265,7 +6265,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3}
+          pattern: fr(\.[\w-]+){3,4}
           examples:
           - fr.health.samu440.DRFR15440241550012
         requestId:
@@ -6281,7 +6281,7 @@ components:
             \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
             \ pas disponible : \nOrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
-          pattern: ([\w-]+\.){3}request(\.[\w-]+){1,2}
+          pattern: ([\w-]+\.){3,4}request(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu770.request.1249875
 
@@ -6954,7 +6954,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3}
+          pattern: fr(\.[\w-]+){3,4}
           examples:
           - fr.health.samu440.DRFR15440241550012
         resourceId:
@@ -6969,7 +6969,7 @@ components:
             \ ne peut pas \xEAtre garanti par l'organisation propri\xE9taire :\n{orgID}.R.{ID\
             \ du dossier partag\xE9}.{num\xE9ro d\u2019ordre chronologique ressource}\n\
             \nN.B. Il s'agit de l'orgId de l'organisation \xE0 qui appartient la ressource"
-          pattern: ([\w-]+\.){3}resource(\.[\w-]+){1,2}
+          pattern: ([\w-]+\.){3,4}resource(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu770.resource.VLM250 ;
 

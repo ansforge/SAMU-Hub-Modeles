@@ -4,15 +4,15 @@ Il est valorisé comme suit lors de sa création :
 {pays}.{domaine}.{organisation}.{senderCaseId}
 
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
- Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,REGEX: fr(\.[\w-]+){3}
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX: fr(\.[\w-]+){3,4}"
 Identifiant local de l'affaire/dossier,,,,,,"A valoriser avec le numéro du dossier dans le SI de l'émetteur du message.
 ",DRFR15440241550012,senderCaseId,0..1,,string,
-Date Heure de création de l'affaire/dossier,,,,,,"A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). 
+Date Heure de création de l'affaire/dossier,,,,,,"A valoriser avec le groupe date heure de création du dossier/affaire.
+
+Spécificité 15-18 : A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). 
 Lors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.  
 L'indicateur de fuseau horaire Z ne doit pas être utilisé.
-
-Spécificité 15-18 :
-Il doit être renseigné à la fin du processus de la  création de la première alerte.",2022-09-27T08:23:34+02:00,creation,1..1,,datetime,Format datetime décrit dans le DSF
+Il doit être renseigné à la fin du processus de la  création de la première alerte.",2022-09-27T08:23:34+02:00,creation,1..1,,datetime,Format datetime décrit dans le DST
 Version des nomenclatures du référentiel CISU,,,,,,"Indique le numéro de version du référentiel des nomenclatures des codes transmis. 
 Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même version des codes de nomenclature que leurs partenaires.",1.2,referenceVersion,1..1,,string,
 Qualification,,,,,,"Objet qui permet de qualifier l'affaire/dossier en général. 
@@ -77,7 +77,7 @@ Spécificités 15-18 : Non gérés par NexSIS; ne seront pas transmis au SAMU et
 Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}",+33123452323,phoneNumber,0..1,,string,"REGEX: \+\d{5,18}"
 ,Géometrie associée,,,,,Objet qui permettre de transmettre la géométrie du lien d'intervention,,geometry,0..1,X,geometry,
 ,,Heure du dernier relevé,,,,"A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. 
-Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.",2022-09-27T08:23:34+02:00,obsDatime,1..1,,datetime,
+Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.",2022-09-27T08:23:34+02:00,datetime,1..1,,datetime,Format datetime décrit dans le DST
 ,,Point ,,,,"Objet qui permet de décrire un point géographique.
 Il est à fournir au maximum même s'il est imprécis (adapter le champs ""Précision"" dans ce cas). 
 Par exemple, même sans adresse postale, il est possible de fournir le point GPS de la commune; puis d'adapter et  de préciser l'adresse en cours d'intervention.
@@ -128,7 +128,7 @@ Lorsqu’une alerte est générée dans NexSIS et crée une affaire, elle est qu
 a)	Si cette dernière concerne un partenaire (caractère médical pour la Santé par exemple), elle est relayée seule dans le message. Il y’a un seul objet initialAlert.
 b)	Sinon, une autre alerte liée à la même affaire peut être déclarée ultérieurement, concernant cette fois le partenaire. Lorsqu’elle est déclarée cette Nouvelle Alerte est relayée avec l’Alerte Initiale pour partager un contexte commun. Dans le message de création d’affaire il y’a deux objets alerte : initialAlert et newAlert.
 Le rattachement des messages à une affaire doivent s'appuyer sur les caseId et non les alertId qui peuvent varier d'un système à l'autre.",SGO050-20230605-AL0123,id,1..1,,string,
-,Date et heure de réception de l'alerte,,,,,A valoriser avec le groupe date heure de réception de l'alerte/appel,2022-09-27T08:21:06+02:00,reception,1..1,,datetime,Format datetime décrit dans le DSF
+,Date et heure de réception de l'alerte,,,,,A valoriser avec le groupe date heure de réception de l'alerte/appel,2022-09-27T08:21:06+02:00,reception,1..1,,datetime,Format datetime décrit dans le DST
 ,Signalement,,,,,"Permet d'attirer l'attention des forces partenaires sur une affaire pour le faire sortir du lot.
 Eventuellement automatisé en fonction des critères saisis et de leur paramétrage, ou renseigné par l'opérateur. 
 Prend les valeurs définies dans la nomenclature CISU :
@@ -140,7 +140,7 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
 Spécificités 15-15 : 
 Mapper ici  les informations générales liées au dossier qui ne sont pas liées à un patient, et pour lesquelles il n’est pas possible d’identifier le rôle de utilisateur (cf. objet medicalNote).
 A réception, les informations de cet attribut sont à mapper et afficher dans un champ le plus approprié possible : en commentaire général du dossier, non lié à un rôle utilisateur ou à un patient.",,notes,0..n,X,notes,
-,,Date et heure de l'information complémentaire,,,,A valoriser avec le groupe date heure de création de l'information complémentaire,,creation,0..1,,datetime,Format datetime décrit dans le DSF
+,,Date et heure de l'information complémentaire,,,,A valoriser avec le groupe date heure de création de l'information complémentaire,,creation,0..1,,datetime,Format datetime décrit dans le DST
 ,,Commentaire/Observations,,,,"A valoriser avec un texte libre contenant les indications complémentaires renseignées sur l'alerte/appel.
 
 Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes à caractère médical, qui serait liée à un interrogatoire ARM ou médecin, ou à un patient en particulier","Accident de bricolage, accident domestique, déclenchement téléalarme, voisine sur les lieux",freetext,0..1,,string,

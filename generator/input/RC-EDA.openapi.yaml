@@ -36,7 +36,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3}
+          pattern: fr(\.[\w-]+){3,4}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -55,13 +55,13 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/creation
-          description: "A valoriser avec le groupe date heure de d\xE9but de partage\
-            \ li\xE9 \xE0 la cr\xE9ation de l'affaire (et donc de g\xE9n\xE9ration\
-            \ du caseId). \nLors de l'ajout d'une nouvelle alerte, la valeur de ce\
-            \ champ ne doit pas \xEAtre modifi\xE9e.  \nL'indicateur de fuseau horaire\
-            \ Z ne doit pas \xEAtre utilis\xE9.\n\nSp\xE9cificit\xE9 15-18 :\nIl doit\
-            \ \xEAtre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation de\
-            \ la premi\xE8re alerte."
+          description: "A valoriser avec le groupe date heure de cr\xE9ation du dossier/affaire.\n\
+            \nSp\xE9cificit\xE9 15-18 : A valoriser avec le groupe date heure de d\xE9\
+            but de partage li\xE9 \xE0 la cr\xE9ation de l'affaire (et donc de g\xE9\
+            n\xE9ration du caseId). \nLors de l'ajout d'une nouvelle alerte, la valeur\
+            \ de ce champ ne doit pas \xEAtre modifi\xE9e.  \nL'indicateur de fuseau\
+            \ horaire Z ne doit pas \xEAtre utilis\xE9.\nIl doit \xEAtre renseign\xE9\
+            \ \xE0 la fin du processus de la  cr\xE9ation de la premi\xE8re alerte."
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -1563,14 +1563,14 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - obsDatime
+      - datetime
       properties:
-        obsDatime:
+        datetime:
           type: string
           title: "Heure du dernier relev\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/geometry/obsDatime
+          example: example.json#/location/geometry/datetime
           description: "A valoriser avec le groupe date heure de renseignement des\
             \ coordonn\xE9es du point cl\xE9 de la localisation. \nPermet de conna\xEE\
             tre la fra\xEEcheur et donc la pertinence des informations pour intervenir."

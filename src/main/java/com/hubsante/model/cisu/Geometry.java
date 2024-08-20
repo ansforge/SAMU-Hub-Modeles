@@ -43,15 +43,15 @@ import java.util.Objects;
 /**
  * Geometry
  */
-@JsonPropertyOrder({Geometry.JSON_PROPERTY_OBS_DATIME,
+@JsonPropertyOrder({Geometry.JSON_PROPERTY_DATETIME,
                     Geometry.JSON_PROPERTY_POINT,
                     Geometry.JSON_PROPERTY_SKETCH})
 @JsonTypeName("geometry")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Geometry {
-  public static final String JSON_PROPERTY_OBS_DATIME = "obsDatime";
-  private OffsetDateTime obsDatime;
+  public static final String JSON_PROPERTY_DATETIME = "datetime";
+  private OffsetDateTime datetime;
 
   public static final String JSON_PROPERTY_POINT = "point";
   private Point point;
@@ -61,9 +61,9 @@ public class Geometry {
 
   public Geometry() {}
 
-  public Geometry obsDatime(OffsetDateTime obsDatime) {
+  public Geometry datetime(OffsetDateTime datetime) {
 
-    this.obsDatime = obsDatime;
+    this.datetime = datetime;
     return this;
   }
 
@@ -71,19 +71,19 @@ public class Geometry {
    * A valoriser avec le groupe date heure de renseignement des coordonnées du
    *point clé de la localisation.  Permet de connaître la fraîcheur et donc la
    *pertinence des informations pour intervenir.
-   * @return obsDatime
+   * @return datetime
    **/
-  @JsonProperty(JSON_PROPERTY_OBS_DATIME)
+  @JsonProperty(JSON_PROPERTY_DATETIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public OffsetDateTime getObsDatime() {
-    return obsDatime;
+  public OffsetDateTime getDatetime() {
+    return datetime;
   }
 
-  @JsonProperty(JSON_PROPERTY_OBS_DATIME)
+  @JsonProperty(JSON_PROPERTY_DATETIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setObsDatime(OffsetDateTime obsDatime) {
-    this.obsDatime = obsDatime;
+  public void setDatetime(OffsetDateTime datetime) {
+    this.datetime = datetime;
   }
 
   public Geometry point(Point point) {
@@ -150,23 +150,21 @@ public class Geometry {
       return false;
     }
     Geometry geometry = (Geometry)o;
-    return Objects.equals(this.obsDatime, geometry.obsDatime) &&
+    return Objects.equals(this.datetime, geometry.datetime) &&
         Objects.equals(this.point, geometry.point) &&
         Objects.equals(this.sketch, geometry.sketch);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(obsDatime, point, sketch);
+    return Objects.hash(datetime, point, sketch);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Geometry {\n");
-    sb.append("    obsDatime: ")
-        .append(toIndentedString(obsDatime))
-        .append("\n");
+    sb.append("    datetime: ").append(toIndentedString(datetime)).append("\n");
     sb.append("    point: ").append(toIndentedString(point)).append("\n");
     sb.append("    sketch: ").append(toIndentedString(sketch)).append("\n");
     sb.append("}");

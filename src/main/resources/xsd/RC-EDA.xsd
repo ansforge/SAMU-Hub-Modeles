@@ -13,7 +13,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="fr(\.[\w-]+){3}"/>
+                        <pattern value="fr(\.[\w-]+){3,4}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -25,11 +25,11 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
             </element>
             <element name="creation" type="dateTime">
                 <annotation>
-                    <documentation>A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). 
+                    <documentation>A valoriser avec le groupe date heure de création du dossier/affaire.
+
+Spécificité 15-18 : A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). 
 Lors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.  
 L'indicateur de fuseau horaire Z ne doit pas être utilisé.
-
-Spécificité 15-18 :
 Il doit être renseigné à la fin du processus de la  création de la première alerte.</documentation>
                 </annotation>
             </element>
@@ -1196,7 +1196,7 @@ Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}</do
     </complexType>
     <complexType name="geometry">
         <sequence>
-            <element name="obsDatime" type="dateTime">
+            <element name="datetime" type="dateTime">
                 <annotation>
                     <documentation>A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. 
 Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.</documentation>
