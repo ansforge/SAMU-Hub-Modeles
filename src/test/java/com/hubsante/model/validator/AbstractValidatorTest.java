@@ -41,7 +41,7 @@ public abstract class AbstractValidatorTest {
 
     public void jsonValidationFails(String messageRef, String[] expectedErrors, String schema) throws IOException {
         String input = getInvalidMessage(messageRef);
-        assertThrows(ValidationException.class, () -> validator.validateJSON(input, FULL_SCHEMA));
+        assertThrows(ValidationException.class, () -> validator.validateJSON(input, schema));
 
         try {
             validator.validateJSON(input, schema);
@@ -57,7 +57,7 @@ public abstract class AbstractValidatorTest {
 
     public void xmlValidationFails(String messageRef, String[] expectedErrors, String schema) throws IOException {
         String input = getInvalidMessage(messageRef);
-        assertThrows(ValidationException.class, () -> validator.validateXML(input, FULL_XSD));
+        assertThrows(ValidationException.class, () -> validator.validateXML(input, schema));
 
         try {
             validator.validateXML(input, schema);
