@@ -90,14 +90,14 @@ public class Event {
    * @return samuId
    **/
   @JsonProperty(JSON_PROPERTY_SAMU_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getSamuId() {
     return samuId;
   }
 
   @JsonProperty(JSON_PROPERTY_SAMU_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSamuId(String samuId) {
     this.samuId = samuId;
   }
@@ -122,14 +122,14 @@ public class Event {
    * @return fileId
    **/
   @JsonProperty(JSON_PROPERTY_FILE_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getFileId() {
     return fileId;
   }
 
   @JsonProperty(JSON_PROPERTY_FILE_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFileId(String fileId) {
     this.fileId = fileId;
   }
@@ -145,14 +145,14 @@ public class Event {
    * @return creationDate
    **/
   @JsonProperty(JSON_PROPERTY_CREATION_DATE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getCreationDate() {
     return creationDate;
   }
 
   @JsonProperty(JSON_PROPERTY_CREATION_DATE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreationDate(OffsetDateTime creationDate) {
     this.creationDate = creationDate;
   }
@@ -168,14 +168,14 @@ public class Event {
    * @return decisionDate
    **/
   @JsonProperty(JSON_PROPERTY_DECISION_DATE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getDecisionDate() {
     return decisionDate;
   }
 
   @JsonProperty(JSON_PROPERTY_DECISION_DATE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDecisionDate(OffsetDateTime decisionDate) {
     this.decisionDate = decisionDate;
   }
@@ -191,14 +191,14 @@ public class Event {
    * @return ressourceFinessLegal
    **/
   @JsonProperty(JSON_PROPERTY_RESSOURCE_FINESS_LEGAL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getRessourceFinessLegal() {
     return ressourceFinessLegal;
   }
 
   @JsonProperty(JSON_PROPERTY_RESSOURCE_FINESS_LEGAL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRessourceFinessLegal(String ressourceFinessLegal) {
     this.ressourceFinessLegal = ressourceFinessLegal;
   }
@@ -214,14 +214,14 @@ public class Event {
    * @return ressourceFinessGeo
    **/
   @JsonProperty(JSON_PROPERTY_RESSOURCE_FINESS_GEO)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getRessourceFinessGeo() {
     return ressourceFinessGeo;
   }
 
   @JsonProperty(JSON_PROPERTY_RESSOURCE_FINESS_GEO)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRessourceFinessGeo(String ressourceFinessGeo) {
     this.ressourceFinessGeo = ressourceFinessGeo;
   }
@@ -238,14 +238,14 @@ public class Event {
    * @return ressourceStructure
    **/
   @JsonProperty(JSON_PROPERTY_RESSOURCE_STRUCTURE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getRessourceStructure() {
     return ressourceStructure;
   }
 
   @JsonProperty(JSON_PROPERTY_RESSOURCE_STRUCTURE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRessourceStructure(String ressourceStructure) {
     this.ressourceStructure = ressourceStructure;
   }

@@ -669,7 +669,7 @@ public class Etype {
    * @return CATEGORY
    **/
   @JsonProperty(JSON_PROPERTY_C_A_T_E_G_O_R_Y)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public List<CATEGORYEnum> getCATEGORY() {
     return CATEGORY;
@@ -678,7 +678,7 @@ public class Etype {
   @JacksonXmlElementWrapper(useWrapping = false)
 
   @JsonProperty(JSON_PROPERTY_C_A_T_E_G_O_R_Y)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCATEGORY(List<CATEGORYEnum> CATEGORY) {
     if (CATEGORY == null) {
       return;
@@ -708,7 +708,7 @@ public class Etype {
    * @return ACTOR
    **/
   @JsonProperty(JSON_PROPERTY_A_C_T_O_R)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public List<ACTOREnum> getACTOR() {
     return ACTOR;
@@ -717,7 +717,7 @@ public class Etype {
   @JacksonXmlElementWrapper(useWrapping = false)
 
   @JsonProperty(JSON_PROPERTY_A_C_T_O_R)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setACTOR(List<ACTOREnum> ACTOR) {
     if (ACTOR == null) {
       return;
@@ -747,7 +747,7 @@ public class Etype {
    * @return LOCTYPE
    **/
   @JsonProperty(JSON_PROPERTY_L_O_C_T_Y_P_E)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public List<String> getLOCTYPE() {
     return LOCTYPE;
@@ -756,7 +756,7 @@ public class Etype {
   @JacksonXmlElementWrapper(useWrapping = false)
 
   @JsonProperty(JSON_PROPERTY_L_O_C_T_Y_P_E)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLOCTYPE(List<String> LOCTYPE) {
     if (LOCTYPE == null) {
       return;

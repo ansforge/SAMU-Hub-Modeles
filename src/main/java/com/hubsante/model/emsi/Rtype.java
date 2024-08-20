@@ -1318,7 +1318,7 @@ public class Rtype {
    * @return RCLASS
    **/
   @JsonProperty(JSON_PROPERTY_R_C_L_A_S_S)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public List<RCLASSEnum> getRCLASS() {
     return RCLASS;
@@ -1327,7 +1327,7 @@ public class Rtype {
   @JacksonXmlElementWrapper(useWrapping = false)
 
   @JsonProperty(JSON_PROPERTY_R_C_L_A_S_S)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRCLASS(List<RCLASSEnum> RCLASS) {
     if (RCLASS == null) {
       return;

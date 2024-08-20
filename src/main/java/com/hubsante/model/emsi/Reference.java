@@ -71,14 +71,14 @@ public class Reference {
    * @return ORG_ID
    **/
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getORGID() {
     return ORG_ID;
   }
 
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setORGID(String ORG_ID) {
     this.ORG_ID = ORG_ID;
   }
@@ -102,7 +102,7 @@ public class Reference {
    * @return OTHER_EVENT_ID
    **/
   @JsonProperty(JSON_PROPERTY_O_T_H_E_R_E_V_E_N_T_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public List<String> getOTHEREVENTID() {
     return OTHER_EVENT_ID;
@@ -111,7 +111,7 @@ public class Reference {
   @JacksonXmlElementWrapper(useWrapping = false)
 
   @JsonProperty(JSON_PROPERTY_O_T_H_E_R_E_V_E_N_T_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOTHEREVENTID(List<String> OTHER_EVENT_ID) {
     if (OTHER_EVENT_ID == null) {
       return;
