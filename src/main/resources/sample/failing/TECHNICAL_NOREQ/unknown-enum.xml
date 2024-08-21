@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<technicalNoreq xmlns="urn:emergency:cisu:2.0:technicalNoreq">
+    <enumerationField>ENUM_VALUE_100</enumerationField>
+    <enumArrayField>ENUM_VALUE_10</enumArrayField>
+    <enumArrayField>ENUM_VALUE_200</enumArrayField>
+    <enumArrayField>ENUM_VALUE_30</enumArrayField>
+    <nomenclatureField>UNKNOWN</nomenclatureField>
+</technicalNoreq>

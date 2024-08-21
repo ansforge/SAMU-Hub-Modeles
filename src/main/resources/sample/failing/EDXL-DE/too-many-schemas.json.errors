@@ -1,0 +1,2 @@
+Could not validate message against schema : errors occurred. 
+embeddedJsonContent: should be valid to one and only one schema, but 2 are valid
