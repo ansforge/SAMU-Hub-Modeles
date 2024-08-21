@@ -1,4 +1,4 @@
-name: build image on release
+name: Build library package on release
 
 on:
   release:
@@ -6,7 +6,7 @@ on:
       - published
 
 jobs:
-  build-library:
+  build_library:
     runs-on: ubuntu-latest
     env:
       RELEASE_NAME: ${{ github.ref_name}}
