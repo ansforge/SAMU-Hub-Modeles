@@ -54,7 +54,7 @@
             "precision": "ADRESSE"
           }
         },
-        "obsDatime": "2024-01-10T11:00:00+01:00"
+        "datetime": "2024-01-10T11:00:00+01:00"
       }
     },
     "initialAlert": {

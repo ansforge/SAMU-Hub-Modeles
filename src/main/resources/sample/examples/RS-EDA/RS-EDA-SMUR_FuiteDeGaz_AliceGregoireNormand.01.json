@@ -50,7 +50,7 @@
             "precision": "ADRESSE"
           }
         },
-        "obsDatime": "2024-05-18T18:15:00+02:00"
+        "datetime": "2024-05-18T18:15:00+02:00"
       },
       "freetext": "Maison aux volets verts"
     },
