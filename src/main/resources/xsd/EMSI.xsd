@@ -1270,7 +1270,7 @@ Voir nomenclature EMSI associée</documentation>
                         <enumeration value="FAC/OPR/HPT"/>
                         <enumeration value="FAC/OPR/HSP"/>
                         <enumeration value="FAC/OPR/HSPFLD"/>
-                        <enumeration value="FAC/OPR/HSPFLD"/>
+                        <enumeration value="FAC/OPR/HSPFLD2"/>
                         <enumeration value="FAC/OPR/IRM"/>
                         <enumeration value="FAC/OPR/MARSHAL"/>
                         <enumeration value="FAC/OPR/MATBED"/>

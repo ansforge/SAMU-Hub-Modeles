@@ -325,7 +325,7 @@ components:
             ro chronologique de l\u2019observation}\n\nCet identifiant a vocation\
             \ \xE0 devenir obligatoire pour permettre les mises \xE0 jour, il est\
             \ laiss\xE9 en facultatif temporairement.\n"
-          pattern: ([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}
+          pattern: ([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu540.medicalNote.46585A
 
@@ -730,17 +730,17 @@ components:
           - C02.14.02
           - C02.14.03
           - C02.14.04
-          - C02.14.00
-          - C02.14.01
-          - C02.14.02
-          - C02.14.03
-          - C02.14.04
-          - C02.14.05
-          - C02.14.06
           - C02.15.00
           - C02.15.01
           - C02.15.02
           - C02.15.03
+          - C02.15.04
+          - C02.15.05
+          - C02.15.06
+          - C02.16.00
+          - C02.16.01
+          - C02.16.02
+          - C02.16.03
           - C03.00.00
           - C03.01.00
           - C03.01.01
@@ -1619,7 +1619,7 @@ components:
       - datetime
       properties:
         datetime:
-          type: obsDatime
+          type: string
           title: "Heure du dernier relev\xE9"
           x-health-only: false
           x-cols: 6
@@ -1627,6 +1627,8 @@ components:
           description: "A valoriser avec le groupe date heure de renseignement des\
             \ coordonn\xE9es du point cl\xE9 de la localisation. \nPermet de conna\xEE\
             tre la fra\xEEcheur et donc la pertinence des informations pour intervenir."
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
         point:

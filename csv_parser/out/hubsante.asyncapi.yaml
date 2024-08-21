@@ -1,46 +1,47 @@
-asyncapi: 2.5.0
+asyncapi: 3.0.0
 info:
-  title: Hub Sante AMQP API
-  version: '0.9'
-  description: "L'API Hub Sante AMQP permet le partage d'informations entre acteurs\
-    \ du monde de la sant\xE9.\n"
+  title: "Hub Sant\xE9 - Mod\xE8les"
+  version: '1.0'
+  description: "Le Hub Sant\xE9 permet le partage d'informations entre acteurs du\
+    \ monde de la Sant\xE9.\n"
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
+defaultContentType: application/json
 servers:
-  remote:
-    url: messaging.hub.esante.gouv.fr:5671
+  bac-a-sable:
+    host: messaging.bac-a-sable.hub.esante.gouv.fr:5671
     protocol: amqps
     protocolVersion: 0-9-1
     description: "Instance \"bac \xE0 sable\" du Hub Sante d\xE9ploy\xE9e dans le\
       \ Cloud."
     security:
-    - tlsAuth: []
-  local:
-    url: localhost:5671
+    - $ref: '#/components/securitySchemes/tlsAuthIGCTest'
+  pre-prod:
+    host: messaging.pre-prod.hub.esante.gouv.fr:5671
     protocol: amqps
     protocolVersion: 0-9-1
-    description: "Instance locale du Hub Sante port\xE9e par `minikube` dans le repo\
-      \ du Hub"
+    description: "Instance \"pr\xE9-prod\" du Hub Sante d\xE9ploy\xE9e dans le Cloud."
     security:
-    - tlsAuth: []
-defaultContentType: application/json
+    - $ref: '#/components/securitySchemes/tlsAuthIGC'
+  prod:
+    host: messaging.hub.esante.gouv.fr:5671
+    protocol: amqps
+    protocolVersion: 0-9-1
+    description: "Instance de production du Hub Sante d\xE9ploy\xE9e dans le Cloud."
+    security:
+    - $ref: '#/components/securitySchemes/tlsAuthIGC'
 channels:
-  '{clientId}.message':
-    description: "File sp\xE9cifique \xE0 chaque client pour la r\xE9ception de messages"
+  '{clientId}':
+    address: '{clientId}'
+    messages:
+      edxlMessage:
+        $ref: '#/components/messages/edxlMessage'
+    description: "Exchange d'entr\xE9e avec un topic sp\xE9cifique \xE0 chaque client\
+      \ (routingKey \xE9gale \xE0 son clientId) pour l'envoi de tous les messages"
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
-    subscribe:
-      summary: Message fonctionnel
-      operationId: receiveMessage
-      message:
-        $ref: '#/components/messages/edxlMessage'
-    publish:
-      summary: Message fonctionnel
-      operationId: publishMessage
-      message:
-        $ref: '#/components/messages/edxlMessage'
     bindings:
       amqp:
         is: routingKey
@@ -48,76 +49,163 @@ channels:
           name: hubsante
           type: topic
           durable: true
+          autoDelete: false
+          vhost: /
+  '{clientId}.message':
+    address: '{clientId}.message'
+    messages:
+      edxlMessage:
+        $ref: '#/components/messages/edxlMessage'
+    description: "File sp\xE9cifique \xE0 chaque client pour la r\xE9ception de messages\
+      \ fonctionnels"
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    bindings:
+      amqp:
+        is: queue
+        queue:
+          name: '{clientId}.message'
+          durable: true
+          exclusive: false
           autoDelete: false
           vhost: /
   '{clientId}.ack':
+    address: '{clientId}.ack'
+    messages:
+      edxlMessage:
+        $ref: '#/components/messages/edxlMessage'
     description: "File sp\xE9cifique \xE0 chaque client pour la r\xE9ception des acquittements\
-      \ de bonne r\xE9ception"
+      \ de r\xE9ception finale"
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
-    subscribe:
-      summary: Acquittement fonctionnel
-      operationId: receiveAck
-      message:
-        $ref: '#/components/messages/edxlMessage'
-    publish:
-      summary: "Acquittements de bonne r\xE9ception"
-      operationId: publishAck
-      message:
-        $ref: '#/components/messages/edxlMessage'
     bindings:
       amqp:
-        is: routingKey
-        exchange:
-          name: hubsante
-          type: topic
+        is: queue
+        queue:
+          name: '{clientId}.ack'
           durable: true
+          exclusive: false
           autoDelete: false
           vhost: /
   '{clientId}.info':
+    address: '{clientId}.info'
+    messages:
+      edxlMessage:
+        $ref: '#/components/messages/edxlMessage'
     description: "File sp\xE9cifique \xE0 chaque client pour la r\xE9ception des informations\
-      \ compl\xE9mentaires li\xE9es au fonctionnement et aux \xE9changes port\xE9\
-      s par le Hub Sant\xE9"
+      \ et erreurs compl\xE9mentaires li\xE9es au fonctionnement et aux \xE9changes\
+      \ port\xE9s par le Hub Sant\xE9"
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
-    subscribe:
-      summary: "Informations compl\xE9mentaires"
-      operationId: receiveInfo
-      message:
-        $ref: '#/components/messages/edxlMessage'
-    publish:
-      summary: "Informations compl\xE9mentaires"
-      operationId: publishInfo
-      message:
-        $ref: '#/components/messages/edxlMessage'
     bindings:
       amqp:
-        is: routingKey
-        exchange:
-          name: hubsante
-          type: topic
+        is: queue
+        queue:
+          name: '{clientId}.info'
           durable: true
+          exclusive: false
           autoDelete: false
           vhost: /
+operations:
+  publish:
+    title: Publication
+    summary: "Publication de tous les types de messages sur le Hub Sant\xE9"
+    action: send
+    channel:
+      $ref: '#/channels/{clientId}'
+    messages:
+    - $ref: '#/channels/{clientId}/messages/edxlMessage'
+    bindings:
+      amqp:
+        expiration: 86400000
+        userId: '{clientId}'
+        cc:
+        - '{clientId}'
+        deliveryMode: 2
+        mandatory: true
+        ack: true
+  receiveMessage:
+    title: "R\xE9ception de messages fonctionnels"
+    action: receive
+    channel:
+      $ref: '#/channels/{clientId}.message'
+    messages:
+    - $ref: '#/channels/{clientId}.message/messages/edxlMessage'
+    bindings:
+      amqp:
+        expiration: 86400000
+        userId: '{otherClientId}'
+        cc:
+        - '{otherClientId}'
+        deliveryMode: 2
+        mandatory: true
+        ack: true
+  receiveAck:
+    title: "R\xE9ception de messages d'acquittement de r\xE9ception finale"
+    action: receive
+    channel:
+      $ref: '#/channels/{clientId}.ack'
+    messages:
+    - $ref: '#/channels/{clientId}.ack/messages/edxlMessage'
+    bindings:
+      amqp:
+        expiration: 86400000
+        userId: '{otherClientId}'
+        cc:
+        - '{otherClientId}'
+        deliveryMode: 2
+        mandatory: true
+        ack: true
+  receiveInfo:
+    title: "R\xE9ception de messages d'info"
+    action: receive
+    channel:
+      $ref: '#/channels/{clientId}.info'
+    messages:
+    - $ref: '#/channels/{clientId}.info/messages/edxlMessage'
+    bindings:
+      amqp:
+        expiration: 86400000
+        userId: '{otherClientId}'
+        cc:
+        - '{otherClientId}'
+        deliveryMode: 2
+        mandatory: true
+        ack: true
 components:
   securitySchemes:
-    tlsAuth:
+    tlsAuthIGC:
       type: X509
-      description: "Un certificat issu d'une AC valid\xE9e par le Hub est n\xE9cessaire\
-        \ pour l'authentification mTLS"
+      description: "Un certificat SSL_SERV sign\xE9 par l'IGC Sant\xE9 PROD est n\xE9\
+        cessaire pour l'authentification mTLS"
+    tlsAuthIGCTest:
+      type: X509
+      description: "Un certificat SSL_SERV sign\xE9 par l'IGC Sant\xE9 TEST est n\xE9\
+        cessaire pour l'authentification mTLS"
   parameters:
     clientId:
       description: L'identifiant du client
-      schema:
-        type: string
+    otherClientId:
+      description: "L'identifiant d'un autre client du Hub Sant\xE9"
   messages:
     edxlMessage:
       title: Message au standard EDXL
       summary: "Message au standard EDXL transportable par le Hub, comportant une\
         \ partie adressage et une partie contenu. La partie contenu peut respecter\
         \ diff\xE9rentes sp\xE9cifications fonctionnelles."
+      headers:
+        type: object
+        properties:
+          correlationId:
+            description: Correlation ID set by application
+            type: string
+          applicationInstanceId:
+            description: Unique identifier for a given instance of the publishing
+              application
+            type: string
       payload:
         $ref: '#/components/schemas/EdxlMessage'
   schemas:
@@ -151,29 +239,32 @@ components:
       - distributionKind
       - descriptor
       - content
-    Content:
-      properties:
-        contentObject:
-          $ref: '#/components/schemas/ContentObject'
-      additionalProperties: false
-      required:
-      - contentObject
-    ContentObject:
-      oneOf:
-      - $ref: '#/components/schemas/JsonContent'
-      - $ref: '#/components/schemas/ContentXML'
-    JsonContent:
-      properties:
-        JsonContent:
-          $ref: '#/components/schemas/EmbeddedJsonContent'
-    ContentXML:
-      properties:
-        contentXML:
-          $ref: '#/components/schemas/EmbeddedXMLContent'
-    EmbeddedJsonContent:
-      oneOf: null
-    EmbeddedXMLContent:
-      oneOf: null
+    DistributionStatus:
+      type: string
+      enum:
+      - Actual
+      - Exercise
+      - System
+      - Test
+      - Unknown
+      - NoAppropriateDefault
+    DistributionKind:
+      type: string
+      enum:
+      - Report
+      - Update
+      - Cancel
+      - Request
+      - Response
+      - Dispatch
+      - Ack
+      - Error
+      - SensorConfiguration
+      - SensorControl
+      - SensorStatus
+      - SensorDetection
+      - Unknown
+      - NoAppropriateDefault
     Descriptor:
       properties:
         language:
@@ -194,32 +285,45 @@ components:
       required:
       - explicitAddressScheme
       - explicitAddressValue
-    DistributionKind:
-      type: string
-      enum:
-      - Report
-      - Update
-      - Cancel
-      - Request
-      - Response
-      - Dispatch
-      - Ack
-      - Error
-      - SensorConfiguration
-      - SensorControl
-      - SensorStatus
-      - SensorDetection
-      - Unknown
-      - NoAppropriateDefault
-    DistributionStatus:
-      type: string
-      enum:
-      - Actual
-      - Exercise
-      - System
-      - Test
-      - Unknown
-      - NoAppropriateDefault
+    Content:
+      properties:
+        contentObject:
+          $ref: '#/components/schemas/ContentObject'
+      additionalProperties: false
+      required:
+      - contentObject
+    ContentObject:
+      oneOf:
+      - $ref: '#/components/schemas/JsonContent'
+      - $ref: '#/components/schemas/ContentXML'
+    JsonContent:
+      properties:
+        JsonContent:
+          $ref: '#/components/schemas/EmbeddedJsonContent'
+    ContentXML:
+      properties:
+        contentXML:
+          $ref: '#/components/schemas/EmbeddedXMLContent'
+    EmbeddedJsonContent:
+      oneOf: &id001
+      - $ref: '#/components/schemas/createCase'
+      - $ref: '#/components/schemas/createCaseHealth'
+      - $ref: '#/components/schemas/createCaseHealthUpdate'
+      - $ref: '#/components/schemas/emsi'
+      - $ref: '#/components/schemas/geoPositionsUpdate'
+      - $ref: '#/components/schemas/geoResourcesRequest'
+      - $ref: '#/components/schemas/geoResourcesDetails'
+      - $ref: '#/components/schemas/reference'
+      - $ref: '#/components/schemas/error'
+      - $ref: '#/components/schemas/info'
+      - $ref: '#/components/schemas/resourcesInfo'
+      - $ref: '#/components/schemas/resourcesRequest'
+      - $ref: '#/components/schemas/resourcesResponse'
+      - $ref: '#/components/schemas/rpis'
+      - $ref: '#/components/schemas/customContent'
+      - $ref: '#/components/schemas/resourcesStatus'
+    EmbeddedXMLContent:
+      oneOf: *id001
     DistributionElement:
       type: object
       title: DistributionElement
@@ -809,17 +913,17 @@ components:
           - C02.14.02
           - C02.14.03
           - C02.14.04
-          - C02.14.00
-          - C02.14.01
-          - C02.14.02
-          - C02.14.03
-          - C02.14.04
-          - C02.14.05
-          - C02.14.06
           - C02.15.00
           - C02.15.01
           - C02.15.02
           - C02.15.03
+          - C02.15.04
+          - C02.15.05
+          - C02.15.06
+          - C02.16.00
+          - C02.16.01
+          - C02.16.02
+          - C02.16.03
           - C03.00.00
           - C03.01.00
           - C03.01.01
@@ -1633,7 +1737,7 @@ components:
       - datetime
       properties:
         datetime:
-          type: obsDatime
+          type: string
           title: "Heure du dernier relev\xE9"
           x-health-only: false
           x-cols: 6
@@ -1641,6 +1745,8 @@ components:
           description: "A valoriser avec le groupe date heure de renseignement des\
             \ coordonn\xE9es du point cl\xE9 de la localisation. \nPermet de conna\xEE\
             tre la fra\xEEcheur et donc la pertinence des informations pour intervenir."
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
         point:
@@ -2714,7 +2820,7 @@ components:
             ro chronologique de l\u2019observation}\n\nCet identifiant a vocation\
             \ \xE0 devenir obligatoire pour permettre les mises \xE0 jour, il est\
             \ laiss\xE9 en facultatif temporairement.\n"
-          pattern: ([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}
+          pattern: ([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu540.medicalNote.46585A
 
@@ -5165,7 +5271,7 @@ components:
             - FAC/OPR/HPT
             - FAC/OPR/HSP
             - FAC/OPR/HSPFLD
-            - FAC/OPR/HSPFLD
+            - FAC/OPR/HSPFLD2
             - FAC/OPR/IRM
             - FAC/OPR/MARSHAL
             - FAC/OPR/MATBED
