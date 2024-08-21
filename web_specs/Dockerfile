@@ -6,7 +6,7 @@
 FROM --platform=linux/amd64 nginx:alpine
 
 # Copy the files to the nginx default document root
-COPY . /usr/share/nginx/html
+COPY ./generated/ /usr/share/nginx/html
 
 # Expose port 80 to allow incoming traffic
 EXPOSE 80
