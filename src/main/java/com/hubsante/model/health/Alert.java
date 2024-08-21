@@ -74,14 +74,14 @@ public class Alert {
    * @return reception
    **/
   @JsonProperty(JSON_PROPERTY_RECEPTION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getReception() {
     return reception;
   }
 
   @JsonProperty(JSON_PROPERTY_RECEPTION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReception(OffsetDateTime reception) {
     this.reception = reception;
   }
@@ -136,14 +136,14 @@ public class Alert {
    * @return caller
    **/
   @JsonProperty(JSON_PROPERTY_CALLER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Caller getCaller() {
     return caller;
   }
 
   @JsonProperty(JSON_PROPERTY_CALLER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCaller(Caller caller) {
     this.caller = caller;
   }

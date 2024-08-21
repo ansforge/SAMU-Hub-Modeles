@@ -117,14 +117,14 @@ public class Coord {
    * @return lat
    **/
   @JsonProperty(JSON_PROPERTY_LAT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public BigDecimal getLat() {
     return lat;
   }
 
   @JsonProperty(JSON_PROPERTY_LAT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLat(BigDecimal lat) {
     this.lat = lat;
   }
@@ -141,14 +141,14 @@ public class Coord {
    * @return lon
    **/
   @JsonProperty(JSON_PROPERTY_LON)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public BigDecimal getLon() {
     return lon;
   }
 
   @JsonProperty(JSON_PROPERTY_LON)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLon(BigDecimal lon) {
     this.lon = lon;
   }
@@ -192,14 +192,14 @@ public class Coord {
    * @return precision
    **/
   @JsonProperty(JSON_PROPERTY_PRECISION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public PrecisionEnum getPrecision() {
     return precision;
   }
 
   @JsonProperty(JSON_PROPERTY_PRECISION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPrecision(PrecisionEnum precision) {
     this.precision = precision;
   }
