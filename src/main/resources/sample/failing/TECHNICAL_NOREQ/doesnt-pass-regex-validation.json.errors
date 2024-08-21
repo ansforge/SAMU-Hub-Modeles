@@ -1,0 +1,7 @@
+Could not validate message against schema : errors occurred. 
+Issues found on the envelope: 
+ - $.phoneNumberField: does not match the regex pattern \+?[0-9]{2,14}
+ - $.dateField: does not match the regex pattern \d{4}-\d{2}-\d{2}
+ - $.datetimeField: 2022-09-27 08:25:54 Z02:00 is an invalid date-time
+ - $.datetimeField: does not match the regex pattern \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+ - $.emailField: does not match the regex pattern [\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}

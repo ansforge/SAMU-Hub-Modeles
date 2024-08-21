@@ -1,0 +1,12 @@
+{
+  "requiredStringField": "requiredStringValue",
+  "enumArrayField": [
+    "ENUM_VALUE_10",
+    "ENUM_VALUE_20",
+    "ENUM_VALUE_30"
+  ],
+  "requiredArray": [
+    "requiredArrayValue1"
+  ],
+  "nomenclatureField": "INCONNU"
+}

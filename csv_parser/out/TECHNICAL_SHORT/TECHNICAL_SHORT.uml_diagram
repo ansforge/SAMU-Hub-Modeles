@@ -1,0 +1,54 @@
+// UML MDD Hub Sante
+strict digraph {
+	node [shape=none]
+	edge [arrowhead=odiamond arrowtail=none]
+	rankdir=BT
+	objectField [label=<<TABLE>
+                <TR>
+                <TD ><B>objectField</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet technicalObject</I></TD></TR><TR><TD BORDER="0" >objectPropertyString <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >objectPropertyNumber <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >objectPropertyRequiredString <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	objectField -> technicalShort [headlabel=1 taillabel="0..1"]
+	object1Level3 [label=<<TABLE>
+                <TR>
+                <TD ><B>object1Level3</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet levelThreeData</I></TD></TR><TR><TD BORDER="0" >stringLevel4 <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	object1Level3 -> object1Level2 [headlabel=1 taillabel="0..1"]
+	object1Level2 [label=<<TABLE>
+                <TR>
+                <TD ><B>object1Level2</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet levelTwoData</I></TD></TR><TR><TD BORDER="0" >stringLevel3 <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	object1Level2 -> objectLevel1 [headlabel=1 taillabel="0..1"]
+	object2Level3 [label=<<TABLE>
+                <TR>
+                <TD ><B>object2Level3</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet levelThreeData</I></TD></TR><TR><TD BORDER="0" >stringLevel4 <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	object2Level3 -> object2Level2 [headlabel=1 taillabel="0..1"]
+	object2Level2 [label=<<TABLE>
+                <TR>
+                <TD ><B>object2Level2</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet secondLevelTwoData</I></TD></TR>
+                </TABLE>>]
+	object2Level2 -> objectLevel1 [headlabel=1 taillabel="0..1"]
+	objectLevel1 [label=<<TABLE>
+                <TR>
+                <TD ><B>objectLevel1</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet levelOneData</I></TD></TR><TR><TD BORDER="0" >stringLevel2 <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	objectLevel1 -> technicalShort [headlabel=1 taillabel="0..1"]
+	technicalShort [label=<<TABLE>
+                <TR>
+                <TD ><B>technicalShort</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet technicalShort</I></TD></TR><TR><TD BORDER="0" >optionalStringField <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >enumerationField <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >integerField <I>integer</I> : [0..1] </TD></TR><TR><TD BORDER="0" >numberField <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >booleanField <I>boolean</I> : [0..1] </TD></TR><TR><TD BORDER="0" >arrayField <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >enumArrayField <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >arrayWithMaxLength <I>string</I> : [0..5] </TD></TR><TR><TD BORDER="0" >phoneNumberField <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >dateField <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >emailField <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >datetimeField <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >nomenclatureField <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+}

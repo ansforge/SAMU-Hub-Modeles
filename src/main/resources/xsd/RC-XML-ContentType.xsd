@@ -4,16 +4,20 @@
         xmlns:rcref="urn:emergency:cisu:2.0:reference"
         xmlns:rceda="urn:emergency:cisu:2.0:createCase"
         xmlns:rseda="urn:emergency:cisu:2.0:createCaseHealth"
+        xmlns:rsedamaj="urn:emergency:cisu:2.0:createCaseHealthUpdate"
         xmlns:emsi="urn:emergency:cisu:2.0:emsi"
         xmlns:info="urn:emergency:cisu:2.0:info"
         xmlns:geopositionsupdate="urn:emergency:cisu:2.0:geoPositionsUpdate"
         xmlns:georesourcesdetails="urn:emergency:cisu:2.0:geoResourcesDetails"
         xmlns:georesourcesrequest="urn:emergency:cisu:2.0:geoResourcesRequest"
         xmlns:resourcesinfo="urn:emergency:cisu:2.0:resourcesInfo"
+        xmlns:resourcesstatus="urn:emergency:cisu:2.0:resourcesStatus"
         xmlns:resourcesrequest="urn:emergency:cisu:2.0:resourcesRequest"
         xmlns:resourcesresponse="urn:emergency:cisu:2.0:resourcesResponse"
         xmlns:rpis="urn:emergency:cisu:2.0:rpis"
         xmlns:error="urn:emergency:cisu:2.0:error"
+        xmlns:technical="urn:emergency:cisu:2.0:technical"
+        xmlns:technicalnoreq="urn:emergency:cisu:2.0:technicalNoreq"
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
@@ -22,6 +26,7 @@
     <xs:import namespace="urn:emergency:cisu:2.0:createCase" schemaLocation="RC-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:reference" schemaLocation="RC-REF.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:createCaseHealthUpdate" schemaLocation="RS-EDA-MAJ.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:emsi" schemaLocation="EMSI.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:rpis" schemaLocation="RPIS.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:info" schemaLocation="RS-INFO.xsd"/>
@@ -30,8 +35,11 @@
     <xs:import namespace="urn:emergency:cisu:2.0:geoResourcesDetails" schemaLocation="GEO-RES.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:geoResourcesRequest" schemaLocation="GEO-REQ.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:resourcesInfo" schemaLocation="RS-RI.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:resourcesStatus" schemaLocation="RS-SR.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:resourcesRequest" schemaLocation="RS-DR.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:resourcesResponse" schemaLocation="RS-RR.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:technical" schemaLocation="TECHNICAL.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:technicalNoreq" schemaLocation="TECHNICAL_NOREQ.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
         <xs:sequence>
@@ -53,6 +61,7 @@
                         <xs:element ref="rcref:reference"/>
                         <xs:element ref="rceda:createCase"/>
                         <xs:element ref="rseda:createCaseHealth"/>
+                        <xs:element ref="rsedamaj:createCaseHealthUpdate"/>
                         <xs:element ref="emsi:emsi"/>
                         <xs:element ref="rpis:rpis"/>
                         <!-- geo -->
@@ -61,8 +70,11 @@
                         <xs:element ref="georesourcesrequest:geoResourcesRequest"/>
                         <!-- resources -->
                         <xs:element ref="resourcesinfo:resourcesInfo"/>
+                        <xs:element ref="resourcesstatus:resourcesStatus"/>
                         <xs:element ref="resourcesrequest:resourcesRequest"/>
                         <xs:element ref="resourcesresponse:resourcesResponse"/>
+                        <!-- technical -->
+                        <xs:element ref="technical:technical"/>
                     </xs:choice>
                 </xs:sequence>
             </xs:extension>
@@ -75,6 +87,7 @@
                 <xs:element ref="error:error"/>
                 <xs:element ref="info:info"/>
                 <xs:element ref="x:customContent"/>
+                <xs:element ref="technicalnoreq:technicalNoreq"/>
             </xs:choice>
         </xs:sequence>
     </xs:complexType>
