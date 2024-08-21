@@ -27,6 +27,8 @@ Les spécifications du modèle de données sont disponibles sur le [site du proj
 |-|-|-|-|-|-|
 |[0.5](https://github.com/ansforge/SAMU-Hub-Modeles/tree/0.5.1)|1.1|1.2|1.1|1.0|1.6|
 |[0.6](https://github.com/ansforge/SAMU-Hub-Modeles/tree/0.6.0)|1.2|1.3|1.2|1.0|1.6|
+|[0.7](https://github.com/ansforge/SAMU-Hub-Modeles/tree/0.7.0)|1.3|1.4|1.3|1.0|1.7|
+|[1.0](https://github.com/ansforge/SAMU-Hub-Modeles/tree/1.0)|1.4|1.5|1.4|1.0|1.8|
 
 ## Modèles
 
@@ -40,7 +42,7 @@ Les spécifications du modèle de données sont disponibles sur le [site du proj
 |EMSI|[EMSI.schema.json](src/main/resources/json-schema/EMSI.schema.json)|[EMSI.schema.docx](csv_parser/out/EMSI/EMSI.schema.docx)|[EMSI.uml_diagram.pdf](csv_parser/out/EMSI/EMSI.uml_diagram.pdf)|[Exemples EMSI](src/main/resources/sample/examples/EMSI/)|
 |RS-RI|[RS-RI.schema.json](src/main/resources/json-schema/RS-RI.schema.json)|[RS-RI.schema.docx](csv_parser/out/RS-RI/RS-RI.schema.docx)|[RS-RI.uml_diagram.pdf](csv_parser/out/RS-RI/RS-RI.uml_diagram.pdf)|[Exemples RS-RI](src/main/resources/sample/examples/RS-RI/)|
 |RS-DR|[RS-DR.schema.json](src/main/resources/json-schema/RS-DR.schema.json)|[RS-DR.schema.docx](csv_parser/out/RS-DR/RS-DR.schema.docx)|[RS-DR.uml_diagram.pdf](csv_parser/out/RS-DR/RS-DR.uml_diagram.pdf)|[Exemples RS-DR](src/main/resources/sample/examples/RS-DR/)|
-|RS-DD|[RS-DD.schema.json](src/main/resources/json-schema/RS-DD.schema.json)|[RS-DD.schema.docx](csv_parser/out/RS-DD/RS-DD.schema.docx)|[RS-DD.uml_diagram.pdf](csv_parser/out/RS-DD/RS-DD.uml_diagram.pdf)|[Exemples RS-DD](src/main/resources/sample/examples/RS-DD/)|
+|RS-RR|[RS-RR.schema.json](src/main/resources/json-schema/RS-RR.schema.json)|[RS-RR.schema.docx](csv_parser/out/RS-RR/RS-RR.schema.docx)|[RS-RR.uml_diagram.pdf](csv_parser/out/RS-RR/RS-RR.uml_diagram.pdf)|[Exemples RS-RR](src/main/resources/sample/examples/RS-RR/)|
 |RS-SR|[RS-SR.schema.json](src/main/resources/json-schema/RS-SR.schema.json)|[RS-SR.schema.docx](csv_parser/out/RS-SR/RS-SR.schema.docx)|[RS-SR.uml_diagram.pdf](csv_parser/out/RS-SR/RS-SR.uml_diagram.pdf)|[Exemples RS-SR](src/main/resources/sample/examples/RS-SR/)|
 |GEO-POS|[GEO-POS.schema.json](src/main/resources/json-schema/GEO-POS.schema.json)|[GEO-POS.schema.docx](csv_parser/out/GEO-POS/GEO-POS.schema.docx)|[GEO-POS.uml_diagram.pdf](csv_parser/out/GEO-POS/GEO-POS.uml_diagram.pdf)|[Exemples GEO-POS](src/main/resources/sample/examples/GEO-POS/)|
 |GEO-REQ|[GEO-REQ.schema.json](src/main/resources/json-schema/GEO-REQ.schema.json)|[GEO-REQ.schema.docx](csv_parser/out/GEO-REQ/GEO-REQ.schema.docx)|[GEO-REQ.uml_diagram.pdf](csv_parser/out/GEO-REQ/GEO-REQ.uml_diagram.pdf)|[Exemples GEO-REQ](src/main/resources/sample/examples/GEO-REQ/)|
