@@ -27,7 +27,8 @@ Les spécifications du modèle de données sont disponibles sur le [site du proj
 |-|-|-|-|-|-|
 |[0.5](https://github.com/ansforge/SAMU-Hub-Modeles/tree/0.5.1)|1.1|1.2|1.1|1.0|1.6|
 |[0.6](https://github.com/ansforge/SAMU-Hub-Modeles/tree/0.6.0)|1.2|1.3|1.2|1.0|1.6|
-|[0.7](https://github.com/ansforge/SAMU-Hub-Modeles/tree/0.7.0)|1.2|1.4|1.3|1.0|1.7|
+|[0.7](https://github.com/ansforge/SAMU-Hub-Modeles/tree/0.7.0)|1.3|1.4|1.3|1.0|1.7|
+|[1.0](https://github.com/ansforge/SAMU-Hub-Modeles/tree/1.0)|1.4|1.5|1.4|1.0|1.8|
 
 ## Modèles
 
