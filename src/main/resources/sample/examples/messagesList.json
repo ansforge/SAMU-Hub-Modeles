@@ -223,7 +223,7 @@
     "schema": null,
     "examples": [
       {
-        "file": "RS-DR/RS-DR_partageRessources_ DidierMorel.04a.json",      
+        "file": "RS-DR/RS-DR_partageRessources_DidierMorel.04a.json",
         "icon": "mdi-circular-saw",
         "name": "Didier MOREL.04a",
         "context": "Pas de test suivant: RS-RR - 04b",
@@ -284,7 +284,7 @@
         "environment": "Le VSAV 77 est arrivé sur les lieux"
       },
       {
-        "file": "RS-SR/RS-SR _partageDossier_DidierMorel.03b.json",
+        "file": "RS-SR/RS-SR_partageDossier_DidierMorel.03b.json",
         "icon": "mdi-circular-saw",
         "name": "Didier MOREL.03b",
         "context": "Pas de test suivant: RS-DR - 04a ",
