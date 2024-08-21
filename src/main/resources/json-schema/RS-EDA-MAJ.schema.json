@@ -211,7 +211,7 @@
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/idObs",
                     "description": "Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation\nIl est valorisé comme suit lors de sa création : \n{OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}\n\nOU - uniquement dans le cas où un ID unique de la note n'est pas disponible dans le système : \n{OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}\n\nCet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.\n",
-                    "pattern": "([\\w-]+\\.){3}medicalNote(\\.[\\w-]+){1,2}"
+                    "pattern": "([\\w-]+\\.){3,4}medicalNote(\\.[\\w-]+){1,2}"
                 },
                 "creation": {
                     "type": "string",

@@ -304,7 +304,7 @@
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/idObs",
                     "description": "Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation\nIl est valorisé comme suit lors de sa création : \n{OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}\n\nOU - uniquement dans le cas où un ID unique de la note n'est pas disponible dans le système : \n{OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}\n\nCet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.\n",
-                    "pattern": "([\\w-]+\\.){3}medicalNote(\\.[\\w-]+){1,2}"
+                    "pattern": "([\\w-]+\\.){3,4}medicalNote(\\.[\\w-]+){1,2}"
                 },
                 "creation": {
                     "type": "string",
@@ -1505,15 +1505,15 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "obsDatime"
+                "datetime"
             ],
             "properties": {
-                "obsDatime": {
+                "datetime": {
                     "type": "string",
                     "title": "Heure du dernier relevé",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/geometry/obsDatime",
+                    "example": "example.json#/location/geometry/datetime",
                     "description": "A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. \nPermet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"

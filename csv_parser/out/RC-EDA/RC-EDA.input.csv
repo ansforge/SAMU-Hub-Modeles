@@ -77,7 +77,7 @@ Spécificités 15-18 : Non gérés par NexSIS; ne seront pas transmis au SAMU et
 Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}",+33123452323,phoneNumber,0..1,,string,"REGEX: \+\d{5,18}"
 ,Géometrie associée,,,,,Objet qui permettre de transmettre la géométrie du lien d'intervention,,geometry,0..1,X,geometry,
 ,,Heure du dernier relevé,,,,"A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. 
-Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.",2022-09-27T08:23:34+02:00,obsDatime,1..1,,datetime,Format datetime décrit dans le DST
+Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.",2022-09-27T08:23:34+02:00,datetime,1..1,,datetime,Format datetime décrit dans le DST
 ,,Point ,,,,"Objet qui permet de décrire un point géographique.
 Il est à fournir au maximum même s'il est imprécis (adapter le champs ""Précision"" dans ce cas). 
 Par exemple, même sans adresse postale, il est possible de fournir le point GPS de la commune; puis d'adapter et  de préciser l'adresse en cours d'intervention.

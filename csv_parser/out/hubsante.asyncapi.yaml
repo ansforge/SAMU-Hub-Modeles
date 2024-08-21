@@ -38,7 +38,7 @@ channels:
       edxlMessage:
         $ref: '#/components/messages/edxlMessage'
     description: "Exchange d'entr\xE9e avec un topic sp\xE9cifique \xE0 chaque client\
-      \ (routingKey \xE9gale \xE0 son clientId\xE0 pour l'envoi de tous les messages"
+      \ (routingKey \xE9gale \xE0 son clientId) pour l'envoi de tous les messages"
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
@@ -1734,14 +1734,14 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - obsDatime
+      - datetime
       properties:
-        obsDatime:
+        datetime:
           type: string
           title: "Heure du dernier relev\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/geometry/obsDatime
+          example: example.json#/location/geometry/datetime
           description: "A valoriser avec le groupe date heure de renseignement des\
             \ coordonn\xE9es du point cl\xE9 de la localisation. \nPermet de conna\xEE\
             tre la fra\xEEcheur et donc la pertinence des informations pour intervenir."
@@ -2820,7 +2820,7 @@ components:
             ro chronologique de l\u2019observation}\n\nCet identifiant a vocation\
             \ \xE0 devenir obligatoire pour permettre les mises \xE0 jour, il est\
             \ laiss\xE9 en facultatif temporairement.\n"
-          pattern: ([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}
+          pattern: ([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu540.medicalNote.46585A
 

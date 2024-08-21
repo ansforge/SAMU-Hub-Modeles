@@ -80,7 +80,7 @@ Spécificités 15-18 : Non gérés par NexSIS; ne seront pas transmis au SAMU et
 Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}",+33123452323,phoneNumber,0..1,,string,"REGEX: \+\d{5,18}"
 ,Géometrie associée,,,,,Objet qui permettre de transmettre la géométrie du lien d'intervention,,geometry,0..1,X,geometry,
 ,,Heure du dernier relevé,,,,"A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. 
-Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.",2022-09-27T08:23:34+02:00,obsDatime,1..1,,datetime,Format datetime décrit dans le DST
+Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.",2022-09-27T08:23:34+02:00,datetime,1..1,,datetime,Format datetime décrit dans le DST
 ,,Point ,,,,"Objet qui permet de décrire un point géographique.
 Il est à fournir au maximum même s'il est imprécis (adapter le champs ""Précision"" dans ce cas). 
 Par exemple, même sans adresse postale, il est possible de fournir le point GPS de la commune; puis d'adapter et  de préciser l'adresse en cours d'intervention.
@@ -209,7 +209,7 @@ OU - uniquement dans le cas où un ID unique de la note n'est pas disponible dan
 
 Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.
 ","fr.health.samu540.medicalNote.46585A
-fr.health.samu540.medicalNote.DRFR15540241600125.20",idObs,1..1,,string,"REGEX: ([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}"
+fr.health.samu540.medicalNote.DRFR15540241600125.20",idObs,1..1,,string,"REGEX: ([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}"
 ,Date Heure de l'observation,,,,,A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,0..1,,datetime,Format datetime décrit dans le DST
 ,Observations et commentaires,,,,,"Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé.",,freetext,1..1,,string,
 Décision,,,,,,"Objet qui permet de passer l'ensemble des mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients.
