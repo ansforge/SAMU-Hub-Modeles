@@ -23,7 +23,7 @@
     <operator>
       <role>MEDECIN</role>
     </operator>
-    <idObs>fr.health.samu009.medicalNote.s5trx.</idObs>
+    <idObs>fr.health.samu009.medicalNote.s5trx</idObs>
     <creation>2024-03-03T15:10:00+01:00</creation>
     <freetext>Personne désorientée et incohérente. Difficultés d'élocution +++. Lèvre/moitié inférieure gauche du visage tombante. Antécédents inconnus.</freetext>
   </medicalNote>
@@ -32,7 +32,7 @@
     <operator>
       <role>MEDECIN</role>
     </operator>
-    <idObs>fr.health.samu009.medicalNote.s5trx.</idObs>
+    <idObs>fr.health.samu009.medicalNote.s5trx</idObs>
     <creation>2024-03-03T15:11:00+01:00</creation>
     <freetext>Suspicion d’AVC (ou d’atteinte neurologique). Engagement ambulance, pour évaluation. Prise en charge CHU à prévoir.</freetext>
   </medicalNote>
