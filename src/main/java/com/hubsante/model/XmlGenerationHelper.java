@@ -155,7 +155,7 @@ public class XmlGenerationHelper {
             transformer.transform(new DOMSource(document), new StreamResult(writer));
             return writer.toString();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Could not prettify XML, {}", e.getMessage());
             return xmlString;
         }
     }
