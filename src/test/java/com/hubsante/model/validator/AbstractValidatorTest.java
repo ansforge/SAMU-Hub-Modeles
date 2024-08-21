@@ -38,12 +38,29 @@ public abstract class AbstractValidatorTest {
                 () -> validator.validateXML(input, FULL_XSD) :
                 () -> validator.validateJSON(input, FULL_SCHEMA));
     }
-    public void jsonValidationFails(String messageRef, String[] expectedErrors) throws IOException {
+
+    public void jsonValidationFails(String messageRef, String[] expectedErrors, String schema) throws IOException {
         String input = getInvalidMessage(messageRef);
-        assertThrows(ValidationException.class, () -> validator.validateJSON(input, FULL_SCHEMA));
 
         try {
-            validator.validateJSON(input, FULL_SCHEMA);
+            validator.validateJSON(input, schema);
+            fail();
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
+        }
+    }
+
+    public void jsonValidationFails(String messageRef, String[] expectedErrors) throws IOException {
+        jsonValidationFails(messageRef, expectedErrors, FULL_SCHEMA);
+    }
+
+    public void xmlValidationFails(String messageRef, String[] expectedErrors, String schema) throws IOException {
+        String input = getInvalidMessage(messageRef);
+
+        try {
+            validator.validateXML(input, schema);
+            fail();
         } catch (ValidationException e) {
             String[] errors = e.getMessage().split("\n");
             checkErrorMessageArrayExactContent(errors, expectedErrors);
@@ -52,10 +69,10 @@ public abstract class AbstractValidatorTest {
 
     public void xmlValidationFails(String messageRef, String errorType, String[] expectedErrors) throws IOException {
         String input = getInvalidMessage(messageRef);
-        assertThrows(ValidationException.class, () -> validator.validateXML(input, FULL_XSD));
 
         try {
             validator.validateXML(input, FULL_XSD);
+            fail();
         } catch (ValidationException e) {
             String[] errors = e.getMessage().split("\n");
             Arrays.stream(expectedErrors).forEach(expected -> checkErrorMessages(errors, errorType, expected));
@@ -84,7 +101,13 @@ public abstract class AbstractValidatorTest {
     public void checkErrorMessageArrayExactContent(String[] errors, String[] expectedErrors) {
         List<String> errorList = Arrays.asList(errors);
         List<String> expectedErrorList = Arrays.asList(expectedErrors);
-        assertTrue(errorList.containsAll(expectedErrorList));
-        assertTrue(expectedErrorList.containsAll(errorList));
+        try {
+            assertTrue(errorList.containsAll(expectedErrorList));
+            assertTrue(expectedErrorList.containsAll(errorList));
+        } catch (AssertionError e) {
+            log.error("Expected errors: {}", expectedErrorList);
+            log.error("Actual errors: {}", errorList);
+            throw e;
+        }
     }
 }

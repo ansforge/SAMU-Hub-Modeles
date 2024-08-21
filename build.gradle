@@ -3,6 +3,12 @@ plugins {
     id 'maven-publish'
     id 'com.github.hierynomus.license' version '0.16.1'
     id 'jacoco'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+task generateXml(type:JavaExec) {
+    main = 'com.hubsante.model.XmlGenerator'
+    classpath = sourceSets.main.runtimeClasspath
 }
 
 group = 'com.hubsante'
@@ -35,11 +41,21 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
 }
 
+shadowJar {
+    archiveClassifier.set('')
+}
+
 jacocoTestReport {
     reports {
         html.required = true
         xml.required = true
     }
+}
+ 
+test {
+    if (project.hasProperty('technical')) {
+        include '**/*Technical*.class'
+    } else exclude '**/*Technical*.class'
 }
 
 allprojects {

@@ -1,0 +1,8 @@
+Could not validate message against schema : errors occurred. 
+Issues found on the envelope: 
+ - $._errordescriptor: is not defined in the schema and the schema does not allow additional properties
+ - $.descriptor: is missing but it is required
+ - $._errorsenderID: is not defined in the schema and the schema does not allow additional properties
+ - $.senderID: is missing but it is required
+ - $._errordistributionID: is not defined in the schema and the schema does not allow additional properties
+ - $.distributionID: is missing but it is required

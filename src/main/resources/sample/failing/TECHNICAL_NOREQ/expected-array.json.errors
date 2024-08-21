@@ -1,0 +1,4 @@
+Could not validate message against schema : errors occurred. 
+Issues found on the envelope: 
+ - $.enumArrayField: string found, array expected
+ - $.arrayField: object found, array expected

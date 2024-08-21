@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<createCaseHealthUpdate xmlns="urn:emergency:cisu:2.0:createCaseHealthUpdate">
+  <caseId>fr.health.samu009.DRFR150092406301259</caseId>
+  <decision>
+    <idPat>fr.health.samu009.patient.DRFR150092406301259.1</idPat>
+    <creation>2024-03-03T15:16:00+01:00</creation>
+    <operator>
+      <role>MEDECIN</role>
+    </operator>
+    <decisionType>INTER</decisionType>
+    <resourceType>TSU </resourceType>
+    <vehiculeType>AMB</vehiculeType>
+  </decision>
+</createCaseHealthUpdate>

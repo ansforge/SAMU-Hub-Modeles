@@ -1,0 +1,13 @@
+Could not validate message against schema : errors occurred. 
+Issues found on the envelope: 
+ - $.descriptor.explicitAddress.explicitAddressScheme: is missing but it is required
+ - $.descriptor.explicitAddress.explicitAddressValue: is missing but it is required
+ - $.descriptor.explicitAddress._errorexplicitAddressScheme: is not defined in the schema and the schema does not allow additional properties
+ - $.descriptor.explicitAddress._errorexplicitAddressValue: is not defined in the schema and the schema does not allow additional properties
+ - $.descriptor.explicitAddress._errorUnknownProperty: is not defined in the schema and the schema does not allow additional properties
+ - $.dateTimeSent: is missing but it is required
+ - $.descriptor._errorExplicitAddress: is not defined in the schema and the schema does not allow additional properties
+ - $.descriptor._errorUnknownProperty: is not defined in the schema and the schema does not allow additional properties
+ - $.descriptor.language: is missing but it is required
+ - $.descriptor._errorlanguage: is not defined in the schema and the schema does not allow additional properties
+ - $._errordateTimeSent: is not defined in the schema and the schema does not allow additional properties

@@ -15,8 +15,7 @@
       "jsonContent": {
         "embeddedJsonContent": {
           "message": {
-            "customContent": {
-              "key": "value"
+            "technicalNoreq": {
             }
           }
         }

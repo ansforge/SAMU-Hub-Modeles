@@ -1,0 +1,2 @@
+Could not validate message against schema : errors occurred. 
+[cvc-type.3.1.2: Element 'arrayField' is a simple type, so it must have no element information item [children]., cvc-enumeration-valid: Value 'value' is not facet-valid with respect to enumeration '[ENUM_VALUE_10, ENUM_VALUE_20, ENUM_VALUE_30, ENUM_VALUE_40, ENUM_VALUE_50]'. It must be a value from the enumeration., cvc-type.3.1.3: The value 'value' of element 'enumArrayField' is not valid.]
