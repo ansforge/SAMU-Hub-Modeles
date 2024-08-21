@@ -322,6 +322,8 @@ components:
       - $ref: '#/components/schemas/rpis'
       - $ref: '#/components/schemas/customContent'
       - $ref: '#/components/schemas/resourcesStatus'
+      - $ref: '#/components/schemas/technical'
+      - $ref: '#/components/schemas/technicalNoreq'
     EmbeddedXMLContent:
       oneOf: *id001
     DistributionElement:
