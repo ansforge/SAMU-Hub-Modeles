@@ -6,14 +6,14 @@ on:
       - published
 
 jobs:
-  build-image:
+  build-library:
     runs-on: ubuntu-latest
     env:
       RELEASE_NAME: ${{ github.ref_name}}
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up JDK
         uses: actions/setup-java@v2
@@ -27,7 +27,7 @@ jobs:
       - name: check release name matches version pattern
         run: |
           PATTERN="^([0-9]+\.[0-9]+\.[0-9]+)(-[A-Za-z]+(-[0-9]+))?$"
-  
+
           if [[ $RELEASE_NAME =~ $PATTERN ]]; then
             echo "The RELEASE_NAME '$RELEASE_NAME' is valid."
           else
@@ -40,3 +40,38 @@ jobs:
           GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew -Pversion=$RELEASE_NAME publish
+
+  build-specs-site:
+    runs-on: ubuntu-latest
+    env:
+      RELEASE_NAME: ${{ github.ref_name}}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup node env 🏗
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Cache node_modules 📦
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-generator
+
+      - name: Install AsyncAPI Generator 👨🏻‍💻
+        run: npm i @asyncapi/generator
+
+      # Use AsyncAPI generator to generate the HTML bundle
+      - name: Generate docs for Hub Santé interface ⚙️
+        run: asyncapi generate fromTemplate csv_parser/out/hubsante.asyncapi.yaml @asyncapi/html-template -o website_specs
+
+      - name: Build and push specs website
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          platforms: linux/amd64
+          tags: ghcr.io/${{ github.repository_owner }}/web-specs:${{ steps.extract_info.outputs.version }}
+          context: ./specs
