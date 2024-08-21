@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.08.20",
+    "version": "24.08.21",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -21,7 +21,7 @@
             "x-cols": 6,
             "example": "example.json#/caseId",
             "description": "Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",
-            "pattern": "fr(\\.[\\w-]+){3}"
+            "pattern": "fr(\\.[\\w-]+){3,4}"
         },
         "senderCaseId": {
             "type": "string",
@@ -37,7 +37,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/creation",
-            "description": "A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). \nLors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.  \nL'indicateur de fuseau horaire Z ne doit pas être utilisé.\n\nSpécificité 15-18 :\nIl doit être renseigné à la fin du processus de la  création de la première alerte.",
+            "description": "A valoriser avec le groupe date heure de création du dossier/affaire.\n\nSpécificité 15-18 : A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). \nLors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.  \nL'indicateur de fuseau horaire Z ne doit pas être utilisé.\nIl doit être renseigné à la fin du processus de la  création de la première alerte.",
             "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
             "format": "date-time"
         },
@@ -84,7 +84,7 @@
             "x-cols": 6,
             "example": "example.json#/owner",
             "description": "Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA\nA valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{domaine}.{organisation})",
-            "pattern": "fr(\\.[\\w-]+){2}"
+            "pattern": "fr(\\.[\\w-]+){2,3}"
         },
         "patient": {
             "type": "array",
@@ -253,7 +253,7 @@
                     "x-cols": 6,
                     "example": "example.json#/patient/0/idPat",
                     "description": "Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient.\nIl est valorisé comme suit lors de sa création : \n{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}\n\nOU, si un n°patient unique n'existe pas dans le système émetteur :\n{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}\n\n\n",
-                    "pattern": "([\\w-]+\\.){3}patient(\\.[\\w-]+){1,2}"
+                    "pattern": "([\\w-]+\\.){3,4}patient(\\.[\\w-]+){1,2}"
                 },
                 "administrativeFile": {
                     "$ref": "#/definitions/administrativeFile"
@@ -292,7 +292,7 @@
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/idPat",
                     "description": "Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, \n\nValorisé comme suit lors de sa création : \n{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}\n\nOU, si un n°patient unique n'existe pas dans le système émetteur :\n{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}",
-                    "pattern": "([\\w-]+\\.){3}patient(\\.[\\w-]+){1,2}"
+                    "pattern": "([\\w-]+\\.){3,4}patient(\\.[\\w-]+){1,2}"
                 },
                 "operator": {
                     "$ref": "#/definitions/operator"

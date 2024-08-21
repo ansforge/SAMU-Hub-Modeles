@@ -134,14 +134,14 @@ public class State {
    * @return datetime
    **/
   @JsonProperty(JSON_PROPERTY_DATETIME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getDatetime() {
     return datetime;
   }
 
   @JsonProperty(JSON_PROPERTY_DATETIME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDatetime(OffsetDateTime datetime) {
     this.datetime = datetime;
   }
@@ -157,14 +157,14 @@ public class State {
    * @return status
    **/
   @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public StatusEnum getStatus() {
     return status;
   }
 
   @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(StatusEnum status) {
     this.status = status;
   }

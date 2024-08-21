@@ -21,7 +21,6 @@ import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.hubsante.model.TestMessagesHelper;
 import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.edxl.EdxlMessage;
-import com.hubsante.model.emsi.Emsi;
 import com.hubsante.model.exception.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Disabled;
@@ -37,15 +36,18 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessage;
 import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessageWithoutDistributionElement;
-import static com.hubsante.model.Sanitizer.sanitizeEdxl;
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.config.Constants.FULL_SCHEMA;
+import static com.hubsante.model.utils.TestFileUtils.getMessageByFileName;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -70,7 +72,7 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
     @Test
     @DisplayName("should add XML prefix")
     public void verifyXmlPrefix() throws IOException {
-        String json = getMessageString("RC-REF");
+        String json = getMessageByFileName("TECHNICAL/complete.json");
         EdxlMessage messageFromInput = converter.deserializeJsonEDXL(json);
         String xml = converter.serializeXmlEDXL(messageFromInput);
         assertTrue(() -> xml.startsWith(xmlPrefix()));
@@ -85,8 +87,8 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
 
         List<File> files = new ArrayList<>();
         Arrays.stream(subFolders).forEach(folder -> {
-                files.addAll(Arrays.asList(Objects.requireNonNull(folder.listFiles())));
-            });
+            files.addAll(Arrays.asList(Objects.requireNonNull(folder.listFiles())));
+        });
 
         AtomicBoolean allPass = new AtomicBoolean(true);
 

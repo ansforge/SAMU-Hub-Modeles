@@ -157,12 +157,13 @@ public class CreateCase {
   }
 
   /**
-   * A valoriser avec le groupe date heure de début de partage lié à la création
-   *de l&#39;affaire (et donc de génération du caseId).  Lors de l&#39;ajout
-   *d&#39;une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.
-   *L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé.  Spécificité
-   *15-18 : Il doit être renseigné à la fin du processus de la  création de la
-   *première alerte.
+   * A valoriser avec le groupe date heure de création du dossier/affaire.
+   *Spécificité 15-18 : A valoriser avec le groupe date heure de début de
+   *partage lié à la création de l&#39;affaire (et donc de génération du
+   *caseId).  Lors de l&#39;ajout d&#39;une nouvelle alerte, la valeur de ce
+   *champ ne doit pas être modifiée.   L&#39;indicateur de fuseau horaire Z ne
+   *doit pas être utilisé. Il doit être renseigné à la fin du processus de la
+   *création de la première alerte.
    * @return creation
    **/
   @JsonProperty(JSON_PROPERTY_CREATION)

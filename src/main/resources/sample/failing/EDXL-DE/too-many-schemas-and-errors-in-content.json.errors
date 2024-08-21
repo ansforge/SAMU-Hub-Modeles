@@ -1,0 +1,4 @@
+Could not validate message against schema : errors occurred. 
+Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: 
+ - technical.requiredStringField: is missing but it is required
+embeddedJsonContent: should be valid to one and only one schema, but 2 are valid

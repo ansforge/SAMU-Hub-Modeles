@@ -323,14 +323,14 @@ public class Resource {
    * @return datetime
    **/
   @JsonProperty(JSON_PROPERTY_DATETIME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getDatetime() {
     return datetime;
   }
 
   @JsonProperty(JSON_PROPERTY_DATETIME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDatetime(OffsetDateTime datetime) {
     this.datetime = datetime;
   }
@@ -350,14 +350,14 @@ public class Resource {
    * @return resourceId
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getResourceId() {
     return resourceId;
   }
 
   @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setResourceId(String resourceId) {
     this.resourceId = resourceId;
   }
@@ -471,14 +471,14 @@ public class Resource {
    * @return resourceType
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public ResourceTypeEnum getResourceType() {
     return resourceType;
   }
 
   @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setResourceType(ResourceTypeEnum resourceType) {
     this.resourceType = resourceType;
   }

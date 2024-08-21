@@ -401,14 +401,14 @@ public class Decision {
    * @return creation
    **/
   @JsonProperty(JSON_PROPERTY_CREATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getCreation() {
     return creation;
   }
 
   @JsonProperty(JSON_PROPERTY_CREATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreation(OffsetDateTime creation) {
     this.creation = creation;
   }
@@ -424,14 +424,14 @@ public class Decision {
    * @return operator
    **/
   @JsonProperty(JSON_PROPERTY_OPERATOR)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Operator getOperator() {
     return operator;
   }
 
   @JsonProperty(JSON_PROPERTY_OPERATOR)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOperator(Operator operator) {
     this.operator = operator;
   }
@@ -447,14 +447,14 @@ public class Decision {
    * @return decisionType
    **/
   @JsonProperty(JSON_PROPERTY_DECISION_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public DecisionTypeEnum getDecisionType() {
     return decisionType;
   }
 
   @JsonProperty(JSON_PROPERTY_DECISION_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDecisionType(DecisionTypeEnum decisionType) {
     this.decisionType = decisionType;
   }
