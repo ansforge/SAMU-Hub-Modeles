@@ -10,10 +10,6 @@ on:
         type: string
         required: true
         description: Tag to be used for the generated image (should be a valid version)
-  # ToDo: remove, only used to trigger while in PR mode
-  pull_request:
-    branches:
-      - '**'
 
 jobs:
   build_web_specs:
@@ -30,7 +26,7 @@ jobs:
             echo "The RELEASE_NAME '$RELEASE_NAME' is valid."
           else
             echo "The RELEASE_NAME '$RELEASE_NAME' is invalid."
-            # exit 1
+            exit 1
           fi
 
       - name: Checkout
