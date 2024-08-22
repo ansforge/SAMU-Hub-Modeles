@@ -27,11 +27,14 @@ sheets = [
     'GEO-RES',
     'RC-REF',
     'RS-ERROR',
+    'RS-INFO',
     'RS-RI',
     'RS-DR',
     'RS-RR',
     'RS-BPV',
-    'customContent'
+    'customContent',
+    'RS-SR',
+    'TECHNICAL'
 ]
 
 perimeters = [{

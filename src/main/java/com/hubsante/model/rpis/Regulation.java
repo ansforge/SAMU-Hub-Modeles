@@ -56,9 +56,47 @@ public class Regulation {
   public static final String JSON_PROPERTY_HEALTH_MOTIVE = "healthMotive";
   private HealthMotive healthMotive;
 
+  /**
+   * Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code
+   * de la nomenclature  SI-SAMU-NIVSOIN. Permet de déduire avec la donnée
+   * \&quot;niveau de médicalisation du transport\&quot;, si un UMHP est devenu
+   * un SMUR.
+   */
+  public enum InitialTeamCareEnum {
+    MED("MED"),
+
+    PARAMED("PARAMED"),
+
+    SECOURS("SECOURS");
+
+    private String value;
+
+    InitialTeamCareEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static InitialTeamCareEnum fromValue(String value) {
+      for (InitialTeamCareEnum b : InitialTeamCareEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_INITIAL_TEAM_CARE =
       "initialTeamCare";
-  private String initialTeamCare;
+  private InitialTeamCareEnum initialTeamCare;
 
   public Regulation() {}
 
@@ -73,14 +111,14 @@ public class Regulation {
    * @return whatsHappen
    **/
   @JsonProperty(JSON_PROPERTY_WHATS_HAPPEN)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public WhatsHappen getWhatsHappen() {
     return whatsHappen;
   }
 
   @JsonProperty(JSON_PROPERTY_WHATS_HAPPEN)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setWhatsHappen(WhatsHappen whatsHappen) {
     this.whatsHappen = whatsHappen;
   }
@@ -96,19 +134,19 @@ public class Regulation {
    * @return healthMotive
    **/
   @JsonProperty(JSON_PROPERTY_HEALTH_MOTIVE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public HealthMotive getHealthMotive() {
     return healthMotive;
   }
 
   @JsonProperty(JSON_PROPERTY_HEALTH_MOTIVE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHealthMotive(HealthMotive healthMotive) {
     this.healthMotive = healthMotive;
   }
 
-  public Regulation initialTeamCare(String initialTeamCare) {
+  public Regulation initialTeamCare(InitialTeamCareEnum initialTeamCare) {
 
     this.initialTeamCare = initialTeamCare;
     return this;
@@ -122,15 +160,15 @@ public class Regulation {
    * @return initialTeamCare
    **/
   @JsonProperty(JSON_PROPERTY_INITIAL_TEAM_CARE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getInitialTeamCare() {
+  public InitialTeamCareEnum getInitialTeamCare() {
     return initialTeamCare;
   }
 
   @JsonProperty(JSON_PROPERTY_INITIAL_TEAM_CARE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setInitialTeamCare(String initialTeamCare) {
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInitialTeamCare(InitialTeamCareEnum initialTeamCare) {
     this.initialTeamCare = initialTeamCare;
   }
 

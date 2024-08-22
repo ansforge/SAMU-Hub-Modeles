@@ -84,7 +84,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
                 path_file = os.path.join("..", "nomenclature_parser", "out", "latest", "csv", filename)
 
         if path_file != '':
-            df_nomenclature = pd.read_csv(path_file, sep=",", keep_default_na=False, na_values=['_'], encoding="utf-8")
+            df_nomenclature = pd.read_csv(path_file, sep=",", keep_default_na=False, na_values=['_'], encoding="utf-8",
+                                          dtype={'code': str})   
             L_ret = df_nomenclature["code"].values.tolist()
         # ToDo: ajouter un bloc dans le elseif pour détecter des https:// et aller chercher les nomenclatures publiées en ligne (MOS/NOs par exemple)
         else:
@@ -116,7 +117,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     # Column validation
     REQUIRED_COLUMNS = [
         *[f"Donnée (Niveau {i})" for i in range(1, DATA_DEPTH + 1)],
-        'ID', 'Description', 'Cardinalité', 'Balise NexSIS', 'Nouvelle balise', 'Objet', 'Format (ou type)'
+        'ID', 'Description', 'Exemples', 'Balise', 'Cardinalité', 'Objet', 'Format (ou type)', 'Détails de format',
+        *([perimeter_filter] if perimeter_filter else [])
     ]
     if not (set(REQUIRED_COLUMNS) <= set(df.columns)):
         print(f"{Color.RED}ERROR: some key columns are missing:{Color.ORANGE}")
@@ -136,9 +138,12 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         df.drop(df.columns[i], axis=1, inplace=True)
 
     # Storing input data in a file to track versions
-    # Before storing, we remove the first column (ID), and we also do not want to write line index to the file,
-    # hence index=False
-    df.drop(df.columns[0], axis=1).to_csv(f'out/{name}/{name}.input.csv', index=False)
+    # Before storing, we keep only useful columns and we also do not want to write line index to the file (index=False)
+    INPUT_CSV_COLUMNS = REQUIRED_COLUMNS.copy()
+    INPUT_CSV_COLUMNS.remove("ID")
+    if perimeter_filter:
+        INPUT_CSV_COLUMNS.remove(perimeter_filter)
+    df[INPUT_CSV_COLUMNS].to_csv(f'out/{name}/{name}.input.csv', index=False)
 
     # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
     df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(
@@ -155,7 +160,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     def format_codeandlabel_properties(child, parent):
         code_file = parent['Détails de format']
         """ For 'Code', set code file name to the 'Détails de format' column, remove it from parent """
-        if child['Balise NexSIS'] == "code":
+        if child['Balise'] == "code":
             child['Détails de format'] = code_file
             df.loc[parent.ID-1, 'Détails de format'] = 'nan'
         """Set the level of the child to be the level of the parent + 1"""
@@ -174,6 +179,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     global first_codeandlabel_properties
     first_codeandlabel_properties = []
+    global first_codeandlabel_name
+    first_codeandlabel_name = ""
 
     def regenerate_ids(df):
         """Regenerate the IDs of the dataframe"""
@@ -201,9 +208,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     regenerate_ids(df)
 
 
-    # Adding a name column (NexSIS by default, overriden by 'Nouvelle Balise' if exists)
-    df['name'] = df['Balise NexSIS']
-    df.loc[df['Nouvelle balise'].notnull(), 'name'] = df['Nouvelle balise']
+    # Adding a name column ('Balise' by default)
+    df['name'] = df['Balise']
 
     # DATA ENRICHMENT
     # Get level in data hierarchy
@@ -244,16 +250,16 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     if not df[df['name'].isnull()].empty:
         print(f"{Color.RED}ERROR: some rows have no 'name' field:{Color.ORANGE}")
         print(df[df['name'].isnull()])
-        print(f"Name is based on column 'Balise NexSIS' overwritten by any value in 'Nouvelle balise'.\n"
-              f"Check these columns are correctly set up.{Color.END}")
+        print(f"Name is based on column 'Balise'.\n"
+              f"Check that this column is correctly set up.{Color.END}")
         HAS_ERROR = True
     # - name with spaces
     test = df[df['name'].str.contains(' ')]
     if not df[df['name'].str.contains(' ')].empty:
         print(f"{Color.RED}ERROR: some rows have spaces in their 'name' field:{Color.ORANGE}")
         print(df[df['name'].str.contains(' ')])
-        print(f"Name is based on column 'Balise NexSIS' overwritten by any value in 'Nouvelle balise'.\n"
-              f"Check these columns are correctly set up.{Color.END}")
+        print(f"Name is based on column 'Balise'.\n"
+              f"Check that this column is correctly set up.{Color.END}")
         HAS_ERROR = True
     # - objects with basic types
     basic_types = ['integer', 'number', 'string', 'datetime', 'date', 'boolean']

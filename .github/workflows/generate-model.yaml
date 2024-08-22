@@ -7,8 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  # ToDo: read from yaml list of all schemas
-  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RPIS"
+  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RPIS RS-EDA-MAJ RS-SR TECHNICAL TECHNICAL_NOREQ"
 
 jobs:
   generate:
@@ -110,7 +109,9 @@ jobs:
 
           IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"
           for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
+            if [ "$SCHEMA" != "RS-EDA-MAJ" ]; then
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.generator-config.json --skip-validate-spec
+            fi
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.usecase.generator-config.json --skip-validate-spec
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.wrapper.generator-config.json --skip-validate-spec
           done
@@ -122,6 +123,9 @@ jobs:
           rm -r ./src/main/java/com/hubsante/model/health || true
           rm -r ./src/main/java/com/hubsante/model/emsi || true
           rm -r ./src/main/java/com/hubsante/model/geolocation || true
+          rm -r ./src/main/java/com/hubsante/model/resources || true
+          rm -r ./src/main/java/com/hubsante/model/rpis || true
+          rm -r ./src/main/java/com/hubsante/model/technical || true
           rm -r ./generator/classes/src/main/java/com/hubsante/model/report/ErrorCode.java || true
           cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
 
@@ -131,12 +135,19 @@ jobs:
       - name: Apply license
         run: ./gradlew licenseFormat
 
+      - name: Generate XML files
+        run: |
+          ./gradlew generateXml
+
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: ⚙️ Auto-génération des classes et des specs
+          
+      - name: Build and run TECHNICAL tests
+        run: ./gradlew test --info -Ptechnical=true
 
-      - name: Build and run tests
+      - name: Build and run REAL MESSAGES tests
         run: ./gradlew test --info
 
       # Ref.: https://github.com/gradle/gradle-build-action/issues/619#issuecomment-1453244157

@@ -94,14 +94,14 @@ public class Casualties {
    * @return CONTEXT
    **/
   @JsonProperty(JSON_PROPERTY_C_O_N_T_E_X_T)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getCONTEXT() {
     return CONTEXT;
   }
 
   @JsonProperty(JSON_PROPERTY_C_O_N_T_E_X_T)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCONTEXT(String CONTEXT) {
     this.CONTEXT = CONTEXT;
   }

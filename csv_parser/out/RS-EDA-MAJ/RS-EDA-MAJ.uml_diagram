@@ -1,0 +1,180 @@
+// UML MDD Hub Sante
+strict digraph {
+	node [shape=none]
+	edge [arrowhead=odiamond arrowtail=none]
+	rankdir=BT
+	riskThreat [label=<<TABLE>
+                <TR>
+                <TD ><B>riskThreat</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet riskThreat</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	riskThreat -> qualification [headlabel=1 taillabel="0..*"]
+	details [label=<<TABLE>
+                <TR>
+                <TD ><B>details</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet caseDetails</I></TD></TR><TR><TD BORDER="0" >status <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >priority <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >careLevel <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	details -> qualification [headlabel=1 taillabel="0..1"]
+	qualification [label=<<TABLE>
+                <TR>
+                <TD ><B>qualification</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet qualification</I></TD></TR>
+                </TABLE>>]
+	qualification -> createCaseHealthUpdate [headlabel=1 taillabel="0..1"]
+	externalInfo [label=<<TABLE>
+                <TR>
+                <TD ><B>externalInfo</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet externalInfo</I></TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >uri <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	externalInfo -> location [headlabel=1 taillabel="0..*"]
+	location [label=<<TABLE>
+                <TR>
+                <TD ><B>location</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet location</I></TD></TR>
+                </TABLE>>]
+	location -> createCaseHealthUpdate [headlabel=1 taillabel="0..1"]
+	notes [label=<<TABLE>
+                <TR>
+                <TD ><B>notes</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet notes</I></TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	notes -> initialAlert [headlabel=1 taillabel="0..*"]
+	initialAlert [label=<<TABLE>
+                <TR>
+                <TD ><B>initialAlert</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet alert</I></TD></TR>
+                </TABLE>>]
+	initialAlert -> createCaseHealthUpdate [headlabel=1 taillabel="0..1"]
+	externalId [label=<<TABLE>
+                <TR>
+                <TD ><B>externalId</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet externalId</I></TD></TR><TR><TD BORDER="0" >source <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >value <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	externalId -> administrativeFile [headlabel=1 taillabel="0..*"]
+	administrativeFile [label=<<TABLE>
+                <TR>
+                <TD ><B>administrativeFile</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet administrativeFile</I></TD></TR>
+                </TABLE>>]
+	administrativeFile -> patient [headlabel=1 taillabel="0..1"]
+	strictFeatures [label=<<TABLE>
+                <TR>
+                <TD ><B>strictFeatures</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet insStrictFeatures</I></TD></TR><TR><TD BORDER="0" >birthName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >birthDate <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >sex <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	strictFeatures -> identity [headlabel=1 taillabel="0..1"]
+	nonStrictFeatures [label=<<TABLE>
+                <TR>
+                <TD ><B>nonStrictFeatures</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet detailedName</I></TD></TR><TR><TD BORDER="0" >complete <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >lastName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >firstName <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	nonStrictFeatures -> identity [headlabel=1 taillabel="0..1"]
+	identity [label=<<TABLE>
+                <TR>
+                <TD ><B>identity</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet Identity</I></TD></TR>
+                </TABLE>>]
+	identity -> patient [headlabel=1 taillabel="0..1"]
+	healthMotive [label=<<TABLE>
+                <TR>
+                <TD ><B>healthMotive</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet healthMotive</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	healthMotive -> patient [headlabel=1 taillabel="0..1"]
+	detail [label=<<TABLE>
+                <TR>
+                <TD ><B>detail</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet patientDetail</I></TD></TR><TR><TD BORDER="0" >weight <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >height <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >age <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >careLevel <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	detail -> patient [headlabel=1 taillabel="0..1"]
+	mainDiagnosis [label=<<TABLE>
+                <TR>
+                <TD ><B>mainDiagnosis</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet mainDiagnosis</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	mainDiagnosis -> hypothesis [headlabel=1 taillabel="0..1"]
+	otherDiagnosis [label=<<TABLE>
+                <TR>
+                <TD ><B>otherDiagnosis</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet otherDiagnosis</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	otherDiagnosis -> hypothesis [headlabel=1 taillabel="0..*"]
+	hypothesis [label=<<TABLE>
+                <TR>
+                <TD ><B>hypothesis</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet hypothesis</I></TD></TR>
+                </TABLE>>]
+	hypothesis -> patient [headlabel=1 taillabel="0..1"]
+	patient [label=<<TABLE>
+                <TR>
+                <TD ><B>patient</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet patient</I></TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	patient -> createCaseHealthUpdate [headlabel=1 taillabel="0..*"]
+	operator [label=<<TABLE>
+                <TR>
+                <TD ><B>operator</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet operator</I></TD></TR><TR><TD BORDER="0" >label <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >role <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	operator -> medicalNote [headlabel=1 taillabel=1]
+	medicalNote [label=<<TABLE>
+                <TR>
+                <TD ><B>medicalNote</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet medicalNote</I></TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >idObs <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	medicalNote -> createCaseHealthUpdate [headlabel=1 taillabel="0..*"]
+	operator [label=<<TABLE>
+                <TR>
+                <TD ><B>operator</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet operator</I></TD></TR><TR><TD BORDER="0" >label <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >role <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	operator -> decision [headlabel=1 taillabel=1]
+	decision [label=<<TABLE>
+                <TR>
+                <TD ><B>decision</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet decision</I></TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >decisionType <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >resourceType <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >vehiculeType <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >medicalTransport <I>boolean</I> : [0..1] </TD></TR><TR><TD BORDER="0" >orientationType <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	decision -> createCaseHealthUpdate [headlabel=1 taillabel="0..*"]
+	customMap [label=<<TABLE>
+                <TR>
+                <TD ><B>customMap</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet customMap</I></TD></TR><TR><TD BORDER="0" >key <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >value <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	customMap -> additionalInformation [headlabel=1 taillabel="0..3"]
+	additionalInformation [label=<<TABLE>
+                <TR>
+                <TD ><B>additionalInformation</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet additionalInformation</I></TD></TR>
+                </TABLE>>]
+	additionalInformation -> createCaseHealthUpdate [headlabel=1 taillabel="0..1"]
+	createCaseHealthUpdate [label=<<TABLE>
+                <TR>
+                <TD ><B>createCaseHealthUpdate</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet createCaseHealthUpdate</I></TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >senderCaseId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >perimeter <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >owner <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+}

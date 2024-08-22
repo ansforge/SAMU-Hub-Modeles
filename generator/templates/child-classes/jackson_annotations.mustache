@@ -1,0 +1,17 @@
+{{!
+    We override here the default template (Ref.: https://github.com/OpenAPITools/openapi-generator/blob/master/modules/openapi-generator/src/main/resources/Java/jackson_annotations.mustache)
+
+    Default behaviour is: ALWAYS if required or map, USE_DEFAULTS otherwise
+    In our context, we only want USE_DEFAULTS to let the parent JsonInclude be taken in charge (defined at class level), which is NON_EMPTY
+
+    NON_EMPTY will result with null and empty values to be ignored.
+    We want this to be able to share objects between different schemas
+ }}
+@JsonProperty(JSON_PROPERTY_{{nameInSnakeCase}})
+@JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+{{#withXml}}
+    @JacksonXmlProperty(localName = "{{items.xmlName}}{{^items.xmlName}}{{xmlName}}{{^xmlName}}{{baseName}}{{/xmlName}}{{/items.xmlName}}"{{#isXmlAttribute}}, isAttribute = true{{/isXmlAttribute}}{{#xmlNamespace}}, namespace = "{{.}}"{{/xmlNamespace}})
+    {{#isContainer}}
+        @JacksonXmlElementWrapper({{#isXmlWrapped}}localName = "{{xmlName}}{{^xmlName}}{{baseName}}{{/xmlName}}", {{#xmlNamespace}}namespace = "{{.}}", {{/xmlNamespace}}{{/isXmlWrapped}}useWrapping = {{isXmlWrapped}})
+    {{/isContainer}}
+{{/withXml}}

@@ -25,7 +25,7 @@ public class TestMessagesHelper {
     /**
      * Allows to get a valid sample message as a JSON String
      *
-     * @param message type of the message (RC-EDA, EMSI-DC, etc.)
+     * @param message type of the message (RC-EDA, RS-INFO, EMSI-DC, etc.)
      * @return the sample message as a JSON String
      * @throws IOException if a sample message of the specified message type does not exist
      */
@@ -36,7 +36,7 @@ public class TestMessagesHelper {
     /**
      * Allows to get a valid sample message as a JSON or XML String
      *
-     * @param message type of the message (RC-EDA, EMSI-DC, etc.)
+     * @param message type of the message (RC-EDA, RS-INFO, EMSI-DC, etc.)
      * @param isXML   whether the message is XML or JSON
      * @return the sample message as a JSON or XML String
      * @throws IOException if a sample message of the specified message type and format does not exist

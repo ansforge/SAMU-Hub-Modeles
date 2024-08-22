@@ -49,9 +49,9 @@ import java.util.Objects;
  * Qualification
  */
 @JsonPropertyOrder({Qualification.JSON_PROPERTY_ORIGIN,
+                    Qualification.JSON_PROPERTY_RISK_THREAT,
                     Qualification.JSON_PROPERTY_WHATS_HAPPEN,
                     Qualification.JSON_PROPERTY_LOCATION_KIND,
-                    Qualification.JSON_PROPERTY_RISK_THREAT,
                     Qualification.JSON_PROPERTY_HEALTH_MOTIVE,
                     Qualification.JSON_PROPERTY_DETAILS})
 @JsonTypeName("qualification")
@@ -65,9 +65,9 @@ public class Qualification {
   public enum OriginEnum {
     _15("15"),
 
-    _18("18"),
-
     _17("17"),
+
+    _18("18"),
 
     _112("112"),
 
@@ -101,14 +101,14 @@ public class Qualification {
   public static final String JSON_PROPERTY_ORIGIN = "origin";
   private OriginEnum origin;
 
+  public static final String JSON_PROPERTY_RISK_THREAT = "riskThreat";
+  private List<RiskThreat> riskThreat;
+
   public static final String JSON_PROPERTY_WHATS_HAPPEN = "whatsHappen";
   private WhatsHappen whatsHappen;
 
   public static final String JSON_PROPERTY_LOCATION_KIND = "locationKind";
   private LocationKind locationKind;
-
-  public static final String JSON_PROPERTY_RISK_THREAT = "riskThreat";
-  private List<RiskThreat> riskThreat;
 
   public static final String JSON_PROPERTY_HEALTH_MOTIVE = "healthMotive";
   private HealthMotive healthMotive;
@@ -139,6 +139,45 @@ public class Qualification {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOrigin(OriginEnum origin) {
     this.origin = origin;
+  }
+
+  public Qualification riskThreat(List<RiskThreat> riskThreat) {
+
+    this.riskThreat = riskThreat;
+    return this;
+  }
+
+  public Qualification addRiskThreatItem(RiskThreat riskThreatItem) {
+    if (this.riskThreat == null) {
+      this.riskThreat = new ArrayList<>();
+    }
+    this.riskThreat.add(riskThreatItem);
+    return this;
+  }
+
+  /**
+   * Get riskThreat
+   * @return riskThreat
+   **/
+  @JsonProperty(JSON_PROPERTY_RISK_THREAT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<RiskThreat> getRiskThreat() {
+    return riskThreat;
+  }
+
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_RISK_THREAT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRiskThreat(List<RiskThreat> riskThreat) {
+    if (riskThreat == null) {
+      return;
+    }
+    if (this.riskThreat == null) {
+      this.riskThreat = new ArrayList<>();
+    }
+    this.riskThreat.addAll(riskThreat);
   }
 
   public Qualification whatsHappen(WhatsHappen whatsHappen) {
@@ -185,45 +224,6 @@ public class Qualification {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLocationKind(LocationKind locationKind) {
     this.locationKind = locationKind;
-  }
-
-  public Qualification riskThreat(List<RiskThreat> riskThreat) {
-
-    this.riskThreat = riskThreat;
-    return this;
-  }
-
-  public Qualification addRiskThreatItem(RiskThreat riskThreatItem) {
-    if (this.riskThreat == null) {
-      this.riskThreat = new ArrayList<>();
-    }
-    this.riskThreat.add(riskThreatItem);
-    return this;
-  }
-
-  /**
-   * Get riskThreat
-   * @return riskThreat
-   **/
-  @JsonProperty(JSON_PROPERTY_RISK_THREAT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<RiskThreat> getRiskThreat() {
-    return riskThreat;
-  }
-
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_RISK_THREAT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRiskThreat(List<RiskThreat> riskThreat) {
-    if (riskThreat == null) {
-      return;
-    }
-    if (this.riskThreat == null) {
-      this.riskThreat = new ArrayList<>();
-    }
-    this.riskThreat.addAll(riskThreat);
   }
 
   public Qualification healthMotive(HealthMotive healthMotive) {
@@ -282,16 +282,16 @@ public class Qualification {
     }
     Qualification qualification = (Qualification)o;
     return Objects.equals(this.origin, qualification.origin) &&
+        Objects.equals(this.riskThreat, qualification.riskThreat) &&
         Objects.equals(this.whatsHappen, qualification.whatsHappen) &&
         Objects.equals(this.locationKind, qualification.locationKind) &&
-        Objects.equals(this.riskThreat, qualification.riskThreat) &&
         Objects.equals(this.healthMotive, qualification.healthMotive) &&
         Objects.equals(this.details, qualification.details);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(origin, whatsHappen, locationKind, riskThreat,
+    return Objects.hash(origin, riskThreat, whatsHappen, locationKind,
                         healthMotive, details);
   }
 
@@ -300,14 +300,14 @@ public class Qualification {
     StringBuilder sb = new StringBuilder();
     sb.append("class Qualification {\n");
     sb.append("    origin: ").append(toIndentedString(origin)).append("\n");
+    sb.append("    riskThreat: ")
+        .append(toIndentedString(riskThreat))
+        .append("\n");
     sb.append("    whatsHappen: ")
         .append(toIndentedString(whatsHappen))
         .append("\n");
     sb.append("    locationKind: ")
         .append(toIndentedString(locationKind))
-        .append("\n");
-    sb.append("    riskThreat: ")
-        .append(toIndentedString(riskThreat))
         .append("\n");
     sb.append("    healthMotive: ")
         .append(toIndentedString(healthMotive))

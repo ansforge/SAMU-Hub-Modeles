@@ -74,14 +74,14 @@ public class Geometry {
    * @return obsDatime
    **/
   @JsonProperty(JSON_PROPERTY_OBS_DATIME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getObsDatime() {
     return obsDatime;
   }
 
   @JsonProperty(JSON_PROPERTY_OBS_DATIME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setObsDatime(OffsetDateTime obsDatime) {
     this.obsDatime = obsDatime;
   }

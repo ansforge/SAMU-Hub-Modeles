@@ -5,7 +5,7 @@ on:
 
 env:
   # ToDo: read from yaml list of all schemas (how to handle RC-REF with no examples, cf '|| true' below)
-  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RPIS"
+  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RPIS RS-EDA-MAJ RS-SR RC-DE"
 
 jobs:
   zip_and_upload:
@@ -43,7 +43,7 @@ jobs:
 
           # Populate root elements (docx and UML)
           cp csv_parser/out/$SCHEMA/$SCHEMA.schema.docx "$schemaDir/Annexe au DSF - $SCHEMA.docx"
-          cp csv_parser/out/$SCHEMA/$SCHEMA.uml_diagram.pdf "$schemaDir/Schema UML - $SCHEMA.docx"
+          cp csv_parser/out/$SCHEMA/$SCHEMA.uml_diagram.pdf "$schemaDir/Schema UML - $SCHEMA.pdf"
         done
 
     - name: Create zip file with date

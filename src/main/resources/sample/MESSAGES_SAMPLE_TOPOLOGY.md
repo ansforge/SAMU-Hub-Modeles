@@ -4,7 +4,7 @@ Several test messages are provided to test the library (use of [EdxlHandler](../
 
 The sample folder is organized as follows:
 - two subdirectories, to separate compliant ([valid](valid)) and non-compliant ([failing](failing)) messages.
-- in each subdirectory, a subdirectory for each use case (RC-EDA, RC-REF) and a subdirectory for EDXL-DE messages.
+- in each subdirectory, a subdirectory for each use case (RC-EDA, RC-REF, RS-INFO) and a subdirectory for EDXL-DE messages.
 - the EDXL-DE subdirectory contains message embedding a CustomContent use cas message, as its only purpose is to test the EDXL-DE wrapper.
 - each use case subdirectory contains two messages, one in json format and one in xml format.
 
@@ -30,8 +30,5 @@ They also could be imported as a String, but it probably may not be useful for p
 
 There are also some failing messages for specific cases:
 <u>*Failing deserialization*:</u>
-[unparsable-content.json](failing/EDXL-DE/unparsable-content.json) - A passing EDXL-DE message with malformed content: an unknown property has been added.
+[unparsable-content.json](../../../../../SAMU-Hub-Sante/hub/dispatcher/src/main/resources/sample/failing/EDXL-DE/unparsable-content.json) - A passing EDXL-DE message with malformed content: an unknown property has been added.
 Deserialization should fail.
-
-<u>*Failing validation at EDXL-DE level*:</u>
-[invalid-RC-EDA-valid-EDXL.json](failing/RC-EDA/invalid-RC-EDA-valid-EDXL.json) - An invalid RC-EDA message, with a valid EDXL-DE envelope. Used to test the validation against the partial schema.

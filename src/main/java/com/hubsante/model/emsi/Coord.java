@@ -70,14 +70,14 @@ public class Coord {
    * @return LAT
    **/
   @JsonProperty(JSON_PROPERTY_L_A_T)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public BigDecimal getLAT() {
     return LAT;
   }
 
   @JsonProperty(JSON_PROPERTY_L_A_T)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLAT(BigDecimal LAT) {
     this.LAT = LAT;
   }
@@ -95,14 +95,14 @@ public class Coord {
    * @return LONG
    **/
   @JsonProperty(JSON_PROPERTY_L_O_N_G)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public BigDecimal getLONG() {
     return LONG;
   }
 
   @JsonProperty(JSON_PROPERTY_L_O_N_G)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLONG(BigDecimal LONG) {
     this.LONG = LONG;
   }

@@ -2,56 +2,76 @@
     <element name="resourcesInfo" type="x:resourcesInfo"/>
     <complexType name="resourcesInfo">
         <sequence>
-            <element name="caseId" type="string">
+            <element name="caseId">
                 <annotation>
-                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}
-Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
-Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
-Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
+                    <documentation>A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
+Il est valorisé comme suit lors de sa création : 
+{pays}.{domaine}.{organisation}.{senderCaseId}
+
+Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="fr(\.[\w-]+){3,4}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element maxOccurs="unbounded" minOccurs="1" name="mobilizedResource" type="x:resource"/>
         </sequence>
     </complexType>
     <complexType name="resource">
         <sequence>
-            <element name="dateTime" type="dateTime">
+            <element name="datetime" type="dateTime">
                 <annotation>
-                    <documentation>date et heure d'engagement de la ressource</documentation>
+                    <documentation>A valoriser avec la date et heure d'engagement de la ressource/du vecteur</documentation>
                 </annotation>
             </element>
-            <element name="resourceID" type="string">
+            <element name="resourceId">
                 <annotation>
-                    <documentation>ID partagé unique de la ressource engagée, valorisé comme suit :
+                    <documentation>A valoriser avec l'identifiant partagé unique de la ressource engagée, normé comme suit :
 {orgID}.resource.{ID unique de la ressource partagée}
 OU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :
-{orgID}.resource.{ID du dossier partagé}.{numéro d’ordre chronologique ressource}</documentation>
+{orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="([\w-]+\.){3,4}resource(\.[\w-]+){1,2}"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="requestId">
+                <annotation>
+                    <documentation>A valoriser avec l'identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), normé comme suit :
+{orgID}.request.{ID unique de la demande dans le système émetteur}
+OU - si un ID unique de la demande n'était pas disponible : 
+{OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="([\w-]+\.){3,4}request(\.[\w-]+){1,2}"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="missionId" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="RSDRId" type="string">
+            <element minOccurs="0" name="orgId" type="string">
                 <annotation>
-                    <documentation>Identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), valorisé comme suit :
-{orgID}.request.{ID unique de la demande dans le système émetteur}</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="missionID" type="string">
-                <annotation>
-                    <documentation>Numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="orgID" type="string">
-                <annotation>
-                    <documentation>Organisation à laquelle appartient la ressource</documentation>
+                    <documentation>A valoriser avec l'identifiant de l'organisation à laquelle appartient la ressource, normé comme suit : 
+{pays}.{domaine}.{organisation}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="centerName" type="string">
                 <annotation>
-                    <documentation>Lieu de garage principal</documentation>
+                    <documentation>A valoriser avec le lieu de garage principal</documentation>
                 </annotation>
             </element>
             <element name="resourceType">
                 <annotation>
-                    <documentation>Type de ressource mobilisée : Smur, Hospitaliers (hors Smur), Professionnels Libéraux, Ambulanciers privés (Transporteurs Sanitaires Urgent), etc.</documentation>
+                    <documentation>A valoriser avec le yype de ressource mobilisée : cf.nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -62,44 +82,39 @@ OU - uniquement dans le cas où un ID unique de ressource ne peut pas être gara
                         <enumeration value="SIS"/>
                         <enumeration value="AASC"/>
                         <enumeration value="FDO"/>
-                        <enumeration value="ADM"/>
-                        <enumeration value="DAE"/>
                         <enumeration value="AUTRE"/>
                     </restriction>
                 </simpleType>
             </element>
             <element minOccurs="0" name="vehiculeType">
                 <annotation>
-                    <documentation>Type de vecteur mobilisé : Véhicule Léger Médicalisé, Ambulance de réanimation, Ambulance de réanimation Bariatrique, Ambulance de réanimation Pédiatrique, etc.</documentation>
+                    <documentation>A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="VPSP"/>
+                        <enumeration value="AASC"/>
                         <enumeration value="VLSC"/>
+                        <enumeration value="VPSP"/>
                         <enumeration value="AUTRESC"/>
+                        <enumeration value="AUTREVEC"/>
                         <enumeration value="TAXI"/>
                         <enumeration value="TRANSP"/>
-                        <enumeration value="AUTRE"/>
                         <enumeration value="TRAIN"/>
                         <enumeration value="AVION"/>
                         <enumeration value="PERSO"/>
                         <enumeration value="APIED"/>
-                        <enumeration value="INCONNU"/>
-                        <enumeration value="CONSEIL"/>
-                        <enumeration value="DAE"/>
+                        <enumeration value="AUTRE"/>
+                        <enumeration value="AUTRETRA"/>
+                        <enumeration value="FSI"/>
                         <enumeration value="HELIFSI"/>
                         <enumeration value="VLFSI"/>
                         <enumeration value="FFSI"/>
                         <enumeration value="VHFSI"/>
-                        <enumeration value="MEDC"/>
+                        <enumeration value="LIB"/>
                         <enumeration value="MEDV"/>
-                        <enumeration value="PHARMA"/>
                         <enumeration value="INF"/>
-                        <enumeration value="MEDSPE"/>
-                        <enumeration value="DENT"/>
                         <enumeration value="AUTREPRO"/>
-                        <enumeration value="DRAGON"/>
-                        <enumeration value="AVSC"/>
+                        <enumeration value="SIS"/>
                         <enumeration value="VSAV"/>
                         <enumeration value="GRIMP"/>
                         <enumeration value="VPL"/>
@@ -113,45 +128,49 @@ OU - uniquement dans le cas où un ID unique de ressource ne peut pas être gara
                         <enumeration value="VLMSP"/>
                         <enumeration value="VLCG"/>
                         <enumeration value="VLSIS"/>
+                        <enumeration value="DRAGON"/>
+                        <enumeration value="AVSC"/>
                         <enumeration value="MOYSSE"/>
                         <enumeration value="AUTRESIS"/>
+                        <enumeration value="NAVISIS"/>
+                        <enumeration value="SMUR"/>
                         <enumeration value="VLM"/>
-                        <enumeration value="AR"/>
-                        <enumeration value="AR-BAR"/>
-                        <enumeration value="AR-PED"/>
                         <enumeration value="VL"/>
-                        <enumeration value="HELISMUR"/>
-                        <enumeration value="HELISAN"/>
-                        <enumeration value="AVSMUR"/>
-                        <enumeration value="AVSAN"/>
-                        <enumeration value="NAVISMUR"/>
                         <enumeration value="PSM1"/>
                         <enumeration value="PSM2"/>
                         <enumeration value="PSM3"/>
                         <enumeration value="PSMP"/>
                         <enumeration value="VPC"/>
+                        <enumeration value="AR"/>
+                        <enumeration value="AR-BAR"/>
+                        <enumeration value="AR-PED"/>
+                        <enumeration value="HELISMUR"/>
+                        <enumeration value="HELISAN"/>
+                        <enumeration value="AVSMUR"/>
+                        <enumeration value="AVSAN"/>
+                        <enumeration value="NAVISMUR"/>
+                        <enumeration value="TSU"/>
+                        <enumeration value="VSL"/>
                         <enumeration value="AMB-GV"/>
                         <enumeration value="AMB-PV"/>
                         <enumeration value="AMB-BAR"/>
                         <enumeration value="AMB"/>
-                        <enumeration value="VSL"/>
-                        <enumeration value="NAVISIS"/>
                     </restriction>
                 </simpleType>
             </element>
             <element minOccurs="0" name="plate" type="string">
                 <annotation>
-                    <documentation>N° d'immatriculation du vecteur</documentation>
+                    <documentation>A valoriser avec le n° d'immatriculation du vecteur</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="name" type="string">
                 <annotation>
-                    <documentation>Nom donné à la ressource par l’organisation d’appartenance</documentation>
+                    <documentation>A valoriser avec le nom donné à la ressource par l’organisation d’appartenance</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="centerCity">
                 <annotation>
-                    <documentation>Code INSEE de la commune du centre d'affectation</documentation>
+                    <documentation>A valoriser avec le code INSEE de la commune du centre d'affectation</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -170,7 +189,7 @@ OU - uniquement dans le cas où un ID unique de ressource ne peut pas être gara
         <sequence>
             <element minOccurs="0" name="teamCare">
                 <annotation>
-                    <documentation>Médical / paramédical : indique le niveau de médicalisation du vecteur</documentation>
+                    <documentation>A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature associée</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -182,22 +201,50 @@ OU - uniquement dans le cas où un ID unique de ressource ne peut pas être gara
             </element>
             <element minOccurs="0" name="name" type="string">
                 <annotation>
-                    <documentation>Nom de l'équipe à bord du vecteur</documentation>
+                    <documentation>A valoriser avec le nom de l'équipe à bord du vecteur (celui communiqué par l'organisation à laquelle l'équipe appartient)</documentation>
                 </annotation>
             </element>
         </sequence>
     </complexType>
     <complexType name="state">
         <sequence>
-            <element minOccurs="0" name="dateTime" type="dateTime"/>
-            <element minOccurs="0" name="status" type="string">
+            <element name="datetime" type="dateTime">
                 <annotation>
-                    <documentation>Dernier statut du vecteur</documentation>
+                    <documentation>A valoriser avec la date et heure d'engagement de changement vers le nouveau statut</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="availability" type="string">
+            <element name="status">
                 <annotation>
-                    <documentation>Indique si le vecteur est disponible / indisponible</documentation>
+                    <documentation>A valoriser avec le statut du vecteur. Cf nomenclature associée.</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="DECISION"/>
+                        <enumeration value="DECLENCHE"/>
+                        <enumeration value="DEPART"/>
+                        <enumeration value="ARRIVE"/>
+                        <enumeration value="PEC"/>
+                        <enumeration value="ANNULE"/>
+                        <enumeration value="BILAN"/>
+                        <enumeration value="TRANSPOR"/>
+                        <enumeration value="ETAPE1"/>
+                        <enumeration value="TRANSP2"/>
+                        <enumeration value="ETAPE2"/>
+                        <enumeration value="TRANSP3"/>
+                        <enumeration value="DESTIN"/>
+                        <enumeration value="FINPEC"/>
+                        <enumeration value="RETOUR"/>
+                        <enumeration value="RET-BASE"/>
+                        <enumeration value="REN-BASE"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="availability" type="boolean">
+                <annotation>
+                    <documentation>A valoriser de manière à indiquer la disponibilité du vecteur.
+TRUE = DISPONIBLE
+FALSE = INDISPONIBLE
+VIDE = INCONNU</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -206,32 +253,32 @@ OU - uniquement dans le cas où un ID unique de ressource ne peut pas être gara
         <sequence>
             <element name="lat" type="decimal">
                 <annotation>
-                    <documentation>Latitude du point clé de la localisation </documentation>
+                    <documentation>A valoriser avec la latitude du point clé de la localisation </documentation>
                 </annotation>
             </element>
             <element name="lon" type="decimal">
                 <annotation>
-                    <documentation>Longitude du point clé de la localisation</documentation>
+                    <documentation>A valoriser avec la longitude du point clé de la localisation</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="height" type="decimal">
                 <annotation>
-                    <documentation>Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. </documentation>
+                    <documentation>A valoriser avec l'altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="heading" type="decimal">
                 <annotation>
-                    <documentation>En degré</documentation>
+                    <documentation>A valoriser en degrés</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="speed" type="decimal">
                 <annotation>
-                    <documentation>Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, …</documentation>
+                    <documentation>A valoriser en km/h (notamment fournie par eCall, tel, nouveau AML)</documentation>
                 </annotation>
             </element>
             <element name="precision">
                 <annotation>
-                    <documentation>Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
+                    <documentation>A valoriser avec le niveau de précision des coordonnées fournies par le système emetteur. Cf. nomenclature associée.
 CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur</documentation>
                 </annotation>
                 <simpleType>
@@ -250,7 +297,7 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
         <sequence>
             <element minOccurs="0" name="type">
                 <annotation>
-                    <documentation>Type de l'URI utilisée</documentation>
+                    <documentation>A valoriser avec le type de l'URI utilisée. Cf nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -265,7 +312,8 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
             </element>
             <element minOccurs="0" name="details" type="string">
                 <annotation>
-                    <documentation>Valeur de l'URI utilisée pour contacter la ressource</documentation>
+                    <documentation>A valoriser avec la valeur de l'URI utilisée
+Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}</documentation>
                 </annotation>
             </element>
         </sequence>

@@ -5,7 +5,6 @@
       "MODE": "ACTUAL",
       "MSGTYPE": "UPDATE",
       "CREATION": "2024-01-09T16:00:00+01:00",
-      "LINK": [],
       "LEVEL": "OPR",
       "SECLASS": "RESTRC",
       "FREETEXT": "Gène de plus en plus importante à la circulation, risque accident",
@@ -13,8 +12,7 @@
         "ORG_ID": "fr.health.samu690",
         "USER_ID": "samu690",
         "NAME": "SAMU 69"
-      },
-      "EXTERNAL_INFO": []
+      }
     },
     "EVENT": {
       "ID": "DRFR15690240430050",
@@ -88,7 +86,7 @@
     },
     "MISSION": [
       {
-        "TYPE": "GEN/SCNMNG",
+        "TYPE": "FSTT/TA",
         "FREETEXT": "Besoin d'assisance terrain pour gérer perturbations et sécuriser le site d'intervention.",
         "ID": "ABC1YU3455",
         "ORG_ID": "fr.fire.cgo690",
@@ -113,8 +111,6 @@
           ]
         },
         "PRIORITY": "3",
-        "CHILD_MISSION_ID": [],
-        "PARENT_MISSION_ID": [],
         "MAIN_MISSION_ID": "ABC1YU3454"
       },
       {
@@ -135,7 +131,6 @@
           "HEIGHT_ROLE": "MIN",
           "COORDSYS": "EPSG-4326"
         },
-        "CHILD_MISSION_ID": [],
         "PARENT_MISSION_ID": [
           "ABC1YU3457"
         ],
@@ -170,10 +165,9 @@
           "COORDSYS": "EPSG-4326"
         },
         "CHILD_MISSION_ID": [
-          "ABC1YU3456", 
+          "ABC1YU3456",
           "ABC1YU3458"
         ],
-        "PARENT_MISSION_ID": [],
         "NAME": "#OPERATION_GLOBALE#",
         "ORG_ID": "fr.fire.cgo690",
         "STATUS": "IPR",
@@ -199,7 +193,6 @@
           "HEIGHT_ROLE": "MIN",
           "COORDSYS": "EPSG-4326"
         },
-        "CHILD_MISSION_ID": [],
         "PARENT_MISSION_ID": [
           "ABC1YU3457"
         ],
@@ -219,18 +212,15 @@
           "ADDRESS": [
             "8 Quai des Célestins, Lyon"
           ],
-          "COORD": [],
           "LOC_ID": "111fb03a-6fd9-41e0-8e81-990c45188887",
           "NAME": "Quai des Célestins",
           "TYPE": "POINT",
           "HEIGHT_ROLE": "MIN",
           "COORDSYS": "EPSG-4326"
         },
-        "CHILD_MISSION_ID": [],
-        "PARENT_MISSION_ID": [],
         "ID": "ABC1YU3459",
         "NAME": "#Demande_Concours#AUTRE#Z.02.00#",
-        "TYPE": "SAV/AR",
+        "TYPE": "SAV/AR/FR_PARAMD",
         "ORG_ID": "fr.fire.cgo690",
         "STATUS": "NST",
         "START_TIME": "2024-01-09T16:15:00+01:00",
@@ -240,7 +230,6 @@
     "RESOURCE": [
       {
         "RTYPE": {
-          "CHARACTERISTICS": [],
           "CAPABILITY": [
             "AER15M"
           ],
@@ -248,8 +237,6 @@
             "MAT/VEH"
           ]
         },
-        "CONTACTS": [],
-        "RGEO": [],
         "ID": "77_22247# VSAV1",
         "FREETEXT": "IMMATRICULATION#AJ-75-MZ",
         "NAME": "VSAV 1 caserne SDIS69",
@@ -261,7 +248,6 @@
       },
       {
         "RTYPE": {
-          "CHARACTERISTICS": [],
           "CAPABILITY": [
             "AER15M"
           ],
@@ -269,8 +255,6 @@
             "MAT/VEH"
           ]
         },
-        "CONTACTS": [],
-        "RGEO": [],
         "ID": "77_22245# VSAV2",
         "NAME": "VSAV 2 caserne SDIS69",
         "FREETEXT": "IMMATRICULATION#AJ-76-MZ",

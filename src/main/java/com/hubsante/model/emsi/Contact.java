@@ -114,14 +114,14 @@ public class Contact {
    * @return TYPE
    **/
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public TYPEEnum getTYPE() {
     return TYPE;
   }
 
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTYPE(TYPEEnum TYPE) {
     this.TYPE = TYPE;
   }
@@ -137,14 +137,14 @@ public class Contact {
    * @return DETAIL
    **/
   @JsonProperty(JSON_PROPERTY_D_E_T_A_I_L)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getDETAIL() {
     return DETAIL;
   }
 
   @JsonProperty(JSON_PROPERTY_D_E_T_A_I_L)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDETAIL(String DETAIL) {
     this.DETAIL = DETAIL;
   }

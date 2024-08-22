@@ -16,14 +16,17 @@
 package com.hubsante.model.edxlhandler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
-import com.hubsante.model.service.helpers.TestMessagesHelper;
+import com.hubsante.model.TestMessagesHelper;
+import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.edxl.EdxlMessage;
 import com.hubsante.model.exception.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.opentest4j.AssertionFailedError;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,17 +43,20 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
-import static com.hubsante.model.service.utils.EdxlWrapperUtils.wrapUseCaseMessage;
-import static com.hubsante.model.service.utils.EdxlWrapperUtils.wrapUseCaseMessageWithoutDistributionElement;
-import static com.hubsante.model.service.Sanitizer.sanitizeEdxl;
-import static com.hubsante.model.service.helpers.TestMessagesHelper.getInvalidMessage;
+import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessage;
+import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessageWithoutDistributionElement;
+import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.config.Constants.FULL_SCHEMA;
-import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessage;
+import static com.hubsante.model.utils.TestFileUtils.getMessageByFileName;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
+
+    private static final String[] useCasesWithNoRcDe = {
+            "RS-ERROR"
+    };
 
     @Test
     @DisplayName("should consistently deserialize EDXL with several content objects")
@@ -66,7 +72,7 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
     @Test
     @DisplayName("should add XML prefix")
     public void verifyXmlPrefix() throws IOException {
-        String json = getMessageString("RC-EDA");
+        String json = getMessageByFileName("TECHNICAL/complete.json");
         EdxlMessage messageFromInput = converter.deserializeJsonEDXL(json);
         String xml = converter.serializeXmlEDXL(messageFromInput);
         assertTrue(() -> xml.startsWith(xmlPrefix()));
@@ -81,18 +87,28 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
 
         List<File> files = new ArrayList<>();
         Arrays.stream(subFolders).forEach(folder -> {
-            if (!folder.getName().equals("work-in-progress")) {
-                files.addAll(Arrays.asList(Objects.requireNonNull(folder.listFiles())));
-            }});
+            files.addAll(Arrays.asList(Objects.requireNonNull(folder.listFiles())));
+        });
 
         AtomicBoolean allPass = new AtomicBoolean(true);
 
         files.forEach(file -> {
             try {
-                String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-                String fullJson = wrapUseCaseMessage(useCaseJson);
+                if(file.getName().endsWith(".json")) {
+                    String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+                    // We wrap the use case message in a full json message, except for messages which do not
+                    // require RC-DE header
+                    String fullJson;
+                    if (Arrays.stream(useCasesWithNoRcDe).anyMatch(file.getName()::contains))
+                        fullJson = wrapUseCaseMessageWithoutDistributionElement(useCaseJson);
+                    else
+                        fullJson = wrapUseCaseMessage(useCaseJson);
 
-                converter.deserializeJsonEDXL(fullJson);
+                    converter.deserializeJsonEDXL(fullJson);
+                } else {
+                    String useCaseXml = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+                    converter.deserializeXmlEDXL(useCaseXml);
+                }
                 log.info("File {} has been successfully deserialized", file.getName());
 
             }catch (JsonProcessingException e) {
@@ -155,5 +171,50 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
         assertThrows(UnrecognizedPropertyException.class, () -> converter.deserializeJsonEDXL(json));
     }
 
+    @Test
+    @DisplayName("all json example files deserialize to same object xml example files deserialize to")
+    public void jsonAndXmlExampleFilesDeserializeToSameObject() {
+        String rootFolder = TestMessagesHelper.class.getClassLoader().getResource("sample/examples").getFile();
 
+        File[] subFolders = new File(rootFolder).listFiles(File::isDirectory);
+        assert subFolders != null;
+        List<File> exampleFiles = new ArrayList<>();
+
+        Arrays.stream(subFolders).forEach(folder -> {
+            exampleFiles.addAll(Arrays.asList(Objects.requireNonNull(folder.listFiles())));
+        });
+
+        // RS-ERROR messages cannot be compared due to sourceMessage not having any particular definitions
+        // and not being deserialized correctly from XML, we remove the RS-ERROR files from the list
+        List<File> filteredExampleFiles = exampleFiles.stream().filter(file -> !file.getName().startsWith("RS-ERROR")).collect(Collectors.toList());
+
+        AtomicBoolean allPass = new AtomicBoolean(true);
+
+        filteredExampleFiles.forEach(file -> {
+            try {
+                if (file.getName().endsWith(".json")) {
+                    String jsonExample = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+                    String xmlExample = new String(Files.readAllBytes(new File(file.getParentFile(), file.getName().replace(".json", ".xml")).toPath()), StandardCharsets.UTF_8);
+
+                    JsonNode jsonNode = converter.jsonMapper.readTree(jsonExample);
+                    String useCaseName = jsonNode.fieldNames().next();
+                    JsonNode useCaseNode = jsonNode.get(useCaseName);
+
+                    log.info("testing " + file.getName() + ": ");
+                    assertEquals(
+                            converter.jsonMapper.treeToValue(useCaseNode, Class.forName(ContentMessage.UseCaseHelper.useCases.get(useCaseName))),
+                            converter.xmlMapper.readValue(xmlExample, Class.forName(ContentMessage.UseCaseHelper.useCases.get(useCaseName))));
+                    log.info("xml and json are equal for " + useCaseName + " useCase.");
+                }
+            } catch (IOException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (AssertionFailedError e) {
+                allPass.set(false);
+                log.error("Files {} are not equivalent: {}", file.getName(), e.getMessage());
+            }
+        });
+        if (!allPass.get()) {
+            fail("Some files are not equivalent");
+        }
+    }
 }

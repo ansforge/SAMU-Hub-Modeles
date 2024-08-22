@@ -27,17 +27,18 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
-          description: "A valoriser avec l'identifiant de l'affaire/dossier partag\xE9\
-            \ entre tous les intervenants, valoris\xE9 comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.\n\
-            Cet identifiant est g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du\
-            \ partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
-            \ du dossier).\nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9\
-            centralis\xE9e et ne pr\xE9senter aucune ambigu\xEFt\xE9. Il doit \xEA\
-            tre unique dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni\
-            \ par celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre\
-            \ un num\xE9ro unique dans son syst\xE8me."
+          description: "Identifiant partag\xE9 de l'affaire/dossier, g\xE9n\xE9r\xE9\
+            \ une seule fois par le syst\xE8me du partenaire qui recoit la primo-demande\
+            \ de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit\
+            \ lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+            \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
+            e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
+            \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
+            \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
+            \ num\xE9ro unique dans son syst\xE8me."
+          pattern: fr(\.[\w-]+){3,4}
           examples:
-          - fr.health.samu440.DRFR15DDXAAJJJ0000
+          - fr.health.samu440.DRFR15440241550012
         senderCaseId:
           type: string
           title: Identifiant local de l'affaire/dossier
@@ -47,20 +48,20 @@ components:
           description: "A valoriser avec le num\xE9ro du dossier dans le SI de l'\xE9\
             metteur du message.\n"
           examples:
-          - DRFR15DDXAAJJJ0000
+          - DRFR15440241550012
         creation:
           type: string
           title: "Date Heure de cr\xE9ation de l'affaire/dossier"
           x-health-only: false
           x-cols: 6
           example: example.json#/creation
-          description: "A valoriser avec le groupe date heure de d\xE9but de partage\
-            \ li\xE9 \xE0 la cr\xE9ation de l'affaire (et donc de g\xE9n\xE9ration\
-            \ du caseId). \nLors de l'ajout d'une nouvelle alerte, la valeur de ce\
-            \ champ ne doit pas \xEAtre modifi\xE9e.  \nL'indicateur de fuseau horaire\
-            \ Z ne doit pas \xEAtre utilis\xE9.\n\nSp\xE9cificit\xE9 15-18 :\nIl doit\
-            \ \xEAtre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation de\
-            \ la premi\xE8re alerte."
+          description: "A valoriser avec le groupe date heure de cr\xE9ation du dossier/affaire.\n\
+            \nSp\xE9cificit\xE9 15-18 : A valoriser avec le groupe date heure de d\xE9\
+            but de partage li\xE9 \xE0 la cr\xE9ation de l'affaire (et donc de g\xE9\
+            n\xE9ration du caseId). \nLors de l'ajout d'une nouvelle alerte, la valeur\
+            \ de ce champ ne doit pas \xEAtre modifi\xE9e.  \nL'indicateur de fuseau\
+            \ horaire Z ne doit pas \xEAtre utilis\xE9.\nIl doit \xEAtre renseign\xE9\
+            \ \xE0 la fin du processus de la  cr\xE9ation de la premi\xE8re alerte."
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -113,14 +114,14 @@ components:
       required:
       - whatsHappen
       properties:
-        whatsHappen:
-          $ref: '#/components/schemas/whatsHappen'
-        locationKind:
-          $ref: '#/components/schemas/locationKind'
         riskThreat:
           type: array
           items:
             $ref: '#/components/schemas/riskThreat'
+        whatsHappen:
+          $ref: '#/components/schemas/whatsHappen'
+        locationKind:
+          $ref: '#/components/schemas/locationKind'
         healthMotive:
           $ref: '#/components/schemas/healthMotive'
         victims:
@@ -554,9 +555,82 @@ components:
           maxItems: 3
       additionalProperties: false
       example: example.json#/additionalInformation
+    riskThreat:
+      type: object
+      title: "Risque, menace et sensibilit\xE9"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - code
+      - label
+      properties:
+        code:
+          type: string
+          title: Code
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/qualification/riskThreat/0/code
+          description: "A valoriser avec le code de la nomenclature associ\xE9e"
+          enum:
+          - R01
+          - R02
+          - R03
+          - R04
+          - R05
+          - R06
+          - R07
+          - R08
+          - R09
+          - R10
+          - R11
+          - R12
+          - R13
+          - R14
+          - R15
+          - R16
+          - R17
+          - R18
+          - R19
+          - R20
+          - R21
+          - R22
+          - R23
+          - R24
+          - R25
+          - R26
+          - R27
+          - R28
+          - R29
+          - R30
+          - R31
+          - R32
+          - R33
+          - R34
+          - R35
+          - R36
+          - R37
+          examples:
+          - C07.13.02
+        label:
+          type: string
+          title: "Libell\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/qualification/riskThreat/0/label
+          description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
+            e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
+            tre un code, il peut choisir d'afficher le libell\xE9 qui est obligatoirement\
+            \ fourni avec le code."
+          examples:
+          - "Rod\xE9o automobile"
+      additionalProperties: false
+      example: example.json#/qualification/riskThreat/0
+      examples:
+      - code: C07.13.02
+        label: "Rod\xE9o automobile"
     whatsHappen:
       type: object
-      title: Nature de fait
+      title: 'Nature de fait '
       x-display: expansion-panels
       x-health-only: false
       required:
@@ -570,6 +644,306 @@ components:
           x-cols: 6
           example: example.json#/qualification/whatsHappen/code
           description: "A valoriser avec le code de la nomenclature associ\xE9e"
+          enum:
+          - C01.00.00
+          - C01.01.00
+          - C01.01.01
+          - C01.01.02
+          - C01.01.03
+          - C01.01.04
+          - C01.01.05
+          - C01.01.06
+          - C01.02.00
+          - C01.02.01
+          - C01.02.02
+          - C01.03.00
+          - C01.03.01
+          - C01.03.02
+          - C01.04.00
+          - C01.04.01
+          - C01.04.02
+          - C01.04.03
+          - C01.04.04
+          - C01.05.00
+          - C02.00.00
+          - C02.01.00
+          - C02.02.00
+          - C02.03.00
+          - C02.03.01
+          - C02.03.02
+          - C02.04.00
+          - C02.04.01
+          - C02.04.02
+          - C02.04.03
+          - C02.05.00
+          - C02.05.01
+          - C02.05.02
+          - C02.05.03
+          - C02.06.00
+          - C02.06.01
+          - C02.07.00
+          - C02.07.01
+          - C02.07.02
+          - C02.07.03
+          - C02.07.04
+          - C02.07.05
+          - C02.08.00
+          - C02.08.01
+          - C02.08.02
+          - C02.08.03
+          - C02.08.04
+          - C02.08.05
+          - C02.08.06
+          - C02.08.07
+          - C02.08.08
+          - C02.09.00
+          - C02.09.01
+          - C02.09.02
+          - C02.09.03
+          - C02.09.04
+          - C02.09.05
+          - C02.09.06
+          - C02.09.07
+          - C02.10.00
+          - C02.11.00
+          - C02.11.01
+          - C02.11.02
+          - C02.12.00
+          - C02.13.00
+          - C02.13.01
+          - C02.13.02
+          - C02.13.03
+          - C02.13.04
+          - C02.13.05
+          - C02.13.06
+          - C02.13.07
+          - C02.13.08
+          - C02.14.00
+          - C02.14.01
+          - C02.14.02
+          - C02.14.03
+          - C02.14.04
+          - C02.14.00
+          - C02.14.01
+          - C02.14.02
+          - C02.14.03
+          - C02.14.04
+          - C02.14.05
+          - C02.14.06
+          - C02.15.00
+          - C02.15.01
+          - C02.15.02
+          - C02.15.03
+          - C03.00.00
+          - C03.01.00
+          - C03.01.01
+          - C03.01.02
+          - C03.01.03
+          - C03.01.04
+          - C03.01.05
+          - C03.02.00
+          - C03.02.01
+          - C03.02.02
+          - C03.02.03
+          - C03.02.04
+          - C03.02.05
+          - C03.02.06
+          - C03.02.07
+          - C03.02.08
+          - C03.02.09
+          - C03.02.10
+          - C03.02.11
+          - C03.02.12
+          - C03.02.13
+          - C03.02.14
+          - C03.02.15
+          - C03.03.00
+          - C03.03.01
+          - C03.03.02
+          - C03.04.00
+          - C03.04.01
+          - C03.04.02
+          - C03.05.00
+          - C03.06.00
+          - C03.07.00
+          - C03.08.00
+          - C03.09.00
+          - C03.10.00
+          - C03.11.00
+          - C03.12.00
+          - C03.13.00
+          - C03.14.00
+          - C03.15.00
+          - C04.00.00
+          - C04.01.00
+          - C04.01.01
+          - C04.01.02
+          - C04.01.03
+          - C04.01.04
+          - C04.01.05
+          - C04.01.06
+          - C04.01.07
+          - C04.01.08
+          - C04.01.09
+          - C04.01.10
+          - C04.01.11
+          - C04.02.00
+          - C04.02.01
+          - C04.02.02
+          - C04.02.03
+          - C04.02.04
+          - C04.03.00
+          - C04.04.00
+          - C04.05.00
+          - C04.06.00
+          - C04.07.00
+          - C04.07.01
+          - C04.07.02
+          - C04.07.03
+          - C04.07.04
+          - C04.08.00
+          - C04.09.00
+          - C05.00.00
+          - C05.00.01
+          - C05.00.02
+          - C05.00.03
+          - C05.00.04
+          - C05.00.05
+          - C06.00.00
+          - C06.01.00
+          - C06.02.00
+          - C06.03.00
+          - C06.03.01
+          - C06.03.02
+          - C06.03.03
+          - C06.03.04
+          - C06.03.05
+          - C06.03.06
+          - C06.04.00
+          - C06.04.01
+          - C06.04.02
+          - C06.05.00
+          - C06.06.00
+          - C06.06.01
+          - C06.07.00
+          - C06.07.01
+          - C06.07.02
+          - C06.08.00
+          - C06.08.01
+          - C06.08.02
+          - C06.08.03
+          - C06.08.04
+          - C06.08.05
+          - C06.08.06
+          - C07.00.00
+          - C07.01.00
+          - C07.02.00
+          - C07.03.00
+          - C07.03.01
+          - C07.03.02
+          - C07.03.03
+          - C07.03.04
+          - C07.03.05
+          - C07.04.00
+          - C07.04.01
+          - C07.04.02
+          - C07.04.03
+          - C07.04.04
+          - C07.05.00
+          - C07.06.00
+          - C07.07.00
+          - C07.07.01
+          - C07.07.02
+          - C07.07.03
+          - C07.07.04
+          - C07.07.05
+          - C07.08.00
+          - C07.08.01
+          - C07.08.02
+          - C07.08.03
+          - C07.09.00
+          - C07.09.01
+          - C07.09.02
+          - C07.09.03
+          - C07.09.05
+          - C07.10.00
+          - C07.11.00
+          - C07.12.00
+          - C07.13.00
+          - C07.13.01
+          - C07.13.02
+          - C07.13.03
+          - C07.13.04
+          - C07.13.05
+          - C07.13.06
+          - C07.13.07
+          - C08.00.00
+          - C08.01.00
+          - C08.02.00
+          - C08.03.00
+          - C08.04.00
+          - C08.05.00
+          - C08.06.00
+          - C08.07.00
+          - C08.08.00
+          - C08.08.01
+          - C08.08.02
+          - C08.09.00
+          - C08.10.00
+          - C08.10.01
+          - C09.00.00
+          - C09.01.00
+          - C09.01.01
+          - C09.01.02
+          - C09.01.03
+          - C09.01.04
+          - C09.02.00
+          - C09.03.00
+          - C09.03.01
+          - C09.04.00
+          - C09.04.01
+          - C09.04.02
+          - C09.05.00
+          - C09.06.00
+          - C09.07.00
+          - C09.08.00
+          - C10.00.00
+          - C10.01.00
+          - C10.01.01
+          - C10.01.02
+          - C10.01.03
+          - C10.01.04
+          - C10.01.05
+          - C10.01.06
+          - C10.01.07
+          - C10.01.08
+          - C10.02.00
+          - C10.02.01
+          - C10.02.02
+          - C10.03.00
+          - C10.03.01
+          - C10.03.02
+          - C10.04.00
+          - C10.04.01
+          - C10.04.02
+          - C10.05.00
+          - C10.06.00
+          - C10.07.00
+          - C10.08.00
+          - C11.00.00
+          - C11.01.00
+          - C11.02.00
+          - C11.02.01
+          - C11.02.02
+          - C11.03.00
+          - C11.03.01
+          - C11.03.02
+          - C11.04.00
+          - C11.05.00
+          - C11.05.01
+          - C11.05.02
+          - C11.05.03
+          - C11.06.00
           examples:
           - C07.13.02
         label:
@@ -804,79 +1178,6 @@ components:
       examples:
       - code: C07.13.02
         label: "Rod\xE9o automobile"
-    riskThreat:
-      type: object
-      title: "Risque, menace et sensibilit\xE9"
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - code
-      - label
-      properties:
-        code:
-          type: string
-          title: Code
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/riskThreat/0/code
-          description: "A valoriser avec le code de la nomenclature associ\xE9e"
-          enum:
-          - R01
-          - R02
-          - R03
-          - R04
-          - R05
-          - R06
-          - R07
-          - R08
-          - R09
-          - R10
-          - R11
-          - R12
-          - R13
-          - R14
-          - R15
-          - R16
-          - R17
-          - R18
-          - R19
-          - R20
-          - R21
-          - R22
-          - R23
-          - R24
-          - R25
-          - R26
-          - R27
-          - R28
-          - R29
-          - R30
-          - R31
-          - R32
-          - R33
-          - R34
-          - R35
-          - R36
-          - R37
-          examples:
-          - C07.13.02
-        label:
-          type: string
-          title: "Libell\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/riskThreat/0/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
-            e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
-            tre un code, il peut choisir d'afficher le libell\xE9 qui est obligatoirement\
-            \ fourni avec le code."
-          examples:
-          - "Rod\xE9o automobile"
-      additionalProperties: false
-      example: example.json#/qualification/riskThreat/0
-      examples:
-      - code: C07.13.02
-        label: "Rod\xE9o automobile"
     healthMotive:
       type: object
       title: "Motif de recours m\xE9dico-secouriste"
@@ -988,7 +1289,7 @@ components:
           - INCONNU
           - NON DEFINI
           examples:
-          - SEVERAL
+          - PLUSIEURS
         mainVictim:
           type: string
           title: Type du patient-victime principal
@@ -1004,8 +1305,9 @@ components:
           - ENFANT
           - ADULTE
           - SENIOR
+          - ENCEINTE
           examples:
-          - CHILD
+          - ENFANT
         freetext:
           type: string
           title: "Informations compl\xE9mentaires sur les patients-victimes"
@@ -1018,8 +1320,8 @@ components:
       additionalProperties: false
       example: example.json#/qualification/victims
       examples:
-      - count: SEVERAL
-        mainVictim: CHILD
+      - count: PLUSIEURS
+        mainVictim: ENFANT
         freetext: "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
     externalLocationId:
       type: object
@@ -1036,10 +1338,11 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/externalLocationId/0/source
-          description: Type de l'identifiant fourni
+          description: "A valoriser avec le type de l'identifiant fourni. Cf nomenclature\
+            \ associ\xE9e."
           enum:
-          - FINESS ADMINISTRATIF
-          - FINESS GEOGRAPHIQUE
+          - FINESS_ADMINISTRATIF
+          - FINESS_GEOGRAPHIQUE
           - SIREN
           - SIRET
           - APE_NAF
@@ -1051,7 +1354,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/externalLocationId/0/value
-          description: "L'identifiant en lui-m\xEAme"
+          description: "A valoriser avec l'identifiant en lui-m\xEAme"
+          pattern: ([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])
           examples:
           - "920000650\_"
       additionalProperties: false
@@ -1245,9 +1549,12 @@ components:
           example: example.json#/location/access/phoneNumber
           description: "A valoriser avec le num\xE9ro de t\xE9l\xE9phone du lieu de\
             \ l'intervention, par exemple : t\xE9l\xE9phone du secr\xE9tariat, t\xE9\
-            l\xE9phone du service administratif ou se trouve le patient/ la victime."
+            l\xE9phone du service administratif ou se trouve le patient/ la victime.\n\
+            Le format attendu est le suivant : +{indicatif pays}{num\xE9ro de t\xE9\
+            l\xE9phone}"
+          pattern: \+\d{5,18}
           examples:
-          - 33123452323
+          - '+33123452323'
       additionalProperties: false
       example: example.json#/location/access
     geometry:
@@ -1329,7 +1636,7 @@ components:
           - CARTE
           - AUTRE
           - PHOTO
-          - SITE INTERNET
+          - SITE_INTERNET
           examples:
           - MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET
         uri:
@@ -2023,12 +2330,12 @@ components:
           description: "A valoriser avec  l'origine du canal \xE9tabli : PERSONNE,\
             \ APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL"
           enum:
-          - PERSONNE
           - APPLICATION
-          - DAU
           - BAU
-          - DEFIBRILLATEUR
+          - DAU
+          - 'DEFIBRILLATEUR, '
           - ECALL
+          - PERSONNE
           examples:
           - PERSONNE
         type:
@@ -2037,8 +2344,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/callerContact/type
-          description: "A valoriser avec le type de l'URI utilis\xE9e : TEL, EMAIL,\
-            \ FAX, POSTAL, WEB, RADIO"
+          description: "A valoriser avec le type de l'URI utilis\xE9e.  Cf nomenclature\
+            \ associ\xE9e."
           enum:
           - TEL
           - EMAIL
@@ -2054,15 +2361,17 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/callerContact/detail
-          description: "A valoriser avec la valeur de l'URI utilis\xE9e"
+          description: "A valoriser avec la valeur de l'URI utilis\xE9e.\nLe format\
+            \ attendu pour un num\xE9ro de t\xE9l\xE9phone est le suivant : +{indicatif\
+            \ pays}{num\xE9ro de t\xE9l\xE9phone}"
           examples:
-          - 0671830530
+          - '+33671830530'
       additionalProperties: false
       example: example.json#/initialAlert/caller/callerContact
       examples:
       - channel: PERSONNE
         type: TEL
-        detail: 0671830530
+        detail: '+33671830530'
     detailedName:
       type: object
       title: "Pr\xE9nom & nom usuel"
