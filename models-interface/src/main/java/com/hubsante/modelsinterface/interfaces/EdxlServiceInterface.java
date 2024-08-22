@@ -19,6 +19,10 @@ public interface EdxlServiceInterface {
     
     String getDistributionIDFromEdxlMessage(String edxlMessage);
     
-    String getExplicitAddressValue(EdxlMessageInterface edxlMessage);
+    String getDescriptorExplicitAddressValue(EdxlMessageInterface edxlMessage);
+    
+    String getDescriptorLanguage(EdxlMessageInterface edxlMessage);
+    
+    String getDescriptorExplicitAddressScheme(EdxlMessageInterface edxlMessage);
     
 }
