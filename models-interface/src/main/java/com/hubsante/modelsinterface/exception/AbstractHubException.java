@@ -15,6 +15,7 @@
  */
 package com.hubsante.modelsinterface.exception;
 
+import com.hubsante.modelsinterface.interfaces.ErrorCodeInterface;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 
 public abstract class AbstractHubException extends AmqpRejectAndDontRequeueException {
