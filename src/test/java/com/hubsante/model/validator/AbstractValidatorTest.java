@@ -16,15 +16,17 @@
 package com.hubsante.model.validator;
 
 import com.hubsante.model.service.Validator;
-import com.hubsante.model.exception.ValidationException;
+import com.hubsante.modelsinterface.exception.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
-import static com.hubsante.model.service.helpers.TestMessagesHelper.getInvalidMessage;
-import static com.hubsante.model.config.Constants.*;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
+import static com.hubsante.modelsinterface.config.Constants.FULL_SCHEMA;
+import static com.hubsante.modelsinterface.config.Constants.FULL_XSD;
+import static com.hubsante.modelsinterface.service.TestMessagesHelper.getInvalidMessage;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j

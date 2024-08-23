@@ -16,9 +16,6 @@
 package com.hubsante.modelsinterface.interfaces;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.hubsante.modelsinterface.interfaces.EdxlEnvelopeInterface;
-import com.hubsante.modelsinterface.interfaces.EdxlMessageInterface;
-import com.hubsante.modelsinterface.report.ErrorWrapper;
 
 public interface EdxlHandlerInterface {
 
@@ -34,7 +31,7 @@ public interface EdxlHandlerInterface {
 
     EdxlEnvelopeInterface deserializeXmlEDXLEnvelope(String receivedEdxl) throws JsonProcessingException;
     
-    ErrorWrapper getFirstContentMessageErrorWrapperFromXml(String msgString);
+    ErrorWrapperInterface getFirstContentMessageErrorWrapperFromXml(String msgString);
     
-    ErrorWrapper getFirstContentMessageErrorWrapperFromJson(String msgString);
+    ErrorWrapperInterface getFirstContentMessageErrorWrapperFromJson(String msgString);
 }

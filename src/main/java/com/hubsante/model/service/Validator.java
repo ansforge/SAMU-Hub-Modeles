@@ -25,7 +25,7 @@ import com.hubsante.model.service.handlers.XmlErrorHandler;
 import com.hubsante.model.validationmessage.ValidationMessageWrapper;
 import com.hubsante.model.builders.ValidationMessageWrapperBuilder;
 import com.hubsante.model.rcde.DistributionElement;
-import com.hubsante.model.exception.ValidationException;
+import com.hubsante.modelsinterface.exception.ValidationException;
 import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
 import com.networknt.schema.SpecVersion;
@@ -45,8 +45,9 @@ import java.io.StringReader;
 import java.util.*;
 import java.lang.reflect.Field;
 
-import static com.hubsante.model.config.Constants.FULL_XSD;
-import static com.hubsante.model.config.Constants.FULL_XSD_NO_HEADER;
+import static com.hubsante.modelsinterface.config.Constants.FULL_XSD;
+import static com.hubsante.modelsinterface.config.Constants.FULL_XSD_NO_HEADER;
+
 
 @Slf4j
 public class Validator {

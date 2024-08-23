@@ -21,4 +21,7 @@ public class Constants {
     public static final String FULL_SCHEMA = "EDXL-DE-full.schema.json";
     public static final String FULL_XSD = "EDXL-DE-full.xsd";
     public static final String FULL_XSD_NO_HEADER = "EDXL-DE-full-no-header.xsd";
-}
+    public static final String TECHNICAL_SCHEMA = "TECHNICAL.schema.json";
+    public static final String TECHNICAL_NOREQ_SCHEMA = "TECHNICAL_NOREQ.schema.json";
+    public static final String TECHNICAL_XSD = "TECHNICAL.xsd";
+    public static final String TECHNICAL_NOREQ_XSD = "TECHNICAL_NOREQ.xsd";}

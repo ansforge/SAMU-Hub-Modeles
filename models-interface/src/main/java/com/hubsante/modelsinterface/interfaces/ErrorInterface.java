@@ -13,21 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.hubsante.modelsinterface.builders;
+package com.hubsante.modelsinterface.interfaces;
 
-import com.hubsante.modelsinterface.report.Error;
-import com.hubsante.modelsinterface.report.ErrorWrapper;
-
-public class ErrorWrapperBuilder {
-    private Error error;
-
-    public ErrorWrapperBuilder(Error error) {
-        this.error = error;
-    }
-
-    public ErrorWrapper build() {
-        ErrorWrapper errorWrapper = new ErrorWrapper();
-        errorWrapper.setError(error);
-        return errorWrapper;
-    }
+public interface ErrorInterface {
 }

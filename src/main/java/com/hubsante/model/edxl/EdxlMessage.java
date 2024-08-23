@@ -20,6 +20,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.hubsante.modelsinterface.edxl.DistributionKind;
+import com.hubsante.modelsinterface.edxl.DistributionStatus;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;

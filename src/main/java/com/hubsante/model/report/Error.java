@@ -27,16 +27,12 @@
 
 package com.hubsante.model.report;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.report.ErrorCode;
-import java.util.Arrays;
-import java.util.Arrays;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;

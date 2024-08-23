@@ -16,17 +16,17 @@
 package com.hubsante.model.edxlhandler;
 
 import com.hubsante.model.edxl.EdxlMessage;
-import com.hubsante.model.exception.ValidationException;
 import com.hubsante.model.service.Validator;
 import com.hubsante.model.service.handlers.EdxlHandler;
+import com.hubsante.modelsinterface.exception.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
 import static com.hubsante.model.Sanitizer.sanitizeEdxl;
-import static com.hubsante.model.config.Constants.FULL_SCHEMA;
-import static com.hubsante.model.config.Constants.FULL_XSD;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
+import static com.hubsante.modelsinterface.config.Constants.FULL_SCHEMA;
+import static com.hubsante.modelsinterface.config.Constants.FULL_XSD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j

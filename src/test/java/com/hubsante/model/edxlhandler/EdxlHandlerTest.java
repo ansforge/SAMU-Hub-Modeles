@@ -18,10 +18,10 @@ package com.hubsante.model.edxlhandler;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
-import com.hubsante.model.TestMessagesHelper;
 import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.edxl.EdxlMessage;
-import com.hubsante.model.exception.ValidationException;
+import com.hubsante.modelsinterface.exception.ValidationException;
+import com.hubsante.modelsinterface.service.TestMessagesHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -45,10 +45,10 @@ import java.util.stream.Collectors;
 
 import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessage;
 import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessageWithoutDistributionElement;
-import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
-import static com.hubsante.model.config.Constants.FULL_SCHEMA;
 import static com.hubsante.model.utils.TestFileUtils.getMessageByFileName;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
+import static com.hubsante.modelsinterface.config.Constants.FULL_SCHEMA;
+import static com.hubsante.modelsinterface.service.TestMessagesHelper.getInvalidMessage;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j

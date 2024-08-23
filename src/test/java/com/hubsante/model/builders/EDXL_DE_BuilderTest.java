@@ -17,9 +17,9 @@ package com.hubsante.model.builders;
 
 import com.hubsante.model.custom.CustomMessage;
 import com.hubsante.model.edxl.ContentMessage;
-import com.hubsante.model.edxl.DistributionKind;
-import com.hubsante.model.edxl.DistributionStatus;
 import com.hubsante.model.edxl.EdxlMessage;
+import com.hubsante.modelsinterface.edxl.DistributionKind;
+import com.hubsante.modelsinterface.edxl.DistributionStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

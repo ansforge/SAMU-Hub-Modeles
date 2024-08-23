@@ -13,10 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.hubsante.model.exception;
+package com.hubsante.modelsinterface.interfaces;
 
-public class ValidationException extends Exception {
-    public ValidationException(String message) {
-        super(message);
-    }
+public interface ErrorWrapperInterface {
 }

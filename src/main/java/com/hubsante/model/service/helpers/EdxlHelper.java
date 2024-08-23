@@ -18,8 +18,8 @@ package com.hubsante.model.service.helpers;
 
 import com.hubsante.model.builders.EDXL_DE_Builder;
 import com.hubsante.model.edxl.ContentMessage;
-import com.hubsante.model.edxl.DistributionKind;
 import com.hubsante.model.edxl.EdxlMessage;
+import com.hubsante.modelsinterface.edxl.DistributionKind;
 
 public class EdxlHelper {
 

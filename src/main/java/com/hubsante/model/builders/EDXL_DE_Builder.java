@@ -15,7 +15,12 @@
  */
 package com.hubsante.model.builders;
 
-import com.hubsante.model.edxl.*;
+import com.hubsante.model.edxl.ContentMessage;
+import com.hubsante.model.edxl.Descriptor;
+import com.hubsante.model.edxl.EdxlMessage;
+import com.hubsante.model.edxl.ExplicitAddress;
+import com.hubsante.modelsinterface.edxl.DistributionKind;
+import com.hubsante.modelsinterface.edxl.DistributionStatus;
 
 import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;

@@ -42,6 +42,7 @@ import com.hubsante.model.rpis.Rpis;
 import com.hubsante.model.rpis.RpisWrapper;
 import com.hubsante.model.technical.TechnicalWrapper;
 import com.hubsante.model.technical.noreq.TechnicalNoreqWrapper;
+import com.hubsante.modelsinterface.interfaces.ContentMessageInterface;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -67,7 +68,7 @@ import java.util.stream.Stream;
         @JsonSubTypes.Type(TechnicalWrapper.class),
         @JsonSubTypes.Type(TechnicalNoreqWrapper.class)
 })
-public class ContentMessage {
+public class ContentMessage implements ContentMessageInterface {
 
     /** This equals override is used to avoid breaking the equals override in the messages without RC-DE headers
      * (in particular ErrorWrapper), as without the override the equality check would only pass when comparing

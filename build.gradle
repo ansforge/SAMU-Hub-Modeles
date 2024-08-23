@@ -21,9 +21,18 @@ java {
 
 repositories {
     mavenCentral()
+    maven {
+        url = uri("https://maven.pkg.github.com/ansforge/SAMU-Hub-Modeles")
+        credentials {
+            username = System.getenv('GITHUB_ACTOR')
+            password = System.getenv('GITHUB_TOKEN')
+        }   
+    } 
 }
 
 dependencies {
+    implementation 'com.hubsante:models-interface:0.1'
+    
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2'
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.15.2'
