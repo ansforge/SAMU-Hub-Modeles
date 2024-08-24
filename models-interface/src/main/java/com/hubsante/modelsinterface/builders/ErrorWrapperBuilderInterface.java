@@ -15,7 +15,6 @@
  */
 package com.hubsante.modelsinterface.builders;
 
-import com.hubsante.modelsinterface.interfaces.ErrorInterface;
 import com.hubsante.modelsinterface.interfaces.ErrorWrapperInterface;
 
 public interface ErrorWrapperBuilderInterface {

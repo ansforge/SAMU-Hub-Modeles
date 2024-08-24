@@ -15,20 +15,20 @@
  */
 package com.hubsante.modelsinterface.exception;
 
-import com.hubsante.modelsinterface.interfaces.ErrorCodeInterface;
+import com.hubsante.modelsinterface.report.ErrorCode;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 
 public abstract class AbstractHubException extends AmqpRejectAndDontRequeueException {
 
-    private ErrorCodeInterface errorCode;
+    private ErrorCode errorCode;
     private String referencedDistributionID;
-    public AbstractHubException(String message, ErrorCodeInterface errorCode, String referencedDistributionID) {
+    public AbstractHubException(String message, ErrorCode errorCode, String referencedDistributionID) {
         super(message);
         this.errorCode = errorCode;
         this.referencedDistributionID = referencedDistributionID;
     }
 
-    public ErrorCodeInterface getErrorCode() {
+    public ErrorCode getErrorCode() {
         return errorCode;
     }
 

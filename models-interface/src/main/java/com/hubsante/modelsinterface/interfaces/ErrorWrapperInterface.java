@@ -15,5 +15,9 @@
  */
 package com.hubsante.modelsinterface.interfaces;
 
-public interface ErrorWrapperInterface {
+import com.hubsante.modelsinterface.report.Error;
+
+public interface ErrorWrapperInterface extends ContentMessageInterface{
+    
+    Error getError();
 }
