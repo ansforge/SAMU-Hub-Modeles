@@ -31,7 +31,8 @@
             "example": "example.json#/status",
             "description": "A valoriser avec la valeur ANNULEE uniquement pour signifier l'annulation d'une demande de ressources. Les autres champs de la demande sont remplis à l'identique de la demande initiale envoyée.",
             "enum": [
-                "ANNULEE"
+                "ANNULEE",
+                "NE_PAS_UTILISER"
             ]
         }
     },
