@@ -33,6 +33,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.hubsante.model.edxl.ContentMessage;
+import com.hubsante.modelsinterface.report.Error;
 
 import java.util.Objects;
 

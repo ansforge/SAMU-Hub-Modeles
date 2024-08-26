@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RPIS RS-EDA-MAJ RS-SR TECHNICAL TECHNICAL_NOREQ"
+  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-RI RS-DR RS-RR RPIS RS-EDA-MAJ RS-SR TECHNICAL TECHNICAL_NOREQ"
 
 jobs:
   generate:
@@ -80,8 +80,7 @@ jobs:
       - name: Move XSDs to src
         working-directory: ./csv_parser/json_schema2xsd
         if: steps.filter.outputs.parsing_required == 'true'
-        run: |
-          rm out/RS-ERROR.xsd
+        run: 
           mv out/*.xsd ../../src/main/resources/xsd/
 
       - name: Remove input JSON Schemas
