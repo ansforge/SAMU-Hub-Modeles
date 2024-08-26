@@ -15,9 +15,11 @@
  */
 package com.hubsante.modelsinterface.interfaces;
 
+import com.hubsante.modelsinterface.exception.ValidationException;
+
 public interface EdxlServiceInterface {
     
-    String getDistributionIDFromEdxlMessage(String edxlMessage);
+    String getDistributionIDFromEdxlMessage(String edxlMessage) throws ValidationException;
     
     String getDescriptorExplicitAddressValue(EdxlMessageInterface edxlMessage);
     

@@ -36,7 +36,7 @@ public interface EdxlMessageInterface {
     
     DistributionKind getDistributionKind();
 
-    CustomMessageInterface getFirstContentMessage();
+    ContentMessageInterface getFirstContentMessage();
     
     DistributionStatus getDistributionStatus();
 }

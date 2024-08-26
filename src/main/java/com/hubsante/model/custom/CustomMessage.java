@@ -21,12 +21,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import com.hubsante.model.edxl.ContentMessage;
+import com.hubsante.modelsinterface.interfaces.CustomMessageInterface;
 
 import java.util.Objects;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JacksonXmlRootElement(localName = "message")
-public class CustomMessage extends ContentMessage {
+public class CustomMessage extends ContentMessage implements CustomMessageInterface {
 
     @JacksonXmlProperty(isAttribute = true)
     String xmlns = "urn:emergency:cisu:2.0";

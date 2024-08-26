@@ -22,6 +22,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.hubsante.modelsinterface.edxl.DistributionKind;
 import com.hubsante.modelsinterface.edxl.DistributionStatus;
+import com.hubsante.modelsinterface.interfaces.EdxlMessageInterface;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ import java.util.stream.Collectors;
         "descriptor",
         "content"})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class EdxlMessage extends EdxlEnvelope {
+public class EdxlMessage extends EdxlEnvelope implements EdxlMessageInterface {
     private List<ContentObject> content;
 
     public EdxlMessage() {
