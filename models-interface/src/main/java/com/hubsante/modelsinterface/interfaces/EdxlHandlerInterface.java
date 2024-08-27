@@ -31,7 +31,7 @@ public interface EdxlHandlerInterface {
 
     EdxlEnvelopeInterface deserializeXmlEDXLEnvelope(String receivedEdxl) throws JsonProcessingException;
     
-    ErrorWrapperInterface getFirstContentMessageErrorWrapperFromXml(String msgString);
+    ErrorWrapperInterface getFirstContentMessageErrorWrapperFromXml(String msgString) throws JsonProcessingException;
     
-    ErrorWrapperInterface getFirstContentMessageErrorWrapperFromJson(String msgString);
+    ErrorWrapperInterface getFirstContentMessageErrorWrapperFromJson(String msgString) throws JsonProcessingException;
 }

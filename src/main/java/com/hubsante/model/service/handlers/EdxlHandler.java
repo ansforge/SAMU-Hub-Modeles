@@ -23,7 +23,10 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.hubsante.model.edxl.EdxlEnvelope;
 import com.hubsante.model.edxl.EdxlMessage;
+import com.hubsante.model.report.ErrorWrapper;
 import com.hubsante.modelsinterface.interfaces.EdxlHandlerInterface;
+import com.hubsante.modelsinterface.interfaces.EdxlMessageInterface;
+import com.hubsante.modelsinterface.interfaces.ErrorWrapperInterface;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -66,11 +69,21 @@ public class EdxlHandler implements EdxlHandlerInterface {
         return xmlMapper.readValue(xml, EdxlEnvelope.class);
     }
 
-    public String serializeJsonEDXL(EdxlMessage edxlMessage) throws JsonProcessingException {
+    @Override
+    public ErrorWrapperInterface getFirstContentMessageErrorWrapperFromXml(String s) throws JsonProcessingException{
+        deserializeJsonEDXL(s).getFirstContentMessage();
+    }
+
+    @Override
+    public ErrorWrapperInterface getFirstContentMessageErrorWrapperFromJson(String s) throws JsonProcessingException{
+        deserializeXmlEDXL(s).getFirstContentMessage();
+    }
+
+    public String serializeJsonEDXL(EdxlMessageInterface edxlMessage) throws JsonProcessingException {
         return jsonMapper.writeValueAsString(edxlMessage);
     }
 
-    public String serializeXmlEDXL(EdxlMessage edxlMessage) throws JsonProcessingException {
+    public String serializeXmlEDXL(EdxlMessageInterface edxlMessage) throws JsonProcessingException {
         return xmlMapper.writeValueAsString(edxlMessage);
     }
 }
