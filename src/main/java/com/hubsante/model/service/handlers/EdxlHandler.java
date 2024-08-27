@@ -71,12 +71,12 @@ public class EdxlHandler implements EdxlHandlerInterface {
 
     @Override
     public ErrorWrapperInterface getFirstContentMessageErrorWrapperFromXml(String s) throws JsonProcessingException{
-        deserializeJsonEDXL(s).getFirstContentMessage();
+        return (ErrorWrapperInterface) deserializeJsonEDXL(s).getFirstContentMessage();
     }
 
     @Override
     public ErrorWrapperInterface getFirstContentMessageErrorWrapperFromJson(String s) throws JsonProcessingException{
-        deserializeXmlEDXL(s).getFirstContentMessage();
+        return (ErrorWrapperInterface) deserializeXmlEDXL(s).getFirstContentMessage();
     }
 
     public String serializeJsonEDXL(EdxlMessageInterface edxlMessage) throws JsonProcessingException {
