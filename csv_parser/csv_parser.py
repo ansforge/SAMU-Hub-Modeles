@@ -44,14 +44,21 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     RUN_DOCX_OUTPUT_EXAMPLES = False
 
     DATA_DEPTH = 6  # nombre de niveaux de données
+    HEADER_LINE = 7  # ligne avec les en-têtes (ID Excel - 1)
+
+    FORMAT_FLAGS = {
+        'NOMENCLATURE': 'NOMENCLATURE: ',
+        'ENUM': 'ENUM: ',
+        'REGEX': 'REGEX: '
+    }
 
     def get_params_from_sheet(sheet):
         """ Automatically get the number of rows and columns to use for this sheet. """
         full_df = pd.read_excel(filepath, sheet_name=sheet, header=None)
         # Getting modelName from cell A1
         modelName = full_df.iloc[0, 0]
-        # Get line 7 to find which columns have 'Périmètre' flag
-        perimeter_row = full_df.iloc[6, :]
+        # Get line {HEADER_LINE - 1} to find which columns have 'Périmètre' flag
+        perimeter_row = full_df.iloc[HEADER_LINE - 1, :]
         # Save all the column numbers that have 'Périmètre' in their name
         perimeter_columns = [i for i, x in enumerate(perimeter_row) if 'Périmètre' in str(x)]
         # Computing number of rows in table
@@ -63,10 +70,10 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         # Compute number of columns in table
         try:
             # By finding the CUT column
-            cols = full_df.iloc[7, :].tolist().index('CUT')
+            cols = full_df.iloc[HEADER_LINE, :].tolist().index('CUT')
         except ValueError:
-            # Simply by removing the 6 last editor feedback columns
-            cols = full_df.shape[1] - 6
+            # ALl columns
+            cols = full_df.shape[1]
         return {
             'modelName': modelName,
             'cols': cols,
@@ -76,7 +83,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     def get_nomenclature(elem):
         # filename to target (.csv format)
-        nomenclature_name = elem['Détails de format'][14:]
+        nomenclature_name = elem['Détails de format'][len(FORMAT_FLAGS['NOMENCLATURE']):]
         path_file = ''
         nomenclature_files = os.listdir(os.path.join("..", "nomenclature_parser", "out", "latest", "csv"))
         for filename in nomenclature_files:
@@ -111,7 +118,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     # DATA COLLECTION AND CLEANING
     # Read CSV, skipping useless first and last lines
-    df = pd.read_excel(filepath, sheet_name=sheet, skiprows=7, nrows=NB_ROWS, converters={'ID': int})
+    df = pd.read_excel(filepath, sheet_name=sheet, skiprows=HEADER_LINE, nrows=NB_ROWS, converters={'ID': int})
     # Dropping useless columns
     df = df.iloc[:, :NB_COLS]
     # Column validation
@@ -123,7 +130,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     if not (set(REQUIRED_COLUMNS) <= set(df.columns)):
         print(f"{Color.RED}ERROR: some key columns are missing:{Color.ORANGE}")
         print(set(REQUIRED_COLUMNS) - set(df.columns))
-        print(f"Make sure all these columns are existing: {REQUIRED_COLUMNS}.{Color.END}")
+        print(f"Make sure all these columns are existing: {REQUIRED_COLUMNS} (headers on line {HEADER_LINE + 1}).{Color.END}")
         exit(1)
 
     # Keeping only the relevant perimeter rows
@@ -487,7 +494,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             return 'string', r'tel:([#\+\*]|37000|00+)?[0-9]{2,15}', None
         else:
             if has_format_details(child, 'REGEX: '):
-                return typeName, child['Détails de format'][7:], None
+                return typeName, child['Détails de format'][len(FORMAT_FLAGS['REGEX']):], None
             else:
                 return typeName, None, None
 
@@ -521,7 +528,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         if format is not None:
             childDetails['format'] = format
         if has_format_details(child, 'ENUM: '):
-            childDetails['enum'] = child['Détails de format'][6:].split(', ')
+            childDetails['enum'] = child['Détails de format'][len(FORMAT_FLAGS['ENUM']):].split(', ')
         # key word nomenclature trigger search over nomenclature folder for matching file
         if has_format_details(child, 'NOMENCLATURE: '):
             childDetails['enum'] = get_nomenclature(child)
