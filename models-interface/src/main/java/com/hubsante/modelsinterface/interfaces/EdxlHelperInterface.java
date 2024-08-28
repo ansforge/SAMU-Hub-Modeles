@@ -15,10 +15,12 @@
  */
 package com.hubsante.modelsinterface.interfaces;
 
+import com.hubsante.modelsinterface.edxl.ContentMessageBase;
 import com.hubsante.modelsinterface.edxl.DistributionKind;
+import com.hubsante.modelsinterface.edxl.EdxlMessage;
 
 public interface EdxlHelperInterface {
 
-    EdxlMessageInterface buildEdxlMessage(String UUID, String HUB_ID, String recipientId, long DEFAULT_HUB_MESSAGE_EXPIRATION, DistributionKind distributionKind, ContentMessageInterface contentMessage);
+    EdxlMessage buildEdxlMessage(String UUID, String HUB_ID, String recipientId, long DEFAULT_HUB_MESSAGE_EXPIRATION, DistributionKind distributionKind, Object contentMessage);
 
 }

@@ -19,7 +19,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.hubsante.model.edxl.ContentMessage;
-import com.hubsante.model.edxl.EdxlMessage;
+import com.hubsante.modelsinterface.edxl.EdxlMessage;
 import com.hubsante.modelsinterface.exception.ValidationException;
 import com.hubsante.modelsinterface.service.TestMessagesHelper;
 import lombok.extern.slf4j.Slf4j;

@@ -25,7 +25,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.hubsante.model.builders.EDXL_DE_Builder;
 import com.hubsante.model.rcde.Recipient;
 import com.hubsante.model.rcde.Sender;
-import com.hubsante.model.edxl.*;
+import com.hubsante.modelsinterface.edxl.EdxlMessage;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;

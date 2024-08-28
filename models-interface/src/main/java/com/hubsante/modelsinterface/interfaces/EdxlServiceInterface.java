@@ -15,6 +15,7 @@
  */
 package com.hubsante.modelsinterface.interfaces;
 
+import com.hubsante.modelsinterface.edxl.EdxlMessage;
 import com.hubsante.modelsinterface.exception.ValidationException;
 
 import java.io.IOException;
@@ -23,10 +24,10 @@ public interface EdxlServiceInterface {
     
     String getDistributionIDFromEdxlMessage(String edxlMessage) throws ValidationException, IOException;
     
-    String getDescriptorExplicitAddressValue(EdxlMessageInterface edxlMessage);
+    String getDescriptorExplicitAddressValue(EdxlMessage edxlMessage);
     
-    String getDescriptorLanguage(EdxlMessageInterface edxlMessage);
+    String getDescriptorLanguage(EdxlMessage edxlMessage);
     
-    String getDescriptorExplicitAddressScheme(EdxlMessageInterface edxlMessage);
+    String getDescriptorExplicitAddressScheme(EdxlMessage edxlMessage);
     
 }

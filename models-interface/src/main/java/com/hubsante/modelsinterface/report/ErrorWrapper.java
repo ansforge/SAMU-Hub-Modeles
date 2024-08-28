@@ -25,15 +25,14 @@
  * the class manually.
  */
 
-package com.hubsante.model.report;
+package com.hubsante.modelsinterface.report;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.hubsante.model.edxl.ContentMessage;
-import com.hubsante.modelsinterface.report.Error;
+import com.hubsante.modelsinterface.edxl.ContentMessageBase;
 
 import java.util.Objects;
 
@@ -44,7 +43,7 @@ import java.util.Objects;
 @JsonTypeName("errorWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ErrorWrapper extends ContentMessage {
+public class ErrorWrapper extends ContentMessageBase {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";
   public static final String JSON_PROPERTY_ERROR = "error";

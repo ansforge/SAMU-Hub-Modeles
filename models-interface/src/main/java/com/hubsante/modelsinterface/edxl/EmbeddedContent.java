@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.hubsante.model.edxl;
+package com.hubsante.modelsinterface.edxl;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -21,19 +21,19 @@ import java.util.Objects;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class EmbeddedContent {
-    private ContentMessage useCaseMessage;
+    private ContentMessageBase useCaseMessage;
     public EmbeddedContent() {
     }
 
-    public EmbeddedContent(ContentMessage useCaseMessage) {
+    public EmbeddedContent(ContentMessageBase useCaseMessage) {
         this.useCaseMessage = useCaseMessage;
     }
 
-    public <T extends ContentMessage> T getMessage() {
+    public <T extends ContentMessageBase> T getMessage() {
         return (T) useCaseMessage;
     }
 
-    public <T extends ContentMessage> void setMessage(T message) {
+    public <T extends ContentMessageBase> void setMessage(T message) {
         this.useCaseMessage = message;
     }
 

@@ -16,22 +16,24 @@
 package com.hubsante.modelsinterface.interfaces;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.hubsante.modelsinterface.edxl.EdxlMessage;
+import com.hubsante.modelsinterface.report.ErrorWrapper;
 
 public interface EdxlHandlerInterface {
 
-    EdxlMessageInterface deserializeJsonEDXL(String jsonEDXL) throws JsonProcessingException;
+    EdxlMessage deserializeJsonEDXL(String jsonEDXL) throws JsonProcessingException;
 
-    String serializeXmlEDXL(EdxlMessageInterface errorEdxlMessage) throws JsonProcessingException;
+    String serializeXmlEDXL(EdxlMessage errorEdxlMessage) throws JsonProcessingException;
 
-    String serializeJsonEDXL(EdxlMessageInterface errorEdxlMessage) throws JsonProcessingException;
+    String serializeJsonEDXL(EdxlMessage errorEdxlMessage) throws JsonProcessingException;
 
-    EdxlMessageInterface deserializeXmlEDXL(String receivedEdxl) throws JsonProcessingException;
+    EdxlMessage deserializeXmlEDXL(String receivedEdxl) throws JsonProcessingException;
 
     EdxlEnvelopeInterface deserializeJsonEDXLEnvelope(String receivedEdxl) throws JsonProcessingException;
 
     EdxlEnvelopeInterface deserializeXmlEDXLEnvelope(String receivedEdxl) throws JsonProcessingException;
     
-    ErrorWrapperInterface getFirstContentMessageErrorWrapperFromXml(String msgString) throws JsonProcessingException;
+    ErrorWrapper getFirstContentMessageErrorWrapperFromXml(String msgString) throws JsonProcessingException;
     
-    ErrorWrapperInterface getFirstContentMessageErrorWrapperFromJson(String msgString) throws JsonProcessingException;
+    ErrorWrapper getFirstContentMessageErrorWrapperFromJson(String msgString) throws JsonProcessingException;
 }

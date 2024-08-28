@@ -21,12 +21,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.hubsante.model.edxl.EdxlEnvelope;
-import com.hubsante.model.edxl.EdxlMessage;
-import com.hubsante.model.report.ErrorWrapper;
+import com.hubsante.modelsinterface.edxl.EdxlEnvelope;
+import com.hubsante.modelsinterface.edxl.EdxlMessage;
 import com.hubsante.modelsinterface.interfaces.EdxlHandlerInterface;
-import com.hubsante.modelsinterface.interfaces.EdxlMessageInterface;
-import com.hubsante.modelsinterface.interfaces.ErrorWrapperInterface;
+import com.hubsante.modelsinterface.report.ErrorWrapper;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -70,20 +68,20 @@ public class EdxlHandler implements EdxlHandlerInterface {
     }
 
     @Override
-    public ErrorWrapperInterface getFirstContentMessageErrorWrapperFromXml(String s) throws JsonProcessingException{
-        return (ErrorWrapperInterface) deserializeJsonEDXL(s).getFirstContentMessage();
+    public ErrorWrapper getFirstContentMessageErrorWrapperFromXml(String s) throws JsonProcessingException{
+        return (ErrorWrapper) deserializeJsonEDXL(s).getFirstContentMessage();
     }
 
     @Override
-    public ErrorWrapperInterface getFirstContentMessageErrorWrapperFromJson(String s) throws JsonProcessingException{
-        return (ErrorWrapperInterface) deserializeXmlEDXL(s).getFirstContentMessage();
+    public ErrorWrapper getFirstContentMessageErrorWrapperFromJson(String s) throws JsonProcessingException{
+        return (ErrorWrapper) deserializeXmlEDXL(s).getFirstContentMessage();
     }
 
-    public String serializeJsonEDXL(EdxlMessageInterface edxlMessage) throws JsonProcessingException {
+    public String serializeJsonEDXL(EdxlMessage edxlMessage) throws JsonProcessingException {
         return jsonMapper.writeValueAsString(edxlMessage);
     }
 
-    public String serializeXmlEDXL(EdxlMessageInterface edxlMessage) throws JsonProcessingException {
+    public String serializeXmlEDXL(EdxlMessage edxlMessage) throws JsonProcessingException {
         return xmlMapper.writeValueAsString(edxlMessage);
     }
 }

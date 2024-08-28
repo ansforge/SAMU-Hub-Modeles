@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.hubsante.model.edxl;
+package com.hubsante.modelsinterface.edxl;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -25,49 +25,48 @@ import java.util.Objects;
         fieldVisibility = JsonAutoDetect.Visibility.ANY,
         getterVisibility = JsonAutoDetect.Visibility.NONE
 )
-public class ContentObject {
+public class Content {
 
     @JacksonXmlProperty(localName = "xlink:type", isAttribute = true)
     public String getXmlns() {
         return "resource";
     }
 
-    @JsonProperty(value = "jsonContent", required = true)
-    @JacksonXmlProperty(localName = "contentXML")
-    private ContentWrapper contentWrapper;
+    @JsonProperty(value = "contentObject", required = true)
+    private ContentObject contentObject;
 
-    public ContentObject() {
+    public Content() {
     }
 
-    public ContentObject(ContentWrapper contentWrapper) {
-        this.contentWrapper = contentWrapper;
+    public Content(ContentObject contentObject) {
+        this.contentObject = contentObject;
     }
 
-    public ContentWrapper getContentWrapper() {
-        return contentWrapper;
+    public ContentObject getContentObject() {
+        return contentObject;
     }
 
-    public void setContentWrapper(ContentWrapper contentWrapper) {
-        this.contentWrapper = contentWrapper;
+    public void setContentObject(ContentObject contentObject) {
+        this.contentObject = contentObject;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ContentObject that = (ContentObject) o;
-        return Objects.equals(contentWrapper, that.contentWrapper);
+        Content content = (Content) o;
+        return Objects.equals(contentObject, content.contentObject);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(contentWrapper);
+        return Objects.hash(contentObject);
     }
 
     @Override
     public String toString() {
-        return "ContentObject{" +
-                "contentXML=" + contentWrapper +
+        return "Content{" +
+                "contentObject=" + contentObject +
                 '}';
     }
 }

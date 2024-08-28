@@ -29,7 +29,6 @@ import com.hubsante.model.health.CreateCaseHealthUpdateWrapper;
 import com.hubsante.model.health.CreateCaseHealthWrapper;
 import com.hubsante.model.reference.Reference;
 import com.hubsante.model.reference.ReferenceWrapper;
-import com.hubsante.model.report.ErrorWrapper;
 import com.hubsante.model.resources.info.ResourcesInfo;
 import com.hubsante.model.resources.info.ResourcesInfoWrapper;
 import com.hubsante.model.resources.request.ResourcesRequest;
@@ -42,19 +41,19 @@ import com.hubsante.model.rpis.Rpis;
 import com.hubsante.model.rpis.RpisWrapper;
 import com.hubsante.model.technical.TechnicalWrapper;
 import com.hubsante.model.technical.noreq.TechnicalNoreqWrapper;
-import com.hubsante.modelsinterface.interfaces.ContentMessageInterface;
+import com.hubsante.modelsinterface.edxl.ContentMessageBase;
+import com.hubsante.modelsinterface.report.ErrorWrapper;
 
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "useCase", include = JsonTypeInfo.As., visible = true)
 @JsonSubTypes({
-        @JsonSubTypes.Type(CreateCaseWrapper.class),
+        @JsonSubTypes.Type(value=CreateCaseWrapper.class, name="createCase"),
         @JsonSubTypes.Type(CreateCaseHealthWrapper.class),
         @JsonSubTypes.Type(CreateCaseHealthUpdateWrapper.class),
         @JsonSubTypes.Type(ReferenceWrapper.class),
-        @JsonSubTypes.Type(ErrorWrapper.class),
         @JsonSubTypes.Type(CustomMessage.class),
         @JsonSubTypes.Type(EmsiWrapper.class),
         @JsonSubTypes.Type(GeoPositionsUpdateWrapper.class),
@@ -68,7 +67,7 @@ import java.util.stream.Stream;
         @JsonSubTypes.Type(TechnicalWrapper.class),
         @JsonSubTypes.Type(TechnicalNoreqWrapper.class)
 })
-public class ContentMessage implements ContentMessageInterface {
+public class ContentMessage extends ContentMessageBase {
 
     /** This equals override is used to avoid breaking the equals override in the messages without RC-DE headers
      * (in particular ErrorWrapper), as without the override the equality check would only pass when comparing

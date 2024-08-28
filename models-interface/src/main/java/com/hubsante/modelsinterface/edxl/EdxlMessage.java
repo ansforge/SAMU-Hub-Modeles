@@ -13,16 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.hubsante.model.edxl;
+package com.hubsante.modelsinterface.edxl;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.hubsante.modelsinterface.edxl.DistributionKind;
-import com.hubsante.modelsinterface.edxl.DistributionStatus;
-import com.hubsante.modelsinterface.interfaces.EdxlMessageInterface;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -40,7 +37,7 @@ import java.util.stream.Collectors;
         "descriptor",
         "content"})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class EdxlMessage extends EdxlEnvelope implements EdxlMessageInterface {
+public class EdxlMessage extends EdxlEnvelope {
     private List<ContentObject> content;
 
     public EdxlMessage() {
@@ -49,7 +46,7 @@ public class EdxlMessage extends EdxlEnvelope implements EdxlMessageInterface {
 
     public EdxlMessage(String distributionID, String senderID, OffsetDateTime dateTimeSent, OffsetDateTime dateTimeExpires,
                        DistributionStatus distributionStatus, DistributionKind distributionKind, Descriptor descriptor,
-                       ContentMessage innerMessage) {
+                       ContentMessageBase innerMessage) {
         super(distributionID, senderID, dateTimeSent, dateTimeExpires, distributionStatus, distributionKind, descriptor);
         this.setContentFrom(innerMessage);
     }
@@ -83,20 +80,20 @@ public class EdxlMessage extends EdxlEnvelope implements EdxlMessageInterface {
         this.content = content;
     }
 
-    public <T extends ContentMessage> void setContentFrom(T embeddedContent) {
+    public <T extends ContentMessageBase> void setContentFrom(T embeddedContent) {
         List<ContentObject> contentObjectList = new ArrayList<>();
         contentObjectList.add(new ContentObject(new ContentWrapper(new EmbeddedContent(embeddedContent))));
         this.setContent(contentObjectList);
     }
 
-    public ContentMessage getFirstContentMessage() {
+    public ContentMessageBase getFirstContentMessage() {
         return this.getContent().stream().findFirst().orElseThrow(ArrayIndexOutOfBoundsException::new)
                 .getContentWrapper().getEmbeddedContent().getMessage();
     }
 
-    public List<ContentMessage> getAllContentMessages() {
+    public List<ContentMessageBase> getAllContentMessages() {
         return this.content.stream()
-                .map(contentObject -> ((ContentMessage) contentObject.getContentWrapper().getEmbeddedContent().getMessage()))
+                .map(contentObject -> ((ContentMessageBase) contentObject.getContentWrapper().getEmbeddedContent().getMessage()))
                 .collect(Collectors.toList());
     }
 

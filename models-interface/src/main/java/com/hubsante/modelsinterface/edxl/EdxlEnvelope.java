@@ -13,13 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.hubsante.model.edxl;
+package com.hubsante.modelsinterface.edxl;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-import com.hubsante.modelsinterface.edxl.DistributionKind;
-import com.hubsante.modelsinterface.edxl.DistributionStatus;
 import com.hubsante.modelsinterface.interfaces.EdxlEnvelopeInterface;
 
 import java.time.OffsetDateTime;

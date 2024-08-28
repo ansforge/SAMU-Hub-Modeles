@@ -18,19 +18,18 @@ package com.hubsante.model.service.helpers;
 
 import com.hubsante.model.builders.EDXL_DE_Builder;
 import com.hubsante.model.edxl.ContentMessage;
-import com.hubsante.model.edxl.EdxlMessage;
 import com.hubsante.modelsinterface.edxl.DistributionKind;
-import com.hubsante.modelsinterface.interfaces.ContentMessageInterface;
+import com.hubsante.modelsinterface.edxl.EdxlMessage;
 import com.hubsante.modelsinterface.interfaces.EdxlHelperInterface;
 
 public class EdxlHelper implements EdxlHelperInterface {
 
     public EdxlMessage buildEdxlMessage(String UUID,
-                                               String HUB_ID,
-                                               String recipientId,
-                                               long DEFAULT_HUB_MESSAGE_EXPIRATION,
-                                               DistributionKind distributionKind,
-                                               ContentMessageInterface contentMessage){
+                                        String HUB_ID,
+                                        String recipientId,
+                                        long DEFAULT_HUB_MESSAGE_EXPIRATION,
+                                        DistributionKind distributionKind,
+                                        Object contentMessage){
         return new EDXL_DE_Builder(UUID,HUB_ID, recipientId)
                 .dateTimeSentNowWithOffsetInDays(DEFAULT_HUB_MESSAGE_EXPIRATION)
                 .distributionKind(distributionKind)

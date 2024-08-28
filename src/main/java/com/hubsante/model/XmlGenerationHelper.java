@@ -16,8 +16,8 @@
 package com.hubsante.model;
 
 import com.hubsante.model.edxl.ContentMessage;
-import com.hubsante.model.edxl.EdxlMessage;
 import com.hubsante.model.service.handlers.EdxlHandler;
+import com.hubsante.modelsinterface.edxl.EdxlMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;

@@ -15,8 +15,10 @@
  */
 package com.hubsante.modelsinterface.interfaces;
 
+import com.hubsante.modelsinterface.edxl.EdxlMessage;
 import com.hubsante.modelsinterface.exception.AbstractHubException;
 import com.hubsante.modelsinterface.report.Error;
+import com.hubsante.modelsinterface.report.ErrorWrapper;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.ReturnedMessage;
 
@@ -24,7 +26,7 @@ public interface ErrorServiceInterface {
     
     Error handleError(AbstractHubException exception, Message message);
     
-    Error generateUnroutableMessageError(ReturnedMessage returned, EdxlMessageInterface returnedEdxlMessage);
+    Error generateUnroutableMessageError(ReturnedMessage returned, EdxlMessage returnedEdxlMessage);
     
-    ErrorWrapperInterface buildErrorWrapper(Error error);
+    ErrorWrapper buildErrorWrapper(Error error);
 }

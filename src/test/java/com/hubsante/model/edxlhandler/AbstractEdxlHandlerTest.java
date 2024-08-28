@@ -15,9 +15,9 @@
  */
 package com.hubsante.model.edxlhandler;
 
-import com.hubsante.model.edxl.EdxlMessage;
 import com.hubsante.model.service.Validator;
 import com.hubsante.model.service.handlers.EdxlHandler;
+import com.hubsante.modelsinterface.edxl.EdxlMessage;
 import com.hubsante.modelsinterface.exception.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 
