@@ -1,6 +1,6 @@
 import copy
 import re
-
+from enum import Enum
 import pandas as pd
 import json
 from jsonpath_ng import parse
@@ -46,11 +46,11 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     DATA_DEPTH = 6  # nombre de niveaux de données
     HEADER_LINE = 7  # ligne avec les en-têtes (ID Excel - 1)
 
-    FORMAT_FLAGS = {
-        'NOMENCLATURE': 'NOMENCLATURE: ',
-        'ENUM': 'ENUM: ',
-        'REGEX': 'REGEX: '
-    }
+    class FormatFlags(Enum):
+        NOMENCLATURE = 'NOMENCLATURE: '
+        ENUM = 'ENUM: '
+        REGEX = 'REGEX: '
+
 
     def get_params_from_sheet(sheet):
         """ Automatically get the number of rows and columns to use for this sheet. """
@@ -83,7 +83,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     def get_nomenclature(elem):
         # filename to target (.csv format)
-        nomenclature_name = elem['Détails de format'][len(FORMAT_FLAGS['NOMENCLATURE']):]
+        nomenclature_name = elem['Détails de format'][len(FormatFlags.NOMENCLATURE):]
         path_file = ''
         nomenclature_files = os.listdir(os.path.join("..", "nomenclature_parser", "out", "latest", "csv"))
         for filename in nomenclature_files:
@@ -493,8 +493,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         elif typeName == 'phoneNumber':
             return 'string', r'tel:([#\+\*]|37000|00+)?[0-9]{2,15}', None
         else:
-            if has_format_details(child, 'REGEX: '):
-                return typeName, child['Détails de format'][len(FORMAT_FLAGS['REGEX']):], None
+            if has_format_details(child, FormatFlags.REGEX):
+                return typeName, child['Détails de format'][len(FormatFlags.REGEX):], None
             else:
                 return typeName, None, None
 
@@ -527,10 +527,10 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             childDetails['pattern'] = pattern
         if format is not None:
             childDetails['format'] = format
-        if has_format_details(child, 'ENUM: '):
-            childDetails['enum'] = child['Détails de format'][len(FORMAT_FLAGS['ENUM']):].split(', ')
+        if has_format_details(child, FormatFlags.ENUM):
+            childDetails['enum'] = child['Détails de format'][len(FormatFlags.ENUM):].split(', ')
         # key word nomenclature trigger search over nomenclature folder for matching file
-        if has_format_details(child, 'NOMENCLATURE: '):
+        if has_format_details(child, FormatFlags.NOMENCLATURE):
             childDetails['enum'] = get_nomenclature(child)
         properties = definitions['properties']
         if is_array(child):
