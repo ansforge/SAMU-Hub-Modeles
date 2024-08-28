@@ -1,6 +1,6 @@
 import copy
 import re
-from enum import Enum
+from enum import StrEnum
 import pandas as pd
 import json
 from jsonpath_ng import parse
@@ -46,7 +46,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     DATA_DEPTH = 6  # nombre de niveaux de données
     HEADER_LINE = 7  # ligne avec les en-têtes (ID Excel - 1)
 
-    class FormatFlags(Enum):
+    class FormatFlags(StrEnum):
         NOMENCLATURE = 'NOMENCLATURE: '
         ENUM = 'ENUM: '
         REGEX = 'REGEX: '
