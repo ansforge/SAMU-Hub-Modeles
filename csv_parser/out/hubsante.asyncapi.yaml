@@ -2873,13 +2873,31 @@ components:
             \ SI SAMU-TYPE_MOYEN."
           enum:
           - SMUR
+          - MED
+          - PARAMED
           - HOSPIT
           - LIB
+          - MEDC
+          - PHARMA
+          - INF
+          - MEDSPE
+          - DENT
+          - AUTREPRO
           - 'TSU '
           - SIS
+          - MSP
+          - ISP
+          - SP
           - AASC
           - FDO
+          - HELIFSI
+          - VLFSI
+          - FFSI
+          - DGDD
           - AUTRE
+          - ADM
+          - DAE
+          - INCONNU
           examples:
           - SMUR
         resourceType:
@@ -4099,13 +4117,31 @@ components:
             \ associ\xE9e."
           enum:
           - SMUR
+          - MED
+          - PARAMED
           - HOSPIT
           - LIB
+          - MEDC
+          - PHARMA
+          - INF
+          - MEDSPE
+          - DENT
+          - AUTREPRO
           - 'TSU '
           - SIS
+          - MSP
+          - ISP
+          - SP
           - AASC
           - FDO
+          - HELIFSI
+          - VLFSI
+          - FFSI
+          - DGDD
           - AUTRE
+          - ADM
+          - DAE
+          - INCONNU
           examples:
           - SMUR
         vehiculeType:
@@ -6305,7 +6341,7 @@ components:
           - SMUR
         deadline:
           type: string
-          title: "D\xE9lai souhait\xE9"
+          title: "D\xE9lai d'intervention"
           x-health-only: false
           x-cols: 6
           example: example.json#/request/deadline
@@ -6314,14 +6350,14 @@ components:
           enum:
           - DEL0
           - ASAP
-          - DEL30M
-          - DEL45M
-          - DEL1H
-          - DEL2H
-          - DEL4H
-          - DEL8H
-          - DEL12H
-          - DEL24H
+          - 30M
+          - 45M
+          - 1H
+          - 2H
+          - 4H
+          - 8H
+          - 12H
+          - 24H
           - RDV
           examples:
           - 10
@@ -6432,15 +6468,27 @@ components:
           - ACCEPTEE
         deadline:
           type: string
-          title: "D\xE9lai de r\xE9ponse"
+          title: "D\xE9lai d'intervention"
           x-health-only: false
           x-cols: 6
           example: example.json#/response/deadline
-          description: "A valoriser avec le d\xE9lai de r\xE9ponse maximum auquel\
-            \ s'engage l'exp\xE9diteur (en minutes) \nCas particulier : en cas de\
-            \ r\xE9ponse \"Partielle\" car le d\xE9lai souhait\xE9 ne peut pas \xEA\
-            tre respect\xE9,  \xE0 valoriser obligatoirement avec le d\xE9lai de r\xE9\
-            ponse maximum auquel s'engage l'exp\xE9diteur de la r\xE9ponse (en minutes).\n"
+          description: "A valoriser avec le d\xE9lai de r\xE9ponseauquel s'engage\
+            \ l'exp\xE9diteur (cf. nomenclature) \nCas particulier : en cas de r\xE9\
+            ponse \"Partielle\" car le d\xE9lai souhait\xE9 ne peut pas \xEAtre respect\xE9\
+            ,  \xE0 valoriser obligatoirement avec le d\xE9lai de r\xE9ponse maximum\
+            \ auquel s'engage l'exp\xE9diteur de la r\xE9ponse,\n"
+          enum:
+          - DEL0
+          - ASAP
+          - 30M
+          - 45M
+          - 1H
+          - 2H
+          - 4H
+          - 8H
+          - 12H
+          - 24H
+          - RDV
           examples:
           - 10
         freetext:

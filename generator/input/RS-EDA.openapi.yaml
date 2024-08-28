@@ -421,13 +421,31 @@ components:
             A fournir obligatoirement pour une d\xE9cision d'intervention ou de transport/orientation."
           enum:
           - SMUR
+          - MED
+          - PARAMED
           - HOSPIT
           - LIB
+          - MEDC
+          - PHARMA
+          - INF
+          - MEDSPE
+          - DENT
+          - AUTREPRO
           - 'TSU '
           - SIS
+          - MSP
+          - ISP
+          - SP
           - AASC
           - FDO
+          - HELIFSI
+          - VLFSI
+          - FFSI
+          - DGDD
           - AUTRE
+          - ADM
+          - DAE
+          - INCONNU
           examples:
           - SMUR, Pompiers
         vehiculeType:

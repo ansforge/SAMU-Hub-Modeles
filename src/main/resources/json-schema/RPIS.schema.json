@@ -1395,13 +1395,31 @@
                     "description": "Précise le type de moyen engagé dans l'intervention (SMUR, TSU, HOSPIT, etc.). \nA valoriser par un code de la nomenclature SI SAMU-TYPE_MOYEN.",
                     "enum": [
                         "SMUR",
+                        "MED",
+                        "PARAMED",
                         "HOSPIT",
                         "LIB",
+                        "MEDC",
+                        "PHARMA",
+                        "INF",
+                        "MEDSPE",
+                        "DENT",
+                        "AUTREPRO",
                         "TSU ",
                         "SIS",
+                        "MSP",
+                        "ISP",
+                        "SP",
                         "AASC",
                         "FDO",
-                        "AUTRE"
+                        "HELIFSI",
+                        "VLFSI",
+                        "FFSI",
+                        "DGDD",
+                        "AUTRE",
+                        "ADM",
+                        "DAE",
+                        "INCONNU"
                     ]
                 },
                 "resourceType": {

@@ -138,7 +138,7 @@ components:
           - SMUR
         deadline:
           type: string
-          title: "D\xE9lai souhait\xE9"
+          title: "D\xE9lai d'intervention"
           x-health-only: false
           x-cols: 6
           example: example.json#/request/deadline
@@ -147,14 +147,14 @@ components:
           enum:
           - DEL0
           - ASAP
-          - DEL30M
-          - DEL45M
-          - DEL1H
-          - DEL2H
-          - DEL4H
-          - DEL8H
-          - DEL12H
-          - DEL24H
+          - 30M
+          - 45M
+          - 1H
+          - 2H
+          - 4H
+          - 8H
+          - 12H
+          - 24H
           - RDV
           examples:
           - 10
