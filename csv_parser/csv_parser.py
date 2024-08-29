@@ -560,6 +560,13 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
                 'additionalProperties':  is_source_message(childTrueTypeName),
                 'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
+        elif json_schema['definitions'][childTrueTypeName]['title'] == child['full_name'] and 'children' in child:
+            """If this is not the first occurrence of the object and its ['name'] is the same as the first occurrence 
+            and it has children, then the model is incorrectly defined and we should throw an error and exit"""
+            print(f"{Color.RED}ERROR: object '{childTrueTypeName}' is defined multiple times. ")
+            print(f"Make sure the object is not defined multiple times in the model.{Color.END}")
+            exit(1)
+
         """If this is the first codeAndLabel, we record its name, otherwise we copy the properties from the first 
         codeAndLabel to the current codeAndLabel"""
         if childOriginalTypeName == "codeAndLabel":
@@ -680,6 +687,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating JSON schema...{Color.END}')
     DFS(rootObject, build_json_schema)
+    
     with open(f'out/{name}/{name}.schema.json', 'w', encoding='utf8') as outfile:
         json.dump(json_schema, outfile, indent=4, ensure_ascii=False)
     print('JSON schema generated.')
