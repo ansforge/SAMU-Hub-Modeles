@@ -55,7 +55,8 @@ jacocoTestReport {
 test {
     if (project.hasProperty('technical')) {
         include '**/*Technical*.class'
-    } else exclude '**/*Technical*.class'
+    } else if (!project.hasProperty('allTests')) 
+        exclude '**/*Technical*.class'
 }
 
 allprojects {
