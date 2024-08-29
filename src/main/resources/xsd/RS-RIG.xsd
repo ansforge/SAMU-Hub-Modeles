@@ -415,7 +415,7 @@ NB : dans tous les cas, la localisation GPS de la commune doit être fournie afi
     </complexType>
     <complexType name="geometry">
         <sequence>
-            <element name="obsDatime" type="dateTime">
+            <element name="datetime" type="dateTime">
                 <annotation>
                     <documentation>Groupe date heure de renseignement des coordonnées du point clé de la localisation. Permet de connaître la fraîcheur et donc pertinence des informations pour intervenir.</documentation>
                 </annotation>

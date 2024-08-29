@@ -91,7 +91,7 @@
                                     <entity>Infirmerie</entity>
                                 </access>
                                 <geometry>
-                                    <obsDatime>2023-11-03T10:04:00+01:00</obsDatime>
+                                    <datetime>2023-11-03T10:04:00+01:00</datetime>
                                     <point>
                                         <coord>
                                             <lat>48.866667</lat>

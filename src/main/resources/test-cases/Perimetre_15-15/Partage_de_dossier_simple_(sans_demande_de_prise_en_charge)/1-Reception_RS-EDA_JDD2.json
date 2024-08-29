@@ -62,7 +62,7 @@
             },
             "freetext": "dans la cage d’escalier B",
             "geometry": {
-                "obsDatime": "2024-01-04T00:05:00+01:00",
+                "datetime": "2024-01-04T00:05:00+01:00",
                 "point": {
                     "coord": {
                         "lat": 48.92399978637695,

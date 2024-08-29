@@ -1222,7 +1222,7 @@ Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}</do
     </complexType>
     <complexType name="geometry">
         <sequence>
-            <element name="obsDatime" type="dateTime">
+            <element name="datetime" type="dateTime">
                 <annotation>
                     <documentation>A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. 
 Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.</documentation>
