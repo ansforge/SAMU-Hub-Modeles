@@ -36,7 +36,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,4}
+          pattern: ^fr(\.[\w-]+){3,4}$
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -111,7 +111,7 @@ components:
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
             \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
             \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
-          pattern: fr(\.[\w-]+){2,3}
+          pattern: ^fr(\.[\w-]+){2,3}$
           examples:
           - fr.health.samu440
         patient:
@@ -263,7 +263,7 @@ components:
             patient unique dans le syst\xE8me \xE9metteur}\n\nOU, si un n\xB0patient\
             \ unique n'existe pas dans le syst\xE8me \xE9metteur :\n{ID \xE9metteur}.{senderCaseId}.patient.{num\xE9\
             ro d\u2019ordre chronologique au dossier}\n\n\n"
-          pattern: ([\w-]+\.){3,4}patient(\.[\w-]+){1,2}
+          pattern: ^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$
           examples:
           - 'fr.health.samu690.patient.P23AZ59
 
@@ -303,7 +303,7 @@ components:
             me \xE9metteur}\n\nOU, si un n\xB0patient unique n'existe pas dans le\
             \ syst\xE8me \xE9metteur :\n{ID \xE9metteur}.{senderCaseId}.patient.{num\xE9\
             ro d\u2019ordre chronologique au dossier}"
-          pattern: ([\w-]+\.){3,4}patient(\.[\w-]+){1,2}
+          pattern: ^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$
           examples:
           - 'fr.health.samu690.patient.P23AZ59
 
@@ -325,7 +325,7 @@ components:
             ro chronologique de l\u2019observation}\n\nCet identifiant a vocation\
             \ \xE0 devenir obligatoire pour permettre les mises \xE0 jour, il est\
             \ laiss\xE9 en facultatif temporairement.\n"
-          pattern: ([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}
+          pattern: ^([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}$
           examples:
           - 'fr.health.samu540.medicalNote.46585A
 
@@ -1421,7 +1421,7 @@ components:
           x-cols: 6
           example: example.json#/location/externalLocationId/0/value
           description: "A valoriser avec l'identifiant en lui-m\xEAme"
-          pattern: ([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])
+          pattern: ^([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])$
           examples:
           - "920000650\_"
       additionalProperties: false
@@ -1498,7 +1498,7 @@ components:
             \ la base du Code Officiel g\xE9ographique en vigueur. \nLa valeur du\
             \ code INSEE est obligatoire d\xE8s que le nom de la commune est renseign\xE9\
             \ (city.name)."
-          pattern: '[0-9]{5}'
+          pattern: ^[0-9]{5}$
           examples:
           - 59350
       additionalProperties: false
@@ -1605,7 +1605,7 @@ components:
             l\xE9phone du service administratif ou se trouve le patient/ la victime.\n\
             Le format attendu est le suivant : +{indicatif pays}{num\xE9ro de t\xE9\
             l\xE9phone}"
-          pattern: \+\d{5,18}
+          pattern: ^\+\d{5,18}$
           examples:
           - '+33123452323'
       additionalProperties: false
@@ -1616,14 +1616,14 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - obsDatime
+      - datetime
       properties:
-        obsDatime:
+        datetime:
           type: string
           title: "Heure du dernier relev\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/geometry/obsDatime
+          example: example.json#/location/geometry/datetime
           description: "A valoriser avec le groupe date heure de renseignement des\
             \ coordonn\xE9es du point cl\xE9 de la localisation. \nPermet de conna\xEE\
             tre la fra\xEEcheur et donc la pertinence des informations pour intervenir."
@@ -2407,7 +2407,7 @@ components:
             \ de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e)\
             \ et en n'utilisant qu'une seule unit\xE9 de dur\xE9e (ann\xE9es, mois,\
             \ semaines ou jours)"
-          pattern: P[0-9]{1,3}[YMWD]
+          pattern: ^P[0-9]{1,3}[YMWD]$
           examples:
           - P6Y
         careLevel:

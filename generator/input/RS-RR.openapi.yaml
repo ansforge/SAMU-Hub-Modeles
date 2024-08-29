@@ -34,7 +34,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,4}
+          pattern: ^fr(\.[\w-]+){3,4}$
           examples:
           - fr.health.samu440.DRFR15440241550012
         requestId:
@@ -50,7 +50,7 @@ components:
             \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
             \ pas disponible : \nOrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
-          pattern: ([\w-]+\.){3,4}request(\.[\w-]+){1,2}
+          pattern: ^([\w-]+\.){3,4}request(\.[\w-]+){1,2}$
           examples:
           - 'fr.health.samu770.request.1249875
 
@@ -95,15 +95,27 @@ components:
           - ACCEPTEE
         deadline:
           type: string
-          title: "D\xE9lai de r\xE9ponse"
+          title: "D\xE9lai d'intervention"
           x-health-only: false
           x-cols: 6
           example: example.json#/response/deadline
-          description: "A valoriser avec le d\xE9lai de r\xE9ponse maximum auquel\
-            \ s'engage l'exp\xE9diteur (en minutes) \nCas particulier : en cas de\
-            \ r\xE9ponse \"Partielle\" car le d\xE9lai souhait\xE9 ne peut pas \xEA\
-            tre respect\xE9,  \xE0 valoriser obligatoirement avec le d\xE9lai de r\xE9\
-            ponse maximum auquel s'engage l'exp\xE9diteur de la r\xE9ponse (en minutes).\n"
+          description: "A valoriser avec le d\xE9lai de r\xE9ponseauquel s'engage\
+            \ l'exp\xE9diteur (cf. nomenclature) \nCas particulier : en cas de r\xE9\
+            ponse \"Partielle\" car le d\xE9lai souhait\xE9 ne peut pas \xEAtre respect\xE9\
+            ,  \xE0 valoriser obligatoirement avec le d\xE9lai de r\xE9ponse maximum\
+            \ auquel s'engage l'exp\xE9diteur de la r\xE9ponse,\n"
+          enum:
+          - DEL0
+          - ASAP
+          - DEL30M
+          - DEL45M
+          - DEL1H
+          - DEL2H
+          - DEL4H
+          - DEL8H
+          - DEL12H
+          - DEL24H
+          - RDV
           examples:
           - 10
         freetext:
