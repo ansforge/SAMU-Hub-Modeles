@@ -560,9 +560,12 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
                 'additionalProperties':  is_source_message(childTrueTypeName),
                 'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
-        elif json_schema['definitions'][childTrueTypeName]['title'] == child['full_name'] and childOriginalTypeName != "codeAndLabel" and 'children' in child:
+        elif (json_schema['definitions'][childTrueTypeName]['title'] == child['full_name']
+              and childOriginalTypeName != "codeAndLabel"
+              and 'children' in child):
             """If this is not the first occurrence of the object and its ['name'] is the same as the first occurrence 
-            and it has children, then the model is incorrectly defined and we should throw an error and exit"""
+            and it has children, then the model is incorrectly defined and we should throw an error and exit.
+            We make an exception for codeAndLabel"""
             print(f"{Color.RED}ERROR: object '{childTrueTypeName}' is defined multiple times. ")
             print(f"Make sure the object is not defined multiple times in the model.{Color.END}")
             exit(1)
@@ -688,16 +691,18 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating JSON schema...{Color.END}')
     DFS(rootObject, build_json_schema)
 
-    """Before dumping, we verify the json schema definitions to make sure no objects with no properties are defined."""
-    empty_object_errors = []
-    for key in json_schema['definitions']:
-        if not json_schema['definitions'][key]['properties']:
-            empty_object_errors.append(f"{Color.RED}ERROR: object '{key}' is defined but has no properties.{Color.END}")
-    if empty_object_errors:
-        for error in empty_object_errors:
-            print(error)
-        print(f"{Color.RED}Make sure no empty objects are defined in the model.{Color.END}")
-        exit(1)
+    """Before dumping, we verify the json schema definitions to make sure no objects with no properties are defined.
+    This verification is skipped for RS-ERROR schema"""
+    if MODEL_TYPE != "error":
+        empty_object_errors = []
+        for key in json_schema['definitions']:
+            if not json_schema['definitions'][key]['properties']:
+                empty_object_errors.append(f"{Color.RED}ERROR: object '{key}' is defined but has no properties.{Color.END}")
+        if empty_object_errors:
+            for error in empty_object_errors:
+                print(error)
+            print(f"{Color.RED}Make sure no empty objects are defined in the model.{Color.END}")
+            exit(1)
     with open(f'out/{name}/{name}.schema.json', 'w', encoding='utf8') as outfile:
         json.dump(json_schema, outfile, indent=4, ensure_ascii=False)
     print('JSON schema generated.')
