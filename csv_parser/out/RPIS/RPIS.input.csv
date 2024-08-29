@@ -2,7 +2,7 @@ Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donn
 Evènement,,,,,,,,event,1..1,X,event,
 ,Identifiant du SAMU qui engage le SMUR,,,,,"Numéro du SAMU régulant la mission SMUR. 
 A valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}
-",fr.health.samu440,samuId,1..1,,string,"REGEX: [a-z]{2,3}\.[a-z]+\.\w*"
+",fr.health.samu440,samuId,1..1,,string,"REGEX: ^[a-z]{2,3}\.[a-z]+\.\w*$"
 ,Identifiant du dossier de régulation médicale (DRM),,,,,"Numéro du dossier SAMU à l’origine de la mission SMUR
 A valoriser par DRFR15DDXAAJJJ00000 : 
 - DR = désignation d'un dossier sous forme abrégée,
@@ -34,7 +34,7 @@ A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre 
 ,Sexe,,,,,"Sexe du patient, suivant le libellé court de la nomenclature SI-SAMU-NOMENC_SEXE",F,sex,1..1,,string,NOMENCLATURE: SI-SAMU-NOMENC_SEXE
 ,Adresse de résidence,,,,,,,residentialAddress,0..1,X,residentialAddress,
 ,,Code INSEE de la commune de résidence,,,,"Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.
-Le Code INSEE peut également précisé le pays de résidence, si étranger. ",92300,inseeCode,1..1,,string,REGEX: [0-9]{5}
+Le Code INSEE peut également précisé le pays de résidence, si étranger. ",92300,inseeCode,1..1,,string,REGEX: ^[0-9]{5}$
 ,,Nom de la commune,,,,Nom officiel de la commune actuelle,Levallois-Perret,city,1..1,,string,
 Intervention,,,,,,,,intervention,1..1,X,intervention,
 ,Lieu d'intervention,,,,,,,location,1..1,X,location,
@@ -45,7 +45,7 @@ A renseigner uniquement si l'intervention a lieu dans un établissement de sant�
 A renseigner uniquement si l'intervention a lieu dans un établissement de santé. ",,unit,0..1,,string,
 ,,Adresse de l'intervention,,,,,,detailedAddress,1..1,X,detailedAddress,
 ,,,Code INSEE de la commune,,,"Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.
-Le Code INSEE peut également précisé le pays d'intervention, si étranger. ",92300,inseeCode,1..1,,string,REGEX: [0-9]{5}
+Le Code INSEE peut également précisé le pays d'intervention, si étranger. ",92300,inseeCode,1..1,,string,REGEX: ^[0-9]{5}$
 ,,,Nom de la commune,,,Nom officiel de la commune actuelle,Levallois-Perret,city,1..1,,string,
 ,Composition de l'équipage,,,,,,,team,1..1,X,team,
 ,,Médecin,,,,"Permet d'identifier si un médecin compose l'équipe.
