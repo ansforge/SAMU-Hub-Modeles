@@ -687,7 +687,17 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating JSON schema...{Color.END}')
     DFS(rootObject, build_json_schema)
-    
+
+    """Before dumping, we verify the json schema definitions to make sure no objects with no properties are defined."""
+    empty_object_errors = []
+    for key in json_schema['definitions']:
+        if not json_schema['definitions'][key]['properties']:
+            empty_object_errors.append(f"{Color.RED}ERROR: object '{key}' is defined but has no properties.{Color.END}")
+    if empty_object_errors:
+        for error in empty_object_errors:
+            print(error)
+        print(f"{Color.RED}Make sure no empty objects are defined in the model.{Color.END}")
+        exit(1)
     with open(f'out/{name}/{name}.schema.json', 'w', encoding='utf8') as outfile:
         json.dump(json_schema, outfile, indent=4, ensure_ascii=False)
     print('JSON schema generated.')
