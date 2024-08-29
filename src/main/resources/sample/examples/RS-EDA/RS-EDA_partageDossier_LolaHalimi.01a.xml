@@ -66,11 +66,6 @@
         <type>TEL</type>
         <detail>+33702880946</detail>
       </callerContact>
-      <callbackContact>
-        <channel>PERSONNE</channel>
-        <type>TEL</type>
-        <detail>+33702880946</detail>
-      </callbackContact>
       <language>FR</language>
       <type>TIERS</type>
       <detailedName>
