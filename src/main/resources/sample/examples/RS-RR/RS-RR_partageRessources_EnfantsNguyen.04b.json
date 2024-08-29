@@ -3,7 +3,7 @@
     "response": {
       "answer": "PARTIELLE",
       "datetime": "2024-08-01T16:45:00+02:00",
-      "deadline": "10",
+      "deadline": "RDV",
       "freetext": "Ok pour envoi HéliSMUR. Engagement possible dans 10min seulement."
     },
     "caseId": "fr.health.samu800.DRFR158002421400215",
