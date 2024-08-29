@@ -62,11 +62,6 @@
         <type>TEL</type>
         <detail>+33607080915</detail>
       </callerContact>
-      <callbackContact>
-        <channel>PERSONNE</channel>
-        <type>TEL</type>
-        <detail>+33607080915</detail>
-      </callbackContact>
       <language>FR</language>
       <type>FAMILLE</type>
       <freetext>fils de la victime</freetext>
