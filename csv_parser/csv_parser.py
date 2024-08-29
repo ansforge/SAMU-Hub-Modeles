@@ -560,7 +560,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
                 'additionalProperties':  is_source_message(childTrueTypeName),
                 'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
-        elif json_schema['definitions'][childTrueTypeName]['title'] == child['full_name'] and 'children' in child:
+        elif json_schema['definitions'][childTrueTypeName]['title'] == child['full_name'] and childOriginalTypeName != "codeAndLabel" and 'children' in child:
             """If this is not the first occurrence of the object and its ['name'] is the same as the first occurrence 
             and it has children, then the model is incorrectly defined and we should throw an error and exit"""
             print(f"{Color.RED}ERROR: object '{childTrueTypeName}' is defined multiple times. ")
