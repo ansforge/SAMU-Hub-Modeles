@@ -175,5 +175,5 @@ components:
         datetime: '2022-09-27T08:23:34+02:00'
         convention: HORS
         purpose: SMUR
-        deadline: RDV
+        deadline: 10
         freetext: "Pr\xE9voir un kit p\xE9diatrique"
