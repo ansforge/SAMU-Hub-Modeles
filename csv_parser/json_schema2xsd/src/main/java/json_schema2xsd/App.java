@@ -52,6 +52,10 @@ public class App {
                 List<String> convertedEnums = new ArrayList<>();
                 convertEnumArraysToSimpleEnum(jsonNode, "", convertedEnums);
 
+                // Convert regex values to be compatible with XML schema 
+                // by removeing ^ and $ characters from the beginning and end of the string
+                convertRegexValues(jsonNode);
+                
                 // Create converted reader
                 byte[] bytes = mapper.writeValueAsBytes(jsonNode);
                 InputStream converted = new ByteArrayInputStream(bytes);
@@ -81,6 +85,28 @@ public class App {
         }
     }
 
+    private static void convertRegexValues(JsonNode node) {
+        if (!node.isObject()) {
+            return;
+        }
+
+        if (node.has("pattern")) {
+            String pattern = node.get("pattern").asText();
+            if (pattern.startsWith("^") && pattern.endsWith("$")) {
+                ((ObjectNode) node).put("pattern", pattern.substring(1, pattern.length() - 1));
+            } else {
+                // Patterns should always start with ^ and end with $, so if they don't, the model
+                // is incorrectly defined
+                throw new RuntimeException("RegEx patterns should start with ^ and end with $");
+            }
+        }
+
+        for (Iterator<Map.Entry<String, JsonNode>> fields = node.fields(); fields.hasNext(); ) {
+            Map.Entry<String, JsonNode> entry = fields.next();
+            convertRegexValues(entry.getValue());
+        }
+    }
+    
     private static String getTargetNamespace(String schema) {
         if (schema.equalsIgnoreCase("RC-DE")) {
             return "urn:emergency:cisu:2.0";
