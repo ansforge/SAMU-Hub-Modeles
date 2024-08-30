@@ -85,19 +85,55 @@ public class Resource {
   public enum ResourceTypeEnum {
     SMUR("SMUR"),
 
+    MED("MED"),
+
+    PARAMED("PARAMED"),
+
     HOSPIT("HOSPIT"),
 
     LIB("LIB"),
+
+    MEDC("MEDC"),
+
+    PHARMA("PHARMA"),
+
+    INF("INF"),
+
+    MEDSPE("MEDSPE"),
+
+    DENT("DENT"),
+
+    AUTREPRO("AUTREPRO"),
 
     TSU_("TSU "),
 
     SIS("SIS"),
 
+    MSP("MSP"),
+
+    ISP("ISP"),
+
+    SP("SP"),
+
     AASC("AASC"),
 
     FDO("FDO"),
 
-    AUTRE("AUTRE");
+    HELIFSI("HELIFSI"),
+
+    VLFSI("VLFSI"),
+
+    FFSI("FFSI"),
+
+    DGDD("DGDD"),
+
+    AUTRE("AUTRE"),
+
+    ADM("ADM"),
+
+    DAE("DAE"),
+
+    INCONNU("INCONNU");
 
     private String value;
 

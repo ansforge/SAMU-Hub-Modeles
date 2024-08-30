@@ -79,14 +79,14 @@
                     "enum": [
                         "DEL0",
                         "ASAP",
-                        "DEL30M",
-                        "DEL45M",
-                        "DEL1H",
-                        "DEL2H",
-                        "DEL4H",
-                        "DEL8H",
-                        "DEL12H",
-                        "DEL24H",
+                        "30M",
+                        "45M",
+                        "1H",
+                        "2H",
+                        "4H",
+                        "8H",
+                        "12H",
+                        "24H",
                         "RDV"
                     ]
                 },

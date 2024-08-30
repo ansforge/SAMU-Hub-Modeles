@@ -45,18 +45,13 @@
             "precision": "ADRESSE"
           }
         },
-        "obsDatime": "2024-01-04T00:05:00+01:00"
+        "datetime": "2024-01-04T00:05:00+01:00"
       }
     },
     "initialAlert": {
       "reception": "2024-01-04T08:00:00+01:00",
       "caller": {
         "callerContact": {
-          "channel": "PERSONNE",
-          "type": "TEL",
-          "detail": "+33607080915"
-        },
-        "callbackContact": {
           "channel": "PERSONNE",
           "type": "TEL",
           "detail": "+33607080915"

@@ -247,13 +247,31 @@ A fournir obligatoirement pour une décision d'intervention ou de transport/orie
                 <simpleType>
                     <restriction base="string">
                         <enumeration value="SMUR"/>
+                        <enumeration value="MED"/>
+                        <enumeration value="PARAMED"/>
                         <enumeration value="HOSPIT"/>
                         <enumeration value="LIB"/>
+                        <enumeration value="MEDC"/>
+                        <enumeration value="PHARMA"/>
+                        <enumeration value="INF"/>
+                        <enumeration value="MEDSPE"/>
+                        <enumeration value="DENT"/>
+                        <enumeration value="AUTREPRO"/>
                         <enumeration value="TSU "/>
                         <enumeration value="SIS"/>
+                        <enumeration value="MSP"/>
+                        <enumeration value="ISP"/>
+                        <enumeration value="SP"/>
                         <enumeration value="AASC"/>
                         <enumeration value="FDO"/>
+                        <enumeration value="HELIFSI"/>
+                        <enumeration value="VLFSI"/>
+                        <enumeration value="FFSI"/>
+                        <enumeration value="DGDD"/>
                         <enumeration value="AUTRE"/>
+                        <enumeration value="ADM"/>
+                        <enumeration value="DAE"/>
+                        <enumeration value="INCONNU"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -501,17 +519,17 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                         <enumeration value="C02.14.02"/>
                         <enumeration value="C02.14.03"/>
                         <enumeration value="C02.14.04"/>
-                        <enumeration value="C02.14.00"/>
-                        <enumeration value="C02.14.01"/>
-                        <enumeration value="C02.14.02"/>
-                        <enumeration value="C02.14.03"/>
-                        <enumeration value="C02.14.04"/>
-                        <enumeration value="C02.14.05"/>
-                        <enumeration value="C02.14.06"/>
                         <enumeration value="C02.15.00"/>
                         <enumeration value="C02.15.01"/>
                         <enumeration value="C02.15.02"/>
                         <enumeration value="C02.15.03"/>
+                        <enumeration value="C02.15.04"/>
+                        <enumeration value="C02.15.05"/>
+                        <enumeration value="C02.15.06"/>
+                        <enumeration value="C02.16.00"/>
+                        <enumeration value="C02.16.01"/>
+                        <enumeration value="C02.16.02"/>
+                        <enumeration value="C02.16.03"/>
                         <enumeration value="C03.00.00"/>
                         <enumeration value="C03.01.00"/>
                         <enumeration value="C03.01.01"/>

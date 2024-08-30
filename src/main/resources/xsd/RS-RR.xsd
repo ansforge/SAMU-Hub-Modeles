@@ -66,14 +66,14 @@ Cas particulier : en cas de réponse "Partielle" car le délai souhaité ne peut
                     <restriction base="string">
                         <enumeration value="DEL0"/>
                         <enumeration value="ASAP"/>
-                        <enumeration value="DEL30M"/>
-                        <enumeration value="DEL45M"/>
-                        <enumeration value="DEL1H"/>
-                        <enumeration value="DEL2H"/>
-                        <enumeration value="DEL4H"/>
-                        <enumeration value="DEL8H"/>
-                        <enumeration value="DEL12H"/>
-                        <enumeration value="DEL24H"/>
+                        <enumeration value="30M"/>
+                        <enumeration value="45M"/>
+                        <enumeration value="1H"/>
+                        <enumeration value="2H"/>
+                        <enumeration value="4H"/>
+                        <enumeration value="8H"/>
+                        <enumeration value="12H"/>
+                        <enumeration value="24H"/>
                         <enumeration value="RDV"/>
                     </restriction>
                 </simpleType>
