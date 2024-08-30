@@ -220,7 +220,7 @@
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/creation",
                     "description": "A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "freetext": {
@@ -261,7 +261,7 @@
                     "x-cols": 6,
                     "example": "example.json#/decision/0/creation",
                     "description": "A valoriser avec le groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "operator": {
@@ -627,7 +627,7 @@
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/notes/0/creation",
                     "description": "A valoriser avec le groupe date heure de création de l'information complémentaire",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "freetext": {
@@ -889,7 +889,7 @@
                     "x-cols": 6,
                     "example": "example.json#/patient/0/identity/strictFeatures/birthDate",
                     "description": "A valoriser avec la date de naissance du patient",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}"
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
                 },
                 "sex": {
                     "type": "string",

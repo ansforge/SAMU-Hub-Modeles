@@ -38,7 +38,7 @@
             "x-cols": 6,
             "example": "example.json#/creation",
             "description": "A valoriser avec le groupe date heure de création du dossier/affaire.\n\nSpécificité 15-18 : A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). \nLors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.  \nL'indicateur de fuseau horaire Z ne doit pas être utilisé.\nIl doit être renseigné à la fin du processus de la  création de la première alerte.",
-            "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
             "format": "date-time"
         },
         "referenceVersion": {
@@ -462,7 +462,7 @@
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/reception",
                     "description": "A valoriser avec le groupe date heure de réception de l'alerte/appel",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "reporting": {
@@ -1478,7 +1478,7 @@
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/datetime",
                     "description": "A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. \nPermet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "point": {
@@ -1684,7 +1684,7 @@
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/notes/0/creation",
                     "description": "A valoriser avec le groupe date heure de création de l'information complémentaire",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "freetext": {

@@ -41,7 +41,7 @@
                     "x-cols": 6,
                     "example": "example.json#/position/0/datetime",
                     "description": "Date et heure de la dernière position connue",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "receptionDatetime": {
@@ -51,7 +51,7 @@
                     "x-cols": 6,
                     "example": "example.json#/position/0/receptionDatetime",
                     "description": "Date et heure de la réception de la dernière position connue dans le système de l'organisme",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "coord": {

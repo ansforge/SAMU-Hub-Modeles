@@ -438,7 +438,7 @@ components:
             \ de ce champ ne doit pas \xEAtre modifi\xE9e.  \nL'indicateur de fuseau\
             \ horaire Z ne doit pas \xEAtre utilis\xE9.\nIl doit \xEAtre renseign\xE9\
             \ \xE0 la fin du processus de la  cr\xE9ation de la premi\xE8re alerte."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -1747,7 +1747,7 @@ components:
           description: "A valoriser avec le groupe date heure de renseignement des\
             \ coordonn\xE9es du point cl\xE9 de la localisation. \nPermet de conna\xEE\
             tre la fra\xEEcheur et donc la pertinence des informations pour intervenir."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -1970,7 +1970,7 @@ components:
           example: example.json#/initialAlert/notes/0/creation
           description: "A valoriser avec le groupe date heure de cr\xE9ation de l'information\
             \ compl\xE9mentaire"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - None
@@ -2661,7 +2661,7 @@ components:
             \ de ce champ ne doit pas \xEAtre modifi\xE9e.  \nL'indicateur de fuseau\
             \ horaire Z ne doit pas \xEAtre utilis\xE9.\nIl doit \xEAtre renseign\xE9\
             \ \xE0 la fin du processus de la  cr\xE9ation de la premi\xE8re alerte."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -2835,7 +2835,7 @@ components:
           example: example.json#/medicalNote/0/creation
           description: "A valoriser avec le groupe date heure de cr\xE9ation de l'observation.\
             \  L'indicateur de fuseau horaire Z ne doit pas \xEAtre utilis\xE9."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -3266,7 +3266,7 @@ components:
           x-cols: 6
           example: example.json#/patient/0/identity/strictFeatures/birthDate
           description: A valoriser avec la date de naissance du patient
-          pattern: \d{4}-\d{2}-\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}$
           examples:
           - None
         sex:
@@ -3587,7 +3587,7 @@ components:
             \ de cr\xE9ation de la demande de concours chez le partenaire emetteur.\
             \ L'heure d'envoi du message peut \xEAtre obtenue via l'enveloppe EDXL-DE\
             \ (se r\xE9f\xE9rer au DST)"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:25:54+02:00'
@@ -3720,7 +3720,7 @@ components:
           x-cols: 6
           example: example.json#/event/creationDate
           description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -3731,7 +3731,7 @@ components:
           x-cols: 6
           example: example.json#/event/decisionDate
           description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -3921,7 +3921,7 @@ components:
             Horraire cible pour l'arriv\xE9e sur les lieux d\xE9crites (peut diverger\
             \ de l'horaire demand\xE9)\n- Dans le cadre d'une mission d\xE9crivant\
             \ les op\xE9rations en cours :\nHoraire effectif de d\xE9but de la mission"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:25:00+02:00'
@@ -3936,7 +3936,7 @@ components:
             \ renseigner\n- Dans le cadre d'une mission d\xE9crivant les op\xE9rations\
             \ en cours :\n Si c'est un d\xE9placement, l'heure d'arriv\xE9e, si c'est\
             \ une prise en charge patient/victime, la fin de la prise en charge."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:55:00+02:00'
@@ -4040,7 +4040,7 @@ components:
           example: example.json#/mobilizedResource/0/datetime
           description: A valoriser avec la date et heure d'engagement de la ressource/du
             vecteur
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -4746,7 +4746,7 @@ components:
           x-cols: 6
           example: example.json#/EVENT/CASUALTIES/0/DATIME
           description: Optionnel
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:00:00+02:00'
@@ -4829,7 +4829,7 @@ components:
           x-cols: 6
           example: example.json#/EVENT/EVAC/0/DATIME
           description: Optionnel
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T10:00:00+02:00'
@@ -4873,7 +4873,7 @@ components:
           description: "Optionnel\nLa localisation de l'affaire est transmise en amont\
             \ dans un message RC-EDA et le lieu souhait\xE9 pour l'intervention est\
             \ syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:26:00+02:00'
@@ -5076,7 +5076,7 @@ components:
           x-cols: 6
           example: example.json#/position/0/datetime
           description: "Date et heure de la derni\xE8re position connue"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2024-01-27T08:44:00+02:00'
@@ -5088,7 +5088,7 @@ components:
           example: example.json#/position/0/receptionDatetime
           description: "Date et heure de la r\xE9ception de la derni\xE8re position\
             \ connue dans le syst\xE8me de l'organisme"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2024-01-27T08:45:00+02:00'
@@ -5859,7 +5859,7 @@ components:
           description: "Horaire associ\xE9 \xE0 l'arriv\xE9e de la ressource sur la\
             \ position. En fonction du TYPE de position, peut indiquer un horaire\
             \ de relev\xE9 de position, un horaire cible d'arriv\xE9e."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:44:00+02:00'
@@ -6162,7 +6162,7 @@ components:
           example: example.json#/mobilizedResource/0/state/0/datetime
           description: A valoriser avec la date et heure d'engagement de changement
             vers le nouveau statut
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -6289,7 +6289,7 @@ components:
           example: example.json#/request/datetime
           description: "A valoriser avec le groupe date heure de cr\xE9ation de la\
             \ demande"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -6445,7 +6445,7 @@ components:
           x-cols: 6
           example: example.json#/response/datetime
           description: "Groupe date heure de d\xE9but de la demande"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -6697,7 +6697,7 @@ components:
           example: example.json#/intervention/smurStatus/departSmur
           description: "Date et heure \xE0 laquelle le SMUR quitte sa base. \ns'exprime\
             \ au format ISO 8601 YYY-MM-DDThh:mm:ss"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -6709,7 +6709,7 @@ components:
           example: example.json#/intervention/smurStatus/arrivedSmur
           description: "Date et heure \xE0 laquelle le SMUR arrive sur les lieux de\
             \ l'intervention. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -6721,7 +6721,7 @@ components:
           example: example.json#/intervention/smurStatus/departLocation
           description: "Date et heure \xE0 laquelle le SMUR quitte les lieux de l'intervention.\
             \ \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -6733,7 +6733,7 @@ components:
           example: example.json#/intervention/smurStatus/arrivedDestination
           description: "Date et heure \xE0 laquelle le SMUR qui transporte arrive\
             \ \xE0 destination. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -6746,7 +6746,7 @@ components:
           description: "Date et heure \xE0 laquelle le SMUR est disponible (dispose\
             \ de tout les \xE9quipements pour faire une autre intervention). \ns'exprime\
             \ au format ISO 8601 YYY-MM-DDThh:mm:ss"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -6758,7 +6758,7 @@ components:
           example: example.json#/intervention/smurStatus/returnSmur
           description: "Date et heure \xE0 laquelle le SMUR est de retour \xE0 la\
             \ base. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -7135,7 +7135,7 @@ components:
           description: "A valoriser avec la date et heure de changement du statut.\
             \ \nSi la valeur est vide/inconnue alors c'est le datetime de cr\xE9ation\
             \ du message qui est indiqu\xE9."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -7331,7 +7331,7 @@ components:
           x-cols: 6
           example: example.json#/dateField
           description: Date
-          pattern: \d{4}-\d{2}-\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}$
           examples:
           - None
         emailField:
@@ -7351,7 +7351,7 @@ components:
           x-cols: 6
           example: example.json#/datetimeField
           description: Datetime
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - None
@@ -7609,7 +7609,7 @@ components:
           x-cols: 6
           example: example.json#/dateField
           description: Date
-          pattern: \d{4}-\d{2}-\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}$
           examples:
           - None
         emailField:
@@ -7629,7 +7629,7 @@ components:
           x-cols: 6
           example: example.json#/datetimeField
           description: Datetime
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - None

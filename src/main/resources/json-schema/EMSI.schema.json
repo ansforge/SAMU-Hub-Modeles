@@ -86,7 +86,7 @@
                     "x-cols": 6,
                     "example": "example.json#/CONTEXT/CREATION",
                     "description": "Obligatoire dans le cadre d'une demande de concours, contient la date de création de la demande de concours dans le système du partenaire requérant.\nA valoriser avec le même horaire que dateTimeSent dans le message RC-DE associé.\nDans le cadre d'une demande de concours, obligatoire. Ce champ est valorisée avec l'heure de création de la demande de concours chez le partenaire emetteur. L'heure d'envoi du message peut être obtenue via l'enveloppe EDXL-DE (se référer au DST)",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "LINK": {
@@ -237,7 +237,7 @@
                     "x-cols": 6,
                     "example": "example.json#/EVENT/DECL_DATIME",
                     "description": "Dans le cadre d'une demande de concours, ce champ est valorisé avec la date/heure de création de l'affaire ou de l'opération.\nNexSIS transmettra la date/heure de création de l'opération dans ses systèmes (qui peut diverger de la date/heure de création de l'affaire)",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "OCC_DATIME": {
@@ -247,7 +247,7 @@
                     "x-cols": 6,
                     "example": "example.json#/EVENT/OCC_DATIME",
                     "description": "Dans le cadre d'une demande de concours, ce champ est valorisé avec la date de la première alerte ou la date évaluée de début de la situation d'urgence.\nPar exemple :\nSi un incendie est déclaré est 9h02, il a pu démarré à 8h55 par exemple.\nNB : temporairement, NexSIS renseignera ce champ avec la date de réception de l'alerte initiale",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "OBS_DATIME": {
@@ -257,7 +257,7 @@
                     "x-cols": 6,
                     "example": "example.json#/EVENT/OBS_DATIME",
                     "description": "Ce champ est idéalement à valoriser avec la date/heure à laquelle l'observation de la situation d'urgence de l'affaire la plus récente a été réalisée.\nNexSIS transmettra la date/heure d'envoi de la demande de concours dans son système.\nNB : temporairement, NexSIS renseignera ce champ avec la date de réception de l'alerte initiale",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "STATUS": {
@@ -432,7 +432,7 @@
                     "x-cols": 6,
                     "example": "example.json#/MISSION/0/START_TIME",
                     "description": "- Dans le cadre d'une réponse à Demande de Concours\nHorraire cible pour l'arrivée sur les lieux décrites (peut diverger de l'horaire demandé)\n- Dans le cadre d'une mission décrivant les opérations en cours :\nHoraire effectif de début de la mission",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "END_TIME": {
@@ -442,7 +442,7 @@
                     "x-cols": 6,
                     "example": "example.json#/MISSION/0/END_TIME",
                     "description": "A valoriser selon la catégorie de mission :\n- Dans le cadre d'une mission de réponse à demande de concours : ne pas renseigner\n- Dans le cadre d'une mission décrivant les opérations en cours :\n Si c'est un déplacement, l'heure d'arrivée, si c'est une prise en charge patient/victime, la fin de la prise en charge.",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "RESOURCE_ID": {
@@ -1146,7 +1146,7 @@
                     "x-cols": 6,
                     "example": "example.json#/EVENT/CASUALTIES/0/DATIME",
                     "description": "Optionnel",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "DECONT": {
@@ -1215,7 +1215,7 @@
                     "x-cols": 6,
                     "example": "example.json#/EVENT/EVAC/0/DATIME",
                     "description": "Optionnel",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "DISPLACED": {
@@ -1252,7 +1252,7 @@
                     "x-cols": 6,
                     "example": "example.json#/EVENT/EGEO/0/DATIME",
                     "description": "Optionnel\nLa localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l'intervention est systématiquement reprécisé dans un objet MISSION",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "TYPE": {
@@ -2197,7 +2197,7 @@
                     "x-cols": 6,
                     "example": "example.json#/RESOURCE/0/RGEO/0/DATIME",
                     "description": "Horaire associé à l'arrivée de la ressource sur la position. En fonction du TYPE de position, peut indiquer un horaire de relevé de position, un horaire cible d'arrivée.",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "TYPE": {

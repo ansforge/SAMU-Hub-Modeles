@@ -13,7 +13,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="^fr(\.[\w-]+){3,4}$"/>
+                        <pattern value="fr(\.[\w-]+){3,4}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1088,7 +1088,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="^([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])$"/>
+                        <pattern value="([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1131,7 +1131,7 @@ La valeur du code INSEE est obligatoire dès que le nom de la commune est rensei
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="^[0-9]{5}$"/>
+                        <pattern value="[0-9]{5}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1188,7 +1188,7 @@ Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}</do
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="^\+\d{5,18}$"/>
+                        <pattern value="\+\d{5,18}"/>
                     </restriction>
                 </simpleType>
             </element>
