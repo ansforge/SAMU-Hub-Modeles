@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <technicalNoreq xmlns="urn:emergency:cisu:2.0:technicalNoreq">
-    <phoneNumberField>invalid_value</phoneNumberField>
+    <phoneNumberField>01234567891011121314151617181920</phoneNumberField>
     <dateField>2022 09 27</dateField>
     <emailField>email address@domain</emailField>
     <datetimeField>2022-09-27 08:25:54 Z02:00</datetimeField>
