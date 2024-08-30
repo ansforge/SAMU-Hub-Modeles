@@ -19,7 +19,7 @@ A valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="[a-z]{2,3}\.[a-z]+\.\w*"/>
+                        <pattern value="^[a-z]{2,3}\.[a-z]+\.\w*$"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -544,7 +544,7 @@ Le Code INSEE peut également précisé le pays de résidence, si étranger. </d
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="[0-9]{5}"/>
+                        <pattern value="^[0-9]{5}$"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -831,7 +831,7 @@ Le Code INSEE peut également précisé le pays d'intervention, si étranger. </
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="[0-9]{5}"/>
+                        <pattern value="^[0-9]{5}$"/>
                     </restriction>
                 </simpleType>
             </element>

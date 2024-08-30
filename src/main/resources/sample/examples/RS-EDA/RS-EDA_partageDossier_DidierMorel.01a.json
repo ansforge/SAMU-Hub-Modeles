@@ -56,11 +56,6 @@
           "type": "TEL",
           "detail": "+33607080915"
         },
-        "callbackContact": {
-          "channel": "PERSONNE",
-          "type": "TEL",
-          "detail": "+33607080915"
-        },
         "language": "FR",
         "freetext": "fils de la victime",
         "detailedName": {

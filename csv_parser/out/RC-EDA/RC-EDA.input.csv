@@ -4,7 +4,7 @@ Il est valorisé comme suit lors de sa création :
 {pays}.{domaine}.{organisation}.{senderCaseId}
 
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
- Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX: fr(\.[\w-]+){3,4}"
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX: ^fr(\.[\w-]+){3,4}$"
 Identifiant local de l'affaire/dossier,,,,,,"A valoriser avec le numéro du dossier dans le SI de l'émetteur du message.
 ",DRFR15440241550012,senderCaseId,0..1,,string,
 Date Heure de création de l'affaire/dossier,,,,,,"A valoriser avec le groupe date heure de création du dossier/affaire.
@@ -38,7 +38,7 @@ Localisation,,,,,,Objet qui permet de décrire la localisation du lieu d'interve
 ,Nom du lieu,,,,,"A valoriser avec le nom de lieu : nom commercial, nom d'établissement, forêt de Fontainebleau, lac du Der, etc.",Lycée Pierre de Coubertin,name,0..1,,string,
 ,Identifiant(s) du lieu,,,,,Objet qui permet de transmettre le lien avec l'identifiant du lieu dans une base de données externes possiblement connue des autres acteurs,,externalLocationId,0..n,X,externalLocationId,
 ,,Source  /  type d'identifiant,,,,A valoriser avec le type de l'identifiant fourni. Cf nomenclature associée.,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",source,1..1,,string,NOMENCLATURE: ENUM-SOURCE_Id_Lieu
-,,Identifiant,,,,A valoriser avec l'identifiant en lui-même,920000650 ,value,1..1,,string,REGEX: ([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])
+,,Identifiant,,,,A valoriser avec l'identifiant en lui-même,920000650 ,value,1..1,,string,REGEX: ^([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])$
 ,Détails de l'adresse,,,,,,,detailedAddress,0..1,X,detailedAddress,
 ,,"Numéro, type et nom de voie",,,,"A valoriser avec le numéro, le type et le nom de la voie.
 En réception, il est possible que seul cette information soit remplie. 
@@ -58,7 +58,7 @@ Si les attributs ""type"" et ""name"" de ""wayName"" sont également renseignés
 ,Détails de la commune,,,,,Objet qui permet de transmettre les détails de la commune,,city,0..1,X,city,
 ,,Nom de la commune,,,,A valoriser avec le nom officiel de la commune,Lille,name,0..1,,string,
 ,,Code INSEE de la commune,,,,"A valoriser avec le code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. 
-La valeur du code INSEE est obligatoire dès que le nom de la commune est renseigné (city.name).",59350,inseeCode,0..1,,string,REGEX: [0-9]{5}
+La valeur du code INSEE est obligatoire dès que le nom de la commune est renseigné (city.name).",59350,inseeCode,0..1,,string,REGEX: ^[0-9]{5}$
 ,,Complément de commune,,,,"Informations complémentaires permettant de préciser le quartier, lieu-dit, ancienne commune, … ou autre information aidant à préciser l'adresse et notamment gérer les cas de communes fusionnées pour le système émetteur
 NB : dans tous les cas, la localisation GPS de la commune doit être fournie afin d'éviter une trop forte ambiguïté.","Quartie Melun Nord, Lhomme, …",detail,0..1,,string,
 ,Détails d'accès,,,,,"Objet qui permet de décrire l'ensemble des détails d'accès au lieu d'intervention. 
@@ -74,7 +74,7 @@ Spécificités 15-18 : Non gérés par NexSIS; ne seront pas transmis au SAMU et
 ,,Entrée,,,,A valoriser avec le nom de l'entrée,Zone Sud,entrance,0..1,,string,
 ,,Service,,,,"A valoriser avec le nom du service concerné au sein de l'établissement : infirmerie, service finance, service comptabilité.",Infirmerie,entity,0..1,,string,
 ,,N° de téléphone du lieu,,,,"A valoriser avec le numéro de téléphone du lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/ la victime.
-Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}",+33123452323,phoneNumber,0..1,,string,"REGEX: \+\d{5,18}"
+Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}",+33123452323,phoneNumber,0..1,,string,"REGEX: ^\+\d{5,18}$"
 ,Géometrie associée,,,,,Objet qui permettre de transmettre la géométrie du lien d'intervention,,geometry,0..1,X,geometry,
 ,,Heure du dernier relevé,,,,"A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. 
 Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.",2022-09-27T08:23:34+02:00,datetime,1..1,,datetime,Format datetime décrit dans le DST
