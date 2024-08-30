@@ -65,7 +65,7 @@
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="\+?[0-9]{2,14}"/>
+                        <pattern value="^\+?[0-9]{2,14}$"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -85,7 +85,7 @@
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}"/>
+                        <pattern value="^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$"/>
                     </restriction>
                 </simpleType>
             </element>

@@ -93,8 +93,63 @@ public class Response {
   public static final String JSON_PROPERTY_ANSWER = "answer";
   private AnswerEnum answer;
 
+  /**
+   * A valoriser avec le délai de réponseauquel s&#39;engage l&#39;expéditeur
+   * (cf. nomenclature)  Cas particulier : en cas de réponse
+   * \&quot;Partielle\&quot; car le délai souhaité ne peut pas être respecté,  à
+   * valoriser obligatoirement avec le délai de réponse maximum auquel
+   * s&#39;engage l&#39;expéditeur de la réponse,
+   */
+  public enum DeadlineEnum {
+    DEL0("DEL0"),
+
+    ASAP("ASAP"),
+
+    DEL30M("DEL30M"),
+
+    DEL45M("DEL45M"),
+
+    DEL1H("DEL1H"),
+
+    DEL2H("DEL2H"),
+
+    DEL4H("DEL4H"),
+
+    DEL8H("DEL8H"),
+
+    DEL12H("DEL12H"),
+
+    DEL24H("DEL24H"),
+
+    RDV("RDV");
+
+    private String value;
+
+    DeadlineEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static DeadlineEnum fromValue(String value) {
+      for (DeadlineEnum b : DeadlineEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_DEADLINE = "deadline";
-  private String deadline;
+  private DeadlineEnum deadline;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
@@ -148,30 +203,30 @@ public class Response {
     this.answer = answer;
   }
 
-  public Response deadline(String deadline) {
+  public Response deadline(DeadlineEnum deadline) {
 
     this.deadline = deadline;
     return this;
   }
 
   /**
-   * A valoriser avec le délai de réponse maximum auquel s&#39;engage
-   *l&#39;expéditeur (en minutes)  Cas particulier : en cas de réponse
+   * A valoriser avec le délai de réponseauquel s&#39;engage l&#39;expéditeur
+   *(cf. nomenclature)  Cas particulier : en cas de réponse
    *\&quot;Partielle\&quot; car le délai souhaité ne peut pas être respecté,  à
    *valoriser obligatoirement avec le délai de réponse maximum auquel
-   *s&#39;engage l&#39;expéditeur de la réponse (en minutes).
+   *s&#39;engage l&#39;expéditeur de la réponse,
    * @return deadline
    **/
   @JsonProperty(JSON_PROPERTY_DEADLINE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getDeadline() {
+  public DeadlineEnum getDeadline() {
     return deadline;
   }
 
   @JsonProperty(JSON_PROPERTY_DEADLINE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeadline(String deadline) {
+  public void setDeadline(DeadlineEnum deadline) {
     this.deadline = deadline;
   }
 

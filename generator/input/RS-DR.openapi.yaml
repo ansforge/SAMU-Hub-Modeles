@@ -33,7 +33,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,4}
+          pattern: ^fr(\.[\w-]+){3,4}$
           examples:
           - fr.health.samu440.DRFR15440241550012
         request:
@@ -75,7 +75,6 @@ components:
             \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
             \ pas disponible : \n{OrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
-          pattern: ([\w-]+\.){3,4}request(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu770.request.1249875
 
@@ -138,7 +137,7 @@ components:
           - SMUR
         deadline:
           type: string
-          title: "D\xE9lai souhait\xE9"
+          title: "D\xE9lai d'intervention"
           x-health-only: false
           x-cols: 6
           example: example.json#/request/deadline

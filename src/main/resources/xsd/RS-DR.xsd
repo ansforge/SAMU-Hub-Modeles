@@ -13,7 +13,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="fr(\.[\w-]+){3,4}"/>
+                        <pattern value="^fr(\.[\w-]+){3,4}$"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -32,7 +32,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
     </complexType>
     <complexType name="request">
         <sequence>
-            <element name="requestId">
+            <element name="requestId" type="string">
                 <annotation>
                     <documentation>Identifiant unique partagé de la demande de ressource,  généré une seule fois par le système du partenaire qui émet la demande 
 Il est valorisé comme suit lors de sa création : 
@@ -41,11 +41,6 @@ Il est valorisé comme suit lors de sa création :
 OU - uniquement si un ID unique de la demande n'est pas disponible : 
 {OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}</documentation>
                 </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <pattern value="([\w-]+\.){3,4}request(\.[\w-]+){1,2}"/>
-                    </restriction>
-                </simpleType>
             </element>
             <element name="datetime" type="dateTime">
                 <annotation>

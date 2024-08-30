@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RPIS.schema.json#",
-    "version": "24.08.29",
+    "version": "24.08.30",
     "example": "example.json#",
     "type": "object",
     "title": "rpis",
@@ -53,7 +53,7 @@
                     "x-cols": 6,
                     "example": "example.json#/event/samuId",
                     "description": "Numéro du SAMU régulant la mission SMUR. \nA valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n",
-                    "pattern": "[a-z]{2,3}\\.[a-z]+\\.\\w*"
+                    "pattern": "^[a-z]{2,3}\\.[a-z]+\\.\\w*$"
                 },
                 "fileId": {
                     "type": "string",
@@ -704,7 +704,7 @@
                     "x-cols": 6,
                     "example": "example.json#/patient/residentialAddress/inseeCode",
                     "description": "Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.\nLe Code INSEE peut également précisé le pays de résidence, si étranger. ",
-                    "pattern": "[0-9]{5}"
+                    "pattern": "^[0-9]{5}$"
                 },
                 "city": {
                     "type": "string",
@@ -1070,7 +1070,7 @@
                     "x-cols": 6,
                     "example": "example.json#/intervention/location/detailedAddress/inseeCode",
                     "description": "Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.\nLe Code INSEE peut également précisé le pays d'intervention, si étranger. ",
-                    "pattern": "[0-9]{5}"
+                    "pattern": "^[0-9]{5}$"
                 },
                 "city": {
                     "type": "string",

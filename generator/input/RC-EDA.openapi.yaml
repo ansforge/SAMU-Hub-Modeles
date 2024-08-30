@@ -36,7 +36,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,4}
+          pattern: ^fr(\.[\w-]+){3,4}$
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -1355,7 +1355,7 @@ components:
           x-cols: 6
           example: example.json#/location/externalLocationId/0/value
           description: "A valoriser avec l'identifiant en lui-m\xEAme"
-          pattern: ([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])
+          pattern: ^([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])$
           examples:
           - "920000650\_"
       additionalProperties: false
@@ -1430,7 +1430,7 @@ components:
             \ la base du Code Officiel g\xE9ographique en vigueur. \nLa valeur du\
             \ code INSEE est obligatoire d\xE8s que le nom de la commune est renseign\xE9\
             \ (city.name)."
-          pattern: '[0-9]{5}'
+          pattern: ^[0-9]{5}$
           examples:
           - 59350
         detail:
@@ -1552,7 +1552,7 @@ components:
             l\xE9phone du service administratif ou se trouve le patient/ la victime.\n\
             Le format attendu est le suivant : +{indicatif pays}{num\xE9ro de t\xE9\
             l\xE9phone}"
-          pattern: \+\d{5,18}
+          pattern: ^\+\d{5,18}$
           examples:
           - '+33123452323'
       additionalProperties: false
@@ -1563,14 +1563,14 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - obsDatime
+      - datetime
       properties:
-        obsDatime:
+        datetime:
           type: string
           title: "Heure du dernier relev\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/geometry/obsDatime
+          example: example.json#/location/geometry/datetime
           description: "A valoriser avec le groupe date heure de renseignement des\
             \ coordonn\xE9es du point cl\xE9 de la localisation. \nPermet de conna\xEE\
             tre la fra\xEEcheur et donc la pertinence des informations pour intervenir."
