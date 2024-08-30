@@ -394,17 +394,17 @@ components:
           - C02.14.02
           - C02.14.03
           - C02.14.04
+          - C02.14.00
+          - C02.14.01
+          - C02.14.02
+          - C02.14.03
+          - C02.14.04
+          - C02.14.05
+          - C02.14.06
           - C02.15.00
           - C02.15.01
           - C02.15.02
           - C02.15.03
-          - C02.15.04
-          - C02.15.05
-          - C02.15.06
-          - C02.16.00
-          - C02.16.01
-          - C02.16.02
-          - C02.16.03
           - C03.00.00
           - C03.01.00
           - C03.01.01
@@ -1476,31 +1476,13 @@ components:
             \ SI SAMU-TYPE_MOYEN."
           enum:
           - SMUR
-          - MED
-          - PARAMED
           - HOSPIT
           - LIB
-          - MEDC
-          - PHARMA
-          - INF
-          - MEDSPE
-          - DENT
-          - AUTREPRO
           - 'TSU '
           - SIS
-          - MSP
-          - ISP
-          - SP
           - AASC
           - FDO
-          - HELIFSI
-          - VLFSI
-          - FFSI
-          - DGDD
           - AUTRE
-          - ADM
-          - DAE
-          - INCONNU
           examples:
           - SMUR
         resourceType:

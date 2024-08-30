@@ -38,7 +38,7 @@
       <inseeCode>76345</inseeCode>
     </city>
     <geometry>
-      <datetime>2024-07-29T13:00:00+02:00</datetime>
+      <obsDatime>2024-07-29T13:00:00+02:00</obsDatime>
       <point>
         <coord>
           <lat>49.59237386471319</lat>

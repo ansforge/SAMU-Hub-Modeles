@@ -291,31 +291,13 @@
                     "description": "A valoriser avec le type de ressource souhaitée ou engagée (cf.nomenclature associée) - en fonction du type de décision.\nA fournir obligatoirement pour une décision d'intervention ou de transport/orientation.",
                     "enum": [
                         "SMUR",
-                        "MED",
-                        "PARAMED",
                         "HOSPIT",
                         "LIB",
-                        "MEDC",
-                        "PHARMA",
-                        "INF",
-                        "MEDSPE",
-                        "DENT",
-                        "AUTREPRO",
                         "TSU ",
                         "SIS",
-                        "MSP",
-                        "ISP",
-                        "SP",
                         "AASC",
                         "FDO",
-                        "HELIFSI",
-                        "VLFSI",
-                        "FFSI",
-                        "DGDD",
-                        "AUTRE",
-                        "ADM",
-                        "DAE",
-                        "INCONNU"
+                        "AUTRE"
                     ]
                 },
                 "vehiculeType": {

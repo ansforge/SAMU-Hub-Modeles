@@ -46,7 +46,7 @@
       <buildingName>Soleil</buildingName>
     </access>
     <geometry>
-      <datetime>2024-05-18T18:15:00+02:00</datetime>
+      <obsDatime>2024-05-18T18:15:00+02:00</obsDatime>
       <point>
         <coord>
           <lat>47.146089</lat>

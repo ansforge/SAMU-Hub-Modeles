@@ -47,7 +47,7 @@
             "precision": "EXACTE"
           }
         },
-        "datetime": "2024-05-18T18:15:00+02:00"
+        "obsDatime": "2024-05-18T18:15:00+02:00"
       },
       "externalLocationId": [
         {

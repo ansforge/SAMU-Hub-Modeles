@@ -95,7 +95,7 @@
                   "entity": "Infirmerie"
                 },
                 "geometry": {
-                  "datetime": "2023-11-03T10:04:00+01:00",
+                  "obsDatime": "2023-11-03T10:04:00+01:00",
                   "point": {
                     "coord": {
                       "lat": 48.866667,

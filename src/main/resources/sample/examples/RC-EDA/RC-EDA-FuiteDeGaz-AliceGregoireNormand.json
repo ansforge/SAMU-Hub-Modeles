@@ -53,7 +53,7 @@
             "precision": "ADRESSE"
           }
         },
-        "datetime": "2024-05-18T18:17:00+02:00"
+        "obsDatime": "2024-05-18T18:17:00+02:00"
       }
     },
     "initialAlert": {
@@ -106,7 +106,7 @@
               "precision": "ADRESSE"
             }
           },
-          "datetime": "2024-05-18T18:17:00+02:00"
+          "obsDatime": "2024-05-18T18:17:00+02:00"
         }
       },
       "qualification": {

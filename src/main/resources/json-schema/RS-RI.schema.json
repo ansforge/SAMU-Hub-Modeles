@@ -101,31 +101,13 @@
                     "description": "A valoriser avec le yype de ressource mobilisée : cf.nomenclature associée.",
                     "enum": [
                         "SMUR",
-                        "MED",
-                        "PARAMED",
                         "HOSPIT",
                         "LIB",
-                        "MEDC",
-                        "PHARMA",
-                        "INF",
-                        "MEDSPE",
-                        "DENT",
-                        "AUTREPRO",
                         "TSU ",
                         "SIS",
-                        "MSP",
-                        "ISP",
-                        "SP",
                         "AASC",
                         "FDO",
-                        "HELIFSI",
-                        "VLFSI",
-                        "FFSI",
-                        "DGDD",
-                        "AUTRE",
-                        "ADM",
-                        "DAE",
-                        "INCONNU"
+                        "AUTRE"
                     ]
                 },
                 "vehiculeType": {

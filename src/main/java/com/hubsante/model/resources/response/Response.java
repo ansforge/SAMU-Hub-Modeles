@@ -105,21 +105,21 @@ public class Response {
 
     ASAP("ASAP"),
 
-    _30M("30M"),
+    DEL30M("DEL30M"),
 
-    _45M("45M"),
+    DEL45M("DEL45M"),
 
-    _1H("1H"),
+    DEL1H("DEL1H"),
 
-    _2H("2H"),
+    DEL2H("DEL2H"),
 
-    _4H("4H"),
+    DEL4H("DEL4H"),
 
-    _8H("8H"),
+    DEL8H("DEL8H"),
 
-    _12H("12H"),
+    DEL12H("DEL12H"),
 
-    _24H("24H"),
+    DEL24H("DEL24H"),
 
     RDV("RDV");
 

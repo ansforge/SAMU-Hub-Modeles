@@ -44,7 +44,7 @@
             "precision": "ADRESSE"
           }
         },
-        "datetime": "2024-01-04T00:05:00+01:00"
+        "obsDatime": "2024-01-04T00:05:00+01:00"
       },
       "access": {
         "accessCode": [
@@ -60,6 +60,11 @@
       "reception": "2024-01-18T18:00:00+01:00",
       "caller": {
         "callerContact": {
+          "type": "TEL",
+          "detail": "+33702880946",
+          "channel": "PERSONNE"
+        },
+        "callbackContact": {
           "type": "TEL",
           "detail": "+33702880946",
           "channel": "PERSONNE"

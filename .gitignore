@@ -4,5 +4,3 @@ generator/classes/**
 build/**
 reportgeneratortool/**
 coveragereport/**
-
-web_specs/generated/**

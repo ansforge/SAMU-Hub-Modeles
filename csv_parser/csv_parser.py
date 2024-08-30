@@ -22,7 +22,6 @@ pd.set_option('display.width', 1000)
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
 full_asyncapi = None
-all_model_types = []
 first_codeandlabel_name = ""
 first_codeandlabel_properties = []
 
@@ -770,7 +769,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
         # Adding current asyncapi schemas to full asyncapi schema
         global full_asyncapi
-        if full_asyncapi is None:
+        if (full_asyncapi is None):
             full_asyncapi = asyncapi_yaml
         else:
             full_asyncapi['components']['schemas'].update(asyncapi_yaml['components']['schemas'])
@@ -966,9 +965,6 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
                 def_to_table(MODEL_NAME, json_schema, style=style).save(f'docx-styles/schema-{style}.docx')
             else:
                 def_to_table(MODEL_NAME, json_schema, style=style).save(f'docx-styles/others/schema-{style}.docx')
-
-    # Add MODEL_TYPE to parsed schemas
-    all_model_types.append(MODEL_TYPE)
 
 
 if __name__ == '__main__':
