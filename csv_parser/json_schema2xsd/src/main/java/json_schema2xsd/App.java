@@ -53,7 +53,7 @@ public class App {
                 convertEnumArraysToSimpleEnum(jsonNode, "", convertedEnums);
 
                 // Convert regex values to be compatible with XML schema 
-                // by removeing ^ and $ characters from the beginning and end of the string
+                // by removing ^ and $ characters from the beginning and end of the string
                 convertRegexValues(jsonNode);
                 
                 // Create converted reader
