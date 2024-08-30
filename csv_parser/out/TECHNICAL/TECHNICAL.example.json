@@ -35,9 +35,7 @@
         },
         "stringLevel2": "None",
         "object2Level2": {
-            "object2Level3": {
-                "stringLevel4": "None"
-            }
+            "object2Level3": {}
         }
     },
     "nomenclatureField": "None"
