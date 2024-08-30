@@ -7466,6 +7466,8 @@ components:
           $ref: '#/components/schemas/levelThreeData'
       additionalProperties: false
       example: example.json#/objectLevel1/object2Level2
+      examples:
+      - object2Level3: {}
     levelThreeData:
       type: object
       title: Level 3 Object 1

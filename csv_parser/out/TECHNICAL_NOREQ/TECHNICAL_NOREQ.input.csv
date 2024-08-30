@@ -23,5 +23,4 @@ Level 1 Object,,,,,,Object at data level 1,,objectLevel1,0..1,X,levelOneData,
 ,Level 2 Field,,,,,String field at level 2,,stringLevel2,0..1,,string,
 ,Level 2 Object 2,,,,,Object 2 at data level 2,,object2Level2,0..1,X,secondLevelTwoData,
 ,,Level 3 Object 2,,,,Object 2 at data level 3,,object2Level3,0..1,X,levelThreeData,
-,,,Level 4 Field,,,String field at level 4,,stringLevel4,0..1,,string,
 Nomenclature,,,,,,Enum from extenal nomenclature file,,nomenclatureField,0..1,,string,NOMENCLATURE: SI-SAMU-NOMENC_SEXE
