@@ -6377,7 +6377,7 @@ components:
         datetime: '2022-09-27T08:23:34+02:00'
         convention: HORS
         purpose: SMUR
-        deadline: 10
+        deadline: RDV
         freetext: "Pr\xE9voir un kit p\xE9diatrique"
     resourcesResponse:
       $id: classpath:/json-schema/schema#
@@ -6505,7 +6505,7 @@ components:
       examples:
       - datetime: '2022-09-27T08:23:34+02:00'
         answer: ACCEPTEE
-        deadline: 10
+        deadline: RDV
         freetext: SMUR 1 non dispo
     rpis:
       $id: classpath:/json-schema/schema#

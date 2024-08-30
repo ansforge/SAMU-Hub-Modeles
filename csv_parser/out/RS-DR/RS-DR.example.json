@@ -5,7 +5,7 @@
         "datetime": "2022-09-27T08:23:34+02:00",
         "convention": "HORS",
         "purpose": "SMUR",
-        "deadline": 10,
+        "deadline": "RDV",
         "freetext": "Prévoir un kit pédiatrique"
     },
     "status": "ANNULEE"

@@ -4,7 +4,7 @@
     "response": {
         "datetime": "2022-09-27T08:23:34+02:00",
         "answer": "ACCEPTEE",
-        "deadline": 10,
+        "deadline": "RDV",
         "freetext": "SMUR 1 non dispo"
     }
 }
