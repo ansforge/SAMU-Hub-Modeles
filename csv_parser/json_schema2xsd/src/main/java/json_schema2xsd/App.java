@@ -5,25 +5,30 @@ import com.ethlo.jsons2xsd.Jsons2Xsd;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.sun.org.apache.xerces.internal.dom.DocumentImpl;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import java.io.*;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.dom.DOMSource;
-import java.nio.file.Files;
-import java.util.*;
+import javax.xml.transform.stream.StreamResult;
+import java.io.ByteArrayInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class App {
     public static void main(String[] args) {
         for (String schema : Arrays.asList("EMSI", "RC-DE", "RC-EDA", "RC-REF", "RS-EDA", "RS-INFO", "GEO-RES", "GEO-REQ", "GEO-POS", "RS-ERROR", "RS-RI",
-        "RS-DR", "RS-RR", "RPIS", "RS-EDA-MAJ", "RS-SR", "TECHNICAL", "TECHNICAL_NOREQ")) {
+                "RS-DR", "RS-RR", "RPIS", "RS-EDA-MAJ", "RS-SR", "TECHNICAL", "TECHNICAL_NOREQ")) {
             // Specify the path to your JSON schema file
             String jsonSchemaResourcePath = "/" + schema + ".schema.json";
 
@@ -97,7 +102,7 @@ public class App {
             } else {
                 // Patterns should always start with ^ and end with $, so if they don't, the model
                 // is incorrectly defined
-                throw new RuntimeException("RegEx patterns should start with ^ and end with $");
+                throw new RuntimeException("RegEx patterns should start with ^ and end with $.");
             }
         }
 

@@ -481,11 +481,11 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         """Get the matching type for a given type name"""
         typeName = child['Format (ou type)']
         if typeName == 'date':
-            return 'string', r'\d{4}-\d{2}-\d{2}', None
+            return 'string', r'^\d{4}-\d{2}-\d{2}$', None
         elif typeName == 'datetime':
-            return 'string', r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}', 'date-time'
+            return 'string', r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$', 'date-time'
         elif typeName == 'phoneNumber':
-            return 'string', r'tel:([#\+\*]|37000|00+)?[0-9]{2,15}', None
+            return 'string', r'^tel:([#\+\*]|37000|00+)?[0-9]{2,15}$', None
         else:
             if has_format_details(child, 'REGEX: '):
                 return typeName, child['Détails de format'][7:], None
