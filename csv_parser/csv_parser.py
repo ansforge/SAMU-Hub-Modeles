@@ -560,8 +560,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
                 'additionalProperties':  is_source_message(childTrueTypeName),
                 'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
-        elif (json_schema['definitions'][childTrueTypeName]['title'] == child['full_name']
-              and childOriginalTypeName != "codeAndLabel"
+        elif (childOriginalTypeName != "codeAndLabel"
               and 'children' in child):
             """If this is not the first occurrence of the object and its ['name'] is the same as the first occurrence 
             and it has children, then the model is incorrectly defined and we should throw an error and exit.
@@ -695,8 +694,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     This verification is skipped for RS-ERROR schema"""
     if MODEL_TYPE != "error":
         empty_object_errors = []
-        for key in json_schema['definitions']:
-            if not json_schema['definitions'][key]['properties']:
+        for key, definition in json_schema['definitions'].items():
+            if not definition['properties']:
                 empty_object_errors.append(f"{Color.RED}ERROR: object '{key}' is defined but has no properties.{Color.END}")
         if empty_object_errors:
             for error in empty_object_errors:
