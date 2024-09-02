@@ -24,9 +24,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Logger;
 
 public class App {
     public static void main(String[] args) {
+        Logger logger = Logger.getLogger(App.class.getName());
+        List<String> regexErrors = new ArrayList<>();
+        
         for (String schema : Arrays.asList("EMSI", "RC-DE", "RC-EDA", "RC-REF", "RS-EDA", "RS-INFO", "GEO-RES", "GEO-REQ", "GEO-POS", "RS-ERROR", "RS-RI",
                 "RS-DR", "RS-RR", "RPIS", "RS-EDA-MAJ", "RS-SR", "TECHNICAL", "TECHNICAL_NOREQ")) {
             // Specify the path to your JSON schema file
@@ -57,9 +61,13 @@ public class App {
                 List<String> convertedEnums = new ArrayList<>();
                 convertEnumArraysToSimpleEnum(jsonNode, "", convertedEnums);
 
-                // Convert regex values to be compatible with XML schema 
-                // by removing ^ and $ characters from the beginning and end of the string
-                convertRegexValues(jsonNode);
+                try {
+                    // Convert regex values to be compatible with XML schema 
+                    // by removing ^ and $ characters from the beginning and end of the string
+                    convertRegexValues(jsonNode);
+                } catch (RuntimeException e) {
+                    regexErrors.add("Error converting regex values in schema " + schema + ": " + e.getMessage());
+                }
                 
                 // Create converted reader
                 byte[] bytes = mapper.writeValueAsBytes(jsonNode);
@@ -88,6 +96,12 @@ public class App {
                 e.printStackTrace();
             }
         }
+        if (!regexErrors.isEmpty()) {
+            for (String error : regexErrors) {
+                logger.severe(error);
+            }
+            System.exit(1);
+        }
     }
 
     private static void convertRegexValues(JsonNode node) {
@@ -102,7 +116,7 @@ public class App {
             } else {
                 // Patterns should always start with ^ and end with $, so if they don't, the model
                 // is incorrectly defined
-                throw new RuntimeException("RegEx patterns should start with ^ and end with $.");
+                throw new RuntimeException(node.get("title") + ": RegEx patterns should start with ^ and end with $.");
             }
         }
 
