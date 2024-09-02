@@ -60,7 +60,7 @@ components:
           example: example.json#/mobilizedResource/0/datetime
           description: A valoriser avec la date et heure d'engagement de la ressource/du
             vecteur
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -345,7 +345,7 @@ components:
           example: example.json#/mobilizedResource/0/state/0/datetime
           description: A valoriser avec la date et heure d'engagement de changement
             vers le nouveau statut
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'

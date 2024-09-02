@@ -84,7 +84,7 @@ components:
           x-cols: 6
           example: example.json#/event/creationDate
           description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -95,7 +95,7 @@ components:
           x-cols: 6
           example: example.json#/event/decisionDate
           description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -1048,7 +1048,7 @@ components:
           example: example.json#/intervention/smurStatus/departSmur
           description: "Date et heure \xE0 laquelle le SMUR quitte sa base. \ns'exprime\
             \ au format ISO 8601 YYY-MM-DDThh:mm:ss"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -1060,7 +1060,7 @@ components:
           example: example.json#/intervention/smurStatus/arrivedSmur
           description: "Date et heure \xE0 laquelle le SMUR arrive sur les lieux de\
             \ l'intervention. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -1072,7 +1072,7 @@ components:
           example: example.json#/intervention/smurStatus/departLocation
           description: "Date et heure \xE0 laquelle le SMUR quitte les lieux de l'intervention.\
             \ \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -1084,7 +1084,7 @@ components:
           example: example.json#/intervention/smurStatus/arrivedDestination
           description: "Date et heure \xE0 laquelle le SMUR qui transporte arrive\
             \ \xE0 destination. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -1097,7 +1097,7 @@ components:
           description: "Date et heure \xE0 laquelle le SMUR est disponible (dispose\
             \ de tout les \xE9quipements pour faire une autre intervention). \ns'exprime\
             \ au format ISO 8601 YYY-MM-DDThh:mm:ss"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -1109,7 +1109,7 @@ components:
           example: example.json#/intervention/smurStatus/returnSmur
           description: "Date et heure \xE0 laquelle le SMUR est de retour \xE0 la\
             \ base. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'

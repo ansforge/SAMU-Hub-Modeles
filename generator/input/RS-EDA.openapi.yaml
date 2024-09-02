@@ -62,7 +62,7 @@ components:
             \ de ce champ ne doit pas \xEAtre modifi\xE9e.  \nL'indicateur de fuseau\
             \ horaire Z ne doit pas \xEAtre utilis\xE9.\nIl doit \xEAtre renseign\xE9\
             \ \xE0 la fin du processus de la  cr\xE9ation de la premi\xE8re alerte."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -231,7 +231,7 @@ components:
           x-cols: 6
           example: example.json#/initialAlert/reception
           description: "A valoriser avec le groupe date heure de r\xE9ception de l'alerte/appel"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:21:06+02:00'
@@ -338,7 +338,7 @@ components:
           example: example.json#/medicalNote/0/creation
           description: "A valoriser avec le groupe date heure de cr\xE9ation de l'observation.\
             \  L'indicateur de fuseau horaire Z ne doit pas \xEAtre utilis\xE9."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -387,7 +387,7 @@ components:
           description: "A valoriser avec le groupe date heure de cr\xE9ation de la\
             \ d\xE9cision.  L'indicateur de fuseau horaire Z ne doit pas \xEAtre utilis\xE9\
             ."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -1645,7 +1645,7 @@ components:
           description: "A valoriser avec le groupe date heure de renseignement des\
             \ coordonn\xE9es du point cl\xE9 de la localisation. \nPermet de conna\xEE\
             tre la fra\xEEcheur et donc la pertinence des informations pour intervenir."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -1900,7 +1900,7 @@ components:
           example: example.json#/initialAlert/notes/0/creation
           description: "A valoriser avec le groupe date heure de cr\xE9ation de l'information\
             \ compl\xE9mentaire"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - None
@@ -2526,7 +2526,7 @@ components:
           x-cols: 6
           example: example.json#/patient/0/identity/strictFeatures/birthDate
           description: A valoriser avec la date de naissance du patient
-          pattern: \d{4}-\d{2}-\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}$
           examples:
           - None
         sex:

@@ -64,7 +64,7 @@ components:
           description: "A valoriser avec la date et heure de changement du statut.\
             \ \nSi la valeur est vide/inconnue alors c'est le datetime de cr\xE9ation\
             \ du message qui est indiqu\xE9."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'

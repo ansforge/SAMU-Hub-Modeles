@@ -52,7 +52,7 @@
                     "x-cols": 6,
                     "example": "example.json#/response/datetime",
                     "description": "Groupe date heure de début de la demande",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "answer": {

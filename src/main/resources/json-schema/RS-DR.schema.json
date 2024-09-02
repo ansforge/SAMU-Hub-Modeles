@@ -62,7 +62,7 @@
                     "x-cols": 6,
                     "example": "example.json#/request/datetime",
                     "description": "A valoriser avec le groupe date heure de création de la demande",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "convention": {
