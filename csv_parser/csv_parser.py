@@ -13,7 +13,6 @@ import uml_generator
 import os
 
 from pathlib import Path
-
 # Improving panda printing | Ref.: https://stackoverflow.com/a/11711637
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
@@ -59,7 +58,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         # Computing number of rows in table
         # Find the row number of the first table header ('ID')
         id_index = (full_df[0] == 'ID').idxmax()
-        id_column = full_df.loc[id_index + 1:, 0]
+        id_column = full_df.loc[id_index+1:, 0]
         # Count the number of rows in the ID column
         rows = id_column.count()
         # Compute number of columns in table
@@ -87,15 +86,13 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
         if path_file != '':
             df_nomenclature = pd.read_csv(path_file, sep=",", keep_default_na=False, na_values=['_'], encoding="utf-8",
-                                          dtype={'code': str})
+                                          dtype={'code': str})   
             L_ret = df_nomenclature["code"].values.tolist()
         # ToDo: ajouter un bloc dans le elseif pour détecter des https:// et aller chercher les nomenclatures publiées en ligne (MOS/NOs par exemple)
         else:
-            print(
-                f"{Color.RED}ERROR: nomenclature {nomenclature_name} does not exist, could not load associated values.")
+            print(f"{Color.RED}ERROR: nomenclature {nomenclature_name} does not exist, could not load associated values.")
             print(f'Known nomenclatures are {nomenclature_files}')
-            print(
-                "Check if some nomenclature files disappeared. If so, last run of nomenclature_parser.py likely failed.")
+            print("Check if some nomenclature files disappeared. If so, last run of nomenclature_parser.py likely failed.")
             exit(1)
         return L_ret
 
@@ -153,6 +150,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(
         lambda x: pd.NA if str(x).startswith('# ') else x)
 
+
     def find_data_level(element):
         """Find the first data level of the element"""
         for i in range(1, DATA_DEPTH + 1):
@@ -165,19 +163,19 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         """ For 'Code', set code file name to the 'Détails de format' column, remove it from parent """
         if child['Balise'] == "code":
             child['Détails de format'] = code_file
-            df.loc[parent.ID - 1, 'Détails de format'] = 'nan'
+            df.loc[parent.ID-1, 'Détails de format'] = 'nan'
         """Set the level of the child to be the level of the parent + 1"""
-        if find_data_level(child) != find_data_level(parent) + 1:
+        if find_data_level(child) != find_data_level(parent)+1:
             child = shift_child_data_levels(child, parent)
         return copy.deepcopy(child)
 
     def shift_child_data_levels(child, parent):
         """Shift the data levels of the child by the shift value"""
-        shift_difference = find_data_level(child) - find_data_level(parent) + 1
+        shift_difference = find_data_level(child) - find_data_level(parent)+1
         child_cpy = copy.deepcopy(child)
         for i in range(1, 1 + DATA_DEPTH):
-            if 0 < i - shift_difference <= DATA_DEPTH:
-                child_cpy[f"Donnée (Niveau {i})"] = child[f"Donnée (Niveau {i - shift_difference})"]
+            if 0 < i-shift_difference <= DATA_DEPTH:
+                child_cpy[f"Donnée (Niveau {i})"] = child[f"Donnée (Niveau {i-shift_difference})"]
         return child_cpy
 
     global first_codeandlabel_properties
@@ -203,12 +201,13 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
                     # we check the highest level of data of the current row and make sure to modify
                     # the level of data of each property to be equal to the row's level + 1
                     prop_cpy = first_codeandlabel_properties[i - 1].copy()
-                    prop_cpy['ID'] = row['ID'] + i / 10
-                    df.loc[index + i / 10] = format_codeandlabel_properties(prop_cpy, row)
+                    prop_cpy['ID'] = row['ID']+i/10
+                    df.loc[index + i/10] = format_codeandlabel_properties(prop_cpy, row)
 
     df.sort_index(axis=0, ascending=True, inplace=True, kind='quicksort')
     df.reset_index(drop=True, inplace=True)
     regenerate_ids(df)
+
 
     # Adding a name column ('Balise' by default)
     df['name'] = df['Balise']
@@ -224,6 +223,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         # If the 2 numbers are different => that item's active 'Donnée' column is i => update 'level_shift' column
         df["level_shift"] = df.apply(
             lambda row: i if row[f"level_{i}"] != row[f"previous_level_{i}"] else row['level_shift'], axis=1)
+
 
     # DATA VALIDATION
     HAS_ERROR = False
@@ -348,6 +348,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         df['parent_type'] = df.apply(get_parent_type, axis=1)
         df['full_name'] = df.apply(build_full_name, axis=1)
 
+
+
     # Verify that cardinality is formatted correctly (e.g. '0..1', '1..1', '0..n', '1..n'; regex (\d+..(\d+|n)))
     def validate_cardinality_format(cardinality):
         if re.match(r'^\d+\.\.(\d+|n)$', cardinality) and validate_cardinality_values(cardinality):
@@ -369,13 +371,12 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         if not validate_cardinality_format(row['Cardinalité']):
             errs.append(row)
     if errs:
-        print(
-            f"{Color.RED}ERROR: some rows have invalid cardinality values in sheet {sheet}, perimeter {perimeter_filter}:{Color.ORANGE}")
+        print(f"{Color.RED}ERROR: some rows have invalid cardinality values in sheet {sheet}, perimeter {perimeter_filter}:{Color.ORANGE}")
         for err in errs:
-            print("Row ID: ", f"{str(int(err['ID'])):<5s}", "Name: ", f"{err['name']:<25s}", "Cardinality: ",
-                  err['Cardinalité'])
+            print("Row ID: ", f"{str(int(err['ID'])):<5s}", "Name: ", f"{err['name']:<25s}", "Cardinality: ", err['Cardinalité'])
         print(f"{Color.RED}Cardinalities should be formatted as '0..1', '1..1', '0..n', '1..n'.{Color.END}")
         exit(1)
+
 
     # 2. Recursive data (children in their parent, to be explored like a tree)
     def get_element_with_its_children(previous_children, elem_id):
@@ -557,7 +558,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
                 'x-health-only': child['is_health_only'],
                 'required': [],
                 'properties': {},
-                'additionalProperties': is_source_message(childTrueTypeName),
+                'additionalProperties':  is_source_message(childTrueTypeName),
                 'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
         elif (childOriginalTypeName != "codeAndLabel"
@@ -568,7 +569,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             print(f"{Color.RED}ERROR: object '{childTrueTypeName}' is defined multiple times. ")
             print(f"Make sure the object is not defined multiple times in the model.{Color.END}")
             exit(1)
-
+            
         """If this is the first codeAndLabel, we record its name, otherwise we copy the properties from the first 
         codeAndLabel to the current codeAndLabel"""
         if childOriginalTypeName == "codeAndLabel":
@@ -576,8 +577,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             if first_codeandlabel_name == "":
                 first_codeandlabel_name = childTrueTypeName
             else:
-                json_schema['definitions'][childTrueTypeName]['properties'] = \
-                json_schema['definitions'][first_codeandlabel_name]['properties'].copy()
+                json_schema['definitions'][childTrueTypeName]['properties'] = json_schema['definitions'][first_codeandlabel_name]['properties'].copy()
 
         if child['Cardinalité'].startswith('1'):
             definitions['required'].append(child['name'])
@@ -623,12 +623,12 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
                 if elem['Format (ou type)'] != 'codeAndLabel':
                     assert elem['Format (ou type)'] in json_schema['definitions'], \
                         (f"The type of the object '{elem['name']}' is not defined.\n"
-                         f"Make sure the object is not empty")
+                        f"Make sure the object is not empty")
                     return json_schema['definitions'][elem['Format (ou type)']]
                 else:
                     assert elem['name'] in json_schema['definitions'], \
                         (f"The type of the object '{elem['name']}' is not defined.\n"
-                         f"Make sure the object is not empty")
+                        f"Make sure the object is not empty")
                     return json_schema['definitions'][elem['name']]
             typeName = elem['true_type']
             definition = json_schema['definitions'][typeName]
@@ -690,6 +690,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating JSON schema...{Color.END}')
     DFS(rootObject, build_json_schema)
+
     """Before dumping, we verify the json schema definitions to make sure no objects with no properties are defined.
     This verification is skipped for RS-ERROR schema"""
     if MODEL_TYPE != "error":
@@ -708,7 +709,6 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     # BUILD OpenAPI SCHEMA
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating OpenAPI schema...{Color.END}')
-
     def json_schema_to_openapi_schema(json_schema):
         openapi_schema = {}
         definitions = json_schema['definitions']
