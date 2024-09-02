@@ -563,7 +563,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             }
         elif (childOriginalTypeName != "codeAndLabel"
               and 'children' in child):
-            """If this is not the first occurrence of the object and its ['name'] is the same as the first occurrence 
+            """If this is not the first occurrence of the object
             and it has children, then the model is incorrectly defined and we should throw an error and exit.
             We make an exception for codeAndLabel"""
             print(f"{Color.RED}ERROR: object '{childTrueTypeName}' is defined multiple times. ")
