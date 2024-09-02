@@ -394,6 +394,9 @@ components:
       x-health-only: false
       required:
       - TYPE
+      - ID
+      - NAME
+      - STATUS
       properties:
         TYPE:
           type: string
@@ -642,6 +645,9 @@ components:
       x-health-only: false
       required:
       - RTYPE
+      - ID
+      - NAME
+      - STATUS
       properties:
         RTYPE:
           $ref: '#/components/schemas/rtype'

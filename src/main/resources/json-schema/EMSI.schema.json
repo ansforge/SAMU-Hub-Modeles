@@ -342,7 +342,10 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "TYPE"
+                "TYPE",
+                "ID",
+                "NAME",
+                "STATUS"
             ],
             "properties": {
                 "TYPE": {
@@ -518,7 +521,10 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "RTYPE"
+                "RTYPE",
+                "ID",
+                "NAME",
+                "STATUS"
             ],
             "properties": {
                 "RTYPE": {
