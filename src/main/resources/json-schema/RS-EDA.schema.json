@@ -2394,7 +2394,8 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/hypothesis/mainDiagnosis/code",
-                    "description": "A valoriser avec le code de la nomenclature associée"
+                    "description": "A valoriser avec le code de la nomenclature associée",
+                    "pattern": "^[A-Z]\\d{2}(\\.[\\d\\+\\-]{1,3})?$"
                 },
                 "label": {
                     "type": "string",
@@ -2424,7 +2425,8 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/hypothesis/otherDiagnosis/0/code",
-                    "description": "A valoriser avec le code de la nomenclature associée"
+                    "description": "A valoriser avec le code de la nomenclature associée",
+                    "pattern": "^[A-Z]\\d{2}(\\.[\\d\\+\\-]{1,3})?$"
                 },
                 "label": {
                     "type": "string",
