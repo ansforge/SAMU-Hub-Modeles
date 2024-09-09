@@ -182,7 +182,7 @@ components:
       properties:
         patientId:
           type: string
-          title: Identifiant Patient
+          title: ID Patient
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/patientId

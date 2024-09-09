@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RPIS.schema.json#",
-    "version": "24.09.06",
+    "version": "24.09.09",
     "example": "example.json#",
     "type": "object",
     "title": "rpis",
@@ -158,7 +158,7 @@
             "properties": {
                 "patientId": {
                     "type": "string",
-                    "title": "Identifiant Patient",
+                    "title": "ID Patient",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/patientId",
