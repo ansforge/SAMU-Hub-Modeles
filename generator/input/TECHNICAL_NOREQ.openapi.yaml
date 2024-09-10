@@ -129,7 +129,7 @@ components:
           x-cols: 6
           example: example.json#/dateField
           description: Date
-          pattern: \d{4}-\d{2}-\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}$
           examples:
           - None
         emailField:
@@ -149,7 +149,7 @@ components:
           x-cols: 6
           example: example.json#/datetimeField
           description: Datetime
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - None

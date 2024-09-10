@@ -81,8 +81,8 @@ Par convention les prénoms composés doivent préférablement être séparés p
 Au format ""Durée"" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) et en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)",P6Y,age,0..1,,string,"REGEX: ^P[0-9]{1,3}[YMWD]$"
 ,,Niveau de soin du patient,,,,A valoriser avec le niveau de soins spécifique au patient,R1,careLevel,0..1,,string,NOMENCLATURE: SI-SAMU-GRAVITE
 ,Hypothèses de régulation médicale,,,,,Objet qui permet de décrire les hypothèses de régulation médicale,,hypothesis,0..1,X,hypothesis,
-,,Hypothèse de régulation médicale principale,# Voir type codeAndLabel,,,Hypothèse diagnostique principale émise par le médecin régulateur du CRAA. Norme CIM11.,,mainDiagnosis,0..1,X,codeAndLabel,
-,,Hypothèses de régulation médicale secondaires,# Voir type codeAndLabel,,,Hypothèses diagnostiques secondaires émises par le médecin régulateur du CRAA. Norme CIM11.,,otherDiagnosis,0..n,X,codeAndLabel,
+,,Hypothèse de régulation médicale principale,# Voir type codeAndLabel,,,Hypothèse diagnostique principale émise par le médecin régulateur du CRAA. Norme CIM10.,,mainDiagnosis,0..1,X,codeAndLabel,"REGEX: ^[A-Z]\d{2}(\.[\d\+\-]{1,3})?$"
+,,Hypothèses de régulation médicale secondaires,# Voir type codeAndLabel,,,Hypothèses diagnostiques secondaires émises par le médecin régulateur du CRAA. Norme CIM10.,,otherDiagnosis,0..n,X,codeAndLabel,"REGEX: ^[A-Z]\d{2}(\.[\d\+\-]{1,3})?$"
 Observation médicale,,,,,,Observations de nature médicale. ,,medicalNote,0..n,X,medicalNote,
 ,ID patient partagé,,,,,"Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, 
 

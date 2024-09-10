@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.09.02",
+    "version": "24.09.09",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -38,7 +38,7 @@
             "x-cols": 6,
             "example": "example.json#/creation",
             "description": "A valoriser avec le groupe date heure de création du dossier/affaire.\n\nSpécificité 15-18 : A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). \nLors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.  \nL'indicateur de fuseau horaire Z ne doit pas être utilisé.\nIl doit être renseigné à la fin du processus de la  création de la première alerte.",
-            "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
             "format": "date-time"
         },
         "perimeter": {
@@ -221,7 +221,7 @@
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/reception",
                     "description": "A valoriser avec le groupe date heure de réception de l'alerte/appel",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "notes": {
@@ -313,7 +313,7 @@
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/creation",
                     "description": "A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "freetext": {
@@ -354,7 +354,7 @@
                     "x-cols": 6,
                     "example": "example.json#/decision/0/creation",
                     "description": "A valoriser avec le groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "operator": {
@@ -1533,7 +1533,7 @@
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/datetime",
                     "description": "A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. \nPermet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "point": {
@@ -1757,7 +1757,7 @@
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/notes/0/creation",
                     "description": "A valoriser avec le groupe date heure de création de l'information complémentaire",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "freetext": {
@@ -2358,7 +2358,7 @@
                     "x-cols": 6,
                     "example": "example.json#/patient/0/identity/strictFeatures/birthDate",
                     "description": "A valoriser avec la date de naissance du patient",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}"
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
                 },
                 "sex": {
                     "type": "string",
@@ -2394,7 +2394,8 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/hypothesis/mainDiagnosis/code",
-                    "description": "A valoriser avec le code de la nomenclature associée"
+                    "description": "A valoriser avec le code de la nomenclature associée",
+                    "pattern": "^[A-Z]\\d{2}(\\.[\\d\\+\\-]{1,3})?$"
                 },
                 "label": {
                     "type": "string",
@@ -2424,7 +2425,8 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/hypothesis/otherDiagnosis/0/code",
-                    "description": "A valoriser avec le code de la nomenclature associée"
+                    "description": "A valoriser avec le code de la nomenclature associée",
+                    "pattern": "^[A-Z]\\d{2}(\\.[\\d\\+\\-]{1,3})?$"
                 },
                 "label": {
                     "type": "string",

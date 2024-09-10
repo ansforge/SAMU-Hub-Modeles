@@ -5,25 +5,34 @@ import com.ethlo.jsons2xsd.Jsons2Xsd;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.sun.org.apache.xerces.internal.dom.DocumentImpl;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import java.io.*;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.dom.DOMSource;
-import java.nio.file.Files;
-import java.util.*;
+import javax.xml.transform.stream.StreamResult;
+import java.io.ByteArrayInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Logger;
 
 public class App {
     public static void main(String[] args) {
+        Logger logger = Logger.getLogger(App.class.getName());
+        List<String> regexErrors = new ArrayList<>();
+        
         for (String schema : Arrays.asList("EMSI", "RC-DE", "RC-EDA", "RC-REF", "RS-EDA", "RS-INFO", "GEO-RES", "GEO-REQ", "GEO-POS", "RS-ERROR", "RS-RI",
-        "RS-DR", "RS-RR", "RPIS", "RS-EDA-MAJ", "RS-SR", "TECHNICAL", "TECHNICAL_NOREQ")) {
+                "RS-DR", "RS-RR", "RPIS", "RS-EDA-MAJ", "RS-SR", "TECHNICAL", "TECHNICAL_NOREQ")) {
             // Specify the path to your JSON schema file
             String jsonSchemaResourcePath = "/" + schema + ".schema.json";
 
@@ -52,6 +61,14 @@ public class App {
                 List<String> convertedEnums = new ArrayList<>();
                 convertEnumArraysToSimpleEnum(jsonNode, "", convertedEnums);
 
+                try {
+                    // Convert regex values to be compatible with XML schema 
+                    // by removing ^ and $ characters from the beginning and end of the string
+                    convertRegexValues(jsonNode);
+                } catch (RuntimeException e) {
+                    regexErrors.add("Error converting regex values in schema " + schema + ": " + e.getMessage());
+                }
+                
                 // Create converted reader
                 byte[] bytes = mapper.writeValueAsBytes(jsonNode);
                 InputStream converted = new ByteArrayInputStream(bytes);
@@ -79,8 +96,36 @@ public class App {
                 e.printStackTrace();
             }
         }
+        if (!regexErrors.isEmpty()) {
+            for (String error : regexErrors) {
+                logger.severe(error);
+            }
+            System.exit(1);
+        }
     }
 
+    private static void convertRegexValues(JsonNode node) {
+        if (!node.isObject()) {
+            return;
+        }
+
+        if (node.has("pattern")) {
+            String pattern = node.get("pattern").asText();
+            if (pattern.startsWith("^") && pattern.endsWith("$")) {
+                ((ObjectNode) node).put("pattern", pattern.substring(1, pattern.length() - 1));
+            } else {
+                // Patterns should always start with ^ and end with $, so if they don't, the model
+                // is incorrectly defined
+                throw new RuntimeException(node.get("title") + ": RegEx patterns should start with ^ and end with $.");
+            }
+        }
+
+        for (Iterator<Map.Entry<String, JsonNode>> fields = node.fields(); fields.hasNext(); ) {
+            Map.Entry<String, JsonNode> entry = fields.next();
+            convertRegexValues(entry.getValue());
+        }
+    }
+    
     private static String getTargetNamespace(String schema) {
         if (schema.equalsIgnoreCase("RC-DE")) {
             return "urn:emergency:cisu:2.0";

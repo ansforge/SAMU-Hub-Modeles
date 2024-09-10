@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: Check release name matches version pattern
         run: |
-          PATTERN="^([0-9]+\.[0-9]+(\.[0-9]+)?)(-[A-Za-z]+(-[0-9]+))?$"
+          PATTERN="^([0-9]+\.[0-9]+(\.[0-9]+)?)(-[A-Za-z0-9\.]+)*$"
 
           if [[ $RELEASE_NAME =~ $PATTERN ]]; then
             echo "The RELEASE_NAME '$RELEASE_NAME' is valid."
@@ -65,5 +65,5 @@ jobs:
         with:
           push: true
           platforms: linux/amd64
-          tags: ghcr.io/${{ github.repository_owner }}/web-specs:${{ env.RELEASE_NAME }}
-          context: ./web_specs/generated
+          tags: ghcr.io/${{ github.repository_owner }}/hub-web-specs:${{ env.RELEASE_NAME }}
+          context: ./web_specs

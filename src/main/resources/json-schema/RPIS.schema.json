@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RPIS.schema.json#",
-    "version": "24.09.02",
+    "version": "24.09.09",
     "example": "example.json#",
     "type": "object",
     "title": "rpis",
@@ -70,7 +70,7 @@
                     "x-cols": 6,
                     "example": "example.json#/event/creationDate",
                     "description": "s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "decisionDate": {
@@ -80,7 +80,7 @@
                     "x-cols": 6,
                     "example": "example.json#/event/decisionDate",
                     "description": "s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "ressourceFinessLegal": {
@@ -158,7 +158,7 @@
             "properties": {
                 "patientId": {
                     "type": "string",
-                    "title": "Identifiant Patient",
+                    "title": "ID Patient",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/patientId",
@@ -996,7 +996,7 @@
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/departSmur",
                     "description": "Date et heure à laquelle le SMUR quitte sa base. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "arrivedSmur": {
@@ -1006,7 +1006,7 @@
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/arrivedSmur",
                     "description": "Date et heure à laquelle le SMUR arrive sur les lieux de l'intervention. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "departLocation": {
@@ -1016,7 +1016,7 @@
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/departLocation",
                     "description": "Date et heure à laquelle le SMUR quitte les lieux de l'intervention. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "arrivedDestination": {
@@ -1026,7 +1026,7 @@
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/arrivedDestination",
                     "description": "Date et heure à laquelle le SMUR qui transporte arrive à destination. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "teamAvailable": {
@@ -1036,7 +1036,7 @@
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/teamAvailable",
                     "description": "Date et heure à laquelle le SMUR est disponible (dispose de tout les équipements pour faire une autre intervention). \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "returnSmur": {
@@ -1046,7 +1046,7 @@
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/returnSmur",
                     "description": "Date et heure à laquelle le SMUR est de retour à la base. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 }
             },

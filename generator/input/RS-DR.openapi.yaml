@@ -87,7 +87,7 @@ components:
           example: example.json#/request/datetime
           description: "A valoriser avec le groupe date heure de cr\xE9ation de la\
             \ demande"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'

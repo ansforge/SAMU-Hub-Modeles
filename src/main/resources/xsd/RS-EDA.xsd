@@ -13,7 +13,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="^fr(\.[\w-]+){3,4}$"/>
+                        <pattern value="fr(\.[\w-]+){3,4}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -68,7 +68,7 @@ A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{doma
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="^fr(\.[\w-]+){2,3}$"/>
+                        <pattern value="fr(\.[\w-]+){2,3}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -152,7 +152,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$"/>
+                        <pattern value="([\w-]+\.){3,4}patient(\.[\w-]+){1,2}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -177,7 +177,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$"/>
+                        <pattern value="([\w-]+\.){3,4}patient(\.[\w-]+){1,2}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -196,7 +196,7 @@ Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jo
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="^([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}$"/>
+                        <pattern value="([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1137,7 +1137,7 @@ cf.nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="^([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])$"/>
+                        <pattern value="([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1181,7 +1181,7 @@ La valeur du code INSEE est obligatoire dès que le nom de la commune est rensei
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="^[0-9]{5}$"/>
+                        <pattern value="[0-9]{5}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1232,7 +1232,7 @@ Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}</do
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="^\+\d{5,18}$"/>
+                        <pattern value="\+\d{5,18}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1797,7 +1797,7 @@ Au format "Durée" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="^P[0-9]{1,3}[YMWD]$"/>
+                        <pattern value="P[0-9]{1,3}[YMWD]"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1879,10 +1879,15 @@ Au format "Durée" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#
     </complexType>
     <complexType name="mainDiagnosis">
         <sequence>
-            <element name="code" type="string">
+            <element name="code">
                 <annotation>
                     <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="[A-Z]\d{2}(\.[\d\+\-]{1,3})?"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="label" type="string">
                 <annotation>
@@ -1894,10 +1899,15 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="otherDiagnosis">
         <sequence>
-            <element name="code" type="string">
+            <element name="code">
                 <annotation>
                     <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="[A-Z]\d{2}(\.[\d\+\-]{1,3})?"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="label" type="string">
                 <annotation>
