@@ -322,12 +322,12 @@ components:
           description: "A valoriser avec le nom de l'\xE9quipe \xE0 bord du vecteur\
             \ (celui communiqu\xE9 par l'organisation \xE0 laquelle l'\xE9quipe appartient)"
           examples:
-          - SMUR 1
+          - Equipe A
       additionalProperties: false
       example: example.json#/mobilizedResource/0/team
       examples:
       - teamCare: MED
-        name: SMUR 1
+        name: Equipe A
     state:
       type: object
       title: Etats vecteur
