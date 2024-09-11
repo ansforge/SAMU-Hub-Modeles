@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RI.schema.json#",
-    "version": "24.09.10",
+    "version": "24.09.11",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesInfo",
@@ -223,7 +223,8 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/centerCity",
-                    "description": "A valoriser avec le code INSEE de la commune du centre d'affectation"
+                    "description": "A valoriser avec le code INSEE de la commune du centre d'affectation",
+                    "pattern": "^[0-9]{5}$"
                 },
                 "team": {
                     "$ref": "#/definitions/team"

@@ -186,10 +186,15 @@ OU - si un ID unique de la demande n'était pas disponible :
                     <documentation>A valoriser avec le nom donné à la ressource par l’organisation d’appartenance</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="centerCity" type="string">
+            <element minOccurs="0" name="centerCity">
                 <annotation>
                     <documentation>A valoriser avec le code INSEE de la commune du centre d'affectation</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="[0-9]{5}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="team" type="x:team"/>
             <element maxOccurs="unbounded" minOccurs="0" name="state" type="x:state"/>

@@ -4249,6 +4249,7 @@ components:
           x-cols: 6
           example: example.json#/mobilizedResource/0/centerCity
           description: A valoriser avec le code INSEE de la commune du centre d'affectation
+          pattern: ^[0-9]{5}$
           examples:
           - 44109
         team:
