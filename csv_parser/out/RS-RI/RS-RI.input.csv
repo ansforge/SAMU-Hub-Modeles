@@ -36,14 +36,6 @@ fr.health.samu690.request.DRFR15690242370035.3",requestId,0..1,,string,"REGEX: ^
 TRUE = DISPONIBLE
 FALSE = INDISPONIBLE
 VIDE = INCONNU",FALSE,availability,0..1,,boolean,
-,Dernière géolocalisation du vecteur,,,,,"Objet qui permet de transmettre la dernière géolocalisation connue d'un vecteur, au moment de la création du RS-RI.",,coord,0..1,X,coord,
-,,Latitude,,,,A valoriser avec la latitude du point clé de la localisation ,48.866667,lat,1..1,,number,
-,,Longitude,,,,A valoriser avec la longitude du point clé de la localisation,2.333333,lon,1..1,,number,
-,,Altitude ,,,,"A valoriser avec l'altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. ",120,height,0..1,,number,
-,,Cap,,,,A valoriser en degrés,96,heading,0..1,,number,
-,,Vitesse,,,,"A valoriser en km/h (notamment fournie par eCall, tel, nouveau AML)",34,speed,0..1,,number,
-,,Précision,,,,"A valoriser avec le niveau de précision des coordonnées fournies par le système emetteur. Cf. nomenclature associée.
-CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",EXACTE,precision,1..1,,string,NOMENCLATURE: ENUM-PRECISION
 ,Contact,,,,,"Objet qui permet de décrire le type et la valeur de l'URI utilisée par un contact, ici spécifiquement le contact du vecteur mobilisé.",,contact,0..1,X,contact,
 ,,Type de contact ,,,,A valoriser avec le type de l'URI utilisée. Cf nomenclature associée.,PHNADD,type,0..1,,string,NOMENCLATURE: ENUM-CONTACT_Type
 ,,URI du contact,,,,"A valoriser avec la valeur de l'URI utilisée

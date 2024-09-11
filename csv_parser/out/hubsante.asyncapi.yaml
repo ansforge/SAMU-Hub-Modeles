@@ -1871,90 +1871,49 @@ components:
       example: example.json#/location/geometry/point
     coord:
       type: object
-      title: "Derni\xE8re g\xE9olocalisation du vecteur"
+      title: "Coordonn\xE9es"
       x-display: expansion-panels
       x-health-only: false
       required:
       - lat
       - lon
-      - precision
       properties:
         lat:
           type: number
-          title: Latitude
+          title: 'Latitude '
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/coord/lat
-          description: "A valoriser avec la latitude du point cl\xE9 de la localisation "
+          example: example.json#/position/0/coord/0/lat
+          description: "Derni\xE8re coordonn\xE9e x connue de la ressource, entre\
+            \ \u221290 and +90"
           examples:
-          - '48.866667'
+          - '47.221866'
         lon:
           type: number
           title: Longitude
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/coord/lon
-          description: "A valoriser avec la longitude du point cl\xE9 de la localisation"
+          example: example.json#/position/0/coord/0/lon
+          description: "Derni\xE8re coordonn\xE9e y connue de la ressource, entre\
+            \ \u2212180 and +180"
           examples:
-          - '2.333333'
+          - '-1.575807'
         height:
           type: number
-          title: 'Altitude '
+          title: Altitude
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/coord/height
-          description: "A valoriser avec l'altitude du point cl\xE9 de la localisation,\
-            \ en m\xE8tre, ignor\xE9 c\xF4t\xE9 NexSIS. "
+          example: example.json#/position/0/coord/0/height
+          description: "Derni\xE8re coordonn\xE9e z connue de la ressource, en m\xE8\
+            tres sans bornes"
           examples:
-          - 120
-        heading:
-          type: number
-          title: Cap
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/mobilizedResource/0/coord/heading
-          description: "A valoriser en degr\xE9s"
-          examples:
-          - 96
-        speed:
-          type: number
-          title: Vitesse
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/mobilizedResource/0/coord/speed
-          description: A valoriser en km/h (notamment fournie par eCall, tel, nouveau
-            AML)
-          examples:
-          - 34
-        precision:
-          type: string
-          title: "Pr\xE9cision"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/mobilizedResource/0/coord/precision
-          description: "A valoriser avec le niveau de pr\xE9cision des coordonn\xE9\
-            es fournies par le syst\xE8me emetteur. Cf. nomenclature associ\xE9e.\n\
-            CITY=Pr\xE9cision \xE0 l'\xE9chelle de la ville, STREET=Pr\xE9cision \xE0\
-            \ l'\xE9chelle de la rue, ADDRESS=Adresse pr\xE9cise, EXACT=Point coordonn\xE9\
-            e GPS exact, UNKNOWN=Pr\xE9cision de la localisation non \xE9valuable\
-            \ par l'\xE9metteur"
-          enum:
-          - VILLE
-          - RUE
-          - ADRESSE
-          - EXACTE
-          - INCONNUE
-          examples:
-          - EXACTE
+          - 1
       additionalProperties: false
-      example: example.json#/mobilizedResource/0/coord
+      example: example.json#/position/0/coord/0
       examples:
-      - lat: '48.866667'
-        lon: '2.333333'
-        height: 120
-        heading: 96
-        speed: 34
-        precision: EXACTE
+      - lat: '47.221866'
+        lon: '-1.575807'
+        height: 1
     notes:
       type: object
       title: "Informations compl\xE9mentaires sur l'alerte"
@@ -4258,8 +4217,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/state'
-        coord:
-          $ref: '#/components/schemas/coord'
         contact:
           $ref: '#/components/schemas/contact'
         freetext:
@@ -6165,7 +6122,7 @@ components:
           title: Date/heure de changement de statut
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/state/0/datetime
+          example: example.json#/state/datetime
           description: A valoriser avec la date et heure d'engagement de changement
             vers le nouveau statut
           pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
@@ -6177,7 +6134,7 @@ components:
           title: Statut du vecteur
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/state/0/status
+          example: example.json#/state/status
           description: "A valoriser avec le statut du vecteur. Cf nomenclature associ\xE9\
             e."
           enum:
@@ -6205,13 +6162,13 @@ components:
           title: "Disponibilit\xE9 du vecteur"
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/state/0/availability
+          example: example.json#/state/availability
           description: "A valoriser de mani\xE8re \xE0 indiquer la disponibilit\xE9\
             \ du vecteur.\nTRUE = DISPONIBLE\nFALSE = INDISPONIBLE\nVIDE = INCONNU"
           examples:
           - 'FALSE'
       additionalProperties: false
-      example: example.json#/mobilizedResource/0/state/0
+      example: example.json#/state
       examples:
       - datetime: '2022-09-27T08:23:34+02:00'
         status: ARRIVE
@@ -7094,8 +7051,7 @@ components:
       required:
       - caseId
       - resourceId
-      - datetime
-      - status
+      - state
       properties:
         caseId:
           type: string
@@ -7132,66 +7088,9 @@ components:
           - 'fr.health.samu770.resource.VLM250 ;
 
             fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1'
-        datetime:
-          type: string
-          title: Date/heure de changement de statut
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/datetime
-          description: "A valoriser avec la date et heure de changement du statut.\
-            \ \nSi la valeur est vide/inconnue alors c'est le datetime de cr\xE9ation\
-            \ du message qui est indiqu\xE9."
-          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
-          format: date-time
-          examples:
-          - '2022-09-27T08:23:34+02:00'
-        status:
-          type: string
-          title: Statut du vecteur
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/status
-          description: "A valoriser avec le statut du vecteur. Cf Nomenclature associ\xE9\
-            e."
-          enum:
-          - DECISION
-          - DECLENCHE
-          - DEPART
-          - ARRIVE
-          - PEC
-          - ANNULE
-          - BILAN
-          - TRANSPOR
-          - ETAPE1
-          - TRANSP2
-          - ETAPE2
-          - TRANSP3
-          - DESTIN
-          - FINPEC
-          - RETOUR
-          - RET-BASE
-          - REN-BASE
-          examples:
-          - ARRIVE
-        availability:
-          type: boolean
-          title: "Disponibilit\xE9 du vecteur"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/availability
-          description: "A valoriser de mani\xE8re \xE0 indiquer la disponibilit\xE9\
-            \ du vecteur.\nTRUE = DISPONIBLE\nFALSE = INDISPONIBLE\nVIDE = INCONNU"
-          examples:
-          - 'FALSE'
+        state:
+          $ref: '#/components/schemas/state'
       additionalProperties: false
-      examples:
-      - caseId: fr.health.samu440.DRFR15440241550012
-        resourceId: 'fr.health.samu770.resource.VLM250 ;
-
-          fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1'
-        datetime: '2022-09-27T08:23:34+02:00'
-        status: ARRIVE
-        availability: 'FALSE'
     technical:
       $id: classpath:/json-schema/schema#
       x-id: TECHNICAL.schema.json#

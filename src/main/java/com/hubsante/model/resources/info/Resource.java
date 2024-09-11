@@ -35,7 +35,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.resources.info.Contact;
-import com.hubsante.model.resources.info.Coord;
 import com.hubsante.model.resources.info.State;
 import com.hubsante.model.resources.info.Team;
 import java.time.OffsetDateTime;
@@ -55,8 +54,8 @@ import java.util.Objects;
      Resource.JSON_PROPERTY_RESOURCE_TYPE, Resource.JSON_PROPERTY_VEHICULE_TYPE,
      Resource.JSON_PROPERTY_PLATE, Resource.JSON_PROPERTY_NAME,
      Resource.JSON_PROPERTY_CENTER_CITY, Resource.JSON_PROPERTY_TEAM,
-     Resource.JSON_PROPERTY_STATE, Resource.JSON_PROPERTY_COORD,
-     Resource.JSON_PROPERTY_CONTACT, Resource.JSON_PROPERTY_FREETEXT})
+     Resource.JSON_PROPERTY_STATE, Resource.JSON_PROPERTY_CONTACT,
+     Resource.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("resource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -335,9 +334,6 @@ public class Resource {
 
   public static final String JSON_PROPERTY_STATE = "state";
   private List<State> state;
-
-  public static final String JSON_PROPERTY_COORD = "coord";
-  private Coord coord;
 
   public static final String JSON_PROPERTY_CONTACT = "contact";
   private Contact contact;
@@ -674,29 +670,6 @@ public class Resource {
     this.state.addAll(state);
   }
 
-  public Resource coord(Coord coord) {
-
-    this.coord = coord;
-    return this;
-  }
-
-  /**
-   * Get coord
-   * @return coord
-   **/
-  @JsonProperty(JSON_PROPERTY_COORD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Coord getCoord() {
-    return coord;
-  }
-
-  @JsonProperty(JSON_PROPERTY_COORD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCoord(Coord coord) {
-    this.coord = coord;
-  }
-
   public Resource contact(Contact contact) {
 
     this.contact = contact;
@@ -781,7 +754,6 @@ public class Resource {
         Objects.equals(this.centerCity, resource.centerCity) &&
         Objects.equals(this.team, resource.team) &&
         Objects.equals(this.state, resource.state) &&
-        Objects.equals(this.coord, resource.coord) &&
         Objects.equals(this.contact, resource.contact) &&
         Objects.equals(this.freetext, resource.freetext);
   }
@@ -790,7 +762,7 @@ public class Resource {
   public int hashCode() {
     return Objects.hash(datetime, resourceId, requestId, missionId, orgId,
                         centerName, resourceType, vehiculeType, plate, name,
-                        centerCity, team, state, coord, contact, freetext);
+                        centerCity, team, state, contact, freetext);
   }
 
   @Override
@@ -824,7 +796,6 @@ public class Resource {
         .append("\n");
     sb.append("    team: ").append(toIndentedString(team)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
-    sb.append("    coord: ").append(toIndentedString(coord)).append("\n");
     sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");

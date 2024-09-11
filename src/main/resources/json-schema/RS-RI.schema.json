@@ -235,9 +235,6 @@
                         "$ref": "#/definitions/state"
                     }
                 },
-                "coord": {
-                    "$ref": "#/definitions/coord"
-                },
                 "contact": {
                     "$ref": "#/definitions/contact"
                 },
@@ -347,76 +344,6 @@
             },
             "additionalProperties": false,
             "example": "example.json#/mobilizedResource/0/state/0"
-        },
-        "coord": {
-            "type": "object",
-            "title": "Dernière géolocalisation du vecteur",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
-                "lat",
-                "lon",
-                "precision"
-            ],
-            "properties": {
-                "lat": {
-                    "type": "number",
-                    "title": "Latitude",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/coord/lat",
-                    "description": "A valoriser avec la latitude du point clé de la localisation "
-                },
-                "lon": {
-                    "type": "number",
-                    "title": "Longitude",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/coord/lon",
-                    "description": "A valoriser avec la longitude du point clé de la localisation"
-                },
-                "height": {
-                    "type": "number",
-                    "title": "Altitude ",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/coord/height",
-                    "description": "A valoriser avec l'altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. "
-                },
-                "heading": {
-                    "type": "number",
-                    "title": "Cap",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/coord/heading",
-                    "description": "A valoriser en degrés"
-                },
-                "speed": {
-                    "type": "number",
-                    "title": "Vitesse",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/coord/speed",
-                    "description": "A valoriser en km/h (notamment fournie par eCall, tel, nouveau AML)"
-                },
-                "precision": {
-                    "type": "string",
-                    "title": "Précision",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/coord/precision",
-                    "description": "A valoriser avec le niveau de précision des coordonnées fournies par le système emetteur. Cf. nomenclature associée.\nCITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",
-                    "enum": [
-                        "VILLE",
-                        "RUE",
-                        "ADRESSE",
-                        "EXACTE",
-                        "INCONNUE"
-                    ]
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/mobilizedResource/0/coord"
         },
         "contact": {
             "type": "object",

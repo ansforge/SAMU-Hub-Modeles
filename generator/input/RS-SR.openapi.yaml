@@ -17,8 +17,7 @@ components:
       required:
       - caseId
       - resourceId
-      - datetime
-      - status
+      - state
       properties:
         caseId:
           type: string
@@ -55,15 +54,26 @@ components:
           - 'fr.health.samu770.resource.VLM250 ;
 
             fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1'
+        state:
+          $ref: '#/components/schemas/state'
+      additionalProperties: false
+    state:
+      type: object
+      title: Etats vecteur
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - datetime
+      - status
+      properties:
         datetime:
           type: string
           title: Date/heure de changement de statut
           x-health-only: false
           x-cols: 6
-          example: example.json#/datetime
-          description: "A valoriser avec la date et heure de changement du statut.\
-            \ \nSi la valeur est vide/inconnue alors c'est le datetime de cr\xE9ation\
-            \ du message qui est indiqu\xE9."
+          example: example.json#/state/datetime
+          description: A valoriser avec la date et heure d'engagement de changement
+            vers le nouveau statut
           pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
@@ -73,8 +83,8 @@ components:
           title: Statut du vecteur
           x-health-only: false
           x-cols: 6
-          example: example.json#/status
-          description: "A valoriser avec le statut du vecteur. Cf Nomenclature associ\xE9\
+          example: example.json#/state/status
+          description: "A valoriser avec le statut du vecteur. Cf nomenclature associ\xE9\
             e."
           enum:
           - DECISION
@@ -101,17 +111,14 @@ components:
           title: "Disponibilit\xE9 du vecteur"
           x-health-only: false
           x-cols: 6
-          example: example.json#/availability
+          example: example.json#/state/availability
           description: "A valoriser de mani\xE8re \xE0 indiquer la disponibilit\xE9\
             \ du vecteur.\nTRUE = DISPONIBLE\nFALSE = INDISPONIBLE\nVIDE = INCONNU"
           examples:
           - 'FALSE'
       additionalProperties: false
+      example: example.json#/state
       examples:
-      - caseId: fr.health.samu440.DRFR15440241550012
-        resourceId: 'fr.health.samu770.resource.VLM250 ;
-
-          fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1'
-        datetime: '2022-09-27T08:23:34+02:00'
+      - datetime: '2022-09-27T08:23:34+02:00'
         status: ARRIVE
         availability: 'FALSE'

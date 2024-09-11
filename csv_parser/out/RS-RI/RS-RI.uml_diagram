@@ -17,13 +17,6 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet state</I></TD></TR><TR><TD BORDER="0" >datetime <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >status <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >availability <I>boolean</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	state -> mobilizedResource [headlabel=1 taillabel="0..*"]
-	coord [label=<<TABLE>
-                <TR>
-                <TD ><B>coord</B></TD>
-                </TR>
-                <TR><TD  BORDER="0"><I>objet coord</I></TD></TR><TR><TD BORDER="0" >lat <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >lon <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >height <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >heading <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >speed <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >precision <I>string</I> : [1..1] </TD></TR>
-                </TABLE>>]
-	coord -> mobilizedResource [headlabel=1 taillabel="0..1"]
 	contact [label=<<TABLE>
                 <TR>
                 <TD ><B>contact</B></TD>
