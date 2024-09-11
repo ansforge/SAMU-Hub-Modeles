@@ -7,14 +7,14 @@
     "type": "object",
     "title": "rpis",
     "required": [
-        "event",
+        "context",
         "regulation",
         "patient",
         "intervention",
         "orientation"
     ],
     "properties": {
-        "event": {
+        "context": {
             "$ref": "#/definitions/event"
         },
         "regulation": {
@@ -37,8 +37,8 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "samuId",
-                "fileId",
+                "orgId",
+                "caseId",
                 "creationDate",
                 "decisionDate",
                 "ressourceFinessLegal",
@@ -46,21 +46,21 @@
                 "ressourceStructure"
             ],
             "properties": {
-                "samuId": {
+                "orgId": {
                     "type": "string",
                     "title": "Identifiant du SAMU qui engage le SMUR",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/event/samuId",
+                    "example": "example.json#/context/orgId",
                     "description": "Numéro du SAMU régulant la mission SMUR. \nA valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n",
                     "pattern": "^[a-z]{2,3}\\.[a-z]+\\.\\w*$"
                 },
-                "fileId": {
+                "caseId": {
                     "type": "string",
                     "title": "Identifiant du dossier de régulation médicale (DRM)",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/event/fileId",
+                    "example": "example.json#/context/caseId",
                     "description": "Numéro du dossier SAMU à l’origine de la mission SMUR\nA valoriser par DRFR15DDXAAJJJ00000 : \n- DR = désignation d'un dossier sous forme abrégée,\n- FR : désigne le pays (FR = France),\n- 15 : désigne le fait que le dossier a été pris en charge par un SAMU / SAS,\n- DD : désigne le département où est situé le SAMU / SAS qui a traité le dossier,\n- X : lettre désignant le SAMU / SAS en cas de pluralité de SAMU / SAS sur le même département ou le troisième chiffre des DOM,\n- AA : année durant laquelle l’appel a été créé,\n- JJJ : désigne le jour de l'année (de 1j à 365j),\\par\n- 00000 : numéro d’ordre chronologique du dossier dans la journée de référence ci-dessus."
                 },
                 "creationDate": {
@@ -68,7 +68,7 @@
                     "title": "Date et heure de création du dossier de régulation",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/event/creationDate",
+                    "example": "example.json#/context/creationDate",
                     "description": "s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
                     "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
@@ -78,7 +78,7 @@
                     "title": "Date et heure de la décision d’engagement du SMUR",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/event/decisionDate",
+                    "example": "example.json#/context/decisionDate",
                     "description": "s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
                     "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
@@ -88,7 +88,7 @@
                     "title": "FINESS juridique ",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/event/ressourceFinessLegal",
+                    "example": "example.json#/context/ressourceFinessLegal",
                     "description": "FINESS juridique établissement rattachement SMUR"
                 },
                 "ressourceFinessGeo": {
@@ -96,7 +96,7 @@
                     "title": "FINESS géographique ",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/event/ressourceFinessGeo",
+                    "example": "example.json#/context/ressourceFinessGeo",
                     "description": "FINESS géographique établissement rattachement SMUR ou antenne SMUR"
                 },
                 "ressourceStructure": {
@@ -104,12 +104,12 @@
                     "title": "Type de structure SMUR",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/event/ressourceStructure",
+                    "example": "example.json#/context/ressourceStructure",
                     "description": "9 = Antenne SMUR, 0 = SMUR général, 1 = SMUR pédiatrique, 2 = SMUR neonatal "
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/event"
+            "example": "example.json#/context"
         },
         "regulation": {
             "type": "object",
@@ -213,7 +213,7 @@
                 "smurStatus": {
                     "$ref": "#/definitions/resourceStatus"
                 },
-                "actionsSMUR": {
+                "procedures": {
                     "type": "array",
                     "x-health-only": false,
                     "items": {
@@ -221,7 +221,7 @@
                         "title": "Actes réalisés par le SMUR",
                         "x-health-only": false,
                         "x-cols": 6,
-                        "example": "example.json#/intervention/actionsSMUR/0",
+                        "example": "example.json#/intervention/procedures/0",
                         "description": "Précise aussi bien les actes réalisés par le SMUR sur le lieu de l'intervention à son arrivée que ceux réalisés avant son intervention. \nA valoriser avec un code de la nomenclature ACTES_SMUR."
                     }
                 },
@@ -924,12 +924,12 @@
                     "example": "example.json#/intervention/location/finessGeo",
                     "description": "Finess géographique et juridique de l’établissement de santé. \nA renseigner uniquement si l'intervention a lieu dans un établissement de santé. "
                 },
-                "unit": {
+                "service": {
                     "type": "string",
                     "title": "Unité fonctionnelle ",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/intervention/location/unit",
+                    "example": "example.json#/intervention/location/service",
                     "description": "Unité fonctionnelle de l'établissement de santé. \nA renseigner uniquement si l'intervention a lieu dans un établissement de santé. "
                 },
                 "detailedAddress": {

@@ -2,7 +2,7 @@
     <element name="rpis" type="x:rpis"/>
     <complexType name="rpis">
         <sequence>
-            <element name="event" type="x:event"/>
+            <element name="context" type="x:event"/>
             <element name="regulation" type="x:regulation"/>
             <element name="patient" type="x:patient"/>
             <element name="intervention" type="x:intervention"/>
@@ -11,7 +11,7 @@
     </complexType>
     <complexType name="event">
         <sequence>
-            <element name="samuId">
+            <element name="orgId">
                 <annotation>
                     <documentation>Numéro du SAMU régulant la mission SMUR. 
 A valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}
@@ -23,7 +23,7 @@ A valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}
                     </restriction>
                 </simpleType>
             </element>
-            <element name="fileId" type="string">
+            <element name="caseId" type="string">
                 <annotation>
                     <documentation>Numéro du dossier SAMU à l’origine de la mission SMUR
 A valoriser par DRFR15DDXAAJJJ00000 : 
@@ -118,7 +118,7 @@ A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre 
             <element name="location" type="x:location"/>
             <element name="team" type="x:team"/>
             <element minOccurs="0" name="smurStatus" type="x:resourceStatus"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="actionsSMUR" type="string"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="procedures" type="string"/>
             <element name="mainDiagnosis" type="string">
                 <annotation>
                     <documentation>Thésaurus SFMU-FEDORU.
@@ -751,7 +751,7 @@ Le Code INSEE peut également précisé le pays de résidence, si étranger. </d
 A renseigner uniquement si l'intervention a lieu dans un établissement de santé. </documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="unit" type="string">
+            <element minOccurs="0" name="service" type="string">
                 <annotation>
                     <documentation>Unité fonctionnelle de l'établissement de santé. 
 A renseigner uniquement si l'intervention a lieu dans un établissement de santé. </documentation>

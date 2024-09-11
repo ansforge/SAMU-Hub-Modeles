@@ -3,13 +3,13 @@ strict digraph {
 	node [shape=none]
 	edge [arrowhead=odiamond arrowtail=none]
 	rankdir=BT
-	event [label=<<TABLE>
+	context [label=<<TABLE>
                 <TR>
-                <TD ><B>event</B></TD>
+                <TD ><B>context</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet event</I></TD></TR><TR><TD BORDER="0" >samuId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >fileId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >creationDate <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >decisionDate <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >ressourceFinessLegal <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >ressourceFinessGeo <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >ressourceStructure <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet event</I></TD></TR><TR><TD BORDER="0" >orgId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >creationDate <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >decisionDate <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >ressourceFinessLegal <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >ressourceFinessGeo <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >ressourceStructure <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
-	event -> rpis [headlabel=1 taillabel=1]
+	context -> rpis [headlabel=1 taillabel=1]
 	whatsHappen [label=<<TABLE>
                 <TR>
                 <TD ><B>whatsHappen</B></TD>
@@ -56,7 +56,7 @@ strict digraph {
                 <TR>
                 <TD ><B>location</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet location</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >finessGeo <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >unit <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet location</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >finessGeo <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >service <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	location -> intervention [headlabel=1 taillabel=1]
 	team [label=<<TABLE>
@@ -77,7 +77,7 @@ strict digraph {
                 <TR>
                 <TD ><B>intervention</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet intervention</I></TD></TR><TR><TD BORDER="0" >actionsSMUR <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >mainDiagnosis <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >associatedDiagnosis <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet intervention</I></TD></TR><TR><TD BORDER="0" >procedures <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >mainDiagnosis <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >associatedDiagnosis <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	intervention -> rpis [headlabel=1 taillabel=1]
 	destination [label=<<TABLE>

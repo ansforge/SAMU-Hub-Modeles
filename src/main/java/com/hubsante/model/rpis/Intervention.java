@@ -49,7 +49,7 @@ import java.util.Objects;
 @JsonPropertyOrder({Intervention.JSON_PROPERTY_LOCATION,
                     Intervention.JSON_PROPERTY_TEAM,
                     Intervention.JSON_PROPERTY_SMUR_STATUS,
-                    Intervention.JSON_PROPERTY_ACTIONS_S_M_U_R,
+                    Intervention.JSON_PROPERTY_PROCEDURES,
                     Intervention.JSON_PROPERTY_MAIN_DIAGNOSIS,
                     Intervention.JSON_PROPERTY_ASSOCIATED_DIAGNOSIS})
 @JsonTypeName("intervention")
@@ -65,8 +65,8 @@ public class Intervention {
   public static final String JSON_PROPERTY_SMUR_STATUS = "smurStatus";
   private ResourceStatus smurStatus;
 
-  public static final String JSON_PROPERTY_ACTIONS_S_M_U_R = "actionsSMUR";
-  private List<String> actionsSMUR;
+  public static final String JSON_PROPERTY_PROCEDURES = "procedures";
+  private List<String> procedures;
 
   public static final String JSON_PROPERTY_MAIN_DIAGNOSIS = "mainDiagnosis";
   private String mainDiagnosis;
@@ -146,43 +146,43 @@ public class Intervention {
     this.smurStatus = smurStatus;
   }
 
-  public Intervention actionsSMUR(List<String> actionsSMUR) {
+  public Intervention procedures(List<String> procedures) {
 
-    this.actionsSMUR = actionsSMUR;
+    this.procedures = procedures;
     return this;
   }
 
-  public Intervention addActionsSMURItem(String actionsSMURItem) {
-    if (this.actionsSMUR == null) {
-      this.actionsSMUR = new ArrayList<>();
+  public Intervention addProceduresItem(String proceduresItem) {
+    if (this.procedures == null) {
+      this.procedures = new ArrayList<>();
     }
-    this.actionsSMUR.add(actionsSMURItem);
+    this.procedures.add(proceduresItem);
     return this;
   }
 
   /**
-   * Get actionsSMUR
-   * @return actionsSMUR
+   * Get procedures
+   * @return procedures
    **/
-  @JsonProperty(JSON_PROPERTY_ACTIONS_S_M_U_R)
+  @JsonProperty(JSON_PROPERTY_PROCEDURES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<String> getActionsSMUR() {
-    return actionsSMUR;
+  public List<String> getProcedures() {
+    return procedures;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_ACTIONS_S_M_U_R)
+  @JsonProperty(JSON_PROPERTY_PROCEDURES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setActionsSMUR(List<String> actionsSMUR) {
-    if (actionsSMUR == null) {
+  public void setProcedures(List<String> procedures) {
+    if (procedures == null) {
       return;
     }
-    if (this.actionsSMUR == null) {
-      this.actionsSMUR = new ArrayList<>();
+    if (this.procedures == null) {
+      this.procedures = new ArrayList<>();
     }
-    this.actionsSMUR.addAll(actionsSMUR);
+    this.procedures.addAll(procedures);
   }
 
   public Intervention mainDiagnosis(String mainDiagnosis) {
@@ -245,7 +245,7 @@ public class Intervention {
     return Objects.equals(this.location, intervention.location) &&
         Objects.equals(this.team, intervention.team) &&
         Objects.equals(this.smurStatus, intervention.smurStatus) &&
-        Objects.equals(this.actionsSMUR, intervention.actionsSMUR) &&
+        Objects.equals(this.procedures, intervention.procedures) &&
         Objects.equals(this.mainDiagnosis, intervention.mainDiagnosis) &&
         Objects.equals(this.associatedDiagnosis,
                        intervention.associatedDiagnosis);
@@ -253,7 +253,7 @@ public class Intervention {
 
   @Override
   public int hashCode() {
-    return Objects.hash(location, team, smurStatus, actionsSMUR, mainDiagnosis,
+    return Objects.hash(location, team, smurStatus, procedures, mainDiagnosis,
                         associatedDiagnosis);
   }
 
@@ -266,8 +266,8 @@ public class Intervention {
     sb.append("    smurStatus: ")
         .append(toIndentedString(smurStatus))
         .append("\n");
-    sb.append("    actionsSMUR: ")
-        .append(toIndentedString(actionsSMUR))
+    sb.append("    procedures: ")
+        .append(toIndentedString(procedures))
         .append("\n");
     sb.append("    mainDiagnosis: ")
         .append(toIndentedString(mainDiagnosis))
