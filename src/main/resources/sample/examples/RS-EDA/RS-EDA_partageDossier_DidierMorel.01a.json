@@ -1,116 +1,131 @@
 {
   "createCaseHealth": {
-    "caseId": "fr.health.samu770.DRFR157702400400055",
-    "senderCaseId": "DRFR157702400400055",
-    "creation": "2024-01-04T08:01:00+01:00",
+    "caseId": "fr.health.samu950.DRFR159502401800159",
+    "creation": "2024-01-18T18:00:00+01:00",
     "qualification": {
       "whatsHappen": {
-        "code": "C02.08.05",
-        "label": "Atteinte aux personnes ; Traumatisme / Accident ; Par objet tranchant ou perforant"
+        "code": "C02.08.02",
+        "label": "Atteinte aux personnes ; Traumatisme / Accident ; Accident domestique"
       },
       "locationKind": {
-        "code": "L01.01.04",
-        "label": "Domicile ; Maison particulière, pavillon ;  dépendance"
+        "code": "L01.02.10",
+        "label": "Domicile ; Lieu d'habitation collectif ou foyer d'hébergement ;  escaliers"
       },
       "healthMotive": {
-        "code": "M01.02",
-        "label": "Détresse vitale; Altération de la conscience; Dont inconscient, coma"
+        "code": "M02.07",
+        "label": "Traumatisme sérieux, plaie intermédiaire"
       },
       "details": {
-        "priority": "P0",
+        "priority": "P2",
         "attribution": "MU"
       },
-      "origin": "18"
+      "origin": "15"
     },
     "location": {
       "detailedAddress": {
-        "complete": "12 Rue Louis Aristide Verdier",
-        "number": "12",
+        "complete": "4 rue Danielle Mitterrand",
+        "number": "4",
         "wayName": {
-          "complete": "Rue Louis Aristide Verdier",
+          "complete": "rue Danielle Mitterrand",
           "type": "rue",
-          "name": "Louis Aristide Verdier"
+          "name": "Danielle Mitterrand"
         }
       },
       "city": {
-        "name": "Vaires-sur-Marne",
-        "inseeCode": "77360"
+        "name": "Bezons",
+        "inseeCode": "95063"
       },
-      "freetext": "aller directement dans le garage, la porte est ouverte",
+      "freetext": "dans la cage d’escalier B",
       "geometry": {
         "point": {
           "coord": {
-            "lat": 48.8668403,
-            "lon": 2.6320988,
+            "lat": 48.92399978637695,
+            "lon": 2.2162439823150635,
             "precision": "ADRESSE"
           }
         },
-        "datetime": "2024-01-04T00:05:00+01:00"
+        "datetime": "2024-01-17T21:06:00+01:00"
+      },
+      "access": {
+        "accessCode": [
+          "5678"
+        ],
+        "floor": "3",
+        "interphone": "Halimi",
+        "elevator": "ESC B",
+        "buildingName": "A"
       }
     },
     "initialAlert": {
-      "reception": "2024-01-04T08:00:00+01:00",
+      "reception": "2024-01-18T18:00:00+01:00",
       "caller": {
         "callerContact": {
-          "channel": "PERSONNE",
           "type": "TEL",
-          "detail": "+33607080915"
+          "detail": "+33702880946",
+          "channel": "PERSONNE"
         },
         "language": "FR",
-        "freetext": "fils de la victime",
         "detailedName": {
-          "complete": "Sébastien Morel ",
-          "lastName": "Morel ",
-          "firstName": "Sébastien"
+          "complete": "Amina BERTRAND  ",
+          "lastName": "BERTRAND  ",
+          "firstName": "Amina"
         },
-        "type": "FAMILLE"
+        "type": "TIERS"
       },
       "notes": [
         {
-          "freetext": "Accident de bricolage, atelier particulier.",
-          "creation": "2024-01-04T08:02:00+01:00"
+          "freetext": "Chute enfant dans les escaliers",
+          "creation": "2024-01-18T18:01:00+01:00"
         }
       ]
     },
-    "owner": "fr.health.samu770",
+    "owner": "fr.health.samu950",
     "patient": [
       {
         "detail": {
-          "age": "P65Y"
+          "age": "P10Y"
         },
         "identity": {
           "nonStrictFeatures": {
-            "complete": "Didier Morel",
-            "lastName": "Morel",
-            "firstName": "Didier"
+            "complete": "Lola Halimi",
+            "firstName": "Lola ",
+            "lastName": "Halimi"
           },
           "strictFeatures": {
-            "sex": "MASC"
+            "birthDate": "2014-03-03",
+            "sex": "F"
           }
         },
-        "idPat": "fr.health.samu770.patient.DRFR157702400400055.1"
+        "idPat": "fr.health.samu950.patient.DRFR159502400400159.1"
       }
     ],
-    "perimeter": "AMU",
-    "interventionType": "PRIMAIRE",
     "medicalNote": [
       {
         "operator": {
           "role": "ARM"
         },
-        "idPat": "fr.health.samu770.patient.DRFR157702400400055.1",
-        "idObs": "fr.health.samu770.medicalNote.45db215",
-        "freetext": "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup.",
-        "creation": "2024-01-04T08:03:00+01:00"
+        "idPat": "fr.health.samu950.patient.DRFR159502400400159.1",
+        "idObs": "fr.health.samu950.medicalNote.54fg795",
+        "creation": "2024-01-18T18:02:00+01:00",
+        "freetext": "Marche impossible."
       },
       {
         "operator": {
           "role": "ARM"
         },
-        "idPat": "fr.health.samu770.patient.DRFR157702400400055.1",
-        "idObs": "fr.health.samu770.medicalNote.15as456",
-        "freetext": "La victime est inconsciente (perte de connaissance).",
-        "creation": "2024-01-04T08:04:00+01:00"
+        "idPat": "fr.health.samu950.patient.DRFR159502400400159.1",
+        "idObs": "fr.health.samu950.medicalNote.98qs778",
+        "creation": "2024-01-18T18:04:00+01:00",
+        "freetext": "Cheville gonflée et douloureuse"
+      },
+      {
+        "operator": {
+          "role": "ARM"
+        },
+        "idPat": "fr.health.samu950.patient.DRFR159502400400159.1",
+        "idObs": "fr.health.samu950.medicalNote.13co294",
+        "creation": "2024-01-18T18:05:00+01:00",
+        "freetext": "Entorse de la cheville, avec possible fracture."
       }
     ]
   }
