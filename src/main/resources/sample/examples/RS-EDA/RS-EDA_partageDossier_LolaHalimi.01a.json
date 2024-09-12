@@ -44,7 +44,7 @@
             "precision": "ADRESSE"
           }
         },
-        "datetime": "2024-01-04T00:05:00+01:00"
+        "datetime": "2024-01-17T21:06:00+01:00"
       },
       "access": {
         "accessCode": [
@@ -93,7 +93,7 @@
           },
           "strictFeatures": {
             "birthDate": "2014-03-03",
-            "sex": "FEM"
+            "sex": "F"
           }
         },
         "idPat": "fr.health.samu950.patient.DRFR159502400400159.1"
