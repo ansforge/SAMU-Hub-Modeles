@@ -1,141 +1,123 @@
 {
   "createCaseHealth": {
-    "initialAlert": {
-      "caller": {
-        "detailedName": {
-          "complete": "Quentin DIAWARA",
-          "lastName": "DIAWARA",
-          "firstName": "Quentin"
-        },
-        "callbackContact": {
-          "channel": "PERSONNE",
-          "type": "TEL",
-          "detail": "+33654464295"
-        },
-        "callerContact": {
-          "channel": "PERSONNE",
-          "type": "TEL",
-          "detail": "+14165550123"
-        },
-        "language": "FR",
-        "type": "FAMILLE",
-        "freetext": "beau-père des enfants"
-      },
-      "notes": [
-        {
-          "creation": "2024-08-01T04:29:00+02:00",
-          "freetext": "Enfants ayant chuté d’environ 2 m dans la piscine en travaux (sans eau)."
-        }
-      ],
-      "reception": "2024-08-01T16:27:00+02:00"
-    },
-    "location": {
-      "geometry": {
-        "point": {
-          "coord": {
-            "lat": 49.59237386471319,
-            "lon": 1.6958576837577788,
-            "precision": "RUE"
-          },
-          "isAml": false
-        },
-        "datetime": "2024-07-29T13:00:00+02:00"
-      },
-      "city": {
-        "name": "Haussez",
-        "inseeCode": "76345"
-      },
-      "detailedAddress": {
-        "wayName": {
-          "complete": "Rue Pierre Laisne ",
-          "type": "Rue",
-          "name": "Pierre Laisne "
-        },
-        "complete": "10 Rue Pierre Laisne ",
-        "number": "10"
-      },
-      "freetext": "piscine au fond du jardin"
-    },
+    "caseId": "fr.health.samu950.DRFR159502401000233",
+    "senderCaseId": "DRFR159502401000233",
+    "creation": "2024-01-10T14:07:00+01:00",
     "qualification": {
-      "details": {
-        "priority": "P1",
-        "attribution": "PEDIA"
-      },
-      "healthMotive": {
-        "code": "M02.07",
-        "label": "Traumatisme sérieux, plaie intermédiaire "
+      "whatsHappen": {
+        "code": "C02.05.01",
+        "label": "Atteinte aux personnes; Pathologie / maladie ; Médicale "
       },
       "locationKind": {
-        "code": "L01.01.02",
-        "label": "Domicile; Maison particulière, pavillon ; A l'extérieur"
+        "code": "L03.01.00",
+        "label": "Local d’activité professionnelle; Local administratif"
       },
-      "whatsHappen": {
-        "code": "C02.08.02",
-        "label": "Atteinte aux personnes ; Traumatisme / Accident ; Accident domestique"
+      "healthMotive": {
+        "code": "M03.06",
+        "label": "Problème médical; Douleur thoracique "
+      },
+      "details": {
+        "priority": "P0",
+        "attribution": "MU"
       },
       "origin": "15"
     },
+    "location": {
+      "name": "SARL Toto",
+      "detailedAddress": {
+        "complete": "18 rue des Bois Rochefort 78500 Sartrouville",
+        "number": "18",
+        "wayName": {
+          "complete": "rue des Bois Rochefort",
+          "type": "rue",
+          "name": "des Bois Rochefort"
+        }
+      },
+      "city": {
+        "name": "Sartrouville",
+        "inseeCode": "78586"
+      },
+      "access": {
+        "floor": "4",
+        "interphone": "SARL TOTO",
+        "elevator": "Esc D",
+        "buildingName": "C",
+        "entity": "Comptabilité",
+        "phoneNumber": "+33156789456"
+      },
+      "freetext": "Se rendre au service comptabilité l'accueil est prévenu",
+      "geometry": {
+        "point": {
+          "coord": {
+            "lat": 48.95102310180664,
+            "lon": 2.1857428550720215,
+            "precision": "ADRESSE"
+          }
+        },
+        "datetime": "2023-12-27T05:06:00+01:00"
+      }
+    },
+    "initialAlert": {
+      "reception": "2024-01-10T14:05:00+01:00",
+      "caller": {
+        "callerContact": {
+          "type": "TEL",
+          "detail": "+33607080928",
+          "channel": "PERSONNE"
+        },
+        "callbackContact": {
+          "type": "TEL",
+          "detail": "+33156789456",
+          "channel": "PERSONNE"
+        },
+        "language": "FR",
+        "freetext": "Collègue de la victime",
+        "detailedName": {
+          "complete": "Magda LENA",
+          "lastName": "LENA",
+          "firstName": "Magda"
+        },
+        "type": "TIERS"
+      },
+      "notes": [
+        {
+          "freetext": "Malaise sur lieu de travail, rappeler le service comptabilité si perte de la communication",
+          "creation": "2024-01-10T07:09:00+01:00"
+        }
+      ]
+    },
+    "owner": "fr.health.samu950",
+    "patient": [
+      {
+        "detail": {
+          "age": "P47Y"
+        },
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Ouardia Boudadi",
+            "firstName": "Ouardia",
+            "lastName": "Boudadi"
+          },
+          "strictFeatures": {
+            "sex": "F",
+            "birthDate": "1982-02-26"
+          }
+        },
+        "idPat": "fr.health.samu950.patient.DRFR159502401000233.1"
+      }
+    ],
+    "perimeter": "AMU",
+    "interventionType": "PRIMAIRE",
     "medicalNote": [
       {
         "operator": {
           "role": "ARM"
         },
-        "idPat": "fr.health.samu800.patient.DRFR158002421400215.1",
-        "idObs": "fr.health.samu800.medicalNote.kn569ab",
-        "creation": "2024-08-01T16:31:00+02:00",
-        "freetext": "Chute dans la piscine à vide : pleure et crie. Multiples contusions. Plaie importante à l’arcade sourcilière."
-      },
-      {
-        "operator": {
-          "role": "ARM"
-        },
-        "idPat": "fr.health.samu800.patient.DRFR158002421400215.2",
-        "idObs": "fr.health.samu800.medicalNote.bn338bc",
-        "creation": "2024-08-01T16:32:00+02:00",
-        "freetext": "Conscient, légèrement choqué. Jambe ouverte et tordue, douleur ++."
+        "freetext": "Douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente.",
+        "creation": "2024-01-10T09:05:00+01:00",
+        "idPat": "fr.health.samu950.patient.DRFR159502401000233.1",
+        "idObs": "fr.health.samu950.medicalNote.z45a89"
       }
-    ],
-    "patient": [
-      {
-        "detail": {
-          "age": "P21M",
-          "weight": 11
-        },
-        "identity": {
-          "nonStrictFeatures": {
-            "complete": "Kamélia Nguyen",
-            "lastName": "Nguyen",
-            "firstName": "Kamélia "
-          },
-          "strictFeatures": {
-            "birthDate": "2021-10-15",
-            "sex": "FEM"
-          }
-        },
-        "idPat": "fr.health.samu800.patient.DRFR158002421400215.1"
-      },
-      {
-        "detail": {
-          "age": "P21M"
-        },
-        "identity": {
-          "nonStrictFeatures": {
-            "complete": "Bao Nguyen",
-            "lastName": "Nguyen",
-            "firstName": "Bao"
-          },
-          "strictFeatures": {
-            "birthDate": "2017-11-06",
-            "sex": "MASC"
-          }
-        },
-        "idPat": "fr.health.samu800.patient.DRFR158002421400215.2"
-      }
-    ],
-    "caseId": "fr.health.samu800.DRFR158002421400215",
-    "senderCaseId": "DRFR158002421400215",
-    "creation": "2024-08-01T16:28:00+02:00",
-    "owner": "fr.health.samu800",
-    "interventionType": "PRIMAIRE"
+    ]
   }
 }
