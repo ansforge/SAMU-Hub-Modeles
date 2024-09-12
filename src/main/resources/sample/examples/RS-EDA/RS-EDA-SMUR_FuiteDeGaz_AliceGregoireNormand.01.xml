@@ -83,7 +83,7 @@
     <identity>
       <strictFeatures>
         <birthDate>2011-05-11</birthDate>
-        <sex>FEM</sex>
+        <sex>F</sex>
       </strictFeatures>
       <nonStrictFeatures>
         <complete>Alice Normand</complete>
@@ -110,7 +110,7 @@
     <identity>
       <strictFeatures>
         <birthDate>2013-11-03</birthDate>
-        <sex>MASC</sex>
+        <sex>M</sex>
       </strictFeatures>
       <nonStrictFeatures>
         <complete>Grégoire Normand</complete>

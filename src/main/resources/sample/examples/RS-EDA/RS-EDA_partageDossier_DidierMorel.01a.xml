@@ -77,7 +77,7 @@
     <idPat>fr.health.samu770.patient.DRFR157702400400055.1</idPat>
     <identity>
       <strictFeatures>
-        <sex>MASC</sex>
+        <sex>M</sex>
       </strictFeatures>
       <nonStrictFeatures>
         <complete>Didier Morel</complete>
