@@ -87,7 +87,7 @@
             "firstName": "Alice"
           },
           "strictFeatures": {
-            "sex": "FEM",
+            "sex": "F",
             "birthDate": "2011-05-11"
           }
         },
@@ -115,7 +115,7 @@
           },
           "strictFeatures": {
             "birthDate": "2013-11-03",
-            "sex": "MASC"
+            "sex": "M"
           }
         },
         "idPat": "fr.health.samu440.patient.DRFR154402413800236.2",
