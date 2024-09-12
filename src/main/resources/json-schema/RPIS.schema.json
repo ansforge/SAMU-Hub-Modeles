@@ -180,10 +180,10 @@
                     "example": "example.json#/patient/sex",
                     "description": "Sexe du patient, suivant le libellé court de la nomenclature SI-SAMU-NOMENC_SEXE",
                     "enum": [
-                        "MASC",
-                        "FEM",
-                        "AUTRE",
-                        "INCONNU"
+                        "M",
+                        "F",
+                        "O",
+                        "UN"
                     ]
                 },
                 "residentialAddress": {

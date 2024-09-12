@@ -92,12 +92,12 @@ public class TechnicalHandlerTest {
         String xml = getMessageByFileName("TECHNICAL/nomenclature-test.xml");
         Technical xmlTechnical = xmlMapper.readValue(xml, Technical.class);
 
-        assertEquals(jsonTechnical.getNomenclatureField().getValue(), "INCONNU");
+        assertEquals(jsonTechnical.getNomenclatureField().getValue(), "M");
         assertEquals(jsonTechnical.getEnumArrayField().get(0).getValue(), "ENUM_VALUE_10");
         assertEquals(jsonTechnical.getEnumArrayField().get(1).getValue(), "ENUM_VALUE_20");
         assertEquals(jsonTechnical.getEnumArrayField().get(2).getValue(), "ENUM_VALUE_30");
 
-        assertEquals(xmlTechnical.getNomenclatureField().getValue(), "INCONNU");
+        assertEquals(xmlTechnical.getNomenclatureField().getValue(), "M");
         assertEquals(xmlTechnical.getEnumArrayField().get(0).getValue(), "ENUM_VALUE_10");
         assertEquals(xmlTechnical.getEnumArrayField().get(1).getValue(), "ENUM_VALUE_20");
         assertEquals(xmlTechnical.getEnumArrayField().get(2).getValue(), "ENUM_VALUE_30");

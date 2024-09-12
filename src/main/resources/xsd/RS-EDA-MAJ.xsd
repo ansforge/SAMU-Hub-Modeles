@@ -649,10 +649,10 @@ Au format "Durée" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="MASC"/>
-                        <enumeration value="FEM"/>
-                        <enumeration value="AUTRE"/>
-                        <enumeration value="INCONNU"/>
+                        <enumeration value="M"/>
+                        <enumeration value="F"/>
+                        <enumeration value="O"/>
+                        <enumeration value="UN"/>
                     </restriction>
                 </simpleType>
             </element>

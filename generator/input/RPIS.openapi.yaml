@@ -209,10 +209,10 @@ components:
           description: "Sexe du patient, suivant le libell\xE9 court de la nomenclature\
             \ SI-SAMU-NOMENC_SEXE"
           enum:
-          - MASC
-          - FEM
-          - AUTRE
-          - INCONNU
+          - M
+          - F
+          - O
+          - UN
           examples:
           - F
         residentialAddress:

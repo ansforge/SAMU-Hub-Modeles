@@ -7,10 +7,15 @@
     </complexType>
     <complexType name="position">
         <sequence>
-            <element name="id" type="string">
+            <element name="resourceId">
                 <annotation>
                     <documentation>Identifiant unique de la ressource  dans le système du partenaire propriétaire</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="([\w-]+\.){3,4}resource(\.[\w-]+){1,2}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="datetime" type="dateTime">
                 <annotation>

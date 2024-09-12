@@ -1,6 +1,7 @@
 Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise,Cardinalité,Objet,Format (ou type),Détails de format
 Position,,,,,,Objet de détail de la position de chaque ressource, ,position,0..n,X,position,
-,Identifiant de la ressource,,,,,Identifiant unique de la ressource  dans le système du partenaire propriétaire,76_45101#SMUR1,id,1..1,,string,
+,Identifiant de la ressource partagé,,,,,Identifiant unique de la ressource  dans le système du partenaire propriétaire,"fr.health.samu770.resource.VLM250
+fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1",resourceId,1..1,,string,"REGEX: ^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$"
 ,Date et heure des dernières remontées d'informations de la ressource,,,,,Date et heure de la dernière position connue,2024-01-27T08:44:00+02:00,datetime,1..1,,datetime,
 ,Date et heure de la réception de la dernière localisation,,,,,Date et heure de la réception de la dernière position connue dans le système de l'organisme,2024-01-27T08:45:00+02:00,receptionDatetime,0..1,,datetime,
 ,Coordonnées,,,,,Permet de localiser la resource. ,,coord,0..n,X,coord,

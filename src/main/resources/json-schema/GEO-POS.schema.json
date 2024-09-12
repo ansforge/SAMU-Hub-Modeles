@@ -22,17 +22,18 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "id",
+                "resourceId",
                 "datetime"
             ],
             "properties": {
-                "id": {
+                "resourceId": {
                     "type": "string",
-                    "title": "Identifiant de la ressource",
+                    "title": "Identifiant de la ressource partagé",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/position/0/id",
-                    "description": "Identifiant unique de la ressource  dans le système du partenaire propriétaire"
+                    "example": "example.json#/position/0/resourceId",
+                    "description": "Identifiant unique de la ressource  dans le système du partenaire propriétaire",
+                    "pattern": "^([\\w-]+\\.){3,4}resource(\\.[\\w-]+){1,2}$"
                 },
                 "datetime": {
                     "type": "string",

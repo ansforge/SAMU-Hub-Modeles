@@ -150,10 +150,10 @@
             "example": "example.json#/nomenclatureField",
             "description": "Enum from extenal nomenclature file",
             "enum": [
-                "MASC",
-                "FEM",
-                "AUTRE",
-                "INCONNU"
+                "M",
+                "F",
+                "O",
+                "UN"
             ]
         }
     },

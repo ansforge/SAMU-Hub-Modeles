@@ -101,10 +101,10 @@
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="MASC"/>
-                        <enumeration value="FEM"/>
-                        <enumeration value="AUTRE"/>
-                        <enumeration value="INCONNU"/>
+                        <enumeration value="M"/>
+                        <enumeration value="F"/>
+                        <enumeration value="O"/>
+                        <enumeration value="UN"/>
                     </restriction>
                 </simpleType>
             </element>
