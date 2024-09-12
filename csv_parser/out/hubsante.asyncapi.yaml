@@ -2726,10 +2726,10 @@ components:
           description: "Sexe du patient, suivant le libell\xE9 court de la nomenclature\
             \ SI-SAMU-NOMENC_SEXE"
           enum:
-          - MASC
-          - FEM
-          - AUTRE
-          - INCONNU
+          - M
+          - F
+          - O
+          - UN
           examples:
           - F
         residentialAddress:
@@ -3236,10 +3236,10 @@ components:
           example: example.json#/patient/0/identity/strictFeatures/sex
           description: A valoriser avec le sexe du patient
           enum:
-          - MASC
-          - FEM
-          - AUTRE
-          - INCONNU
+          - M
+          - F
+          - O
+          - UN
           examples:
           - F
       additionalProperties: false
@@ -5018,19 +5018,22 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - id
+      - resourceId
       - datetime
       properties:
-        id:
+        resourceId:
           type: string
-          title: Identifiant de la ressource
+          title: "Identifiant de la ressource partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/position/0/id
+          example: example.json#/position/0/resourceId
           description: "Identifiant unique de la ressource  dans le syst\xE8me du\
             \ partenaire propri\xE9taire"
+          pattern: ^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$
           examples:
-          - 76_45101#SMUR1
+          - 'fr.health.samu770.resource.VLM250
+
+            fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1'
         datetime:
           type: string
           title: "Date et heure des derni\xE8res remont\xE9es d'informations de la\
@@ -7270,10 +7273,10 @@ components:
           example: example.json#/nomenclatureField
           description: Enum from extenal nomenclature file
           enum:
-          - MASC
-          - FEM
-          - AUTRE
-          - INCONNU
+          - M
+          - F
+          - O
+          - UN
           examples:
           - None
       additionalProperties: false
@@ -7548,10 +7551,10 @@ components:
           example: example.json#/nomenclatureField
           description: Enum from extenal nomenclature file
           enum:
-          - MASC
-          - FEM
-          - AUTRE
-          - INCONNU
+          - M
+          - F
+          - O
+          - UN
           examples:
           - None
       additionalProperties: false

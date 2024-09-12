@@ -60,13 +60,13 @@ public class Patient {
    * SI-SAMU-NOMENC_SEXE
    */
   public enum SexEnum {
-    MASC("MASC"),
+    M("M"),
 
-    FEM("FEM"),
+    F("F"),
 
-    AUTRE("AUTRE"),
+    O("O"),
 
-    INCONNU("INCONNU");
+    UN("UN");
 
     private String value;
 

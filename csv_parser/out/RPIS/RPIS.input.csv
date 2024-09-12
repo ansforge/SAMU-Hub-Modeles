@@ -23,7 +23,7 @@ Régulation médicale,,,,,,,,regulation,1..1,X,regulation,
 ,,Code,,,,A valoriser avec le code de la nomenclature associée.,AVPAR,code,1..1,,string,NOMENCLATURE: CISU-Code_Nature_de_fait
 ,,Libellé court,,,,"A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Accident routier,label,1..1,,string,
-,Motif de recours ,# Voir whatsHappen (type codeAndLabel),,,,,,healthMotive,1..1,X,codeAndLabel,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
+,Motif de recours ,# Voir whatsHappen (type codeAndLabel),,,,,,healthMotive,1..1,X,codeAndLabel,NOMENCLATURE: CISU-Code_Motif_patient-victime
 ,Niveau de médicalisation initial,,,,,"Type d’équipe (médical, paramédicale, secouriste).
 A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.
 Permet de déduire avec la donnée ""niveau de médicalisation du transport"", si un UMHP est devenu un SMUR. ",PARAMED,initialTeamCare,1..1,,string,NOMENCLATURE: SI-SAMU-NIVSOIN
@@ -31,7 +31,7 @@ Patient,,,,,,,,patient,1..1,X,patient,
 ,ID Patient,,,,,"Identifiant unique du patient. 
 A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01",fr.health.samu690.patient.DRFR15DDXAAJJJ00001.1,patientId,1..1,,string,
 ,Date de naissance,,,,,Date de naissance du patient,17/02/1936,birthDate,1..1,,string,
-,Sexe,,,,,"Sexe du patient, suivant le libellé court de la nomenclature SI-SAMU-NOMENC_SEXE",F,sex,1..1,,string,NOMENCLATURE: SI-SAMU-NOMENC_SEXE
+,Sexe,,,,,"Sexe du patient, suivant le libellé court de la nomenclature SI-SAMU-NOMENC_SEXE",F,sex,1..1,,string,NOMENCLATURE: NOS-NOMENC_SEXE
 ,Adresse de résidence,,,,,,,residentialAddress,0..1,X,residentialAddress,
 ,,Code INSEE de la commune de résidence,,,,"Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.
 Le Code INSEE peut également précisé le pays de résidence, si étranger. ",92300,inseeCode,1..1,,string,REGEX: ^[0-9]{5}$

@@ -58,13 +58,13 @@ public class InsStrictFeatures {
    * A valoriser avec le sexe du patient
    */
   public enum SexEnum {
-    MASC("MASC"),
+    M("M"),
 
-    FEM("FEM"),
+    F("F"),
 
-    AUTRE("AUTRE"),
+    O("O"),
 
-    INCONNU("INCONNU");
+    UN("UN");
 
     private String value;
 

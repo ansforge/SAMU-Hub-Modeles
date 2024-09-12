@@ -204,13 +204,13 @@ public class Technical {
    * Enum from extenal nomenclature file
    */
   public enum NomenclatureFieldEnum {
-    MASC("MASC"),
+    M("M"),
 
-    FEM("FEM"),
+    F("F"),
 
-    AUTRE("AUTRE"),
+    O("O"),
 
-    INCONNU("INCONNU");
+    UN("UN");
 
     private String value;
 

@@ -977,10 +977,10 @@ components:
           example: example.json#/patient/0/identity/strictFeatures/sex
           description: A valoriser avec le sexe du patient
           enum:
-          - MASC
-          - FEM
-          - AUTRE
-          - INCONNU
+          - M
+          - F
+          - O
+          - UN
           examples:
           - F
       additionalProperties: false
