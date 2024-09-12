@@ -1,134 +1,116 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <createCaseHealth xmlns="urn:emergency:cisu:2.0:createCaseHealth">
-  <caseId>fr.health.samu800.DRFR158002421400215</caseId>
-  <senderCaseId>DRFR158002421400215</senderCaseId>
-  <creation>2024-08-01T16:28:00+02:00</creation>
+  <caseId>fr.health.samu950.DRFR159502401000233</caseId>
+  <senderCaseId>DRFR159502401000233</senderCaseId>
+  <creation>2024-01-10T14:07:00+01:00</creation>
+  <perimeter>AMU</perimeter>
   <interventionType>PRIMAIRE</interventionType>
   <qualification>
     <origin>15</origin>
     <whatsHappen>
-      <code>C02.08.02</code>
-      <label>Atteinte aux personnes ; Traumatisme / Accident ; Accident domestique</label>
+      <code>C02.05.01</code>
+      <label>Atteinte aux personnes; Pathologie / maladie ; Médicale </label>
     </whatsHappen>
     <locationKind>
-      <code>L01.01.02</code>
-      <label>Domicile; Maison particulière, pavillon ; A l'extérieur</label>
+      <code>L03.01.00</code>
+      <label>Local d’activité professionnelle; Local administratif</label>
     </locationKind>
     <healthMotive>
-      <code>M02.07</code>
-      <label>Traumatisme sérieux, plaie intermédiaire </label>
+      <code>M03.06</code>
+      <label>Problème médical; Douleur thoracique </label>
     </healthMotive>
     <details>
-      <attribution>PEDIA</attribution>
-      <priority>P1</priority>
+      <attribution>MU</attribution>
+      <priority>P0</priority>
     </details>
   </qualification>
   <location>
+    <name>SARL Toto</name>
     <detailedAddress>
-      <complete>10 Rue Pierre Laisne </complete>
-      <number>10</number>
+      <complete>18 rue des Bois Rochefort 78500 Sartrouville</complete>
+      <number>18</number>
       <wayName>
-        <complete>Rue Pierre Laisne </complete>
-        <type>Rue</type>
-        <name>Pierre Laisne </name>
+        <complete>rue des Bois Rochefort</complete>
+        <type>rue</type>
+        <name>des Bois Rochefort</name>
       </wayName>
     </detailedAddress>
     <city>
-      <name>Haussez</name>
-      <inseeCode>76345</inseeCode>
+      <name>Sartrouville</name>
+      <inseeCode>78586</inseeCode>
     </city>
+    <access>
+      <floor>4</floor>
+      <interphone>SARL TOTO</interphone>
+      <elevator>Esc D</elevator>
+      <buildingName>C</buildingName>
+      <entity>Comptabilité</entity>
+      <phoneNumber>+33156789456</phoneNumber>
+    </access>
     <geometry>
-      <datetime>2024-07-29T13:00:00+02:00</datetime>
+      <datetime>2023-12-27T05:06:00+01:00</datetime>
       <point>
         <coord>
-          <lat>49.59237386471319</lat>
-          <lon>1.6958576837577788</lon>
-          <precision>RUE</precision>
+          <lat>48.95102310180664</lat>
+          <lon>2.1857428550720215</lon>
+          <precision>ADRESSE</precision>
         </coord>
-        <isAml>false</isAml>
       </point>
     </geometry>
-    <freetext>piscine au fond du jardin</freetext>
+    <freetext>Se rendre au service comptabilité l'accueil est prévenu</freetext>
   </location>
   <initialAlert>
-    <reception>2024-08-01T16:27:00+02:00</reception>
+    <reception>2024-01-10T14:05:00+01:00</reception>
     <notes>
-      <creation>2024-08-01T04:29:00+02:00</creation>
-      <freetext>Enfants ayant chuté d’environ 2 m dans la piscine en travaux (sans eau).</freetext>
+      <creation>2024-01-10T07:09:00+01:00</creation>
+      <freetext>Malaise sur lieu de travail, rappeler le service comptabilité si perte de la communication</freetext>
     </notes>
     <caller>
       <callerContact>
         <channel>PERSONNE</channel>
         <type>TEL</type>
-        <detail>+14165550123</detail>
+        <detail>+33607080928</detail>
       </callerContact>
       <callbackContact>
         <channel>PERSONNE</channel>
         <type>TEL</type>
-        <detail>+33654464295</detail>
+        <detail>+33156789456</detail>
       </callbackContact>
       <language>FR</language>
-      <type>FAMILLE</type>
-      <freetext>beau-père des enfants</freetext>
+      <type>TIERS</type>
+      <freetext>Collègue de la victime</freetext>
       <detailedName>
-        <complete>Quentin DIAWARA</complete>
-        <lastName>DIAWARA</lastName>
-        <firstName>Quentin</firstName>
+        <complete>Magda LENA</complete>
+        <lastName>LENA</lastName>
+        <firstName>Magda</firstName>
       </detailedName>
     </caller>
   </initialAlert>
-  <owner>fr.health.samu800</owner>
+  <owner>fr.health.samu950</owner>
   <patient>
-    <idPat>fr.health.samu800.patient.DRFR158002421400215.1</idPat>
+    <idPat>fr.health.samu950.patient.DRFR159502401000233.1</idPat>
     <identity>
       <strictFeatures>
-        <birthDate>2021-10-15</birthDate>
+        <birthDate>1982-02-26</birthDate>
         <sex>F</sex>
       </strictFeatures>
       <nonStrictFeatures>
-        <complete>Kamélia Nguyen</complete>
-        <lastName>Nguyen</lastName>
-        <firstName>Kamélia </firstName>
+        <complete>Ouardia Boudadi</complete>
+        <lastName>Boudadi</lastName>
+        <firstName>Ouardia</firstName>
       </nonStrictFeatures>
     </identity>
     <detail>
-      <weight>11</weight>
-      <age>P21M</age>
-    </detail>
-  </patient>
-  <patient>
-    <idPat>fr.health.samu800.patient.DRFR158002421400215.2</idPat>
-    <identity>
-      <strictFeatures>
-        <birthDate>2017-11-06</birthDate>
-        <sex>M</sex>
-      </strictFeatures>
-      <nonStrictFeatures>
-        <complete>Bao Nguyen</complete>
-        <lastName>Nguyen</lastName>
-        <firstName>Bao</firstName>
-      </nonStrictFeatures>
-    </identity>
-    <detail>
-      <age>P21M</age>
+      <age>P47Y</age>
     </detail>
   </patient>
   <medicalNote>
-    <idPat>fr.health.samu800.patient.DRFR158002421400215.1</idPat>
+    <idPat>fr.health.samu950.patient.DRFR159502401000233.1</idPat>
     <operator>
       <role>ARM</role>
     </operator>
-    <idObs>fr.health.samu800.medicalNote.kn569ab</idObs>
-    <creation>2024-08-01T16:31:00+02:00</creation>
-    <freetext>Chute dans la piscine à vide : pleure et crie. Multiples contusions. Plaie importante à l’arcade sourcilière.</freetext>
-  </medicalNote>
-  <medicalNote>
-    <idPat>fr.health.samu800.patient.DRFR158002421400215.2</idPat>
-    <operator>
-      <role>ARM</role>
-    </operator>
-    <idObs>fr.health.samu800.medicalNote.bn338bc</idObs>
-    <creation>2024-08-01T16:32:00+02:00</creation>
-    <freetext>Conscient, légèrement choqué. Jambe ouverte et tordue, douleur ++.</freetext>
+    <idObs>fr.health.samu950.medicalNote.z45a89</idObs>
+    <creation>2024-01-10T09:05:00+01:00</creation>
+    <freetext>Douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente.</freetext>
   </medicalNote>
 </createCaseHealth>

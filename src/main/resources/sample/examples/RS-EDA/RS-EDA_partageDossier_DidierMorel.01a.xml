@@ -1,123 +1,110 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <createCaseHealth xmlns="urn:emergency:cisu:2.0:createCaseHealth">
-  <caseId>fr.health.samu950.DRFR159502401800159</caseId>
-  <creation>2024-01-18T18:00:00+01:00</creation>
+  <caseId>fr.health.samu770.DRFR157702400400055</caseId>
+  <senderCaseId>DRFR157702400400055</senderCaseId>
+  <creation>2024-01-04T08:01:00+01:00</creation>
+  <perimeter>AMU</perimeter>
+  <interventionType>PRIMAIRE</interventionType>
   <qualification>
-    <origin>15</origin>
+    <origin>18</origin>
     <whatsHappen>
-      <code>C02.08.02</code>
-      <label>Atteinte aux personnes ; Traumatisme / Accident ; Accident domestique</label>
+      <code>C02.08.05</code>
+      <label>Atteinte aux personnes ; Traumatisme / Accident ; Par objet tranchant ou perforant</label>
     </whatsHappen>
     <locationKind>
-      <code>L01.02.10</code>
-      <label>Domicile ; Lieu d'habitation collectif ou foyer d'hébergement ;  escaliers</label>
+      <code>L01.01.04</code>
+      <label>Domicile ; Maison particulière, pavillon ;  dépendance</label>
     </locationKind>
     <healthMotive>
-      <code>M02.07</code>
-      <label>Traumatisme sérieux, plaie intermédiaire</label>
+      <code>M01.02</code>
+      <label>Détresse vitale; Altération de la conscience; Dont inconscient, coma</label>
     </healthMotive>
     <details>
       <attribution>MU</attribution>
-      <priority>P2</priority>
+      <priority>P0</priority>
     </details>
   </qualification>
   <location>
     <detailedAddress>
-      <complete>4 rue Danielle Mitterrand</complete>
-      <number>4</number>
+      <complete>12 Rue Louis Aristide Verdier</complete>
+      <number>12</number>
       <wayName>
-        <complete>rue Danielle Mitterrand</complete>
+        <complete>Rue Louis Aristide Verdier</complete>
         <type>rue</type>
-        <name>Danielle Mitterrand</name>
+        <name>Louis Aristide Verdier</name>
       </wayName>
     </detailedAddress>
     <city>
-      <name>Bezons</name>
-      <inseeCode>95063</inseeCode>
+      <name>Vaires-sur-Marne</name>
+      <inseeCode>77360</inseeCode>
     </city>
-    <access>
-      <floor>3</floor>
-      <interphone>Halimi</interphone>
-      <accessCode>5678</accessCode>
-      <elevator>ESC B</elevator>
-      <buildingName>A</buildingName>
-    </access>
     <geometry>
-      <datetime>2024-01-17T21:06:00+01:00</datetime>
+      <datetime>2024-01-03T03:00:00+01:00</datetime>
       <point>
         <coord>
-          <lat>48.92399978637695</lat>
-          <lon>2.2162439823150635</lon>
+          <lat>48.8668403</lat>
+          <lon>2.6320988</lon>
           <precision>ADRESSE</precision>
         </coord>
       </point>
     </geometry>
-    <freetext>dans la cage d’escalier B</freetext>
+    <freetext>aller directement dans le garage, la porte est ouverte</freetext>
   </location>
   <initialAlert>
-    <reception>2024-01-18T18:00:00+01:00</reception>
+    <reception>2024-01-04T08:00:00+01:00</reception>
     <notes>
-      <creation>2024-01-18T18:01:00+01:00</creation>
-      <freetext>Chute enfant dans les escaliers</freetext>
+      <creation>2024-01-04T08:02:00+01:00</creation>
+      <freetext>Accident de bricolage, atelier particulier.</freetext>
     </notes>
     <caller>
       <callerContact>
         <channel>PERSONNE</channel>
         <type>TEL</type>
-        <detail>+33702880946</detail>
+        <detail>+33607080915</detail>
       </callerContact>
       <language>FR</language>
-      <type>TIERS</type>
+      <type>FAMILLE</type>
+      <freetext>fils de la victime</freetext>
       <detailedName>
-        <complete>Amina BERTRAND  </complete>
-        <lastName>BERTRAND  </lastName>
-        <firstName>Amina</firstName>
+        <complete>Sébastien Morel </complete>
+        <lastName>Morel </lastName>
+        <firstName>Sébastien</firstName>
       </detailedName>
     </caller>
   </initialAlert>
-  <owner>fr.health.samu950</owner>
+  <owner>fr.health.samu770</owner>
   <patient>
-    <idPat>fr.health.samu950.patient.DRFR159502400400159.1</idPat>
+    <idPat>fr.health.samu770.patient.DRFR157702400400055.1</idPat>
     <identity>
       <strictFeatures>
-        <birthDate>2014-03-03</birthDate>
-        <sex>F</sex>
+        <sex>M</sex>
       </strictFeatures>
       <nonStrictFeatures>
-        <complete>Lola Halimi</complete>
-        <lastName>Halimi</lastName>
-        <firstName>Lola </firstName>
+        <complete>Didier Morel</complete>
+        <lastName>Morel</lastName>
+        <firstName>Didier</firstName>
       </nonStrictFeatures>
     </identity>
     <detail>
-      <age>P10Y</age>
+      <age>P65Y</age>
     </detail>
   </patient>
   <medicalNote>
-    <idPat>fr.health.samu950.patient.DRFR159502400400159.1</idPat>
+    <idPat>fr.health.samu770.patient.DRFR157702400400055.1</idPat>
     <operator>
       <role>ARM</role>
     </operator>
-    <idObs>fr.health.samu950.medicalNote.54fg795</idObs>
-    <creation>2024-01-18T18:02:00+01:00</creation>
-    <freetext>Marche impossible.</freetext>
+    <idObs>fr.health.samu770.medicalNote.45db215</idObs>
+    <creation>2024-01-04T08:03:00+01:00</creation>
+    <freetext>Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup.</freetext>
   </medicalNote>
   <medicalNote>
-    <idPat>fr.health.samu950.patient.DRFR159502400400159.1</idPat>
+    <idPat>fr.health.samu770.patient.DRFR157702400400055.1</idPat>
     <operator>
       <role>ARM</role>
     </operator>
-    <idObs>fr.health.samu950.medicalNote.98qs778</idObs>
-    <creation>2024-01-18T18:04:00+01:00</creation>
-    <freetext>Cheville gonflée et douloureuse</freetext>
-  </medicalNote>
-  <medicalNote>
-    <idPat>fr.health.samu950.patient.DRFR159502400400159.1</idPat>
-    <operator>
-      <role>ARM</role>
-    </operator>
-    <idObs>fr.health.samu950.medicalNote.13co294</idObs>
-    <creation>2024-01-18T18:05:00+01:00</creation>
-    <freetext>Entorse de la cheville, avec possible fracture.</freetext>
+    <idObs>fr.health.samu770.medicalNote.15as456</idObs>
+    <creation>2024-01-04T08:04:00+01:00</creation>
+    <freetext>La victime est inconsciente (perte de connaissance).</freetext>
   </medicalNote>
 </createCaseHealth>
