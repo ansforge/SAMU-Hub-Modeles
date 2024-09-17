@@ -50,7 +50,7 @@
             "precision": "ADRESSE"
           }
         },
-        "datetime": "2024-05-18T18:15:00+02:00"
+        "datetime": "2024-05-18T18:19:00+02:00"
       },
       "freetext": "Maison aux volets verts"
     },
@@ -97,8 +97,8 @@
         },
         "hypothesis": {
           "mainDiagnosis": {
-            "code": "PB32",
-            "label": "Effets nocifs ou exposition accidentelle au monoxyde de carbone"
+            "code": "T58",
+            "label": "Effet toxique du monoxyde de carbone"
           }
         },
         "healthMotive": {
@@ -124,8 +124,8 @@
         },
         "hypothesis": {
           "mainDiagnosis": {
-            "label": "Effets nocifs ou exposition accidentelle au monoxyde de carbone",
-            "code": "PB32"
+            "label": "Effet toxique du monoxyde de carbone",
+            "code": "T58"
           }
         }
       }
