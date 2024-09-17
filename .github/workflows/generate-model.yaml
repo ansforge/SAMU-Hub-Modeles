@@ -72,7 +72,7 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
       
-      - name: Copy RC-DE schema to json_schema2xsd resources
+      - name: Update the RC-DE schema in json_schema2xsd resources
         working-directory: ./csv_parser
         if: steps.filter.outputs.parsing_required == 'true'
         run: |
