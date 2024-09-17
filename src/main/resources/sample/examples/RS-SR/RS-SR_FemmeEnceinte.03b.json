@@ -2,9 +2,7 @@
   "resourcesStatus": {
     "caseId": "fr.fire.sis044.cga-044.SC-20240526-044-cga-AL8",
     "resourceId": "fr.health.samu440.resource.VLM4",
-    "state": {
-      "datetime": "2024-05-26T13:32:00+02:00",
-      "status": "ARRIVE"
-    }
+    "datetime": "2024-05-26T13:32:00+02:00",
+    "status": "ARRIVE"
   }
 }
