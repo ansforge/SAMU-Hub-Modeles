@@ -215,6 +215,20 @@
       "name": "Enfants NGUYEN.04c",
       "context": "Pas de test suivant: RS-SR - 05a",
       "environment": "Engagement de l’HéliSMUR 80 en réponse à la demande du 76A"
+    },
+    {
+      "file": "RS-RI/RS-RI_FemmeEnceinte.json",
+      "icon": "mdi-human-pregnant",
+      "name": "Delphine VIGNEAU.01bis",
+      "context": "Pas de test suivant: RS-SR",
+      "environment": "Engagement VLM"
+    },
+    {
+      "file": "RS-RI/RS-RI_FuiteDeGaz.json",
+      "icon": "mdi-molecule-co2",
+      "name": "Alice et Grégoire NORMAND.01bis",
+      "context": "Pas de test suivant: RS-SR",
+      "environment": "Engagement VLM et VSAV"
     }]
   },
   {
@@ -315,6 +329,30 @@
         "icon": "mdi-baby-face-outline",
         "name": "Enfants NGUYEN.05c",
         "environment": "Arrivée Helismur 80 sur le lieu de l’intervention"
+      }, 
+      {
+        "file": "RS-SR/RS-SR_FemmeEnceinte.03a.json",
+        "icon": "mdi-human-pregnant",
+        "name": "Delphine Vigneau.03a",
+        "environment": "Départ de la base du VLM"
+      }, 
+      {
+        "file": "RS-SR/RS-SR_FemmeEnceinte.03b.json",
+        "icon": "mdi-human-pregnant",
+        "name": "Delphine Vigneau.03b",
+        "environment": "Arrivée sur les lieux de l'intervention du VLM"
+      }, 
+      {
+        "file": "RS-SR/RS-SR_FuiteDeGaz.03a.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.03a",
+        "environment": "Départ de la base du VLM"
+      }, 
+      {
+        "file": "RS-SR/RS-SR_FuiteDeGaz.03b.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.03b",
+        "environment": "Arrivée sur les lieux de l'intervention du VLM"
       }]
   },
 
