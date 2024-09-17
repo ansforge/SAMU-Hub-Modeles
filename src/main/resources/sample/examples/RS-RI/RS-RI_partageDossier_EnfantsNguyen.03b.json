@@ -6,11 +6,6 @@
           "details": "+33744947325",
           "type": "TEL"
         },
-        "coord": {
-          "lat": 49.609757856404826,
-          "lon": 1.3320630023425208,
-          "precision": "EXACTE"
-        },
         "team": {
           "teamCare": "MED",
           "name": "Equipe SMUR 5"

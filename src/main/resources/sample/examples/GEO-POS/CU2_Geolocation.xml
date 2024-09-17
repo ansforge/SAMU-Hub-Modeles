@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <geoPositionsUpdate xmlns="urn:emergency:cisu:2.0:geoPositionsUpdate">
   <position>
-    <id>76_45101#SMUR1#</id>
+    <resourceId>fr.health.samu760.resource.VLM250</resourceId>
     <datetime>2024-01-27T08:44:00+02:00</datetime>
     <receptionDatetime>2024-01-27T08:45:00+02:00</receptionDatetime>
     <coord>
@@ -13,7 +13,7 @@
     <status>DISPONIBLE</status>
   </position>
   <position>
-    <id>76_45102#SMUR2#</id>
+    <resourceId>fr.health.samu760.resource.VLM211</resourceId>
     <datetime>2024-01-27T08:43:00+02:00</datetime>
     <receptionDatetime>2024-01-27T08:45:00+02:00</receptionDatetime>
     <coord>
@@ -26,7 +26,7 @@
     <engagedStatus>ARRIVEE_LIEU</engagedStatus>
   </position>
   <position>
-    <id>76_45104#SMUR4#</id>
+    <resourceId>fr.health.samu760.resource.VLM25</resourceId>
     <datetime>2024-01-27T08:46:00+02:00</datetime>
     <receptionDatetime>2024-01-27T08:48:00+02:00</receptionDatetime>
     <coord>

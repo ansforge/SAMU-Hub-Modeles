@@ -46,7 +46,7 @@
       <buildingName>Soleil</buildingName>
     </access>
     <geometry>
-      <datetime>2024-05-18T18:15:00+02:00</datetime>
+      <datetime>2024-05-26T13:13:00+02:00</datetime>
       <point>
         <coord>
           <lat>47.146089</lat>
@@ -85,7 +85,7 @@
     <identity>
       <strictFeatures>
         <birthDate>1992-03-03</birthDate>
-        <sex>FEM</sex>
+        <sex>F</sex>
       </strictFeatures>
       <nonStrictFeatures>
         <complete>Delphine Vigneau</complete>
@@ -102,7 +102,7 @@
     </detail>
     <hypothesis>
       <mainDiagnosis>
-        <code>JA40 </code>
+        <code>O20</code>
         <label>Hémorragie en début de grossesse</label>
       </mainDiagnosis>
     </hypothesis>

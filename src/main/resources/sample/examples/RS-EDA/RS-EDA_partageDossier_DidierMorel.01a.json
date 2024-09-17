@@ -45,7 +45,7 @@
             "precision": "ADRESSE"
           }
         },
-        "datetime": "2024-01-04T00:05:00+01:00"
+        "datetime": "2024-01-03T03:00:00+01:00"
       }
     },
     "initialAlert": {
@@ -85,7 +85,7 @@
             "firstName": "Didier"
           },
           "strictFeatures": {
-            "sex": "MASC"
+            "sex": "M"
           }
         },
         "idPat": "fr.health.samu770.patient.DRFR157702400400055.1"

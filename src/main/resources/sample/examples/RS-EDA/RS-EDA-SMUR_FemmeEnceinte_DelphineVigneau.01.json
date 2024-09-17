@@ -47,7 +47,7 @@
             "precision": "EXACTE"
           }
         },
-        "datetime": "2024-05-18T18:15:00+02:00"
+        "datetime": "2024-05-26T13:13:00+02:00"
       },
       "externalLocationId": [
         {
@@ -89,7 +89,7 @@
             "firstName": "Delphine"
           },
           "strictFeatures": {
-            "sex": "FEM",
+            "sex": "F",
             "birthDate": "1992-03-03"
           }
         },
@@ -99,7 +99,7 @@
         },
         "hypothesis": {
           "mainDiagnosis": {
-            "code": "JA40 ",
+            "code": "O20",
             "label": "Hémorragie en début de grossesse"
           }
         },
