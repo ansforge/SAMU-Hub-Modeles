@@ -42,7 +42,7 @@
       <inseeCode>44018</inseeCode>
     </city>
     <geometry>
-      <datetime>2024-05-18T18:15:00+02:00</datetime>
+      <datetime>2024-05-18T18:19:00+02:00</datetime>
       <point>
         <coord>
           <lat>47.146089</lat>
@@ -100,8 +100,8 @@
     </detail>
     <hypothesis>
       <mainDiagnosis>
-        <code>PB32</code>
-        <label>Effets nocifs ou exposition accidentelle au monoxyde de carbone</label>
+        <code>T58</code>
+        <label>Effet toxique du monoxyde de carbone</label>
       </mainDiagnosis>
     </hypothesis>
   </patient>
@@ -123,8 +123,8 @@
     </detail>
     <hypothesis>
       <mainDiagnosis>
-        <code>PB32</code>
-        <label>Effets nocifs ou exposition accidentelle au monoxyde de carbone</label>
+        <code>T58</code>
+        <label>Effet toxique du monoxyde de carbone</label>
       </mainDiagnosis>
     </hypothesis>
   </patient>
