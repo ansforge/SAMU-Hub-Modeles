@@ -71,6 +71,13 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
+      
+      - name: Copy RC-DE schema to json_schema2xsd resources
+        working-directory: ./csv_parser
+        if: steps.filter.outputs.parsing_required == 'true'
+        run: |
+          rm -f ./json_schema2xsd/src/main/resources/RC-DE.schema.json
+          cp ./out/RC-DE/RC-DE.schema.json ./json_schema2xsd/src/main/resources/RC-DE.schema.json
 
       - name: Generate XSDs
         working-directory: ./csv_parser/json_schema2xsd
