@@ -21,11 +21,6 @@
       <datetime>2024-01-04T08:04:00+01:00</datetime>
       <status>DECISION</status>
     </state>
-    <coord>
-      <lat>48.85442267909786</lat>
-      <lon>2.7728062415541657</lon>
-      <precision>EXACTE</precision>
-    </coord>
   </mobilizedResource>
   <mobilizedResource>
     <datetime>2024-01-04T08:06:00+01:00</datetime>
@@ -42,10 +37,5 @@
       <datetime>2024-01-04T08:06:00+01:00</datetime>
       <status>DECLENCHE</status>
     </state>
-    <coord>
-      <lat>48.83788635355336</lat>
-      <lon>2.6268274423385187</lon>
-      <precision>EXACTE</precision>
-    </coord>
   </mobilizedResource>
 </resourcesInfo>

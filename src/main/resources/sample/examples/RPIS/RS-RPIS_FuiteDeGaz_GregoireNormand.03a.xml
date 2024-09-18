@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <rpis xmlns="urn:emergency:cisu:2.0:rpis">
-  <event>
-    <samuId>fr.health.samu440</samuId>
-    <fileId>DRFR154402413800236</fileId>
+  <context>
+    <orgId>fr.health.samu440</orgId>
+    <caseId>DRFR154402413800236</caseId>
     <creationDate>2024-05-18T18:15:00+02:00</creationDate>
-    <decisionDate>2024-05-18T18:19:00+02:00</decisionDate>
+    <decisionDate>2024-05-18T18:18:00+02:00</decisionDate>
     <ressourceFinessLegal>440000271</ressourceFinessLegal>
     <ressourceFinessGeo>440000289</ressourceFinessGeo>
     <ressourceStructure>0</ressourceStructure>
-  </event>
+  </context>
   <regulation>
     <whatsHappen>
       <code>C09.03.00</code>
@@ -23,7 +23,7 @@
   <patient>
     <patientId>fr.health.samu440.patient.DRFR154402413800236.2</patientId>
     <birthDate>2013-11-03</birthDate>
-    <sex>MASC</sex>
+    <sex>M</sex>
     <residentialAddress>
       <inseeCode>44018</inseeCode>
       <city>Bouaye</city>
@@ -50,7 +50,7 @@
       <teamAvailable>2024-05-18T19:05:00+02:00</teamAvailable>
       <returnSmur>2024-05-18T19:16:00+02:00</returnSmur>
     </smurStatus>
-    <mainDiagnosis>PB32</mainDiagnosis>
+    <mainDiagnosis>T58</mainDiagnosis>
   </intervention>
   <orientation>
     <type>TEMP</type>
