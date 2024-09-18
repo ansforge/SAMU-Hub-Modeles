@@ -134,6 +134,10 @@ jobs:
 
       - name: Apply license
         run: ./gradlew licenseFormat
+        
+      - name: Delete old xml files
+        run: |
+          find ./src/main/resources/sample/examples -name "*.xml" -type f -delete
 
       - name: Generate XML files
         run: |
