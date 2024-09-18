@@ -93,7 +93,7 @@ public class App {
                 // Write the generated XML schema to a file
                 writeDocumentToFile(xmlSchemaDoc, xsdFilePath);
             } catch (Exception e) {
-                logger.severe("Error while attempting to process schema " + schema + ": " + e);
+                logger.severe("Error while attempting to process schema " + schema + ": " + e );
                 System.exit(1);
             }
         }
