@@ -43,7 +43,7 @@
       <buildingName>A</buildingName>
     </access>
     <geometry>
-      <obsDatime>2024-01-04T00:05:00+01:00</obsDatime>
+      <datetime>2024-01-17T21:06:00+01:00</datetime>
       <point>
         <coord>
           <lat>48.92399978637695</lat>
@@ -66,11 +66,6 @@
         <type>TEL</type>
         <detail>+33702880946</detail>
       </callerContact>
-      <callbackContact>
-        <channel>PERSONNE</channel>
-        <type>TEL</type>
-        <detail>+33702880946</detail>
-      </callbackContact>
       <language>FR</language>
       <type>TIERS</type>
       <detailedName>
@@ -86,7 +81,7 @@
     <identity>
       <strictFeatures>
         <birthDate>2014-03-03</birthDate>
-        <sex>FEM</sex>
+        <sex>F</sex>
       </strictFeatures>
       <nonStrictFeatures>
         <complete>Lola Halimi</complete>

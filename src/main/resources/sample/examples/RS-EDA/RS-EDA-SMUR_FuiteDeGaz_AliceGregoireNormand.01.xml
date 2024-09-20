@@ -42,7 +42,7 @@
       <inseeCode>44018</inseeCode>
     </city>
     <geometry>
-      <obsDatime>2024-05-18T18:15:00+02:00</obsDatime>
+      <datetime>2024-05-18T18:19:00+02:00</datetime>
       <point>
         <coord>
           <lat>47.146089</lat>
@@ -83,7 +83,7 @@
     <identity>
       <strictFeatures>
         <birthDate>2011-05-11</birthDate>
-        <sex>FEM</sex>
+        <sex>F</sex>
       </strictFeatures>
       <nonStrictFeatures>
         <complete>Alice Normand</complete>
@@ -100,8 +100,8 @@
     </detail>
     <hypothesis>
       <mainDiagnosis>
-        <code>PB32</code>
-        <label>Effets nocifs ou exposition accidentelle au monoxyde de carbone</label>
+        <code>T58</code>
+        <label>Effet toxique du monoxyde de carbone</label>
       </mainDiagnosis>
     </hypothesis>
   </patient>
@@ -110,7 +110,7 @@
     <identity>
       <strictFeatures>
         <birthDate>2013-11-03</birthDate>
-        <sex>MASC</sex>
+        <sex>M</sex>
       </strictFeatures>
       <nonStrictFeatures>
         <complete>Grégoire Normand</complete>
@@ -123,8 +123,8 @@
     </detail>
     <hypothesis>
       <mainDiagnosis>
-        <code>PB32</code>
-        <label>Effets nocifs ou exposition accidentelle au monoxyde de carbone</label>
+        <code>T58</code>
+        <label>Effet toxique du monoxyde de carbone</label>
       </mainDiagnosis>
     </hypothesis>
   </patient>

@@ -39,7 +39,7 @@
       <inseeCode>77360</inseeCode>
     </city>
     <geometry>
-      <obsDatime>2024-01-04T00:05:00+01:00</obsDatime>
+      <datetime>2024-01-03T03:00:00+01:00</datetime>
       <point>
         <coord>
           <lat>48.8668403</lat>
@@ -62,11 +62,6 @@
         <type>TEL</type>
         <detail>+33607080915</detail>
       </callerContact>
-      <callbackContact>
-        <channel>PERSONNE</channel>
-        <type>TEL</type>
-        <detail>+33607080915</detail>
-      </callbackContact>
       <language>FR</language>
       <type>FAMILLE</type>
       <freetext>fils de la victime</freetext>
@@ -82,7 +77,7 @@
     <idPat>fr.health.samu770.patient.DRFR157702400400055.1</idPat>
     <identity>
       <strictFeatures>
-        <sex>MASC</sex>
+        <sex>M</sex>
       </strictFeatures>
       <nonStrictFeatures>
         <complete>Didier Morel</complete>

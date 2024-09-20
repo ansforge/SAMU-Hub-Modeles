@@ -39,7 +39,7 @@
           },
           "isAml": false
         },
-        "obsDatime": "2024-07-29T13:00:00+02:00"
+        "datetime": "2024-07-16T18:40:00+02:00"
       },
       "city": {
         "name": "Haussez",
@@ -109,7 +109,7 @@
           },
           "strictFeatures": {
             "birthDate": "2021-10-15",
-            "sex": "FEM"
+            "sex": "F"
           }
         },
         "idPat": "fr.health.samu800.patient.DRFR158002421400215.1"
@@ -126,7 +126,7 @@
           },
           "strictFeatures": {
             "birthDate": "2017-11-06",
-            "sex": "MASC"
+            "sex": "M"
           }
         },
         "idPat": "fr.health.samu800.patient.DRFR158002421400215.2"

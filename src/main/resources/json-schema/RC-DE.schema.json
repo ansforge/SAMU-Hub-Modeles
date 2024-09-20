@@ -31,7 +31,7 @@
             "x-cols": 6,
             "example": "example.json#/sentAt",
             "description": "Groupe date heure de d\u00e9but de partage li\u00e9 \u00e0 l'envoi du message. Il doit  \u00eatre coh\u00e9rent avec le champ <dateTimeSent> de l'enveloppe EDXL (voir DST).  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9. Le fuseau horaire pour UTC doit \u00eatre repr\u00e9sent\u00e9 par '-00:00'",
-            "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
             "format": "date-time"
         },
         "kind": {

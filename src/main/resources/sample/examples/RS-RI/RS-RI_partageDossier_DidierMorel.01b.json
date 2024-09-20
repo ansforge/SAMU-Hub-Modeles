@@ -9,11 +9,6 @@
         "resourceType": "SMUR",
         "vehiculeType": "VLM",
         "name": "VLM 77 - 250",
-        "coord": {
-          "lat": 48.85442267909786,
-          "precision": "EXACTE",
-          "lon": 2.7728062415541657
-        },
         "datetime": "2024-01-04T08:05:00+01:00",
         "resourceId": "fr.health.samu770.resource.VLM250",
         "orgId": "fr.health.samu770",
@@ -30,11 +25,6 @@
         ]
       },
       {
-        "coord": {
-          "lat": 48.83788635355336,
-          "lon": 2.6268274423385187,
-          "precision": "EXACTE"
-        },
         "team": {
           "teamCare": "SECOURS",
           "name": "Equipe 89"

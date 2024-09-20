@@ -76,13 +76,31 @@ OU - si un ID unique de la demande n'était pas disponible :
                 <simpleType>
                     <restriction base="string">
                         <enumeration value="SMUR"/>
+                        <enumeration value="MED"/>
+                        <enumeration value="PARAMED"/>
                         <enumeration value="HOSPIT"/>
                         <enumeration value="LIB"/>
+                        <enumeration value="MEDC"/>
+                        <enumeration value="PHARMA"/>
+                        <enumeration value="INF"/>
+                        <enumeration value="MEDSPE"/>
+                        <enumeration value="DENT"/>
+                        <enumeration value="AUTREPRO"/>
                         <enumeration value="TSU "/>
                         <enumeration value="SIS"/>
+                        <enumeration value="MSP"/>
+                        <enumeration value="ISP"/>
+                        <enumeration value="SP"/>
                         <enumeration value="AASC"/>
                         <enumeration value="FDO"/>
+                        <enumeration value="HELIFSI"/>
+                        <enumeration value="VLFSI"/>
+                        <enumeration value="FFSI"/>
+                        <enumeration value="DGDD"/>
                         <enumeration value="AUTRE"/>
+                        <enumeration value="ADM"/>
+                        <enumeration value="DAE"/>
+                        <enumeration value="INCONNU"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -180,7 +198,6 @@ OU - si un ID unique de la demande n'était pas disponible :
             </element>
             <element minOccurs="0" name="team" type="x:team"/>
             <element maxOccurs="unbounded" minOccurs="0" name="state" type="x:state"/>
-            <element minOccurs="0" name="coord" type="x:coord"/>
             <element minOccurs="0" name="contact" type="x:contact"/>
             <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
         </sequence>
@@ -246,50 +263,6 @@ TRUE = DISPONIBLE
 FALSE = INDISPONIBLE
 VIDE = INCONNU</documentation>
                 </annotation>
-            </element>
-        </sequence>
-    </complexType>
-    <complexType name="coord">
-        <sequence>
-            <element name="lat" type="decimal">
-                <annotation>
-                    <documentation>A valoriser avec la latitude du point clé de la localisation </documentation>
-                </annotation>
-            </element>
-            <element name="lon" type="decimal">
-                <annotation>
-                    <documentation>A valoriser avec la longitude du point clé de la localisation</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="height" type="decimal">
-                <annotation>
-                    <documentation>A valoriser avec l'altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. </documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="heading" type="decimal">
-                <annotation>
-                    <documentation>A valoriser en degrés</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="speed" type="decimal">
-                <annotation>
-                    <documentation>A valoriser en km/h (notamment fournie par eCall, tel, nouveau AML)</documentation>
-                </annotation>
-            </element>
-            <element name="precision">
-                <annotation>
-                    <documentation>A valoriser avec le niveau de précision des coordonnées fournies par le système emetteur. Cf. nomenclature associée.
-CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="VILLE"/>
-                        <enumeration value="RUE"/>
-                        <enumeration value="ADRESSE"/>
-                        <enumeration value="EXACTE"/>
-                        <enumeration value="INCONNUE"/>
-                    </restriction>
-                </simpleType>
             </element>
         </sequence>
     </complexType>

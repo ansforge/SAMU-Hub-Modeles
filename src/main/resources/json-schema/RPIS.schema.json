@@ -2,19 +2,19 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RPIS.schema.json#",
-    "version": "24.08.21",
+    "version": "24.09.20",
     "example": "example.json#",
     "type": "object",
     "title": "rpis",
     "required": [
-        "event",
+        "context",
         "regulation",
         "patient",
         "intervention",
         "orientation"
     ],
     "properties": {
-        "event": {
+        "context": {
             "$ref": "#/definitions/event"
         },
         "regulation": {
@@ -37,8 +37,8 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "samuId",
-                "fileId",
+                "orgId",
+                "caseId",
                 "creationDate",
                 "decisionDate",
                 "ressourceFinessLegal",
@@ -46,21 +46,21 @@
                 "ressourceStructure"
             ],
             "properties": {
-                "samuId": {
+                "orgId": {
                     "type": "string",
                     "title": "Identifiant du SAMU qui engage le SMUR",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/event/samuId",
+                    "example": "example.json#/context/orgId",
                     "description": "Numéro du SAMU régulant la mission SMUR. \nA valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n",
-                    "pattern": "[a-z]{2,3}\\.[a-z]+\\.\\w*"
+                    "pattern": "^[a-z]{2,3}\\.[a-z]+\\.\\w*$"
                 },
-                "fileId": {
+                "caseId": {
                     "type": "string",
                     "title": "Identifiant du dossier de régulation médicale (DRM)",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/event/fileId",
+                    "example": "example.json#/context/caseId",
                     "description": "Numéro du dossier SAMU à l’origine de la mission SMUR\nA valoriser par DRFR15DDXAAJJJ00000 : \n- DR = désignation d'un dossier sous forme abrégée,\n- FR : désigne le pays (FR = France),\n- 15 : désigne le fait que le dossier a été pris en charge par un SAMU / SAS,\n- DD : désigne le département où est situé le SAMU / SAS qui a traité le dossier,\n- X : lettre désignant le SAMU / SAS en cas de pluralité de SAMU / SAS sur le même département ou le troisième chiffre des DOM,\n- AA : année durant laquelle l’appel a été créé,\n- JJJ : désigne le jour de l'année (de 1j à 365j),\\par\n- 00000 : numéro d’ordre chronologique du dossier dans la journée de référence ci-dessus."
                 },
                 "creationDate": {
@@ -68,9 +68,9 @@
                     "title": "Date et heure de création du dossier de régulation",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/event/creationDate",
+                    "example": "example.json#/context/creationDate",
                     "description": "s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "decisionDate": {
@@ -78,9 +78,9 @@
                     "title": "Date et heure de la décision d’engagement du SMUR",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/event/decisionDate",
+                    "example": "example.json#/context/decisionDate",
                     "description": "s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "ressourceFinessLegal": {
@@ -88,7 +88,7 @@
                     "title": "FINESS juridique ",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/event/ressourceFinessLegal",
+                    "example": "example.json#/context/ressourceFinessLegal",
                     "description": "FINESS juridique établissement rattachement SMUR"
                 },
                 "ressourceFinessGeo": {
@@ -96,7 +96,7 @@
                     "title": "FINESS géographique ",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/event/ressourceFinessGeo",
+                    "example": "example.json#/context/ressourceFinessGeo",
                     "description": "FINESS géographique établissement rattachement SMUR ou antenne SMUR"
                 },
                 "ressourceStructure": {
@@ -104,12 +104,12 @@
                     "title": "Type de structure SMUR",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/event/ressourceStructure",
+                    "example": "example.json#/context/ressourceStructure",
                     "description": "9 = Antenne SMUR, 0 = SMUR général, 1 = SMUR pédiatrique, 2 = SMUR neonatal "
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/event"
+            "example": "example.json#/context"
         },
         "regulation": {
             "type": "object",
@@ -158,7 +158,7 @@
             "properties": {
                 "patientId": {
                     "type": "string",
-                    "title": "Identifiant Patient",
+                    "title": "ID Patient",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/patientId",
@@ -180,10 +180,10 @@
                     "example": "example.json#/patient/sex",
                     "description": "Sexe du patient, suivant le libellé court de la nomenclature SI-SAMU-NOMENC_SEXE",
                     "enum": [
-                        "MASC",
-                        "FEM",
-                        "AUTRE",
-                        "INCONNU"
+                        "M",
+                        "F",
+                        "O",
+                        "UN"
                     ]
                 },
                 "residentialAddress": {
@@ -213,7 +213,7 @@
                 "smurStatus": {
                     "$ref": "#/definitions/resourceStatus"
                 },
-                "actionsSMUR": {
+                "procedure": {
                     "type": "array",
                     "x-health-only": false,
                     "items": {
@@ -221,7 +221,7 @@
                         "title": "Actes réalisés par le SMUR",
                         "x-health-only": false,
                         "x-cols": 6,
-                        "example": "example.json#/intervention/actionsSMUR/0",
+                        "example": "example.json#/intervention/procedure/0",
                         "description": "Précise aussi bien les actes réalisés par le SMUR sur le lieu de l'intervention à son arrivée que ceux réalisés avant son intervention. \nA valoriser avec un code de la nomenclature ACTES_SMUR."
                     }
                 },
@@ -368,17 +368,17 @@
                         "C02.14.02",
                         "C02.14.03",
                         "C02.14.04",
-                        "C02.14.00",
-                        "C02.14.01",
-                        "C02.14.02",
-                        "C02.14.03",
-                        "C02.14.04",
-                        "C02.14.05",
-                        "C02.14.06",
                         "C02.15.00",
                         "C02.15.01",
                         "C02.15.02",
                         "C02.15.03",
+                        "C02.15.04",
+                        "C02.15.05",
+                        "C02.15.06",
+                        "C02.16.00",
+                        "C02.16.01",
+                        "C02.16.02",
+                        "C02.16.03",
                         "C03.00.00",
                         "C03.01.00",
                         "C03.01.01",
@@ -704,7 +704,7 @@
                     "x-cols": 6,
                     "example": "example.json#/patient/residentialAddress/inseeCode",
                     "description": "Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.\nLe Code INSEE peut également précisé le pays de résidence, si étranger. ",
-                    "pattern": "[0-9]{5}"
+                    "pattern": "^[0-9]{5}$"
                 },
                 "city": {
                     "type": "string",
@@ -924,12 +924,12 @@
                     "example": "example.json#/intervention/location/finessGeo",
                     "description": "Finess géographique et juridique de l’établissement de santé. \nA renseigner uniquement si l'intervention a lieu dans un établissement de santé. "
                 },
-                "unit": {
+                "service": {
                     "type": "string",
                     "title": "Unité fonctionnelle ",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/intervention/location/unit",
+                    "example": "example.json#/intervention/location/service",
                     "description": "Unité fonctionnelle de l'établissement de santé. \nA renseigner uniquement si l'intervention a lieu dans un établissement de santé. "
                 },
                 "detailedAddress": {
@@ -996,7 +996,7 @@
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/departSmur",
                     "description": "Date et heure à laquelle le SMUR quitte sa base. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "arrivedSmur": {
@@ -1006,7 +1006,7 @@
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/arrivedSmur",
                     "description": "Date et heure à laquelle le SMUR arrive sur les lieux de l'intervention. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "departLocation": {
@@ -1016,7 +1016,7 @@
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/departLocation",
                     "description": "Date et heure à laquelle le SMUR quitte les lieux de l'intervention. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "arrivedDestination": {
@@ -1026,7 +1026,7 @@
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/arrivedDestination",
                     "description": "Date et heure à laquelle le SMUR qui transporte arrive à destination. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "teamAvailable": {
@@ -1036,7 +1036,7 @@
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/teamAvailable",
                     "description": "Date et heure à laquelle le SMUR est disponible (dispose de tout les équipements pour faire une autre intervention). \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "returnSmur": {
@@ -1046,7 +1046,7 @@
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/returnSmur",
                     "description": "Date et heure à laquelle le SMUR est de retour à la base. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 }
             },
@@ -1070,7 +1070,7 @@
                     "x-cols": 6,
                     "example": "example.json#/intervention/location/detailedAddress/inseeCode",
                     "description": "Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.\nLe Code INSEE peut également précisé le pays d'intervention, si étranger. ",
-                    "pattern": "[0-9]{5}"
+                    "pattern": "^[0-9]{5}$"
                 },
                 "city": {
                     "type": "string",
@@ -1395,13 +1395,31 @@
                     "description": "Précise le type de moyen engagé dans l'intervention (SMUR, TSU, HOSPIT, etc.). \nA valoriser par un code de la nomenclature SI SAMU-TYPE_MOYEN.",
                     "enum": [
                         "SMUR",
+                        "MED",
+                        "PARAMED",
                         "HOSPIT",
                         "LIB",
+                        "MEDC",
+                        "PHARMA",
+                        "INF",
+                        "MEDSPE",
+                        "DENT",
+                        "AUTREPRO",
                         "TSU ",
                         "SIS",
+                        "MSP",
+                        "ISP",
+                        "SP",
                         "AASC",
                         "FDO",
-                        "AUTRE"
+                        "HELIFSI",
+                        "VLFSI",
+                        "FFSI",
+                        "DGDD",
+                        "AUTRE",
+                        "ADM",
+                        "DAE",
+                        "INCONNU"
                     ]
                 },
                 "resourceType": {

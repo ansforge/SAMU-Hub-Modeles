@@ -15,7 +15,7 @@
             "centerCity": 44109,
             "team": {
                 "teamCare": "MED",
-                "name": "SMUR 1"
+                "name": "Equipe A"
             },
             "state": [
                 {
@@ -24,14 +24,6 @@
                     "availability": "FALSE"
                 }
             ],
-            "coord": {
-                "lat": "48.866667",
-                "lon": "2.333333",
-                "height": 120,
-                "heading": 96,
-                "speed": 34,
-                "precision": "EXACTE"
-            },
             "contact": {
                 "type": "PHNADD",
                 "details": "+33671830530"

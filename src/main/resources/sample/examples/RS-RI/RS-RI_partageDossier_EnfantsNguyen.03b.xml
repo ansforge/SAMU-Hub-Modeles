@@ -16,11 +16,6 @@
       <datetime>2024-08-01T16:42:00+02:00</datetime>
       <status>DECLENCHE</status>
     </state>
-    <coord>
-      <lat>49.609757856404826</lat>
-      <lon>1.3320630023425208</lon>
-      <precision>EXACTE</precision>
-    </coord>
     <contact>
       <type>TEL</type>
       <details>+33744947325</details>

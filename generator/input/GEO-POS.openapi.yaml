@@ -14,12 +14,14 @@ components:
       example: example.json#
       type: object
       title: geoPositionsUpdate
-      required: []
+      required:
+      - position
       properties:
         position:
           type: array
           items:
             $ref: '#/components/schemas/position'
+          minItems: 1
       additionalProperties: false
     position:
       type: object
@@ -27,19 +29,27 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - id
+      - resourceId
       - datetime
+      - coord
       properties:
-        id:
+        resourceId:
           type: string
-          title: Identifiant de la ressource
+          title: "Identifiant de la ressource partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/position/0/id
-          description: "Identifiant unique de la ressource  dans le syst\xE8me du\
-            \ partenaire propri\xE9taire"
+          example: example.json#/position/0/resourceId
+          description: "A valoriser avec l'identifiant partag\xE9 unique de la ressource\
+            \ engag\xE9e, norm\xE9 comme suit :\n{orgID}.resource.{ID unique de la\
+            \ ressource partag\xE9e}\nOU - uniquement dans le cas o\xF9 un ID unique\
+            \ de ressource ne peut pas \xEAtre garanti par l'organisation propri\xE9\
+            taire :\n{orgID}.resource.{sendercaseId}.{n\xB0 d\u2019ordre chronologique\
+            \ de la ressource}"
+          pattern: ^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$
           examples:
-          - 76_45101#SMUR1
+          - 'fr.health.samu770.resource.VLM250
+
+            fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1'
         datetime:
           type: string
           title: "Date et heure des derni\xE8res remont\xE9es d'informations de la\
@@ -48,7 +58,7 @@ components:
           x-cols: 6
           example: example.json#/position/0/datetime
           description: "Date et heure de la derni\xE8re position connue"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2024-01-27T08:44:00+02:00'
@@ -60,7 +70,7 @@ components:
           example: example.json#/position/0/receptionDatetime
           description: "Date et heure de la r\xE9ception de la derni\xE8re position\
             \ connue dans le syst\xE8me de l'organisme"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2024-01-27T08:45:00+02:00'
@@ -68,6 +78,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/coord'
+          minItems: 1
         speed:
           type: number
           title: Vitesse de la ressource

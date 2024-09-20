@@ -32,7 +32,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,4}
+          pattern: ^fr(\.[\w-]+){3,4}$
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -76,7 +76,7 @@ components:
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
             \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
             \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
-          pattern: fr(\.[\w-]+){2,3}
+          pattern: ^fr(\.[\w-]+){2,3}$
           examples:
           - fr.health.samu440
         patient:
@@ -166,7 +166,7 @@ components:
             patient unique dans le syst\xE8me \xE9metteur}\n\nOU, si un n\xB0patient\
             \ unique n'existe pas dans le syst\xE8me \xE9metteur :\n{ID \xE9metteur}.{senderCaseId}.patient.{num\xE9\
             ro d\u2019ordre chronologique au dossier}\n\n\n"
-          pattern: ([\w-]+\.){3,4}patient(\.[\w-]+){1,2}
+          pattern: ^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$
           examples:
           - 'fr.health.samu690.patient.P23AZ59
 
@@ -206,7 +206,7 @@ components:
             me \xE9metteur}\n\nOU, si un n\xB0patient unique n'existe pas dans le\
             \ syst\xE8me \xE9metteur :\n{ID \xE9metteur}.{senderCaseId}.patient.{num\xE9\
             ro d\u2019ordre chronologique au dossier}"
-          pattern: ([\w-]+\.){3,4}patient(\.[\w-]+){1,2}
+          pattern: ^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$
           examples:
           - 'fr.health.samu690.patient.P23AZ59
 
@@ -228,7 +228,7 @@ components:
             ro chronologique de l\u2019observation}\n\nCet identifiant a vocation\
             \ \xE0 devenir obligatoire pour permettre les mises \xE0 jour, il est\
             \ laiss\xE9 en facultatif temporairement.\n"
-          pattern: ([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}
+          pattern: ^([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}$
           examples:
           - 'fr.health.samu540.medicalNote.46585A
 
@@ -241,7 +241,7 @@ components:
           example: example.json#/medicalNote/0/creation
           description: "A valoriser avec le groupe date heure de cr\xE9ation de l'observation.\
             \  L'indicateur de fuseau horaire Z ne doit pas \xEAtre utilis\xE9."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -290,7 +290,7 @@ components:
           description: "A valoriser avec le groupe date heure de cr\xE9ation de la\
             \ d\xE9cision.  L'indicateur de fuseau horaire Z ne doit pas \xEAtre utilis\xE9\
             ."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -324,13 +324,31 @@ components:
             A fournir obligatoirement pour une d\xE9cision d'intervention ou de transport/orientation."
           enum:
           - SMUR
+          - MED
+          - PARAMED
           - HOSPIT
           - LIB
+          - MEDC
+          - PHARMA
+          - INF
+          - MEDSPE
+          - DENT
+          - AUTREPRO
           - 'TSU '
           - SIS
+          - MSP
+          - ISP
+          - SP
           - AASC
           - FDO
+          - HELIFSI
+          - VLFSI
+          - FFSI
+          - DGDD
           - AUTRE
+          - ADM
+          - DAE
+          - INCONNU
           examples:
           - SMUR, Pompiers
         vehiculeType:
@@ -674,7 +692,7 @@ components:
           example: example.json#/initialAlert/notes/0/creation
           description: "A valoriser avec le groupe date heure de cr\xE9ation de l'information\
             \ compl\xE9mentaire"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - None
@@ -847,7 +865,7 @@ components:
             \ de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e)\
             \ et en n'utilisant qu'une seule unit\xE9 de dur\xE9e (ann\xE9es, mois,\
             \ semaines ou jours)"
-          pattern: P[0-9]{1,3}[YMWD]
+          pattern: ^P[0-9]{1,3}[YMWD]$
           examples:
           - P6Y
         careLevel:
@@ -948,7 +966,7 @@ components:
           x-cols: 6
           example: example.json#/patient/0/identity/strictFeatures/birthDate
           description: A valoriser avec la date de naissance du patient
-          pattern: \d{4}-\d{2}-\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}$
           examples:
           - None
         sex:
@@ -959,10 +977,10 @@ components:
           example: example.json#/patient/0/identity/strictFeatures/sex
           description: A valoriser avec le sexe du patient
           enum:
-          - MASC
-          - FEM
-          - AUTRE
-          - INCONNU
+          - M
+          - F
+          - O
+          - UN
           examples:
           - F
       additionalProperties: false
@@ -1035,6 +1053,7 @@ components:
           x-cols: 6
           example: example.json#/patient/0/hypothesis/mainDiagnosis/code
           description: "A valoriser avec le code de la nomenclature associ\xE9e"
+          pattern: ^[A-Z]\d{2}(\.[\d\+\-]{1,3})?$
           examples:
           - C07.13.02
         label:
@@ -1070,6 +1089,7 @@ components:
           x-cols: 6
           example: example.json#/patient/0/hypothesis/otherDiagnosis/0/code
           description: "A valoriser avec le code de la nomenclature associ\xE9e"
+          pattern: ^[A-Z]\d{2}(\.[\d\+\-]{1,3})?$
           examples:
           - C07.13.02
         label:

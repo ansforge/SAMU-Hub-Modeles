@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RI.schema.json#",
-    "version": "24.08.21",
+    "version": "24.09.20",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesInfo",
@@ -18,7 +18,7 @@
             "x-cols": 6,
             "example": "example.json#/caseId",
             "description": "A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",
-            "pattern": "fr(\\.[\\w-]+){3,4}"
+            "pattern": "^fr(\\.[\\w-]+){3,4}$"
         },
         "mobilizedResource": {
             "type": "array",
@@ -47,7 +47,7 @@
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/datetime",
                     "description": "A valoriser avec la date et heure d'engagement de la ressource/du vecteur",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "resourceId": {
@@ -57,7 +57,7 @@
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/resourceId",
                     "description": "A valoriser avec l'identifiant partagé unique de la ressource engagée, normé comme suit :\n{orgID}.resource.{ID unique de la ressource partagée}\nOU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :\n{orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}",
-                    "pattern": "([\\w-]+\\.){3,4}resource(\\.[\\w-]+){1,2}"
+                    "pattern": "^([\\w-]+\\.){3,4}resource(\\.[\\w-]+){1,2}$"
                 },
                 "requestId": {
                     "type": "string",
@@ -66,7 +66,7 @@
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/requestId",
                     "description": "A valoriser avec l'identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), normé comme suit :\n{orgID}.request.{ID unique de la demande dans le système émetteur}\nOU - si un ID unique de la demande n'était pas disponible : \n{OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}",
-                    "pattern": "([\\w-]+\\.){3,4}request(\\.[\\w-]+){1,2}"
+                    "pattern": "^([\\w-]+\\.){3,4}request(\\.[\\w-]+){1,2}$"
                 },
                 "missionId": {
                     "type": "string",
@@ -101,13 +101,31 @@
                     "description": "A valoriser avec le yype de ressource mobilisée : cf.nomenclature associée.",
                     "enum": [
                         "SMUR",
+                        "MED",
+                        "PARAMED",
                         "HOSPIT",
                         "LIB",
+                        "MEDC",
+                        "PHARMA",
+                        "INF",
+                        "MEDSPE",
+                        "DENT",
+                        "AUTREPRO",
                         "TSU ",
                         "SIS",
+                        "MSP",
+                        "ISP",
+                        "SP",
                         "AASC",
                         "FDO",
-                        "AUTRE"
+                        "HELIFSI",
+                        "VLFSI",
+                        "FFSI",
+                        "DGDD",
+                        "AUTRE",
+                        "ADM",
+                        "DAE",
+                        "INCONNU"
                     ]
                 },
                 "vehiculeType": {
@@ -206,7 +224,7 @@
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/centerCity",
                     "description": "A valoriser avec le code INSEE de la commune du centre d'affectation",
-                    "pattern": "[0-9]{5}"
+                    "pattern": "^[0-9]{5}$"
                 },
                 "team": {
                     "$ref": "#/definitions/team"
@@ -216,9 +234,6 @@
                     "items": {
                         "$ref": "#/definitions/state"
                     }
-                },
-                "coord": {
-                    "$ref": "#/definitions/coord"
                 },
                 "contact": {
                     "$ref": "#/definitions/contact"
@@ -288,7 +303,7 @@
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/state/0/datetime",
                     "description": "A valoriser avec la date et heure d'engagement de changement vers le nouveau statut",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "status": {
@@ -329,76 +344,6 @@
             },
             "additionalProperties": false,
             "example": "example.json#/mobilizedResource/0/state/0"
-        },
-        "coord": {
-            "type": "object",
-            "title": "Dernière géolocalisation du vecteur",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
-                "lat",
-                "lon",
-                "precision"
-            ],
-            "properties": {
-                "lat": {
-                    "type": "number",
-                    "title": "Latitude",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/coord/lat",
-                    "description": "A valoriser avec la latitude du point clé de la localisation "
-                },
-                "lon": {
-                    "type": "number",
-                    "title": "Longitude",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/coord/lon",
-                    "description": "A valoriser avec la longitude du point clé de la localisation"
-                },
-                "height": {
-                    "type": "number",
-                    "title": "Altitude ",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/coord/height",
-                    "description": "A valoriser avec l'altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. "
-                },
-                "heading": {
-                    "type": "number",
-                    "title": "Cap",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/coord/heading",
-                    "description": "A valoriser en degrés"
-                },
-                "speed": {
-                    "type": "number",
-                    "title": "Vitesse",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/coord/speed",
-                    "description": "A valoriser en km/h (notamment fournie par eCall, tel, nouveau AML)"
-                },
-                "precision": {
-                    "type": "string",
-                    "title": "Précision",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/coord/precision",
-                    "description": "A valoriser avec le niveau de précision des coordonnées fournies par le système emetteur. Cf. nomenclature associée.\nCITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",
-                    "enum": [
-                        "VILLE",
-                        "RUE",
-                        "ADRESSE",
-                        "EXACTE",
-                        "INCONNUE"
-                    ]
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/mobilizedResource/0/coord"
         },
         "contact": {
             "type": "object",

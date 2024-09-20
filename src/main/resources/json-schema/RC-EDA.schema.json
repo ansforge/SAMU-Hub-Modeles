@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "24.08.21",
+    "version": "24.09.20",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -21,7 +21,7 @@
             "x-cols": 6,
             "example": "example.json#/caseId",
             "description": "Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",
-            "pattern": "fr(\\.[\\w-]+){3,4}"
+            "pattern": "^fr(\\.[\\w-]+){3,4}$"
         },
         "senderCaseId": {
             "type": "string",
@@ -38,7 +38,7 @@
             "x-cols": 6,
             "example": "example.json#/creation",
             "description": "A valoriser avec le groupe date heure de création du dossier/affaire.\n\nSpécificité 15-18 : A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). \nLors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.  \nL'indicateur de fuseau horaire Z ne doit pas être utilisé.\nIl doit être renseigné à la fin du processus de la  création de la première alerte.",
-            "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
             "format": "date-time"
         },
         "referenceVersion": {
@@ -462,7 +462,7 @@
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/reception",
                     "description": "A valoriser avec le groupe date heure de réception de l'alerte/appel",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "reporting": {
@@ -688,17 +688,17 @@
                         "C02.14.02",
                         "C02.14.03",
                         "C02.14.04",
-                        "C02.14.00",
-                        "C02.14.01",
-                        "C02.14.02",
-                        "C02.14.03",
-                        "C02.14.04",
-                        "C02.14.05",
-                        "C02.14.06",
                         "C02.15.00",
                         "C02.15.01",
                         "C02.15.02",
                         "C02.15.03",
+                        "C02.15.04",
+                        "C02.15.05",
+                        "C02.15.06",
+                        "C02.16.00",
+                        "C02.16.01",
+                        "C02.16.02",
+                        "C02.16.03",
                         "C03.00.00",
                         "C03.01.00",
                         "C03.01.01",
@@ -1300,7 +1300,7 @@
                     "x-cols": 6,
                     "example": "example.json#/location/externalLocationId/0/value",
                     "description": "A valoriser avec l'identifiant en lui-même",
-                    "pattern": "([0-9A-Z]{2}0\\d{5}\\d|\\d{9}|\\d{14}|\\d{4}[A-Za-z])"
+                    "pattern": "^([0-9A-Z]{2}0\\d{5}\\d|\\d{9}|\\d{14}|\\d{4}[A-Za-z])$"
                 }
             },
             "additionalProperties": false,
@@ -1360,7 +1360,7 @@
                     "x-cols": 6,
                     "example": "example.json#/location/city/inseeCode",
                     "description": "A valoriser avec le code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. \nLa valeur du code INSEE est obligatoire dès que le nom de la commune est renseigné (city.name).",
-                    "pattern": "[0-9]{5}"
+                    "pattern": "^[0-9]{5}$"
                 },
                 "detail": {
                     "type": "string",
@@ -1456,7 +1456,7 @@
                     "x-cols": 6,
                     "example": "example.json#/location/access/phoneNumber",
                     "description": "A valoriser avec le numéro de téléphone du lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/ la victime.\nLe format attendu est le suivant : +{indicatif pays}{numéro de téléphone}",
-                    "pattern": "\\+\\d{5,18}"
+                    "pattern": "^\\+\\d{5,18}$"
                 }
             },
             "additionalProperties": false,
@@ -1468,17 +1468,17 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "obsDatime"
+                "datetime"
             ],
             "properties": {
-                "obsDatime": {
+                "datetime": {
                     "type": "string",
                     "title": "Heure du dernier relevé",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/geometry/obsDatime",
+                    "example": "example.json#/location/geometry/datetime",
                     "description": "A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. \nPermet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "point": {
@@ -1684,7 +1684,7 @@
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/notes/0/creation",
                     "description": "A valoriser avec le groupe date heure de création de l'information complémentaire",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "freetext": {

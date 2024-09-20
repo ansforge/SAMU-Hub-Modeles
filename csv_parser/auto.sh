@@ -4,7 +4,9 @@
 NOMENCLATURE_IN_FOLDER="/Users/romainfouilland/Library/CloudStorage/OneDrive-SharedLibraries-ANS/Espace Projets - Espace Programme SI-SAMU/01 - Equipe projet/07 - Innovation et prospectif/12 - Hub Santé/17 - MDD/Nomenclatures/01 - Base interne/"
 NOMENCLATURE_FOLDER="../nomenclature_parser/in/"
 MODELS_IN_FILE="/Users/romainfouilland/Library/CloudStorage/OneDrive-SharedLibraries-ANS/Espace Projets - Espace Programme SI-SAMU/01 - Equipe projet/07 - Innovation et prospectif/12 - Hub Santé/17 - MDD/MDD - Hub Santé.xlsx"
+TECHNICAL_MODELS_IN_FILE="/Users/romainfouilland/Library/CloudStorage/OneDrive-SharedLibraries-ANS/Espace Projets - Espace Programme SI-SAMU/01 - Equipe projet/07 - Innovation et prospectif/12 - Hub Santé/17 - MDD/MDD TECHNICAL - Hub Santé.xlsx"
 MODELS_FILE="models/model.xlsx"
+TECHNICAL_MODELS_FILE="models/model-technical.xlsx"
 TRACKING_BRANCH_NAME="auto/model_tracker"
 DATE=$(date +'%y.%m.%d %H:%M')
 LOG_FILE="cron.log"
@@ -19,6 +21,7 @@ setup() {
   cp -r "$NOMENCLATURE_IN_FOLDER" "$NOMENCLATURE_FOLDER"
   echo "Copying models excel from OneDrive to local folder..."
   cp "$MODELS_IN_FILE" "$MODELS_FILE"
+  cp "$TECHNICAL_MODELS_IN_FILE" "$TECHNICAL_MODELS_FILE"
 }
 
 # Function to check for changes in nomenclature folder and run nomenclatures generation

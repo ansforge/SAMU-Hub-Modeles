@@ -137,7 +137,7 @@ Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jo
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}"/>
+                        <pattern value="([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -188,13 +188,31 @@ A fournir obligatoirement pour une décision d'intervention ou de transport/orie
                 <simpleType>
                     <restriction base="string">
                         <enumeration value="SMUR"/>
+                        <enumeration value="MED"/>
+                        <enumeration value="PARAMED"/>
                         <enumeration value="HOSPIT"/>
                         <enumeration value="LIB"/>
+                        <enumeration value="MEDC"/>
+                        <enumeration value="PHARMA"/>
+                        <enumeration value="INF"/>
+                        <enumeration value="MEDSPE"/>
+                        <enumeration value="DENT"/>
+                        <enumeration value="AUTREPRO"/>
                         <enumeration value="TSU "/>
                         <enumeration value="SIS"/>
+                        <enumeration value="MSP"/>
+                        <enumeration value="ISP"/>
+                        <enumeration value="SP"/>
                         <enumeration value="AASC"/>
                         <enumeration value="FDO"/>
+                        <enumeration value="HELIFSI"/>
+                        <enumeration value="VLFSI"/>
+                        <enumeration value="FFSI"/>
+                        <enumeration value="DGDD"/>
                         <enumeration value="AUTRE"/>
+                        <enumeration value="ADM"/>
+                        <enumeration value="DAE"/>
+                        <enumeration value="INCONNU"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -631,10 +649,10 @@ Au format "Durée" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="MASC"/>
-                        <enumeration value="FEM"/>
-                        <enumeration value="AUTRE"/>
-                        <enumeration value="INCONNU"/>
+                        <enumeration value="M"/>
+                        <enumeration value="F"/>
+                        <enumeration value="O"/>
+                        <enumeration value="UN"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -665,10 +683,15 @@ Par convention les prénoms composés doivent préférablement être séparés p
     </complexType>
     <complexType name="mainDiagnosis">
         <sequence>
-            <element name="code" type="string">
+            <element name="code">
                 <annotation>
                     <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="[A-Z]\d{2}(\.[\d\+\-]{1,3})?"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="label" type="string">
                 <annotation>
@@ -680,10 +703,15 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="otherDiagnosis">
         <sequence>
-            <element name="code" type="string">
+            <element name="code">
                 <annotation>
                     <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="[A-Z]\d{2}(\.[\d\+\-]{1,3})?"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="label" type="string">
                 <annotation>

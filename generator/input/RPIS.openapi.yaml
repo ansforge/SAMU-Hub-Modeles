@@ -15,13 +15,13 @@ components:
       type: object
       title: rpis
       required:
-      - event
+      - context
       - regulation
       - patient
       - intervention
       - orientation
       properties:
-        event:
+        context:
           $ref: '#/components/schemas/event'
         regulation:
           $ref: '#/components/schemas/regulation'
@@ -38,31 +38,31 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - samuId
-      - fileId
+      - orgId
+      - caseId
       - creationDate
       - decisionDate
       - ressourceFinessLegal
       - ressourceFinessGeo
       - ressourceStructure
       properties:
-        samuId:
+        orgId:
           type: string
           title: Identifiant du SAMU qui engage le SMUR
           x-health-only: false
           x-cols: 6
-          example: example.json#/event/samuId
+          example: example.json#/context/orgId
           description: "Num\xE9ro du SAMU r\xE9gulant la mission SMUR. \nA valoriser\
             \ par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n"
-          pattern: '[a-z]{2,3}\.[a-z]+\.\w*'
+          pattern: ^[a-z]{2,3}\.[a-z]+\.\w*$
           examples:
           - fr.health.samu440
-        fileId:
+        caseId:
           type: string
           title: "Identifiant du dossier de r\xE9gulation m\xE9dicale (DRM)"
           x-health-only: false
           x-cols: 6
-          example: example.json#/event/fileId
+          example: example.json#/context/caseId
           description: "Num\xE9ro du dossier SAMU \xE0 l\u2019origine de la mission\
             \ SMUR\nA valoriser par DRFR15DDXAAJJJ00000 : \n- DR = d\xE9signation\
             \ d'un dossier sous forme abr\xE9g\xE9e,\n- FR : d\xE9signe le pays (FR\
@@ -82,9 +82,9 @@ components:
           title: "Date et heure de cr\xE9ation du dossier de r\xE9gulation"
           x-health-only: false
           x-cols: 6
-          example: example.json#/event/creationDate
+          example: example.json#/context/creationDate
           description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -93,9 +93,9 @@ components:
           title: "Date et heure de la d\xE9cision d\u2019engagement du SMUR"
           x-health-only: false
           x-cols: 6
-          example: example.json#/event/decisionDate
+          example: example.json#/context/decisionDate
           description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -104,7 +104,7 @@ components:
           title: 'FINESS juridique '
           x-health-only: false
           x-cols: 6
-          example: example.json#/event/ressourceFinessLegal
+          example: example.json#/context/ressourceFinessLegal
           description: "FINESS juridique \xE9tablissement rattachement SMUR"
           examples:
           - None
@@ -113,7 +113,7 @@ components:
           title: "FINESS g\xE9ographique "
           x-health-only: false
           x-cols: 6
-          example: example.json#/event/ressourceFinessGeo
+          example: example.json#/context/ressourceFinessGeo
           description: "FINESS g\xE9ographique \xE9tablissement rattachement SMUR\
             \ ou antenne SMUR"
           examples:
@@ -123,16 +123,16 @@ components:
           title: Type de structure SMUR
           x-health-only: false
           x-cols: 6
-          example: example.json#/event/ressourceStructure
+          example: example.json#/context/ressourceStructure
           description: "9 = Antenne SMUR, 0 = SMUR g\xE9n\xE9ral, 1 = SMUR p\xE9diatrique,\
             \ 2 = SMUR neonatal "
           examples:
           - None
       additionalProperties: false
-      example: example.json#/event
+      example: example.json#/context
       examples:
-      - samuId: fr.health.samu440
-        fileId: DRFR15DDXAAJJJ00000
+      - orgId: fr.health.samu440
+        caseId: DRFR15DDXAAJJJ00000
         creationDate: '2022-09-27T08:23:34+02:00'
         decisionDate: '2022-09-27T08:23:34+02:00'
         ressourceFinessLegal: None
@@ -182,7 +182,7 @@ components:
       properties:
         patientId:
           type: string
-          title: Identifiant Patient
+          title: ID Patient
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/patientId
@@ -209,10 +209,10 @@ components:
           description: "Sexe du patient, suivant le libell\xE9 court de la nomenclature\
             \ SI-SAMU-NOMENC_SEXE"
           enum:
-          - MASC
-          - FEM
-          - AUTRE
-          - INCONNU
+          - M
+          - F
+          - O
+          - UN
           examples:
           - F
         residentialAddress:
@@ -235,7 +235,7 @@ components:
           $ref: '#/components/schemas/team'
         smurStatus:
           $ref: '#/components/schemas/resourceStatus'
-        actionsSMUR:
+        procedure:
           type: array
           x-health-only: false
           items:
@@ -243,7 +243,7 @@ components:
             title: "Actes r\xE9alis\xE9s par le SMUR"
             x-health-only: false
             x-cols: 6
-            example: example.json#/intervention/actionsSMUR/0
+            example: example.json#/intervention/procedure/0
             description: "Pr\xE9cise aussi bien les actes r\xE9alis\xE9s par le SMUR\
               \ sur le lieu de l'intervention \xE0 son arriv\xE9e que ceux r\xE9alis\xE9\
               s avant son intervention. \nA valoriser avec un code de la nomenclature\
@@ -394,17 +394,17 @@ components:
           - C02.14.02
           - C02.14.03
           - C02.14.04
-          - C02.14.00
-          - C02.14.01
-          - C02.14.02
-          - C02.14.03
-          - C02.14.04
-          - C02.14.05
-          - C02.14.06
           - C02.15.00
           - C02.15.01
           - C02.15.02
           - C02.15.03
+          - C02.15.04
+          - C02.15.05
+          - C02.15.06
+          - C02.16.00
+          - C02.16.01
+          - C02.16.02
+          - C02.16.03
           - C03.00.00
           - C03.01.00
           - C03.01.01
@@ -741,7 +741,7 @@ components:
             \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
             \ renseign\xE9.\nLe Code INSEE peut \xE9galement pr\xE9cis\xE9 le pays\
             \ de r\xE9sidence, si \xE9tranger. "
-          pattern: '[0-9]{5}'
+          pattern: ^[0-9]{5}$
           examples:
           - 92300
         city:
@@ -966,12 +966,12 @@ components:
             \ un \xE9tablissement de sant\xE9. "
           examples:
           - None
-        unit:
+        service:
           type: string
           title: "Unit\xE9 fonctionnelle "
           x-health-only: false
           x-cols: 6
-          example: example.json#/intervention/location/unit
+          example: example.json#/intervention/location/service
           description: "Unit\xE9 fonctionnelle de l'\xE9tablissement de sant\xE9.\
             \ \nA renseigner uniquement si l'intervention a lieu dans un \xE9tablissement\
             \ de sant\xE9. "
@@ -1048,7 +1048,7 @@ components:
           example: example.json#/intervention/smurStatus/departSmur
           description: "Date et heure \xE0 laquelle le SMUR quitte sa base. \ns'exprime\
             \ au format ISO 8601 YYY-MM-DDThh:mm:ss"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -1060,7 +1060,7 @@ components:
           example: example.json#/intervention/smurStatus/arrivedSmur
           description: "Date et heure \xE0 laquelle le SMUR arrive sur les lieux de\
             \ l'intervention. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -1072,7 +1072,7 @@ components:
           example: example.json#/intervention/smurStatus/departLocation
           description: "Date et heure \xE0 laquelle le SMUR quitte les lieux de l'intervention.\
             \ \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -1084,7 +1084,7 @@ components:
           example: example.json#/intervention/smurStatus/arrivedDestination
           description: "Date et heure \xE0 laquelle le SMUR qui transporte arrive\
             \ \xE0 destination. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -1097,7 +1097,7 @@ components:
           description: "Date et heure \xE0 laquelle le SMUR est disponible (dispose\
             \ de tout les \xE9quipements pour faire une autre intervention). \ns'exprime\
             \ au format ISO 8601 YYY-MM-DDThh:mm:ss"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -1109,7 +1109,7 @@ components:
           example: example.json#/intervention/smurStatus/returnSmur
           description: "Date et heure \xE0 laquelle le SMUR est de retour \xE0 la\
             \ base. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -1141,7 +1141,7 @@ components:
             \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
             \ renseign\xE9.\nLe Code INSEE peut \xE9galement pr\xE9cis\xE9 le pays\
             \ d'intervention, si \xE9tranger. "
-          pattern: '[0-9]{5}'
+          pattern: ^[0-9]{5}$
           examples:
           - 92300
         city:
@@ -1476,13 +1476,31 @@ components:
             \ SI SAMU-TYPE_MOYEN."
           enum:
           - SMUR
+          - MED
+          - PARAMED
           - HOSPIT
           - LIB
+          - MEDC
+          - PHARMA
+          - INF
+          - MEDSPE
+          - DENT
+          - AUTREPRO
           - 'TSU '
           - SIS
+          - MSP
+          - ISP
+          - SP
           - AASC
           - FDO
+          - HELIFSI
+          - VLFSI
+          - FFSI
+          - DGDD
           - AUTRE
+          - ADM
+          - DAE
+          - INCONNU
           examples:
           - SMUR
         resourceType:

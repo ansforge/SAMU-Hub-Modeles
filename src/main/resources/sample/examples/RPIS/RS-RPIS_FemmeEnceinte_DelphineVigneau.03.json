@@ -3,7 +3,7 @@
     "orientation": {
       "decision": {
         "resourceCategory": "SMUR",
-        "resourceType": "AR",
+        "resourceType": "VLM",
         "teamCare": "MED"
       },
       "destination": {
@@ -35,10 +35,7 @@
         },
         "type": "L04.02.00"
       },
-      "actionsSMUR": [
-        "ACC"
-      ],
-      "mainDiagnosis": "JA40 "
+      "mainDiagnosis": "O20"
     },
     "patient": {
       "residentialAddress": {
@@ -47,7 +44,7 @@
       },
       "patientId": "fr.health.samu440.patient.DRFR154402414300123.1",
       "birthDate": "1992-03-03",
-      "sex": "FEM"
+      "sex": "F"
     },
     "regulation": {
       "healthMotive": {
@@ -60,9 +57,9 @@
       },
       "initialTeamCare": "MED"
     },
-    "event": {
-      "samuId": "fr.health.samu440",
-      "fileId": "DRFR154402414300123",
+    "context": {
+      "orgId": "fr.health.samu440",
+      "caseId": "DRFR154402414300123",
       "ressourceFinessLegal": "440000271",
       "ressourceFinessGeo": "440000289",
       "ressourceStructure": "0",

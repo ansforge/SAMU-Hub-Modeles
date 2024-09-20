@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <geoResourcesDetails xmlns="urn:emergency:cisu:2.0:geoResourcesDetails">
   <resource>
-    <id>76_45101#SMUR1#</id>
+    <resourceId>fr.health.samu760.resource.VLM250</resourceId>
     <orgId>fr.health.760.samu76</orgId>
     <name>SMUR 1 Rouen</name>
     <type>SMUR</type>
@@ -14,7 +14,7 @@
     </contacts>
   </resource>
   <resource>
-    <id>76_45102#SMUR2#</id>
+    <resourceId>fr.health.samu760.resource.VLM211</resourceId>
     <orgId>fr.health.760.samu76</orgId>
     <name>SMUR 2 Rouen</name>
     <type>SMUR</type>
@@ -27,7 +27,7 @@
     </contacts>
   </resource>
   <resource>
-    <id>14_45103#SMUR3#</id>
+    <resourceId>fr.health.samu760.resource.VLM213</resourceId>
     <orgId>fr.health.140.samu14</orgId>
     <name>SMUR 3 Caen</name>
     <type>SMUR</type>
@@ -40,7 +40,7 @@
     </contacts>
   </resource>
   <resource>
-    <id>76_45104#SMUR4#</id>
+    <resourceId>fr.health.samu760.resource.VLM25</resourceId>
     <orgId>fr.health.760.samu76</orgId>
     <name>SMUR 4 Havre</name>
     <type>SMUR</type>
