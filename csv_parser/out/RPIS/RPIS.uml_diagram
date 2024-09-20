@@ -77,7 +77,7 @@ strict digraph {
                 <TR>
                 <TD ><B>intervention</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet intervention</I></TD></TR><TR><TD BORDER="0" >procedures <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >mainDiagnosis <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >associatedDiagnosis <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet intervention</I></TD></TR><TR><TD BORDER="0" >procedure <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >mainDiagnosis <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >associatedDiagnosis <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	intervention -> rpis [headlabel=1 taillabel=1]
 	destination [label=<<TABLE>

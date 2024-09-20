@@ -6561,7 +6561,7 @@ components:
           $ref: '#/components/schemas/team'
         smurStatus:
           $ref: '#/components/schemas/resourceStatus'
-        procedures:
+        procedure:
           type: array
           x-health-only: false
           items:
@@ -6569,7 +6569,7 @@ components:
             title: "Actes r\xE9alis\xE9s par le SMUR"
             x-health-only: false
             x-cols: 6
-            example: example.json#/intervention/procedures/0
+            example: example.json#/intervention/procedure/0
             description: "Pr\xE9cise aussi bien les actes r\xE9alis\xE9s par le SMUR\
               \ sur le lieu de l'intervention \xE0 son arriv\xE9e que ceux r\xE9alis\xE9\
               s avant son intervention. \nA valoriser avec un code de la nomenclature\

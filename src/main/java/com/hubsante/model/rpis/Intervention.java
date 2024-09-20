@@ -49,7 +49,7 @@ import java.util.Objects;
 @JsonPropertyOrder({Intervention.JSON_PROPERTY_LOCATION,
                     Intervention.JSON_PROPERTY_TEAM,
                     Intervention.JSON_PROPERTY_SMUR_STATUS,
-                    Intervention.JSON_PROPERTY_PROCEDURES,
+                    Intervention.JSON_PROPERTY_PROCEDURE,
                     Intervention.JSON_PROPERTY_MAIN_DIAGNOSIS,
                     Intervention.JSON_PROPERTY_ASSOCIATED_DIAGNOSIS})
 @JsonTypeName("intervention")
@@ -65,8 +65,8 @@ public class Intervention {
   public static final String JSON_PROPERTY_SMUR_STATUS = "smurStatus";
   private ResourceStatus smurStatus;
 
-  public static final String JSON_PROPERTY_PROCEDURES = "procedures";
-  private List<String> procedures;
+  public static final String JSON_PROPERTY_PROCEDURE = "procedure";
+  private List<String> procedure;
 
   public static final String JSON_PROPERTY_MAIN_DIAGNOSIS = "mainDiagnosis";
   private String mainDiagnosis;
@@ -146,43 +146,43 @@ public class Intervention {
     this.smurStatus = smurStatus;
   }
 
-  public Intervention procedures(List<String> procedures) {
+  public Intervention procedure(List<String> procedure) {
 
-    this.procedures = procedures;
+    this.procedure = procedure;
     return this;
   }
 
-  public Intervention addProceduresItem(String proceduresItem) {
-    if (this.procedures == null) {
-      this.procedures = new ArrayList<>();
+  public Intervention addProcedureItem(String procedureItem) {
+    if (this.procedure == null) {
+      this.procedure = new ArrayList<>();
     }
-    this.procedures.add(proceduresItem);
+    this.procedure.add(procedureItem);
     return this;
   }
 
   /**
-   * Get procedures
-   * @return procedures
+   * Get procedure
+   * @return procedure
    **/
-  @JsonProperty(JSON_PROPERTY_PROCEDURES)
+  @JsonProperty(JSON_PROPERTY_PROCEDURE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<String> getProcedures() {
-    return procedures;
+  public List<String> getProcedure() {
+    return procedure;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_PROCEDURES)
+  @JsonProperty(JSON_PROPERTY_PROCEDURE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setProcedures(List<String> procedures) {
-    if (procedures == null) {
+  public void setProcedure(List<String> procedure) {
+    if (procedure == null) {
       return;
     }
-    if (this.procedures == null) {
-      this.procedures = new ArrayList<>();
+    if (this.procedure == null) {
+      this.procedure = new ArrayList<>();
     }
-    this.procedures.addAll(procedures);
+    this.procedure.addAll(procedure);
   }
 
   public Intervention mainDiagnosis(String mainDiagnosis) {
@@ -245,7 +245,7 @@ public class Intervention {
     return Objects.equals(this.location, intervention.location) &&
         Objects.equals(this.team, intervention.team) &&
         Objects.equals(this.smurStatus, intervention.smurStatus) &&
-        Objects.equals(this.procedures, intervention.procedures) &&
+        Objects.equals(this.procedure, intervention.procedure) &&
         Objects.equals(this.mainDiagnosis, intervention.mainDiagnosis) &&
         Objects.equals(this.associatedDiagnosis,
                        intervention.associatedDiagnosis);
@@ -253,7 +253,7 @@ public class Intervention {
 
   @Override
   public int hashCode() {
-    return Objects.hash(location, team, smurStatus, procedures, mainDiagnosis,
+    return Objects.hash(location, team, smurStatus, procedure, mainDiagnosis,
                         associatedDiagnosis);
   }
 
@@ -266,8 +266,8 @@ public class Intervention {
     sb.append("    smurStatus: ")
         .append(toIndentedString(smurStatus))
         .append("\n");
-    sb.append("    procedures: ")
-        .append(toIndentedString(procedures))
+    sb.append("    procedure: ")
+        .append(toIndentedString(procedure))
         .append("\n");
     sb.append("    mainDiagnosis: ")
         .append(toIndentedString(mainDiagnosis))

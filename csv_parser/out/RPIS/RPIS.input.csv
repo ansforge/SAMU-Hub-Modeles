@@ -68,7 +68,7 @@ s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",2022-09-27T08:23:34+02:00,teamA
 ,,Date et heure de retour à la base SMUR,,,,"Date et heure à laquelle le SMUR est de retour à la base. 
 s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",2022-09-27T08:23:34+02:00,returnSmur,1..1,,datetime,
 ,Actes réalisés par le SMUR,,,,,"Précise aussi bien les actes réalisés par le SMUR sur le lieu de l'intervention à son arrivée que ceux réalisés avant son intervention. 
-A valoriser avec un code de la nomenclature ACTES_SMUR.",,procedures,0..n,,string,
+A valoriser avec un code de la nomenclature ACTES_SMUR.",,procedure,0..n,,string,
 ,Diagnostic principal SMUR,,,,,"Thésaurus SFMU-FEDORU.
 A valoriser par un code de la nomenclature Diagnostic SMUR.",MD30.Z,mainDiagnosis,1..1,,string,
 ,Diagnostic associé  SMUR,,,,,"Thésaurus SFMU-FEDORU.
