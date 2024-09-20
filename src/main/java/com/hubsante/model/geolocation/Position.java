@@ -68,7 +68,7 @@ public class Position {
   private OffsetDateTime receptionDatetime;
 
   public static final String JSON_PROPERTY_COORD = "coord";
-  private List<Coord> coord;
+  private List<Coord> coord = new ArrayList<>();
 
   public static final String JSON_PROPERTY_SPEED = "speed";
   private BigDecimal speed;
@@ -220,8 +220,11 @@ public class Position {
   }
 
   /**
-   * Identifiant unique de la ressource  dans le système du partenaire
-   *propriétaire
+   * A valoriser avec l&#39;identifiant partagé unique de la ressource engagée,
+   *normé comme suit : {orgID}.resource.{ID unique de la ressource partagée} OU
+   *- uniquement dans le cas où un ID unique de ressource ne peut pas être
+   *garanti par l&#39;organisation propriétaire :
+   *{orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}
    * @return resourceId
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_ID)

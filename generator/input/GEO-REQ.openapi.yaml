@@ -22,13 +22,21 @@ components:
           x-health-only: false
           items:
             type: string
-            title: Identifiant(s) de(s) ressource(s)
+            title: "Identifiant(s) de la ressource(s) partag\xE9(s)"
             x-health-only: false
             x-cols: 6
             example: example.json#/resourceId/0
             description: "Liste des ID des ressources pour lesquels le demandeur a\
-              \ besoin d'obtenir plus de d\xE9tails"
+              \ besoin d'obtenir plus de d\xE9tails. \nA valoriser avec l'identifiant\
+              \ partag\xE9 unique de la ressource engag\xE9e, norm\xE9 comme suit\
+              \ :\n{orgID}.resource.{ID unique de la ressource partag\xE9e}\nOU -\
+              \ uniquement dans le cas o\xF9 un ID unique de ressource ne peut pas\
+              \ \xEAtre garanti par l'organisation propri\xE9taire :\n{orgID}.resource.{sendercaseId}.{n\xB0\
+              \ d\u2019ordre chronologique de la ressource}"
+            pattern: ^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$
             examples:
-            - 76_45101#SMUR1
+            - 'fr.health.samu770.resource.VLM250
+
+              fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1'
           minItems: 1
       additionalProperties: false

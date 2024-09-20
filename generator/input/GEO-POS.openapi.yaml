@@ -14,12 +14,14 @@ components:
       example: example.json#
       type: object
       title: geoPositionsUpdate
-      required: []
+      required:
+      - position
       properties:
         position:
           type: array
           items:
             $ref: '#/components/schemas/position'
+          minItems: 1
       additionalProperties: false
     position:
       type: object
@@ -29,6 +31,7 @@ components:
       required:
       - resourceId
       - datetime
+      - coord
       properties:
         resourceId:
           type: string
@@ -36,8 +39,12 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/position/0/resourceId
-          description: "Identifiant unique de la ressource  dans le syst\xE8me du\
-            \ partenaire propri\xE9taire"
+          description: "A valoriser avec l'identifiant partag\xE9 unique de la ressource\
+            \ engag\xE9e, norm\xE9 comme suit :\n{orgID}.resource.{ID unique de la\
+            \ ressource partag\xE9e}\nOU - uniquement dans le cas o\xF9 un ID unique\
+            \ de ressource ne peut pas \xEAtre garanti par l'organisation propri\xE9\
+            taire :\n{orgID}.resource.{sendercaseId}.{n\xB0 d\u2019ordre chronologique\
+            \ de la ressource}"
           pattern: ^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$
           examples:
           - 'fr.health.samu770.resource.VLM250
@@ -71,6 +78,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/coord'
+          minItems: 1
         speed:
           type: number
           title: Vitesse de la ressource

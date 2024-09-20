@@ -52,7 +52,7 @@ public class GeoPositionsUpdate {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0:geoPositionsUpdate";
   public static final String JSON_PROPERTY_POSITION = "position";
-  private List<Position> position;
+  private List<Position> position = new ArrayList<>();
 
   public GeoPositionsUpdate() {}
 
@@ -75,7 +75,7 @@ public class GeoPositionsUpdate {
    * @return position
    **/
   @JsonProperty(JSON_PROPERTY_POSITION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public List<Position> getPosition() {
     return position;
@@ -84,7 +84,7 @@ public class GeoPositionsUpdate {
   @JacksonXmlElementWrapper(useWrapping = false)
 
   @JsonProperty(JSON_PROPERTY_POSITION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPosition(List<Position> position) {
     if (position == null) {
       return;

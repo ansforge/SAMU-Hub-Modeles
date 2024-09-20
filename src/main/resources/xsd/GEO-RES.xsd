@@ -7,10 +7,18 @@
     </complexType>
     <complexType name="resource">
         <sequence>
-            <element name="id" type="string">
+            <element name="resourceId">
                 <annotation>
-                    <documentation>Identifiant unique de la ressource  dans le système du partenaire propriétaire</documentation>
+                    <documentation>A valoriser avec l'identifiant partagé unique de la ressource engagée, normé comme suit :
+{orgID}.resource.{ID unique de la ressource partagée}
+OU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :
+{orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="([\w-]+\.){3,4}resource(\.[\w-]+){1,2}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="orgId" type="string">
                 <annotation>
