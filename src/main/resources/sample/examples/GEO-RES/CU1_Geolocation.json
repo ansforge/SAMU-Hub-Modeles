@@ -2,7 +2,7 @@
   "geoResourcesDetails": {
     "resource": [
       {
-        "id": "fr.health.samu760.resource.VLM250",
+        "resourceId": "fr.health.samu760.resource.VLM250",
         "orgId": "fr.health.760.samu76",
         "name": "SMUR 1 Rouen",
         "type": "SMUR",
@@ -17,7 +17,7 @@
         ]
       },
       {
-        "id": "fr.health.samu760.resource.VLM211",
+        "resourceId": "fr.health.samu760.resource.VLM211",
         "orgId": "fr.health.760.samu76",
         "name": "SMUR 2 Rouen",
         "type": "SMUR",
@@ -32,7 +32,7 @@
         ]
       },
       {
-        "id": "fr.health.samu760.resource.VLM213",
+        "resourceId": "fr.health.samu760.resource.VLM213",
         "orgId": "fr.health.140.samu14",
         "name": "SMUR 3 Caen",
         "type": "SMUR",
@@ -47,7 +47,7 @@
         ]
       },
       {
-        "id": "fr.health.samu760.resource.VLM25",
+        "resourceId": "fr.health.samu760.resource.VLM25",
         "orgId": "fr.health.760.samu76",
         "name": "SMUR 4 Havre",
         "type": "SMUR",
