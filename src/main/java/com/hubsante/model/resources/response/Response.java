@@ -94,7 +94,7 @@ public class Response {
   private AnswerEnum answer;
 
   /**
-   * A valoriser avec le délai de réponseauquel s&#39;engage l&#39;expéditeur
+   * A valoriser avec le délai de réponse auquel s&#39;engage l&#39;expéditeur
    * (cf. nomenclature)  Cas particulier : en cas de réponse
    * \&quot;Partielle\&quot; car le délai souhaité ne peut pas être respecté,  à
    * valoriser obligatoirement avec le délai de réponse maximum auquel
@@ -210,7 +210,7 @@ public class Response {
   }
 
   /**
-   * A valoriser avec le délai de réponseauquel s&#39;engage l&#39;expéditeur
+   * A valoriser avec le délai de réponse auquel s&#39;engage l&#39;expéditeur
    *(cf. nomenclature)  Cas particulier : en cas de réponse
    *\&quot;Partielle\&quot; car le délai souhaité ne peut pas être respecté,  à
    *valoriser obligatoirement avec le délai de réponse maximum auquel

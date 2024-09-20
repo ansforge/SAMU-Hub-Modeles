@@ -6452,7 +6452,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/response/deadline
-          description: "A valoriser avec le d\xE9lai de r\xE9ponseauquel s'engage\
+          description: "A valoriser avec le d\xE9lai de r\xE9ponse auquel s'engage\
             \ l'exp\xE9diteur (cf. nomenclature) \nCas particulier : en cas de r\xE9\
             ponse \"Partielle\" car le d\xE9lai souhait\xE9 ne peut pas \xEAtre respect\xE9\
             ,  \xE0 valoriser obligatoirement avec le d\xE9lai de r\xE9ponse maximum\
