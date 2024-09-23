@@ -39,7 +39,10 @@ jobs:
       - name: Generate Ruby classes
         working-directory: ./generator
         run: |
-          npx @openapitools/openapi-generator-cli generate -c ./config/RS-EDA/ruby/RS-EDA.generator-config.json --skip-validate-spec
+          IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"
+          for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
+            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/ruby/$SCHEMA.generator-config.json --skip-validate-spec
+          done
 
       - name: Generate Python classes
         working-directory: ./generator
