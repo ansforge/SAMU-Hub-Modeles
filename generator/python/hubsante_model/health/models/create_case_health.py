@@ -19,6 +19,7 @@ from pydantic import Field
 from typing_extensions import Annotated
 from hubsante_model.health.models.additional_information import AdditionalInformation
 from hubsante_model.health.models.alert import Alert
+from hubsante_model.health.models.decision import Decision
 from hubsante_model.health.models.location import Location
 from hubsante_model.health.models.medical_note import MedicalNote
 from hubsante_model.health.models.patient import Patient
@@ -34,7 +35,7 @@ class CreateCaseHealth(BaseModel):
     """ # noqa: E501
     case_id: Annotated[str, Field(strict=True)] = Field(description="Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier).  Il est valorisé comme suit lors de sa création :  {pays}.{domaine}.{organisation}.{senderCaseId}  Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.", alias="caseId")
     sender_case_id: Optional[StrictStr] = Field(default=None, description="A valoriser avec le numéro du dossier dans le SI de l'émetteur du message. ", alias="senderCaseId")
-    creation: datetime = Field(description="A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId).  Lors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.   L'indicateur de fuseau horaire Z ne doit pas être utilisé.  Spécificité 15-18 : Il doit être renseigné à la fin du processus de la  création de la première alerte.")
+    creation: datetime = Field(description="A valoriser avec le groupe date heure de création du dossier/affaire.  Spécificité 15-18 : A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId).  Lors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.   L'indicateur de fuseau horaire Z ne doit pas être utilisé. Il doit être renseigné à la fin du processus de la  création de la première alerte.")
     perimeter: Optional[StrictStr] = Field(default=None, description="Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée.")
     intervention_type: Optional[StrictStr] = Field(default=None, description="A valoriser en indiquant s'il s'agit d'un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH)", alias="interventionType")
     qualification: Qualification
@@ -43,21 +44,22 @@ class CreateCaseHealth(BaseModel):
     owner: Annotated[str, Field(strict=True)] = Field(description="Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{domaine}.{organisation})")
     patient: Optional[List[Patient]] = None
     medical_note: Optional[List[MedicalNote]] = Field(default=None, alias="medicalNote")
+    decision: Optional[List[Decision]] = None
     additional_information: Optional[AdditionalInformation] = Field(default=None, alias="additionalInformation")
-    __properties: ClassVar[List[str]] = ["caseId", "senderCaseId", "creation", "perimeter", "interventionType", "qualification", "location", "initialAlert", "owner", "patient", "medicalNote", "additionalInformation"]
+    __properties: ClassVar[List[str]] = ["caseId", "senderCaseId", "creation", "perimeter", "interventionType", "qualification", "location", "initialAlert", "owner", "patient", "medicalNote", "decision", "additionalInformation"]
 
     @field_validator('case_id')
     def case_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"fr(\.[\w-]+){3,5}", value):
-            raise ValueError(r"must validate the regular expression /fr(\.[\w-]+){3,5}/")
+        if not re.match(r"^fr(\.[\w-]+){3,4}$", value):
+            raise ValueError(r"must validate the regular expression /^fr(\.[\w-]+){3,4}$/")
         return value
 
     @field_validator('creation')
     def creation_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}", value):
-            raise ValueError(r"must validate the regular expression /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/")
+        if not re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", value):
+            raise ValueError(r"must validate the regular expression /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/")
         return value
 
     @field_validator('perimeter')
@@ -83,8 +85,8 @@ class CreateCaseHealth(BaseModel):
     @field_validator('owner')
     def owner_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"fr(\.[\w-]+){2,4}", value):
-            raise ValueError(r"must validate the regular expression /fr(\.[\w-]+){2,4}/")
+        if not re.match(r"^fr(\.[\w-]+){2,3}$", value):
+            raise ValueError(r"must validate the regular expression /^fr(\.[\w-]+){2,3}$/")
         return value
 
     model_config = {
@@ -146,6 +148,13 @@ class CreateCaseHealth(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['medicalNote'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in decision (list)
+        _items = []
+        if self.decision:
+            for _item in self.decision:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['decision'] = _items
         # override the default output from pydantic by calling `to_dict()` of additional_information
         if self.additional_information:
             _dict['additionalInformation'] = self.additional_information.to_dict()
@@ -172,6 +181,7 @@ class CreateCaseHealth(BaseModel):
             "owner": obj.get("owner"),
             "patient": [Patient.from_dict(_item) for _item in obj.get("patient")] if obj.get("patient") is not None else None,
             "medicalNote": [MedicalNote.from_dict(_item) for _item in obj.get("medicalNote")] if obj.get("medicalNote") is not None else None,
+            "decision": [Decision.from_dict(_item) for _item in obj.get("decision")] if obj.get("decision") is not None else None,
             "additionalInformation": AdditionalInformation.from_dict(obj.get("additionalInformation")) if obj.get("additionalInformation") is not None else None
         })
         return _obj

@@ -73,7 +73,7 @@ namespace HubsanteModel.Health.Model
         /// <param name="height">A valoriser avec la taille en centimètres du patient.</param>
         /// <param name="age">A valoriser avec l&#39;age du patient. Au format \&quot;Durée\&quot; de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) et en n&#39;utilisant qu&#39;une seule unité de durée (années, mois, semaines ou jours).</param>
         /// <param name="careLevel">A valoriser avec le niveau de soins spécifique au patient.</param>
-        public PatientDetail(int weight = default(int), int height = default(int), string age = default(string), CareLevelEnum? careLevel = default(CareLevelEnum?))
+        public PatientDetail(decimal weight = default(decimal), decimal height = default(decimal), string age = default(string), CareLevelEnum? careLevel = default(CareLevelEnum?))
         {
             this.Weight = weight;
             this.Height = height;
@@ -86,14 +86,14 @@ namespace HubsanteModel.Health.Model
         /// </summary>
         /// <value>A valoriser avec le poids en kilogrammes</value>
         [DataMember(Name = "weight", EmitDefaultValue = false)]
-        public int Weight { get; set; }
+        public decimal Weight { get; set; }
 
         /// <summary>
         /// A valoriser avec la taille en centimètres du patient
         /// </summary>
         /// <value>A valoriser avec la taille en centimètres du patient</value>
         [DataMember(Name = "height", EmitDefaultValue = false)]
-        public int Height { get; set; }
+        public decimal Height { get; set; }
 
         /// <summary>
         /// A valoriser avec l&#39;age du patient. Au format \&quot;Durée\&quot; de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) et en n&#39;utilisant qu&#39;une seule unité de durée (années, mois, semaines ou jours)
@@ -198,7 +198,7 @@ namespace HubsanteModel.Health.Model
         {
             if (this.Age != null) {
                 // Age (string) pattern
-                Regex regexAge = new Regex(@"P[0-9]{1,3}[YMWD]", RegexOptions.CultureInvariant);
+                Regex regexAge = new Regex(@"^P[0-9]{1,3}[YMWD]$", RegexOptions.CultureInvariant);
                 if (!regexAge.Match(this.Age).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Age, must match a pattern of " + regexAge, new [] { "Age" });

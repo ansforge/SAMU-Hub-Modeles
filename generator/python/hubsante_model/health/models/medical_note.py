@@ -29,7 +29,7 @@ class MedicalNote(BaseModel):
     """ # noqa: E501
     id_pat: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur,   Valorisé comme suit lors de sa création :  {OrgId émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un n°patient unique n'existe pas dans le système émetteur : {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}", alias="idPat")
     operator: Operator
-    id_obs: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}  OU - uniquement dans le cas où un ID unique de la note n'est pas disponible dans le système :  {OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}  Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement. ", alias="idObs")
+    id_obs: Annotated[str, Field(strict=True)] = Field(description="Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}  OU - uniquement dans le cas où un ID unique de la note n'est pas disponible dans le système :  {OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}  Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement. ", alias="idObs")
     creation: Optional[datetime] = Field(default=None, description="A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.")
     freetext: StrictStr = Field(description="Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé.")
     __properties: ClassVar[List[str]] = ["idPat", "operator", "idObs", "creation", "freetext"]
@@ -40,18 +40,15 @@ class MedicalNote(BaseModel):
         if value is None:
             return value
 
-        if not re.match(r"([\w-]+\.?){3}patient(\.[\w-]+){1,2}", value):
-            raise ValueError(r"must validate the regular expression /([\w-]+\.?){3}patient(\.[\w-]+){1,2}/")
+        if not re.match(r"^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$", value):
+            raise ValueError(r"must validate the regular expression /^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$/")
         return value
 
     @field_validator('id_obs')
     def id_obs_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"([\w-]+\.?){3}medicalNote(\.[\w-]+){1,2}", value):
-            raise ValueError(r"must validate the regular expression /([\w-]+\.?){3}medicalNote(\.[\w-]+){1,2}/")
+        if not re.match(r"^([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}$", value):
+            raise ValueError(r"must validate the regular expression /^([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}$/")
         return value
 
     @field_validator('creation')
@@ -60,8 +57,8 @@ class MedicalNote(BaseModel):
         if value is None:
             return value
 
-        if not re.match(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}", value):
-            raise ValueError(r"must validate the regular expression /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/")
+        if not re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", value):
+            raise ValueError(r"must validate the regular expression /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/")
         return value
 
     model_config = {

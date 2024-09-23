@@ -110,7 +110,7 @@ namespace HubsanteModel.Health.Model
         /// </summary>
         /// <param name="caseId">Identifiant partagé de l&#39;affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier).  Il est valorisé comme suit lors de sa création :  {pays}.{domaine}.{organisation}.{senderCaseId}  Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.  Il doit être unique dans l&#39;ensemble des systèmes : le numéro de dossier fourni par celui qui génère l&#39;identifiant partagé doit donc être un numéro unique dans son système. (required).</param>
         /// <param name="senderCaseId">A valoriser avec le numéro du dossier dans le SI de l&#39;émetteur du message. .</param>
-        /// <param name="creation">A valoriser avec le groupe date heure de début de partage lié à la création de l&#39;affaire (et donc de génération du caseId).  Lors de l&#39;ajout d&#39;une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.   L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé.  Spécificité 15-18 : Il doit être renseigné à la fin du processus de la  création de la première alerte. (required).</param>
+        /// <param name="creation">A valoriser avec le groupe date heure de création du dossier/affaire.  Spécificité 15-18 : A valoriser avec le groupe date heure de début de partage lié à la création de l&#39;affaire (et donc de génération du caseId).  Lors de l&#39;ajout d&#39;une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.   L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé. Il doit être renseigné à la fin du processus de la  création de la première alerte. (required).</param>
         /// <param name="perimeter">Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée..</param>
         /// <param name="interventionType">A valoriser en indiquant s&#39;il s&#39;agit d&#39;un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH).</param>
         /// <param name="qualification">qualification (required).</param>
@@ -119,8 +119,9 @@ namespace HubsanteModel.Health.Model
         /// <param name="owner">Attribut qui permet de transférer la prise en charge d&#39;un dossier à un autre CRAA A valoriser avec l&#39;identifiant de l&#39;organisation concerné (orgId &#x3D; {pays}.{domaine}.{organisation}) (required).</param>
         /// <param name="patient">patient.</param>
         /// <param name="medicalNote">medicalNote.</param>
+        /// <param name="decision">decision.</param>
         /// <param name="additionalInformation">additionalInformation.</param>
-        public CreateCaseHealth(string caseId = default(string), string senderCaseId = default(string), DateTime creation = default(DateTime), PerimeterEnum? perimeter = default(PerimeterEnum?), InterventionTypeEnum? interventionType = default(InterventionTypeEnum?), Qualification qualification = default(Qualification), Location location = default(Location), Alert initialAlert = default(Alert), string owner = default(string), List<Patient> patient = default(List<Patient>), List<MedicalNote> medicalNote = default(List<MedicalNote>), AdditionalInformation additionalInformation = default(AdditionalInformation))
+        public CreateCaseHealth(string caseId = default(string), string senderCaseId = default(string), DateTime creation = default(DateTime), PerimeterEnum? perimeter = default(PerimeterEnum?), InterventionTypeEnum? interventionType = default(InterventionTypeEnum?), Qualification qualification = default(Qualification), Location location = default(Location), Alert initialAlert = default(Alert), string owner = default(string), List<Patient> patient = default(List<Patient>), List<MedicalNote> medicalNote = default(List<MedicalNote>), List<Decision> decision = default(List<Decision>), AdditionalInformation additionalInformation = default(AdditionalInformation))
         {
             // to ensure "caseId" is required (not null)
             if (caseId == null)
@@ -153,6 +154,7 @@ namespace HubsanteModel.Health.Model
             this.InitialAlert = initialAlert;
             this.Patient = patient;
             this.MedicalNote = medicalNote;
+            this.Decision = decision;
             this.AdditionalInformation = additionalInformation;
         }
 
@@ -173,9 +175,9 @@ namespace HubsanteModel.Health.Model
         public string SenderCaseId { get; set; }
 
         /// <summary>
-        /// A valoriser avec le groupe date heure de début de partage lié à la création de l&#39;affaire (et donc de génération du caseId).  Lors de l&#39;ajout d&#39;une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.   L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé.  Spécificité 15-18 : Il doit être renseigné à la fin du processus de la  création de la première alerte.
+        /// A valoriser avec le groupe date heure de création du dossier/affaire.  Spécificité 15-18 : A valoriser avec le groupe date heure de début de partage lié à la création de l&#39;affaire (et donc de génération du caseId).  Lors de l&#39;ajout d&#39;une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.   L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé. Il doit être renseigné à la fin du processus de la  création de la première alerte.
         /// </summary>
-        /// <value>A valoriser avec le groupe date heure de début de partage lié à la création de l&#39;affaire (et donc de génération du caseId).  Lors de l&#39;ajout d&#39;une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.   L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé.  Spécificité 15-18 : Il doit être renseigné à la fin du processus de la  création de la première alerte.</value>
+        /// <value>A valoriser avec le groupe date heure de création du dossier/affaire.  Spécificité 15-18 : A valoriser avec le groupe date heure de début de partage lié à la création de l&#39;affaire (et donc de génération du caseId).  Lors de l&#39;ajout d&#39;une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.   L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé. Il doit être renseigné à la fin du processus de la  création de la première alerte.</value>
         [DataMember(Name = "creation", IsRequired = true, EmitDefaultValue = true)]
         public DateTime Creation { get; set; }
 
@@ -218,6 +220,12 @@ namespace HubsanteModel.Health.Model
         public List<MedicalNote> MedicalNote { get; set; }
 
         /// <summary>
+        /// Gets or Sets Decision
+        /// </summary>
+        [DataMember(Name = "decision", EmitDefaultValue = false)]
+        public List<Decision> Decision { get; set; }
+
+        /// <summary>
         /// Gets or Sets AdditionalInformation
         /// </summary>
         [DataMember(Name = "additionalInformation", EmitDefaultValue = false)]
@@ -242,6 +250,7 @@ namespace HubsanteModel.Health.Model
             sb.Append("  Owner: ").Append(Owner).Append("\n");
             sb.Append("  Patient: ").Append(Patient).Append("\n");
             sb.Append("  MedicalNote: ").Append(MedicalNote).Append("\n");
+            sb.Append("  Decision: ").Append(Decision).Append("\n");
             sb.Append("  AdditionalInformation: ").Append(AdditionalInformation).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -334,6 +343,12 @@ namespace HubsanteModel.Health.Model
                     this.MedicalNote.SequenceEqual(input.MedicalNote)
                 ) && 
                 (
+                    this.Decision == input.Decision ||
+                    this.Decision != null &&
+                    input.Decision != null &&
+                    this.Decision.SequenceEqual(input.Decision)
+                ) && 
+                (
                     this.AdditionalInformation == input.AdditionalInformation ||
                     (this.AdditionalInformation != null &&
                     this.AdditionalInformation.Equals(input.AdditionalInformation))
@@ -387,6 +402,10 @@ namespace HubsanteModel.Health.Model
                 {
                     hashCode = (hashCode * 59) + this.MedicalNote.GetHashCode();
                 }
+                if (this.Decision != null)
+                {
+                    hashCode = (hashCode * 59) + this.Decision.GetHashCode();
+                }
                 if (this.AdditionalInformation != null)
                 {
                     hashCode = (hashCode * 59) + this.AdditionalInformation.GetHashCode();
@@ -404,7 +423,7 @@ namespace HubsanteModel.Health.Model
         {
             if (this.CaseId != null) {
                 // CaseId (string) pattern
-                Regex regexCaseId = new Regex(@"fr(\.[\w-]+){3,5}", RegexOptions.CultureInvariant);
+                Regex regexCaseId = new Regex(@"^fr(\.[\w-]+){3,4}$", RegexOptions.CultureInvariant);
                 if (!regexCaseId.Match(this.CaseId).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CaseId, must match a pattern of " + regexCaseId, new [] { "CaseId" });
@@ -413,7 +432,7 @@ namespace HubsanteModel.Health.Model
 
             if (this.Creation != null) {
                 // Creation (DateTime) pattern
-                Regex regexCreation = new Regex(@"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}", RegexOptions.CultureInvariant);
+                Regex regexCreation = new Regex(@"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", RegexOptions.CultureInvariant);
                 if (!regexCreation.Match(this.Creation).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Creation, must match a pattern of " + regexCreation, new [] { "Creation" });
@@ -422,7 +441,7 @@ namespace HubsanteModel.Health.Model
 
             if (this.Owner != null) {
                 // Owner (string) pattern
-                Regex regexOwner = new Regex(@"fr(\.[\w-]+){2,4}", RegexOptions.CultureInvariant);
+                Regex regexOwner = new Regex(@"^fr(\.[\w-]+){2,3}$", RegexOptions.CultureInvariant);
                 if (!regexOwner.Match(this.Owner).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Owner, must match a pattern of " + regexOwner, new [] { "Owner" });

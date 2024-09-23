@@ -13,8 +13,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from pydantic import BaseModel, StrictFloat, StrictInt, StrictStr, field_validator
 from pydantic import Field
 from typing_extensions import Annotated
 try:
@@ -26,8 +26,8 @@ class PatientDetail(BaseModel):
     """
     PatientDetail
     """ # noqa: E501
-    weight: Optional[StrictInt] = Field(default=None, description="A valoriser avec le poids en kilogrammes")
-    height: Optional[StrictInt] = Field(default=None, description="A valoriser avec la taille en centimètres du patient")
+    weight: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="A valoriser avec le poids en kilogrammes")
+    height: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="A valoriser avec la taille en centimètres du patient")
     age: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="A valoriser avec l'age du patient. Au format \"Durée\" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) et en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)")
     care_level: Optional[StrictStr] = Field(default=None, description="A valoriser avec le niveau de soins spécifique au patient", alias="careLevel")
     __properties: ClassVar[List[str]] = ["weight", "height", "age", "careLevel"]
@@ -38,8 +38,8 @@ class PatientDetail(BaseModel):
         if value is None:
             return value
 
-        if not re.match(r"P[0-9]{1,3}[YMWD]", value):
-            raise ValueError(r"must validate the regular expression /P[0-9]{1,3}[YMWD]/")
+        if not re.match(r"^P[0-9]{1,3}[YMWD]$", value):
+            raise ValueError(r"must validate the regular expression /^P[0-9]{1,3}[YMWD]$/")
         return value
 
     @field_validator('care_level')

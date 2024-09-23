@@ -43,8 +43,8 @@ class Access(BaseModel):
         if value is None:
             return value
 
-        if not re.match(r"\+\d{5,18}", value):
-            raise ValueError(r"must validate the regular expression /\+\d{5,18}/")
+        if not re.match(r"^\+\d{5,18}$", value):
+            raise ValueError(r"must validate the regular expression /^\+\d{5,18}$/")
         return value
 
     model_config = {

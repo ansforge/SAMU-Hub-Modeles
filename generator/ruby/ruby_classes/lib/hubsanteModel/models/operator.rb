@@ -11,7 +11,8 @@ require 'time'
 
 module Health
   class Operator
-    attr_accessor :detailed_name
+    # A valoriser si besoin avec la valeur souhaitée, en fonction des préférences de chaque partenaire : cela peut être le nom et prénom de l'opérateur, ou un identifiant.
+    attr_accessor :label
 
     # A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : 
     attr_accessor :role
@@ -41,7 +42,7 @@ module Health
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'detailed_name' => :'detailedName',
+        :'label' => :'label',
         :'role' => :'role'
       }
     end
@@ -54,7 +55,7 @@ module Health
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'detailed_name' => :'DetailedName',
+        :'label' => :'String',
         :'role' => :'String'
       }
     end
@@ -80,8 +81,8 @@ module Health
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'detailed_name')
-        self.detailed_name = attributes[:'detailed_name']
+      if attributes.key?(:'label')
+        self.label = attributes[:'label']
       end
 
       if attributes.key?(:'role')
@@ -108,7 +109,7 @@ module Health
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @role.nil?
-      role_validator = EnumAttributeValidator.new('String', ["AMBULANCIER", "ARM", "INFIRMIER", "MEDECIN", "INCONNU", "AUTRE"])
+      role_validator = EnumAttributeValidator.new('String', ["AMBULANCIER", "ARM", "INFIRMIER", "MEDECIN", "AUTRE", "INCONNU"])
       return false unless role_validator.valid?(@role)
       true
     end
@@ -116,7 +117,7 @@ module Health
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] role Object to be assigned
     def role=(role)
-      validator = EnumAttributeValidator.new('String', ["AMBULANCIER", "ARM", "INFIRMIER", "MEDECIN", "INCONNU", "AUTRE"])
+      validator = EnumAttributeValidator.new('String', ["AMBULANCIER", "ARM", "INFIRMIER", "MEDECIN", "AUTRE", "INCONNU"])
       unless validator.valid?(role)
         fail ArgumentError, "invalid value for \"role\", must be one of #{validator.allowable_values}."
       end
@@ -128,7 +129,7 @@ module Health
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          detailed_name == o.detailed_name &&
+          label == o.label &&
           role == o.role
     end
 
@@ -141,7 +142,7 @@ module Health
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [detailed_name, role].hash
+      [label, role].hash
     end
 
     # Builds the object from hash

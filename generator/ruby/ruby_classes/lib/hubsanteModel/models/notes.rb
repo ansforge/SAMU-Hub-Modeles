@@ -73,7 +73,7 @@ module Health
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if !@creation.nil? && @creation !~ pattern
         invalid_properties.push("invalid value for \"creation\", must conform to the pattern #{pattern}.")
       end
@@ -85,7 +85,7 @@ module Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@creation.nil? && @creation !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      return false if !@creation.nil? && @creation !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       true
     end
 
@@ -96,7 +96,7 @@ module Health
         fail ArgumentError, 'creation cannot be nil'
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if creation !~ pattern
         fail ArgumentError, "invalid value for \"creation\", must conform to the pattern #{pattern}."
       end

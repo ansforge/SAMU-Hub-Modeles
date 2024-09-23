@@ -34,16 +34,16 @@ namespace HubsanteModel.Health.Model
         public enum ChannelEnum
         {
             /// <summary>
-            /// Enum PERSONNE for value: PERSONNE
-            /// </summary>
-            [EnumMember(Value = "PERSONNE")]
-            PERSONNE = 1,
-
-            /// <summary>
             /// Enum APPLICATION for value: APPLICATION
             /// </summary>
             [EnumMember(Value = "APPLICATION")]
-            APPLICATION = 2,
+            APPLICATION = 1,
+
+            /// <summary>
+            /// Enum BAU for value: BAU
+            /// </summary>
+            [EnumMember(Value = "BAU")]
+            BAU = 2,
 
             /// <summary>
             /// Enum DAU for value: DAU
@@ -52,22 +52,22 @@ namespace HubsanteModel.Health.Model
             DAU = 3,
 
             /// <summary>
-            /// Enum BAU for value: BAU
+            /// Enum DEFIBRILLATEUR for value: DEFIBRILLATEUR, 
             /// </summary>
-            [EnumMember(Value = "BAU")]
-            BAU = 4,
-
-            /// <summary>
-            /// Enum DEFIBRILLATEUR for value: DEFIBRILLATEUR
-            /// </summary>
-            [EnumMember(Value = "DEFIBRILLATEUR")]
-            DEFIBRILLATEUR = 5,
+            [EnumMember(Value = "DEFIBRILLATEUR, ")]
+            DEFIBRILLATEUR = 4,
 
             /// <summary>
             /// Enum ECALL for value: ECALL
             /// </summary>
             [EnumMember(Value = "ECALL")]
-            ECALL = 6
+            ECALL = 5,
+
+            /// <summary>
+            /// Enum PERSONNE for value: PERSONNE
+            /// </summary>
+            [EnumMember(Value = "PERSONNE")]
+            PERSONNE = 6
         }
 
 

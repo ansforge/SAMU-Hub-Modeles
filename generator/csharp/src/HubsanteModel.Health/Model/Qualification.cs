@@ -40,16 +40,16 @@ namespace HubsanteModel.Health.Model
             _15 = 1,
 
             /// <summary>
-            /// Enum _18 for value: 18
-            /// </summary>
-            [EnumMember(Value = "18")]
-            _18 = 2,
-
-            /// <summary>
             /// Enum _17 for value: 17
             /// </summary>
             [EnumMember(Value = "17")]
-            _17 = 3,
+            _17 = 2,
+
+            /// <summary>
+            /// Enum _18 for value: 18
+            /// </summary>
+            [EnumMember(Value = "18")]
+            _18 = 3,
 
             /// <summary>
             /// Enum _112 for value: 112

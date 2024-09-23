@@ -16,7 +16,6 @@ import json
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, StrictStr, field_validator
 from pydantic import Field
-from hubsante_model.health.models.detailed_name import DetailedName
 try:
     from typing import Self
 except ImportError:
@@ -26,15 +25,15 @@ class Operator(BaseModel):
     """
     Operator
     """ # noqa: E501
-    detailed_name: Optional[DetailedName] = Field(default=None, alias="detailedName")
+    label: Optional[StrictStr] = Field(default=None, description="A valoriser si besoin avec la valeur souhaitée, en fonction des préférences de chaque partenaire : cela peut être le nom et prénom de l'opérateur, ou un identifiant.")
     role: StrictStr = Field(description="A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ")
-    __properties: ClassVar[List[str]] = ["detailedName", "role"]
+    __properties: ClassVar[List[str]] = ["label", "role"]
 
     @field_validator('role')
     def role_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('AMBULANCIER', 'ARM', 'INFIRMIER', 'MEDECIN', 'INCONNU', 'AUTRE'):
-            raise ValueError("must be one of enum values ('AMBULANCIER', 'ARM', 'INFIRMIER', 'MEDECIN', 'INCONNU', 'AUTRE')")
+        if value not in ('AMBULANCIER', 'ARM', 'INFIRMIER', 'MEDECIN', 'AUTRE', 'INCONNU'):
+            raise ValueError("must be one of enum values ('AMBULANCIER', 'ARM', 'INFIRMIER', 'MEDECIN', 'AUTRE', 'INCONNU')")
         return value
 
     model_config = {
@@ -73,9 +72,6 @@ class Operator(BaseModel):
             },
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of detailed_name
-        if self.detailed_name:
-            _dict['detailedName'] = self.detailed_name.to_dict()
         return _dict
 
     @classmethod
@@ -88,7 +84,7 @@ class Operator(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "detailedName": DetailedName.from_dict(obj.get("detailedName")) if obj.get("detailedName") is not None else None,
+            "label": obj.get("label"),
             "role": obj.get("role")
         })
         return _obj

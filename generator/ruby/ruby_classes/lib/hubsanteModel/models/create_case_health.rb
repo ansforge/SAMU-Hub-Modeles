@@ -17,7 +17,7 @@ module Health
     # A valoriser avec le numéro du dossier dans le SI de l'émetteur du message. 
     attr_accessor :sender_case_id
 
-    # A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId).  Lors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.   L'indicateur de fuseau horaire Z ne doit pas être utilisé.  Spécificité 15-18 : Il doit être renseigné à la fin du processus de la  création de la première alerte.
+    # A valoriser avec le groupe date heure de création du dossier/affaire.  Spécificité 15-18 : A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId).  Lors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.   L'indicateur de fuseau horaire Z ne doit pas être utilisé. Il doit être renseigné à la fin du processus de la  création de la première alerte.
     attr_accessor :creation
 
     # Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée.
@@ -38,6 +38,8 @@ module Health
     attr_accessor :patient
 
     attr_accessor :medical_note
+
+    attr_accessor :decision
 
     attr_accessor :additional_information
 
@@ -77,6 +79,7 @@ module Health
         :'owner' => :'owner',
         :'patient' => :'patient',
         :'medical_note' => :'medicalNote',
+        :'decision' => :'decision',
         :'additional_information' => :'additionalInformation'
       }
     end
@@ -100,6 +103,7 @@ module Health
         :'owner' => :'String',
         :'patient' => :'Array<Patient>',
         :'medical_note' => :'Array<MedicalNote>',
+        :'decision' => :'Array<Decision>',
         :'additional_information' => :'AdditionalInformation'
       }
     end
@@ -183,6 +187,12 @@ module Health
         end
       end
 
+      if attributes.key?(:'decision')
+        if (value = attributes[:'decision']).is_a?(Array)
+          self.decision = value
+        end
+      end
+
       if attributes.key?(:'additional_information')
         self.additional_information = attributes[:'additional_information']
       end
@@ -197,7 +207,7 @@ module Health
         invalid_properties.push('invalid value for "case_id", case_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/fr(\.[\w-]+){3,5}/)
+      pattern = Regexp.new(/^fr(\.[\w-]+){3,4}$/)
       if @case_id !~ pattern
         invalid_properties.push("invalid value for \"case_id\", must conform to the pattern #{pattern}.")
       end
@@ -206,7 +216,7 @@ module Health
         invalid_properties.push('invalid value for "creation", creation cannot be nil.')
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if @creation !~ pattern
         invalid_properties.push("invalid value for \"creation\", must conform to the pattern #{pattern}.")
       end
@@ -223,7 +233,7 @@ module Health
         invalid_properties.push('invalid value for "owner", owner cannot be nil.')
       end
 
-      pattern = Regexp.new(/fr(\.[\w-]+){2,4}/)
+      pattern = Regexp.new(/^fr(\.[\w-]+){2,3}$/)
       if @owner !~ pattern
         invalid_properties.push("invalid value for \"owner\", must conform to the pattern #{pattern}.")
       end
@@ -236,9 +246,9 @@ module Health
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @case_id.nil?
-      return false if @case_id !~ Regexp.new(/fr(\.[\w-]+){3,5}/)
+      return false if @case_id !~ Regexp.new(/^fr(\.[\w-]+){3,4}$/)
       return false if @creation.nil?
-      return false if @creation !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      return false if @creation !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       perimeter_validator = EnumAttributeValidator.new('String', ["AMU", "NEONAT", "PSY", "SNP"])
       return false unless perimeter_validator.valid?(@perimeter)
       intervention_type_validator = EnumAttributeValidator.new('String', ["PRIMAIRE", "SECONDAIRE", "RETOUR A DOMICILE"])
@@ -246,7 +256,7 @@ module Health
       return false if @qualification.nil?
       return false if @location.nil?
       return false if @owner.nil?
-      return false if @owner !~ Regexp.new(/fr(\.[\w-]+){2,4}/)
+      return false if @owner !~ Regexp.new(/^fr(\.[\w-]+){2,3}$/)
       true
     end
 
@@ -257,7 +267,7 @@ module Health
         fail ArgumentError, 'case_id cannot be nil'
       end
 
-      pattern = Regexp.new(/fr(\.[\w-]+){3,5}/)
+      pattern = Regexp.new(/^fr(\.[\w-]+){3,4}$/)
       if case_id !~ pattern
         fail ArgumentError, "invalid value for \"case_id\", must conform to the pattern #{pattern}."
       end
@@ -272,7 +282,7 @@ module Health
         fail ArgumentError, 'creation cannot be nil'
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if creation !~ pattern
         fail ArgumentError, "invalid value for \"creation\", must conform to the pattern #{pattern}."
       end
@@ -307,7 +317,7 @@ module Health
         fail ArgumentError, 'owner cannot be nil'
       end
 
-      pattern = Regexp.new(/fr(\.[\w-]+){2,4}/)
+      pattern = Regexp.new(/^fr(\.[\w-]+){2,3}$/)
       if owner !~ pattern
         fail ArgumentError, "invalid value for \"owner\", must conform to the pattern #{pattern}."
       end
@@ -331,6 +341,7 @@ module Health
           owner == o.owner &&
           patient == o.patient &&
           medical_note == o.medical_note &&
+          decision == o.decision &&
           additional_information == o.additional_information
     end
 
@@ -343,7 +354,7 @@ module Health
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [case_id, sender_case_id, creation, perimeter, intervention_type, qualification, location, initial_alert, owner, patient, medical_note, additional_information].hash
+      [case_id, sender_case_id, creation, perimeter, intervention_type, qualification, location, initial_alert, owner, patient, medical_note, decision, additional_information].hash
     end
 
     # Builds the object from hash

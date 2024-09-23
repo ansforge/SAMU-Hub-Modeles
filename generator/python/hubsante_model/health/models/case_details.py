@@ -25,10 +25,21 @@ class CaseDetails(BaseModel):
     """
     CaseDetails
     """ # noqa: E501
+    status: Optional[StrictStr] = Field(default=None, description="A valoriser avec l'état du dossier dans le système émetteur Spécificité 15-15 : peut être ignoré en réception, partagé à titre indicatif uniquement Spécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE à la tablette")
     attribution: Optional[StrictStr] = Field(default=None, description="Décrit le type de professionnel médical à qui le dossier est attribué : médecin généraliste, médecin urgentiste etc.")
     priority: Optional[StrictStr] = Field(default=None, description="Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3")
     care_level: Optional[StrictStr] = Field(default=None, description="Décrit le niveau de soins global du dossier identifié au cours de l'acte de régulation médicale : s'il y a plusieurs niveaux de soins différents pour chaque patient, on indique ici le niveau le plus grave. cf.nomenclature associée.", alias="careLevel")
-    __properties: ClassVar[List[str]] = ["attribution", "priority", "careLevel"]
+    __properties: ClassVar[List[str]] = ["status", "attribution", "priority", "careLevel"]
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('PROGRAMME', ' ACTIF', 'ACHEVE', 'VALIDE', 'CLOTURE', 'CLASSE', 'ARCHIVE'):
+            raise ValueError("must be one of enum values ('PROGRAMME', ' ACTIF', 'ACHEVE', 'VALIDE', 'CLOTURE', 'CLASSE', 'ARCHIVE')")
+        return value
 
     @field_validator('attribution')
     def attribution_validate_enum(cls, value):
@@ -108,6 +119,7 @@ class CaseDetails(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "status": obj.get("status"),
             "attribution": obj.get("attribution"),
             "priority": obj.get("priority"),
             "careLevel": obj.get("careLevel")

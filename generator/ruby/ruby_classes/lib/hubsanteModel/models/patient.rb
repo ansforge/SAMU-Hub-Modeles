@@ -110,7 +110,7 @@ module Health
         invalid_properties.push('invalid value for "id_pat", id_pat cannot be nil.')
       end
 
-      pattern = Regexp.new(/([\w-]+\.?){3}patient(\.[\w-]+){1,2}/)
+      pattern = Regexp.new(/^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$/)
       if @id_pat !~ pattern
         invalid_properties.push("invalid value for \"id_pat\", must conform to the pattern #{pattern}.")
       end
@@ -123,7 +123,7 @@ module Health
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @id_pat.nil?
-      return false if @id_pat !~ Regexp.new(/([\w-]+\.?){3}patient(\.[\w-]+){1,2}/)
+      return false if @id_pat !~ Regexp.new(/^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$/)
       true
     end
 
@@ -134,7 +134,7 @@ module Health
         fail ArgumentError, 'id_pat cannot be nil'
       end
 
-      pattern = Regexp.new(/([\w-]+\.?){3}patient(\.[\w-]+){1,2}/)
+      pattern = Regexp.new(/^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$/)
       if id_pat !~ pattern
         fail ArgumentError, "invalid value for \"id_pat\", must conform to the pattern #{pattern}."
       end

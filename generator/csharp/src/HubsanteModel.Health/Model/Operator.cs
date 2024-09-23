@@ -58,16 +58,16 @@ namespace HubsanteModel.Health.Model
             MEDECIN = 4,
 
             /// <summary>
-            /// Enum INCONNU for value: INCONNU
-            /// </summary>
-            [EnumMember(Value = "INCONNU")]
-            INCONNU = 5,
-
-            /// <summary>
             /// Enum AUTRE for value: AUTRE
             /// </summary>
             [EnumMember(Value = "AUTRE")]
-            AUTRE = 6
+            AUTRE = 5,
+
+            /// <summary>
+            /// Enum INCONNU for value: INCONNU
+            /// </summary>
+            [EnumMember(Value = "INCONNU")]
+            INCONNU = 6
         }
 
 
@@ -86,19 +86,21 @@ namespace HubsanteModel.Health.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Operator" /> class.
         /// </summary>
-        /// <param name="detailedName">detailedName.</param>
+        /// <param name="label">A valoriser si besoin avec la valeur souhaitée, en fonction des préférences de chaque partenaire : cela peut être le nom et prénom de l&#39;opérateur, ou un identifiant..</param>
         /// <param name="role">A valoriser avec le rôle de l&#39;opérateur au sein de l&#39;entité émettrice du message :  (required).</param>
-        public Operator(DetailedName detailedName = default(DetailedName), RoleEnum role = default(RoleEnum))
+        public Operator(string label = default(string), RoleEnum role = default(RoleEnum))
         {
             this.Role = role;
-            this.DetailedName = detailedName;
+            this.Label = label;
         }
 
         /// <summary>
-        /// Gets or Sets DetailedName
+        /// A valoriser si besoin avec la valeur souhaitée, en fonction des préférences de chaque partenaire : cela peut être le nom et prénom de l&#39;opérateur, ou un identifiant.
         /// </summary>
-        [DataMember(Name = "detailedName", EmitDefaultValue = false)]
-        public DetailedName DetailedName { get; set; }
+        /// <value>A valoriser si besoin avec la valeur souhaitée, en fonction des préférences de chaque partenaire : cela peut être le nom et prénom de l&#39;opérateur, ou un identifiant.</value>
+        /// <example>example.json#/medicalNote/0/operator/label</example>
+        [DataMember(Name = "label", EmitDefaultValue = false)]
+        public string Label { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -108,7 +110,7 @@ namespace HubsanteModel.Health.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Operator {\n");
-            sb.Append("  DetailedName: ").Append(DetailedName).Append("\n");
+            sb.Append("  Label: ").Append(Label).Append("\n");
             sb.Append("  Role: ").Append(Role).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -146,9 +148,9 @@ namespace HubsanteModel.Health.Model
             }
             return 
                 (
-                    this.DetailedName == input.DetailedName ||
-                    (this.DetailedName != null &&
-                    this.DetailedName.Equals(input.DetailedName))
+                    this.Label == input.Label ||
+                    (this.Label != null &&
+                    this.Label.Equals(input.Label))
                 ) && 
                 (
                     this.Role == input.Role ||
@@ -165,9 +167,9 @@ namespace HubsanteModel.Health.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.DetailedName != null)
+                if (this.Label != null)
                 {
-                    hashCode = (hashCode * 59) + this.DetailedName.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Label.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Role.GetHashCode();
                 return hashCode;

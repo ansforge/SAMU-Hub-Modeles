@@ -135,7 +135,7 @@ module Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      origin_validator = EnumAttributeValidator.new('String', ["15", "18", "17", "112", "116117"])
+      origin_validator = EnumAttributeValidator.new('String', ["15", "17", "18", "112", "116117"])
       return false unless origin_validator.valid?(@origin)
       true
     end
@@ -143,7 +143,7 @@ module Health
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] origin Object to be assigned
     def origin=(origin)
-      validator = EnumAttributeValidator.new('String', ["15", "18", "17", "112", "116117"])
+      validator = EnumAttributeValidator.new('String', ["15", "17", "18", "112", "116117"])
       unless validator.valid?(origin)
         fail ArgumentError, "invalid value for \"origin\", must be one of #{validator.allowable_values}."
       end

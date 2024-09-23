@@ -36,7 +36,7 @@ namespace HubsanteModel.Health.Model
         /// </summary>
         /// <param name="idPat">Identifiant partagé du patient concerné par l&#39;observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur,   Valorisé comme suit lors de sa création :  {OrgId émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un n°patient unique n&#39;existe pas dans le système émetteur : {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}.</param>
         /// <param name="varOperator">varOperator (required).</param>
-        /// <param name="idObs">Identifiant partagé de l&#39;observation, généré une seule fois par le système du partenaire qui créé l&#39;observation Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}  OU - uniquement dans le cas où un ID unique de la note n&#39;est pas disponible dans le système :  {OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}  Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement. .</param>
+        /// <param name="idObs">Identifiant partagé de l&#39;observation, généré une seule fois par le système du partenaire qui créé l&#39;observation Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}  OU - uniquement dans le cas où un ID unique de la note n&#39;est pas disponible dans le système :  {OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}  Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.  (required).</param>
         /// <param name="creation">A valoriser avec le groupe date heure de création de l&#39;observation.  L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé..</param>
         /// <param name="freetext">Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé. (required).</param>
         public MedicalNote(string idPat = default(string), Operator varOperator = default(Operator), string idObs = default(string), DateTime creation = default(DateTime), string freetext = default(string))
@@ -47,6 +47,12 @@ namespace HubsanteModel.Health.Model
                 throw new ArgumentNullException("varOperator is a required property for MedicalNote and cannot be null");
             }
             this.VarOperator = varOperator;
+            // to ensure "idObs" is required (not null)
+            if (idObs == null)
+            {
+                throw new ArgumentNullException("idObs is a required property for MedicalNote and cannot be null");
+            }
+            this.IdObs = idObs;
             // to ensure "freetext" is required (not null)
             if (freetext == null)
             {
@@ -54,7 +60,6 @@ namespace HubsanteModel.Health.Model
             }
             this.Freetext = freetext;
             this.IdPat = idPat;
-            this.IdObs = idObs;
             this.Creation = creation;
         }
 
@@ -77,7 +82,7 @@ namespace HubsanteModel.Health.Model
         /// </summary>
         /// <value>Identifiant partagé de l&#39;observation, généré une seule fois par le système du partenaire qui créé l&#39;observation Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}  OU - uniquement dans le cas où un ID unique de la note n&#39;est pas disponible dans le système :  {OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}  Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement. </value>
         /// <example>example.json#/medicalNote/0/idObs</example>
-        [DataMember(Name = "idObs", EmitDefaultValue = false)]
+        [DataMember(Name = "idObs", IsRequired = true, EmitDefaultValue = true)]
         public string IdObs { get; set; }
 
         /// <summary>
@@ -212,7 +217,7 @@ namespace HubsanteModel.Health.Model
         {
             if (this.IdPat != null) {
                 // IdPat (string) pattern
-                Regex regexIdPat = new Regex(@"([\w-]+\.?){3}patient(\.[\w-]+){1,2}", RegexOptions.CultureInvariant);
+                Regex regexIdPat = new Regex(@"^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$", RegexOptions.CultureInvariant);
                 if (!regexIdPat.Match(this.IdPat).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IdPat, must match a pattern of " + regexIdPat, new [] { "IdPat" });
@@ -221,7 +226,7 @@ namespace HubsanteModel.Health.Model
 
             if (this.IdObs != null) {
                 // IdObs (string) pattern
-                Regex regexIdObs = new Regex(@"([\w-]+\.?){3}medicalNote(\.[\w-]+){1,2}", RegexOptions.CultureInvariant);
+                Regex regexIdObs = new Regex(@"^([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}$", RegexOptions.CultureInvariant);
                 if (!regexIdObs.Match(this.IdObs).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IdObs, must match a pattern of " + regexIdObs, new [] { "IdObs" });
@@ -230,7 +235,7 @@ namespace HubsanteModel.Health.Model
 
             if (this.Creation != null) {
                 // Creation (DateTime) pattern
-                Regex regexCreation = new Regex(@"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}", RegexOptions.CultureInvariant);
+                Regex regexCreation = new Regex(@"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", RegexOptions.CultureInvariant);
                 if (!regexCreation.Match(this.Creation).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Creation, must match a pattern of " + regexCreation, new [] { "Creation" });

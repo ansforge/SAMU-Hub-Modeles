@@ -33,8 +33,8 @@ class Contact(BaseModel):
     @field_validator('channel')
     def channel_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('PERSONNE', 'APPLICATION', 'DAU', 'BAU', 'DEFIBRILLATEUR', 'ECALL'):
-            raise ValueError("must be one of enum values ('PERSONNE', 'APPLICATION', 'DAU', 'BAU', 'DEFIBRILLATEUR', 'ECALL')")
+        if value not in ('APPLICATION', 'BAU', 'DAU', 'DEFIBRILLATEUR, ', 'ECALL', 'PERSONNE'):
+            raise ValueError("must be one of enum values ('APPLICATION', 'BAU', 'DAU', 'DEFIBRILLATEUR, ', 'ECALL', 'PERSONNE')")
         return value
 
     @field_validator('type')

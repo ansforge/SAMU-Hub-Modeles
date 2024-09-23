@@ -184,7 +184,7 @@ namespace HubsanteModel.Health.Model
         {
             if (this.Value != null) {
                 // Value (string) pattern
-                Regex regexValue = new Regex(@"([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])", RegexOptions.CultureInvariant);
+                Regex regexValue = new Regex(@"^([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])$", RegexOptions.CultureInvariant);
                 if (!regexValue.Match(this.Value).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Value, must match a pattern of " + regexValue, new [] { "Value" });

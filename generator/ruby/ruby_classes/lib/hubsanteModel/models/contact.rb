@@ -130,7 +130,7 @@ module Health
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @channel.nil?
-      channel_validator = EnumAttributeValidator.new('String', ["PERSONNE", "APPLICATION", "DAU", "BAU", "DEFIBRILLATEUR", "ECALL"])
+      channel_validator = EnumAttributeValidator.new('String', ["APPLICATION", "BAU", "DAU", "DEFIBRILLATEUR, ", "ECALL", "PERSONNE"])
       return false unless channel_validator.valid?(@channel)
       return false if @type.nil?
       type_validator = EnumAttributeValidator.new('String', ["TEL", "EMAIL", "FAX", "POSTAL", "WEB", "RADIO"])
@@ -142,7 +142,7 @@ module Health
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] channel Object to be assigned
     def channel=(channel)
-      validator = EnumAttributeValidator.new('String', ["PERSONNE", "APPLICATION", "DAU", "BAU", "DEFIBRILLATEUR", "ECALL"])
+      validator = EnumAttributeValidator.new('String', ["APPLICATION", "BAU", "DAU", "DEFIBRILLATEUR, ", "ECALL", "PERSONNE"])
       unless validator.valid?(channel)
         fail ArgumentError, "invalid value for \"channel\", must be one of #{validator.allowable_values}."
       end

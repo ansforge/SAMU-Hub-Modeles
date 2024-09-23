@@ -81,6 +81,11 @@ module Health
         invalid_properties.push('invalid value for "code", code cannot be nil.')
       end
 
+      pattern = Regexp.new(/^[A-Z]\d{2}(\.[\d\+\-]{1,3})?$/)
+      if @code !~ pattern
+        invalid_properties.push("invalid value for \"code\", must conform to the pattern #{pattern}.")
+      end
+
       if @label.nil?
         invalid_properties.push('invalid value for "label", label cannot be nil.')
       end
@@ -93,8 +98,24 @@ module Health
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @code.nil?
+      return false if @code !~ Regexp.new(/^[A-Z]\d{2}(\.[\d\+\-]{1,3})?$/)
       return false if @label.nil?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] code Value to be assigned
+    def code=(code)
+      if code.nil?
+        fail ArgumentError, 'code cannot be nil'
+      end
+
+      pattern = Regexp.new(/^[A-Z]\d{2}(\.[\d\+\-]{1,3})?$/)
+      if code !~ pattern
+        fail ArgumentError, "invalid value for \"code\", must conform to the pattern #{pattern}."
+      end
+
+      @code = code
     end
 
     # Checks equality by comparing each attribute.

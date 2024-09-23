@@ -27,6 +27,64 @@ namespace HubsanteModel.Health.Model
     public partial class CaseDetails : IEquatable<CaseDetails>, IValidatableObject
     {
         /// <summary>
+        /// A valoriser avec l&#39;état du dossier dans le système émetteur Spécificité 15-15 : peut être ignoré en réception, partagé à titre indicatif uniquement Spécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE à la tablette
+        /// </summary>
+        /// <value>A valoriser avec l&#39;état du dossier dans le système émetteur Spécificité 15-15 : peut être ignoré en réception, partagé à titre indicatif uniquement Spécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE à la tablette</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StatusEnum
+        {
+            /// <summary>
+            /// Enum PROGRAMME for value: PROGRAMME
+            /// </summary>
+            [EnumMember(Value = "PROGRAMME")]
+            PROGRAMME = 1,
+
+            /// <summary>
+            /// Enum ACTIF for value:  ACTIF
+            /// </summary>
+            [EnumMember(Value = " ACTIF")]
+            ACTIF = 2,
+
+            /// <summary>
+            /// Enum ACHEVE for value: ACHEVE
+            /// </summary>
+            [EnumMember(Value = "ACHEVE")]
+            ACHEVE = 3,
+
+            /// <summary>
+            /// Enum VALIDE for value: VALIDE
+            /// </summary>
+            [EnumMember(Value = "VALIDE")]
+            VALIDE = 4,
+
+            /// <summary>
+            /// Enum CLOTURE for value: CLOTURE
+            /// </summary>
+            [EnumMember(Value = "CLOTURE")]
+            CLOTURE = 5,
+
+            /// <summary>
+            /// Enum CLASSE for value: CLASSE
+            /// </summary>
+            [EnumMember(Value = "CLASSE")]
+            CLASSE = 6,
+
+            /// <summary>
+            /// Enum ARCHIVE for value: ARCHIVE
+            /// </summary>
+            [EnumMember(Value = "ARCHIVE")]
+            ARCHIVE = 7
+        }
+
+
+        /// <summary>
+        /// A valoriser avec l&#39;état du dossier dans le système émetteur Spécificité 15-15 : peut être ignoré en réception, partagé à titre indicatif uniquement Spécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE à la tablette
+        /// </summary>
+        /// <value>A valoriser avec l&#39;état du dossier dans le système émetteur Spécificité 15-15 : peut être ignoré en réception, partagé à titre indicatif uniquement Spécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE à la tablette</value>
+        /// <example>example.json#/qualification/details/status</example>
+        [DataMember(Name = "status", EmitDefaultValue = false)]
+        public StatusEnum? Status { get; set; }
+        /// <summary>
         /// Décrit le type de professionnel médical à qui le dossier est attribué : médecin généraliste, médecin urgentiste etc.
         /// </summary>
         /// <value>Décrit le type de professionnel médical à qui le dossier est attribué : médecin généraliste, médecin urgentiste etc.</value>
@@ -347,11 +405,13 @@ namespace HubsanteModel.Health.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CaseDetails" /> class.
         /// </summary>
+        /// <param name="status">A valoriser avec l&#39;état du dossier dans le système émetteur Spécificité 15-15 : peut être ignoré en réception, partagé à titre indicatif uniquement Spécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE à la tablette.</param>
         /// <param name="attribution">Décrit le type de professionnel médical à qui le dossier est attribué : médecin généraliste, médecin urgentiste etc..</param>
         /// <param name="priority">Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3.</param>
         /// <param name="careLevel">Décrit le niveau de soins global du dossier identifié au cours de l&#39;acte de régulation médicale : s&#39;il y a plusieurs niveaux de soins différents pour chaque patient, on indique ici le niveau le plus grave. cf.nomenclature associée..</param>
-        public CaseDetails(AttributionEnum? attribution = default(AttributionEnum?), PriorityEnum? priority = default(PriorityEnum?), CareLevelEnum? careLevel = default(CareLevelEnum?))
+        public CaseDetails(StatusEnum? status = default(StatusEnum?), AttributionEnum? attribution = default(AttributionEnum?), PriorityEnum? priority = default(PriorityEnum?), CareLevelEnum? careLevel = default(CareLevelEnum?))
         {
+            this.Status = status;
             this.Attribution = attribution;
             this.Priority = priority;
             this.CareLevel = careLevel;
@@ -365,6 +425,7 @@ namespace HubsanteModel.Health.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CaseDetails {\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Attribution: ").Append(Attribution).Append("\n");
             sb.Append("  Priority: ").Append(Priority).Append("\n");
             sb.Append("  CareLevel: ").Append(CareLevel).Append("\n");
@@ -404,6 +465,10 @@ namespace HubsanteModel.Health.Model
             }
             return 
                 (
+                    this.Status == input.Status ||
+                    this.Status.Equals(input.Status)
+                ) && 
+                (
                     this.Attribution == input.Attribution ||
                     this.Attribution.Equals(input.Attribution)
                 ) && 
@@ -426,6 +491,7 @@ namespace HubsanteModel.Health.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                hashCode = (hashCode * 59) + this.Status.GetHashCode();
                 hashCode = (hashCode * 59) + this.Attribution.GetHashCode();
                 hashCode = (hashCode * 59) + this.Priority.GetHashCode();
                 hashCode = (hashCode * 59) + this.CareLevel.GetHashCode();
