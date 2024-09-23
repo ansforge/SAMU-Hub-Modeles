@@ -1,0 +1,20 @@
+{
+  "inputSpec": "./input/GEO-RES.openapi.yaml",
+  "outputDir": "ruby/ruby_classes/",
+  "generatorName": "ruby",
+  "globalProperties": {
+    "models": "",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "moduleName": "Geolocation",
+    "gemName": "hubsanteModel",
+    "allowUnicodeIdentifiers": true,
+    "useAutoload": true,
+    "sortParamsByRequiredFlag": true
+  }
+}
