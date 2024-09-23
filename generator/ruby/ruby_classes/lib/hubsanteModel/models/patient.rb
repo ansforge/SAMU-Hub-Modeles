@@ -9,30 +9,48 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Health
+module Rpis
   class Patient
-    # Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient. Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un n°patient unique n'existe pas dans le système émetteur : {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}   
-    attr_accessor :id_pat
+    # Identifiant unique du patient.  A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01
+    attr_accessor :patient_id
 
-    attr_accessor :administrative_file
+    # Date de naissance du patient
+    attr_accessor :birth_date
 
-    attr_accessor :identity
+    # Sexe du patient, suivant le libellé court de la nomenclature SI-SAMU-NOMENC_SEXE
+    attr_accessor :sex
 
-    attr_accessor :health_motive
+    attr_accessor :residential_address
 
-    attr_accessor :detail
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
 
-    attr_accessor :hypothesis
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id_pat' => :'idPat',
-        :'administrative_file' => :'administrativeFile',
-        :'identity' => :'identity',
-        :'health_motive' => :'healthMotive',
-        :'detail' => :'detail',
-        :'hypothesis' => :'hypothesis'
+        :'patient_id' => :'patientId',
+        :'birth_date' => :'birthDate',
+        :'sex' => :'sex',
+        :'residential_address' => :'residentialAddress'
       }
     end
 
@@ -44,12 +62,10 @@ module Health
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id_pat' => :'String',
-        :'administrative_file' => :'AdministrativeFile',
-        :'identity' => :'Identity',
-        :'health_motive' => :'HealthMotive',
-        :'detail' => :'PatientDetail',
-        :'hypothesis' => :'Hypothesis'
+        :'patient_id' => :'String',
+        :'birth_date' => :'String',
+        :'sex' => :'String',
+        :'residential_address' => :'ResidentialAddress'
       }
     end
 
@@ -63,41 +79,37 @@ module Health
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Health::Patient` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Rpis::Patient` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Health::Patient`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Rpis::Patient`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'id_pat')
-        self.id_pat = attributes[:'id_pat']
+      if attributes.key?(:'patient_id')
+        self.patient_id = attributes[:'patient_id']
       else
-        self.id_pat = nil
+        self.patient_id = nil
       end
 
-      if attributes.key?(:'administrative_file')
-        self.administrative_file = attributes[:'administrative_file']
+      if attributes.key?(:'birth_date')
+        self.birth_date = attributes[:'birth_date']
+      else
+        self.birth_date = nil
       end
 
-      if attributes.key?(:'identity')
-        self.identity = attributes[:'identity']
+      if attributes.key?(:'sex')
+        self.sex = attributes[:'sex']
+      else
+        self.sex = nil
       end
 
-      if attributes.key?(:'health_motive')
-        self.health_motive = attributes[:'health_motive']
-      end
-
-      if attributes.key?(:'detail')
-        self.detail = attributes[:'detail']
-      end
-
-      if attributes.key?(:'hypothesis')
-        self.hypothesis = attributes[:'hypothesis']
+      if attributes.key?(:'residential_address')
+        self.residential_address = attributes[:'residential_address']
       end
     end
 
@@ -106,13 +118,16 @@ module Health
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @id_pat.nil?
-        invalid_properties.push('invalid value for "id_pat", id_pat cannot be nil.')
+      if @patient_id.nil?
+        invalid_properties.push('invalid value for "patient_id", patient_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$/)
-      if @id_pat !~ pattern
-        invalid_properties.push("invalid value for \"id_pat\", must conform to the pattern #{pattern}.")
+      if @birth_date.nil?
+        invalid_properties.push('invalid value for "birth_date", birth_date cannot be nil.')
+      end
+
+      if @sex.nil?
+        invalid_properties.push('invalid value for "sex", sex cannot be nil.')
       end
 
       invalid_properties
@@ -122,24 +137,22 @@ module Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @id_pat.nil?
-      return false if @id_pat !~ Regexp.new(/^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$/)
+      return false if @patient_id.nil?
+      return false if @birth_date.nil?
+      return false if @sex.nil?
+      sex_validator = EnumAttributeValidator.new('String', ["M", "F", "O", "UN"])
+      return false unless sex_validator.valid?(@sex)
       true
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] id_pat Value to be assigned
-    def id_pat=(id_pat)
-      if id_pat.nil?
-        fail ArgumentError, 'id_pat cannot be nil'
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] sex Object to be assigned
+    def sex=(sex)
+      validator = EnumAttributeValidator.new('String', ["M", "F", "O", "UN"])
+      unless validator.valid?(sex)
+        fail ArgumentError, "invalid value for \"sex\", must be one of #{validator.allowable_values}."
       end
-
-      pattern = Regexp.new(/^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$/)
-      if id_pat !~ pattern
-        fail ArgumentError, "invalid value for \"id_pat\", must conform to the pattern #{pattern}."
-      end
-
-      @id_pat = id_pat
+      @sex = sex
     end
 
     # Checks equality by comparing each attribute.
@@ -147,12 +160,10 @@ module Health
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id_pat == o.id_pat &&
-          administrative_file == o.administrative_file &&
-          identity == o.identity &&
-          health_motive == o.health_motive &&
-          detail == o.detail &&
-          hypothesis == o.hypothesis
+          patient_id == o.patient_id &&
+          birth_date == o.birth_date &&
+          sex == o.sex &&
+          residential_address == o.residential_address
     end
 
     # @see the `==` method
@@ -164,7 +175,7 @@ module Health
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id_pat, administrative_file, identity, health_motive, detail, hypothesis].hash
+      [patient_id, birth_date, sex, residential_address].hash
     end
 
     # Builds the object from hash
@@ -228,7 +239,7 @@ module Health
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Health.const_get(type)
+        klass = Rpis.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

@@ -9,23 +9,23 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Geolocation
-  class Coord
-    # Dernière coordonnée x connue de la ressource, entre −90 and +90
-    attr_accessor :lat
+module Rpis
+  class Team
+    # Permet d'identifier si un médecin compose l'équipe. Cette donnée peut être automatiquement déduite, dès que le nom et prénom du médecin est saisi sur la tablette. 
+    attr_accessor :doctor
 
-    # Dernière coordonnée y connue de la ressource, entre −180 and +180
-    attr_accessor :lon
+    # Permet d'identifier si un infirmier compose l'équipe. Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'infirmier est saisi sur la tablette. 
+    attr_accessor :nurse
 
-    # Dernière coordonnée z connue de la ressource, en mètres sans bornes
-    attr_accessor :height
+    # Permet d'identifier si un ambulancier compose l'équipe. Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'ambulancier est saisi sur la tablette. 
+    attr_accessor :driver
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'lat' => :'lat',
-        :'lon' => :'lon',
-        :'height' => :'height'
+        :'doctor' => :'doctor',
+        :'nurse' => :'nurse',
+        :'driver' => :'driver'
       }
     end
 
@@ -37,9 +37,9 @@ module Geolocation
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'lat' => :'Float',
-        :'lon' => :'Float',
-        :'height' => :'Float'
+        :'doctor' => :'Boolean',
+        :'nurse' => :'Boolean',
+        :'driver' => :'Boolean'
       }
     end
 
@@ -53,31 +53,33 @@ module Geolocation
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Geolocation::Coord` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Rpis::Team` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Geolocation::Coord`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Rpis::Team`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'lat')
-        self.lat = attributes[:'lat']
+      if attributes.key?(:'doctor')
+        self.doctor = attributes[:'doctor']
       else
-        self.lat = nil
+        self.doctor = nil
       end
 
-      if attributes.key?(:'lon')
-        self.lon = attributes[:'lon']
+      if attributes.key?(:'nurse')
+        self.nurse = attributes[:'nurse']
       else
-        self.lon = nil
+        self.nurse = nil
       end
 
-      if attributes.key?(:'height')
-        self.height = attributes[:'height']
+      if attributes.key?(:'driver')
+        self.driver = attributes[:'driver']
+      else
+        self.driver = nil
       end
     end
 
@@ -86,12 +88,16 @@ module Geolocation
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @lat.nil?
-        invalid_properties.push('invalid value for "lat", lat cannot be nil.')
+      if @doctor.nil?
+        invalid_properties.push('invalid value for "doctor", doctor cannot be nil.')
       end
 
-      if @lon.nil?
-        invalid_properties.push('invalid value for "lon", lon cannot be nil.')
+      if @nurse.nil?
+        invalid_properties.push('invalid value for "nurse", nurse cannot be nil.')
+      end
+
+      if @driver.nil?
+        invalid_properties.push('invalid value for "driver", driver cannot be nil.')
       end
 
       invalid_properties
@@ -101,8 +107,9 @@ module Geolocation
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @lat.nil?
-      return false if @lon.nil?
+      return false if @doctor.nil?
+      return false if @nurse.nil?
+      return false if @driver.nil?
       true
     end
 
@@ -111,9 +118,9 @@ module Geolocation
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          lat == o.lat &&
-          lon == o.lon &&
-          height == o.height
+          doctor == o.doctor &&
+          nurse == o.nurse &&
+          driver == o.driver
     end
 
     # @see the `==` method
@@ -125,7 +132,7 @@ module Geolocation
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [lat, lon, height].hash
+      [doctor, nurse, driver].hash
     end
 
     # Builds the object from hash
@@ -189,7 +196,7 @@ module Geolocation
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Geolocation.const_get(type)
+        klass = Rpis.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

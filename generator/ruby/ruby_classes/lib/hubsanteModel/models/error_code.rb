@@ -9,23 +9,19 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Geolocation
-  class Coord
-    # Dernière coordonnée x connue de la ressource, entre −90 and +90
-    attr_accessor :lat
+module Error
+  class ErrorCode
+    # Code numerique represenant l'erreur
+    attr_accessor :status_code
 
-    # Dernière coordonnée y connue de la ressource, entre −180 and +180
-    attr_accessor :lon
-
-    # Dernière coordonnée z connue de la ressource, en mètres sans bornes
-    attr_accessor :height
+    # Chaine de caracteres representant l'erreur
+    attr_accessor :status_string
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'lat' => :'lat',
-        :'lon' => :'lon',
-        :'height' => :'height'
+        :'status_code' => :'statusCode',
+        :'status_string' => :'statusString'
       }
     end
 
@@ -37,9 +33,8 @@ module Geolocation
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'lat' => :'Float',
-        :'lon' => :'Float',
-        :'height' => :'Float'
+        :'status_code' => :'Float',
+        :'status_string' => :'String'
       }
     end
 
@@ -53,31 +48,27 @@ module Geolocation
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Geolocation::Coord` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Error::ErrorCode` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Geolocation::Coord`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Error::ErrorCode`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'lat')
-        self.lat = attributes[:'lat']
+      if attributes.key?(:'status_code')
+        self.status_code = attributes[:'status_code']
       else
-        self.lat = nil
+        self.status_code = nil
       end
 
-      if attributes.key?(:'lon')
-        self.lon = attributes[:'lon']
+      if attributes.key?(:'status_string')
+        self.status_string = attributes[:'status_string']
       else
-        self.lon = nil
-      end
-
-      if attributes.key?(:'height')
-        self.height = attributes[:'height']
+        self.status_string = nil
       end
     end
 
@@ -86,12 +77,12 @@ module Geolocation
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @lat.nil?
-        invalid_properties.push('invalid value for "lat", lat cannot be nil.')
+      if @status_code.nil?
+        invalid_properties.push('invalid value for "status_code", status_code cannot be nil.')
       end
 
-      if @lon.nil?
-        invalid_properties.push('invalid value for "lon", lon cannot be nil.')
+      if @status_string.nil?
+        invalid_properties.push('invalid value for "status_string", status_string cannot be nil.')
       end
 
       invalid_properties
@@ -101,8 +92,8 @@ module Geolocation
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @lat.nil?
-      return false if @lon.nil?
+      return false if @status_code.nil?
+      return false if @status_string.nil?
       true
     end
 
@@ -111,9 +102,8 @@ module Geolocation
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          lat == o.lat &&
-          lon == o.lon &&
-          height == o.height
+          status_code == o.status_code &&
+          status_string == o.status_string
     end
 
     # @see the `==` method
@@ -125,7 +115,7 @@ module Geolocation
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [lat, lon, height].hash
+      [status_code, status_string].hash
     end
 
     # Builds the object from hash
@@ -189,7 +179,7 @@ module Geolocation
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Geolocation.const_get(type)
+        klass = Error.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

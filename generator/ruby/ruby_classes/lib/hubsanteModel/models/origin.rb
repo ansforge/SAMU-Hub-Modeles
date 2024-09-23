@@ -9,23 +9,23 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Geolocation
-  class Coord
-    # Dernière coordonnée x connue de la ressource, entre −90 and +90
-    attr_accessor :lat
+module Emsi
+  class Origin
+    # Optionnel, identifiant du service à l'origine de l'EMSI Se référer au DSF pour la structure normée des organisations Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.
+    attr_accessor :org_id
 
-    # Dernière coordonnée y connue de la ressource, entre −180 and +180
-    attr_accessor :lon
+    # Optionnel, identifiant de l'opérateur du service à l'origine de l'EMSI, qui gère l'opération.  Ce champ peut être différent du calltakerId du message RC-EDA. 
+    attr_accessor :user_id
 
-    # Dernière coordonnée z connue de la ressource, en mètres sans bornes
-    attr_accessor :height
+    # Optionnel, A constituer par le rédacteur pour être intelligible (exemple [structure] [code département]). Ce champ n'est pas normé obligatoirement. Chaque service décide de la structure de son nom d'origine.
+    attr_accessor :name
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'lat' => :'lat',
-        :'lon' => :'lon',
-        :'height' => :'height'
+        :'org_id' => :'ORG_ID',
+        :'user_id' => :'USER_ID',
+        :'name' => :'NAME'
       }
     end
 
@@ -37,9 +37,9 @@ module Geolocation
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'lat' => :'Float',
-        :'lon' => :'Float',
-        :'height' => :'Float'
+        :'org_id' => :'String',
+        :'user_id' => :'String',
+        :'name' => :'String'
       }
     end
 
@@ -53,31 +53,27 @@ module Geolocation
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Geolocation::Coord` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Emsi::Origin` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Geolocation::Coord`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Emsi::Origin`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'lat')
-        self.lat = attributes[:'lat']
-      else
-        self.lat = nil
+      if attributes.key?(:'org_id')
+        self.org_id = attributes[:'org_id']
       end
 
-      if attributes.key?(:'lon')
-        self.lon = attributes[:'lon']
-      else
-        self.lon = nil
+      if attributes.key?(:'user_id')
+        self.user_id = attributes[:'user_id']
       end
 
-      if attributes.key?(:'height')
-        self.height = attributes[:'height']
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
       end
     end
 
@@ -86,14 +82,6 @@ module Geolocation
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @lat.nil?
-        invalid_properties.push('invalid value for "lat", lat cannot be nil.')
-      end
-
-      if @lon.nil?
-        invalid_properties.push('invalid value for "lon", lon cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -101,8 +89,6 @@ module Geolocation
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @lat.nil?
-      return false if @lon.nil?
       true
     end
 
@@ -111,9 +97,9 @@ module Geolocation
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          lat == o.lat &&
-          lon == o.lon &&
-          height == o.height
+          org_id == o.org_id &&
+          user_id == o.user_id &&
+          name == o.name
     end
 
     # @see the `==` method
@@ -125,7 +111,7 @@ module Geolocation
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [lat, lon, height].hash
+      [org_id, user_id, name].hash
     end
 
     # Builds the object from hash
@@ -189,7 +175,7 @@ module Geolocation
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Geolocation.const_get(type)
+        klass = Emsi.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

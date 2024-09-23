@@ -9,23 +9,45 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Geolocation
-  class Coord
-    # Dernière coordonnée x connue de la ressource, entre −90 and +90
-    attr_accessor :lat
+module Resources
+  class State
+    # A valoriser avec la date et heure d'engagement de changement vers le nouveau statut
+    attr_accessor :datetime
 
-    # Dernière coordonnée y connue de la ressource, entre −180 and +180
-    attr_accessor :lon
+    # A valoriser avec le statut du vecteur. Cf nomenclature associée.
+    attr_accessor :status
 
-    # Dernière coordonnée z connue de la ressource, en mètres sans bornes
-    attr_accessor :height
+    # A valoriser de manière à indiquer la disponibilité du vecteur. TRUE = DISPONIBLE FALSE = INDISPONIBLE VIDE = INCONNU
+    attr_accessor :availability
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'lat' => :'lat',
-        :'lon' => :'lon',
-        :'height' => :'height'
+        :'datetime' => :'datetime',
+        :'status' => :'status',
+        :'availability' => :'availability'
       }
     end
 
@@ -37,9 +59,9 @@ module Geolocation
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'lat' => :'Float',
-        :'lon' => :'Float',
-        :'height' => :'Float'
+        :'datetime' => :'Time',
+        :'status' => :'String',
+        :'availability' => :'Boolean'
       }
     end
 
@@ -53,31 +75,31 @@ module Geolocation
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Geolocation::Coord` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Resources::State` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Geolocation::Coord`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Resources::State`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'lat')
-        self.lat = attributes[:'lat']
+      if attributes.key?(:'datetime')
+        self.datetime = attributes[:'datetime']
       else
-        self.lat = nil
+        self.datetime = nil
       end
 
-      if attributes.key?(:'lon')
-        self.lon = attributes[:'lon']
+      if attributes.key?(:'status')
+        self.status = attributes[:'status']
       else
-        self.lon = nil
+        self.status = nil
       end
 
-      if attributes.key?(:'height')
-        self.height = attributes[:'height']
+      if attributes.key?(:'availability')
+        self.availability = attributes[:'availability']
       end
     end
 
@@ -86,12 +108,17 @@ module Geolocation
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @lat.nil?
-        invalid_properties.push('invalid value for "lat", lat cannot be nil.')
+      if @datetime.nil?
+        invalid_properties.push('invalid value for "datetime", datetime cannot be nil.')
       end
 
-      if @lon.nil?
-        invalid_properties.push('invalid value for "lon", lon cannot be nil.')
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      if @datetime !~ pattern
+        invalid_properties.push("invalid value for \"datetime\", must conform to the pattern #{pattern}.")
+      end
+
+      if @status.nil?
+        invalid_properties.push('invalid value for "status", status cannot be nil.')
       end
 
       invalid_properties
@@ -101,9 +128,37 @@ module Geolocation
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @lat.nil?
-      return false if @lon.nil?
+      return false if @datetime.nil?
+      return false if @datetime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      return false if @status.nil?
+      status_validator = EnumAttributeValidator.new('String', ["DECISION", "DECLENCHE", "DEPART", "ARRIVE", "PEC", "ANNULE", "BILAN", "TRANSPOR", "ETAPE1", "TRANSP2", "ETAPE2", "TRANSP3", "DESTIN", "FINPEC", "RETOUR", "RET-BASE", "REN-BASE"])
+      return false unless status_validator.valid?(@status)
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] datetime Value to be assigned
+    def datetime=(datetime)
+      if datetime.nil?
+        fail ArgumentError, 'datetime cannot be nil'
+      end
+
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      if datetime !~ pattern
+        fail ArgumentError, "invalid value for \"datetime\", must conform to the pattern #{pattern}."
+      end
+
+      @datetime = datetime
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] status Object to be assigned
+    def status=(status)
+      validator = EnumAttributeValidator.new('String', ["DECISION", "DECLENCHE", "DEPART", "ARRIVE", "PEC", "ANNULE", "BILAN", "TRANSPOR", "ETAPE1", "TRANSP2", "ETAPE2", "TRANSP3", "DESTIN", "FINPEC", "RETOUR", "RET-BASE", "REN-BASE"])
+      unless validator.valid?(status)
+        fail ArgumentError, "invalid value for \"status\", must be one of #{validator.allowable_values}."
+      end
+      @status = status
     end
 
     # Checks equality by comparing each attribute.
@@ -111,9 +166,9 @@ module Geolocation
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          lat == o.lat &&
-          lon == o.lon &&
-          height == o.height
+          datetime == o.datetime &&
+          status == o.status &&
+          availability == o.availability
     end
 
     # @see the `==` method
@@ -125,7 +180,7 @@ module Geolocation
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [lat, lon, height].hash
+      [datetime, status, availability].hash
     end
 
     # Builds the object from hash
@@ -189,7 +244,7 @@ module Geolocation
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Geolocation.const_get(type)
+        klass = Resources.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

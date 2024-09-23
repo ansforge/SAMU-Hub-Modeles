@@ -9,23 +9,25 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Geolocation
-  class Coord
-    # Dernière coordonnée x connue de la ressource, entre −90 and +90
-    attr_accessor :lat
+module Error
+  class Error
+    attr_accessor :error_code
 
-    # Dernière coordonnée y connue de la ressource, entre −180 and +180
-    attr_accessor :lon
+    # La ou les causes d'erreur dans le message source
+    attr_accessor :error_cause
 
-    # Dernière coordonnée z connue de la ressource, en mètres sans bornes
-    attr_accessor :height
+    attr_accessor :source_message
+
+    # DistributionID du message source
+    attr_accessor :referenced_distribution_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'lat' => :'lat',
-        :'lon' => :'lon',
-        :'height' => :'height'
+        :'error_code' => :'errorCode',
+        :'error_cause' => :'errorCause',
+        :'source_message' => :'sourceMessage',
+        :'referenced_distribution_id' => :'referencedDistributionID'
       }
     end
 
@@ -37,9 +39,10 @@ module Geolocation
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'lat' => :'Float',
-        :'lon' => :'Float',
-        :'height' => :'Float'
+        :'error_code' => :'ErrorCode',
+        :'error_cause' => :'String',
+        :'source_message' => :'Hash<String, Object>',
+        :'referenced_distribution_id' => :'String'
       }
     end
 
@@ -53,31 +56,39 @@ module Geolocation
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Geolocation::Coord` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Error::Error` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Geolocation::Coord`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Error::Error`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'lat')
-        self.lat = attributes[:'lat']
+      if attributes.key?(:'error_code')
+        self.error_code = attributes[:'error_code']
       else
-        self.lat = nil
+        self.error_code = nil
       end
 
-      if attributes.key?(:'lon')
-        self.lon = attributes[:'lon']
+      if attributes.key?(:'error_cause')
+        self.error_cause = attributes[:'error_cause']
       else
-        self.lon = nil
+        self.error_cause = nil
       end
 
-      if attributes.key?(:'height')
-        self.height = attributes[:'height']
+      if attributes.key?(:'source_message')
+        if (value = attributes[:'source_message']).is_a?(Hash)
+          self.source_message = value
+        end
+      end
+
+      if attributes.key?(:'referenced_distribution_id')
+        self.referenced_distribution_id = attributes[:'referenced_distribution_id']
+      else
+        self.referenced_distribution_id = nil
       end
     end
 
@@ -86,12 +97,16 @@ module Geolocation
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @lat.nil?
-        invalid_properties.push('invalid value for "lat", lat cannot be nil.')
+      if @error_code.nil?
+        invalid_properties.push('invalid value for "error_code", error_code cannot be nil.')
       end
 
-      if @lon.nil?
-        invalid_properties.push('invalid value for "lon", lon cannot be nil.')
+      if @error_cause.nil?
+        invalid_properties.push('invalid value for "error_cause", error_cause cannot be nil.')
+      end
+
+      if @referenced_distribution_id.nil?
+        invalid_properties.push('invalid value for "referenced_distribution_id", referenced_distribution_id cannot be nil.')
       end
 
       invalid_properties
@@ -101,8 +116,9 @@ module Geolocation
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @lat.nil?
-      return false if @lon.nil?
+      return false if @error_code.nil?
+      return false if @error_cause.nil?
+      return false if @referenced_distribution_id.nil?
       true
     end
 
@@ -111,9 +127,10 @@ module Geolocation
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          lat == o.lat &&
-          lon == o.lon &&
-          height == o.height
+          error_code == o.error_code &&
+          error_cause == o.error_cause &&
+          source_message == o.source_message &&
+          referenced_distribution_id == o.referenced_distribution_id
     end
 
     # @see the `==` method
@@ -125,7 +142,7 @@ module Geolocation
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [lat, lon, height].hash
+      [error_code, error_cause, source_message, referenced_distribution_id].hash
     end
 
     # Builds the object from hash
@@ -189,7 +206,7 @@ module Geolocation
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Geolocation.const_get(type)
+        klass = Error.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

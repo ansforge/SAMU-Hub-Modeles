@@ -10,22 +10,13 @@ require 'date'
 require 'time'
 
 module Geolocation
-  class Coord
-    # Dernière coordonnée x connue de la ressource, entre −90 and +90
-    attr_accessor :lat
-
-    # Dernière coordonnée y connue de la ressource, entre −180 and +180
-    attr_accessor :lon
-
-    # Dernière coordonnée z connue de la ressource, en mètres sans bornes
-    attr_accessor :height
+  class GeoResourcesDetailsWrapper
+    attr_accessor :geo_resources_details
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'lat' => :'lat',
-        :'lon' => :'lon',
-        :'height' => :'height'
+        :'geo_resources_details' => :'geoResourcesDetails'
       }
     end
 
@@ -37,9 +28,7 @@ module Geolocation
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'lat' => :'Float',
-        :'lon' => :'Float',
-        :'height' => :'Float'
+        :'geo_resources_details' => :'GeoResourcesDetails'
       }
     end
 
@@ -53,31 +42,21 @@ module Geolocation
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Geolocation::Coord` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Geolocation::GeoResourcesDetailsWrapper` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Geolocation::Coord`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Geolocation::GeoResourcesDetailsWrapper`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'lat')
-        self.lat = attributes[:'lat']
+      if attributes.key?(:'geo_resources_details')
+        self.geo_resources_details = attributes[:'geo_resources_details']
       else
-        self.lat = nil
-      end
-
-      if attributes.key?(:'lon')
-        self.lon = attributes[:'lon']
-      else
-        self.lon = nil
-      end
-
-      if attributes.key?(:'height')
-        self.height = attributes[:'height']
+        self.geo_resources_details = nil
       end
     end
 
@@ -86,12 +65,8 @@ module Geolocation
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @lat.nil?
-        invalid_properties.push('invalid value for "lat", lat cannot be nil.')
-      end
-
-      if @lon.nil?
-        invalid_properties.push('invalid value for "lon", lon cannot be nil.')
+      if @geo_resources_details.nil?
+        invalid_properties.push('invalid value for "geo_resources_details", geo_resources_details cannot be nil.')
       end
 
       invalid_properties
@@ -101,8 +76,7 @@ module Geolocation
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @lat.nil?
-      return false if @lon.nil?
+      return false if @geo_resources_details.nil?
       true
     end
 
@@ -111,9 +85,7 @@ module Geolocation
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          lat == o.lat &&
-          lon == o.lon &&
-          height == o.height
+          geo_resources_details == o.geo_resources_details
     end
 
     # @see the `==` method
@@ -125,7 +97,7 @@ module Geolocation
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [lat, lon, height].hash
+      [geo_resources_details].hash
     end
 
     # Builds the object from hash

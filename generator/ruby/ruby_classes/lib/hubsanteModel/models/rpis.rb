@@ -9,23 +9,26 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Geolocation
-  class Coord
-    # Dernière coordonnée x connue de la ressource, entre −90 and +90
-    attr_accessor :lat
+module Rpis
+  class Rpis
+    attr_accessor :context
 
-    # Dernière coordonnée y connue de la ressource, entre −180 and +180
-    attr_accessor :lon
+    attr_accessor :regulation
 
-    # Dernière coordonnée z connue de la ressource, en mètres sans bornes
-    attr_accessor :height
+    attr_accessor :patient
+
+    attr_accessor :intervention
+
+    attr_accessor :orientation
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'lat' => :'lat',
-        :'lon' => :'lon',
-        :'height' => :'height'
+        :'context' => :'context',
+        :'regulation' => :'regulation',
+        :'patient' => :'patient',
+        :'intervention' => :'intervention',
+        :'orientation' => :'orientation'
       }
     end
 
@@ -37,9 +40,11 @@ module Geolocation
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'lat' => :'Float',
-        :'lon' => :'Float',
-        :'height' => :'Float'
+        :'context' => :'Event',
+        :'regulation' => :'Regulation',
+        :'patient' => :'Patient',
+        :'intervention' => :'Intervention',
+        :'orientation' => :'Orientation'
       }
     end
 
@@ -53,31 +58,45 @@ module Geolocation
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Geolocation::Coord` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Rpis::Rpis` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Geolocation::Coord`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Rpis::Rpis`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'lat')
-        self.lat = attributes[:'lat']
+      if attributes.key?(:'context')
+        self.context = attributes[:'context']
       else
-        self.lat = nil
+        self.context = nil
       end
 
-      if attributes.key?(:'lon')
-        self.lon = attributes[:'lon']
+      if attributes.key?(:'regulation')
+        self.regulation = attributes[:'regulation']
       else
-        self.lon = nil
+        self.regulation = nil
       end
 
-      if attributes.key?(:'height')
-        self.height = attributes[:'height']
+      if attributes.key?(:'patient')
+        self.patient = attributes[:'patient']
+      else
+        self.patient = nil
+      end
+
+      if attributes.key?(:'intervention')
+        self.intervention = attributes[:'intervention']
+      else
+        self.intervention = nil
+      end
+
+      if attributes.key?(:'orientation')
+        self.orientation = attributes[:'orientation']
+      else
+        self.orientation = nil
       end
     end
 
@@ -86,12 +105,24 @@ module Geolocation
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @lat.nil?
-        invalid_properties.push('invalid value for "lat", lat cannot be nil.')
+      if @context.nil?
+        invalid_properties.push('invalid value for "context", context cannot be nil.')
       end
 
-      if @lon.nil?
-        invalid_properties.push('invalid value for "lon", lon cannot be nil.')
+      if @regulation.nil?
+        invalid_properties.push('invalid value for "regulation", regulation cannot be nil.')
+      end
+
+      if @patient.nil?
+        invalid_properties.push('invalid value for "patient", patient cannot be nil.')
+      end
+
+      if @intervention.nil?
+        invalid_properties.push('invalid value for "intervention", intervention cannot be nil.')
+      end
+
+      if @orientation.nil?
+        invalid_properties.push('invalid value for "orientation", orientation cannot be nil.')
       end
 
       invalid_properties
@@ -101,8 +132,11 @@ module Geolocation
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @lat.nil?
-      return false if @lon.nil?
+      return false if @context.nil?
+      return false if @regulation.nil?
+      return false if @patient.nil?
+      return false if @intervention.nil?
+      return false if @orientation.nil?
       true
     end
 
@@ -111,9 +145,11 @@ module Geolocation
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          lat == o.lat &&
-          lon == o.lon &&
-          height == o.height
+          context == o.context &&
+          regulation == o.regulation &&
+          patient == o.patient &&
+          intervention == o.intervention &&
+          orientation == o.orientation
     end
 
     # @see the `==` method
@@ -125,7 +161,7 @@ module Geolocation
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [lat, lon, height].hash
+      [context, regulation, patient, intervention, orientation].hash
     end
 
     # Builds the object from hash
@@ -189,7 +225,7 @@ module Geolocation
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Geolocation.const_get(type)
+        klass = Rpis.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

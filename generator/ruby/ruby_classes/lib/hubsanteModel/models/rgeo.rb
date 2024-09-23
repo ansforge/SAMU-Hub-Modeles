@@ -9,18 +9,21 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Rpis
-  class Location
-    # A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu.
+module Emsi
+  class Rgeo
+    # Horaire associé à l'arrivée de la ressource sur la position. En fonction du TYPE de position, peut indiquer un horaire de relevé de position, un horaire cible d'arrivée.
+    attr_accessor :datime
+
+    # Type de position indiqué pour la ressource : - ASP : assembly point. Point de rassemblement par défaut des ressources liées à la mission. Peut ne pas être utilisé - CUR : current. Position actualisée de la ressource permettant le suivi géolocalisé des véhicules notamment. Peut ne pas être utilisé - INC : incident. Consigne relative au positionnement de la ressource sur le lieu d'intervention. Peut ne pas être utilisé - STG : staging point. Consigne relative au stationnement des véhicules ou au stockage du matériel par exemple. peut ne pas être utilisé - TGT : targer location. Si renseigné, doit être cohérent avec la position renseignée pour la mission. Plusieurs positions du même type avec des horodatages différents peuvent être fournies. 
     attr_accessor :type
 
-    # Finess géographique et juridique de l’établissement de santé.  A renseigner uniquement si l'intervention a lieu dans un établissement de santé. 
-    attr_accessor :finess_geo
+    # Permet de rajouter des précisions sur la localisation de la ressource transmise
+    attr_accessor :freetext
 
-    # Unité fonctionnelle de l'établissement de santé.  A renseigner uniquement si l'intervention a lieu dans un établissement de santé. 
-    attr_accessor :service
+    # Identifiant unique de la position dans le système du partenaire
+    attr_accessor :id
 
-    attr_accessor :detailed_address
+    attr_accessor :position
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -47,10 +50,11 @@ module Rpis
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'type' => :'type',
-        :'finess_geo' => :'finessGeo',
-        :'service' => :'service',
-        :'detailed_address' => :'detailedAddress'
+        :'datime' => :'DATIME',
+        :'type' => :'TYPE',
+        :'freetext' => :'FREETEXT',
+        :'id' => :'ID',
+        :'position' => :'POSITION'
       }
     end
 
@@ -62,10 +66,11 @@ module Rpis
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'datime' => :'Time',
         :'type' => :'String',
-        :'finess_geo' => :'String',
-        :'service' => :'String',
-        :'detailed_address' => :'DetailedAddress'
+        :'freetext' => :'String',
+        :'id' => :'String',
+        :'position' => :'Array<Position>'
       }
     end
 
@@ -79,33 +84,39 @@ module Rpis
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Rpis::Location` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Emsi::Rgeo` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Rpis::Location`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Emsi::Rgeo`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
+      if attributes.key?(:'datime')
+        self.datime = attributes[:'datime']
+      end
+
       if attributes.key?(:'type')
         self.type = attributes[:'type']
-      end
-
-      if attributes.key?(:'finess_geo')
-        self.finess_geo = attributes[:'finess_geo']
-      end
-
-      if attributes.key?(:'service')
-        self.service = attributes[:'service']
-      end
-
-      if attributes.key?(:'detailed_address')
-        self.detailed_address = attributes[:'detailed_address']
       else
-        self.detailed_address = nil
+        self.type = nil
+      end
+
+      if attributes.key?(:'freetext')
+        self.freetext = attributes[:'freetext']
+      end
+
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
+      end
+
+      if attributes.key?(:'position')
+        if (value = attributes[:'position']).is_a?(Array)
+          self.position = value
+        end
       end
     end
 
@@ -114,8 +125,13 @@ module Rpis
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @detailed_address.nil?
-        invalid_properties.push('invalid value for "detailed_address", detailed_address cannot be nil.')
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      if !@datime.nil? && @datime !~ pattern
+        invalid_properties.push("invalid value for \"datime\", must conform to the pattern #{pattern}.")
+      end
+
+      if @type.nil?
+        invalid_properties.push('invalid value for "type", type cannot be nil.')
       end
 
       invalid_properties
@@ -125,16 +141,32 @@ module Rpis
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      type_validator = EnumAttributeValidator.new('String', ["L01.00.00", "L01.01.00", "L01.01.01", "L01.01.02", "L01.01.03", "L01.01.04", "L01.02.00", "L01.02.01", "L01.02.02", "L01.02.03", "L01.02.04", "L01.02.05", "L01.02.06", "L01.02.07", "L01.02.08", "L01.02.09", "L01.02.10", "L01.02.11", "L01.02.12", "L01.03.00", "L01.03.01", "L01.03.02", "L01.03.03", "L01.04.00", "L02.00.00", "L02.01.00", "L02.02.00", "L02.02.01", "L02.02.02", "L02.02.03", "L02.02.04", "L02.02.05", "L02.03.00", "L02.03.01", "L02.03.02", "L02.03.03", "L02.04.00", "L02.05.00", "L02.05.01", "L02.05.02", "L02.05.03", "L02.05.04", "L02.05.05", "L02.05.06", "L02.05.07", "L02.05.08", "L02.05.09", "L02.05.10", "L02.05.11", "L02.05.12", "L02.05.13", "L02.05.14", "L02.05.15", "L02.05.16", "L02.06.00", "L02.06.01", "L02.06.02", "L02.06.03", "L02.06.04", "L02.06.05", "L02.06.06", "L02.06.07", "L02.06.08", "L02.07.00", "L02.07.01", "L02.07.02", "L02.08.00", "L03.00.00", "L03.01.00", "L03.02.00", "L03.03.00", "L03.04.00", "L03.05.00", "L04.00.00", "L04.01.00", "L04.02.00", "L04.02.01", "L04.02.02", "L04.02.03", "L04.03.00", "L04.03.01", "L04.03.02", "L04.03.03", "L04.04.00", "L04.05.00", "L04.06.00", "L04.06.01", "L04.06.02", "L04.06.03", "L04.06.04", "L04.06.05", "L04.07.00", "L04.07.01", "L04.07.02", "L04.07.03", "L04.08.00", "L04.08.01", "L04.08.02", "L04.09.00", "L04.09.01", "L04.09.02", "L04.10.00", "L04.11.00", "L04.11.01", "L04.11.02", "L04.11.03", "L04.11.04", "L04.12.00", "L04.12.01", "L04.12.02", "L04.12.03", "L04.12.04", "L04.13.00", "L04.13.01", "L04.13.02", "L04.13.03", "L04.13.04", "L04.14.00", "L04.14.01", "L04.14.02", "L04.15.00", "L04.16.00", "L05.00.00", "L05.01.00", "L05.01.01", "L05.01.02", "L05.01.03", "L05.01.04", "L05.02.00", "L05.02.01", "L05.02.02", "L05.02.03", "L05.02.04", "L05.03.00", "L05.03.01", "L05.03.02", "L05.04.00", "L05.04.01", "L05.04.02", "L05.04.03", "L05.04.04", "L05.04.05", "L05.04.06", "L05.05.00", "L05.06.00", "L05.07.00", "L06.00.00", "L06.01.00", "L06.01.01", "L06.01.02", "L06.01.03", "L06.01.04", "L06.01.05", "L06.01.06", "L06.01.07", "L06.01.08", "L06.02.00", "L06.03.00", "L06.03.01", "L06.03.02", "L06.03.03", "L06.03.04", "L06.03.05", "L06.04.00", "L06.05.00", "L06.05.01", "L06.05.02", "L06.06.00", "L06.06.01", "L06.06.02", "L06.06.03", "L06.06.04", "L06.07.00", "L06.07.01", "L06.07.02", "L07.00.00", "L07.01.00", "L07.01.01", "L07.02.00"])
+      return false if !@datime.nil? && @datime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["ASP", "CUR", "INC", "STG", "TGT"])
       return false unless type_validator.valid?(@type)
-      return false if @detailed_address.nil?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] datime Value to be assigned
+    def datime=(datime)
+      if datime.nil?
+        fail ArgumentError, 'datime cannot be nil'
+      end
+
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      if datime !~ pattern
+        fail ArgumentError, "invalid value for \"datime\", must conform to the pattern #{pattern}."
+      end
+
+      @datime = datime
     end
 
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] type Object to be assigned
     def type=(type)
-      validator = EnumAttributeValidator.new('String', ["L01.00.00", "L01.01.00", "L01.01.01", "L01.01.02", "L01.01.03", "L01.01.04", "L01.02.00", "L01.02.01", "L01.02.02", "L01.02.03", "L01.02.04", "L01.02.05", "L01.02.06", "L01.02.07", "L01.02.08", "L01.02.09", "L01.02.10", "L01.02.11", "L01.02.12", "L01.03.00", "L01.03.01", "L01.03.02", "L01.03.03", "L01.04.00", "L02.00.00", "L02.01.00", "L02.02.00", "L02.02.01", "L02.02.02", "L02.02.03", "L02.02.04", "L02.02.05", "L02.03.00", "L02.03.01", "L02.03.02", "L02.03.03", "L02.04.00", "L02.05.00", "L02.05.01", "L02.05.02", "L02.05.03", "L02.05.04", "L02.05.05", "L02.05.06", "L02.05.07", "L02.05.08", "L02.05.09", "L02.05.10", "L02.05.11", "L02.05.12", "L02.05.13", "L02.05.14", "L02.05.15", "L02.05.16", "L02.06.00", "L02.06.01", "L02.06.02", "L02.06.03", "L02.06.04", "L02.06.05", "L02.06.06", "L02.06.07", "L02.06.08", "L02.07.00", "L02.07.01", "L02.07.02", "L02.08.00", "L03.00.00", "L03.01.00", "L03.02.00", "L03.03.00", "L03.04.00", "L03.05.00", "L04.00.00", "L04.01.00", "L04.02.00", "L04.02.01", "L04.02.02", "L04.02.03", "L04.03.00", "L04.03.01", "L04.03.02", "L04.03.03", "L04.04.00", "L04.05.00", "L04.06.00", "L04.06.01", "L04.06.02", "L04.06.03", "L04.06.04", "L04.06.05", "L04.07.00", "L04.07.01", "L04.07.02", "L04.07.03", "L04.08.00", "L04.08.01", "L04.08.02", "L04.09.00", "L04.09.01", "L04.09.02", "L04.10.00", "L04.11.00", "L04.11.01", "L04.11.02", "L04.11.03", "L04.11.04", "L04.12.00", "L04.12.01", "L04.12.02", "L04.12.03", "L04.12.04", "L04.13.00", "L04.13.01", "L04.13.02", "L04.13.03", "L04.13.04", "L04.14.00", "L04.14.01", "L04.14.02", "L04.15.00", "L04.16.00", "L05.00.00", "L05.01.00", "L05.01.01", "L05.01.02", "L05.01.03", "L05.01.04", "L05.02.00", "L05.02.01", "L05.02.02", "L05.02.03", "L05.02.04", "L05.03.00", "L05.03.01", "L05.03.02", "L05.04.00", "L05.04.01", "L05.04.02", "L05.04.03", "L05.04.04", "L05.04.05", "L05.04.06", "L05.05.00", "L05.06.00", "L05.07.00", "L06.00.00", "L06.01.00", "L06.01.01", "L06.01.02", "L06.01.03", "L06.01.04", "L06.01.05", "L06.01.06", "L06.01.07", "L06.01.08", "L06.02.00", "L06.03.00", "L06.03.01", "L06.03.02", "L06.03.03", "L06.03.04", "L06.03.05", "L06.04.00", "L06.05.00", "L06.05.01", "L06.05.02", "L06.06.00", "L06.06.01", "L06.06.02", "L06.06.03", "L06.06.04", "L06.07.00", "L06.07.01", "L06.07.02", "L07.00.00", "L07.01.00", "L07.01.01", "L07.02.00"])
+      validator = EnumAttributeValidator.new('String', ["ASP", "CUR", "INC", "STG", "TGT"])
       unless validator.valid?(type)
         fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
       end
@@ -146,10 +178,11 @@ module Rpis
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          datime == o.datime &&
           type == o.type &&
-          finess_geo == o.finess_geo &&
-          service == o.service &&
-          detailed_address == o.detailed_address
+          freetext == o.freetext &&
+          id == o.id &&
+          position == o.position
     end
 
     # @see the `==` method
@@ -161,7 +194,7 @@ module Rpis
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, finess_geo, service, detailed_address].hash
+      [datime, type, freetext, id, position].hash
     end
 
     # Builds the object from hash
@@ -225,7 +258,7 @@ module Rpis
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Rpis.const_get(type)
+        klass = Emsi.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

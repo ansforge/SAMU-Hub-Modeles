@@ -9,25 +9,19 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Health
+module Rpis
   class DetailedAddress
-    attr_accessor :highway
+    # Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné. Le Code INSEE peut également précisé le pays d'intervention, si étranger. 
+    attr_accessor :insee_code
 
-    # A valoriser avec le numéro, le type et le nom de la voie. En réception, il est possible que seul cette information soit remplie.   Spécificités 15-15 : si les informations pour les autoroutes (voie férée ou voie navigable) ne sont pas structurées, il est possible de passer le nom, PK et sens ici, de manière concaténée.  Spécificités 15-18 : Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS. Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…
-    attr_accessor :complete
-
-    # A valoriser avec le numéro dans l'adresse. La valeur de l'attribut inclut l'indice de répétition associé au numéro (par exemple bis, a…).  Spécificités 15-18 :  inclut le point kilométrique sur l'autoroute, voie ferrée ou voie navigable.
-    attr_accessor :number
-
-    attr_accessor :way_name
+    # Nom officiel de la commune actuelle
+    attr_accessor :city
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'highway' => :'highway',
-        :'complete' => :'complete',
-        :'number' => :'number',
-        :'way_name' => :'wayName'
+        :'insee_code' => :'inseeCode',
+        :'city' => :'city'
       }
     end
 
@@ -39,10 +33,8 @@ module Health
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'highway' => :'Highway',
-        :'complete' => :'String',
-        :'number' => :'String',
-        :'way_name' => :'WayName'
+        :'insee_code' => :'String',
+        :'city' => :'String'
       }
     end
 
@@ -56,33 +48,27 @@ module Health
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Health::DetailedAddress` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Rpis::DetailedAddress` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Health::DetailedAddress`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Rpis::DetailedAddress`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'highway')
-        self.highway = attributes[:'highway']
-      end
-
-      if attributes.key?(:'complete')
-        self.complete = attributes[:'complete']
+      if attributes.key?(:'insee_code')
+        self.insee_code = attributes[:'insee_code']
       else
-        self.complete = nil
+        self.insee_code = nil
       end
 
-      if attributes.key?(:'number')
-        self.number = attributes[:'number']
-      end
-
-      if attributes.key?(:'way_name')
-        self.way_name = attributes[:'way_name']
+      if attributes.key?(:'city')
+        self.city = attributes[:'city']
+      else
+        self.city = nil
       end
     end
 
@@ -91,8 +77,17 @@ module Health
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @complete.nil?
-        invalid_properties.push('invalid value for "complete", complete cannot be nil.')
+      if @insee_code.nil?
+        invalid_properties.push('invalid value for "insee_code", insee_code cannot be nil.')
+      end
+
+      pattern = Regexp.new(/^[0-9]{5}$/)
+      if @insee_code !~ pattern
+        invalid_properties.push("invalid value for \"insee_code\", must conform to the pattern #{pattern}.")
+      end
+
+      if @city.nil?
+        invalid_properties.push('invalid value for "city", city cannot be nil.')
       end
 
       invalid_properties
@@ -102,8 +97,25 @@ module Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @complete.nil?
+      return false if @insee_code.nil?
+      return false if @insee_code !~ Regexp.new(/^[0-9]{5}$/)
+      return false if @city.nil?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] insee_code Value to be assigned
+    def insee_code=(insee_code)
+      if insee_code.nil?
+        fail ArgumentError, 'insee_code cannot be nil'
+      end
+
+      pattern = Regexp.new(/^[0-9]{5}$/)
+      if insee_code !~ pattern
+        fail ArgumentError, "invalid value for \"insee_code\", must conform to the pattern #{pattern}."
+      end
+
+      @insee_code = insee_code
     end
 
     # Checks equality by comparing each attribute.
@@ -111,10 +123,8 @@ module Health
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          highway == o.highway &&
-          complete == o.complete &&
-          number == o.number &&
-          way_name == o.way_name
+          insee_code == o.insee_code &&
+          city == o.city
     end
 
     # @see the `==` method
@@ -126,7 +136,7 @@ module Health
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [highway, complete, number, way_name].hash
+      [insee_code, city].hash
     end
 
     # Builds the object from hash
@@ -190,7 +200,7 @@ module Health
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Health.const_get(type)
+        klass = Rpis.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end
