@@ -9,23 +9,22 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Geolocation
-  class Coord
-    # Dernière coordonnée x connue de la ressource, entre −90 and +90
-    attr_accessor :lat
+module Resources
+  class ResourcesResponse
+    # A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier).  Il est valorisé comme suit lors de sa création :  {pays}.{domaine}.{organisation}.{senderCaseId}  Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.
+    attr_accessor :case_id
 
-    # Dernière coordonnée y connue de la ressource, entre −180 and +180
-    attr_accessor :lon
+    # A valoriser avec l'identifiant unique partagé de la demande de ressource,  généré une seule fois par le système du partenaire qui émet la demande  Il est valorisé comme suit lors de sa création :  {orgID}.request.{ID unique de la demande dans le système émetteur}  OU - uniquement si un ID unique de la demande n'est pas disponible :  OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}
+    attr_accessor :request_id
 
-    # Dernière coordonnée z connue de la ressource, en mètres sans bornes
-    attr_accessor :height
+    attr_accessor :response
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'lat' => :'lat',
-        :'lon' => :'lon',
-        :'height' => :'height'
+        :'case_id' => :'caseId',
+        :'request_id' => :'requestId',
+        :'response' => :'response'
       }
     end
 
@@ -37,9 +36,9 @@ module Geolocation
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'lat' => :'Float',
-        :'lon' => :'Float',
-        :'height' => :'Float'
+        :'case_id' => :'String',
+        :'request_id' => :'String',
+        :'response' => :'Response'
       }
     end
 
@@ -53,31 +52,33 @@ module Geolocation
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Geolocation::Coord` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Resources::ResourcesResponse` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Geolocation::Coord`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Resources::ResourcesResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'lat')
-        self.lat = attributes[:'lat']
+      if attributes.key?(:'case_id')
+        self.case_id = attributes[:'case_id']
       else
-        self.lat = nil
+        self.case_id = nil
       end
 
-      if attributes.key?(:'lon')
-        self.lon = attributes[:'lon']
+      if attributes.key?(:'request_id')
+        self.request_id = attributes[:'request_id']
       else
-        self.lon = nil
+        self.request_id = nil
       end
 
-      if attributes.key?(:'height')
-        self.height = attributes[:'height']
+      if attributes.key?(:'response')
+        self.response = attributes[:'response']
+      else
+        self.response = nil
       end
     end
 
@@ -86,12 +87,26 @@ module Geolocation
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @lat.nil?
-        invalid_properties.push('invalid value for "lat", lat cannot be nil.')
+      if @case_id.nil?
+        invalid_properties.push('invalid value for "case_id", case_id cannot be nil.')
       end
 
-      if @lon.nil?
-        invalid_properties.push('invalid value for "lon", lon cannot be nil.')
+      pattern = Regexp.new(/^fr(\.[\w-]+){3,4}$/)
+      if @case_id !~ pattern
+        invalid_properties.push("invalid value for \"case_id\", must conform to the pattern #{pattern}.")
+      end
+
+      if @request_id.nil?
+        invalid_properties.push('invalid value for "request_id", request_id cannot be nil.')
+      end
+
+      pattern = Regexp.new(/^([\w-]+\.){3,4}request(\.[\w-]+){1,2}$/)
+      if @request_id !~ pattern
+        invalid_properties.push("invalid value for \"request_id\", must conform to the pattern #{pattern}.")
+      end
+
+      if @response.nil?
+        invalid_properties.push('invalid value for "response", response cannot be nil.')
       end
 
       invalid_properties
@@ -101,9 +116,42 @@ module Geolocation
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @lat.nil?
-      return false if @lon.nil?
+      return false if @case_id.nil?
+      return false if @case_id !~ Regexp.new(/^fr(\.[\w-]+){3,4}$/)
+      return false if @request_id.nil?
+      return false if @request_id !~ Regexp.new(/^([\w-]+\.){3,4}request(\.[\w-]+){1,2}$/)
+      return false if @response.nil?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] case_id Value to be assigned
+    def case_id=(case_id)
+      if case_id.nil?
+        fail ArgumentError, 'case_id cannot be nil'
+      end
+
+      pattern = Regexp.new(/^fr(\.[\w-]+){3,4}$/)
+      if case_id !~ pattern
+        fail ArgumentError, "invalid value for \"case_id\", must conform to the pattern #{pattern}."
+      end
+
+      @case_id = case_id
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] request_id Value to be assigned
+    def request_id=(request_id)
+      if request_id.nil?
+        fail ArgumentError, 'request_id cannot be nil'
+      end
+
+      pattern = Regexp.new(/^([\w-]+\.){3,4}request(\.[\w-]+){1,2}$/)
+      if request_id !~ pattern
+        fail ArgumentError, "invalid value for \"request_id\", must conform to the pattern #{pattern}."
+      end
+
+      @request_id = request_id
     end
 
     # Checks equality by comparing each attribute.
@@ -111,9 +159,9 @@ module Geolocation
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          lat == o.lat &&
-          lon == o.lon &&
-          height == o.height
+          case_id == o.case_id &&
+          request_id == o.request_id &&
+          response == o.response
     end
 
     # @see the `==` method
@@ -125,7 +173,7 @@ module Geolocation
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [lat, lon, height].hash
+      [case_id, request_id, response].hash
     end
 
     # Builds the object from hash
@@ -189,7 +237,7 @@ module Geolocation
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Geolocation.const_get(type)
+        klass = Resources.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

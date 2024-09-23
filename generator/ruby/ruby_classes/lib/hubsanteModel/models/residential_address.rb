@@ -9,23 +9,19 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Geolocation
-  class Coord
-    # Dernière coordonnée x connue de la ressource, entre −90 and +90
-    attr_accessor :lat
+module Rpis
+  class ResidentialAddress
+    # Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné. Le Code INSEE peut également précisé le pays de résidence, si étranger. 
+    attr_accessor :insee_code
 
-    # Dernière coordonnée y connue de la ressource, entre −180 and +180
-    attr_accessor :lon
-
-    # Dernière coordonnée z connue de la ressource, en mètres sans bornes
-    attr_accessor :height
+    # Nom officiel de la commune actuelle
+    attr_accessor :city
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'lat' => :'lat',
-        :'lon' => :'lon',
-        :'height' => :'height'
+        :'insee_code' => :'inseeCode',
+        :'city' => :'city'
       }
     end
 
@@ -37,9 +33,8 @@ module Geolocation
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'lat' => :'Float',
-        :'lon' => :'Float',
-        :'height' => :'Float'
+        :'insee_code' => :'String',
+        :'city' => :'String'
       }
     end
 
@@ -53,31 +48,27 @@ module Geolocation
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Geolocation::Coord` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Rpis::ResidentialAddress` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Geolocation::Coord`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Rpis::ResidentialAddress`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'lat')
-        self.lat = attributes[:'lat']
+      if attributes.key?(:'insee_code')
+        self.insee_code = attributes[:'insee_code']
       else
-        self.lat = nil
+        self.insee_code = nil
       end
 
-      if attributes.key?(:'lon')
-        self.lon = attributes[:'lon']
+      if attributes.key?(:'city')
+        self.city = attributes[:'city']
       else
-        self.lon = nil
-      end
-
-      if attributes.key?(:'height')
-        self.height = attributes[:'height']
+        self.city = nil
       end
     end
 
@@ -86,12 +77,17 @@ module Geolocation
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @lat.nil?
-        invalid_properties.push('invalid value for "lat", lat cannot be nil.')
+      if @insee_code.nil?
+        invalid_properties.push('invalid value for "insee_code", insee_code cannot be nil.')
       end
 
-      if @lon.nil?
-        invalid_properties.push('invalid value for "lon", lon cannot be nil.')
+      pattern = Regexp.new(/^[0-9]{5}$/)
+      if @insee_code !~ pattern
+        invalid_properties.push("invalid value for \"insee_code\", must conform to the pattern #{pattern}.")
+      end
+
+      if @city.nil?
+        invalid_properties.push('invalid value for "city", city cannot be nil.')
       end
 
       invalid_properties
@@ -101,9 +97,25 @@ module Geolocation
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @lat.nil?
-      return false if @lon.nil?
+      return false if @insee_code.nil?
+      return false if @insee_code !~ Regexp.new(/^[0-9]{5}$/)
+      return false if @city.nil?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] insee_code Value to be assigned
+    def insee_code=(insee_code)
+      if insee_code.nil?
+        fail ArgumentError, 'insee_code cannot be nil'
+      end
+
+      pattern = Regexp.new(/^[0-9]{5}$/)
+      if insee_code !~ pattern
+        fail ArgumentError, "invalid value for \"insee_code\", must conform to the pattern #{pattern}."
+      end
+
+      @insee_code = insee_code
     end
 
     # Checks equality by comparing each attribute.
@@ -111,9 +123,8 @@ module Geolocation
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          lat == o.lat &&
-          lon == o.lon &&
-          height == o.height
+          insee_code == o.insee_code &&
+          city == o.city
     end
 
     # @see the `==` method
@@ -125,7 +136,7 @@ module Geolocation
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [lat, lon, height].hash
+      [insee_code, city].hash
     end
 
     # Builds the object from hash
@@ -189,7 +200,7 @@ module Geolocation
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Geolocation.const_get(type)
+        klass = Rpis.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

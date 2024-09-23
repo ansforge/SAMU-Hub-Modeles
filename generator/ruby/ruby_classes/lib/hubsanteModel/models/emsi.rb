@@ -9,23 +9,23 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Geolocation
-  class Coord
-    # Dernière coordonnée x connue de la ressource, entre −90 and +90
-    attr_accessor :lat
+module Emsi
+  class Emsi
+    attr_accessor :context
 
-    # Dernière coordonnée y connue de la ressource, entre −180 and +180
-    attr_accessor :lon
+    attr_accessor :event
 
-    # Dernière coordonnée z connue de la ressource, en mètres sans bornes
-    attr_accessor :height
+    attr_accessor :mission
+
+    attr_accessor :resource
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'lat' => :'lat',
-        :'lon' => :'lon',
-        :'height' => :'height'
+        :'context' => :'CONTEXT',
+        :'event' => :'EVENT',
+        :'mission' => :'MISSION',
+        :'resource' => :'RESOURCE'
       }
     end
 
@@ -37,9 +37,10 @@ module Geolocation
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'lat' => :'Float',
-        :'lon' => :'Float',
-        :'height' => :'Float'
+        :'context' => :'Context',
+        :'event' => :'Event',
+        :'mission' => :'Array<Mission>',
+        :'resource' => :'Array<Resource>'
       }
     end
 
@@ -53,31 +54,39 @@ module Geolocation
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Geolocation::Coord` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Emsi::Emsi` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Geolocation::Coord`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Emsi::Emsi`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'lat')
-        self.lat = attributes[:'lat']
+      if attributes.key?(:'context')
+        self.context = attributes[:'context']
       else
-        self.lat = nil
+        self.context = nil
       end
 
-      if attributes.key?(:'lon')
-        self.lon = attributes[:'lon']
+      if attributes.key?(:'event')
+        self.event = attributes[:'event']
       else
-        self.lon = nil
+        self.event = nil
       end
 
-      if attributes.key?(:'height')
-        self.height = attributes[:'height']
+      if attributes.key?(:'mission')
+        if (value = attributes[:'mission']).is_a?(Array)
+          self.mission = value
+        end
+      end
+
+      if attributes.key?(:'resource')
+        if (value = attributes[:'resource']).is_a?(Array)
+          self.resource = value
+        end
       end
     end
 
@@ -86,12 +95,12 @@ module Geolocation
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @lat.nil?
-        invalid_properties.push('invalid value for "lat", lat cannot be nil.')
+      if @context.nil?
+        invalid_properties.push('invalid value for "context", context cannot be nil.')
       end
 
-      if @lon.nil?
-        invalid_properties.push('invalid value for "lon", lon cannot be nil.')
+      if @event.nil?
+        invalid_properties.push('invalid value for "event", event cannot be nil.')
       end
 
       invalid_properties
@@ -101,8 +110,8 @@ module Geolocation
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @lat.nil?
-      return false if @lon.nil?
+      return false if @context.nil?
+      return false if @event.nil?
       true
     end
 
@@ -111,9 +120,10 @@ module Geolocation
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          lat == o.lat &&
-          lon == o.lon &&
-          height == o.height
+          context == o.context &&
+          event == o.event &&
+          mission == o.mission &&
+          resource == o.resource
     end
 
     # @see the `==` method
@@ -125,7 +135,7 @@ module Geolocation
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [lat, lon, height].hash
+      [context, event, mission, resource].hash
     end
 
     # Builds the object from hash
@@ -189,7 +199,7 @@ module Geolocation
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Geolocation.const_get(type)
+        klass = Emsi.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

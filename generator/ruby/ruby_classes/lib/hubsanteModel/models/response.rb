@@ -9,23 +9,49 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Geolocation
-  class Coord
-    # Dernière coordonnée x connue de la ressource, entre −90 and +90
-    attr_accessor :lat
+module Resources
+  class Response
+    # Groupe date heure de début de la demande
+    attr_accessor :datetime
 
-    # Dernière coordonnée y connue de la ressource, entre −180 and +180
-    attr_accessor :lon
+    # A valoriser avec la réponse apportée. Cf Nomenclature associée ACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE
+    attr_accessor :answer
 
-    # Dernière coordonnée z connue de la ressource, en mètres sans bornes
-    attr_accessor :height
+    # A valoriser avec le délai de réponse auquel s'engage l'expéditeur (cf. nomenclature)  Cas particulier : en cas de réponse \"Partielle\" car le délai souhaité ne peut pas être respecté,  à valoriser obligatoirement avec le délai de réponse maximum auquel s'engage l'expéditeur de la réponse, 
+    attr_accessor :deadline
+
+    # Commentaire libre permettant d'apporter toutes précisions utiles à la réponse. Le motif de refus est notifié dans ce champ.
+    attr_accessor :freetext
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'lat' => :'lat',
-        :'lon' => :'lon',
-        :'height' => :'height'
+        :'datetime' => :'datetime',
+        :'answer' => :'answer',
+        :'deadline' => :'deadline',
+        :'freetext' => :'freetext'
       }
     end
 
@@ -37,9 +63,10 @@ module Geolocation
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'lat' => :'Float',
-        :'lon' => :'Float',
-        :'height' => :'Float'
+        :'datetime' => :'Time',
+        :'answer' => :'String',
+        :'deadline' => :'String',
+        :'freetext' => :'String'
       }
     end
 
@@ -53,31 +80,35 @@ module Geolocation
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Geolocation::Coord` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Resources::Response` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Geolocation::Coord`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Resources::Response`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'lat')
-        self.lat = attributes[:'lat']
+      if attributes.key?(:'datetime')
+        self.datetime = attributes[:'datetime']
       else
-        self.lat = nil
+        self.datetime = nil
       end
 
-      if attributes.key?(:'lon')
-        self.lon = attributes[:'lon']
+      if attributes.key?(:'answer')
+        self.answer = attributes[:'answer']
       else
-        self.lon = nil
+        self.answer = nil
       end
 
-      if attributes.key?(:'height')
-        self.height = attributes[:'height']
+      if attributes.key?(:'deadline')
+        self.deadline = attributes[:'deadline']
+      end
+
+      if attributes.key?(:'freetext')
+        self.freetext = attributes[:'freetext']
       end
     end
 
@@ -86,12 +117,17 @@ module Geolocation
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @lat.nil?
-        invalid_properties.push('invalid value for "lat", lat cannot be nil.')
+      if @datetime.nil?
+        invalid_properties.push('invalid value for "datetime", datetime cannot be nil.')
       end
 
-      if @lon.nil?
-        invalid_properties.push('invalid value for "lon", lon cannot be nil.')
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      if @datetime !~ pattern
+        invalid_properties.push("invalid value for \"datetime\", must conform to the pattern #{pattern}.")
+      end
+
+      if @answer.nil?
+        invalid_properties.push('invalid value for "answer", answer cannot be nil.')
       end
 
       invalid_properties
@@ -101,9 +137,49 @@ module Geolocation
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @lat.nil?
-      return false if @lon.nil?
+      return false if @datetime.nil?
+      return false if @datetime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      return false if @answer.nil?
+      answer_validator = EnumAttributeValidator.new('String', ["ACCEPTEE", "PARTIELLE", "REFUSEE", "DIFFEREE"])
+      return false unless answer_validator.valid?(@answer)
+      deadline_validator = EnumAttributeValidator.new('String', ["DEL0", "ASAP", "30M", "45M", "1H", "2H", "4H", "8H", "12H", "24H", "RDV"])
+      return false unless deadline_validator.valid?(@deadline)
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] datetime Value to be assigned
+    def datetime=(datetime)
+      if datetime.nil?
+        fail ArgumentError, 'datetime cannot be nil'
+      end
+
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      if datetime !~ pattern
+        fail ArgumentError, "invalid value for \"datetime\", must conform to the pattern #{pattern}."
+      end
+
+      @datetime = datetime
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] answer Object to be assigned
+    def answer=(answer)
+      validator = EnumAttributeValidator.new('String', ["ACCEPTEE", "PARTIELLE", "REFUSEE", "DIFFEREE"])
+      unless validator.valid?(answer)
+        fail ArgumentError, "invalid value for \"answer\", must be one of #{validator.allowable_values}."
+      end
+      @answer = answer
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] deadline Object to be assigned
+    def deadline=(deadline)
+      validator = EnumAttributeValidator.new('String', ["DEL0", "ASAP", "30M", "45M", "1H", "2H", "4H", "8H", "12H", "24H", "RDV"])
+      unless validator.valid?(deadline)
+        fail ArgumentError, "invalid value for \"deadline\", must be one of #{validator.allowable_values}."
+      end
+      @deadline = deadline
     end
 
     # Checks equality by comparing each attribute.
@@ -111,9 +187,10 @@ module Geolocation
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          lat == o.lat &&
-          lon == o.lon &&
-          height == o.height
+          datetime == o.datetime &&
+          answer == o.answer &&
+          deadline == o.deadline &&
+          freetext == o.freetext
     end
 
     # @see the `==` method
@@ -125,7 +202,7 @@ module Geolocation
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [lat, lon, height].hash
+      [datetime, answer, deadline, freetext].hash
     end
 
     # Builds the object from hash
@@ -189,7 +266,7 @@ module Geolocation
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Geolocation.const_get(type)
+        klass = Resources.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

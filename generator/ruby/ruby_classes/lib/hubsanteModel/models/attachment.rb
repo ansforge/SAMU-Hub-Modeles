@@ -9,23 +9,35 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Geolocation
-  class Coord
-    # Dernière coordonnée x connue de la ressource, entre −90 and +90
-    attr_accessor :lat
+module Cisu
+  class Attachment
+    # Décrit la ressource en précisant le type et le contenu, tels que «carte» ou «photo»
+    attr_accessor :description
 
-    # Dernière coordonnée y connue de la ressource, entre −180 and +180
-    attr_accessor :lon
+    # L'identifiant du type MIME de contenu et sous-type décrivant la ressource
+    attr_accessor :mime_type
 
-    # Dernière coordonnée z connue de la ressource, en mètres sans bornes
-    attr_accessor :height
+    # Taille approximative de la ressource en kO
+    attr_accessor :size
+
+    # Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé Nous suggérons d'employer le format suivant de regex (https?|ftp|file)://([\\w-]+(\\.[\\w-]+)*)(/[\\w\\-\\.]*)*/?(\\?[^\\s]*)?
+    attr_accessor :uri
+
+    # Peut être utilisé à la place de l'élément 'URI' pour envoyer la ressource encodée en base64 pour éviter des problèmes de transcodage (sur des double quotes qui casseraient le message, …)
+    attr_accessor :deref_uri
+
+    # Hash de la ressource pour confirmer la réception de la bonne ressource La ressource est hashée avec le protocole SHA-256
+    attr_accessor :digest
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'lat' => :'lat',
-        :'lon' => :'lon',
-        :'height' => :'height'
+        :'description' => :'description',
+        :'mime_type' => :'mimeType',
+        :'size' => :'size',
+        :'uri' => :'URI',
+        :'deref_uri' => :'derefURI',
+        :'digest' => :'digest'
       }
     end
 
@@ -37,9 +49,12 @@ module Geolocation
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'lat' => :'Float',
-        :'lon' => :'Float',
-        :'height' => :'Float'
+        :'description' => :'String',
+        :'mime_type' => :'String',
+        :'size' => :'Integer',
+        :'uri' => :'String',
+        :'deref_uri' => :'String',
+        :'digest' => :'String'
       }
     end
 
@@ -53,31 +68,41 @@ module Geolocation
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Geolocation::Coord` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Cisu::Attachment` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Geolocation::Coord`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Cisu::Attachment`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'lat')
-        self.lat = attributes[:'lat']
-      else
-        self.lat = nil
+      if attributes.key?(:'description')
+        self.description = attributes[:'description']
       end
 
-      if attributes.key?(:'lon')
-        self.lon = attributes[:'lon']
-      else
-        self.lon = nil
+      if attributes.key?(:'mime_type')
+        self.mime_type = attributes[:'mime_type']
       end
 
-      if attributes.key?(:'height')
-        self.height = attributes[:'height']
+      if attributes.key?(:'size')
+        self.size = attributes[:'size']
+      end
+
+      if attributes.key?(:'uri')
+        self.uri = attributes[:'uri']
+      else
+        self.uri = nil
+      end
+
+      if attributes.key?(:'deref_uri')
+        self.deref_uri = attributes[:'deref_uri']
+      end
+
+      if attributes.key?(:'digest')
+        self.digest = attributes[:'digest']
       end
     end
 
@@ -86,12 +111,8 @@ module Geolocation
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @lat.nil?
-        invalid_properties.push('invalid value for "lat", lat cannot be nil.')
-      end
-
-      if @lon.nil?
-        invalid_properties.push('invalid value for "lon", lon cannot be nil.')
+      if @uri.nil?
+        invalid_properties.push('invalid value for "uri", uri cannot be nil.')
       end
 
       invalid_properties
@@ -101,8 +122,7 @@ module Geolocation
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @lat.nil?
-      return false if @lon.nil?
+      return false if @uri.nil?
       true
     end
 
@@ -111,9 +131,12 @@ module Geolocation
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          lat == o.lat &&
-          lon == o.lon &&
-          height == o.height
+          description == o.description &&
+          mime_type == o.mime_type &&
+          size == o.size &&
+          uri == o.uri &&
+          deref_uri == o.deref_uri &&
+          digest == o.digest
     end
 
     # @see the `==` method
@@ -125,7 +148,7 @@ module Geolocation
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [lat, lon, height].hash
+      [description, mime_type, size, uri, deref_uri, digest].hash
     end
 
     # Builds the object from hash
@@ -189,7 +212,7 @@ module Geolocation
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Geolocation.const_get(type)
+        klass = Cisu.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

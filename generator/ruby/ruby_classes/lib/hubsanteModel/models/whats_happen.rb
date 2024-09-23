@@ -9,9 +9,9 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Health
+module Rpis
   class WhatsHappen
-    # A valoriser avec le code de la nomenclature associée
+    # A valoriser avec le code de la nomenclature associée.
     attr_accessor :code
 
     # A valoriser avec le libellé de la nomenclature associée. Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.
@@ -70,13 +70,13 @@ module Health
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Health::WhatsHappen` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Rpis::WhatsHappen` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Health::WhatsHappen`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Rpis::WhatsHappen`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -213,7 +213,7 @@ module Health
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Health.const_get(type)
+        klass = Rpis.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

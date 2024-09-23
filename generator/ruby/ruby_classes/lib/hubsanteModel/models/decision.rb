@@ -9,30 +9,16 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Health
+module Rpis
   class Decision
-    # A valoriser avec l'ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur
-    attr_accessor :id_pat
+    # Précise le type de moyen engagé dans l'intervention (SMUR, TSU, HOSPIT, etc.).  A valoriser par un code de la nomenclature SI SAMU-TYPE_MOYEN.
+    attr_accessor :resource_category
 
-    # A valoriser avec le groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.
-    attr_accessor :creation
-
-    attr_accessor :operator
-
-    # A valoriser avec le type de décision prise (cf.nomenclature associée)
-    attr_accessor :decision_type
-
-    # A valoriser avec le type de ressource souhaitée ou engagée (cf.nomenclature associée) - en fonction du type de décision. A fournir obligatoirement pour une décision d'intervention ou de transport/orientation.
+    # Précise le type de véhicule terrestre / aérien / maritime engagé dans l'intervention. A valoriser par un code de la nomenclature CISU-TYPE_VECTEUR.
     attr_accessor :resource_type
 
-    # A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée) en fonction du type de décision. A fournir obligatoirement pour une décision d'intervention ou de transport/orientation.
-    attr_accessor :vehicule_type
-
-    # A valoriser obligatoirement en cas de décision de transport, pour indiquer si ce dernier est médicalisé. True = transport médicalisé False = transport non médicalisé
-    attr_accessor :medical_transport
-
-    # Indique le type de destination en cas de décision d'orientation (cf. nomenclature associée)
-    attr_accessor :orientation_type
+    # Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN.
+    attr_accessor :team_care
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -59,14 +45,9 @@ module Health
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id_pat' => :'idPat',
-        :'creation' => :'creation',
-        :'operator' => :'operator',
-        :'decision_type' => :'decisionType',
+        :'resource_category' => :'resourceCategory',
         :'resource_type' => :'resourceType',
-        :'vehicule_type' => :'vehiculeType',
-        :'medical_transport' => :'medicalTransport',
-        :'orientation_type' => :'orientationType'
+        :'team_care' => :'teamCare'
       }
     end
 
@@ -78,14 +59,9 @@ module Health
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id_pat' => :'String',
-        :'creation' => :'Time',
-        :'operator' => :'Operator',
-        :'decision_type' => :'String',
+        :'resource_category' => :'String',
         :'resource_type' => :'String',
-        :'vehicule_type' => :'String',
-        :'medical_transport' => :'Boolean',
-        :'orientation_type' => :'String'
+        :'team_care' => :'String'
       }
     end
 
@@ -99,53 +75,33 @@ module Health
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Health::Decision` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Rpis::Decision` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Health::Decision`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Rpis::Decision`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'id_pat')
-        self.id_pat = attributes[:'id_pat']
-      end
-
-      if attributes.key?(:'creation')
-        self.creation = attributes[:'creation']
+      if attributes.key?(:'resource_category')
+        self.resource_category = attributes[:'resource_category']
       else
-        self.creation = nil
-      end
-
-      if attributes.key?(:'operator')
-        self.operator = attributes[:'operator']
-      else
-        self.operator = nil
-      end
-
-      if attributes.key?(:'decision_type')
-        self.decision_type = attributes[:'decision_type']
-      else
-        self.decision_type = nil
+        self.resource_category = nil
       end
 
       if attributes.key?(:'resource_type')
         self.resource_type = attributes[:'resource_type']
+      else
+        self.resource_type = nil
       end
 
-      if attributes.key?(:'vehicule_type')
-        self.vehicule_type = attributes[:'vehicule_type']
-      end
-
-      if attributes.key?(:'medical_transport')
-        self.medical_transport = attributes[:'medical_transport']
-      end
-
-      if attributes.key?(:'orientation_type')
-        self.orientation_type = attributes[:'orientation_type']
+      if attributes.key?(:'team_care')
+        self.team_care = attributes[:'team_care']
+      else
+        self.team_care = nil
       end
     end
 
@@ -154,21 +110,16 @@ module Health
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @creation.nil?
-        invalid_properties.push('invalid value for "creation", creation cannot be nil.')
+      if @resource_category.nil?
+        invalid_properties.push('invalid value for "resource_category", resource_category cannot be nil.')
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
-      if @creation !~ pattern
-        invalid_properties.push("invalid value for \"creation\", must conform to the pattern #{pattern}.")
+      if @resource_type.nil?
+        invalid_properties.push('invalid value for "resource_type", resource_type cannot be nil.')
       end
 
-      if @operator.nil?
-        invalid_properties.push('invalid value for "operator", operator cannot be nil.')
-      end
-
-      if @decision_type.nil?
-        invalid_properties.push('invalid value for "decision_type", decision_type cannot be nil.')
+      if @team_care.nil?
+        invalid_properties.push('invalid value for "team_care", team_care cannot be nil.')
       end
 
       invalid_properties
@@ -178,50 +129,32 @@ module Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @creation.nil?
-      return false if @creation !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
-      return false if @operator.nil?
-      return false if @decision_type.nil?
-      decision_type_validator = EnumAttributeValidator.new('String', ["CONSEIL", "PMT", "INTER", "ORIENT", "PASPLUS"])
-      return false unless decision_type_validator.valid?(@decision_type)
-      resource_type_validator = EnumAttributeValidator.new('String', ["SMUR", "MED", "PARAMED", "HOSPIT", "LIB", "MEDC", "PHARMA", "INF", "MEDSPE", "DENT", "AUTREPRO", "TSU ", "SIS", "MSP", "ISP", "SP", "AASC", "FDO", "HELIFSI", "VLFSI", "FFSI", "DGDD", "AUTRE", "ADM", "DAE", "INCONNU"])
+      return false if @resource_category.nil?
+      resource_category_validator = EnumAttributeValidator.new('String', ["SMUR", "MED", "PARAMED", "HOSPIT", "LIB", "MEDC", "PHARMA", "INF", "MEDSPE", "DENT", "AUTREPRO", "TSU ", "SIS", "MSP", "ISP", "SP", "AASC", "FDO", "HELIFSI", "VLFSI", "FFSI", "DGDD", "AUTRE", "ADM", "DAE", "INCONNU"])
+      return false unless resource_category_validator.valid?(@resource_category)
+      return false if @resource_type.nil?
+      resource_type_validator = EnumAttributeValidator.new('String', ["AASC", "VLSC", "VPSP", "AUTRESC", "AUTREVEC", "TAXI", "TRANSP", "TRAIN", "AVION", "PERSO", "APIED", "AUTRE", "AUTRETRA", "FSI", "HELIFSI", "VLFSI", "FFSI", "VHFSI", "LIB", "MEDV", "INF", "AUTREPRO", "SIS", "VSAV", "GRIMP", "VPL", "SRSIS", "FEUSIS", "VPMA", "VCH", "VR", "PCSIS", "VLISP", "VLMSP", "VLCG", "VLSIS", "DRAGON", "AVSC", "MOYSSE", "AUTRESIS", "NAVISIS", "SMUR", "VLM", "VL", "PSM1", "PSM2", "PSM3", "PSMP", "VPC", "AR", "AR-BAR", "AR-PED", "HELISMUR", "HELISAN", "AVSMUR", "AVSAN", "NAVISMUR", "TSU", "VSL", "AMB-GV", "AMB-PV", "AMB-BAR", "AMB"])
       return false unless resource_type_validator.valid?(@resource_type)
-      vehicule_type_validator = EnumAttributeValidator.new('String', ["AASC", "VLSC", "VPSP", "AUTRESC", "AUTREVEC", "TAXI", "TRANSP", "TRAIN", "AVION", "PERSO", "APIED", "AUTRE", "AUTRETRA", "FSI", "HELIFSI", "VLFSI", "FFSI", "VHFSI", "LIB", "MEDV", "INF", "AUTREPRO", "SIS", "VSAV", "GRIMP", "VPL", "SRSIS", "FEUSIS", "VPMA", "VCH", "VR", "PCSIS", "VLISP", "VLMSP", "VLCG", "VLSIS", "DRAGON", "AVSC", "MOYSSE", "AUTRESIS", "NAVISIS", "SMUR", "VLM", "VL", "PSM1", "PSM2", "PSM3", "PSMP", "VPC", "AR", "AR-BAR", "AR-PED", "HELISMUR", "HELISAN", "AVSMUR", "AVSAN", "NAVISMUR", "TSU", "VSL", "AMB-GV", "AMB-PV", "AMB-BAR", "AMB"])
-      return false unless vehicule_type_validator.valid?(@vehicule_type)
-      orientation_type_validator = EnumAttributeValidator.new('String', ["URGENCES", "SANTE", "CABINET", "DOMICILE", "EPHAD", "AUTRE"])
-      return false unless orientation_type_validator.valid?(@orientation_type)
+      return false if @team_care.nil?
+      team_care_validator = EnumAttributeValidator.new('String', ["MED", "PARAMED", "SECOURS"])
+      return false unless team_care_validator.valid?(@team_care)
       true
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] creation Value to be assigned
-    def creation=(creation)
-      if creation.nil?
-        fail ArgumentError, 'creation cannot be nil'
-      end
-
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
-      if creation !~ pattern
-        fail ArgumentError, "invalid value for \"creation\", must conform to the pattern #{pattern}."
-      end
-
-      @creation = creation
-    end
-
     # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] decision_type Object to be assigned
-    def decision_type=(decision_type)
-      validator = EnumAttributeValidator.new('String', ["CONSEIL", "PMT", "INTER", "ORIENT", "PASPLUS"])
-      unless validator.valid?(decision_type)
-        fail ArgumentError, "invalid value for \"decision_type\", must be one of #{validator.allowable_values}."
+    # @param [Object] resource_category Object to be assigned
+    def resource_category=(resource_category)
+      validator = EnumAttributeValidator.new('String', ["SMUR", "MED", "PARAMED", "HOSPIT", "LIB", "MEDC", "PHARMA", "INF", "MEDSPE", "DENT", "AUTREPRO", "TSU ", "SIS", "MSP", "ISP", "SP", "AASC", "FDO", "HELIFSI", "VLFSI", "FFSI", "DGDD", "AUTRE", "ADM", "DAE", "INCONNU"])
+      unless validator.valid?(resource_category)
+        fail ArgumentError, "invalid value for \"resource_category\", must be one of #{validator.allowable_values}."
       end
-      @decision_type = decision_type
+      @resource_category = resource_category
     end
 
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] resource_type Object to be assigned
     def resource_type=(resource_type)
-      validator = EnumAttributeValidator.new('String', ["SMUR", "MED", "PARAMED", "HOSPIT", "LIB", "MEDC", "PHARMA", "INF", "MEDSPE", "DENT", "AUTREPRO", "TSU ", "SIS", "MSP", "ISP", "SP", "AASC", "FDO", "HELIFSI", "VLFSI", "FFSI", "DGDD", "AUTRE", "ADM", "DAE", "INCONNU"])
+      validator = EnumAttributeValidator.new('String', ["AASC", "VLSC", "VPSP", "AUTRESC", "AUTREVEC", "TAXI", "TRANSP", "TRAIN", "AVION", "PERSO", "APIED", "AUTRE", "AUTRETRA", "FSI", "HELIFSI", "VLFSI", "FFSI", "VHFSI", "LIB", "MEDV", "INF", "AUTREPRO", "SIS", "VSAV", "GRIMP", "VPL", "SRSIS", "FEUSIS", "VPMA", "VCH", "VR", "PCSIS", "VLISP", "VLMSP", "VLCG", "VLSIS", "DRAGON", "AVSC", "MOYSSE", "AUTRESIS", "NAVISIS", "SMUR", "VLM", "VL", "PSM1", "PSM2", "PSM3", "PSMP", "VPC", "AR", "AR-BAR", "AR-PED", "HELISMUR", "HELISAN", "AVSMUR", "AVSAN", "NAVISMUR", "TSU", "VSL", "AMB-GV", "AMB-PV", "AMB-BAR", "AMB"])
       unless validator.valid?(resource_type)
         fail ArgumentError, "invalid value for \"resource_type\", must be one of #{validator.allowable_values}."
       end
@@ -229,23 +162,13 @@ module Health
     end
 
     # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] vehicule_type Object to be assigned
-    def vehicule_type=(vehicule_type)
-      validator = EnumAttributeValidator.new('String', ["AASC", "VLSC", "VPSP", "AUTRESC", "AUTREVEC", "TAXI", "TRANSP", "TRAIN", "AVION", "PERSO", "APIED", "AUTRE", "AUTRETRA", "FSI", "HELIFSI", "VLFSI", "FFSI", "VHFSI", "LIB", "MEDV", "INF", "AUTREPRO", "SIS", "VSAV", "GRIMP", "VPL", "SRSIS", "FEUSIS", "VPMA", "VCH", "VR", "PCSIS", "VLISP", "VLMSP", "VLCG", "VLSIS", "DRAGON", "AVSC", "MOYSSE", "AUTRESIS", "NAVISIS", "SMUR", "VLM", "VL", "PSM1", "PSM2", "PSM3", "PSMP", "VPC", "AR", "AR-BAR", "AR-PED", "HELISMUR", "HELISAN", "AVSMUR", "AVSAN", "NAVISMUR", "TSU", "VSL", "AMB-GV", "AMB-PV", "AMB-BAR", "AMB"])
-      unless validator.valid?(vehicule_type)
-        fail ArgumentError, "invalid value for \"vehicule_type\", must be one of #{validator.allowable_values}."
+    # @param [Object] team_care Object to be assigned
+    def team_care=(team_care)
+      validator = EnumAttributeValidator.new('String', ["MED", "PARAMED", "SECOURS"])
+      unless validator.valid?(team_care)
+        fail ArgumentError, "invalid value for \"team_care\", must be one of #{validator.allowable_values}."
       end
-      @vehicule_type = vehicule_type
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] orientation_type Object to be assigned
-    def orientation_type=(orientation_type)
-      validator = EnumAttributeValidator.new('String', ["URGENCES", "SANTE", "CABINET", "DOMICILE", "EPHAD", "AUTRE"])
-      unless validator.valid?(orientation_type)
-        fail ArgumentError, "invalid value for \"orientation_type\", must be one of #{validator.allowable_values}."
-      end
-      @orientation_type = orientation_type
+      @team_care = team_care
     end
 
     # Checks equality by comparing each attribute.
@@ -253,14 +176,9 @@ module Health
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id_pat == o.id_pat &&
-          creation == o.creation &&
-          operator == o.operator &&
-          decision_type == o.decision_type &&
+          resource_category == o.resource_category &&
           resource_type == o.resource_type &&
-          vehicule_type == o.vehicule_type &&
-          medical_transport == o.medical_transport &&
-          orientation_type == o.orientation_type
+          team_care == o.team_care
     end
 
     # @see the `==` method
@@ -272,7 +190,7 @@ module Health
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id_pat, creation, operator, decision_type, resource_type, vehicule_type, medical_transport, orientation_type].hash
+      [resource_category, resource_type, team_care].hash
     end
 
     # Builds the object from hash
@@ -336,7 +254,7 @@ module Health
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Health.const_get(type)
+        klass = Rpis.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

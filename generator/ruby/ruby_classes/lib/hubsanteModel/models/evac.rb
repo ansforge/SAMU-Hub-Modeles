@@ -9,23 +9,23 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Geolocation
-  class Coord
-    # Dernière coordonnée x connue de la ressource, entre −90 and +90
-    attr_accessor :lat
+module Emsi
+  class Evac
+    # Optionnel
+    attr_accessor :datime
 
-    # Dernière coordonnée y connue de la ressource, entre −180 and +180
-    attr_accessor :lon
+    # Optionnel
+    attr_accessor :displaced
 
-    # Dernière coordonnée z connue de la ressource, en mètres sans bornes
-    attr_accessor :height
+    # Optionnel
+    attr_accessor :evacuated
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'lat' => :'lat',
-        :'lon' => :'lon',
-        :'height' => :'height'
+        :'datime' => :'DATIME',
+        :'displaced' => :'DISPLACED',
+        :'evacuated' => :'EVACUATED'
       }
     end
 
@@ -37,9 +37,9 @@ module Geolocation
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'lat' => :'Float',
-        :'lon' => :'Float',
-        :'height' => :'Float'
+        :'datime' => :'Time',
+        :'displaced' => :'Integer',
+        :'evacuated' => :'Integer'
       }
     end
 
@@ -53,31 +53,27 @@ module Geolocation
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Geolocation::Coord` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Emsi::Evac` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Geolocation::Coord`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Emsi::Evac`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'lat')
-        self.lat = attributes[:'lat']
-      else
-        self.lat = nil
+      if attributes.key?(:'datime')
+        self.datime = attributes[:'datime']
       end
 
-      if attributes.key?(:'lon')
-        self.lon = attributes[:'lon']
-      else
-        self.lon = nil
+      if attributes.key?(:'displaced')
+        self.displaced = attributes[:'displaced']
       end
 
-      if attributes.key?(:'height')
-        self.height = attributes[:'height']
+      if attributes.key?(:'evacuated')
+        self.evacuated = attributes[:'evacuated']
       end
     end
 
@@ -86,12 +82,9 @@ module Geolocation
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @lat.nil?
-        invalid_properties.push('invalid value for "lat", lat cannot be nil.')
-      end
-
-      if @lon.nil?
-        invalid_properties.push('invalid value for "lon", lon cannot be nil.')
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      if !@datime.nil? && @datime !~ pattern
+        invalid_properties.push("invalid value for \"datime\", must conform to the pattern #{pattern}.")
       end
 
       invalid_properties
@@ -101,9 +94,23 @@ module Geolocation
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @lat.nil?
-      return false if @lon.nil?
+      return false if !@datime.nil? && @datime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] datime Value to be assigned
+    def datime=(datime)
+      if datime.nil?
+        fail ArgumentError, 'datime cannot be nil'
+      end
+
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      if datime !~ pattern
+        fail ArgumentError, "invalid value for \"datime\", must conform to the pattern #{pattern}."
+      end
+
+      @datime = datime
     end
 
     # Checks equality by comparing each attribute.
@@ -111,9 +118,9 @@ module Geolocation
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          lat == o.lat &&
-          lon == o.lon &&
-          height == o.height
+          datime == o.datime &&
+          displaced == o.displaced &&
+          evacuated == o.evacuated
     end
 
     # @see the `==` method
@@ -125,7 +132,7 @@ module Geolocation
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [lat, lon, height].hash
+      [datime, displaced, evacuated].hash
     end
 
     # Builds the object from hash
@@ -189,7 +196,7 @@ module Geolocation
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Geolocation.const_get(type)
+        klass = Emsi.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end
