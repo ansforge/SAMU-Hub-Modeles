@@ -1,6 +1,6 @@
 <h1 align="center">Hub Santé - librairie Modèles</h1>
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-0.3-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000" />
   <a href="#" target="_blank">
     <img alt="License: Apache-2.0" src="https://img.shields.io/badge/License-Apache_2.0-yellow.svg" />
   </a>
