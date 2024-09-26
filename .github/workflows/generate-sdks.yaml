@@ -6,10 +6,10 @@ on:
       - '**'
   # Workflow dependencies, also to avoid concurrent commits
   # Ref.: https://github.com/orgs/community/discussions/26238
-  # workflow_run:
-  #   workflows: ["generate-model"]
-  #   types:
-  #     - completed
+  workflow_run:
+    workflows: ["generate-model"]
+    types:
+      - completed
   workflow_dispatch:
 
 env:
@@ -64,7 +64,7 @@ jobs:
       - name: Ruby - Push gem to GitHub Packages
         working-directory: ./sdks/ruby/
         run: |
-          gem push --key github --host https://rubygems.pkg.github.com/ansforge ./hubsante_model-TEST.gem
+          gem push --key github --host https://rubygems.pkg.github.com/ansforge ./hubsante_model-*.gem
         env:
           GEM_HOST_API_KEY: ${{ secrets.GITHUB_TOKEN }}  # GitHub token used to authenticate
 
