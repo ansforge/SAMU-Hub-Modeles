@@ -36,7 +36,7 @@ jobs:
         run: |
           rm -r ruby python csharp || true
 
-      - name: Generate Ruby classes
+      - name: [Ruby] Generate classes
         working-directory: ./generator
         run: |
           npx @openapitools/openapi-generator-cli generate -c ./config/EDXL-DE/ruby/EDXL-DE.generator-config.json --skip-validate-spec
@@ -46,12 +46,34 @@ jobs:
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/ruby/$SCHEMA.generator-config.json --skip-validate-spec
           done
 
-      - name: Generate Python classes
+      - name: [Ruby] Move classes to SDK folder
+        run: |
+          rm -r sdks/ruby/lib || true
+          mv generator/ruby/ruby_classes/lib sdks/ruby/
+
+      - name: [Ruby] Set up
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+
+      - name: [Ruby] Build gem
+        working-directory: ./sdks/ruby/
+        run: gem build hubsante_model.gemspec
+
+      - name: [Ruby] Push gem to GitHub Packages
+        working-directory: ./sdks/ruby/
+        run: |
+          gem push --key github --host https://rubygems.pkg.github.com/ansforge ./hubsante_model-TEST.gem
+        env:
+          GEM_HOST_API_KEY: ${{ secrets.GITHUB_TOKEN }}  # GitHub token used to authenticate
+
+      - name: [Python] Generate classes
         working-directory: ./generator
         run: |
           npx @openapitools/openapi-generator-cli generate -c ./config/RS-EDA/python/RS-EDA.generator-config.json --skip-validate-spec
 
-      - name: Generate C# classes
+      - name: [C#] Generate classes
         working-directory: ./generator
         run: |
           npx @openapitools/openapi-generator-cli generate -c ./config/RS-EDA/csharp/RS-EDA.generator-config.json --skip-validate-spec
