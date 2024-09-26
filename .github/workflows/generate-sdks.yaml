@@ -80,16 +80,17 @@ jobs:
 
       - name: Ruby - Move classes to SDK folder
         run: |
+          ls -al ./sdks/ruby/
           rm -r ./sdks/ruby/lib || true
+          ls -al ./sdks/ruby/
           mkdir ./sdks/ruby/lib
+          ls -al ./sdks/ruby/
           cp -r ./sdks/ruby/base/* ./sdks/ruby/lib/
+          ls -al ./sdks/ruby/lib/
+          ls -al ./generator/ruby/ruby_classes/
           rsync --remove-source-files generator/ruby/ruby_classes/* ./sdks/ruby/
-
-      - name: Ruby - Set up
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.0'
-          bundler-cache: true
+          ls -al ./sdks/ruby/lib/
+          ls -al ./generator/ruby/ruby_classes/
 
       - name: Python - Generate classes
         working-directory: ./generator
@@ -105,6 +106,12 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: ⚙️ Auto-génération des SDKs
+
+      - name: Ruby - Set up
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
 
       - name: Ruby - Build gem, push it to GitHub Packages and remove it
         working-directory: ./sdks/ruby/
