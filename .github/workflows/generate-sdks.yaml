@@ -80,7 +80,8 @@ jobs:
 
       - name: Ruby - Move classes to SDK folder
         run: |
-          rm -r sdks/ruby/lib/* || true
+          rm -r sdks/ruby/lib || true
+          mkdir sdks/ruby/lib
           cp -r sdks/ruby/base/* sdks/ruby/lib/
           rsync --remove-source-files generator/ruby/ruby_classes/* sdks/ruby/
 
