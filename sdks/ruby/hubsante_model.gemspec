@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = "hubsante_model"
-  spec.version       = "1.0"
+  spec.version       = ENV.fetch("GEM_VERSION")
   spec.authors       = ["Hub Santé"]
   spec.email         = ["hubsante.contact@esante.gouv.fr"]
 

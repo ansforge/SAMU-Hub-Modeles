@@ -4,13 +4,20 @@ on:
   pull_request:
     branches:
       - '**'
+  release:
+    types:
+      - published
+  workflow_dispatch:
+    inputs:
+      release_name:
+        description: 'Release name for manual dispatch'
+        required: true
   # Workflow dependencies, also to avoid concurrent commits
   # Ref.: https://github.com/orgs/community/discussions/26238
   workflow_run:
     workflows: ["generate-model"]
     types:
       - completed
-  workflow_dispatch:
 
 env:
   SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RPIS"
@@ -20,6 +27,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set RELEASE_NAME based on the trigger type
+        run: |
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            echo "RELEASE_NAME=${{ github.ref_name }}" >> $GITHUB_ENV
+          elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "RELEASE_NAME=${{ github.event.inputs.release_name }}" >> $GITHUB_ENV
+          elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "RELEASE_NAME=${{ github.head_ref }}" >> $GITHUB_ENV
+          fi
+
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -57,15 +74,14 @@ jobs:
           ruby-version: '3.0'
           bundler-cache: true
 
-      - name: Ruby - Build gem
-        working-directory: ./sdks/ruby/
-        run: gem build hubsante_model.gemspec
-
-      - name: Ruby - Push gem to GitHub Packages
+      - name: Ruby - Build gem, push it to GitHub Packages and remove it
         working-directory: ./sdks/ruby/
         run: |
+          gem build hubsante_model.gemspec
           gem push --key github --host https://rubygems.pkg.github.com/ansforge ./hubsante_model-*.gem
+          rm ./hubsante_model-*.gem
         env:
+          GEM_VERSION: ${{ env.GEM_VERSION }}
           GEM_HOST_API_KEY: ${{ secrets.GITHUB_TOKEN }}  # GitHub token used to authenticate
 
       - name: Python - Generate classes
