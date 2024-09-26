@@ -40,7 +40,7 @@ jobs:
           # Make the RELEASE_VERSION semver compatible (replacing non letter/digit/. chars with .)
           RELEASE_VERSION=$(echo "$RELEASE_VERSION" | sed 's/[^a-zA-Z0-9\.]/./g')
           
-          # Echo the RELEASE_VERSION for verification
+          # Display the RELEASE_VERSION for verification
           echo "The RELEASE_VERSION is: $RELEASE_VERSION"
           
           # Check if RELEASE_VERSION matches the semver allowed pattern
