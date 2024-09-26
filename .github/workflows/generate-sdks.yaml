@@ -80,17 +80,10 @@ jobs:
 
       - name: Ruby - Move classes to SDK folder
         run: |
-          ls -al ./sdks/ruby/
           rm -r ./sdks/ruby/lib || true
-          ls -al ./sdks/ruby/
           mkdir ./sdks/ruby/lib
-          ls -al ./sdks/ruby/
           cp -r ./sdks/ruby/base/* ./sdks/ruby/lib/
-          ls -al ./sdks/ruby/lib/
-          ls -al ./generator/ruby/ruby_classes/
-          rsync --remove-source-files generator/ruby/ruby_classes/* ./sdks/ruby/
-          ls -al ./sdks/ruby/lib/
-          ls -al ./generator/ruby/ruby_classes/
+          rsync --remove-source-files -r generator/ruby/ruby_classes/* ./sdks/ruby/
 
       - name: Python - Generate classes
         working-directory: ./generator
