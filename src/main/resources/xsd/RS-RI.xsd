@@ -176,11 +176,6 @@ OU - si un ID unique de la demande n'était pas disponible :
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="plate" type="string">
-                <annotation>
-                    <documentation>A valoriser avec le n° d'immatriculation du vecteur</documentation>
-                </annotation>
-            </element>
             <element minOccurs="0" name="name" type="string">
                 <annotation>
                     <documentation>A valoriser avec le nom donné à la ressource par l’organisation d’appartenance</documentation>

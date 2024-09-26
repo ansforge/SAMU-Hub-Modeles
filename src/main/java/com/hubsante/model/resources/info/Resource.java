@@ -52,10 +52,9 @@ import java.util.Objects;
      Resource.JSON_PROPERTY_REQUEST_ID, Resource.JSON_PROPERTY_MISSION_ID,
      Resource.JSON_PROPERTY_ORG_ID, Resource.JSON_PROPERTY_CENTER_NAME,
      Resource.JSON_PROPERTY_RESOURCE_TYPE, Resource.JSON_PROPERTY_VEHICULE_TYPE,
-     Resource.JSON_PROPERTY_PLATE, Resource.JSON_PROPERTY_NAME,
-     Resource.JSON_PROPERTY_CENTER_CITY, Resource.JSON_PROPERTY_TEAM,
-     Resource.JSON_PROPERTY_STATE, Resource.JSON_PROPERTY_CONTACT,
-     Resource.JSON_PROPERTY_FREETEXT})
+     Resource.JSON_PROPERTY_NAME, Resource.JSON_PROPERTY_CENTER_CITY,
+     Resource.JSON_PROPERTY_TEAM, Resource.JSON_PROPERTY_STATE,
+     Resource.JSON_PROPERTY_CONTACT, Resource.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("resource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -320,9 +319,6 @@ public class Resource {
   public static final String JSON_PROPERTY_VEHICULE_TYPE = "vehiculeType";
   private VehiculeTypeEnum vehiculeType;
 
-  public static final String JSON_PROPERTY_PLATE = "plate";
-  private String plate;
-
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
@@ -538,29 +534,6 @@ public class Resource {
     this.vehiculeType = vehiculeType;
   }
 
-  public Resource plate(String plate) {
-
-    this.plate = plate;
-    return this;
-  }
-
-  /**
-   * A valoriser avec le n° d&#39;immatriculation du vecteur
-   * @return plate
-   **/
-  @JsonProperty(JSON_PROPERTY_PLATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getPlate() {
-    return plate;
-  }
-
-  @JsonProperty(JSON_PROPERTY_PLATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlate(String plate) {
-    this.plate = plate;
-  }
-
   public Resource name(String name) {
 
     this.name = name;
@@ -749,7 +722,6 @@ public class Resource {
         Objects.equals(this.centerName, resource.centerName) &&
         Objects.equals(this.resourceType, resource.resourceType) &&
         Objects.equals(this.vehiculeType, resource.vehiculeType) &&
-        Objects.equals(this.plate, resource.plate) &&
         Objects.equals(this.name, resource.name) &&
         Objects.equals(this.centerCity, resource.centerCity) &&
         Objects.equals(this.team, resource.team) &&
@@ -761,7 +733,7 @@ public class Resource {
   @Override
   public int hashCode() {
     return Objects.hash(datetime, resourceId, requestId, missionId, orgId,
-                        centerName, resourceType, vehiculeType, plate, name,
+                        centerName, resourceType, vehiculeType, name,
                         centerCity, team, state, contact, freetext);
   }
 
@@ -789,7 +761,6 @@ public class Resource {
     sb.append("    vehiculeType: ")
         .append(toIndentedString(vehiculeType))
         .append("\n");
-    sb.append("    plate: ").append(toIndentedString(plate)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    centerCity: ")
         .append(toIndentedString(centerCity))

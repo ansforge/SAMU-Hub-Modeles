@@ -4064,7 +4064,7 @@ components:
           - fr.health.samu440
         centerName:
           type: string
-          title: "ID Centre d\u2019affectation"
+          title: "Nom du centre d\u2019affectation"
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/centerName
@@ -4182,15 +4182,6 @@ components:
           - AMB
           examples:
           - VLM
-        plate:
-          type: string
-          title: Immatriculation
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/mobilizedResource/0/plate
-          description: "A valoriser avec le n\xB0 d'immatriculation du vecteur"
-          examples:
-          - AB-123-CD
         name:
           type: string
           title: Nom

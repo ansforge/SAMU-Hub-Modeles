@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RI.schema.json#",
-    "version": "24.09.23",
+    "version": "24.09.26",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesInfo",
@@ -86,7 +86,7 @@
                 },
                 "centerName": {
                     "type": "string",
-                    "title": "ID Centre d’affectation",
+                    "title": "Nom du centre d’affectation",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/centerName",
@@ -200,14 +200,6 @@
                         "AMB-BAR",
                         "AMB"
                     ]
-                },
-                "plate": {
-                    "type": "string",
-                    "title": "Immatriculation",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/plate",
-                    "description": "A valoriser avec le n° d'immatriculation du vecteur"
                 },
                 "name": {
                     "type": "string",
