@@ -34,7 +34,7 @@ jobs:
           elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             RELEASE_VERSION="${{ github.event.inputs.release_name }}"
           elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            RELEASE_VERSION="0.0.0.${{ github.head_ref }}.alpha"
+            RELEASE_VERSION="0.0.0.${{ github.head_ref }}"
           fi
   
           # Make the RELEASE_VERSION semver compatible (replacing non letter/digit/. chars with .)
