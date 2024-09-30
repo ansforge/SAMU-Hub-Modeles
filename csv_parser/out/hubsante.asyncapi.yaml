@@ -2680,10 +2680,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/medicalNote'
-        decision:
-          type: array
-          items:
-            $ref: '#/components/schemas/decision'
         additionalInformation:
           $ref: '#/components/schemas/additionalInformation'
       additionalProperties: false
@@ -2745,6 +2741,8 @@ components:
       - operator
       - idObs
       - freetext
+      - operator
+      - decisionType
       properties:
         idPat:
           type: string
@@ -2809,27 +2807,32 @@ components:
             \ de sant\xE9."
           examples:
           - None
-      additionalProperties: false
-      example: example.json#/medicalNote/0
-    decision:
-      type: object
-      title: Transport
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - resourceCategory
-      - resourceType
-      - teamCare
-      properties:
-        resourceCategory:
+        decisionType:
           type: string
-          title: Moyen de transport
+          title: "Type de d\xE9cision"
           x-health-only: false
           x-cols: 6
-          example: example.json#/orientation/decision/resourceCategory
-          description: "Pr\xE9cise le type de moyen engag\xE9 dans l'intervention\
-            \ (SMUR, TSU, HOSPIT, etc.). \nA valoriser par un code de la nomenclature\
-            \ SI SAMU-TYPE_MOYEN."
+          example: example.json#/medicalNote/0/decisionType
+          description: "A valoriser avec le type de d\xE9cision prise (cf.nomenclature\
+            \ associ\xE9e)"
+          enum:
+          - CONSEIL
+          - PMT
+          - INTER
+          - ORIENT
+          - PASPLUS
+          examples:
+          - "conseil m\xE9dical  / d\xE9cision d\u2019intervention / d\xE9cision d\u2019\
+            orientation et de transport / Pas de d\xE9cision suppl\xE9mentaire"
+        resourceType:
+          type: string
+          title: Type de ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/medicalNote/0/resourceType
+          description: "A valoriser avec le type de ressource souhait\xE9e ou engag\xE9\
+            e (cf.nomenclature associ\xE9e) - en fonction du type de d\xE9cision.\n\
+            A fournir obligatoirement pour une d\xE9cision d'intervention ou de transport/orientation."
           enum:
           - SMUR
           - MED
@@ -2858,16 +2861,16 @@ components:
           - DAE
           - INCONNU
           examples:
-          - SMUR
-        resourceType:
+          - SMUR, Pompiers
+        vehiculeType:
           type: string
-          title: Type de vecteur de transport
+          title: Type de vecteur
           x-health-only: false
           x-cols: 6
-          example: example.json#/orientation/decision/resourceType
-          description: "Pr\xE9cise le type de v\xE9hicule terrestre / a\xE9rien /\
-            \ maritime engag\xE9 dans l'intervention.\nA valoriser par un code de\
-            \ la nomenclature CISU-TYPE_VECTEUR."
+          example: example.json#/medicalNote/0/vehiculeType
+          description: "A valoriser avec le type de vecteur souhait\xE9 / demand\xE9\
+            \ (cf.nomenclature associ\xE9e) en fonction du type de d\xE9cision.\n\
+            A fournir obligatoirement pour une d\xE9cision d'intervention ou de transport/orientation."
           enum:
           - AASC
           - VLSC
@@ -2934,26 +2937,53 @@ components:
           - AMB
           examples:
           - AR, VLM, VSAV
-        teamCare:
-          type: string
-          title: "Niveau de m\xE9dicalisation du transport"
+        medicalTransport:
+          type: boolean
+          title: "Transport m\xE9dicalis\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/orientation/decision/teamCare
-          description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, secouriste).\n\
-            A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN."
-          enum:
-          - MED
-          - PARAMED
-          - SECOURS
+          example: example.json#/medicalNote/0/medicalTransport
+          description: "A valoriser obligatoirement en cas de d\xE9cision de transport,\
+            \ pour indiquer si ce dernier est m\xE9dicalis\xE9.\nTrue = transport\
+            \ m\xE9dicalis\xE9\nFalse = transport non m\xE9dicalis\xE9"
           examples:
-          - PARAMED
+          - 'True'
+        orientationType:
+          type: string
+          title: Type d'orientation
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/medicalNote/0/orientationType
+          description: "Indique le type de destination en cas de d\xE9cision d'orientation\
+            \ (cf. nomenclature associ\xE9e)"
+          enum:
+          - URGENCES
+          - SANTE
+          - CABINET
+          - DOMICILE
+          - EPHAD
+          - AUTRE
+          examples:
+          - EPHAD
       additionalProperties: false
-      example: example.json#/orientation/decision
+      example: example.json#/medicalNote/0
       examples:
-      - resourceCategory: SMUR
-        resourceType: AR, VLM, VSAV
-        teamCare: PARAMED
+      - idPat: 'fr.health.samu690.patient.P23AZ59
+
+          fr.health.samu690.patient.DRFR15690242370035.1'
+        operator: &id002 {}
+        idObs: 'fr.health.samu540.medicalNote.46585A
+
+          fr.health.samu540.medicalNote.DRFR15540241600125.20'
+        creation: '2022-09-27T08:23:34+02:00'
+        freetext: None
+        decisionType: "conseil m\xE9dical  / d\xE9cision d\u2019intervention / d\xE9\
+          cision d\u2019orientation et de transport / Pas de d\xE9cision suppl\xE9\
+          mentaire"
+        resourceType: SMUR, Pompiers
+        vehiculeType: AR, VLM, VSAV
+        medicalTransport: 'True'
+        orientationType: EPHAD
     caseDetails:
       type: object
       title: "D\xE9tails du dossier "
@@ -3337,8 +3367,6 @@ components:
           description: "A valoriser si besoin avec la valeur souhait\xE9e, en fonction\
             \ des pr\xE9f\xE9rences de chaque partenaire : cela peut \xEAtre le nom\
             \ et pr\xE9nom de l'op\xE9rateur, ou un identifiant."
-          examples:
-          - None
         role:
           type: string
           title: "R\xF4le"
@@ -3354,13 +3382,10 @@ components:
           - MEDECIN
           - AUTRE
           - INCONNU
-          examples:
-          - ARM
       additionalProperties: false
       example: example.json#/medicalNote/0/operator
       examples:
-      - label: None
-        role: ARM
+      - *id002
     createCaseHealthUpdate:
       $id: classpath:/json-schema/schema#
       x-id: RS-EDA-MAJ.schema.json#
@@ -3440,10 +3465,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/medicalNote'
-        decision:
-          type: array
-          items:
-            $ref: '#/components/schemas/decision'
         freetext:
           type: string
           title: "Informations suppl\xE9mentaires modifi\xE9es"
@@ -7041,6 +7062,149 @@ components:
         destinationCategory: None
         healthcareType: None
         finess: None
+    decision:
+      type: object
+      title: Transport
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - resourceCategory
+      - resourceType
+      - teamCare
+      properties:
+        resourceCategory:
+          type: string
+          title: Moyen de transport
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/decision/resourceCategory
+          description: "Pr\xE9cise le type de moyen engag\xE9 dans l'intervention\
+            \ (SMUR, TSU, HOSPIT, etc.). \nA valoriser par un code de la nomenclature\
+            \ SI SAMU-TYPE_MOYEN."
+          enum:
+          - SMUR
+          - MED
+          - PARAMED
+          - HOSPIT
+          - LIB
+          - MEDC
+          - PHARMA
+          - INF
+          - MEDSPE
+          - DENT
+          - AUTREPRO
+          - 'TSU '
+          - SIS
+          - MSP
+          - ISP
+          - SP
+          - AASC
+          - FDO
+          - HELIFSI
+          - VLFSI
+          - FFSI
+          - DGDD
+          - AUTRE
+          - ADM
+          - DAE
+          - INCONNU
+          examples:
+          - SMUR
+        resourceType:
+          type: string
+          title: Type de vecteur de transport
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/decision/resourceType
+          description: "Pr\xE9cise le type de v\xE9hicule terrestre / a\xE9rien /\
+            \ maritime engag\xE9 dans l'intervention.\nA valoriser par un code de\
+            \ la nomenclature CISU-TYPE_VECTEUR."
+          enum:
+          - AASC
+          - VLSC
+          - VPSP
+          - AUTRESC
+          - AUTREVEC
+          - TAXI
+          - TRANSP
+          - TRAIN
+          - AVION
+          - PERSO
+          - APIED
+          - AUTRE
+          - AUTRETRA
+          - FSI
+          - HELIFSI
+          - VLFSI
+          - FFSI
+          - VHFSI
+          - LIB
+          - MEDV
+          - INF
+          - AUTREPRO
+          - SIS
+          - VSAV
+          - GRIMP
+          - VPL
+          - SRSIS
+          - FEUSIS
+          - VPMA
+          - VCH
+          - VR
+          - PCSIS
+          - VLISP
+          - VLMSP
+          - VLCG
+          - VLSIS
+          - DRAGON
+          - AVSC
+          - MOYSSE
+          - AUTRESIS
+          - NAVISIS
+          - SMUR
+          - VLM
+          - VL
+          - PSM1
+          - PSM2
+          - PSM3
+          - PSMP
+          - VPC
+          - AR
+          - AR-BAR
+          - AR-PED
+          - HELISMUR
+          - HELISAN
+          - AVSMUR
+          - AVSAN
+          - NAVISMUR
+          - TSU
+          - VSL
+          - AMB-GV
+          - AMB-PV
+          - AMB-BAR
+          - AMB
+          examples:
+          - AR, VLM, VSAV
+        teamCare:
+          type: string
+          title: "Niveau de m\xE9dicalisation du transport"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/decision/teamCare
+          description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, secouriste).\n\
+            A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN."
+          enum:
+          - MED
+          - PARAMED
+          - SECOURS
+          examples:
+          - PARAMED
+      additionalProperties: false
+      example: example.json#/orientation/decision
+      examples:
+      - resourceCategory: SMUR
+        resourceType: AR, VLM, VSAV
+        teamCare: PARAMED
     customContent:
       $id: classpath:/json-schema/schema#
       x-id: customContent.schema.json#

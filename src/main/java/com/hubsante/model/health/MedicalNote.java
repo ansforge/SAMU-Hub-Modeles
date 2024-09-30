@@ -46,7 +46,12 @@ import java.util.Objects;
 @JsonPropertyOrder(
     {MedicalNote.JSON_PROPERTY_ID_PAT, MedicalNote.JSON_PROPERTY_OPERATOR,
      MedicalNote.JSON_PROPERTY_ID_OBS, MedicalNote.JSON_PROPERTY_CREATION,
-     MedicalNote.JSON_PROPERTY_FREETEXT})
+     MedicalNote.JSON_PROPERTY_FREETEXT,
+     MedicalNote.JSON_PROPERTY_DECISION_TYPE,
+     MedicalNote.JSON_PROPERTY_RESOURCE_TYPE,
+     MedicalNote.JSON_PROPERTY_VEHICULE_TYPE,
+     MedicalNote.JSON_PROPERTY_MEDICAL_TRANSPORT,
+     MedicalNote.JSON_PROPERTY_ORIENTATION_TYPE})
 @JsonTypeName("medicalNote")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -65,6 +70,343 @@ public class MedicalNote {
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
+
+  /**
+   * A valoriser avec le type de décision prise (cf.nomenclature associée)
+   */
+  public enum DecisionTypeEnum {
+    CONSEIL("CONSEIL"),
+
+    PMT("PMT"),
+
+    INTER("INTER"),
+
+    ORIENT("ORIENT"),
+
+    PASPLUS("PASPLUS");
+
+    private String value;
+
+    DecisionTypeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static DecisionTypeEnum fromValue(String value) {
+      for (DecisionTypeEnum b : DecisionTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_DECISION_TYPE = "decisionType";
+  private DecisionTypeEnum decisionType;
+
+  /**
+   * A valoriser avec le type de ressource souhaitée ou engagée (cf.nomenclature
+   * associée) - en fonction du type de décision. A fournir obligatoirement pour
+   * une décision d&#39;intervention ou de transport/orientation.
+   */
+  public enum ResourceTypeEnum {
+    SMUR("SMUR"),
+
+    MED("MED"),
+
+    PARAMED("PARAMED"),
+
+    HOSPIT("HOSPIT"),
+
+    LIB("LIB"),
+
+    MEDC("MEDC"),
+
+    PHARMA("PHARMA"),
+
+    INF("INF"),
+
+    MEDSPE("MEDSPE"),
+
+    DENT("DENT"),
+
+    AUTREPRO("AUTREPRO"),
+
+    TSU_("TSU "),
+
+    SIS("SIS"),
+
+    MSP("MSP"),
+
+    ISP("ISP"),
+
+    SP("SP"),
+
+    AASC("AASC"),
+
+    FDO("FDO"),
+
+    HELIFSI("HELIFSI"),
+
+    VLFSI("VLFSI"),
+
+    FFSI("FFSI"),
+
+    DGDD("DGDD"),
+
+    AUTRE("AUTRE"),
+
+    ADM("ADM"),
+
+    DAE("DAE"),
+
+    INCONNU("INCONNU");
+
+    private String value;
+
+    ResourceTypeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ResourceTypeEnum fromValue(String value) {
+      for (ResourceTypeEnum b : ResourceTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_RESOURCE_TYPE = "resourceType";
+  private ResourceTypeEnum resourceType;
+
+  /**
+   * A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature
+   * associée) en fonction du type de décision. A fournir obligatoirement pour
+   * une décision d&#39;intervention ou de transport/orientation.
+   */
+  public enum VehiculeTypeEnum {
+    AASC("AASC"),
+
+    VLSC("VLSC"),
+
+    VPSP("VPSP"),
+
+    AUTRESC("AUTRESC"),
+
+    AUTREVEC("AUTREVEC"),
+
+    TAXI("TAXI"),
+
+    TRANSP("TRANSP"),
+
+    TRAIN("TRAIN"),
+
+    AVION("AVION"),
+
+    PERSO("PERSO"),
+
+    APIED("APIED"),
+
+    AUTRE("AUTRE"),
+
+    AUTRETRA("AUTRETRA"),
+
+    FSI("FSI"),
+
+    HELIFSI("HELIFSI"),
+
+    VLFSI("VLFSI"),
+
+    FFSI("FFSI"),
+
+    VHFSI("VHFSI"),
+
+    LIB("LIB"),
+
+    MEDV("MEDV"),
+
+    INF("INF"),
+
+    AUTREPRO("AUTREPRO"),
+
+    SIS("SIS"),
+
+    VSAV("VSAV"),
+
+    GRIMP("GRIMP"),
+
+    VPL("VPL"),
+
+    SRSIS("SRSIS"),
+
+    FEUSIS("FEUSIS"),
+
+    VPMA("VPMA"),
+
+    VCH("VCH"),
+
+    VR("VR"),
+
+    PCSIS("PCSIS"),
+
+    VLISP("VLISP"),
+
+    VLMSP("VLMSP"),
+
+    VLCG("VLCG"),
+
+    VLSIS("VLSIS"),
+
+    DRAGON("DRAGON"),
+
+    AVSC("AVSC"),
+
+    MOYSSE("MOYSSE"),
+
+    AUTRESIS("AUTRESIS"),
+
+    NAVISIS("NAVISIS"),
+
+    SMUR("SMUR"),
+
+    VLM("VLM"),
+
+    VL("VL"),
+
+    PSM1("PSM1"),
+
+    PSM2("PSM2"),
+
+    PSM3("PSM3"),
+
+    PSMP("PSMP"),
+
+    VPC("VPC"),
+
+    AR("AR"),
+
+    AR_BAR("AR-BAR"),
+
+    AR_PED("AR-PED"),
+
+    HELISMUR("HELISMUR"),
+
+    HELISAN("HELISAN"),
+
+    AVSMUR("AVSMUR"),
+
+    AVSAN("AVSAN"),
+
+    NAVISMUR("NAVISMUR"),
+
+    TSU("TSU"),
+
+    VSL("VSL"),
+
+    AMB_GV("AMB-GV"),
+
+    AMB_PV("AMB-PV"),
+
+    AMB_BAR("AMB-BAR"),
+
+    AMB("AMB");
+
+    private String value;
+
+    VehiculeTypeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static VehiculeTypeEnum fromValue(String value) {
+      for (VehiculeTypeEnum b : VehiculeTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_VEHICULE_TYPE = "vehiculeType";
+  private VehiculeTypeEnum vehiculeType;
+
+  public static final String JSON_PROPERTY_MEDICAL_TRANSPORT =
+      "medicalTransport";
+  private Boolean medicalTransport;
+
+  /**
+   * Indique le type de destination en cas de décision d&#39;orientation (cf.
+   * nomenclature associée)
+   */
+  public enum OrientationTypeEnum {
+    URGENCES("URGENCES"),
+
+    SANTE("SANTE"),
+
+    CABINET("CABINET"),
+
+    DOMICILE("DOMICILE"),
+
+    EPHAD("EPHAD"),
+
+    AUTRE("AUTRE");
+
+    private String value;
+
+    OrientationTypeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static OrientationTypeEnum fromValue(String value) {
+      for (OrientationTypeEnum b : OrientationTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_ORIENTATION_TYPE = "orientationType";
+  private OrientationTypeEnum orientationType;
 
   public MedicalNote() {}
 
@@ -197,6 +539,128 @@ public class MedicalNote {
     this.freetext = freetext;
   }
 
+  public MedicalNote decisionType(DecisionTypeEnum decisionType) {
+
+    this.decisionType = decisionType;
+    return this;
+  }
+
+  /**
+   * A valoriser avec le type de décision prise (cf.nomenclature associée)
+   * @return decisionType
+   **/
+  @JsonProperty(JSON_PROPERTY_DECISION_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public DecisionTypeEnum getDecisionType() {
+    return decisionType;
+  }
+
+  @JsonProperty(JSON_PROPERTY_DECISION_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDecisionType(DecisionTypeEnum decisionType) {
+    this.decisionType = decisionType;
+  }
+
+  public MedicalNote resourceType(ResourceTypeEnum resourceType) {
+
+    this.resourceType = resourceType;
+    return this;
+  }
+
+  /**
+   * A valoriser avec le type de ressource souhaitée ou engagée (cf.nomenclature
+   *associée) - en fonction du type de décision. A fournir obligatoirement pour
+   *une décision d&#39;intervention ou de transport/orientation.
+   * @return resourceType
+   **/
+  @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public ResourceTypeEnum getResourceType() {
+    return resourceType;
+  }
+
+  @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setResourceType(ResourceTypeEnum resourceType) {
+    this.resourceType = resourceType;
+  }
+
+  public MedicalNote vehiculeType(VehiculeTypeEnum vehiculeType) {
+
+    this.vehiculeType = vehiculeType;
+    return this;
+  }
+
+  /**
+   * A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature
+   *associée) en fonction du type de décision. A fournir obligatoirement pour
+   *une décision d&#39;intervention ou de transport/orientation.
+   * @return vehiculeType
+   **/
+  @JsonProperty(JSON_PROPERTY_VEHICULE_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public VehiculeTypeEnum getVehiculeType() {
+    return vehiculeType;
+  }
+
+  @JsonProperty(JSON_PROPERTY_VEHICULE_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVehiculeType(VehiculeTypeEnum vehiculeType) {
+    this.vehiculeType = vehiculeType;
+  }
+
+  public MedicalNote medicalTransport(Boolean medicalTransport) {
+
+    this.medicalTransport = medicalTransport;
+    return this;
+  }
+
+  /**
+   * A valoriser obligatoirement en cas de décision de transport, pour indiquer
+   *si ce dernier est médicalisé. True &#x3D; transport médicalisé False &#x3D;
+   *transport non médicalisé
+   * @return medicalTransport
+   **/
+  @JsonProperty(JSON_PROPERTY_MEDICAL_TRANSPORT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getMedicalTransport() {
+    return medicalTransport;
+  }
+
+  @JsonProperty(JSON_PROPERTY_MEDICAL_TRANSPORT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMedicalTransport(Boolean medicalTransport) {
+    this.medicalTransport = medicalTransport;
+  }
+
+  public MedicalNote orientationType(OrientationTypeEnum orientationType) {
+
+    this.orientationType = orientationType;
+    return this;
+  }
+
+  /**
+   * Indique le type de destination en cas de décision d&#39;orientation (cf.
+   *nomenclature associée)
+   * @return orientationType
+   **/
+  @JsonProperty(JSON_PROPERTY_ORIENTATION_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public OrientationTypeEnum getOrientationType() {
+    return orientationType;
+  }
+
+  @JsonProperty(JSON_PROPERTY_ORIENTATION_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOrientationType(OrientationTypeEnum orientationType) {
+    this.orientationType = orientationType;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -210,12 +674,19 @@ public class MedicalNote {
         Objects.equals(this.operator, medicalNote.operator) &&
         Objects.equals(this.idObs, medicalNote.idObs) &&
         Objects.equals(this.creation, medicalNote.creation) &&
-        Objects.equals(this.freetext, medicalNote.freetext);
+        Objects.equals(this.freetext, medicalNote.freetext) &&
+        Objects.equals(this.decisionType, medicalNote.decisionType) &&
+        Objects.equals(this.resourceType, medicalNote.resourceType) &&
+        Objects.equals(this.vehiculeType, medicalNote.vehiculeType) &&
+        Objects.equals(this.medicalTransport, medicalNote.medicalTransport) &&
+        Objects.equals(this.orientationType, medicalNote.orientationType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(idPat, operator, idObs, creation, freetext);
+    return Objects.hash(idPat, operator, idObs, creation, freetext,
+                        decisionType, resourceType, vehiculeType,
+                        medicalTransport, orientationType);
   }
 
   @Override
@@ -227,6 +698,21 @@ public class MedicalNote {
     sb.append("    idObs: ").append(toIndentedString(idObs)).append("\n");
     sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
+    sb.append("    decisionType: ")
+        .append(toIndentedString(decisionType))
+        .append("\n");
+    sb.append("    resourceType: ")
+        .append(toIndentedString(resourceType))
+        .append("\n");
+    sb.append("    vehiculeType: ")
+        .append(toIndentedString(vehiculeType))
+        .append("\n");
+    sb.append("    medicalTransport: ")
+        .append(toIndentedString(medicalTransport))
+        .append("\n");
+    sb.append("    orientationType: ")
+        .append(toIndentedString(orientationType))
+        .append("\n");
     sb.append("}");
     return sb.toString();
   }
