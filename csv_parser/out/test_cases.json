@@ -12,6 +12,7 @@
             "label": "Réception RS-EDA",
             "description": "Appel reçu par le SAMU 77 : partage en anticipation besoin en chirurgie de la main (94)",
             "file": "RS-EDA_partageDossier_DidierMorel.01a.json",
+            "model": "RS-EDA",
             "ignoredValues": [
               "$.createCaseHealth.caseId",
               "$.createCaseHealth.senderCaseId",
@@ -34,6 +35,7 @@
             "label": "Réception RS-RI",
             "description": "Engagement VSAV et VLM SMUR ",
             "file": "RS-RI_partageDossier_DidierMorel.01b.json",
+            "model": "RS-RI",
             "ignoredValues": [
               "$.resourcesInfo.caseId",
               "$.resourcesInfo.mobilizedResource[0].resourceId",
@@ -48,6 +50,7 @@
             "label": "Réception RS-EDA-MAJ",
             "description": "Malaise de l’épouse : ajout d’un patient au dossier",
             "file": "RS-EDA-MAJ_partageDossier_DidierMorel.02.json",
+            "model": "RS-EDA-MAJ",
             "ignoredValues": [
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.role",
@@ -68,6 +71,7 @@
             "label": "Réception RS-EDA",
             "description": "Appel reçu par le SAMU 95 : situation ressources tendue",
             "file": "RS-EDA_partageDossier_LolaHalimi.01a.json",
+            "model": "RS-EDA",
             "ignoredValues": [
               "$.createCaseHealth.caseId",
               "$.createCaseHealth.initialAlert.caller.callerContact.channel",
@@ -92,6 +96,7 @@
             "label": "Réception RS-RI",
             "description": "Engagement VSAV",
             "file": "RS-RI_partageDossier_LolaHalimi.01b.json",
+            "model": "RS-RI",
             "ignoredValues": [
               "$.resourcesInfo.caseId",
               "$.resourcesInfo.mobilizedResource[0].resourceId",
@@ -104,6 +109,7 @@
             "label": "Réception RS-EDA-MAJ",
             "description": "Dégradation du patient détectée à la RM nécessitant l’envoi d’un SMUR",
             "file": "RS-EDA-MAJ_partageDossier_LolaHalimi.02.json",
+            "model": "RS-EDA-MAJ",
             "ignoredValues": [
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.role",
@@ -123,6 +129,7 @@
             "label": "Réception RS-EDA",
             "description": "Appel reçu par le SAMU 09 : partage au 31",
             "file": "RS-EDA_partageDossier_MonsieurX.01.json",
+            "model": "RS-EDA",
             "ignoredValues": [
               "$.createCaseHealth.caseId",
               "$.createCaseHealth.initialAlert.caller.callerContact.channel",
@@ -147,6 +154,7 @@
             "label": "Réception RS-EDA-MAJ",
             "description": "Régulation médicale : mise à jour des notes médicales",
             "file": "RS-EDA-MAJ_partageDossier_MonsieurX.02a.json",
+            "model": "RS-EDA-MAJ",
             "ignoredValues": [
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.role",
@@ -164,6 +172,7 @@
             "label": "Réception RS-EDA-MAJ",
             "description": "Régulation médicale : ajout décision",
             "file": "RS-EDA-MAJ_partageDossier_MonsieurX.02b.json",
+            "model": "RS-EDA-MAJ",
             "ignoredValues": [
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.decision[0].operator.role",
@@ -176,6 +185,7 @@
             "label": "Réception RS-RI",
             "description": "Engagement ambulance privée",
             "file": "RS-RI_partageRessources_MonsieurX.03.json",
+            "model": "RS-RI",
             "ignoredValues": [
               "$.resourcesInfo.caseId",
               "$.resourcesInfo.mobilizedResource[0].resourceId",
@@ -196,6 +206,7 @@
             "label": "Réception RS-EDA",
             "description": "Appel reçu par le SAMU 95 : partage au 78 car détection d’appel limitrophe",
             "file": "RS-EDA_partageDossier_OuardiaBoudadi.01.json",
+            "model": "RS-EDA",
             "ignoredValues": [
               "$.createCaseHealth.caseId",
               "$.createCaseHealth.senderCaseId",
@@ -215,6 +226,7 @@
             "label": "Réception RS-EDA-MAJ",
             "description": "Transfert d’appel terminé et prise en charge côté 78.",
             "file": "RS-EDA-MAJ_priseEnCharge_OuardiaBoudadi.02.json",
+            "model": "RS-EDA-MAJ",
             "ignoredValues": [
               "$.createCaseHealthUpdate.owner",
               "$.createCaseHealthUpdate.caseId"
@@ -232,6 +244,7 @@
             "label": "Réception RS-EDA",
             "description": "Appel reçu par le SAMU 80 : partage au 76A car détection d’appel limitrophe",
             "file": "RS-EDA_partageDossier_EnfantsNguyen.01.json",
+            "model": "RS-EDA",
             "ignoredValues": [
               "$.createCaseHealth.caseId",
               "$.createCaseHealth.senderCaseId",
@@ -255,6 +268,7 @@
             "label": "Réception RS-EDA-MAJ",
             "description": "Transfert d’appel terminé et prise en charge côté 76A",
             "file": "RS-EDA-MAJ_priseEnCharge_EnfantsNguyen.02.json",
+            "model": "RS-EDA-MAJ",
             "ignoredValues": [
               "$.createCaseHealthUpdate.owner",
               "$.createCaseHealthUpdate.caseId"
@@ -266,6 +280,7 @@
             "label": "Envoi RS-EDA-MAJ",
             "description": "Régulation médicale : possible hémorragie interne",
             "file": "RS-EDA-MAJ_partageDossier_EnfantsNguyen.03a.json",
+            "model": "RS-EDA-MAJ",
             "ignoredValues": [
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.role",
@@ -293,6 +308,7 @@
             "label": "Envoi RS-RI",
             "description": "Engagement VSAV + SMUR 76A",
             "file": "RS-RI_partageDossier_EnfantsNguyen.03b.json",
+            "model": "RS-RI",
             "ignoredValues": [
               "$.resourcesInfo.caseId",
               "$.resourcesInfo.mobilizedResource[0].contact.type",
