@@ -17,6 +17,7 @@ components:
       required:
       - caseId
       - creation
+      - referenceVersion
       - qualification
       - location
       properties:
@@ -65,6 +66,18 @@ components:
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
+        referenceVersion:
+          type: string
+          title: "Version des nomenclatures du r\xE9f\xE9rentiel CISU"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/referenceVersion
+          description: "Indique le num\xE9ro de version du r\xE9f\xE9rentiel des nomenclatures\
+            \ des codes transmis. \nCela permet aux diff\xE9rents syst\xE8mes de s'assurer\
+            \ qu'ils utilisent la m\xEAme version des codes de nomenclature que leurs\
+            \ partenaires."
+          examples:
+          - '1.2'
         qualification:
           $ref: '#/components/schemas/qualification'
         location:

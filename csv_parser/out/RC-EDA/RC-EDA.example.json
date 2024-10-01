@@ -2,6 +2,7 @@
     "caseId": "fr.health.samu440.DRFR15440241550012",
     "senderCaseId": "DRFR15440241550012",
     "creation": "2022-09-27T08:23:34+02:00",
+    "referenceVersion": "1.2",
     "qualification": {
         "riskThreat": [
             {

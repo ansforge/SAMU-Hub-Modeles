@@ -50,9 +50,11 @@ import java.util.Objects;
  */
 @JsonPropertyOrder(
     {CreateCase.JSON_PROPERTY_CASE_ID, CreateCase.JSON_PROPERTY_SENDER_CASE_ID,
-     CreateCase.JSON_PROPERTY_CREATION, CreateCase.JSON_PROPERTY_QUALIFICATION,
-     CreateCase.JSON_PROPERTY_LOCATION, CreateCase.JSON_PROPERTY_INITIAL_ALERT,
-     CreateCase.JSON_PROPERTY_NEW_ALERT, CreateCase.JSON_PROPERTY_FREETEXT,
+     CreateCase.JSON_PROPERTY_CREATION,
+     CreateCase.JSON_PROPERTY_REFERENCE_VERSION,
+     CreateCase.JSON_PROPERTY_QUALIFICATION, CreateCase.JSON_PROPERTY_LOCATION,
+     CreateCase.JSON_PROPERTY_INITIAL_ALERT, CreateCase.JSON_PROPERTY_NEW_ALERT,
+     CreateCase.JSON_PROPERTY_FREETEXT,
      CreateCase.JSON_PROPERTY_ADDITIONAL_INFORMATION})
 @JsonTypeName("createCase")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -68,6 +70,10 @@ public class CreateCase {
 
   public static final String JSON_PROPERTY_CREATION = "creation";
   private OffsetDateTime creation;
+
+  public static final String JSON_PROPERTY_REFERENCE_VERSION =
+      "referenceVersion";
+  private String referenceVersion;
 
   public static final String JSON_PROPERTY_QUALIFICATION = "qualification";
   private Qualification qualification;
@@ -171,6 +177,31 @@ public class CreateCase {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCreation(OffsetDateTime creation) {
     this.creation = creation;
+  }
+
+  public CreateCase referenceVersion(String referenceVersion) {
+
+    this.referenceVersion = referenceVersion;
+    return this;
+  }
+
+  /**
+   * Indique le numéro de version du référentiel des nomenclatures des codes
+   *transmis.  Cela permet aux différents systèmes de s&#39;assurer qu&#39;ils
+   *utilisent la même version des codes de nomenclature que leurs partenaires.
+   * @return referenceVersion
+   **/
+  @JsonProperty(JSON_PROPERTY_REFERENCE_VERSION)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getReferenceVersion() {
+    return referenceVersion;
+  }
+
+  @JsonProperty(JSON_PROPERTY_REFERENCE_VERSION)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setReferenceVersion(String referenceVersion) {
+    this.referenceVersion = referenceVersion;
   }
 
   public CreateCase qualification(Qualification qualification) {
@@ -357,6 +388,7 @@ public class CreateCase {
     return Objects.equals(this.caseId, createCase.caseId) &&
         Objects.equals(this.senderCaseId, createCase.senderCaseId) &&
         Objects.equals(this.creation, createCase.creation) &&
+        Objects.equals(this.referenceVersion, createCase.referenceVersion) &&
         Objects.equals(this.qualification, createCase.qualification) &&
         Objects.equals(this.location, createCase.location) &&
         Objects.equals(this.initialAlert, createCase.initialAlert) &&
@@ -368,9 +400,9 @@ public class CreateCase {
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, senderCaseId, creation, qualification, location,
-                        initialAlert, newAlert, freetext,
-                        additionalInformation);
+    return Objects.hash(caseId, senderCaseId, creation, referenceVersion,
+                        qualification, location, initialAlert, newAlert,
+                        freetext, additionalInformation);
   }
 
   @Override
@@ -382,6 +414,9 @@ public class CreateCase {
         .append(toIndentedString(senderCaseId))
         .append("\n");
     sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
+    sb.append("    referenceVersion: ")
+        .append(toIndentedString(referenceVersion))
+        .append("\n");
     sb.append("    qualification: ")
         .append(toIndentedString(qualification))
         .append("\n");

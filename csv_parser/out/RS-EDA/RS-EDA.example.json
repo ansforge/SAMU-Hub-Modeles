@@ -2,7 +2,6 @@
     "caseId": "fr.health.samu440.DRFR15440241550012",
     "senderCaseId": "DRFR15440241550012",
     "creation": "2022-09-27T08:23:34+02:00",
-    "event": "fr.health.si-samu780.event.1234567896",
     "perimeter": "AMU",
     "interventionType": "PRIMAIRE",
     "qualification": {

@@ -41,15 +41,6 @@
             "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
             "format": "date-time"
         },
-        "event": {
-            "type": "string",
-            "title": "Identifiant partagé de l'évènement",
-            "x-health-only": false,
-            "x-cols": 6,
-            "example": "example.json#/event",
-            "description": "Identifiant partagé de l’évènement, généré une seule fois par le système qui créé l’évènement et le partage (SI-SAMU, SSE, etc.)\nValorisé comme suit lors de sa création : \n{OrgId émetteur}.event.{n°évènement unique dans le système émetteur}",
-            "pattern": "^([\\w-]+\\.){3,4}event(\\.[\\w-]+){1,2}$"
-        },
         "perimeter": {
             "type": "string",
             "title": "Filière",

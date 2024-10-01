@@ -33,18 +33,6 @@ L'indicateur de fuseau horaire Z ne doit pas être utilisé.
 Il doit être renseigné à la fin du processus de la  création de la première alerte.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="event">
-                <annotation>
-                    <documentation>Identifiant partagé de l’évènement, généré une seule fois par le système qui créé l’évènement et le partage (SI-SAMU, SSE, etc.)
-Valorisé comme suit lors de sa création : 
-{OrgId émetteur}.event.{n°évènement unique dans le système émetteur}</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <pattern value="([\w-]+\.){3,4}event(\.[\w-]+){1,2}"/>
-                    </restriction>
-                </simpleType>
-            </element>
             <element minOccurs="0" name="perimeter">
                 <annotation>
                     <documentation>Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée.</documentation>

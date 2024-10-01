@@ -66,20 +66,6 @@ components:
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
-        event:
-          type: string
-          title: "Identifiant partag\xE9 de l'\xE9v\xE8nement"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/event
-          description: "Identifiant partag\xE9 de l\u2019\xE9v\xE8nement, g\xE9n\xE9\
-            r\xE9 une seule fois par le syst\xE8me qui cr\xE9\xE9 l\u2019\xE9v\xE8\
-            nement et le partage (SI-SAMU, SSE, etc.)\nValoris\xE9 comme suit lors\
-            \ de sa cr\xE9ation : \n{OrgId \xE9metteur}.event.{n\xB0\xE9v\xE8nement\
-            \ unique dans le syst\xE8me \xE9metteur}"
-          pattern: ^([\w-]+\.){3,4}event(\.[\w-]+){1,2}$
-          examples:
-          - fr.health.si-samu780.event.1234567896
         perimeter:
           type: string
           title: "Fili\xE8re"

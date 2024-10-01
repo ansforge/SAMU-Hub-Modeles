@@ -54,7 +54,6 @@ import java.util.Objects;
 @JsonPropertyOrder({CreateCaseHealth.JSON_PROPERTY_CASE_ID,
                     CreateCaseHealth.JSON_PROPERTY_SENDER_CASE_ID,
                     CreateCaseHealth.JSON_PROPERTY_CREATION,
-                    CreateCaseHealth.JSON_PROPERTY_EVENT,
                     CreateCaseHealth.JSON_PROPERTY_PERIMETER,
                     CreateCaseHealth.JSON_PROPERTY_INTERVENTION_TYPE,
                     CreateCaseHealth.JSON_PROPERTY_QUALIFICATION,
@@ -79,9 +78,6 @@ public class CreateCaseHealth {
 
   public static final String JSON_PROPERTY_CREATION = "creation";
   private OffsetDateTime creation;
-
-  public static final String JSON_PROPERTY_EVENT = "event";
-  private String event;
 
   /**
    * Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être
@@ -272,32 +268,6 @@ public class CreateCaseHealth {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCreation(OffsetDateTime creation) {
     this.creation = creation;
-  }
-
-  public CreateCaseHealth event(String event) {
-
-    this.event = event;
-    return this;
-  }
-
-  /**
-   * Identifiant partagé de l’évènement, généré une seule fois par le système
-   *qui créé l’évènement et le partage (SI-SAMU, SSE, etc.) Valorisé comme suit
-   *lors de sa création :  {OrgId émetteur}.event.{n°évènement unique dans le
-   *système émetteur}
-   * @return event
-   **/
-  @JsonProperty(JSON_PROPERTY_EVENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getEvent() {
-    return event;
-  }
-
-  @JsonProperty(JSON_PROPERTY_EVENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEvent(String event) {
-    this.event = event;
   }
 
   public CreateCaseHealth perimeter(PerimeterEnum perimeter) {
@@ -597,7 +567,6 @@ public class CreateCaseHealth {
     return Objects.equals(this.caseId, createCaseHealth.caseId) &&
         Objects.equals(this.senderCaseId, createCaseHealth.senderCaseId) &&
         Objects.equals(this.creation, createCaseHealth.creation) &&
-        Objects.equals(this.event, createCaseHealth.event) &&
         Objects.equals(this.perimeter, createCaseHealth.perimeter) &&
         Objects.equals(this.interventionType,
                        createCaseHealth.interventionType) &&
@@ -614,7 +583,7 @@ public class CreateCaseHealth {
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, senderCaseId, creation, event, perimeter,
+    return Objects.hash(caseId, senderCaseId, creation, perimeter,
                         interventionType, qualification, location, initialAlert,
                         owner, patient, medicalNote, decision,
                         additionalInformation);
@@ -629,7 +598,6 @@ public class CreateCaseHealth {
         .append(toIndentedString(senderCaseId))
         .append("\n");
     sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
-    sb.append("    event: ").append(toIndentedString(event)).append("\n");
     sb.append("    perimeter: ")
         .append(toIndentedString(perimeter))
         .append("\n");
