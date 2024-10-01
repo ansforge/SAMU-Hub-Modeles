@@ -82,7 +82,7 @@ module Resources
         invalid_properties.push('invalid value for "case_id", case_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/^fr(\.[\w-]+){3,4}$/)
+      pattern = Regexp.new(/fr(\.[\w-]+){3,4}/)
       if @case_id !~ pattern
         invalid_properties.push("invalid value for \"case_id\", must conform to the pattern #{pattern}.")
       end
@@ -103,7 +103,7 @@ module Resources
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @case_id.nil?
-      return false if @case_id !~ Regexp.new(/^fr(\.[\w-]+){3,4}$/)
+      return false if @case_id !~ Regexp.new(/fr(\.[\w-]+){3,4}/)
       return false if @mobilized_resource.nil?
       return false if @mobilized_resource.length < 1
       true
@@ -116,7 +116,7 @@ module Resources
         fail ArgumentError, 'case_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^fr(\.[\w-]+){3,4}$/)
+      pattern = Regexp.new(/fr(\.[\w-]+){3,4}/)
       if case_id !~ pattern
         fail ArgumentError, "invalid value for \"case_id\", must conform to the pattern #{pattern}."
       end

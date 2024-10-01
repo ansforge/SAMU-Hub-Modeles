@@ -107,7 +107,7 @@ module Health
         invalid_properties.push('invalid value for "value", value cannot be nil.')
       end
 
-      pattern = Regexp.new(/^([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])$/)
+      pattern = Regexp.new(/([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])/)
       if @value !~ pattern
         invalid_properties.push("invalid value for \"value\", must conform to the pattern #{pattern}.")
       end
@@ -123,7 +123,7 @@ module Health
       source_validator = EnumAttributeValidator.new('String', ["FINESS_ADMINISTRATIF", "FINESS_GEOGRAPHIQUE", "SIREN", "SIRET", "APE_NAF"])
       return false unless source_validator.valid?(@source)
       return false if @value.nil?
-      return false if @value !~ Regexp.new(/^([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])$/)
+      return false if @value !~ Regexp.new(/([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])/)
       true
     end
 
@@ -144,7 +144,7 @@ module Health
         fail ArgumentError, 'value cannot be nil'
       end
 
-      pattern = Regexp.new(/^([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])$/)
+      pattern = Regexp.new(/([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])/)
       if value !~ pattern
         fail ArgumentError, "invalid value for \"value\", must conform to the pattern #{pattern}."
       end

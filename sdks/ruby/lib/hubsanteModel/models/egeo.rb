@@ -122,7 +122,7 @@ module Emsi
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       if !@datime.nil? && @datime !~ pattern
         invalid_properties.push("invalid value for \"datime\", must conform to the pattern #{pattern}.")
       end
@@ -134,7 +134,7 @@ module Emsi
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@datime.nil? && @datime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      return false if !@datime.nil? && @datime !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       type_validator = EnumAttributeValidator.new('String', ["AIR", "CMB", "DGR", "FLAME", "GEN", "PLUME", "SMOKE", "VULN", "AIR/COR", "AIR/FLDZ", "AIR/LZ", "AIR/NOFLZN", "AIR/PZ", "AIR/UAVASP", "CMB/CZ", "CMB/DNGR", "CMB/EXTZN", "CMB/IMPTPT", "DGR/BIO", "DGR/BOMB", "DGR/CBRNHZ", "DGR/CBRNRSD", "DGR/CHM", "DGR/HZD", "DGR/MIND", "DGR/NGA", "DGR/NGACIV", "DGR/NUKCNL", "DGR/OBSGEN", "DGR/PRHBAR", "DGR/RAD", "DGR/RADCLD", "DGR/RSTR", "DGR/SGA", "DGR/SITKIL", "DGR/UNXOD", "GEN/AOR", "GEN/ASYGEN", "GEN/ASYSPL", "GEN/BDYOR", "GEN/BDYPOA", "GEN/BDYPT", "GEN/CKPGEN", "GEN/CNTPTL", "GEN/COLDZ", "GEN/COMCKP", "GEN/COMLOW", "GEN/COMMZ", "GEN/COMUP", "GEN/CONTAR", "GEN/CORDON", "GEN/CRDPNT", "GEN/DIVRT", "GEN/DROPPT", "GEN/ENTPT", "GEN/EVENT", "GEN/EXITPT", "GEN/FWCTPT", "GEN/HOTZ", "GEN/INCGRD", "GEN/LA", "GEN/LIMARE", "GEN/LOCAT", "GEN/MSR", "GEN/PSSGPT", "GEN/PTINT", "GEN/RCNSAR", "GEN/RNDZPT", "GEN/ROUTE", "GEN/SAFERT", "GEN/SAFZ", "GEN/SARPNT", "GEN/SEARAR", "GEN/SPRISK", "GEN/STRTPT", "GEN/SUPARE", "GEN/SUPPT", "GEN/TRSTRT", "GEN/WARMZ"])
       return false unless type_validator.valid?(@type)
       true
@@ -147,7 +147,7 @@ module Emsi
         fail ArgumentError, 'datime cannot be nil'
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       if datime !~ pattern
         fail ArgumentError, "invalid value for \"datime\", must conform to the pattern #{pattern}."
       end

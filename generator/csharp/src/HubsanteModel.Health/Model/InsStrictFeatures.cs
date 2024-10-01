@@ -34,28 +34,28 @@ namespace HubsanteModel.Health.Model
         public enum SexEnum
         {
             /// <summary>
-            /// Enum M for value: M
+            /// Enum MASC for value: MASC
             /// </summary>
-            [EnumMember(Value = "M")]
-            M = 1,
+            [EnumMember(Value = "MASC")]
+            MASC = 1,
 
             /// <summary>
-            /// Enum F for value: F
+            /// Enum FEM for value: FEM
             /// </summary>
-            [EnumMember(Value = "F")]
-            F = 2,
+            [EnumMember(Value = "FEM")]
+            FEM = 2,
 
             /// <summary>
-            /// Enum O for value: O
+            /// Enum AUTRE for value: AUTRE
             /// </summary>
-            [EnumMember(Value = "O")]
-            O = 3,
+            [EnumMember(Value = "AUTRE")]
+            AUTRE = 3,
 
             /// <summary>
-            /// Enum UN for value: UN
+            /// Enum INCONNU for value: INCONNU
             /// </summary>
-            [EnumMember(Value = "UN")]
-            UN = 4
+            [EnumMember(Value = "INCONNU")]
+            INCONNU = 4
         }
 
 
@@ -188,7 +188,7 @@ namespace HubsanteModel.Health.Model
         {
             if (this.BirthDate != null) {
                 // BirthDate (string) pattern
-                Regex regexBirthDate = new Regex(@"^\d{4}-\d{2}-\d{2}$", RegexOptions.CultureInvariant);
+                Regex regexBirthDate = new Regex(@"\d{4}-\d{2}-\d{2}", RegexOptions.CultureInvariant);
                 if (!regexBirthDate.Match(this.BirthDate).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for BirthDate, must match a pattern of " + regexBirthDate, new [] { "BirthDate" });

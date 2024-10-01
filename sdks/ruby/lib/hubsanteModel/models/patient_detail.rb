@@ -113,7 +113,7 @@ module Health
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      pattern = Regexp.new(/^P[0-9]{1,3}[YMWD]$/)
+      pattern = Regexp.new(/P[0-9]{1,3}[YMWD]/)
       if !@age.nil? && @age !~ pattern
         invalid_properties.push("invalid value for \"age\", must conform to the pattern #{pattern}.")
       end
@@ -125,7 +125,7 @@ module Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@age.nil? && @age !~ Regexp.new(/^P[0-9]{1,3}[YMWD]$/)
+      return false if !@age.nil? && @age !~ Regexp.new(/P[0-9]{1,3}[YMWD]/)
       care_level_validator = EnumAttributeValidator.new('String', ["R1", "R2", "R3", "R4"])
       return false unless care_level_validator.valid?(@care_level)
       true
@@ -138,7 +138,7 @@ module Health
         fail ArgumentError, 'age cannot be nil'
       end
 
-      pattern = Regexp.new(/^P[0-9]{1,3}[YMWD]$/)
+      pattern = Regexp.new(/P[0-9]{1,3}[YMWD]/)
       if age !~ pattern
         fail ArgumentError, "invalid value for \"age\", must conform to the pattern #{pattern}."
       end

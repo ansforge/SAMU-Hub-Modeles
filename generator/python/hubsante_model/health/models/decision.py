@@ -39,8 +39,8 @@ class Decision(BaseModel):
     @field_validator('creation')
     def creation_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/")
+        if not re.match(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}", value):
+            raise ValueError(r"must validate the regular expression /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/")
         return value
 
     @field_validator('decision_type')
@@ -56,8 +56,8 @@ class Decision(BaseModel):
         if value is None:
             return value
 
-        if value not in ('SMUR', 'MED', 'PARAMED', 'HOSPIT', 'LIB', 'MEDC', 'PHARMA', 'INF', 'MEDSPE', 'DENT', 'AUTREPRO', 'TSU ', 'SIS', 'MSP', 'ISP', 'SP', 'AASC', 'FDO', 'HELIFSI', 'VLFSI', 'FFSI', 'DGDD', 'AUTRE', 'ADM', 'DAE', 'INCONNU'):
-            raise ValueError("must be one of enum values ('SMUR', 'MED', 'PARAMED', 'HOSPIT', 'LIB', 'MEDC', 'PHARMA', 'INF', 'MEDSPE', 'DENT', 'AUTREPRO', 'TSU ', 'SIS', 'MSP', 'ISP', 'SP', 'AASC', 'FDO', 'HELIFSI', 'VLFSI', 'FFSI', 'DGDD', 'AUTRE', 'ADM', 'DAE', 'INCONNU')")
+        if value not in ('SMUR', 'HOSPIT', 'LIB', 'TSU ', 'SIS', 'AASC', 'FDO', 'AUTRE'):
+            raise ValueError("must be one of enum values ('SMUR', 'HOSPIT', 'LIB', 'TSU ', 'SIS', 'AASC', 'FDO', 'AUTRE')")
         return value
 
     @field_validator('vehicule_type')

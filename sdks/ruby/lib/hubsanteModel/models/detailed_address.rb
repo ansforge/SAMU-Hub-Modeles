@@ -81,7 +81,7 @@ module Rpis
         invalid_properties.push('invalid value for "insee_code", insee_code cannot be nil.')
       end
 
-      pattern = Regexp.new(/^[0-9]{5}$/)
+      pattern = Regexp.new(/[0-9]{5}/)
       if @insee_code !~ pattern
         invalid_properties.push("invalid value for \"insee_code\", must conform to the pattern #{pattern}.")
       end
@@ -98,7 +98,7 @@ module Rpis
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @insee_code.nil?
-      return false if @insee_code !~ Regexp.new(/^[0-9]{5}$/)
+      return false if @insee_code !~ Regexp.new(/[0-9]{5}/)
       return false if @city.nil?
       true
     end
@@ -110,7 +110,7 @@ module Rpis
         fail ArgumentError, 'insee_code cannot be nil'
       end
 
-      pattern = Regexp.new(/^[0-9]{5}$/)
+      pattern = Regexp.new(/[0-9]{5}/)
       if insee_code !~ pattern
         fail ArgumentError, "invalid value for \"insee_code\", must conform to the pattern #{pattern}."
       end

@@ -105,7 +105,7 @@ module Health
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      pattern = Regexp.new(/^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/([\w-]+\.){3,4}patient(\.[\w-]+){1,2}/)
       if !@id_pat.nil? && @id_pat !~ pattern
         invalid_properties.push("invalid value for \"id_pat\", must conform to the pattern #{pattern}.")
       end
@@ -118,12 +118,12 @@ module Health
         invalid_properties.push('invalid value for "id_obs", id_obs cannot be nil.')
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}/)
       if @id_obs !~ pattern
         invalid_properties.push("invalid value for \"id_obs\", must conform to the pattern #{pattern}.")
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       if !@creation.nil? && @creation !~ pattern
         invalid_properties.push("invalid value for \"creation\", must conform to the pattern #{pattern}.")
       end
@@ -139,11 +139,11 @@ module Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@id_pat.nil? && @id_pat !~ Regexp.new(/^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$/)
+      return false if !@id_pat.nil? && @id_pat !~ Regexp.new(/([\w-]+\.){3,4}patient(\.[\w-]+){1,2}/)
       return false if @operator.nil?
       return false if @id_obs.nil?
-      return false if @id_obs !~ Regexp.new(/^([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}$/)
-      return false if !@creation.nil? && @creation !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      return false if @id_obs !~ Regexp.new(/([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}/)
+      return false if !@creation.nil? && @creation !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       return false if @freetext.nil?
       true
     end
@@ -155,7 +155,7 @@ module Health
         fail ArgumentError, 'id_pat cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/([\w-]+\.){3,4}patient(\.[\w-]+){1,2}/)
       if id_pat !~ pattern
         fail ArgumentError, "invalid value for \"id_pat\", must conform to the pattern #{pattern}."
       end
@@ -170,7 +170,7 @@ module Health
         fail ArgumentError, 'id_obs cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}/)
       if id_obs !~ pattern
         fail ArgumentError, "invalid value for \"id_obs\", must conform to the pattern #{pattern}."
       end
@@ -185,7 +185,7 @@ module Health
         fail ArgumentError, 'creation cannot be nil'
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       if creation !~ pattern
         fail ArgumentError, "invalid value for \"creation\", must conform to the pattern #{pattern}."
       end

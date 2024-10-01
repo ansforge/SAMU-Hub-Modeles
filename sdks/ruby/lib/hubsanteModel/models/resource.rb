@@ -48,6 +48,8 @@ module Resources
 
     attr_accessor :state
 
+    attr_accessor :coord
+
     attr_accessor :contact
 
     attr_accessor :freetext
@@ -90,6 +92,7 @@ module Resources
         :'center_city' => :'centerCity',
         :'team' => :'team',
         :'state' => :'state',
+        :'coord' => :'coord',
         :'contact' => :'contact',
         :'freetext' => :'freetext'
       }
@@ -116,6 +119,7 @@ module Resources
         :'center_city' => :'String',
         :'team' => :'Team',
         :'state' => :'Array<State>',
+        :'coord' => :'Coord',
         :'contact' => :'Contact',
         :'freetext' => :'Array<String>'
       }
@@ -202,6 +206,10 @@ module Resources
         end
       end
 
+      if attributes.key?(:'coord')
+        self.coord = attributes[:'coord']
+      end
+
       if attributes.key?(:'contact')
         self.contact = attributes[:'contact']
       end
@@ -222,7 +230,7 @@ module Resources
         invalid_properties.push('invalid value for "datetime", datetime cannot be nil.')
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       if @datetime !~ pattern
         invalid_properties.push("invalid value for \"datetime\", must conform to the pattern #{pattern}.")
       end
@@ -231,12 +239,12 @@ module Resources
         invalid_properties.push('invalid value for "resource_id", resource_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/([\w-]+\.){3,4}resource(\.[\w-]+){1,2}/)
       if @resource_id !~ pattern
         invalid_properties.push("invalid value for \"resource_id\", must conform to the pattern #{pattern}.")
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,4}request(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/([\w-]+\.){3,4}request(\.[\w-]+){1,2}/)
       if !@request_id.nil? && @request_id !~ pattern
         invalid_properties.push("invalid value for \"request_id\", must conform to the pattern #{pattern}.")
       end
@@ -245,7 +253,7 @@ module Resources
         invalid_properties.push('invalid value for "resource_type", resource_type cannot be nil.')
       end
 
-      pattern = Regexp.new(/^[0-9]{5}$/)
+      pattern = Regexp.new(/[0-9]{5}/)
       if !@center_city.nil? && @center_city !~ pattern
         invalid_properties.push("invalid value for \"center_city\", must conform to the pattern #{pattern}.")
       end
@@ -258,16 +266,16 @@ module Resources
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @datetime.nil?
-      return false if @datetime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      return false if @datetime !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       return false if @resource_id.nil?
-      return false if @resource_id !~ Regexp.new(/^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$/)
-      return false if !@request_id.nil? && @request_id !~ Regexp.new(/^([\w-]+\.){3,4}request(\.[\w-]+){1,2}$/)
+      return false if @resource_id !~ Regexp.new(/([\w-]+\.){3,4}resource(\.[\w-]+){1,2}/)
+      return false if !@request_id.nil? && @request_id !~ Regexp.new(/([\w-]+\.){3,4}request(\.[\w-]+){1,2}/)
       return false if @resource_type.nil?
-      resource_type_validator = EnumAttributeValidator.new('String', ["SMUR", "MED", "PARAMED", "HOSPIT", "LIB", "MEDC", "PHARMA", "INF", "MEDSPE", "DENT", "AUTREPRO", "TSU ", "SIS", "MSP", "ISP", "SP", "AASC", "FDO", "HELIFSI", "VLFSI", "FFSI", "DGDD", "AUTRE", "ADM", "DAE", "INCONNU"])
+      resource_type_validator = EnumAttributeValidator.new('String', ["SMUR", "HOSPIT", "LIB", "TSU ", "SIS", "AASC", "FDO", "AUTRE"])
       return false unless resource_type_validator.valid?(@resource_type)
       vehicule_type_validator = EnumAttributeValidator.new('String', ["AASC", "VLSC", "VPSP", "AUTRESC", "AUTREVEC", "TAXI", "TRANSP", "TRAIN", "AVION", "PERSO", "APIED", "AUTRE", "AUTRETRA", "FSI", "HELIFSI", "VLFSI", "FFSI", "VHFSI", "LIB", "MEDV", "INF", "AUTREPRO", "SIS", "VSAV", "GRIMP", "VPL", "SRSIS", "FEUSIS", "VPMA", "VCH", "VR", "PCSIS", "VLISP", "VLMSP", "VLCG", "VLSIS", "DRAGON", "AVSC", "MOYSSE", "AUTRESIS", "NAVISIS", "SMUR", "VLM", "VL", "PSM1", "PSM2", "PSM3", "PSMP", "VPC", "AR", "AR-BAR", "AR-PED", "HELISMUR", "HELISAN", "AVSMUR", "AVSAN", "NAVISMUR", "TSU", "VSL", "AMB-GV", "AMB-PV", "AMB-BAR", "AMB"])
       return false unless vehicule_type_validator.valid?(@vehicule_type)
-      return false if !@center_city.nil? && @center_city !~ Regexp.new(/^[0-9]{5}$/)
+      return false if !@center_city.nil? && @center_city !~ Regexp.new(/[0-9]{5}/)
       true
     end
 
@@ -278,7 +286,7 @@ module Resources
         fail ArgumentError, 'datetime cannot be nil'
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       if datetime !~ pattern
         fail ArgumentError, "invalid value for \"datetime\", must conform to the pattern #{pattern}."
       end
@@ -293,7 +301,7 @@ module Resources
         fail ArgumentError, 'resource_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/([\w-]+\.){3,4}resource(\.[\w-]+){1,2}/)
       if resource_id !~ pattern
         fail ArgumentError, "invalid value for \"resource_id\", must conform to the pattern #{pattern}."
       end
@@ -308,7 +316,7 @@ module Resources
         fail ArgumentError, 'request_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,4}request(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/([\w-]+\.){3,4}request(\.[\w-]+){1,2}/)
       if request_id !~ pattern
         fail ArgumentError, "invalid value for \"request_id\", must conform to the pattern #{pattern}."
       end
@@ -319,7 +327,7 @@ module Resources
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] resource_type Object to be assigned
     def resource_type=(resource_type)
-      validator = EnumAttributeValidator.new('String', ["SMUR", "MED", "PARAMED", "HOSPIT", "LIB", "MEDC", "PHARMA", "INF", "MEDSPE", "DENT", "AUTREPRO", "TSU ", "SIS", "MSP", "ISP", "SP", "AASC", "FDO", "HELIFSI", "VLFSI", "FFSI", "DGDD", "AUTRE", "ADM", "DAE", "INCONNU"])
+      validator = EnumAttributeValidator.new('String', ["SMUR", "HOSPIT", "LIB", "TSU ", "SIS", "AASC", "FDO", "AUTRE"])
       unless validator.valid?(resource_type)
         fail ArgumentError, "invalid value for \"resource_type\", must be one of #{validator.allowable_values}."
       end
@@ -343,7 +351,7 @@ module Resources
         fail ArgumentError, 'center_city cannot be nil'
       end
 
-      pattern = Regexp.new(/^[0-9]{5}$/)
+      pattern = Regexp.new(/[0-9]{5}/)
       if center_city !~ pattern
         fail ArgumentError, "invalid value for \"center_city\", must conform to the pattern #{pattern}."
       end
@@ -369,6 +377,7 @@ module Resources
           center_city == o.center_city &&
           team == o.team &&
           state == o.state &&
+          coord == o.coord &&
           contact == o.contact &&
           freetext == o.freetext
     end
@@ -382,7 +391,7 @@ module Resources
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [datetime, resource_id, request_id, mission_id, org_id, center_name, resource_type, vehicule_type, plate, name, center_city, team, state, contact, freetext].hash
+      [datetime, resource_id, request_id, mission_id, org_id, center_name, resource_type, vehicule_type, plate, name, center_city, team, state, coord, contact, freetext].hash
     end
 
     # Builds the object from hash

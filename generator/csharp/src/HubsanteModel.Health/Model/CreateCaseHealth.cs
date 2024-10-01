@@ -423,7 +423,7 @@ namespace HubsanteModel.Health.Model
         {
             if (this.CaseId != null) {
                 // CaseId (string) pattern
-                Regex regexCaseId = new Regex(@"^fr(\.[\w-]+){3,4}$", RegexOptions.CultureInvariant);
+                Regex regexCaseId = new Regex(@"fr(\.[\w-]+){3,4}", RegexOptions.CultureInvariant);
                 if (!regexCaseId.Match(this.CaseId).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CaseId, must match a pattern of " + regexCaseId, new [] { "CaseId" });
@@ -432,7 +432,7 @@ namespace HubsanteModel.Health.Model
 
             if (this.Creation != null) {
                 // Creation (DateTime) pattern
-                Regex regexCreation = new Regex(@"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", RegexOptions.CultureInvariant);
+                Regex regexCreation = new Regex(@"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}", RegexOptions.CultureInvariant);
                 if (!regexCreation.Match(this.Creation).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Creation, must match a pattern of " + regexCreation, new [] { "Creation" });
@@ -441,7 +441,7 @@ namespace HubsanteModel.Health.Model
 
             if (this.Owner != null) {
                 // Owner (string) pattern
-                Regex regexOwner = new Regex(@"^fr(\.[\w-]+){2,3}$", RegexOptions.CultureInvariant);
+                Regex regexOwner = new Regex(@"fr(\.[\w-]+){2,3}", RegexOptions.CultureInvariant);
                 if (!regexOwner.Match(this.Owner).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Owner, must match a pattern of " + regexOwner, new [] { "Owner" });

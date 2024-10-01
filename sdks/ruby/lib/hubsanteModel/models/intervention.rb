@@ -17,7 +17,7 @@ module Rpis
 
     attr_accessor :smur_status
 
-    attr_accessor :procedure
+    attr_accessor :actions_smur
 
     # Thésaurus SFMU-FEDORU. A valoriser par un code de la nomenclature Diagnostic SMUR.
     attr_accessor :main_diagnosis
@@ -31,7 +31,7 @@ module Rpis
         :'location' => :'location',
         :'team' => :'team',
         :'smur_status' => :'smurStatus',
-        :'procedure' => :'procedure',
+        :'actions_smur' => :'actionsSMUR',
         :'main_diagnosis' => :'mainDiagnosis',
         :'associated_diagnosis' => :'associatedDiagnosis'
       }
@@ -48,7 +48,7 @@ module Rpis
         :'location' => :'Location',
         :'team' => :'Team',
         :'smur_status' => :'ResourceStatus',
-        :'procedure' => :'Array<String>',
+        :'actions_smur' => :'Array<String>',
         :'main_diagnosis' => :'String',
         :'associated_diagnosis' => :'String'
       }
@@ -91,9 +91,9 @@ module Rpis
         self.smur_status = attributes[:'smur_status']
       end
 
-      if attributes.key?(:'procedure')
-        if (value = attributes[:'procedure']).is_a?(Array)
-          self.procedure = value
+      if attributes.key?(:'actions_smur')
+        if (value = attributes[:'actions_smur']).is_a?(Array)
+          self.actions_smur = value
         end
       end
 
@@ -146,7 +146,7 @@ module Rpis
           location == o.location &&
           team == o.team &&
           smur_status == o.smur_status &&
-          procedure == o.procedure &&
+          actions_smur == o.actions_smur &&
           main_diagnosis == o.main_diagnosis &&
           associated_diagnosis == o.associated_diagnosis
     end
@@ -160,7 +160,7 @@ module Rpis
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [location, team, smur_status, procedure, main_diagnosis, associated_diagnosis].hash
+      [location, team, smur_status, actions_smur, main_diagnosis, associated_diagnosis].hash
     end
 
     # Builds the object from hash

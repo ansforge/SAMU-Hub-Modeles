@@ -11,8 +11,8 @@ require 'time'
 
 module Geolocation
   class Position
-    # A valoriser avec l'identifiant partagé unique de la ressource engagée, normé comme suit : {orgID}.resource.{ID unique de la ressource partagée} OU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire : {orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}
-    attr_accessor :resource_id
+    # Identifiant unique de la ressource  dans le système du partenaire propriétaire
+    attr_accessor :id
 
     # Date et heure de la dernière position connue
     attr_accessor :datetime
@@ -68,7 +68,7 @@ module Geolocation
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'resource_id' => :'resourceId',
+        :'id' => :'id',
         :'datetime' => :'datetime',
         :'reception_datetime' => :'receptionDatetime',
         :'coord' => :'coord',
@@ -90,7 +90,7 @@ module Geolocation
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'resource_id' => :'String',
+        :'id' => :'String',
         :'datetime' => :'Time',
         :'reception_datetime' => :'Time',
         :'coord' => :'Array<Coord>',
@@ -125,10 +125,10 @@ module Geolocation
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'resource_id')
-        self.resource_id = attributes[:'resource_id']
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
       else
-        self.resource_id = nil
+        self.id = nil
       end
 
       if attributes.key?(:'datetime')
@@ -145,8 +145,6 @@ module Geolocation
         if (value = attributes[:'coord']).is_a?(Array)
           self.coord = value
         end
-      else
-        self.coord = nil
       end
 
       if attributes.key?(:'speed')
@@ -183,35 +181,22 @@ module Geolocation
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @resource_id.nil?
-        invalid_properties.push('invalid value for "resource_id", resource_id cannot be nil.')
-      end
-
-      pattern = Regexp.new(/^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$/)
-      if @resource_id !~ pattern
-        invalid_properties.push("invalid value for \"resource_id\", must conform to the pattern #{pattern}.")
+      if @id.nil?
+        invalid_properties.push('invalid value for "id", id cannot be nil.')
       end
 
       if @datetime.nil?
         invalid_properties.push('invalid value for "datetime", datetime cannot be nil.')
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       if @datetime !~ pattern
         invalid_properties.push("invalid value for \"datetime\", must conform to the pattern #{pattern}.")
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       if !@reception_datetime.nil? && @reception_datetime !~ pattern
         invalid_properties.push("invalid value for \"reception_datetime\", must conform to the pattern #{pattern}.")
-      end
-
-      if @coord.nil?
-        invalid_properties.push('invalid value for "coord", coord cannot be nil.')
-      end
-
-      if @coord.length < 1
-        invalid_properties.push('invalid value for "coord", number of items must be greater than or equal to 1.')
       end
 
       invalid_properties
@@ -221,13 +206,10 @@ module Geolocation
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @resource_id.nil?
-      return false if @resource_id !~ Regexp.new(/^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$/)
+      return false if @id.nil?
       return false if @datetime.nil?
-      return false if @datetime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
-      return false if !@reception_datetime.nil? && @reception_datetime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
-      return false if @coord.nil?
-      return false if @coord.length < 1
+      return false if @datetime !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      return false if !@reception_datetime.nil? && @reception_datetime !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       move_validator = EnumAttributeValidator.new('String', ["MOBILE", "STATIQUE"])
       return false unless move_validator.valid?(@move)
       status_validator = EnumAttributeValidator.new('String', ["DISPONIBLE", "INDISPONIBLE", "INCONNU"])
@@ -238,28 +220,13 @@ module Geolocation
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] resource_id Value to be assigned
-    def resource_id=(resource_id)
-      if resource_id.nil?
-        fail ArgumentError, 'resource_id cannot be nil'
-      end
-
-      pattern = Regexp.new(/^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$/)
-      if resource_id !~ pattern
-        fail ArgumentError, "invalid value for \"resource_id\", must conform to the pattern #{pattern}."
-      end
-
-      @resource_id = resource_id
-    end
-
-    # Custom attribute writer method with validation
     # @param [Object] datetime Value to be assigned
     def datetime=(datetime)
       if datetime.nil?
         fail ArgumentError, 'datetime cannot be nil'
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       if datetime !~ pattern
         fail ArgumentError, "invalid value for \"datetime\", must conform to the pattern #{pattern}."
       end
@@ -274,26 +241,12 @@ module Geolocation
         fail ArgumentError, 'reception_datetime cannot be nil'
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       if reception_datetime !~ pattern
         fail ArgumentError, "invalid value for \"reception_datetime\", must conform to the pattern #{pattern}."
       end
 
       @reception_datetime = reception_datetime
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] coord Value to be assigned
-    def coord=(coord)
-      if coord.nil?
-        fail ArgumentError, 'coord cannot be nil'
-      end
-
-      if coord.length < 1
-        fail ArgumentError, 'invalid value for "coord", number of items must be greater than or equal to 1.'
-      end
-
-      @coord = coord
     end
 
     # Custom attribute writer method checking allowed values (enum).
@@ -331,7 +284,7 @@ module Geolocation
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          resource_id == o.resource_id &&
+          id == o.id &&
           datetime == o.datetime &&
           reception_datetime == o.reception_datetime &&
           coord == o.coord &&
@@ -353,7 +306,7 @@ module Geolocation
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [resource_id, datetime, reception_datetime, coord, speed, cap, move, engine_on, ground_status, status, engaged_status].hash
+      [id, datetime, reception_datetime, coord, speed, cap, move, engine_on, ground_status, status, engaged_status].hash
     end
 
     # Builds the object from hash

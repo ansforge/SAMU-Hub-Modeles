@@ -14,9 +14,8 @@ import json
 
 
 from typing import Any, ClassVar, Dict, List
-from pydantic import BaseModel, StrictStr, field_validator
+from pydantic import BaseModel, StrictStr
 from pydantic import Field
-from typing_extensions import Annotated
 try:
     from typing import Self
 except ImportError:
@@ -26,16 +25,9 @@ class OtherDiagnosis(BaseModel):
     """
     OtherDiagnosis
     """ # noqa: E501
-    code: Annotated[str, Field(strict=True)] = Field(description="A valoriser avec le code de la nomenclature associée")
+    code: StrictStr = Field(description="A valoriser avec le code de la nomenclature associée")
     label: StrictStr = Field(description="A valoriser avec le libellé de la nomenclature associée. Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.")
     __properties: ClassVar[List[str]] = ["code", "label"]
-
-    @field_validator('code')
-    def code_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[A-Z]\d{2}(\.[\d\+\-]{1,3})?$", value):
-            raise ValueError(r"must validate the regular expression /^[A-Z]\d{2}(\.[\d\+\-]{1,3})?$/")
-        return value
 
     model_config = {
         "populate_by_name": True,

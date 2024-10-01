@@ -198,7 +198,7 @@ namespace HubsanteModel.Health.Model
         {
             if (this.Age != null) {
                 // Age (string) pattern
-                Regex regexAge = new Regex(@"^P[0-9]{1,3}[YMWD]$", RegexOptions.CultureInvariant);
+                Regex regexAge = new Regex(@"P[0-9]{1,3}[YMWD]", RegexOptions.CultureInvariant);
                 if (!regexAge.Match(this.Age).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Age, must match a pattern of " + regexAge, new [] { "Age" });

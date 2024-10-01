@@ -140,7 +140,7 @@ namespace HubsanteModel.Health.Model
         {
             if (this.InseeCode != null) {
                 // InseeCode (string) pattern
-                Regex regexInseeCode = new Regex(@"^[0-9]{5}$", RegexOptions.CultureInvariant);
+                Regex regexInseeCode = new Regex(@"[0-9]{5}", RegexOptions.CultureInvariant);
                 if (!regexInseeCode.Match(this.InseeCode).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for InseeCode, must match a pattern of " + regexInseeCode, new [] { "InseeCode" });

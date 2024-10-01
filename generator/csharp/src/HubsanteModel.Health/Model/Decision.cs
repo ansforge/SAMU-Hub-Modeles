@@ -86,154 +86,46 @@ namespace HubsanteModel.Health.Model
             SMUR = 1,
 
             /// <summary>
-            /// Enum MED for value: MED
-            /// </summary>
-            [EnumMember(Value = "MED")]
-            MED = 2,
-
-            /// <summary>
-            /// Enum PARAMED for value: PARAMED
-            /// </summary>
-            [EnumMember(Value = "PARAMED")]
-            PARAMED = 3,
-
-            /// <summary>
             /// Enum HOSPIT for value: HOSPIT
             /// </summary>
             [EnumMember(Value = "HOSPIT")]
-            HOSPIT = 4,
+            HOSPIT = 2,
 
             /// <summary>
             /// Enum LIB for value: LIB
             /// </summary>
             [EnumMember(Value = "LIB")]
-            LIB = 5,
-
-            /// <summary>
-            /// Enum MEDC for value: MEDC
-            /// </summary>
-            [EnumMember(Value = "MEDC")]
-            MEDC = 6,
-
-            /// <summary>
-            /// Enum PHARMA for value: PHARMA
-            /// </summary>
-            [EnumMember(Value = "PHARMA")]
-            PHARMA = 7,
-
-            /// <summary>
-            /// Enum INF for value: INF
-            /// </summary>
-            [EnumMember(Value = "INF")]
-            INF = 8,
-
-            /// <summary>
-            /// Enum MEDSPE for value: MEDSPE
-            /// </summary>
-            [EnumMember(Value = "MEDSPE")]
-            MEDSPE = 9,
-
-            /// <summary>
-            /// Enum DENT for value: DENT
-            /// </summary>
-            [EnumMember(Value = "DENT")]
-            DENT = 10,
-
-            /// <summary>
-            /// Enum AUTREPRO for value: AUTREPRO
-            /// </summary>
-            [EnumMember(Value = "AUTREPRO")]
-            AUTREPRO = 11,
+            LIB = 3,
 
             /// <summary>
             /// Enum TSU for value: TSU 
             /// </summary>
             [EnumMember(Value = "TSU ")]
-            TSU = 12,
+            TSU = 4,
 
             /// <summary>
             /// Enum SIS for value: SIS
             /// </summary>
             [EnumMember(Value = "SIS")]
-            SIS = 13,
-
-            /// <summary>
-            /// Enum MSP for value: MSP
-            /// </summary>
-            [EnumMember(Value = "MSP")]
-            MSP = 14,
-
-            /// <summary>
-            /// Enum ISP for value: ISP
-            /// </summary>
-            [EnumMember(Value = "ISP")]
-            ISP = 15,
-
-            /// <summary>
-            /// Enum SP for value: SP
-            /// </summary>
-            [EnumMember(Value = "SP")]
-            SP = 16,
+            SIS = 5,
 
             /// <summary>
             /// Enum AASC for value: AASC
             /// </summary>
             [EnumMember(Value = "AASC")]
-            AASC = 17,
+            AASC = 6,
 
             /// <summary>
             /// Enum FDO for value: FDO
             /// </summary>
             [EnumMember(Value = "FDO")]
-            FDO = 18,
-
-            /// <summary>
-            /// Enum HELIFSI for value: HELIFSI
-            /// </summary>
-            [EnumMember(Value = "HELIFSI")]
-            HELIFSI = 19,
-
-            /// <summary>
-            /// Enum VLFSI for value: VLFSI
-            /// </summary>
-            [EnumMember(Value = "VLFSI")]
-            VLFSI = 20,
-
-            /// <summary>
-            /// Enum FFSI for value: FFSI
-            /// </summary>
-            [EnumMember(Value = "FFSI")]
-            FFSI = 21,
-
-            /// <summary>
-            /// Enum DGDD for value: DGDD
-            /// </summary>
-            [EnumMember(Value = "DGDD")]
-            DGDD = 22,
+            FDO = 7,
 
             /// <summary>
             /// Enum AUTRE for value: AUTRE
             /// </summary>
             [EnumMember(Value = "AUTRE")]
-            AUTRE = 23,
-
-            /// <summary>
-            /// Enum ADM for value: ADM
-            /// </summary>
-            [EnumMember(Value = "ADM")]
-            ADM = 24,
-
-            /// <summary>
-            /// Enum DAE for value: DAE
-            /// </summary>
-            [EnumMember(Value = "DAE")]
-            DAE = 25,
-
-            /// <summary>
-            /// Enum INCONNU for value: INCONNU
-            /// </summary>
-            [EnumMember(Value = "INCONNU")]
-            INCONNU = 26
+            AUTRE = 8
         }
 
 
@@ -879,7 +771,7 @@ namespace HubsanteModel.Health.Model
         {
             if (this.Creation != null) {
                 // Creation (DateTime) pattern
-                Regex regexCreation = new Regex(@"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", RegexOptions.CultureInvariant);
+                Regex regexCreation = new Regex(@"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}", RegexOptions.CultureInvariant);
                 if (!regexCreation.Match(this.Creation).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Creation, must match a pattern of " + regexCreation, new [] { "Creation" });

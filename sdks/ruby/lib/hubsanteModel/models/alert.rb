@@ -90,7 +90,7 @@ module Health
         invalid_properties.push('invalid value for "reception", reception cannot be nil.')
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       if @reception !~ pattern
         invalid_properties.push("invalid value for \"reception\", must conform to the pattern #{pattern}.")
       end
@@ -107,7 +107,7 @@ module Health
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @reception.nil?
-      return false if @reception !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      return false if @reception !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       return false if @caller.nil?
       true
     end
@@ -119,7 +119,7 @@ module Health
         fail ArgumentError, 'reception cannot be nil'
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       if reception !~ pattern
         fail ArgumentError, "invalid value for \"reception\", must conform to the pattern #{pattern}."
       end

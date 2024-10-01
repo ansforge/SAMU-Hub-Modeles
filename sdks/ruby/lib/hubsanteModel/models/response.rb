@@ -17,7 +17,7 @@ module Resources
     # A valoriser avec la réponse apportée. Cf Nomenclature associée ACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE
     attr_accessor :answer
 
-    # A valoriser avec le délai de réponse auquel s'engage l'expéditeur (cf. nomenclature)  Cas particulier : en cas de réponse \"Partielle\" car le délai souhaité ne peut pas être respecté,  à valoriser obligatoirement avec le délai de réponse maximum auquel s'engage l'expéditeur de la réponse, 
+    # A valoriser avec le délai de réponse maximum auquel s'engage l'expéditeur (en minutes)  Cas particulier : en cas de réponse \"Partielle\" car le délai souhaité ne peut pas être respecté,  à valoriser obligatoirement avec le délai de réponse maximum auquel s'engage l'expéditeur de la réponse (en minutes). 
     attr_accessor :deadline
 
     # Commentaire libre permettant d'apporter toutes précisions utiles à la réponse. Le motif de refus est notifié dans ce champ.
@@ -121,7 +121,7 @@ module Resources
         invalid_properties.push('invalid value for "datetime", datetime cannot be nil.')
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       if @datetime !~ pattern
         invalid_properties.push("invalid value for \"datetime\", must conform to the pattern #{pattern}.")
       end
@@ -138,12 +138,10 @@ module Resources
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @datetime.nil?
-      return false if @datetime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      return false if @datetime !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       return false if @answer.nil?
       answer_validator = EnumAttributeValidator.new('String', ["ACCEPTEE", "PARTIELLE", "REFUSEE", "DIFFEREE"])
       return false unless answer_validator.valid?(@answer)
-      deadline_validator = EnumAttributeValidator.new('String', ["DEL0", "ASAP", "30M", "45M", "1H", "2H", "4H", "8H", "12H", "24H", "RDV"])
-      return false unless deadline_validator.valid?(@deadline)
       true
     end
 
@@ -154,7 +152,7 @@ module Resources
         fail ArgumentError, 'datetime cannot be nil'
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       if datetime !~ pattern
         fail ArgumentError, "invalid value for \"datetime\", must conform to the pattern #{pattern}."
       end
@@ -170,16 +168,6 @@ module Resources
         fail ArgumentError, "invalid value for \"answer\", must be one of #{validator.allowable_values}."
       end
       @answer = answer
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] deadline Object to be assigned
-    def deadline=(deadline)
-      validator = EnumAttributeValidator.new('String', ["DEL0", "ASAP", "30M", "45M", "1H", "2H", "4H", "8H", "12H", "24H", "RDV"])
-      unless validator.valid?(deadline)
-        fail ArgumentError, "invalid value for \"deadline\", must be one of #{validator.allowable_values}."
-      end
-      @deadline = deadline
     end
 
     # Checks equality by comparing each attribute.

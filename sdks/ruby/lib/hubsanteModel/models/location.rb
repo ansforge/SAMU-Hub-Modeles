@@ -18,7 +18,7 @@ module Rpis
     attr_accessor :finess_geo
 
     # Unité fonctionnelle de l'établissement de santé.  A renseigner uniquement si l'intervention a lieu dans un établissement de santé. 
-    attr_accessor :service
+    attr_accessor :unit
 
     attr_accessor :detailed_address
 
@@ -49,7 +49,7 @@ module Rpis
       {
         :'type' => :'type',
         :'finess_geo' => :'finessGeo',
-        :'service' => :'service',
+        :'unit' => :'unit',
         :'detailed_address' => :'detailedAddress'
       }
     end
@@ -64,7 +64,7 @@ module Rpis
       {
         :'type' => :'String',
         :'finess_geo' => :'String',
-        :'service' => :'String',
+        :'unit' => :'String',
         :'detailed_address' => :'DetailedAddress'
       }
     end
@@ -98,8 +98,8 @@ module Rpis
         self.finess_geo = attributes[:'finess_geo']
       end
 
-      if attributes.key?(:'service')
-        self.service = attributes[:'service']
+      if attributes.key?(:'unit')
+        self.unit = attributes[:'unit']
       end
 
       if attributes.key?(:'detailed_address')
@@ -148,7 +148,7 @@ module Rpis
       self.class == o.class &&
           type == o.type &&
           finess_geo == o.finess_geo &&
-          service == o.service &&
+          unit == o.unit &&
           detailed_address == o.detailed_address
     end
 
@@ -161,7 +161,7 @@ module Rpis
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, finess_geo, service, detailed_address].hash
+      [type, finess_geo, unit, detailed_address].hash
     end
 
     # Builds the object from hash

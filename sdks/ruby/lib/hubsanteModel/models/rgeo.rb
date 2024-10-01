@@ -125,7 +125,7 @@ module Emsi
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       if !@datime.nil? && @datime !~ pattern
         invalid_properties.push("invalid value for \"datime\", must conform to the pattern #{pattern}.")
       end
@@ -141,7 +141,7 @@ module Emsi
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@datime.nil? && @datime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      return false if !@datime.nil? && @datime !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       return false if @type.nil?
       type_validator = EnumAttributeValidator.new('String', ["ASP", "CUR", "INC", "STG", "TGT"])
       return false unless type_validator.valid?(@type)
@@ -155,7 +155,7 @@ module Emsi
         fail ArgumentError, 'datime cannot be nil'
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       if datime !~ pattern
         fail ArgumentError, "invalid value for \"datime\", must conform to the pattern #{pattern}."
       end

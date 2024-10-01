@@ -34,11 +34,11 @@ namespace HubsanteModel.Health.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Geometry" /> class.
         /// </summary>
-        /// <param name="datetime">A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation.  Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir. (required).</param>
+        /// <param name="obsDatime">A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation.  Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir. (required).</param>
         /// <param name="point">point.</param>
-        public Geometry(DateTime datetime = default(DateTime), Point point = default(Point))
+        public Geometry(DateTime obsDatime = default(DateTime), Point point = default(Point))
         {
-            this.Datetime = datetime;
+            this.ObsDatime = obsDatime;
             this.Point = point;
         }
 
@@ -46,8 +46,8 @@ namespace HubsanteModel.Health.Model
         /// A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation.  Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.
         /// </summary>
         /// <value>A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation.  Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.</value>
-        [DataMember(Name = "datetime", IsRequired = true, EmitDefaultValue = true)]
-        public DateTime Datetime { get; set; }
+        [DataMember(Name = "obsDatime", IsRequired = true, EmitDefaultValue = true)]
+        public DateTime ObsDatime { get; set; }
 
         /// <summary>
         /// Gets or Sets Point
@@ -63,7 +63,7 @@ namespace HubsanteModel.Health.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Geometry {\n");
-            sb.Append("  Datetime: ").Append(Datetime).Append("\n");
+            sb.Append("  ObsDatime: ").Append(ObsDatime).Append("\n");
             sb.Append("  Point: ").Append(Point).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -101,9 +101,9 @@ namespace HubsanteModel.Health.Model
             }
             return 
                 (
-                    this.Datetime == input.Datetime ||
-                    (this.Datetime != null &&
-                    this.Datetime.Equals(input.Datetime))
+                    this.ObsDatime == input.ObsDatime ||
+                    (this.ObsDatime != null &&
+                    this.ObsDatime.Equals(input.ObsDatime))
                 ) && 
                 (
                     this.Point == input.Point ||
@@ -121,9 +121,9 @@ namespace HubsanteModel.Health.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Datetime != null)
+                if (this.ObsDatime != null)
                 {
-                    hashCode = (hashCode * 59) + this.Datetime.GetHashCode();
+                    hashCode = (hashCode * 59) + this.ObsDatime.GetHashCode();
                 }
                 if (this.Point != null)
                 {
@@ -140,12 +140,12 @@ namespace HubsanteModel.Health.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            if (this.Datetime != null) {
-                // Datetime (DateTime) pattern
-                Regex regexDatetime = new Regex(@"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", RegexOptions.CultureInvariant);
-                if (!regexDatetime.Match(this.Datetime).Success)
+            if (this.ObsDatime != null) {
+                // ObsDatime (DateTime) pattern
+                Regex regexObsDatime = new Regex(@"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}", RegexOptions.CultureInvariant);
+                if (!regexObsDatime.Match(this.ObsDatime).Success)
                 {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Datetime, must match a pattern of " + regexDatetime, new [] { "Datetime" });
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ObsDatime, must match a pattern of " + regexObsDatime, new [] { "ObsDatime" });
                 }
             }
 

@@ -166,7 +166,7 @@ namespace HubsanteModel.Health.Model
         {
             if (this.Reception != null) {
                 // Reception (DateTime) pattern
-                Regex regexReception = new Regex(@"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", RegexOptions.CultureInvariant);
+                Regex regexReception = new Regex(@"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}", RegexOptions.CultureInvariant);
                 if (!regexReception.Match(this.Reception).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Reception, must match a pattern of " + regexReception, new [] { "Reception" });

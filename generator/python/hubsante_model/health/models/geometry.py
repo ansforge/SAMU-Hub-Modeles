@@ -26,15 +26,15 @@ class Geometry(BaseModel):
     """
     Geometry
     """ # noqa: E501
-    datetime: datetime = Field(description="A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation.  Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.")
+    obs_datime: datetime = Field(description="A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation.  Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.", alias="obsDatime")
     point: Optional[Point] = None
-    __properties: ClassVar[List[str]] = ["datetime", "point"]
+    __properties: ClassVar[List[str]] = ["obsDatime", "point"]
 
-    @field_validator('datetime')
-    def datetime_validate_regular_expression(cls, value):
+    @field_validator('obs_datime')
+    def obs_datime_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/")
+        if not re.match(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}", value):
+            raise ValueError(r"must validate the regular expression /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/")
         return value
 
     model_config = {
@@ -88,7 +88,7 @@ class Geometry(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "datetime": obj.get("datetime"),
+            "obsDatime": obj.get("obsDatime"),
             "point": Point.from_dict(obj.get("point")) if obj.get("point") is not None else None
         })
         return _obj

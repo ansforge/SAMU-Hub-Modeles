@@ -157,7 +157,7 @@ module Cisu
         invalid_properties.push('invalid value for "case_id", case_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/^fr(\.[\w-]+){3,4}$/)
+      pattern = Regexp.new(/fr(\.[\w-]+){3,4}/)
       if @case_id !~ pattern
         invalid_properties.push("invalid value for \"case_id\", must conform to the pattern #{pattern}.")
       end
@@ -166,7 +166,7 @@ module Cisu
         invalid_properties.push('invalid value for "creation", creation cannot be nil.')
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       if @creation !~ pattern
         invalid_properties.push("invalid value for \"creation\", must conform to the pattern #{pattern}.")
       end
@@ -191,9 +191,9 @@ module Cisu
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @case_id.nil?
-      return false if @case_id !~ Regexp.new(/^fr(\.[\w-]+){3,4}$/)
+      return false if @case_id !~ Regexp.new(/fr(\.[\w-]+){3,4}/)
       return false if @creation.nil?
-      return false if @creation !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      return false if @creation !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       return false if @reference_version.nil?
       return false if @qualification.nil?
       return false if @location.nil?
@@ -207,7 +207,7 @@ module Cisu
         fail ArgumentError, 'case_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^fr(\.[\w-]+){3,4}$/)
+      pattern = Regexp.new(/fr(\.[\w-]+){3,4}/)
       if case_id !~ pattern
         fail ArgumentError, "invalid value for \"case_id\", must conform to the pattern #{pattern}."
       end
@@ -222,7 +222,7 @@ module Cisu
         fail ArgumentError, 'creation cannot be nil'
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       if creation !~ pattern
         fail ArgumentError, "invalid value for \"creation\", must conform to the pattern #{pattern}."
       end

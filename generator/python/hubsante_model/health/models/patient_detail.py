@@ -38,8 +38,8 @@ class PatientDetail(BaseModel):
         if value is None:
             return value
 
-        if not re.match(r"^P[0-9]{1,3}[YMWD]$", value):
-            raise ValueError(r"must validate the regular expression /^P[0-9]{1,3}[YMWD]$/")
+        if not re.match(r"P[0-9]{1,3}[YMWD]", value):
+            raise ValueError(r"must validate the regular expression /P[0-9]{1,3}[YMWD]/")
         return value
 
     @field_validator('care_level')

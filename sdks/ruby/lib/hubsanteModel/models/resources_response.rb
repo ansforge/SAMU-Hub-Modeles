@@ -91,7 +91,7 @@ module Resources
         invalid_properties.push('invalid value for "case_id", case_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/^fr(\.[\w-]+){3,4}$/)
+      pattern = Regexp.new(/fr(\.[\w-]+){3,4}/)
       if @case_id !~ pattern
         invalid_properties.push("invalid value for \"case_id\", must conform to the pattern #{pattern}.")
       end
@@ -100,7 +100,7 @@ module Resources
         invalid_properties.push('invalid value for "request_id", request_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,4}request(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/([\w-]+\.){3,4}request(\.[\w-]+){1,2}/)
       if @request_id !~ pattern
         invalid_properties.push("invalid value for \"request_id\", must conform to the pattern #{pattern}.")
       end
@@ -117,9 +117,9 @@ module Resources
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @case_id.nil?
-      return false if @case_id !~ Regexp.new(/^fr(\.[\w-]+){3,4}$/)
+      return false if @case_id !~ Regexp.new(/fr(\.[\w-]+){3,4}/)
       return false if @request_id.nil?
-      return false if @request_id !~ Regexp.new(/^([\w-]+\.){3,4}request(\.[\w-]+){1,2}$/)
+      return false if @request_id !~ Regexp.new(/([\w-]+\.){3,4}request(\.[\w-]+){1,2}/)
       return false if @response.nil?
       true
     end
@@ -131,7 +131,7 @@ module Resources
         fail ArgumentError, 'case_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^fr(\.[\w-]+){3,4}$/)
+      pattern = Regexp.new(/fr(\.[\w-]+){3,4}/)
       if case_id !~ pattern
         fail ArgumentError, "invalid value for \"case_id\", must conform to the pattern #{pattern}."
       end
@@ -146,7 +146,7 @@ module Resources
         fail ArgumentError, 'request_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,4}request(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/([\w-]+\.){3,4}request(\.[\w-]+){1,2}/)
       if request_id !~ pattern
         fail ArgumentError, "invalid value for \"request_id\", must conform to the pattern #{pattern}."
       end

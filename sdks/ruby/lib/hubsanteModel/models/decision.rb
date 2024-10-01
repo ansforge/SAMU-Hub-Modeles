@@ -130,7 +130,7 @@ module Rpis
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @resource_category.nil?
-      resource_category_validator = EnumAttributeValidator.new('String', ["SMUR", "MED", "PARAMED", "HOSPIT", "LIB", "MEDC", "PHARMA", "INF", "MEDSPE", "DENT", "AUTREPRO", "TSU ", "SIS", "MSP", "ISP", "SP", "AASC", "FDO", "HELIFSI", "VLFSI", "FFSI", "DGDD", "AUTRE", "ADM", "DAE", "INCONNU"])
+      resource_category_validator = EnumAttributeValidator.new('String', ["SMUR", "HOSPIT", "LIB", "TSU ", "SIS", "AASC", "FDO", "AUTRE"])
       return false unless resource_category_validator.valid?(@resource_category)
       return false if @resource_type.nil?
       resource_type_validator = EnumAttributeValidator.new('String', ["AASC", "VLSC", "VPSP", "AUTRESC", "AUTREVEC", "TAXI", "TRANSP", "TRAIN", "AVION", "PERSO", "APIED", "AUTRE", "AUTRETRA", "FSI", "HELIFSI", "VLFSI", "FFSI", "VHFSI", "LIB", "MEDV", "INF", "AUTREPRO", "SIS", "VSAV", "GRIMP", "VPL", "SRSIS", "FEUSIS", "VPMA", "VCH", "VR", "PCSIS", "VLISP", "VLMSP", "VLCG", "VLSIS", "DRAGON", "AVSC", "MOYSSE", "AUTRESIS", "NAVISIS", "SMUR", "VLM", "VL", "PSM1", "PSM2", "PSM3", "PSMP", "VPC", "AR", "AR-BAR", "AR-PED", "HELISMUR", "HELISAN", "AVSMUR", "AVSAN", "NAVISMUR", "TSU", "VSL", "AMB-GV", "AMB-PV", "AMB-BAR", "AMB"])
@@ -144,7 +144,7 @@ module Rpis
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] resource_category Object to be assigned
     def resource_category=(resource_category)
-      validator = EnumAttributeValidator.new('String', ["SMUR", "MED", "PARAMED", "HOSPIT", "LIB", "MEDC", "PHARMA", "INF", "MEDSPE", "DENT", "AUTREPRO", "TSU ", "SIS", "MSP", "ISP", "SP", "AASC", "FDO", "HELIFSI", "VLFSI", "FFSI", "DGDD", "AUTRE", "ADM", "DAE", "INCONNU"])
+      validator = EnumAttributeValidator.new('String', ["SMUR", "HOSPIT", "LIB", "TSU ", "SIS", "AASC", "FDO", "AUTRE"])
       unless validator.valid?(resource_category)
         fail ArgumentError, "invalid value for \"resource_category\", must be one of #{validator.allowable_values}."
       end

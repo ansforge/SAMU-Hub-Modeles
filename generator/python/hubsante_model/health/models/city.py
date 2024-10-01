@@ -36,8 +36,8 @@ class City(BaseModel):
         if value is None:
             return value
 
-        if not re.match(r"^[0-9]{5}$", value):
-            raise ValueError(r"must validate the regular expression /^[0-9]{5}$/")
+        if not re.match(r"[0-9]{5}", value):
+            raise ValueError(r"must validate the regular expression /[0-9]{5}/")
         return value
 
     model_config = {

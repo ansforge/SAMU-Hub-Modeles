@@ -220,7 +220,7 @@ namespace HubsanteModel.Health.Model
         {
             if (this.IdPat != null) {
                 // IdPat (string) pattern
-                Regex regexIdPat = new Regex(@"^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$", RegexOptions.CultureInvariant);
+                Regex regexIdPat = new Regex(@"([\w-]+\.){3,4}patient(\.[\w-]+){1,2}", RegexOptions.CultureInvariant);
                 if (!regexIdPat.Match(this.IdPat).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IdPat, must match a pattern of " + regexIdPat, new [] { "IdPat" });

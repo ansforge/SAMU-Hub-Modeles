@@ -153,15 +153,6 @@ namespace HubsanteModel.Health.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            if (this.Code != null) {
-                // Code (string) pattern
-                Regex regexCode = new Regex(@"^[A-Z]\d{2}(\.[\d\+\-]{1,3})?$", RegexOptions.CultureInvariant);
-                if (!regexCode.Match(this.Code).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, must match a pattern of " + regexCode, new [] { "Code" });
-                }
-            }
-
             yield break;
         }
     }

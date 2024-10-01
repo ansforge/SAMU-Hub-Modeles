@@ -9,23 +9,57 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Geolocation
+module Resources
   class Coord
-    # Dernière coordonnée x connue de la ressource, entre −90 and +90
+    # A valoriser avec la latitude du point clé de la localisation 
     attr_accessor :lat
 
-    # Dernière coordonnée y connue de la ressource, entre −180 and +180
+    # A valoriser avec la longitude du point clé de la localisation
     attr_accessor :lon
 
-    # Dernière coordonnée z connue de la ressource, en mètres sans bornes
+    # A valoriser avec l'altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. 
     attr_accessor :height
+
+    # A valoriser en degrés
+    attr_accessor :heading
+
+    # A valoriser en km/h (notamment fournie par eCall, tel, nouveau AML)
+    attr_accessor :speed
+
+    # A valoriser avec le niveau de précision des coordonnées fournies par le système emetteur. Cf. nomenclature associée. CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur
+    attr_accessor :precision
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'lat' => :'lat',
         :'lon' => :'lon',
-        :'height' => :'height'
+        :'height' => :'height',
+        :'heading' => :'heading',
+        :'speed' => :'speed',
+        :'precision' => :'precision'
       }
     end
 
@@ -39,7 +73,10 @@ module Geolocation
       {
         :'lat' => :'Float',
         :'lon' => :'Float',
-        :'height' => :'Float'
+        :'height' => :'Float',
+        :'heading' => :'Float',
+        :'speed' => :'Float',
+        :'precision' => :'String'
       }
     end
 
@@ -53,13 +90,13 @@ module Geolocation
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Geolocation::Coord` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Resources::Coord` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Geolocation::Coord`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Resources::Coord`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -79,6 +116,20 @@ module Geolocation
       if attributes.key?(:'height')
         self.height = attributes[:'height']
       end
+
+      if attributes.key?(:'heading')
+        self.heading = attributes[:'heading']
+      end
+
+      if attributes.key?(:'speed')
+        self.speed = attributes[:'speed']
+      end
+
+      if attributes.key?(:'precision')
+        self.precision = attributes[:'precision']
+      else
+        self.precision = nil
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -94,6 +145,10 @@ module Geolocation
         invalid_properties.push('invalid value for "lon", lon cannot be nil.')
       end
 
+      if @precision.nil?
+        invalid_properties.push('invalid value for "precision", precision cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -103,7 +158,20 @@ module Geolocation
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @lat.nil?
       return false if @lon.nil?
+      return false if @precision.nil?
+      precision_validator = EnumAttributeValidator.new('String', ["VILLE", "RUE", "ADRESSE", "EXACTE", "INCONNUE"])
+      return false unless precision_validator.valid?(@precision)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] precision Object to be assigned
+    def precision=(precision)
+      validator = EnumAttributeValidator.new('String', ["VILLE", "RUE", "ADRESSE", "EXACTE", "INCONNUE"])
+      unless validator.valid?(precision)
+        fail ArgumentError, "invalid value for \"precision\", must be one of #{validator.allowable_values}."
+      end
+      @precision = precision
     end
 
     # Checks equality by comparing each attribute.
@@ -113,7 +181,10 @@ module Geolocation
       self.class == o.class &&
           lat == o.lat &&
           lon == o.lon &&
-          height == o.height
+          height == o.height &&
+          heading == o.heading &&
+          speed == o.speed &&
+          precision == o.precision
     end
 
     # @see the `==` method
@@ -125,7 +196,7 @@ module Geolocation
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [lat, lon, height].hash
+      [lat, lon, height, heading, speed, precision].hash
     end
 
     # Builds the object from hash
@@ -189,7 +260,7 @@ module Geolocation
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Geolocation.const_get(type)
+        klass = Resources.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

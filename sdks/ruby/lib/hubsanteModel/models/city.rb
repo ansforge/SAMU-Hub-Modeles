@@ -73,7 +73,7 @@ module Health
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      pattern = Regexp.new(/^[0-9]{5}$/)
+      pattern = Regexp.new(/[0-9]{5}/)
       if !@insee_code.nil? && @insee_code !~ pattern
         invalid_properties.push("invalid value for \"insee_code\", must conform to the pattern #{pattern}.")
       end
@@ -85,7 +85,7 @@ module Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@insee_code.nil? && @insee_code !~ Regexp.new(/^[0-9]{5}$/)
+      return false if !@insee_code.nil? && @insee_code !~ Regexp.new(/[0-9]{5}/)
       true
     end
 
@@ -96,7 +96,7 @@ module Health
         fail ArgumentError, 'insee_code cannot be nil'
       end
 
-      pattern = Regexp.new(/^[0-9]{5}$/)
+      pattern = Regexp.new(/[0-9]{5}/)
       if insee_code !~ pattern
         fail ArgumentError, "invalid value for \"insee_code\", must conform to the pattern #{pattern}."
       end

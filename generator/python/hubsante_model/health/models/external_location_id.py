@@ -40,8 +40,8 @@ class ExternalLocationId(BaseModel):
     @field_validator('value')
     def value_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])$", value):
-            raise ValueError(r"must validate the regular expression /^([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])$/")
+        if not re.match(r"([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])", value):
+            raise ValueError(r"must validate the regular expression /([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])/")
         return value
 
     model_config = {

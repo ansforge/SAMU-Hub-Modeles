@@ -104,7 +104,7 @@ module Health
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}/)
       if !@birth_date.nil? && @birth_date !~ pattern
         invalid_properties.push("invalid value for \"birth_date\", must conform to the pattern #{pattern}.")
       end
@@ -116,8 +116,8 @@ module Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@birth_date.nil? && @birth_date !~ Regexp.new(/^\d{4}-\d{2}-\d{2}$/)
-      sex_validator = EnumAttributeValidator.new('String', ["M", "F", "O", "UN"])
+      return false if !@birth_date.nil? && @birth_date !~ Regexp.new(/\d{4}-\d{2}-\d{2}/)
+      sex_validator = EnumAttributeValidator.new('String', ["MASC", "FEM", "AUTRE", "INCONNU"])
       return false unless sex_validator.valid?(@sex)
       true
     end
@@ -129,7 +129,7 @@ module Health
         fail ArgumentError, 'birth_date cannot be nil'
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}$/)
+      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}/)
       if birth_date !~ pattern
         fail ArgumentError, "invalid value for \"birth_date\", must conform to the pattern #{pattern}."
       end
@@ -140,7 +140,7 @@ module Health
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] sex Object to be assigned
     def sex=(sex)
-      validator = EnumAttributeValidator.new('String', ["M", "F", "O", "UN"])
+      validator = EnumAttributeValidator.new('String', ["MASC", "FEM", "AUTRE", "INCONNU"])
       unless validator.valid?(sex)
         fail ArgumentError, "invalid value for \"sex\", must be one of #{validator.allowable_values}."
       end

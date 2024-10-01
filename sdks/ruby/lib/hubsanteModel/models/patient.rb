@@ -140,7 +140,7 @@ module Rpis
       return false if @patient_id.nil?
       return false if @birth_date.nil?
       return false if @sex.nil?
-      sex_validator = EnumAttributeValidator.new('String', ["M", "F", "O", "UN"])
+      sex_validator = EnumAttributeValidator.new('String', ["MASC", "FEM", "AUTRE", "INCONNU"])
       return false unless sex_validator.valid?(@sex)
       true
     end
@@ -148,7 +148,7 @@ module Rpis
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] sex Object to be assigned
     def sex=(sex)
-      validator = EnumAttributeValidator.new('String', ["M", "F", "O", "UN"])
+      validator = EnumAttributeValidator.new('String', ["MASC", "FEM", "AUTRE", "INCONNU"])
       unless validator.valid?(sex)
         fail ArgumentError, "invalid value for \"sex\", must be one of #{validator.allowable_values}."
       end

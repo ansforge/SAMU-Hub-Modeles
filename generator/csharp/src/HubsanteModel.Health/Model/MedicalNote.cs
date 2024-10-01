@@ -217,7 +217,7 @@ namespace HubsanteModel.Health.Model
         {
             if (this.IdPat != null) {
                 // IdPat (string) pattern
-                Regex regexIdPat = new Regex(@"^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$", RegexOptions.CultureInvariant);
+                Regex regexIdPat = new Regex(@"([\w-]+\.){3,4}patient(\.[\w-]+){1,2}", RegexOptions.CultureInvariant);
                 if (!regexIdPat.Match(this.IdPat).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IdPat, must match a pattern of " + regexIdPat, new [] { "IdPat" });
@@ -226,7 +226,7 @@ namespace HubsanteModel.Health.Model
 
             if (this.IdObs != null) {
                 // IdObs (string) pattern
-                Regex regexIdObs = new Regex(@"^([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}$", RegexOptions.CultureInvariant);
+                Regex regexIdObs = new Regex(@"([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}", RegexOptions.CultureInvariant);
                 if (!regexIdObs.Match(this.IdObs).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IdObs, must match a pattern of " + regexIdObs, new [] { "IdObs" });
@@ -235,7 +235,7 @@ namespace HubsanteModel.Health.Model
 
             if (this.Creation != null) {
                 // Creation (DateTime) pattern
-                Regex regexCreation = new Regex(@"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", RegexOptions.CultureInvariant);
+                Regex regexCreation = new Regex(@"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}", RegexOptions.CultureInvariant);
                 if (!regexCreation.Match(this.Creation).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Creation, must match a pattern of " + regexCreation, new [] { "Creation" });
