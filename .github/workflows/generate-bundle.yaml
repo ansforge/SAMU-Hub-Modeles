@@ -1,4 +1,4 @@
-name: Zip Files and Upload Artifact
+name: Generate Bundle
 
 on:
   workflow_dispatch:
