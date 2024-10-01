@@ -48,10 +48,10 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({Intervention.JSON_PROPERTY_LOCATION,
                     Intervention.JSON_PROPERTY_TEAM,
-                    Intervention.JSON_PROPERTY_ACTIONS,
+                    Intervention.JSON_PROPERTY_SMUR_STATUS,
+                    Intervention.JSON_PROPERTY_ACTIONS_S_M_U_R,
                     Intervention.JSON_PROPERTY_MAIN_DIAGNOSIS,
-                    Intervention.JSON_PROPERTY_ASSOCIATED_DIAGNOSIS,
-                    Intervention.JSON_PROPERTY_SMUR_STATUS})
+                    Intervention.JSON_PROPERTY_ASSOCIATED_DIAGNOSIS})
 @JsonTypeName("intervention")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -62,8 +62,11 @@ public class Intervention {
   public static final String JSON_PROPERTY_TEAM = "team";
   private Team team;
 
-  public static final String JSON_PROPERTY_ACTIONS = "actions";
-  private List<String> actions;
+  public static final String JSON_PROPERTY_SMUR_STATUS = "smurStatus";
+  private ResourceStatus smurStatus;
+
+  public static final String JSON_PROPERTY_ACTIONS_S_M_U_R = "actionsSMUR";
+  private List<String> actionsSMUR;
 
   public static final String JSON_PROPERTY_MAIN_DIAGNOSIS = "mainDiagnosis";
   private String mainDiagnosis;
@@ -71,9 +74,6 @@ public class Intervention {
   public static final String JSON_PROPERTY_ASSOCIATED_DIAGNOSIS =
       "associatedDiagnosis";
   private String associatedDiagnosis;
-
-  public static final String JSON_PROPERTY_SMUR_STATUS = "smurStatus";
-  private ResourceStatus smurStatus;
 
   public Intervention() {}
 
@@ -88,14 +88,14 @@ public class Intervention {
    * @return location
    **/
   @JsonProperty(JSON_PROPERTY_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Location getLocation() {
     return location;
   }
 
   @JsonProperty(JSON_PROPERTY_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLocation(Location location) {
     this.location = location;
   }
@@ -111,55 +111,78 @@ public class Intervention {
    * @return team
    **/
   @JsonProperty(JSON_PROPERTY_TEAM)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Team getTeam() {
     return team;
   }
 
   @JsonProperty(JSON_PROPERTY_TEAM)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTeam(Team team) {
     this.team = team;
   }
 
-  public Intervention actions(List<String> actions) {
+  public Intervention smurStatus(ResourceStatus smurStatus) {
 
-    this.actions = actions;
-    return this;
-  }
-
-  public Intervention addActionsItem(String actionsItem) {
-    if (this.actions == null) {
-      this.actions = new ArrayList<>();
-    }
-    this.actions.add(actionsItem);
+    this.smurStatus = smurStatus;
     return this;
   }
 
   /**
-   * Get actions
-   * @return actions
+   * Get smurStatus
+   * @return smurStatus
    **/
-  @JsonProperty(JSON_PROPERTY_ACTIONS)
+  @JsonProperty(JSON_PROPERTY_SMUR_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<String> getActions() {
-    return actions;
+  public ResourceStatus getSmurStatus() {
+    return smurStatus;
+  }
+
+  @JsonProperty(JSON_PROPERTY_SMUR_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSmurStatus(ResourceStatus smurStatus) {
+    this.smurStatus = smurStatus;
+  }
+
+  public Intervention actionsSMUR(List<String> actionsSMUR) {
+
+    this.actionsSMUR = actionsSMUR;
+    return this;
+  }
+
+  public Intervention addActionsSMURItem(String actionsSMURItem) {
+    if (this.actionsSMUR == null) {
+      this.actionsSMUR = new ArrayList<>();
+    }
+    this.actionsSMUR.add(actionsSMURItem);
+    return this;
+  }
+
+  /**
+   * Get actionsSMUR
+   * @return actionsSMUR
+   **/
+  @JsonProperty(JSON_PROPERTY_ACTIONS_S_M_U_R)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<String> getActionsSMUR() {
+    return actionsSMUR;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_ACTIONS)
+  @JsonProperty(JSON_PROPERTY_ACTIONS_S_M_U_R)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setActions(List<String> actions) {
-    if (actions == null) {
+  public void setActionsSMUR(List<String> actionsSMUR) {
+    if (actionsSMUR == null) {
       return;
     }
-    if (this.actions == null) {
-      this.actions = new ArrayList<>();
+    if (this.actionsSMUR == null) {
+      this.actionsSMUR = new ArrayList<>();
     }
-    this.actions.addAll(actions);
+    this.actionsSMUR.addAll(actionsSMUR);
   }
 
   public Intervention mainDiagnosis(String mainDiagnosis) {
@@ -174,14 +197,14 @@ public class Intervention {
    * @return mainDiagnosis
    **/
   @JsonProperty(JSON_PROPERTY_MAIN_DIAGNOSIS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getMainDiagnosis() {
     return mainDiagnosis;
   }
 
   @JsonProperty(JSON_PROPERTY_MAIN_DIAGNOSIS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMainDiagnosis(String mainDiagnosis) {
     this.mainDiagnosis = mainDiagnosis;
   }
@@ -210,29 +233,6 @@ public class Intervention {
     this.associatedDiagnosis = associatedDiagnosis;
   }
 
-  public Intervention smurStatus(ResourceStatus smurStatus) {
-
-    this.smurStatus = smurStatus;
-    return this;
-  }
-
-  /**
-   * Get smurStatus
-   * @return smurStatus
-   **/
-  @JsonProperty(JSON_PROPERTY_SMUR_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public ResourceStatus getSmurStatus() {
-    return smurStatus;
-  }
-
-  @JsonProperty(JSON_PROPERTY_SMUR_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSmurStatus(ResourceStatus smurStatus) {
-    this.smurStatus = smurStatus;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -244,17 +244,17 @@ public class Intervention {
     Intervention intervention = (Intervention)o;
     return Objects.equals(this.location, intervention.location) &&
         Objects.equals(this.team, intervention.team) &&
-        Objects.equals(this.actions, intervention.actions) &&
+        Objects.equals(this.smurStatus, intervention.smurStatus) &&
+        Objects.equals(this.actionsSMUR, intervention.actionsSMUR) &&
         Objects.equals(this.mainDiagnosis, intervention.mainDiagnosis) &&
         Objects.equals(this.associatedDiagnosis,
-                       intervention.associatedDiagnosis) &&
-        Objects.equals(this.smurStatus, intervention.smurStatus);
+                       intervention.associatedDiagnosis);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(location, team, actions, mainDiagnosis,
-                        associatedDiagnosis, smurStatus);
+    return Objects.hash(location, team, smurStatus, actionsSMUR, mainDiagnosis,
+                        associatedDiagnosis);
   }
 
   @Override
@@ -263,15 +263,17 @@ public class Intervention {
     sb.append("class Intervention {\n");
     sb.append("    location: ").append(toIndentedString(location)).append("\n");
     sb.append("    team: ").append(toIndentedString(team)).append("\n");
-    sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
+    sb.append("    smurStatus: ")
+        .append(toIndentedString(smurStatus))
+        .append("\n");
+    sb.append("    actionsSMUR: ")
+        .append(toIndentedString(actionsSMUR))
+        .append("\n");
     sb.append("    mainDiagnosis: ")
         .append(toIndentedString(mainDiagnosis))
         .append("\n");
     sb.append("    associatedDiagnosis: ")
         .append(toIndentedString(associatedDiagnosis))
-        .append("\n");
-    sb.append("    smurStatus: ")
-        .append(toIndentedString(smurStatus))
         .append("\n");
     sb.append("}");
     return sb.toString();

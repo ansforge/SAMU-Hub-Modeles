@@ -53,17 +53,17 @@ public class Contact {
    * DAU, BAU, DEFIBRILLATEUR, ECALL
    */
   public enum ChannelEnum {
-    PERSONNE("PERSONNE"),
-
     APPLICATION("APPLICATION"),
-
-    DAU("DAU"),
 
     BAU("BAU"),
 
-    DEFIBRILLATEUR("DEFIBRILLATEUR"),
+    DAU("DAU"),
 
-    ECALL("ECALL");
+    DEFIBRILLATEUR_("DEFIBRILLATEUR, "),
+
+    ECALL("ECALL"),
+
+    PERSONNE("PERSONNE");
 
     private String value;
 
@@ -94,8 +94,7 @@ public class Contact {
   private ChannelEnum channel;
 
   /**
-   * A valoriser avec le type de l&#39;URI utilisée : TEL, EMAIL, FAX, POSTAL,
-   * WEB, RADIO
+   * A valoriser avec le type de l&#39;URI utilisée.  Cf nomenclature associée.
    */
   public enum TypeEnum {
     TEL("TEL"),
@@ -155,14 +154,14 @@ public class Contact {
    * @return channel
    **/
   @JsonProperty(JSON_PROPERTY_CHANNEL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public ChannelEnum getChannel() {
     return channel;
   }
 
   @JsonProperty(JSON_PROPERTY_CHANNEL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChannel(ChannelEnum channel) {
     this.channel = channel;
   }
@@ -174,19 +173,18 @@ public class Contact {
   }
 
   /**
-   * A valoriser avec le type de l&#39;URI utilisée : TEL, EMAIL, FAX, POSTAL,
-   *WEB, RADIO
+   * A valoriser avec le type de l&#39;URI utilisée.  Cf nomenclature associée.
    * @return type
    **/
   @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public TypeEnum getType() {
     return type;
   }
 
   @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(TypeEnum type) {
     this.type = type;
   }
@@ -198,18 +196,19 @@ public class Contact {
   }
 
   /**
-   * A valoriser avec la valeur de l&#39;URI utilisée
+   * A valoriser avec la valeur de l&#39;URI utilisée. Le format attendu pour un
+   *numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}
    * @return detail
    **/
   @JsonProperty(JSON_PROPERTY_DETAIL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getDetail() {
     return detail;
   }
 
   @JsonProperty(JSON_PROPERTY_DETAIL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDetail(String detail) {
     this.detail = detail;
   }

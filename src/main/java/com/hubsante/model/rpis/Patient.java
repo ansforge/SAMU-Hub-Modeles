@@ -35,7 +35,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.rpis.ResidentialAddress;
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -45,7 +44,6 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({Patient.JSON_PROPERTY_PATIENT_ID,
                     Patient.JSON_PROPERTY_BIRTH_DATE, Patient.JSON_PROPERTY_SEX,
-                    Patient.JSON_PROPERTY_NIR,
                     Patient.JSON_PROPERTY_RESIDENTIAL_ADDRESS})
 @JsonTypeName("patient")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -57,11 +55,46 @@ public class Patient {
   public static final String JSON_PROPERTY_BIRTH_DATE = "birthDate";
   private String birthDate;
 
-  public static final String JSON_PROPERTY_SEX = "sex";
-  private String sex;
+  /**
+   * Sexe du patient, suivant le libellé court de la nomenclature
+   * SI-SAMU-NOMENC_SEXE
+   */
+  public enum SexEnum {
+    MASC("MASC"),
 
-  public static final String JSON_PROPERTY_NIR = "nir";
-  private BigDecimal nir;
+    FEM("FEM"),
+
+    AUTRE("AUTRE"),
+
+    INCONNU("INCONNU");
+
+    private String value;
+
+    SexEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SexEnum fromValue(String value) {
+      for (SexEnum b : SexEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_SEX = "sex";
+  private SexEnum sex;
 
   public static final String JSON_PROPERTY_RESIDENTIAL_ADDRESS =
       "residentialAddress";
@@ -82,14 +115,14 @@ public class Patient {
    * @return patientId
    **/
   @JsonProperty(JSON_PROPERTY_PATIENT_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getPatientId() {
     return patientId;
   }
 
   @JsonProperty(JSON_PROPERTY_PATIENT_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPatientId(String patientId) {
     this.patientId = patientId;
   }
@@ -105,19 +138,19 @@ public class Patient {
    * @return birthDate
    **/
   @JsonProperty(JSON_PROPERTY_BIRTH_DATE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getBirthDate() {
     return birthDate;
   }
 
   @JsonProperty(JSON_PROPERTY_BIRTH_DATE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBirthDate(String birthDate) {
     this.birthDate = birthDate;
   }
 
-  public Patient sex(String sex) {
+  public Patient sex(SexEnum sex) {
 
     this.sex = sex;
     return this;
@@ -129,40 +162,16 @@ public class Patient {
    * @return sex
    **/
   @JsonProperty(JSON_PROPERTY_SEX)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getSex() {
+  public SexEnum getSex() {
     return sex;
   }
 
   @JsonProperty(JSON_PROPERTY_SEX)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSex(String sex) {
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSex(SexEnum sex) {
     this.sex = sex;
-  }
-
-  public Patient nir(BigDecimal nir) {
-
-    this.nir = nir;
-    return this;
-  }
-
-  /**
-   * Numéro d&#39;inscription au Répertoire ou numéro de sécurité sociale,
-   *unique, transmis par la CNIL
-   * @return nir
-   **/
-  @JsonProperty(JSON_PROPERTY_NIR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public BigDecimal getNir() {
-    return nir;
-  }
-
-  @JsonProperty(JSON_PROPERTY_NIR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNir(BigDecimal nir) {
-    this.nir = nir;
   }
 
   public Patient residentialAddress(ResidentialAddress residentialAddress) {
@@ -200,13 +209,12 @@ public class Patient {
     return Objects.equals(this.patientId, patient.patientId) &&
         Objects.equals(this.birthDate, patient.birthDate) &&
         Objects.equals(this.sex, patient.sex) &&
-        Objects.equals(this.nir, patient.nir) &&
         Objects.equals(this.residentialAddress, patient.residentialAddress);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(patientId, birthDate, sex, nir, residentialAddress);
+    return Objects.hash(patientId, birthDate, sex, residentialAddress);
   }
 
   @Override
@@ -220,7 +228,6 @@ public class Patient {
         .append(toIndentedString(birthDate))
         .append("\n");
     sb.append("    sex: ").append(toIndentedString(sex)).append("\n");
-    sb.append("    nir: ").append(toIndentedString(nir)).append("\n");
     sb.append("    residentialAddress: ")
         .append(toIndentedString(residentialAddress))
         .append("\n");

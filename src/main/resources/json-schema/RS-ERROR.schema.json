@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-ERROR.schema.json#",
-    "version": "24.06.28",
+    "version": "24.08.28",
     "example": "example.json#",
     "type": "object",
     "title": "error",
@@ -28,7 +28,7 @@
         },
         "referencedDistributionID": {
             "type": "string",
-            "title": "DistributionID referenc\u00e9",
+            "title": "DistributionID referencé",
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/referencedDistributionID",

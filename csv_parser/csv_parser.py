@@ -1,6 +1,6 @@
 import copy
 import re
-
+from enum import StrEnum
 import pandas as pd
 import json
 from jsonpath_ng import parse
@@ -13,7 +13,6 @@ import uml_generator
 import os
 
 from pathlib import Path
-
 # Improving panda printing | Ref.: https://stackoverflow.com/a/11711637
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
@@ -45,28 +44,36 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     RUN_DOCX_OUTPUT_EXAMPLES = False
 
     DATA_DEPTH = 6  # nombre de niveaux de données
+    HEADER_LINE = 7  # ligne avec les en-têtes (ID Excel - 1)
+
+    class FormatFlags(StrEnum):
+        NOMENCLATURE = 'NOMENCLATURE: '
+        ENUM = 'ENUM: '
+        REGEX = 'REGEX: '
+
 
     def get_params_from_sheet(sheet):
         """ Automatically get the number of rows and columns to use for this sheet. """
         full_df = pd.read_excel(filepath, sheet_name=sheet, header=None)
         # Getting modelName from cell A1
         modelName = full_df.iloc[0, 0]
-        # Get line 7 to find which columns have 'Périmètre' flag
-        perimeter_row = full_df.iloc[6, :]
+        # Get line {HEADER_LINE - 1} to find which columns have 'Périmètre' flag
+        perimeter_row = full_df.iloc[HEADER_LINE - 1, :]
         # Save all the column numbers that have 'Périmètre' in their name
         perimeter_columns = [i for i, x in enumerate(perimeter_row) if 'Périmètre' in str(x)]
         # Computing number of rows in table
-        # rows = df.iloc[7:, 0]
-        # Simply remove initial rows & total row
-        # ToDo: be more resilient to nan & \xa0 in full_df.iloc[8:,0] and compute nb with count?
-        rows = full_df.shape[0] - 8 - 1
+        # Find the row number of the first table header ('ID')
+        id_index = (full_df[0] == 'ID').idxmax()
+        id_column = full_df.loc[id_index+1:, 0]
+        # Count the number of rows in the ID column
+        rows = id_column.count()
         # Compute number of columns in table
         try:
             # By finding the CUT column
-            cols = full_df.iloc[7, :].tolist().index('CUT')
+            cols = full_df.iloc[HEADER_LINE, :].tolist().index('CUT')
         except ValueError:
-            # Simply by removing the 6 last editor feedback columns
-            cols = full_df.shape[1] - 6
+            # ALl columns
+            cols = full_df.shape[1]
         return {
             'modelName': modelName,
             'cols': cols,
@@ -76,7 +83,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     def get_nomenclature(elem):
         # filename to target (.csv format)
-        nomenclature_name = elem['Détails de format'][14:]
+        nomenclature_name = elem['Détails de format'][len(FormatFlags.NOMENCLATURE):]
         path_file = ''
         nomenclature_files = os.listdir(os.path.join("..", "nomenclature_parser", "out", "latest", "csv"))
         for filename in nomenclature_files:
@@ -84,7 +91,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
                 path_file = os.path.join("..", "nomenclature_parser", "out", "latest", "csv", filename)
 
         if path_file != '':
-            df_nomenclature = pd.read_csv(path_file, sep=",", keep_default_na=False, na_values=['_'], encoding="utf-8")
+            df_nomenclature = pd.read_csv(path_file, sep=",", keep_default_na=False, na_values=['_'], encoding="utf-8",
+                                          dtype={'code': str})   
             L_ret = df_nomenclature["code"].values.tolist()
         # ToDo: ajouter un bloc dans le elseif pour détecter des https:// et aller chercher les nomenclatures publiées en ligne (MOS/NOs par exemple)
         else:
@@ -110,18 +118,19 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     # DATA COLLECTION AND CLEANING
     # Read CSV, skipping useless first and last lines
-    df = pd.read_excel(filepath, sheet_name=sheet, skiprows=7, nrows=NB_ROWS, converters={'ID': int})
+    df = pd.read_excel(filepath, sheet_name=sheet, skiprows=HEADER_LINE, nrows=NB_ROWS, converters={'ID': int})
     # Dropping useless columns
     df = df.iloc[:, :NB_COLS]
     # Column validation
     REQUIRED_COLUMNS = [
         *[f"Donnée (Niveau {i})" for i in range(1, DATA_DEPTH + 1)],
-        'ID', 'Description', 'Cardinalité', 'Balise NexSIS', 'Nouvelle balise', 'Objet', 'Format (ou type)'
+        'ID', 'Description', 'Exemples', 'Balise', 'Cardinalité', 'Objet', 'Format (ou type)', 'Détails de format',
+        *([perimeter_filter] if perimeter_filter else [])
     ]
     if not (set(REQUIRED_COLUMNS) <= set(df.columns)):
         print(f"{Color.RED}ERROR: some key columns are missing:{Color.ORANGE}")
         print(set(REQUIRED_COLUMNS) - set(df.columns))
-        print(f"Make sure all these columns are existing: {REQUIRED_COLUMNS}.{Color.END}")
+        print(f"Make sure all these columns are existing: {REQUIRED_COLUMNS} (headers on line {HEADER_LINE + 1}).{Color.END}")
         exit(1)
 
     # Keeping only the relevant perimeter rows
@@ -136,9 +145,12 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         df.drop(df.columns[i], axis=1, inplace=True)
 
     # Storing input data in a file to track versions
-    # Before storing, we remove the first column (ID), and we also do not want to write line index to the file,
-    # hence index=False
-    df.drop(df.columns[0], axis=1).to_csv(f'out/{name}/{name}.input.csv', index=False)
+    # Before storing, we keep only useful columns and we also do not want to write line index to the file (index=False)
+    INPUT_CSV_COLUMNS = REQUIRED_COLUMNS.copy()
+    INPUT_CSV_COLUMNS.remove("ID")
+    if perimeter_filter:
+        INPUT_CSV_COLUMNS.remove(perimeter_filter)
+    df[INPUT_CSV_COLUMNS].to_csv(f'out/{name}/{name}.input.csv', index=False)
 
     # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
     df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(
@@ -155,7 +167,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     def format_codeandlabel_properties(child, parent):
         code_file = parent['Détails de format']
         """ For 'Code', set code file name to the 'Détails de format' column, remove it from parent """
-        if child['Balise NexSIS'] == "code":
+        if child['Balise'] == "code":
             child['Détails de format'] = code_file
             df.loc[parent.ID-1, 'Détails de format'] = 'nan'
         """Set the level of the child to be the level of the parent + 1"""
@@ -174,6 +186,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     global first_codeandlabel_properties
     first_codeandlabel_properties = []
+    global first_codeandlabel_name
+    first_codeandlabel_name = ""
 
     def regenerate_ids(df):
         """Regenerate the IDs of the dataframe"""
@@ -201,9 +215,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     regenerate_ids(df)
 
 
-    # Adding a name column (NexSIS by default, overriden by 'Nouvelle Balise' if exists)
-    df['name'] = df['Balise NexSIS']
-    df.loc[df['Nouvelle balise'].notnull(), 'name'] = df['Nouvelle balise']
+    # Adding a name column ('Balise' by default)
+    df['name'] = df['Balise']
 
     # DATA ENRICHMENT
     # Get level in data hierarchy
@@ -244,16 +257,16 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     if not df[df['name'].isnull()].empty:
         print(f"{Color.RED}ERROR: some rows have no 'name' field:{Color.ORANGE}")
         print(df[df['name'].isnull()])
-        print(f"Name is based on column 'Balise NexSIS' overwritten by any value in 'Nouvelle balise'.\n"
-              f"Check these columns are correctly set up.{Color.END}")
+        print(f"Name is based on column 'Balise'.\n"
+              f"Check that this column is correctly set up.{Color.END}")
         HAS_ERROR = True
     # - name with spaces
     test = df[df['name'].str.contains(' ')]
     if not df[df['name'].str.contains(' ')].empty:
         print(f"{Color.RED}ERROR: some rows have spaces in their 'name' field:{Color.ORANGE}")
         print(df[df['name'].str.contains(' ')])
-        print(f"Name is based on column 'Balise NexSIS' overwritten by any value in 'Nouvelle balise'.\n"
-              f"Check these columns are correctly set up.{Color.END}")
+        print(f"Name is based on column 'Balise'.\n"
+              f"Check that this column is correctly set up.{Color.END}")
         HAS_ERROR = True
     # - objects with basic types
     basic_types = ['integer', 'number', 'string', 'datetime', 'date', 'boolean']
@@ -448,8 +461,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             return children
 
     json_example = build_example(rootObject)
-    with open(f'out/{name}/{name}.example.json', 'w') as outfile:
-        json.dump(json_example, outfile, indent=4)
+    with open(f'out/{name}/{name}.example.json', 'w', encoding='utf8') as outfile:
+        json.dump(json_example, outfile, indent=4, ensure_ascii=False)
 
     # Go through data (list or tree) and use it to build the expected JSON schema
     json_schema = {
@@ -480,8 +493,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         elif typeName == 'phoneNumber':
             return 'string', r'tel:([#\+\*]|37000|00+)?[0-9]{2,15}', None
         else:
-            if has_format_details(child, 'REGEX: '):
-                return typeName, child['Détails de format'][7:], None
+            if has_format_details(child, FormatFlags.REGEX):
+                return typeName, child['Détails de format'][len(FormatFlags.REGEX):], None
             else:
                 return typeName, None, None
 
@@ -490,9 +503,14 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             return json_schema['example']
         return json_schema['definitions'][parent['true_type']]['example']
 
+    def child_not_already_required(child, definitions):
+        """Check if the array of required values already contains the child we're attempting to add, return False if
+        so"""
+        return child['name'] not in definitions['required']
+
     def add_field_child_property(parent, child, definitions):
         """Update parent definitions (required and properties) by adding the child information for a field child"""
-        if child['Cardinalité'].startswith('1'):
+        if child['Cardinalité'].startswith('1') and child_not_already_required(child, definitions):
             definitions['required'].append(child['name'])
         typeName, pattern, format = type_matching(child)
         parentExamplePath = get_parent_example_path(parent)
@@ -509,10 +527,10 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             childDetails['pattern'] = pattern
         if format is not None:
             childDetails['format'] = format
-        if has_format_details(child, 'ENUM: '):
-            childDetails['enum'] = child['Détails de format'][6:].split(', ')
+        if has_format_details(child, FormatFlags.ENUM):
+            childDetails['enum'] = child['Détails de format'][len(FormatFlags.ENUM):].split(', ')
         # key word nomenclature trigger search over nomenclature folder for matching file
-        if has_format_details(child, 'NOMENCLATURE: '):
+        if has_format_details(child, FormatFlags.NOMENCLATURE):
             childDetails['enum'] = get_nomenclature(child)
         properties = definitions['properties']
         if is_array(child):
@@ -669,8 +687,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating JSON schema...{Color.END}')
     DFS(rootObject, build_json_schema)
-    with open(f'out/{name}/{name}.schema.json', 'w') as outfile:
-        json.dump(json_schema, outfile, indent=4)
+    with open(f'out/{name}/{name}.schema.json', 'w', encoding='utf8') as outfile:
+        json.dump(json_schema, outfile, indent=4, ensure_ascii=False)
     print('JSON schema generated.')
 
     # BUILD OpenAPI SCHEMA
@@ -718,7 +736,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             **openapi_components
         }
 
-    with open(f'out/{name}/{name}.openapi.yaml', 'w') as file:
+    with open(f'out/{name}/{name}.openapi.yaml', 'w', encoding='utf8') as file:
         documents = yaml.dump(full_yaml, sort_keys=False)
         documents = documents.replace('#/definitions/', "#/components/schemas/")
         file.write(documents)
@@ -768,7 +786,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             doc = docx.Document()
 
         # Add title
-        doc.add_heading(title, level=1)
+        doc.add_heading(name, level=1)
 
         # Add paragraph
         # doc.add_paragraph('This table represents the fields and types defined in the JSON schema.')

@@ -1,14 +1,360 @@
 [
   {
+    "label": "RS-EDA",
+    "schemaName": "RS-EDA.schema.json",
+    "schema": null,
+    "examples": [
+      {
+        "file": "RS-EDA/RS-EDA_partageDossier_DidierMorel.01a.json",
+        "icon": "mdi-circular-saw",
+        "name": "Didier MOREL.01a",
+        "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
+        "context": "Pas de test suivant: RS-RI - 01b",
+        "environment": "Appel reçu par le SAMU 77 et dossier partagé au SAMU 94 pour information (anticipation d’un besoin en chirurgie de la main)",
+        "victims": "1 patient",
+        "victim": "Didier, 65 ans",
+        "medicalSituation": " Accident domestique : Plaie traumatique profonde, perte de conscience, hémorragie importante"
+      },
+      {
+        "file": "RS-EDA/RS-EDA_partageDossier_LolaHalimi.01a.json",
+        "icon": "mdi-image-broken-variant",
+        "name": "Lola HALIMI.01a",
+        "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
+        "context": "Pas de test suivant: RS-RI - 01b",
+        "environment": "Appel reçu par le SAMU 95 et dossier partagé au SAMU 78 pour information (situation tendue, pas de SMUR disponible)",
+        "victims": "1 patient",
+        "victim": "Lola, 10 ans",
+        "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible"
+      },
+      {
+        "file": "RS-EDA/RS-EDA_partageDossier_MonsieurX.01.json",
+        "icon": "mdi-head-heart-outline",
+        "name": "Monsieur X.01",
+        "caller": "Lucas Bernardi, gérant de gite touristique",
+        "context": "Pas de test suivant: RS-EDA-MAJ - 02 ",
+        "environment": "Appel reçu par le SAMU 09 et dossier partagé au SAMU 31 pour information",
+        "victims": "1 patient",
+        "victim": "Adulte, environ 80 ans",
+        "medicalSituation": "Confusion, étourdissements, s’exprime difficilement. Client du gîte du Moulin voyageant seul"
+      },
+      {
+        "file": "RS-EDA/RS-EDA_partageDossier_OuardiaBoudadi.01.json",
+        "icon": "mdi-heart-plus-outline",
+        "name": "Ouardia BOUDADI.01",
+        "caller": "Magda LENA, collègue de la victime, Ouardia BOUDADI",
+        "context": "Pas de test suivant: RS-EDA-MAJ - 02",
+        "environment": "Suspicion de crise cardiaque",
+        "victims": "1 patient",
+        "victim": "Ouardia, 47 ans",
+        "medicalSituation": "Appel limitrophe reçu par le SAMU 95 et dossier partagé au SAMU 78"
+      },
+      {
+        "file": "RS-EDA/RS-EDA_partageDossier_EnfantsNguyen.01.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "Enfants NGUYEN.01",
+        "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
+        "context": "Pas de test suivant: RS-EDA-MAJ - 02",
+        "environment": "Appel limitrophe reçu par le SAMU 80 et dossier partagé au SAMU 76A",
+        "victims": "2 patients",
+        "victim": "Kamelia, 21 mois - Bao, 6 ans",
+        "medicalSituation": "Chute d'environ 2m. Multiples contusions et plaies. Possible fractures et trauma crânien"
+      },
+      {
+        "file": "RS-EDA/RS-EDA-SMUR_FuiteDeGaz_AliceGregoireNormand.01.json",
+        "icon": "mdi-molecule-co2",
+        "context": "Pas de test suivant: RS-EDA-MAJ - 02a",
+        "name": "Alice et Grégoire NORMAND.01",
+        "caller": "Marie Dubois, mère des enfants, appelle le 15",
+        "environment": "Domicile, maison particulière",
+        "victims": "2 patients, nécessitant assistance SAMU et l'intervention du SIS pour la fuite de gaz qui a reçu une demande de concours",
+        "victim": "Femme, enfant, 13 ans, et Homme, enfant, 11 ans",
+        "medicalSituation": "Malaise, effets secondaires liés au monoxyde de carbone suite à une fuite de gaz"
+      },
+      {
+        "file": "RS-EDA/RS-EDA-SMUR_FemmeEnceinte_DelphineVigneau.01.json",
+        "icon": "mdi-human-pregnant",
+        "context": "Pas de test suivant: RS-EDA-MAJ - Delphine VIGNEAU.02a",
+        "name": "Delphine VIGNEAU.01",
+        "caller": "Agnès Duberti, appelle le 18 qui nous transfère l'appel et le dossier",
+        "environment": "Lieu de travail",
+        "victims": "1 patiente, nécessitant assistance SAMU",
+        "victim": "Femme, enceinte de 2 mois, 32 ans",
+        "medicalSituation": "Problème obstétrique non hémorragique suite à la chute d'une échelle d'une femme enceinte"
+      }]
+  },
+  {
+    "label": "RS-EDA-MAJ",
+    "schemaName": "RS-EDA-MAJ.schema.json",
+    "schema": null,
+    "examples": [
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_DidierMorel.02.json",
+        "icon": "mdi-circular-saw",
+        "name": "Didier MOREL.02",
+        "context": "Pas de test suivant: RS-SR - 03a",
+        "environment": "L’épouse de Didier Morel fait un malaise. Ajout d’un second patient au dossier"
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_LolaHalimi.02.json",
+        "icon": "mdi-image-broken-variant",
+        "name": "Lola HALIMI.02",
+        "context": "Pas de test suivant: RS-DR - 03a",
+        "environment": "Dégradation du patient : notes médicales ajoutées au dossier et priorité de régulation revue à la hausse"
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_MonsieurX.02a.json",
+        "icon": "mdi-head-heart-outline",
+        "name": "Monsieur X.02",
+        "context": "Pas de test suivant: RS-EDA-MAJ - 02a",
+        "environment": "Régulation médicale du médecin urgentiste"
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_MonsieurX.02b.json",
+        "icon": "mdi-head-heart-outline",
+        "name": "Monsieur X.02",
+        "context": "Pas de test suivant: RS-RI - 03",
+        "environment": "Décision du médecin urgentiste"
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_priseEnCharge_OuardiaBoudadi.02.json",
+        "icon": "mdi-heart-plus-outline",
+        "name": "Ouardia BOUDADI.02",
+        "environment": "Changement de CRRA traitant suite à la prise en charge de l’appel par le 78"
+      }, 
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_priseEnCharge_EnfantsNguyen.02.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "Enfants NGUYEN.02",
+        "context": "Pas de test suivant: RS-EDA-MAJ - 03a",
+        "environment": "Changement de CRRA traitant suite à la prise en charge de l’appel par le 76A"
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_EnfantsNguyen.03a.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "Enfants NGUYEN.03a",
+        "context": "Pas de test suivant: RS-RI - 03b",
+        "environment": "Régulation médicale du médecin urgentiste du 76A : mise à jour du dossier"
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FemmeEnceinte_DelphineVigneau.02a.json",
+        "icon": "mdi-human-pregnant",
+        "name": "Delphine VIGNEAU.02a",
+        "context": "Pas de test suivant: RS-EDA-MAJ - Delphine VIGNEAU.02b",
+        "environment": "Régulation médicale du médecin urgentiste"
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FemmeEnceinte_DelphineVigneau.02b.json",
+        "icon": "mdi-human-pregnant",
+        "name": "Delphine VIGNEAU.02b",
+        "context": "Pas de test suivant: RS-RPIS - Delphine VIGNEAU.03",
+        "environment": "Clôture du dossier"
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FuiteDeGaz_AliceGregoireNormand.02a.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.02a",
+        "context": "Pas de test suivant: RS-EDA-MAJ - Alice et Grégoire NORMAND.02b",
+        "environment": "Régulation médicale du médecin urgentiste"
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FuiteDeGaz_AliceGregoireNormand.02b.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.02b",
+        "context": "Pas de test suivant: RS-RPIS - Grégoire NORMAND.03a",
+        "environment": "Clôture du dossier"
+      }]
+  },
+  {
+    "label": "RS-RI",
+    "schemaName": "RS-RI.schema.json",
+    "schema": null,
+    "examples": [
+    {
+      "file": "RS-RI/RS-RI_partageDossier_DidierMorel.01b.json",
+      "icon": "mdi-circular-saw",
+      "name": "Didier MOREL.01b",
+      "context": "Pas de test suivant: RS-EDA-MAJ - 02a",
+      "environment": "Engagement d'un VSAV et d'un VLM par le 77"
+    },
+    {
+        "file": "RS-RI/RS-RI_partageRessources_DidierMorel.04c.json",
+        "icon": "mdi-circular-saw",
+        "name": "Didier MOREL.04c",
+        "environment": "Engagement de l’HéliSMUR 94 en réponse à la demande du 77"
+    },
+    {
+      "file": "RS-RI/RS-RI_partageDossier_LolaHalimi.01b.json",
+      "icon": "mdi-image-broken-variant",
+      "name": "Lola HALIMI.01b",
+      "context": "Pas de test suivant: RS-EDA-MAJ-02",
+      "environment": "Engagement d'un VSAV par le SAMU 95"
+    },
+    {
+      "file": "RS-RI/RS-RI_partageRessources_LolaHalimi.03c.json",
+      "icon": "mdi-image-broken-variant",
+      "name": "Lola HALIMI.03c",
+      "context": "Pas de test suivant: RS-SR - 04",
+      "environment": "Engagement du SMUR78  en réponse à la demande du 95"
+    },
+    {
+      "file": "RS-RI/RS-RI_partageRessources_MonsieurX.03.json",
+      "icon": "mdi-head-heart-outline",
+      "name": "Monsieur X.03",
+      "environment": "Engagement d’une ambulance privée"
+    },
+    {
+      "file": "RS-RI/RS-RI_partageDossier_EnfantsNguyen.03b.json",
+      "icon": "mdi-baby-face-outline",
+      "name": "Enfants NGUYEN.03b",
+      "context": "Pas de test suivant: RS-DR - 04a",
+      "environment": "Engagement VSAV + envoi VLM SMUR par le 76A"
+    },
+    {
+      "file": "RS-RI/RS-RI_partageRessources_EnfantsNguyen.04c.json",
+      "icon": "mdi-baby-face-outline",
+      "name": "Enfants NGUYEN.04c",
+      "context": "Pas de test suivant: RS-SR - 05a",
+      "environment": "Engagement de l’HéliSMUR 80 en réponse à la demande du 76A"
+    }]
+  },
+  {
+    "label": "RS-DR",
+    "schemaName": "RS-DR.schema.json",
+    "schema": null,
+    "examples": [
+      {
+        "file": "RS-DR/RS-DR_partageRessources_DidierMorel.04a.json",
+        "icon": "mdi-circular-saw",
+        "name": "Didier MOREL.04a",
+        "context": "Pas de test suivant: RS-RR - 04b",
+        "environment": "Demande HeliSMUR 94 pour transfert Didier Morel au centre Urgence Mains à Nogent-sur-Marne"
+      },
+      {
+        "file": "RS-DR/RS-DR_partageRessources_LolaHalimi.03a.json",      
+        "icon": "mdi-image-broken-variant",      
+        "name": "Lola HALIMI.03a",      
+        "context": "Pas de test suivant: RS-RR - 03b",      
+        "environment": "Demande de ressources au 78 (pas de SMUR disponible au 95)"    
+      },
+      {
+        "file": "RS-DR/RS-DR_partageRessources_EnfantsNguyen.04a.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "Enfants NGUYEN.04a",
+        "context": "Pas de test suivant: RS-RR - 04b",
+        "environment": "Demande SMUR pédiatrique au SAMU 80"
+      }]
+  },
+  {
+    "label": "RS-RR",
+    "schemaName": "RS-RR.schema.json",
+    "schema": null,
+    "examples": [
+      {
+        "file": "RS-RR/RS-RR_partageRessources_DidierMorel.04b.json",
+        "icon": "mdi-circular-saw",
+        "name": "Didier MOREL.04b",
+        "context": "Pas de test suivant: RS-RI - 04c",
+        "environment": "Réponse du SAMU 94, demande acceptée"
+      },
+      {
+        "file": "RS-RR/RS-RR_partageRessources_LolaHalimi.03b.json",
+        "icon": "mdi-image-broken-variant",
+        "name": "Lola HALIMI.03b",
+        "context": "Pas de test suivant: RS-RI - 03c",
+        "environment": "Réponse du SAMU 78, demande acceptée"
+      },
+      {
+        "file": "RS-RR/RS-RR_partageRessources_EnfantsNguyen.04b.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "Enfants NGUYEN.04b",
+        "context": "Pas de test suivant: RS-RI - 04c",
+        "environment": "Réponse du SAMU 78, acceptation partielle (engagement dans 10min)"
+      }]
+  },
+  {
+    "label": "RS-SR",
+    "schemaName": "RS-SR.schema.json",
+    "schema": null,
+    "examples": [
+      {
+        "file": "RS-SR/RS-SR_partageDossier_DidierMorel.03a.json",
+        "icon": "mdi-circular-saw",
+        "name": "Didier MOREL.03a",
+        "context": "Pas de test suivant: RS-SR - 03b ",
+        "environment": "Le VSAV 77 est arrivé sur les lieux"
+      },
+      {
+        "file": "RS-SR/RS-SR_partageDossier_DidierMorel.03b.json",
+        "icon": "mdi-circular-saw",
+        "name": "Didier MOREL.03b",
+        "context": "Pas de test suivant: RS-DR - 04a ",
+        "environment": "Le SMUR 77 a commencé la prise en charge médicale"
+      },
+      {
+        "file": "RS-SR/RS-SR_partageRessources_LolaHalimi.04.json",
+        "icon": "mdi-image-broken-variant",
+        "name": "Lola HALIMI.04",
+        "environment": "Le SMUR 78 quitte la base"
+      }, 
+      {
+        "file": "RS-SR/RS-SR_partageRessources_EnfantsNguyen.05a.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "Enfants NGUYEN.05a",
+        "context": "Pas de test suivant: RS-SR - 05b ",
+        "environment": "Départ du SMUR 76A vers le lieu de l’intervention"
+      }, 
+      {
+        "file": "RS-SR/RS-SR_partageRessources_EnfantsNguyen.05b.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "Enfants NGUYEN.05b",
+        "context": "Pas de test suivant: RS-SR - 05c",
+        "environment": "Arrivée du VSAV 76A sur le lieu de l’intervention"
+      }, 
+      {
+        "file": "RS-SR/RS-SR_partageRessources_EnfantsNguyen.05c.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "Enfants NGUYEN.05c",
+        "environment": "Arrivée Helismur 80 sur le lieu de l’intervention"
+      }]
+  },
+
+  {
+    "label": "RS-RPIS",
+    "schemaName": "RPIS.schema.json",
+    "schema": null,
+    "examples": [
+      {
+        "file": "RPIS/RS-RPIS_FuiteDeGaz_GregoireNormand.03a.json",
+        "icon": "mdi-molecule-co2",
+        "context": "Fuite de gaz",
+        "name": "Grégoire NORMAND.03a",
+        "medicalSituation": "Données RPIS du patient"
+      },
+      {
+        "file": "RPIS/RS-RPIS_FuiteDeGaz_AliceNormand.03b.json",
+        "icon": "mdi-molecule-co2",
+        "context": "Fuite de gaz",
+        "name": "Alice NORMAND.03b",
+        "medicalSituation": "Données RPIS du patient"
+      },
+      {
+        "file": "RPIS/RS-RPIS_FemmeEnceinte_DelphineVigneau.03.json",
+        "icon": "mdi-human-pregnant",
+        "context": "Chute d'une échelle d'une femme enceinte",
+        "name": "Delphine VIGNEAU.03",
+        "medicalSituation": "Données RPIS du patient"
+      }]
+  },
+  {
     "label": "RC-EDA",
     "schemaName": "RC-EDA.schema.json",
     "schema": null,
     "examples": [
       {
-        "file": "RC-EDA/RC-EDA-Fuite-de-Gaz.json",
+        "file": "RC-EDA/RC-EDA-FuiteDeGaz-AliceGregoireNormand.json",
         "icon": "mdi-molecule-co2",
         "context": "Fuite de gaz",
-        "name": "Alice et Grégoire Normand",
+        "name": "Alice et Grégoire NORMAND",
         "caller": "Marie Dubois, mère des enfants, appelle le 15",
         "environment": "Domicile, maison particulière",
         "victims": "2 patients, nécessitant assistance SAMU et l'intervention du SIS pour la fuite de gaz qui a reçu une demande de concours",
@@ -16,17 +362,16 @@
         "medicalSituation": "Malaise, effets secondaires liés au monoxyde de carbone"
       },
       {
-        "file": "RC-EDA/RC-EDA-Obstetrique.json",
+        "file": "RC-EDA/RC-EDA-FemmeEnceinte-DelphineVigneau.json",
         "icon": "mdi-human-pregnant",
         "context": "Chute d'une échelle d'une femme enceinte",
-        "name": "Delphine Vigneau",
+        "name": "Delphine VIGNEAU",
         "caller": "Agnès Duberti, appelle le 18 qui nous transfère l'appel et le dossier",
         "environment": "Lieu de travail",
         "victims": "1 patiente, nécessitant assistance SAMU",
         "victim": "Femme, enceinte de 2 mois, 32 ans",
         "medicalSituation": "Problème obstétrique non hémorragique"
-      }
-    ]
+      }]
   },
   {
     "label": "EMSI",
@@ -76,81 +421,7 @@
         "victims": "2 victimes, 1 nécessitant assistance SAMU",
         "victim": "Homme, adulte, 43 ans",
         "medicalSituation": "Céphalées, migraines, traumatismes sérieux, plaies intermédiaires"
-      }
-    ]
-  },
-  {
-    "label": "RS-EDA",
-    "schemaName": "RS-EDA.schema.json",
-    "schema": null,
-    "examples": [
-      {
-        "file": "RS-EDA/RS-EDA-usecase-PartageDossier-1.json",
-        "icon": "mdi-circular-saw",
-        "name": "Didier MOREL",
-        "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
-        "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
-        "environment": "Domicile, outil scie débranché et sécurisé",
-        "victims": "1 victime, nécessitant assistance SAMU",
-        "victim": "Homme, adulte, 65 ans",
-        "medicalSituation": "Plaie traumatique profonde, perte de conscience, hémorragie importante"
-      },
-      {
-        "file": "RS-EDA/RS-EDA-usecase-PartageDossier-2.json",
-        "icon": "mdi-image-broken-variant",
-        "name": "Lola HALIMI",
-        "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
-        "context": "Fracture de la cheville",
-        "environment": "Cage d'escalier d'un immeuble résidentiel",
-        "victims": "1 patient",
-        "victim": "Fille, enfant, 10 ans",
-        "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible."
-      },
-      {
-        "file": "RS/RS-EDA-usecase-PartageDossier-3.json",
-        "icon": "mdi-head-heart-outline",
-        "name": "Monsieur X",
-        "caller": "Lucas Bernardi, gérant de gite touristique",
-        "context": "Suspicion d'AVC",
-        "environment": "Lieu accueillant du public : Le gîte du Moulin",
-        "victims": "1 patient",
-        "victim": "Adulte, environ 80 ans",
-        "medicalSituation": "Confusion, étourdissements, s’exprime difficilement. Client du gite voyageant seul."
-      },
-      {
-        "file": "RS-EDA/RS-EDA-usecase-AppelLimitrophe-2.json",
-        "icon": "mdi-heart-plus-outline",
-        "name": "Ouardia BOUDADI",
-        "caller": "Magda LENA, collègue de la victime, Ouardia BOUDADI",
-        "context": "Suspicion de crise cardiaque",
-        "environment": "Lieu de travail, local administratif de la SARL TOTO",
-        "victims": "1 victimes, nécessitant assistance SAMU",
-        "victim": "Femme, adulte, 47 ans",
-        "medicalSituation": "Douleurs thoraciques irradiantes, antécédents de maladie cardiaque"
-      },
-      {
-        "file": "RS-EDA/RS-EDA-SMUR-Fuite-de-Gaz.json",
-        "icon": "mdi-molecule-co2",
-        "context": "Fuite de gaz",
-        "name": "Alice et Grégoire Normand",
-        "caller": "Marie Dubois, mère des enfants, appelle le 15",
-        "environment": "Domicile, maison particulière",
-        "victims": "2 patients, nécessitant assistance SAMU et l'intervention du SIS pour la fuite de gaz qui a reçu une demande de concours",
-        "victim": "Femme, enfant, 13 ans, et Homme, enfant, 11 ans",
-        "medicalSituation": "Malaise, effets secondaires liés au monoxyde de carbone"
-      },
-      {
-        "file": "RS-EDA/RS-EDA-SMUR-Femme-Enceinte.json",
-        "icon": "mdi-human-pregnant",
-        "context": "Chute d'une échelle d'une femme enceinte",
-        "name": "Delphine Vigneau",
-        "caller": "Agnès Duberti, appelle le 18 qui nous transfère l'appel et le dossier",
-        "environment": "Lieu de travail",
-        "victims": "1 patiente, nécessitant assistance SAMU",
-        "victim": "Femme, enceinte de 2 mois, 32 ans",
-        "medicalSituation": "Problème obstétrique non hémorragique"
-      }
-    ]
+      }]
   },
   {
     "label": "GEO-POS",
@@ -162,8 +433,7 @@
         "icon": "mdi-earth",
         "name": "Positions Updates",
         "context": "Partage de mises à jour des positions"
-      }
-    ]
+      }]
   },
   {
     "label": "GEO-RES",
@@ -188,82 +458,6 @@
         "icon": "mdi-earth",
         "name": "Resources Request",
         "context": "Demande de partage des détails des ressources"
-      }
-    ]
-  },
-  {
-    "label": "RS-RI",
-    "schemaName": "RS-RI.schema.json",
-    "schema": null,
-    "examples": [{
-      "file": "RS-RI/RS-RI-Didier-Morel.json",
-      "icon": "mdi-circular-saw",
-      "name": "Didier Morel",
-      "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
-      "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
-      "environment": "Domicile, outil scie débranché et sécurisé",
-      "victims": "1 victimes, nécessitant assistance SAMU",
-      "victim": "Homme, adulte, 65 ans",
-      "medicalSituation": "Plaie traumatique profonde, perte de conscience, hémorragie importante"
-    }]
-  },
-  {
-    "label": "RS-DR",
-    "schemaName": "RS-DR.schema.json",
-    "schema": null,
-    "examples": [{
-      "file": "RS-DR/RS-DR-Lola-Halimi.json",      
-      "icon": "mdi-image-broken-variant",      
-      "name": "Lola HALIMI",      
-      "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",      
-      "context": "Fracture de la cheville",      
-      "environment": "Cage d'escalier d'unimmeuble résidentiel",      
-      "victims": "1 patient",      
-      "victim": "Fille, enfant, 10 ans",      
-      "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible"
-    }]
-  },
-  {
-    "label": "RS-RR",
-    "schemaName": "RS-RR.schema.json",
-    "schema": null,
-    "examples": [{
-      "file": "RS-RR/RS-RR-Lola-Halimi.json",      
-      "icon": "mdi-image-broken-variant",      
-      "name": "Lola HALIMI",
-      "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",      
-      "context": "Fracture de la cheville",      
-      "environment": "Cage d'escalier d'unimmeuble résidentiel",      
-      "victims": "1 patient",      
-      "victim": "Fille, enfant, 10 ans",      
-      "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible"
-    }]
-  },
-  {
-    "label": "RPIS",
-    "schemaName": "RPIS.schema.json",
-    "schema": null,
-    "examples": [{
-      "file": "RPIS/RPIS-Fuite-de-Gaz.json",
-      "icon": "mdi-molecule-co2",
-      "context": "Fuite de gaz",
-      "name": "Alice et Grégoire Normand",
-      "caller": "Marie Dubois, mère des enfants, appelle le 15",
-      "environment": "Domicile, maison particulière",
-      "victims": "2 patients, nécessitant assistance SAMU et l'intervention du SIS pour la fuite de gaz qui a reçu une demande de concours",
-      "victim": "Femme, enfant, 13 ans, et Homme, enfant, 11 ans",
-      "medicalSituation": "Malaise, effets secondaires liés au monoxyde de carbone"
-    },
-    {
-      "file": "RPIS/RPIS-Femme-Enceinte.json",
-      "icon": "mdi-human-pregnant",
-      "context": "Chute d'une échelle d'une femme enceinte",
-      "name": "Delphine Vigneau",
-      "caller": "Agnès Duberti, appelle le 18 qui nous transfère l'appel et le dossier",
-      "environment": "Lieu de travail",
-      "victims": "1 patiente, nécessitant assistance SAMU",
-      "victim": "Femme, enceinte de 2 mois, 32 ans",
-      "medicalSituation": "Problème obstétrique non hémorragique"
-    }]
+      }]
   }
 ]

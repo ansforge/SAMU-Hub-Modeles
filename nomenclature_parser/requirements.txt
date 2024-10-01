@@ -1,7 +1,4 @@
 pandas
-json
-yaml
-warnings
 openpyxl
 pyyaml
 jsonpath-ng

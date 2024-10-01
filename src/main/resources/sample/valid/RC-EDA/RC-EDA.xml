@@ -39,10 +39,6 @@
                             <creation>2023-11-03T10:03:00+01:00</creation>
                             <referenceVersion>1.3</referenceVersion>
                             <qualification>
-                                <whatsHappen>
-                                    <code>C01.01.04</code>
-                                    <label>2-roues</label>
-                                </whatsHappen>
                                 <riskThreat>
                                     <code>R22</code>
                                     <label>Gêne à la circulation</label>
@@ -51,6 +47,10 @@
                                     <code>R23</code>
                                     <label>Second risque</label>
                                 </riskThreat>
+                                <whatsHappen>
+                                    <code>C01.01.04</code>
+                                    <label>2-roues</label>
+                                </whatsHappen>
                                 <victims>
                                     <count>PLUSIEURS</count>
                                     <mainVictim>ADULTE</mainVictim>
@@ -62,8 +62,8 @@
                                 <locLabel>8 quai des Célestins - 69002 Lyon</locLabel>
                                 <name>Quai des Célestins</name>
                                 <externalLocationId>
-                                    <source>FINESS ADMINISTRATIF</source>
-                                    <value>'920000650</value>
+                                    <source>FINESS_ADMINISTRATIF</source>
+                                    <value>920000650</value>
                                 </externalLocationId>
                                 <detailedAddress>
                                     <complete>8 quai des Célestins</complete>
