@@ -352,12 +352,13 @@
                     "example": "example.json#/mobilizedResource/0/contact/type",
                     "description": "A valoriser avec le type de l'URI utilisée. Cf nomenclature associée.",
                     "enum": [
-                        "TEL",
                         "EMAIL",
                         "FAX",
+                        "MSS",
                         "POSTAL",
-                        "WEB",
-                        "RADIO"
+                        "RADIO",
+                        "TEL",
+                        "WEB"
                     ]
                 },
                 "details": {

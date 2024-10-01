@@ -13,6 +13,9 @@ Spécificité 15-18 : A valoriser avec le groupe date heure de début de partage
 Lors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.  
 L'indicateur de fuseau horaire Z ne doit pas être utilisé.
 Il doit être renseigné à la fin du processus de la  création de la première alerte.",2022-09-27T08:23:34+02:00,creation,1..1,,datetime,Format datetime décrit dans le DST
+Identifiant partagé de l'évènement,,,,,,"Identifiant partagé de l’évènement, généré une seule fois par le système qui créé l’évènement et le partage (SI-SAMU, SSE, etc.)
+Valorisé comme suit lors de sa création : 
+{OrgId émetteur}.event.{n°évènement unique dans le système émetteur}",fr.health.si-samu780.event.1234567896,event,0..1,,string,"REGEX: ^([\w-]+\.){3,4}event(\.[\w-]+){1,2}$"
 Filière,,,,,,"Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée.",AMU,perimeter,0..1,,string,NOMENCLATURE: ENUM-FILIERE
 Type d'intervention,,,,,,A valoriser en indiquant s'il s'agit d'un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH),PRIMAIRE,interventionType,0..1,,string,NOMENCLATURE: ENUM-TYPE_Intervention
 Qualification,,,,,,"Objet qui permet de qualifier l'affaire/dossier en général. 
@@ -141,7 +144,7 @@ Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pa
 Spécificités 15-15 : en envoi, cet objet est à valoriser avec le numéro de contre-appel uniquement lorsque celui-ci est différent du numéro de l'appelant (objet obligatoire callerContact).
 En réception, il est crucial de récupérer la valeur de cet objet lorsqu'il est renseigné, puisqu'il s'agit du numéro sur lequel l'appelant peut être joint.",,callbackContact,0..1,X,contact,
 ,,Langue parlée,,,,"A valoriser avec la langue parlée par le requérant. 
-cf.nomenclature associée.",FR,language,0..1,,string,NOMENCLATURE: ISO 3166-ISO3166-2
+cf.nomenclature associée.",FR,language,0..1,,string,NOMENCLATURE: ISO-639.1-LANGUE
 ,,Type de requérant,,,,"A valoriser avec la relation du requérant avec l'incident / le patient / la victime.
 cf. nomenclature associée.","FAMILLE, TIERS",type,0..1,,string,NOMENCLATURE: SI-SAMU-TYPAPPLT
 ,,Difficulté de communication,,,,"A valoriser avec la nature des éventuelles difficultés de communication rencontrées par le requérant. 
@@ -172,6 +175,13 @@ fr.health.samu690.patient.DRFR15690242370035.1",idPat,1..1,,string,"REGEX: ^([\w
 ,,Identifiant(s) patient(s),,,,"Objet qui permet de décrire l'ensemble des identifiants qui permettent d'identifier le patient (autre que le matricule INS, qui ne doit jamais être partagé via cet objet)",,externalId,0..n,X,externalId,
 ,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",source,1..1,,string,NOMENCLATURE: ENUM-TYPE_Id_Patient
 ,,,Identifiant,,,L'identifiant en lui-même,id1234,value,1..1,,string,
+,,Médecin traitant ,,,,,,generalPractitioner,0..1,X,generalPractitioner,
+,,,Prénom & nom usuel,,,Nom du médecin traitant du patient si connu,,detailedName,1..1,X,detailedName,
+,,,Identifiant RPPS,,,Numéro RPPS du médecin traitant,10000668540,id,0..1,,string,
+,,,Contact médecin,,,Type et valeur des URI utilisées par le patient concerné,,contact,0..n,X,personalContact,
+,,,,Type de contact,,A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.,TEL,type,1..1,,string,NOMENCLATURE: ENUM-CONTACT_Type
+,,,,URI du contact,,"A valoriser avec la valeur de l'URI utilisée.
+Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}",+33671830530,detail,1..1,,string,
 ,Identité,,,,,Objet qui permet de décrire l'identité du patient,,identity,0..1,X,Identity,
 ,,Traits stricts de l'identité,,,,Objet qui permet de décrire les traits stricts de l'identité du patient,,strictFeatures,0..1,X,insStrictFeatures,
 ,,,Nom de naissance,,,A valoriser avec le nom de naissance du patient. Egalement appelé nom de famille.,Dupont,birthName,0..1,,string,
@@ -186,9 +196,9 @@ fr.health.samu690.patient.DRFR15690242370035.1",idPat,1..1,,string,"REGEX: ^([\w
 Au format ""Durée"" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) et en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)",P6Y,age,0..1,,string,"REGEX: ^P[0-9]{1,3}[YMWD]$"
 ,,Niveau de soin du patient,,,,A valoriser avec le niveau de soins spécifique au patient,R1,careLevel,0..1,,string,NOMENCLATURE: SI-SAMU-GRAVITE
 ,,Antécédents,,,,"Texte libre  pour décrire les antécédents du patient. 
-Si ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. ","Arthrite, asthme",medicalHistory,0..n,,string,
+Si ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. ","Arthrite, asthme",medicalHistory,0..1,,string,
 ,,Traitements,,,,"Texte libre  pour décrire les traitements du patient.
-Si ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. ",Amoxicilline 1 g  et paracétamol 1 g depuis 5 jours.,treatments,0..n,,string,
+Si ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. ",Amoxicilline 1 g  et paracétamol 1 g depuis 5 jours.,treatment,0..1,,string,
 ,Hypothèses de régulation médicale,,,,,Objet qui permet de décrire les hypothèses de régulation médicale,,hypothesis,0..1,X,hypothesis,
 ,,Hypothèse de régulation médicale principale,# Voir type codeAndLabel,,,Hypothèse diagnostique principale émise par le médecin régulateur du CRAA. Norme CIM10.,,mainDiagnosis,0..1,X,codeAndLabel,"REGEX: ^[A-Z]\d{2}(\.[\d\+\-]{1,3})?$"
 ,,Hypothèses de régulation médicale secondaires,# Voir type codeAndLabel,,,Hypothèses diagnostiques secondaires émises par le médecin régulateur du CRAA. Norme CIM10.,,otherDiagnosis,0..n,X,codeAndLabel,"REGEX: ^[A-Z]\d{2}(\.[\d\+\-]{1,3})?$"

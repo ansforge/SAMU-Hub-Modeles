@@ -35,10 +35,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -48,7 +46,7 @@ import java.util.Objects;
     {PatientDetail.JSON_PROPERTY_WEIGHT, PatientDetail.JSON_PROPERTY_HEIGHT,
      PatientDetail.JSON_PROPERTY_AGE, PatientDetail.JSON_PROPERTY_CARE_LEVEL,
      PatientDetail.JSON_PROPERTY_MEDICAL_HISTORY,
-     PatientDetail.JSON_PROPERTY_TREATMENTS})
+     PatientDetail.JSON_PROPERTY_TREATMENT})
 @JsonTypeName("patientDetail")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -103,10 +101,10 @@ public class PatientDetail {
   private CareLevelEnum careLevel;
 
   public static final String JSON_PROPERTY_MEDICAL_HISTORY = "medicalHistory";
-  private List<String> medicalHistory;
+  private String medicalHistory;
 
-  public static final String JSON_PROPERTY_TREATMENTS = "treatments";
-  private List<String> treatments;
+  public static final String JSON_PROPERTY_TREATMENT = "treatment";
+  private String treatment;
 
   public PatientDetail() {}
 
@@ -205,82 +203,54 @@ public class PatientDetail {
     this.careLevel = careLevel;
   }
 
-  public PatientDetail medicalHistory(List<String> medicalHistory) {
+  public PatientDetail medicalHistory(String medicalHistory) {
 
     this.medicalHistory = medicalHistory;
     return this;
   }
 
-  public PatientDetail addMedicalHistoryItem(String medicalHistoryItem) {
-    if (this.medicalHistory == null) {
-      this.medicalHistory = new ArrayList<>();
-    }
-    this.medicalHistory.add(medicalHistoryItem);
-    return this;
-  }
-
   /**
-   * Get medicalHistory
+   * Texte libre  pour décrire les antécédents du patient.  Si ce n&#39;est pas
+   *géré de manière structurés : à afficher dans une note liée au patient en
+   *réception.
    * @return medicalHistory
    **/
   @JsonProperty(JSON_PROPERTY_MEDICAL_HISTORY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<String> getMedicalHistory() {
+  public String getMedicalHistory() {
     return medicalHistory;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
   @JsonProperty(JSON_PROPERTY_MEDICAL_HISTORY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMedicalHistory(List<String> medicalHistory) {
-    if (medicalHistory == null) {
-      return;
-    }
-    if (this.medicalHistory == null) {
-      this.medicalHistory = new ArrayList<>();
-    }
-    this.medicalHistory.addAll(medicalHistory);
+  public void setMedicalHistory(String medicalHistory) {
+    this.medicalHistory = medicalHistory;
   }
 
-  public PatientDetail treatments(List<String> treatments) {
+  public PatientDetail treatment(String treatment) {
 
-    this.treatments = treatments;
-    return this;
-  }
-
-  public PatientDetail addTreatmentsItem(String treatmentsItem) {
-    if (this.treatments == null) {
-      this.treatments = new ArrayList<>();
-    }
-    this.treatments.add(treatmentsItem);
+    this.treatment = treatment;
     return this;
   }
 
   /**
-   * Get treatments
-   * @return treatments
+   * Texte libre  pour décrire les traitements du patient. Si ce n&#39;est pas
+   *géré de manière structurés : à afficher dans une note liée au patient en
+   *réception.
+   * @return treatment
    **/
-  @JsonProperty(JSON_PROPERTY_TREATMENTS)
+  @JsonProperty(JSON_PROPERTY_TREATMENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<String> getTreatments() {
-    return treatments;
+  public String getTreatment() {
+    return treatment;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_TREATMENTS)
+  @JsonProperty(JSON_PROPERTY_TREATMENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTreatments(List<String> treatments) {
-    if (treatments == null) {
-      return;
-    }
-    if (this.treatments == null) {
-      this.treatments = new ArrayList<>();
-    }
-    this.treatments.addAll(treatments);
+  public void setTreatment(String treatment) {
+    this.treatment = treatment;
   }
 
   @Override
@@ -297,13 +267,13 @@ public class PatientDetail {
         Objects.equals(this.age, patientDetail.age) &&
         Objects.equals(this.careLevel, patientDetail.careLevel) &&
         Objects.equals(this.medicalHistory, patientDetail.medicalHistory) &&
-        Objects.equals(this.treatments, patientDetail.treatments);
+        Objects.equals(this.treatment, patientDetail.treatment);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(weight, height, age, careLevel, medicalHistory,
-                        treatments);
+                        treatment);
   }
 
   @Override
@@ -319,8 +289,8 @@ public class PatientDetail {
     sb.append("    medicalHistory: ")
         .append(toIndentedString(medicalHistory))
         .append("\n");
-    sb.append("    treatments: ")
-        .append(toIndentedString(treatments))
+    sb.append("    treatment: ")
+        .append(toIndentedString(treatment))
         .append("\n");
     sb.append("}");
     return sb.toString();

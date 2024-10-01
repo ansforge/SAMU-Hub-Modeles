@@ -39,59 +39,14 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Contact
+ * PersonalContact
  */
-@JsonPropertyOrder({Contact.JSON_PROPERTY_CHANNEL, Contact.JSON_PROPERTY_TYPE,
-                    Contact.JSON_PROPERTY_DETAIL})
-@JsonTypeName("contact")
+@JsonPropertyOrder(
+    {PersonalContact.JSON_PROPERTY_TYPE, PersonalContact.JSON_PROPERTY_DETAIL})
+@JsonTypeName("personalContact")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Contact {
-
-  /**
-   * A valoriser avec  l&#39;origine du canal établi : PERSONNE, APPLICATION,
-   * DAU, BAU, DEFIBRILLATEUR, ECALL
-   */
-  public enum ChannelEnum {
-    APPLICATION("APPLICATION"),
-
-    BAU("BAU"),
-
-    DAU("DAU"),
-
-    DEFIBRILLATEUR_("DEFIBRILLATEUR, "),
-
-    ECALL("ECALL"),
-
-    PERSONNE("PERSONNE");
-
-    private String value;
-
-    ChannelEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ChannelEnum fromValue(String value) {
-      for (ChannelEnum b : ChannelEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_CHANNEL = "channel";
-  private ChannelEnum channel;
+public class PersonalContact {
 
   /**
    * A valoriser avec le type de l&#39;URI utilisée.  Cf nomenclature associée.
@@ -142,33 +97,9 @@ public class Contact {
   public static final String JSON_PROPERTY_DETAIL = "detail";
   private String detail;
 
-  public Contact() {}
+  public PersonalContact() {}
 
-  public Contact channel(ChannelEnum channel) {
-
-    this.channel = channel;
-    return this;
-  }
-
-  /**
-   * A valoriser avec  l&#39;origine du canal établi : PERSONNE, APPLICATION,
-   *DAU, BAU, DEFIBRILLATEUR, ECALL
-   * @return channel
-   **/
-  @JsonProperty(JSON_PROPERTY_CHANNEL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public ChannelEnum getChannel() {
-    return channel;
-  }
-
-  @JsonProperty(JSON_PROPERTY_CHANNEL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChannel(ChannelEnum channel) {
-    this.channel = channel;
-  }
-
-  public Contact type(TypeEnum type) {
+  public PersonalContact type(TypeEnum type) {
 
     this.type = type;
     return this;
@@ -191,7 +122,7 @@ public class Contact {
     this.type = type;
   }
 
-  public Contact detail(String detail) {
+  public PersonalContact detail(String detail) {
 
     this.detail = detail;
     return this;
@@ -223,22 +154,20 @@ public class Contact {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Contact contact = (Contact)o;
-    return Objects.equals(this.channel, contact.channel) &&
-        Objects.equals(this.type, contact.type) &&
-        Objects.equals(this.detail, contact.detail);
+    PersonalContact personalContact = (PersonalContact)o;
+    return Objects.equals(this.type, personalContact.type) &&
+        Objects.equals(this.detail, personalContact.detail);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(channel, type, detail);
+    return Objects.hash(type, detail);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Contact {\n");
-    sb.append("    channel: ").append(toIndentedString(channel)).append("\n");
+    sb.append("class PersonalContact {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("}");

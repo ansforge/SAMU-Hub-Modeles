@@ -399,12 +399,13 @@ components:
           description: "A valoriser avec le type de l'URI utilis\xE9e. Cf nomenclature\
             \ associ\xE9e."
           enum:
-          - TEL
           - EMAIL
           - FAX
+          - MSS
           - POSTAL
-          - WEB
           - RADIO
+          - TEL
+          - WEB
           examples:
           - PHNADD
         details:

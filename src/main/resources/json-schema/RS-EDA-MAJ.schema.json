@@ -654,6 +654,9 @@
                     "items": {
                         "$ref": "#/definitions/externalId"
                     }
+                },
+                "generalPractitioner": {
+                    "$ref": "#/definitions/generalPractitioner"
                 }
             },
             "additionalProperties": false,
@@ -805,6 +808,22 @@
                         "R3",
                         "R4"
                     ]
+                },
+                "medicalHistory": {
+                    "type": "string",
+                    "title": "Antécédents",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/detail/medicalHistory",
+                    "description": "Texte libre  pour décrire les antécédents du patient. \nSi ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. "
+                },
+                "treatment": {
+                    "type": "string",
+                    "title": "Traitements",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/detail/treatment",
+                    "description": "Texte libre  pour décrire les traitements du patient.\nSi ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. "
                 }
             },
             "additionalProperties": false,
@@ -867,6 +886,112 @@
             "additionalProperties": false,
             "example": "example.json#/patient/0/administrativeFile/externalId/0"
         },
+        "generalPractitioner": {
+            "type": "object",
+            "title": "Médecin traitant ",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "detailedName"
+            ],
+            "properties": {
+                "detailedName": {
+                    "$ref": "#/definitions/detailedName"
+                },
+                "id": {
+                    "type": "string",
+                    "title": "Identifiant RPPS",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/administrativeFile/generalPractitioner/id",
+                    "description": "Numéro RPPS du médecin traitant"
+                },
+                "contact": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/personalContact"
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/patient/0/administrativeFile/generalPractitioner"
+        },
+        "detailedName": {
+            "type": "object",
+            "title": "Prénom & nom usuel",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "complete"
+            ],
+            "properties": {
+                "complete": {
+                    "type": "string",
+                    "title": "Prénom et nom",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/administrativeFile/generalPractitioner/detailedName/complete",
+                    "description": "A valoriser avec le prénom et le nom usuel du requérant/appelant.\nSi les champs callerLastName et callerFirstName sont également renseignés, le champ callerName doit être valorisé ainsi : \"{callerFirstName} {callerLastName}\".\n\nSpécificités 15-18  : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés."
+                },
+                "lastName": {
+                    "type": "string",
+                    "title": "Nom",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/administrativeFile/generalPractitioner/detailedName/lastName",
+                    "description": "A valoriser avec le nom usuel du requérant"
+                },
+                "firstName": {
+                    "type": "string",
+                    "title": "Prénom",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/administrativeFile/generalPractitioner/detailedName/firstName",
+                    "description": "A valoriser avec le prénom usuel du réquérant.\nPar convention les prénoms composés doivent préférablement être séparés par le caractère \"-\""
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/patient/0/administrativeFile/generalPractitioner/detailedName"
+        },
+        "personalContact": {
+            "type": "object",
+            "title": "Contact médecin",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "type",
+                "detail"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "title": "Type de contact",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/administrativeFile/generalPractitioner/contact/0/type",
+                    "description": "A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.",
+                    "enum": [
+                        "EMAIL",
+                        "FAX",
+                        "MSS",
+                        "POSTAL",
+                        "RADIO",
+                        "TEL",
+                        "WEB"
+                    ]
+                },
+                "detail": {
+                    "type": "string",
+                    "title": "URI du contact",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/administrativeFile/generalPractitioner/contact/0/detail",
+                    "description": "A valoriser avec la valeur de l'URI utilisée.\nLe format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/patient/0/administrativeFile/generalPractitioner/contact/0"
+        },
         "insStrictFeatures": {
             "type": "object",
             "title": "Traits stricts de l'identité",
@@ -908,43 +1033,6 @@
             },
             "additionalProperties": false,
             "example": "example.json#/patient/0/identity/strictFeatures"
-        },
-        "detailedName": {
-            "type": "object",
-            "title": "Traits non stricts de l'identité",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
-                "complete"
-            ],
-            "properties": {
-                "complete": {
-                    "type": "string",
-                    "title": "Prénom et nom",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/identity/nonStrictFeatures/complete",
-                    "description": "A valoriser avec le prénom et le nom usuel du requérant/appelant.\nSi les champs callerLastName et callerFirstName sont également renseignés, le champ callerName doit être valorisé ainsi : \"{callerFirstName} {callerLastName}\".\n\nSpécificités 15-18  : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés."
-                },
-                "lastName": {
-                    "type": "string",
-                    "title": "Nom",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/identity/nonStrictFeatures/lastName",
-                    "description": "A valoriser avec le nom usuel du requérant"
-                },
-                "firstName": {
-                    "type": "string",
-                    "title": "Prénom",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/identity/nonStrictFeatures/firstName",
-                    "description": "A valoriser avec le prénom usuel du réquérant.\nPar convention les prénoms composés doivent préférablement être séparés par le caractère \"-\""
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/patient/0/identity/nonStrictFeatures"
         },
         "mainDiagnosis": {
             "type": "object",

@@ -63,487 +63,371 @@ public class Caller {
    * associée.
    */
   public enum LanguageEnum {
-    AF("AF"),
+    AA("aa"),
 
-    AX("AX"),
+    AB("ab"),
 
-    AL("AL"),
+    AE("ae"),
 
-    DZ("DZ"),
+    AF("af"),
 
-    AS("AS"),
+    AK("ak"),
 
-    AD("AD"),
+    AM("am"),
 
-    AO("AO"),
+    AN("an"),
 
-    AI("AI"),
+    AR("ar"),
 
-    AQ("AQ"),
+    AS("as"),
 
-    AG("AG"),
+    AV("av"),
 
-    AR("AR"),
+    AY("ay"),
 
-    AM("AM"),
+    AZ("az"),
 
-    AW("AW"),
+    BA("ba"),
 
-    AU("AU"),
+    BE("be"),
 
-    AT("AT"),
+    BG("bg"),
 
-    AZ("AZ"),
+    BI("bi"),
 
-    BS("BS"),
+    BM("bm"),
 
-    BH("BH"),
+    BN("bn"),
 
-    BD("BD"),
+    BO("bo"),
 
-    BB("BB"),
+    BR("br"),
 
-    BY("BY"),
+    BS("bs"),
 
-    BE("BE"),
+    CA("ca"),
 
-    BZ("BZ"),
+    CE("ce"),
 
-    BJ("BJ"),
+    CH("ch"),
 
-    BM("BM"),
+    CO("co"),
 
-    BT("BT"),
+    CR("cr"),
 
-    BO("BO"),
+    CS("cs"),
 
-    BA("BA"),
+    CU("cu"),
 
-    BW("BW"),
+    CV("cv"),
 
-    BV("BV"),
+    CY("cy"),
 
-    BR("BR"),
+    DA("da"),
 
-    IO("IO"),
+    DE("de"),
 
-    BN("BN"),
+    DV("dv"),
 
-    BG("BG"),
+    DZ("dz"),
 
-    BF("BF"),
+    EE("ee"),
 
-    BI("BI"),
+    EL("el"),
 
-    CV("CV"),
+    EN("en"),
 
-    KH("KH"),
+    EO("eo"),
 
-    CM("CM"),
+    ES("es"),
 
-    CA("CA"),
+    ET("et"),
 
-    KY("KY"),
+    EU("eu"),
 
-    CF("CF"),
+    FA("fa"),
 
-    TD("TD"),
+    FF("ff"),
 
-    CL("CL"),
+    FI("fi"),
 
-    CN("CN"),
+    FJ("fj"),
 
-    CX("CX"),
+    FO("fo"),
 
-    CC("CC"),
+    FR("fr"),
 
-    CO("CO"),
+    FY("fy"),
 
-    KM("KM"),
+    GA("ga"),
 
-    CG("CG"),
+    GD("gd"),
 
-    CK("CK"),
+    GL("gl"),
 
-    CR("CR"),
+    GN("gn"),
 
-    CI("CI"),
+    GU("gu"),
 
-    HR("HR"),
+    GV("gv"),
 
-    CU("CU"),
+    HA("ha"),
 
-    CW("CW"),
+    HE("he"),
 
-    CY("CY"),
+    HI("hi"),
 
-    CZ("CZ"),
+    HO("ho"),
 
-    DK("DK"),
+    HR("hr"),
 
-    DJ("DJ"),
+    HT("ht"),
 
-    DM("DM"),
+    HU("hu"),
 
-    DO("DO"),
+    HY("hy"),
 
-    EC("EC"),
+    HZ("hz"),
 
-    EG("EG"),
+    IA("ia"),
 
-    SV("SV"),
+    ID("id"),
 
-    GQ("GQ"),
+    IE("ie"),
 
-    ER("ER"),
+    IG("ig"),
 
-    EE("EE"),
+    II("ii"),
 
-    SZ("SZ"),
+    IK("ik"),
 
-    ET("ET"),
+    IO("io"),
 
-    FK("FK"),
+    IS("is"),
 
-    FO("FO"),
+    IT("it"),
 
-    FJ("FJ"),
+    IU("iu"),
 
-    FI("FI"),
+    JA("ja"),
 
-    FR("FR"),
+    JV("jv"),
 
-    GF("GF"),
+    KA("ka"),
 
-    PF("PF"),
+    KG("kg"),
 
-    TF("TF"),
+    KI("ki"),
 
-    GA("GA"),
+    KJ("kj"),
 
-    GM("GM"),
+    KK("kk"),
 
-    GE("GE"),
+    KL("kl"),
 
-    DE("DE"),
+    KM("km"),
 
-    GH("GH"),
+    KN("kn"),
 
-    GI("GI"),
+    KO("ko"),
 
-    GR("GR"),
+    KR("kr"),
 
-    GL("GL"),
+    KS("ks"),
 
-    GD("GD"),
+    KU("ku"),
 
-    GP("GP"),
+    KV("kv"),
 
-    GU("GU"),
+    KW("kw"),
 
-    GT("GT"),
+    KY("ky"),
 
-    GG("GG"),
+    LA("la"),
 
-    GN("GN"),
+    LB("lb"),
 
-    GW("GW"),
+    LG("lg"),
 
-    GY("GY"),
+    LI("li"),
 
-    HT("HT"),
+    LN("ln"),
 
-    HM("HM"),
+    LO("lo"),
 
-    VA("VA"),
+    LT("lt"),
 
-    HN("HN"),
+    LU("lu"),
 
-    HK("HK"),
+    LV("lv"),
 
-    HU("HU"),
+    MG("mg"),
 
-    IS("IS"),
+    MH("mh"),
 
-    IN("IN"),
+    MI("mi"),
 
-    ID("ID"),
+    MK("mk"),
 
-    IR("IR"),
+    ML("ml"),
 
-    IQ("IQ"),
+    MN("mn"),
 
-    IE("IE"),
+    MR("mr"),
 
-    IM("IM"),
+    MS("ms"),
 
-    IL("IL"),
+    MT("mt"),
 
-    IT("IT"),
+    MY("my"),
 
-    JM("JM"),
+    NA("na"),
 
-    JP("JP"),
+    NB("nb"),
 
-    JE("JE"),
+    ND("nd"),
 
-    JO("JO"),
+    NE("ne"),
 
-    KZ("KZ"),
+    NG("ng"),
 
-    KE("KE"),
+    NL("nl"),
 
-    KI("KI"),
+    NN("nn"),
 
-    KP("KP"),
+    NO("no"),
 
-    KW("KW"),
+    NR("nr"),
 
-    KG("KG"),
+    NV("nv"),
 
-    LA("LA"),
+    NY("ny"),
 
-    LV("LV"),
+    OC("oc"),
 
-    LB("LB"),
+    OJ("oj"),
 
-    LS("LS"),
+    OM("om"),
 
-    LR("LR"),
+    OR("or"),
 
-    LY("LY"),
+    OS("os"),
 
-    LI("LI"),
+    PA("pa"),
 
-    LT("LT"),
+    PI("pi"),
 
-    LU("LU"),
+    PL("pl"),
 
-    MO("MO"),
+    PS("ps"),
 
-    MG("MG"),
+    PT("pt"),
 
-    MW("MW"),
+    QU("qu"),
 
-    MY("MY"),
+    RM("rm"),
 
-    MV("MV"),
+    RN("rn"),
 
-    ML("ML"),
+    RO("ro"),
 
-    MT("MT"),
+    RU("ru"),
 
-    MH("MH"),
+    RW("rw"),
 
-    MQ("MQ"),
+    SA("sa"),
 
-    MR("MR"),
+    SC("sc"),
 
-    MU("MU"),
+    SD("sd"),
 
-    YT("YT"),
+    SE("se"),
 
-    MX("MX"),
+    SG("sg"),
 
-    FM("FM"),
+    SI("si"),
 
-    MC("MC"),
+    SK("sk"),
 
-    MN("MN"),
+    SL("sl"),
 
-    ME("ME"),
+    SM("sm"),
 
-    MS("MS"),
+    SN("sn"),
 
-    MA("MA"),
+    SO("so"),
 
-    MZ("MZ"),
+    SQ("sq"),
 
-    MM("MM"),
+    SR("sr"),
 
-    NA("NA"),
+    SS("ss"),
 
-    NR("NR"),
+    ST("st"),
 
-    NP("NP"),
+    SU("su"),
 
-    NL("NL"),
+    SV("sv"),
 
-    NC("NC"),
+    SW("sw"),
 
-    NZ("NZ"),
+    TA("ta"),
 
-    NI("NI"),
+    TE("te"),
 
-    NE("NE"),
+    TG("tg"),
 
-    NG("NG"),
+    TH("th"),
 
-    NU("NU"),
+    TI("ti"),
 
-    NF("NF"),
+    TK("tk"),
 
-    MK("MK"),
+    TL("tl"),
 
-    MP("MP"),
+    TN("tn"),
 
-    NO("NO"),
+    TO("to"),
 
-    OM("OM"),
+    TR("tr"),
 
-    PK("PK"),
+    TS("ts"),
 
-    PW("PW"),
+    TT("tt"),
 
-    PA("PA"),
+    TW("tw"),
 
-    PG("PG"),
+    TY("ty"),
 
-    PY("PY"),
+    UG("ug"),
 
-    PE("PE"),
+    UK("uk"),
 
-    PH("PH"),
+    UR("ur"),
 
-    PN("PN"),
+    UZ("uz"),
 
-    PL("PL"),
+    VE("ve"),
 
-    PT("PT"),
+    VI("vi"),
 
-    PR("PR"),
+    VO("vo"),
 
-    QA("QA"),
+    WA("wa"),
 
-    RE("RE"),
+    WO("wo"),
 
-    RO("RO"),
+    XH("xh"),
 
-    RU("RU"),
+    YI("yi"),
 
-    RW("RW"),
+    YO("yo"),
 
-    BL("BL"),
+    ZA("za"),
 
-    KN("KN"),
+    ZH("zh"),
 
-    LC("LC"),
-
-    MF("MF"),
-
-    PM("PM"),
-
-    VC("VC"),
-
-    WS("WS"),
-
-    SM("SM"),
-
-    ST("ST"),
-
-    SA("SA"),
-
-    SN("SN"),
-
-    RS("RS"),
-
-    SC("SC"),
-
-    SL("SL"),
-
-    SG("SG"),
-
-    SX("SX"),
-
-    SK("SK"),
-
-    SI("SI"),
-
-    SB("SB"),
-
-    SO("SO"),
-
-    ZA("ZA"),
-
-    GS("GS"),
-
-    SS("SS"),
-
-    ES("ES"),
-
-    LK("LK"),
-
-    SD("SD"),
-
-    SR("SR"),
-
-    SJ("SJ"),
-
-    SE("SE"),
-
-    CH("CH"),
-
-    SY("SY"),
-
-    TJ("TJ"),
-
-    TH("TH"),
-
-    TL("TL"),
-
-    TG("TG"),
-
-    TK("TK"),
-
-    TO("TO"),
-
-    TT("TT"),
-
-    TN("TN"),
-
-    TR("TR"),
-
-    TM("TM"),
-
-    TC("TC"),
-
-    TV("TV"),
-
-    UG("UG"),
-
-    UA("UA"),
-
-    AE("AE"),
-
-    GB("GB"),
-
-    US("US"),
-
-    UM("UM"),
-
-    UY("UY"),
-
-    UZ("UZ"),
-
-    VU("VU"),
-
-    VE("VE"),
-
-    VN("VN"),
-
-    VG("VG"),
-
-    VI("VI"),
-
-    WF("WF"),
-
-    EH("EH"),
-
-    YE("YE"),
-
-    ZM("ZM"),
-
-    ZW("ZW");
+    ZU("zu");
 
     private String value;
 

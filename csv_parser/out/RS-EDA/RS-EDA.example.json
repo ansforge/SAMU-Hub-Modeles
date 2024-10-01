@@ -2,6 +2,7 @@
     "caseId": "fr.health.samu440.DRFR15440241550012",
     "senderCaseId": "DRFR15440241550012",
     "creation": "2022-09-27T08:23:34+02:00",
+    "event": "fr.health.si-samu780.event.1234567896",
     "perimeter": "AMU",
     "interventionType": "PRIMAIRE",
     "qualification": {
@@ -127,7 +128,17 @@
                         "source": "NIR, SINUS, SI-VIC, …",
                         "value": "id1234"
                     }
-                ]
+                ],
+                "generalPractitioner": {
+                    "detailedName": {},
+                    "id": 10000668540,
+                    "contact": [
+                        {
+                            "type": "TEL",
+                            "detail": "+33671830530"
+                        }
+                    ]
+                }
             },
             "identity": {
                 "strictFeatures": {
@@ -146,12 +157,8 @@
                 "height": 109,
                 "age": "P6Y",
                 "careLevel": "R1",
-                "medicalHistory": [
-                    "Arthrite, asthme"
-                ],
-                "treatments": [
-                    "Amoxicilline 1 g  et paracétamol 1 g depuis 5 jours."
-                ]
+                "medicalHistory": "Arthrite, asthme",
+                "treatment": "Amoxicilline 1 g  et paracétamol 1 g depuis 5 jours."
             },
             "hypothesis": {
                 "mainDiagnosis": {

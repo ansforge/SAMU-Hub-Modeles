@@ -269,12 +269,13 @@ VIDE = INCONNU</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="TEL"/>
                         <enumeration value="EMAIL"/>
                         <enumeration value="FAX"/>
+                        <enumeration value="MSS"/>
                         <enumeration value="POSTAL"/>
-                        <enumeration value="WEB"/>
                         <enumeration value="RADIO"/>
+                        <enumeration value="TEL"/>
+                        <enumeration value="WEB"/>
                     </restriction>
                 </simpleType>
             </element>

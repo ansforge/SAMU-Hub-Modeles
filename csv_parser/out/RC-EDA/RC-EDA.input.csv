@@ -13,8 +13,6 @@ Spécificité 15-18 : A valoriser avec le groupe date heure de début de partage
 Lors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.  
 L'indicateur de fuseau horaire Z ne doit pas être utilisé.
 Il doit être renseigné à la fin du processus de la  création de la première alerte.",2022-09-27T08:23:34+02:00,creation,1..1,,datetime,Format datetime décrit dans le DST
-Version des nomenclatures du référentiel CISU,,,,,,"Indique le numéro de version du référentiel des nomenclatures des codes transmis. 
-Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même version des codes de nomenclature que leurs partenaires.",1.2,referenceVersion,1..1,,string,
 Qualification,,,,,,"Objet qui permet de qualifier l'affaire/dossier en général. 
 
 Spécificités 15-18 : 
@@ -157,7 +155,7 @@ Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pa
 Spécificités 15-15 : en envoi, cet objet est à valoriser avec le numéro de contre-appel uniquement lorsque celui-ci est différent du numéro de l'appelant (objet obligatoire callerContact).
 En réception, il est crucial de récupérer la valeur de cet objet lorsqu'il est renseigné, puisqu'il s'agit du numéro sur lequel l'appelant peut être joint.",,callbackContact,0..1,X,contact,
 ,,Langue parlée,,,,"A valoriser avec la langue parlée par le requérant. 
-cf.nomenclature associée.",FR,language,0..1,,string,NOMENCLATURE: ISO 3166-ISO3166-2
+cf.nomenclature associée.",FR,language,0..1,,string,NOMENCLATURE: ISO-639.1-LANGUE
 ,,Type de requérant,,,,"A valoriser avec la relation du requérant avec l'incident / le patient / la victime.
 cf. nomenclature associée.","FAMILLE, TIERS",type,0..1,,string,NOMENCLATURE: SI-SAMU-TYPAPPLT
 ,,Difficulté de communication,,,,"A valoriser avec la nature des éventuelles difficultés de communication rencontrées par le requérant. 
