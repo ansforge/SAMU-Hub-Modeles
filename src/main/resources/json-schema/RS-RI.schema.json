@@ -203,7 +203,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "title": "Nom",
+                    "title": "Nom du vecteur",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/name",
