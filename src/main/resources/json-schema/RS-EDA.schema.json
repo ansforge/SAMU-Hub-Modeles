@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.09.30",
+    "version": "24.10.01",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -96,6 +96,12 @@
             "type": "array",
             "items": {
                 "$ref": "#/definitions/medicalNote"
+            }
+        },
+        "decision": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/decision"
             }
         },
         "additionalInformation": {
@@ -276,9 +282,7 @@
             "required": [
                 "operator",
                 "idObs",
-                "freetext",
-                "operator",
-                "decisionType"
+                "freetext"
             ],
             "properties": {
                 "idPat": {
@@ -319,13 +323,49 @@
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/freetext",
                     "description": "Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/medicalNote/0"
+        },
+        "decision": {
+            "type": "object",
+            "title": "Décision",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "creation",
+                "operator",
+                "decisionType"
+            ],
+            "properties": {
+                "idPat": {
+                    "type": "string",
+                    "title": "ID patient partagé",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/idPat",
+                    "description": "A valoriser avec l'ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur"
+                },
+                "creation": {
+                    "type": "string",
+                    "title": "Date Heure de la décision",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/creation",
+                    "description": "A valoriser avec le groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
+                    "format": "date-time"
+                },
+                "operator": {
+                    "$ref": "#/definitions/operator"
                 },
                 "decisionType": {
                     "type": "string",
                     "title": "Type de décision",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/medicalNote/0/decisionType",
+                    "example": "example.json#/decision/0/decisionType",
                     "description": "A valoriser avec le type de décision prise (cf.nomenclature associée)",
                     "enum": [
                         "CONSEIL",
@@ -340,7 +380,7 @@
                     "title": "Type de ressource",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/medicalNote/0/resourceType",
+                    "example": "example.json#/decision/0/resourceType",
                     "description": "A valoriser avec le type de ressource souhaitée ou engagée (cf.nomenclature associée) - en fonction du type de décision.\nA fournir obligatoirement pour une décision d'intervention ou de transport/orientation.",
                     "enum": [
                         "SMUR",
@@ -376,7 +416,7 @@
                     "title": "Type de vecteur",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/medicalNote/0/vehiculeType",
+                    "example": "example.json#/decision/0/vehiculeType",
                     "description": "A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée) en fonction du type de décision.\nA fournir obligatoirement pour une décision d'intervention ou de transport/orientation.",
                     "enum": [
                         "AASC",
@@ -449,7 +489,7 @@
                     "title": "Transport médicalisé",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/medicalNote/0/medicalTransport",
+                    "example": "example.json#/decision/0/medicalTransport",
                     "description": "A valoriser obligatoirement en cas de décision de transport, pour indiquer si ce dernier est médicalisé.\nTrue = transport médicalisé\nFalse = transport non médicalisé"
                 },
                 "orientationType": {
@@ -457,7 +497,7 @@
                     "title": "Type d'orientation",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/medicalNote/0/orientationType",
+                    "example": "example.json#/decision/0/orientationType",
                     "description": "Indique le type de destination en cas de décision d'orientation (cf. nomenclature associée)",
                     "enum": [
                         "URGENCES",
@@ -470,7 +510,7 @@
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/medicalNote/0"
+            "example": "example.json#/decision/0"
         },
         "additionalInformation": {
             "type": "object",
@@ -2236,20 +2276,28 @@
                     ]
                 },
                 "medicalHistory": {
-                    "type": "string",
-                    "title": "Antécédents",
+                    "type": "array",
                     "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/detail/medicalHistory",
-                    "description": "Texte libre  pour décrire les antécédents du patient. \nSi ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. "
+                    "items": {
+                        "type": "string",
+                        "title": "Antécédents",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/patient/0/detail/medicalHistory/0",
+                        "description": "Texte libre  pour décrire les antécédents du patient. \nSi ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. "
+                    }
                 },
                 "treatments": {
-                    "type": "string",
-                    "title": "Traitements",
+                    "type": "array",
                     "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/detail/treatments",
-                    "description": "Texte libre  pour décrire les traitements du patient.\nSi ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. "
+                    "items": {
+                        "type": "string",
+                        "title": "Traitements",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/patient/0/detail/treatments/0",
+                        "description": "Texte libre  pour décrire les traitements du patient.\nSi ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. "
+                    }
                 }
             },
             "additionalProperties": false,

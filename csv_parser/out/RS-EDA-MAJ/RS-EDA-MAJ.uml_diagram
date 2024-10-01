@@ -140,9 +140,23 @@ strict digraph {
                 <TR>
                 <TD ><B>medicalNote</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet medicalNote</I></TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >idObs <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >decisionType <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >resourceType <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >vehiculeType <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >medicalTransport <I>boolean</I> : [0..1] </TD></TR><TR><TD BORDER="0" >orientationType <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet medicalNote</I></TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >idObs <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	medicalNote -> createCaseHealthUpdate [headlabel=1 taillabel="0..*"]
+	operator [label=<<TABLE>
+                <TR>
+                <TD ><B>operator</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet operator</I></TD></TR><TR><TD BORDER="0" >label <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >role <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	operator -> decision [headlabel=1 taillabel=1]
+	decision [label=<<TABLE>
+                <TR>
+                <TD ><B>decision</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet decision</I></TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >decisionType <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >resourceType <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >vehiculeType <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >medicalTransport <I>boolean</I> : [0..1] </TD></TR><TR><TD BORDER="0" >orientationType <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	decision -> createCaseHealthUpdate [headlabel=1 taillabel="0..*"]
 	customMap [label=<<TABLE>
                 <TR>
                 <TD ><B>customMap</B></TD>

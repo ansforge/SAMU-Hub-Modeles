@@ -52,6 +52,7 @@ A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{doma
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
             <element maxOccurs="unbounded" minOccurs="0" name="medicalNote" type="x:medicalNote"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
                     <documentation>Champ libre qui permet de concaténer en une seule note toutes les autres valeurs modifiées dans le dossier, ne figurant pas de manière structurée dans le RS-EDA-MAJ.</documentation>
@@ -150,6 +151,21 @@ Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jo
                     <documentation>Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé.</documentation>
                 </annotation>
             </element>
+        </sequence>
+    </complexType>
+    <complexType name="decision">
+        <sequence>
+            <element minOccurs="0" name="idPat" type="string">
+                <annotation>
+                    <documentation>A valoriser avec l'ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur</documentation>
+                </annotation>
+            </element>
+            <element name="creation" type="dateTime">
+                <annotation>
+                    <documentation>A valoriser avec le groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
+                </annotation>
+            </element>
+            <element name="operator" type="x:operator"/>
             <element name="decisionType">
                 <annotation>
                     <documentation>A valoriser avec le type de décision prise (cf.nomenclature associée)</documentation>
