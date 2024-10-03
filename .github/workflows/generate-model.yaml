@@ -56,14 +56,14 @@ jobs:
         if: steps.filter.outputs.parsing_required == 'true'
         run: python workflow.py --stage parser_and_mv
 
-      - name: Run test_case_generator and move the folder test-cases to src/main/resources/sample/test-cases
-        working-directory: ./csv_parser
-        if: steps.filter.outputs.test_case_parsing_required == 'true'
-        run: | 
-          rm -r ./out/test-cases || true
-          python workflow.py --stage test_case_parser
-          rm -r ../src/main/resources/test-cases || true
-          mv ./out/test-cases ../src/main/resources/
+#      - name: Run test_case_generator and move the folder test-cases to src/main/resources/sample/test-cases
+#        working-directory: ./csv_parser
+#        if: steps.filter.outputs.test_case_parsing_required == 'true'
+#        run: | 
+#          rm -r ./out/test-cases || true
+#          python workflow.py --stage test_case_parser
+#          rm -r ../src/main/resources/test-cases || true
+#          mv ./out/test-cases ../src/main/resources/
 
       - name: Install JDK 11
         uses: actions/setup-java@v4
