@@ -46,7 +46,7 @@ import java.util.Objects;
  * GeneralPractitioner
  */
 @JsonPropertyOrder({GeneralPractitioner.JSON_PROPERTY_DETAILED_NAME,
-                    GeneralPractitioner.JSON_PROPERTY_ID,
+                    GeneralPractitioner.JSON_PROPERTY_RPPS_ID,
                     GeneralPractitioner.JSON_PROPERTY_CONTACT})
 @JsonTypeName("generalPractitioner")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -55,8 +55,8 @@ public class GeneralPractitioner {
   public static final String JSON_PROPERTY_DETAILED_NAME = "detailedName";
   private DetailedName detailedName;
 
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  public static final String JSON_PROPERTY_RPPS_ID = "rppsId";
+  private String rppsId;
 
   public static final String JSON_PROPERTY_CONTACT = "contact";
   private List<PersonalContact> contact;
@@ -86,27 +86,27 @@ public class GeneralPractitioner {
     this.detailedName = detailedName;
   }
 
-  public GeneralPractitioner id(String id) {
+  public GeneralPractitioner rppsId(String rppsId) {
 
-    this.id = id;
+    this.rppsId = rppsId;
     return this;
   }
 
   /**
    * Numéro RPPS du médecin traitant
-   * @return id
+   * @return rppsId
    **/
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_RPPS_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getId() {
-    return id;
+  public String getRppsId() {
+    return rppsId;
   }
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_RPPS_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
-    this.id = id;
+  public void setRppsId(String rppsId) {
+    this.rppsId = rppsId;
   }
 
   public GeneralPractitioner contact(List<PersonalContact> contact) {
@@ -159,13 +159,13 @@ public class GeneralPractitioner {
     GeneralPractitioner generalPractitioner = (GeneralPractitioner)o;
     return Objects.equals(this.detailedName,
                           generalPractitioner.detailedName) &&
-        Objects.equals(this.id, generalPractitioner.id) &&
+        Objects.equals(this.rppsId, generalPractitioner.rppsId) &&
         Objects.equals(this.contact, generalPractitioner.contact);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(detailedName, id, contact);
+    return Objects.hash(detailedName, rppsId, contact);
   }
 
   @Override
@@ -175,7 +175,7 @@ public class GeneralPractitioner {
     sb.append("    detailedName: ")
         .append(toIndentedString(detailedName))
         .append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    rppsId: ").append(toIndentedString(rppsId)).append("\n");
     sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
     sb.append("}");
     return sb.toString();

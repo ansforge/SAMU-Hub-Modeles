@@ -21,14 +21,13 @@ fr.health.samu690.request.DRFR15690242370035.3",requestId,0..1,,string,"REGEX: ^
 ,ID Organisation propriétaire,,,,,"A valoriser avec l'identifiant de l'organisation à laquelle appartient la ressource, normé comme suit : 
 {pays}.{domaine}.{organisation}",fr.health.samu440,orgId,0..1,,string,
 ,Nom du centre d’affectation,,,,,A valoriser avec le lieu de garage principal,CHU Nantes,centerName,0..1,,string,
-,Type de ressource,,,,,A valoriser avec le yype de ressource mobilisée : cf.nomenclature associée.,SMUR,resourceType,1..1,,string,NOMENCLATURE: SI-SAMU-TYPE_MOYEN
-,Type de vecteur,,,,,A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée,VLM,vehiculeType,0..1,,string,NOMENCLATURE: SI-SAMU-TYPE_VECTEUR
+,Type de vecteur,,,,,A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée,VLM,vehiculeType,1..1,,string,NOMENCLATURE: SI-SAMU-TYPE_VECTEUR
 ,Nom du vecteur,,,,,A valoriser avec le nom donné à la ressource par l’organisation d’appartenance,SMUR 123,name,0..1,,string,
 ,Commune du centre d’affectation,,,,,A valoriser avec le code INSEE de la commune du centre d'affectation,44109,centerCity,0..1,,string,REGEX: ^[0-9]{5}$
 ,Equipe vecteur,,,,,Objet qui décrit l'équipe à bord du vecteur,,team,0..1,X,team,
 ,,Type,,,,A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature associée,MED,teamCare,0..1,,string,NOMENCLATURE: SI-SAMU-NIVSOIN
 ,,Nom,,,,A valoriser avec le nom de l'équipe à bord du vecteur (celui communiqué par l'organisation à laquelle l'équipe appartient),Equipe A,name,0..1,,string,
-,Etats vecteur,,,,,Objet qui permet de décrire l'historique des états connu du vecteur mobilisé - et à minima le dernier état connu. ,,state,0..n,X,state,
+,Etat vecteur,,,,,"Objet qui permet de décrire l'état d'un vecteur mobilisé - sous forme de liste, il permet de décrire l'historique des états connus d'un même vecteur. ",,state,0..n,X,state,
 ,,Date/heure de changement de statut,,,,A valoriser avec la date et heure d'engagement de changement vers le nouveau statut,2022-09-27T08:23:34+02:00,datetime,1..1,,datetime,Format datetime décrit dans le DSF
 ,,Statut du vecteur,,,,A valoriser avec le statut du vecteur. Cf nomenclature associée.,ARRIVE,status,1..1,,string,NOMENCLATURE: SI-SAMU-STATUS_VECTEUR
 ,,Disponibilité du vecteur,,,,"A valoriser de manière à indiquer la disponibilité du vecteur.

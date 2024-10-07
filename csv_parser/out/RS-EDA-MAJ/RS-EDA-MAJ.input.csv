@@ -55,7 +55,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
 
 
 ","fr.health.samu690.patient.P23AZ59
-fr.health.samu690.patient.DRFR15690242370035.1",idPat,1..1,,string,"REGEX: ^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$"
+fr.health.samu690.patient.DRFR15690242370035.1",patientId,1..1,,string,"REGEX: ^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$"
 ,Dossier administratif,,,,,Objet qui permet de décrire les données administratives liées au patient,,administrativeFile,0..1,X,administrativeFile,
 ,,Identifiant(s) patient(s),,,,"Objet qui permet de décrire l'ensemble des identifiants qui permettent d'identifier le patient (autre que le matricule INS, qui ne doit jamais être partagé via cet objet)",,externalId,0..n,X,externalId,
 ,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",source,1..1,,string,NOMENCLATURE: ENUM-TYPE_Id_Patient
@@ -69,11 +69,11 @@ Spécificités 15-18  : NexSIS ne dispose que de ces informations (concaténées
 ,,,,Nom,,A valoriser avec le nom usuel du requérant,Dupont,lastName,0..1,,string,
 ,,,,Prénom,,"A valoriser avec le prénom usuel du réquérant.
 Par convention les prénoms composés doivent préférablement être séparés par le caractère ""-""",Jean,firstName,0..1,,string,
-,,,Identifiant RPPS,,,Numéro RPPS du médecin traitant,10000668540,id,0..1,,string,
-,,,Contact médecin,,,Type et valeur des URI utilisées par le patient concerné,,contact,0..n,X,personalContact,
+,,,Identifiant RPPS,,,Numéro RPPS du médecin traitant,10000668540,rppsId,0..1,,string,
+,,,Contact médecin,,,Type et valeur des URI utilisées par le patient concerné. Permet de passer une adresse postale concaténée.,,contact,0..n,X,personalContact,
 ,,,,Type de contact,,A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.,TEL,type,1..1,,string,NOMENCLATURE: ENUM-CONTACT_Type
 ,,,,URI du contact,,"A valoriser avec la valeur de l'URI utilisée.
-Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}",+33671830530,detail,1..1,,string,
+Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}.",+33671830530,detail,1..1,,string,
 ,Identité,,,,,Objet qui permet de décrire l'identité du patient,,identity,0..1,X,Identity,
 ,,Traits stricts de l'identité,,,,Objet qui permet de décrire les traits stricts de l'identité du patient,,strictFeatures,0..1,X,insStrictFeatures,
 ,,,Nom de naissance,,,A valoriser avec le nom de naissance du patient. Egalement appelé nom de famille.,Dupont,birthName,0..1,,string,
@@ -102,7 +102,7 @@ Valorisé comme suit lors de sa création :
 
 OU, si un n°patient unique n'existe pas dans le système émetteur :
 {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}","fr.health.samu690.patient.P23AZ59
-fr.health.samu690.patient.DRFR15690242370035.1",idPat,0..1,,string,"REGEX: ^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$"
+fr.health.samu690.patient.DRFR15690242370035.1",patientId,0..1,,string,"REGEX: ^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$"
 ,Professionnel de santé qui réalise l'observation,,,,,Objet qui permet de décrire le professionnel de santé qui réalise l'interrogatoire médical. ,,operator,1..1,X,operator,
 ,,Label,,,,"A valoriser si besoin avec la valeur souhaitée, en fonction des préférences de chaque partenaire : cela peut être le nom et prénom de l'opérateur, ou un identifiant.",,label,0..1,,string,
 ,,Rôle,,,,A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ,ARM,role,1..1,,string,NOMENCLATURE: ENUM-ROLE
@@ -115,20 +115,18 @@ OU - uniquement dans le cas où un ID unique de la note n'est pas disponible dan
 
 Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.
 ","fr.health.samu540.medicalNote.46585A
-fr.health.samu540.medicalNote.DRFR15540241600125.20",idObs,1..1,,string,"REGEX: ^([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}$"
+fr.health.samu540.medicalNote.DRFR15540241600125.20",medicalNoteId,1..1,,string,"REGEX: ^([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}$"
 ,Date Heure de l'observation,,,,,A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,0..1,,datetime,Format datetime décrit dans le DST
 ,Observations et commentaires,,,,,"Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé.",,freetext,1..1,,string,
 Décision,,,,,,"Objet qui permet de passer l'ensemble des mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients.
 Si un freetext accompagne la décision, il doit être passé comme une observation médicale (medicalNote)",,decision,0..n,X,decision,
 ,ID patient partagé,,,,,"A valoriser avec l'ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur","fr.health.samu690.patient.P23AZ59
-fr.health.samu690.patient.DRFR15690242370035.1",idPat,0..1,,string,
+fr.health.samu690.patient.DRFR15690242370035.1",patientId,0..1,,string,
 ,Date Heure de la décision,,,,,A valoriser avec le groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,1..1,,datetime,Format datetime décrit dans le DST
 ,Opérateur décideur,# Voir type operator,,,,Objet qui permet de décrire le professionnel de santé qui prend la décision,,operator,1..1,X,operator,
 ,Type de décision,,,,,A valoriser avec le type de décision prise (cf.nomenclature associée),conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,decisionType,1..1,,string,NOMENCLATURE: SI-SAMU-TYPEDEC
 ,Type de ressource,,,,,"A valoriser avec le type de ressource souhaitée ou engagée (cf.nomenclature associée) - en fonction du type de décision.
 A fournir obligatoirement pour une décision d'intervention ou de transport/orientation.","SMUR, Pompiers",resourceType,0..1,,string,NOMENCLATURE: SI-SAMU-TYPE_MOYEN
-,Type de vecteur,,,,,"A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée) en fonction du type de décision.
-A fournir obligatoirement pour une décision d'intervention ou de transport/orientation.","AR, VLM, VSAV",vehiculeType,0..1,,string,NOMENCLATURE: SI-SAMU-TYPE_VECTEUR
 ,Transport médicalisé,,,,,"A valoriser obligatoirement en cas de décision de transport, pour indiquer si ce dernier est médicalisé.
 True = transport médicalisé
 False = transport non médicalisé",True,medicalTransport,0..1,,boolean,

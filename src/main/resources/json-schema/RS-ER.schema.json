@@ -1,0 +1,186 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "classpath:/json-schema/schema#",
+    "x-id": "RS-ER.schema.json#",
+    "version": "24.10.07",
+    "example": "example.json#",
+    "type": "object",
+    "title": "engagementRessources",
+    "required": [
+        "caseId",
+        "mobilizedResource"
+    ],
+    "properties": {
+        "caseId": {
+            "type": "string",
+            "title": "Identifiant affaire/dossier",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/caseId",
+            "description": "A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",
+            "pattern": "^fr(\\.[\\w-]+){3,4}$"
+        },
+        "mobilizedResource": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/resource"
+            },
+            "minItems": 1
+        }
+    },
+    "definitions": {
+        "resource": {
+            "type": "object",
+            "title": "Ressource engagée",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "datetime",
+                "vehiculeType"
+            ],
+            "properties": {
+                "datetime": {
+                    "type": "string",
+                    "title": "Date/heure de déclenchement",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResource/0/datetime",
+                    "description": "A valoriser avec la date et heure d'engagement de la ressource/du vecteur",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
+                    "format": "date-time"
+                },
+                "vehiculeType": {
+                    "type": "string",
+                    "title": "Type de vecteur",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResource/0/vehiculeType",
+                    "description": "A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée",
+                    "enum": [
+                        "AASC",
+                        "VLSC",
+                        "VPSP",
+                        "AUTRESC",
+                        "AUTREVEC",
+                        "TAXI",
+                        "TRANSP",
+                        "TRAIN",
+                        "AVION",
+                        "PERSO",
+                        "APIED",
+                        "AUTRE",
+                        "AUTRETRA",
+                        "FSI",
+                        "HELIFSI",
+                        "VLFSI",
+                        "FFSI",
+                        "VHFSI",
+                        "LIB",
+                        "MEDV",
+                        "INF",
+                        "AUTREPRO",
+                        "SIS",
+                        "VSAV",
+                        "GRIMP",
+                        "VPL",
+                        "SRSIS",
+                        "FEUSIS",
+                        "VPMA",
+                        "VCH",
+                        "VR",
+                        "PCSIS",
+                        "VLISP",
+                        "VLMSP",
+                        "VLCG",
+                        "VLSIS",
+                        "DRAGON",
+                        "AVSC",
+                        "MOYSSE",
+                        "AUTRESIS",
+                        "NAVISIS",
+                        "SMUR",
+                        "VLM",
+                        "VL",
+                        "PSM1",
+                        "PSM2",
+                        "PSM3",
+                        "PSMP",
+                        "VPC",
+                        "AR",
+                        "AR-BAR",
+                        "AR-PED",
+                        "HELISMUR",
+                        "HELISAN",
+                        "AVSMUR",
+                        "AVSAN",
+                        "NAVISMUR",
+                        "TSU",
+                        "VSL",
+                        "AMB-GV",
+                        "AMB-PV",
+                        "AMB-BAR",
+                        "AMB"
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "title": "Nom du vecteur",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResource/0/name",
+                    "description": "A valoriser avec le nom donné à la ressource par l’organisation d’appartenance"
+                },
+                "team": {
+                    "$ref": "#/definitions/team"
+                },
+                "freetext": {
+                    "type": "array",
+                    "x-health-only": false,
+                    "items": {
+                        "type": "string",
+                        "title": "Commentaires",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/mobilizedResource/0/freetext/0",
+                        "description": "Texte libre permettant de passer toute autre information sur la ressource (équipements supplémentaires / spécifiques, particularités du vecteur, etc.)"
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResource/0"
+        },
+        "team": {
+            "type": "object",
+            "title": "Equipe vecteur",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "teamCare": {
+                    "type": "string",
+                    "title": "Type",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResource/0/team/teamCare",
+                    "description": "A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature associée",
+                    "enum": [
+                        "MED",
+                        "PARAMED",
+                        "SECOURS"
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "title": "Nom",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResource/0/team/name",
+                    "description": "A valoriser avec le nom de l'équipe à bord du vecteur (celui communiqué par l'organisation à laquelle l'équipe appartient)"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResource/0/team"
+        }
+    },
+    "additionalProperties": false
+}

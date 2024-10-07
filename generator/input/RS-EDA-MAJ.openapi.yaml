@@ -152,14 +152,14 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - idPat
+      - patientId
       properties:
-        idPat:
+        patientId:
           type: string
           title: "ID patient partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/patient/0/idPat
+          example: example.json#/patient/0/patientId
           description: "Identifiant partag\xE9 du patient, g\xE9n\xE9r\xE9 une seule\
             \ fois par le syst\xE8me du partenaire qui cr\xE9\xE9 le patient.\nIl\
             \ est valoris\xE9 comme suit lors de sa cr\xE9ation : \n{OrgId \xE9metteur}.patient.{n\xB0\
@@ -190,15 +190,15 @@ components:
       x-health-only: false
       required:
       - operator
-      - idObs
+      - medicalNoteId
       - freetext
       properties:
-        idPat:
+        patientId:
           type: string
           title: "ID patient partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/medicalNote/0/idPat
+          example: example.json#/medicalNote/0/patientId
           description: "Identifiant partag\xE9 du patient concern\xE9 par l'observation,\
             \ a remplir obligatoirement si ce patient existe et est identifi\xE9 dans\
             \ le syst\xE8me emetteur, \n\nValoris\xE9 comme suit lors de sa cr\xE9\
@@ -213,12 +213,12 @@ components:
             fr.health.samu690.patient.DRFR15690242370035.1'
         operator:
           $ref: '#/components/schemas/operator'
-        idObs:
+        medicalNoteId:
           type: string
           title: ID Observation
           x-health-only: false
           x-cols: 6
-          example: example.json#/medicalNote/0/idObs
+          example: example.json#/medicalNote/0/medicalNoteId
           description: "Identifiant partag\xE9 de l'observation, g\xE9n\xE9r\xE9 une\
             \ seule fois par le syst\xE8me du partenaire qui cr\xE9\xE9 l'observation\n\
             Il est valoris\xE9 comme suit lors de sa cr\xE9ation : \n{OrgId \xE9metteur}.medicalNote.{ID\
@@ -268,12 +268,12 @@ components:
       - operator
       - decisionType
       properties:
-        idPat:
+        patientId:
           type: string
           title: "ID patient partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/decision/0/idPat
+          example: example.json#/decision/0/patientId
           description: "A valoriser avec l'ID partag\xE9 du patient concern\xE9 par\
             \ la d\xE9cision, \xE0 chaque fois que la d\xE9cision est li\xE9e \xE0\
             \ un patient dans le syst\xE8me \xE9metteur"
@@ -351,81 +351,6 @@ components:
           - INCONNU
           examples:
           - SMUR, Pompiers
-        vehiculeType:
-          type: string
-          title: Type de vecteur
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/vehiculeType
-          description: "A valoriser avec le type de vecteur souhait\xE9 / demand\xE9\
-            \ (cf.nomenclature associ\xE9e) en fonction du type de d\xE9cision.\n\
-            A fournir obligatoirement pour une d\xE9cision d'intervention ou de transport/orientation."
-          enum:
-          - AASC
-          - VLSC
-          - VPSP
-          - AUTRESC
-          - AUTREVEC
-          - TAXI
-          - TRANSP
-          - TRAIN
-          - AVION
-          - PERSO
-          - APIED
-          - AUTRE
-          - AUTRETRA
-          - FSI
-          - HELIFSI
-          - VLFSI
-          - FFSI
-          - VHFSI
-          - LIB
-          - MEDV
-          - INF
-          - AUTREPRO
-          - SIS
-          - VSAV
-          - GRIMP
-          - VPL
-          - SRSIS
-          - FEUSIS
-          - VPMA
-          - VCH
-          - VR
-          - PCSIS
-          - VLISP
-          - VLMSP
-          - VLCG
-          - VLSIS
-          - DRAGON
-          - AVSC
-          - MOYSSE
-          - AUTRESIS
-          - NAVISIS
-          - SMUR
-          - VLM
-          - VL
-          - PSM1
-          - PSM2
-          - PSM3
-          - PSMP
-          - VPC
-          - AR
-          - AR-BAR
-          - AR-PED
-          - HELISMUR
-          - HELISAN
-          - AVSMUR
-          - AVSAN
-          - NAVISMUR
-          - TSU
-          - VSL
-          - AMB-GV
-          - AMB-PV
-          - AMB-BAR
-          - AMB
-          examples:
-          - AR, VLM, VSAV
         medicalTransport:
           type: boolean
           title: "Transport m\xE9dicalis\xE9"
@@ -457,7 +382,7 @@ components:
       additionalProperties: false
       example: example.json#/decision/0
       examples:
-      - idPat: 'fr.health.samu690.patient.P23AZ59
+      - patientId: 'fr.health.samu690.patient.P23AZ59
 
           fr.health.samu690.patient.DRFR15690242370035.1'
         creation: '2022-09-27T08:23:34+02:00'
@@ -466,7 +391,6 @@ components:
           cision d\u2019orientation et de transport / Pas de d\xE9cision suppl\xE9\
           mentaire"
         resourceType: SMUR, Pompiers
-        vehiculeType: AR, VLM, VSAV
         medicalTransport: 'True'
         orientationType: EPHAD
     additionalInformation:
@@ -978,12 +902,12 @@ components:
       properties:
         detailedName:
           $ref: '#/components/schemas/detailedName'
-        id:
+        rppsId:
           type: string
           title: Identifiant RPPS
           x-health-only: false
           x-cols: 6
-          example: example.json#/patient/0/administrativeFile/generalPractitioner/id
+          example: example.json#/patient/0/administrativeFile/generalPractitioner/rppsId
           description: "Num\xE9ro RPPS du m\xE9decin traitant"
           examples:
           - 10000668540
@@ -1076,7 +1000,7 @@ components:
           example: example.json#/patient/0/administrativeFile/generalPractitioner/contact/0/detail
           description: "A valoriser avec la valeur de l'URI utilis\xE9e.\nLe format\
             \ attendu pour un num\xE9ro de t\xE9l\xE9phone est le suivant : +{indicatif\
-            \ pays}{num\xE9ro de t\xE9l\xE9phone}"
+            \ pays}{num\xE9ro de t\xE9l\xE9phone}."
           examples:
           - '+33671830530'
       additionalProperties: false

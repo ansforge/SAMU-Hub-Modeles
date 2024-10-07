@@ -34,76 +34,47 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.rcde.DistributionElement;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Sender
+ * DistributionElementWrapper
  */
-@JsonPropertyOrder({Sender.JSON_PROPERTY_NAME, Sender.JSON_PROPERTY_U_R_I})
-@JsonTypeName("sender")
+@JsonPropertyOrder(
+    {DistributionElementWrapper.JSON_PROPERTY_DISTRIBUTION_ELEMENT})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Sender {
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+public class DistributionElementWrapper {
+  public static final String JSON_PROPERTY_DISTRIBUTION_ELEMENT =
+      "DistributionElement";
+  private DistributionElement distributionElement;
 
-  public static final String JSON_PROPERTY_U_R_I = "URI";
-  private String URI;
+  public DistributionElementWrapper() {}
 
-  public Sender() {}
+  public DistributionElementWrapper
+  distributionElement(DistributionElement distributionElement) {
 
-  public Sender name(String name) {
-
-    this.name = name;
+    this.distributionElement = distributionElement;
     return this;
   }
 
   /**
-   * Identifiant technique du système emetteur Format :  &#x3D;&gt; Pour les
-   *SAMU : {nom solution LRM}-{clé de routage} où clé de routage désigne le nom
-   *de la clé de routage utilisée par le LRM pour les échanges et {nom solution
-   *LRM} est le nom donné par l&#39;éditeur à sa solution (libre) &#x3D;&gt;
-   *Pour NeXSIS : à définir {sga|sgo}-nexsis
-   * @return name
+   * Get distributionElement
+   * @return distributionElement
    **/
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(JSON_PROPERTY_DISTRIBUTION_ELEMENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getName() {
-    return name;
+  public DistributionElement getDistributionElement() {
+    return distributionElement;
   }
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(JSON_PROPERTY_DISTRIBUTION_ELEMENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public Sender URI(String URI) {
-
-    this.URI = URI;
-    return this;
-  }
-
-  /**
-   * uri du système. Permet d&#39;identifier le vecteur utilisé par les échanges
-   *Format : &#x3D;&gt; Pour les LRM : {nom éditeur}:{sender:name} &#x3D;&gt;
-   *Pour NexSIS : sge:{sender:name}
-   * @return URI
-   **/
-  @JsonProperty(JSON_PROPERTY_U_R_I)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getURI() {
-    return URI;
-  }
-
-  @JsonProperty(JSON_PROPERTY_U_R_I)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setURI(String URI) {
-    this.URI = URI;
+  public void setDistributionElement(DistributionElement distributionElement) {
+    this.distributionElement = distributionElement;
   }
 
   @Override
@@ -114,22 +85,24 @@ public class Sender {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Sender sender = (Sender)o;
-    return Objects.equals(this.name, sender.name) &&
-        Objects.equals(this.URI, sender.URI);
+    DistributionElementWrapper distributionElementWrapper =
+        (DistributionElementWrapper)o;
+    return Objects.equals(this.distributionElement,
+                          distributionElementWrapper.distributionElement);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, URI);
+    return Objects.hash(distributionElement);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Sender {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    URI: ").append(toIndentedString(URI)).append("\n");
+    sb.append("class DistributionElementWrapper {\n");
+    sb.append("    distributionElement: ")
+        .append(toIndentedString(distributionElement))
+        .append("\n");
     sb.append("}");
     return sb.toString();
   }
