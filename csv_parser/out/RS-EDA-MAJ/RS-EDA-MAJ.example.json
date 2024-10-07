@@ -42,7 +42,21 @@
                         "source": "NIR, SINUS, SI-VIC, …",
                         "value": "id1234"
                     }
-                ]
+                ],
+                "generalPractitioner": {
+                    "detailedName": {
+                        "complete": "Jean Dupont",
+                        "lastName": "Dupont",
+                        "firstName": "Jean"
+                    },
+                    "id": 10000668540,
+                    "contact": [
+                        {
+                            "type": "TEL",
+                            "detail": "+33671830530"
+                        }
+                    ]
+                }
             },
             "identity": {
                 "strictFeatures": {
@@ -50,11 +64,7 @@
                     "birthDate": "None",
                     "sex": "F"
                 },
-                "nonStrictFeatures": {
-                    "complete": "Jean Dupont",
-                    "lastName": "Dupont",
-                    "firstName": "Jean"
-                }
+                "nonStrictFeatures": {}
             },
             "healthMotive": {
                 "code": "C07.13.02",
@@ -64,7 +74,9 @@
                 "weight": 31,
                 "height": 109,
                 "age": "P6Y",
-                "careLevel": "R1"
+                "careLevel": "R1",
+                "medicalHistory": "Arthrite, asthme",
+                "treatment": "Amoxicilline 1 g  et paracétamol 1 g depuis 5 jours."
             },
             "hypothesis": {
                 "mainDiagnosis": {

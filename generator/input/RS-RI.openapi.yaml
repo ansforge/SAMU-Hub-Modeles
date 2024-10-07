@@ -120,7 +120,7 @@ components:
           - fr.health.samu440
         centerName:
           type: string
-          title: "ID Centre d\u2019affectation"
+          title: "Nom du centre d\u2019affectation"
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/centerName
@@ -238,18 +238,9 @@ components:
           - AMB
           examples:
           - VLM
-        plate:
-          type: string
-          title: Immatriculation
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/mobilizedResource/0/plate
-          description: "A valoriser avec le n\xB0 d'immatriculation du vecteur"
-          examples:
-          - AB-123-CD
         name:
           type: string
-          title: Nom
+          title: Nom du vecteur
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/name
@@ -408,12 +399,13 @@ components:
           description: "A valoriser avec le type de l'URI utilis\xE9e. Cf nomenclature\
             \ associ\xE9e."
           enum:
-          - TEL
           - EMAIL
           - FAX
+          - MSS
           - POSTAL
-          - WEB
           - RADIO
+          - TEL
+          - WEB
           examples:
           - PHNADD
         details:

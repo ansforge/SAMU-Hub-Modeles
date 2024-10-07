@@ -480,6 +480,7 @@ Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes �
     <complexType name="administrativeFile">
         <sequence>
             <element maxOccurs="unbounded" minOccurs="0" name="externalId" type="x:externalId"/>
+            <element minOccurs="0" name="generalPractitioner" type="x:generalPractitioner"/>
         </sequence>
     </complexType>
     <complexType name="Identity">
@@ -595,6 +596,18 @@ Au format "Durée" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#
                     </restriction>
                 </simpleType>
             </element>
+            <element minOccurs="0" name="medicalHistory" type="string">
+                <annotation>
+                    <documentation>Texte libre  pour décrire les antécédents du patient. 
+Si ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="treatment" type="string">
+                <annotation>
+                    <documentation>Texte libre  pour décrire les traitements du patient.
+Si ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. </documentation>
+                </annotation>
+            </element>
         </sequence>
     </complexType>
     <complexType name="hypothesis">
@@ -622,6 +635,66 @@ Au format "Durée" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#
             <element name="value" type="string">
                 <annotation>
                     <documentation>L'identifiant en lui-même</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="generalPractitioner">
+        <sequence>
+            <element name="detailedName" type="x:detailedName"/>
+            <element minOccurs="0" name="id" type="string">
+                <annotation>
+                    <documentation>Numéro RPPS du médecin traitant</documentation>
+                </annotation>
+            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="contact" type="x:personalContact"/>
+        </sequence>
+    </complexType>
+    <complexType name="detailedName">
+        <sequence>
+            <element name="complete" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le prénom et le nom usuel du requérant/appelant.
+Si les champs callerLastName et callerFirstName sont également renseignés, le champ callerName doit être valorisé ainsi : "{callerFirstName} {callerLastName}".
+
+Spécificités 15-18  : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="lastName" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le nom usuel du requérant</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="firstName" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le prénom usuel du réquérant.
+Par convention les prénoms composés doivent préférablement être séparés par le caractère "-"</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="personalContact">
+        <sequence>
+            <element name="type">
+                <annotation>
+                    <documentation>A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="EMAIL"/>
+                        <enumeration value="FAX"/>
+                        <enumeration value="MSS"/>
+                        <enumeration value="POSTAL"/>
+                        <enumeration value="RADIO"/>
+                        <enumeration value="TEL"/>
+                        <enumeration value="WEB"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="detail" type="string">
+                <annotation>
+                    <documentation>A valoriser avec la valeur de l'URI utilisée.
+Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -655,29 +728,6 @@ Au format "Durée" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#
                         <enumeration value="UN"/>
                     </restriction>
                 </simpleType>
-            </element>
-        </sequence>
-    </complexType>
-    <complexType name="detailedName">
-        <sequence>
-            <element name="complete" type="string">
-                <annotation>
-                    <documentation>A valoriser avec le prénom et le nom usuel du requérant/appelant.
-Si les champs callerLastName et callerFirstName sont également renseignés, le champ callerName doit être valorisé ainsi : "{callerFirstName} {callerLastName}".
-
-Spécificités 15-18  : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="lastName" type="string">
-                <annotation>
-                    <documentation>A valoriser avec le nom usuel du requérant</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="firstName" type="string">
-                <annotation>
-                    <documentation>A valoriser avec le prénom usuel du réquérant.
-Par convention les prénoms composés doivent préférablement être séparés par le caractère "-"</documentation>
-                </annotation>
             </element>
         </sequence>
     </complexType>

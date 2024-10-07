@@ -127,7 +127,17 @@
                         "source": "NIR, SINUS, SI-VIC, …",
                         "value": "id1234"
                     }
-                ]
+                ],
+                "generalPractitioner": {
+                    "detailedName": {},
+                    "id": 10000668540,
+                    "contact": [
+                        {
+                            "type": "TEL",
+                            "detail": "+33671830530"
+                        }
+                    ]
+                }
             },
             "identity": {
                 "strictFeatures": {
@@ -145,7 +155,9 @@
                 "weight": 31,
                 "height": 109,
                 "age": "P6Y",
-                "careLevel": "R1"
+                "careLevel": "R1",
+                "medicalHistory": "Arthrite, asthme",
+                "treatment": "Amoxicilline 1 g  et paracétamol 1 g depuis 5 jours."
             },
             "hypothesis": {
                 "mainDiagnosis": {

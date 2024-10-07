@@ -44,7 +44,9 @@ import java.util.Objects;
  */
 @JsonPropertyOrder(
     {PatientDetail.JSON_PROPERTY_WEIGHT, PatientDetail.JSON_PROPERTY_HEIGHT,
-     PatientDetail.JSON_PROPERTY_AGE, PatientDetail.JSON_PROPERTY_CARE_LEVEL})
+     PatientDetail.JSON_PROPERTY_AGE, PatientDetail.JSON_PROPERTY_CARE_LEVEL,
+     PatientDetail.JSON_PROPERTY_MEDICAL_HISTORY,
+     PatientDetail.JSON_PROPERTY_TREATMENT})
 @JsonTypeName("patientDetail")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -97,6 +99,12 @@ public class PatientDetail {
 
   public static final String JSON_PROPERTY_CARE_LEVEL = "careLevel";
   private CareLevelEnum careLevel;
+
+  public static final String JSON_PROPERTY_MEDICAL_HISTORY = "medicalHistory";
+  private String medicalHistory;
+
+  public static final String JSON_PROPERTY_TREATMENT = "treatment";
+  private String treatment;
 
   public PatientDetail() {}
 
@@ -195,6 +203,56 @@ public class PatientDetail {
     this.careLevel = careLevel;
   }
 
+  public PatientDetail medicalHistory(String medicalHistory) {
+
+    this.medicalHistory = medicalHistory;
+    return this;
+  }
+
+  /**
+   * Texte libre  pour décrire les antécédents du patient.  Si ce n&#39;est pas
+   *géré de manière structurés : à afficher dans une note liée au patient en
+   *réception.
+   * @return medicalHistory
+   **/
+  @JsonProperty(JSON_PROPERTY_MEDICAL_HISTORY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getMedicalHistory() {
+    return medicalHistory;
+  }
+
+  @JsonProperty(JSON_PROPERTY_MEDICAL_HISTORY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMedicalHistory(String medicalHistory) {
+    this.medicalHistory = medicalHistory;
+  }
+
+  public PatientDetail treatment(String treatment) {
+
+    this.treatment = treatment;
+    return this;
+  }
+
+  /**
+   * Texte libre  pour décrire les traitements du patient. Si ce n&#39;est pas
+   *géré de manière structurés : à afficher dans une note liée au patient en
+   *réception.
+   * @return treatment
+   **/
+  @JsonProperty(JSON_PROPERTY_TREATMENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getTreatment() {
+    return treatment;
+  }
+
+  @JsonProperty(JSON_PROPERTY_TREATMENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTreatment(String treatment) {
+    this.treatment = treatment;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -207,12 +265,15 @@ public class PatientDetail {
     return Objects.equals(this.weight, patientDetail.weight) &&
         Objects.equals(this.height, patientDetail.height) &&
         Objects.equals(this.age, patientDetail.age) &&
-        Objects.equals(this.careLevel, patientDetail.careLevel);
+        Objects.equals(this.careLevel, patientDetail.careLevel) &&
+        Objects.equals(this.medicalHistory, patientDetail.medicalHistory) &&
+        Objects.equals(this.treatment, patientDetail.treatment);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(weight, height, age, careLevel);
+    return Objects.hash(weight, height, age, careLevel, medicalHistory,
+                        treatment);
   }
 
   @Override
@@ -224,6 +285,12 @@ public class PatientDetail {
     sb.append("    age: ").append(toIndentedString(age)).append("\n");
     sb.append("    careLevel: ")
         .append(toIndentedString(careLevel))
+        .append("\n");
+    sb.append("    medicalHistory: ")
+        .append(toIndentedString(medicalHistory))
+        .append("\n");
+    sb.append("    treatment: ")
+        .append(toIndentedString(treatment))
         .append("\n");
     sb.append("}");
     return sb.toString();

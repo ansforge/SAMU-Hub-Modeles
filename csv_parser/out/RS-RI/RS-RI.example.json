@@ -10,7 +10,6 @@
             "centerName": "CHU Nantes",
             "resourceType": "SMUR",
             "vehiculeType": "VLM",
-            "plate": "AB-123-CD",
             "name": "SMUR 123",
             "centerCity": 44109,
             "team": {

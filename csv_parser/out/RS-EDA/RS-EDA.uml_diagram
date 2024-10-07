@@ -171,6 +171,27 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet externalId</I></TD></TR><TR><TD BORDER="0" >source <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >value <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	externalId -> administrativeFile [headlabel=1 taillabel="0..*"]
+	detailedName [label=<<TABLE>
+                <TR>
+                <TD ><B>detailedName</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet detailedName</I></TD></TR><TR><TD BORDER="0" >complete <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >lastName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >firstName <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	detailedName -> generalPractitioner [headlabel=1 taillabel=1]
+	contact [label=<<TABLE>
+                <TR>
+                <TD ><B>contact</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet personalContact</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >detail <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	contact -> generalPractitioner [headlabel=1 taillabel="0..*"]
+	generalPractitioner [label=<<TABLE>
+                <TR>
+                <TD ><B>generalPractitioner</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet generalPractitioner</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	generalPractitioner -> administrativeFile [headlabel=1 taillabel="0..1"]
 	administrativeFile [label=<<TABLE>
                 <TR>
                 <TD ><B>administrativeFile</B></TD>
@@ -210,7 +231,7 @@ strict digraph {
                 <TR>
                 <TD ><B>detail</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet patientDetail</I></TD></TR><TR><TD BORDER="0" >weight <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >height <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >age <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >careLevel <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet patientDetail</I></TD></TR><TR><TD BORDER="0" >weight <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >height <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >age <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >careLevel <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >medicalHistory <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >treatment <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	detail -> patient [headlabel=1 taillabel="0..1"]
 	mainDiagnosis [label=<<TABLE>
