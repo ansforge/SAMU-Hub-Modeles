@@ -56,6 +56,7 @@ jobs:
         if: steps.filter.outputs.parsing_required == 'true'
         run: python workflow.py --stage parser_and_mv
 
+# TODO: Reactivate test case autogeneration
 #      - name: Run test_case_generator and move the folder test-cases to src/main/resources/sample/test-cases
 #        working-directory: ./csv_parser
 #        if: steps.filter.outputs.test_case_parsing_required == 'true'
