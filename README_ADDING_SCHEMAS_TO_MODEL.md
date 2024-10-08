@@ -106,3 +106,6 @@ Si la présence de l'en-tete RC-DE n'est pas désirée, il est seulement nécess
    3. Un element **<xs:element ref="[Objet racine (en flatcase)]:[Objet racine]"/>** a l'interieur de l'element <xs:choice> 
 
 ## Penser à ajouter des fichiers exemples et des cas passants/non-passants dans src/main/resources/sample, ainsi que mettre en place des tests unitaires vérifiant la validation et la sérialisation/désérialisation des classes 
+
+## 5. Front
+1. Mettre a jour la map et le switch case dans /composables/messageUtils.js et /mixins/mixinMessage.js dans le répo [Santé](https://github.com/ansforge/SAMU-Hub-Sante)
