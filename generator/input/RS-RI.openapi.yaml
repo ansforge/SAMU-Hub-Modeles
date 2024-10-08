@@ -44,7 +44,7 @@ components:
       additionalProperties: false
     resource:
       type: object
-      title: "Ressource engag\xE9e"
+      title: "Ressource engag\xE9e / \xE0 engager"
       x-display: expansion-panels
       x-health-only: false
       required:

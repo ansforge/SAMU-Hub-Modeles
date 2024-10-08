@@ -5,9 +5,10 @@ Il est valorisé comme suit lors de sa création :
 
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX: ^fr(\.[\w-]+){3,4}$"
-Ressource engagée,,,,,,Objet permettant de communquer la liste des ressource et vecteurs mobilisés,,mobilizedResource,1..n,X,resource,
-,Date/heure de déclenchement,,,,,A valoriser avec la date et heure d'engagement de la ressource/du vecteur,2022-09-27T08:23:34+02:00,datetime,1..1,,datetime,Format datetime décrit dans le DSF
-,Type de vecteur,,,,,A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée,VLM,vehiculeType,1..1,,string,NOMENCLATURE: SI-SAMU-TYPE_VECTEUR
+Ressource engagée / à engager,,,,,,"Objet permettant de communquer la liste des ressource et vecteurs mobilisés en 15-15 et 15-SMUR pour le message RS-RI
+Objet permettant de communiquer la liste des ressources à engager en 15-SMUR pour le message RS-ER",,mobilizedResource,1..n,X,resource,
+,Date/heure de déclenchement,,,,,A valoriser avec la date et heure d'engagement de la ressource/du vecteur,2022-09-27T08:23:34+02:00,datetime,0..1,,datetime,Format datetime décrit dans le DSF
+,Type de vecteur,,,,,A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée,VLM,vehiculeType,0..1,,string,NOMENCLATURE: SI-SAMU-TYPE_VECTEUR
 ,Nom du vecteur,,,,,A valoriser avec le nom donné à la ressource par l’organisation d’appartenance,SMUR 123,name,0..1,,string,
 ,Equipe vecteur,,,,,Objet qui décrit l'équipe à bord du vecteur,,team,0..1,X,team,
 ,,Type,,,,A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature associée,MED,teamCare,0..1,,string,NOMENCLATURE: SI-SAMU-NIVSOIN

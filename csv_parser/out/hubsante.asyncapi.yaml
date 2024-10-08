@@ -318,7 +318,7 @@ components:
       - $ref: '#/components/schemas/error'
       - $ref: '#/components/schemas/info'
       - $ref: '#/components/schemas/resourcesInfo'
-      - $ref: '#/components/schemas/engagementRessources'
+      - $ref: '#/components/schemas/resourcesEngagement'
       - $ref: '#/components/schemas/resourcesRequest'
       - $ref: '#/components/schemas/resourcesResponse'
       - $ref: '#/components/schemas/rpis'
@@ -4027,12 +4027,10 @@ components:
       example: example.json#/MISSION/0
     resource:
       type: object
-      title: "Ressource engag\xE9e"
+      title: "Ressource engag\xE9e / \xE0 engager"
       x-display: expansion-panels
       x-health-only: false
-      required:
-      - datetime
-      - vehiculeType
+      required: []
       properties:
         datetime:
           type: string
@@ -6105,12 +6103,12 @@ components:
       - datetime: '2022-09-27T08:23:34+02:00'
         status: ARRIVE
         availability: 'FALSE'
-    engagementRessources:
+    resourcesEngagement:
       $id: classpath:/json-schema/schema#
       x-id: RS-ER.schema.json#
       example: example.json#
       type: object
-      title: engagementRessources
+      title: resourcesEngagement
       required:
       - caseId
       - mobilizedResource

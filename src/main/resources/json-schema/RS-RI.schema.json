@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RI.schema.json#",
-    "version": "24.10.07",
+    "version": "24.10.08",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesInfo",
@@ -31,7 +31,7 @@
     "definitions": {
         "resource": {
             "type": "object",
-            "title": "Ressource engagée",
+            "title": "Ressource engagée / à engager",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
