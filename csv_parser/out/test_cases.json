@@ -1,365 +1,333 @@
 [
-    {
-        "categoryLabel":"Périmetre 15-15",
-        "testCases":[
-            {
-                "label":"Partage de dossier simple (sans demande de prise en charge)",
-                "description":"Envoyer un message simple de partage de dossier pour le périmètre 15-15",
-                "steps":[
-                    {
-                        "type":"receive",
-                        "label":"Réception RS-EDA",
-                        "description":"Envoyer un message de partage de dossier pour le périmètre 15-15 sans demande de transfert; qui contient les valeurs obligatoires minimales attendues",
-                        "message":{
-                            "requiredValues":[
-                                {
-                                    "path":"$.createCaseHealth.perimeter",
-                                    "value":[
-                                        "AMU",
-                                        "AMU",
-                                        "AMU"
-                                    ],
-                                    "verificationLevel":3
-                                },
-                                {
-                                    "path":"$.createCaseHealth.interventionType",
-                                    "value":[
-                                        "Primaire",
-                                        "Primaire",
-                                        "Primaire"
-                                    ],
-                                    "verificationLevel":3
-                                },
-                                {
-                                    "path":"$.createCaseHealth.qualification.whatsHappen.code",
-                                    "value":[
-                                        "C02.08.05",
-                                        "C02.08.02",
-                                        "C02.05.00"
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.qualification.whatsHappen.label",
-                                    "value":[
-                                        "Atteinte aux personnes ; Traumatisme \/ Accident ; Par objet tranchant ou perforant",
-                                        "Atteinte aux personnes ; Traumatisme \/ Accident ; Accident domestique",
-                                        "Atteinte aux personnes ; Pathologie \/ maladie"
-                                    ],
-                                    "verificationLevel":3
-                                },
-                                {
-                                    "path":"$.createCaseHealth.qualification.locationKind.code",
-                                    "value":[
-                                        "L01.01.04",
-                                        "L01.02.10",
-                                        "L04.12.00"
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.qualification.locationKind.label",
-                                    "value":[
-                                        "Domicile ; Maison particulière, pavillon ;  dépendance",
-                                        "Domicile ; Lieu d'habitation collectif ou foyer d'hébergement ;  escaliers",
-                                        "Lieu accueillant du public ; Hébergement touristique"
-                                    ],
-                                    "verificationLevel":3
-                                },
-                                {
-                                    "path":"$.createCaseHealth.qualification.healthMotive.code",
-                                    "value":[
-                                        "M01.02",
-                                        "M02.07",
-                                        "M03.08"
-                                    ],
-                                    "verificationLevel":1
-                                },
-                                {
-                                    "path":"$.createCaseHealth.qualification.healthMotive.label",
-                                    "value":[
-                                        "Détresse vitale; Altération de la conscience; Dont inconscient, coma",
-                                        "Traumatisme sérieux, plaie intermédiaire",
-                                        "Signes d’AVC"
-                                    ],
-                                    "verificationLevel":3
-                                },
-                                {
-                                    "path":"$.createCaseHealth.qualification.details.priority",
-                                    "value":[
-                                        "P0",
-                                        "P2",
-                                        "P1"
-                                    ],
-                                    "verificationLevel":1
-                                },
-                                {
-                                    "path":"$.createCaseHealth.qualification.details.attribution",
-                                    "value":[
-                                        "MU",
-                                        "MU",
-                                        "MU"
-                                    ],
-                                    "verificationLevel":3
-                                },
-                                {
-                                    "path":"$.createCaseHealth.owner",
-                                    "value":[
-                                        "fr.health.samu770",
-                                        "fr.health.samu950",
-                                        "fr.health.samu009"
-                                    ],
-                                    "verificationLevel":1
-                                },
-                                {
-                                    "path":"$.createCaseHealth.patient[0].identity.strictFeatures.sex",
-                                    "value":[
-                                        "MASC",
-                                        "FEM",
-                                        "INCONNU"
-                                    ],
-                                    "verificationLevel":1
-                                },
-                                {
-                                    "path":"$.createCaseHealth.patient[0].identity.strictFeatures.birthDate",
-                                    "value":[
-                                        "1959-02-01",
-                                        "2014-03-03"
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.patient[0].identity.nonStrictFeatures.complete",
-                                    "value":[
-                                        "Didier Morel",
-                                        "Lola Halimi"
-                                    ],
-                                    "verificationLevel":1
-                                },
-                                {
-                                    "path":"$.createCaseHealth.patient[0].detail.age",
-                                    "value":[
-                                        "P65Y",
-                                        "P10Y",
-                                        "P80Y"
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.country",
-                                    "value":[
-                                        "FR",
-                                        "FR",
-                                        "FR"
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.detailedAddress.complete",
-                                    "value":[
-                                        "12 Rue Louis Aristide Verdier ",
-                                        "4 rue Danielle Mitterrand",
-                                        "Rue principale"
-                                    ],
-                                    "verificationLevel":1
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.city.name",
-                                    "value":[
-                                        "Vaires-sur-Marne",
-                                        "Bezons",
-                                        "Aulus-les-Bains"
-                                    ],
-                                    "verificationLevel":1
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.city.inseeCode",
-                                    "value":[
-                                        "77479",
-                                        "95063",
-                                        "9029"
-                                    ],
-                                    "verificationLevel":3
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.access.floor",
-                                    "value":[
-                                        "3"
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.access.roomNumber",
-                                    "value":[
-
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.access.interphone",
-                                    "value":[
-                                        "Halimi"
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.access.accessCode",
-                                    "value":[
-                                        "5678"
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.access.elevator",
-                                    "value":[
-                                        "ESC B"
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.access.buildingName",
-                                    "value":[
-                                        "A"
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.access.entrance",
-                                    "value":[
-
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.access.entity",
-                                    "value":[
-
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.access.phoneNumber",
-                                    "value":[
-                                        "561964589"
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.freetext",
-                                    "value":[
-                                        "Aller directement dans le garage",
-                                        "dans la cage d’escalier B",
-                                        "Maison avec la porte verte, 100 m après le lavoir"
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.geometry.point.coord.lat",
-                                    "value":[
-                                        "48.866920471191406",
-                                        "48.92399978637695"
-                                    ],
-                                    "verificationLevel":3
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.geometry.point.coord.lon",
-                                    "value":[
-                                        "2.631575345993042",
-                                        "2.2162439823150635"
-                                    ],
-                                    "verificationLevel":3
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialAlert.freetext",
-                                    "value":[
-
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialAlert.caller.callerContact.type",
-                                    "value":[
-                                        "PHNADD",
-                                        "PHNADD",
-                                        "PHNADD"
-                                    ],
-                                    "verificationLevel":1
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialAlert.caller.callerContact.detail",
-                                    "value":[
-                                        "0607080915",
-                                        "702880946",
-                                        "632085528"
-                                    ],
-                                    "verificationLevel":1
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialAlert.caller.callbackContact.type",
-                                    "value":[
-                                        "PHNADD",
-                                        "PHNADD",
-                                        "PHNADD"
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialAlert.caller.callbackContact.detail",
-                                    "value":[
-                                        "0607080915",
-                                        "702880946",
-                                        "561964589"
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialAlert.caller.type",
-                                    "value":[
-                                        "FAMILLE",
-                                        "TIERS",
-                                        "TIERS"
-                                    ],
-                                    "verificationLevel":3
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialAlert.notes[0].freetext",
-                                    "value":[
-                                        "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup. ",
-                                        "Entorse de la cheville, avec possible fracture. ",
-                                        "Confusion, étourdissements, s’exprime difficilement"
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialAlert.notes[1].freetext",
-                                    "value":[
-                                        "La victime est inconsciente (perte de connaissance).",
-                                        "Cheville gonflée et douloureuse. "
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialAlert.notes[2].freetext",
-                                    "value":[
-                                        "Marche impossible."
-                                    ],
-                                    "verificationLevel":2
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialAlert.caller.detailedName.complete",
-                                    "value":[
-                                        "Sébastien Morel",
-                                        "Amina BERTRAND  ",
-                                        "Lucas Bernardi "
-                                    ],
-                                    "verificationLevel":1
-                                }
-                            ],
-                            "file":"Perimetre_15-15\/Partage_de_dossier_simple_(sans_demande_de_prise_en_charge)\/1-Reception_RS-EDA.json"
-                        }
-                    }
-                ]
-            }
+  {
+    "categoryLabel": "15-15",
+    "testCases": [
+      {
+        "label": "Didier Morel",
+        "description": "Partage de dossier simple  (hors partage ressources)",
+        "steps": [
+          {
+            "id": "01a",
+            "type": "receive",
+            "label": "Réception RS-EDA",
+            "description": "Appel reçu par le SAMU 77 : partage en anticipation besoin en chirurgie de la main (94)",
+            "file": "RS-EDA_partageDossier_DidierMorel.01a.json",
+            "model": "RS-EDA",
+            "ignoredProperties": [
+              "$.createCaseHealth.caseId",
+              "$.createCaseHealth.senderCaseId",
+              "$.createCaseHealth.initialAlert.caller.callerContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callerContact.type",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.type",
+              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.role",
+              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.idObs",
+              "$.createCaseHealth.medicalNote[1].operator.role",
+              "$.createCaseHealth.medicalNote[1].idPat",
+              "$.createCaseHealth.medicalNote[1].operator.idObs"
+            ]
+          },
+          {
+            "id": "01b",
+            "type": "receive",
+            "label": "Réception RS-RI",
+            "description": "Engagement VSAV et VLM SMUR ",
+            "file": "RS-RI_partageDossier_DidierMorel.01b.json",
+            "model": "RS-RI",
+            "ignoredProperties": [
+              "$.resourcesInfo.caseId",
+              "$.resourcesInfo.mobilizedResource[0].resourceId",
+              "$.resourcesInfo.mobilizedResource[0].orgId",
+              "$.resourcesInfo.mobilizedResource[1].resourceId",
+              "$.resourcesInfo.mobilizedResource[1].orgId"
+            ]
+          },
+          {
+            "id": "02",
+            "type": "receive",
+            "label": "Réception RS-EDA-MAJ",
+            "description": "Malaise de l’épouse : ajout d’un patient au dossier",
+            "file": "RS-EDA-MAJ_partageDossier_DidierMorel.02.json",
+            "model": "RS-EDA-MAJ",
+            "ignoredProperties": [
+              "$.createCaseHealthUpdate.caseId",
+              "$.createCaseHealthUpdate.medicalNote[0].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[0].idPat",
+              "$.createCaseHealthUpdate.medicalNote[0].operator.idObs",
+              "$.createCaseHealthUpdate.patient[0].idPat"
+            ]
+          }
         ]
-    }
+      },
+      {
+        "label": "Lola Halimi",
+        "description": "Partage de dossier simple  (hors partage ressources)",
+        "steps": [
+          {
+            "id": "01a",
+            "type": "receive",
+            "label": "Réception RS-EDA",
+            "description": "Appel reçu par le SAMU 95 : situation ressources tendue",
+            "file": "RS-EDA_partageDossier_LolaHalimi.01a.json",
+            "model": "RS-EDA",
+            "ignoredProperties": [
+              "$.createCaseHealth.caseId",
+              "$.createCaseHealth.initialAlert.caller.callerContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callerContact.type",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.type",
+              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.role",
+              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.idObs",
+              "$.createCaseHealth.medicalNote[1].operator.role",
+              "$.createCaseHealth.medicalNote[1].idPat",
+              "$.createCaseHealth.medicalNote[1].operator.idObs",
+              "$.createCaseHealth.medicalNote[2].operator.role",
+              "$.createCaseHealth.medicalNote[2].idPat",
+              "$.createCaseHealth.medicalNote[2].operator.idObs"
+            ]
+          },
+          {
+            "id": "01b",
+            "type": "receive",
+            "label": "Réception RS-RI",
+            "description": "Engagement VSAV",
+            "file": "RS-RI_partageDossier_LolaHalimi.01b.json",
+            "model": "RS-RI",
+            "ignoredProperties": [
+              "$.resourcesInfo.caseId",
+              "$.resourcesInfo.mobilizedResource[0].resourceId",
+              "$.resourcesInfo.mobilizedResource[0].orgId"
+            ]
+          },
+          {
+            "id": "02",
+            "type": "receive",
+            "label": "Réception RS-EDA-MAJ",
+            "description": "Dégradation du patient détectée à la RM nécessitant l’envoi d’un SMUR",
+            "file": "RS-EDA-MAJ_partageDossier_LolaHalimi.02.json",
+            "model": "RS-EDA-MAJ",
+            "ignoredProperties": [
+              "$.createCaseHealthUpdate.caseId",
+              "$.createCaseHealthUpdate.medicalNote[0].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[0].idPat",
+              "$.createCaseHealthUpdate.medicalNote[0].operator.idObs"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Monsieur X",
+        "description": "Partage de dossier simple  ",
+        "steps": [
+          {
+            "id": "01",
+            "type": "receive",
+            "label": "Réception RS-EDA",
+            "description": "Appel reçu par le SAMU 09 : partage au 31",
+            "file": "RS-EDA_partageDossier_MonsieurX.01.json",
+            "model": "RS-EDA",
+            "ignoredProperties": [
+              "$.createCaseHealth.caseId",
+              "$.createCaseHealth.initialAlert.caller.callerContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callerContact.type",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.type",
+              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.role",
+              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.idObs",
+              "$.createCaseHealth.medicalNote[1].operator.role",
+              "$.createCaseHealth.medicalNote[1].idPat",
+              "$.createCaseHealth.medicalNote[1].operator.idObs",
+              "$.createCaseHealth.medicalNote[2].operator.role",
+              "$.createCaseHealth.medicalNote[2].idPat",
+              "$.createCaseHealth.medicalNote[2].operator.idObs"
+            ]
+          },
+          {
+            "id": "02a",
+            "type": "receive",
+            "label": "Réception RS-EDA-MAJ",
+            "description": "Régulation médicale : mise à jour des notes médicales",
+            "file": "RS-EDA-MAJ_partageDossier_MonsieurX.02a.json",
+            "model": "RS-EDA-MAJ",
+            "ignoredProperties": [
+              "$.createCaseHealthUpdate.caseId",
+              "$.createCaseHealthUpdate.medicalNote[0].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[0].idPat",
+              "$.createCaseHealthUpdate.medicalNote[0].operator.idObs",
+              "$.createCaseHealthUpdate.medicalNote[1].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[1].idPat",
+              "$.createCaseHealthUpdate.medicalNote[1].operator.idObs",
+              "$.createCaseHealthUpdate.patient[0].idPat"
+            ]
+          },
+          {
+            "id": "02b",
+            "type": "receive",
+            "label": "Réception RS-EDA-MAJ",
+            "description": "Régulation médicale : ajout décision",
+            "file": "RS-EDA-MAJ_partageDossier_MonsieurX.02b.json",
+            "model": "RS-EDA-MAJ",
+            "ignoredProperties": [
+              "$.createCaseHealthUpdate.caseId",
+              "$.createCaseHealthUpdate.decision[0].operator.role",
+              "$.createCaseHealthUpdate.decision[0].idPat"
+            ]
+          },
+          {
+            "id": "03",
+            "type": "receive",
+            "label": "Réception RS-RI",
+            "description": "Engagement ambulance privée",
+            "file": "RS-RI_partageRessources_MonsieurX.03.json",
+            "model": "RS-RI",
+            "ignoredProperties": [
+              "$.resourcesInfo.caseId",
+              "$.resourcesInfo.mobilizedResource[0].resourceId",
+              "$.resourcesInfo.mobilizedResource[0].orgId",
+              "$.resourcesInfo.mobilizedResource[0]missionId",
+              "$.resourcesInfo.mobilizedResource[0]contact.type"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Ouardia Boudadi",
+        "description": "Appel Limitrophe",
+        "steps": [
+          {
+            "id": "01",
+            "type": "receive",
+            "label": "Réception RS-EDA",
+            "description": "Appel reçu par le SAMU 95 : partage au 78 car détection d’appel limitrophe",
+            "file": "RS-EDA_partageDossier_OuardiaBoudadi.01.json",
+            "model": "RS-EDA",
+            "ignoredProperties": [
+              "$.createCaseHealth.caseId",
+              "$.createCaseHealth.senderCaseId",
+              "$.createCaseHealth.initialAlert.caller.callerContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callerContact.type",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.type",
+              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.role",
+              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.idObs"
+            ]
+          },
+          {
+            "id": "02a",
+            "type": "receive",
+            "label": "Réception RS-EDA-MAJ",
+            "description": "Transfert d’appel terminé et prise en charge côté 78.",
+            "file": "RS-EDA-MAJ_priseEnCharge_OuardiaBoudadi.02.json",
+            "model": "RS-EDA-MAJ",
+            "idOverrideProperties": [
+              "$.createCaseHealthUpdate.owner"
+            ],
+            "ignoredProperties": [
+              "$.createCaseHealthUpdate.owner",
+              "$.createCaseHealthUpdate.caseId"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Enfants NGUYEN",
+        "description": "Appel Limitrophe (hors partage ressources)",
+        "steps": [
+          {
+            "id": "01",
+            "type": "receive",
+            "label": "Réception RS-EDA",
+            "description": "Appel reçu par le SAMU 80 : partage au 76A car détection d’appel limitrophe",
+            "file": "RS-EDA_partageDossier_EnfantsNguyen.01.json",
+            "model": "RS-EDA",
+            "ignoredProperties": [
+              "$.createCaseHealth.caseId",
+              "$.createCaseHealth.senderCaseId",
+              "$.createCaseHealth.initialAlert.caller.callerContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callerContact.type",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.type",
+              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.patient[1].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.role",
+              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.idObs",
+              "$.createCaseHealth.medicalNote[1].operator.role",
+              "$.createCaseHealth.medicalNote[1].idPat",
+              "$.createCaseHealth.medicalNote[1].operator.idObs"
+            ]
+          },
+          {
+            "id": "02",
+            "type": "receive",
+            "label": "Réception RS-EDA-MAJ",
+            "description": "Transfert d’appel terminé et prise en charge côté 76A",
+            "file": "RS-EDA-MAJ_priseEnCharge_EnfantsNguyen.02.json",
+            "model": "RS-EDA-MAJ",
+            "idOverrideProperties": [
+              "$.createCaseHealthUpdate.owner"
+            ],
+            "ignoredProperties": [
+              "$.createCaseHealthUpdate.owner",
+              "$.createCaseHealthUpdate.caseId"
+            ]
+          },
+          {
+            "id": "03a",
+            "type": "send",
+            "label": "Envoi RS-EDA-MAJ",
+            "description": "Régulation médicale : possible hémorragie interne",
+            "file": "RS-EDA-MAJ_partageDossier_EnfantsNguyen.03a.json",
+            "model": "RS-EDA-MAJ",
+            "ignoredProperties": [
+              "$.createCaseHealthUpdate.caseId",
+              "$.createCaseHealthUpdate.medicalNote[0].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[0].idPat",
+              "$.createCaseHealthUpdate.medicalNote[0].operator.idObs",
+              "$.createCaseHealthUpdate.medicalNote[1].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[1].idPat",
+              "$.createCaseHealthUpdate.medicalNote[1].operator.idObs",
+              "$.createCaseHealthUpdate.medicalNote[2].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[2].idPat",
+              "$.createCaseHealthUpdate.medicalNote[2].operator.idObs",
+              "$.createCaseHealthUpdate.medicalNote[3].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[3].idPat",
+              "$.createCaseHealthUpdate.medicalNote[3].operator.idObs",
+              "$.createCaseHealthUpdate.medicalNote[4].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[4].idPat",
+              "$.createCaseHealthUpdate.medicalNote[4].operator.idObs",
+              "$.createCaseHealthUpdate.patient[0].idPat",
+              "$.createCaseHealthUpdate.patient[1].idPat"
+            ]
+          },
+          {
+            "id": "03b",
+            "type": "send",
+            "label": "Envoi RS-RI",
+            "description": "Engagement VSAV + SMUR 76A",
+            "file": "RS-RI_partageDossier_EnfantsNguyen.03b.json",
+            "model": "RS-RI",
+            "ignoredProperties": [
+              "$.resourcesInfo.caseId",
+              "$.resourcesInfo.mobilizedResource[0].contact.type",
+              "$.resourcesInfo.mobilizedResource[0].resourceId",
+              "$.resourcesInfo.mobilizedResource[0].orgId",
+              "$.resourcesInfo.mobilizedResource[1].contact.type",
+              "$.resourcesInfo.mobilizedResource[1].resourceId",
+              "$.resourcesInfo.mobilizedResource[1].orgId"
+            ]
+          }
+        ]
+      }
+    ]
+  }
 ]
+
