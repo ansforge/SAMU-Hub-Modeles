@@ -59,7 +59,7 @@ components:
       additionalProperties: false
     state:
       type: object
-      title: Etats vecteur
+      title: Etat vecteur
       x-display: expansion-panels
       x-health-only: false
       required:

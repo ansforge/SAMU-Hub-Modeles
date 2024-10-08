@@ -130,7 +130,7 @@ public class PersonalContact {
 
   /**
    * A valoriser avec la valeur de l&#39;URI utilisée. Le format attendu pour un
-   *numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}
+   *numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}.
    * @return detail
    **/
   @JsonProperty(JSON_PROPERTY_DETAIL)

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RI.schema.json#",
-    "version": "24.10.01",
+    "version": "24.10.08",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesInfo",
@@ -31,13 +31,13 @@
     "definitions": {
         "resource": {
             "type": "object",
-            "title": "Ressource engagée",
+            "title": "Ressource engagée / à engager",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
                 "datetime",
                 "resourceId",
-                "resourceType"
+                "vehiculeType"
             ],
             "properties": {
                 "datetime": {
@@ -91,42 +91,6 @@
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/centerName",
                     "description": "A valoriser avec le lieu de garage principal"
-                },
-                "resourceType": {
-                    "type": "string",
-                    "title": "Type de ressource",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/resourceType",
-                    "description": "A valoriser avec le yype de ressource mobilisée : cf.nomenclature associée.",
-                    "enum": [
-                        "SMUR",
-                        "MED",
-                        "PARAMED",
-                        "HOSPIT",
-                        "LIB",
-                        "MEDC",
-                        "PHARMA",
-                        "INF",
-                        "MEDSPE",
-                        "DENT",
-                        "AUTREPRO",
-                        "TSU ",
-                        "SIS",
-                        "MSP",
-                        "ISP",
-                        "SP",
-                        "AASC",
-                        "FDO",
-                        "HELIFSI",
-                        "VLFSI",
-                        "FFSI",
-                        "DGDD",
-                        "AUTRE",
-                        "ADM",
-                        "DAE",
-                        "INCONNU"
-                    ]
                 },
                 "vehiculeType": {
                     "type": "string",
@@ -280,7 +244,7 @@
         },
         "state": {
             "type": "object",
-            "title": "Etats vecteur",
+            "title": "Etat vecteur",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
