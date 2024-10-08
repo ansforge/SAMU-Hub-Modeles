@@ -38,7 +38,7 @@
             "x-health-only": false,
             "required": [
                 "orgId",
-                "caseId",
+                "senderCaseId",
                 "creationDate",
                 "decisionDate",
                 "ressourceFinessLegal",
@@ -55,12 +55,12 @@
                     "description": "Numéro du SAMU régulant la mission SMUR. \nA valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n",
                     "pattern": "^[a-z]{2,3}\\.[a-z]+\\.\\w*$"
                 },
-                "caseId": {
+                "senderCaseId": {
                     "type": "string",
                     "title": "Identifiant du dossier de régulation médicale (DRM)",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/context/caseId",
+                    "example": "example.json#/context/senderCaseId",
                     "description": "Numéro du dossier SAMU à l’origine de la mission SMUR\nA valoriser par DRFR15DDXAAJJJ00000 : \n- DR = désignation d'un dossier sous forme abrégée,\n- FR : désigne le pays (FR = France),\n- 15 : désigne le fait que le dossier a été pris en charge par un SAMU / SAS,\n- DD : désigne le département où est situé le SAMU / SAS qui a traité le dossier,\n- X : lettre désignant le SAMU / SAS en cas de pluralité de SAMU / SAS sur le même département ou le troisième chiffre des DOM,\n- AA : année durant laquelle l’appel a été créé,\n- JJJ : désigne le jour de l'année (de 1j à 365j),\\par\n- 00000 : numéro d’ordre chronologique du dossier dans la journée de référence ci-dessus."
                 },
                 "creationDate": {

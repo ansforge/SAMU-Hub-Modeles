@@ -3674,7 +3674,7 @@ components:
       x-health-only: false
       required:
       - orgId
-      - caseId
+      - senderCaseId
       - creationDate
       - decisionDate
       - ressourceFinessLegal
@@ -3692,12 +3692,12 @@ components:
           pattern: ^[a-z]{2,3}\.[a-z]+\.\w*$
           examples:
           - fr.health.samu440
-        caseId:
+        senderCaseId:
           type: string
           title: "Identifiant du dossier de r\xE9gulation m\xE9dicale (DRM)"
           x-health-only: false
           x-cols: 6
-          example: example.json#/context/caseId
+          example: example.json#/context/senderCaseId
           description: "Num\xE9ro du dossier SAMU \xE0 l\u2019origine de la mission\
             \ SMUR\nA valoriser par DRFR15DDXAAJJJ00000 : \n- DR = d\xE9signation\
             \ d'un dossier sous forme abr\xE9g\xE9e,\n- FR : d\xE9signe le pays (FR\
@@ -3767,7 +3767,7 @@ components:
       example: example.json#/context
       examples:
       - orgId: fr.health.samu440
-        caseId: DRFR15DDXAAJJJ00000
+        senderCaseId: DRFR15DDXAAJJJ00000
         creationDate: '2022-09-27T08:23:34+02:00'
         decisionDate: '2022-09-27T08:23:34+02:00'
         ressourceFinessLegal: None

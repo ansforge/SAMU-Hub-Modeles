@@ -7,7 +7,7 @@ strict digraph {
                 <TR>
                 <TD ><B>context</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet event</I></TD></TR><TR><TD BORDER="0" >orgId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >creationDate <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >decisionDate <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >ressourceFinessLegal <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >ressourceFinessGeo <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >ressourceStructure <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet event</I></TD></TR><TR><TD BORDER="0" >orgId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >senderCaseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >creationDate <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >decisionDate <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >ressourceFinessLegal <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >ressourceFinessGeo <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >ressourceStructure <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	context -> rpis [headlabel=1 taillabel=1]
 	whatsHappen [label=<<TABLE>
