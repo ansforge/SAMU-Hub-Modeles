@@ -44,21 +44,21 @@ import java.util.Objects;
  * MedicalNote
  */
 @JsonPropertyOrder(
-    {MedicalNote.JSON_PROPERTY_ID_PAT, MedicalNote.JSON_PROPERTY_OPERATOR,
-     MedicalNote.JSON_PROPERTY_ID_OBS, MedicalNote.JSON_PROPERTY_CREATION,
-     MedicalNote.JSON_PROPERTY_FREETEXT})
+    {MedicalNote.JSON_PROPERTY_PATIENT_ID, MedicalNote.JSON_PROPERTY_OPERATOR,
+     MedicalNote.JSON_PROPERTY_MEDICAL_NOTE_ID,
+     MedicalNote.JSON_PROPERTY_CREATION, MedicalNote.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("medicalNote")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class MedicalNote {
-  public static final String JSON_PROPERTY_ID_PAT = "idPat";
-  private String idPat;
+  public static final String JSON_PROPERTY_PATIENT_ID = "patientId";
+  private String patientId;
 
   public static final String JSON_PROPERTY_OPERATOR = "operator";
   private Operator operator;
 
-  public static final String JSON_PROPERTY_ID_OBS = "idObs";
-  private String idObs;
+  public static final String JSON_PROPERTY_MEDICAL_NOTE_ID = "medicalNoteId";
+  private String medicalNoteId;
 
   public static final String JSON_PROPERTY_CREATION = "creation";
   private OffsetDateTime creation;
@@ -68,9 +68,9 @@ public class MedicalNote {
 
   public MedicalNote() {}
 
-  public MedicalNote idPat(String idPat) {
+  public MedicalNote patientId(String patientId) {
 
-    this.idPat = idPat;
+    this.patientId = patientId;
     return this;
   }
 
@@ -81,19 +81,19 @@ public class MedicalNote {
    *émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un
    *n°patient unique n&#39;existe pas dans le système émetteur : {ID
    *émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}
-   * @return idPat
+   * @return patientId
    **/
-  @JsonProperty(JSON_PROPERTY_ID_PAT)
+  @JsonProperty(JSON_PROPERTY_PATIENT_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getIdPat() {
-    return idPat;
+  public String getPatientId() {
+    return patientId;
   }
 
-  @JsonProperty(JSON_PROPERTY_ID_PAT)
+  @JsonProperty(JSON_PROPERTY_PATIENT_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIdPat(String idPat) {
-    this.idPat = idPat;
+  public void setPatientId(String patientId) {
+    this.patientId = patientId;
   }
 
   public MedicalNote operator(Operator operator) {
@@ -119,9 +119,9 @@ public class MedicalNote {
     this.operator = operator;
   }
 
-  public MedicalNote idObs(String idObs) {
+  public MedicalNote medicalNoteId(String medicalNoteId) {
 
-    this.idObs = idObs;
+    this.medicalNoteId = medicalNoteId;
     return this;
   }
 
@@ -134,19 +134,19 @@ public class MedicalNote {
    *émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}
    *Cet identifiant a vocation à devenir obligatoire pour permettre les mises à
    *jour, il est laissé en facultatif temporairement.
-   * @return idObs
+   * @return medicalNoteId
    **/
-  @JsonProperty(JSON_PROPERTY_ID_OBS)
+  @JsonProperty(JSON_PROPERTY_MEDICAL_NOTE_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getIdObs() {
-    return idObs;
+  public String getMedicalNoteId() {
+    return medicalNoteId;
   }
 
-  @JsonProperty(JSON_PROPERTY_ID_OBS)
+  @JsonProperty(JSON_PROPERTY_MEDICAL_NOTE_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIdObs(String idObs) {
-    this.idObs = idObs;
+  public void setMedicalNoteId(String medicalNoteId) {
+    this.medicalNoteId = medicalNoteId;
   }
 
   public MedicalNote creation(OffsetDateTime creation) {
@@ -206,25 +206,29 @@ public class MedicalNote {
       return false;
     }
     MedicalNote medicalNote = (MedicalNote)o;
-    return Objects.equals(this.idPat, medicalNote.idPat) &&
+    return Objects.equals(this.patientId, medicalNote.patientId) &&
         Objects.equals(this.operator, medicalNote.operator) &&
-        Objects.equals(this.idObs, medicalNote.idObs) &&
+        Objects.equals(this.medicalNoteId, medicalNote.medicalNoteId) &&
         Objects.equals(this.creation, medicalNote.creation) &&
         Objects.equals(this.freetext, medicalNote.freetext);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(idPat, operator, idObs, creation, freetext);
+    return Objects.hash(patientId, operator, medicalNoteId, creation, freetext);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class MedicalNote {\n");
-    sb.append("    idPat: ").append(toIndentedString(idPat)).append("\n");
+    sb.append("    patientId: ")
+        .append(toIndentedString(patientId))
+        .append("\n");
     sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
-    sb.append("    idObs: ").append(toIndentedString(idObs)).append("\n");
+    sb.append("    medicalNoteId: ")
+        .append(toIndentedString(medicalNoteId))
+        .append("\n");
     sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");

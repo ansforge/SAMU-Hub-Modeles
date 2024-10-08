@@ -317,6 +317,7 @@ components:
       - $ref: '#/components/schemas/error'
       - $ref: '#/components/schemas/info'
       - $ref: '#/components/schemas/resourcesInfo'
+      - $ref: '#/components/schemas/resourcesEngagement'
       - $ref: '#/components/schemas/resourcesRequest'
       - $ref: '#/components/schemas/resourcesResponse'
       - $ref: '#/components/schemas/rpis'
@@ -2686,15 +2687,15 @@ components:
       x-health-only: false
       required:
       - operator
-      - idObs
+      - medicalNoteId
       - freetext
       properties:
-        idPat:
+        patientId:
           type: string
           title: "ID patient partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/medicalNote/0/idPat
+          example: example.json#/medicalNote/0/patientId
           description: "Identifiant partag\xE9 du patient concern\xE9 par l'observation,\
             \ a remplir obligatoirement si ce patient existe et est identifi\xE9 dans\
             \ le syst\xE8me emetteur, \n\nValoris\xE9 comme suit lors de sa cr\xE9\
@@ -2709,12 +2710,12 @@ components:
             fr.health.samu690.patient.DRFR15690242370035.1'
         operator:
           $ref: '#/components/schemas/operator'
-        idObs:
+        medicalNoteId:
           type: string
           title: ID Observation
           x-health-only: false
           x-cols: 6
-          example: example.json#/medicalNote/0/idObs
+          example: example.json#/medicalNote/0/medicalNoteId
           description: "Identifiant partag\xE9 de l'observation, g\xE9n\xE9r\xE9 une\
             \ seule fois par le syst\xE8me du partenaire qui cr\xE9\xE9 l'observation\n\
             Il est valoris\xE9 comme suit lors de sa cr\xE9ation : \n{OrgId \xE9metteur}.medicalNote.{ID\
@@ -3180,12 +3181,12 @@ components:
       properties:
         detailedName:
           $ref: '#/components/schemas/detailedName'
-        id:
+        rppsId:
           type: string
           title: Identifiant RPPS
           x-health-only: false
           x-cols: 6
-          example: example.json#/patient/0/administrativeFile/generalPractitioner/id
+          example: example.json#/patient/0/administrativeFile/generalPractitioner/rppsId
           description: "Num\xE9ro RPPS du m\xE9decin traitant"
           examples:
           - 10000668540
@@ -3230,7 +3231,7 @@ components:
           example: example.json#/patient/0/administrativeFile/generalPractitioner/contact/0/detail
           description: "A valoriser avec la valeur de l'URI utilis\xE9e.\nLe format\
             \ attendu pour un num\xE9ro de t\xE9l\xE9phone est le suivant : +{indicatif\
-            \ pays}{num\xE9ro de t\xE9l\xE9phone}"
+            \ pays}{num\xE9ro de t\xE9l\xE9phone}."
           examples:
           - '+33671830530'
       additionalProperties: false
@@ -4025,13 +4026,10 @@ components:
       example: example.json#/MISSION/0
     resource:
       type: object
-      title: "Ressource engag\xE9e"
+      title: "Ressource engag\xE9e / \xE0 engager"
       x-display: expansion-panels
       x-health-only: false
-      required:
-      - datetime
-      - resourceId
-      - resourceType
+      required: []
       properties:
         datetime:
           type: string
@@ -4045,106 +4043,6 @@ components:
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
-        resourceId:
-          type: string
-          title: "ID Ressource partag\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/mobilizedResource/0/resourceId
-          description: "A valoriser avec l'identifiant partag\xE9 unique de la ressource\
-            \ engag\xE9e, norm\xE9 comme suit :\n{orgID}.resource.{ID unique de la\
-            \ ressource partag\xE9e}\nOU - uniquement dans le cas o\xF9 un ID unique\
-            \ de ressource ne peut pas \xEAtre garanti par l'organisation propri\xE9\
-            taire :\n{orgID}.resource.{sendercaseId}.{n\xB0 d\u2019ordre chronologique\
-            \ de la ressource}"
-          pattern: ^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$
-          examples:
-          - 'fr.health.samu770.resource.VLM250
-
-            fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1'
-        requestId:
-          type: string
-          title: "ID Demande partag\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/mobilizedResource/0/requestId
-          description: "A valoriser avec l'identifiant unique partag\xE9 de la demande\
-            \ de ressource (si la ressource a \xE9t\xE9 engag\xE9e suite \xE0 une\
-            \ demande de ressource), norm\xE9 comme suit :\n{orgID}.request.{ID unique\
-            \ de la demande dans le syst\xE8me \xE9metteur}\nOU - si un ID unique\
-            \ de la demande n'\xE9tait pas disponible : \n{OrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
-            ro d\u2019ordre chronologique}"
-          pattern: ^([\w-]+\.){3,4}request(\.[\w-]+){1,2}$
-          examples:
-          - 'fr.health.samu770.request.1249875
-
-            fr.health.samu690.request.DRFR15690242370035.3'
-        missionId:
-          type: string
-          title: ID Mission local
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/mobilizedResource/0/missionId
-          description: "A valoriser avec le num\xE9ro de mission unique du central\
-            \ d\u2019appel (PSAP, \u2026) qui a d\xE9clench\xE9 le vecteur"
-          examples:
-          - DRFR15DDXAAJJJ0000.M001
-        orgId:
-          type: string
-          title: "ID Organisation propri\xE9taire"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/mobilizedResource/0/orgId
-          description: "A valoriser avec l'identifiant de l'organisation \xE0 laquelle\
-            \ appartient la ressource, norm\xE9 comme suit : \n{pays}.{domaine}.{organisation}"
-          examples:
-          - fr.health.samu440
-        centerName:
-          type: string
-          title: "Nom du centre d\u2019affectation"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/mobilizedResource/0/centerName
-          description: A valoriser avec le lieu de garage principal
-          examples:
-          - CHU Nantes
-        resourceType:
-          type: string
-          title: Type de ressource
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/mobilizedResource/0/resourceType
-          description: "A valoriser avec le yype de ressource mobilis\xE9e : cf.nomenclature\
-            \ associ\xE9e."
-          enum:
-          - SMUR
-          - MED
-          - PARAMED
-          - HOSPIT
-          - LIB
-          - MEDC
-          - PHARMA
-          - INF
-          - MEDSPE
-          - DENT
-          - AUTREPRO
-          - 'TSU '
-          - SIS
-          - MSP
-          - ISP
-          - SP
-          - AASC
-          - FDO
-          - HELIFSI
-          - VLFSI
-          - FFSI
-          - DGDD
-          - AUTRE
-          - ADM
-          - DAE
-          - INCONNU
-          examples:
-          - SMUR
         vehiculeType:
           type: string
           title: Type de vecteur
@@ -4229,24 +4127,8 @@ components:
             organisation d\u2019appartenance"
           examples:
           - SMUR 123
-        centerCity:
-          type: string
-          title: "Commune du centre d\u2019affectation"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/mobilizedResource/0/centerCity
-          description: A valoriser avec le code INSEE de la commune du centre d'affectation
-          pattern: ^[0-9]{5}$
-          examples:
-          - 44109
         team:
           $ref: '#/components/schemas/team'
-        state:
-          type: array
-          items:
-            $ref: '#/components/schemas/state'
-        contact:
-          $ref: '#/components/schemas/contact'
         freetext:
           type: array
           x-health-only: false
@@ -6157,7 +6039,7 @@ components:
         driver: OUI
     state:
       type: object
-      title: Etats vecteur
+      title: Etat vecteur
       x-display: expansion-panels
       x-health-only: false
       required:
@@ -6220,6 +6102,40 @@ components:
       - datetime: '2022-09-27T08:23:34+02:00'
         status: ARRIVE
         availability: 'FALSE'
+    resourcesEngagement:
+      $id: classpath:/json-schema/schema#
+      x-id: RS-ER.schema.json#
+      example: example.json#
+      type: object
+      title: resourcesEngagement
+      required:
+      - caseId
+      - mobilizedResource
+      properties:
+        caseId:
+          type: string
+          title: Identifiant affaire/dossier
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/caseId
+          description: "A valoriser avec l'identifiant partag\xE9 de l'affaire/dossier,\
+            \ g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du partenaire qui recoit\
+            \ la primo-demande de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9\
+            \ comme suit lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+            \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
+            e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
+            \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
+            \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
+            \ num\xE9ro unique dans son syst\xE8me."
+          pattern: ^fr(\.[\w-]+){3,4}$
+          examples:
+          - fr.health.samu440.DRFR15440241550012
+        mobilizedResource:
+          type: array
+          items:
+            $ref: '#/components/schemas/resource'
+          minItems: 1
+      additionalProperties: false
     resourcesRequest:
       $id: classpath:/json-schema/schema#
       x-id: RS-DR.schema.json#

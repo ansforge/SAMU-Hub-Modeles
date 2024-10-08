@@ -1,0 +1,17 @@
+{
+    "caseId": "fr.health.samu440.DRFR15440241550012",
+    "mobilizedResource": [
+        {
+            "datetime": "2022-09-27T08:23:34+02:00",
+            "vehiculeType": "VLM",
+            "name": "SMUR 123",
+            "team": {
+                "teamCare": "MED",
+                "name": "Equipe A"
+            },
+            "freetext": [
+                "SMUR pédiatrique"
+            ]
+        }
+    ]
+}

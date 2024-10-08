@@ -44,13 +44,13 @@ components:
       additionalProperties: false
     resource:
       type: object
-      title: "Ressource engag\xE9e"
+      title: "Ressource engag\xE9e / \xE0 engager"
       x-display: expansion-panels
       x-health-only: false
       required:
       - datetime
       - resourceId
-      - resourceType
+      - vehiculeType
       properties:
         datetime:
           type: string
@@ -127,43 +127,6 @@ components:
           description: A valoriser avec le lieu de garage principal
           examples:
           - CHU Nantes
-        resourceType:
-          type: string
-          title: Type de ressource
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/mobilizedResource/0/resourceType
-          description: "A valoriser avec le yype de ressource mobilis\xE9e : cf.nomenclature\
-            \ associ\xE9e."
-          enum:
-          - SMUR
-          - MED
-          - PARAMED
-          - HOSPIT
-          - LIB
-          - MEDC
-          - PHARMA
-          - INF
-          - MEDSPE
-          - DENT
-          - AUTREPRO
-          - 'TSU '
-          - SIS
-          - MSP
-          - ISP
-          - SP
-          - AASC
-          - FDO
-          - HELIFSI
-          - VLFSI
-          - FFSI
-          - DGDD
-          - AUTRE
-          - ADM
-          - DAE
-          - INCONNU
-          examples:
-          - SMUR
         vehiculeType:
           type: string
           title: Type de vecteur
@@ -320,7 +283,7 @@ components:
         name: Equipe A
     state:
       type: object
-      title: Etats vecteur
+      title: Etat vecteur
       x-display: expansion-panels
       x-health-only: false
       required:

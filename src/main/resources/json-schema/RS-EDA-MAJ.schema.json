@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA-MAJ.schema.json#",
-    "version": "24.10.01",
+    "version": "24.10.08",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealthUpdate",
@@ -150,15 +150,15 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "idPat"
+                "patientId"
             ],
             "properties": {
-                "idPat": {
+                "patientId": {
                     "type": "string",
                     "title": "ID patient partagé",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/patient/0/idPat",
+                    "example": "example.json#/patient/0/patientId",
                     "description": "Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient.\nIl est valorisé comme suit lors de sa création : \n{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}\n\nOU, si un n°patient unique n'existe pas dans le système émetteur :\n{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}\n\n\n",
                     "pattern": "^([\\w-]+\\.){3,4}patient(\\.[\\w-]+){1,2}$"
                 },
@@ -188,28 +188,28 @@
             "x-health-only": false,
             "required": [
                 "operator",
-                "idObs",
+                "medicalNoteId",
                 "freetext"
             ],
             "properties": {
-                "idPat": {
+                "patientId": {
                     "type": "string",
                     "title": "ID patient partagé",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/medicalNote/0/idPat",
+                    "example": "example.json#/medicalNote/0/patientId",
                     "description": "Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, \n\nValorisé comme suit lors de sa création : \n{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}\n\nOU, si un n°patient unique n'existe pas dans le système émetteur :\n{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}",
                     "pattern": "^([\\w-]+\\.){3,4}patient(\\.[\\w-]+){1,2}$"
                 },
                 "operator": {
                     "$ref": "#/definitions/operator"
                 },
-                "idObs": {
+                "medicalNoteId": {
                     "type": "string",
                     "title": "ID Observation",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/medicalNote/0/idObs",
+                    "example": "example.json#/medicalNote/0/medicalNoteId",
                     "description": "Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation\nIl est valorisé comme suit lors de sa création : \n{OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}\n\nOU - uniquement dans le cas où un ID unique de la note n'est pas disponible dans le système : \n{OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}\n\nCet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.\n",
                     "pattern": "^([\\w-]+\\.){3,4}medicalNote(\\.[\\w-]+){1,2}$"
                 },
@@ -246,12 +246,12 @@
                 "decisionType"
             ],
             "properties": {
-                "idPat": {
+                "patientId": {
                     "type": "string",
                     "title": "ID patient partagé",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/decision/0/idPat",
+                    "example": "example.json#/decision/0/patientId",
                     "description": "A valoriser avec l'ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur"
                 },
                 "creation": {
@@ -316,79 +316,6 @@
                         "ADM",
                         "DAE",
                         "INCONNU"
-                    ]
-                },
-                "vehiculeType": {
-                    "type": "string",
-                    "title": "Type de vecteur",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/vehiculeType",
-                    "description": "A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée) en fonction du type de décision.\nA fournir obligatoirement pour une décision d'intervention ou de transport/orientation.",
-                    "enum": [
-                        "AASC",
-                        "VLSC",
-                        "VPSP",
-                        "AUTRESC",
-                        "AUTREVEC",
-                        "TAXI",
-                        "TRANSP",
-                        "TRAIN",
-                        "AVION",
-                        "PERSO",
-                        "APIED",
-                        "AUTRE",
-                        "AUTRETRA",
-                        "FSI",
-                        "HELIFSI",
-                        "VLFSI",
-                        "FFSI",
-                        "VHFSI",
-                        "LIB",
-                        "MEDV",
-                        "INF",
-                        "AUTREPRO",
-                        "SIS",
-                        "VSAV",
-                        "GRIMP",
-                        "VPL",
-                        "SRSIS",
-                        "FEUSIS",
-                        "VPMA",
-                        "VCH",
-                        "VR",
-                        "PCSIS",
-                        "VLISP",
-                        "VLMSP",
-                        "VLCG",
-                        "VLSIS",
-                        "DRAGON",
-                        "AVSC",
-                        "MOYSSE",
-                        "AUTRESIS",
-                        "NAVISIS",
-                        "SMUR",
-                        "VLM",
-                        "VL",
-                        "PSM1",
-                        "PSM2",
-                        "PSM3",
-                        "PSMP",
-                        "VPC",
-                        "AR",
-                        "AR-BAR",
-                        "AR-PED",
-                        "HELISMUR",
-                        "HELISAN",
-                        "AVSMUR",
-                        "AVSAN",
-                        "NAVISMUR",
-                        "TSU",
-                        "VSL",
-                        "AMB-GV",
-                        "AMB-PV",
-                        "AMB-BAR",
-                        "AMB"
                     ]
                 },
                 "medicalTransport": {
@@ -898,12 +825,12 @@
                 "detailedName": {
                     "$ref": "#/definitions/detailedName"
                 },
-                "id": {
+                "rppsId": {
                     "type": "string",
                     "title": "Identifiant RPPS",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/patient/0/administrativeFile/generalPractitioner/id",
+                    "example": "example.json#/patient/0/administrativeFile/generalPractitioner/rppsId",
                     "description": "Numéro RPPS du médecin traitant"
                 },
                 "contact": {
@@ -986,7 +913,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/administrativeFile/generalPractitioner/contact/0/detail",
-                    "description": "A valoriser avec la valeur de l'URI utilisée.\nLe format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}"
+                    "description": "A valoriser avec la valeur de l'URI utilisée.\nLe format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}."
                 }
             },
             "additionalProperties": false,

@@ -51,10 +51,10 @@ import java.util.Objects;
     {Resource.JSON_PROPERTY_DATETIME, Resource.JSON_PROPERTY_RESOURCE_ID,
      Resource.JSON_PROPERTY_REQUEST_ID, Resource.JSON_PROPERTY_MISSION_ID,
      Resource.JSON_PROPERTY_ORG_ID, Resource.JSON_PROPERTY_CENTER_NAME,
-     Resource.JSON_PROPERTY_RESOURCE_TYPE, Resource.JSON_PROPERTY_VEHICULE_TYPE,
-     Resource.JSON_PROPERTY_NAME, Resource.JSON_PROPERTY_CENTER_CITY,
-     Resource.JSON_PROPERTY_TEAM, Resource.JSON_PROPERTY_STATE,
-     Resource.JSON_PROPERTY_CONTACT, Resource.JSON_PROPERTY_FREETEXT})
+     Resource.JSON_PROPERTY_VEHICULE_TYPE, Resource.JSON_PROPERTY_NAME,
+     Resource.JSON_PROPERTY_CENTER_CITY, Resource.JSON_PROPERTY_TEAM,
+     Resource.JSON_PROPERTY_STATE, Resource.JSON_PROPERTY_CONTACT,
+     Resource.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("resource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -76,90 +76,6 @@ public class Resource {
 
   public static final String JSON_PROPERTY_CENTER_NAME = "centerName";
   private String centerName;
-
-  /**
-   * A valoriser avec le yype de ressource mobilisée : cf.nomenclature associée.
-   */
-  public enum ResourceTypeEnum {
-    SMUR("SMUR"),
-
-    MED("MED"),
-
-    PARAMED("PARAMED"),
-
-    HOSPIT("HOSPIT"),
-
-    LIB("LIB"),
-
-    MEDC("MEDC"),
-
-    PHARMA("PHARMA"),
-
-    INF("INF"),
-
-    MEDSPE("MEDSPE"),
-
-    DENT("DENT"),
-
-    AUTREPRO("AUTREPRO"),
-
-    TSU_("TSU "),
-
-    SIS("SIS"),
-
-    MSP("MSP"),
-
-    ISP("ISP"),
-
-    SP("SP"),
-
-    AASC("AASC"),
-
-    FDO("FDO"),
-
-    HELIFSI("HELIFSI"),
-
-    VLFSI("VLFSI"),
-
-    FFSI("FFSI"),
-
-    DGDD("DGDD"),
-
-    AUTRE("AUTRE"),
-
-    ADM("ADM"),
-
-    DAE("DAE"),
-
-    INCONNU("INCONNU");
-
-    private String value;
-
-    ResourceTypeEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ResourceTypeEnum fromValue(String value) {
-      for (ResourceTypeEnum b : ResourceTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_RESOURCE_TYPE = "resourceType";
-  private ResourceTypeEnum resourceType;
 
   /**
    * A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée
@@ -488,29 +404,6 @@ public class Resource {
     this.centerName = centerName;
   }
 
-  public Resource resourceType(ResourceTypeEnum resourceType) {
-
-    this.resourceType = resourceType;
-    return this;
-  }
-
-  /**
-   * A valoriser avec le yype de ressource mobilisée : cf.nomenclature associée.
-   * @return resourceType
-   **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public ResourceTypeEnum getResourceType() {
-    return resourceType;
-  }
-
-  @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResourceType(ResourceTypeEnum resourceType) {
-    this.resourceType = resourceType;
-  }
-
   public Resource vehiculeType(VehiculeTypeEnum vehiculeType) {
 
     this.vehiculeType = vehiculeType;
@@ -720,7 +613,6 @@ public class Resource {
         Objects.equals(this.missionId, resource.missionId) &&
         Objects.equals(this.orgId, resource.orgId) &&
         Objects.equals(this.centerName, resource.centerName) &&
-        Objects.equals(this.resourceType, resource.resourceType) &&
         Objects.equals(this.vehiculeType, resource.vehiculeType) &&
         Objects.equals(this.name, resource.name) &&
         Objects.equals(this.centerCity, resource.centerCity) &&
@@ -733,8 +625,8 @@ public class Resource {
   @Override
   public int hashCode() {
     return Objects.hash(datetime, resourceId, requestId, missionId, orgId,
-                        centerName, resourceType, vehiculeType, name,
-                        centerCity, team, state, contact, freetext);
+                        centerName, vehiculeType, name, centerCity, team, state,
+                        contact, freetext);
   }
 
   @Override
@@ -754,9 +646,6 @@ public class Resource {
     sb.append("    orgId: ").append(toIndentedString(orgId)).append("\n");
     sb.append("    centerName: ")
         .append(toIndentedString(centerName))
-        .append("\n");
-    sb.append("    resourceType: ")
-        .append(toIndentedString(resourceType))
         .append("\n");
     sb.append("    vehiculeType: ")
         .append(toIndentedString(vehiculeType))
