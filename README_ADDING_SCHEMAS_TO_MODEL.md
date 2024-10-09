@@ -12,6 +12,7 @@
 2. Modifier le fichier ./csv_parser/json_schema2xsd/src/main/java/json_schema2xsd/App.java :
    1. Dans la liste des schemas (ligne 25) ajouter le nom du schema (le meme qu'à la cellule A1).
    2. Dans le switch expression (ligne 91) ajouter un switch case sur le nom du schema, positionnant la variable root à la valeur d'objet racine du schema (le meme qu'à la cellule A1).
+3. Modifier le fichier ./csv_parser/workflow.py : ajouter le nom de la feuille dans la liste 'sheets' s'il n y est pas présent.
 
 ## 3. Generator
 1. Dans le dossier *./generator/config* , créer un dossier portant le même nom que la feuille.
@@ -65,7 +66,7 @@ Les propriétés "templateDir" et "models" vont varier selon le fichier:
    "models": "[Object racine]Wrapper",
 ```
 
-**4. Lancer la génération des fichiers, soit en exécutant la github action generate-model en local grace a github act ou en créant une pull request depuis la branche feature en question et poussant les modifications, declenchant l'action github sur le repo distant et ensuite recuperant les fichiers générés.**
+**4. Ajouter le nom du schema dans les variables env.SCHEMAS des fichiers '.github/workflows/generate-model.yaml' et '.github/workflows/generate-bundle.yaml'  Lancer la génération des fichiers, soit en exécutant la github action generate-model en local grace a github act ou en créant une pull request depuis la branche feature en question et poussant les modifications, declenchant l'action github sur le repo distant et ensuite recuperant les fichiers générés.**
    
 ## 4. Java
 1. Modifier la classe com/hubsante/model/edxl/ContentMessage.java, en ajoutant la classe wrapper générée dans la liste des @JsonSubTypes.Type annotations (e.g. **@JsonSubTypes.type([Titre du schema]Wrapper.class)** )
