@@ -191,10 +191,10 @@ public class App {
                 root = "resourcesStatus";
                 break;
             case "RS-URL":
-                root = "documentLink"
+                root = "documentLink";
                 break;
-            case "RS-ER"
-                root = "resourcesEngagement"
+            case "RS-ER":
+                root = "resourcesEngagement";
                 break;
             default:
                 root = "";
