@@ -45,7 +45,7 @@ jobs:
           
           # Check if RELEASE_VERSION matches the semver allowed pattern
           if [[ ! $RELEASE_VERSION =~ ^[0-9]+\.[0-9]+\.[0-9].* ]]; then
-            echo "RELEASE_VERSION is NOT semver compatible (1.1.1-xxx)"
+            echo "RELEASE_VERSION is NOT semver compatible (1.1.1.xxx)"
             exit 1
           fi
 
@@ -96,6 +96,7 @@ jobs:
           npx @openapitools/openapi-generator-cli generate -c ./config/RS-EDA/csharp/RS-EDA.generator-config.json --skip-validate-spec
 
       - name: Commit and push changes
+        if: ${{ !env.ACT }}
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: ⚙️ Auto-génération des SDKs
@@ -106,12 +107,20 @@ jobs:
           ruby-version: '3.0'
           bundler-cache: true
 
-      - name: Ruby - Build gem, push it to GitHub Packages and remove it
+      - name: Ruby - Build Gem
         working-directory: ./sdks/ruby/
-        run: |
-          gem build hubsante_model.gemspec
-          gem push --key github --host https://rubygems.pkg.github.com/ansforge ./hubsante_model-*.gem
-          rm ./hubsante_model-*.gem
+        run: gem build hubsante_model.gemspec
         env:
           GEM_VERSION: ${{ env.RELEASE_VERSION }}
+
+      - name: Ruby - Upload Gem as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ruby-gem-artifact
+          path: ./sdks/ruby/hubsante_model-*.gem
+
+      - name: Ruby - Push Gem to GitHub Packages
+        working-directory: ./sdks/ruby/
+        run: gem push --key github --host https://rubygems.pkg.github.com/ansforge ./hubsante_model-*.gem
+        env:
           GEM_HOST_API_KEY: ${{ secrets.GITHUB_TOKEN }}  # GitHub token used to authenticate
