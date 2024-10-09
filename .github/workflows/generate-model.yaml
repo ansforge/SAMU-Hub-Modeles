@@ -116,10 +116,6 @@ jobs:
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.wrapper.generator-config.json --skip-validate-spec
           done
 
-      - name: Remove generated RC-DE wrapper
-        working-directory: ./generator
-        run: rm -r ./classes/src/main/java/com/hubsante/model/rcde/DistributionElementWrapper.java
-
       - name: Replace src/ with generated classes
         run: |
           rm -r ./src/main/java/com/hubsante/model/rcde || true
