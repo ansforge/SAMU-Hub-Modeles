@@ -2381,7 +2381,7 @@ components:
           title: 'Type de contact '
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/contact/type
+          example: example.json#/resourceInfo/0/contact/type
           description: "A valoriser avec le type de l'URI utilis\xE9e. Cf nomenclature\
             \ associ\xE9e."
           enum:
@@ -2399,14 +2399,14 @@ components:
           title: URI du contact
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/contact/details
+          example: example.json#/resourceInfo/0/contact/details
           description: "A valoriser avec la valeur de l'URI utilis\xE9e\nLe format\
             \ attendu pour un num\xE9ro de t\xE9l\xE9phone est le suivant : +{indicatif\
             \ pays}{num\xE9ro de t\xE9l\xE9phone}"
           examples:
           - '+33671830530'
       additionalProperties: false
-      example: example.json#/mobilizedResource/0/contact
+      example: example.json#/resourceInfo/0/contact
       examples:
       - type: PHNADD
         details: '+33671830530'
@@ -3684,7 +3684,7 @@ components:
       properties:
         orgId:
           type: string
-          title: Identifiant du SAMU qui engage le SMUR
+          title: Identifiant de l'organisation du SAMU qui engage le SMUR
           x-health-only: false
           x-cols: 6
           example: example.json#/context/orgId
@@ -3695,7 +3695,7 @@ components:
           - fr.health.samu440
         senderCaseId:
           type: string
-          title: "Identifiant du dossier de r\xE9gulation m\xE9dicale (DRM)"
+          title: "Identifiant local du dossier de r\xE9gulation m\xE9dicale (DRM)"
           x-health-only: false
           x-cols: 6
           example: example.json#/context/senderCaseId
@@ -4027,29 +4027,17 @@ components:
       example: example.json#/MISSION/0
     resource:
       type: object
-      title: "Ressource engag\xE9e / \xE0 engager"
+      title: Ressource
       x-display: expansion-panels
       x-health-only: false
       required: []
       properties:
-        datetime:
-          type: string
-          title: "Date/heure de d\xE9clenchement"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/mobilizedResource/0/datetime
-          description: A valoriser avec la date et heure d'engagement de la ressource/du
-            vecteur
-          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
-          format: date-time
-          examples:
-          - '2022-09-27T08:23:34+02:00'
         vehiculeType:
           type: string
           title: Type de vecteur
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/vehiculeType
+          example: example.json#/resourceInfo/0/vehiculeType
           description: "A valoriser avec le type de vecteur mobilis\xE9 : cf. nomenclature\
             \ associ\xE9e"
           enum:
@@ -4123,7 +4111,7 @@ components:
           title: Nom du vecteur
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/name
+          example: example.json#/resourceInfo/0/name
           description: "A valoriser avec le nom donn\xE9 \xE0 la ressource par l\u2019\
             organisation d\u2019appartenance"
           examples:
@@ -4138,14 +4126,14 @@ components:
             title: Commentaires
             x-health-only: false
             x-cols: 6
-            example: example.json#/mobilizedResource/0/freetext/0
+            example: example.json#/resourceInfo/0/freetext/0
             description: "Texte libre permettant de passer toute autre information\
               \ sur la ressource (\xE9quipements suppl\xE9mentaires / sp\xE9cifiques,\
               \ particularit\xE9s du vecteur, etc.)"
             examples:
             - "SMUR p\xE9diatrique"
       additionalProperties: false
-      example: example.json#/mobilizedResource/0
+      example: example.json#/resourceInfo/0
     link:
       type: object
       title: Lien
@@ -5963,7 +5951,7 @@ components:
       title: resourcesInfo
       required:
       - caseId
-      - mobilizedResource
+      - resourceInfo
       properties:
         caseId:
           type: string
@@ -5983,7 +5971,7 @@ components:
           pattern: ^fr(\.[\w-]+){3,4}$
           examples:
           - fr.health.samu440.DRFR15440241550012
-        mobilizedResource:
+        resourceInfo:
           type: array
           items:
             $ref: '#/components/schemas/resource'
@@ -6111,7 +6099,7 @@ components:
       title: resourcesEngagement
       required:
       - caseId
-      - mobilizedResource
+      - resourceInfo
       properties:
         caseId:
           type: string
@@ -6131,7 +6119,7 @@ components:
           pattern: ^fr(\.[\w-]+){3,4}$
           examples:
           - fr.health.samu440.DRFR15440241550012
-        mobilizedResource:
+        resourceInfo:
           type: array
           items:
             $ref: '#/components/schemas/resource'

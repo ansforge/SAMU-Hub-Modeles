@@ -56,8 +56,6 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class DistributionElement extends ContentMessage {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:DistributionElement";
   public static final String JSON_PROPERTY_MESSAGE_ID = "messageId";
   private String messageId;
 

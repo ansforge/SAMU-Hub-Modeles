@@ -8,7 +8,7 @@
     "title": "resourcesInfo",
     "required": [
         "caseId",
-        "mobilizedResource"
+        "resourceInfo"
     ],
     "properties": {
         "caseId": {
@@ -20,7 +20,7 @@
             "description": "A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",
             "pattern": "^fr(\\.[\\w-]+){3,4}$"
         },
-        "mobilizedResource": {
+        "resourceInfo": {
             "type": "array",
             "items": {
                 "$ref": "#/definitions/resource"
@@ -31,7 +31,7 @@
     "definitions": {
         "resource": {
             "type": "object",
-            "title": "Ressource engagée / à engager",
+            "title": "Ressource",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -45,7 +45,7 @@
                     "title": "Date/heure de déclenchement",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/datetime",
+                    "example": "example.json#/resourceInfo/0/datetime",
                     "description": "A valoriser avec la date et heure d'engagement de la ressource/du vecteur",
                     "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
@@ -55,7 +55,7 @@
                     "title": "ID Ressource partagé",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/resourceId",
+                    "example": "example.json#/resourceInfo/0/resourceId",
                     "description": "A valoriser avec l'identifiant partagé unique de la ressource engagée, normé comme suit :\n{orgID}.resource.{ID unique de la ressource partagée}\nOU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :\n{orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}",
                     "pattern": "^([\\w-]+\\.){3,4}resource(\\.[\\w-]+){1,2}$"
                 },
@@ -64,7 +64,7 @@
                     "title": "ID Demande partagé",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/requestId",
+                    "example": "example.json#/resourceInfo/0/requestId",
                     "description": "A valoriser avec l'identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), normé comme suit :\n{orgID}.request.{ID unique de la demande dans le système émetteur}\nOU - si un ID unique de la demande n'était pas disponible : \n{OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}",
                     "pattern": "^([\\w-]+\\.){3,4}request(\\.[\\w-]+){1,2}$"
                 },
@@ -73,7 +73,7 @@
                     "title": "ID Mission local",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/missionId",
+                    "example": "example.json#/resourceInfo/0/missionId",
                     "description": "A valoriser avec le numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur"
                 },
                 "orgId": {
@@ -81,7 +81,7 @@
                     "title": "ID Organisation propriétaire",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/orgId",
+                    "example": "example.json#/resourceInfo/0/orgId",
                     "description": "A valoriser avec l'identifiant de l'organisation à laquelle appartient la ressource, normé comme suit : \n{pays}.{domaine}.{organisation}"
                 },
                 "centerName": {
@@ -89,7 +89,7 @@
                     "title": "Nom du centre d’affectation",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/centerName",
+                    "example": "example.json#/resourceInfo/0/centerName",
                     "description": "A valoriser avec le lieu de garage principal"
                 },
                 "vehiculeType": {
@@ -97,7 +97,7 @@
                     "title": "Type de vecteur",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/vehiculeType",
+                    "example": "example.json#/resourceInfo/0/vehiculeType",
                     "description": "A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée",
                     "enum": [
                         "AASC",
@@ -170,7 +170,7 @@
                     "title": "Nom du vecteur",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/name",
+                    "example": "example.json#/resourceInfo/0/name",
                     "description": "A valoriser avec le nom donné à la ressource par l’organisation d’appartenance"
                 },
                 "centerCity": {
@@ -178,7 +178,7 @@
                     "title": "Commune du centre d’affectation",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/centerCity",
+                    "example": "example.json#/resourceInfo/0/centerCity",
                     "description": "A valoriser avec le code INSEE de la commune du centre d'affectation",
                     "pattern": "^[0-9]{5}$"
                 },
@@ -202,13 +202,13 @@
                         "title": "Commentaires",
                         "x-health-only": false,
                         "x-cols": 6,
-                        "example": "example.json#/mobilizedResource/0/freetext/0",
+                        "example": "example.json#/resourceInfo/0/freetext/0",
                         "description": "Texte libre permettant de passer toute autre information sur la ressource (équipements supplémentaires / spécifiques, particularités du vecteur, etc.)"
                     }
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/mobilizedResource/0"
+            "example": "example.json#/resourceInfo/0"
         },
         "team": {
             "type": "object",
@@ -222,7 +222,7 @@
                     "title": "Type",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/team/teamCare",
+                    "example": "example.json#/resourceInfo/0/team/teamCare",
                     "description": "A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature associée",
                     "enum": [
                         "MED",
@@ -235,12 +235,12 @@
                     "title": "Nom",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/team/name",
+                    "example": "example.json#/resourceInfo/0/team/name",
                     "description": "A valoriser avec le nom de l'équipe à bord du vecteur (celui communiqué par l'organisation à laquelle l'équipe appartient)"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/mobilizedResource/0/team"
+            "example": "example.json#/resourceInfo/0/team"
         },
         "state": {
             "type": "object",
@@ -257,7 +257,7 @@
                     "title": "Date/heure de changement de statut",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/state/0/datetime",
+                    "example": "example.json#/resourceInfo/0/state/0/datetime",
                     "description": "A valoriser avec la date et heure d'engagement de changement vers le nouveau statut",
                     "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
@@ -267,7 +267,7 @@
                     "title": "Statut du vecteur",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/state/0/status",
+                    "example": "example.json#/resourceInfo/0/state/0/status",
                     "description": "A valoriser avec le statut du vecteur. Cf nomenclature associée.",
                     "enum": [
                         "DECISION",
@@ -294,12 +294,12 @@
                     "title": "Disponibilité du vecteur",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/state/0/availability",
+                    "example": "example.json#/resourceInfo/0/state/0/availability",
                     "description": "A valoriser de manière à indiquer la disponibilité du vecteur.\nTRUE = DISPONIBLE\nFALSE = INDISPONIBLE\nVIDE = INCONNU"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/mobilizedResource/0/state/0"
+            "example": "example.json#/resourceInfo/0/state/0"
         },
         "contact": {
             "type": "object",
@@ -313,7 +313,7 @@
                     "title": "Type de contact ",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/contact/type",
+                    "example": "example.json#/resourceInfo/0/contact/type",
                     "description": "A valoriser avec le type de l'URI utilisée. Cf nomenclature associée.",
                     "enum": [
                         "EMAIL",
@@ -330,12 +330,12 @@
                     "title": "URI du contact",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/contact/details",
+                    "example": "example.json#/resourceInfo/0/contact/details",
                     "description": "A valoriser avec la valeur de l'URI utilisée\nLe format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/mobilizedResource/0/contact"
+            "example": "example.json#/resourceInfo/0/contact"
         }
     },
     "additionalProperties": false
