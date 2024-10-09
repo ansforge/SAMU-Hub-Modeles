@@ -2,7 +2,7 @@
   "inputSpec": "./input/RC-DE.openapi.yaml",
   "outputDir": "classes/",
   "generatorName": "java",
-  "templateDir": "templates/wrapper/",
+  "templateDir": "templates/distribution-element/",
   "globalProperties": {
     "models": "DistributionElement",
     "apis": false,
@@ -17,10 +17,6 @@
     "serializationLibrary": "jackson",
     "openApiNullable": true,
     "supportUrlQuery": false,
-    "enablePostProcessFile": true,
-    "customExtend": {
-      "package": "com.hubsante.model.edxl",
-      "className": "ContentMessage"
-    }
+    "enablePostProcessFile": true
   }
 }

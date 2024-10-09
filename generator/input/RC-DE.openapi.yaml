@@ -1,13 +1,6 @@
 openapi: 3.0.0
 components:
   schemas:
-    DistributionElementWrapper:
-      type: object
-      required:
-      - DistributionElement
-      properties:
-        DistributionElement:
-          $ref: '#/components/schemas/DistributionElement'
     DistributionElement:
       $id: classpath:/json-schema/schema#
       x-id: RC-DE.schema.json#
