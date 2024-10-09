@@ -19,6 +19,7 @@
         xmlns:technical="urn:emergency:cisu:2.0:technical"
         xmlns:technicalnoreq="urn:emergency:cisu:2.0:technicalNoreq"
         xmlns:documentlink="urn:emergency:cisu:2.0:documentLink"
+        xmlns:resourcesengagement="urn:emergency:cisu:2.0:resourcesEngagement"
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
@@ -42,6 +43,7 @@
     <xs:import namespace="urn:emergency:cisu:2.0:technical" schemaLocation="TECHNICAL.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:technicalNoreq" schemaLocation="TECHNICAL_NOREQ.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:documentLink" schemaLocation="RS-URL.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:resourcesEngagement" schemaLocation="RS-ER.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
         <xs:sequence>
@@ -76,6 +78,7 @@
                         <xs:element ref="resourcesstatus:resourcesStatus"/>
                         <xs:element ref="resourcesrequest:resourcesRequest"/>
                         <xs:element ref="resourcesresponse:resourcesResponse"/>
+                        <xs:element ref="resourcesengagement:resourcesEngagement"/>
                         <!-- technical -->
                         <xs:element ref="technical:technical"/>
                     </xs:choice>

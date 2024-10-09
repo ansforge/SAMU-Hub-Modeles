@@ -67,6 +67,7 @@ import java.util.stream.Stream;
         @JsonSubTypes.Type(TechnicalWrapper.class),
         @JsonSubTypes.Type(TechnicalNoreqWrapper.class)
         @JsonSubTypes.Type(DocumentLinkWrapper.class)
+        @JsonSubTypes.Type(ResourcesEngagementWrapper.class)
 })
 public class ContentMessage {
 
