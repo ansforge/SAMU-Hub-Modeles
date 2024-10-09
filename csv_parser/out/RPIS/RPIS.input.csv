@@ -12,7 +12,7 @@ A valoriser par DRFR15DDXAAJJJ00000 :
 - X : lettre désignant le SAMU / SAS en cas de pluralité de SAMU / SAS sur le même département ou le troisième chiffre des DOM,
 - AA : année durant laquelle l’appel a été créé,
 - JJJ : désigne le jour de l'année (de 1j à 365j),\par
-- 00000 : numéro d’ordre chronologique du dossier dans la journée de référence ci-dessus.",DRFR15DDXAAJJJ00000,caseId,1..1,,string,
+- 00000 : numéro d’ordre chronologique du dossier dans la journée de référence ci-dessus.",DRFR15DDXAAJJJ00000,senderCaseId,1..1,,string,
 ,Date et heure de création du dossier de régulation,,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,creationDate,1..1,,datetime,
 ,Date et heure de la décision d’engagement du SMUR,,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,decisionDate,1..1,,datetime,
 ,FINESS juridique ,,,,,FINESS juridique établissement rattachement SMUR,,ressourceFinessLegal,1..1,,string,

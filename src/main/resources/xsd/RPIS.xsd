@@ -23,7 +23,7 @@ A valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}
                     </restriction>
                 </simpleType>
             </element>
-            <element name="caseId" type="string">
+            <element name="senderCaseId" type="string">
                 <annotation>
                     <documentation>Numéro du dossier SAMU à l’origine de la mission SMUR
 A valoriser par DRFR15DDXAAJJJ00000 : 

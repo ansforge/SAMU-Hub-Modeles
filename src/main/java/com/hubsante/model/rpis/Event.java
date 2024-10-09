@@ -42,12 +42,12 @@ import java.util.Objects;
 /**
  * Event
  */
-@JsonPropertyOrder({Event.JSON_PROPERTY_ORG_ID, Event.JSON_PROPERTY_CASE_ID,
-                    Event.JSON_PROPERTY_CREATION_DATE,
-                    Event.JSON_PROPERTY_DECISION_DATE,
-                    Event.JSON_PROPERTY_RESSOURCE_FINESS_LEGAL,
-                    Event.JSON_PROPERTY_RESSOURCE_FINESS_GEO,
-                    Event.JSON_PROPERTY_RESSOURCE_STRUCTURE})
+@JsonPropertyOrder(
+    {Event.JSON_PROPERTY_ORG_ID, Event.JSON_PROPERTY_SENDER_CASE_ID,
+     Event.JSON_PROPERTY_CREATION_DATE, Event.JSON_PROPERTY_DECISION_DATE,
+     Event.JSON_PROPERTY_RESSOURCE_FINESS_LEGAL,
+     Event.JSON_PROPERTY_RESSOURCE_FINESS_GEO,
+     Event.JSON_PROPERTY_RESSOURCE_STRUCTURE})
 @JsonTypeName("event")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -55,8 +55,8 @@ public class Event {
   public static final String JSON_PROPERTY_ORG_ID = "orgId";
   private String orgId;
 
-  public static final String JSON_PROPERTY_CASE_ID = "caseId";
-  private String caseId;
+  public static final String JSON_PROPERTY_SENDER_CASE_ID = "senderCaseId";
+  private String senderCaseId;
 
   public static final String JSON_PROPERTY_CREATION_DATE = "creationDate";
   private OffsetDateTime creationDate;
@@ -102,9 +102,9 @@ public class Event {
     this.orgId = orgId;
   }
 
-  public Event caseId(String caseId) {
+  public Event senderCaseId(String senderCaseId) {
 
-    this.caseId = caseId;
+    this.senderCaseId = senderCaseId;
     return this;
   }
 
@@ -119,19 +119,19 @@ public class Event {
    *l’appel a été créé, - JJJ : désigne le jour de l&#39;année (de 1j à
    *365j),\\par - 00000 : numéro d’ordre chronologique du dossier dans la
    *journée de référence ci-dessus.
-   * @return caseId
+   * @return senderCaseId
    **/
-  @JsonProperty(JSON_PROPERTY_CASE_ID)
+  @JsonProperty(JSON_PROPERTY_SENDER_CASE_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getCaseId() {
-    return caseId;
+  public String getSenderCaseId() {
+    return senderCaseId;
   }
 
-  @JsonProperty(JSON_PROPERTY_CASE_ID)
+  @JsonProperty(JSON_PROPERTY_SENDER_CASE_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCaseId(String caseId) {
-    this.caseId = caseId;
+  public void setSenderCaseId(String senderCaseId) {
+    this.senderCaseId = senderCaseId;
   }
 
   public Event creationDate(OffsetDateTime creationDate) {
@@ -260,7 +260,7 @@ public class Event {
     }
     Event event = (Event)o;
     return Objects.equals(this.orgId, event.orgId) &&
-        Objects.equals(this.caseId, event.caseId) &&
+        Objects.equals(this.senderCaseId, event.senderCaseId) &&
         Objects.equals(this.creationDate, event.creationDate) &&
         Objects.equals(this.decisionDate, event.decisionDate) &&
         Objects.equals(this.ressourceFinessLegal, event.ressourceFinessLegal) &&
@@ -270,7 +270,7 @@ public class Event {
 
   @Override
   public int hashCode() {
-    return Objects.hash(orgId, caseId, creationDate, decisionDate,
+    return Objects.hash(orgId, senderCaseId, creationDate, decisionDate,
                         ressourceFinessLegal, ressourceFinessGeo,
                         ressourceStructure);
   }
@@ -280,7 +280,9 @@ public class Event {
     StringBuilder sb = new StringBuilder();
     sb.append("class Event {\n");
     sb.append("    orgId: ").append(toIndentedString(orgId)).append("\n");
-    sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
+    sb.append("    senderCaseId: ")
+        .append(toIndentedString(senderCaseId))
+        .append("\n");
     sb.append("    creationDate: ")
         .append(toIndentedString(creationDate))
         .append("\n");
