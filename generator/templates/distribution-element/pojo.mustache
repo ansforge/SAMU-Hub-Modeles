@@ -20,13 +20,11 @@
 {{#vendorExtensions.x-class-extra-annotation}}
     {{{vendorExtensions.x-class-extra-annotation}}}
 {{/vendorExtensions.x-class-extra-annotation}}
-public class {{classname}} extends ContentMessage{
+public class {{classname}} extends ContentMessage {
 {{#serializableModel}}
     private static final long serialVersionUID = 1L;
 
 {{/serializableModel}}
-    @JacksonXmlProperty(isAttribute = true)
-    String xmlns = "urn:emergency:cisu:2.0:{{name}}";
 {{#vars}}    {{#isEnum}}
     {{^isContainer}}
         {{>modelInnerEnum}}
