@@ -66,6 +66,7 @@ import java.util.stream.Stream;
         @JsonSubTypes.Type(RpisWrapper.class),
         @JsonSubTypes.Type(TechnicalWrapper.class),
         @JsonSubTypes.Type(TechnicalNoreqWrapper.class)
+        @JsonSubTypes.Type(DocumentLinkWrapper.class)
 })
 public class ContentMessage {
 
