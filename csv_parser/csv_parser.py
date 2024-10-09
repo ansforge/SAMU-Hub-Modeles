@@ -734,17 +734,21 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     with open('template.openapi.yaml') as f:
         full_yaml = yaml.load(f, Loader=yaml.loader.SafeLoader)
 
-        wrapper_yaml = {
-            WRAPPER_NAME: {
-                "type": "object",
-                "required": [MODEL_TYPE],
-                "properties": {
-                    MODEL_TYPE: {
-                        "$ref": "#/components/schemas/" + MODEL_TYPE
+        # Do not append wrapper_yaml if we're generating RC-DE schema
+        if name != 'RC-DE':
+            wrapper_yaml = {
+                WRAPPER_NAME: {
+                    "type": "object",
+                    "required": [MODEL_TYPE],
+                    "properties": {
+                        MODEL_TYPE: {
+                            "$ref": "#/components/schemas/" + MODEL_TYPE
+                        }
                     }
                 }
             }
-        }
+        else:
+            wrapper_yaml = {}
 
         full_yaml['components']['schemas'] = {
             **full_yaml['components']['schemas'],

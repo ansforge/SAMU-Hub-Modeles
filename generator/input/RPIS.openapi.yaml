@@ -48,7 +48,7 @@ components:
       properties:
         orgId:
           type: string
-          title: Identifiant du SAMU qui engage le SMUR
+          title: Identifiant de l'organisation du SAMU qui engage le SMUR
           x-health-only: false
           x-cols: 6
           example: example.json#/context/orgId
@@ -59,7 +59,7 @@ components:
           - fr.health.samu440
         senderCaseId:
           type: string
-          title: "Identifiant du dossier de r\xE9gulation m\xE9dicale (DRM)"
+          title: "Identifiant local du dossier de r\xE9gulation m\xE9dicale (DRM)"
           x-health-only: false
           x-cols: 6
           example: example.json#/context/senderCaseId

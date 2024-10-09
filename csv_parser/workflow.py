@@ -20,6 +20,7 @@ print(args.stage)
 
 # ---------------------------------------- SCHEMAS CONFIGURATION
 sheets = [
+    'RC-DE',
     'RC-EDA',
     'EMSI',
     'GEO-POS',
