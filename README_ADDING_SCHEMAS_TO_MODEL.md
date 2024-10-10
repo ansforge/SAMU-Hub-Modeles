@@ -18,15 +18,15 @@
 1. Dans le dossier *./generator/config* , créer un dossier portant le même nom que la feuille.
 
    
-2.a. Dans le cas de base, dans le dossier créé, créer trois fichiers de configuration:
+2. Dans le cas de base, dans le dossier créé, créer trois fichiers de configuration:
    1. [Nom du schema].generator-config.json
    2. [Nom du schema].usecase.generator-config.json
    3. [Nom du schema].wrapper.generator-config.json
 
-2.b. Dans le cas d'un sous-schema qui contient des objets similaires (avec des proprietes en moins par rapport au schema de base), créer juste deux fichiers de configuration:
+3. Dans le cas d'un sous-schema qui contient des objets similaires (avec des proprietes en moins par rapport au schema de base), créer juste deux fichiers de configuration:
    1. [Nom du schema].usecase.generator-config.json
    2. [Nom du schema].wrapper.generator-config.json
-   Puis ajouter le [Nom du schema] dans l'expression "if ... fi" de l'etape "Generate Java classes" du fichier *.github/workflows/generate-model.yaml*
+      Puis ajouter le [Nom du schema] dans l'expression "if ... fi" de l'etape "Generate Java classes" du fichier *.github/workflows/generate-model.yaml*
 
 4. Le contenu des fichiers doit correspondre au modele suivant:
 ```
