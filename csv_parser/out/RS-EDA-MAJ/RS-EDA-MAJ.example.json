@@ -35,14 +35,28 @@
     "owner": "fr.health.samu440",
     "patient": [
         {
-            "idPat": "fr.health.samu690.patient.P23AZ59\nfr.health.samu690.patient.DRFR15690242370035.1",
+            "patientId": "fr.health.samu690.patient.P23AZ59\nfr.health.samu690.patient.DRFR15690242370035.1",
             "administrativeFile": {
                 "externalId": [
                     {
                         "source": "NIR, SINUS, SI-VIC, …",
                         "value": "id1234"
                     }
-                ]
+                ],
+                "generalPractitioner": {
+                    "detailedName": {
+                        "complete": "Jean Dupont",
+                        "lastName": "Dupont",
+                        "firstName": "Jean"
+                    },
+                    "rppsId": 10000668540,
+                    "contact": [
+                        {
+                            "type": "TEL",
+                            "detail": "+33671830530"
+                        }
+                    ]
+                }
             },
             "identity": {
                 "strictFeatures": {
@@ -50,11 +64,7 @@
                     "birthDate": "None",
                     "sex": "F"
                 },
-                "nonStrictFeatures": {
-                    "complete": "Jean Dupont",
-                    "lastName": "Dupont",
-                    "firstName": "Jean"
-                }
+                "nonStrictFeatures": {}
             },
             "healthMotive": {
                 "code": "C07.13.02",
@@ -64,7 +74,9 @@
                 "weight": 31,
                 "height": 109,
                 "age": "P6Y",
-                "careLevel": "R1"
+                "careLevel": "R1",
+                "medicalHistory": "Arthrite, asthme",
+                "treatment": "Amoxicilline 1 g  et paracétamol 1 g depuis 5 jours."
             },
             "hypothesis": {
                 "mainDiagnosis": {
@@ -82,24 +94,23 @@
     ],
     "medicalNote": [
         {
-            "idPat": "fr.health.samu690.patient.P23AZ59\nfr.health.samu690.patient.DRFR15690242370035.1",
+            "patientId": "fr.health.samu690.patient.P23AZ59\nfr.health.samu690.patient.DRFR15690242370035.1",
             "operator": {
                 "label": "None",
                 "role": "ARM"
             },
-            "idObs": "fr.health.samu540.medicalNote.46585A\nfr.health.samu540.medicalNote.DRFR15540241600125.20",
+            "medicalNoteId": "fr.health.samu540.medicalNote.46585A\nfr.health.samu540.medicalNote.DRFR15540241600125.20",
             "creation": "2022-09-27T08:23:34+02:00",
             "freetext": "None"
         }
     ],
     "decision": [
         {
-            "idPat": "fr.health.samu690.patient.P23AZ59\nfr.health.samu690.patient.DRFR15690242370035.1",
+            "patientId": "fr.health.samu690.patient.P23AZ59\nfr.health.samu690.patient.DRFR15690242370035.1",
             "creation": "2022-09-27T08:23:34+02:00",
             "operator": {},
             "decisionType": "conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire",
             "resourceType": "SMUR, Pompiers",
-            "vehiculeType": "AR, VLM, VSAV",
             "medicalTransport": "True",
             "orientationType": "EPHAD"
         }

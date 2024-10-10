@@ -358,29 +358,29 @@
 
   {
     "label": "RS-RPIS",
-    "schemaName": "RPIS.schema.json",
+    "schemaName": "RS-RPIS.schema.json",
     "schema": null,
     "examples": [
       {
-        "file": "RPIS/RS-RPIS_FuiteDeGaz_GregoireNormand.03a.json",
+        "file": "RS-RPIS/RS-RPIS_FuiteDeGaz_GregoireNormand.03a.json",
         "icon": "mdi-molecule-co2",
         "context": "Fuite de gaz",
         "name": "Grégoire NORMAND.03a",
-        "medicalSituation": "Données RPIS du patient"
+        "medicalSituation": "Données RS-RPIS du patient"
       },
       {
-        "file": "RPIS/RS-RPIS_FuiteDeGaz_AliceNormand.03b.json",
+        "file": "RS-RPIS/RS-RPIS_FuiteDeGaz_AliceNormand.03b.json",
         "icon": "mdi-molecule-co2",
         "context": "Fuite de gaz",
         "name": "Alice NORMAND.03b",
-        "medicalSituation": "Données RPIS du patient"
+        "medicalSituation": "Données RS-RPIS du patient"
       },
       {
-        "file": "RPIS/RS-RPIS_FemmeEnceinte_DelphineVigneau.03.json",
+        "file": "RS-RPIS/RS-RPIS_FemmeEnceinte_DelphineVigneau.03.json",
         "icon": "mdi-human-pregnant",
         "context": "Chute d'une échelle d'une femme enceinte",
         "name": "Delphine VIGNEAU.03",
-        "medicalSituation": "Données RPIS du patient"
+        "medicalSituation": "Données RS-RPIS du patient"
       }]
   },
   {

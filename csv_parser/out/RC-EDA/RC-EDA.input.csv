@@ -157,7 +157,7 @@ Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pa
 Spécificités 15-15 : en envoi, cet objet est à valoriser avec le numéro de contre-appel uniquement lorsque celui-ci est différent du numéro de l'appelant (objet obligatoire callerContact).
 En réception, il est crucial de récupérer la valeur de cet objet lorsqu'il est renseigné, puisqu'il s'agit du numéro sur lequel l'appelant peut être joint.",,callbackContact,0..1,X,contact,
 ,,Langue parlée,,,,"A valoriser avec la langue parlée par le requérant. 
-cf.nomenclature associée.",FR,language,0..1,,string,NOMENCLATURE: ISO 3166-ISO3166-2
+cf.nomenclature associée.",FR,language,0..1,,string,NOMENCLATURE: ISO-639.1-LANGUE
 ,,Type de requérant,,,,"A valoriser avec la relation du requérant avec l'incident / le patient / la victime.
 cf. nomenclature associée.","FAMILLE, TIERS",type,0..1,,string,NOMENCLATURE: SI-SAMU-TYPAPPLT
 ,,Difficulté de communication,,,,"A valoriser avec la nature des éventuelles difficultés de communication rencontrées par le requérant. 

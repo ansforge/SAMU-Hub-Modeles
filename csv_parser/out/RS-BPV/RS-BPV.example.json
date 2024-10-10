@@ -1,0 +1,45 @@
+{
+    "caseId": "fr.health.samu440.DRFR15DDXAAJJJ00000",
+    "reportId": "38978624DM",
+    "redactor": {
+        "label": "Julien Montclar",
+        "role": "MEDECIN"
+    },
+    "creation": "2022-09-27T08:23:34+02:00",
+    "patient": {
+        "patientId": "fr.health.samu690.patient.DRFR15DDXAAJJJ00001.1",
+        "birthName": "Dupont",
+        "lastName": "Maleis",
+        "firstName": "Jean",
+        "birthDate": "17/02/1936",
+        "age": "PY69",
+        "sex": "F",
+        "externalId": [
+            {
+                "source": "NIR, SINUS, SI-VIC, …",
+                "value": "id1234"
+            }
+        ],
+        "weight": 31,
+        "height": 109
+    },
+    "evaluation": {
+        "procedure": [
+            "None"
+        ],
+        "mainDiagnosis": "MD30.Z",
+        "associatedDiagnosis": "8B22.1",
+        "parameter": {
+            "parameterTime": "None",
+            "parameterDetail": {
+                "type": "None",
+                "value": "None"
+            }
+        },
+        "medicalHistory": "None",
+        "treatment": "None",
+        "otherFreetext": [
+            "None"
+        ]
+    }
+}
