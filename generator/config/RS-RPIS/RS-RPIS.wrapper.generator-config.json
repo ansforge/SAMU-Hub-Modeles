@@ -1,10 +1,10 @@
 {
-  "inputSpec": "./input/RPIS.openapi.yaml",
+  "inputSpec": "./input/RS-RPIS.openapi.yaml",
   "outputDir": "classes/",
   "generatorName": "java",
-  "templateDir": "templates/child-classes/",
+  "templateDir": "templates/wrapper/",
   "globalProperties": {
-    "models": "",
+    "models": "rpisWrapper",
     "apis": false,
     "apiTests": false,
     "apiDocs": false,

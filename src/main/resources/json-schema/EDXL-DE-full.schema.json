@@ -340,7 +340,7 @@
                 "message": {
                   "properties": {
                     "rpis": {
-                      "$ref": "RPIS.schema.json"
+                      "$ref": "RS-RPIS.schema.json"
                     }
                   },
                   "required": [

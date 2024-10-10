@@ -31,7 +31,7 @@
     <xs:import namespace="urn:emergency:cisu:2.0:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:createCaseHealthUpdate" schemaLocation="RS-EDA-MAJ.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:emsi" schemaLocation="EMSI.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:rpis" schemaLocation="RPIS.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:rpis" schemaLocation="RS-RPIS.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:info" schemaLocation="RS-INFO.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:error" schemaLocation="RS-ERROR.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:geoPositionsUpdate" schemaLocation="GEO-POS.xsd"/>
