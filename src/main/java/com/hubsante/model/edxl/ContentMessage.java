@@ -35,7 +35,8 @@ import com.hubsante.model.resources.info.ResourcesInfoWrapper;
 import com.hubsante.model.resources.request.ResourcesRequest;
 import com.hubsante.model.resources.request.ResourcesRequestWrapper;
 import com.hubsante.model.resources.response.ResourcesResponse;
-import com.hubsante.model.resources.response.ResourcesResponseWrapper;
+import com.huModifier le fichier ./csv_parser/json_schema2xsd/src/main/java/json_schema2xsd/App.java :
+bsante.model.resources.response.ResourcesResponseWrapper;
 import com.hubsante.model.resources.status.ResourcesStatus;
 import com.hubsante.model.resources.status.ResourcesStatusWrapper;
 import com.hubsante.model.rpis.Rpis;
@@ -67,7 +68,8 @@ import java.util.stream.Stream;
         @JsonSubTypes.Type(TechnicalWrapper.class),
         @JsonSubTypes.Type(TechnicalNoreqWrapper.class),
         @JsonSubTypes.Type(DocumentLinkWrapper.class),
-        @JsonSubTypes.Type(ResourcesEngagementWrapper.class)
+        @JsonSubTypes.Type(ResourcesEngagementWrapper.class),
+        @JsonSubTypes.Type(InterventionReport.class),
 })
 public class ContentMessage {
 

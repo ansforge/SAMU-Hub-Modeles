@@ -35,7 +35,8 @@ sheets = [
     'customContent',
     'RS-SR',
     'TECHNICAL',
-    'RS-URL'
+    'RS-URL',
+    'RS-BPV'
 ]
 
 perimeters = [{

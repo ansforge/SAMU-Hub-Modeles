@@ -32,7 +32,7 @@ public class App {
         List<String> regexErrors = new ArrayList<>();
         
         for (String schema : Arrays.asList("EMSI", "RC-DE", "RC-EDA", "RC-REF", "RS-EDA", "RS-INFO", "GEO-RES", "GEO-REQ", "GEO-POS", "RS-ERROR", "RS-RI",
-                "RS-DR", "RS-RR", "RPIS", "RS-EDA-MAJ", "RS-SR", "TECHNICAL", "TECHNICAL_NOREQ", "RS-URL", "RS-ER")) {
+                "RS-DR", "RS-RR", "RPIS", "RS-EDA-MAJ", "RS-SR", "TECHNICAL", "TECHNICAL_NOREQ", "RS-URL", "RS-ER", "RS-BPV")) {
             // Specify the path to your JSON schema file
             String jsonSchemaResourcePath = "/" + schema + ".schema.json";
 
@@ -195,6 +195,9 @@ public class App {
                 break;
             case "RS-ER":
                 root = "resourcesEngagement";
+                break;
+            case "RS-BPV":
+                root = "interventionReport";
                 break;
             default:
                 root = "";

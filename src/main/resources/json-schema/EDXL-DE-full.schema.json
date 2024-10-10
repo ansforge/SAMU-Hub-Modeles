@@ -402,6 +402,31 @@
           ]
         },
         {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "interventionReport": {
+                      "$ref": "RS-BPV.schema.json"
+                    }
+                  },
+                  "required": [
+                    "interventionReport"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
           "properties": {
             "message": {
               "properties": {
