@@ -1,0 +1,41 @@
+Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise,Cardinalité,Objet,Format (ou type),Détails de format
+Identifiant partagé du dossier de régulation médicale (DRM),,,,,,"Identifiant partagé du dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
+Il est valorisé comme suit lors de sa création : 
+{pays}.{domaine}.{organisation}.{senderCaseId}
+
+Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15DDXAAJJJ00000,caseId,1..1,,string,"REGEX: ^fr(\.[\w-]+){3,4}$"
+Identifiant du bilan,,,,,,Identifiant du bilan du logiciel SMUR,38978624DM,reportId,1..1,,string,
+Professionnel de santé qui réalise le bilan,,,,,,Objet qui permet de décrire le professionnel de santé qui rédige le bilan. ,,redactor,1..1,X,redactor,
+,Label,,,,,A valoriser avec le prénom et le nom du rédacteur ou un numéro RPPS. ,Julien Montclar,label,0..1,,string,
+,Rôle,,,,,"A valoriser avec le rôle du rédacteur du bilan (ex. médecin, infirmier, ambulancier). ",MEDECIN,role,1..1,,string,NOMENCLATURE: ENUM-ROLE
+Date et heure de l'envoi du bilan,,,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,creation,1..1,,datetime,
+Patient,,,,,,,,patient,1..1,X,patient,
+,ID Patient,,,,,"Identifiant unique du patient. 
+A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01",fr.health.samu690.patient.DRFR15DDXAAJJJ00001.1,patientId,1..1,,string,
+,Nom de naissance,,,,,Nom de naissance du patient,Dupont,birthName,0..1,,string,
+,Nom usuel,,,,,Nom usuel du patient,Maleis,lastName,1..1,,string,
+,Prénom usuel,,,,,Prénom du patient,Jean,firstName,1..1,,string,
+,Date de naissance,,,,,Date de naissance du patient,17/02/1936,birthDate,0..1,,string,
+,Age,,,,,"La date de naissance n'est pas tout le temps connu, cette donnée permet d'indiquer un âge entier. ",PY69,age,0..1,,string,
+,Sexe,,,,,"Sexe du patient, suivant le libellé court de la nomenclature SI-SAMU-NOMENC_SEXE",F,sex,0..1,,string,NOMENCLATURE: NOS-NOMENC_SEXE
+,Identifiant(s) patient(s),,,,,"Objet qui permet de décrire l'ensemble des identifiants qui permettent d'identifier le patient (autre que le matricule INS, qui ne doit jamais être partagé via cet objet)",,externalId,0..n,X,externalId,
+,,Source  /  type d'identifiant,,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",source,1..1,,string,NOMENCLATURE: ENUM-TYPE_Id_Patient
+,,Identifiant,,,,L'identifiant en lui-même,id1234,value,1..1,,string,
+,Taille,,,,,A valoriser avec le poids en kilogrammes,31,weight,0..1,,integer,
+,Poids,,,,,A valoriser avec la taille en centimètres du patient,109,height,0..1,,integer,
+Evaluation / Diagnostic médical,,,,,,,,evaluation,0..1,X,evaluation,
+,Actes réalisés par le SMUR,,,,,"Précise aussi bien les actes réalisés par le SMUR sur le lieu de l'intervention à son arrivée que ceux réalisés avant son intervention. 
+A valoriser avec un code de la nomenclature ACTES_SMUR.",,procedure,0..n,,string,
+,Diagnostic principal SMUR,,,,,"Thésaurus SFMU-FEDORU.
+A valoriser par un code de la nomenclature Diagnostic SMUR.",MD30.Z,mainDiagnosis,0..1,,string,
+,Diagnostic associé  SMUR,,,,,"Thésaurus SFMU-FEDORU.
+A valoriser par un code de la nomenclature Diagnostic SMUR.",8B22.1,associatedDiagnosis,0..1,,string,
+,Paramètres vitaux,,,,,,,parameter,0..1,X,vital,
+,,Date et heure de la prise des constantes,,,,,,parameterTime,0..1,,datetime,
+,,Détails des paramètres vitaux,,,,,,parameterDetail,1..1,X,parameterDetail,
+,,,Type de constante,,,"Fréquence cardiaque, Pression artérielle, Saturation en oxygène, Fréquence respiratoire, Température, Hemoglucotest, Glasgow, Hémoglobine ?",,type,1..1,,string,NOMENCLATURE : TBD
+,,,Valeur de la constante,,,,,value,1..1,,string,
+,Antécédents,,,,,,,medicalHistory,0..1,,string,
+,Traitement,,,,,,,treatment,0..1,,string,
+,Informations complémentaires,,,,,"Permettrait de concaténer dans une zone de commentaire d'autres champs (ex. anamnèse : allergies,, traitements, symptomes, antécédents)",,otherFreetext,0..n,,string,
