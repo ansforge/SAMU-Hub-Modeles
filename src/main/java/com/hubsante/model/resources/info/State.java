@@ -61,15 +61,15 @@ public class State {
 
     DEPART("DEPART"),
 
-    ARRIVE("ARRIVE"),
+    ANNULE("ANNULE"),
+
+    ARRIVEE("ARRIVEE"),
 
     PEC("PEC"),
 
-    ANNULE("ANNULE"),
-
     BILAN("BILAN"),
 
-    TRANSPOR("TRANSPOR"),
+    TRANSP("TRANSP"),
 
     ETAPE1("ETAPE1"),
 
@@ -81,7 +81,7 @@ public class State {
 
     DESTIN("DESTIN"),
 
-    FINPEC("FINPEC"),
+    FINMED("FINMED"),
 
     RETOUR("RETOUR"),
 

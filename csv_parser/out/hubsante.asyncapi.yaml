@@ -2176,17 +2176,25 @@ components:
           - TIERS
           - POMPIER
           - AMBULANC
+          - AMBULANC.AASC
+          - AMBULANC.AUTRESEC
           - SECOUR
           - MED
-          - MEDSOS
-          - MRL
-          - EFFML
+          - MED.MEDSOS
+          - MED.MRL
+          - MED.EFFML
           - SANTE
-          - INF
-          - AIDESOIN
-          - SF
-          - AIDEDOM
+          - SANTE.INF
+          - SANTE.AIDESOIN
+          - SANTE.SF
+          - SANTE.AIDEDOM
+          - SANTE.PHARMA
+          - SANTE.DENTISTE
+          - SANTE.LABO
           - FDO-MILI
+          - FDO-MILI.POL
+          - FDO-MILI.GENDARM
+          - FDO-MILI.MILI
           - ADM-TUTL
           - VIP
           - OBJCONNC
@@ -2835,31 +2843,39 @@ components:
             \ SI SAMU-TYPE_MOYEN."
           enum:
           - SMUR
-          - MED
-          - PARAMED
+          - SMUR.ADULT
+          - SMUR.PED
+          - SMUR.UMH-S
+          - SMUR.CUMP
           - HOSPIT
-          - LIB
-          - MEDC
-          - PHARMA
-          - INF
-          - MEDSPE
-          - DENT
-          - AUTREPRO
+          - LIBERAL
+          - LIBERAL.MG
+          - LIBERAL.PHARM
+          - LIBERAL.INF
+          - LIBERAL.KINE
+          - LIBERAL.SOS
+          - LIBERAL.MMG
+          - LIBERAL.MSPD
+          - LIBERAL.MCS
+          - LIBERAL.SPEMED
+          - LIBERAL.DENT
+          - LIBERAL.LABO
+          - LIBERAL.AUTREPRO
           - 'TSU '
           - SIS
-          - MSP
-          - ISP
-          - SP
+          - SIS.MEDSP
+          - SIS.ISP
+          - SIS.SP
           - AASC
           - FDO
-          - HELIFSI
-          - VLFSI
-          - FFSI
-          - DGDD
+          - FDO.PN
+          - FDO.GEND
+          - FDO.PM
+          - FDO.DOUANES
           - AUTRE
-          - ADM
-          - DAE
-          - INCONNU
+          - AUTRE.ADM
+          - AUTRE.DAE
+          - AUTRE.AUTRE
           examples:
           - SMUR
         resourceType:
@@ -2873,68 +2889,68 @@ components:
             \ la nomenclature CISU-TYPE_VECTEUR."
           enum:
           - AASC
-          - VLSC
-          - VPSP
-          - AUTRESC
+          - AASC.VLSC
+          - AASC.VPSP
+          - AASC.AUTRESC
           - AUTREVEC
-          - TAXI
-          - TRANSP
-          - TRAIN
-          - AVION
-          - PERSO
-          - APIED
-          - AUTRE
-          - AUTRETRA
+          - AUTREVEC.APIED
+          - AUTREVEC.AVION
+          - AUTREVEC.PERSO
+          - AUTREVEC.TAXI
+          - AUTREVEC.TRAIN
+          - AUTREVEC.TRANSP
+          - AUTREVEC.AUTRE
+          - AUTREVEC.AUTRETRA
           - FSI
-          - HELIFSI
-          - VLFSI
-          - FFSI
-          - VHFSI
+          - FSI.HELIFSI
+          - FSI.VLFSI
+          - FSI.FFSI
+          - FSI.VHFSI
           - LIB
-          - MEDV
-          - INF
-          - AUTREPRO
+          - LIB.MEDV
+          - LIB.INF
+          - LIB.AUTREPRO
           - SIS
-          - VSAV
-          - GRIMP
-          - VPL
-          - SRSIS
-          - FEUSIS
-          - VPMA
-          - VCH
-          - VR
-          - PCSIS
-          - VLISP
-          - VLMSP
-          - VLCG
-          - VLSIS
-          - DRAGON
-          - AVSC
-          - MOYSSE
-          - AUTRESIS
-          - NAVISIS
+          - SIS.DRAGON
+          - SIS.AVSC
+          - SIS.FEUSIS
+          - SIS.GRIMP
+          - SIS.NAVISIS
+          - SIS.PCSIS
+          - SIS.SRSIS
+          - SIS.VCH
+          - SIS.VLCG
+          - SIS.VLISP
+          - SIS.VLMSP
+          - SIS.VLSIS
+          - SIS.VPL
+          - SIS.VPMA
+          - SIS.VR
+          - SIS.VSAV
+          - SIS.MOYSSE
+          - SIS.AUTRESIS
           - SMUR
-          - VLM
-          - VL
-          - PSM1
-          - PSM2
-          - PSM3
-          - PSMP
-          - VPC
-          - AR
-          - AR-BAR
-          - AR-PED
-          - HELISMUR
-          - HELISAN
-          - AVSMUR
-          - AVSAN
-          - NAVISMUR
+          - SMUR.VLM
+          - SMUR.VL
+          - SMUR.PSM1
+          - SMUR.PSM2
+          - SMUR.PSM3
+          - SMUR.PSMP
+          - SMUR.VPC
+          - SMUR.AR
+          - SMUR.AR-BAR
+          - SMUR.AR-PED
+          - SMUR.HELISMUR
+          - SMUR.HELISAN
+          - SMUR.AVSMUR
+          - SMUR.AVSAN
+          - SMUR.NAVISMUR
           - TSU
-          - VSL
-          - AMB-GV
-          - AMB-PV
-          - AMB-BAR
-          - AMB
+          - TSU.VSL
+          - TSU.AMB-GV
+          - TSU.AMB-PV
+          - TSU.AMB-BAR
+          - TSU.AMB
           examples:
           - AR, VLM, VSAV
         teamCare:
@@ -4100,68 +4116,68 @@ components:
             \ associ\xE9e"
           enum:
           - AASC
-          - VLSC
-          - VPSP
-          - AUTRESC
+          - AASC.VLSC
+          - AASC.VPSP
+          - AASC.AUTRESC
           - AUTREVEC
-          - TAXI
-          - TRANSP
-          - TRAIN
-          - AVION
-          - PERSO
-          - APIED
-          - AUTRE
-          - AUTRETRA
+          - AUTREVEC.APIED
+          - AUTREVEC.AVION
+          - AUTREVEC.PERSO
+          - AUTREVEC.TAXI
+          - AUTREVEC.TRAIN
+          - AUTREVEC.TRANSP
+          - AUTREVEC.AUTRE
+          - AUTREVEC.AUTRETRA
           - FSI
-          - HELIFSI
-          - VLFSI
-          - FFSI
-          - VHFSI
+          - FSI.HELIFSI
+          - FSI.VLFSI
+          - FSI.FFSI
+          - FSI.VHFSI
           - LIB
-          - MEDV
-          - INF
-          - AUTREPRO
+          - LIB.MEDV
+          - LIB.INF
+          - LIB.AUTREPRO
           - SIS
-          - VSAV
-          - GRIMP
-          - VPL
-          - SRSIS
-          - FEUSIS
-          - VPMA
-          - VCH
-          - VR
-          - PCSIS
-          - VLISP
-          - VLMSP
-          - VLCG
-          - VLSIS
-          - DRAGON
-          - AVSC
-          - MOYSSE
-          - AUTRESIS
-          - NAVISIS
+          - SIS.DRAGON
+          - SIS.AVSC
+          - SIS.FEUSIS
+          - SIS.GRIMP
+          - SIS.NAVISIS
+          - SIS.PCSIS
+          - SIS.SRSIS
+          - SIS.VCH
+          - SIS.VLCG
+          - SIS.VLISP
+          - SIS.VLMSP
+          - SIS.VLSIS
+          - SIS.VPL
+          - SIS.VPMA
+          - SIS.VR
+          - SIS.VSAV
+          - SIS.MOYSSE
+          - SIS.AUTRESIS
           - SMUR
-          - VLM
-          - VL
-          - PSM1
-          - PSM2
-          - PSM3
-          - PSMP
-          - VPC
-          - AR
-          - AR-BAR
-          - AR-PED
-          - HELISMUR
-          - HELISAN
-          - AVSMUR
-          - AVSAN
-          - NAVISMUR
+          - SMUR.VLM
+          - SMUR.VL
+          - SMUR.PSM1
+          - SMUR.PSM2
+          - SMUR.PSM3
+          - SMUR.PSMP
+          - SMUR.VPC
+          - SMUR.AR
+          - SMUR.AR-BAR
+          - SMUR.AR-PED
+          - SMUR.HELISMUR
+          - SMUR.HELISAN
+          - SMUR.AVSMUR
+          - SMUR.AVSAN
+          - SMUR.NAVISMUR
           - TSU
-          - VSL
-          - AMB-GV
-          - AMB-PV
-          - AMB-BAR
-          - AMB
+          - TSU.VSL
+          - TSU.AMB-GV
+          - TSU.AMB-PV
+          - TSU.AMB-BAR
+          - TSU.AMB
           examples:
           - VLM
         name:
@@ -6117,17 +6133,17 @@ components:
           - DECISION
           - DECLENCHE
           - DEPART
-          - ARRIVE
-          - PEC
           - ANNULE
+          - ARRIVEE
+          - PEC
           - BILAN
-          - TRANSPOR
+          - TRANSP
           - ETAPE1
           - TRANSP2
           - ETAPE2
           - TRANSP3
           - DESTIN
-          - FINPEC
+          - FINMED
           - RETOUR
           - RET-BASE
           - REN-BASE

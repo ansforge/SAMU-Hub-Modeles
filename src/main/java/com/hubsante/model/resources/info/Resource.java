@@ -83,129 +83,129 @@ public class Resource {
   public enum VehiculeTypeEnum {
     AASC("AASC"),
 
-    VLSC("VLSC"),
+    AASC_VLSC("AASC.VLSC"),
 
-    VPSP("VPSP"),
+    AASC_VPSP("AASC.VPSP"),
 
-    AUTRESC("AUTRESC"),
+    AASC_AUTRESC("AASC.AUTRESC"),
 
     AUTREVEC("AUTREVEC"),
 
-    TAXI("TAXI"),
+    AUTREVEC_APIED("AUTREVEC.APIED"),
 
-    TRANSP("TRANSP"),
+    AUTREVEC_AVION("AUTREVEC.AVION"),
 
-    TRAIN("TRAIN"),
+    AUTREVEC_PERSO("AUTREVEC.PERSO"),
 
-    AVION("AVION"),
+    AUTREVEC_TAXI("AUTREVEC.TAXI"),
 
-    PERSO("PERSO"),
+    AUTREVEC_TRAIN("AUTREVEC.TRAIN"),
 
-    APIED("APIED"),
+    AUTREVEC_TRANSP("AUTREVEC.TRANSP"),
 
-    AUTRE("AUTRE"),
+    AUTREVEC_AUTRE("AUTREVEC.AUTRE"),
 
-    AUTRETRA("AUTRETRA"),
+    AUTREVEC_AUTRETRA("AUTREVEC.AUTRETRA"),
 
     FSI("FSI"),
 
-    HELIFSI("HELIFSI"),
+    FSI_HELIFSI("FSI.HELIFSI"),
 
-    VLFSI("VLFSI"),
+    FSI_VLFSI("FSI.VLFSI"),
 
-    FFSI("FFSI"),
+    FSI_FFSI("FSI.FFSI"),
 
-    VHFSI("VHFSI"),
+    FSI_VHFSI("FSI.VHFSI"),
 
     LIB("LIB"),
 
-    MEDV("MEDV"),
+    LIB_MEDV("LIB.MEDV"),
 
-    INF("INF"),
+    LIB_INF("LIB.INF"),
 
-    AUTREPRO("AUTREPRO"),
+    LIB_AUTREPRO("LIB.AUTREPRO"),
 
     SIS("SIS"),
 
-    VSAV("VSAV"),
+    SIS_DRAGON("SIS.DRAGON"),
 
-    GRIMP("GRIMP"),
+    SIS_AVSC("SIS.AVSC"),
 
-    VPL("VPL"),
+    SIS_FEUSIS("SIS.FEUSIS"),
 
-    SRSIS("SRSIS"),
+    SIS_GRIMP("SIS.GRIMP"),
 
-    FEUSIS("FEUSIS"),
+    SIS_NAVISIS("SIS.NAVISIS"),
 
-    VPMA("VPMA"),
+    SIS_PCSIS("SIS.PCSIS"),
 
-    VCH("VCH"),
+    SIS_SRSIS("SIS.SRSIS"),
 
-    VR("VR"),
+    SIS_VCH("SIS.VCH"),
 
-    PCSIS("PCSIS"),
+    SIS_VLCG("SIS.VLCG"),
 
-    VLISP("VLISP"),
+    SIS_VLISP("SIS.VLISP"),
 
-    VLMSP("VLMSP"),
+    SIS_VLMSP("SIS.VLMSP"),
 
-    VLCG("VLCG"),
+    SIS_VLSIS("SIS.VLSIS"),
 
-    VLSIS("VLSIS"),
+    SIS_VPL("SIS.VPL"),
 
-    DRAGON("DRAGON"),
+    SIS_VPMA("SIS.VPMA"),
 
-    AVSC("AVSC"),
+    SIS_VR("SIS.VR"),
 
-    MOYSSE("MOYSSE"),
+    SIS_VSAV("SIS.VSAV"),
 
-    AUTRESIS("AUTRESIS"),
+    SIS_MOYSSE("SIS.MOYSSE"),
 
-    NAVISIS("NAVISIS"),
+    SIS_AUTRESIS("SIS.AUTRESIS"),
 
     SMUR("SMUR"),
 
-    VLM("VLM"),
+    SMUR_VLM("SMUR.VLM"),
 
-    VL("VL"),
+    SMUR_VL("SMUR.VL"),
 
-    PSM1("PSM1"),
+    SMUR_PSM1("SMUR.PSM1"),
 
-    PSM2("PSM2"),
+    SMUR_PSM2("SMUR.PSM2"),
 
-    PSM3("PSM3"),
+    SMUR_PSM3("SMUR.PSM3"),
 
-    PSMP("PSMP"),
+    SMUR_PSMP("SMUR.PSMP"),
 
-    VPC("VPC"),
+    SMUR_VPC("SMUR.VPC"),
 
-    AR("AR"),
+    SMUR_AR("SMUR.AR"),
 
-    AR_BAR("AR-BAR"),
+    SMUR_AR_BAR("SMUR.AR-BAR"),
 
-    AR_PED("AR-PED"),
+    SMUR_AR_PED("SMUR.AR-PED"),
 
-    HELISMUR("HELISMUR"),
+    SMUR_HELISMUR("SMUR.HELISMUR"),
 
-    HELISAN("HELISAN"),
+    SMUR_HELISAN("SMUR.HELISAN"),
 
-    AVSMUR("AVSMUR"),
+    SMUR_AVSMUR("SMUR.AVSMUR"),
 
-    AVSAN("AVSAN"),
+    SMUR_AVSAN("SMUR.AVSAN"),
 
-    NAVISMUR("NAVISMUR"),
+    SMUR_NAVISMUR("SMUR.NAVISMUR"),
 
     TSU("TSU"),
 
-    VSL("VSL"),
+    TSU_VSL("TSU.VSL"),
 
-    AMB_GV("AMB-GV"),
+    TSU_AMB_GV("TSU.AMB-GV"),
 
-    AMB_PV("AMB-PV"),
+    TSU_AMB_PV("TSU.AMB-PV"),
 
-    AMB_BAR("AMB-BAR"),
+    TSU_AMB_BAR("TSU.AMB-BAR"),
 
-    AMB("AMB");
+    TSU_AMB("TSU.AMB");
 
     private String value;
 

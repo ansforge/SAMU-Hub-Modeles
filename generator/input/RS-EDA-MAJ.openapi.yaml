@@ -324,31 +324,39 @@ components:
             A fournir obligatoirement pour une d\xE9cision d'intervention ou de transport/orientation."
           enum:
           - SMUR
-          - MED
-          - PARAMED
+          - SMUR.ADULT
+          - SMUR.PED
+          - SMUR.UMH-S
+          - SMUR.CUMP
           - HOSPIT
-          - LIB
-          - MEDC
-          - PHARMA
-          - INF
-          - MEDSPE
-          - DENT
-          - AUTREPRO
+          - LIBERAL
+          - LIBERAL.MG
+          - LIBERAL.PHARM
+          - LIBERAL.INF
+          - LIBERAL.KINE
+          - LIBERAL.SOS
+          - LIBERAL.MMG
+          - LIBERAL.MSPD
+          - LIBERAL.MCS
+          - LIBERAL.SPEMED
+          - LIBERAL.DENT
+          - LIBERAL.LABO
+          - LIBERAL.AUTREPRO
           - 'TSU '
           - SIS
-          - MSP
-          - ISP
-          - SP
+          - SIS.MEDSP
+          - SIS.ISP
+          - SIS.SP
           - AASC
           - FDO
-          - HELIFSI
-          - VLFSI
-          - FFSI
-          - DGDD
+          - FDO.PN
+          - FDO.GEND
+          - FDO.PM
+          - FDO.DOUANES
           - AUTRE
-          - ADM
-          - DAE
-          - INCONNU
+          - AUTRE.ADM
+          - AUTRE.DAE
+          - AUTRE.AUTRE
           examples:
           - SMUR, Pompiers
         medicalTransport:

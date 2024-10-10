@@ -90,17 +90,17 @@ components:
           - DECISION
           - DECLENCHE
           - DEPART
-          - ARRIVE
-          - PEC
           - ANNULE
+          - ARRIVEE
+          - PEC
           - BILAN
-          - TRANSPOR
+          - TRANSP
           - ETAPE1
           - TRANSP2
           - ETAPE2
           - TRANSP3
           - DESTIN
-          - FINPEC
+          - FINMED
           - RETOUR
           - RET-BASE
           - REN-BASE
