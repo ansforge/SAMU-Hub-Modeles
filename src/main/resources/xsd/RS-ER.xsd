@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:resourcesEngagement" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:resourcesEngagement" xmlns="http://www.w3.org/2001/XMLSchema">
+    <element name="resourcesEngagement" type="x:resourcesEngagement"/>
+    <complexType name="resourcesEngagement">
+        <sequence>
+            <element name="caseId">
+                <annotation>
+                    <documentation>A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
+Il est valorisé comme suit lors de sa création : 
+{pays}.{domaine}.{organisation}.{senderCaseId}
+
+Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="fr(\.[\w-]+){3,4}"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element maxOccurs="unbounded" minOccurs="1" name="resourceInfo" type="x:resource"/>
+        </sequence>
+    </complexType>
+    <complexType name="resource">
+        <sequence>
+            <element minOccurs="0" name="vehiculeType">
+                <annotation>
+                    <documentation>A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="AASC"/>
+                        <enumeration value="VLSC"/>
+                        <enumeration value="VPSP"/>
+                        <enumeration value="AUTRESC"/>
+                        <enumeration value="AUTREVEC"/>
+                        <enumeration value="TAXI"/>
+                        <enumeration value="TRANSP"/>
+                        <enumeration value="TRAIN"/>
+                        <enumeration value="AVION"/>
+                        <enumeration value="PERSO"/>
+                        <enumeration value="APIED"/>
+                        <enumeration value="AUTRE"/>
+                        <enumeration value="AUTRETRA"/>
+                        <enumeration value="FSI"/>
+                        <enumeration value="HELIFSI"/>
+                        <enumeration value="VLFSI"/>
+                        <enumeration value="FFSI"/>
+                        <enumeration value="VHFSI"/>
+                        <enumeration value="LIB"/>
+                        <enumeration value="MEDV"/>
+                        <enumeration value="INF"/>
+                        <enumeration value="AUTREPRO"/>
+                        <enumeration value="SIS"/>
+                        <enumeration value="VSAV"/>
+                        <enumeration value="GRIMP"/>
+                        <enumeration value="VPL"/>
+                        <enumeration value="SRSIS"/>
+                        <enumeration value="FEUSIS"/>
+                        <enumeration value="VPMA"/>
+                        <enumeration value="VCH"/>
+                        <enumeration value="VR"/>
+                        <enumeration value="PCSIS"/>
+                        <enumeration value="VLISP"/>
+                        <enumeration value="VLMSP"/>
+                        <enumeration value="VLCG"/>
+                        <enumeration value="VLSIS"/>
+                        <enumeration value="DRAGON"/>
+                        <enumeration value="AVSC"/>
+                        <enumeration value="MOYSSE"/>
+                        <enumeration value="AUTRESIS"/>
+                        <enumeration value="NAVISIS"/>
+                        <enumeration value="SMUR"/>
+                        <enumeration value="VLM"/>
+                        <enumeration value="VL"/>
+                        <enumeration value="PSM1"/>
+                        <enumeration value="PSM2"/>
+                        <enumeration value="PSM3"/>
+                        <enumeration value="PSMP"/>
+                        <enumeration value="VPC"/>
+                        <enumeration value="AR"/>
+                        <enumeration value="AR-BAR"/>
+                        <enumeration value="AR-PED"/>
+                        <enumeration value="HELISMUR"/>
+                        <enumeration value="HELISAN"/>
+                        <enumeration value="AVSMUR"/>
+                        <enumeration value="AVSAN"/>
+                        <enumeration value="NAVISMUR"/>
+                        <enumeration value="TSU"/>
+                        <enumeration value="VSL"/>
+                        <enumeration value="AMB-GV"/>
+                        <enumeration value="AMB-PV"/>
+                        <enumeration value="AMB-BAR"/>
+                        <enumeration value="AMB"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="name" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le nom donné à la ressource par l’organisation d’appartenance</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="team" type="x:team"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
+        </sequence>
+    </complexType>
+    <complexType name="team">
+        <sequence>
+            <element minOccurs="0" name="teamCare">
+                <annotation>
+                    <documentation>A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature associée</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="MED"/>
+                        <enumeration value="PARAMED"/>
+                        <enumeration value="SECOURS"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="name" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le nom de l'équipe à bord du vecteur (celui communiqué par l'organisation à laquelle l'équipe appartient)</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+</schema>

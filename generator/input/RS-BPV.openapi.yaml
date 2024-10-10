@@ -1,0 +1,383 @@
+openapi: 3.0.0
+components:
+  schemas:
+    interventionReportWrapper:
+      type: object
+      required:
+      - interventionReport
+      properties:
+        interventionReport:
+          $ref: '#/components/schemas/interventionReport'
+    interventionReport:
+      $id: classpath:/json-schema/schema#
+      x-id: RS-BPV.schema.json#
+      example: example.json#
+      type: object
+      title: interventionReport
+      required:
+      - caseId
+      - reportId
+      - redactor
+      - creation
+      - patient
+      properties:
+        caseId:
+          type: string
+          title: "Identifiant partag\xE9 du dossier de r\xE9gulation m\xE9dicale (DRM)"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/caseId
+          description: "Identifiant partag\xE9 du dossier, g\xE9n\xE9r\xE9 une seule\
+            \ fois par le syst\xE8me du partenaire qui recoit la primo-demande de\
+            \ secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit lors\
+            \ de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+            \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
+            e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
+            \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
+            \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
+            \ num\xE9ro unique dans son syst\xE8me."
+          pattern: ^fr(\.[\w-]+){3,4}$
+          examples:
+          - fr.health.samu440.DRFR15DDXAAJJJ00000
+        reportId:
+          type: string
+          title: Identifiant du bilan
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/reportId
+          description: Identifiant du bilan du logiciel SMUR
+          examples:
+          - 38978624DM
+        redactor:
+          $ref: '#/components/schemas/redactor'
+        creation:
+          type: string
+          title: Date et heure de l'envoi du bilan
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/creation
+          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        patient:
+          $ref: '#/components/schemas/patient'
+        evaluation:
+          $ref: '#/components/schemas/evaluation'
+      additionalProperties: false
+    redactor:
+      type: object
+      title: "Professionnel de sant\xE9 qui r\xE9alise le bilan"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - role
+      properties:
+        label:
+          type: string
+          title: Label
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/redactor/label
+          description: "A valoriser avec le pr\xE9nom et le nom du r\xE9dacteur ou\
+            \ un num\xE9ro RPPS. "
+          examples:
+          - Julien Montclar
+        role:
+          type: string
+          title: "R\xF4le"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/redactor/role
+          description: "A valoriser avec le r\xF4le du r\xE9dacteur du bilan (ex.\
+            \ m\xE9decin, infirmier, ambulancier). "
+          enum:
+          - AMBULANCIER
+          - ARM
+          - INFIRMIER
+          - MEDECIN
+          - AUTRE
+          - INCONNU
+          examples:
+          - MEDECIN
+      additionalProperties: false
+      example: example.json#/redactor
+      examples:
+      - label: Julien Montclar
+        role: MEDECIN
+    patient:
+      type: object
+      title: Patient
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - patientId
+      - lastName
+      - firstName
+      properties:
+        patientId:
+          type: string
+          title: ID Patient
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/patientId
+          description: "Identifiant unique du patient. \nA valoriser par {ID du SAMU\
+            \ qui engage le SMUR}.{ID du DRM}.P{num\xE9ro d\u2019ordre chronologique}\
+            \ : fr.health.samu690.DRFR15DDXAAJJJ00001.P01"
+          examples:
+          - fr.health.samu690.patient.DRFR15DDXAAJJJ00001.1
+        birthName:
+          type: string
+          title: Nom de naissance
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/birthName
+          description: Nom de naissance du patient
+          examples:
+          - Dupont
+        lastName:
+          type: string
+          title: Nom usuel
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/lastName
+          description: Nom usuel du patient
+          examples:
+          - Maleis
+        firstName:
+          type: string
+          title: "Pr\xE9nom usuel"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/firstName
+          description: "Pr\xE9nom du patient"
+          examples:
+          - Jean
+        birthDate:
+          type: string
+          title: Date de naissance
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/birthDate
+          description: Date de naissance du patient
+          examples:
+          - 17/02/1936
+        age:
+          type: string
+          title: Age
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/age
+          description: "La date de naissance n'est pas tout le temps connu, cette\
+            \ donn\xE9e permet d'indiquer un \xE2ge entier. "
+          examples:
+          - PY69
+        sex:
+          type: string
+          title: Sexe
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/sex
+          description: "Sexe du patient, suivant le libell\xE9 court de la nomenclature\
+            \ SI-SAMU-NOMENC_SEXE"
+          enum:
+          - M
+          - F
+          - O
+          - UN
+          examples:
+          - F
+        externalId:
+          type: array
+          items:
+            $ref: '#/components/schemas/externalId'
+        weight:
+          type: integer
+          title: Taille
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/weight
+          description: A valoriser avec le poids en kilogrammes
+          examples:
+          - 31
+        height:
+          type: integer
+          title: Poids
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/height
+          description: "A valoriser avec la taille en centim\xE8tres du patient"
+          examples:
+          - 109
+      additionalProperties: false
+      example: example.json#/patient
+    evaluation:
+      type: object
+      title: "Evaluation / Diagnostic m\xE9dical"
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        procedure:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: "Actes r\xE9alis\xE9s par le SMUR"
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/evaluation/procedure/0
+            description: "Pr\xE9cise aussi bien les actes r\xE9alis\xE9s par le SMUR\
+              \ sur le lieu de l'intervention \xE0 son arriv\xE9e que ceux r\xE9alis\xE9\
+              s avant son intervention. \nA valoriser avec un code de la nomenclature\
+              \ ACTES_SMUR."
+            examples:
+            - None
+        mainDiagnosis:
+          type: string
+          title: Diagnostic principal SMUR
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/evaluation/mainDiagnosis
+          description: "Th\xE9saurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature\
+            \ Diagnostic SMUR."
+          examples:
+          - MD30.Z
+        associatedDiagnosis:
+          type: string
+          title: "Diagnostic associ\xE9  SMUR"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/evaluation/associatedDiagnosis
+          description: "Th\xE9saurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature\
+            \ Diagnostic SMUR."
+          examples:
+          - 8B22.1
+        parameter:
+          $ref: '#/components/schemas/vital'
+        medicalHistory:
+          type: string
+          title: "Ant\xE9c\xE9dents"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/evaluation/medicalHistory
+          examples:
+          - None
+        treatment:
+          type: string
+          title: Traitement
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/evaluation/treatment
+          examples:
+          - None
+        otherFreetext:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: "Informations compl\xE9mentaires"
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/evaluation/otherFreetext/0
+            description: "Permettrait de concat\xE9ner dans une zone de commentaire\
+              \ d'autres champs (ex. anamn\xE8se : allergies,, traitements, symptomes,\
+              \ ant\xE9c\xE9dents)"
+            examples:
+            - None
+      additionalProperties: false
+      example: example.json#/evaluation
+    externalId:
+      type: object
+      title: Identifiant(s) patient(s)
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - source
+      - value
+      properties:
+        source:
+          type: string
+          title: Source  /  type d'identifiant
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/externalId/0/source
+          description: Type de l'identifiant fourni
+          enum:
+          - NIR
+          - SINUS
+          - SI-VIC
+          - DOSSARD
+          - PLACE
+          examples:
+          - "NIR, SINUS, SI-VIC, \u2026"
+        value:
+          type: string
+          title: Identifiant
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/externalId/0/value
+          description: "L'identifiant en lui-m\xEAme"
+          examples:
+          - id1234
+      additionalProperties: false
+      example: example.json#/patient/externalId/0
+      examples:
+      - source: "NIR, SINUS, SI-VIC, \u2026"
+        value: id1234
+    vital:
+      type: object
+      title: "Param\xE8tres vitaux"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - parameterDetail
+      properties:
+        parameterTime:
+          type: string
+          title: Date et heure de la prise des constantes
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/evaluation/parameter/parameterTime
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
+          format: date-time
+          examples:
+          - None
+        parameterDetail:
+          $ref: '#/components/schemas/parameterDetail'
+      additionalProperties: false
+      example: example.json#/evaluation/parameter
+    parameterDetail:
+      type: object
+      title: "D\xE9tails des param\xE8tres vitaux"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - type
+      - value
+      properties:
+        type:
+          type: string
+          title: Type de constante
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/evaluation/parameter/parameterDetail/type
+          description: "Fr\xE9quence cardiaque, Pression art\xE9rielle, Saturation\
+            \ en oxyg\xE8ne, Fr\xE9quence respiratoire, Temp\xE9rature, Hemoglucotest,\
+            \ Glasgow, H\xE9moglobine ?"
+          examples:
+          - None
+        value:
+          type: string
+          title: Valeur de la constante
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/evaluation/parameter/parameterDetail/value
+          examples:
+          - None
+      additionalProperties: false
+      example: example.json#/evaluation/parameter/parameterDetail
+      examples:
+      - type: None
+        value: None

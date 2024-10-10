@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RPIS RS-EDA-MAJ RS-SR TECHNICAL TECHNICAL_NOREQ"
+  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RS-RPIS RS-EDA-MAJ RS-SR RS-URL RS-ER RS-BPV TECHNICAL TECHNICAL_NOREQ"
 
 jobs:
   generate:
@@ -116,7 +116,7 @@ jobs:
 
           IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"
           for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
-            if [ "$SCHEMA" != "RS-EDA-MAJ" ]; then
+            if [ "$SCHEMA" != "RS-EDA-MAJ" ] && [ "$SCHEMA" != "RS-ER" ]; then
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.generator-config.json --skip-validate-spec
             fi
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.usecase.generator-config.json --skip-validate-spec

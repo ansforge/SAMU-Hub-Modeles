@@ -1,9 +1,9 @@
 Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise,Cardinalité,Objet,Format (ou type),Détails de format
 Evènement,,,,,,,,context,1..1,X,event,
-,Identifiant du SAMU qui engage le SMUR,,,,,"Numéro du SAMU régulant la mission SMUR. 
+,Identifiant de l'organisation du SAMU qui engage le SMUR,,,,,"Numéro du SAMU régulant la mission SMUR. 
 A valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}
 ",fr.health.samu440,orgId,1..1,,string,"REGEX: ^[a-z]{2,3}\.[a-z]+\.\w*$"
-,Identifiant du dossier de régulation médicale (DRM),,,,,"Numéro du dossier SAMU à l’origine de la mission SMUR
+,Identifiant local du dossier de régulation médicale (DRM),,,,,"Numéro du dossier SAMU à l’origine de la mission SMUR
 A valoriser par DRFR15DDXAAJJJ00000 : 
 - DR = désignation d'un dossier sous forme abrégée,
 - FR : désigne le pays (FR = France),
