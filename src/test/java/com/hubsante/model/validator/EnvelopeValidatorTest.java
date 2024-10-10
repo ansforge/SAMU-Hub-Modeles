@@ -15,8 +15,7 @@
  */
 package com.hubsante.model.validator;
 
-import com.hubsante.model.TestMessagesHelper;
-import com.hubsante.model.exception.ValidationException;
+import com.hubsante.modelsinterface.service.TestMessagesHelper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
@@ -30,9 +29,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
-import static com.hubsante.model.config.Constants.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.hubsante.modelsinterface.config.Constants.FULL_SCHEMA;
+import static com.hubsante.modelsinterface.service.TestMessagesHelper.getInvalidMessage;
+
 
 public class EnvelopeValidatorTest extends AbstractValidatorTest{
     

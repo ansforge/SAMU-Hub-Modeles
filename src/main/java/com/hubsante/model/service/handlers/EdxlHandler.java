@@ -1,0 +1,87 @@
+/**
+ * Copyright © 2023-2024 Agence du Numerique en Sante (ANS)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.hubsante.model.service.handlers;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.hubsante.modelsinterface.edxl.EdxlEnvelope;
+import com.hubsante.modelsinterface.edxl.EdxlMessage;
+import com.hubsante.modelsinterface.interfaces.EdxlHandlerInterface;
+import com.hubsante.modelsinterface.report.ErrorWrapper;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+public class EdxlHandler implements EdxlHandlerInterface {
+
+    public XmlMapper xmlMapper;
+
+    public ObjectMapper jsonMapper;
+
+    public EdxlHandler() {
+        xmlMapper = (XmlMapper) new XmlMapper()
+                .registerModule(new JavaTimeModule())
+                .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+                .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+                .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+                .disable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
+
+        xmlMapper.configure(com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator.Feature.WRITE_XML_DECLARATION, true);
+
+        jsonMapper = new ObjectMapper()
+                .registerModule(new JavaTimeModule())
+                .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+                .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+                .disable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
+    }
+
+    public EdxlMessage deserializeJsonEDXL(String json) throws JsonProcessingException {
+        return jsonMapper.readValue(json, EdxlMessage.class);
+    }
+
+    public EdxlEnvelope deserializeJsonEDXLEnvelope(String json) throws JsonProcessingException {
+        return jsonMapper.readValue(json, EdxlEnvelope.class);
+    }
+
+    public EdxlMessage deserializeXmlEDXL(String xml) throws JsonProcessingException {
+        return xmlMapper.readValue(xml, EdxlMessage.class);
+    }
+
+    public EdxlEnvelope deserializeXmlEDXLEnvelope(String xml) throws JsonProcessingException {
+        return xmlMapper.readValue(xml, EdxlEnvelope.class);
+    }
+
+    @Override
+    public ErrorWrapper getFirstContentMessageErrorWrapperFromXml(String s) throws JsonProcessingException{
+        return (ErrorWrapper) deserializeJsonEDXL(s).getFirstContentMessage();
+    }
+
+    @Override
+    public ErrorWrapper getFirstContentMessageErrorWrapperFromJson(String s) throws JsonProcessingException{
+        return (ErrorWrapper) deserializeXmlEDXL(s).getFirstContentMessage();
+    }
+
+    public String serializeJsonEDXL(EdxlMessage edxlMessage) throws JsonProcessingException {
+        return jsonMapper.writeValueAsString(edxlMessage);
+    }
+
+    public String serializeXmlEDXL(EdxlMessage edxlMessage) throws JsonProcessingException {
+        return xmlMapper.writeValueAsString(edxlMessage);
+    }
+}

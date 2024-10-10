@@ -16,12 +16,12 @@
 package com.hubsante.model;
 
 import com.hubsante.model.cisu.CreateCaseWrapper;
-import com.hubsante.model.rcde.Recipient;
-import com.hubsante.model.reference.ReferenceWrapper;
-import com.hubsante.model.rcde.Sender;
 import com.hubsante.model.edxl.ContentMessage;
-import com.hubsante.model.edxl.EdxlMessage;
 import com.hubsante.model.emsi.EmsiWrapper;
+import com.hubsante.model.rcde.Recipient;
+import com.hubsante.model.rcde.Sender;
+import com.hubsante.model.reference.ReferenceWrapper;
+import com.hubsante.modelsinterface.edxl.EdxlMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ public class Sanitizer {
         edxlMessage.setDistributionID("fr.health.samu_id");
         edxlMessage.getDescriptor().getExplicitAddress().setExplicitAddressValue("fr.health.recipient");
         // access DE, change sender & recipients
-        edxlMessage.setContentFrom(sanitizeContent(edxlMessage.getFirstContentMessage()));
+        edxlMessage.setContentFrom(sanitizeContent((ContentMessage) edxlMessage.getFirstContentMessage()));
 
         return edxlMessage;
     }

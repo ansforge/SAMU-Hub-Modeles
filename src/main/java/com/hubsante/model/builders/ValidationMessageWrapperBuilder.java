@@ -16,7 +16,7 @@
 package com.hubsante.model.builders;
 
 import com.hubsante.model.rcde.DistributionElement;
-import com.hubsante.model.ValidationMessageWrapper;
+import com.hubsante.model.validationmessage.ValidationMessageWrapper;
 import com.networknt.schema.ValidationMessage;
 
 import java.lang.reflect.Field;

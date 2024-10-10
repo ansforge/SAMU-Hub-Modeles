@@ -15,7 +15,8 @@
  */
 package com.hubsante.model.builders;
 
-import com.hubsante.model.edxl.*;
+import com.hubsante.model.edxl.ContentMessage;
+import com.hubsante.modelsinterface.edxl.*;
 
 import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;

@@ -15,8 +15,8 @@
  */
 package com.hubsante.model.validator;
 
-import com.hubsante.model.TestMessagesHelper;
-import com.hubsante.model.exception.ValidationException;
+import com.hubsante.modelsinterface.exception.ValidationException;
+import com.hubsante.modelsinterface.service.TestMessagesHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,8 +32,8 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessage;
-import static com.hubsante.model.config.Constants.FULL_SCHEMA;
-import static com.hubsante.model.config.Constants.FULL_XSD;
+import static com.hubsante.modelsinterface.config.Constants.FULL_SCHEMA;
+import static com.hubsante.modelsinterface.config.Constants.FULL_XSD;
 import static org.junit.jupiter.api.Assertions.fail;
 
 @Slf4j
