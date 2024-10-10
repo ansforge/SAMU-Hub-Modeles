@@ -35,14 +35,17 @@ import com.hubsante.model.resources.info.ResourcesInfoWrapper;
 import com.hubsante.model.resources.request.ResourcesRequest;
 import com.hubsante.model.resources.request.ResourcesRequestWrapper;
 import com.hubsante.model.resources.response.ResourcesResponse;
-import com.huModifier le fichier ./csv_parser/json_schema2xsd/src/main/java/json_schema2xsd/App.java :
-bsante.model.resources.response.ResourcesResponseWrapper;
+import com.hubsante.model.resources.response.ResourcesResponseWrapper;
 import com.hubsante.model.resources.status.ResourcesStatus;
 import com.hubsante.model.resources.status.ResourcesStatusWrapper;
 import com.hubsante.model.rpis.Rpis;
 import com.hubsante.model.rpis.RpisWrapper;
 import com.hubsante.model.technical.TechnicalWrapper;
 import com.hubsante.model.technical.noreq.TechnicalNoreqWrapper;
+import com.hubsante.model.documentlink.DocumentLinkWrapper;
+import com.hubsante.model.resources.info.ResourcesEngagementWrapper;
+import com.hubsante.model.interventionreport.InterventionReportWrapper;
+
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -69,7 +72,7 @@ import java.util.stream.Stream;
         @JsonSubTypes.Type(TechnicalNoreqWrapper.class),
         @JsonSubTypes.Type(DocumentLinkWrapper.class),
         @JsonSubTypes.Type(ResourcesEngagementWrapper.class),
-        @JsonSubTypes.Type(InterventionReport.class),
+        @JsonSubTypes.Type(InterventionReportWrapper.class),
 })
 public class ContentMessage {
 
