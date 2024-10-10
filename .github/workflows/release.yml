@@ -1,4 +1,4 @@
-name: build image on release
+name: Build image on release
 
 on:
   release:
