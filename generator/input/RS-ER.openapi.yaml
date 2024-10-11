@@ -16,7 +16,7 @@ components:
       title: resourcesEngagement
       required:
       - caseId
-      - resourceInfo
+      - resource
       properties:
         caseId:
           type: string
@@ -36,7 +36,7 @@ components:
           pattern: ^fr(\.[\w-]+){3,4}$
           examples:
           - fr.health.samu440.DRFR15440241550012
-        resourceInfo:
+        resource:
           type: array
           items:
             $ref: '#/components/schemas/resource'
@@ -54,7 +54,7 @@ components:
           title: Type de vecteur
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/vehiculeType
+          example: example.json#/resource/0/vehiculeType
           description: "A valoriser avec le type de vecteur mobilis\xE9 : cf. nomenclature\
             \ associ\xE9e"
           enum:
@@ -128,7 +128,7 @@ components:
           title: Nom du vecteur
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/name
+          example: example.json#/resource/0/name
           description: "A valoriser avec le nom donn\xE9 \xE0 la ressource par l\u2019\
             organisation d\u2019appartenance"
           examples:
@@ -143,14 +143,14 @@ components:
             title: Commentaires
             x-health-only: false
             x-cols: 6
-            example: example.json#/resourceInfo/0/freetext/0
+            example: example.json#/resource/0/freetext/0
             description: "Texte libre permettant de passer toute autre information\
               \ sur la ressource (\xE9quipements suppl\xE9mentaires / sp\xE9cifiques,\
               \ particularit\xE9s du vecteur, etc.)"
             examples:
             - "SMUR p\xE9diatrique"
       additionalProperties: false
-      example: example.json#/resourceInfo/0
+      example: example.json#/resource/0
     team:
       type: object
       title: Equipe vecteur
@@ -163,7 +163,7 @@ components:
           title: Type
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/team/teamCare
+          example: example.json#/resource/0/team/teamCare
           description: "A valoriser avec le  niveau de m\xE9dicalisation du vecteur.\
             \ Cf. nomenclature associ\xE9e"
           enum:
@@ -177,13 +177,13 @@ components:
           title: Nom
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/team/name
+          example: example.json#/resource/0/team/name
           description: "A valoriser avec le nom de l'\xE9quipe \xE0 bord du vecteur\
             \ (celui communiqu\xE9 par l'organisation \xE0 laquelle l'\xE9quipe appartient)"
           examples:
           - Equipe A
       additionalProperties: false
-      example: example.json#/resourceInfo/0/team
+      example: example.json#/resource/0/team
       examples:
       - teamCare: MED
         name: Equipe A

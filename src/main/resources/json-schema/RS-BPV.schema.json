@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-BPV.schema.json#",
-    "version": "24.10.10",
+    "version": "24.10.11",
     "example": "example.json#",
     "type": "object",
     "title": "interventionReport",
@@ -168,20 +168,20 @@
                         "$ref": "#/definitions/externalId"
                     }
                 },
-                "weight": {
+                "height": {
                     "type": "integer",
                     "title": "Taille",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/patient/weight",
+                    "example": "example.json#/patient/height",
                     "description": "A valoriser avec le poids en kilogrammes"
                 },
-                "height": {
+                "weight": {
                     "type": "integer",
                     "title": "Poids",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/patient/height",
+                    "example": "example.json#/patient/weight",
                     "description": "A valoriser avec la taille en centimètres du patient"
                 }
             },

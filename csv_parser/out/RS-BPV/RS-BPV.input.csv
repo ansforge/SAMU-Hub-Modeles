@@ -22,8 +22,8 @@ A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre 
 ,Identifiant(s) patient(s),,,,,"Objet qui permet de décrire l'ensemble des identifiants qui permettent d'identifier le patient (autre que le matricule INS, qui ne doit jamais être partagé via cet objet)",,externalId,0..n,X,externalId,
 ,,Source  /  type d'identifiant,,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",source,1..1,,string,NOMENCLATURE: ENUM-TYPE_Id_Patient
 ,,Identifiant,,,,L'identifiant en lui-même,id1234,value,1..1,,string,
-,Taille,,,,,A valoriser avec le poids en kilogrammes,31,weight,0..1,,integer,
-,Poids,,,,,A valoriser avec la taille en centimètres du patient,109,height,0..1,,integer,
+,Taille,,,,,A valoriser avec le poids en kilogrammes,31,height,0..1,,integer,
+,Poids,,,,,A valoriser avec la taille en centimètres du patient,109,weight,0..1,,integer,
 Evaluation / Diagnostic médical,,,,,,,,evaluation,0..1,X,evaluation,
 ,Actes réalisés par le SMUR,,,,,"Précise aussi bien les actes réalisés par le SMUR sur le lieu de l'intervention à son arrivée que ceux réalisés avant son intervention. 
 A valoriser avec un code de la nomenclature ACTES_SMUR.",,procedure,0..n,,string,

@@ -49,7 +49,7 @@ import java.util.Objects;
      Patient.JSON_PROPERTY_LAST_NAME, Patient.JSON_PROPERTY_FIRST_NAME,
      Patient.JSON_PROPERTY_BIRTH_DATE, Patient.JSON_PROPERTY_AGE,
      Patient.JSON_PROPERTY_SEX, Patient.JSON_PROPERTY_EXTERNAL_ID,
-     Patient.JSON_PROPERTY_WEIGHT, Patient.JSON_PROPERTY_HEIGHT})
+     Patient.JSON_PROPERTY_HEIGHT, Patient.JSON_PROPERTY_WEIGHT})
 @JsonTypeName("patient")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -116,11 +116,11 @@ public class Patient {
   public static final String JSON_PROPERTY_EXTERNAL_ID = "externalId";
   private List<ExternalId> externalId;
 
-  public static final String JSON_PROPERTY_WEIGHT = "weight";
-  private Integer weight;
-
   public static final String JSON_PROPERTY_HEIGHT = "height";
   private Integer height;
+
+  public static final String JSON_PROPERTY_WEIGHT = "weight";
+  private Integer weight;
 
   public Patient() {}
 
@@ -328,29 +328,6 @@ public class Patient {
     this.externalId.addAll(externalId);
   }
 
-  public Patient weight(Integer weight) {
-
-    this.weight = weight;
-    return this;
-  }
-
-  /**
-   * A valoriser avec le poids en kilogrammes
-   * @return weight
-   **/
-  @JsonProperty(JSON_PROPERTY_WEIGHT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Integer getWeight() {
-    return weight;
-  }
-
-  @JsonProperty(JSON_PROPERTY_WEIGHT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWeight(Integer weight) {
-    this.weight = weight;
-  }
-
   public Patient height(Integer height) {
 
     this.height = height;
@@ -358,7 +335,7 @@ public class Patient {
   }
 
   /**
-   * A valoriser avec la taille en centimètres du patient
+   * A valoriser avec le poids en kilogrammes
    * @return height
    **/
   @JsonProperty(JSON_PROPERTY_HEIGHT)
@@ -372,6 +349,29 @@ public class Patient {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHeight(Integer height) {
     this.height = height;
+  }
+
+  public Patient weight(Integer weight) {
+
+    this.weight = weight;
+    return this;
+  }
+
+  /**
+   * A valoriser avec la taille en centimètres du patient
+   * @return weight
+   **/
+  @JsonProperty(JSON_PROPERTY_WEIGHT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getWeight() {
+    return weight;
+  }
+
+  @JsonProperty(JSON_PROPERTY_WEIGHT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWeight(Integer weight) {
+    this.weight = weight;
   }
 
   @Override
@@ -391,14 +391,14 @@ public class Patient {
         Objects.equals(this.age, patient.age) &&
         Objects.equals(this.sex, patient.sex) &&
         Objects.equals(this.externalId, patient.externalId) &&
-        Objects.equals(this.weight, patient.weight) &&
-        Objects.equals(this.height, patient.height);
+        Objects.equals(this.height, patient.height) &&
+        Objects.equals(this.weight, patient.weight);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(patientId, birthName, lastName, firstName, birthDate,
-                        age, sex, externalId, weight, height);
+                        age, sex, externalId, height, weight);
   }
 
   @Override
@@ -423,8 +423,8 @@ public class Patient {
     sb.append("    externalId: ")
         .append(toIndentedString(externalId))
         .append("\n");
-    sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
+    sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -45,7 +45,7 @@ import java.util.Objects;
  * ResourcesEngagement
  */
 @JsonPropertyOrder({ResourcesEngagement.JSON_PROPERTY_CASE_ID,
-                    ResourcesEngagement.JSON_PROPERTY_RESOURCE_INFO})
+                    ResourcesEngagement.JSON_PROPERTY_RESOURCE})
 @JsonTypeName("resourcesEngagement")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -55,8 +55,8 @@ public class ResourcesEngagement {
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 
-  public static final String JSON_PROPERTY_RESOURCE_INFO = "resourceInfo";
-  private List<Resource> resourceInfo = new ArrayList<>();
+  public static final String JSON_PROPERTY_RESOURCE = "resource";
+  private List<Resource> resource = new ArrayList<>();
 
   public ResourcesEngagement() {}
 
@@ -90,43 +90,43 @@ public class ResourcesEngagement {
     this.caseId = caseId;
   }
 
-  public ResourcesEngagement resourceInfo(List<Resource> resourceInfo) {
+  public ResourcesEngagement resource(List<Resource> resource) {
 
-    this.resourceInfo = resourceInfo;
+    this.resource = resource;
     return this;
   }
 
-  public ResourcesEngagement addResourceInfoItem(Resource resourceInfoItem) {
-    if (this.resourceInfo == null) {
-      this.resourceInfo = new ArrayList<>();
+  public ResourcesEngagement addResourceItem(Resource resourceItem) {
+    if (this.resource == null) {
+      this.resource = new ArrayList<>();
     }
-    this.resourceInfo.add(resourceInfoItem);
+    this.resource.add(resourceItem);
     return this;
   }
 
   /**
-   * Get resourceInfo
-   * @return resourceInfo
+   * Get resource
+   * @return resource
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_INFO)
+  @JsonProperty(JSON_PROPERTY_RESOURCE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<Resource> getResourceInfo() {
-    return resourceInfo;
+  public List<Resource> getResource() {
+    return resource;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_RESOURCE_INFO)
+  @JsonProperty(JSON_PROPERTY_RESOURCE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setResourceInfo(List<Resource> resourceInfo) {
-    if (resourceInfo == null) {
+  public void setResource(List<Resource> resource) {
+    if (resource == null) {
       return;
     }
-    if (this.resourceInfo == null) {
-      this.resourceInfo = new ArrayList<>();
+    if (this.resource == null) {
+      this.resource = new ArrayList<>();
     }
-    this.resourceInfo.addAll(resourceInfo);
+    this.resource.addAll(resource);
   }
 
   @Override
@@ -139,12 +139,12 @@ public class ResourcesEngagement {
     }
     ResourcesEngagement resourcesEngagement = (ResourcesEngagement)o;
     return Objects.equals(this.caseId, resourcesEngagement.caseId) &&
-        Objects.equals(this.resourceInfo, resourcesEngagement.resourceInfo);
+        Objects.equals(this.resource, resourcesEngagement.resource);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, resourceInfo);
+    return Objects.hash(caseId, resource);
   }
 
   @Override
@@ -152,9 +152,7 @@ public class ResourcesEngagement {
     StringBuilder sb = new StringBuilder();
     sb.append("class ResourcesEngagement {\n");
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
-    sb.append("    resourceInfo: ")
-        .append(toIndentedString(resourceInfo))
-        .append("\n");
+    sb.append("    resource: ").append(toIndentedString(resource)).append("\n");
     sb.append("}");
     return sb.toString();
   }

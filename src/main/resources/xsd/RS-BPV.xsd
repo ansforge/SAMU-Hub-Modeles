@@ -103,12 +103,12 @@ A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre 
                 </simpleType>
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="externalId" type="x:externalId"/>
-            <element minOccurs="0" name="weight" type="int">
+            <element minOccurs="0" name="height" type="int">
                 <annotation>
                     <documentation>A valoriser avec le poids en kilogrammes</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="height" type="int">
+            <element minOccurs="0" name="weight" type="int">
                 <annotation>
                     <documentation>A valoriser avec la taille en centimètres du patient</documentation>
                 </annotation>

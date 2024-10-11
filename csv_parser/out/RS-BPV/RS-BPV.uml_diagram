@@ -21,7 +21,7 @@ strict digraph {
                 <TR>
                 <TD ><B>patient</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet patient</I></TD></TR><TR><TD BORDER="0" >patientId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >birthName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >lastName <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >firstName <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >birthDate <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >age <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >sex <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >weight <I>integer</I> : [0..1] </TD></TR><TR><TD BORDER="0" >height <I>integer</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet patient</I></TD></TR><TR><TD BORDER="0" >patientId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >birthName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >lastName <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >firstName <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >birthDate <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >age <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >sex <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >height <I>integer</I> : [0..1] </TD></TR><TR><TD BORDER="0" >weight <I>integer</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	patient -> interventionReport [headlabel=1 taillabel=1]
 	parameterDetail [label=<<TABLE>

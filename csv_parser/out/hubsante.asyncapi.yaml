@@ -2390,7 +2390,7 @@ components:
           title: 'Type de contact '
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/contact/type
+          example: example.json#/resource/0/contact/type
           description: "A valoriser avec le type de l'URI utilis\xE9e. Cf nomenclature\
             \ associ\xE9e."
           enum:
@@ -2408,14 +2408,14 @@ components:
           title: URI du contact
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/contact/details
+          example: example.json#/resource/0/contact/details
           description: "A valoriser avec la valeur de l'URI utilis\xE9e\nLe format\
             \ attendu pour un num\xE9ro de t\xE9l\xE9phone est le suivant : +{indicatif\
             \ pays}{num\xE9ro de t\xE9l\xE9phone}"
           examples:
           - '+33671830530'
       additionalProperties: false
-      example: example.json#/resourceInfo/0/contact
+      example: example.json#/resource/0/contact
       examples:
       - type: PHNADD
         details: '+33671830530'
@@ -2727,21 +2727,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/externalId'
-        weight:
+        height:
           type: integer
           title: Taille
           x-health-only: false
           x-cols: 6
-          example: example.json#/patient/weight
+          example: example.json#/patient/height
           description: A valoriser avec le poids en kilogrammes
           examples:
           - 31
-        height:
+        weight:
           type: integer
           title: Poids
           x-health-only: false
           x-cols: 6
-          example: example.json#/patient/height
+          example: example.json#/patient/weight
           description: "A valoriser avec la taille en centim\xE8tres du patient"
           examples:
           - 109
@@ -4111,7 +4111,7 @@ components:
           title: Type de vecteur
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/vehiculeType
+          example: example.json#/resource/0/vehiculeType
           description: "A valoriser avec le type de vecteur mobilis\xE9 : cf. nomenclature\
             \ associ\xE9e"
           enum:
@@ -4185,7 +4185,7 @@ components:
           title: Nom du vecteur
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/name
+          example: example.json#/resource/0/name
           description: "A valoriser avec le nom donn\xE9 \xE0 la ressource par l\u2019\
             organisation d\u2019appartenance"
           examples:
@@ -4200,14 +4200,14 @@ components:
             title: Commentaires
             x-health-only: false
             x-cols: 6
-            example: example.json#/resourceInfo/0/freetext/0
+            example: example.json#/resource/0/freetext/0
             description: "Texte libre permettant de passer toute autre information\
               \ sur la ressource (\xE9quipements suppl\xE9mentaires / sp\xE9cifiques,\
               \ particularit\xE9s du vecteur, etc.)"
             examples:
             - "SMUR p\xE9diatrique"
       additionalProperties: false
-      example: example.json#/resourceInfo/0
+      example: example.json#/resource/0
     link:
       type: object
       title: Lien
@@ -6025,7 +6025,7 @@ components:
       title: resourcesInfo
       required:
       - caseId
-      - resourceInfo
+      - resource
       properties:
         caseId:
           type: string
@@ -6045,7 +6045,7 @@ components:
           pattern: ^fr(\.[\w-]+){3,4}$
           examples:
           - fr.health.samu440.DRFR15440241550012
-        resourceInfo:
+        resource:
           type: array
           items:
             $ref: '#/components/schemas/resource'
@@ -6173,7 +6173,7 @@ components:
       title: resourcesEngagement
       required:
       - caseId
-      - resourceInfo
+      - resource
       properties:
         caseId:
           type: string
@@ -6193,7 +6193,7 @@ components:
           pattern: ^fr(\.[\w-]+){3,4}$
           examples:
           - fr.health.samu440.DRFR15440241550012
-        resourceInfo:
+        resource:
           type: array
           items:
             $ref: '#/components/schemas/resource'

@@ -192,21 +192,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/externalId'
-        weight:
+        height:
           type: integer
           title: Taille
           x-health-only: false
           x-cols: 6
-          example: example.json#/patient/weight
+          example: example.json#/patient/height
           description: A valoriser avec le poids en kilogrammes
           examples:
           - 31
-        height:
+        weight:
           type: integer
           title: Poids
           x-health-only: false
           x-cols: 6
-          example: example.json#/patient/height
+          example: example.json#/patient/weight
           description: "A valoriser avec la taille en centim\xE8tres du patient"
           examples:
           - 109
