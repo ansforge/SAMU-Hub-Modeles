@@ -224,23 +224,28 @@
                     "description": "Thésaurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature Diagnostic SMUR."
                 },
                 "parameter": {
-                    "$ref": "#/definitions/vital"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/vital"
+                    }
                 },
                 "medicalHistory": {
                     "type": "string",
                     "title": "Antécédents",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/evaluation/medicalHistory"
+                    "example": "example.json#/evaluation/medicalHistory",
+                    "description": "Précise les antécédents du patient"
                 },
                 "treatment": {
                     "type": "string",
                     "title": "Traitement",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/evaluation/treatment"
+                    "example": "example.json#/evaluation/treatment",
+                    "description": "Précise le traitement du patient"
                 },
-                "otherFreetext": {
+                "freetext": {
                     "type": "array",
                     "x-health-only": false,
                     "items": {
@@ -248,7 +253,7 @@
                         "title": "Informations complémentaires",
                         "x-health-only": false,
                         "x-cols": 6,
-                        "example": "example.json#/evaluation/otherFreetext/0",
+                        "example": "example.json#/evaluation/freetext/0",
                         "description": "Permettrait de concaténer dans une zone de commentaire d'autres champs (ex. anamnèse : allergies,, traitements, symptomes, antécédents)"
                     }
                 }
@@ -299,31 +304,6 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "parameterDetail"
-            ],
-            "properties": {
-                "parameterTime": {
-                    "type": "string",
-                    "title": "Date et heure de la prise des constantes",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/evaluation/parameter/parameterTime",
-                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
-                    "format": "date-time"
-                },
-                "parameterDetail": {
-                    "$ref": "#/definitions/parameterDetail"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/evaluation/parameter"
-        },
-        "parameterDetail": {
-            "type": "object",
-            "title": "Détails des paramètres vitaux",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
                 "type",
                 "value"
             ],
@@ -333,19 +313,29 @@
                     "title": "Type de constante",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/evaluation/parameter/parameterDetail/type",
-                    "description": "Fréquence cardiaque, Pression artérielle, Saturation en oxygène, Fréquence respiratoire, Température, Hemoglucotest, Glasgow, Hémoglobine ?"
+                    "example": "example.json#/evaluation/parameter/0/type",
+                    "description": "Permet d'indiquer le type de constante associé à la valeur envoyée",
+                    "enum": [
+                        "FREQUENCE_CARDIAQUE",
+                        "PRESSION_ARTERIELLE",
+                        "SATURATION_OXYGENE",
+                        "FREQUENCE_RESPIRATOIRE",
+                        "TEMPERATURE",
+                        "HEMOGLOCOTEST",
+                        "GLASGOW"
+                    ]
                 },
                 "value": {
                     "type": "string",
-                    "title": "Valeur de la constante",
+                    "title": "Valeur de la dernière constante prise",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/evaluation/parameter/parameterDetail/value"
+                    "example": "example.json#/evaluation/parameter/0/value",
+                    "description": "Indique la valeur de la dernière constante prise"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/evaluation/parameter/parameterDetail"
+            "example": "example.json#/evaluation/parameter/0"
         }
     },
     "additionalProperties": false

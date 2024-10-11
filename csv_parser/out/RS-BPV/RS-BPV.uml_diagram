@@ -24,25 +24,18 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet patient</I></TD></TR><TR><TD BORDER="0" >patientId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >birthName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >lastName <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >firstName <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >birthDate <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >age <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >sex <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >height <I>integer</I> : [0..1] </TD></TR><TR><TD BORDER="0" >weight <I>integer</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	patient -> interventionReport [headlabel=1 taillabel=1]
-	parameterDetail [label=<<TABLE>
-                <TR>
-                <TD ><B>parameterDetail</B></TD>
-                </TR>
-                <TR><TD  BORDER="0"><I>objet parameterDetail</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >value <I>string</I> : [1..1] </TD></TR>
-                </TABLE>>]
-	parameterDetail -> parameter [headlabel=1 taillabel=1]
 	parameter [label=<<TABLE>
                 <TR>
                 <TD ><B>parameter</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet vital</I></TD></TR><TR><TD BORDER="0" >parameterTime <I>date-time</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet vital</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >value <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
-	parameter -> evaluation [headlabel=1 taillabel="0..1"]
+	parameter -> evaluation [headlabel=1 taillabel="0..*"]
 	evaluation [label=<<TABLE>
                 <TR>
                 <TD ><B>evaluation</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet evaluation</I></TD></TR><TR><TD BORDER="0" >procedure <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >mainDiagnosis <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >associatedDiagnosis <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >medicalHistory <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >treatment <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >otherFreetext <I>string</I> : [0..*] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet evaluation</I></TD></TR><TR><TD BORDER="0" >procedure <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >mainDiagnosis <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >associatedDiagnosis <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >medicalHistory <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >treatment <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
 	evaluation -> interventionReport [headlabel=1 taillabel="0..1"]
 	interventionReport [label=<<TABLE>

@@ -26,16 +26,14 @@ A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre 
 ,Poids,,,,,A valoriser avec la taille en centimètres du patient,109,weight,0..1,,integer,
 Evaluation / Diagnostic médical,,,,,,,,evaluation,0..1,X,evaluation,
 ,Actes réalisés par le SMUR,,,,,"Précise aussi bien les actes réalisés par le SMUR sur le lieu de l'intervention à son arrivée que ceux réalisés avant son intervention. 
-A valoriser avec un code de la nomenclature ACTES_SMUR.",,procedure,0..n,,string,
+A valoriser avec un code de la nomenclature ACTES_SMUR.",O20,procedure,0..n,,string,
 ,Diagnostic principal SMUR,,,,,"Thésaurus SFMU-FEDORU.
 A valoriser par un code de la nomenclature Diagnostic SMUR.",MD30.Z,mainDiagnosis,0..1,,string,
 ,Diagnostic associé  SMUR,,,,,"Thésaurus SFMU-FEDORU.
 A valoriser par un code de la nomenclature Diagnostic SMUR.",8B22.1,associatedDiagnosis,0..1,,string,
-,Paramètres vitaux,,,,,,,parameter,0..1,X,vital,
-,,Date et heure de la prise des constantes,,,,,,parameterTime,0..1,,datetime,
-,,Détails des paramètres vitaux,,,,,,parameterDetail,1..1,X,parameterDetail,
-,,,Type de constante,,,"Fréquence cardiaque, Pression artérielle, Saturation en oxygène, Fréquence respiratoire, Température, Hemoglucotest, Glasgow, Hémoglobine ?",,type,1..1,,string,NOMENCLATURE : TBD
-,,,Valeur de la constante,,,,,value,1..1,,string,
-,Antécédents,,,,,,,medicalHistory,0..1,,string,
-,Traitement,,,,,,,treatment,0..1,,string,
-,Informations complémentaires,,,,,"Permettrait de concaténer dans une zone de commentaire d'autres champs (ex. anamnèse : allergies,, traitements, symptomes, antécédents)",,otherFreetext,0..n,,string,
+,Paramètres vitaux,,,,,,,parameter,0..n,X,vital,
+,,Type de constante,,,,Permet d'indiquer le type de constante associé à la valeur envoyée,"Fréquence cardiaque, Pression artérielle, Saturation en oxygène, Fréquence respiratoire, Température, Hemoglucotest, Glasgow",type,1..1,,string,"ENUM: FREQUENCE_CARDIAQUE, PRESSION_ARTERIELLE, SATURATION_OXYGENE, FREQUENCE_RESPIRATOIRE, TEMPERATURE, HEMOGLOCOTEST, GLASGOW"
+,,Valeur de la dernière constante prise,,,,Indique la valeur de la dernière constante prise,,value,1..1,,string,
+,Antécédents,,,,,Précise les antécédents du patient,,medicalHistory,0..1,,string,
+,Traitement,,,,,Précise le traitement du patient,,treatment,0..1,,string,
+,Informations complémentaires,,,,,"Permettrait de concaténer dans une zone de commentaire d'autres champs (ex. anamnèse : allergies,, traitements, symptomes, antécédents)",,freetext,0..n,,string,

@@ -130,10 +130,18 @@ A valoriser par un code de la nomenclature Diagnostic SMUR.</documentation>
 A valoriser par un code de la nomenclature Diagnostic SMUR.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="parameter" type="x:vital"/>
-            <element minOccurs="0" name="medicalHistory" type="string"/>
-            <element minOccurs="0" name="treatment" type="string"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="otherFreetext" type="string"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="parameter" type="x:vital"/>
+            <element minOccurs="0" name="medicalHistory" type="string">
+                <annotation>
+                    <documentation>Précise les antécédents du patient</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="treatment" type="string">
+                <annotation>
+                    <documentation>Précise le traitement du patient</documentation>
+                </annotation>
+            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
         </sequence>
     </complexType>
     <complexType name="externalId">
@@ -161,18 +169,27 @@ A valoriser par un code de la nomenclature Diagnostic SMUR.</documentation>
     </complexType>
     <complexType name="vital">
         <sequence>
-            <element minOccurs="0" name="parameterTime" type="dateTime"/>
-            <element name="parameterDetail" type="x:parameterDetail"/>
-        </sequence>
-    </complexType>
-    <complexType name="parameterDetail">
-        <sequence>
-            <element name="type" type="string">
+            <element name="type">
                 <annotation>
-                    <documentation>Fréquence cardiaque, Pression artérielle, Saturation en oxygène, Fréquence respiratoire, Température, Hemoglucotest, Glasgow, Hémoglobine ?</documentation>
+                    <documentation>Permet d'indiquer le type de constante associé à la valeur envoyée</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="FREQUENCE_CARDIAQUE"/>
+                        <enumeration value="PRESSION_ARTERIELLE"/>
+                        <enumeration value="SATURATION_OXYGENE"/>
+                        <enumeration value="FREQUENCE_RESPIRATOIRE"/>
+                        <enumeration value="TEMPERATURE"/>
+                        <enumeration value="HEMOGLOCOTEST"/>
+                        <enumeration value="GLASGOW"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="value" type="string">
+                <annotation>
+                    <documentation>Indique la valeur de la dernière constante prise</documentation>
                 </annotation>
             </element>
-            <element name="value" type="string"/>
         </sequence>
     </complexType>
 </schema>

@@ -50,7 +50,7 @@ import java.util.Objects;
                     Evaluation.JSON_PROPERTY_PARAMETER,
                     Evaluation.JSON_PROPERTY_MEDICAL_HISTORY,
                     Evaluation.JSON_PROPERTY_TREATMENT,
-                    Evaluation.JSON_PROPERTY_OTHER_FREETEXT})
+                    Evaluation.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("evaluation")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -66,7 +66,7 @@ public class Evaluation {
   private String associatedDiagnosis;
 
   public static final String JSON_PROPERTY_PARAMETER = "parameter";
-  private Vital parameter;
+  private List<Vital> parameter;
 
   public static final String JSON_PROPERTY_MEDICAL_HISTORY = "medicalHistory";
   private String medicalHistory;
@@ -74,8 +74,8 @@ public class Evaluation {
   public static final String JSON_PROPERTY_TREATMENT = "treatment";
   private String treatment;
 
-  public static final String JSON_PROPERTY_OTHER_FREETEXT = "otherFreetext";
-  private List<String> otherFreetext;
+  public static final String JSON_PROPERTY_FREETEXT = "freetext";
+  private List<String> freetext;
 
   public Evaluation() {}
 
@@ -166,9 +166,17 @@ public class Evaluation {
     this.associatedDiagnosis = associatedDiagnosis;
   }
 
-  public Evaluation parameter(Vital parameter) {
+  public Evaluation parameter(List<Vital> parameter) {
 
     this.parameter = parameter;
+    return this;
+  }
+
+  public Evaluation addParameterItem(Vital parameterItem) {
+    if (this.parameter == null) {
+      this.parameter = new ArrayList<>();
+    }
+    this.parameter.add(parameterItem);
     return this;
   }
 
@@ -179,14 +187,22 @@ public class Evaluation {
   @JsonProperty(JSON_PROPERTY_PARAMETER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Vital getParameter() {
+  public List<Vital> getParameter() {
     return parameter;
   }
 
+  @JacksonXmlElementWrapper(useWrapping = false)
+
   @JsonProperty(JSON_PROPERTY_PARAMETER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setParameter(Vital parameter) {
-    this.parameter = parameter;
+  public void setParameter(List<Vital> parameter) {
+    if (parameter == null) {
+      return;
+    }
+    if (this.parameter == null) {
+      this.parameter = new ArrayList<>();
+    }
+    this.parameter.addAll(parameter);
   }
 
   public Evaluation medicalHistory(String medicalHistory) {
@@ -196,7 +212,7 @@ public class Evaluation {
   }
 
   /**
-   * Get medicalHistory
+   * Précise les antécédents du patient
    * @return medicalHistory
    **/
   @JsonProperty(JSON_PROPERTY_MEDICAL_HISTORY)
@@ -219,7 +235,7 @@ public class Evaluation {
   }
 
   /**
-   * Get treatment
+   * Précise le traitement du patient
    * @return treatment
    **/
   @JsonProperty(JSON_PROPERTY_TREATMENT)
@@ -235,43 +251,43 @@ public class Evaluation {
     this.treatment = treatment;
   }
 
-  public Evaluation otherFreetext(List<String> otherFreetext) {
+  public Evaluation freetext(List<String> freetext) {
 
-    this.otherFreetext = otherFreetext;
+    this.freetext = freetext;
     return this;
   }
 
-  public Evaluation addOtherFreetextItem(String otherFreetextItem) {
-    if (this.otherFreetext == null) {
-      this.otherFreetext = new ArrayList<>();
+  public Evaluation addFreetextItem(String freetextItem) {
+    if (this.freetext == null) {
+      this.freetext = new ArrayList<>();
     }
-    this.otherFreetext.add(otherFreetextItem);
+    this.freetext.add(freetextItem);
     return this;
   }
 
   /**
-   * Get otherFreetext
-   * @return otherFreetext
+   * Get freetext
+   * @return freetext
    **/
-  @JsonProperty(JSON_PROPERTY_OTHER_FREETEXT)
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<String> getOtherFreetext() {
-    return otherFreetext;
+  public List<String> getFreetext() {
+    return freetext;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_OTHER_FREETEXT)
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOtherFreetext(List<String> otherFreetext) {
-    if (otherFreetext == null) {
+  public void setFreetext(List<String> freetext) {
+    if (freetext == null) {
       return;
     }
-    if (this.otherFreetext == null) {
-      this.otherFreetext = new ArrayList<>();
+    if (this.freetext == null) {
+      this.freetext = new ArrayList<>();
     }
-    this.otherFreetext.addAll(otherFreetext);
+    this.freetext.addAll(freetext);
   }
 
   @Override
@@ -290,13 +306,13 @@ public class Evaluation {
         Objects.equals(this.parameter, evaluation.parameter) &&
         Objects.equals(this.medicalHistory, evaluation.medicalHistory) &&
         Objects.equals(this.treatment, evaluation.treatment) &&
-        Objects.equals(this.otherFreetext, evaluation.otherFreetext);
+        Objects.equals(this.freetext, evaluation.freetext);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(procedure, mainDiagnosis, associatedDiagnosis,
-                        parameter, medicalHistory, treatment, otherFreetext);
+                        parameter, medicalHistory, treatment, freetext);
   }
 
   @Override
@@ -321,9 +337,7 @@ public class Evaluation {
     sb.append("    treatment: ")
         .append(toIndentedString(treatment))
         .append("\n");
-    sb.append("    otherFreetext: ")
-        .append(toIndentedString(otherFreetext))
-        .append("\n");
+    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();
   }

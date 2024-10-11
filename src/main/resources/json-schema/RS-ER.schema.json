@@ -143,12 +143,12 @@
             "x-health-only": false,
             "required": [],
             "properties": {
-                "teamCare": {
+                "careLevel": {
                     "type": "string",
                     "title": "Type",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/resource/0/team/teamCare",
+                    "example": "example.json#/resource/0/team/careLevel",
                     "description": "A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature associée",
                     "enum": [
                         "MED",

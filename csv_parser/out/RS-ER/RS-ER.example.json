@@ -5,7 +5,7 @@
             "vehiculeType": "VLM",
             "name": "SMUR 123",
             "team": {
-                "teamCare": "MED",
+                "careLevel": "MED",
                 "name": "Equipe A"
             },
             "freetext": [

@@ -12,7 +12,7 @@
             "name": "SMUR 123",
             "centerCity": 44109,
             "team": {
-                "teamCare": "MED",
+                "careLevel": "MED",
                 "name": "Equipe A"
             },
             "state": [

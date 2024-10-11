@@ -34,8 +34,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.interventionreport.ParameterDetail;
-import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -43,64 +41,107 @@ import java.util.Objects;
 /**
  * Vital
  */
-@JsonPropertyOrder(
-    {Vital.JSON_PROPERTY_PARAMETER_TIME, Vital.JSON_PROPERTY_PARAMETER_DETAIL})
+@JsonPropertyOrder({Vital.JSON_PROPERTY_TYPE, Vital.JSON_PROPERTY_VALUE})
 @JsonTypeName("vital")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Vital {
-  public static final String JSON_PROPERTY_PARAMETER_TIME = "parameterTime";
-  private OffsetDateTime parameterTime;
 
-  public static final String JSON_PROPERTY_PARAMETER_DETAIL = "parameterDetail";
-  private ParameterDetail parameterDetail;
+  /**
+   * Permet d&#39;indiquer le type de constante associé à la valeur envoyée
+   */
+  public enum TypeEnum {
+    FREQUENCE_CARDIAQUE("FREQUENCE_CARDIAQUE"),
+
+    PRESSION_ARTERIELLE("PRESSION_ARTERIELLE"),
+
+    SATURATION_OXYGENE("SATURATION_OXYGENE"),
+
+    FREQUENCE_RESPIRATOIRE("FREQUENCE_RESPIRATOIRE"),
+
+    TEMPERATURE("TEMPERATURE"),
+
+    HEMOGLOCOTEST("HEMOGLOCOTEST"),
+
+    GLASGOW("GLASGOW");
+
+    private String value;
+
+    TypeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_TYPE = "type";
+  private TypeEnum type;
+
+  public static final String JSON_PROPERTY_VALUE = "value";
+  private String value;
 
   public Vital() {}
 
-  public Vital parameterTime(OffsetDateTime parameterTime) {
+  public Vital type(TypeEnum type) {
 
-    this.parameterTime = parameterTime;
+    this.type = type;
     return this;
   }
 
   /**
-   * Get parameterTime
-   * @return parameterTime
+   * Permet d&#39;indiquer le type de constante associé à la valeur envoyée
+   * @return type
    **/
-  @JsonProperty(JSON_PROPERTY_PARAMETER_TIME)
+  @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public OffsetDateTime getParameterTime() {
-    return parameterTime;
+  public TypeEnum getType() {
+    return type;
   }
 
-  @JsonProperty(JSON_PROPERTY_PARAMETER_TIME)
+  @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setParameterTime(OffsetDateTime parameterTime) {
-    this.parameterTime = parameterTime;
+  public void setType(TypeEnum type) {
+    this.type = type;
   }
 
-  public Vital parameterDetail(ParameterDetail parameterDetail) {
+  public Vital value(String value) {
 
-    this.parameterDetail = parameterDetail;
+    this.value = value;
     return this;
   }
 
   /**
-   * Get parameterDetail
-   * @return parameterDetail
+   * Indique la valeur de la dernière constante prise
+   * @return value
    **/
-  @JsonProperty(JSON_PROPERTY_PARAMETER_DETAIL)
+  @JsonProperty(JSON_PROPERTY_VALUE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public ParameterDetail getParameterDetail() {
-    return parameterDetail;
+  public String getValue() {
+    return value;
   }
 
-  @JsonProperty(JSON_PROPERTY_PARAMETER_DETAIL)
+  @JsonProperty(JSON_PROPERTY_VALUE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setParameterDetail(ParameterDetail parameterDetail) {
-    this.parameterDetail = parameterDetail;
+  public void setValue(String value) {
+    this.value = value;
   }
 
   @Override
@@ -112,25 +153,21 @@ public class Vital {
       return false;
     }
     Vital vital = (Vital)o;
-    return Objects.equals(this.parameterTime, vital.parameterTime) &&
-        Objects.equals(this.parameterDetail, vital.parameterDetail);
+    return Objects.equals(this.type, vital.type) &&
+        Objects.equals(this.value, vital.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(parameterTime, parameterDetail);
+    return Objects.hash(type, value);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Vital {\n");
-    sb.append("    parameterTime: ")
-        .append(toIndentedString(parameterTime))
-        .append("\n");
-    sb.append("    parameterDetail: ")
-        .append(toIndentedString(parameterDetail))
-        .append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

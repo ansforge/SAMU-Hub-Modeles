@@ -7779,7 +7779,7 @@ components:
               s avant son intervention. \nA valoriser avec un code de la nomenclature\
               \ ACTES_SMUR."
             examples:
-            - None
+            - O20
         mainDiagnosis:
           type: string
           title: Diagnostic principal SMUR
@@ -7801,13 +7801,16 @@ components:
           examples:
           - 8B22.1
         parameter:
-          $ref: '#/components/schemas/vital'
+          type: array
+          items:
+            $ref: '#/components/schemas/vital'
         medicalHistory:
           type: string
           title: "Ant\xE9c\xE9dents"
           x-health-only: false
           x-cols: 6
           example: example.json#/evaluation/medicalHistory
+          description: "Pr\xE9cise les ant\xE9c\xE9dents du patient"
           examples:
           - None
         treatment:
@@ -7816,9 +7819,10 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/evaluation/treatment
+          description: "Pr\xE9cise le traitement du patient"
           examples:
           - None
-        otherFreetext:
+        freetext:
           type: array
           x-health-only: false
           items:
@@ -7826,7 +7830,7 @@ components:
             title: "Informations compl\xE9mentaires"
             x-health-only: false
             x-cols: 6
-            example: example.json#/evaluation/otherFreetext/0
+            example: example.json#/evaluation/freetext/0
             description: "Permettrait de concat\xE9ner dans une zone de commentaire\
               \ d'autres champs (ex. anamn\xE8se : allergies,, traitements, symptomes,\
               \ ant\xE9c\xE9dents)"
@@ -7840,28 +7844,6 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - parameterDetail
-      properties:
-        parameterTime:
-          type: string
-          title: Date et heure de la prise des constantes
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/evaluation/parameter/parameterTime
-          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
-          format: date-time
-          examples:
-          - None
-        parameterDetail:
-          $ref: '#/components/schemas/parameterDetail'
-      additionalProperties: false
-      example: example.json#/evaluation/parameter
-    parameterDetail:
-      type: object
-      title: "D\xE9tails des param\xE8tres vitaux"
-      x-display: expansion-panels
-      x-health-only: false
-      required:
       - type
       - value
       properties:
@@ -7870,22 +7852,32 @@ components:
           title: Type de constante
           x-health-only: false
           x-cols: 6
-          example: example.json#/evaluation/parameter/parameterDetail/type
-          description: "Fr\xE9quence cardiaque, Pression art\xE9rielle, Saturation\
-            \ en oxyg\xE8ne, Fr\xE9quence respiratoire, Temp\xE9rature, Hemoglucotest,\
-            \ Glasgow, H\xE9moglobine ?"
+          example: example.json#/evaluation/parameter/0/type
+          description: "Permet d'indiquer le type de constante associ\xE9 \xE0 la\
+            \ valeur envoy\xE9e"
+          enum:
+          - FREQUENCE_CARDIAQUE
+          - PRESSION_ARTERIELLE
+          - SATURATION_OXYGENE
+          - FREQUENCE_RESPIRATOIRE
+          - TEMPERATURE
+          - HEMOGLOCOTEST
+          - GLASGOW
           examples:
-          - None
+          - "Fr\xE9quence cardiaque, Pression art\xE9rielle, Saturation en oxyg\xE8\
+            ne, Fr\xE9quence respiratoire, Temp\xE9rature, Hemoglucotest, Glasgow"
         value:
           type: string
-          title: Valeur de la constante
+          title: "Valeur de la derni\xE8re constante prise"
           x-health-only: false
           x-cols: 6
-          example: example.json#/evaluation/parameter/parameterDetail/value
+          example: example.json#/evaluation/parameter/0/value
+          description: "Indique la valeur de la derni\xE8re constante prise"
           examples:
           - None
       additionalProperties: false
-      example: example.json#/evaluation/parameter/parameterDetail
+      example: example.json#/evaluation/parameter/0
       examples:
-      - type: None
+      - type: "Fr\xE9quence cardiaque, Pression art\xE9rielle, Saturation en oxyg\xE8\
+          ne, Fr\xE9quence respiratoire, Temp\xE9rature, Hemoglucotest, Glasgow"
         value: None

@@ -25,20 +25,19 @@
     },
     "evaluation": {
         "procedure": [
-            "None"
+            "O20"
         ],
         "mainDiagnosis": "MD30.Z",
         "associatedDiagnosis": "8B22.1",
-        "parameter": {
-            "parameterTime": "None",
-            "parameterDetail": {
-                "type": "None",
+        "parameter": [
+            {
+                "type": "Fréquence cardiaque, Pression artérielle, Saturation en oxygène, Fréquence respiratoire, Température, Hemoglucotest, Glasgow",
                 "value": "None"
             }
-        },
+        ],
         "medicalHistory": "None",
         "treatment": "None",
-        "otherFreetext": [
+        "freetext": [
             "None"
         ]
     }
