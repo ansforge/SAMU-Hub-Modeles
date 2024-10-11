@@ -99,7 +99,7 @@ A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre 
             </element>
             <element name="sex">
                 <annotation>
-                    <documentation>Sexe du patient, suivant le libellé court de la nomenclature SI-SAMU-NOMENC_SEXE</documentation>
+                    <documentation>Sexe du patient, suivant le libellé court de la nomenclature NOS-NOMENC_SEXE</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -122,13 +122,13 @@ A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre 
             <element name="mainDiagnosis" type="string">
                 <annotation>
                     <documentation>Thésaurus SFMU-FEDORU.
-A valoriser par un code de la nomenclature Diagnostic SMUR.</documentation>
+A valoriser par un code de la nomenclature Diagnostic SMUR(à venir).</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="associatedDiagnosis" type="string">
                 <annotation>
                     <documentation>Thésaurus SFMU-FEDORU.
-A valoriser par un code de la nomenclature Diagnostic SMUR.</documentation>
+A valoriser par un code de la nomenclature Diagnostic SMUR (à venir).</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -846,7 +846,7 @@ Le Code INSEE peut également précisé le pays d'intervention, si étranger. </
         <sequence>
             <element name="destinationCountry">
                 <annotation>
-                    <documentation>A valoriser par le libellé court de la nomenclature SIGLPAYS</documentation>
+                    <documentation>A valoriser par le code de la nomenclature associée</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1101,7 +1101,7 @@ Le Code INSEE peut également précisé le pays d'intervention, si étranger. </
             </element>
             <element name="healthcareType" type="string">
                 <annotation>
-                    <documentation>A valoriser par le code de la nomenclature ActiviteOperationnelle</documentation>
+                    <documentation>A valoriser par le code de la nomenclature ActiviteOperationnelle (à venir). </documentation>
                 </annotation>
             </element>
             <element name="finess" type="string">
@@ -1116,7 +1116,7 @@ Le Code INSEE peut également précisé le pays d'intervention, si étranger. </
             <element name="resourceCategory">
                 <annotation>
                     <documentation>Précise le type de moyen engagé dans l'intervention (SMUR, TSU, HOSPIT, etc.). 
-A valoriser par un code de la nomenclature SI SAMU-TYPE_MOYEN.</documentation>
+A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1160,7 +1160,7 @@ A valoriser par un code de la nomenclature SI SAMU-TYPE_MOYEN.</documentation>
             <element name="resourceType">
                 <annotation>
                     <documentation>Précise le type de véhicule terrestre / aérien / maritime engagé dans l'intervention.
-A valoriser par un code de la nomenclature CISU-TYPE_VECTEUR.</documentation>
+A valoriser par un code de la nomenclature SI-SAMU-TYPE_VECTEUR.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">

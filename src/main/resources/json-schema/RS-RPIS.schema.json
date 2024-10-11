@@ -178,7 +178,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/sex",
-                    "description": "Sexe du patient, suivant le libellé court de la nomenclature SI-SAMU-NOMENC_SEXE",
+                    "description": "Sexe du patient, suivant le libellé court de la nomenclature NOS-NOMENC_SEXE",
                     "enum": [
                         "M",
                         "F",
@@ -222,7 +222,7 @@
                         "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/intervention/procedure/0",
-                        "description": "Précise aussi bien les actes réalisés par le SMUR sur le lieu de l'intervention à son arrivée que ceux réalisés avant son intervention. \nA valoriser avec un code de la nomenclature ACTES_SMUR."
+                        "description": "Précise aussi bien les actes réalisés par le SMUR sur le lieu de l'intervention à son arrivée que ceux réalisés avant son intervention. \nA valoriser avec un code de la nomenclature ACTES_SMUR(à venir)."
                     }
                 },
                 "mainDiagnosis": {
@@ -231,7 +231,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/mainDiagnosis",
-                    "description": "Thésaurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature Diagnostic SMUR."
+                    "description": "Thésaurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature Diagnostic SMUR(à venir)."
                 },
                 "associatedDiagnosis": {
                     "type": "string",
@@ -239,7 +239,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/associatedDiagnosis",
-                    "description": "Thésaurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature Diagnostic SMUR."
+                    "description": "Thésaurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature Diagnostic SMUR (à venir)."
                 }
             },
             "additionalProperties": false,
@@ -1102,7 +1102,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/orientation/destination/destinationCountry",
-                    "description": "A valoriser par le libellé court de la nomenclature SIGLPAYS",
+                    "description": "A valoriser par le code de la nomenclature associée",
                     "enum": [
                         "AF",
                         "AX",
@@ -1361,7 +1361,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/orientation/destination/healthcareType",
-                    "description": "A valoriser par le code de la nomenclature ActiviteOperationnelle"
+                    "description": "A valoriser par le code de la nomenclature ActiviteOperationnelle (à venir). "
                 },
                 "finess": {
                     "type": "string",
@@ -1392,7 +1392,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/orientation/decision/resourceCategory",
-                    "description": "Précise le type de moyen engagé dans l'intervention (SMUR, TSU, HOSPIT, etc.). \nA valoriser par un code de la nomenclature SI SAMU-TYPE_MOYEN.",
+                    "description": "Précise le type de moyen engagé dans l'intervention (SMUR, TSU, HOSPIT, etc.). \nA valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.",
                     "enum": [
                         "SMUR",
                         "SMUR.ADULT",
@@ -1436,7 +1436,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/orientation/decision/resourceType",
-                    "description": "Précise le type de véhicule terrestre / aérien / maritime engagé dans l'intervention.\nA valoriser par un code de la nomenclature CISU-TYPE_VECTEUR.",
+                    "description": "Précise le type de véhicule terrestre / aérien / maritime engagé dans l'intervention.\nA valoriser par un code de la nomenclature SI-SAMU-TYPE_VECTEUR.",
                     "enum": [
                         "AASC",
                         "AASC.VLSC",

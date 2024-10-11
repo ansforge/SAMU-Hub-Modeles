@@ -51,7 +51,7 @@ public class Decision {
 
   /**
    * Précise le type de moyen engagé dans l&#39;intervention (SMUR, TSU, HOSPIT,
-   * etc.).  A valoriser par un code de la nomenclature SI SAMU-TYPE_MOYEN.
+   * etc.).  A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.
    */
   public enum ResourceCategoryEnum {
     SMUR("SMUR"),
@@ -154,7 +154,7 @@ public class Decision {
   /**
    * Précise le type de véhicule terrestre / aérien / maritime engagé dans
    * l&#39;intervention. A valoriser par un code de la nomenclature
-   * CISU-TYPE_VECTEUR.
+   * SI-SAMU-TYPE_VECTEUR.
    */
   public enum ResourceTypeEnum {
     AASC("AASC"),
@@ -360,7 +360,7 @@ public class Decision {
 
   /**
    * Précise le type de moyen engagé dans l&#39;intervention (SMUR, TSU, HOSPIT,
-   *etc.).  A valoriser par un code de la nomenclature SI SAMU-TYPE_MOYEN.
+   *etc.).  A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.
    * @return resourceCategory
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_CATEGORY)
@@ -385,7 +385,7 @@ public class Decision {
   /**
    * Précise le type de véhicule terrestre / aérien / maritime engagé dans
    *l&#39;intervention. A valoriser par un code de la nomenclature
-   *CISU-TYPE_VECTEUR.
+   *SI-SAMU-TYPE_VECTEUR.
    * @return resourceType
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
