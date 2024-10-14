@@ -120,7 +120,7 @@
         "icon": "mdi-heart-plus-outline",
         "name": "Ouardia BOUDADI.02",
         "environment": "Changement de CRRA traitant suite à la prise en charge de l’appel par le 78"
-      }, 
+      },
       {
         "file": "RS-EDA-MAJ/RS-EDA-MAJ_priseEnCharge_EnfantsNguyen.02.json",
         "icon": "mdi-baby-face-outline",
@@ -232,6 +232,12 @@
     }]
   },
   {
+    "label": "RS-ER",
+    "schemaName": "RS-ER.schema.json",
+    "schema": null,
+    "examples": []
+  },
+  {
     "label": "RS-DR",
     "schemaName": "RS-DR.schema.json",
     "schema": null,
@@ -244,11 +250,11 @@
         "environment": "Demande HeliSMUR 94 pour transfert Didier Morel au centre Urgence Mains à Nogent-sur-Marne"
       },
       {
-        "file": "RS-DR/RS-DR_partageRessources_LolaHalimi.03a.json",      
-        "icon": "mdi-image-broken-variant",      
-        "name": "Lola HALIMI.03a",      
-        "context": "Pas de test suivant: RS-RR - 03b",      
-        "environment": "Demande de ressources au 78 (pas de SMUR disponible au 95)"    
+        "file": "RS-DR/RS-DR_partageRessources_LolaHalimi.03a.json",
+        "icon": "mdi-image-broken-variant",
+        "name": "Lola HALIMI.03a",
+        "context": "Pas de test suivant: RS-RR - 03b",
+        "environment": "Demande de ressources au 78 (pas de SMUR disponible au 95)"
       },
       {
         "file": "RS-DR/RS-DR_partageRessources_EnfantsNguyen.04a.json",
@@ -309,45 +315,45 @@
         "icon": "mdi-image-broken-variant",
         "name": "Lola HALIMI.04",
         "environment": "Le SMUR 78 quitte la base"
-      }, 
+      },
       {
         "file": "RS-SR/RS-SR_partageRessources_EnfantsNguyen.05a.json",
         "icon": "mdi-baby-face-outline",
         "name": "Enfants NGUYEN.05a",
         "context": "Pas de test suivant: RS-SR - 05b ",
         "environment": "Départ du SMUR 76A vers le lieu de l’intervention"
-      }, 
+      },
       {
         "file": "RS-SR/RS-SR_partageRessources_EnfantsNguyen.05b.json",
         "icon": "mdi-baby-face-outline",
         "name": "Enfants NGUYEN.05b",
         "context": "Pas de test suivant: RS-SR - 05c",
         "environment": "Arrivée du VSAV 76A sur le lieu de l’intervention"
-      }, 
+      },
       {
         "file": "RS-SR/RS-SR_partageRessources_EnfantsNguyen.05c.json",
         "icon": "mdi-baby-face-outline",
         "name": "Enfants NGUYEN.05c",
         "environment": "Arrivée Helismur 80 sur le lieu de l’intervention"
-      }, 
+      },
       {
         "file": "RS-SR/RS-SR_FemmeEnceinte.03a.json",
         "icon": "mdi-human-pregnant",
         "name": "Delphine Vigneau.03a",
         "environment": "Départ de la base du VLM"
-      }, 
+      },
       {
         "file": "RS-SR/RS-SR_FemmeEnceinte.03b.json",
         "icon": "mdi-human-pregnant",
         "name": "Delphine Vigneau.03b",
         "environment": "Arrivée sur les lieux de l'intervention du VLM"
-      }, 
+      },
       {
         "file": "RS-SR/RS-SR_FuiteDeGaz.03a.json",
         "icon": "mdi-molecule-co2",
         "name": "Alice et Grégoire NORMAND.03a",
         "environment": "Départ de la base du VLM"
-      }, 
+      },
       {
         "file": "RS-SR/RS-SR_FuiteDeGaz.03b.json",
         "icon": "mdi-molecule-co2",
@@ -355,7 +361,6 @@
         "environment": "Arrivée sur les lieux de l'intervention du VLM"
       }]
   },
-
   {
     "label": "RS-RPIS",
     "schemaName": "RS-RPIS.schema.json",
@@ -382,6 +387,18 @@
         "name": "Delphine VIGNEAU.03",
         "medicalSituation": "Données RS-RPIS du patient"
       }]
+  },
+  {
+    "label": "RS-BPV",
+    "schemaName": "RS-BPV.schema.json",
+    "schema": null,
+    "examples": []
+  },
+  {
+    "label": "RS-URL",
+    "schemaName": "RS-URL.schema.json",
+    "schema": null,
+    "examples": []
   },
   {
     "label": "RC-EDA",
