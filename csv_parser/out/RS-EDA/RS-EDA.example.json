@@ -26,7 +26,7 @@
         },
         "details": {
             "status": "None",
-            "attribution": "DRM.MRU.MU",
+            "attribution": "MU",
             "priority": "P1",
             "careLevel": "R1"
         }
@@ -106,7 +106,7 @@
                 "detail": "+33671830530"
             },
             "callbackContact": {},
-            "language": "fr",
+            "language": "FR",
             "type": "FAMILLE, TIERS",
             "communication": "Malentendant, aucune difficulté de communication",
             "freetext": "témoin de l'accident",
