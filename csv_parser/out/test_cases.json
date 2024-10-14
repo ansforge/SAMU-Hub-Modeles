@@ -38,10 +38,10 @@
             "model": "RS-RI",
             "ignoredProperties": [
               "$.resourcesInfo.caseId",
-              "$.resourcesInfo.mobilizedResource[0].resourceId",
-              "$.resourcesInfo.mobilizedResource[0].orgId",
-              "$.resourcesInfo.mobilizedResource[1].resourceId",
-              "$.resourcesInfo.mobilizedResource[1].orgId"
+              "$.resourcesInfo.resource[0].resourceId",
+              "$.resourcesInfo.resource[0].orgId",
+              "$.resourcesInfo.resource[1].resourceId",
+              "$.resourcesInfo.resource[1].orgId"
             ]
           },
           {
@@ -99,8 +99,8 @@
             "model": "RS-RI",
             "ignoredProperties": [
               "$.resourcesInfo.caseId",
-              "$.resourcesInfo.mobilizedResource[0].resourceId",
-              "$.resourcesInfo.mobilizedResource[0].orgId"
+              "$.resourcesInfo.resource[0].resourceId",
+              "$.resourcesInfo.resource[0].orgId"
             ]
           },
           {
@@ -188,10 +188,10 @@
             "model": "RS-RI",
             "ignoredProperties": [
               "$.resourcesInfo.caseId",
-              "$.resourcesInfo.mobilizedResource[0].resourceId",
-              "$.resourcesInfo.mobilizedResource[0].orgId",
-              "$.resourcesInfo.mobilizedResource[0]missionId",
-              "$.resourcesInfo.mobilizedResource[0]contact.type"
+              "$.resourcesInfo.resource[0].resourceId",
+              "$.resourcesInfo.resource[0].orgId",
+              "$.resourcesInfo.resource[0]missionId",
+              "$.resourcesInfo.resource[0]contact.type"
             ]
           }
         ]
@@ -317,12 +317,12 @@
             "model": "RS-RI",
             "ignoredProperties": [
               "$.resourcesInfo.caseId",
-              "$.resourcesInfo.mobilizedResource[0].contact.type",
-              "$.resourcesInfo.mobilizedResource[0].resourceId",
-              "$.resourcesInfo.mobilizedResource[0].orgId",
-              "$.resourcesInfo.mobilizedResource[1].contact.type",
-              "$.resourcesInfo.mobilizedResource[1].resourceId",
-              "$.resourcesInfo.mobilizedResource[1].orgId"
+              "$.resourcesInfo.resource[0].contact.type",
+              "$.resourcesInfo.resource[0].resourceId",
+              "$.resourcesInfo.resource[0].orgId",
+              "$.resourcesInfo.resource[1].contact.type",
+              "$.resourcesInfo.resource[1].resourceId",
+              "$.resourcesInfo.resource[1].orgId"
             ]
           }
         ]
