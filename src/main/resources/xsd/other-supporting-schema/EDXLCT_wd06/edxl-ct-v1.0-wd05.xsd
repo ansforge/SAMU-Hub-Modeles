@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 3 sp1 (x64) (http://www.altova.com) by Donald P. McGarry (The Mitre Corporation) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ct="urn:oasis:names:tc:emergency:edxl:ct:1.0" xmlns:xpil="urn:oasis:names:tc:emergency:edxl:ciq:1.0:xpil" xmlns:xal="urn:oasis:names:tc:emergency:edxl:ciq:1.0:xal" xmlns:edxl-gsf="urn:oasis:names:tc:emergency:edxl:gsf:1.0" targetNamespace="urn:oasis:names:tc:emergency:edxl:ct:1.0" elementFormDefault="qualified" attributeFormDefault="qualified">
+	<xs:import namespace="urn:oasis:names:tc:emergency:edxl:ciq:1.0:xpil" schemaLocation="edxl_xPIL.xsd"/>
+	<xs:import namespace="urn:oasis:names:tc:emergency:edxl:ciq:1.0:xal" schemaLocation="edxl_xAL.xsd"/>
+	<xs:import namespace="urn:oasis:names:tc:emergency:edxl:gsf:1.0" schemaLocation="edxl-gsf.v1.0.xsd"/>
+	<xs:annotation>
+		<xs:documentation> 
+            Specification Name: OASIS EDXL Common Types ver 1.0
+            Description: Defines the W3C schema with commonly used types suc as ValueListURI
+            (Using XML Schema based standard code list/enumeration mechanism - OPTION 1 AND DEFAULT)
+            Produced by: Emergency Management Infrastructure Framework Subcommittee
+            URL: http://docs.oasis-open.org
+            Version: 1.0  
+            Status: Committee Specification Draft
+            Copyright: 2010, OASIS, http://www.oasis-open.org
+            Last Modified: 9 September 2011
+            Last Modified by: Don McGarry - The MITRE Corp.
+        </xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="EDXLDateTimeType">
+		<xs:restriction base="xs:dateTime">
+			<xs:pattern value="\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d[-,+]\d\d:\d\d"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EDXLStringType">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="1023"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PercentageType">
+		<xs:restriction base="xs:float">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ValueListURIType">
+		<xs:restriction base="xs:anyURI"/>
+	</xs:simpleType>
+	<xs:simpleType name="ValueType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="RemarksType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="EstimateType">
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name="DegreesCType">
+		<xs:restriction base="xs:float">
+			<xs:minInclusive value="-100.0"/>
+			<xs:maxInclusive value="70.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DegreesCircleType">
+		<xs:restriction base="xs:float">
+			<xs:minInclusive value="0.0"/>
+			<xs:maxInclusive value="360.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WeatherQualifierType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Light"/>
+			<xs:enumeration value="Moderate"/>
+			<xs:enumeration value="Heavy"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WeatherDescriptorType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Shallow"/>
+			<xs:enumeration value="Blowing"/>
+			<xs:enumeration value="Patches"/>
+			<xs:enumeration value="Showers"/>
+			<xs:enumeration value="Partial"/>
+			<xs:enumeration value="Drifting"/>
+			<xs:enumeration value="Thunderstorm"/>
+			<xs:enumeration value="Freezing"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WeatherPrecipitationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Drizzle"/>
+			<xs:enumeration value="Ice Crystals"/>
+			<xs:enumeration value="Unknown"/>
+			<xs:enumeration value="Rain"/>
+			<xs:enumeration value="Ice Pellets"/>
+			<xs:enumeration value="Snow"/>
+			<xs:enumeration value="Hail"/>
+			<xs:enumeration value="Snow Grains"/>
+			<xs:enumeration value="Snow Hail"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WeatherObscurationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Mist"/>
+			<xs:enumeration value="Sand"/>
+			<xs:enumeration value="Smoke"/>
+			<xs:enumeration value="Haze"/>
+			<xs:enumeration value="Volcanic Ash"/>
+			<xs:enumeration value="Spray"/>
+			<xs:enumeration value="Widespread Dust"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WeatherAddlPhenomType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Squall"/>
+			<xs:enumeration value="Funnel Cloud"/>
+			<xs:enumeration value="Sandstorm"/>
+			<xs:enumeration value="Tornado"/>
+			<xs:enumeration value="Waterspout"/>
+			<xs:enumeration value="Duststorm"/>
+			<xs:enumeration value="Dust Whirls"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SkyConditionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Sky Clear"/>
+			<xs:enumeration value="Few"/>
+			<xs:enumeration value="Scattered"/>
+			<xs:enumeration value="Broken"/>
+			<xs:enumeration value="Overcast"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="METARType">
+		<xs:sequence>
+			<xs:element name="StationID" minOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[A-Z]{4}"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ObservationTime" type="ct:EDXLDateTimeType" minOccurs="1"/>
+			<xs:element name="TempC" type="ct:DegreesCType" minOccurs="0"/>
+			<xs:element name="DewpointC" type="ct:DegreesCType" minOccurs="0"/>
+			<xs:element name="WindDirDegrees" type="ct:DegreesCircleType" minOccurs="0"/>
+			<xs:element name="WindSpeedkt" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="300"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="WindGustkt" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="300"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="VisibilityStatuteMI" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:float">
+						<xs:minInclusive value="0.0"/>
+						<xs:maxInclusive value="10.0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="AltimeterHP" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="800"/>
+						<xs:maxInclusive value="1200"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="SeaLevelPressuremb" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="800"/>
+						<xs:maxInclusive value="1200"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="WeatherPhenomenaReport" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Qualifier" type="ct:WeatherQualifierType" minOccurs="0"/>
+						<xs:element name="Descriptor" type="ct:WeatherDescriptorType" minOccurs="0"/>
+						<xs:element name="Precipitation" type="ct:WeatherPrecipitationType" minOccurs="0"/>
+						<xs:element name="Obscuration" type="ct:WeatherObscurationType" minOccurs="0"/>
+						<xs:element name="Additional" type="ct:WeatherAddlPhenomType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SkyCondition" type="ct:SkyConditionType" minOccurs="0"/>
+			<xs:element name="Precip1HrIn" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:float">
+						<xs:pattern value="[0-9][0-9].[0-9][0-9]"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Precip3HrIn" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:float">
+						<xs:pattern value="[0-9][0-9].[0-9][0-9]"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Precip6HrIn" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:float">
+						<xs:pattern value="[0-9][0-9].[0-9][0-9]"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Precip24HrIn" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:float">
+						<xs:pattern value="[0-9][0-9].[0-9][0-9]"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ValueListURI" type="ct:ValueListURIType"/>
+	<xs:element name="Value" type="ct:ValueType"/>
+	<xs:element name="WeatherInfo" type="ct:WeatherInfoType"/>
+	<xs:complexType name="ValueListType">
+		<xs:sequence>
+			<xs:element ref="ct:ValueListURI" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="ct:Value" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ValueKeyType">
+		<xs:sequence>
+			<xs:element ref="ct:ValueListURI" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="ct:Value" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ValueKeyStringPairType">
+		<xs:sequence>
+			<xs:element name="ValueKeyURI" type="ct:ValueKeyType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PairValue" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ValueKeyIntPairType">
+		<xs:sequence>
+			<xs:element name="ValueKeyURI" type="ct:ValueKeyType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PairValue" type="xs:int" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TimePeriodType">
+		<xs:sequence>
+			<xs:element name="FromDateTime" type="ct:EDXLDateTimeType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ToDateTime" type="ct:EDXLDateTimeType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PersonTimePairType">
+		<xs:sequence>
+			<xs:element name="PersonDetails" type="ct:PersonDetailsType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="TimeValue" type="ct:EDXLDateTimeType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WeatherInfoType">
+		<xs:sequence>
+			<xs:element name="METARString" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="METARReadings" type="ct:METARType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="WeatherRemarks" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="WeatherConcerns" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CurrencyType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9])+[.][0-9][0-9] [A-Z][A-Z][A-Z]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="OrganizationInformationType">
+		<xs:annotation>
+			<xs:documentation>The container element for organization information elements. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="xpil:OrganisationDetailsType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PersonDetailsType">
+		<xs:annotation>
+			<xs:documentation>A container for defining the unique characteristics of a person only</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="xpil:PersonDetailsType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="EDXLGeoPoliticalLocationType">
+		<xs:annotation>
+			<xs:documentation>A container for defining Geo-Political Locations</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="Address" type="xal:AddressType"/>
+			<xs:element name="GeoCode" type="ct:ValueListType"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="EDXLLocationType">
+		<xs:annotation>
+			<xs:documentation>A Container for describing both Geo-Political and Geographic Locations</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="EDXLGeoLocation" type="edxl-gsf:EDXLGeoLocationType"/>
+			<xs:element name="EDXLGeoPoliticalLocation" type="ct:EDXLGeoPoliticalLocationType"/>
+		</xs:choice>
+	</xs:complexType>
+</xs:schema>
