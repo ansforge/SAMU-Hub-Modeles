@@ -20,12 +20,12 @@
               "$.createCaseHealth.initialAlert.caller.callerContact.type",
               "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
               "$.createCaseHealth.initialAlert.caller.callbackContact.type",
-              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.patient[0].patientId",
               "$.createCaseHealth.medicalNote[0].operator.role",
-              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].patientId",
               "$.createCaseHealth.medicalNote[0].operator.medicalNoteId",
               "$.createCaseHealth.medicalNote[1].operator.role",
-              "$.createCaseHealth.medicalNote[1].idPat",
+              "$.createCaseHealth.medicalNote[1].patientId",
               "$.createCaseHealth.medicalNote[1].operator.medicalNoteId"
             ]
           },
@@ -54,9 +54,9 @@
             "ignoredProperties": [
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[0].idPat",
+              "$.createCaseHealthUpdate.medicalNote[0].patientId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.medicalNoteId",
-              "$.createCaseHealthUpdate.patient[0].idPat"
+              "$.createCaseHealthUpdate.patient[0].patientId"
             ]
           }
         ]
@@ -78,15 +78,15 @@
               "$.createCaseHealth.initialAlert.caller.callerContact.type",
               "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
               "$.createCaseHealth.initialAlert.caller.callbackContact.type",
-              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.patient[0].patientId",
               "$.createCaseHealth.medicalNote[0].operator.role",
-              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].patientId",
               "$.createCaseHealth.medicalNote[0].operator.medicalNoteId",
               "$.createCaseHealth.medicalNote[1].operator.role",
-              "$.createCaseHealth.medicalNote[1].idPat",
+              "$.createCaseHealth.medicalNote[1].patientId",
               "$.createCaseHealth.medicalNote[1].operator.medicalNoteId",
               "$.createCaseHealth.medicalNote[2].operator.role",
-              "$.createCaseHealth.medicalNote[2].idPat",
+              "$.createCaseHealth.medicalNote[2].patientId",
               "$.createCaseHealth.medicalNote[2].operator.medicalNoteId"
             ]
           },
@@ -113,7 +113,7 @@
             "ignoredProperties": [
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[0].idPat",
+              "$.createCaseHealthUpdate.medicalNote[0].patientId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.medicalNoteId"
             ]
           }
@@ -136,15 +136,15 @@
               "$.createCaseHealth.initialAlert.caller.callerContact.type",
               "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
               "$.createCaseHealth.initialAlert.caller.callbackContact.type",
-              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.patient[0].patientId",
               "$.createCaseHealth.medicalNote[0].operator.role",
-              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].patientId",
               "$.createCaseHealth.medicalNote[0].operator.medicalNoteId",
               "$.createCaseHealth.medicalNote[1].operator.role",
-              "$.createCaseHealth.medicalNote[1].idPat",
+              "$.createCaseHealth.medicalNote[1].patientId",
               "$.createCaseHealth.medicalNote[1].operator.medicalNoteId",
               "$.createCaseHealth.medicalNote[2].operator.role",
-              "$.createCaseHealth.medicalNote[2].idPat",
+              "$.createCaseHealth.medicalNote[2].patientId",
               "$.createCaseHealth.medicalNote[2].operator.medicalNoteId"
             ]
           },
@@ -158,12 +158,12 @@
             "ignoredProperties": [
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[0].idPat",
+              "$.createCaseHealthUpdate.medicalNote[0].patientId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.medicalNoteId",
               "$.createCaseHealthUpdate.medicalNote[1].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[1].idPat",
+              "$.createCaseHealthUpdate.medicalNote[1].patientId",
               "$.createCaseHealthUpdate.medicalNote[1].operator.medicalNoteId",
-              "$.createCaseHealthUpdate.patient[0].idPat"
+              "$.createCaseHealthUpdate.patient[0].patientId"
             ]
           },
           {
@@ -176,7 +176,7 @@
             "ignoredProperties": [
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.decision[0].operator.role",
-              "$.createCaseHealthUpdate.decision[0].idPat"
+              "$.createCaseHealthUpdate.decision[0].patientId"
             ]
           },
           {
@@ -214,9 +214,9 @@
               "$.createCaseHealth.initialAlert.caller.callerContact.type",
               "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
               "$.createCaseHealth.initialAlert.caller.callbackContact.type",
-              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.patient[0].patientId",
               "$.createCaseHealth.medicalNote[0].operator.role",
-              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].patientId",
               "$.createCaseHealth.medicalNote[0].operator.medicalNoteId"
             ]
           },
@@ -255,13 +255,13 @@
               "$.createCaseHealth.initialAlert.caller.callerContact.type",
               "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
               "$.createCaseHealth.initialAlert.caller.callbackContact.type",
-              "$.createCaseHealth.patient[0].idPat",
-              "$.createCaseHealth.patient[1].idPat",
+              "$.createCaseHealth.patient[0].patientId",
+              "$.createCaseHealth.patient[1].patientId",
               "$.createCaseHealth.medicalNote[0].operator.role",
-              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].patientId",
               "$.createCaseHealth.medicalNote[0].operator.medicalNoteId",
               "$.createCaseHealth.medicalNote[1].operator.role",
-              "$.createCaseHealth.medicalNote[1].idPat",
+              "$.createCaseHealth.medicalNote[1].patientId",
               "$.createCaseHealth.medicalNote[1].operator.medicalNoteId"
             ]
           },
@@ -290,22 +290,22 @@
             "ignoredProperties": [
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[0].idPat",
+              "$.createCaseHealthUpdate.medicalNote[0].patientId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.medicalNoteId",
               "$.createCaseHealthUpdate.medicalNote[1].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[1].idPat",
+              "$.createCaseHealthUpdate.medicalNote[1].patientId",
               "$.createCaseHealthUpdate.medicalNote[1].operator.medicalNoteId",
               "$.createCaseHealthUpdate.medicalNote[2].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[2].idPat",
+              "$.createCaseHealthUpdate.medicalNote[2].patientId",
               "$.createCaseHealthUpdate.medicalNote[2].operator.medicalNoteId",
               "$.createCaseHealthUpdate.medicalNote[3].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[3].idPat",
+              "$.createCaseHealthUpdate.medicalNote[3].patientId",
               "$.createCaseHealthUpdate.medicalNote[3].operator.medicalNoteId",
               "$.createCaseHealthUpdate.medicalNote[4].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[4].idPat",
+              "$.createCaseHealthUpdate.medicalNote[4].patientId",
               "$.createCaseHealthUpdate.medicalNote[4].operator.medicalNoteId",
-              "$.createCaseHealthUpdate.patient[0].idPat",
-              "$.createCaseHealthUpdate.patient[1].idPat"
+              "$.createCaseHealthUpdate.patient[0].patientId",
+              "$.createCaseHealthUpdate.patient[1].patientId"
             ]
           },
           {

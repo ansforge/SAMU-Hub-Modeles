@@ -5,7 +5,7 @@
         "operator": {
           "role": "ARM"
         },
-        "idPat": "fr.health.samu770.patient.DRFR157702400400055.2",
+        "patientId": "fr.health.samu770.patient.DRFR157702400400055.2",
         "medicalNoteId": "fr.health.samu770.medicalNote.78fre25",
         "creation": "2024-01-04T08:11:00+01:00",
         "freetext": "Hyperventile / Pleurs /Angoisse ++. Malaise à la vue du sang."
@@ -30,7 +30,7 @@
             "birthDate": "1963-12-12"
           }
         },
-        "idPat": "fr.health.samu770.patient.DRFR157702400400055.2"
+        "patientId": "fr.health.samu770.patient.DRFR157702400400055.2"
       }
     ],
     "caseId": "fr.health.samu770.DRFR157702400400055"

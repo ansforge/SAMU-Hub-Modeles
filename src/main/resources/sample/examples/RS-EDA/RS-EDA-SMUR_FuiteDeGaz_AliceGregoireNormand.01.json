@@ -91,7 +91,7 @@
             "birthDate": "2011-05-11"
           }
         },
-        "idPat": "fr.health.samu440.patient.DRFR154402413800236.1",
+        "patientId": "fr.health.samu440.patient.DRFR154402413800236.1",
         "detail": {
           "age": "P13Y"
         },
@@ -118,7 +118,7 @@
             "sex": "M"
           }
         },
-        "idPat": "fr.health.samu440.patient.DRFR154402413800236.2",
+        "patientId": "fr.health.samu440.patient.DRFR154402413800236.2",
         "detail": {
           "age": "P11Y"
         },
@@ -137,7 +137,7 @@
         "operator": {
           "role": "ARM"
         },
-        "idPat": "fr.health.samu440.patient.DRFR154402413800236.2",
+        "patientId": "fr.health.samu440.patient.DRFR154402413800236.2",
         "medicalNoteId": "fr.health.samu440.medicalNote.0001"
       }
     ],
