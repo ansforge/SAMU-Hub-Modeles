@@ -19,7 +19,7 @@
         "datetime": "2024-08-01T16:42:00+02:00",
         "resourceId": "fr.health.samu76A.resource.VLM12",
         "orgId": "fr.health.samu76A",
-        "vehiculeType": "VLM",
+        "vehiculeType": "SMUR.VLM",
         "name": "VLM 76 - A45"
       },
       {

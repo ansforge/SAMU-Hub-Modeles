@@ -6,7 +6,7 @@
           "teamCare": "MED",
           "name": "Equipe SMUR A"
         },
-        "vehiculeType": "VLM",
+        "vehiculeType": "SMUR.VLM",
         "name": "VLM 77 - 250",
         "datetime": "2024-01-04T08:05:00+01:00",
         "resourceId": "fr.health.samu770.resource.VLM250",
