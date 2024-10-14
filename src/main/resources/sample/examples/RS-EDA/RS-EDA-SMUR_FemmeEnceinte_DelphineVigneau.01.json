@@ -70,7 +70,7 @@
           "lastName": "Duberti",
           "firstName": "Agnès"
         },
-        "language": "FR",
+        "language": "fr",
         "type": "TIERS",
         "callbackContact": {
           "channel": "PERSONNE",

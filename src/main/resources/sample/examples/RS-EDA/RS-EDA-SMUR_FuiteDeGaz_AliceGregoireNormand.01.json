@@ -68,7 +68,7 @@
           "lastName": "Dubois",
           "firstName": "Marie"
         },
-        "language": "FR",
+        "language": "fr",
         "type": "FAMILLE",
         "callbackContact": {
           "channel": "PERSONNE",

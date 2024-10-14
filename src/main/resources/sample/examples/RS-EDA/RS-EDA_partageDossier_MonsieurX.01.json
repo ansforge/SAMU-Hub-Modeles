@@ -17,7 +17,7 @@
           "detail": "+34612345678",
           "channel": "PERSONNE"
         },
-        "language": "FR",
+        "language": "fr",
         "type": "TIERS"
       },
       "reception": "2024-03-03T15:00:00+01:00",
