@@ -90,6 +90,7 @@ jobs:
         if: steps.filter.outputs.parsing_required == 'true'
         run: |
           rm out/RS-ERROR.xsd
+          rm ../../src/main/resources/xsd/*.xsd
           mv out/*.xsd ../../src/main/resources/xsd/
 
       - name: Remove input JSON Schemas
