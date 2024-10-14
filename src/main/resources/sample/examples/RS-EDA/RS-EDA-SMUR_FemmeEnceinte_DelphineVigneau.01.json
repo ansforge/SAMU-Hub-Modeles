@@ -129,7 +129,7 @@
         "creation": "2024-05-26T13:20:00+02:00",
         "decisionType": "INTER",
         "resourceType": "SMUR",
-        "vehiculeType": "VLM"
+        "vehiculeType": "SMUR.VLM"
       }
     ]
   }

@@ -7,7 +7,7 @@
           "name": "Equipe SMUR 2"
         },
         "resourceType": "SMUR",
-        "vehiculeType": "VLM",
+        "vehiculeType": "SMUR.VLM",
         "name": "VLM2",
         "datetime": "2024-05-18T18:20:00+02:00",
         "resourceId": "fr.health.samu440.resource.VLM2",
@@ -32,7 +32,7 @@
         "resourceId": "fr.fire.sis044.cgo-044.resource.VSAV3",
         "orgId": "fr.fire.sdis044.cgo-044",
         "resourceType": "SIS",
-        "vehiculeType": "VSAV",
+        "vehiculeType": "SIS.VSAV",
         "name": "VSAV3",
         "centerCity": "44109"
       }
