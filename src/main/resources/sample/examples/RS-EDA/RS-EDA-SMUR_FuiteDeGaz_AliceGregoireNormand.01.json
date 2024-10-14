@@ -149,7 +149,6 @@
           "role": "MEDECIN"
         },
         "resourceType": "SMUR",
-        "vehiculeType": "SMUR.VLM",
         "decisionType": "INTER",
         "creation": "2024-05-18T18:19:00+02:00",
         "medicalTransport": true
@@ -159,7 +158,6 @@
           "role": "MEDECIN"
         },
         "resourceType": "SIS",
-        "vehiculeType": "SIS.VSAV",
         "decisionType": "INTER",
         "creation": "2024-05-18T18:20:00+02:00"
       }
