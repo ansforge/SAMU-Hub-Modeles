@@ -91,7 +91,7 @@ jobs:
         run: |
           rm out/RS-ERROR.xsd
           # Clean XSD repo but keep manual XSDs
-          find ../../src/main/resources/xsd -type f -name '*.xsd' ! -name 'EDXL-DE-*.xsd' ! -name 'CustomContent.xsd' ! -name 'RX-XML-ContentType.xsd' ! -name 'RS-ERROR.xsd' -exec rm {} +
+          find ../../src/main/resources/xsd -type f -name '*.xsd' ! -name 'EDXL-DE-*.xsd' ! -name 'CustomContent.xsd' ! -name 'RC-XML-ContentType.xsd' ! -name 'RS-ERROR.xsd' -exec rm {} +
           mv out/*.xsd ../../src/main/resources/xsd/
 
       - name: Remove input JSON Schemas
