@@ -42,7 +42,7 @@
         "resourceId": "fr.fire.sis076.cgo-076.resource.VSAV3A",
         "orgId": "fr.fire.sdis76.cgo-076",
         "name": "VSAV 76 - 22D8",
-        "vehiculeType": "VSAV"
+        "vehiculeType": "SIS.VSAV"
       }
     ],
     "caseId": "fr.health.samu800.DRFR158002421400215"
