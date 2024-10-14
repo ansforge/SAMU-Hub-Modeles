@@ -24,7 +24,6 @@
         "resourceId": "fr.health.samu940.resource.HeliS456",
         "requestId": "fr.health.samu770.request.as41pb",
         "orgId": "fr.health.samu94",
-        "resourceType": "SMUR",
         "vehiculeType": "HELISMUR",
         "name": "HELISMUR 94 - B2"
       }
