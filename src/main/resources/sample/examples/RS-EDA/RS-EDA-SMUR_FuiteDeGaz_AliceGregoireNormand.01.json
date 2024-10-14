@@ -138,7 +138,7 @@
           "role": "ARM"
         },
         "idPat": "fr.health.samu440.patient.DRFR154402413800236.2",
-        "idObs": "fr.health.samu440.medicalNote.0001"
+        "medicalNoteId": "fr.health.samu440.medicalNote.0001"
       }
     ],
     "owner": "fr.health.samu440",

@@ -84,7 +84,7 @@
         "freetext": "Confusion, étourdissements, s’exprime difficilement. ",
         "creation": "2024-03-03T15:08:00+01:00",
         "idPat": "fr.health.samu009.patient.DRFR150092406301259.1",
-        "idObs": "fr.health.samu009.medicalNote.46zf89"
+        "medicalNoteId": "fr.health.samu009.medicalNote.46zf89"
       }
     ]
   }

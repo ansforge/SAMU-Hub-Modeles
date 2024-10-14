@@ -6,7 +6,7 @@
           "role": "MEDECIN"
         },
         "idPat": "fr.health.samu800.patient.DRFR158002421400215.1",
-        "idObs": "fr.health.samu800.medicalNote.kn123pm",
+        "medicalNoteId": "fr.health.samu800.medicalNote.kn123pm",
         "creation": "2024-08-01T16:35:00+02:00",
         "freetext": "Très choquée, pleurs +++. Pas de léthargie, difficile d’évaluer si trauma crânien ou non lors de la chute"
       },
@@ -15,7 +15,7 @@
           "role": "MEDECIN"
         },
         "idPat": "fr.health.samu800.patient.DRFR158002421400215.1",
-        "idObs": "fr.health.samu800.medicalNote.kn456lm",
+        "medicalNoteId": "fr.health.samu800.medicalNote.kn456lm",
         "creation": "2024-08-01T16:36:00+02:00",
         "freetext": "Pas de fracture apparente mais large plaque / hématome au niveau du ventre. Possible hémorragie interne."
       },
@@ -24,7 +24,7 @@
           "role": "MEDECIN"
         },
         "idPat": "fr.health.samu800.patient.DRFR158002421400215.1",
-        "idObs": "fr.health.samu800.medicalNote.kn789df",
+        "medicalNoteId": "fr.health.samu800.medicalNote.kn789df",
         "creation": "2024-08-01T16:37:00+02:00",
         "freetext": "Allergique à la pénicilline"
       },
@@ -33,7 +33,7 @@
           "role": "MEDECIN"
         },
         "idPat": "fr.health.samu800.patient.DRFR158002421400215.2",
-        "idObs": "fr.health.samu800.medicalNote.bn123ap",
+        "medicalNoteId": "fr.health.samu800.medicalNote.bn123ap",
         "creation": "2024-08-01T16:40:00+02:00",
         "freetext": "Conscient, communique, n’est pas désorienté. N’a pas perdu connaissance, a amorti la chute avec ses bras."
       },
@@ -42,7 +42,7 @@
           "role": "MEDECIN"
         },
         "idPat": "fr.health.samu800.patient.DRFR158002421400215.2",
-        "idObs": "fr.health.samu800.medicalNote.bn456az",
+        "medicalNoteId": "fr.health.samu800.medicalNote.bn456az",
         "creation": "2024-08-01T16:41:00+02:00",
         "freetext": "Fracture du coude gauche : impossible de mobiliser l’articulation + gonflement et œdème. Plaie importante sur la jambe gauche (abrasions) + suspicion de fracture du tibia (fermée)."
       }

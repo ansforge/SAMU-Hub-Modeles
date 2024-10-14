@@ -81,7 +81,7 @@
           "role": "ARM"
         },
         "idPat": "fr.health.samu800.patient.DRFR158002421400215.1",
-        "idObs": "fr.health.samu800.medicalNote.kn569ab",
+        "medicalNoteId": "fr.health.samu800.medicalNote.kn569ab",
         "creation": "2024-08-01T16:31:00+02:00",
         "freetext": "Chute dans la piscine à vide : pleure et crie. Multiples contusions. Plaie importante à l’arcade sourcilière."
       },
@@ -90,7 +90,7 @@
           "role": "ARM"
         },
         "idPat": "fr.health.samu800.patient.DRFR158002421400215.2",
-        "idObs": "fr.health.samu800.medicalNote.bn338bc",
+        "medicalNoteId": "fr.health.samu800.medicalNote.bn338bc",
         "creation": "2024-08-01T16:32:00+02:00",
         "freetext": "Conscient, légèrement choqué. Jambe ouverte et tordue, douleur ++."
       }

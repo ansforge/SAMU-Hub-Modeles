@@ -7,7 +7,7 @@
           "label": "Emilie Martin"
         },
         "idPat": "fr.health.samu440.patient.DRFR154402414300123.1",
-        "idObs": "fr.health.samu440.medicalNote.0012321",
+        "medicalNoteId": "fr.health.samu440.medicalNote.0012321",
         "creation": "2024-05-26T13:20:00+02:00",
         "freetext": "Patiente consciente. Enceinte de 28 SA - chute de 3 mètres, accompagnée de saignements vaginaux et de contractions utérines. "
       }

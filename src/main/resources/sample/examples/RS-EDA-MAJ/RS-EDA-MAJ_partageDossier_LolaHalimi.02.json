@@ -11,7 +11,7 @@
           "role": "MEDECIN"
         },
         "idPat": "fr.health.samu950.patient.DRFR159502400400159.1",
-        "idObs": "fr.health.samu950.medicalNote.12pt341",
+        "medicalNoteId": "fr.health.samu950.medicalNote.12pt341",
         "creation": "2024-01-18T18:20:00+01:00",
         "freetext": "Douleur +++. Hématome étendu et violacé.  L'enfant perd conscience par intermittence. Possible hémorragie interne. "
       }
