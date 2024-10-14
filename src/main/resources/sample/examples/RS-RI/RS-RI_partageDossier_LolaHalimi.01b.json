@@ -20,7 +20,6 @@
         "datetime": "2024-01-18T18:06:00+01:00",
         "resourceId": "fr.fire.cga-095.resource.VSAV95",
         "orgId": "fr.fire.cga-095",
-        "resourceType": "SIS",
         "vehiculeType": "VSAV",
         "name": "VSAV95.C"
       }
