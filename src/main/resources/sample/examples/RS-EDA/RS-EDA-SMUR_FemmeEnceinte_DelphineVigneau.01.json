@@ -128,8 +128,7 @@
         "patientId": "fr.health.samu440.patient.DRFR154402414300123.1",
         "creation": "2024-05-26T13:20:00+02:00",
         "decisionType": "INTER",
-        "resourceType": "SMUR",
-        "vehiculeType": "SMUR.VLM"
+        "resourceType": "SMUR"
       }
     ]
   }
