@@ -83,7 +83,9 @@ jobs:
       - name: Generate XSDs
         working-directory: ./csv_parser/json_schema2xsd
         if: steps.filter.outputs.parsing_required == 'true'
-        run: gradle run
+        run: |
+          rm out/*.xsd
+          gradle run
 
       - name: Move XSDs to src
         working-directory: ./csv_parser/json_schema2xsd
