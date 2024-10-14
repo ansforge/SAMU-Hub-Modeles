@@ -18,7 +18,7 @@
       },
       "details": {
         "priority": "P2",
-        "attribution": "MU"
+        "attribution": "DRM.MRU.MU"
       },
       "origin": "18"
     },
@@ -70,7 +70,7 @@
           "lastName": "Duberti",
           "firstName": "Agnès"
         },
-        "language": "FR",
+        "language": "fr",
         "type": "TIERS",
         "callbackContact": {
           "channel": "PERSONNE",
@@ -93,7 +93,7 @@
             "birthDate": "1992-03-03"
           }
         },
-        "idPat": "fr.health.samu440.patient.DRFR154402414300123.1",
+        "patientId": "fr.health.samu440.patient.DRFR154402414300123.1",
         "detail": {
           "age": "P32Y"
         },
@@ -125,11 +125,10 @@
           "role": "MEDECIN",
           "label": "Rémi Martin"
         },
-        "idPat": "fr.health.samu440.patient.DRFR154402414300123.1",
+        "patientId": "fr.health.samu440.patient.DRFR154402414300123.1",
         "creation": "2024-05-26T13:20:00+02:00",
         "decisionType": "INTER",
-        "resourceType": "SMUR",
-        "vehiculeType": "VLM"
+        "resourceType": "SMUR"
       }
     ]
   }

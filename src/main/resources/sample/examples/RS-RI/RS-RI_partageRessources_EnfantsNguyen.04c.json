@@ -1,6 +1,6 @@
 {
   "resourcesInfo": {
-    "mobilizedResource": [
+    "resource": [
       {
         "contact": {
           "details": "+33712318965",
@@ -24,8 +24,7 @@
         "requestId": "fr.health.samu76A.request.af78b21",
         "resourceId": "fr.health.samu800.resource.Heli80bec6",
         "orgId": "fr.health.samu800",
-        "resourceType": "SMUR",
-        "vehiculeType": "HELISMUR",
+        "vehiculeType": "SMUR.HELISMUR",
         "name": "HELISMUR 80 - BEC6"
       }
     ],

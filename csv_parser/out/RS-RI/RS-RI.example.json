@@ -8,7 +8,7 @@
             "missionId": "DRFR15DDXAAJJJ0000.M001",
             "orgId": "fr.health.samu440",
             "centerName": "CHU Nantes",
-            "vehiculeType": "VLM",
+            "vehiculeType": "SMUR.VLM",
             "name": "SMUR 123",
             "centerCity": 44109,
             "team": {
@@ -18,7 +18,7 @@
             "state": [
                 {
                     "datetime": "2022-09-27T08:23:34+02:00",
-                    "status": "ARRIVE",
+                    "status": "ARRIVEE",
                     "availability": "FALSE"
                 }
             ],

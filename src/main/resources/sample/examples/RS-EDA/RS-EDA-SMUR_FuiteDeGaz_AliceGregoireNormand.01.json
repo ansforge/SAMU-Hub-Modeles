@@ -24,7 +24,7 @@
       },
       "details": {
         "priority": "P1",
-        "attribution": "TOXICOL"
+        "attribution": "DRM.SPE.TOXICOL"
       },
       "origin": "15"
     },
@@ -68,7 +68,7 @@
           "lastName": "Dubois",
           "firstName": "Marie"
         },
-        "language": "FR",
+        "language": "fr",
         "type": "FAMILLE",
         "callbackContact": {
           "channel": "PERSONNE",
@@ -91,7 +91,7 @@
             "birthDate": "2011-05-11"
           }
         },
-        "idPat": "fr.health.samu440.patient.DRFR154402413800236.1",
+        "patientId": "fr.health.samu440.patient.DRFR154402413800236.1",
         "detail": {
           "age": "P13Y"
         },
@@ -118,7 +118,7 @@
             "sex": "M"
           }
         },
-        "idPat": "fr.health.samu440.patient.DRFR154402413800236.2",
+        "patientId": "fr.health.samu440.patient.DRFR154402413800236.2",
         "detail": {
           "age": "P11Y"
         },
@@ -137,8 +137,8 @@
         "operator": {
           "role": "ARM"
         },
-        "idPat": "fr.health.samu440.patient.DRFR154402413800236.2",
-        "idObs": "fr.health.samu440.medicalNote.0001"
+        "patientId": "fr.health.samu440.patient.DRFR154402413800236.2",
+        "medicalNoteId": "fr.health.samu440.medicalNote.0001"
       }
     ],
     "owner": "fr.health.samu440",
@@ -149,7 +149,6 @@
           "role": "MEDECIN"
         },
         "resourceType": "SMUR",
-        "vehiculeType": "VLM",
         "decisionType": "INTER",
         "creation": "2024-05-18T18:19:00+02:00",
         "medicalTransport": true
@@ -159,7 +158,6 @@
           "role": "MEDECIN"
         },
         "resourceType": "SIS",
-        "vehiculeType": "VSAV",
         "decisionType": "INTER",
         "creation": "2024-05-18T18:20:00+02:00"
       }

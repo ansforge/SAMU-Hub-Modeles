@@ -2,7 +2,7 @@
     "caseId": "fr.health.samu440.DRFR15440241550012",
     "resource": [
         {
-            "vehiculeType": "VLM",
+            "vehiculeType": "SMUR.VLM",
             "name": "SMUR 123",
             "team": {
                 "careLevel": "MED",

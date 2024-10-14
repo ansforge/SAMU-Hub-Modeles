@@ -1,6 +1,6 @@
 {
   "resourcesInfo": {
-    "mobilizedResource": [
+    "resource": [
       {
         "contact": {
           "type": "TEL",
@@ -14,8 +14,7 @@
         "resourceId": "fr.health.samu780.resource.SMUR78-E",
         "requestId": "fr.health.samu950.request.zs498qo",
         "orgId": "fr.health.samu78",
-        "resourceType": "SMUR",
-        "vehiculeType": "VLM",
+        "vehiculeType": "SMUR.VLM",
         "name": "VLM78-E"
       }
     ],
