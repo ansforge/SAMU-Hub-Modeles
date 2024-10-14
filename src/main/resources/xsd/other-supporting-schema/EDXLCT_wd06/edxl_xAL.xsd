@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Adapted for edxl_ciq 2011/04/19 wbj -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:oasis:names:tc:emergency:edxl:ciq:1.0:xal" xmlns:ct="urn:oasis:names:tc:emergency:edxl:ciq:1.0:ct" targetNamespace="urn:oasis:names:tc:emergency:edxl:ciq:1.0:xal" elementFormDefault="qualified" attributeFormDefault="qualified">
+	<xs:annotation>
+		<xs:documentation> 
+			Specification Name: OASIS EDXL extensible Address Language (xAL) profile ver 1.0
+            Description: Defines the W3C schema for the EDXL Profile for representing addresses
+            (Using XML Schema based standard code list/enumeration mechanism - OPTION 1 AND DEFAULT)
+            Produced by: Emergency Management Infrastructure Framework Subcommittee
+            URL: http://docs.oasis-open.org
+            Version: 1.0  
+            Status: Committee Specification Draft
+            Copyright: 2010, OASIS, http://www.oasis-open.org
+            Last Modified: 12 July 2011
+            Last Modified by: Don McGarry - The MITRE Corp.
+		
+			Profile Developed From:
+            Specification Name: OASIS CIQ TC - extensible Address Language (xAL) 
+            Description: Defines the W3C schema for representing addresses
+            (Using XML Schema based standard code list/enumeration mechanism - OPTION 1 AND DEFAULT)
+            Produced by: OASIS Customer Information Quality Technical Committee
+            URL: http://www.oasis-open.org/committees/ciq
+            Version: 3.0  
+			Status: Committee Specification CS02
+			Copyright: 2007-09, OASIS, http://www.oasis-open.org
+			Last Modified: 20 September 2008
+            Last Modified by: Ram Kumar, Chair, OASIS CIQ TC
+		</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="xAL-types.xsd"/>
+	<xs:import namespace="urn:oasis:names:tc:emergency:edxl:ciq:1.0:ct" schemaLocation="CommonTypes.xsd"/>
+	<xs:element name="Address" type="AddressType">
+		<xs:annotation>
+			<xs:documentation>
+                Top level element for address with geocode details
+            </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="AddressType">
+		<xs:annotation>
+			<xs:documentation>
+                Complex type that defines the structure of an address with geocode details for reuse
+            </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FreeTextAddress" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+                        Container for free text address elements where address elements are not parsed  
+                    </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AddressLine" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>
+                                    Free format address representation. An address can have more than one line.
+                                    The order of the AddressLine elements must be preserved.
+                                </xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="ct:String"/>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Country" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+                        Country details
+                    </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="CountryType"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AdministrativeArea" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+                        Details of the top-level area division in the country, such as state, district,
+                        province, island, region, etc. Note that some countries do not have this
+                    </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="NameElement" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>
+                                    Data associated with the Administrative Area. e.g. Full name of administrative
+                                    area or part of it. eg. MI in USA, NSW in Australia, reference location to the
+                                    administrative area
+                                </xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="ct:String"/>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="SubAdministrativeArea" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>
+                                    The next level down division of the area. E.g. state / county, province /
+                                    reservation. Note that not all countries have a subadministrative area
+                                </xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="NameElement" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>
+                                                Data associated with the SubAdministrative Area. e.g. Full name of
+                                                sub administrative area or part of it.
+                                            </xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:simpleContent>
+												<xs:extension base="ct:String"/>
+											</xs:simpleContent>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Locality" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+                        Details of Locality which is a named densiliy populated area  (a place) such as town,
+                        village, suburb, etc. A locality composes of many individual addresses.  Many localities
+                        exist in an administrative area or a sub adminisrative area. A locality can also have sub
+                        localities. For example, a municipality locality can have many villages associated with
+                        it which are sub localities. Example: Tamil Nadu State, Erode District, Bhavani Taluk,
+                        Paruvachi Village is a valid address in India. Tamil Nadu is the Administrative Area,
+                        Erode is the sub admin area, Bhavani is the locality, and Paruvachi is the sub locality
+                    </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="NameElement" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>
+                                    Data associated with the locality. e.g. Full name of the locality or part
+                                    of it, reference location to the locality
+                                </xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="ct:String"/>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="SubLocality" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>
+                                    A locality that is smaller and is contained within the boundaries of its
+                                    parent locality. Note that not all localities have sub locality. For example,
+                                    many areas within a locality where each area is a sub locality
+                                </xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="NameElement" maxOccurs="unbounded">
+										<xs:annotation>
+											<xs:documentation>
+                                                Data associated with the sub locality. e.g. Full name of the
+                                                locality or part of it, reference location to the locality
+                                            </xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:simpleContent>
+												<xs:extension base="ct:String"/>
+											</xs:simpleContent>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Thoroughfare" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+                        Details of the Access route along which buildings/lot/land are located, such as
+                        street, road, channel, crescent, avenue, etc. This also includes canals/banks on
+                        which houses/boat houses are located where people live
+                    </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="ThoroughfareType"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PostCode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+                        A container for a single free text or structured postcode. Note that not all
+                        countries have post codes
+                    </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Identifier" type="IdentifierType" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>
+                                    The postcode is formatted according to country-specific rules.
+                                    Example: SW3 0A8-1A, 600074, 2067. This element can also be used to
+                                    define the semantics of what each code in the post code means
+                                </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CountryType">
+		<xs:annotation>
+			<xs:documentation>
+                Complex type that defines the name of the country and is reused in other CIQ specs
+            </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NameElement">
+				<xs:annotation>
+					<xs:documentation>
+                        Data associated with the name of the country in whatever form available,
+                        e.g. full, abbreviation, common use, code of the country, etc.
+                    </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="ct:String"/>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IdentifierType">
+		<xs:annotation>
+			<xs:documentation>
+                Complex type for internal reuse
+            </xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="ct:String">
+				<xs:attribute name="Type" type="IdentifierElementTypeList">
+					<xs:annotation>
+						<xs:documentation>
+                            Indicates which part of number or identifier this element contains.
+                            Some "numbers" are as simple as 42 and some "numbers" are more like
+                            complex aplhanumberic identifiers as Postcodes in UK or Canada, e.g.
+                            M2H 2S5. It may be necessary to separate the "number" into sub-elements
+                            and indicate what type of information each of them contains.
+                        </xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attributeGroup ref="ct:grAbbreviation"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ThoroughfareType">
+		<xs:annotation>
+			<xs:documentation>
+                Complex type for internal reuse
+            </xs:documentation>
+		</xs:annotation>
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="NameElement">
+				<xs:annotation>
+					<xs:documentation>
+                        Data associated with the thoroughfare details. e.g. Full thoroughfare name
+                        or part of it, type of thoroughfare, old name, new name, reference data in
+                        support of the thoroughfare
+                    </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="ct:String">
+							<xs:attributeGroup ref="ct:grAbbreviation"/>
+							<xs:attribute name="NameType" type="ThoroughfareNameTypeList">
+								<xs:annotation>
+									<xs:documentation>
+                                        Describes the type / part of name this element contains.
+                                    </xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Number" type="IdentifierType">
+				<xs:annotation>
+					<xs:documentation>
+                        Data associated with the number of the thoroughfare. E.g. 39 in 39 Baker
+                        Street, street range, street suffix
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+		<xs:attribute name="Type" type="ThoroughfareTypeList">
+			<xs:annotation>
+				<xs:documentation>
+                    Type of thoroughfare. eg. primary road, secondary road, road branch (e.g. Lane 14),
+                    road sub branch (e.g. Alley 21), adjourning street, cross street, closest street, etc
+                </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>
