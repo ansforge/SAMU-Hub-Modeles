@@ -138,7 +138,7 @@ En réception, il est très important d'intégrer et d'afficher la valeur de cet
     </complexType>
     <complexType name="patient">
         <sequence>
-            <element name="patientId">
+            <element name="idPat">
                 <annotation>
                     <documentation>Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient.
 Il est valorisé comme suit lors de sa création : 
@@ -165,7 +165,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
     </complexType>
     <complexType name="medicalNote">
         <sequence>
-            <element minOccurs="0" name="patientId">
+            <element minOccurs="0" name="idPat">
                 <annotation>
                     <documentation>Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, 
 
@@ -182,7 +182,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
                 </simpleType>
             </element>
             <element name="operator" type="x:operator"/>
-            <element name="medicalNoteId">
+            <element name="idObs">
                 <annotation>
                     <documentation>Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation
 Il est valorisé comme suit lors de sa création : 
@@ -214,7 +214,7 @@ Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jo
     </complexType>
     <complexType name="decision">
         <sequence>
-            <element minOccurs="0" name="patientId" type="string">
+            <element minOccurs="0" name="idPat" type="string">
                 <annotation>
                     <documentation>A valoriser avec l'ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur</documentation>
                 </annotation>
@@ -247,39 +247,104 @@ A fournir obligatoirement pour une décision d'intervention ou de transport/orie
                 <simpleType>
                     <restriction base="string">
                         <enumeration value="SMUR"/>
-                        <enumeration value="SMUR.ADULT"/>
-                        <enumeration value="SMUR.PED"/>
-                        <enumeration value="SMUR.UMH-S"/>
-                        <enumeration value="SMUR.CUMP"/>
+                        <enumeration value="MED"/>
+                        <enumeration value="PARAMED"/>
                         <enumeration value="HOSPIT"/>
-                        <enumeration value="LIBERAL"/>
-                        <enumeration value="LIBERAL.MG"/>
-                        <enumeration value="LIBERAL.PHARM"/>
-                        <enumeration value="LIBERAL.INF"/>
-                        <enumeration value="LIBERAL.KINE"/>
-                        <enumeration value="LIBERAL.SOS"/>
-                        <enumeration value="LIBERAL.MMG"/>
-                        <enumeration value="LIBERAL.MSPD"/>
-                        <enumeration value="LIBERAL.MCS"/>
-                        <enumeration value="LIBERAL.SPEMED"/>
-                        <enumeration value="LIBERAL.DENT"/>
-                        <enumeration value="LIBERAL.LABO"/>
-                        <enumeration value="LIBERAL.AUTREPRO"/>
+                        <enumeration value="LIB"/>
+                        <enumeration value="MEDC"/>
+                        <enumeration value="PHARMA"/>
+                        <enumeration value="INF"/>
+                        <enumeration value="MEDSPE"/>
+                        <enumeration value="DENT"/>
+                        <enumeration value="AUTREPRO"/>
                         <enumeration value="TSU "/>
                         <enumeration value="SIS"/>
-                        <enumeration value="SIS.MEDSP"/>
-                        <enumeration value="SIS.ISP"/>
-                        <enumeration value="SIS.SP"/>
+                        <enumeration value="MSP"/>
+                        <enumeration value="ISP"/>
+                        <enumeration value="SP"/>
                         <enumeration value="AASC"/>
                         <enumeration value="FDO"/>
-                        <enumeration value="FDO.PN"/>
-                        <enumeration value="FDO.GEND"/>
-                        <enumeration value="FDO.PM"/>
-                        <enumeration value="FDO.DOUANES"/>
+                        <enumeration value="HELIFSI"/>
+                        <enumeration value="VLFSI"/>
+                        <enumeration value="FFSI"/>
+                        <enumeration value="DGDD"/>
                         <enumeration value="AUTRE"/>
-                        <enumeration value="AUTRE.ADM"/>
-                        <enumeration value="AUTRE.DAE"/>
-                        <enumeration value="AUTRE.AUTRE"/>
+                        <enumeration value="ADM"/>
+                        <enumeration value="DAE"/>
+                        <enumeration value="INCONNU"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="vehiculeType">
+                <annotation>
+                    <documentation>A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée) en fonction du type de décision.
+A fournir obligatoirement pour une décision d'intervention ou de transport/orientation.</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="AASC"/>
+                        <enumeration value="VLSC"/>
+                        <enumeration value="VPSP"/>
+                        <enumeration value="AUTRESC"/>
+                        <enumeration value="AUTREVEC"/>
+                        <enumeration value="TAXI"/>
+                        <enumeration value="TRANSP"/>
+                        <enumeration value="TRAIN"/>
+                        <enumeration value="AVION"/>
+                        <enumeration value="PERSO"/>
+                        <enumeration value="APIED"/>
+                        <enumeration value="AUTRE"/>
+                        <enumeration value="AUTRETRA"/>
+                        <enumeration value="FSI"/>
+                        <enumeration value="HELIFSI"/>
+                        <enumeration value="VLFSI"/>
+                        <enumeration value="FFSI"/>
+                        <enumeration value="VHFSI"/>
+                        <enumeration value="LIB"/>
+                        <enumeration value="MEDV"/>
+                        <enumeration value="INF"/>
+                        <enumeration value="AUTREPRO"/>
+                        <enumeration value="SIS"/>
+                        <enumeration value="VSAV"/>
+                        <enumeration value="GRIMP"/>
+                        <enumeration value="VPL"/>
+                        <enumeration value="SRSIS"/>
+                        <enumeration value="FEUSIS"/>
+                        <enumeration value="VPMA"/>
+                        <enumeration value="VCH"/>
+                        <enumeration value="VR"/>
+                        <enumeration value="PCSIS"/>
+                        <enumeration value="VLISP"/>
+                        <enumeration value="VLMSP"/>
+                        <enumeration value="VLCG"/>
+                        <enumeration value="VLSIS"/>
+                        <enumeration value="DRAGON"/>
+                        <enumeration value="AVSC"/>
+                        <enumeration value="MOYSSE"/>
+                        <enumeration value="AUTRESIS"/>
+                        <enumeration value="NAVISIS"/>
+                        <enumeration value="SMUR"/>
+                        <enumeration value="VLM"/>
+                        <enumeration value="VL"/>
+                        <enumeration value="PSM1"/>
+                        <enumeration value="PSM2"/>
+                        <enumeration value="PSM3"/>
+                        <enumeration value="PSMP"/>
+                        <enumeration value="VPC"/>
+                        <enumeration value="AR"/>
+                        <enumeration value="AR-BAR"/>
+                        <enumeration value="AR-PED"/>
+                        <enumeration value="HELISMUR"/>
+                        <enumeration value="HELISAN"/>
+                        <enumeration value="AVSMUR"/>
+                        <enumeration value="AVSAN"/>
+                        <enumeration value="NAVISMUR"/>
+                        <enumeration value="TSU"/>
+                        <enumeration value="VSL"/>
+                        <enumeration value="AMB-GV"/>
+                        <enumeration value="AMB-PV"/>
+                        <enumeration value="AMB-BAR"/>
+                        <enumeration value="AMB"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -982,44 +1047,41 @@ Spécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE
                 <simpleType>
                     <restriction base="string">
                         <enumeration value="DRM"/>
-                        <enumeration value="DRM.MRU"/>
-                        <enumeration value="DRM.MRU.MU"/>
-                        <enumeration value="DRM.MRU.INDISPMU"/>
-                        <enumeration value="DRM.MRU.SSE"/>
-                        <enumeration value="DRM.MRU.PLANBLAN"/>
-                        <enumeration value="DRM.MRU.PCSAMU"/>
-                        <enumeration value="DRM.SPE"/>
-                        <enumeration value="DRM.SPE.DENT"/>
-                        <enumeration value="DRM.SPE.GERIA"/>
-                        <enumeration value="DRM.SPE.PEDIA"/>
-                        <enumeration value="DRM.SPE.OBST"/>
-                        <enumeration value="DRM.SPE.PSY"/>
-                        <enumeration value="DRM.SPE.TOXICOL"/>
-                        <enumeration value="DRM.MRL"/>
-                        <enumeration value="DRM.MRL.MG"/>
-                        <enumeration value="DRM.MRL.INDISPMG"/>
-                        <enumeration value="DRM.MRL.ABSML"/>
+                        <enumeration value="DRMMRU"/>
+                        <enumeration value="MU"/>
+                        <enumeration value="DENT"/>
+                        <enumeration value="GERIA"/>
+                        <enumeration value="PEDIA"/>
+                        <enumeration value="PSY"/>
+                        <enumeration value="TOXICOL"/>
+                        <enumeration value="INDISPMU"/>
+                        <enumeration value="SSE"/>
+                        <enumeration value="PLANBLAN"/>
+                        <enumeration value="PCSAMU"/>
+                        <enumeration value="DRMMRL"/>
+                        <enumeration value="MG"/>
+                        <enumeration value="INDISPMG"/>
+                        <enumeration value="ABSML"/>
                         <enumeration value="DR"/>
-                        <enumeration value="DR.DREG"/>
-                        <enumeration value="DR.DREG.DRARM"/>
-                        <enumeration value="DR.DREG.DRDAC"/>
-                        <enumeration value="DR.DREG.DRMED"/>
-                        <enumeration value="DR.DREG.DRPHARMA"/>
-                        <enumeration value="DR.DREG.DRDENT"/>
-                        <enumeration value="DR.DREG.DRINFO"/>
-                        <enumeration value="DR.DREG.DOS-SIS"/>
-                        <enumeration value="DR.DREG.DOS-FDO"/>
+                        <enumeration value="DREG"/>
+                        <enumeration value="DRARM"/>
+                        <enumeration value="DRMED"/>
+                        <enumeration value="DRPHARMA"/>
+                        <enumeration value="DRDENT"/>
+                        <enumeration value="DRINFO"/>
+                        <enumeration value="DOS-SIS"/>
+                        <enumeration value="DOS-FDO"/>
                         <enumeration value="D"/>
-                        <enumeration value="D.D-MALV"/>
-                        <enumeration value="D.D-MALV.ERR"/>
-                        <enumeration value="D.D-MALV.NRP"/>
-                        <enumeration value="D.D-MALV.MALV"/>
-                        <enumeration value="D.D-MALV.FAX"/>
-                        <enumeration value="D.D-MALV.ITERATIF"/>
-                        <enumeration value="D.D-IDENT"/>
-                        <enumeration value="D.D-IDENT.ADMIN"/>
-                        <enumeration value="D.D-IDENT.PERSO"/>
-                        <enumeration value="D.D-IDENT.AUTRE"/>
+                        <enumeration value="D-MALV"/>
+                        <enumeration value="ERR"/>
+                        <enumeration value="NRP"/>
+                        <enumeration value="MALV"/>
+                        <enumeration value="FAX"/>
+                        <enumeration value="ITERATIF"/>
+                        <enumeration value="D-IDENT"/>
+                        <enumeration value="ADMIN"/>
+                        <enumeration value="PERSO"/>
+                        <enumeration value="AUTRE"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1340,189 +1402,247 @@ cf.nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="aa"/>
-                        <enumeration value="ab"/>
-                        <enumeration value="ae"/>
-                        <enumeration value="af"/>
-                        <enumeration value="ak"/>
-                        <enumeration value="am"/>
-                        <enumeration value="an"/>
-                        <enumeration value="ar"/>
-                        <enumeration value="as"/>
-                        <enumeration value="av"/>
-                        <enumeration value="ay"/>
-                        <enumeration value="az"/>
-                        <enumeration value="ba"/>
-                        <enumeration value="be"/>
-                        <enumeration value="bg"/>
-                        <enumeration value="bi"/>
-                        <enumeration value="bm"/>
-                        <enumeration value="bn"/>
-                        <enumeration value="bo"/>
-                        <enumeration value="br"/>
-                        <enumeration value="bs"/>
-                        <enumeration value="ca"/>
-                        <enumeration value="ce"/>
-                        <enumeration value="ch"/>
-                        <enumeration value="co"/>
-                        <enumeration value="cr"/>
-                        <enumeration value="cs"/>
-                        <enumeration value="cu"/>
-                        <enumeration value="cv"/>
-                        <enumeration value="cy"/>
-                        <enumeration value="da"/>
-                        <enumeration value="de"/>
-                        <enumeration value="dv"/>
-                        <enumeration value="dz"/>
-                        <enumeration value="ee"/>
-                        <enumeration value="el"/>
-                        <enumeration value="en"/>
-                        <enumeration value="eo"/>
-                        <enumeration value="es"/>
-                        <enumeration value="et"/>
-                        <enumeration value="eu"/>
-                        <enumeration value="fa"/>
-                        <enumeration value="ff"/>
-                        <enumeration value="fi"/>
-                        <enumeration value="fj"/>
-                        <enumeration value="fo"/>
-                        <enumeration value="fr"/>
-                        <enumeration value="fy"/>
-                        <enumeration value="ga"/>
-                        <enumeration value="gd"/>
-                        <enumeration value="gl"/>
-                        <enumeration value="gn"/>
-                        <enumeration value="gu"/>
-                        <enumeration value="gv"/>
-                        <enumeration value="ha"/>
-                        <enumeration value="he"/>
-                        <enumeration value="hi"/>
-                        <enumeration value="ho"/>
-                        <enumeration value="hr"/>
-                        <enumeration value="ht"/>
-                        <enumeration value="hu"/>
-                        <enumeration value="hy"/>
-                        <enumeration value="hz"/>
-                        <enumeration value="ia"/>
-                        <enumeration value="id"/>
-                        <enumeration value="ie"/>
-                        <enumeration value="ig"/>
-                        <enumeration value="ii"/>
-                        <enumeration value="ik"/>
-                        <enumeration value="io"/>
-                        <enumeration value="is"/>
-                        <enumeration value="it"/>
-                        <enumeration value="iu"/>
-                        <enumeration value="ja"/>
-                        <enumeration value="jv"/>
-                        <enumeration value="ka"/>
-                        <enumeration value="kg"/>
-                        <enumeration value="ki"/>
-                        <enumeration value="kj"/>
-                        <enumeration value="kk"/>
-                        <enumeration value="kl"/>
-                        <enumeration value="km"/>
-                        <enumeration value="kn"/>
-                        <enumeration value="ko"/>
-                        <enumeration value="kr"/>
-                        <enumeration value="ks"/>
-                        <enumeration value="ku"/>
-                        <enumeration value="kv"/>
-                        <enumeration value="kw"/>
-                        <enumeration value="ky"/>
-                        <enumeration value="la"/>
-                        <enumeration value="lb"/>
-                        <enumeration value="lg"/>
-                        <enumeration value="li"/>
-                        <enumeration value="ln"/>
-                        <enumeration value="lo"/>
-                        <enumeration value="lt"/>
-                        <enumeration value="lu"/>
-                        <enumeration value="lv"/>
-                        <enumeration value="mg"/>
-                        <enumeration value="mh"/>
-                        <enumeration value="mi"/>
-                        <enumeration value="mk"/>
-                        <enumeration value="ml"/>
-                        <enumeration value="mn"/>
-                        <enumeration value="mr"/>
-                        <enumeration value="ms"/>
-                        <enumeration value="mt"/>
-                        <enumeration value="my"/>
-                        <enumeration value="na"/>
-                        <enumeration value="nb"/>
-                        <enumeration value="nd"/>
-                        <enumeration value="ne"/>
-                        <enumeration value="ng"/>
-                        <enumeration value="nl"/>
-                        <enumeration value="nn"/>
-                        <enumeration value="no"/>
-                        <enumeration value="nr"/>
-                        <enumeration value="nv"/>
-                        <enumeration value="ny"/>
-                        <enumeration value="oc"/>
-                        <enumeration value="oj"/>
-                        <enumeration value="om"/>
-                        <enumeration value="or"/>
-                        <enumeration value="os"/>
-                        <enumeration value="pa"/>
-                        <enumeration value="pi"/>
-                        <enumeration value="pl"/>
-                        <enumeration value="ps"/>
-                        <enumeration value="pt"/>
-                        <enumeration value="qu"/>
-                        <enumeration value="rm"/>
-                        <enumeration value="rn"/>
-                        <enumeration value="ro"/>
-                        <enumeration value="ru"/>
-                        <enumeration value="rw"/>
-                        <enumeration value="sa"/>
-                        <enumeration value="sc"/>
-                        <enumeration value="sd"/>
-                        <enumeration value="se"/>
-                        <enumeration value="sg"/>
-                        <enumeration value="si"/>
-                        <enumeration value="sk"/>
-                        <enumeration value="sl"/>
-                        <enumeration value="sm"/>
-                        <enumeration value="sn"/>
-                        <enumeration value="so"/>
-                        <enumeration value="sq"/>
-                        <enumeration value="sr"/>
-                        <enumeration value="ss"/>
-                        <enumeration value="st"/>
-                        <enumeration value="su"/>
-                        <enumeration value="sv"/>
-                        <enumeration value="sw"/>
-                        <enumeration value="ta"/>
-                        <enumeration value="te"/>
-                        <enumeration value="tg"/>
-                        <enumeration value="th"/>
-                        <enumeration value="ti"/>
-                        <enumeration value="tk"/>
-                        <enumeration value="tl"/>
-                        <enumeration value="tn"/>
-                        <enumeration value="to"/>
-                        <enumeration value="tr"/>
-                        <enumeration value="ts"/>
-                        <enumeration value="tt"/>
-                        <enumeration value="tw"/>
-                        <enumeration value="ty"/>
-                        <enumeration value="ug"/>
-                        <enumeration value="uk"/>
-                        <enumeration value="ur"/>
-                        <enumeration value="uz"/>
-                        <enumeration value="ve"/>
-                        <enumeration value="vi"/>
-                        <enumeration value="vo"/>
-                        <enumeration value="wa"/>
-                        <enumeration value="wo"/>
-                        <enumeration value="xh"/>
-                        <enumeration value="yi"/>
-                        <enumeration value="yo"/>
-                        <enumeration value="za"/>
-                        <enumeration value="zh"/>
-                        <enumeration value="zu"/>
+                        <enumeration value="AF"/>
+                        <enumeration value="AX"/>
+                        <enumeration value="AL"/>
+                        <enumeration value="DZ"/>
+                        <enumeration value="AS"/>
+                        <enumeration value="AD"/>
+                        <enumeration value="AO"/>
+                        <enumeration value="AI"/>
+                        <enumeration value="AQ"/>
+                        <enumeration value="AG"/>
+                        <enumeration value="AR"/>
+                        <enumeration value="AM"/>
+                        <enumeration value="AW"/>
+                        <enumeration value="AU"/>
+                        <enumeration value="AT"/>
+                        <enumeration value="AZ"/>
+                        <enumeration value="BS"/>
+                        <enumeration value="BH"/>
+                        <enumeration value="BD"/>
+                        <enumeration value="BB"/>
+                        <enumeration value="BY"/>
+                        <enumeration value="BE"/>
+                        <enumeration value="BZ"/>
+                        <enumeration value="BJ"/>
+                        <enumeration value="BM"/>
+                        <enumeration value="BT"/>
+                        <enumeration value="BO"/>
+                        <enumeration value="BA"/>
+                        <enumeration value="BW"/>
+                        <enumeration value="BV"/>
+                        <enumeration value="BR"/>
+                        <enumeration value="IO"/>
+                        <enumeration value="BN"/>
+                        <enumeration value="BG"/>
+                        <enumeration value="BF"/>
+                        <enumeration value="BI"/>
+                        <enumeration value="CV"/>
+                        <enumeration value="KH"/>
+                        <enumeration value="CM"/>
+                        <enumeration value="CA"/>
+                        <enumeration value="KY"/>
+                        <enumeration value="CF"/>
+                        <enumeration value="TD"/>
+                        <enumeration value="CL"/>
+                        <enumeration value="CN"/>
+                        <enumeration value="CX"/>
+                        <enumeration value="CC"/>
+                        <enumeration value="CO"/>
+                        <enumeration value="KM"/>
+                        <enumeration value="CG"/>
+                        <enumeration value="CK"/>
+                        <enumeration value="CR"/>
+                        <enumeration value="CI"/>
+                        <enumeration value="HR"/>
+                        <enumeration value="CU"/>
+                        <enumeration value="CW"/>
+                        <enumeration value="CY"/>
+                        <enumeration value="CZ"/>
+                        <enumeration value="DK"/>
+                        <enumeration value="DJ"/>
+                        <enumeration value="DM"/>
+                        <enumeration value="DO"/>
+                        <enumeration value="EC"/>
+                        <enumeration value="EG"/>
+                        <enumeration value="SV"/>
+                        <enumeration value="GQ"/>
+                        <enumeration value="ER"/>
+                        <enumeration value="EE"/>
+                        <enumeration value="SZ"/>
+                        <enumeration value="ET"/>
+                        <enumeration value="FK"/>
+                        <enumeration value="FO"/>
+                        <enumeration value="FJ"/>
+                        <enumeration value="FI"/>
+                        <enumeration value="FR"/>
+                        <enumeration value="GF"/>
+                        <enumeration value="PF"/>
+                        <enumeration value="TF"/>
+                        <enumeration value="GA"/>
+                        <enumeration value="GM"/>
+                        <enumeration value="GE"/>
+                        <enumeration value="DE"/>
+                        <enumeration value="GH"/>
+                        <enumeration value="GI"/>
+                        <enumeration value="GR"/>
+                        <enumeration value="GL"/>
+                        <enumeration value="GD"/>
+                        <enumeration value="GP"/>
+                        <enumeration value="GU"/>
+                        <enumeration value="GT"/>
+                        <enumeration value="GG"/>
+                        <enumeration value="GN"/>
+                        <enumeration value="GW"/>
+                        <enumeration value="GY"/>
+                        <enumeration value="HT"/>
+                        <enumeration value="HM"/>
+                        <enumeration value="VA"/>
+                        <enumeration value="HN"/>
+                        <enumeration value="HK"/>
+                        <enumeration value="HU"/>
+                        <enumeration value="IS"/>
+                        <enumeration value="IN"/>
+                        <enumeration value="ID"/>
+                        <enumeration value="IR"/>
+                        <enumeration value="IQ"/>
+                        <enumeration value="IE"/>
+                        <enumeration value="IM"/>
+                        <enumeration value="IL"/>
+                        <enumeration value="IT"/>
+                        <enumeration value="JM"/>
+                        <enumeration value="JP"/>
+                        <enumeration value="JE"/>
+                        <enumeration value="JO"/>
+                        <enumeration value="KZ"/>
+                        <enumeration value="KE"/>
+                        <enumeration value="KI"/>
+                        <enumeration value="KP"/>
+                        <enumeration value="KW"/>
+                        <enumeration value="KG"/>
+                        <enumeration value="LA"/>
+                        <enumeration value="LV"/>
+                        <enumeration value="LB"/>
+                        <enumeration value="LS"/>
+                        <enumeration value="LR"/>
+                        <enumeration value="LY"/>
+                        <enumeration value="LI"/>
+                        <enumeration value="LT"/>
+                        <enumeration value="LU"/>
+                        <enumeration value="MO"/>
+                        <enumeration value="MG"/>
+                        <enumeration value="MW"/>
+                        <enumeration value="MY"/>
+                        <enumeration value="MV"/>
+                        <enumeration value="ML"/>
+                        <enumeration value="MT"/>
+                        <enumeration value="MH"/>
+                        <enumeration value="MQ"/>
+                        <enumeration value="MR"/>
+                        <enumeration value="MU"/>
+                        <enumeration value="YT"/>
+                        <enumeration value="MX"/>
+                        <enumeration value="FM"/>
+                        <enumeration value="MC"/>
+                        <enumeration value="MN"/>
+                        <enumeration value="ME"/>
+                        <enumeration value="MS"/>
+                        <enumeration value="MA"/>
+                        <enumeration value="MZ"/>
+                        <enumeration value="MM"/>
+                        <enumeration value="NA"/>
+                        <enumeration value="NR"/>
+                        <enumeration value="NP"/>
+                        <enumeration value="NL"/>
+                        <enumeration value="NC"/>
+                        <enumeration value="NZ"/>
+                        <enumeration value="NI"/>
+                        <enumeration value="NE"/>
+                        <enumeration value="NG"/>
+                        <enumeration value="NU"/>
+                        <enumeration value="NF"/>
+                        <enumeration value="MK"/>
+                        <enumeration value="MP"/>
+                        <enumeration value="NO"/>
+                        <enumeration value="OM"/>
+                        <enumeration value="PK"/>
+                        <enumeration value="PW"/>
+                        <enumeration value="PA"/>
+                        <enumeration value="PG"/>
+                        <enumeration value="PY"/>
+                        <enumeration value="PE"/>
+                        <enumeration value="PH"/>
+                        <enumeration value="PN"/>
+                        <enumeration value="PL"/>
+                        <enumeration value="PT"/>
+                        <enumeration value="PR"/>
+                        <enumeration value="QA"/>
+                        <enumeration value="RE"/>
+                        <enumeration value="RO"/>
+                        <enumeration value="RU"/>
+                        <enumeration value="RW"/>
+                        <enumeration value="BL"/>
+                        <enumeration value="KN"/>
+                        <enumeration value="LC"/>
+                        <enumeration value="MF"/>
+                        <enumeration value="PM"/>
+                        <enumeration value="VC"/>
+                        <enumeration value="WS"/>
+                        <enumeration value="SM"/>
+                        <enumeration value="ST"/>
+                        <enumeration value="SA"/>
+                        <enumeration value="SN"/>
+                        <enumeration value="RS"/>
+                        <enumeration value="SC"/>
+                        <enumeration value="SL"/>
+                        <enumeration value="SG"/>
+                        <enumeration value="SX"/>
+                        <enumeration value="SK"/>
+                        <enumeration value="SI"/>
+                        <enumeration value="SB"/>
+                        <enumeration value="SO"/>
+                        <enumeration value="ZA"/>
+                        <enumeration value="GS"/>
+                        <enumeration value="SS"/>
+                        <enumeration value="ES"/>
+                        <enumeration value="LK"/>
+                        <enumeration value="SD"/>
+                        <enumeration value="SR"/>
+                        <enumeration value="SJ"/>
+                        <enumeration value="SE"/>
+                        <enumeration value="CH"/>
+                        <enumeration value="SY"/>
+                        <enumeration value="TJ"/>
+                        <enumeration value="TH"/>
+                        <enumeration value="TL"/>
+                        <enumeration value="TG"/>
+                        <enumeration value="TK"/>
+                        <enumeration value="TO"/>
+                        <enumeration value="TT"/>
+                        <enumeration value="TN"/>
+                        <enumeration value="TR"/>
+                        <enumeration value="TM"/>
+                        <enumeration value="TC"/>
+                        <enumeration value="TV"/>
+                        <enumeration value="UG"/>
+                        <enumeration value="UA"/>
+                        <enumeration value="AE"/>
+                        <enumeration value="GB"/>
+                        <enumeration value="US"/>
+                        <enumeration value="UM"/>
+                        <enumeration value="UY"/>
+                        <enumeration value="UZ"/>
+                        <enumeration value="VU"/>
+                        <enumeration value="VE"/>
+                        <enumeration value="VN"/>
+                        <enumeration value="VG"/>
+                        <enumeration value="VI"/>
+                        <enumeration value="WF"/>
+                        <enumeration value="EH"/>
+                        <enumeration value="YE"/>
+                        <enumeration value="ZM"/>
+                        <enumeration value="ZW"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1538,25 +1658,17 @@ cf. nomenclature associée.</documentation>
                         <enumeration value="TIERS"/>
                         <enumeration value="POMPIER"/>
                         <enumeration value="AMBULANC"/>
-                        <enumeration value="AMBULANC.AASC"/>
-                        <enumeration value="AMBULANC.AUTRESEC"/>
                         <enumeration value="SECOUR"/>
                         <enumeration value="MED"/>
-                        <enumeration value="MED.MEDSOS"/>
-                        <enumeration value="MED.MRL"/>
-                        <enumeration value="MED.EFFML"/>
+                        <enumeration value="MEDSOS"/>
+                        <enumeration value="MRL"/>
+                        <enumeration value="EFFML"/>
                         <enumeration value="SANTE"/>
-                        <enumeration value="SANTE.INF"/>
-                        <enumeration value="SANTE.AIDESOIN"/>
-                        <enumeration value="SANTE.SF"/>
-                        <enumeration value="SANTE.AIDEDOM"/>
-                        <enumeration value="SANTE.PHARMA"/>
-                        <enumeration value="SANTE.DENTISTE"/>
-                        <enumeration value="SANTE.LABO"/>
+                        <enumeration value="INF"/>
+                        <enumeration value="AIDESOIN"/>
+                        <enumeration value="SF"/>
+                        <enumeration value="AIDEDOM"/>
                         <enumeration value="FDO-MILI"/>
-                        <enumeration value="FDO-MILI.POL"/>
-                        <enumeration value="FDO-MILI.GENDARM"/>
-                        <enumeration value="FDO-MILI.MILI"/>
                         <enumeration value="ADM-TUTL"/>
                         <enumeration value="VIP"/>
                         <enumeration value="OBJCONNC"/>
@@ -1615,13 +1727,12 @@ cf.nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
+                        <enumeration value="TEL"/>
                         <enumeration value="EMAIL"/>
                         <enumeration value="FAX"/>
-                        <enumeration value="MSS"/>
                         <enumeration value="POSTAL"/>
-                        <enumeration value="RADIO"/>
-                        <enumeration value="TEL"/>
                         <enumeration value="WEB"/>
+                        <enumeration value="RADIO"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1659,7 +1770,6 @@ Par convention les prénoms composés doivent préférablement être séparés p
     <complexType name="administrativeFile">
         <sequence>
             <element maxOccurs="unbounded" minOccurs="0" name="externalId" type="x:externalId"/>
-            <element minOccurs="0" name="generalPractitioner" type="x:generalPractitioner"/>
         </sequence>
     </complexType>
     <complexType name="Identity">
@@ -1704,18 +1814,6 @@ Au format "Durée" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="medicalHistory" type="string">
-                <annotation>
-                    <documentation>Texte libre  pour décrire les antécédents du patient. 
-Si ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. </documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="treatment" type="string">
-                <annotation>
-                    <documentation>Texte libre  pour décrire les traitements du patient.
-Si ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. </documentation>
-                </annotation>
-            </element>
         </sequence>
     </complexType>
     <complexType name="hypothesis">
@@ -1743,43 +1841,6 @@ Si ce n'est pas géré de manière structurés : à afficher dans une note liée
             <element name="value" type="string">
                 <annotation>
                     <documentation>L'identifiant en lui-même</documentation>
-                </annotation>
-            </element>
-        </sequence>
-    </complexType>
-    <complexType name="generalPractitioner">
-        <sequence>
-            <element name="detailedName" type="x:detailedName"/>
-            <element minOccurs="0" name="rppsId" type="string">
-                <annotation>
-                    <documentation>Numéro RPPS du médecin traitant</documentation>
-                </annotation>
-            </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="contact" type="x:personalContact"/>
-        </sequence>
-    </complexType>
-    <complexType name="personalContact">
-        <sequence>
-            <element name="type">
-                <annotation>
-                    <documentation>A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="EMAIL"/>
-                        <enumeration value="FAX"/>
-                        <enumeration value="MSS"/>
-                        <enumeration value="POSTAL"/>
-                        <enumeration value="RADIO"/>
-                        <enumeration value="TEL"/>
-                        <enumeration value="WEB"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element name="detail" type="string">
-                <annotation>
-                    <documentation>A valoriser avec la valeur de l'URI utilisée.
-Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}.</documentation>
                 </annotation>
             </element>
         </sequence>

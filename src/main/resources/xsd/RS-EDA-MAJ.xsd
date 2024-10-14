@@ -79,7 +79,7 @@ A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{doma
     </complexType>
     <complexType name="patient">
         <sequence>
-            <element name="patientId">
+            <element name="idPat">
                 <annotation>
                     <documentation>Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient.
 Il est valorisé comme suit lors de sa création : 
@@ -106,7 +106,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
     </complexType>
     <complexType name="medicalNote">
         <sequence>
-            <element minOccurs="0" name="patientId">
+            <element minOccurs="0" name="idPat">
                 <annotation>
                     <documentation>Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, 
 
@@ -123,7 +123,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
                 </simpleType>
             </element>
             <element name="operator" type="x:operator"/>
-            <element name="medicalNoteId">
+            <element name="idObs">
                 <annotation>
                     <documentation>Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation
 Il est valorisé comme suit lors de sa création : 
@@ -155,7 +155,7 @@ Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jo
     </complexType>
     <complexType name="decision">
         <sequence>
-            <element minOccurs="0" name="patientId" type="string">
+            <element minOccurs="0" name="idPat" type="string">
                 <annotation>
                     <documentation>A valoriser avec l'ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur</documentation>
                 </annotation>
@@ -188,39 +188,104 @@ A fournir obligatoirement pour une décision d'intervention ou de transport/orie
                 <simpleType>
                     <restriction base="string">
                         <enumeration value="SMUR"/>
-                        <enumeration value="SMUR.ADULT"/>
-                        <enumeration value="SMUR.PED"/>
-                        <enumeration value="SMUR.UMH-S"/>
-                        <enumeration value="SMUR.CUMP"/>
+                        <enumeration value="MED"/>
+                        <enumeration value="PARAMED"/>
                         <enumeration value="HOSPIT"/>
-                        <enumeration value="LIBERAL"/>
-                        <enumeration value="LIBERAL.MG"/>
-                        <enumeration value="LIBERAL.PHARM"/>
-                        <enumeration value="LIBERAL.INF"/>
-                        <enumeration value="LIBERAL.KINE"/>
-                        <enumeration value="LIBERAL.SOS"/>
-                        <enumeration value="LIBERAL.MMG"/>
-                        <enumeration value="LIBERAL.MSPD"/>
-                        <enumeration value="LIBERAL.MCS"/>
-                        <enumeration value="LIBERAL.SPEMED"/>
-                        <enumeration value="LIBERAL.DENT"/>
-                        <enumeration value="LIBERAL.LABO"/>
-                        <enumeration value="LIBERAL.AUTREPRO"/>
+                        <enumeration value="LIB"/>
+                        <enumeration value="MEDC"/>
+                        <enumeration value="PHARMA"/>
+                        <enumeration value="INF"/>
+                        <enumeration value="MEDSPE"/>
+                        <enumeration value="DENT"/>
+                        <enumeration value="AUTREPRO"/>
                         <enumeration value="TSU "/>
                         <enumeration value="SIS"/>
-                        <enumeration value="SIS.MEDSP"/>
-                        <enumeration value="SIS.ISP"/>
-                        <enumeration value="SIS.SP"/>
+                        <enumeration value="MSP"/>
+                        <enumeration value="ISP"/>
+                        <enumeration value="SP"/>
                         <enumeration value="AASC"/>
                         <enumeration value="FDO"/>
-                        <enumeration value="FDO.PN"/>
-                        <enumeration value="FDO.GEND"/>
-                        <enumeration value="FDO.PM"/>
-                        <enumeration value="FDO.DOUANES"/>
+                        <enumeration value="HELIFSI"/>
+                        <enumeration value="VLFSI"/>
+                        <enumeration value="FFSI"/>
+                        <enumeration value="DGDD"/>
                         <enumeration value="AUTRE"/>
-                        <enumeration value="AUTRE.ADM"/>
-                        <enumeration value="AUTRE.DAE"/>
-                        <enumeration value="AUTRE.AUTRE"/>
+                        <enumeration value="ADM"/>
+                        <enumeration value="DAE"/>
+                        <enumeration value="INCONNU"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="vehiculeType">
+                <annotation>
+                    <documentation>A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée) en fonction du type de décision.
+A fournir obligatoirement pour une décision d'intervention ou de transport/orientation.</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="AASC"/>
+                        <enumeration value="VLSC"/>
+                        <enumeration value="VPSP"/>
+                        <enumeration value="AUTRESC"/>
+                        <enumeration value="AUTREVEC"/>
+                        <enumeration value="TAXI"/>
+                        <enumeration value="TRANSP"/>
+                        <enumeration value="TRAIN"/>
+                        <enumeration value="AVION"/>
+                        <enumeration value="PERSO"/>
+                        <enumeration value="APIED"/>
+                        <enumeration value="AUTRE"/>
+                        <enumeration value="AUTRETRA"/>
+                        <enumeration value="FSI"/>
+                        <enumeration value="HELIFSI"/>
+                        <enumeration value="VLFSI"/>
+                        <enumeration value="FFSI"/>
+                        <enumeration value="VHFSI"/>
+                        <enumeration value="LIB"/>
+                        <enumeration value="MEDV"/>
+                        <enumeration value="INF"/>
+                        <enumeration value="AUTREPRO"/>
+                        <enumeration value="SIS"/>
+                        <enumeration value="VSAV"/>
+                        <enumeration value="GRIMP"/>
+                        <enumeration value="VPL"/>
+                        <enumeration value="SRSIS"/>
+                        <enumeration value="FEUSIS"/>
+                        <enumeration value="VPMA"/>
+                        <enumeration value="VCH"/>
+                        <enumeration value="VR"/>
+                        <enumeration value="PCSIS"/>
+                        <enumeration value="VLISP"/>
+                        <enumeration value="VLMSP"/>
+                        <enumeration value="VLCG"/>
+                        <enumeration value="VLSIS"/>
+                        <enumeration value="DRAGON"/>
+                        <enumeration value="AVSC"/>
+                        <enumeration value="MOYSSE"/>
+                        <enumeration value="AUTRESIS"/>
+                        <enumeration value="NAVISIS"/>
+                        <enumeration value="SMUR"/>
+                        <enumeration value="VLM"/>
+                        <enumeration value="VL"/>
+                        <enumeration value="PSM1"/>
+                        <enumeration value="PSM2"/>
+                        <enumeration value="PSM3"/>
+                        <enumeration value="PSMP"/>
+                        <enumeration value="VPC"/>
+                        <enumeration value="AR"/>
+                        <enumeration value="AR-BAR"/>
+                        <enumeration value="AR-PED"/>
+                        <enumeration value="HELISMUR"/>
+                        <enumeration value="HELISAN"/>
+                        <enumeration value="AVSMUR"/>
+                        <enumeration value="AVSAN"/>
+                        <enumeration value="NAVISMUR"/>
+                        <enumeration value="TSU"/>
+                        <enumeration value="VSL"/>
+                        <enumeration value="AMB-GV"/>
+                        <enumeration value="AMB-PV"/>
+                        <enumeration value="AMB-BAR"/>
+                        <enumeration value="AMB"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -415,7 +480,6 @@ Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes �
     <complexType name="administrativeFile">
         <sequence>
             <element maxOccurs="unbounded" minOccurs="0" name="externalId" type="x:externalId"/>
-            <element minOccurs="0" name="generalPractitioner" type="x:generalPractitioner"/>
         </sequence>
     </complexType>
     <complexType name="Identity">
@@ -531,18 +595,6 @@ Au format "Durée" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="medicalHistory" type="string">
-                <annotation>
-                    <documentation>Texte libre  pour décrire les antécédents du patient. 
-Si ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. </documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="treatment" type="string">
-                <annotation>
-                    <documentation>Texte libre  pour décrire les traitements du patient.
-Si ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. </documentation>
-                </annotation>
-            </element>
         </sequence>
     </complexType>
     <complexType name="hypothesis">
@@ -570,66 +622,6 @@ Si ce n'est pas géré de manière structurés : à afficher dans une note liée
             <element name="value" type="string">
                 <annotation>
                     <documentation>L'identifiant en lui-même</documentation>
-                </annotation>
-            </element>
-        </sequence>
-    </complexType>
-    <complexType name="generalPractitioner">
-        <sequence>
-            <element name="detailedName" type="x:detailedName"/>
-            <element minOccurs="0" name="rppsId" type="string">
-                <annotation>
-                    <documentation>Numéro RPPS du médecin traitant</documentation>
-                </annotation>
-            </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="contact" type="x:personalContact"/>
-        </sequence>
-    </complexType>
-    <complexType name="detailedName">
-        <sequence>
-            <element name="complete" type="string">
-                <annotation>
-                    <documentation>A valoriser avec le prénom et le nom usuel du requérant/appelant.
-Si les champs callerLastName et callerFirstName sont également renseignés, le champ callerName doit être valorisé ainsi : "{callerFirstName} {callerLastName}".
-
-Spécificités 15-18  : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="lastName" type="string">
-                <annotation>
-                    <documentation>A valoriser avec le nom usuel du requérant</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="firstName" type="string">
-                <annotation>
-                    <documentation>A valoriser avec le prénom usuel du réquérant.
-Par convention les prénoms composés doivent préférablement être séparés par le caractère "-"</documentation>
-                </annotation>
-            </element>
-        </sequence>
-    </complexType>
-    <complexType name="personalContact">
-        <sequence>
-            <element name="type">
-                <annotation>
-                    <documentation>A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="EMAIL"/>
-                        <enumeration value="FAX"/>
-                        <enumeration value="MSS"/>
-                        <enumeration value="POSTAL"/>
-                        <enumeration value="RADIO"/>
-                        <enumeration value="TEL"/>
-                        <enumeration value="WEB"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element name="detail" type="string">
-                <annotation>
-                    <documentation>A valoriser avec la valeur de l'URI utilisée.
-Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -663,6 +655,29 @@ Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pa
                         <enumeration value="UN"/>
                     </restriction>
                 </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="detailedName">
+        <sequence>
+            <element name="complete" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le prénom et le nom usuel du requérant/appelant.
+Si les champs callerLastName et callerFirstName sont également renseignés, le champ callerName doit être valorisé ainsi : "{callerFirstName} {callerLastName}".
+
+Spécificités 15-18  : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="lastName" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le nom usuel du requérant</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="firstName" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le prénom usuel du réquérant.
+Par convention les prénoms composés doivent préférablement être séparés par le caractère "-"</documentation>
+                </annotation>
             </element>
         </sequence>
     </complexType>
