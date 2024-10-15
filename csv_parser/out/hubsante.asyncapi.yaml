@@ -4106,12 +4106,12 @@ components:
       x-health-only: false
       required: []
       properties:
-        vehiculeType:
+        vehicleType:
           type: string
           title: Type de vecteur
           x-health-only: false
           x-cols: 6
-          example: example.json#/resource/0/vehiculeType
+          example: example.json#/resource/0/vehicleType
           description: "A valoriser avec le type de vecteur mobilis\xE9 : cf. nomenclature\
             \ associ\xE9e"
           enum:
@@ -6528,18 +6528,18 @@ components:
       required:
       - whatsHappen
       - healthMotive
-      - initialTeamCare
+      - medicalLevel
       properties:
         whatsHappen:
           $ref: '#/components/schemas/whatsHappen'
         healthMotive:
           $ref: '#/components/schemas/healthMotive'
-        initialTeamCare:
+        medicalLevel:
           type: string
           title: "Niveau de m\xE9dicalisation initial"
           x-health-only: false
           x-cols: 6
-          example: example.json#/regulation/initialTeamCare
+          example: example.json#/regulation/medicalLevel
           description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, secouriste).\n\
             A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.\nPermet de\
             \ d\xE9duire avec la donn\xE9e \"niveau de m\xE9dicalisation du transport\"\

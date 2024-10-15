@@ -68,7 +68,7 @@ A valoriser par DRFR15DDXAAJJJ00000 :
         <sequence>
             <element name="whatsHappen" type="x:whatsHappen"/>
             <element name="healthMotive" type="x:healthMotive"/>
-            <element name="initialTeamCare">
+            <element name="medicalLevel">
                 <annotation>
                     <documentation>Type d’équipe (médical, paramédicale, secouriste).
 A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.

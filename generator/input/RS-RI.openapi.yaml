@@ -50,7 +50,7 @@ components:
       required:
       - datetime
       - resourceId
-      - vehiculeType
+      - vehicleType
       properties:
         datetime:
           type: string
@@ -127,12 +127,12 @@ components:
           description: A valoriser avec le lieu de garage principal
           examples:
           - CHU Nantes
-        vehiculeType:
+        vehicleType:
           type: string
           title: Type de vecteur
           x-health-only: false
           x-cols: 6
-          example: example.json#/resource/0/vehiculeType
+          example: example.json#/resource/0/vehicleType
           description: "A valoriser avec le type de vecteur mobilis\xE9 : cf. nomenclature\
             \ associ\xE9e"
           enum:
@@ -252,12 +252,12 @@ components:
       x-health-only: false
       required: []
       properties:
-        careLevel:
+        medicalLevel:
           type: string
           title: Type
           x-health-only: false
           x-cols: 6
-          example: example.json#/resource/0/team/careLevel
+          example: example.json#/resource/0/team/medicalLevel
           description: "A valoriser avec le  niveau de m\xE9dicalisation du vecteur.\
             \ Cf. nomenclature associ\xE9e"
           enum:
@@ -279,7 +279,7 @@ components:
       additionalProperties: false
       example: example.json#/resource/0/team
       examples:
-      - careLevel: MED
+      - medicalLevel: MED
         name: Equipe A
     state:
       type: object

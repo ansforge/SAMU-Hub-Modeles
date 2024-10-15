@@ -51,7 +51,7 @@ import java.util.Objects;
     {Resource.JSON_PROPERTY_DATETIME, Resource.JSON_PROPERTY_RESOURCE_ID,
      Resource.JSON_PROPERTY_REQUEST_ID, Resource.JSON_PROPERTY_MISSION_ID,
      Resource.JSON_PROPERTY_ORG_ID, Resource.JSON_PROPERTY_CENTER_NAME,
-     Resource.JSON_PROPERTY_VEHICULE_TYPE, Resource.JSON_PROPERTY_NAME,
+     Resource.JSON_PROPERTY_VEHICLE_TYPE, Resource.JSON_PROPERTY_NAME,
      Resource.JSON_PROPERTY_CENTER_CITY, Resource.JSON_PROPERTY_TEAM,
      Resource.JSON_PROPERTY_STATE, Resource.JSON_PROPERTY_CONTACT,
      Resource.JSON_PROPERTY_FREETEXT})
@@ -80,7 +80,7 @@ public class Resource {
   /**
    * A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée
    */
-  public enum VehiculeTypeEnum {
+  public enum VehicleTypeEnum {
     AASC("AASC"),
 
     AASC_VLSC("AASC.VLSC"),
@@ -209,7 +209,7 @@ public class Resource {
 
     private String value;
 
-    VehiculeTypeEnum(String value) { this.value = value; }
+    VehicleTypeEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -222,8 +222,8 @@ public class Resource {
     }
 
     @JsonCreator
-    public static VehiculeTypeEnum fromValue(String value) {
-      for (VehiculeTypeEnum b : VehiculeTypeEnum.values()) {
+    public static VehicleTypeEnum fromValue(String value) {
+      for (VehicleTypeEnum b : VehicleTypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -232,8 +232,8 @@ public class Resource {
     }
   }
 
-  public static final String JSON_PROPERTY_VEHICULE_TYPE = "vehiculeType";
-  private VehiculeTypeEnum vehiculeType;
+  public static final String JSON_PROPERTY_VEHICLE_TYPE = "vehicleType";
+  private VehicleTypeEnum vehicleType;
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -404,27 +404,27 @@ public class Resource {
     this.centerName = centerName;
   }
 
-  public Resource vehiculeType(VehiculeTypeEnum vehiculeType) {
+  public Resource vehicleType(VehicleTypeEnum vehicleType) {
 
-    this.vehiculeType = vehiculeType;
+    this.vehicleType = vehicleType;
     return this;
   }
 
   /**
    * A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée
-   * @return vehiculeType
+   * @return vehicleType
    **/
-  @JsonProperty(JSON_PROPERTY_VEHICULE_TYPE)
+  @JsonProperty(JSON_PROPERTY_VEHICLE_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public VehiculeTypeEnum getVehiculeType() {
-    return vehiculeType;
+  public VehicleTypeEnum getVehicleType() {
+    return vehicleType;
   }
 
-  @JsonProperty(JSON_PROPERTY_VEHICULE_TYPE)
+  @JsonProperty(JSON_PROPERTY_VEHICLE_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVehiculeType(VehiculeTypeEnum vehiculeType) {
-    this.vehiculeType = vehiculeType;
+  public void setVehicleType(VehicleTypeEnum vehicleType) {
+    this.vehicleType = vehicleType;
   }
 
   public Resource name(String name) {
@@ -613,7 +613,7 @@ public class Resource {
         Objects.equals(this.missionId, resource.missionId) &&
         Objects.equals(this.orgId, resource.orgId) &&
         Objects.equals(this.centerName, resource.centerName) &&
-        Objects.equals(this.vehiculeType, resource.vehiculeType) &&
+        Objects.equals(this.vehicleType, resource.vehicleType) &&
         Objects.equals(this.name, resource.name) &&
         Objects.equals(this.centerCity, resource.centerCity) &&
         Objects.equals(this.team, resource.team) &&
@@ -625,7 +625,7 @@ public class Resource {
   @Override
   public int hashCode() {
     return Objects.hash(datetime, resourceId, requestId, missionId, orgId,
-                        centerName, vehiculeType, name, centerCity, team, state,
+                        centerName, vehicleType, name, centerCity, team, state,
                         contact, freetext);
   }
 
@@ -647,8 +647,8 @@ public class Resource {
     sb.append("    centerName: ")
         .append(toIndentedString(centerName))
         .append("\n");
-    sb.append("    vehiculeType: ")
-        .append(toIndentedString(vehiculeType))
+    sb.append("    vehicleType: ")
+        .append(toIndentedString(vehicleType))
         .append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    centerCity: ")

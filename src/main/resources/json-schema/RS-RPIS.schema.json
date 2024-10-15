@@ -119,7 +119,7 @@
             "required": [
                 "whatsHappen",
                 "healthMotive",
-                "initialTeamCare"
+                "medicalLevel"
             ],
             "properties": {
                 "whatsHappen": {
@@ -128,12 +128,12 @@
                 "healthMotive": {
                     "$ref": "#/definitions/healthMotive"
                 },
-                "initialTeamCare": {
+                "medicalLevel": {
                     "type": "string",
                     "title": "Niveau de médicalisation initial",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/regulation/initialTeamCare",
+                    "example": "example.json#/regulation/medicalLevel",
                     "description": "Type d’équipe (médical, paramédicale, secouriste).\nA valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.\nPermet de déduire avec la donnée \"niveau de médicalisation du transport\", si un UMHP est devenu un SMUR. ",
                     "enum": [
                         "MED",
