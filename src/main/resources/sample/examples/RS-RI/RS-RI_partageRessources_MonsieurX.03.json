@@ -7,7 +7,7 @@
           "type": "TEL"
         },
         "team": {
-          "teamCare": "PARAMED"
+          "medicalLevel": "PARAMED"
         },
         "state": [
           {

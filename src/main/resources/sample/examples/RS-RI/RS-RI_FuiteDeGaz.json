@@ -3,7 +3,7 @@
     "resource": [
       {
         "team": {
-          "teamCare": "MED",
+          "medicalLevel": "MED",
           "name": "Equipe SMUR 2"
         },
         "resourceType": "SMUR",
@@ -26,7 +26,7 @@
       },
       {
         "team": {
-          "teamCare": "SECOURS"
+          "medicalLevel": "SECOURS"
         },
         "datetime": "2024-05-18T18:22:00+02:00",
         "resourceId": "fr.fire.sis044.cgo-044.resource.VSAV3",

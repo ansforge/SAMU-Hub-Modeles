@@ -7,7 +7,7 @@
           "type": "TEL"
         },
         "team": {
-          "teamCare": "MED",
+          "medicalLevel": "MED",
           "name": "Equipe Buse1"
         },
         "state": [

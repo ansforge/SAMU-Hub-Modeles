@@ -7,7 +7,7 @@
           "type": "TEL"
         },
         "team": {
-          "teamCare": "MED",
+          "medicalLevel": "MED",
           "name": "Equipe SMUR 5"
         },
         "state": [
@@ -29,7 +29,7 @@
         },
         "team": {
           "name": "Equipe Rouge",
-          "teamCare": "SECOURS"
+          "medicalLevel": "SECOURS"
         },
         "state": [
           {

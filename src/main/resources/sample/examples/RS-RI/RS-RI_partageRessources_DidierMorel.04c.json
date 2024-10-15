@@ -7,7 +7,7 @@
           "details": "+33612348765"
         },
         "team": {
-          "teamCare": "MED",
+          "medicalLevel": "MED",
           "name": "Equipe 5"
         },
         "state": [

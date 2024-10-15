@@ -4,7 +4,7 @@
       "decision": {
         "resourceCategory": "SMUR",
         "resourceType": "VLM",
-        "teamCare": "MED"
+        "medicalLevel": "MED"
       },
       "destination": {
         "destinationCountry": "FR",

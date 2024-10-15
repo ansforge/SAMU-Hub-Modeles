@@ -7,7 +7,7 @@
           "details": "+33645789512"
         },
         "team": {
-          "teamCare": "SECOURS",
+          "medicalLevel": "SECOURS",
           "name": "Equipe C"
         },
         "state": [

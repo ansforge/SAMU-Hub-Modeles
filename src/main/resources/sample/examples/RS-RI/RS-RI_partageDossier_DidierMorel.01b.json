@@ -25,7 +25,7 @@
       },
       {
         "team": {
-          "teamCare": "SECOURS",
+          "medicalLevel": "SECOURS",
           "name": "Equipe 89"
         },
         "state": [

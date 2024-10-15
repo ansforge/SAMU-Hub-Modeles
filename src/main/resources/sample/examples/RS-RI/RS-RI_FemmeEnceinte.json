@@ -3,7 +3,7 @@
     "resource": [
       {
         "team": {
-          "teamCare": "MED",
+          "medicalLevel": "MED",
           "name": "Equipe SMUR 4"
         },
         "resourceType": "SMUR",

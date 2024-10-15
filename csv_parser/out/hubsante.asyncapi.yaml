@@ -2830,7 +2830,7 @@ components:
       required:
       - resourceCategory
       - resourceType
-      - teamCare
+      - medicalLevel
       properties:
         resourceCategory:
           type: string
@@ -2953,12 +2953,12 @@ components:
           - TSU.AMB
           examples:
           - AR, VLM, VSAV
-        teamCare:
+        medicalLevel:
           type: string
           title: "Niveau de m\xE9dicalisation du transport"
           x-health-only: false
           x-cols: 6
-          example: example.json#/orientation/decision/teamCare
+          example: example.json#/orientation/decision/medicalLevel
           description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, secouriste).\n\
             A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN."
           enum:
@@ -2972,7 +2972,7 @@ components:
       examples:
       - resourceCategory: SMUR
         resourceType: AR, VLM, VSAV
-        teamCare: PARAMED
+        medicalLevel: PARAMED
     caseDetails:
       type: object
       title: "D\xE9tails du dossier "

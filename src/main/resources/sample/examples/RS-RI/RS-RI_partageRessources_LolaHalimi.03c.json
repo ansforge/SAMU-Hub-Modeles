@@ -7,7 +7,7 @@
           "details": "+33612345678"
         },
         "team": {
-          "teamCare": "MED",
+          "medicalLevel": "MED",
           "name": "Equipe 3"
         },
         "datetime": "2024-01-18T18:23:00+01:00",

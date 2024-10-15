@@ -1383,7 +1383,7 @@
             "required": [
                 "resourceCategory",
                 "resourceType",
-                "teamCare"
+                "medicalLevel"
             ],
             "properties": {
                 "resourceCategory": {
@@ -1503,12 +1503,12 @@
                         "TSU.AMB"
                     ]
                 },
-                "teamCare": {
+                "medicalLevel": {
                     "type": "string",
                     "title": "Niveau de médicalisation du transport",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/orientation/decision/teamCare",
+                    "example": "example.json#/orientation/decision/medicalLevel",
                     "description": "Type d’équipe (médical, paramédicale, secouriste).\nA valoriser par un code de la nomenclature SI-SAMU-NIVSOIN.",
                     "enum": [
                         "MED",
