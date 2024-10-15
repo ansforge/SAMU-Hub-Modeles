@@ -17,7 +17,7 @@
             "code": "AVPAR",
             "label": "Accident routier"
         },
-        "initialTeamCare": "PARAMED"
+        "medicalLevel": "PARAMED"
     },
     "patient": {
         "patientId": "fr.health.samu690.patient.DRFR15DDXAAJJJ00001.1",

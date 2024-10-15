@@ -55,7 +55,7 @@
         "code": "C02.05.02",
         "label": "Obstétrique"
       },
-      "initialTeamCare": "MED"
+      "medicalLevel": "MED"
     },
     "context": {
       "orgId": "fr.health.samu440",

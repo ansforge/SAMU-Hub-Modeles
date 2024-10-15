@@ -55,7 +55,7 @@
         "code": "C09.03.00",
         "label": "Fuite de gaz"
       },
-      "initialTeamCare": "MED"
+      "medicalLevel": "MED"
     },
     "context": {
       "orgId": "fr.health.samu440",

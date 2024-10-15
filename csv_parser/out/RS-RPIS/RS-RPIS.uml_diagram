@@ -28,7 +28,7 @@ strict digraph {
                 <TR>
                 <TD ><B>regulation</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet regulation</I></TD></TR><TR><TD BORDER="0" >initialTeamCare <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet regulation</I></TD></TR><TR><TD BORDER="0" >medicalLevel <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	regulation -> rpis [headlabel=1 taillabel=1]
 	residentialAddress [label=<<TABLE>

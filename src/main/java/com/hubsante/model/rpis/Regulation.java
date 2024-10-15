@@ -95,8 +95,8 @@ public class Regulation {
   }
 
   public static final String JSON_PROPERTY_INITIAL_TEAM_CARE =
-      "initialTeamCare";
-  private InitialTeamCareEnum initialTeamCare;
+      "medicalLevel";
+  private InitialTeamCareEnum medicalLevel;
 
   public Regulation() {}
 
@@ -146,9 +146,9 @@ public class Regulation {
     this.healthMotive = healthMotive;
   }
 
-  public Regulation initialTeamCare(InitialTeamCareEnum initialTeamCare) {
+  public Regulation medicalLevel(InitialTeamCareEnum medicalLevel) {
 
-    this.initialTeamCare = initialTeamCare;
+    this.medicalLevel = medicalLevel;
     return this;
   }
 
@@ -157,19 +157,19 @@ public class Regulation {
    *de la nomenclature  SI-SAMU-NIVSOIN. Permet de déduire avec la donnée
    *\&quot;niveau de médicalisation du transport\&quot;, si un UMHP est devenu
    *un SMUR.
-   * @return initialTeamCare
+   * @return medicalLevel
    **/
   @JsonProperty(JSON_PROPERTY_INITIAL_TEAM_CARE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public InitialTeamCareEnum getInitialTeamCare() {
-    return initialTeamCare;
+    return medicalLevel;
   }
 
   @JsonProperty(JSON_PROPERTY_INITIAL_TEAM_CARE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInitialTeamCare(InitialTeamCareEnum initialTeamCare) {
-    this.initialTeamCare = initialTeamCare;
+  public void setInitialTeamCare(InitialTeamCareEnum medicalLevel) {
+    this.medicalLevel = medicalLevel;
   }
 
   @Override
@@ -183,12 +183,12 @@ public class Regulation {
     Regulation regulation = (Regulation)o;
     return Objects.equals(this.whatsHappen, regulation.whatsHappen) &&
         Objects.equals(this.healthMotive, regulation.healthMotive) &&
-        Objects.equals(this.initialTeamCare, regulation.initialTeamCare);
+        Objects.equals(this.medicalLevel, regulation.medicalLevel);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(whatsHappen, healthMotive, initialTeamCare);
+    return Objects.hash(whatsHappen, healthMotive, medicalLevel);
   }
 
   @Override
@@ -201,8 +201,8 @@ public class Regulation {
     sb.append("    healthMotive: ")
         .append(toIndentedString(healthMotive))
         .append("\n");
-    sb.append("    initialTeamCare: ")
-        .append(toIndentedString(initialTeamCare))
+    sb.append("    medicalLevel: ")
+        .append(toIndentedString(medicalLevel))
         .append("\n");
     sb.append("}");
     return sb.toString();
