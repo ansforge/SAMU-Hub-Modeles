@@ -232,8 +232,8 @@ public class Resource {
     }
   }
 
-  public static final String JSON_PROPERTY_VEHICULE_TYPE = "vehiculeType";
-  private VehiculeTypeEnum vehiculeType;
+  public static final String JSON_PROPERTY_VEHICULE_TYPE = "vehicleType";
+  private VehiculeTypeEnum vehicleType;
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -404,27 +404,27 @@ public class Resource {
     this.centerName = centerName;
   }
 
-  public Resource vehiculeType(VehiculeTypeEnum vehiculeType) {
+  public Resource vehicleType(VehiculeTypeEnum vehicleType) {
 
-    this.vehiculeType = vehiculeType;
+    this.vehicleType = vehicleType;
     return this;
   }
 
   /**
    * A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée
-   * @return vehiculeType
+   * @return vehicleType
    **/
   @JsonProperty(JSON_PROPERTY_VEHICULE_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public VehiculeTypeEnum getVehiculeType() {
-    return vehiculeType;
+    return vehicleType;
   }
 
   @JsonProperty(JSON_PROPERTY_VEHICULE_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVehiculeType(VehiculeTypeEnum vehiculeType) {
-    this.vehiculeType = vehiculeType;
+  public void setVehiculeType(VehiculeTypeEnum vehicleType) {
+    this.vehicleType = vehicleType;
   }
 
   public Resource name(String name) {
@@ -613,7 +613,7 @@ public class Resource {
         Objects.equals(this.missionId, resource.missionId) &&
         Objects.equals(this.orgId, resource.orgId) &&
         Objects.equals(this.centerName, resource.centerName) &&
-        Objects.equals(this.vehiculeType, resource.vehiculeType) &&
+        Objects.equals(this.vehicleType, resource.vehicleType) &&
         Objects.equals(this.name, resource.name) &&
         Objects.equals(this.centerCity, resource.centerCity) &&
         Objects.equals(this.team, resource.team) &&
@@ -625,7 +625,7 @@ public class Resource {
   @Override
   public int hashCode() {
     return Objects.hash(datetime, resourceId, requestId, missionId, orgId,
-                        centerName, vehiculeType, name, centerCity, team, state,
+                        centerName, vehicleType, name, centerCity, team, state,
                         contact, freetext);
   }
 
@@ -647,8 +647,8 @@ public class Resource {
     sb.append("    centerName: ")
         .append(toIndentedString(centerName))
         .append("\n");
-    sb.append("    vehiculeType: ")
-        .append(toIndentedString(vehiculeType))
+    sb.append("    vehicleType: ")
+        .append(toIndentedString(vehicleType))
         .append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    centerCity: ")

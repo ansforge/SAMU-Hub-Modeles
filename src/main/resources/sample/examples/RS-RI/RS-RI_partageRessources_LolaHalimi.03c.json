@@ -14,7 +14,7 @@
         "resourceId": "fr.health.samu780.resource.SMUR78-E",
         "requestId": "fr.health.samu950.request.zs498qo",
         "orgId": "fr.health.samu78",
-        "vehiculeType": "SMUR.VLM",
+        "vehicleType": "SMUR.VLM",
         "name": "VLM78-E"
       }
     ],

@@ -37,7 +37,7 @@
             "required": [
                 "datetime",
                 "resourceId",
-                "vehiculeType"
+                "vehicleType"
             ],
             "properties": {
                 "datetime": {
@@ -92,12 +92,12 @@
                     "example": "example.json#/resource/0/centerName",
                     "description": "A valoriser avec le lieu de garage principal"
                 },
-                "vehiculeType": {
+                "vehicleType": {
                     "type": "string",
                     "title": "Type de vecteur",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/resource/0/vehiculeType",
+                    "example": "example.json#/resource/0/vehicleType",
                     "description": "A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée",
                     "enum": [
                         "AASC",

@@ -49,12 +49,12 @@ components:
       x-health-only: false
       required: []
       properties:
-        vehiculeType:
+        vehicleType:
           type: string
           title: Type de vecteur
           x-health-only: false
           x-cols: 6
-          example: example.json#/resource/0/vehiculeType
+          example: example.json#/resource/0/vehicleType
           description: "A valoriser avec le type de vecteur mobilis\xE9 : cf. nomenclature\
             \ associ\xE9e"
           enum:

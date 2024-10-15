@@ -6,7 +6,7 @@
           "medicalLevel": "MED",
           "name": "Equipe SMUR 2"
         },
-        "vehiculeType": "SMUR.VLM",
+        "vehicleType": "SMUR.VLM",
         "name": "VLM2",
         "datetime": "2024-05-18T18:20:00+02:00",
         "resourceId": "fr.health.samu440.resource.VLM2",
@@ -30,7 +30,7 @@
         "datetime": "2024-05-18T18:22:00+02:00",
         "resourceId": "fr.fire.sis044.cgo-044.resource.VSAV3",
         "orgId": "fr.fire.sdis044.cgo-044",
-        "vehiculeType": "SIS.VSAV",
+        "vehicleType": "SIS.VSAV",
         "name": "VSAV3",
         "centerCity": "44109"
       }
