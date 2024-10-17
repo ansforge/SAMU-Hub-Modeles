@@ -1,0 +1,71 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "classpath:/json-schema/schema#",
+    "x-id": "RS-URL.schema.json#",
+    "version": "24.10.17",
+    "example": "example.json#",
+    "type": "object",
+    "title": "documentLink",
+    "required": [
+        "caseId",
+        "document"
+    ],
+    "properties": {
+        "caseId": {
+            "type": "string",
+            "title": "Identifiant partagé du dossier de régulation médicale (DRM)",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/caseId",
+            "description": "Identifiant partagé du dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système."
+        },
+        "patientId": {
+            "type": "string",
+            "title": "Identifiant partagé du patient",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/patientId",
+            "description": "Indique l'identifiant partagé du patient auquel les documents sont rattachés",
+            "pattern": "^([\\w-]+\\.){3,4}patient(\\.[\\w-]+){1,2}$"
+        },
+        "document": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/document"
+            },
+            "minItems": 1
+        }
+    },
+    "definitions": {
+        "document": {
+            "type": "object",
+            "title": "Documents",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "url"
+            ],
+            "properties": {
+                "documentType": {
+                    "type": "string",
+                    "title": "Type de document",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/document/0/documentType",
+                    "description": "Informe l'utilisateur du type de document que le lien URL permet d'ouvrir"
+                },
+                "url": {
+                    "type": "string",
+                    "title": "URL",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/document/0/url",
+                    "description": "URL qui permet à l'utilisateur du LRM d'ouvrir le type de document précisé dans le champ précédent"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/document/0"
+        }
+    },
+    "additionalProperties": false
+}

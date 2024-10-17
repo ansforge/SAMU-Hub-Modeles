@@ -7,16 +7,16 @@ strict digraph {
                 <TR>
                 <TD ><B>team</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet team</I></TD></TR><TR><TD BORDER="0" >teamCare <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet team</I></TD></TR><TR><TD BORDER="0" >medicalLevel <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	team -> resourceInfo [headlabel=1 taillabel="0..1"]
-	resourceInfo [label=<<TABLE>
+	team -> resource [headlabel=1 taillabel="0..1"]
+	resource [label=<<TABLE>
                 <TR>
-                <TD ><B>resourceInfo</B></TD>
+                <TD ><B>resource</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet resource</I></TD></TR><TR><TD BORDER="0" >vehiculeType <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet resource</I></TD></TR><TR><TD BORDER="0" >vehicleType <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
-	resourceInfo -> resourcesEngagement [headlabel=1 taillabel="1..*"]
+	resource -> resourcesEngagement [headlabel=1 taillabel="1..*"]
 	resourcesEngagement [label=<<TABLE>
                 <TR>
                 <TD ><B>resourcesEngagement</B></TD>

@@ -42,6 +42,10 @@ import com.hubsante.model.rpis.Rpis;
 import com.hubsante.model.rpis.RpisWrapper;
 import com.hubsante.model.technical.TechnicalWrapper;
 import com.hubsante.model.technical.noreq.TechnicalNoreqWrapper;
+import com.hubsante.model.documentlink.DocumentLinkWrapper;
+import com.hubsante.model.resources.info.ResourcesEngagementWrapper;
+import com.hubsante.model.interventionreport.InterventionReportWrapper;
+
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -65,7 +69,10 @@ import java.util.stream.Stream;
         @JsonSubTypes.Type(ResourcesStatusWrapper.class),
         @JsonSubTypes.Type(RpisWrapper.class),
         @JsonSubTypes.Type(TechnicalWrapper.class),
-        @JsonSubTypes.Type(TechnicalNoreqWrapper.class)
+        @JsonSubTypes.Type(TechnicalNoreqWrapper.class),
+        @JsonSubTypes.Type(DocumentLinkWrapper.class),
+        @JsonSubTypes.Type(ResourcesEngagementWrapper.class),
+        @JsonSubTypes.Type(InterventionReportWrapper.class),
 })
 public class ContentMessage {
 

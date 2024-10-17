@@ -1,11 +1,11 @@
 {
     "caseId": "fr.health.samu440.DRFR15440241550012",
-    "resourceInfo": [
+    "resource": [
         {
-            "vehiculeType": "VLM",
+            "vehicleType": "VLM",
             "name": "SMUR 123",
             "team": {
-                "teamCare": "MED",
+                "medicalLevel": "MED",
                 "name": "Equipe A"
             },
             "freetext": [

@@ -112,55 +112,71 @@ public class Decision {
   public enum ResourceTypeEnum {
     SMUR("SMUR"),
 
-    MED("MED"),
+    SMUR_ADULT("SMUR.ADULT"),
 
-    PARAMED("PARAMED"),
+    SMUR_PED("SMUR.PED"),
+
+    SMUR_UMH_S("SMUR.UMH-S"),
+
+    SMUR_CUMP("SMUR.CUMP"),
 
     HOSPIT("HOSPIT"),
 
-    LIB("LIB"),
+    LIBERAL("LIBERAL"),
 
-    MEDC("MEDC"),
+    LIBERAL_MG("LIBERAL.MG"),
 
-    PHARMA("PHARMA"),
+    LIBERAL_PHARM("LIBERAL.PHARM"),
 
-    INF("INF"),
+    LIBERAL_INF("LIBERAL.INF"),
 
-    MEDSPE("MEDSPE"),
+    LIBERAL_KINE("LIBERAL.KINE"),
 
-    DENT("DENT"),
+    LIBERAL_SOS("LIBERAL.SOS"),
 
-    AUTREPRO("AUTREPRO"),
+    LIBERAL_MMG("LIBERAL.MMG"),
+
+    LIBERAL_MSPD("LIBERAL.MSPD"),
+
+    LIBERAL_MCS("LIBERAL.MCS"),
+
+    LIBERAL_SPEMED("LIBERAL.SPEMED"),
+
+    LIBERAL_DENT("LIBERAL.DENT"),
+
+    LIBERAL_LABO("LIBERAL.LABO"),
+
+    LIBERAL_AUTREPRO("LIBERAL.AUTREPRO"),
 
     TSU_("TSU "),
 
     SIS("SIS"),
 
-    MSP("MSP"),
+    SIS_MEDSP("SIS.MEDSP"),
 
-    ISP("ISP"),
+    SIS_ISP("SIS.ISP"),
 
-    SP("SP"),
+    SIS_SP("SIS.SP"),
 
     AASC("AASC"),
 
     FDO("FDO"),
 
-    HELIFSI("HELIFSI"),
+    FDO_PN("FDO.PN"),
 
-    VLFSI("VLFSI"),
+    FDO_GEND("FDO.GEND"),
 
-    FFSI("FFSI"),
+    FDO_PM("FDO.PM"),
 
-    DGDD("DGDD"),
+    FDO_DOUANES("FDO.DOUANES"),
 
     AUTRE("AUTRE"),
 
-    ADM("ADM"),
+    AUTRE_ADM("AUTRE.ADM"),
 
-    DAE("DAE"),
+    AUTRE_DAE("AUTRE.DAE"),
 
-    INCONNU("INCONNU");
+    AUTRE_AUTRE("AUTRE.AUTRE");
 
     private String value;
 

@@ -41,7 +41,7 @@ import java.util.Objects;
 /**
  * Team
  */
-@JsonPropertyOrder({Team.JSON_PROPERTY_TEAM_CARE, Team.JSON_PROPERTY_NAME})
+@JsonPropertyOrder({Team.JSON_PROPERTY_MEDICAL_LEVEL, Team.JSON_PROPERTY_NAME})
 @JsonTypeName("team")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -51,7 +51,7 @@ public class Team {
    * A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature
    * associée
    */
-  public enum TeamCareEnum {
+  public enum MedicalLevelEnum {
     MED("MED"),
 
     PARAMED("PARAMED"),
@@ -60,7 +60,7 @@ public class Team {
 
     private String value;
 
-    TeamCareEnum(String value) { this.value = value; }
+    MedicalLevelEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -73,8 +73,8 @@ public class Team {
     }
 
     @JsonCreator
-    public static TeamCareEnum fromValue(String value) {
-      for (TeamCareEnum b : TeamCareEnum.values()) {
+    public static MedicalLevelEnum fromValue(String value) {
+      for (MedicalLevelEnum b : MedicalLevelEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -83,36 +83,36 @@ public class Team {
     }
   }
 
-  public static final String JSON_PROPERTY_TEAM_CARE = "teamCare";
-  private TeamCareEnum teamCare;
+  public static final String JSON_PROPERTY_MEDICAL_LEVEL = "medicalLevel";
+  private MedicalLevelEnum medicalLevel;
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
   public Team() {}
 
-  public Team teamCare(TeamCareEnum teamCare) {
+  public Team medicalLevel(MedicalLevelEnum medicalLevel) {
 
-    this.teamCare = teamCare;
+    this.medicalLevel = medicalLevel;
     return this;
   }
 
   /**
    * A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature
    *associée
-   * @return teamCare
+   * @return medicalLevel
    **/
-  @JsonProperty(JSON_PROPERTY_TEAM_CARE)
+  @JsonProperty(JSON_PROPERTY_MEDICAL_LEVEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public TeamCareEnum getTeamCare() {
-    return teamCare;
+  public MedicalLevelEnum getMedicalLevel() {
+    return medicalLevel;
   }
 
-  @JsonProperty(JSON_PROPERTY_TEAM_CARE)
+  @JsonProperty(JSON_PROPERTY_MEDICAL_LEVEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTeamCare(TeamCareEnum teamCare) {
-    this.teamCare = teamCare;
+  public void setMedicalLevel(MedicalLevelEnum medicalLevel) {
+    this.medicalLevel = medicalLevel;
   }
 
   public Team name(String name) {
@@ -148,20 +148,22 @@ public class Team {
       return false;
     }
     Team team = (Team)o;
-    return Objects.equals(this.teamCare, team.teamCare) &&
+    return Objects.equals(this.medicalLevel, team.medicalLevel) &&
         Objects.equals(this.name, team.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(teamCare, name);
+    return Objects.hash(medicalLevel, name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Team {\n");
-    sb.append("    teamCare: ").append(toIndentedString(teamCare)).append("\n");
+    sb.append("    medicalLevel: ")
+        .append(toIndentedString(medicalLevel))
+        .append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();

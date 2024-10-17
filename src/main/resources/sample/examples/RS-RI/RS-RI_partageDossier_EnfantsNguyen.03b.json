@@ -1,6 +1,6 @@
 {
   "resourcesInfo": {
-    "mobilizedResource": [
+    "resource": [
       {
         "contact": {
           "details": "+33744947325",
@@ -19,8 +19,7 @@
         "datetime": "2024-08-01T16:42:00+02:00",
         "resourceId": "fr.health.samu76A.resource.VLM12",
         "orgId": "fr.health.samu76A",
-        "resourceType": "SMUR",
-        "vehiculeType": "VLM",
+        "vehiculeType": "SMUR.VLM",
         "name": "VLM 76 - A45"
       },
       {
@@ -42,9 +41,8 @@
         "datetime": "2024-08-01T16:40:00+02:00",
         "resourceId": "fr.fire.sis076.cgo-076.resource.VSAV3A",
         "orgId": "fr.fire.sdis76.cgo-076",
-        "resourceType": "SIS",
         "name": "VSAV 76 - 22D8",
-        "vehiculeType": "VSAV"
+        "vehiculeType": "SIS.VSAV"
       }
     ],
     "caseId": "fr.health.samu800.DRFR158002421400215"

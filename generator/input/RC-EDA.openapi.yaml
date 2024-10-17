@@ -2059,17 +2059,25 @@ components:
           - TIERS
           - POMPIER
           - AMBULANC
+          - AMBULANC.AASC
+          - AMBULANC.AUTRESEC
           - SECOUR
           - MED
-          - MEDSOS
-          - MRL
-          - EFFML
+          - MED.MEDSOS
+          - MED.MRL
+          - MED.EFFML
           - SANTE
-          - INF
-          - AIDESOIN
-          - SF
-          - AIDEDOM
+          - SANTE.INF
+          - SANTE.AIDESOIN
+          - SANTE.SF
+          - SANTE.AIDEDOM
+          - SANTE.PHARMA
+          - SANTE.DENTISTE
+          - SANTE.LABO
           - FDO-MILI
+          - FDO-MILI.POL
+          - FDO-MILI.GENDARM
+          - FDO-MILI.MILI
           - ADM-TUTL
           - VIP
           - OBJCONNC

@@ -16,7 +16,7 @@ components:
       title: resourcesInfo
       required:
       - caseId
-      - resourceInfo
+      - resource
       properties:
         caseId:
           type: string
@@ -36,7 +36,7 @@ components:
           pattern: ^fr(\.[\w-]+){3,4}$
           examples:
           - fr.health.samu440.DRFR15440241550012
-        resourceInfo:
+        resource:
           type: array
           items:
             $ref: '#/components/schemas/resource'
@@ -50,14 +50,14 @@ components:
       required:
       - datetime
       - resourceId
-      - vehiculeType
+      - vehicleType
       properties:
         datetime:
           type: string
           title: "Date/heure de d\xE9clenchement"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/datetime
+          example: example.json#/resource/0/datetime
           description: A valoriser avec la date et heure d'engagement de la ressource/du
             vecteur
           pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
@@ -69,7 +69,7 @@ components:
           title: "ID Ressource partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/resourceId
+          example: example.json#/resource/0/resourceId
           description: "A valoriser avec l'identifiant partag\xE9 unique de la ressource\
             \ engag\xE9e, norm\xE9 comme suit :\n{orgID}.resource.{ID unique de la\
             \ ressource partag\xE9e}\nOU - uniquement dans le cas o\xF9 un ID unique\
@@ -86,7 +86,7 @@ components:
           title: "ID Demande partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/requestId
+          example: example.json#/resource/0/requestId
           description: "A valoriser avec l'identifiant unique partag\xE9 de la demande\
             \ de ressource (si la ressource a \xE9t\xE9 engag\xE9e suite \xE0 une\
             \ demande de ressource), norm\xE9 comme suit :\n{orgID}.request.{ID unique\
@@ -103,7 +103,7 @@ components:
           title: ID Mission local
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/missionId
+          example: example.json#/resource/0/missionId
           description: "A valoriser avec le num\xE9ro de mission unique du central\
             \ d\u2019appel (PSAP, \u2026) qui a d\xE9clench\xE9 le vecteur"
           examples:
@@ -113,7 +113,7 @@ components:
           title: "ID Organisation propri\xE9taire"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/orgId
+          example: example.json#/resource/0/orgId
           description: "A valoriser avec l'identifiant de l'organisation \xE0 laquelle\
             \ appartient la ressource, norm\xE9 comme suit : \n{pays}.{domaine}.{organisation}"
           examples:
@@ -123,82 +123,82 @@ components:
           title: "Nom du centre d\u2019affectation"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/centerName
+          example: example.json#/resource/0/centerName
           description: A valoriser avec le lieu de garage principal
           examples:
           - CHU Nantes
-        vehiculeType:
+        vehicleType:
           type: string
           title: Type de vecteur
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/vehiculeType
+          example: example.json#/resource/0/vehicleType
           description: "A valoriser avec le type de vecteur mobilis\xE9 : cf. nomenclature\
             \ associ\xE9e"
           enum:
           - AASC
-          - VLSC
-          - VPSP
-          - AUTRESC
+          - AASC.VLSC
+          - AASC.VPSP
+          - AASC.AUTRESC
           - AUTREVEC
-          - TAXI
-          - TRANSP
-          - TRAIN
-          - AVION
-          - PERSO
-          - APIED
-          - AUTRE
-          - AUTRETRA
+          - AUTREVEC.APIED
+          - AUTREVEC.AVION
+          - AUTREVEC.PERSO
+          - AUTREVEC.TAXI
+          - AUTREVEC.TRAIN
+          - AUTREVEC.TRANSP
+          - AUTREVEC.AUTRE
+          - AUTREVEC.AUTRETRA
           - FSI
-          - HELIFSI
-          - VLFSI
-          - FFSI
-          - VHFSI
+          - FSI.HELIFSI
+          - FSI.VLFSI
+          - FSI.FFSI
+          - FSI.VHFSI
           - LIB
-          - MEDV
-          - INF
-          - AUTREPRO
+          - LIB.MEDV
+          - LIB.INF
+          - LIB.AUTREPRO
           - SIS
-          - VSAV
-          - GRIMP
-          - VPL
-          - SRSIS
-          - FEUSIS
-          - VPMA
-          - VCH
-          - VR
-          - PCSIS
-          - VLISP
-          - VLMSP
-          - VLCG
-          - VLSIS
-          - DRAGON
-          - AVSC
-          - MOYSSE
-          - AUTRESIS
-          - NAVISIS
+          - SIS.DRAGON
+          - SIS.AVSC
+          - SIS.FEUSIS
+          - SIS.GRIMP
+          - SIS.NAVISIS
+          - SIS.PCSIS
+          - SIS.SRSIS
+          - SIS.VCH
+          - SIS.VLCG
+          - SIS.VLISP
+          - SIS.VLMSP
+          - SIS.VLSIS
+          - SIS.VPL
+          - SIS.VPMA
+          - SIS.VR
+          - SIS.VSAV
+          - SIS.MOYSSE
+          - SIS.AUTRESIS
           - SMUR
-          - VLM
-          - VL
-          - PSM1
-          - PSM2
-          - PSM3
-          - PSMP
-          - VPC
-          - AR
-          - AR-BAR
-          - AR-PED
-          - HELISMUR
-          - HELISAN
-          - AVSMUR
-          - AVSAN
-          - NAVISMUR
+          - SMUR.VLM
+          - SMUR.VL
+          - SMUR.PSM1
+          - SMUR.PSM2
+          - SMUR.PSM3
+          - SMUR.PSMP
+          - SMUR.VPC
+          - SMUR.AR
+          - SMUR.AR-BAR
+          - SMUR.AR-PED
+          - SMUR.HELISMUR
+          - SMUR.HELISAN
+          - SMUR.AVSMUR
+          - SMUR.AVSAN
+          - SMUR.NAVISMUR
           - TSU
-          - VSL
-          - AMB-GV
-          - AMB-PV
-          - AMB-BAR
-          - AMB
+          - TSU.VSL
+          - TSU.AMB-GV
+          - TSU.AMB-PV
+          - TSU.AMB-BAR
+          - TSU.AMB
           examples:
           - VLM
         name:
@@ -206,7 +206,7 @@ components:
           title: Nom du vecteur
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/name
+          example: example.json#/resource/0/name
           description: "A valoriser avec le nom donn\xE9 \xE0 la ressource par l\u2019\
             organisation d\u2019appartenance"
           examples:
@@ -216,7 +216,7 @@ components:
           title: "Commune du centre d\u2019affectation"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/centerCity
+          example: example.json#/resource/0/centerCity
           description: A valoriser avec le code INSEE de la commune du centre d'affectation
           pattern: ^[0-9]{5}$
           examples:
@@ -237,14 +237,14 @@ components:
             title: Commentaires
             x-health-only: false
             x-cols: 6
-            example: example.json#/resourceInfo/0/freetext/0
+            example: example.json#/resource/0/freetext/0
             description: "Texte libre permettant de passer toute autre information\
               \ sur la ressource (\xE9quipements suppl\xE9mentaires / sp\xE9cifiques,\
               \ particularit\xE9s du vecteur, etc.)"
             examples:
             - "SMUR p\xE9diatrique"
       additionalProperties: false
-      example: example.json#/resourceInfo/0
+      example: example.json#/resource/0
     team:
       type: object
       title: Equipe vecteur
@@ -252,12 +252,12 @@ components:
       x-health-only: false
       required: []
       properties:
-        teamCare:
+        medicalLevel:
           type: string
           title: Type
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/team/teamCare
+          example: example.json#/resource/0/team/medicalLevel
           description: "A valoriser avec le  niveau de m\xE9dicalisation du vecteur.\
             \ Cf. nomenclature associ\xE9e"
           enum:
@@ -271,15 +271,15 @@ components:
           title: Nom
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/team/name
+          example: example.json#/resource/0/team/name
           description: "A valoriser avec le nom de l'\xE9quipe \xE0 bord du vecteur\
             \ (celui communiqu\xE9 par l'organisation \xE0 laquelle l'\xE9quipe appartient)"
           examples:
           - Equipe A
       additionalProperties: false
-      example: example.json#/resourceInfo/0/team
+      example: example.json#/resource/0/team
       examples:
-      - teamCare: MED
+      - medicalLevel: MED
         name: Equipe A
     state:
       type: object
@@ -295,7 +295,7 @@ components:
           title: Date/heure de changement de statut
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/state/0/datetime
+          example: example.json#/resource/0/state/0/datetime
           description: A valoriser avec la date et heure d'engagement de changement
             vers le nouveau statut
           pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
@@ -307,24 +307,24 @@ components:
           title: Statut du vecteur
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/state/0/status
+          example: example.json#/resource/0/state/0/status
           description: "A valoriser avec le statut du vecteur. Cf nomenclature associ\xE9\
             e."
           enum:
           - DECISION
           - DECLENCHE
           - DEPART
-          - ARRIVE
-          - PEC
           - ANNULE
+          - ARRIVEE
+          - PEC
           - BILAN
-          - TRANSPOR
+          - TRANSP
           - ETAPE1
           - TRANSP2
           - ETAPE2
           - TRANSP3
           - DESTIN
-          - FINPEC
+          - FINMED
           - RETOUR
           - RET-BASE
           - REN-BASE
@@ -335,13 +335,13 @@ components:
           title: "Disponibilit\xE9 du vecteur"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/state/0/availability
+          example: example.json#/resource/0/state/0/availability
           description: "A valoriser de mani\xE8re \xE0 indiquer la disponibilit\xE9\
             \ du vecteur.\nTRUE = DISPONIBLE\nFALSE = INDISPONIBLE\nVIDE = INCONNU"
           examples:
           - 'FALSE'
       additionalProperties: false
-      example: example.json#/resourceInfo/0/state/0
+      example: example.json#/resource/0/state/0
       examples:
       - datetime: '2022-09-27T08:23:34+02:00'
         status: ARRIVE
@@ -358,7 +358,7 @@ components:
           title: 'Type de contact '
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/contact/type
+          example: example.json#/resource/0/contact/type
           description: "A valoriser avec le type de l'URI utilis\xE9e. Cf nomenclature\
             \ associ\xE9e."
           enum:
@@ -376,14 +376,14 @@ components:
           title: URI du contact
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceInfo/0/contact/details
+          example: example.json#/resource/0/contact/details
           description: "A valoriser avec la valeur de l'URI utilis\xE9e\nLe format\
             \ attendu pour un num\xE9ro de t\xE9l\xE9phone est le suivant : +{indicatif\
             \ pays}{num\xE9ro de t\xE9l\xE9phone}"
           examples:
           - '+33671830530'
       additionalProperties: false
-      example: example.json#/resourceInfo/0/contact
+      example: example.json#/resource/0/contact
       examples:
       - type: PHNADD
         details: '+33671830530'

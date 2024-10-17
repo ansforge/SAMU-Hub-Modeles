@@ -1,6 +1,6 @@
 {
     "caseId": "fr.health.samu440.DRFR15440241550012",
-    "resourceInfo": [
+    "resource": [
         {
             "datetime": "2022-09-27T08:23:34+02:00",
             "resourceId": "fr.health.samu770.resource.VLM250\nfr.health.samu440.resource.DRFR15DDXAAJJJ0000.1",
@@ -8,11 +8,11 @@
             "missionId": "DRFR15DDXAAJJJ0000.M001",
             "orgId": "fr.health.samu440",
             "centerName": "CHU Nantes",
-            "vehiculeType": "VLM",
+            "vehicleType": "VLM",
             "name": "SMUR 123",
             "centerCity": 44109,
             "team": {
-                "teamCare": "MED",
+                "medicalLevel": "MED",
                 "name": "Equipe A"
             },
             "state": [
