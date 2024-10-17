@@ -63,6 +63,8 @@ public class XmlGenerationHelper {
                             convertJsonToXml(jsonFile);
                         } catch (IOException e) {
                             log.error("Could not convert file {} to XML, {}", jsonFile.getFileName(), e.getMessage());
+                        } catch (RuntimeException e) {
+                            log.error("Could not convert file {} to XML, no nodes detected", jsonFile.getFileName());
                         }
                     }
                 } catch (IOException e) {
@@ -74,7 +76,7 @@ public class XmlGenerationHelper {
         }
     }
 
-    private void convertJsonToXml(Path jsonFile) throws IOException {
+    private void convertJsonToXml(Path jsonFile) throws IOException, RuntimeException {
         EdxlMessage deserializedEdxlMessage;
         if (Arrays.stream(useCasesWithNoRcDe).anyMatch(name -> jsonFile.getFileName().toString().contains(name))) {
             deserializedEdxlMessage = edxlHandler.deserializeJsonEDXL(
