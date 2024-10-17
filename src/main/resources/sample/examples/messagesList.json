@@ -62,7 +62,7 @@
       {
         "file": "RS-EDA/RS-EDA-SMUR_FuiteDeGaz_AliceGregoireNormand.01.json",
         "icon": "mdi-molecule-co2",
-        "context": "Pas de test suivant: RS-EDA-MAJ - 02a",
+        "context": "Pas de test suivant: RS-ER - 02 ou 2a",
         "name": "Alice et Grégoire NORMAND.01",
         "caller": "Marie Dubois, mère des enfants, appelle le 15",
         "environment": "Domicile, maison particulière",
@@ -73,13 +73,40 @@
       {
         "file": "RS-EDA/RS-EDA-SMUR_FemmeEnceinte_DelphineVigneau.01.json",
         "icon": "mdi-human-pregnant",
-        "context": "Pas de test suivant: RS-EDA-MAJ - Delphine VIGNEAU.02a",
+        "context": "Pas de test suivant: RS-ER - Delphine VIGNEAU.02",
         "name": "Delphine VIGNEAU.01",
         "caller": "Agnès Duberti, appelle le 18 qui nous transfère l'appel et le dossier",
         "environment": "Lieu de travail",
         "victims": "1 patiente, nécessitant assistance SAMU",
         "victim": "Femme, enceinte de 2 mois, 32 ans",
         "medicalSituation": "Problème obstétrique non hémorragique suite à la chute d'une échelle d'une femme enceinte"
+      }]
+  },
+  {
+    "label": "RS-ER",
+    "schemaName": "RS-ER.schema.json",
+    "schema": null,
+    "examples": [
+      {
+        "file": "RS-ER/RS-ER_FuiteDeGaz_AliceGregoireNORMAND.02.json",
+        "icon": "mdi-molecule-co2",
+        "context": "Pas de test suivant: RS-RI - Alice et Grégoire NORMAND.03",
+        "name": "Alice et Grégoire NORMAND.02",
+        "environment": "Demande d'engagement d'un seul SMUR pour les 2 patients",
+      },
+      {
+        "file": "RS-ER/RS-ER_FuiteDeGaz_AliceGregoireNORMAND.02a.json",
+        "icon": "mdi-molecule-co2",
+        "context": "Pas de test suivant: RS-RI - Alice et Grégoire NORMAND.03",
+        "name": "Alice et Grégoire NORMAND.02a",
+        "environment": "Demande d'engagement de deux SMUR, un par patient",
+      },
+      {
+        "file": "RS-ER/RS-ER_FemmeEnceinte_DelphineVIGNEAU.02.json",
+        "icon": "mdi-human-pregnant",
+        "context": "Pas de test suivant: RS-RI - Delphine VIGNEAU.03",
+        "name": "Delphine VIGNEAU.02",
+        "environment": "Demande d'engagement d'un SMUR",
       }]
   },
   {
@@ -136,31 +163,45 @@
         "environment": "Régulation médicale du médecin urgentiste du 76A : mise à jour du dossier"
       },
       {
-        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FemmeEnceinte_DelphineVigneau.02a.json",
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FemmeEnceinte_DelphineVigneau.06.json",
         "icon": "mdi-human-pregnant",
-        "name": "Delphine VIGNEAU.02a",
-        "context": "Pas de test suivant: RS-EDA-MAJ - Delphine VIGNEAU.02b",
-        "environment": "Régulation médicale du médecin urgentiste"
+        "name": "Delphine VIGNEAU.06",
+        "context": "Pas de test suivant: RS-SR - Delphine VIGNEAU.07",
+        "environment": "Régulation médicale du médecin urgentiste - Ajout d'observations médicales"
       },
       {
-        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FemmeEnceinte_DelphineVigneau.02b.json",
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FemmeEnceinte_DelphineVigneau.08.json",
         "icon": "mdi-human-pregnant",
-        "name": "Delphine VIGNEAU.02b",
-        "context": "Pas de test suivant: RS-RPIS - Delphine VIGNEAU.03",
+        "name": "Delphine VIGNEAU.08",
+        "context": "Pas de test suivant: RS-SR - Delphine VIGNEAU.09",
+        "environment": "Partage de la décision d'orientation du patient"
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FemmeEnceinte_DelphineVigneau.12.json",
+        "icon": "mdi-human-pregnant",
+        "name": "Delphine VIGNEAU.12",
+        "context": "Fin du cas d'usage",
         "environment": "Clôture du dossier"
       },
       {
-        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FuiteDeGaz_AliceGregoireNormand.02a.json",
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FuiteDeGaz_AliceGregoireNormand.07.json",
         "icon": "mdi-molecule-co2",
-        "name": "Alice et Grégoire NORMAND.02a",
-        "context": "Pas de test suivant: RS-EDA-MAJ - Alice et Grégoire NORMAND.02b",
-        "environment": "Régulation médicale du médecin urgentiste"
+        "name": "Alice et Grégoire NORMAND.07",
+        "context": "Pas de test suivant: RS-SR - Alice et Grégoire NORMAND.08",
+        "environment": "Régulation médicale du médecin urgentiste - Ajout d'observations médicales"
       },
       {
-        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FuiteDeGaz_AliceGregoireNormand.02b.json",
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FemmeEnceinte_DelphineVigneau.10.json",
+        "icon": "mdi-human-pregnant",
+        "name": "Alice et Grégoire NORMAND.10",
+        "context": "Pas de test suivant: RS-SR - Alice et Grégoire NORMAND.11",
+        "environment": "Partage de la décision d'orientation du patient"
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FuiteDeGaz_AliceGregoireNormand.16.json",
         "icon": "mdi-molecule-co2",
-        "name": "Alice et Grégoire NORMAND.02b",
-        "context": "Pas de test suivant: RS-RPIS - Grégoire NORMAND.03a",
+        "name": "Alice et Grégoire NORMAND.16",
+        "context": "Fin du cas d'usage",
         "environment": "Clôture du dossier"
       }]
   },
@@ -217,25 +258,26 @@
       "environment": "Engagement de l’HéliSMUR 80 en réponse à la demande du 76A"
     },
     {
-      "file": "RS-RI/RS-RI_FemmeEnceinte.json",
+      "file": "RS-RI/RS-RI_FemmeEnceinte_DelphineVigneau.03.json",
       "icon": "mdi-human-pregnant",
-      "name": "Delphine VIGNEAU.01bis",
-      "context": "Pas de test suivant: RS-SR",
-      "environment": "Engagement VLM"
+      "name": "Delphine VIGNEAU.03",
+      "context": "Pas de test suivant: RS-SR - Delphine VIGNEAU.04",
+      "environment": "Réponse à la demande d'engagement d'un SMUR avec le détail de l'équipe"
     },
     {
-      "file": "RS-RI/RS-RI_FuiteDeGaz.json",
+      "file": "RS-RI/RS-RI_FuiteDeGaz_AliceGregoireNORMAND.03.json",
       "icon": "mdi-molecule-co2",
-      "name": "Alice et Grégoire NORMAND.01bis",
-      "context": "Pas de test suivant: RS-SR",
-      "environment": "Engagement VLM et VSAV"
+      "name": "Alice et Grégoire NORMAND.03",
+      "context": "Pas de test suivant: RS-SR - Alice et Grégoire NORMAND.04",
+      "environment": "Réponse à la demande d'engagement d'un SMUR avec le détail de l'équipe"
+    },
+    {
+      "file": "RS-RI/RS-RI_FuiteDeGaz_AliceGregoireNORMAND.06.json",
+      "icon": "mdi-molecule-co2",
+      "name": "Alice et Grégoire NORMAND.06",
+      "context": "Pas de test suivant: RS-EDA-MAJ - Alice et Grégoire NORMAND.07",
+      "environment": "Partage des ressources engagées avec le SMUR"
     }]
-  },
-  {
-    "label": "RS-ER",
-    "schemaName": "RS-ER.schema.json",
-    "schema": null,
-    "examples": []
   },
   {
     "label": "RS-DR",
@@ -320,7 +362,7 @@
         "file": "RS-SR/RS-SR_partageRessources_EnfantsNguyen.05a.json",
         "icon": "mdi-baby-face-outline",
         "name": "Enfants NGUYEN.05a",
-        "context": "Pas de test suivant: RS-SR - 05b ",
+        "context": "Pas de test suivant: RS-SR - 05b",
         "environment": "Départ du SMUR 76A vers le lieu de l’intervention"
       },
       {
@@ -337,28 +379,53 @@
         "environment": "Arrivée Helismur 80 sur le lieu de l’intervention"
       },
       {
-        "file": "RS-SR/RS-SR_FemmeEnceinte.03a.json",
+        "file": "RS-SR/RS-SR_FemmeEnceinte_DelphineVIGNEAU.04.json",
         "icon": "mdi-human-pregnant",
-        "name": "Delphine Vigneau.03a",
-        "environment": "Départ de la base du VLM"
+        "name": "Delphine VIGNEAU.04",
+        "context": "Pas de test suivant: RS-URL - Delphine VIGNEAU.05",
+        "environment": "Départ de la base du SMUR"
       },
       {
-        "file": "RS-SR/RS-SR_FemmeEnceinte.03b.json",
+        "file": "RS-SR/RS-SR_FemmeEnceinte_DelphineVIGNEAU.07.json",
         "icon": "mdi-human-pregnant",
-        "name": "Delphine Vigneau.03b",
-        "environment": "Arrivée sur les lieux de l'intervention du VLM"
+        "name": "Delphine VIGNEAU.07",
+        "context": "Pas de test suivant: RS-EDA-MAJ - Delphine VIGNEAU.08",
+        "environment": "Arrivée sur les lieux de l'intervention du SMUR"
       },
       {
-        "file": "RS-SR/RS-SR_FuiteDeGaz.03a.json",
-        "icon": "mdi-molecule-co2",
-        "name": "Alice et Grégoire NORMAND.03a",
-        "environment": "Départ de la base du VLM"
+        "file": "RS-SR/RS-SR_FemmeEnceinte_DelphineVIGNEAU.09.json",
+        "icon": "mdi-human-pregnant",
+        "name": "Delphine VIGNEAU.09",
+        "context": "Pas de test suivant: RS-BPV - Delphine VIGNEAU.10",
+        "environment": "Retour du SMUR vers la base"
       },
       {
-        "file": "RS-SR/RS-SR_FuiteDeGaz.03b.json",
+        "file": "RS-SR/RS-SR_FuiteDeGaz_AliceGregoireNORMAND.04.json",
         "icon": "mdi-molecule-co2",
-        "name": "Alice et Grégoire NORMAND.03b",
-        "environment": "Arrivée sur les lieux de l'intervention du VLM"
+        "name": "Alice et Grégoire NORMAND.04",
+        "context": "Pas de test suivant: RS-URL - Grégoire NORMAND.05a et Alice NORMAND.05b",
+        "environment": "Départ de la base du SMUR"
+      },
+      {
+        "file": "RS-SR/RS-SR_FuiteDeGaz_AliceGregoireNORMAND.08.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.08",
+        "context": "Pas de test suivant: RS-URL - Grégoire NORMAND.09",
+        "environment": "Arrivée sur les lieux de l'intervention du SMUR"
+      },
+      {
+        "file": "RS-SR/RS-SR_FuiteDeGaz_AliceGregoireNORMAND.11.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.11",
+        "context": "Pas de test suivant: RS-BPV - Grégoire NORMAND.12a et Alice NORMAND.12b",
+        "environment": "Transport du patient vers l'établissement de santé"
+      },
+      {
+        "file": "RS-SR/RS-SR_FuiteDeGaz_AliceGregoireNORMAND.13.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.13",
+        "context": "Pas de test suivant: RS-BPV - Grégoire NORMAND.14a et Alice NORMAND.14b",
+        "environment": "Rentrée du SMUR à la base"
       }]
   },
   {
@@ -367,38 +434,101 @@
     "schema": null,
     "examples": [
       {
-        "file": "RS-RPIS/RS-RPIS_FuiteDeGaz_GregoireNormand.03a.json",
+        "file": "RS-RPIS/RS-RPIS_FuiteDeGaz_GregoireNormand.15b.json",
         "icon": "mdi-molecule-co2",
-        "context": "Fuite de gaz",
-        "name": "Grégoire NORMAND.03a",
-        "medicalSituation": "Données RS-RPIS du patient"
+        "context": "Pas de test suivant: RS-EDA-MAJ - Alice et Grégoire NORMAND.16",
+        "name": "Grégoire NORMAND.15b",
+        "medicalSituation": "Données RPIS du patient"
       },
       {
-        "file": "RS-RPIS/RS-RPIS_FuiteDeGaz_AliceNormand.03b.json",
+        "file": "RS-RPIS/RS-RPIS_FuiteDeGaz_AliceNormand.15a.json",
         "icon": "mdi-molecule-co2",
-        "context": "Fuite de gaz",
-        "name": "Alice NORMAND.03b",
-        "medicalSituation": "Données RS-RPIS du patient"
+        "context": "Pas de test suivant: RS-EDA-MAJ - Alice et Grégoire NORMAND.16",
+        "name": "Alice NORMAND.15a",
+        "medicalSituation": "Données RPIS du patient"
       },
       {
-        "file": "RS-RPIS/RS-RPIS_FemmeEnceinte_DelphineVigneau.03.json",
+        "file": "RS-RPIS/RS-RPIS_FemmeEnceinte_DelphineVigneau.11.json",
         "icon": "mdi-human-pregnant",
-        "context": "Chute d'une échelle d'une femme enceinte",
-        "name": "Delphine VIGNEAU.03",
-        "medicalSituation": "Données RS-RPIS du patient"
+        "context": "Pas de test suivant: RS-EDA-MAJ - Delphine VIGNEAU.12",
+        "name": "Delphine VIGNEAU.11",
+        "medicalSituation": "Données RPIS du patient"
       }]
   },
   {
     "label": "RS-BPV",
     "schemaName": "RS-BPV.schema.json",
     "schema": null,
-    "examples": []
+    "examples": [
+      {
+        "file": "RS-BPV/RS-BPV_FemmeEnceinte_DelphineVigneau.10.json",
+        "icon": "mdi-human-pregnant",
+        "name": "Delphine VIGNEAU.10",
+        "context": "Pas de test suivant: RS-RPIS - Delphine VIGNEAU.11",
+        "environment": "Partage du bilan final du patient"
+      },
+      {
+        "file": "RS-BPV/RS-BPV_FuiteDeGaz_GregoireNormand.12a.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Grégoire NORMAND.12a",
+        "context": "Pas de test suivant: RS-SR - Alice et Grégoire NORMAND.13",
+        "environment": "Partage d'éléments du bilan"
+      },
+      {
+        "file": "RS-BPV/RS-BPV_FuiteDeGaz_GregoireNormand.14a.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Grégoire NORMAND.14a",
+        "context": "Pas de test suivant: RS-RPIS - Grégoire NORMAND.15a",
+        "environment": "Partage du bilan final du patient"
+      },
+      {
+        "file": "RS-BPV/RS-BPV_FuiteDeGaz_AliceNormand.12b.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice NORMAND.12b",
+        "context": "Pas de test suivant: RS-SR - Alice et Grégoire NORMAND.13",
+        "environment": "Partage d'éléments du bilan"
+      },
+      {
+        "file": "RS-BPV/RS-BPV_FuiteDeGaz_AliceNormand.14b.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice NORMAND.14b",
+        "context": "Pas de test suivant: RS-RPIS - Alice NORMAND.15b",
+        "environment": "Partage du bilan final du patient"
+      }]
   },
   {
     "label": "RS-URL",
     "schemaName": "RS-URL.schema.json",
     "schema": null,
-    "examples": []
+    "examples": [      
+      {
+        "file": "RS-URL/RS-URL_FemmeEnceinte_DelphineVigneau.05.json",
+        "icon": "mdi-human-pregnant",
+        "name": "Delphine VIGNEAU.05",
+        "context": "Pas de test suivant: RS-EDA-MAJ - Delphine VIGNEAU.06",
+        "environment": "Partage du lien url vers le bilan du patient"
+      },
+      {
+        "file": "RS-URL/RS-URL_FuiteDeGaz_GregoireNormand.05a.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Grégoire NORMAND.05a",
+        "context": "Pas de test suivant: RS-RI - Alice et Grégoire NORMAND.06",
+        "environment": "Partage du lien url vers le bilan du patient"
+      },
+      {
+        "file": "RS-URL/RS-URL_FuiteDeGaz_GregoireNormand.09.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Grégoire NORMAND.09",
+        "context": "Pas de test suivant: RS-EDA-MAJ - Alice et Grégoire NORMAND.10",
+        "environment": "Partage des liens url de documents complémentaires"
+      },
+      {
+        "file": "RS-URL/RS-URL_FuiteDeGaz_AliceNormand.05b.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice NORMAND.05b",
+        "context": "Pas de test suivant: RS-RI - Alice et Grégoire NORMAND.06",
+        "environment": "Partage du lien url vers le bilan du patient"
+      }]
   },
   {
     "label": "RC-EDA",
