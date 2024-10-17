@@ -88,4 +88,4 @@ A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.",SMUR,resourceCat
 ,,Type de vecteur de transport,,,,"Précise le type de véhicule terrestre / aérien / maritime engagé dans l'intervention.
 A valoriser par un code de la nomenclature SI-SAMU-TYPE_VECTEUR.","AR, VLM, VSAV",resourceType,1..1,,string,NOMENCLATURE: SI-SAMU-TYPE_VECTEUR
 ,,Niveau de médicalisation du transport,,,,"Type d’équipe (médical, paramédicale, secouriste).
-A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN.",PARAMED,medicalLevel,1..1,,string,NOMENCLATURE: SI-SAMU-NIVSOIN
+A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN.",PARAMED,teamCare,1..1,,string,NOMENCLATURE: SI-SAMU-NIVSOIN

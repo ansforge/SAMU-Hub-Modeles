@@ -4,6 +4,10 @@
   <decision>
     <patientId>fr.health.samu440.patient.DRFR154402414300123.1</patientId>
     <creation>2024-05-26T13:37:00+02:00</creation>
+    <operator>
+      <label>Emilie Martin</label>
+      <role>MEDECIN</role>
+    </operator>
     <decisionType>PASPLUS</decisionType>
   </decision>
   <freetext>Laissée sur place</freetext>

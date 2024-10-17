@@ -1230,7 +1230,7 @@ A valoriser par un code de la nomenclature SI-SAMU-TYPE_VECTEUR.</documentation>
                     </restriction>
                 </simpleType>
             </element>
-            <element name="medicalLevel">
+            <element name="teamCare">
                 <annotation>
                     <documentation>Type d’équipe (médical, paramédicale, secouriste).
 A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN.</documentation>
