@@ -1,0 +1,13 @@
+{
+  "createCaseHealthUpdate": {
+    "caseId": "fr.fire.cga-044.SC-20240526-044-cga-AL8",
+    "decision": [
+      {
+        "patientId": "fr.health.samu440.patient.DRFR154402414300123.1",
+        "creation": "2024-05-26T13:37:00+02:00",
+        "decisionType": "PASPLUS"
+      }
+    ],
+    "freetext": "Laissée sur place"
+  }
+}
