@@ -1,13 +1,13 @@
 {
   "resourcesInfo": {
-    "mobilizedResource": [
+    "resource": [
       {
         "contact": {
           "type": "TEL",
           "details": "+33645789512"
         },
         "team": {
-          "teamCare": "SECOURS",
+          "medicalLevel": "SECOURS",
           "name": "Equipe C"
         },
         "state": [
@@ -20,8 +20,7 @@
         "datetime": "2024-01-18T18:06:00+01:00",
         "resourceId": "fr.fire.cga-095.resource.VSAV95",
         "orgId": "fr.fire.cga-095",
-        "resourceType": "SIS",
-        "vehiculeType": "VSAV",
+        "vehicleType": "SIS.VSAV",
         "name": "VSAV95.C"
       }
     ],

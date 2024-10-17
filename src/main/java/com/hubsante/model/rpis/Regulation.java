@@ -45,7 +45,7 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({Regulation.JSON_PROPERTY_WHATS_HAPPEN,
                     Regulation.JSON_PROPERTY_HEALTH_MOTIVE,
-                    Regulation.JSON_PROPERTY_INITIAL_TEAM_CARE})
+                    Regulation.JSON_PROPERTY_MEDICAL_LEVEL})
 @JsonTypeName("regulation")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -62,7 +62,7 @@ public class Regulation {
    * \&quot;niveau de médicalisation du transport\&quot;, si un UMHP est devenu
    * un SMUR.
    */
-  public enum InitialTeamCareEnum {
+  public enum MedicalLevelEnum {
     MED("MED"),
 
     PARAMED("PARAMED"),
@@ -71,7 +71,7 @@ public class Regulation {
 
     private String value;
 
-    InitialTeamCareEnum(String value) { this.value = value; }
+    MedicalLevelEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -84,8 +84,8 @@ public class Regulation {
     }
 
     @JsonCreator
-    public static InitialTeamCareEnum fromValue(String value) {
-      for (InitialTeamCareEnum b : InitialTeamCareEnum.values()) {
+    public static MedicalLevelEnum fromValue(String value) {
+      for (MedicalLevelEnum b : MedicalLevelEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -94,9 +94,8 @@ public class Regulation {
     }
   }
 
-  public static final String JSON_PROPERTY_INITIAL_TEAM_CARE =
-      "initialTeamCare";
-  private InitialTeamCareEnum initialTeamCare;
+  public static final String JSON_PROPERTY_MEDICAL_LEVEL = "medicalLevel";
+  private MedicalLevelEnum medicalLevel;
 
   public Regulation() {}
 
@@ -146,9 +145,9 @@ public class Regulation {
     this.healthMotive = healthMotive;
   }
 
-  public Regulation initialTeamCare(InitialTeamCareEnum initialTeamCare) {
+  public Regulation medicalLevel(MedicalLevelEnum medicalLevel) {
 
-    this.initialTeamCare = initialTeamCare;
+    this.medicalLevel = medicalLevel;
     return this;
   }
 
@@ -157,19 +156,19 @@ public class Regulation {
    *de la nomenclature  SI-SAMU-NIVSOIN. Permet de déduire avec la donnée
    *\&quot;niveau de médicalisation du transport\&quot;, si un UMHP est devenu
    *un SMUR.
-   * @return initialTeamCare
+   * @return medicalLevel
    **/
-  @JsonProperty(JSON_PROPERTY_INITIAL_TEAM_CARE)
+  @JsonProperty(JSON_PROPERTY_MEDICAL_LEVEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public InitialTeamCareEnum getInitialTeamCare() {
-    return initialTeamCare;
+  public MedicalLevelEnum getMedicalLevel() {
+    return medicalLevel;
   }
 
-  @JsonProperty(JSON_PROPERTY_INITIAL_TEAM_CARE)
+  @JsonProperty(JSON_PROPERTY_MEDICAL_LEVEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInitialTeamCare(InitialTeamCareEnum initialTeamCare) {
-    this.initialTeamCare = initialTeamCare;
+  public void setMedicalLevel(MedicalLevelEnum medicalLevel) {
+    this.medicalLevel = medicalLevel;
   }
 
   @Override
@@ -183,12 +182,12 @@ public class Regulation {
     Regulation regulation = (Regulation)o;
     return Objects.equals(this.whatsHappen, regulation.whatsHappen) &&
         Objects.equals(this.healthMotive, regulation.healthMotive) &&
-        Objects.equals(this.initialTeamCare, regulation.initialTeamCare);
+        Objects.equals(this.medicalLevel, regulation.medicalLevel);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(whatsHappen, healthMotive, initialTeamCare);
+    return Objects.hash(whatsHappen, healthMotive, medicalLevel);
   }
 
   @Override
@@ -201,8 +200,8 @@ public class Regulation {
     sb.append("    healthMotive: ")
         .append(toIndentedString(healthMotive))
         .append("\n");
-    sb.append("    initialTeamCare: ")
-        .append(toIndentedString(initialTeamCare))
+    sb.append("    medicalLevel: ")
+        .append(toIndentedString(medicalLevel))
         .append("\n");
     sb.append("}");
     return sb.toString();

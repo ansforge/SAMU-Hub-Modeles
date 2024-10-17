@@ -2,7 +2,7 @@
 <createCaseHealthUpdate xmlns="urn:emergency:cisu:2.0:createCaseHealthUpdate">
   <caseId>fr.health.samu770.DRFR157702400400055</caseId>
   <patient>
-    <idPat>fr.health.samu770.patient.DRFR157702400400055.2</idPat>
+    <patientId>fr.health.samu770.patient.DRFR157702400400055.2</patientId>
     <identity>
       <strictFeatures>
         <birthName>ARNAUD</birthName>
@@ -22,11 +22,11 @@
     </detail>
   </patient>
   <medicalNote>
-    <idPat>fr.health.samu770.patient.DRFR157702400400055.2</idPat>
+    <patientId>fr.health.samu770.patient.DRFR157702400400055.2</patientId>
     <operator>
       <role>ARM</role>
     </operator>
-    <idObs>fr.health.samu770.medicalNote.78fre25</idObs>
+    <medicalNoteId>fr.health.samu770.medicalNote.78fre25</medicalNoteId>
     <creation>2024-01-04T08:11:00+01:00</creation>
     <freetext>Hyperventile / Pleurs /Angoisse ++. Malaise à la vue du sang.</freetext>
   </medicalNote>

@@ -20,7 +20,7 @@
             },
             "details": {
                 "priority": "P2",
-                "attribution": "MU"
+                "attribution": "DRM.MRU.MU"
             }
         },
         "owner": "fr.health.samu950",
@@ -87,7 +87,7 @@
                     "detail": "702880946",
                     "channel": "Personne"
                 },
-                "language": "FR",
+                "language": "fr",
                 "type": "TIERS",
                 "detailedName": {
                     "complete": "Amina BERTRAND  ",

@@ -1,0 +1,30 @@
+{
+  "resourcesInfo": {
+    "resource": [
+      {
+        "team": {
+          "name": "Equipe SMUR 2"
+        },
+        "name": "VLM2",
+        "datetime": "2024-05-18T18:20:00+02:00",
+        "resourceId": "fr.health.samu440.resource.VLM2",
+        "orgId": "fr.health.samu440",
+        "state": [
+          {
+            "datetime": "2024-05-18T18:19:00+02:00",
+            "status": "DECISION"
+          }
+        ],
+        "vehicleType": "SMUR.VLM",
+        "contact": {
+          "type": "TEL",
+          "details": "0762865426"
+        },
+        "freetext": [
+          "Eric AZERTY, Marie-Jo ANELI, Pierre LOUITUT"
+        ]
+      }
+    ],
+    "caseId": "fr.health.samu440.DRFR154402413800236"
+  }
+}

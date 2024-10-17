@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.health.ExternalId;
+import com.hubsante.model.health.GeneralPractitioner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -44,13 +45,18 @@ import java.util.Objects;
 /**
  * AdministrativeFile
  */
-@JsonPropertyOrder({AdministrativeFile.JSON_PROPERTY_EXTERNAL_ID})
+@JsonPropertyOrder({AdministrativeFile.JSON_PROPERTY_EXTERNAL_ID,
+                    AdministrativeFile.JSON_PROPERTY_GENERAL_PRACTITIONER})
 @JsonTypeName("administrativeFile")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class AdministrativeFile {
   public static final String JSON_PROPERTY_EXTERNAL_ID = "externalId";
   private List<ExternalId> externalId;
+
+  public static final String JSON_PROPERTY_GENERAL_PRACTITIONER =
+      "generalPractitioner";
+  private GeneralPractitioner generalPractitioner;
 
   public AdministrativeFile() {}
 
@@ -93,6 +99,30 @@ public class AdministrativeFile {
     this.externalId.addAll(externalId);
   }
 
+  public AdministrativeFile
+  generalPractitioner(GeneralPractitioner generalPractitioner) {
+
+    this.generalPractitioner = generalPractitioner;
+    return this;
+  }
+
+  /**
+   * Get generalPractitioner
+   * @return generalPractitioner
+   **/
+  @JsonProperty(JSON_PROPERTY_GENERAL_PRACTITIONER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public GeneralPractitioner getGeneralPractitioner() {
+    return generalPractitioner;
+  }
+
+  @JsonProperty(JSON_PROPERTY_GENERAL_PRACTITIONER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGeneralPractitioner(GeneralPractitioner generalPractitioner) {
+    this.generalPractitioner = generalPractitioner;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -102,12 +132,14 @@ public class AdministrativeFile {
       return false;
     }
     AdministrativeFile administrativeFile = (AdministrativeFile)o;
-    return Objects.equals(this.externalId, administrativeFile.externalId);
+    return Objects.equals(this.externalId, administrativeFile.externalId) &&
+        Objects.equals(this.generalPractitioner,
+                       administrativeFile.generalPractitioner);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(externalId);
+    return Objects.hash(externalId, generalPractitioner);
   }
 
   @Override
@@ -116,6 +148,9 @@ public class AdministrativeFile {
     sb.append("class AdministrativeFile {\n");
     sb.append("    externalId: ")
         .append(toIndentedString(externalId))
+        .append("\n");
+    sb.append("    generalPractitioner: ")
+        .append(toIndentedString(generalPractitioner))
         .append("\n");
     sb.append("}");
     return sb.toString();

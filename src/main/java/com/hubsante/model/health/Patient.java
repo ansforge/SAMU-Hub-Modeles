@@ -47,15 +47,16 @@ import java.util.Objects;
  * Patient
  */
 @JsonPropertyOrder(
-    {Patient.JSON_PROPERTY_ID_PAT, Patient.JSON_PROPERTY_ADMINISTRATIVE_FILE,
-     Patient.JSON_PROPERTY_IDENTITY, Patient.JSON_PROPERTY_HEALTH_MOTIVE,
-     Patient.JSON_PROPERTY_DETAIL, Patient.JSON_PROPERTY_HYPOTHESIS})
+    {Patient.JSON_PROPERTY_PATIENT_ID,
+     Patient.JSON_PROPERTY_ADMINISTRATIVE_FILE, Patient.JSON_PROPERTY_IDENTITY,
+     Patient.JSON_PROPERTY_HEALTH_MOTIVE, Patient.JSON_PROPERTY_DETAIL,
+     Patient.JSON_PROPERTY_HYPOTHESIS})
 @JsonTypeName("patient")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Patient {
-  public static final String JSON_PROPERTY_ID_PAT = "idPat";
-  private String idPat;
+  public static final String JSON_PROPERTY_PATIENT_ID = "patientId";
+  private String patientId;
 
   public static final String JSON_PROPERTY_ADMINISTRATIVE_FILE =
       "administrativeFile";
@@ -75,9 +76,9 @@ public class Patient {
 
   public Patient() {}
 
-  public Patient idPat(String idPat) {
+  public Patient patientId(String patientId) {
 
-    this.idPat = idPat;
+    this.patientId = patientId;
     return this;
   }
 
@@ -88,19 +89,19 @@ public class Patient {
    *émetteur}  OU, si un n°patient unique n&#39;existe pas dans le système
    *émetteur : {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre
    *chronologique au dossier}
-   * @return idPat
+   * @return patientId
    **/
-  @JsonProperty(JSON_PROPERTY_ID_PAT)
+  @JsonProperty(JSON_PROPERTY_PATIENT_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getIdPat() {
-    return idPat;
+  public String getPatientId() {
+    return patientId;
   }
 
-  @JsonProperty(JSON_PROPERTY_ID_PAT)
+  @JsonProperty(JSON_PROPERTY_PATIENT_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIdPat(String idPat) {
-    this.idPat = idPat;
+  public void setPatientId(String patientId) {
+    this.patientId = patientId;
   }
 
   public Patient administrativeFile(AdministrativeFile administrativeFile) {
@@ -227,7 +228,7 @@ public class Patient {
       return false;
     }
     Patient patient = (Patient)o;
-    return Objects.equals(this.idPat, patient.idPat) &&
+    return Objects.equals(this.patientId, patient.patientId) &&
         Objects.equals(this.administrativeFile, patient.administrativeFile) &&
         Objects.equals(this.identity, patient.identity) &&
         Objects.equals(this.healthMotive, patient.healthMotive) &&
@@ -237,7 +238,7 @@ public class Patient {
 
   @Override
   public int hashCode() {
-    return Objects.hash(idPat, administrativeFile, identity, healthMotive,
+    return Objects.hash(patientId, administrativeFile, identity, healthMotive,
                         detail, hypothesis);
   }
 
@@ -245,7 +246,9 @@ public class Patient {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Patient {\n");
-    sb.append("    idPat: ").append(toIndentedString(idPat)).append("\n");
+    sb.append("    patientId: ")
+        .append(toIndentedString(patientId))
+        .append("\n");
     sb.append("    administrativeFile: ")
         .append(toIndentedString(administrativeFile))
         .append("\n");

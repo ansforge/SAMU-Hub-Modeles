@@ -17,7 +17,7 @@
           "detail": "+34612345678",
           "channel": "PERSONNE"
         },
-        "language": "FR",
+        "language": "fr",
         "type": "TIERS"
       },
       "reception": "2024-03-03T15:00:00+01:00",
@@ -49,7 +49,7 @@
     },
     "qualification": {
       "details": {
-        "attribution": "MU",
+        "attribution": "DRM.MRU.MU",
         "priority": "P1"
       },
       "healthMotive": {
@@ -70,7 +70,7 @@
         "detail": {
           "age": "P80Y"
         },
-        "idPat": "fr.health.samu009.patient.DRFR150092406301259.1"
+        "patientId": "fr.health.samu009.patient.DRFR150092406301259.1"
       }
     ],
     "caseId": "fr.health.samu009.DRFR150092406301259",
@@ -83,8 +83,8 @@
         },
         "freetext": "Confusion, étourdissements, s’exprime difficilement. ",
         "creation": "2024-03-03T15:08:00+01:00",
-        "idPat": "fr.health.samu009.patient.DRFR150092406301259.1",
-        "idObs": "fr.health.samu009.medicalNote.46zf89"
+        "patientId": "fr.health.samu009.patient.DRFR150092406301259.1",
+        "medicalNoteId": "fr.health.samu009.medicalNote.46zf89"
       }
     ]
   }

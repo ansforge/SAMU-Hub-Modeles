@@ -1,0 +1,89 @@
+openapi: 3.0.0
+components:
+  schemas:
+    documentLinkWrapper:
+      type: object
+      required:
+      - documentLink
+      properties:
+        documentLink:
+          $ref: '#/components/schemas/documentLink'
+    documentLink:
+      $id: classpath:/json-schema/schema#
+      x-id: RS-URL.schema.json#
+      example: example.json#
+      type: object
+      title: documentLink
+      required:
+      - caseId
+      - document
+      properties:
+        caseId:
+          type: string
+          title: "Identifiant partag\xE9 du dossier de r\xE9gulation m\xE9dicale (DRM)"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/caseId
+          description: "Identifiant partag\xE9 du dossier, g\xE9n\xE9r\xE9 une seule\
+            \ fois par le syst\xE8me du partenaire qui recoit la primo-demande de\
+            \ secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit lors\
+            \ de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+            \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
+            e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
+            \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
+            \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
+            \ num\xE9ro unique dans son syst\xE8me."
+          examples:
+          - fr.health.samu440.DRFR15440241550012
+        patientId:
+          type: string
+          title: "Identifiant partag\xE9 du patient"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patientId
+          description: "Indique l'identifiant partag\xE9 du patient auquel les documents\
+            \ sont rattach\xE9s"
+          pattern: ^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$
+          examples:
+          - 'fr.health.samu690.patient.P23AZ59
+
+            fr.health.samu690.patient.DRFR15690242370035.1'
+        document:
+          type: array
+          items:
+            $ref: '#/components/schemas/document'
+          minItems: 1
+      additionalProperties: false
+    document:
+      type: object
+      title: Documents
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - url
+      properties:
+        documentType:
+          type: string
+          title: Type de document
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/document/0/documentType
+          description: Informe l'utilisateur du type de document que le lien URL permet
+            d'ouvrir
+          examples:
+          - "Photo, ECG, bilan pdf, prescription, carte d'identit\xE9"
+        url:
+          type: string
+          title: URL
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/document/0/url
+          description: "URL qui permet \xE0 l'utilisateur du LRM d'ouvrir le type\
+            \ de document pr\xE9cis\xE9 dans le champ pr\xE9c\xE9dent"
+          examples:
+          - https://hub.esante.gouv.fr/
+      additionalProperties: false
+      example: example.json#/document/0
+      examples:
+      - documentType: "Photo, ECG, bilan pdf, prescription, carte d'identit\xE9"
+        url: https://hub.esante.gouv.fr/

@@ -1,13 +1,13 @@
 {
   "resourcesInfo": {
-    "mobilizedResource": [
+    "resource": [
       {
         "contact": {
           "type": "TEL",
           "details": "+33612348765"
         },
         "team": {
-          "teamCare": "MED",
+          "medicalLevel": "MED",
           "name": "Equipe 5"
         },
         "state": [
@@ -24,8 +24,7 @@
         "resourceId": "fr.health.samu940.resource.HeliS456",
         "requestId": "fr.health.samu770.request.as41pb",
         "orgId": "fr.health.samu94",
-        "resourceType": "SMUR",
-        "vehiculeType": "HELISMUR",
+        "vehicleType": "SMUR.HELISMUR",
         "name": "HELISMUR 94 - B2"
       }
     ],

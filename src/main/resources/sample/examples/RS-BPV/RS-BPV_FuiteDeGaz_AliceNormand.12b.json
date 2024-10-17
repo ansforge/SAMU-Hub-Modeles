@@ -1,0 +1,25 @@
+{
+  "interventionReport": {
+    "redactor": {
+      "label": "Louis POINCINOT",
+      "role": "MEDECIN"
+    },
+    "patient": {
+      "patientId": "fr.health.samu440.patient.DRFR154402413800236.1",
+      "birthName": "Normand",
+      "firstName": "Alice",
+      "birthDate": "2011-05-11",
+      "sex": "F",
+      "height": 156,
+      "weight": 40,
+      "lastName": "Normand"
+    },
+    "caseId": "fr.health.samu440.DRFR154402413800236",
+    "creation": "2024-05-18T18:41:00+02:00",
+    "evaluation": {
+      "medicalHistory": "Aucun",
+      "treatment": "Aucun"
+    },
+    "reportId": "38978624AN"
+  }
+}

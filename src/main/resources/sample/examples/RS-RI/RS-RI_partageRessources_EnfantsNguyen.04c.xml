@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resourcesInfo xmlns="urn:emergency:cisu:2.0:resourcesInfo">
   <caseId>fr.health.samu800.DRFR158002421400215</caseId>
-  <mobilizedResource>
+  <resource>
     <datetime>2024-08-01T16:55:00+02:00</datetime>
     <resourceId>fr.health.samu800.resource.Heli80bec6</resourceId>
     <requestId>fr.health.samu76A.request.af78b21</requestId>
     <orgId>fr.health.samu800</orgId>
-    <resourceType>SMUR</resourceType>
-    <vehiculeType>HELISMUR</vehiculeType>
+    <vehicleType>SMUR.HELISMUR</vehicleType>
     <name>HELISMUR 80 - BEC6</name>
     <team>
-      <teamCare>MED</teamCare>
+      <medicalLevel>MED</medicalLevel>
       <name>Equipe Buse1</name>
     </team>
     <state>
@@ -25,5 +24,5 @@
       <type>TEL</type>
       <details>+33712318965</details>
     </contact>
-  </mobilizedResource>
+  </resource>
 </resourcesInfo>
