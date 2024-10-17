@@ -3,7 +3,7 @@
     "orientation": {
       "decision": {
         "resourceCategory": "SMUR",
-        "resourceType": "VLM",
+        "resourceType": "SMUR.VLM",
         "medicalLevel": "MED"
       },
       "destination": {
