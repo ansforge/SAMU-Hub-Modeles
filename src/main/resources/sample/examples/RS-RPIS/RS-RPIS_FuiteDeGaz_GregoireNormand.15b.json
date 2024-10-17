@@ -3,7 +3,7 @@
     "orientation": {
       "decision": {
         "resourceCategory": "SIS",
-        "resourceType": "VSAV",
+        "resourceType": "SIS.VSAV",
         "medicalLevel": "SECOURS"
       },
       "destination": {
