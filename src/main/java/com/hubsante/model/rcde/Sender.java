@@ -61,7 +61,11 @@ public class Sender {
   }
 
   /**
-   * Get name
+   * Identifiant technique du système emetteur Format :  &#x3D;&gt; Pour les
+   *SAMU : {nom solution LRM}-{clé de routage} où clé de routage désigne le nom
+   *de la clé de routage utilisée par le LRM pour les échanges et {nom solution
+   *LRM} est le nom donné par l&#39;éditeur à sa solution (libre) &#x3D;&gt;
+   *Pour NeXSIS : à définir {sga|sgo}-nexsis
    * @return name
    **/
   @JsonProperty(JSON_PROPERTY_NAME)
@@ -84,7 +88,9 @@ public class Sender {
   }
 
   /**
-   * Get URI
+   * uri du système. Permet d&#39;identifier le vecteur utilisé par les échanges
+   *Format : &#x3D;&gt; Pour les LRM : {nom éditeur}:{sender:name} &#x3D;&gt;
+   *Pour NexSIS : sge:{sender:name}
    * @return URI
    **/
   @JsonProperty(JSON_PROPERTY_U_R_I)

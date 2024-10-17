@@ -66,7 +66,7 @@ public class DistributionElement extends ContentMessage {
   private OffsetDateTime sentAt;
 
   /**
-   * Gets or Sets kind
+   * Prend la valeur &lt;distributionKind de l&#39;enveloppe EDXL (voir DST)
    */
   public enum KindEnum {
     REPORT("Report"),
@@ -108,7 +108,8 @@ public class DistributionElement extends ContentMessage {
   private KindEnum kind;
 
   /**
-   * Gets or Sets status
+   * Prend la valeur &lt;distributionStatus&gt; de l&#39;enveloppe EDXL (voir
+   * DST)
    */
   public enum StatusEnum {
     ACTUAL("Actual"),
@@ -157,7 +158,14 @@ public class DistributionElement extends ContentMessage {
   }
 
   /**
-   * Get messageId
+   * Identifiant partagé de l&#39;affaire/dossier, généré une seule fois par le
+   *système du partenaire qui recoit la primo-demande de secours (créateur du
+   *dossier).  Il est valorisé comme suit lors de sa création :
+   *{pays}.{domaine}.{organisation}.{senderCaseId}  Il doit pouvoir être généré
+   *de façon décentralisée et ne présenter aucune ambiguïté.  Il doit être
+   *unique dans l&#39;ensemble des systèmes : le numéro de dossier fourni par
+   *celui qui génère l&#39;identifiant partagé doit donc être un numéro unique
+   *dans son système.
    * @return messageId
    **/
   @JsonProperty(JSON_PROPERTY_MESSAGE_ID)
@@ -169,7 +177,6 @@ public class DistributionElement extends ContentMessage {
 
   @JsonProperty(JSON_PROPERTY_MESSAGE_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public void setMessageId(String messageId) {
     this.messageId = messageId;
   }
@@ -193,7 +200,6 @@ public class DistributionElement extends ContentMessage {
 
   @JsonProperty(JSON_PROPERTY_SENDER)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public void setSender(Sender sender) {
     this.sender = sender;
   }
@@ -205,7 +211,10 @@ public class DistributionElement extends ContentMessage {
   }
 
   /**
-   * Get sentAt
+   * Groupe date heure de début de partage lié à l&#39;envoi du message. Il doit
+   *être cohérent avec le champ &lt;dateTimeSent&gt; de l&#39;enveloppe EDXL
+   *(voir DST).  L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé.
+   *Le fuseau horaire pour UTC doit être représenté par &#39;-00:00&#39;
    * @return sentAt
    **/
   @JsonProperty(JSON_PROPERTY_SENT_AT)
@@ -217,7 +226,6 @@ public class DistributionElement extends ContentMessage {
 
   @JsonProperty(JSON_PROPERTY_SENT_AT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public void setSentAt(OffsetDateTime sentAt) {
     this.sentAt = sentAt;
   }
@@ -229,7 +237,7 @@ public class DistributionElement extends ContentMessage {
   }
 
   /**
-   * Get kind
+   * Prend la valeur &lt;distributionKind de l&#39;enveloppe EDXL (voir DST)
    * @return kind
    **/
   @JsonProperty(JSON_PROPERTY_KIND)
@@ -241,7 +249,6 @@ public class DistributionElement extends ContentMessage {
 
   @JsonProperty(JSON_PROPERTY_KIND)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public void setKind(KindEnum kind) {
     this.kind = kind;
   }
@@ -253,7 +260,8 @@ public class DistributionElement extends ContentMessage {
   }
 
   /**
-   * Get status
+   * Prend la valeur &lt;distributionStatus&gt; de l&#39;enveloppe EDXL (voir
+   *DST)
    * @return status
    **/
   @JsonProperty(JSON_PROPERTY_STATUS)
@@ -265,7 +273,6 @@ public class DistributionElement extends ContentMessage {
 
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
@@ -295,10 +302,10 @@ public class DistributionElement extends ContentMessage {
     return recipient;
   }
 
+  @JacksonXmlElementWrapper(useWrapping = false)
+
   @JsonProperty(JSON_PROPERTY_RECIPIENT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  @JacksonXmlElementWrapper(useWrapping = false)
   public void setRecipient(List<Recipient> recipient) {
     if (recipient == null) {
       return;
