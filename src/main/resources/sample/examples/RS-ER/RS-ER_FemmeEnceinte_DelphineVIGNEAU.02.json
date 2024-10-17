@@ -1,0 +1,18 @@
+{
+  "resourcesEngagement": {
+    "resource": [
+      {
+        "vehicleType": "SMUR.AR",
+        "team": {
+          "medicalLevel": "MED",
+          "name": "Equipe Etoile"
+        },
+        "freetext": [
+          "Patrice ARMAND, Louis SOUSI, Emile PIERLOT"
+        ],
+        "name": "SMUR AR 3"
+      }
+    ],
+    "caseId": "fr.fire.sis044.cga-044.SC-20240526-044-cga-AL8"
+  }
+}
