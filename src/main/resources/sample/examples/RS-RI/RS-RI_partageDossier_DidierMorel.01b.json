@@ -3,10 +3,10 @@
     "resource": [
       {
         "team": {
-          "teamCare": "MED",
+          "medicalLevel": "MED",
           "name": "Equipe SMUR A"
         },
-        "vehiculeType": "SMUR.VLM",
+        "vehicleType": "SMUR.VLM",
         "name": "VLM 77 - 250",
         "datetime": "2024-01-04T08:05:00+01:00",
         "resourceId": "fr.health.samu770.resource.VLM250",
@@ -25,7 +25,7 @@
       },
       {
         "team": {
-          "teamCare": "SECOURS",
+          "medicalLevel": "SECOURS",
           "name": "Equipe 89"
         },
         "state": [
@@ -37,7 +37,7 @@
         "datetime": "2024-01-04T08:06:00+01:00",
         "resourceId": "fr.fire.sis077.cgo-077.resource.VSAV32",
         "orgId": "fr.fire.sdis77.cgo-077",
-        "vehiculeType": "SIS.VSAV",
+        "vehicleType": "SIS.VSAV",
         "name": "VSAV 77 - A7B"
       }
     ],

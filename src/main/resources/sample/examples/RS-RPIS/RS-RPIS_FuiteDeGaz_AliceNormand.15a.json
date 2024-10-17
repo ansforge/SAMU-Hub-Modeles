@@ -3,8 +3,8 @@
     "orientation": {
       "decision": {
         "resourceCategory": "SIS",
-        "resourceType": "VSAV",
-        "teamCare": "SECOURS"
+        "resourceType": "SIS.VSAV",
+        "medicalLevel": "SECOURS"
       },
       "destination": {
         "destinationCountry": "FR",
@@ -55,11 +55,11 @@
         "code": "C09.03.00",
         "label": "Fuite de gaz"
       },
-      "initialTeamCare": "MED"
+      "medicalLevel": "MED"
     },
     "context": {
       "orgId": "fr.health.samu440",
-      "caseId": "DRFR154402413800236",
+      "senderCaseId": "DRFR154402413800236",
       "ressourceFinessLegal": "440000271",
       "ressourceFinessGeo": "440000289",
       "ressourceStructure": "0",

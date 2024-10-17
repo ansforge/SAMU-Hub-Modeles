@@ -7,7 +7,7 @@
           "type": "TEL"
         },
         "team": {
-          "teamCare": "MED",
+          "medicalLevel": "MED",
           "name": "Equipe Buse1"
         },
         "state": [
@@ -24,7 +24,7 @@
         "requestId": "fr.health.samu76A.request.af78b21",
         "resourceId": "fr.health.samu800.resource.Heli80bec6",
         "orgId": "fr.health.samu800",
-        "vehiculeType": "SMUR.HELISMUR",
+        "vehicleType": "SMUR.HELISMUR",
         "name": "HELISMUR 80 - BEC6"
       }
     ],

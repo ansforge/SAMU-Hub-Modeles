@@ -1,0 +1,26 @@
+{
+  "interventionReport": {
+    "redactor": {
+      "label": "Louis POINCINOT",
+      "role": "MEDECIN"
+    },
+    "patient": {
+      "patientId": "fr.health.samu440.patient.DRFR154402413800236.1",
+      "birthName": "Normand",
+      "firstName": "Gregoire",
+      "sex": "M",
+      "height": 149,
+      "weight": 36,
+      "lastName": "Normand",
+      "birthDate": "2013-11-03",
+      "age": "10"
+    },
+    "caseId": "fr.health.samu440.DRFR154402413800236",
+    "creation": "2024-05-18T18:41:00+02:00",
+    "evaluation": {
+      "medicalHistory": "Crise d'asthme récurrente",
+      "treatment": "PULMICORT 0,5 mg/2 ml"
+    },
+    "reportId": "38978624GN"
+  }
+}

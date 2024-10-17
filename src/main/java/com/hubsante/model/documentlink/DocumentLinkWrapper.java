@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.documentlink.DocumentLink;
+import com.hubsante.model.rcde.DistributionElement;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -42,11 +43,19 @@ import java.util.Objects;
 /**
  * DocumentLinkWrapper
  */
-@JsonPropertyOrder({DocumentLinkWrapper.JSON_PROPERTY_DOCUMENT_LINK})
+@JsonPropertyOrder({DistributionElement.JSON_PROPERTY_MESSAGE_ID,
+                    DistributionElement.JSON_PROPERTY_SENDER,
+                    DistributionElement.JSON_PROPERTY_SENT_AT,
+                    DistributionElement.JSON_PROPERTY_KIND,
+                    DistributionElement.JSON_PROPERTY_STATUS,
+                    DistributionElement.JSON_PROPERTY_RECIPIENT,
+                    DocumentLinkWrapper.JSON_PROPERTY_DOCUMENT_LINK})
 @JsonTypeName("documentLinkWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class DocumentLinkWrapper {
+public class DocumentLinkWrapper extends DistributionElement {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0";
   public static final String JSON_PROPERTY_DOCUMENT_LINK = "documentLink";
   private DocumentLink documentLink;
 
@@ -63,14 +72,14 @@ public class DocumentLinkWrapper {
    * @return documentLink
    **/
   @JsonProperty(JSON_PROPERTY_DOCUMENT_LINK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public DocumentLink getDocumentLink() {
     return documentLink;
   }
 
   @JsonProperty(JSON_PROPERTY_DOCUMENT_LINK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDocumentLink(DocumentLink documentLink) {
     this.documentLink = documentLink;
   }
@@ -84,18 +93,21 @@ public class DocumentLinkWrapper {
       return false;
     }
     DocumentLinkWrapper documentLinkWrapper = (DocumentLinkWrapper)o;
-    return Objects.equals(this.documentLink, documentLinkWrapper.documentLink);
+    return Objects.equals(this.documentLink,
+                          documentLinkWrapper.documentLink) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(documentLink);
+    return Objects.hash(documentLink, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DocumentLinkWrapper {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    documentLink: ")
         .append(toIndentedString(documentLink))
         .append("\n");
