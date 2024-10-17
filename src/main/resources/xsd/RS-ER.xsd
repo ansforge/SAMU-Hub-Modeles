@@ -105,7 +105,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
     </complexType>
     <complexType name="team">
         <sequence>
-            <element minOccurs="0" name="careLevel">
+            <element minOccurs="0" name="medicalLevel">
                 <annotation>
                     <documentation>A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature associée</documentation>
                 </annotation>

@@ -45,7 +45,7 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({Regulation.JSON_PROPERTY_WHATS_HAPPEN,
                     Regulation.JSON_PROPERTY_HEALTH_MOTIVE,
-                    Regulation.JSON_PROPERTY_INITIAL_TEAM_CARE})
+                    Regulation.JSON_PROPERTY_MEDICAL_LEVEL})
 @JsonTypeName("regulation")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -62,7 +62,7 @@ public class Regulation {
    * \&quot;niveau de médicalisation du transport\&quot;, si un UMHP est devenu
    * un SMUR.
    */
-  public enum InitialTeamCareEnum {
+  public enum MedicalLevelEnum {
     MED("MED"),
 
     PARAMED("PARAMED"),
@@ -71,7 +71,7 @@ public class Regulation {
 
     private String value;
 
-    InitialTeamCareEnum(String value) { this.value = value; }
+    MedicalLevelEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -84,8 +84,8 @@ public class Regulation {
     }
 
     @JsonCreator
-    public static InitialTeamCareEnum fromValue(String value) {
-      for (InitialTeamCareEnum b : InitialTeamCareEnum.values()) {
+    public static MedicalLevelEnum fromValue(String value) {
+      for (MedicalLevelEnum b : MedicalLevelEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -94,9 +94,8 @@ public class Regulation {
     }
   }
 
-  public static final String JSON_PROPERTY_INITIAL_TEAM_CARE =
-      "medicalLevel";
-  private InitialTeamCareEnum medicalLevel;
+  public static final String JSON_PROPERTY_MEDICAL_LEVEL = "medicalLevel";
+  private MedicalLevelEnum medicalLevel;
 
   public Regulation() {}
 
@@ -146,7 +145,7 @@ public class Regulation {
     this.healthMotive = healthMotive;
   }
 
-  public Regulation medicalLevel(InitialTeamCareEnum medicalLevel) {
+  public Regulation medicalLevel(MedicalLevelEnum medicalLevel) {
 
     this.medicalLevel = medicalLevel;
     return this;
@@ -159,16 +158,16 @@ public class Regulation {
    *un SMUR.
    * @return medicalLevel
    **/
-  @JsonProperty(JSON_PROPERTY_INITIAL_TEAM_CARE)
+  @JsonProperty(JSON_PROPERTY_MEDICAL_LEVEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public InitialTeamCareEnum getInitialTeamCare() {
+  public MedicalLevelEnum getMedicalLevel() {
     return medicalLevel;
   }
 
-  @JsonProperty(JSON_PROPERTY_INITIAL_TEAM_CARE)
+  @JsonProperty(JSON_PROPERTY_MEDICAL_LEVEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInitialTeamCare(InitialTeamCareEnum medicalLevel) {
+  public void setMedicalLevel(MedicalLevelEnum medicalLevel) {
     this.medicalLevel = medicalLevel;
   }
 

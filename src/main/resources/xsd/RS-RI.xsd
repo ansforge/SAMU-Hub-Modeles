@@ -164,7 +164,7 @@ OU - si un ID unique de la demande n'était pas disponible :
     </complexType>
     <complexType name="team">
         <sequence>
-            <element minOccurs="0" name="careLevel">
+            <element minOccurs="0" name="medicalLevel">
                 <annotation>
                     <documentation>A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature associée</documentation>
                 </annotation>

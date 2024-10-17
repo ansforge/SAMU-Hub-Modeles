@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-ER.schema.json#",
-    "version": "24.10.15",
+    "version": "24.10.17",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesEngagement",
@@ -143,12 +143,12 @@
             "x-health-only": false,
             "required": [],
             "properties": {
-                "careLevel": {
+                "medicalLevel": {
                     "type": "string",
                     "title": "Type",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/resource/0/team/careLevel",
+                    "example": "example.json#/resource/0/team/medicalLevel",
                     "description": "A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature associée",
                     "enum": [
                         "MED",
