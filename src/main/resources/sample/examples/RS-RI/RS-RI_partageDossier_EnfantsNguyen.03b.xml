@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resourcesInfo xmlns="urn:emergency:cisu:2.0:resourcesInfo">
+  <caseId>fr.health.samu800.DRFR158002421400215</caseId>
+  <resource>
+    <datetime>2024-08-01T16:42:00+02:00</datetime>
+    <resourceId>fr.health.samu76A.resource.VLM12</resourceId>
+    <orgId>fr.health.samu76A</orgId>
+    <vehicleType>SMUR.VLM</vehicleType>
+    <name>VLM 76 - A45</name>
+    <team>
+      <medicalLevel>MED</medicalLevel>
+      <name>Equipe SMUR 5</name>
+    </team>
+    <state>
+      <datetime>2024-08-01T16:42:00+02:00</datetime>
+      <status>DECLENCHE</status>
+    </state>
+    <contact>
+      <type>TEL</type>
+      <details>+33744947325</details>
+    </contact>
+  </resource>
+  <resource>
+    <datetime>2024-08-01T16:40:00+02:00</datetime>
+    <resourceId>fr.fire.sis076.cgo-076.resource.VSAV3A</resourceId>
+    <orgId>fr.fire.sdis76.cgo-076</orgId>
+    <vehicleType>SIS.VSAV</vehicleType>
+    <name>VSAV 76 - 22D8</name>
+    <team>
+      <medicalLevel>SECOURS</medicalLevel>
+      <name>Equipe Rouge</name>
+    </team>
+    <state>
+      <datetime>2024-08-01T16:40:00+02:00</datetime>
+      <status>DECLENCHE</status>
+      <availability>false</availability>
+    </state>
+    <contact>
+      <type>TEL</type>
+      <details>+33645987297</details>
+    </contact>
+  </resource>
+</resourcesInfo>
