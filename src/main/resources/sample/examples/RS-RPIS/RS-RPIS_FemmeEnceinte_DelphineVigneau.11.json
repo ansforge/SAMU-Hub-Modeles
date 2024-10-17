@@ -59,7 +59,7 @@
     },
     "context": {
       "orgId": "fr.health.samu440",
-      "caseId": "DRFR154402414300123",
+      "senderCaseId": "DRFR154402414300123",
       "ressourceFinessLegal": "440000271",
       "ressourceFinessGeo": "440000289",
       "ressourceStructure": "0",
