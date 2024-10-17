@@ -43,7 +43,7 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({Decision.JSON_PROPERTY_RESOURCE_CATEGORY,
                     Decision.JSON_PROPERTY_RESOURCE_TYPE,
-                    Decision.JSON_PROPERTY_TEAM_CARE})
+                    Decision.JSON_PROPERTY_MEDICAL_LEVEL})
 @JsonTypeName("decision")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -315,7 +315,7 @@ public class Decision {
    * Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code
    * de la nomenclature SI-SAMU-NIVSOIN.
    */
-  public enum TeamCareEnum {
+  public enum MedicalLevelEnum {
     MED("MED"),
 
     PARAMED("PARAMED"),
@@ -324,7 +324,7 @@ public class Decision {
 
     private String value;
 
-    TeamCareEnum(String value) { this.value = value; }
+    MedicalLevelEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -337,8 +337,8 @@ public class Decision {
     }
 
     @JsonCreator
-    public static TeamCareEnum fromValue(String value) {
-      for (TeamCareEnum b : TeamCareEnum.values()) {
+    public static MedicalLevelEnum fromValue(String value) {
+      for (MedicalLevelEnum b : MedicalLevelEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -347,8 +347,8 @@ public class Decision {
     }
   }
 
-  public static final String JSON_PROPERTY_TEAM_CARE = "teamCare";
-  private TeamCareEnum teamCare;
+  public static final String JSON_PROPERTY_MEDICAL_LEVEL = "medicalLevel";
+  private MedicalLevelEnum medicalLevel;
 
   public Decision() {}
 
@@ -401,28 +401,28 @@ public class Decision {
     this.resourceType = resourceType;
   }
 
-  public Decision teamCare(TeamCareEnum teamCare) {
+  public Decision medicalLevel(MedicalLevelEnum medicalLevel) {
 
-    this.teamCare = teamCare;
+    this.medicalLevel = medicalLevel;
     return this;
   }
 
   /**
    * Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code
    *de la nomenclature SI-SAMU-NIVSOIN.
-   * @return teamCare
+   * @return medicalLevel
    **/
-  @JsonProperty(JSON_PROPERTY_TEAM_CARE)
+  @JsonProperty(JSON_PROPERTY_MEDICAL_LEVEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public TeamCareEnum getTeamCare() {
-    return teamCare;
+  public MedicalLevelEnum getMedicalLevel() {
+    return medicalLevel;
   }
 
-  @JsonProperty(JSON_PROPERTY_TEAM_CARE)
+  @JsonProperty(JSON_PROPERTY_MEDICAL_LEVEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTeamCare(TeamCareEnum teamCare) {
-    this.teamCare = teamCare;
+  public void setMedicalLevel(MedicalLevelEnum medicalLevel) {
+    this.medicalLevel = medicalLevel;
   }
 
   @Override
@@ -436,12 +436,12 @@ public class Decision {
     Decision decision = (Decision)o;
     return Objects.equals(this.resourceCategory, decision.resourceCategory) &&
         Objects.equals(this.resourceType, decision.resourceType) &&
-        Objects.equals(this.teamCare, decision.teamCare);
+        Objects.equals(this.medicalLevel, decision.medicalLevel);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resourceCategory, resourceType, teamCare);
+    return Objects.hash(resourceCategory, resourceType, medicalLevel);
   }
 
   @Override
@@ -454,7 +454,9 @@ public class Decision {
     sb.append("    resourceType: ")
         .append(toIndentedString(resourceType))
         .append("\n");
-    sb.append("    teamCare: ").append(toIndentedString(teamCare)).append("\n");
+    sb.append("    medicalLevel: ")
+        .append(toIndentedString(medicalLevel))
+        .append("\n");
     sb.append("}");
     return sb.toString();
   }
