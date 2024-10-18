@@ -29,7 +29,7 @@ components:
       required:
       - resourceId
       - orgId
-      - resourceType
+      - type
       properties:
         resourceId:
           type: string
@@ -69,12 +69,12 @@ components:
             \ des v\xE9hicules."
           examples:
           - SMUR 1 Rouen
-        resourceType:
+        type:
           type: string
           title: Type de ressource
           x-health-only: false
           x-cols: 6
-          example: example.json#/resource/0/resourceType
+          example: example.json#/resource/0/type
           description: "Cat\xE9gorie de la ressource (SMUR, SDIS, TSU, SNP, MSPE,\
             \ navire)"
           enum:

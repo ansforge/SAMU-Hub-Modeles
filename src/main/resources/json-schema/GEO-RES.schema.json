@@ -24,7 +24,7 @@
             "required": [
                 "resourceId",
                 "orgId",
-                "resourceType"
+                "type"
             ],
             "properties": {
                 "resourceId": {
@@ -52,12 +52,12 @@
                     "example": "example.json#/resource/0/name",
                     "description": "Nom donné à la ressource par l'organisme propriétaire. \nL'immatriculation peut être utilisée dans le nom courant des véhicules."
                 },
-                "resourceType": {
+                "type": {
                     "type": "string",
                     "title": "Type de ressource",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/resource/0/resourceType",
+                    "example": "example.json#/resource/0/type",
                     "description": "Catégorie de la ressource (SMUR, SDIS, TSU, SNP, MSPE, navire)",
                     "enum": [
                         "SMUR",
