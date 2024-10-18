@@ -23,7 +23,7 @@
       <label>Malaise avec perte de connaissance initiale</label>
     </healthMotive>
     <details>
-      <attribution>TOXICOL</attribution>
+      <attribution>DRM.SPE.TOXICOL</attribution>
       <priority>P1</priority>
     </details>
   </qualification>
@@ -66,7 +66,7 @@
         <type>TEL</type>
         <detail>+33671830523</detail>
       </callbackContact>
-      <language>FR</language>
+      <language>fr</language>
       <type>FAMILLE</type>
       <communication>AUCUNE</communication>
       <freetext>Mère des enfants</freetext>
@@ -79,7 +79,7 @@
   </initialAlert>
   <owner>fr.health.samu440</owner>
   <patient>
-    <idPat>fr.health.samu440.patient.DRFR154402413800236.1</idPat>
+    <patientId>fr.health.samu440.patient.DRFR154402413800236.1</patientId>
     <identity>
       <strictFeatures>
         <birthDate>2011-05-11</birthDate>
@@ -106,7 +106,7 @@
     </hypothesis>
   </patient>
   <patient>
-    <idPat>fr.health.samu440.patient.DRFR154402413800236.2</idPat>
+    <patientId>fr.health.samu440.patient.DRFR154402413800236.2</patientId>
     <identity>
       <strictFeatures>
         <birthDate>2013-11-03</birthDate>
@@ -129,11 +129,11 @@
     </hypothesis>
   </patient>
   <medicalNote>
-    <idPat>fr.health.samu440.patient.DRFR154402413800236.2</idPat>
+    <patientId>fr.health.samu440.patient.DRFR154402413800236.2</patientId>
     <operator>
       <role>ARM</role>
     </operator>
-    <idObs>fr.health.samu440.medicalNote.0001</idObs>
+    <medicalNoteId>fr.health.samu440.medicalNote.0001</medicalNoteId>
     <creation>2024-05-18T18:15:00+02:00</creation>
     <freetext>Asthmatique</freetext>
   </medicalNote>
@@ -144,7 +144,6 @@
     </operator>
     <decisionType>INTER</decisionType>
     <resourceType>SMUR</resourceType>
-    <vehiculeType>VLM</vehiculeType>
     <medicalTransport>true</medicalTransport>
   </decision>
   <decision>
@@ -154,6 +153,5 @@
     </operator>
     <decisionType>INTER</decisionType>
     <resourceType>SIS</resourceType>
-    <vehiculeType>VSAV</vehiculeType>
   </decision>
 </createCaseHealth>

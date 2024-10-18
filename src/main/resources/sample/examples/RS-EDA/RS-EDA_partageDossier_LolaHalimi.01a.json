@@ -17,7 +17,7 @@
       },
       "details": {
         "priority": "P2",
-        "attribution": "MU"
+        "attribution": "DRM.MRU.MU"
       },
       "origin": "15"
     },
@@ -64,7 +64,7 @@
           "detail": "+33702880946",
           "channel": "PERSONNE"
         },
-        "language": "FR",
+        "language": "fr",
         "detailedName": {
           "complete": "Amina BERTRAND  ",
           "lastName": "BERTRAND  ",
@@ -96,7 +96,7 @@
             "sex": "F"
           }
         },
-        "idPat": "fr.health.samu950.patient.DRFR159502400400159.1"
+        "patientId": "fr.health.samu950.patient.DRFR159502400400159.1"
       }
     ],
     "medicalNote": [
@@ -104,8 +104,8 @@
         "operator": {
           "role": "ARM"
         },
-        "idPat": "fr.health.samu950.patient.DRFR159502400400159.1",
-        "idObs": "fr.health.samu950.medicalNote.54fg795",
+        "patientId": "fr.health.samu950.patient.DRFR159502400400159.1",
+        "medicalNoteId": "fr.health.samu950.medicalNote.54fg795",
         "creation": "2024-01-18T18:02:00+01:00",
         "freetext": "Marche impossible."
       },
@@ -113,8 +113,8 @@
         "operator": {
           "role": "ARM"
         },
-        "idPat": "fr.health.samu950.patient.DRFR159502400400159.1",
-        "idObs": "fr.health.samu950.medicalNote.98qs778",
+        "patientId": "fr.health.samu950.patient.DRFR159502400400159.1",
+        "medicalNoteId": "fr.health.samu950.medicalNote.98qs778",
         "creation": "2024-01-18T18:04:00+01:00",
         "freetext": "Cheville gonflée et douloureuse"
       },
@@ -122,8 +122,8 @@
         "operator": {
           "role": "ARM"
         },
-        "idPat": "fr.health.samu950.patient.DRFR159502400400159.1",
-        "idObs": "fr.health.samu950.medicalNote.13co294",
+        "patientId": "fr.health.samu950.patient.DRFR159502400400159.1",
+        "medicalNoteId": "fr.health.samu950.medicalNote.13co294",
         "creation": "2024-01-18T18:05:00+01:00",
         "freetext": "Entorse de la cheville, avec possible fracture."
       }

@@ -17,7 +17,7 @@
       <label>Traumatisme sérieux, plaie intermédiaire</label>
     </healthMotive>
     <details>
-      <attribution>MU</attribution>
+      <attribution>DRM.MRU.MU</attribution>
       <priority>P2</priority>
     </details>
   </qualification>
@@ -66,7 +66,7 @@
         <type>TEL</type>
         <detail>+33702880946</detail>
       </callerContact>
-      <language>FR</language>
+      <language>fr</language>
       <type>TIERS</type>
       <detailedName>
         <complete>Amina BERTRAND  </complete>
@@ -77,7 +77,7 @@
   </initialAlert>
   <owner>fr.health.samu950</owner>
   <patient>
-    <idPat>fr.health.samu950.patient.DRFR159502400400159.1</idPat>
+    <patientId>fr.health.samu950.patient.DRFR159502400400159.1</patientId>
     <identity>
       <strictFeatures>
         <birthDate>2014-03-03</birthDate>
@@ -94,29 +94,29 @@
     </detail>
   </patient>
   <medicalNote>
-    <idPat>fr.health.samu950.patient.DRFR159502400400159.1</idPat>
+    <patientId>fr.health.samu950.patient.DRFR159502400400159.1</patientId>
     <operator>
       <role>ARM</role>
     </operator>
-    <idObs>fr.health.samu950.medicalNote.54fg795</idObs>
+    <medicalNoteId>fr.health.samu950.medicalNote.54fg795</medicalNoteId>
     <creation>2024-01-18T18:02:00+01:00</creation>
     <freetext>Marche impossible.</freetext>
   </medicalNote>
   <medicalNote>
-    <idPat>fr.health.samu950.patient.DRFR159502400400159.1</idPat>
+    <patientId>fr.health.samu950.patient.DRFR159502400400159.1</patientId>
     <operator>
       <role>ARM</role>
     </operator>
-    <idObs>fr.health.samu950.medicalNote.98qs778</idObs>
+    <medicalNoteId>fr.health.samu950.medicalNote.98qs778</medicalNoteId>
     <creation>2024-01-18T18:04:00+01:00</creation>
     <freetext>Cheville gonflée et douloureuse</freetext>
   </medicalNote>
   <medicalNote>
-    <idPat>fr.health.samu950.patient.DRFR159502400400159.1</idPat>
+    <patientId>fr.health.samu950.patient.DRFR159502400400159.1</patientId>
     <operator>
       <role>ARM</role>
     </operator>
-    <idObs>fr.health.samu950.medicalNote.13co294</idObs>
+    <medicalNoteId>fr.health.samu950.medicalNote.13co294</medicalNoteId>
     <creation>2024-01-18T18:05:00+01:00</creation>
     <freetext>Entorse de la cheville, avec possible fracture.</freetext>
   </medicalNote>

@@ -41,9 +41,9 @@ import java.util.Objects;
 /**
  * Decision
  */
-@JsonPropertyOrder({Decision.JSON_PROPERTY_RESOURCE_CATEGORY,
-                    Decision.JSON_PROPERTY_RESOURCE_TYPE,
-                    Decision.JSON_PROPERTY_TEAM_CARE})
+@JsonPropertyOrder({Decision.JSON_PROPERTY_RESOURCE_TYPE,
+                    Decision.JSON_PROPERTY_VEHICLE_TYPE,
+                    Decision.JSON_PROPERTY_MEDICAL_LEVEL})
 @JsonTypeName("decision")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -51,221 +51,76 @@ public class Decision {
 
   /**
    * Précise le type de moyen engagé dans l&#39;intervention (SMUR, TSU, HOSPIT,
-   * etc.).  A valoriser par un code de la nomenclature SI SAMU-TYPE_MOYEN.
+   * etc.).  A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.
    */
-  public enum ResourceCategoryEnum {
+  public enum ResourceTypeEnum {
     SMUR("SMUR"),
 
-    MED("MED"),
+    SMUR_ADULT("SMUR.ADULT"),
 
-    PARAMED("PARAMED"),
+    SMUR_PED("SMUR.PED"),
+
+    SMUR_UMH_S("SMUR.UMH-S"),
+
+    SMUR_CUMP("SMUR.CUMP"),
 
     HOSPIT("HOSPIT"),
 
-    LIB("LIB"),
+    LIBERAL("LIBERAL"),
 
-    MEDC("MEDC"),
+    LIBERAL_MG("LIBERAL.MG"),
 
-    PHARMA("PHARMA"),
+    LIBERAL_PHARM("LIBERAL.PHARM"),
 
-    INF("INF"),
+    LIBERAL_INF("LIBERAL.INF"),
 
-    MEDSPE("MEDSPE"),
+    LIBERAL_KINE("LIBERAL.KINE"),
 
-    DENT("DENT"),
+    LIBERAL_SOS("LIBERAL.SOS"),
 
-    AUTREPRO("AUTREPRO"),
+    LIBERAL_MMG("LIBERAL.MMG"),
+
+    LIBERAL_MSPD("LIBERAL.MSPD"),
+
+    LIBERAL_MCS("LIBERAL.MCS"),
+
+    LIBERAL_SPEMED("LIBERAL.SPEMED"),
+
+    LIBERAL_DENT("LIBERAL.DENT"),
+
+    LIBERAL_LABO("LIBERAL.LABO"),
+
+    LIBERAL_AUTREPRO("LIBERAL.AUTREPRO"),
 
     TSU_("TSU "),
 
     SIS("SIS"),
 
-    MSP("MSP"),
+    SIS_MEDSP("SIS.MEDSP"),
 
-    ISP("ISP"),
+    SIS_ISP("SIS.ISP"),
 
-    SP("SP"),
+    SIS_SP("SIS.SP"),
 
     AASC("AASC"),
 
     FDO("FDO"),
 
-    HELIFSI("HELIFSI"),
+    FDO_PN("FDO.PN"),
 
-    VLFSI("VLFSI"),
+    FDO_GEND("FDO.GEND"),
 
-    FFSI("FFSI"),
+    FDO_PM("FDO.PM"),
 
-    DGDD("DGDD"),
-
-    AUTRE("AUTRE"),
-
-    ADM("ADM"),
-
-    DAE("DAE"),
-
-    INCONNU("INCONNU");
-
-    private String value;
-
-    ResourceCategoryEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ResourceCategoryEnum fromValue(String value) {
-      for (ResourceCategoryEnum b : ResourceCategoryEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_RESOURCE_CATEGORY =
-      "resourceCategory";
-  private ResourceCategoryEnum resourceCategory;
-
-  /**
-   * Précise le type de véhicule terrestre / aérien / maritime engagé dans
-   * l&#39;intervention. A valoriser par un code de la nomenclature
-   * CISU-TYPE_VECTEUR.
-   */
-  public enum ResourceTypeEnum {
-    AASC("AASC"),
-
-    VLSC("VLSC"),
-
-    VPSP("VPSP"),
-
-    AUTRESC("AUTRESC"),
-
-    AUTREVEC("AUTREVEC"),
-
-    TAXI("TAXI"),
-
-    TRANSP("TRANSP"),
-
-    TRAIN("TRAIN"),
-
-    AVION("AVION"),
-
-    PERSO("PERSO"),
-
-    APIED("APIED"),
+    FDO_DOUANES("FDO.DOUANES"),
 
     AUTRE("AUTRE"),
 
-    AUTRETRA("AUTRETRA"),
+    AUTRE_ADM("AUTRE.ADM"),
 
-    FSI("FSI"),
+    AUTRE_DAE("AUTRE.DAE"),
 
-    HELIFSI("HELIFSI"),
-
-    VLFSI("VLFSI"),
-
-    FFSI("FFSI"),
-
-    VHFSI("VHFSI"),
-
-    LIB("LIB"),
-
-    MEDV("MEDV"),
-
-    INF("INF"),
-
-    AUTREPRO("AUTREPRO"),
-
-    SIS("SIS"),
-
-    VSAV("VSAV"),
-
-    GRIMP("GRIMP"),
-
-    VPL("VPL"),
-
-    SRSIS("SRSIS"),
-
-    FEUSIS("FEUSIS"),
-
-    VPMA("VPMA"),
-
-    VCH("VCH"),
-
-    VR("VR"),
-
-    PCSIS("PCSIS"),
-
-    VLISP("VLISP"),
-
-    VLMSP("VLMSP"),
-
-    VLCG("VLCG"),
-
-    VLSIS("VLSIS"),
-
-    DRAGON("DRAGON"),
-
-    AVSC("AVSC"),
-
-    MOYSSE("MOYSSE"),
-
-    AUTRESIS("AUTRESIS"),
-
-    NAVISIS("NAVISIS"),
-
-    SMUR("SMUR"),
-
-    VLM("VLM"),
-
-    VL("VL"),
-
-    PSM1("PSM1"),
-
-    PSM2("PSM2"),
-
-    PSM3("PSM3"),
-
-    PSMP("PSMP"),
-
-    VPC("VPC"),
-
-    AR("AR"),
-
-    AR_BAR("AR-BAR"),
-
-    AR_PED("AR-PED"),
-
-    HELISMUR("HELISMUR"),
-
-    HELISAN("HELISAN"),
-
-    AVSMUR("AVSMUR"),
-
-    AVSAN("AVSAN"),
-
-    NAVISMUR("NAVISMUR"),
-
-    TSU("TSU"),
-
-    VSL("VSL"),
-
-    AMB_GV("AMB-GV"),
-
-    AMB_PV("AMB-PV"),
-
-    AMB_BAR("AMB-BAR"),
-
-    AMB("AMB");
+    AUTRE_AUTRE("AUTRE.AUTRE");
 
     private String value;
 
@@ -296,19 +151,140 @@ public class Decision {
   private ResourceTypeEnum resourceType;
 
   /**
-   * Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code
-   * de la nomenclature SI-SAMU-NIVSOIN.
+   * Précise le type de véhicule terrestre / aérien / maritime engagé dans
+   * l&#39;intervention. A valoriser par un code de la nomenclature
+   * SI-SAMU-TYPE_VECTEUR.
    */
-  public enum TeamCareEnum {
-    MED("MED"),
+  public enum VehicleTypeEnum {
+    AASC("AASC"),
 
-    PARAMED("PARAMED"),
+    AASC_VLSC("AASC.VLSC"),
 
-    SECOURS("SECOURS");
+    AASC_VPSP("AASC.VPSP"),
+
+    AASC_AUTRESC("AASC.AUTRESC"),
+
+    AUTREVEC("AUTREVEC"),
+
+    AUTREVEC_APIED("AUTREVEC.APIED"),
+
+    AUTREVEC_AVION("AUTREVEC.AVION"),
+
+    AUTREVEC_PERSO("AUTREVEC.PERSO"),
+
+    AUTREVEC_TAXI("AUTREVEC.TAXI"),
+
+    AUTREVEC_TRAIN("AUTREVEC.TRAIN"),
+
+    AUTREVEC_TRANSP("AUTREVEC.TRANSP"),
+
+    AUTREVEC_AUTRE("AUTREVEC.AUTRE"),
+
+    AUTREVEC_AUTRETRA("AUTREVEC.AUTRETRA"),
+
+    FSI("FSI"),
+
+    FSI_HELIFSI("FSI.HELIFSI"),
+
+    FSI_VLFSI("FSI.VLFSI"),
+
+    FSI_FFSI("FSI.FFSI"),
+
+    FSI_VHFSI("FSI.VHFSI"),
+
+    LIB("LIB"),
+
+    LIB_MEDV("LIB.MEDV"),
+
+    LIB_INF("LIB.INF"),
+
+    LIB_AUTREPRO("LIB.AUTREPRO"),
+
+    SIS("SIS"),
+
+    SIS_DRAGON("SIS.DRAGON"),
+
+    SIS_AVSC("SIS.AVSC"),
+
+    SIS_FEUSIS("SIS.FEUSIS"),
+
+    SIS_GRIMP("SIS.GRIMP"),
+
+    SIS_NAVISIS("SIS.NAVISIS"),
+
+    SIS_PCSIS("SIS.PCSIS"),
+
+    SIS_SRSIS("SIS.SRSIS"),
+
+    SIS_VCH("SIS.VCH"),
+
+    SIS_VLCG("SIS.VLCG"),
+
+    SIS_VLISP("SIS.VLISP"),
+
+    SIS_VLMSP("SIS.VLMSP"),
+
+    SIS_VLSIS("SIS.VLSIS"),
+
+    SIS_VPL("SIS.VPL"),
+
+    SIS_VPMA("SIS.VPMA"),
+
+    SIS_VR("SIS.VR"),
+
+    SIS_VSAV("SIS.VSAV"),
+
+    SIS_MOYSSE("SIS.MOYSSE"),
+
+    SIS_AUTRESIS("SIS.AUTRESIS"),
+
+    SMUR("SMUR"),
+
+    SMUR_VLM("SMUR.VLM"),
+
+    SMUR_VL("SMUR.VL"),
+
+    SMUR_PSM1("SMUR.PSM1"),
+
+    SMUR_PSM2("SMUR.PSM2"),
+
+    SMUR_PSM3("SMUR.PSM3"),
+
+    SMUR_PSMP("SMUR.PSMP"),
+
+    SMUR_VPC("SMUR.VPC"),
+
+    SMUR_AR("SMUR.AR"),
+
+    SMUR_AR_BAR("SMUR.AR-BAR"),
+
+    SMUR_AR_PED("SMUR.AR-PED"),
+
+    SMUR_HELISMUR("SMUR.HELISMUR"),
+
+    SMUR_HELISAN("SMUR.HELISAN"),
+
+    SMUR_AVSMUR("SMUR.AVSMUR"),
+
+    SMUR_AVSAN("SMUR.AVSAN"),
+
+    SMUR_NAVISMUR("SMUR.NAVISMUR"),
+
+    TSU("TSU"),
+
+    TSU_VSL("TSU.VSL"),
+
+    TSU_AMB_GV("TSU.AMB-GV"),
+
+    TSU_AMB_PV("TSU.AMB-PV"),
+
+    TSU_AMB_BAR("TSU.AMB-BAR"),
+
+    TSU_AMB("TSU.AMB");
 
     private String value;
 
-    TeamCareEnum(String value) { this.value = value; }
+    VehicleTypeEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -321,8 +297,8 @@ public class Decision {
     }
 
     @JsonCreator
-    public static TeamCareEnum fromValue(String value) {
-      for (TeamCareEnum b : TeamCareEnum.values()) {
+    public static VehicleTypeEnum fromValue(String value) {
+      for (VehicleTypeEnum b : VehicleTypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -331,34 +307,49 @@ public class Decision {
     }
   }
 
-  public static final String JSON_PROPERTY_TEAM_CARE = "teamCare";
-  private TeamCareEnum teamCare;
-
-  public Decision() {}
-
-  public Decision resourceCategory(ResourceCategoryEnum resourceCategory) {
-
-    this.resourceCategory = resourceCategory;
-    return this;
-  }
+  public static final String JSON_PROPERTY_VEHICLE_TYPE = "vehicleType";
+  private VehicleTypeEnum vehicleType;
 
   /**
-   * Précise le type de moyen engagé dans l&#39;intervention (SMUR, TSU, HOSPIT,
-   *etc.).  A valoriser par un code de la nomenclature SI SAMU-TYPE_MOYEN.
-   * @return resourceCategory
-   **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_CATEGORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+   * Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code
+   * de la nomenclature SI-SAMU-NIVSOIN.
+   */
+  public enum MedicalLevelEnum {
+    MED("MED"),
 
-  public ResourceCategoryEnum getResourceCategory() {
-    return resourceCategory;
+    PARAMED("PARAMED"),
+
+    SECOURS("SECOURS");
+
+    private String value;
+
+    MedicalLevelEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static MedicalLevelEnum fromValue(String value) {
+      for (MedicalLevelEnum b : MedicalLevelEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
   }
 
-  @JsonProperty(JSON_PROPERTY_RESOURCE_CATEGORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResourceCategory(ResourceCategoryEnum resourceCategory) {
-    this.resourceCategory = resourceCategory;
-  }
+  public static final String JSON_PROPERTY_MEDICAL_LEVEL = "medicalLevel";
+  private MedicalLevelEnum medicalLevel;
+
+  public Decision() {}
 
   public Decision resourceType(ResourceTypeEnum resourceType) {
 
@@ -367,9 +358,8 @@ public class Decision {
   }
 
   /**
-   * Précise le type de véhicule terrestre / aérien / maritime engagé dans
-   *l&#39;intervention. A valoriser par un code de la nomenclature
-   *CISU-TYPE_VECTEUR.
+   * Précise le type de moyen engagé dans l&#39;intervention (SMUR, TSU, HOSPIT,
+   *etc.).  A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.
    * @return resourceType
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
@@ -385,28 +375,53 @@ public class Decision {
     this.resourceType = resourceType;
   }
 
-  public Decision teamCare(TeamCareEnum teamCare) {
+  public Decision vehicleType(VehicleTypeEnum vehicleType) {
 
-    this.teamCare = teamCare;
+    this.vehicleType = vehicleType;
+    return this;
+  }
+
+  /**
+   * Précise le type de véhicule terrestre / aérien / maritime engagé dans
+   *l&#39;intervention. A valoriser par un code de la nomenclature
+   *SI-SAMU-TYPE_VECTEUR.
+   * @return vehicleType
+   **/
+  @JsonProperty(JSON_PROPERTY_VEHICLE_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public VehicleTypeEnum getVehicleType() {
+    return vehicleType;
+  }
+
+  @JsonProperty(JSON_PROPERTY_VEHICLE_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVehicleType(VehicleTypeEnum vehicleType) {
+    this.vehicleType = vehicleType;
+  }
+
+  public Decision medicalLevel(MedicalLevelEnum medicalLevel) {
+
+    this.medicalLevel = medicalLevel;
     return this;
   }
 
   /**
    * Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code
    *de la nomenclature SI-SAMU-NIVSOIN.
-   * @return teamCare
+   * @return medicalLevel
    **/
-  @JsonProperty(JSON_PROPERTY_TEAM_CARE)
+  @JsonProperty(JSON_PROPERTY_MEDICAL_LEVEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public TeamCareEnum getTeamCare() {
-    return teamCare;
+  public MedicalLevelEnum getMedicalLevel() {
+    return medicalLevel;
   }
 
-  @JsonProperty(JSON_PROPERTY_TEAM_CARE)
+  @JsonProperty(JSON_PROPERTY_MEDICAL_LEVEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTeamCare(TeamCareEnum teamCare) {
-    this.teamCare = teamCare;
+  public void setMedicalLevel(MedicalLevelEnum medicalLevel) {
+    this.medicalLevel = medicalLevel;
   }
 
   @Override
@@ -418,27 +433,29 @@ public class Decision {
       return false;
     }
     Decision decision = (Decision)o;
-    return Objects.equals(this.resourceCategory, decision.resourceCategory) &&
-        Objects.equals(this.resourceType, decision.resourceType) &&
-        Objects.equals(this.teamCare, decision.teamCare);
+    return Objects.equals(this.resourceType, decision.resourceType) &&
+        Objects.equals(this.vehicleType, decision.vehicleType) &&
+        Objects.equals(this.medicalLevel, decision.medicalLevel);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resourceCategory, resourceType, teamCare);
+    return Objects.hash(resourceType, vehicleType, medicalLevel);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Decision {\n");
-    sb.append("    resourceCategory: ")
-        .append(toIndentedString(resourceCategory))
-        .append("\n");
     sb.append("    resourceType: ")
         .append(toIndentedString(resourceType))
         .append("\n");
-    sb.append("    teamCare: ").append(toIndentedString(teamCare)).append("\n");
+    sb.append("    vehicleType: ")
+        .append(toIndentedString(vehicleType))
+        .append("\n");
+    sb.append("    medicalLevel: ")
+        .append(toIndentedString(medicalLevel))
+        .append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -387,7 +387,7 @@
                                         <type>service d’urgences d’un Etablissement de santé</type>
                                     </destination>
                                     <orientation>OK</orientation>
-                                    <teamCare>MED</teamCare>
+                                    <medicalLevel>MED</medicalLevel>
                                     <concoursRequest>fr.health.samu950-DRFR159502401000233.D350</concoursRequest>
                                     <transportationID>IDV-OIUSJP1245</transportationID>
                                 </transportDetails>

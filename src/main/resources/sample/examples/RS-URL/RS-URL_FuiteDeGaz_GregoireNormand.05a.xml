@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<documentLink xmlns="urn:emergency:cisu:2.0:documentLink">
+  <caseId>fr.health.samu440.DRFR154402413800236</caseId>
+  <patientId>fr.health.samu440.patient.DRFR154402413800236.2</patientId>
+  <document>
+    <documentType>BILAN</documentType>
+    <url>https://sante.gouv.fr/</url>
+  </document>
+</documentLink>

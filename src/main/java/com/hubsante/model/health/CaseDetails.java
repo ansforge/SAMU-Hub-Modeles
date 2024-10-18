@@ -105,75 +105,81 @@ public class CaseDetails {
   public enum AttributionEnum {
     DRM("DRM"),
 
-    DRMMRU("DRMMRU"),
+    DRM_MRU("DRM.MRU"),
 
-    MU("MU"),
+    DRM_MRU_MU("DRM.MRU.MU"),
 
-    DENT("DENT"),
+    DRM_MRU_INDISPMU("DRM.MRU.INDISPMU"),
 
-    GERIA("GERIA"),
+    DRM_MRU_SSE("DRM.MRU.SSE"),
 
-    PEDIA("PEDIA"),
+    DRM_MRU_PLANBLAN("DRM.MRU.PLANBLAN"),
 
-    PSY("PSY"),
+    DRM_MRU_PCSAMU("DRM.MRU.PCSAMU"),
 
-    TOXICOL("TOXICOL"),
+    DRM_SPE("DRM.SPE"),
 
-    INDISPMU("INDISPMU"),
+    DRM_SPE_DENT("DRM.SPE.DENT"),
 
-    SSE("SSE"),
+    DRM_SPE_GERIA("DRM.SPE.GERIA"),
 
-    PLANBLAN("PLANBLAN"),
+    DRM_SPE_PEDIA("DRM.SPE.PEDIA"),
 
-    PCSAMU("PCSAMU"),
+    DRM_SPE_OBST("DRM.SPE.OBST"),
 
-    DRMMRL("DRMMRL"),
+    DRM_SPE_PSY("DRM.SPE.PSY"),
 
-    MG("MG"),
+    DRM_SPE_TOXICOL("DRM.SPE.TOXICOL"),
 
-    INDISPMG("INDISPMG"),
+    DRM_MRL("DRM.MRL"),
 
-    ABSML("ABSML"),
+    DRM_MRL_MG("DRM.MRL.MG"),
+
+    DRM_MRL_INDISPMG("DRM.MRL.INDISPMG"),
+
+    DRM_MRL_ABSML("DRM.MRL.ABSML"),
 
     DR("DR"),
 
-    DREG("DREG"),
+    DR_DREG("DR.DREG"),
 
-    DRARM("DRARM"),
+    DR_DREG_DRARM("DR.DREG.DRARM"),
 
-    DRMED("DRMED"),
+    DR_DREG_DRDAC("DR.DREG.DRDAC"),
 
-    DRPHARMA("DRPHARMA"),
+    DR_DREG_DRMED("DR.DREG.DRMED"),
 
-    DRDENT("DRDENT"),
+    DR_DREG_DRPHARMA("DR.DREG.DRPHARMA"),
 
-    DRINFO("DRINFO"),
+    DR_DREG_DRDENT("DR.DREG.DRDENT"),
 
-    DOS_SIS("DOS-SIS"),
+    DR_DREG_DRINFO("DR.DREG.DRINFO"),
 
-    DOS_FDO("DOS-FDO"),
+    DR_DREG_DOS_SIS("DR.DREG.DOS-SIS"),
+
+    DR_DREG_DOS_FDO("DR.DREG.DOS-FDO"),
 
     D("D"),
 
-    D_MALV("D-MALV"),
+    D_D_MALV("D.D-MALV"),
 
-    ERR("ERR"),
+    D_D_MALV_ERR("D.D-MALV.ERR"),
 
-    NRP("NRP"),
+    D_D_MALV_NRP("D.D-MALV.NRP"),
 
-    MALV("MALV"),
+    D_D_MALV_MALV("D.D-MALV.MALV"),
 
-    FAX("FAX"),
+    D_D_MALV_FAX("D.D-MALV.FAX"),
 
-    ITERATIF("ITERATIF"),
+    D_D_MALV_ITERATIF("D.D-MALV.ITERATIF"),
 
-    D_IDENT("D-IDENT"),
+    D_D_IDENT("D.D-IDENT"),
 
-    ADMIN("ADMIN"),
+    D_D_IDENT_ADMIN("D.D-IDENT.ADMIN"),
 
-    PERSO("PERSO"),
+    D_D_IDENT_PERSO("D.D-IDENT.PERSO"),
 
-    AUTRE("AUTRE");
+    D_D_IDENT_AUTRE("D.D-IDENT.AUTRE");
 
     private String value;
 

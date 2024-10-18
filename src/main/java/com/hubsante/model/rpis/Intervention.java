@@ -193,7 +193,7 @@ public class Intervention {
 
   /**
    * Thésaurus SFMU-FEDORU. A valoriser par un code de la nomenclature
-   *Diagnostic SMUR.
+   *Diagnostic SMUR(à venir).
    * @return mainDiagnosis
    **/
   @JsonProperty(JSON_PROPERTY_MAIN_DIAGNOSIS)
@@ -217,7 +217,7 @@ public class Intervention {
 
   /**
    * Thésaurus SFMU-FEDORU. A valoriser par un code de la nomenclature
-   *Diagnostic SMUR.
+   *Diagnostic SMUR (à venir).
    * @return associatedDiagnosis
    **/
   @JsonProperty(JSON_PROPERTY_ASSOCIATED_DIAGNOSIS)

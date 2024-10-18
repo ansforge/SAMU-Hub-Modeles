@@ -26,16 +26,24 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.*;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.xpath.*;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -53,6 +61,7 @@ public class XmlGenerationHelper {
 
     public void generateXmlFiles() {
         Path examplesDir = Paths.get("src/main/resources/sample/examples");
+        ArrayList<String> errorsDuringConversion = new ArrayList<>();
 
         try (Stream<Path> subfolders = Files.list(examplesDir)) {
             subfolders.filter(Files::isDirectory).forEach(subfolder -> {
@@ -62,19 +71,27 @@ public class XmlGenerationHelper {
                         try {
                             convertJsonToXml(jsonFile);
                         } catch (IOException e) {
-                            log.error("Could not convert file {} to XML, {}", jsonFile.getFileName(), e.getMessage());
+                            errorsDuringConversion.add("Could not convert file " + jsonFile.getFileName() + " to XML, " + e.getMessage());
+                        } catch (RuntimeException e) {
+                            errorsDuringConversion.add("Could not convert file " + jsonFile.getFileName() + " to XML, no nodes detected");
                         }
                     }
                 } catch (IOException e) {
-                    log.error("Error during file streaming in subfolder {}, {}", subfolder.getFileName(), e.getMessage());
+                    errorsDuringConversion.add("Error during file streaming in subfolder " + subfolder.getFileName() + ", " + e.getMessage());
                 }
             });
         } catch (IOException e) {
-            log.error("Error during file streaming in folder {}, {}", examplesDir.getFileName(), e.getMessage());
+            errorsDuringConversion.add("Error during file streaming in folder " + examplesDir.getFileName() + ", " + e.getMessage());
         }
+        if (!errorsDuringConversion.isEmpty()) {
+            log.error("Errors during conversion: ");
+            errorsDuringConversion.forEach(log::error);
+            System.exit(1);
+        }
+
     }
 
-    private void convertJsonToXml(Path jsonFile) throws IOException {
+    private void convertJsonToXml(Path jsonFile) throws IOException, RuntimeException {
         EdxlMessage deserializedEdxlMessage;
         if (Arrays.stream(useCasesWithNoRcDe).anyMatch(name -> jsonFile.getFileName().toString().contains(name))) {
             deserializedEdxlMessage = edxlHandler.deserializeJsonEDXL(

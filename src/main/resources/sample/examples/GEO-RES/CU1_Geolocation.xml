@@ -4,7 +4,7 @@
     <resourceId>fr.health.samu760.resource.VLM250</resourceId>
     <orgId>fr.health.760.samu76</orgId>
     <name>SMUR 1 Rouen</name>
-    <type>SMUR</type>
+    <resourceType>SMUR</resourceType>
     <nature>BASE</nature>
     <mobility>VEHICULE</mobility>
     <capacity>INCONNUE</capacity>
@@ -17,7 +17,7 @@
     <resourceId>fr.health.samu760.resource.VLM211</resourceId>
     <orgId>fr.health.760.samu76</orgId>
     <name>SMUR 2 Rouen</name>
-    <type>SMUR</type>
+    <resourceType>SMUR</resourceType>
     <nature>BASE</nature>
     <mobility>VEHICULE</mobility>
     <capacity>URGENCE</capacity>
@@ -30,7 +30,7 @@
     <resourceId>fr.health.samu760.resource.VLM213</resourceId>
     <orgId>fr.health.140.samu14</orgId>
     <name>SMUR 3 Caen</name>
-    <type>SMUR</type>
+    <resourceType>SMUR</resourceType>
     <nature>EFFECTEUR</nature>
     <mobility>VEHICULE</mobility>
     <capacity>MEDICALE</capacity>
@@ -43,7 +43,7 @@
     <resourceId>fr.health.samu760.resource.VLM25</resourceId>
     <orgId>fr.health.760.samu76</orgId>
     <name>SMUR 4 Havre</name>
-    <type>SMUR</type>
+    <resourceType>SMUR</resourceType>
     <nature>EFFECTEUR</nature>
     <mobility>VEHICULE</mobility>
     <capacity>MEDICALE</capacity>
