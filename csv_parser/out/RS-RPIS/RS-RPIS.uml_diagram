@@ -91,7 +91,7 @@ strict digraph {
                 <TR>
                 <TD ><B>decision</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet decision</I></TD></TR><TR><TD BORDER="0" >resourceCategory <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >resourceType <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >medicalLevel <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet decision</I></TD></TR><TR><TD BORDER="0" >resourceType <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >vehicleType <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >medicalLevel <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	decision -> orientation [headlabel=1 taillabel="0..1"]
 	orientation [label=<<TABLE>
