@@ -105,8 +105,11 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     NB_ROWS = params['rows']
     NB_COLS = params['cols']
 
+    def is_custom_content():
+        return MODEL_TYPE == "customContent"
+
     def is_allowing_additional_properties():
-        return MODEL_TYPE == "customContent" or MODEL_TYPE == "DistributionElement"
+        return is_custom_content() or MODEL_TYPE == "DistributionElement"
 
     Path('out/' + name).mkdir(parents=True, exist_ok=True)
 
@@ -387,7 +390,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     children = {}
 
-    if not is_allowing_additional_properties():
+    if not is_custom_content():
         for i in range(DATA_DEPTH, 0, -1):
             previous_children = children
             children_df = df[df['level_shift'] == i]
@@ -784,7 +787,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     uml_generator.run(name, MODEL_TYPE, version=version)
     print('UML diagrams generated.')
 
-    if not is_allowing_additional_properties():
+    if not is_custom_content():
         named_df = df.copy().set_index(['parent_type', 'name']).fillna('')
     else:
         named_df = df.copy().set_index(['name']).fillna('')
