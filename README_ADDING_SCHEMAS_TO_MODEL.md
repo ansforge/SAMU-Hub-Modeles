@@ -73,7 +73,7 @@ Les propriétés "templateDir" et "models" vont varier selon le fichier:
 **4. Ajouter le nom du schema dans les variables env.SCHEMAS des fichiers '.github/workflows/generate-model.yaml' et '.github/workflows/generate-bundle.yaml'  Lancer la génération des fichiers, soit en exécutant la github action generate-model en local grace a github act ou en créant une pull request depuis la branche feature en question et poussant les modifications, declenchant l'action github sur le repo distant et ensuite recuperant les fichiers générés.**
    
 ## 4. Java
-1. Modifier la classe com/hubsante/model/edxl/ContentMessage.java, en ajoutant la classe wrapper générée dans la liste des @JsonSubTypes.Type annotations (e.g. **@JsonSubTypes.type([Titre du schema]Wrapper.class)** )
+1. Modifier la classe com/hubsante/model/edxl/ContentMessage.java, en rajoutant la classe wrapper générée dans la liste des @JsonSubTypes.Type annotations (e.g. **@JsonSubTypes.type([Titre du schema]Wrapper.class)** ) et dans la liste des schemas de la sous-classe **UseCaseHelper**.
 
 2. Modifier le json schema *src/main/resources/json-schema/EDXL-DE-full.schema.json* en ajoutant le nouveau schema dans l'element 'oneOf' de l'objet 'EmbeddedJsonContent'm typiquement:
 ```
