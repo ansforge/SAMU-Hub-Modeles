@@ -60,7 +60,7 @@ jobs:
 #      - name: Run test_case_generator and move the folder test-cases to src/main/resources/sample/test-cases
 #        working-directory: ./csv_parser
 #        if: steps.filter.outputs.test_case_parsing_required == 'true'
-#        run: | 
+#        run: |
 #          rm -r ./out/test-cases || true
 #          python workflow.py --stage test_case_parser
 #          rm -r ../src/main/resources/test-cases || true
@@ -72,7 +72,7 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-      
+
       - name: Update the RC-DE schema in json_schema2xsd resources
         working-directory: ./csv_parser
         if: steps.filter.outputs.parsing_required == 'true'
@@ -144,7 +144,7 @@ jobs:
 
       - name: Apply license
         run: ./gradlew licenseFormat
-        
+
       - name: Delete old xml files
         run: |
           find ./src/main/resources/sample/examples -name "*.xml" -type f -delete
@@ -152,12 +152,13 @@ jobs:
       - name: Generate XML files
         run: |
           ./gradlew generateXml
+        continue-on-error: true
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: ⚙️ Auto-génération des classes et des specs
-          
+
       - name: Build and run TECHNICAL tests
         run: ./gradlew test --info -Ptechnical=true
 
