@@ -106,7 +106,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     NB_COLS = params['cols']
 
     def is_allowing_additional_properties():
-        return MODEL_TYPE == "customContent" or MODEL_TYPE == "distributionElement"
+        return MODEL_TYPE == "customContent" or MODEL_TYPE == "DistributionElement"
 
     Path('out/' + name).mkdir(parents=True, exist_ok=True)
 
