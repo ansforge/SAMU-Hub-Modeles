@@ -14,7 +14,7 @@ strict digraph {
                 <TR>
                 <TD ><B>resource</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet resource</I></TD></TR><TR><TD BORDER="0" >resourceId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >orgId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >nature <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >mobility <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >capacity <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet resource</I></TD></TR><TR><TD BORDER="0" >resourceId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >orgId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >resourceType <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >nature <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >mobility <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >capacity <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	resource -> geoResourcesDetails [headlabel=1 taillabel="0..*"]
 	geoResourcesDetails [label=<<TABLE>
