@@ -35,7 +35,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.documentlink.Document;
-import com.hubsante.model.rcde.DistributionElement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -45,21 +44,15 @@ import java.util.Objects;
 /**
  * DocumentLink
  */
-@JsonPropertyOrder({DistributionElement.JSON_PROPERTY_MESSAGE_ID,
-                    DistributionElement.JSON_PROPERTY_SENDER,
-                    DistributionElement.JSON_PROPERTY_SENT_AT,
-                    DistributionElement.JSON_PROPERTY_KIND,
-                    DistributionElement.JSON_PROPERTY_STATUS,
-                    DistributionElement.JSON_PROPERTY_RECIPIENT,
-                    DocumentLink.JSON_PROPERTY_CASE_ID,
+@JsonPropertyOrder({DocumentLink.JSON_PROPERTY_CASE_ID,
                     DocumentLink.JSON_PROPERTY_PATIENT_ID,
                     DocumentLink.JSON_PROPERTY_DOCUMENT})
 @JsonTypeName("documentLink")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class DocumentLink extends DistributionElement {
+public class DocumentLink {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0";
+  String xmlns = "urn:emergency:cisu:2.0:documentLink";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 
@@ -150,6 +143,8 @@ public class DocumentLink extends DistributionElement {
     return document;
   }
 
+  @JacksonXmlElementWrapper(useWrapping = false)
+
   @JsonProperty(JSON_PROPERTY_DOCUMENT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDocument(List<Document> document) {
@@ -173,19 +168,18 @@ public class DocumentLink extends DistributionElement {
     DocumentLink documentLink = (DocumentLink)o;
     return Objects.equals(this.caseId, documentLink.caseId) &&
         Objects.equals(this.patientId, documentLink.patientId) &&
-        Objects.equals(this.document, documentLink.document) && super.equals(o);
+        Objects.equals(this.document, documentLink.document);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, patientId, document, super.hashCode());
+    return Objects.hash(caseId, patientId, document);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DocumentLink {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
     sb.append("    patientId: ")
         .append(toIndentedString(patientId))

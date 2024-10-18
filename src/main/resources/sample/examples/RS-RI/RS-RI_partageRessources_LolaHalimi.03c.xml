@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resourcesInfo xmlns="urn:emergency:cisu:2.0:resourcesInfo">
+  <caseId>fr.health.samu950.DRFR159502401800159</caseId>
+  <resource>
+    <datetime>2024-01-18T18:23:00+01:00</datetime>
+    <resourceId>fr.health.samu780.resource.SMUR78-E</resourceId>
+    <requestId>fr.health.samu950.request.zs498qo</requestId>
+    <orgId>fr.health.samu78</orgId>
+    <vehicleType>SMUR.VLM</vehicleType>
+    <name>VLM78-E</name>
+    <team>
+      <medicalLevel>MED</medicalLevel>
+      <name>Equipe 3</name>
+    </team>
+    <contact>
+      <type>TEL</type>
+      <details>+33612345678</details>
+    </contact>
+  </resource>
+</resourcesInfo>

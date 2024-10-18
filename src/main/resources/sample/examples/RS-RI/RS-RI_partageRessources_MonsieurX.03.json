@@ -7,7 +7,7 @@
           "type": "TEL"
         },
         "team": {
-          "teamCare": "PARAMED"
+          "medicalLevel": "PARAMED"
         },
         "state": [
           {
@@ -20,7 +20,7 @@
         "resourceId": "fr.health.samu780.resource.DRFR150092406301259.1",
         "missionId": "DRFR150092406301259.M5698",
         "orgId": "fr.health.BeauRivage",
-        "vehiculeType": "TSU.AMB",
+        "vehicleType": "TSU.AMB",
         "name": "Amb. BeauRivage - 56"
       }
     ],

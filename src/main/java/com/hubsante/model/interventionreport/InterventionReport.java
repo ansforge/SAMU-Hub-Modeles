@@ -37,7 +37,6 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.interventionreport.Evaluation;
 import com.hubsante.model.interventionreport.Patient;
 import com.hubsante.model.interventionreport.Redactor;
-import com.hubsante.model.rcde.DistributionElement;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -46,13 +45,7 @@ import java.util.Objects;
 /**
  * InterventionReport
  */
-@JsonPropertyOrder({DistributionElement.JSON_PROPERTY_MESSAGE_ID,
-                    DistributionElement.JSON_PROPERTY_SENDER,
-                    DistributionElement.JSON_PROPERTY_SENT_AT,
-                    DistributionElement.JSON_PROPERTY_KIND,
-                    DistributionElement.JSON_PROPERTY_STATUS,
-                    DistributionElement.JSON_PROPERTY_RECIPIENT,
-                    InterventionReport.JSON_PROPERTY_CASE_ID,
+@JsonPropertyOrder({InterventionReport.JSON_PROPERTY_CASE_ID,
                     InterventionReport.JSON_PROPERTY_REPORT_ID,
                     InterventionReport.JSON_PROPERTY_REDACTOR,
                     InterventionReport.JSON_PROPERTY_CREATION,
@@ -61,9 +54,9 @@ import java.util.Objects;
 @JsonTypeName("interventionReport")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class InterventionReport extends DistributionElement {
+public class InterventionReport {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0";
+  String xmlns = "urn:emergency:cisu:2.0:interventionReport";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 
@@ -243,21 +236,19 @@ public class InterventionReport extends DistributionElement {
         Objects.equals(this.redactor, interventionReport.redactor) &&
         Objects.equals(this.creation, interventionReport.creation) &&
         Objects.equals(this.patient, interventionReport.patient) &&
-        Objects.equals(this.evaluation, interventionReport.evaluation) &&
-        super.equals(o);
+        Objects.equals(this.evaluation, interventionReport.evaluation);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(caseId, reportId, redactor, creation, patient,
-                        evaluation, super.hashCode());
+                        evaluation);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class InterventionReport {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
     sb.append("    reportId: ").append(toIndentedString(reportId)).append("\n");
     sb.append("    redactor: ").append(toIndentedString(redactor)).append("\n");

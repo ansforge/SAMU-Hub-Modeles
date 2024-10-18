@@ -1113,7 +1113,7 @@ Le Code INSEE peut également précisé le pays d'intervention, si étranger. </
     </complexType>
     <complexType name="decision">
         <sequence>
-            <element name="resourceCategory">
+            <element name="resourceType">
                 <annotation>
                     <documentation>Précise le type de moyen engagé dans l'intervention (SMUR, TSU, HOSPIT, etc.). 
 A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.</documentation>
@@ -1157,7 +1157,7 @@ A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.</documentation>
                     </restriction>
                 </simpleType>
             </element>
-            <element name="resourceType">
+            <element name="vehicleType">
                 <annotation>
                     <documentation>Précise le type de véhicule terrestre / aérien / maritime engagé dans l'intervention.
 A valoriser par un code de la nomenclature SI-SAMU-TYPE_VECTEUR.</documentation>
@@ -1230,7 +1230,7 @@ A valoriser par un code de la nomenclature SI-SAMU-TYPE_VECTEUR.</documentation>
                     </restriction>
                 </simpleType>
             </element>
-            <element name="teamCare">
+            <element name="medicalLevel">
                 <annotation>
                     <documentation>Type d’équipe (médical, paramédicale, secouriste).
 A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN.</documentation>

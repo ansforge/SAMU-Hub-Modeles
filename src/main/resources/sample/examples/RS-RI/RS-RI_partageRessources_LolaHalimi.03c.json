@@ -7,14 +7,14 @@
           "details": "+33612345678"
         },
         "team": {
-          "teamCare": "MED",
+          "medicalLevel": "MED",
           "name": "Equipe 3"
         },
         "datetime": "2024-01-18T18:23:00+01:00",
         "resourceId": "fr.health.samu780.resource.SMUR78-E",
         "requestId": "fr.health.samu950.request.zs498qo",
         "orgId": "fr.health.samu78",
-        "vehiculeType": "SMUR.VLM",
+        "vehicleType": "SMUR.VLM",
         "name": "VLM78-E"
       }
     ],

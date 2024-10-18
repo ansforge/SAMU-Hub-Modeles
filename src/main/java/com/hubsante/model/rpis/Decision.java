@@ -41,9 +41,9 @@ import java.util.Objects;
 /**
  * Decision
  */
-@JsonPropertyOrder({Decision.JSON_PROPERTY_RESOURCE_CATEGORY,
-                    Decision.JSON_PROPERTY_RESOURCE_TYPE,
-                    Decision.JSON_PROPERTY_TEAM_CARE})
+@JsonPropertyOrder({Decision.JSON_PROPERTY_RESOURCE_TYPE,
+                    Decision.JSON_PROPERTY_VEHICLE_TYPE,
+                    Decision.JSON_PROPERTY_MEDICAL_LEVEL})
 @JsonTypeName("decision")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -53,7 +53,7 @@ public class Decision {
    * Précise le type de moyen engagé dans l&#39;intervention (SMUR, TSU, HOSPIT,
    * etc.).  A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.
    */
-  public enum ResourceCategoryEnum {
+  public enum ResourceTypeEnum {
     SMUR("SMUR"),
 
     SMUR_ADULT("SMUR.ADULT"),
@@ -124,7 +124,7 @@ public class Decision {
 
     private String value;
 
-    ResourceCategoryEnum(String value) { this.value = value; }
+    ResourceTypeEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -137,8 +137,8 @@ public class Decision {
     }
 
     @JsonCreator
-    public static ResourceCategoryEnum fromValue(String value) {
-      for (ResourceCategoryEnum b : ResourceCategoryEnum.values()) {
+    public static ResourceTypeEnum fromValue(String value) {
+      for (ResourceTypeEnum b : ResourceTypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -147,16 +147,15 @@ public class Decision {
     }
   }
 
-  public static final String JSON_PROPERTY_RESOURCE_CATEGORY =
-      "resourceCategory";
-  private ResourceCategoryEnum resourceCategory;
+  public static final String JSON_PROPERTY_RESOURCE_TYPE = "resourceType";
+  private ResourceTypeEnum resourceType;
 
   /**
    * Précise le type de véhicule terrestre / aérien / maritime engagé dans
    * l&#39;intervention. A valoriser par un code de la nomenclature
    * SI-SAMU-TYPE_VECTEUR.
    */
-  public enum ResourceTypeEnum {
+  public enum VehicleTypeEnum {
     AASC("AASC"),
 
     AASC_VLSC("AASC.VLSC"),
@@ -285,7 +284,7 @@ public class Decision {
 
     private String value;
 
-    ResourceTypeEnum(String value) { this.value = value; }
+    VehicleTypeEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -298,8 +297,8 @@ public class Decision {
     }
 
     @JsonCreator
-    public static ResourceTypeEnum fromValue(String value) {
-      for (ResourceTypeEnum b : ResourceTypeEnum.values()) {
+    public static VehicleTypeEnum fromValue(String value) {
+      for (VehicleTypeEnum b : VehicleTypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -308,14 +307,14 @@ public class Decision {
     }
   }
 
-  public static final String JSON_PROPERTY_RESOURCE_TYPE = "resourceType";
-  private ResourceTypeEnum resourceType;
+  public static final String JSON_PROPERTY_VEHICLE_TYPE = "vehicleType";
+  private VehicleTypeEnum vehicleType;
 
   /**
    * Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code
    * de la nomenclature SI-SAMU-NIVSOIN.
    */
-  public enum TeamCareEnum {
+  public enum MedicalLevelEnum {
     MED("MED"),
 
     PARAMED("PARAMED"),
@@ -324,7 +323,7 @@ public class Decision {
 
     private String value;
 
-    TeamCareEnum(String value) { this.value = value; }
+    MedicalLevelEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -337,8 +336,8 @@ public class Decision {
     }
 
     @JsonCreator
-    public static TeamCareEnum fromValue(String value) {
-      for (TeamCareEnum b : TeamCareEnum.values()) {
+    public static MedicalLevelEnum fromValue(String value) {
+      for (MedicalLevelEnum b : MedicalLevelEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -347,34 +346,10 @@ public class Decision {
     }
   }
 
-  public static final String JSON_PROPERTY_TEAM_CARE = "teamCare";
-  private TeamCareEnum teamCare;
+  public static final String JSON_PROPERTY_MEDICAL_LEVEL = "medicalLevel";
+  private MedicalLevelEnum medicalLevel;
 
   public Decision() {}
-
-  public Decision resourceCategory(ResourceCategoryEnum resourceCategory) {
-
-    this.resourceCategory = resourceCategory;
-    return this;
-  }
-
-  /**
-   * Précise le type de moyen engagé dans l&#39;intervention (SMUR, TSU, HOSPIT,
-   *etc.).  A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.
-   * @return resourceCategory
-   **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_CATEGORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public ResourceCategoryEnum getResourceCategory() {
-    return resourceCategory;
-  }
-
-  @JsonProperty(JSON_PROPERTY_RESOURCE_CATEGORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResourceCategory(ResourceCategoryEnum resourceCategory) {
-    this.resourceCategory = resourceCategory;
-  }
 
   public Decision resourceType(ResourceTypeEnum resourceType) {
 
@@ -383,9 +358,8 @@ public class Decision {
   }
 
   /**
-   * Précise le type de véhicule terrestre / aérien / maritime engagé dans
-   *l&#39;intervention. A valoriser par un code de la nomenclature
-   *SI-SAMU-TYPE_VECTEUR.
+   * Précise le type de moyen engagé dans l&#39;intervention (SMUR, TSU, HOSPIT,
+   *etc.).  A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.
    * @return resourceType
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
@@ -401,28 +375,53 @@ public class Decision {
     this.resourceType = resourceType;
   }
 
-  public Decision teamCare(TeamCareEnum teamCare) {
+  public Decision vehicleType(VehicleTypeEnum vehicleType) {
 
-    this.teamCare = teamCare;
+    this.vehicleType = vehicleType;
+    return this;
+  }
+
+  /**
+   * Précise le type de véhicule terrestre / aérien / maritime engagé dans
+   *l&#39;intervention. A valoriser par un code de la nomenclature
+   *SI-SAMU-TYPE_VECTEUR.
+   * @return vehicleType
+   **/
+  @JsonProperty(JSON_PROPERTY_VEHICLE_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public VehicleTypeEnum getVehicleType() {
+    return vehicleType;
+  }
+
+  @JsonProperty(JSON_PROPERTY_VEHICLE_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVehicleType(VehicleTypeEnum vehicleType) {
+    this.vehicleType = vehicleType;
+  }
+
+  public Decision medicalLevel(MedicalLevelEnum medicalLevel) {
+
+    this.medicalLevel = medicalLevel;
     return this;
   }
 
   /**
    * Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code
    *de la nomenclature SI-SAMU-NIVSOIN.
-   * @return teamCare
+   * @return medicalLevel
    **/
-  @JsonProperty(JSON_PROPERTY_TEAM_CARE)
+  @JsonProperty(JSON_PROPERTY_MEDICAL_LEVEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public TeamCareEnum getTeamCare() {
-    return teamCare;
+  public MedicalLevelEnum getMedicalLevel() {
+    return medicalLevel;
   }
 
-  @JsonProperty(JSON_PROPERTY_TEAM_CARE)
+  @JsonProperty(JSON_PROPERTY_MEDICAL_LEVEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTeamCare(TeamCareEnum teamCare) {
-    this.teamCare = teamCare;
+  public void setMedicalLevel(MedicalLevelEnum medicalLevel) {
+    this.medicalLevel = medicalLevel;
   }
 
   @Override
@@ -434,27 +433,29 @@ public class Decision {
       return false;
     }
     Decision decision = (Decision)o;
-    return Objects.equals(this.resourceCategory, decision.resourceCategory) &&
-        Objects.equals(this.resourceType, decision.resourceType) &&
-        Objects.equals(this.teamCare, decision.teamCare);
+    return Objects.equals(this.resourceType, decision.resourceType) &&
+        Objects.equals(this.vehicleType, decision.vehicleType) &&
+        Objects.equals(this.medicalLevel, decision.medicalLevel);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resourceCategory, resourceType, teamCare);
+    return Objects.hash(resourceType, vehicleType, medicalLevel);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Decision {\n");
-    sb.append("    resourceCategory: ")
-        .append(toIndentedString(resourceCategory))
-        .append("\n");
     sb.append("    resourceType: ")
         .append(toIndentedString(resourceType))
         .append("\n");
-    sb.append("    teamCare: ").append(toIndentedString(teamCare)).append("\n");
+    sb.append("    vehicleType: ")
+        .append(toIndentedString(vehicleType))
+        .append("\n");
+    sb.append("    medicalLevel: ")
+        .append(toIndentedString(medicalLevel))
+        .append("\n");
     sb.append("}");
     return sb.toString();
   }

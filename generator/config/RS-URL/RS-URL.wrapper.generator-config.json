@@ -4,7 +4,7 @@
   "generatorName": "java",
   "templateDir": "templates/wrapper/",
   "globalProperties": {
-    "models": "documentLink",
+    "models": "documentLinkWrapper",
     "apis": false,
     "apiTests": false,
     "apiDocs": false,

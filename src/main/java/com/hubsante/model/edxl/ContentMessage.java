@@ -107,7 +107,12 @@ public class ContentMessage {
                 {"resourcesRequest", ResourcesRequest.class.getCanonicalName()},
                 {"resourcesResponse", ResourcesResponse.class.getCanonicalName()},
                 {"resourcesStatus", ResourcesStatus.class.getCanonicalName()},
-                {"rpis", Rpis.class.getCanonicalName()}
+                {"rpis", Rpis.class.getCanonicalName()},
+                {"technical", TechnicalWrapper.class.getCanonicalName()},
+                {"technicalNoreq", TechnicalNoreqWrapper.class.getCanonicalName()},
+                {"documentLink", DocumentLinkWrapper.class.getCanonicalName()},
+                {"resourcesEngagement", ResourcesEngagementWrapper.class.getCanonicalName()},
+                {"interventionReport", InterventionReportWrapper.class.getCanonicalName()}
         }).collect(Collectors.toMap(useCaseData -> useCaseData[0], useCaseData -> useCaseData[1]));
     }
 }

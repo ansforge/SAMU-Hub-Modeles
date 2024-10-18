@@ -66,9 +66,9 @@
             "finess": "None"
         },
         "decision": {
-            "resourceCategory": "SMUR",
-            "resourceType": "AR, VLM, VSAV",
-            "teamCare": "PARAMED"
+            "resourceType": "SMUR",
+            "vehicleType": "AR, VLM, VSAV",
+            "medicalLevel": "PARAMED"
         }
     }
 }
