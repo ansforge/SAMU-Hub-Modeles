@@ -1,6 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="distributionElement" type="x:distributionElement"/>
     <complexType name="distributionElement">
-        <sequence/>
+        <sequence>
+            <element name="messageId" type="string">
+                <annotation>
+                    <documentation>Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
+Il est valorisé comme suit lors de sa création : 
+{pays}.{domaine}.{organisation}.{senderCaseId}
+
+Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.</documentation>
+                </annotation>
+            </element>
+            <element name="sender" type="x:sender"/>
+            <element name="sentAt" type="dateTime">
+                <annotation>
+                    <documentation>Groupe date heure de début de partage lié à l'envoi du message. Il doit  être cohérent avec le champ &lt;dateTimeSent&gt; de l'enveloppe EDXL (voir DST).  L'indicateur de fuseau horaire Z ne doit pas être utilisé. Le fuseau horaire pour UTC doit être représenté par '-00:00'</documentation>
+                </annotation>
+            </element>
+            <element name="kind">
+                <annotation>
+                    <documentation>Prend la valeur &lt;distributionKind de l'enveloppe EDXL (voir DST)</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="Report"/>
+                        <enumeration value="Update"/>
+                        <enumeration value="Cancel"/>
+                        <enumeration value="Ack"/>
+                        <enumeration value="Error"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="status">
+                <annotation>
+                    <documentation>Prend la valeur &lt;distributionStatus&gt; de l'enveloppe EDXL (voir DST)</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="Actual"/>
+                        <enumeration value="Exercise"/>
+                        <enumeration value="System"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element maxOccurs="unbounded" minOccurs="1" name="recipient" type="x:recipient"/>
+        </sequence>
+    </complexType>
+    <complexType name="sender">
+        <sequence>
+            <element name="name" type="string">
+                <annotation>
+                    <documentation>Identifiant technique du système emetteur
+Format : 
+=&gt; Pour les SAMU : {nom solution LRM}-{clé de routage}
+où clé de routage désigne le nom de la clé de routage utilisée par le LRM pour les échanges et {nom solution LRM} est le nom donné par l'éditeur à sa solution (libre)
+=&gt; Pour NeXSIS : à définir {sga|sgo}-nexsis</documentation>
+                </annotation>
+            </element>
+            <element name="URI" type="string">
+                <annotation>
+                    <documentation>uri du système. Permet d'identifier le vecteur utilisé par les échanges
+Format :
+=&gt; Pour les LRM : {nom éditeur}:{sender:name}
+=&gt; Pour NexSIS : sge:{sender:name}</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="recipient">
+        <sequence>
+            <element name="name" type="string">
+                <annotation>
+                    <documentation>Identifiant technique du système emetteur
+Format : 
+=&gt; Pour les SAMU : {clé de routage}-{nom solution LRM}
+où clé de routage désigne le nom de la clé de routage utilisée par le LRM pour les échanges et {nom solution LRM} est le nom donné par l'éditeur à sa solution (libre)
+=&gt; Pour NeXSIS : à définir {sga|sgo}-nexsis</documentation>
+                </annotation>
+            </element>
+            <element name="URI" type="string">
+                <annotation>
+                    <documentation>uri du système. Permet d'identifier le vecteur utilisé par les échanges
+Format :
+=&gt; Pour les LRM : sge:{recipient:name}
+=&gt; Pour NexSIS : sge:{recipient:name}</documentation>
+                </annotation>
+            </element>
+        </sequence>
     </complexType>
 </schema>
