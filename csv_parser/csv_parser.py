@@ -86,7 +86,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
         if path_file != '':
             df_nomenclature = pd.read_csv(path_file, sep=",", keep_default_na=False, na_values=['_'], encoding="utf-8",
-                                          dtype={'code': str})   
+                                          dtype={'code': str})
             L_ret = df_nomenclature["code"].values.tolist()
         # ToDo: ajouter un bloc dans le elseif pour détecter des https:// et aller chercher les nomenclatures publiées en ligne (MOS/NOs par exemple)
         else:
@@ -105,8 +105,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     NB_ROWS = params['rows']
     NB_COLS = params['cols']
 
-    def is_custom_content():
-        return MODEL_TYPE == "customContent"
+    def is_allowing_additional_properties():
+        return MODEL_TYPE == "customContent" or MODEL_TYPE == "distributionElement"
 
     Path('out/' + name).mkdir(parents=True, exist_ok=True)
 
@@ -387,7 +387,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     children = {}
 
-    if not is_custom_content():
+    if not is_allowing_additional_properties():
         for i in range(DATA_DEPTH, 0, -1):
             previous_children = children
             children_df = df[df['level_shift'] == i]
@@ -470,7 +470,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         'required': [],
         'properties': {},
         'definitions': {},
-        'additionalProperties': is_custom_content()
+        'additionalProperties': is_allowing_additional_properties()
     }
 
     def has_format_details(elem, details):
@@ -569,7 +569,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             print(f"{Color.RED}ERROR: object '{childTrueTypeName}' is defined multiple times. ")
             print(f"Make sure the object is not defined multiple times in the model.{Color.END}")
             exit(1)
-            
+
         """If this is the first codeAndLabel, we record its name, otherwise we copy the properties from the first 
         codeAndLabel to the current codeAndLabel"""
         if childOriginalTypeName == "codeAndLabel":
@@ -784,7 +784,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     uml_generator.run(name, MODEL_TYPE, version=version)
     print('UML diagrams generated.')
 
-    if not is_custom_content():
+    if not is_allowing_additional_properties():
         named_df = df.copy().set_index(['parent_type', 'name']).fillna('')
     else:
         named_df = df.copy().set_index(['name']).fillna('')
