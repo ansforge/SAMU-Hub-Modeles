@@ -112,7 +112,7 @@ public class ContentMessage {
                 {"technicalNoreq", TechnicalNoreqWrapper.class.getCanonicalName()},
                 {"documentLink", DocumentLinkWrapper.class.getCanonicalName()},
                 {"resourcesEngagement", ResourcesEngagementWrapper.class.getCanonicalName()},
-                {"interventionReport", InterventionReportWrapper.class.getCanonicalName()},
+                {"interventionReport", InterventionReportWrapper.class.getCanonicalName()}
         }).collect(Collectors.toMap(useCaseData -> useCaseData[0], useCaseData -> useCaseData[1]));
     }
 }
