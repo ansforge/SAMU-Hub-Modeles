@@ -2,8 +2,8 @@
   "rpis": {
     "orientation": {
       "decision": {
-        "resourceCategory": "SMUR",
-        "resourceType": "SMUR.VLM",
+        "resourceType": "SMUR",
+        "vehicleType": "SMUR.VLM",
         "medicalLevel": "MED"
       },
       "destination": {
