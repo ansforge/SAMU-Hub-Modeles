@@ -2,8 +2,8 @@
   "rpis": {
     "orientation": {
       "decision": {
-        "resourceCategory": "SIS",
-        "resourceType": "SIS.VSAV",
+        "resourceType": "SIS",
+        "vehicleType": "SIS.VSAV",
         "medicalLevel": "SECOURS"
       },
       "destination": {
