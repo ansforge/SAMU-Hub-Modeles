@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RPIS.schema.json#",
-    "version": "24.10.17",
+    "version": "24.10.18",
     "example": "example.json#",
     "type": "object",
     "title": "rpis",
@@ -1381,17 +1381,17 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "resourceCategory",
                 "resourceType",
+                "vehicleType",
                 "medicalLevel"
             ],
             "properties": {
-                "resourceCategory": {
+                "resourceType": {
                     "type": "string",
                     "title": "Moyen de transport",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/orientation/decision/resourceCategory",
+                    "example": "example.json#/orientation/decision/resourceType",
                     "description": "Précise le type de moyen engagé dans l'intervention (SMUR, TSU, HOSPIT, etc.). \nA valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.",
                     "enum": [
                         "SMUR",
@@ -1430,12 +1430,12 @@
                         "AUTRE.AUTRE"
                     ]
                 },
-                "resourceType": {
+                "vehicleType": {
                     "type": "string",
                     "title": "Type de vecteur de transport",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/orientation/decision/resourceType",
+                    "example": "example.json#/orientation/decision/vehicleType",
                     "description": "Précise le type de véhicule terrestre / aérien / maritime engagé dans l'intervention.\nA valoriser par un code de la nomenclature SI-SAMU-TYPE_VECTEUR.",
                     "enum": [
                         "AASC",
