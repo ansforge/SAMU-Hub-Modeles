@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<geoResourcesRequest xmlns="urn:emergency:cisu:2.0:geoResourcesRequest">
-  <resourceId>fr.health.samu760.resource.VLM250</resourceId>
-  <resourceId>fr.health.samu760.resource.VLM211</resourceId>
-  <resourceId>fr.health.samu760.resource.VLM213</resourceId>
-  <resourceId>fr.health.samu760.resource.VLM25</resourceId>
-</geoResourcesRequest>

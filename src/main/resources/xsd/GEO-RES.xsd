@@ -32,7 +32,7 @@ OU - uniquement dans le cas où un ID unique de ressource ne peut pas être gara
 L'immatriculation peut être utilisée dans le nom courant des véhicules.</documentation>
                 </annotation>
             </element>
-            <element name="type">
+            <element name="resourceType">
                 <annotation>
                     <documentation>Catégorie de la ressource (SMUR, SDIS, TSU, SNP, MSPE, navire)</documentation>
                 </annotation>

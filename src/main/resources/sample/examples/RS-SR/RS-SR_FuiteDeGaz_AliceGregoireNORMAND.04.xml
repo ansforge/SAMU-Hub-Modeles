@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<resourcesStatus xmlns="urn:emergency:cisu:2.0:resourcesStatus">
-  <caseId>fr.health.samu440.DRFR154402413800236</caseId>
-  <resourceId>fr.health.samu440.resource.VLM2</resourceId>
-  <state>
-    <datetime>2024-05-18T18:15:00+02:00</datetime>
-    <status>DEPART</status>
-  </state>
-</resourcesStatus>
