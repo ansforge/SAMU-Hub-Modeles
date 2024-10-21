@@ -73,13 +73,6 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
-      - name: Update the RC-DE schema in json_schema2xsd resources
-        working-directory: ./csv_parser
-        if: steps.filter.outputs.parsing_required == 'true'
-        run: |
-          rm -f ./json_schema2xsd/src/main/resources/RC-DE.schema.json
-          cp ./out/RC-DE/RC-DE.schema.json ./json_schema2xsd/src/main/resources/RC-DE.schema.json
-
       - name: Generate XSDs
         working-directory: ./csv_parser/json_schema2xsd
         if: steps.filter.outputs.parsing_required == 'true'
@@ -115,8 +108,8 @@ jobs:
         working-directory: ./generator
         run: |
           npx @openapitools/openapi-generator-cli generate -c ./config/RC-DE/RC-DE.generator-config.json --skip-validate-spec
-          npx @openapitools/openapi-generator-cli generate -c ./config/RC-DE/RC-DE.distributionElement.generator-config.json --skip-validate-spec
-
+          npx @openapitools/openapi-generator-cli generate -c ./config/RC-DE/RC-DE.distribution-element.generator-config.json --skip-validate-spec
+          
           IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"
           for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
             if [ "$SCHEMA" != "RS-EDA-MAJ" ] && [ "$SCHEMA" != "RS-ER" ]; then

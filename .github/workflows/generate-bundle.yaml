@@ -5,7 +5,7 @@ on:
 
 env:
   # ToDo: read from yaml list of all schemas (how to handle RC-REF with no examples, cf '|| true' below)
-  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RS-RPIS RS-EDA-MAJ RS-SR RC-DE RS-URL RS-ER RS-BPV"
+  SCHEMAS: "RC-DE RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RS-RPIS RS-EDA-MAJ RS-SR RC-DE RS-URL RS-ER RS-BPV"
 
 jobs:
   zip_and_upload:

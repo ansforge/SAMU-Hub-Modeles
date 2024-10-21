@@ -306,6 +306,7 @@ components:
           $ref: '#/components/schemas/EmbeddedXMLContent'
     EmbeddedJsonContent:
       oneOf: &id001
+      - $ref: '#/components/schemas/DistributionElement'
       - $ref: '#/components/schemas/createCase'
       - $ref: '#/components/schemas/createCaseHealth'
       - $ref: '#/components/schemas/createCaseHealthUpdate'
