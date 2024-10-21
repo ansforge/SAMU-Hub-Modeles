@@ -20,7 +20,7 @@
       <label>Problème médical; Douleur thoracique </label>
     </healthMotive>
     <details>
-      <attribution>MU</attribution>
+      <attribution>DRM.MRU.MU</attribution>
       <priority>P0</priority>
     </details>
   </qualification>
@@ -76,7 +76,7 @@
         <type>TEL</type>
         <detail>+33156789456</detail>
       </callbackContact>
-      <language>FR</language>
+      <language>fr</language>
       <type>TIERS</type>
       <freetext>Collègue de la victime</freetext>
       <detailedName>
@@ -88,7 +88,7 @@
   </initialAlert>
   <owner>fr.health.samu950</owner>
   <patient>
-    <idPat>fr.health.samu950.patient.DRFR159502401000233.1</idPat>
+    <patientId>fr.health.samu950.patient.DRFR159502401000233.1</patientId>
     <identity>
       <strictFeatures>
         <birthDate>1982-02-26</birthDate>
@@ -105,11 +105,11 @@
     </detail>
   </patient>
   <medicalNote>
-    <idPat>fr.health.samu950.patient.DRFR159502401000233.1</idPat>
+    <patientId>fr.health.samu950.patient.DRFR159502401000233.1</patientId>
     <operator>
       <role>ARM</role>
     </operator>
-    <idObs>fr.health.samu950.medicalNote.z45a89</idObs>
+    <medicalNoteId>fr.health.samu950.medicalNote.z45a89</medicalNoteId>
     <creation>2024-01-10T09:05:00+01:00</creation>
     <freetext>Douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente.</freetext>
   </medicalNote>

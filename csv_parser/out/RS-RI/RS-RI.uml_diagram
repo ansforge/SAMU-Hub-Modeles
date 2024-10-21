@@ -7,30 +7,30 @@ strict digraph {
                 <TR>
                 <TD ><B>team</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet team</I></TD></TR><TR><TD BORDER="0" >teamCare <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet team</I></TD></TR><TR><TD BORDER="0" >medicalLevel <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	team -> mobilizedResource [headlabel=1 taillabel="0..1"]
+	team -> resource [headlabel=1 taillabel="0..1"]
 	state [label=<<TABLE>
                 <TR>
                 <TD ><B>state</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet state</I></TD></TR><TR><TD BORDER="0" >datetime <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >status <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >availability <I>boolean</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	state -> mobilizedResource [headlabel=1 taillabel="0..*"]
+	state -> resource [headlabel=1 taillabel="0..*"]
 	contact [label=<<TABLE>
                 <TR>
                 <TD ><B>contact</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet contact</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >details <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	contact -> mobilizedResource [headlabel=1 taillabel="0..1"]
-	mobilizedResource [label=<<TABLE>
+	contact -> resource [headlabel=1 taillabel="0..1"]
+	resource [label=<<TABLE>
                 <TR>
-                <TD ><B>mobilizedResource</B></TD>
+                <TD ><B>resource</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet resource</I></TD></TR><TR><TD BORDER="0" >datetime <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >resourceId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >requestId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >missionId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >orgId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >centerName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >resourceType <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >vehiculeType <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >plate <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >centerCity <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet resource</I></TD></TR><TR><TD BORDER="0" >datetime <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >resourceId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >requestId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >missionId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >orgId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >centerName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >vehicleType <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >centerCity <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
-	mobilizedResource -> resourcesInfo [headlabel=1 taillabel="1..*"]
+	resource -> resourcesInfo [headlabel=1 taillabel="1..*"]
 	resourcesInfo [label=<<TABLE>
                 <TR>
                 <TD ><B>resourcesInfo</B></TD>

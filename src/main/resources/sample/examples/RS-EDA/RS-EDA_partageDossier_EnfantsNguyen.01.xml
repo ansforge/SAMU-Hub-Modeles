@@ -19,7 +19,7 @@
       <label>Traumatisme sérieux, plaie intermédiaire </label>
     </healthMotive>
     <details>
-      <attribution>PEDIA</attribution>
+      <attribution>DRM.SPE.PEDIA</attribution>
       <priority>P1</priority>
     </details>
   </qualification>
@@ -67,7 +67,7 @@
         <type>TEL</type>
         <detail>+33654464295</detail>
       </callbackContact>
-      <language>FR</language>
+      <language>fr</language>
       <type>FAMILLE</type>
       <freetext>beau-père des enfants</freetext>
       <detailedName>
@@ -79,7 +79,7 @@
   </initialAlert>
   <owner>fr.health.samu800</owner>
   <patient>
-    <idPat>fr.health.samu800.patient.DRFR158002421400215.1</idPat>
+    <patientId>fr.health.samu800.patient.DRFR158002421400215.1</patientId>
     <identity>
       <strictFeatures>
         <birthDate>2021-10-15</birthDate>
@@ -97,7 +97,7 @@
     </detail>
   </patient>
   <patient>
-    <idPat>fr.health.samu800.patient.DRFR158002421400215.2</idPat>
+    <patientId>fr.health.samu800.patient.DRFR158002421400215.2</patientId>
     <identity>
       <strictFeatures>
         <birthDate>2017-11-06</birthDate>
@@ -114,20 +114,20 @@
     </detail>
   </patient>
   <medicalNote>
-    <idPat>fr.health.samu800.patient.DRFR158002421400215.1</idPat>
+    <patientId>fr.health.samu800.patient.DRFR158002421400215.1</patientId>
     <operator>
       <role>ARM</role>
     </operator>
-    <idObs>fr.health.samu800.medicalNote.kn569ab</idObs>
+    <medicalNoteId>fr.health.samu800.medicalNote.kn569ab</medicalNoteId>
     <creation>2024-08-01T16:31:00+02:00</creation>
     <freetext>Chute dans la piscine à vide : pleure et crie. Multiples contusions. Plaie importante à l’arcade sourcilière.</freetext>
   </medicalNote>
   <medicalNote>
-    <idPat>fr.health.samu800.patient.DRFR158002421400215.2</idPat>
+    <patientId>fr.health.samu800.patient.DRFR158002421400215.2</patientId>
     <operator>
       <role>ARM</role>
     </operator>
-    <idObs>fr.health.samu800.medicalNote.bn338bc</idObs>
+    <medicalNoteId>fr.health.samu800.medicalNote.bn338bc</medicalNoteId>
     <creation>2024-08-01T16:32:00+02:00</creation>
     <freetext>Conscient, légèrement choqué. Jambe ouverte et tordue, douleur ++.</freetext>
   </medicalNote>

@@ -59,7 +59,7 @@ components:
       additionalProperties: false
     state:
       type: object
-      title: Etats vecteur
+      title: Etat vecteur
       x-display: expansion-panels
       x-health-only: false
       required:
@@ -90,17 +90,17 @@ components:
           - DECISION
           - DECLENCHE
           - DEPART
-          - ARRIVE
-          - PEC
           - ANNULE
+          - ARRIVEE
+          - PEC
           - BILAN
-          - TRANSPOR
+          - TRANSP
           - ETAPE1
           - TRANSP2
           - ETAPE2
           - TRANSP3
           - DESTIN
-          - FINPEC
+          - FINMED
           - RETOUR
           - RET-BASE
           - REN-BASE

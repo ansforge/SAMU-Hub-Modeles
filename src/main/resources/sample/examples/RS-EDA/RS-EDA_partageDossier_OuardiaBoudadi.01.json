@@ -18,7 +18,7 @@
       },
       "details": {
         "priority": "P0",
-        "attribution": "MU"
+        "attribution": "DRM.MRU.MU"
       },
       "origin": "15"
     },
@@ -70,7 +70,7 @@
           "detail": "+33156789456",
           "channel": "PERSONNE"
         },
-        "language": "FR",
+        "language": "fr",
         "freetext": "Collègue de la victime",
         "detailedName": {
           "complete": "Magda LENA",
@@ -103,7 +103,7 @@
             "birthDate": "1982-02-26"
           }
         },
-        "idPat": "fr.health.samu950.patient.DRFR159502401000233.1"
+        "patientId": "fr.health.samu950.patient.DRFR159502401000233.1"
       }
     ],
     "perimeter": "AMU",
@@ -115,8 +115,8 @@
         },
         "freetext": "Douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente.",
         "creation": "2024-01-10T09:05:00+01:00",
-        "idPat": "fr.health.samu950.patient.DRFR159502401000233.1",
-        "idObs": "fr.health.samu950.medicalNote.z45a89"
+        "patientId": "fr.health.samu950.patient.DRFR159502401000233.1",
+        "medicalNoteId": "fr.health.samu950.medicalNote.z45a89"
       }
     ]
   }

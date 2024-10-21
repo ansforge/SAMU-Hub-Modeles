@@ -20,6 +20,7 @@ print(args.stage)
 
 # ---------------------------------------- SCHEMAS CONFIGURATION
 sheets = [
+    'RC-DE',
     'RC-EDA',
     'EMSI',
     'GEO-POS',
@@ -31,10 +32,12 @@ sheets = [
     'RS-RI',
     'RS-DR',
     'RS-RR',
-    'RS-BPV',
+    'RS-RPIS',
     'customContent',
     'RS-SR',
-    'TECHNICAL'
+    'TECHNICAL',
+    'RS-URL',
+    'RS-BPV'
 ]
 
 perimeters = [{

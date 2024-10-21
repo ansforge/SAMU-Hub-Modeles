@@ -152,14 +152,14 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - idPat
+      - patientId
       properties:
-        idPat:
+        patientId:
           type: string
           title: "ID patient partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/patient/0/idPat
+          example: example.json#/patient/0/patientId
           description: "Identifiant partag\xE9 du patient, g\xE9n\xE9r\xE9 une seule\
             \ fois par le syst\xE8me du partenaire qui cr\xE9\xE9 le patient.\nIl\
             \ est valoris\xE9 comme suit lors de sa cr\xE9ation : \n{OrgId \xE9metteur}.patient.{n\xB0\
@@ -190,15 +190,15 @@ components:
       x-health-only: false
       required:
       - operator
-      - idObs
+      - medicalNoteId
       - freetext
       properties:
-        idPat:
+        patientId:
           type: string
           title: "ID patient partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/medicalNote/0/idPat
+          example: example.json#/medicalNote/0/patientId
           description: "Identifiant partag\xE9 du patient concern\xE9 par l'observation,\
             \ a remplir obligatoirement si ce patient existe et est identifi\xE9 dans\
             \ le syst\xE8me emetteur, \n\nValoris\xE9 comme suit lors de sa cr\xE9\
@@ -213,12 +213,12 @@ components:
             fr.health.samu690.patient.DRFR15690242370035.1'
         operator:
           $ref: '#/components/schemas/operator'
-        idObs:
+        medicalNoteId:
           type: string
           title: ID Observation
           x-health-only: false
           x-cols: 6
-          example: example.json#/medicalNote/0/idObs
+          example: example.json#/medicalNote/0/medicalNoteId
           description: "Identifiant partag\xE9 de l'observation, g\xE9n\xE9r\xE9 une\
             \ seule fois par le syst\xE8me du partenaire qui cr\xE9\xE9 l'observation\n\
             Il est valoris\xE9 comme suit lors de sa cr\xE9ation : \n{OrgId \xE9metteur}.medicalNote.{ID\
@@ -268,12 +268,12 @@ components:
       - operator
       - decisionType
       properties:
-        idPat:
+        patientId:
           type: string
           title: "ID patient partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/decision/0/idPat
+          example: example.json#/decision/0/patientId
           description: "A valoriser avec l'ID partag\xE9 du patient concern\xE9 par\
             \ la d\xE9cision, \xE0 chaque fois que la d\xE9cision est li\xE9e \xE0\
             \ un patient dans le syst\xE8me \xE9metteur"
@@ -324,108 +324,41 @@ components:
             A fournir obligatoirement pour une d\xE9cision d'intervention ou de transport/orientation."
           enum:
           - SMUR
-          - MED
-          - PARAMED
+          - SMUR.ADULT
+          - SMUR.PED
+          - SMUR.UMH-S
+          - SMUR.CUMP
           - HOSPIT
-          - LIB
-          - MEDC
-          - PHARMA
-          - INF
-          - MEDSPE
-          - DENT
-          - AUTREPRO
+          - LIBERAL
+          - LIBERAL.MG
+          - LIBERAL.PHARM
+          - LIBERAL.INF
+          - LIBERAL.KINE
+          - LIBERAL.SOS
+          - LIBERAL.MMG
+          - LIBERAL.MSPD
+          - LIBERAL.MCS
+          - LIBERAL.SPEMED
+          - LIBERAL.DENT
+          - LIBERAL.LABO
+          - LIBERAL.AUTREPRO
           - 'TSU '
           - SIS
-          - MSP
-          - ISP
-          - SP
+          - SIS.MEDSP
+          - SIS.ISP
+          - SIS.SP
           - AASC
           - FDO
-          - HELIFSI
-          - VLFSI
-          - FFSI
-          - DGDD
+          - FDO.PN
+          - FDO.GEND
+          - FDO.PM
+          - FDO.DOUANES
           - AUTRE
-          - ADM
-          - DAE
-          - INCONNU
+          - AUTRE.ADM
+          - AUTRE.DAE
+          - AUTRE.AUTRE
           examples:
           - SMUR, Pompiers
-        vehiculeType:
-          type: string
-          title: Type de vecteur
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/vehiculeType
-          description: "A valoriser avec le type de vecteur souhait\xE9 / demand\xE9\
-            \ (cf.nomenclature associ\xE9e) en fonction du type de d\xE9cision.\n\
-            A fournir obligatoirement pour une d\xE9cision d'intervention ou de transport/orientation."
-          enum:
-          - AASC
-          - VLSC
-          - VPSP
-          - AUTRESC
-          - AUTREVEC
-          - TAXI
-          - TRANSP
-          - TRAIN
-          - AVION
-          - PERSO
-          - APIED
-          - AUTRE
-          - AUTRETRA
-          - FSI
-          - HELIFSI
-          - VLFSI
-          - FFSI
-          - VHFSI
-          - LIB
-          - MEDV
-          - INF
-          - AUTREPRO
-          - SIS
-          - VSAV
-          - GRIMP
-          - VPL
-          - SRSIS
-          - FEUSIS
-          - VPMA
-          - VCH
-          - VR
-          - PCSIS
-          - VLISP
-          - VLMSP
-          - VLCG
-          - VLSIS
-          - DRAGON
-          - AVSC
-          - MOYSSE
-          - AUTRESIS
-          - NAVISIS
-          - SMUR
-          - VLM
-          - VL
-          - PSM1
-          - PSM2
-          - PSM3
-          - PSMP
-          - VPC
-          - AR
-          - AR-BAR
-          - AR-PED
-          - HELISMUR
-          - HELISAN
-          - AVSMUR
-          - AVSAN
-          - NAVISMUR
-          - TSU
-          - VSL
-          - AMB-GV
-          - AMB-PV
-          - AMB-BAR
-          - AMB
-          examples:
-          - AR, VLM, VSAV
         medicalTransport:
           type: boolean
           title: "Transport m\xE9dicalis\xE9"
@@ -457,7 +390,7 @@ components:
       additionalProperties: false
       example: example.json#/decision/0
       examples:
-      - idPat: 'fr.health.samu690.patient.P23AZ59
+      - patientId: 'fr.health.samu690.patient.P23AZ59
 
           fr.health.samu690.patient.DRFR15690242370035.1'
         creation: '2022-09-27T08:23:34+02:00'
@@ -466,7 +399,6 @@ components:
           cision d\u2019orientation et de transport / Pas de d\xE9cision suppl\xE9\
           mentaire"
         resourceType: SMUR, Pompiers
-        vehiculeType: AR, VLM, VSAV
         medicalTransport: 'True'
         orientationType: EPHAD
     additionalInformation:
@@ -727,6 +659,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/externalId'
+        generalPractitioner:
+          $ref: '#/components/schemas/generalPractitioner'
       additionalProperties: false
       example: example.json#/patient/0/administrativeFile
     Identity:
@@ -882,6 +816,28 @@ components:
           - R4
           examples:
           - R1
+        medicalHistory:
+          type: string
+          title: "Ant\xE9c\xE9dents"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/0/detail/medicalHistory
+          description: "Texte libre  pour d\xE9crire les ant\xE9c\xE9dents du patient.\
+            \ \nSi ce n'est pas g\xE9r\xE9 de mani\xE8re structur\xE9s : \xE0 afficher\
+            \ dans une note li\xE9e au patient en r\xE9ception. "
+          examples:
+          - Arthrite, asthme
+        treatment:
+          type: string
+          title: Traitements
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/0/detail/treatment
+          description: "Texte libre  pour d\xE9crire les traitements du patient.\n\
+            Si ce n'est pas g\xE9r\xE9 de mani\xE8re structur\xE9s : \xE0 afficher\
+            \ dans une note li\xE9e au patient en r\xE9ception. "
+          examples:
+          - "Amoxicilline 1 g  et parac\xE9tamol 1 g depuis 5 jours."
       additionalProperties: false
       example: example.json#/patient/0/detail
       examples:
@@ -889,6 +845,8 @@ components:
         height: 109
         age: P6Y
         careLevel: R1
+        medicalHistory: Arthrite, asthme
+        treatment: "Amoxicilline 1 g  et parac\xE9tamol 1 g depuis 5 jours."
     hypothesis:
       type: object
       title: "Hypoth\xE8ses de r\xE9gulation m\xE9dicale"
@@ -942,6 +900,122 @@ components:
       examples:
       - source: "NIR, SINUS, SI-VIC, \u2026"
         value: id1234
+    generalPractitioner:
+      type: object
+      title: "M\xE9decin traitant "
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - detailedName
+      properties:
+        detailedName:
+          $ref: '#/components/schemas/detailedName'
+        rppsId:
+          type: string
+          title: Identifiant RPPS
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/0/administrativeFile/generalPractitioner/rppsId
+          description: "Num\xE9ro RPPS du m\xE9decin traitant"
+          examples:
+          - 10000668540
+        contact:
+          type: array
+          items:
+            $ref: '#/components/schemas/personalContact'
+      additionalProperties: false
+      example: example.json#/patient/0/administrativeFile/generalPractitioner
+    detailedName:
+      type: object
+      title: "Pr\xE9nom & nom usuel"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - complete
+      properties:
+        complete:
+          type: string
+          title: "Pr\xE9nom et nom"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/0/administrativeFile/generalPractitioner/detailedName/complete
+          description: "A valoriser avec le pr\xE9nom et le nom usuel du requ\xE9\
+            rant/appelant.\nSi les champs callerLastName et callerFirstName sont \xE9\
+            galement renseign\xE9s, le champ callerName doit \xEAtre valoris\xE9 ainsi\
+            \ : \"{callerFirstName} {callerLastName}\".\n\nSp\xE9cificit\xE9s 15-18\
+            \  : NexSIS ne dispose que de ces informations (concat\xE9n\xE9es) et\
+            \ pas de deux champs s\xE9par\xE9s."
+          examples:
+          - Jean Dupont
+        lastName:
+          type: string
+          title: Nom
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/0/administrativeFile/generalPractitioner/detailedName/lastName
+          description: "A valoriser avec le nom usuel du requ\xE9rant"
+          examples:
+          - Dupont
+        firstName:
+          type: string
+          title: "Pr\xE9nom"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/0/administrativeFile/generalPractitioner/detailedName/firstName
+          description: "A valoriser avec le pr\xE9nom usuel du r\xE9qu\xE9rant.\n\
+            Par convention les pr\xE9noms compos\xE9s doivent pr\xE9f\xE9rablement\
+            \ \xEAtre s\xE9par\xE9s par le caract\xE8re \"-\""
+          examples:
+          - Jean
+      additionalProperties: false
+      example: example.json#/patient/0/administrativeFile/generalPractitioner/detailedName
+      examples:
+      - complete: Jean Dupont
+        lastName: Dupont
+        firstName: Jean
+    personalContact:
+      type: object
+      title: "Contact m\xE9decin"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - type
+      - detail
+      properties:
+        type:
+          type: string
+          title: Type de contact
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/0/administrativeFile/generalPractitioner/contact/0/type
+          description: "A valoriser avec le type de l'URI utilis\xE9e.  Cf nomenclature\
+            \ associ\xE9e."
+          enum:
+          - EMAIL
+          - FAX
+          - MSS
+          - POSTAL
+          - RADIO
+          - TEL
+          - WEB
+          examples:
+          - TEL
+        detail:
+          type: string
+          title: URI du contact
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/0/administrativeFile/generalPractitioner/contact/0/detail
+          description: "A valoriser avec la valeur de l'URI utilis\xE9e.\nLe format\
+            \ attendu pour un num\xE9ro de t\xE9l\xE9phone est le suivant : +{indicatif\
+            \ pays}{num\xE9ro de t\xE9l\xE9phone}."
+          examples:
+          - '+33671830530'
+      additionalProperties: false
+      example: example.json#/patient/0/administrativeFile/generalPractitioner/contact/0
+      examples:
+      - type: TEL
+        detail: '+33671830530'
     insStrictFeatures:
       type: object
       title: "Traits stricts de l'identit\xE9"
@@ -989,54 +1063,6 @@ components:
       - birthName: Dupont
         birthDate: None
         sex: F
-    detailedName:
-      type: object
-      title: "Traits non stricts de l'identit\xE9"
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - complete
-      properties:
-        complete:
-          type: string
-          title: "Pr\xE9nom et nom"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/identity/nonStrictFeatures/complete
-          description: "A valoriser avec le pr\xE9nom et le nom usuel du requ\xE9\
-            rant/appelant.\nSi les champs callerLastName et callerFirstName sont \xE9\
-            galement renseign\xE9s, le champ callerName doit \xEAtre valoris\xE9 ainsi\
-            \ : \"{callerFirstName} {callerLastName}\".\n\nSp\xE9cificit\xE9s 15-18\
-            \  : NexSIS ne dispose que de ces informations (concat\xE9n\xE9es) et\
-            \ pas de deux champs s\xE9par\xE9s."
-          examples:
-          - Jean Dupont
-        lastName:
-          type: string
-          title: Nom
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/identity/nonStrictFeatures/lastName
-          description: "A valoriser avec le nom usuel du requ\xE9rant"
-          examples:
-          - Dupont
-        firstName:
-          type: string
-          title: "Pr\xE9nom"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/identity/nonStrictFeatures/firstName
-          description: "A valoriser avec le pr\xE9nom usuel du r\xE9qu\xE9rant.\n\
-            Par convention les pr\xE9noms compos\xE9s doivent pr\xE9f\xE9rablement\
-            \ \xEAtre s\xE9par\xE9s par le caract\xE8re \"-\""
-          examples:
-          - Jean
-      additionalProperties: false
-      example: example.json#/patient/0/identity/nonStrictFeatures
-      examples:
-      - complete: Jean Dupont
-        lastName: Dupont
-        firstName: Jean
     mainDiagnosis:
       type: object
       title: "Hypoth\xE8se de r\xE9gulation m\xE9dicale principale"

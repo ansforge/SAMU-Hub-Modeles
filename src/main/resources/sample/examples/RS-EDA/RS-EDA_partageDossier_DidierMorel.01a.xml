@@ -20,7 +20,7 @@
       <label>Détresse vitale; Altération de la conscience; Dont inconscient, coma</label>
     </healthMotive>
     <details>
-      <attribution>MU</attribution>
+      <attribution>DRM.MRU.MU</attribution>
       <priority>P0</priority>
     </details>
   </qualification>
@@ -62,7 +62,7 @@
         <type>TEL</type>
         <detail>+33607080915</detail>
       </callerContact>
-      <language>FR</language>
+      <language>fr</language>
       <type>FAMILLE</type>
       <freetext>fils de la victime</freetext>
       <detailedName>
@@ -74,7 +74,7 @@
   </initialAlert>
   <owner>fr.health.samu770</owner>
   <patient>
-    <idPat>fr.health.samu770.patient.DRFR157702400400055.1</idPat>
+    <patientId>fr.health.samu770.patient.DRFR157702400400055.1</patientId>
     <identity>
       <strictFeatures>
         <sex>M</sex>
@@ -90,20 +90,20 @@
     </detail>
   </patient>
   <medicalNote>
-    <idPat>fr.health.samu770.patient.DRFR157702400400055.1</idPat>
+    <patientId>fr.health.samu770.patient.DRFR157702400400055.1</patientId>
     <operator>
       <role>ARM</role>
     </operator>
-    <idObs>fr.health.samu770.medicalNote.45db215</idObs>
+    <medicalNoteId>fr.health.samu770.medicalNote.45db215</medicalNoteId>
     <creation>2024-01-04T08:03:00+01:00</creation>
     <freetext>Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup.</freetext>
   </medicalNote>
   <medicalNote>
-    <idPat>fr.health.samu770.patient.DRFR157702400400055.1</idPat>
+    <patientId>fr.health.samu770.patient.DRFR157702400400055.1</patientId>
     <operator>
       <role>ARM</role>
     </operator>
-    <idObs>fr.health.samu770.medicalNote.15as456</idObs>
+    <medicalNoteId>fr.health.samu770.medicalNote.15as456</medicalNoteId>
     <creation>2024-01-04T08:04:00+01:00</creation>
     <freetext>La victime est inconsciente (perte de connaissance).</freetext>
   </medicalNote>

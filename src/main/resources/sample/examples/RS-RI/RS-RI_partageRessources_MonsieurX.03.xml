@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resourcesInfo xmlns="urn:emergency:cisu:2.0:resourcesInfo">
   <caseId>fr.health.samu009.DRFR150092406301259</caseId>
-  <mobilizedResource>
+  <resource>
     <datetime>2024-03-03T15:17:00+01:00</datetime>
     <resourceId>fr.health.samu780.resource.DRFR150092406301259.1</resourceId>
     <missionId>DRFR150092406301259.M5698</missionId>
     <orgId>fr.health.BeauRivage</orgId>
-    <resourceType>TSU </resourceType>
-    <vehiculeType>AMB</vehiculeType>
+    <vehicleType>TSU.AMB</vehicleType>
     <name>Amb. BeauRivage - 56</name>
     <team>
-      <teamCare>PARAMED</teamCare>
+      <medicalLevel>PARAMED</medicalLevel>
     </team>
     <state>
       <datetime>2024-08-03T03:17:00+02:00</datetime>
@@ -21,5 +20,5 @@
       <type>TEL</type>
       <details>+33611342658</details>
     </contact>
-  </mobilizedResource>
+  </resource>
 </resourcesInfo>

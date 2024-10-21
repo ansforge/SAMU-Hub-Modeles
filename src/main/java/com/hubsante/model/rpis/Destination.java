@@ -51,7 +51,7 @@ import java.util.Objects;
 public class Destination {
 
   /**
-   * A valoriser par le libellé court de la nomenclature SIGLPAYS
+   * A valoriser par le code de la nomenclature associée
    */
   public enum DestinationCountryEnum {
     AF("AF"),
@@ -585,7 +585,7 @@ public class Destination {
   }
 
   /**
-   * A valoriser par le libellé court de la nomenclature SIGLPAYS
+   * A valoriser par le code de la nomenclature associée
    * @return destinationCountry
    **/
   @JsonProperty(JSON_PROPERTY_DESTINATION_COUNTRY)
@@ -631,7 +631,8 @@ public class Destination {
   }
 
   /**
-   * A valoriser par le code de la nomenclature ActiviteOperationnelle
+   * A valoriser par le code de la nomenclature ActiviteOperationnelle (à
+   *venir).
    * @return healthcareType
    **/
   @JsonProperty(JSON_PROPERTY_HEALTHCARE_TYPE)

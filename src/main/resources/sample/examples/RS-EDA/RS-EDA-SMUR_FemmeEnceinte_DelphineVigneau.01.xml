@@ -19,7 +19,7 @@
       <label>Saignements gynécologiques</label>
     </healthMotive>
     <details>
-      <attribution>MU</attribution>
+      <attribution>DRM.MRU.MU</attribution>
       <priority>P2</priority>
     </details>
   </qualification>
@@ -69,7 +69,7 @@
         <type>TEL</type>
         <detail>+33671832618</detail>
       </callbackContact>
-      <language>FR</language>
+      <language>fr</language>
       <type>TIERS</type>
       <communication>AUCUNE</communication>
       <detailedName>
@@ -81,7 +81,7 @@
   </initialAlert>
   <owner>fr.health.samu440</owner>
   <patient>
-    <idPat>fr.health.samu440.patient.DRFR154402414300123.1</idPat>
+    <patientId>fr.health.samu440.patient.DRFR154402414300123.1</patientId>
     <identity>
       <strictFeatures>
         <birthDate>1992-03-03</birthDate>
@@ -108,7 +108,7 @@
     </hypothesis>
   </patient>
   <decision>
-    <idPat>fr.health.samu440.patient.DRFR154402414300123.1</idPat>
+    <patientId>fr.health.samu440.patient.DRFR154402414300123.1</patientId>
     <creation>2024-05-26T13:20:00+02:00</creation>
     <operator>
       <label>Rémi Martin</label>
@@ -116,7 +116,6 @@
     </operator>
     <decisionType>INTER</decisionType>
     <resourceType>SMUR</resourceType>
-    <vehiculeType>VLM</vehiculeType>
   </decision>
   <additionalInformation>
     <customMap>
