@@ -26,7 +26,7 @@ jobs:
 
       - name: check release name matches version pattern
         run: |
-          PATTERN="^([0-9]+\.[0-9]+\.[0-9]+)(-[A-Za-z]+(-[0-9]+))?$"
+          PATTERN="^([0-9]+\.[0-9]+(\.[0-9]+)?)(-[A-Za-z]+(-[0-9]+))?$"
 
           if [[ $RELEASE_NAME =~ $PATTERN ]]; then
             echo "The RELEASE_NAME '$RELEASE_NAME' is valid."
