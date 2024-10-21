@@ -1,4 +1,4 @@
-name: generate-model
+name: Generate Model
 
 on:
   pull_request:
