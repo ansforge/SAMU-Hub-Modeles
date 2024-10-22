@@ -57,12 +57,12 @@ public class EnvelopeValidatorTest extends AbstractValidatorTest{
         for (File file : files) {
             if (file.getName().endsWith(".json")) {
                 String message = file.getName().replace(".json", "");
-                String[] expectedErrors = getInvalidMessage("EDXL-DE/" + message + ".json.errors").split("\n");
+                String[] expectedErrors = getInvalidMessage("EDXL-DE/" + message + ".json.errors").split(System.lineSeparator());
                 try {
                     jsonValidationFails("EDXL-DE/" + message + ".json", expectedErrors, FULL_SCHEMA);
                     //Check that a corresponding .xml file exists for the current .json file and run validation on it
                     if(new File(folderPath + "/" + message + ".xml").exists()) {
-                        expectedErrors = getInvalidMessage("EDXL-DE/" + message + ".xml.errors").split("\n");
+                        expectedErrors = getInvalidMessage("EDXL-DE/" + message + ".xml.errors").split(System.lineSeparator());
                         xmlValidationFails("EDXL-DE/" + message + ".xml", expectedErrors, FULL_SCHEMA);
                     }
                     log.info("Error comparison for {} complete", message);
