@@ -92,21 +92,21 @@
         "icon": "mdi-molecule-co2",
         "context": "Pas de test suivant: RS-RI - Alice et Grégoire NORMAND.03",
         "name": "Alice et Grégoire NORMAND.02",
-        "environment": "Demande d'engagement d'un seul SMUR pour les 2 patients",
+        "environment": "Demande d'engagement d'un seul SMUR pour les 2 patients"
       },
       {
         "file": "RS-ER/RS-ER_FuiteDeGaz_AliceGregoireNORMAND.02a.json",
         "icon": "mdi-molecule-co2",
         "context": "Pas de test suivant: RS-RI - Alice et Grégoire NORMAND.03",
         "name": "Alice et Grégoire NORMAND.02a",
-        "environment": "Demande d'engagement de deux SMUR, un par patient",
+        "environment": "Demande d'engagement de deux SMUR, un par patient"
       },
       {
         "file": "RS-ER/RS-ER_FemmeEnceinte_DelphineVIGNEAU.02.json",
         "icon": "mdi-human-pregnant",
         "context": "Pas de test suivant: RS-RI - Delphine VIGNEAU.03",
         "name": "Delphine VIGNEAU.02",
-        "environment": "Demande d'engagement d'un SMUR",
+        "environment": "Demande d'engagement d'un SMUR"
       }]
   },
   {
