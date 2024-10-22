@@ -17,7 +17,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                     </restriction>
                 </simpleType>
             </element>
-            <element maxOccurs="unbounded" minOccurs="1" name="mobilizedResource" type="x:resource"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="resource" type="x:resource"/>
         </sequence>
     </complexType>
     <complexType name="resource">
@@ -69,99 +69,77 @@ OU - si un ID unique de la demande n'était pas disponible :
                     <documentation>A valoriser avec le lieu de garage principal</documentation>
                 </annotation>
             </element>
-            <element name="resourceType">
-                <annotation>
-                    <documentation>A valoriser avec le yype de ressource mobilisée : cf.nomenclature associée.</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="SMUR"/>
-                        <enumeration value="HOSPIT"/>
-                        <enumeration value="LIB"/>
-                        <enumeration value="TSU "/>
-                        <enumeration value="SIS"/>
-                        <enumeration value="AASC"/>
-                        <enumeration value="FDO"/>
-                        <enumeration value="AUTRE"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element minOccurs="0" name="vehiculeType">
+            <element name="vehicleType">
                 <annotation>
                     <documentation>A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
                         <enumeration value="AASC"/>
-                        <enumeration value="VLSC"/>
-                        <enumeration value="VPSP"/>
-                        <enumeration value="AUTRESC"/>
+                        <enumeration value="AASC.VLSC"/>
+                        <enumeration value="AASC.VPSP"/>
+                        <enumeration value="AASC.AUTRESC"/>
                         <enumeration value="AUTREVEC"/>
-                        <enumeration value="TAXI"/>
-                        <enumeration value="TRANSP"/>
-                        <enumeration value="TRAIN"/>
-                        <enumeration value="AVION"/>
-                        <enumeration value="PERSO"/>
-                        <enumeration value="APIED"/>
-                        <enumeration value="AUTRE"/>
-                        <enumeration value="AUTRETRA"/>
+                        <enumeration value="AUTREVEC.APIED"/>
+                        <enumeration value="AUTREVEC.AVION"/>
+                        <enumeration value="AUTREVEC.PERSO"/>
+                        <enumeration value="AUTREVEC.TAXI"/>
+                        <enumeration value="AUTREVEC.TRAIN"/>
+                        <enumeration value="AUTREVEC.TRANSP"/>
+                        <enumeration value="AUTREVEC.AUTRE"/>
+                        <enumeration value="AUTREVEC.AUTRETRA"/>
                         <enumeration value="FSI"/>
-                        <enumeration value="HELIFSI"/>
-                        <enumeration value="VLFSI"/>
-                        <enumeration value="FFSI"/>
-                        <enumeration value="VHFSI"/>
+                        <enumeration value="FSI.HELIFSI"/>
+                        <enumeration value="FSI.VLFSI"/>
+                        <enumeration value="FSI.FFSI"/>
+                        <enumeration value="FSI.VHFSI"/>
                         <enumeration value="LIB"/>
-                        <enumeration value="MEDV"/>
-                        <enumeration value="INF"/>
-                        <enumeration value="AUTREPRO"/>
+                        <enumeration value="LIB.MEDV"/>
+                        <enumeration value="LIB.INF"/>
+                        <enumeration value="LIB.AUTREPRO"/>
                         <enumeration value="SIS"/>
-                        <enumeration value="VSAV"/>
-                        <enumeration value="GRIMP"/>
-                        <enumeration value="VPL"/>
-                        <enumeration value="SRSIS"/>
-                        <enumeration value="FEUSIS"/>
-                        <enumeration value="VPMA"/>
-                        <enumeration value="VCH"/>
-                        <enumeration value="VR"/>
-                        <enumeration value="PCSIS"/>
-                        <enumeration value="VLISP"/>
-                        <enumeration value="VLMSP"/>
-                        <enumeration value="VLCG"/>
-                        <enumeration value="VLSIS"/>
-                        <enumeration value="DRAGON"/>
-                        <enumeration value="AVSC"/>
-                        <enumeration value="MOYSSE"/>
-                        <enumeration value="AUTRESIS"/>
-                        <enumeration value="NAVISIS"/>
+                        <enumeration value="SIS.DRAGON"/>
+                        <enumeration value="SIS.AVSC"/>
+                        <enumeration value="SIS.FEUSIS"/>
+                        <enumeration value="SIS.GRIMP"/>
+                        <enumeration value="SIS.NAVISIS"/>
+                        <enumeration value="SIS.PCSIS"/>
+                        <enumeration value="SIS.SRSIS"/>
+                        <enumeration value="SIS.VCH"/>
+                        <enumeration value="SIS.VLCG"/>
+                        <enumeration value="SIS.VLISP"/>
+                        <enumeration value="SIS.VLMSP"/>
+                        <enumeration value="SIS.VLSIS"/>
+                        <enumeration value="SIS.VPL"/>
+                        <enumeration value="SIS.VPMA"/>
+                        <enumeration value="SIS.VR"/>
+                        <enumeration value="SIS.VSAV"/>
+                        <enumeration value="SIS.MOYSSE"/>
+                        <enumeration value="SIS.AUTRESIS"/>
                         <enumeration value="SMUR"/>
-                        <enumeration value="VLM"/>
-                        <enumeration value="VL"/>
-                        <enumeration value="PSM1"/>
-                        <enumeration value="PSM2"/>
-                        <enumeration value="PSM3"/>
-                        <enumeration value="PSMP"/>
-                        <enumeration value="VPC"/>
-                        <enumeration value="AR"/>
-                        <enumeration value="AR-BAR"/>
-                        <enumeration value="AR-PED"/>
-                        <enumeration value="HELISMUR"/>
-                        <enumeration value="HELISAN"/>
-                        <enumeration value="AVSMUR"/>
-                        <enumeration value="AVSAN"/>
-                        <enumeration value="NAVISMUR"/>
+                        <enumeration value="SMUR.VLM"/>
+                        <enumeration value="SMUR.VL"/>
+                        <enumeration value="SMUR.PSM1"/>
+                        <enumeration value="SMUR.PSM2"/>
+                        <enumeration value="SMUR.PSM3"/>
+                        <enumeration value="SMUR.PSMP"/>
+                        <enumeration value="SMUR.VPC"/>
+                        <enumeration value="SMUR.AR"/>
+                        <enumeration value="SMUR.AR-BAR"/>
+                        <enumeration value="SMUR.AR-PED"/>
+                        <enumeration value="SMUR.HELISMUR"/>
+                        <enumeration value="SMUR.HELISAN"/>
+                        <enumeration value="SMUR.AVSMUR"/>
+                        <enumeration value="SMUR.AVSAN"/>
+                        <enumeration value="SMUR.NAVISMUR"/>
                         <enumeration value="TSU"/>
-                        <enumeration value="VSL"/>
-                        <enumeration value="AMB-GV"/>
-                        <enumeration value="AMB-PV"/>
-                        <enumeration value="AMB-BAR"/>
-                        <enumeration value="AMB"/>
+                        <enumeration value="TSU.VSL"/>
+                        <enumeration value="TSU.AMB-GV"/>
+                        <enumeration value="TSU.AMB-PV"/>
+                        <enumeration value="TSU.AMB-BAR"/>
+                        <enumeration value="TSU.AMB"/>
                     </restriction>
                 </simpleType>
-            </element>
-            <element minOccurs="0" name="plate" type="string">
-                <annotation>
-                    <documentation>A valoriser avec le n° d'immatriculation du vecteur</documentation>
-                </annotation>
             </element>
             <element minOccurs="0" name="name" type="string">
                 <annotation>
@@ -180,14 +158,13 @@ OU - si un ID unique de la demande n'était pas disponible :
             </element>
             <element minOccurs="0" name="team" type="x:team"/>
             <element maxOccurs="unbounded" minOccurs="0" name="state" type="x:state"/>
-            <element minOccurs="0" name="coord" type="x:coord"/>
             <element minOccurs="0" name="contact" type="x:contact"/>
             <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
         </sequence>
     </complexType>
     <complexType name="team">
         <sequence>
-            <element minOccurs="0" name="teamCare">
+            <element minOccurs="0" name="medicalLevel">
                 <annotation>
                     <documentation>A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature associée</documentation>
                 </annotation>
@@ -222,17 +199,17 @@ OU - si un ID unique de la demande n'était pas disponible :
                         <enumeration value="DECISION"/>
                         <enumeration value="DECLENCHE"/>
                         <enumeration value="DEPART"/>
-                        <enumeration value="ARRIVE"/>
-                        <enumeration value="PEC"/>
                         <enumeration value="ANNULE"/>
+                        <enumeration value="ARRIVEE"/>
+                        <enumeration value="PEC"/>
                         <enumeration value="BILAN"/>
-                        <enumeration value="TRANSPOR"/>
+                        <enumeration value="TRANSP"/>
                         <enumeration value="ETAPE1"/>
                         <enumeration value="TRANSP2"/>
                         <enumeration value="ETAPE2"/>
                         <enumeration value="TRANSP3"/>
                         <enumeration value="DESTIN"/>
-                        <enumeration value="FINPEC"/>
+                        <enumeration value="FINMED"/>
                         <enumeration value="RETOUR"/>
                         <enumeration value="RET-BASE"/>
                         <enumeration value="REN-BASE"/>
@@ -249,50 +226,6 @@ VIDE = INCONNU</documentation>
             </element>
         </sequence>
     </complexType>
-    <complexType name="coord">
-        <sequence>
-            <element name="lat" type="decimal">
-                <annotation>
-                    <documentation>A valoriser avec la latitude du point clé de la localisation </documentation>
-                </annotation>
-            </element>
-            <element name="lon" type="decimal">
-                <annotation>
-                    <documentation>A valoriser avec la longitude du point clé de la localisation</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="height" type="decimal">
-                <annotation>
-                    <documentation>A valoriser avec l'altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. </documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="heading" type="decimal">
-                <annotation>
-                    <documentation>A valoriser en degrés</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="speed" type="decimal">
-                <annotation>
-                    <documentation>A valoriser en km/h (notamment fournie par eCall, tel, nouveau AML)</documentation>
-                </annotation>
-            </element>
-            <element name="precision">
-                <annotation>
-                    <documentation>A valoriser avec le niveau de précision des coordonnées fournies par le système emetteur. Cf. nomenclature associée.
-CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="VILLE"/>
-                        <enumeration value="RUE"/>
-                        <enumeration value="ADRESSE"/>
-                        <enumeration value="EXACTE"/>
-                        <enumeration value="INCONNUE"/>
-                    </restriction>
-                </simpleType>
-            </element>
-        </sequence>
-    </complexType>
     <complexType name="contact">
         <sequence>
             <element minOccurs="0" name="type">
@@ -301,12 +234,13 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="TEL"/>
                         <enumeration value="EMAIL"/>
                         <enumeration value="FAX"/>
+                        <enumeration value="MSS"/>
                         <enumeration value="POSTAL"/>
-                        <enumeration value="WEB"/>
                         <enumeration value="RADIO"/>
+                        <enumeration value="TEL"/>
+                        <enumeration value="WEB"/>
                     </restriction>
                 </simpleType>
             </element>

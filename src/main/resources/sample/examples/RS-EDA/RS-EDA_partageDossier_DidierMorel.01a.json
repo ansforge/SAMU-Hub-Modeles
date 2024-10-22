@@ -18,7 +18,7 @@
       },
       "details": {
         "priority": "P0",
-        "attribution": "MU"
+        "attribution": "DRM.MRU.MU"
       },
       "origin": "18"
     },
@@ -45,7 +45,7 @@
             "precision": "ADRESSE"
           }
         },
-        "obsDatime": "2024-01-04T00:05:00+01:00"
+        "datetime": "2024-01-03T03:00:00+01:00"
       }
     },
     "initialAlert": {
@@ -56,12 +56,7 @@
           "type": "TEL",
           "detail": "+33607080915"
         },
-        "callbackContact": {
-          "channel": "PERSONNE",
-          "type": "TEL",
-          "detail": "+33607080915"
-        },
-        "language": "FR",
+        "language": "fr",
         "freetext": "fils de la victime",
         "detailedName": {
           "complete": "Sébastien Morel ",
@@ -90,10 +85,10 @@
             "firstName": "Didier"
           },
           "strictFeatures": {
-            "sex": "MASC"
+            "sex": "M"
           }
         },
-        "idPat": "fr.health.samu770.patient.DRFR157702400400055.1"
+        "patientId": "fr.health.samu770.patient.DRFR157702400400055.1"
       }
     ],
     "perimeter": "AMU",
@@ -103,8 +98,8 @@
         "operator": {
           "role": "ARM"
         },
-        "idPat": "fr.health.samu770.patient.DRFR157702400400055.1",
-        "idObs": "fr.health.samu770.medicalNote.45db215",
+        "patientId": "fr.health.samu770.patient.DRFR157702400400055.1",
+        "medicalNoteId": "fr.health.samu770.medicalNote.45db215",
         "freetext": "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup.",
         "creation": "2024-01-04T08:03:00+01:00"
       },
@@ -112,8 +107,8 @@
         "operator": {
           "role": "ARM"
         },
-        "idPat": "fr.health.samu770.patient.DRFR157702400400055.1",
-        "idObs": "fr.health.samu770.medicalNote.15as456",
+        "patientId": "fr.health.samu770.patient.DRFR157702400400055.1",
+        "medicalNoteId": "fr.health.samu770.medicalNote.15as456",
         "freetext": "La victime est inconsciente (perte de connaissance).",
         "creation": "2024-01-04T08:04:00+01:00"
       }

@@ -42,21 +42,21 @@ import java.util.Objects;
 /**
  * Event
  */
-@JsonPropertyOrder({Event.JSON_PROPERTY_SAMU_ID, Event.JSON_PROPERTY_FILE_ID,
-                    Event.JSON_PROPERTY_CREATION_DATE,
-                    Event.JSON_PROPERTY_DECISION_DATE,
-                    Event.JSON_PROPERTY_RESSOURCE_FINESS_LEGAL,
-                    Event.JSON_PROPERTY_RESSOURCE_FINESS_GEO,
-                    Event.JSON_PROPERTY_RESSOURCE_STRUCTURE})
+@JsonPropertyOrder(
+    {Event.JSON_PROPERTY_ORG_ID, Event.JSON_PROPERTY_SENDER_CASE_ID,
+     Event.JSON_PROPERTY_CREATION_DATE, Event.JSON_PROPERTY_DECISION_DATE,
+     Event.JSON_PROPERTY_RESSOURCE_FINESS_LEGAL,
+     Event.JSON_PROPERTY_RESSOURCE_FINESS_GEO,
+     Event.JSON_PROPERTY_RESSOURCE_STRUCTURE})
 @JsonTypeName("event")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Event {
-  public static final String JSON_PROPERTY_SAMU_ID = "samuId";
-  private String samuId;
+  public static final String JSON_PROPERTY_ORG_ID = "orgId";
+  private String orgId;
 
-  public static final String JSON_PROPERTY_FILE_ID = "fileId";
-  private String fileId;
+  public static final String JSON_PROPERTY_SENDER_CASE_ID = "senderCaseId";
+  private String senderCaseId;
 
   public static final String JSON_PROPERTY_CREATION_DATE = "creationDate";
   private OffsetDateTime creationDate;
@@ -78,33 +78,33 @@ public class Event {
 
   public Event() {}
 
-  public Event samuId(String samuId) {
+  public Event orgId(String orgId) {
 
-    this.samuId = samuId;
+    this.orgId = orgId;
     return this;
   }
 
   /**
    * Numéro du SAMU régulant la mission SMUR.  A valoriser par fr.health.samuXXX
    *:  {pays}.{domaine}.{organisation}
-   * @return samuId
+   * @return orgId
    **/
-  @JsonProperty(JSON_PROPERTY_SAMU_ID)
+  @JsonProperty(JSON_PROPERTY_ORG_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getSamuId() {
-    return samuId;
+  public String getOrgId() {
+    return orgId;
   }
 
-  @JsonProperty(JSON_PROPERTY_SAMU_ID)
+  @JsonProperty(JSON_PROPERTY_ORG_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSamuId(String samuId) {
-    this.samuId = samuId;
+  public void setOrgId(String orgId) {
+    this.orgId = orgId;
   }
 
-  public Event fileId(String fileId) {
+  public Event senderCaseId(String senderCaseId) {
 
-    this.fileId = fileId;
+    this.senderCaseId = senderCaseId;
     return this;
   }
 
@@ -119,19 +119,19 @@ public class Event {
    *l’appel a été créé, - JJJ : désigne le jour de l&#39;année (de 1j à
    *365j),\\par - 00000 : numéro d’ordre chronologique du dossier dans la
    *journée de référence ci-dessus.
-   * @return fileId
+   * @return senderCaseId
    **/
-  @JsonProperty(JSON_PROPERTY_FILE_ID)
+  @JsonProperty(JSON_PROPERTY_SENDER_CASE_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getFileId() {
-    return fileId;
+  public String getSenderCaseId() {
+    return senderCaseId;
   }
 
-  @JsonProperty(JSON_PROPERTY_FILE_ID)
+  @JsonProperty(JSON_PROPERTY_SENDER_CASE_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFileId(String fileId) {
-    this.fileId = fileId;
+  public void setSenderCaseId(String senderCaseId) {
+    this.senderCaseId = senderCaseId;
   }
 
   public Event creationDate(OffsetDateTime creationDate) {
@@ -259,8 +259,8 @@ public class Event {
       return false;
     }
     Event event = (Event)o;
-    return Objects.equals(this.samuId, event.samuId) &&
-        Objects.equals(this.fileId, event.fileId) &&
+    return Objects.equals(this.orgId, event.orgId) &&
+        Objects.equals(this.senderCaseId, event.senderCaseId) &&
         Objects.equals(this.creationDate, event.creationDate) &&
         Objects.equals(this.decisionDate, event.decisionDate) &&
         Objects.equals(this.ressourceFinessLegal, event.ressourceFinessLegal) &&
@@ -270,7 +270,7 @@ public class Event {
 
   @Override
   public int hashCode() {
-    return Objects.hash(samuId, fileId, creationDate, decisionDate,
+    return Objects.hash(orgId, senderCaseId, creationDate, decisionDate,
                         ressourceFinessLegal, ressourceFinessGeo,
                         ressourceStructure);
   }
@@ -279,8 +279,10 @@ public class Event {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Event {\n");
-    sb.append("    samuId: ").append(toIndentedString(samuId)).append("\n");
-    sb.append("    fileId: ").append(toIndentedString(fileId)).append("\n");
+    sb.append("    orgId: ").append(toIndentedString(orgId)).append("\n");
+    sb.append("    senderCaseId: ")
+        .append(toIndentedString(senderCaseId))
+        .append("\n");
     sb.append("    creationDate: ")
         .append(toIndentedString(creationDate))
         .append("\n");

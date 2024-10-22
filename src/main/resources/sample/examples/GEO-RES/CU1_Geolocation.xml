@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<geoResourcesDetails xmlns="urn:emergency:cisu:2.0:geoResourcesDetails">
+  <resource>
+    <resourceId>fr.health.samu760.resource.VLM250</resourceId>
+    <orgId>fr.health.760.samu76</orgId>
+    <name>SMUR 1 Rouen</name>
+    <resourceType>SMUR</resourceType>
+    <nature>BASE</nature>
+    <mobility>VEHICULE</mobility>
+    <capacity>INCONNUE</capacity>
+    <contacts>
+      <type>PHNADD</type>
+      <details>0612342536</details>
+    </contacts>
+  </resource>
+  <resource>
+    <resourceId>fr.health.samu760.resource.VLM211</resourceId>
+    <orgId>fr.health.760.samu76</orgId>
+    <name>SMUR 2 Rouen</name>
+    <resourceType>SMUR</resourceType>
+    <nature>BASE</nature>
+    <mobility>VEHICULE</mobility>
+    <capacity>URGENCE</capacity>
+    <contacts>
+      <type>PHNADD</type>
+      <details>0612342537</details>
+    </contacts>
+  </resource>
+  <resource>
+    <resourceId>fr.health.samu760.resource.VLM213</resourceId>
+    <orgId>fr.health.140.samu14</orgId>
+    <name>SMUR 3 Caen</name>
+    <resourceType>SMUR</resourceType>
+    <nature>EFFECTEUR</nature>
+    <mobility>VEHICULE</mobility>
+    <capacity>MEDICALE</capacity>
+    <contacts>
+      <type>PHNADD</type>
+      <details>0612342538</details>
+    </contacts>
+  </resource>
+  <resource>
+    <resourceId>fr.health.samu760.resource.VLM25</resourceId>
+    <orgId>fr.health.760.samu76</orgId>
+    <name>SMUR 4 Havre</name>
+    <resourceType>SMUR</resourceType>
+    <nature>EFFECTEUR</nature>
+    <mobility>VEHICULE</mobility>
+    <capacity>MEDICALE</capacity>
+    <contacts>
+      <type>PHNADD</type>
+      <details>0612342539</details>
+    </contacts>
+  </resource>
+</geoResourcesDetails>

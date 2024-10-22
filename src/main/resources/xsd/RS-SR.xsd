@@ -32,32 +32,36 @@ N.B. Il s'agit de l'orgId de l'organisation à qui appartient la ressource</docu
                     </restriction>
                 </simpleType>
             </element>
+            <element name="state" type="x:state"/>
+        </sequence>
+    </complexType>
+    <complexType name="state">
+        <sequence>
             <element name="datetime" type="dateTime">
                 <annotation>
-                    <documentation>A valoriser avec la date et heure de changement du statut. 
-Si la valeur est vide/inconnue alors c'est le datetime de création du message qui est indiqué.</documentation>
+                    <documentation>A valoriser avec la date et heure d'engagement de changement vers le nouveau statut</documentation>
                 </annotation>
             </element>
             <element name="status">
                 <annotation>
-                    <documentation>A valoriser avec le statut du vecteur. Cf Nomenclature associée.</documentation>
+                    <documentation>A valoriser avec le statut du vecteur. Cf nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
                         <enumeration value="DECISION"/>
                         <enumeration value="DECLENCHE"/>
                         <enumeration value="DEPART"/>
-                        <enumeration value="ARRIVE"/>
-                        <enumeration value="PEC"/>
                         <enumeration value="ANNULE"/>
+                        <enumeration value="ARRIVEE"/>
+                        <enumeration value="PEC"/>
                         <enumeration value="BILAN"/>
-                        <enumeration value="TRANSPOR"/>
+                        <enumeration value="TRANSP"/>
                         <enumeration value="ETAPE1"/>
                         <enumeration value="TRANSP2"/>
                         <enumeration value="ETAPE2"/>
                         <enumeration value="TRANSP3"/>
                         <enumeration value="DESTIN"/>
-                        <enumeration value="FINPEC"/>
+                        <enumeration value="FINMED"/>
                         <enumeration value="RETOUR"/>
                         <enumeration value="RET-BASE"/>
                         <enumeration value="REN-BASE"/>

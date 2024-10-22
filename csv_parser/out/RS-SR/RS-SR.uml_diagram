@@ -3,10 +3,17 @@ strict digraph {
 	node [shape=none]
 	edge [arrowhead=odiamond arrowtail=none]
 	rankdir=BT
+	state [label=<<TABLE>
+                <TR>
+                <TD ><B>state</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet state</I></TD></TR><TR><TD BORDER="0" >datetime <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >status <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >availability <I>boolean</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	state -> resourcesStatus [headlabel=1 taillabel=1]
 	resourcesStatus [label=<<TABLE>
                 <TR>
                 <TD ><B>resourcesStatus</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet resourcesStatus</I></TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >resourceId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >datetime <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >status <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >availability <I>boolean</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet resourcesStatus</I></TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >resourceId <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 }

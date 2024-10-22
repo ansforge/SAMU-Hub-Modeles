@@ -34,7 +34,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,4}
+          pattern: ^fr(\.[\w-]+){3,4}$
           examples:
           - fr.health.samu440.DRFR15440241550012
         requestId:
@@ -50,7 +50,7 @@ components:
             \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
             \ pas disponible : \nOrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
-          pattern: ([\w-]+\.){3,4}request(\.[\w-]+){1,2}
+          pattern: ^([\w-]+\.){3,4}request(\.[\w-]+){1,2}$
           examples:
           - 'fr.health.samu770.request.1249875
 
@@ -74,7 +74,7 @@ components:
           x-cols: 6
           example: example.json#/response/datetime
           description: "Groupe date heure de d\xE9but de la demande"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
@@ -95,15 +95,27 @@ components:
           - ACCEPTEE
         deadline:
           type: string
-          title: "D\xE9lai de r\xE9ponse"
+          title: "D\xE9lai d'intervention"
           x-health-only: false
           x-cols: 6
           example: example.json#/response/deadline
-          description: "A valoriser avec le d\xE9lai de r\xE9ponse maximum auquel\
-            \ s'engage l'exp\xE9diteur (en minutes) \nCas particulier : en cas de\
-            \ r\xE9ponse \"Partielle\" car le d\xE9lai souhait\xE9 ne peut pas \xEA\
-            tre respect\xE9,  \xE0 valoriser obligatoirement avec le d\xE9lai de r\xE9\
-            ponse maximum auquel s'engage l'exp\xE9diteur de la r\xE9ponse (en minutes).\n"
+          description: "A valoriser avec le d\xE9lai de r\xE9ponse auquel s'engage\
+            \ l'exp\xE9diteur (cf. nomenclature) \nCas particulier : en cas de r\xE9\
+            ponse \"Partielle\" car le d\xE9lai souhait\xE9 ne peut pas \xEAtre respect\xE9\
+            ,  \xE0 valoriser obligatoirement avec le d\xE9lai de r\xE9ponse maximum\
+            \ auquel s'engage l'exp\xE9diteur de la r\xE9ponse,\n"
+          enum:
+          - DEL0
+          - ASAP
+          - 30M
+          - 45M
+          - 1H
+          - 2H
+          - 4H
+          - 8H
+          - 12H
+          - 24H
+          - RDV
           examples:
           - 10
         freetext:

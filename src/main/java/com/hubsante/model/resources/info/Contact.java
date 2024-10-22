@@ -51,17 +51,19 @@ public class Contact {
    * A valoriser avec le type de l&#39;URI utilisée. Cf nomenclature associée.
    */
   public enum TypeEnum {
-    TEL("TEL"),
-
     EMAIL("EMAIL"),
 
     FAX("FAX"),
 
+    MSS("MSS"),
+
     POSTAL("POSTAL"),
 
-    WEB("WEB"),
+    RADIO("RADIO"),
 
-    RADIO("RADIO");
+    TEL("TEL"),
+
+    WEB("WEB");
 
     private String value;
 

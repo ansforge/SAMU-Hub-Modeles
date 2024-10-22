@@ -1,0 +1,5 @@
+Could not validate message against schema : errors occurred. 
+Issues found on the envelope: 
+ - $.nomenclatureField: does not have a value in the enumeration [M, F, O, UN]
+ - $.enumerationField: does not have a value in the enumeration [ENUM_VALUE_1, ENUM_VALUE_2, ENUM_VALUE_3, ENUM_VALUE_4, ENUM_VALUE_5]
+ - $.enumArrayField[1]: does not have a value in the enumeration [ENUM_VALUE_10, ENUM_VALUE_20, ENUM_VALUE_30, ENUM_VALUE_40, ENUM_VALUE_50]

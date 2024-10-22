@@ -2,10 +2,10 @@
   "geoResourcesDetails": {
     "resource": [
       {
-        "id": "76_45101#SMUR1#",
+        "resourceId": "fr.health.samu760.resource.VLM250",
         "orgId": "fr.health.760.samu76",
         "name": "SMUR 1 Rouen",
-        "type": "SMUR",
+        "resourceType": "SMUR",
         "nature": "BASE",
         "mobility": "VEHICULE",
         "capacity": "INCONNUE",
@@ -17,10 +17,10 @@
         ]
       },
       {
-        "id": "76_45102#SMUR2#",
+        "resourceId": "fr.health.samu760.resource.VLM211",
         "orgId": "fr.health.760.samu76",
         "name": "SMUR 2 Rouen",
-        "type": "SMUR",
+        "resourceType": "SMUR",
         "nature": "BASE",
         "mobility": "VEHICULE",
         "capacity": "URGENCE",
@@ -32,10 +32,10 @@
         ]
       },
       {
-        "id": "14_45103#SMUR3#",
+        "resourceId": "fr.health.samu760.resource.VLM213",
         "orgId": "fr.health.140.samu14",
         "name": "SMUR 3 Caen",
-        "type": "SMUR",
+        "resourceType": "SMUR",
         "nature": "EFFECTEUR",
         "mobility": "VEHICULE",
         "capacity": "MEDICALE",
@@ -47,10 +47,10 @@
         ]
       },
       {
-        "id": "76_45104#SMUR4#",
+        "resourceId": "fr.health.samu760.resource.VLM25",
         "orgId": "fr.health.760.samu76",
         "name": "SMUR 4 Havre",
-        "type": "SMUR",
+        "resourceType": "SMUR",
         "nature": "EFFECTEUR",
         "mobility": "VEHICULE",
         "capacity": "MEDICALE",

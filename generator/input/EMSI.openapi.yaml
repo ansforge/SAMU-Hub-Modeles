@@ -98,7 +98,7 @@ components:
             \ de cr\xE9ation de la demande de concours chez le partenaire emetteur.\
             \ L'heure d'envoi du message peut \xEAtre obtenue via l'enveloppe EDXL-DE\
             \ (se r\xE9f\xE9rer au DST)"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:25:54+02:00'
@@ -274,7 +274,7 @@ components:
             NexSIS transmettra la date/heure de cr\xE9ation de l'op\xE9ration dans\
             \ ses syst\xE8mes (qui peut diverger de la date/heure de cr\xE9ation de\
             \ l'affaire)"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:24:50+02:00'
@@ -290,7 +290,7 @@ components:
             clar\xE9 est 9h02, il a pu d\xE9marr\xE9 \xE0 8h55 par exemple.\nNB :\
             \ temporairement, NexSIS renseignera ce champ avec la date de r\xE9ception\
             \ de l'alerte initiale"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:20:50+02:00'
@@ -307,7 +307,7 @@ components:
             \ d'envoi de la demande de concours dans son syst\xE8me.\nNB : temporairement,\
             \ NexSIS renseignera ce champ avec la date de r\xE9ception de l'alerte\
             \ initiale"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:26:00+02:00'
@@ -394,6 +394,9 @@ components:
       x-health-only: false
       required:
       - TYPE
+      - ID
+      - NAME
+      - STATUS
       properties:
         TYPE:
           type: string
@@ -534,7 +537,7 @@ components:
             Horraire cible pour l'arriv\xE9e sur les lieux d\xE9crites (peut diverger\
             \ de l'horaire demand\xE9)\n- Dans le cadre d'une mission d\xE9crivant\
             \ les op\xE9rations en cours :\nHoraire effectif de d\xE9but de la mission"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:25:00+02:00'
@@ -549,7 +552,7 @@ components:
             \ renseigner\n- Dans le cadre d'une mission d\xE9crivant les op\xE9rations\
             \ en cours :\n Si c'est un d\xE9placement, l'heure d'arriv\xE9e, si c'est\
             \ une prise en charge patient/victime, la fin de la prise en charge."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:55:00+02:00'
@@ -642,6 +645,9 @@ components:
       x-health-only: false
       required:
       - RTYPE
+      - ID
+      - NAME
+      - STATUS
       properties:
         RTYPE:
           $ref: '#/components/schemas/rtype'
@@ -1339,7 +1345,7 @@ components:
           x-cols: 6
           example: example.json#/EVENT/CASUALTIES/0/DATIME
           description: Optionnel
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:00:00+02:00'
@@ -1422,7 +1428,7 @@ components:
           x-cols: 6
           example: example.json#/EVENT/EVAC/0/DATIME
           description: Optionnel
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T10:00:00+02:00'
@@ -1466,7 +1472,7 @@ components:
           description: "Optionnel\nLa localisation de l'affaire est transmise en amont\
             \ dans un message RC-EDA et le lieu souhait\xE9 pour l'intervention est\
             \ syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:26:00+02:00'
@@ -1892,7 +1898,7 @@ components:
             - FAC/OPR/HPT
             - FAC/OPR/HSP
             - FAC/OPR/HSPFLD
-            - FAC/OPR/HSPFLD
+            - FAC/OPR/HSPFLD2
             - FAC/OPR/IRM
             - FAC/OPR/MARSHAL
             - FAC/OPR/MATBED
@@ -2443,7 +2449,7 @@ components:
           description: "Horaire associ\xE9 \xE0 l'arriv\xE9e de la ressource sur la\
             \ position. En fonction du TYPE de position, peut indiquer un horaire\
             \ de relev\xE9 de position, un horaire cible d'arriv\xE9e."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:44:00+02:00'

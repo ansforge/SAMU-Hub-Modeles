@@ -45,16 +45,16 @@ import java.util.Objects;
  * Resource
  */
 @JsonPropertyOrder(
-    {Resource.JSON_PROPERTY_ID, Resource.JSON_PROPERTY_ORG_ID,
-     Resource.JSON_PROPERTY_NAME, Resource.JSON_PROPERTY_TYPE,
+    {Resource.JSON_PROPERTY_RESOURCE_ID, Resource.JSON_PROPERTY_ORG_ID,
+     Resource.JSON_PROPERTY_NAME, Resource.JSON_PROPERTY_RESOURCE_TYPE,
      Resource.JSON_PROPERTY_NATURE, Resource.JSON_PROPERTY_MOBILITY,
      Resource.JSON_PROPERTY_CAPACITY, Resource.JSON_PROPERTY_CONTACTS})
 @JsonTypeName("resource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Resource {
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  public static final String JSON_PROPERTY_RESOURCE_ID = "resourceId";
+  private String resourceId;
 
   public static final String JSON_PROPERTY_ORG_ID = "orgId";
   private String orgId;
@@ -65,7 +65,7 @@ public class Resource {
   /**
    * Catégorie de la ressource (SMUR, SDIS, TSU, SNP, MSPE, navire)
    */
-  public enum TypeEnum {
+  public enum ResourceTypeEnum {
     SMUR("SMUR"),
 
     SDIS("SDIS"),
@@ -80,7 +80,7 @@ public class Resource {
 
     private String value;
 
-    TypeEnum(String value) { this.value = value; }
+    ResourceTypeEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -93,8 +93,8 @@ public class Resource {
     }
 
     @JsonCreator
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
+    public static ResourceTypeEnum fromValue(String value) {
+      for (ResourceTypeEnum b : ResourceTypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -103,8 +103,8 @@ public class Resource {
     }
   }
 
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private TypeEnum type;
+  public static final String JSON_PROPERTY_RESOURCE_TYPE = "resourceType";
+  private ResourceTypeEnum resourceType;
 
   /**
    * Nature de la ressource (effecteur, base)
@@ -227,28 +227,31 @@ public class Resource {
 
   public Resource() {}
 
-  public Resource id(String id) {
+  public Resource resourceId(String resourceId) {
 
-    this.id = id;
+    this.resourceId = resourceId;
     return this;
   }
 
   /**
-   * Identifiant unique de la ressource  dans le système du partenaire
-   *propriétaire
-   * @return id
+   * A valoriser avec l&#39;identifiant partagé unique de la ressource engagée,
+   *normé comme suit : {orgID}.resource.{ID unique de la ressource partagée} OU
+   *- uniquement dans le cas où un ID unique de ressource ne peut pas être
+   *garanti par l&#39;organisation propriétaire :
+   *{orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}
+   * @return resourceId
    **/
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getId() {
-    return id;
+  public String getResourceId() {
+    return resourceId;
   }
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
-    this.id = id;
+  public void setResourceId(String resourceId) {
+    this.resourceId = resourceId;
   }
 
   public Resource orgId(String orgId) {
@@ -300,27 +303,27 @@ public class Resource {
     this.name = name;
   }
 
-  public Resource type(TypeEnum type) {
+  public Resource resourceType(ResourceTypeEnum resourceType) {
 
-    this.type = type;
+    this.resourceType = resourceType;
     return this;
   }
 
   /**
    * Catégorie de la ressource (SMUR, SDIS, TSU, SNP, MSPE, navire)
-   * @return type
+   * @return resourceType
    **/
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public TypeEnum getType() {
-    return type;
+  public ResourceTypeEnum getResourceType() {
+    return resourceType;
   }
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(TypeEnum type) {
-    this.type = type;
+  public void setResourceType(ResourceTypeEnum resourceType) {
+    this.resourceType = resourceType;
   }
 
   public Resource nature(NatureEnum nature) {
@@ -440,10 +443,10 @@ public class Resource {
       return false;
     }
     Resource resource = (Resource)o;
-    return Objects.equals(this.id, resource.id) &&
+    return Objects.equals(this.resourceId, resource.resourceId) &&
         Objects.equals(this.orgId, resource.orgId) &&
         Objects.equals(this.name, resource.name) &&
-        Objects.equals(this.type, resource.type) &&
+        Objects.equals(this.resourceType, resource.resourceType) &&
         Objects.equals(this.nature, resource.nature) &&
         Objects.equals(this.mobility, resource.mobility) &&
         Objects.equals(this.capacity, resource.capacity) &&
@@ -452,18 +455,22 @@ public class Resource {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, orgId, name, type, nature, mobility, capacity,
-                        contacts);
+    return Objects.hash(resourceId, orgId, name, resourceType, nature, mobility,
+                        capacity, contacts);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Resource {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    resourceId: ")
+        .append(toIndentedString(resourceId))
+        .append("\n");
     sb.append("    orgId: ").append(toIndentedString(orgId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    resourceType: ")
+        .append(toIndentedString(resourceType))
+        .append("\n");
     sb.append("    nature: ").append(toIndentedString(nature)).append("\n");
     sb.append("    mobility: ").append(toIndentedString(mobility)).append("\n");
     sb.append("    capacity: ").append(toIndentedString(capacity)).append("\n");

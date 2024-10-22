@@ -47,7 +47,7 @@ import java.util.Objects;
  * Position
  */
 @JsonPropertyOrder(
-    {Position.JSON_PROPERTY_ID, Position.JSON_PROPERTY_DATETIME,
+    {Position.JSON_PROPERTY_RESOURCE_ID, Position.JSON_PROPERTY_DATETIME,
      Position.JSON_PROPERTY_RECEPTION_DATETIME, Position.JSON_PROPERTY_COORD,
      Position.JSON_PROPERTY_SPEED, Position.JSON_PROPERTY_CAP,
      Position.JSON_PROPERTY_MOVE, Position.JSON_PROPERTY_ENGINE_ON,
@@ -57,8 +57,8 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Position {
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  public static final String JSON_PROPERTY_RESOURCE_ID = "resourceId";
+  private String resourceId;
 
   public static final String JSON_PROPERTY_DATETIME = "datetime";
   private OffsetDateTime datetime;
@@ -68,7 +68,7 @@ public class Position {
   private OffsetDateTime receptionDatetime;
 
   public static final String JSON_PROPERTY_COORD = "coord";
-  private List<Coord> coord;
+  private List<Coord> coord = new ArrayList<>();
 
   public static final String JSON_PROPERTY_SPEED = "speed";
   private BigDecimal speed;
@@ -213,28 +213,31 @@ public class Position {
 
   public Position() {}
 
-  public Position id(String id) {
+  public Position resourceId(String resourceId) {
 
-    this.id = id;
+    this.resourceId = resourceId;
     return this;
   }
 
   /**
-   * Identifiant unique de la ressource  dans le système du partenaire
-   *propriétaire
-   * @return id
+   * A valoriser avec l&#39;identifiant partagé unique de la ressource engagée,
+   *normé comme suit : {orgID}.resource.{ID unique de la ressource partagée} OU
+   *- uniquement dans le cas où un ID unique de ressource ne peut pas être
+   *garanti par l&#39;organisation propriétaire :
+   *{orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}
+   * @return resourceId
    **/
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getId() {
-    return id;
+  public String getResourceId() {
+    return resourceId;
   }
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
-    this.id = id;
+  public void setResourceId(String resourceId) {
+    this.resourceId = resourceId;
   }
 
   public Position datetime(OffsetDateTime datetime) {
@@ -497,7 +500,7 @@ public class Position {
       return false;
     }
     Position position = (Position)o;
-    return Objects.equals(this.id, position.id) &&
+    return Objects.equals(this.resourceId, position.resourceId) &&
         Objects.equals(this.datetime, position.datetime) &&
         Objects.equals(this.receptionDatetime, position.receptionDatetime) &&
         Objects.equals(this.coord, position.coord) &&
@@ -512,15 +515,18 @@ public class Position {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, datetime, receptionDatetime, coord, speed, cap,
-                        move, engineOn, groundStatus, status, engagedStatus);
+    return Objects.hash(resourceId, datetime, receptionDatetime, coord, speed,
+                        cap, move, engineOn, groundStatus, status,
+                        engagedStatus);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Position {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    resourceId: ")
+        .append(toIndentedString(resourceId))
+        .append("\n");
     sb.append("    datetime: ").append(toIndentedString(datetime)).append("\n");
     sb.append("    receptionDatetime: ")
         .append(toIndentedString(receptionDatetime))

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<technicalNoreq xmlns="urn:emergency:cisu:2.0:technicalNoreq">
+    <optionalStringField>value1</optionalStringField>
+    <optionalStringField>value2</optionalStringField>
+    <integerField>
+        <value>
+            1
+        </value>
+    </integerField>
+    <booleanField>true</booleanField>
+    <booleanField>false</booleanField>
+    <numberField>
+        <value>1.1</value>
+    </numberField>
+</technicalNoreq>

@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<edxlDistribution xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ct="urn:oasis:names:tc:emergency:edxl:ct:1.0"
+                  xlink:type="extended" xmlns="urn:oasis:names:tc:emergency:EDXL:DE:2.0">
+    <distributionID>fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea</distributionID>
+    <senderID>fr.health.samuA</senderID>
+    <dateTimeSent>2022-07-25T10:04:34+01:00</dateTimeSent>
+    <dateTimeExpires>2072-07-25T10:04:34+01:00</dateTimeExpires>
+    <distributionStatus>Actual</distributionStatus>
+    <distributionKind>Report</distributionKind>
+    <descriptor xlink:type="resource">
+        <language>fr-FR</language>
+        <explicitAddress>
+            <explicitAddressScheme>hubex</explicitAddressScheme>
+            <explicitAddressValue>fr.health.samuB</explicitAddressValue>
+        </explicitAddress>
+    </descriptor>
+    <content>
+        <contentObject xlink:type="resource">
+            <contentXML>
+                <embeddedXMLContent>
+                    <message xmlns="urn:emergency:cisu:2.0">
+                        <messageId>fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea</messageId>
+                        <sender>
+                            <name>samuA</name>
+                            <URI>hubex:fr.health.samuA</URI>
+                        </sender>
+                        <sentAt>2022-07-25T10:04:34+01:00</sentAt>
+                        <kind>Report</kind>
+                        <status>Actual</status>
+                        <recipient>
+                            <name>samuB</name>
+                            <URI>hubex:fr.health.samuB</URI>
+                        </recipient>
+                        <createCaseHealth xmlns="urn:emergency:cisu:2.0:createCaseHealth">
+                            <caseId>fr.health.samu950-DRFR159502401000233</caseId>
+                            <senderCaseId>DRFR159502401000233</senderCaseId>
+                            <creation>2024-01-10T14:07:00+01:00</creation>
+                            <referenceVersion>1.4</referenceVersion>
+                            <qualification>
+                                <whatsHappen>
+                                    <code>C02.05.01</code>
+                                    <label>Atteinte aux personnes; Pathologie / maladie ; Médicale</label>
+                                </whatsHappen>
+                                <locationKind>
+                                    <code>L03.01.00</code>
+                                    <label>Local d’activité professionnelle; Local administratif</label>
+                                </locationKind>
+                                <healthMotive>
+                                    <code>M03.06</code>
+                                    <label>Problème médical; Douleur thoracique</label>
+                                </healthMotive>
+                                <details>
+                                    <priority>P0</priority>
+                                    <attribution>MU</attribution>
+                                    <type>D</type>
+                                    <status>Actif</status>
+                                </details>
+                                <riskThreat>
+                                    <code>R02</code>
+                                    <label>libellé risque 1</label>
+                                </riskThreat>
+                                <riskThreat>
+                                    <code>R03</code>
+                                    <label>Libellé risque 2</label>
+                                </riskThreat>
+                            </qualification>
+                            <location>
+                                <locID>555fb03a-4df5-8zg6-8e81-990c4514986</locID>
+                                <name>SARL Toto</name>
+                                <detailedAddress>
+                                    <complete>18 rue des Bois Rochefort 78500 Sartrouville</complete>
+                                    <number>18</number>
+                                    <wayName>
+                                        <complete>rue des Bois Rochefort</complete>
+                                        <type>rue</type>
+                                        <name>des Bois Rochefort</name>
+                                    </wayName>
+                                </detailedAddress>
+                                <city>
+                                    <name>Sartrouville</name>
+                                    <inseeCode>78586</inseeCode>
+                                    <detail>Sartrouville</detail>
+                                </city>
+                                <country>FR</country>
+                                <access>
+                                    <floor>4</floor>
+                                    <interphone>SARL TOTO</interphone>
+                                    <elevator>Esc D</elevator>
+                                    <buildingName>C</buildingName>
+                                    <entity>Comptabilité</entity>
+                                    <phoneNumber>156789456</phoneNumber>
+                                    <accessCode>4568</accessCode>
+                                    <entrance>B</entrance>
+                                </access>
+                                <freetext>Se rendre au service comptabilité l'accueil est prévenu</freetext>
+                                <geometry>
+                                    <point>
+                                        <coord>
+                                            <lat>48.95102310180664</lat>
+                                            <lon>2.1857428550720215</lon>
+                                            <precision>UNKNOWN</precision>
+                                            <height>6</height>
+                                            <heading>8</heading>
+                                            <speed>49</speed>
+                                        </coord>
+                                        <sysCoord>système</sysCoord>
+                                    </point>
+                                    <obsDatime>2024-01-10T11:00:00+01:00</obsDatime>
+                                    <sketch>formes</sketch>
+                                </geometry>
+                                <externalInfo>
+                                    <freetext>IGN</freetext>
+                                    <type>PHOTO</type>
+                                    <uri>1564-fghr-ID</uri>
+                                </externalInfo>
+                                <externalLocationId>
+                                    <source>SIRET</source>
+                                    <value>36252187900034</value>
+                                </externalLocationId>
+                                <locLabel>Résumé localisation dossier</locLabel>
+                            </location>
+                            <initialAlert>
+                                <id>fr.health.samu950-DRFR159502401000233</id>
+                                <reception>2024-01-10T14:05:00+01:00</reception>
+                                <reporting>STANDARD</reporting>
+                                <caller>
+                                    <callerContact>
+                                        <type>PHNADD</type>
+                                        <detail>0607080928</detail>
+                                        <channel>Personne</channel>
+                                    </callerContact>
+                                    <callbackContact>
+                                        <type>PHNADD</type>
+                                        <detail>0607080928</detail>
+                                        <channel>Personne</channel>
+                                    </callbackContact>
+                                    <language>FR</language>
+                                    <freetext>Collègue de la victime</freetext>
+                                    <detailedName>
+                                        <complete>Magda LENA</complete>
+                                        <lastName>LENA</lastName>
+                                        <firstName>Magda</firstName>
+                                    </detailedName>
+                                    <type>TIERS</type>
+                                    <communication>LANGUE</communication>
+                                </caller>
+                                <callTaker>
+                                    <organization>fr.health.samu950</organization>
+                                    <controlRoom>CRRA 95</controlRoom>
+                                    <calltakerContact>
+                                        <type>PHNADD</type>
+                                        <detail>060102030406</detail>
+                                        <channel>Personne</channel>
+                                    </calltakerContact>
+                                    <role>ARM</role>
+                                    <calltakerId>4978-IDARM2</calltakerId>
+                                </callTaker>
+                                <attachment>
+                                    <description>TYPE PJ</description>
+                                    <mimeType>TYPE MIME</mimeType>
+                                    <size>798</size>
+                                    <URI>https://bac-a-sable.hub.esante.gouv.fr/lrm/json</URI>
+                                    <derefURI>aHR0cHM6Ly93d3cuYmFzZTY0ZW5jb2RlLm9yZy9mci8=</derefURI>
+                                    <digest>hash</digest>
+                                </attachment>
+                                <notes>
+                                    <creation>2024-01-10T07:04:00+01:00</creation>
+                                    <freetext>Observation ARM 1</freetext>
+                                </notes>
+                                <notes>
+                                    <creation>2024-01-10T07:06:00+01:00</creation>
+                                    <freetext>Observation ARM 2</freetext>
+                                </notes>
+                                <notes>
+                                    <freetext>Observation ARM 3</freetext>
+                                    <creation>2024-01-10T07:15:00+01:00</creation>
+                                </notes>
+                            </initialAlert>
+                            <owner>fr.health.samu950</owner>
+                            <additionalInformation>
+                                <customMap>
+                                    <key>Aucune</key>
+                                    <label>Aucun</label>
+                                    <value>0</value>
+                                    <freetext>rempli pour pallier au bug d'envoi</freetext>
+                                </customMap>
+                            </additionalInformation>
+                            <patient>
+                                <detail>
+                                    <age>P47Y</age>
+                                    <height>160</height>
+                                    <weight>75</weight>
+                                    <careLevel>R1</careLevel>
+                                </detail>
+                                <identity>
+                                    <nonStrictFeatures>
+                                        <complete>Ouardia Boudadi</complete>
+                                        <firstName>Ouardia</firstName>
+                                        <lastName>Boudadi</lastName>
+                                    </nonStrictFeatures>
+                                    <strictFeatures>
+                                        <sex>FEM</sex>
+                                        <birthName>BOUDADI</birthName>
+                                        <birthFirstName>Ouardia</birthFirstName>
+                                        <birthFirstNamesList>Ouardia Salomé</birthFirstNamesList>
+                                        <birthDate>1982-02-26</birthDate>
+                                        <birthPlaceCode>99205</birthPlaceCode>
+                                    </strictFeatures>
+                                    <number>
+                                        <value>256897445698754</value>
+                                        <oid>1.2.250.1.213.1.4.8</oid>
+                                    </number>
+                                    <cycle>
+                                        <status>Qualifiée</status>
+                                        <attribute>Homonyme</attribute>
+                                    </cycle>
+                                </identity>
+                                <id>fr.health.samu950-DRFR159502401000233.P11</id>
+                                <hypothesis>
+                                    <mainDiagnosis>
+                                        <code>Z86. 704</code>
+                                        <label>AVC</label>
+                                    </mainDiagnosis>
+                                    <otherDiagnosis>
+                                        <code>Z86. 704</code>
+                                        <label>AVC</label>
+                                    </otherDiagnosis>
+                                </hypothesis>
+                                <healthMotive>
+                                    <label>Problème médical, Douleur thoracique</label>
+                                    <code>M03.06</code>
+                                </healthMotive>
+                                <administrativeFile>
+                                    <generalPractitioner>
+                                        <personalAddress>
+                                            <city>
+                                                <name>ST DENIS</name>
+                                                <detail>Lieu-dit</detail>
+                                                <inseeCode>93066</inseeCode>
+                                            </city>
+                                            <detailedAddress>
+                                                <wayName>
+                                                    <complete>PLACE PLEYEL</complete>
+                                                    <type>PLACE</type>
+                                                    <name>PLEYEL</name>
+                                                </wayName>
+                                                <complete>1 PLACE PLEYEL</complete>
+                                                <number>1</number>
+                                            </detailedAddress>
+                                        </personalAddress>
+                                        <detailedName>
+                                            <complete>Michel Dupont</complete>
+                                            <lastName>Dupont</lastName>
+                                            <firstName>Michel</firstName>
+                                        </detailedName>
+                                        <id>10003019207</id>
+                                    </generalPractitioner>
+                                    <personalAddress>
+                                        <city>
+                                            <name>Paris</name>
+                                            <inseeCode>75111</inseeCode>
+                                            <detail>Cedex 03</detail>
+                                        </city>
+                                        <detailedAddress>
+                                            <wayName>
+                                                <complete>rue du chemin vert</complete>
+                                                <type>rue</type>
+                                                <name>du chemin vert</name>
+                                            </wayName>
+                                            <complete>60 rue du chemin vert</complete>
+                                            <number>60</number>
+                                        </detailedAddress>
+                                    </personalAddress>
+                                </administrativeFile>
+                                <freetext>Commentaire 1 dossier</freetext>
+                                <freetext>Commentaire 2 dossier</freetext>
+                                <freetext>Commentaire 3 dossier</freetext>
+                            </patient>
+                            <freetext>Commentaire dossier 1</freetext>
+                            <freetext>Commentaire dossier 2</freetext>
+                            <freetext>Commentaire dossier 3</freetext>
+                            <newAlert>
+                                <callTaker>
+                                    <calltakerContact>
+                                        <channel>Personne</channel>
+                                        <type>PHNADD</type>
+                                        <detail>0506070809</detail>
+                                    </calltakerContact>
+                                    <organization>fr.health.samu950</organization>
+                                    <controlRoom>fr.health.samu950</controlRoom>
+                                    <role>Medecin</role>
+                                    <calltakerId>12345</calltakerId>
+                                </callTaker>
+                                <caller>
+                                    <detailedName>
+                                        <complete>tom tom</complete>
+                                        <lastName>tom</lastName>
+                                        <firstName>tom</firstName>
+                                    </detailedName>
+                                    <callbackContact>
+                                        <channel>Personne</channel>
+                                        <type>WWWADD</type>
+                                        <detail>https://bac-a-sable.hub.esante.gouv.fr/lrm/json</detail>
+                                    </callbackContact>
+                                    <callerContact>
+                                        <type>PSTADD</type>
+                                        <channel>Personne</channel>
+                                        <detail>0102030405</detail>
+                                    </callerContact>
+                                    <language>AL</language>
+                                    <type>AMBULANC</type>
+                                    <communication>LANGUE</communication>
+                                    <freetext>commentaire</freetext>
+                                </caller>
+                                <attachment>
+                                    <description>type PJ</description>
+                                    <mimeType>type MIME</mimeType>
+                                    <size>234</size>
+                                    <URI>https://bac-a-sable.hub.esante.gouv.fr/lrm/json</URI>
+                                    <derefURI>aHR0cHM6Ly9iYWMtYS1zYWJsZS5odWIuZXNhbnRlLmdvdXYuZnIvbHJtL2pzb24=
+                                    </derefURI>
+                                    <digest>test</digest>
+                                </attachment>
+                                <id>fr.health.samu950-DRFR159502401000233</id>
+                                <reception>2024-04-18T09:45:00+02:00</reception>
+                                <reporting>ATTENTION</reporting>
+                            </newAlert>
+                            <decision>
+                                <transportDetails>
+                                    <destination>
+                                        <destinationLocation>
+                                            <geometry>
+                                                <point>
+                                                    <coord>
+                                                        <lat>48.869422912597656</lat>
+                                                        <lon>2.2231545448303223</lon>
+                                                        <height>22</height>
+                                                        <heading>35</heading>
+                                                        <speed>46</speed>
+                                                        <precision>STREET</precision>
+                                                    </coord>
+                                                    <sysCoord>systeme</sysCoord>
+                                                </point>
+                                                <obsDatime>2024-04-08T06:40:00+02:00</obsDatime>
+                                                <sketch>test</sketch>
+                                            </geometry>
+                                            <access>
+                                                <accessCode>1234</accessCode>
+                                                <floor>étage</floor>
+                                                <roomNumber>2</roomNumber>
+                                                <interphone>interphone</interphone>
+                                                <elevator>esc2</elevator>
+                                                <buildingName>batb</buildingName>
+                                                <entrance>235a</entrance>
+                                                <entity>urgences</entity>
+                                                <phoneNumber>102030405</phoneNumber>
+                                            </access>
+                                            <city>
+                                                <inseeCode>92073</inseeCode>
+                                                <name>Suresnes</name>
+                                                <detail>Suresnes</detail>
+                                            </city>
+                                            <detailedAddress>
+                                                <wayName>
+                                                    <complete>Rue Merlin de Thionville</complete>
+                                                    <type>Rue</type>
+                                                    <name>Merlin de Thionville</name>
+                                                </wayName>
+                                                <complete>39 Rue Merlin de Thionville</complete>
+                                                <number>39</number>
+                                            </detailedAddress>
+                                            <externalInfo>
+                                                <freetext>BAN</freetext>
+                                                <type>MANUAL</type>
+                                                <uri>555fb03a-qs48</uri>
+                                            </externalInfo>
+                                            <externalLocationId>
+                                                <source>FINESS géographique</source>
+                                                <value>123456789</value>
+                                            </externalLocationId>
+                                            <locID>555fb03a-4df5-8zg6-8e81-990c4514986</locID>
+                                            <locLabel>Résumé localisation urgences</locLabel>
+                                            <name>urgences</name>
+                                            <country>FR</country>
+                                            <freetext>test</freetext>
+                                        </destinationLocation>
+                                        <type>service d’urgences d’un Etablissement de santé</type>
+                                    </destination>
+                                    <orientation>OK</orientation>
+                                    <medicalLevel>MED</medicalLevel>
+                                    <concoursRequest>fr.health.samu950-DRFR159502401000233.D350</concoursRequest>
+                                    <transportationID>IDV-OIUSJP1245</transportationID>
+                                </transportDetails>
+                                <id>fr.health.samu950-DRFR159502401000233.P11</id>
+                                <creation>2024-04-30T09:15:00+02:00</creation>
+                                <type>ORIENT</type>
+                                <engagementDetails>
+                                    <categoryType>SMUR</categoryType>
+                                    <resourceType>VLM</resourceType>
+                                    <teamCareInitial>R1</teamCareInitial>
+                                </engagementDetails>
+                            </decision>
+                            <medicalNote>
+                                <operator>
+                                    <detailedName>
+                                        <complete>Lucas Stefano</complete>
+                                        <lastName>Stefano</lastName>
+                                        <firstName>Lucas</firstName>
+                                    </detailedName>
+                                    <id>1245_ID</id>
+                                    <role>ARM</role>
+                                </operator>
+                                <id>fr.health.samu950-DRFR159502401000233.P11</id>
+                                <creation>2024-04-03T01:15:00+02:00</creation>
+                                <freetext>Observations et commentaires médicaux sur le patient Ouardia Boudadi.
+                                </freetext>
+                                <medicalHistory>Antécédent de crise cardiaque</medicalHistory>
+                                <treatments>Pas de traitement</treatments>
+                                <allergies>Pas d’allergie</allergies>
+                            </medicalNote>
+                            <perimeter>AMU</perimeter>
+                            <interventionType>Primaire</interventionType>
+                        </createCaseHealth>
+                    </message>
+                </embeddedXMLContent>
+            </contentXML>
+        </contentObject>
+    </content>
+</edxlDistribution>

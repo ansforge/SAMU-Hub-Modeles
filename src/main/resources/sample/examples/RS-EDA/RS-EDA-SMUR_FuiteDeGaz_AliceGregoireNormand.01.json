@@ -24,7 +24,7 @@
       },
       "details": {
         "priority": "P1",
-        "attribution": "TOXICOL"
+        "attribution": "DRM.SPE.TOXICOL"
       },
       "origin": "15"
     },
@@ -50,7 +50,7 @@
             "precision": "ADRESSE"
           }
         },
-        "obsDatime": "2024-05-18T18:15:00+02:00"
+        "datetime": "2024-05-18T18:19:00+02:00"
       },
       "freetext": "Maison aux volets verts"
     },
@@ -68,7 +68,7 @@
           "lastName": "Dubois",
           "firstName": "Marie"
         },
-        "language": "FR",
+        "language": "fr",
         "type": "FAMILLE",
         "callbackContact": {
           "channel": "PERSONNE",
@@ -87,18 +87,18 @@
             "firstName": "Alice"
           },
           "strictFeatures": {
-            "sex": "FEM",
+            "sex": "F",
             "birthDate": "2011-05-11"
           }
         },
-        "idPat": "fr.health.samu440.patient.DRFR154402413800236.1",
+        "patientId": "fr.health.samu440.patient.DRFR154402413800236.1",
         "detail": {
           "age": "P13Y"
         },
         "hypothesis": {
           "mainDiagnosis": {
-            "code": "PB32",
-            "label": "Effets nocifs ou exposition accidentelle au monoxyde de carbone"
+            "code": "T58",
+            "label": "Effet toxique du monoxyde de carbone"
           }
         },
         "healthMotive": {
@@ -115,17 +115,17 @@
           },
           "strictFeatures": {
             "birthDate": "2013-11-03",
-            "sex": "MASC"
+            "sex": "M"
           }
         },
-        "idPat": "fr.health.samu440.patient.DRFR154402413800236.2",
+        "patientId": "fr.health.samu440.patient.DRFR154402413800236.2",
         "detail": {
           "age": "P11Y"
         },
         "hypothesis": {
           "mainDiagnosis": {
-            "label": "Effets nocifs ou exposition accidentelle au monoxyde de carbone",
-            "code": "PB32"
+            "label": "Effet toxique du monoxyde de carbone",
+            "code": "T58"
           }
         }
       }
@@ -137,8 +137,8 @@
         "operator": {
           "role": "ARM"
         },
-        "idPat": "fr.health.samu440.patient.DRFR154402413800236.2",
-        "idObs": "fr.health.samu440.medicalNote.0001"
+        "patientId": "fr.health.samu440.patient.DRFR154402413800236.2",
+        "medicalNoteId": "fr.health.samu440.medicalNote.0001"
       }
     ],
     "owner": "fr.health.samu440",
@@ -149,7 +149,6 @@
           "role": "MEDECIN"
         },
         "resourceType": "SMUR",
-        "vehiculeType": "VLM",
         "decisionType": "INTER",
         "creation": "2024-05-18T18:19:00+02:00",
         "medicalTransport": true
@@ -159,7 +158,6 @@
           "role": "MEDECIN"
         },
         "resourceType": "SIS",
-        "vehiculeType": "VSAV",
         "decisionType": "INTER",
         "creation": "2024-05-18T18:20:00+02:00"
       }

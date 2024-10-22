@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import java.time.OffsetDateTime;
+import com.hubsante.model.resources.status.State;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -44,9 +44,7 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({ResourcesStatus.JSON_PROPERTY_CASE_ID,
                     ResourcesStatus.JSON_PROPERTY_RESOURCE_ID,
-                    ResourcesStatus.JSON_PROPERTY_DATETIME,
-                    ResourcesStatus.JSON_PROPERTY_STATUS,
-                    ResourcesStatus.JSON_PROPERTY_AVAILABILITY})
+                    ResourcesStatus.JSON_PROPERTY_STATE})
 @JsonTypeName("resourcesStatus")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -59,77 +57,8 @@ public class ResourcesStatus {
   public static final String JSON_PROPERTY_RESOURCE_ID = "resourceId";
   private String resourceId;
 
-  public static final String JSON_PROPERTY_DATETIME = "datetime";
-  private OffsetDateTime datetime;
-
-  /**
-   * A valoriser avec le statut du vecteur. Cf Nomenclature associée.
-   */
-  public enum StatusEnum {
-    DECISION("DECISION"),
-
-    DECLENCHE("DECLENCHE"),
-
-    DEPART("DEPART"),
-
-    ARRIVE("ARRIVE"),
-
-    PEC("PEC"),
-
-    ANNULE("ANNULE"),
-
-    BILAN("BILAN"),
-
-    TRANSPOR("TRANSPOR"),
-
-    ETAPE1("ETAPE1"),
-
-    TRANSP2("TRANSP2"),
-
-    ETAPE2("ETAPE2"),
-
-    TRANSP3("TRANSP3"),
-
-    DESTIN("DESTIN"),
-
-    FINPEC("FINPEC"),
-
-    RETOUR("RETOUR"),
-
-    RET_BASE("RET-BASE"),
-
-    REN_BASE("REN-BASE");
-
-    private String value;
-
-    StatusEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static StatusEnum fromValue(String value) {
-      for (StatusEnum b : StatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_STATUS = "status";
-  private StatusEnum status;
-
-  public static final String JSON_PROPERTY_AVAILABILITY = "availability";
-  private Boolean availability;
+  public static final String JSON_PROPERTY_STATE = "state";
+  private State state;
 
   public ResourcesStatus() {}
 
@@ -191,76 +120,27 @@ public class ResourcesStatus {
     this.resourceId = resourceId;
   }
 
-  public ResourcesStatus datetime(OffsetDateTime datetime) {
+  public ResourcesStatus state(State state) {
 
-    this.datetime = datetime;
+    this.state = state;
     return this;
   }
 
   /**
-   * A valoriser avec la date et heure de changement du statut.  Si la valeur
-   *est vide/inconnue alors c&#39;est le datetime de création du message qui est
-   *indiqué.
-   * @return datetime
+   * Get state
+   * @return state
    **/
-  @JsonProperty(JSON_PROPERTY_DATETIME)
+  @JsonProperty(JSON_PROPERTY_STATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public OffsetDateTime getDatetime() {
-    return datetime;
+  public State getState() {
+    return state;
   }
 
-  @JsonProperty(JSON_PROPERTY_DATETIME)
+  @JsonProperty(JSON_PROPERTY_STATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDatetime(OffsetDateTime datetime) {
-    this.datetime = datetime;
-  }
-
-  public ResourcesStatus status(StatusEnum status) {
-
-    this.status = status;
-    return this;
-  }
-
-  /**
-   * A valoriser avec le statut du vecteur. Cf Nomenclature associée.
-   * @return status
-   **/
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public StatusEnum getStatus() {
-    return status;
-  }
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setStatus(StatusEnum status) {
-    this.status = status;
-  }
-
-  public ResourcesStatus availability(Boolean availability) {
-
-    this.availability = availability;
-    return this;
-  }
-
-  /**
-   * A valoriser de manière à indiquer la disponibilité du vecteur. TRUE &#x3D;
-   *DISPONIBLE FALSE &#x3D; INDISPONIBLE VIDE &#x3D; INCONNU
-   * @return availability
-   **/
-  @JsonProperty(JSON_PROPERTY_AVAILABILITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getAvailability() {
-    return availability;
-  }
-
-  @JsonProperty(JSON_PROPERTY_AVAILABILITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAvailability(Boolean availability) {
-    this.availability = availability;
+  public void setState(State state) {
+    this.state = state;
   }
 
   @Override
@@ -274,14 +154,12 @@ public class ResourcesStatus {
     ResourcesStatus resourcesStatus = (ResourcesStatus)o;
     return Objects.equals(this.caseId, resourcesStatus.caseId) &&
         Objects.equals(this.resourceId, resourcesStatus.resourceId) &&
-        Objects.equals(this.datetime, resourcesStatus.datetime) &&
-        Objects.equals(this.status, resourcesStatus.status) &&
-        Objects.equals(this.availability, resourcesStatus.availability);
+        Objects.equals(this.state, resourcesStatus.state);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, resourceId, datetime, status, availability);
+    return Objects.hash(caseId, resourceId, state);
   }
 
   @Override
@@ -292,11 +170,7 @@ public class ResourcesStatus {
     sb.append("    resourceId: ")
         .append(toIndentedString(resourceId))
         .append("\n");
-    sb.append("    datetime: ").append(toIndentedString(datetime)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    availability: ")
-        .append(toIndentedString(availability))
-        .append("\n");
+    sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("}");
     return sb.toString();
   }
