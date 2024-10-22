@@ -41,9 +41,10 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
 }
 
-shadowJar {
-    archiveClassifier.set('')
-}
+// I let this in the code waiting for use case explanation
+//shadowJar {
+//    archiveClassifier.set('')
+//}
 
 jacocoTestReport {
     reports {
