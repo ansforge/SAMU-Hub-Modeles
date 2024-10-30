@@ -16,12 +16,16 @@
 package com.hubsante.model.namepoc;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.Objects;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class PocEmbeddedContent {
+
+    @JsonDeserialize(using = PocContentMessageDeserializer.class)
     private PocContentMessage useCaseMessage;
+
     public PocEmbeddedContent() {
     }
 

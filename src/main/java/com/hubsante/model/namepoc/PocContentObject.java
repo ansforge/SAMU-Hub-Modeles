@@ -27,6 +27,7 @@ import java.util.Objects;
 )
 public class PocContentObject {
 
+
     @JacksonXmlProperty(localName = "xlink:type", isAttribute = true)
     public String getXmlns() {
         return "resource";

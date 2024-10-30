@@ -37,9 +37,13 @@ import java.util.stream.Collectors;
         "distributionStatus",
         "distributionKind",
         "descriptor",
-        "content"})
+        "content",
+        "type"})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class PocEdxlMessage extends PocEdxlEnvelope {
+
+    private String type;
+
     private List<PocContentObject> content;
 
     public PocEdxlMessage() {
@@ -136,5 +140,13 @@ public class PocEdxlMessage extends PocEdxlEnvelope {
             return "null";
         }
         return o.toString().replace("\n", "\n    ");
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

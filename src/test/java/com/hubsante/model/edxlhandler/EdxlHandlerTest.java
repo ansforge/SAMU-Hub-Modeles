@@ -22,6 +22,9 @@ import com.hubsante.model.TestMessagesHelper;
 import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.edxl.EdxlMessage;
 import com.hubsante.model.exception.ValidationException;
+import com.hubsante.model.namepoc.Cat;
+import com.hubsante.model.namepoc.Horse;
+import com.hubsante.model.namepoc.PocEdxlMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -49,7 +52,10 @@ import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.config.Constants.FULL_SCHEMA;
 import static com.hubsante.model.utils.TestFileUtils.getMessageByFileName;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 @Slf4j
 public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
@@ -57,6 +63,22 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
     private static final String[] useCasesWithNoRcDe = {
             "RS-ERROR"
     };
+
+    @Test
+    @DisplayName("should serialize a cat and a horse")
+    public void pocTest() throws IOException {
+        Cat cat = new Cat();
+        cat.name = "Felix";
+        cat.speed = 10.0f;
+
+        Horse horse = new Horse();
+        horse.name = "Black Beauty";
+        horse.speed = 20.0f;
+
+        String json = getMessageString("POC");
+
+        PocEdxlMessage message = converter.deserializeJsonPocEDXL(json);
+    }
 
     @Test
     @DisplayName("should consistently deserialize EDXL with several content objects")

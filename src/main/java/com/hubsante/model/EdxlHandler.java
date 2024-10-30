@@ -23,6 +23,9 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.hubsante.model.edxl.EdxlEnvelope;
 import com.hubsante.model.edxl.EdxlMessage;
+import com.hubsante.model.namepoc.PocContentMessage;
+import com.hubsante.model.namepoc.PocContentMessageDeserializer;
+import com.hubsante.model.namepoc.PocEdxlMessage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -34,7 +37,7 @@ public class EdxlHandler {
 
     public EdxlHandler() {
         xmlMapper = (XmlMapper) new XmlMapper()
-                .registerModule(new JavaTimeModule())
+                .registerModule(new JavaTimeModule().addDeserializer(PocContentMessage.class, new PocContentMessageDeserializer()))
                 .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
                 .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
@@ -43,7 +46,7 @@ public class EdxlHandler {
         xmlMapper.configure(com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator.Feature.WRITE_XML_DECLARATION, true);
 
         jsonMapper = new ObjectMapper()
-                .registerModule(new JavaTimeModule())
+                .registerModule(new JavaTimeModule().addDeserializer(PocContentMessage.class, new PocContentMessageDeserializer()))
                 .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
                 .disable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
@@ -51,6 +54,10 @@ public class EdxlHandler {
 
     public EdxlMessage deserializeJsonEDXL(String json) throws JsonProcessingException {
         return jsonMapper.readValue(json, EdxlMessage.class);
+    }
+
+    public PocEdxlMessage deserializeJsonPocEDXL(String json) throws JsonProcessingException {
+        return jsonMapper.readValue(json, PocEdxlMessage.class);
     }
 
     public EdxlEnvelope deserializeJsonEDXLEnvelope(String json) throws JsonProcessingException {

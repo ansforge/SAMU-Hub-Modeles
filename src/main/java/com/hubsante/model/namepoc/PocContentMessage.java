@@ -18,32 +18,46 @@ package com.hubsante.model.namepoc;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.hubsante.model.cisu.CreateCase;
+import com.hubsante.model.cisu.CreateCaseWrapper;
+import com.hubsante.model.custom.CustomMessage;
 import com.hubsante.model.emsi.Emsi;
+import com.hubsante.model.emsi.EmsiWrapper;
 import com.hubsante.model.geolocation.GeoPositionsUpdate;
+import com.hubsante.model.geolocation.GeoPositionsUpdateWrapper;
 import com.hubsante.model.geolocation.GeoResourcesDetails;
+import com.hubsante.model.geolocation.GeoResourcesDetailsWrapper;
 import com.hubsante.model.geolocation.GeoResourcesRequest;
+import com.hubsante.model.geolocation.GeoResourcesRequestWrapper;
 import com.hubsante.model.health.CreateCaseHealth;
 import com.hubsante.model.health.CreateCaseHealthUpdate;
+import com.hubsante.model.health.CreateCaseHealthUpdateWrapper;
+import com.hubsante.model.health.CreateCaseHealthWrapper;
 import com.hubsante.model.reference.Reference;
+import com.hubsante.model.reference.ReferenceWrapper;
 import com.hubsante.model.report.ErrorWrapper;
 import com.hubsante.model.resources.info.ResourcesInfo;
+import com.hubsante.model.resources.info.ResourcesInfoWrapper;
 import com.hubsante.model.resources.request.ResourcesRequest;
+import com.hubsante.model.resources.request.ResourcesRequestWrapper;
 import com.hubsante.model.resources.response.ResourcesResponse;
+import com.hubsante.model.resources.response.ResourcesResponseWrapper;
 import com.hubsante.model.resources.status.ResourcesStatus;
+import com.hubsante.model.resources.status.ResourcesStatusWrapper;
 import com.hubsante.model.rpis.Rpis;
+import com.hubsante.model.rpis.RpisWrapper;
+import com.hubsante.model.technical.TechnicalWrapper;
+import com.hubsante.model.technical.noreq.TechnicalNoreqWrapper;
 
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXTERNAL_PROPERTY, property = "type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(Cat.class),
-        @JsonSubTypes.Type(Horse.class),
+        @JsonSubTypes.Type(CatWrapper.class),
+        @JsonSubTypes.Type(HorseWrapper.class),
 })
 public class PocContentMessage {
 
-    public String type;
 
     /** This equals override is used to avoid breaking the equals override in the messages without RC-DE headers
      * (in particular ErrorWrapper), as without the override the equality check would only pass when comparing
