@@ -35,8 +35,8 @@ import java.util.stream.Collectors;
         "distributionStatus",
         "distributionKind",
         "descriptor",
-        "content",
-        "other"})
+        "other",
+        "content"})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class EdxlMessage extends EdxlEnvelope {
     private List<ContentObject> content;
@@ -133,15 +133,15 @@ public class EdxlMessage extends EdxlEnvelope {
     @Override
     public String toString() {
         return "class EdxlMessage {\n" +
-                        "    distributionID: " + toIndentedString(super.getDistributionID()) + "\n" +
-                        "    senderId: " + toIndentedString(super.getSenderID()) + "\n" +
-                        "    dateTimeSent: " + toIndentedString(super.getDateTimeSent()) + "\n" +
-                        "    dateTimeExpires: " + toIndentedString(super.getDateTimeExpires()) + "\n" +
-                        "    distributionStatus: " + toIndentedString(super.getDistributionStatus()) + "\n" +
-                        "    distributionKind: " + toIndentedString(super.getDistributionKind()) + "\n" +
-                        "    descriptor: " + toIndentedString(super.getDescriptor()) + "\n" +
-                        "    content: " + toIndentedString(content) + "\n" +
-                        "    other: " + toIndentedString(other) + "\n" +
+                "    distributionID: " + toIndentedString(super.getDistributionID()) + "\n" +
+                "    senderId: " + toIndentedString(super.getSenderID()) + "\n" +
+                "    dateTimeSent: " + toIndentedString(super.getDateTimeSent()) + "\n" +
+                "    dateTimeExpires: " + toIndentedString(super.getDateTimeExpires()) + "\n" +
+                "    distributionStatus: " + toIndentedString(super.getDistributionStatus()) + "\n" +
+                "    distributionKind: " + toIndentedString(super.getDistributionKind()) + "\n" +
+                "    descriptor: " + toIndentedString(super.getDescriptor()) + "\n" +
+                "    other: " + toIndentedString(other) + "\n" +
+                "    content: " + toIndentedString(content) + "\n" +
                 "}";
     }
 
