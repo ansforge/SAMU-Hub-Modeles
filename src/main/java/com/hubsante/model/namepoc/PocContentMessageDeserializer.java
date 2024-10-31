@@ -18,16 +18,16 @@ public class PocContentMessageDeserializer extends JsonDeserializer<PocContentMe
         JsonNode node = codec.readTree(jp);
 
         PocEdxlMessage bruh = (PocEdxlMessage) jp.getParsingContext().getParent().getParent().getParent().getParent().getCurrentValue();
-        String type = ((PocEdxlMessage) jp.getParsingContext().getParent().getParent().getParent().getParent().getCurrentValue()).getType();
+        String model = ((PocEdxlMessage) jp.getParsingContext().getParent().getParent().getParent().getParent().getCurrentValue()).getOther().getModel();
 
-        switch (type) {
+        switch (model) {
             case "cat":
                 return codec.treeToValue(node, CatWrapper.class);
             case "horse":
                 return codec.treeToValue(node, HorseWrapper.class);
             default:
                 throw new JsonMappingException(jp,
-                        "Unknown type: " + type);
+                        "Unknown model: " + model);
         }
     }
 }

@@ -5,13 +5,15 @@
   "dateTimeExpires": "2072-07-25T10:04:34+01:00",
   "distributionStatus": "Actual",
   "distributionKind": "Report",
-  "type": "horse",
   "descriptor": {
     "language": "fr-FR",
     "explicitAddress": {
       "explicitAddressScheme": "hubex",
       "explicitAddressValue": "fr.health.samuB"
     }
+  },
+  "other": {
+    "model": "horse"
   },
   "content": [
     {
