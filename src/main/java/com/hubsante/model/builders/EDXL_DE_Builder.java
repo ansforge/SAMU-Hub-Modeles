@@ -32,6 +32,7 @@ public class EDXL_DE_Builder {
     private DistributionKind distributionKind;
     private Descriptor descriptor;
     private ContentMessage content;
+    private EdxlOther other;
 
     public EDXL_DE_Builder(@NotNull String distributionID, @NotNull String senderID, @NotNull String recipientId) {
         if (distributionID == null || senderID == null || recipientId == null) {
@@ -48,6 +49,7 @@ public class EDXL_DE_Builder {
         this.descriptor = new Descriptor("fr-FR", recipientAddress);
 
         this.content = null;
+        this.other = null;
     }
 
     public EDXL_DE_Builder dateTimeSent(OffsetDateTime dateTimeSent) {
@@ -119,6 +121,11 @@ public class EDXL_DE_Builder {
         return this;
     }
 
+    public EDXL_DE_Builder other(EdxlOther other) {
+        this.other = other;
+        return this;
+    }
+
     public EdxlMessage build() {
         if (this.distributionID == null | this.senderID == null | this.dateTimeSent == null | this.dateTimeExpires == null
                 | this.distributionStatus == null | this.distributionKind == null | this.descriptor == null) {
@@ -128,6 +135,6 @@ public class EDXL_DE_Builder {
         this.dateTimeExpires = this.dateTimeExpires.truncatedTo(SECONDS);
 
         return new EdxlMessage(this.distributionID, this.senderID, this.dateTimeSent, this.dateTimeExpires,
-                this.distributionStatus, this.distributionKind, this.descriptor, this.content);
+                this.distributionStatus, this.distributionKind, this.descriptor, this.content, this.other);
     }
 }

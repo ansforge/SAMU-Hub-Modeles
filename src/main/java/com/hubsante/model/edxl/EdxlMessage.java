@@ -35,10 +35,12 @@ import java.util.stream.Collectors;
         "distributionStatus",
         "distributionKind",
         "descriptor",
-        "content"})
+        "content",
+        "other"})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class EdxlMessage extends EdxlEnvelope {
     private List<ContentObject> content;
+    private EdxlOther other;
 
     public EdxlMessage() {
         super();
@@ -46,9 +48,10 @@ public class EdxlMessage extends EdxlEnvelope {
 
     public EdxlMessage(String distributionID, String senderID, OffsetDateTime dateTimeSent, OffsetDateTime dateTimeExpires,
                        DistributionStatus distributionStatus, DistributionKind distributionKind, Descriptor descriptor,
-                       ContentMessage innerMessage) {
+                       ContentMessage innerMessage, EdxlOther other) {
         super(distributionID, senderID, dateTimeSent, dateTimeExpires, distributionStatus, distributionKind, descriptor);
         this.setContentFrom(innerMessage);
+        this.setOther(other);
     }
 
     public EdxlMessage content(List<ContentObject> content) {
@@ -78,6 +81,22 @@ public class EdxlMessage extends EdxlEnvelope {
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setContent(List<ContentObject> content) {
         this.content = content;
+    }
+
+    @JacksonXmlElementWrapper(useWrapping = true, localName = "other")
+    @JsonProperty(value = "other")
+    @JacksonXmlProperty(localName = "other")
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public EdxlOther getOther() {
+        return other;
+    }
+
+    @JacksonXmlElementWrapper(useWrapping = true, localName = "other")
+    @JsonProperty(value = "other")
+    @JacksonXmlProperty(localName = "other")
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setOther(EdxlOther other) {
+        this.other = other;
     }
 
     public <T extends ContentMessage> void setContentFrom(T embeddedContent) {
@@ -122,6 +141,7 @@ public class EdxlMessage extends EdxlEnvelope {
                         "    distributionKind: " + toIndentedString(super.getDistributionKind()) + "\n" +
                         "    descriptor: " + toIndentedString(super.getDescriptor()) + "\n" +
                         "    content: " + toIndentedString(content) + "\n" +
+                        "    other: " + toIndentedString(other) + "\n" +
                 "}";
     }
 
