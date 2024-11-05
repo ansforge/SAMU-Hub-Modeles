@@ -35,7 +35,7 @@ strict digraph {
                 <TR>
                 <TD ><B>evaluation</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet evaluation</I></TD></TR><TR><TD BORDER="0" >procedure <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >mainDiagnosis <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >associatedDiagnosis <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >medicalHistory <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >treatment <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet evaluation</I></TD></TR><TR><TD BORDER="0" >procedure <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >mainDiagnosis <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >associatedDiagnosis <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >medicalHistory <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >treatment <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
 	evaluation -> interventionReport [headlabel=1 taillabel="0..1"]
 	interventionReport [label=<<TABLE>
