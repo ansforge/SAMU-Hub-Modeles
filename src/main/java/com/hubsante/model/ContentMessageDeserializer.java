@@ -79,7 +79,7 @@ public class ContentMessageDeserializer extends JsonDeserializer<ContentMessage>
         try {
             model = ((EdxlMessage) jp.getParsingContext().getParent().getParent().getParent().getParent().getCurrentValue()).getDescriptor().getKeyword().getValue();
         } catch (NullPointerException e) {
-            throw new JsonParseException(jp, "Model not found in $.other.model");
+            throw new JsonParseException(jp, "Model name not found in $.descriptor.keyword.value");
         }
         // Find model in useCases map, throw JsonParseException if not found
         Class clazz = useCases.get(model);
