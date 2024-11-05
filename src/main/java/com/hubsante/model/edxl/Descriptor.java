@@ -32,6 +32,9 @@ public class Descriptor {
         return "resource";
     }
 
+    @JsonProperty(value = "keyword", required = true)
+    private Keyword keyword;
+
     @JsonProperty(value = "language", required = true)
     private String language;
 
@@ -41,10 +44,15 @@ public class Descriptor {
     public Descriptor() {
     }
 
-    public Descriptor(String language, ExplicitAddress explicitAddress) {
+    public Descriptor(String language, ExplicitAddress explicitAddress, Keyword keyword) {
         this.language = language;
         this.explicitAddress = explicitAddress;
+        this.keyword = keyword;
     }
+
+    public Keyword getKeyword() { return keyword; }
+
+    public void setKeyword(Keyword keyword) { this.keyword = keyword; }
 
     public String getLanguage() {
         return language;
@@ -67,12 +75,12 @@ public class Descriptor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Descriptor that = (Descriptor) o;
-        return language.equals(that.language) && explicitAddress.equals(that.explicitAddress);
+        return language.equals(that.language) && explicitAddress.equals(that.explicitAddress) && keyword.equals(that.keyword);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(language, explicitAddress);
+        return Objects.hash(language, explicitAddress, keyword);
     }
 
     @Override
@@ -80,6 +88,7 @@ public class Descriptor {
         return "Descriptor{" +
                 "language='" + language + '\'' +
                 ", explicitAddress=" + explicitAddress +
+                ", keyword=" + keyword +
                 '}';
     }
 }

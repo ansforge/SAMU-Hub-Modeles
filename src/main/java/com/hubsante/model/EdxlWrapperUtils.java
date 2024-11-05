@@ -63,22 +63,16 @@ public class EdxlWrapperUtils {
     public static JsonNode addEnvelope(JsonNode jsonNode, String model) {
         OffsetDateTime sentAt = OffsetDateTime.of(LocalDateTime.parse("2023-12-15T00:00:00"), ZoneOffset.ofHours(2)).truncatedTo(ChronoUnit.SECONDS);
         OffsetDateTime expiresAt = sentAt.plusDays(1);
-        EdxlOther other = new EdxlOther();
-        other.setModel(model);
-
 
         EdxlMessage edxlMessage = new EDXL_DE_Builder("sender_123", "sender", "recipient")
                 .dateTimeSent(sentAt)
                 .dateTimeExpires(expiresAt)
-                .other(other)
+                .model(model)
                 .build();
 
         ObjectNode envelopeNode = mapper.valueToTree(edxlMessage);
 
-
         ((ObjectNode) envelopeNode.get("content").get(0).get("jsonContent").get("embeddedJsonContent")).put("message", jsonNode);
-
-
 
         return envelopeNode;
     }

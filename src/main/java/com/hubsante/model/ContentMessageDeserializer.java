@@ -77,7 +77,7 @@ public class ContentMessageDeserializer extends JsonDeserializer<ContentMessage>
         JsonNode node = codec.readTree(jp);
         String model = null;
         try {
-            model = ((EdxlMessage) jp.getParsingContext().getParent().getParent().getParent().getParent().getCurrentValue()).getOther().getModel();
+            model = ((EdxlMessage) jp.getParsingContext().getParent().getParent().getParent().getParent().getCurrentValue()).getDescriptor().getKeyword().getValue();
         } catch (NullPointerException e) {
             throw new JsonParseException(jp, "Model not found in $.other.model");
         }

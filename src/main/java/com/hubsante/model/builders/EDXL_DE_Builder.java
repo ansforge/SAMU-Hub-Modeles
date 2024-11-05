@@ -32,7 +32,6 @@ public class EDXL_DE_Builder {
     private DistributionKind distributionKind;
     private Descriptor descriptor;
     private ContentMessage content;
-    private EdxlOther other;
 
     public EDXL_DE_Builder(@NotNull String distributionID, @NotNull String senderID, @NotNull String recipientId) {
         if (distributionID == null || senderID == null || recipientId == null) {
@@ -46,10 +45,9 @@ public class EDXL_DE_Builder {
         this.distributionKind = DistributionKind.REPORT;
 
         ExplicitAddress recipientAddress = new ExplicitAddress("hubex", recipientId);
-        this.descriptor = new Descriptor("fr-FR", recipientAddress);
+        this.descriptor = new Descriptor("fr-FR", recipientAddress, new Keyword("urn:hubsante:model",null));
 
         this.content = null;
-        this.other = null;
     }
 
     public EDXL_DE_Builder dateTimeSent(OffsetDateTime dateTimeSent) {
@@ -121,20 +119,20 @@ public class EDXL_DE_Builder {
         return this;
     }
 
-    public EDXL_DE_Builder other(EdxlOther other) {
-        this.other = other;
+    public EDXL_DE_Builder model(String model) {
+        this.descriptor.getKeyword().setValue(model);
         return this;
     }
 
     public EdxlMessage build() {
         if (this.distributionID == null | this.senderID == null | this.dateTimeSent == null | this.dateTimeExpires == null
-                | this.distributionStatus == null | this.distributionKind == null | this.descriptor == null) {
+                | this.distributionStatus == null | this.distributionKind == null | this.descriptor == null | this.descriptor.getKeyword().getValue() == null) {
             throw new IllegalArgumentException("unprovided mandatory field(s)");
         }
         this.dateTimeSent = this.dateTimeSent.truncatedTo(SECONDS);
         this.dateTimeExpires = this.dateTimeExpires.truncatedTo(SECONDS);
 
         return new EdxlMessage(this.distributionID, this.senderID, this.dateTimeSent, this.dateTimeExpires,
-                this.distributionStatus, this.distributionKind, this.descriptor, this.content, this.other);
+                this.distributionStatus, this.distributionKind, this.descriptor, this.content);
     }
 }
