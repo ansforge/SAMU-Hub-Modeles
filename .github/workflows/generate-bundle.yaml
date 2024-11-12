@@ -5,7 +5,7 @@ on:
 
 env:
   # ToDo: read from yaml list of all schemas (how to handle RC-REF with no examples, cf '|| true' below)
-  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RPIS RS-EDA-MAJ RS-SR RC-DE"
+  SCHEMAS: "RC-DE RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RS-RPIS RS-EDA-MAJ RS-SR RS-URL RS-ER RS-BPV"
 
 jobs:
   zip_and_upload:
@@ -39,7 +39,7 @@ jobs:
           mkdir "$schemaDir/Schemas et Exemples"
           cp src/main/resources/json-schema/$SCHEMA.schema.json "$schemaDir/Schemas et Exemples"
           cp src/main/resources/xsd/$SCHEMA.xsd "$schemaDir/Schemas et Exemples"
-          cp src/main/resources/sample/examples/$SCHEMA/* "$schemaDir/Schemas et Exemples" || true  # || true as not all schemas have examples: RC-REF and RS-ERROR
+          cp src/main/resources/sample/examples/$SCHEMA/* "$schemaDir/Schemas et Exemples" || true  # || true as not all schemas have examples: RC-DE, RC-REF and RS-ERROR
 
           # Populate root elements (docx and UML)
           cp csv_parser/out/$SCHEMA/$SCHEMA.schema.docx "$schemaDir/Annexe au DSF - $SCHEMA.docx"

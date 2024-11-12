@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<createCaseHealthUpdate xmlns="urn:emergency:cisu:2.0:createCaseHealthUpdate">
+  <caseId>fr.health.samu770.DRFR157702400400055</caseId>
+  <patient>
+    <patientId>fr.health.samu770.patient.DRFR157702400400055.2</patientId>
+    <identity>
+      <strictFeatures>
+        <birthName>ARNAUD</birthName>
+        <birthDate>1963-12-12</birthDate>
+        <sex>F</sex>
+      </strictFeatures>
+      <nonStrictFeatures>
+        <complete>Germaine MOREL</complete>
+        <lastName>MOREL</lastName>
+        <firstName>Germaine</firstName>
+      </nonStrictFeatures>
+    </identity>
+    <detail>
+      <weight>65</weight>
+      <height>162</height>
+      <age>P60Y</age>
+    </detail>
+  </patient>
+  <medicalNote>
+    <patientId>fr.health.samu770.patient.DRFR157702400400055.2</patientId>
+    <operator>
+      <role>ARM</role>
+    </operator>
+    <medicalNoteId>fr.health.samu770.medicalNote.78fre25</medicalNoteId>
+    <creation>2024-01-04T08:11:00+01:00</creation>
+    <freetext>Hyperventile / Pleurs /Angoisse ++. Malaise à la vue du sang.</freetext>
+  </medicalNote>
+</createCaseHealthUpdate>

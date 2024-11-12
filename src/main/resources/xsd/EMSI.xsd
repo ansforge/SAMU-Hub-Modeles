@@ -283,7 +283,7 @@ Dans le cadre d'une mission décrivant les opérations en cours :
                     <documentation>Contient des commentaires relatifs aux objectifs et  moyens sollicités dans le cadre de la demande de concours. Les équipements supplémentaires souhaités ou le nom/ prénom des patients à prendre en charge peuvent être explicitement indiqués ici.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="ID" type="string">
+            <element name="ID" type="string">
                 <annotation>
                     <documentation>Contient un identifiant de demande de concours unique. Cet identifiant sera réutilisable par le partenaire pour répondre à cette demande.
 Identifiant unique de la mission dans le système du partenaire la conduisant.</documentation>
@@ -298,7 +298,7 @@ Se référer au DSF pour la structure normée des organisations
 Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="NAME" type="string">
+            <element name="NAME" type="string">
                 <annotation>
                     <documentation>Le nom de la mission est construit à partir de l'expression régulière suivante :
 "#DEMANDE_CONCOURS#"{libelle_cadre_conventionnel}"#"{code_cadre_conventionnel}"#"
@@ -311,7 +311,7 @@ où le code_reponse peut prendre les valeurs ACCEPTE, REFUS, PARTIELLE, DIVERGEN
 - sinon libre</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="STATUS">
+            <element name="STATUS">
                 <annotation>
                     <documentation>Les valeurs possibles avec lesquelles valoriser ce champ sont détaillées au sein d'une nomenclature EMSI
 - ABO : mission refusée (ABOrted)
@@ -382,7 +382,7 @@ Dans le cadre d'un échange des opérations, optionnel. Le champ peut ne pas êt
     <complexType name="resource">
         <sequence>
             <element name="RTYPE" type="x:rtype"/>
-            <element minOccurs="0" name="ID" type="string">
+            <element name="ID" type="string">
                 <annotation>
                     <documentation>Identifiant unique de la ressource  dans le système du partenaire propriétaire. Les systèmes sont garants de l'unicité et de l'invariablité des ids de véhicule dans le temps. Ils peuvent se servir des ids dans les référentiels existants si ils sont uniques et stables.
 Dans le cas d'un véhicule agrégé par un LRM (comme un SMUR), l'ID doit être valorisé avec son immatriculation.
@@ -398,7 +398,7 @@ Dans le cas où le LRM/NexSIS sert d'aggrégateur pour des véhicules appartenan
 A constituer par le rédacteur du présent EMSI pour être unique.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="NAME" type="string">
+            <element name="NAME" type="string">
                 <annotation>
                     <documentation>Nom donné à la ressource par le partenaire. L'immatriculation peut être utilisée dans le nom courant des véhicules.
 Dans le cas pompier, les véhicules sont nommés
@@ -480,7 +480,7 @@ Par exemple, pour un véhicule, sa plaque d'immatriculation.</documentation>
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="STATUS">
+            <element name="STATUS">
                 <annotation>
                     <documentation>Définit le statut de disponibilité d'une ressource.
 - AVAILB : Lorsqu'une mission est terminée, une ressource redevient disponible
@@ -1270,7 +1270,7 @@ Voir nomenclature EMSI associée</documentation>
                         <enumeration value="FAC/OPR/HPT"/>
                         <enumeration value="FAC/OPR/HSP"/>
                         <enumeration value="FAC/OPR/HSPFLD"/>
-                        <enumeration value="FAC/OPR/HSPFLD"/>
+                        <enumeration value="FAC/OPR/HSPFLD2"/>
                         <enumeration value="FAC/OPR/IRM"/>
                         <enumeration value="FAC/OPR/MARSHAL"/>
                         <enumeration value="FAC/OPR/MATBED"/>

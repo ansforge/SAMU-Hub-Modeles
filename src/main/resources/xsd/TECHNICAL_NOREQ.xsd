@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:technicalNoreq" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:technicalNoreq" xmlns="http://www.w3.org/2001/XMLSchema">
+    <element name="technicalNoreq" type="x:technicalNoreq"/>
+    <complexType name="technicalNoreq">
+        <sequence>
+            <element minOccurs="0" name="optionalStringField" type="string">
+                <annotation>
+                    <documentation>This field is optional</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="enumerationField">
+                <annotation>
+                    <documentation>This is an enumeration</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="ENUM_VALUE_1"/>
+                        <enumeration value="ENUM_VALUE_2"/>
+                        <enumeration value="ENUM_VALUE_3"/>
+                        <enumeration value="ENUM_VALUE_4"/>
+                        <enumeration value="ENUM_VALUE_5"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="integerField" type="int">
+                <annotation>
+                    <documentation>This is an integer</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="numberField" type="decimal">
+                <annotation>
+                    <documentation>This is a number</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="booleanField" type="boolean">
+                <annotation>
+                    <documentation>This is a boolean</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="objectField" type="x:technicalObject"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="arrayField" type="string"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="enumArrayField">
+                <annotation>
+                    <documentation>This is an array of enumerations</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="ENUM_VALUE_10"/>
+                        <enumeration value="ENUM_VALUE_20"/>
+                        <enumeration value="ENUM_VALUE_30"/>
+                        <enumeration value="ENUM_VALUE_40"/>
+                        <enumeration value="ENUM_VALUE_50"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element maxOccurs="5" minOccurs="0" name="arrayWithMaxLength" type="string"/>
+            <element minOccurs="0" name="phoneNumberField">
+                <annotation>
+                    <documentation>Phone number with regex</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="\+?[0-9]{2,14}"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="dateField">
+                <annotation>
+                    <documentation>Date</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="\d{4}-\d{2}-\d{2}"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="emailField">
+                <annotation>
+                    <documentation>Email with regex</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="datetimeField" type="dateTime">
+                <annotation>
+                    <documentation>Datetime</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="objectLevel1" type="x:levelOneData"/>
+            <element minOccurs="0" name="nomenclatureField">
+                <annotation>
+                    <documentation>Enum from extenal nomenclature file</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="M"/>
+                        <enumeration value="F"/>
+                        <enumeration value="O"/>
+                        <enumeration value="UN"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="technicalObject">
+        <sequence>
+            <element minOccurs="0" name="objectPropertyString" type="string">
+                <annotation>
+                    <documentation>Object property string</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="objectPropertyNumber" type="decimal">
+                <annotation>
+                    <documentation>Object property number</documentation>
+                </annotation>
+            </element>
+            <element name="objectPropertyRequiredString" type="string">
+                <annotation>
+                    <documentation>Required object property</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="levelOneData">
+        <sequence>
+            <element minOccurs="0" name="object1Level2" type="x:levelTwoData"/>
+            <element minOccurs="0" name="stringLevel2" type="string">
+                <annotation>
+                    <documentation>String field at level 2</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="object2Level2" type="x:secondLevelTwoData"/>
+        </sequence>
+    </complexType>
+    <complexType name="levelTwoData">
+        <sequence>
+            <element minOccurs="0" name="object1Level3" type="x:levelThreeData"/>
+            <element minOccurs="0" name="stringLevel3" type="string">
+                <annotation>
+                    <documentation>String field at level 3</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="secondLevelTwoData">
+        <sequence>
+            <element minOccurs="0" name="object2Level3" type="x:levelThreeData"/>
+        </sequence>
+    </complexType>
+    <complexType name="levelThreeData">
+        <sequence>
+            <element minOccurs="0" name="stringLevel4" type="string">
+                <annotation>
+                    <documentation>String field at level 4</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+</schema>

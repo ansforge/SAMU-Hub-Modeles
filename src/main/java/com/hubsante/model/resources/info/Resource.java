@@ -35,7 +35,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.resources.info.Contact;
-import com.hubsante.model.resources.info.Coord;
 import com.hubsante.model.resources.info.State;
 import com.hubsante.model.resources.info.Team;
 import java.time.OffsetDateTime;
@@ -52,11 +51,10 @@ import java.util.Objects;
     {Resource.JSON_PROPERTY_DATETIME, Resource.JSON_PROPERTY_RESOURCE_ID,
      Resource.JSON_PROPERTY_REQUEST_ID, Resource.JSON_PROPERTY_MISSION_ID,
      Resource.JSON_PROPERTY_ORG_ID, Resource.JSON_PROPERTY_CENTER_NAME,
-     Resource.JSON_PROPERTY_RESOURCE_TYPE, Resource.JSON_PROPERTY_VEHICULE_TYPE,
-     Resource.JSON_PROPERTY_PLATE, Resource.JSON_PROPERTY_NAME,
+     Resource.JSON_PROPERTY_VEHICLE_TYPE, Resource.JSON_PROPERTY_NAME,
      Resource.JSON_PROPERTY_CENTER_CITY, Resource.JSON_PROPERTY_TEAM,
-     Resource.JSON_PROPERTY_STATE, Resource.JSON_PROPERTY_COORD,
-     Resource.JSON_PROPERTY_CONTACT, Resource.JSON_PROPERTY_FREETEXT})
+     Resource.JSON_PROPERTY_STATE, Resource.JSON_PROPERTY_CONTACT,
+     Resource.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("resource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -80,186 +78,138 @@ public class Resource {
   private String centerName;
 
   /**
-   * A valoriser avec le yype de ressource mobilisée : cf.nomenclature associée.
-   */
-  public enum ResourceTypeEnum {
-    SMUR("SMUR"),
-
-    HOSPIT("HOSPIT"),
-
-    LIB("LIB"),
-
-    TSU_("TSU "),
-
-    SIS("SIS"),
-
-    AASC("AASC"),
-
-    FDO("FDO"),
-
-    AUTRE("AUTRE");
-
-    private String value;
-
-    ResourceTypeEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ResourceTypeEnum fromValue(String value) {
-      for (ResourceTypeEnum b : ResourceTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_RESOURCE_TYPE = "resourceType";
-  private ResourceTypeEnum resourceType;
-
-  /**
    * A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée
    */
-  public enum VehiculeTypeEnum {
+  public enum VehicleTypeEnum {
     AASC("AASC"),
 
-    VLSC("VLSC"),
+    AASC_VLSC("AASC.VLSC"),
 
-    VPSP("VPSP"),
+    AASC_VPSP("AASC.VPSP"),
 
-    AUTRESC("AUTRESC"),
+    AASC_AUTRESC("AASC.AUTRESC"),
 
     AUTREVEC("AUTREVEC"),
 
-    TAXI("TAXI"),
+    AUTREVEC_APIED("AUTREVEC.APIED"),
 
-    TRANSP("TRANSP"),
+    AUTREVEC_AVION("AUTREVEC.AVION"),
 
-    TRAIN("TRAIN"),
+    AUTREVEC_PERSO("AUTREVEC.PERSO"),
 
-    AVION("AVION"),
+    AUTREVEC_TAXI("AUTREVEC.TAXI"),
 
-    PERSO("PERSO"),
+    AUTREVEC_TRAIN("AUTREVEC.TRAIN"),
 
-    APIED("APIED"),
+    AUTREVEC_TRANSP("AUTREVEC.TRANSP"),
 
-    AUTRE("AUTRE"),
+    AUTREVEC_AUTRE("AUTREVEC.AUTRE"),
 
-    AUTRETRA("AUTRETRA"),
+    AUTREVEC_AUTRETRA("AUTREVEC.AUTRETRA"),
 
     FSI("FSI"),
 
-    HELIFSI("HELIFSI"),
+    FSI_HELIFSI("FSI.HELIFSI"),
 
-    VLFSI("VLFSI"),
+    FSI_VLFSI("FSI.VLFSI"),
 
-    FFSI("FFSI"),
+    FSI_FFSI("FSI.FFSI"),
 
-    VHFSI("VHFSI"),
+    FSI_VHFSI("FSI.VHFSI"),
 
     LIB("LIB"),
 
-    MEDV("MEDV"),
+    LIB_MEDV("LIB.MEDV"),
 
-    INF("INF"),
+    LIB_INF("LIB.INF"),
 
-    AUTREPRO("AUTREPRO"),
+    LIB_AUTREPRO("LIB.AUTREPRO"),
 
     SIS("SIS"),
 
-    VSAV("VSAV"),
+    SIS_DRAGON("SIS.DRAGON"),
 
-    GRIMP("GRIMP"),
+    SIS_AVSC("SIS.AVSC"),
 
-    VPL("VPL"),
+    SIS_FEUSIS("SIS.FEUSIS"),
 
-    SRSIS("SRSIS"),
+    SIS_GRIMP("SIS.GRIMP"),
 
-    FEUSIS("FEUSIS"),
+    SIS_NAVISIS("SIS.NAVISIS"),
 
-    VPMA("VPMA"),
+    SIS_PCSIS("SIS.PCSIS"),
 
-    VCH("VCH"),
+    SIS_SRSIS("SIS.SRSIS"),
 
-    VR("VR"),
+    SIS_VCH("SIS.VCH"),
 
-    PCSIS("PCSIS"),
+    SIS_VLCG("SIS.VLCG"),
 
-    VLISP("VLISP"),
+    SIS_VLISP("SIS.VLISP"),
 
-    VLMSP("VLMSP"),
+    SIS_VLMSP("SIS.VLMSP"),
 
-    VLCG("VLCG"),
+    SIS_VLSIS("SIS.VLSIS"),
 
-    VLSIS("VLSIS"),
+    SIS_VPL("SIS.VPL"),
 
-    DRAGON("DRAGON"),
+    SIS_VPMA("SIS.VPMA"),
 
-    AVSC("AVSC"),
+    SIS_VR("SIS.VR"),
 
-    MOYSSE("MOYSSE"),
+    SIS_VSAV("SIS.VSAV"),
 
-    AUTRESIS("AUTRESIS"),
+    SIS_MOYSSE("SIS.MOYSSE"),
 
-    NAVISIS("NAVISIS"),
+    SIS_AUTRESIS("SIS.AUTRESIS"),
 
     SMUR("SMUR"),
 
-    VLM("VLM"),
+    SMUR_VLM("SMUR.VLM"),
 
-    VL("VL"),
+    SMUR_VL("SMUR.VL"),
 
-    PSM1("PSM1"),
+    SMUR_PSM1("SMUR.PSM1"),
 
-    PSM2("PSM2"),
+    SMUR_PSM2("SMUR.PSM2"),
 
-    PSM3("PSM3"),
+    SMUR_PSM3("SMUR.PSM3"),
 
-    PSMP("PSMP"),
+    SMUR_PSMP("SMUR.PSMP"),
 
-    VPC("VPC"),
+    SMUR_VPC("SMUR.VPC"),
 
-    AR("AR"),
+    SMUR_AR("SMUR.AR"),
 
-    AR_BAR("AR-BAR"),
+    SMUR_AR_BAR("SMUR.AR-BAR"),
 
-    AR_PED("AR-PED"),
+    SMUR_AR_PED("SMUR.AR-PED"),
 
-    HELISMUR("HELISMUR"),
+    SMUR_HELISMUR("SMUR.HELISMUR"),
 
-    HELISAN("HELISAN"),
+    SMUR_HELISAN("SMUR.HELISAN"),
 
-    AVSMUR("AVSMUR"),
+    SMUR_AVSMUR("SMUR.AVSMUR"),
 
-    AVSAN("AVSAN"),
+    SMUR_AVSAN("SMUR.AVSAN"),
 
-    NAVISMUR("NAVISMUR"),
+    SMUR_NAVISMUR("SMUR.NAVISMUR"),
 
     TSU("TSU"),
 
-    VSL("VSL"),
+    TSU_VSL("TSU.VSL"),
 
-    AMB_GV("AMB-GV"),
+    TSU_AMB_GV("TSU.AMB-GV"),
 
-    AMB_PV("AMB-PV"),
+    TSU_AMB_PV("TSU.AMB-PV"),
 
-    AMB_BAR("AMB-BAR"),
+    TSU_AMB_BAR("TSU.AMB-BAR"),
 
-    AMB("AMB");
+    TSU_AMB("TSU.AMB");
 
     private String value;
 
-    VehiculeTypeEnum(String value) { this.value = value; }
+    VehicleTypeEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -272,8 +222,8 @@ public class Resource {
     }
 
     @JsonCreator
-    public static VehiculeTypeEnum fromValue(String value) {
-      for (VehiculeTypeEnum b : VehiculeTypeEnum.values()) {
+    public static VehicleTypeEnum fromValue(String value) {
+      for (VehicleTypeEnum b : VehicleTypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -282,11 +232,8 @@ public class Resource {
     }
   }
 
-  public static final String JSON_PROPERTY_VEHICULE_TYPE = "vehiculeType";
-  private VehiculeTypeEnum vehiculeType;
-
-  public static final String JSON_PROPERTY_PLATE = "plate";
-  private String plate;
+  public static final String JSON_PROPERTY_VEHICLE_TYPE = "vehicleType";
+  private VehicleTypeEnum vehicleType;
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -299,9 +246,6 @@ public class Resource {
 
   public static final String JSON_PROPERTY_STATE = "state";
   private List<State> state;
-
-  public static final String JSON_PROPERTY_COORD = "coord";
-  private Coord coord;
 
   public static final String JSON_PROPERTY_CONTACT = "contact";
   private Contact contact;
@@ -460,73 +404,27 @@ public class Resource {
     this.centerName = centerName;
   }
 
-  public Resource resourceType(ResourceTypeEnum resourceType) {
+  public Resource vehicleType(VehicleTypeEnum vehicleType) {
 
-    this.resourceType = resourceType;
-    return this;
-  }
-
-  /**
-   * A valoriser avec le yype de ressource mobilisée : cf.nomenclature associée.
-   * @return resourceType
-   **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public ResourceTypeEnum getResourceType() {
-    return resourceType;
-  }
-
-  @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResourceType(ResourceTypeEnum resourceType) {
-    this.resourceType = resourceType;
-  }
-
-  public Resource vehiculeType(VehiculeTypeEnum vehiculeType) {
-
-    this.vehiculeType = vehiculeType;
+    this.vehicleType = vehicleType;
     return this;
   }
 
   /**
    * A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée
-   * @return vehiculeType
+   * @return vehicleType
    **/
-  @JsonProperty(JSON_PROPERTY_VEHICULE_TYPE)
+  @JsonProperty(JSON_PROPERTY_VEHICLE_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public VehiculeTypeEnum getVehiculeType() {
-    return vehiculeType;
+  public VehicleTypeEnum getVehicleType() {
+    return vehicleType;
   }
 
-  @JsonProperty(JSON_PROPERTY_VEHICULE_TYPE)
+  @JsonProperty(JSON_PROPERTY_VEHICLE_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVehiculeType(VehiculeTypeEnum vehiculeType) {
-    this.vehiculeType = vehiculeType;
-  }
-
-  public Resource plate(String plate) {
-
-    this.plate = plate;
-    return this;
-  }
-
-  /**
-   * A valoriser avec le n° d&#39;immatriculation du vecteur
-   * @return plate
-   **/
-  @JsonProperty(JSON_PROPERTY_PLATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getPlate() {
-    return plate;
-  }
-
-  @JsonProperty(JSON_PROPERTY_PLATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlate(String plate) {
-    this.plate = plate;
+  public void setVehicleType(VehicleTypeEnum vehicleType) {
+    this.vehicleType = vehicleType;
   }
 
   public Resource name(String name) {
@@ -638,29 +536,6 @@ public class Resource {
     this.state.addAll(state);
   }
 
-  public Resource coord(Coord coord) {
-
-    this.coord = coord;
-    return this;
-  }
-
-  /**
-   * Get coord
-   * @return coord
-   **/
-  @JsonProperty(JSON_PROPERTY_COORD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Coord getCoord() {
-    return coord;
-  }
-
-  @JsonProperty(JSON_PROPERTY_COORD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCoord(Coord coord) {
-    this.coord = coord;
-  }
-
   public Resource contact(Contact contact) {
 
     this.contact = contact;
@@ -738,14 +613,11 @@ public class Resource {
         Objects.equals(this.missionId, resource.missionId) &&
         Objects.equals(this.orgId, resource.orgId) &&
         Objects.equals(this.centerName, resource.centerName) &&
-        Objects.equals(this.resourceType, resource.resourceType) &&
-        Objects.equals(this.vehiculeType, resource.vehiculeType) &&
-        Objects.equals(this.plate, resource.plate) &&
+        Objects.equals(this.vehicleType, resource.vehicleType) &&
         Objects.equals(this.name, resource.name) &&
         Objects.equals(this.centerCity, resource.centerCity) &&
         Objects.equals(this.team, resource.team) &&
         Objects.equals(this.state, resource.state) &&
-        Objects.equals(this.coord, resource.coord) &&
         Objects.equals(this.contact, resource.contact) &&
         Objects.equals(this.freetext, resource.freetext);
   }
@@ -753,8 +625,8 @@ public class Resource {
   @Override
   public int hashCode() {
     return Objects.hash(datetime, resourceId, requestId, missionId, orgId,
-                        centerName, resourceType, vehiculeType, plate, name,
-                        centerCity, team, state, coord, contact, freetext);
+                        centerName, vehicleType, name, centerCity, team, state,
+                        contact, freetext);
   }
 
   @Override
@@ -775,20 +647,15 @@ public class Resource {
     sb.append("    centerName: ")
         .append(toIndentedString(centerName))
         .append("\n");
-    sb.append("    resourceType: ")
-        .append(toIndentedString(resourceType))
+    sb.append("    vehicleType: ")
+        .append(toIndentedString(vehicleType))
         .append("\n");
-    sb.append("    vehiculeType: ")
-        .append(toIndentedString(vehiculeType))
-        .append("\n");
-    sb.append("    plate: ").append(toIndentedString(plate)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    centerCity: ")
         .append(toIndentedString(centerCity))
         .append("\n");
     sb.append("    team: ").append(toIndentedString(team)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
-    sb.append("    coord: ").append(toIndentedString(coord)).append("\n");
     sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");

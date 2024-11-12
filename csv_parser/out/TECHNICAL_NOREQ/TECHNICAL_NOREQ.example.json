@@ -1,0 +1,38 @@
+{
+    "optionalStringField": "None",
+    "enumerationField": "None",
+    "integerField": "None",
+    "numberField": "None",
+    "booleanField": "None",
+    "objectField": {
+        "objectPropertyString": "None",
+        "objectPropertyNumber": "None",
+        "objectPropertyRequiredString": "None"
+    },
+    "arrayField": [
+        "None"
+    ],
+    "enumArrayField": [
+        "None"
+    ],
+    "arrayWithMaxLength": [
+        "None"
+    ],
+    "phoneNumberField": "None",
+    "dateField": "None",
+    "emailField": "None",
+    "datetimeField": "None",
+    "objectLevel1": {
+        "object1Level2": {
+            "object1Level3": {
+                "stringLevel4": "None"
+            },
+            "stringLevel3": "None"
+        },
+        "stringLevel2": "None",
+        "object2Level2": {
+            "object2Level3": {}
+        }
+    },
+    "nomenclatureField": "None"
+}

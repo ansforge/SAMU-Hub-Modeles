@@ -18,9 +18,9 @@
             <contentXML>
                 <embeddedXMLContent>
                     <message xmlns="urn:emergency:cisu:2.0">
-                        <customContent>
+                        <technicalNoreq>
                             <key>value</key>
-                        </customContent>
+                        </technicalNoreq>
                     </message>
                 </embeddedXMLContent>
             </contentXML>

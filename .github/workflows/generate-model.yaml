@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RPIS RS-EDA-MAJ RS-SR"
+  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RS-RPIS RS-EDA-MAJ RS-SR RS-URL RS-ER RS-BPV TECHNICAL TECHNICAL_NOREQ"
 
 jobs:
   generate:
@@ -56,14 +56,15 @@ jobs:
         if: steps.filter.outputs.parsing_required == 'true'
         run: python workflow.py --stage parser_and_mv
 
-      - name: Run test_case_generator and move the folder test-cases to src/main/resources/sample/test-cases
-        working-directory: ./csv_parser
-        if: steps.filter.outputs.test_case_parsing_required == 'true'
-        run: | 
-          rm -r ./out/test-cases || true
-          python workflow.py --stage test_case_parser
-          rm -r ../src/main/resources/test-cases || true
-          mv ./out/test-cases ../src/main/resources/
+# TODO: Reactivate test case autogeneration
+#      - name: Run test_case_generator and move the folder test-cases to src/main/resources/sample/test-cases
+#        working-directory: ./csv_parser
+#        if: steps.filter.outputs.test_case_parsing_required == 'true'
+#        run: |
+#          rm -r ./out/test-cases || true
+#          python workflow.py --stage test_case_parser
+#          rm -r ../src/main/resources/test-cases || true
+#          mv ./out/test-cases ../src/main/resources/
 
       - name: Install JDK 11
         uses: actions/setup-java@v4
@@ -82,6 +83,8 @@ jobs:
         if: steps.filter.outputs.parsing_required == 'true'
         run: |
           rm out/RS-ERROR.xsd
+          # Clean XSD repo but keep manual XSDs
+          find ../../src/main/resources/xsd -type f -name '*.xsd' ! -name 'EDXL-DE-*.xsd' ! -name 'CustomContent.xsd' ! -name 'RC-XML-ContentType.xsd' ! -name 'RS-ERROR.xsd' ! -path '**/other-supporting-schema/*' -exec rm {} +
           mv out/*.xsd ../../src/main/resources/xsd/
 
       - name: Remove input JSON Schemas
@@ -105,11 +108,11 @@ jobs:
         working-directory: ./generator
         run: |
           npx @openapitools/openapi-generator-cli generate -c ./config/RC-DE/RC-DE.generator-config.json --skip-validate-spec
-          npx @openapitools/openapi-generator-cli generate -c ./config/RC-DE/RC-DE.distributionElement.generator-config.json --skip-validate-spec
-
+          npx @openapitools/openapi-generator-cli generate -c ./config/RC-DE/RC-DE.distribution-element.generator-config.json --skip-validate-spec
+          
           IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"
           for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
-            if [ "$SCHEMA" != "RS-EDA-MAJ" ]; then
+            if [ "$SCHEMA" != "RS-EDA-MAJ" ] && [ "$SCHEMA" != "RS-ER" ]; then
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.generator-config.json --skip-validate-spec
             fi
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.usecase.generator-config.json --skip-validate-spec
@@ -125,6 +128,7 @@ jobs:
           rm -r ./src/main/java/com/hubsante/model/geolocation || true
           rm -r ./src/main/java/com/hubsante/model/resources || true
           rm -r ./src/main/java/com/hubsante/model/rpis || true
+          rm -r ./src/main/java/com/hubsante/model/technical || true
           rm -r ./generator/classes/src/main/java/com/hubsante/model/report/ErrorCode.java || true
           cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
 
@@ -134,12 +138,24 @@ jobs:
       - name: Apply license
         run: ./gradlew licenseFormat
 
+      - name: Delete old xml files
+        run: |
+          find ./src/main/resources/sample/examples -name "*.xml" -type f -delete
+
+      - name: Generate XML files
+        run: |
+          ./gradlew generateXml
+        continue-on-error: true
+
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: ⚙️ Auto-génération des classes et des specs
 
-      - name: Build and run tests
+      - name: Build and run TECHNICAL tests
+        run: ./gradlew test --info -Ptechnical=true
+
+      - name: Build and run REAL MESSAGES tests
         run: ./gradlew test --info
 
       # Ref.: https://github.com/gradle/gradle-build-action/issues/619#issuecomment-1453244157

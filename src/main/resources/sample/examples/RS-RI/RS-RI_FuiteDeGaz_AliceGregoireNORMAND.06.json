@@ -1,0 +1,40 @@
+{
+  "resourcesInfo": {
+    "resource": [
+      {
+        "team": {
+          "medicalLevel": "MED",
+          "name": "Equipe SMUR 2"
+        },
+        "vehicleType": "SMUR.VLM",
+        "name": "VLM2",
+        "datetime": "2024-05-18T18:20:00+02:00",
+        "resourceId": "fr.health.samu440.resource.VLM2",
+        "orgId": "fr.health.samu440",
+        "state": [
+          {
+            "status": "DECLENCHE",
+            "datetime": "2024-05-18T18:20:00+02:00",
+            "availability": false
+          },
+          {
+            "datetime": "2024-05-18T18:19:00+02:00",
+            "status": "DECISION"
+          }
+        ]
+      },
+      {
+        "team": {
+          "medicalLevel": "SECOURS"
+        },
+        "datetime": "2024-05-18T18:22:00+02:00",
+        "resourceId": "fr.fire.sis044.cgo-044.resource.VSAV3",
+        "orgId": "fr.fire.sdis044.cgo-044",
+        "vehicleType": "SIS.VSAV",
+        "name": "VSAV3",
+        "centerCity": "44109"
+      }
+    ],
+    "caseId": "fr.health.samu440.DRFR154402413800236"
+  }
+}

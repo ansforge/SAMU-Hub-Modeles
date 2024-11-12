@@ -44,7 +44,7 @@ import java.util.Objects;
  */
 @JsonPropertyOrder(
     {Location.JSON_PROPERTY_TYPE, Location.JSON_PROPERTY_FINESS_GEO,
-     Location.JSON_PROPERTY_UNIT, Location.JSON_PROPERTY_DETAILED_ADDRESS})
+     Location.JSON_PROPERTY_SERVICE, Location.JSON_PROPERTY_DETAILED_ADDRESS})
 @JsonTypeName("location")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -443,8 +443,8 @@ public class Location {
   public static final String JSON_PROPERTY_FINESS_GEO = "finessGeo";
   private String finessGeo;
 
-  public static final String JSON_PROPERTY_UNIT = "unit";
-  private String unit;
+  public static final String JSON_PROPERTY_SERVICE = "service";
+  private String service;
 
   public static final String JSON_PROPERTY_DETAILED_ADDRESS = "detailedAddress";
   private DetailedAddress detailedAddress;
@@ -498,28 +498,28 @@ public class Location {
     this.finessGeo = finessGeo;
   }
 
-  public Location unit(String unit) {
+  public Location service(String service) {
 
-    this.unit = unit;
+    this.service = service;
     return this;
   }
 
   /**
    * Unité fonctionnelle de l&#39;établissement de santé.  A renseigner
    *uniquement si l&#39;intervention a lieu dans un établissement de santé.
-   * @return unit
+   * @return service
    **/
-  @JsonProperty(JSON_PROPERTY_UNIT)
+  @JsonProperty(JSON_PROPERTY_SERVICE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getUnit() {
-    return unit;
+  public String getService() {
+    return service;
   }
 
-  @JsonProperty(JSON_PROPERTY_UNIT)
+  @JsonProperty(JSON_PROPERTY_SERVICE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUnit(String unit) {
-    this.unit = unit;
+  public void setService(String service) {
+    this.service = service;
   }
 
   public Location detailedAddress(DetailedAddress detailedAddress) {
@@ -556,13 +556,13 @@ public class Location {
     Location location = (Location)o;
     return Objects.equals(this.type, location.type) &&
         Objects.equals(this.finessGeo, location.finessGeo) &&
-        Objects.equals(this.unit, location.unit) &&
+        Objects.equals(this.service, location.service) &&
         Objects.equals(this.detailedAddress, location.detailedAddress);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, finessGeo, unit, detailedAddress);
+    return Objects.hash(type, finessGeo, service, detailedAddress);
   }
 
   @Override
@@ -573,7 +573,7 @@ public class Location {
     sb.append("    finessGeo: ")
         .append(toIndentedString(finessGeo))
         .append("\n");
-    sb.append("    unit: ").append(toIndentedString(unit)).append("\n");
+    sb.append("    service: ").append(toIndentedString(service)).append("\n");
     sb.append("    detailedAddress: ")
         .append(toIndentedString(detailedAddress))
         .append("\n");

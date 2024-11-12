@@ -1,10 +1,10 @@
 {
     "resource": [
         {
-            "id": "76_45101#SMUR1",
+            "resourceId": "fr.health.samu770.resource.VLM250\nfr.health.samu440.resource.DRFR15DDXAAJJJ0000.1",
             "orgId": "fr.health.samu76A",
             "name": "SMUR 1 Rouen",
-            "type": "SMUR",
+            "resourceType": "SMUR",
             "nature": "BASE",
             "mobility": "VEHICULE",
             "capacity": "MEDICALE",

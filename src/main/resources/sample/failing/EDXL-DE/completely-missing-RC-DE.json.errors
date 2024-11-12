@@ -1,0 +1,9 @@
+Could not validate message against schema : errors occurred. 
+Could not detect any schemas in the message, at least one is required 
+Issues found on the $.content[0].jsonContent.embeddedJsonContent.message header: 
+ - sender: is missing but it is required
+ - recipient: is missing but it is required
+ - sentAt: is missing but it is required
+ - messageId: is missing but it is required
+ - kind: is missing but it is required
+ - status: is missing but it is required

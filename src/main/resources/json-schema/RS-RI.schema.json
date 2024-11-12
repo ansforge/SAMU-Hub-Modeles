@@ -2,13 +2,13 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RI.schema.json#",
-    "version": "24.08.28",
+    "version": "24.10.22",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesInfo",
     "required": [
         "caseId",
-        "mobilizedResource"
+        "resource"
     ],
     "properties": {
         "caseId": {
@@ -18,9 +18,9 @@
             "x-cols": 6,
             "example": "example.json#/caseId",
             "description": "A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",
-            "pattern": "fr(\\.[\\w-]+){3,4}"
+            "pattern": "^fr(\\.[\\w-]+){3,4}$"
         },
-        "mobilizedResource": {
+        "resource": {
             "type": "array",
             "items": {
                 "$ref": "#/definitions/resource"
@@ -31,13 +31,13 @@
     "definitions": {
         "resource": {
             "type": "object",
-            "title": "Ressource engagée",
+            "title": "Ressource",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
                 "datetime",
                 "resourceId",
-                "resourceType"
+                "vehicleType"
             ],
             "properties": {
                 "datetime": {
@@ -45,9 +45,9 @@
                     "title": "Date/heure de déclenchement",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/datetime",
+                    "example": "example.json#/resource/0/datetime",
                     "description": "A valoriser avec la date et heure d'engagement de la ressource/du vecteur",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "resourceId": {
@@ -55,25 +55,25 @@
                     "title": "ID Ressource partagé",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/resourceId",
+                    "example": "example.json#/resource/0/resourceId",
                     "description": "A valoriser avec l'identifiant partagé unique de la ressource engagée, normé comme suit :\n{orgID}.resource.{ID unique de la ressource partagée}\nOU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :\n{orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}",
-                    "pattern": "([\\w-]+\\.){3,4}resource(\\.[\\w-]+){1,2}"
+                    "pattern": "^([\\w-]+\\.){3,4}resource(\\.[\\w-]+){1,2}$"
                 },
                 "requestId": {
                     "type": "string",
                     "title": "ID Demande partagé",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/requestId",
+                    "example": "example.json#/resource/0/requestId",
                     "description": "A valoriser avec l'identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), normé comme suit :\n{orgID}.request.{ID unique de la demande dans le système émetteur}\nOU - si un ID unique de la demande n'était pas disponible : \n{OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}",
-                    "pattern": "([\\w-]+\\.){3,4}request(\\.[\\w-]+){1,2}"
+                    "pattern": "^([\\w-]+\\.){3,4}request(\\.[\\w-]+){1,2}$"
                 },
                 "missionId": {
                     "type": "string",
                     "title": "ID Mission local",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/missionId",
+                    "example": "example.json#/resource/0/missionId",
                     "description": "A valoriser avec le numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur"
                 },
                 "orgId": {
@@ -81,122 +81,96 @@
                     "title": "ID Organisation propriétaire",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/orgId",
+                    "example": "example.json#/resource/0/orgId",
                     "description": "A valoriser avec l'identifiant de l'organisation à laquelle appartient la ressource, normé comme suit : \n{pays}.{domaine}.{organisation}"
                 },
                 "centerName": {
                     "type": "string",
-                    "title": "ID Centre d’affectation",
+                    "title": "Nom du centre d’affectation",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/centerName",
+                    "example": "example.json#/resource/0/centerName",
                     "description": "A valoriser avec le lieu de garage principal"
                 },
-                "resourceType": {
-                    "type": "string",
-                    "title": "Type de ressource",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/resourceType",
-                    "description": "A valoriser avec le yype de ressource mobilisée : cf.nomenclature associée.",
-                    "enum": [
-                        "SMUR",
-                        "HOSPIT",
-                        "LIB",
-                        "TSU ",
-                        "SIS",
-                        "AASC",
-                        "FDO",
-                        "AUTRE"
-                    ]
-                },
-                "vehiculeType": {
+                "vehicleType": {
                     "type": "string",
                     "title": "Type de vecteur",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/vehiculeType",
+                    "example": "example.json#/resource/0/vehicleType",
                     "description": "A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée",
                     "enum": [
                         "AASC",
-                        "VLSC",
-                        "VPSP",
-                        "AUTRESC",
+                        "AASC.VLSC",
+                        "AASC.VPSP",
+                        "AASC.AUTRESC",
                         "AUTREVEC",
-                        "TAXI",
-                        "TRANSP",
-                        "TRAIN",
-                        "AVION",
-                        "PERSO",
-                        "APIED",
-                        "AUTRE",
-                        "AUTRETRA",
+                        "AUTREVEC.APIED",
+                        "AUTREVEC.AVION",
+                        "AUTREVEC.PERSO",
+                        "AUTREVEC.TAXI",
+                        "AUTREVEC.TRAIN",
+                        "AUTREVEC.TRANSP",
+                        "AUTREVEC.AUTRE",
+                        "AUTREVEC.AUTRETRA",
                         "FSI",
-                        "HELIFSI",
-                        "VLFSI",
-                        "FFSI",
-                        "VHFSI",
+                        "FSI.HELIFSI",
+                        "FSI.VLFSI",
+                        "FSI.FFSI",
+                        "FSI.VHFSI",
                         "LIB",
-                        "MEDV",
-                        "INF",
-                        "AUTREPRO",
+                        "LIB.MEDV",
+                        "LIB.INF",
+                        "LIB.AUTREPRO",
                         "SIS",
-                        "VSAV",
-                        "GRIMP",
-                        "VPL",
-                        "SRSIS",
-                        "FEUSIS",
-                        "VPMA",
-                        "VCH",
-                        "VR",
-                        "PCSIS",
-                        "VLISP",
-                        "VLMSP",
-                        "VLCG",
-                        "VLSIS",
-                        "DRAGON",
-                        "AVSC",
-                        "MOYSSE",
-                        "AUTRESIS",
-                        "NAVISIS",
+                        "SIS.DRAGON",
+                        "SIS.AVSC",
+                        "SIS.FEUSIS",
+                        "SIS.GRIMP",
+                        "SIS.NAVISIS",
+                        "SIS.PCSIS",
+                        "SIS.SRSIS",
+                        "SIS.VCH",
+                        "SIS.VLCG",
+                        "SIS.VLISP",
+                        "SIS.VLMSP",
+                        "SIS.VLSIS",
+                        "SIS.VPL",
+                        "SIS.VPMA",
+                        "SIS.VR",
+                        "SIS.VSAV",
+                        "SIS.MOYSSE",
+                        "SIS.AUTRESIS",
                         "SMUR",
-                        "VLM",
-                        "VL",
-                        "PSM1",
-                        "PSM2",
-                        "PSM3",
-                        "PSMP",
-                        "VPC",
-                        "AR",
-                        "AR-BAR",
-                        "AR-PED",
-                        "HELISMUR",
-                        "HELISAN",
-                        "AVSMUR",
-                        "AVSAN",
-                        "NAVISMUR",
+                        "SMUR.VLM",
+                        "SMUR.VL",
+                        "SMUR.PSM1",
+                        "SMUR.PSM2",
+                        "SMUR.PSM3",
+                        "SMUR.PSMP",
+                        "SMUR.VPC",
+                        "SMUR.AR",
+                        "SMUR.AR-BAR",
+                        "SMUR.AR-PED",
+                        "SMUR.HELISMUR",
+                        "SMUR.HELISAN",
+                        "SMUR.AVSMUR",
+                        "SMUR.AVSAN",
+                        "SMUR.NAVISMUR",
                         "TSU",
-                        "VSL",
-                        "AMB-GV",
-                        "AMB-PV",
-                        "AMB-BAR",
-                        "AMB"
+                        "TSU.VSL",
+                        "TSU.AMB-GV",
+                        "TSU.AMB-PV",
+                        "TSU.AMB-BAR",
+                        "TSU.AMB"
                     ]
-                },
-                "plate": {
-                    "type": "string",
-                    "title": "Immatriculation",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/plate",
-                    "description": "A valoriser avec le n° d'immatriculation du vecteur"
                 },
                 "name": {
                     "type": "string",
-                    "title": "Nom",
+                    "title": "Nom du vecteur",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/name",
+                    "example": "example.json#/resource/0/name",
                     "description": "A valoriser avec le nom donné à la ressource par l’organisation d’appartenance"
                 },
                 "centerCity": {
@@ -204,9 +178,9 @@
                     "title": "Commune du centre d’affectation",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/centerCity",
+                    "example": "example.json#/resource/0/centerCity",
                     "description": "A valoriser avec le code INSEE de la commune du centre d'affectation",
-                    "pattern": "[0-9]{5}"
+                    "pattern": "^[0-9]{5}$"
                 },
                 "team": {
                     "$ref": "#/definitions/team"
@@ -216,9 +190,6 @@
                     "items": {
                         "$ref": "#/definitions/state"
                     }
-                },
-                "coord": {
-                    "$ref": "#/definitions/coord"
                 },
                 "contact": {
                     "$ref": "#/definitions/contact"
@@ -231,13 +202,13 @@
                         "title": "Commentaires",
                         "x-health-only": false,
                         "x-cols": 6,
-                        "example": "example.json#/mobilizedResource/0/freetext/0",
+                        "example": "example.json#/resource/0/freetext/0",
                         "description": "Texte libre permettant de passer toute autre information sur la ressource (équipements supplémentaires / spécifiques, particularités du vecteur, etc.)"
                     }
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/mobilizedResource/0"
+            "example": "example.json#/resource/0"
         },
         "team": {
             "type": "object",
@@ -246,12 +217,12 @@
             "x-health-only": false,
             "required": [],
             "properties": {
-                "teamCare": {
+                "medicalLevel": {
                     "type": "string",
                     "title": "Type",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/team/teamCare",
+                    "example": "example.json#/resource/0/team/medicalLevel",
                     "description": "A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature associée",
                     "enum": [
                         "MED",
@@ -264,16 +235,16 @@
                     "title": "Nom",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/team/name",
+                    "example": "example.json#/resource/0/team/name",
                     "description": "A valoriser avec le nom de l'équipe à bord du vecteur (celui communiqué par l'organisation à laquelle l'équipe appartient)"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/mobilizedResource/0/team"
+            "example": "example.json#/resource/0/team"
         },
         "state": {
             "type": "object",
-            "title": "Etats vecteur",
+            "title": "Etat vecteur",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -286,9 +257,9 @@
                     "title": "Date/heure de changement de statut",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/state/0/datetime",
+                    "example": "example.json#/resource/0/state/0/datetime",
                     "description": "A valoriser avec la date et heure d'engagement de changement vers le nouveau statut",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "status": {
@@ -296,23 +267,23 @@
                     "title": "Statut du vecteur",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/state/0/status",
+                    "example": "example.json#/resource/0/state/0/status",
                     "description": "A valoriser avec le statut du vecteur. Cf nomenclature associée.",
                     "enum": [
                         "DECISION",
                         "DECLENCHE",
                         "DEPART",
-                        "ARRIVE",
-                        "PEC",
                         "ANNULE",
+                        "ARRIVEE",
+                        "PEC",
                         "BILAN",
-                        "TRANSPOR",
+                        "TRANSP",
                         "ETAPE1",
                         "TRANSP2",
                         "ETAPE2",
                         "TRANSP3",
                         "DESTIN",
-                        "FINPEC",
+                        "FINMED",
                         "RETOUR",
                         "RET-BASE",
                         "REN-BASE"
@@ -323,82 +294,12 @@
                     "title": "Disponibilité du vecteur",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/state/0/availability",
+                    "example": "example.json#/resource/0/state/0/availability",
                     "description": "A valoriser de manière à indiquer la disponibilité du vecteur.\nTRUE = DISPONIBLE\nFALSE = INDISPONIBLE\nVIDE = INCONNU"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/mobilizedResource/0/state/0"
-        },
-        "coord": {
-            "type": "object",
-            "title": "Dernière géolocalisation du vecteur",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
-                "lat",
-                "lon",
-                "precision"
-            ],
-            "properties": {
-                "lat": {
-                    "type": "number",
-                    "title": "Latitude",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/coord/lat",
-                    "description": "A valoriser avec la latitude du point clé de la localisation "
-                },
-                "lon": {
-                    "type": "number",
-                    "title": "Longitude",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/coord/lon",
-                    "description": "A valoriser avec la longitude du point clé de la localisation"
-                },
-                "height": {
-                    "type": "number",
-                    "title": "Altitude ",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/coord/height",
-                    "description": "A valoriser avec l'altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. "
-                },
-                "heading": {
-                    "type": "number",
-                    "title": "Cap",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/coord/heading",
-                    "description": "A valoriser en degrés"
-                },
-                "speed": {
-                    "type": "number",
-                    "title": "Vitesse",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/coord/speed",
-                    "description": "A valoriser en km/h (notamment fournie par eCall, tel, nouveau AML)"
-                },
-                "precision": {
-                    "type": "string",
-                    "title": "Précision",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/coord/precision",
-                    "description": "A valoriser avec le niveau de précision des coordonnées fournies par le système emetteur. Cf. nomenclature associée.\nCITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",
-                    "enum": [
-                        "VILLE",
-                        "RUE",
-                        "ADRESSE",
-                        "EXACTE",
-                        "INCONNUE"
-                    ]
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/mobilizedResource/0/coord"
+            "example": "example.json#/resource/0/state/0"
         },
         "contact": {
             "type": "object",
@@ -412,15 +313,16 @@
                     "title": "Type de contact ",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/contact/type",
+                    "example": "example.json#/resource/0/contact/type",
                     "description": "A valoriser avec le type de l'URI utilisée. Cf nomenclature associée.",
                     "enum": [
-                        "TEL",
                         "EMAIL",
                         "FAX",
+                        "MSS",
                         "POSTAL",
-                        "WEB",
-                        "RADIO"
+                        "RADIO",
+                        "TEL",
+                        "WEB"
                     ]
                 },
                 "details": {
@@ -428,12 +330,12 @@
                     "title": "URI du contact",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/contact/details",
+                    "example": "example.json#/resource/0/contact/details",
                     "description": "A valoriser avec la valeur de l'URI utilisée\nLe format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/mobilizedResource/0/contact"
+            "example": "example.json#/resource/0/contact"
         }
     },
     "additionalProperties": false

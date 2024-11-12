@@ -146,7 +146,7 @@ Dans le cadre d'une mission décrivant les opérations en cours :
 - reprendre la nomenclature EMSI pour caractériser la mission en cours.",SAV/ASC,TYPE,1..1,,string,NOMENCLATURE: EMSI-MISSION.TYPE
 ,Texte libre,,,,,Contient des commentaires relatifs aux objectifs et  moyens sollicités dans le cadre de la demande de concours. Les équipements supplémentaires souhaités ou le nom/ prénom des patients à prendre en charge peuvent être explicitement indiqués ici.,Besoin d'un grand véhicule car patients à prendre en charge volumineux. Ne pas utiliser les gyrophares en approche,FREETEXT,0..1,,string,
 ,Identifiant de la mission,,,,,"Contient un identifiant de demande de concours unique. Cet identifiant sera réutilisable par le partenaire pour répondre à cette demande.
-Identifiant unique de la mission dans le système du partenaire la conduisant.",/FF#bb511708-b004-4d7e-8820-1d56c19f1823,ID,0..1,,string,
+Identifiant unique de la mission dans le système du partenaire la conduisant.",/FF#bb511708-b004-4d7e-8820-1d56c19f1823,ID,1..1,,string,
 ,Identifiant de l'organisation propriétaire,,,,,"Indique l'organisation du partenaire concerné par la Demande de Concours (voir DSF). Le code CRRA ou le code du SIS peut être utilisé.
 Indique l'organisation du service réalisant la mission. 
 Dans le cas d'une réponse, c'est l'organisation du concourant qui doit être indiquée.
@@ -160,7 +160,7 @@ Pour une réponse à demande de concours :
 - Le nom de la mission est construit à partir de l'expression régulière suivante :
 ""#REPONSE_DEMANDE_CONCOURS#""{code_reponse}""#""
 où le code_reponse peut prendre les valeurs ACCEPTE, REFUS, PARTIELLE, DIVERGENTE
-- sinon libre",#DEMANDE_CONCOURS#CARENCE#Z.01.00.00#,NAME,0..1,,string,
+- sinon libre",#DEMANDE_CONCOURS#CARENCE#Z.01.00.00#,NAME,1..1,,string,
 ,Status de la mission,,,,,"Les valeurs possibles avec lesquelles valoriser ce champ sont détaillées au sein d'une nomenclature EMSI
 - ABO : mission refusée (ABOrted)
 - CANCLD : mission annulée (CANCeLeD)**
@@ -170,7 +170,7 @@ où le code_reponse peut prendre les valeurs ACCEPTE, REFUS, PARTIELLE, DIVERGEN
 - COM : événement terminé pour le métier (COMplete)
 Le status de la mission et celui des RESSOURCE associées doit être cohérent et transcodable avec un status ANTARES (voir DSF)
 
-Dans le cas d'un objet MISSION générique de réponse à demande de concours, le champ doit être valorisé à ""NST""",IPR,STATUS,0..1,,string,"ENUM: ABO, NST, CANCLD, COM, IPR, PAU"
+Dans le cas d'un objet MISSION générique de réponse à demande de concours, le champ doit être valorisé à ""NST""",IPR,STATUS,1..1,,string,"ENUM: ABO, NST, CANCLD, COM, IPR, PAU"
 ,Début de la mission,,,,,"- Dans le cadre d'une réponse à Demande de Concours
 Horraire cible pour l'arrivée sur les lieux décrites (peut diverger de l'horaire demandé)
 - Dans le cadre d'une mission décrivant les opérations en cours :
@@ -205,7 +205,7 @@ Voir nomenclature EMSI associée",MAT/VEH/ROADVE/FRFGTN,RCLASS,1..n,,string,NOME
 Le détail de fonctionnement de cette nomenclature est fournie en annexe.",,CHARACTERISTICS,0..n,,string,
 ,ID de la ressource,,,,,"Identifiant unique de la ressource  dans le système du partenaire propriétaire. Les systèmes sont garants de l'unicité et de l'invariablité des ids de véhicule dans le temps. Ils peuvent se servir des ids dans les référentiels existants si ils sont uniques et stables.
 Dans le cas d'un véhicule agrégé par un LRM (comme un SMUR), l'ID doit être valorisé avec son immatriculation.
-Dans le cas d'un véhicule agrégé par NexSIS, l'ID fournit peut ne pas correspondre à une immatriculation.",77_45102#VSAV 1,ID,0..1,,string,voir description
+Dans le cas d'un véhicule agrégé par NexSIS, l'ID fournit peut ne pas correspondre à une immatriculation.",77_45102#VSAV 1,ID,1..1,,string,voir description
 ,Identifiant de l'organisation propriétaire,,,,,"Identifiant de l'organisation à laquelle la ressource est rattachée (caserne, SAMU etc).
 Se référer au DSF pour la structure normée des organisations.
 Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.
@@ -213,7 +213,7 @@ Dans le cas où le LRM/NexSIS sert d'aggrégateur pour des véhicules appartenan
 A constituer par le rédacteur du présent EMSI pour être unique.",fr.fire.cgo440,ORG_ID,0..1,,string,
 ,Nom de la ressource,,,,,"Nom donné à la ressource par le partenaire. L'immatriculation peut être utilisée dans le nom courant des véhicules.
 Dans le cas pompier, les véhicules sont nommés
-Dans le cas d'équipier, cela peut être leur nom",VSAV 1 Nantes,NAME,0..1,,string,
+Dans le cas d'équipier, cela peut être leur nom",VSAV 1 Nantes,NAME,1..1,,string,
 ,Description de la ressource,,,,,"Texte libre permettant de décrire la ressource où d'ajouter des précisions sur son engagement.
 Permet aussi notamment de décrire des attributs librement pour la ressource.
 Par exemple, pour un véhicule, sa plaque d'immatriculation.",,FREETEXT,0..1,,string,
@@ -240,7 +240,7 @@ Plusieurs positions du même type avec des horodatages différents peuvent être
 - AVAILB : Lorsqu'une mission est terminée, une ressource redevient disponible
 - RESRVD : Lorsque la ressource est réservée pour intervenir sur l'affaire mais pas encore engagée dans l'opération. Par exemple : un SMUR termine un autre transfert patient/victime avant de rejoindre une autre intervention : il est alors RESRVD
 - IN_USE/MOBILE : à utiliser pour les véhicules et le personnel lorsqu'ils se déplaces
-- IN_USE/ON_SCENE : à utiliser pour les véhicules et le personnel lorsqu'ils sont sur les lieux de l'affaire",IN_USE/MOBILE,STATUS,0..1,,string,"ENUM: AVAILB, UNAV, MAINTC, RESRVD, VIRTUAL, IN_USE/MOBILE, IN_USE/ON_SCENE"
+- IN_USE/ON_SCENE : à utiliser pour les véhicules et le personnel lorsqu'ils sont sur les lieux de l'affaire",IN_USE/MOBILE,STATUS,1..1,,string,"ENUM: AVAILB, UNAV, MAINTC, RESRVD, VIRTUAL, IN_USE/MOBILE, IN_USE/ON_SCENE"
 ,Nationalité de la ressource,,,,,"Nationalité d'une ressource, réemployer ISO 3166-1-alpha-2 code elements.",FR,NATIONALITY,0..1,,string,
 ,Contacts,,,,,Liste de contacts utiles pour contacter par exemple le véhicule ou le personnel engagé dans l'opération.,,CONTACTS,0..n,X,contact,
 ,,Type de contact,,,,"Type de contact, voir énumération associée

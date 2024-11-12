@@ -1,0 +1,12 @@
+Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise,Cardinalité,Objet,Format (ou type),Détails de format
+Identifiant partagé du dossier de régulation médicale (DRM),,,,,,"Identifiant partagé du dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
+Il est valorisé comme suit lors de sa création : 
+{pays}.{domaine}.{organisation}.{senderCaseId}
+
+Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,
+Identifiant partagé du patient,,,,,,Indique l'identifiant partagé du patient auquel les documents sont rattachés,"fr.health.samu690.patient.P23AZ59
+fr.health.samu690.patient.DRFR15690242370035.1",patientId,0..1,,string,"REGEX: ^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$"
+Documents,,,,,,,,document,1..n,X,document,
+,Type de document,,,,,Informe l'utilisateur du type de document que le lien URL permet d'ouvrir,"Photo, ECG, bilan pdf, prescription, carte d'identité",documentType,0..1,,string,
+,URL,,,,,URL qui permet à l'utilisateur du LRM d'ouvrir le type de document précisé dans le champ précédent,https://hub.esante.gouv.fr/,url,1..1,,string,

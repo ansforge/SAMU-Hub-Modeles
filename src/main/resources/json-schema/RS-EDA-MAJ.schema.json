@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA-MAJ.schema.json#",
-    "version": "24.08.28",
+    "version": "24.10.22",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealthUpdate",
@@ -17,7 +17,7 @@
             "x-cols": 6,
             "example": "example.json#/caseId",
             "description": "Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",
-            "pattern": "fr(\\.[\\w-]+){3,4}"
+            "pattern": "^fr(\\.[\\w-]+){3,4}$"
         },
         "senderCaseId": {
             "type": "string",
@@ -57,7 +57,7 @@
             "x-cols": 6,
             "example": "example.json#/owner",
             "description": "Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA\nA valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{domaine}.{organisation})",
-            "pattern": "fr(\\.[\\w-]+){2,3}"
+            "pattern": "^fr(\\.[\\w-]+){2,3}$"
         },
         "patient": {
             "type": "array",
@@ -150,17 +150,17 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "idPat"
+                "patientId"
             ],
             "properties": {
-                "idPat": {
+                "patientId": {
                     "type": "string",
                     "title": "ID patient partagé",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/patient/0/idPat",
+                    "example": "example.json#/patient/0/patientId",
                     "description": "Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient.\nIl est valorisé comme suit lors de sa création : \n{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}\n\nOU, si un n°patient unique n'existe pas dans le système émetteur :\n{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}\n\n\n",
-                    "pattern": "([\\w-]+\\.){3,4}patient(\\.[\\w-]+){1,2}"
+                    "pattern": "^([\\w-]+\\.){3,4}patient(\\.[\\w-]+){1,2}$"
                 },
                 "administrativeFile": {
                     "$ref": "#/definitions/administrativeFile"
@@ -188,30 +188,30 @@
             "x-health-only": false,
             "required": [
                 "operator",
-                "idObs",
+                "medicalNoteId",
                 "freetext"
             ],
             "properties": {
-                "idPat": {
+                "patientId": {
                     "type": "string",
                     "title": "ID patient partagé",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/medicalNote/0/idPat",
+                    "example": "example.json#/medicalNote/0/patientId",
                     "description": "Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, \n\nValorisé comme suit lors de sa création : \n{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}\n\nOU, si un n°patient unique n'existe pas dans le système émetteur :\n{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}",
-                    "pattern": "([\\w-]+\\.){3,4}patient(\\.[\\w-]+){1,2}"
+                    "pattern": "^([\\w-]+\\.){3,4}patient(\\.[\\w-]+){1,2}$"
                 },
                 "operator": {
                     "$ref": "#/definitions/operator"
                 },
-                "idObs": {
+                "medicalNoteId": {
                     "type": "string",
                     "title": "ID Observation",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/medicalNote/0/idObs",
+                    "example": "example.json#/medicalNote/0/medicalNoteId",
                     "description": "Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation\nIl est valorisé comme suit lors de sa création : \n{OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}\n\nOU - uniquement dans le cas où un ID unique de la note n'est pas disponible dans le système : \n{OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}\n\nCet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.\n",
-                    "pattern": "([\\w-]+\\.){3}medicalNote(\\.[\\w-]+){1,2}"
+                    "pattern": "^([\\w-]+\\.){3,4}medicalNote(\\.[\\w-]+){1,2}$"
                 },
                 "creation": {
                     "type": "string",
@@ -220,7 +220,7 @@
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/creation",
                     "description": "A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "freetext": {
@@ -246,12 +246,12 @@
                 "decisionType"
             ],
             "properties": {
-                "idPat": {
+                "patientId": {
                     "type": "string",
                     "title": "ID patient partagé",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/decision/0/idPat",
+                    "example": "example.json#/decision/0/patientId",
                     "description": "A valoriser avec l'ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur"
                 },
                 "creation": {
@@ -261,7 +261,7 @@
                     "x-cols": 6,
                     "example": "example.json#/decision/0/creation",
                     "description": "A valoriser avec le groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "operator": {
@@ -291,86 +291,39 @@
                     "description": "A valoriser avec le type de ressource souhaitée ou engagée (cf.nomenclature associée) - en fonction du type de décision.\nA fournir obligatoirement pour une décision d'intervention ou de transport/orientation.",
                     "enum": [
                         "SMUR",
+                        "SMUR.ADULT",
+                        "SMUR.PED",
+                        "SMUR.UMH-S",
+                        "SMUR.CUMP",
                         "HOSPIT",
-                        "LIB",
+                        "LIBERAL",
+                        "LIBERAL.MG",
+                        "LIBERAL.PHARM",
+                        "LIBERAL.INF",
+                        "LIBERAL.KINE",
+                        "LIBERAL.SOS",
+                        "LIBERAL.MMG",
+                        "LIBERAL.MSPD",
+                        "LIBERAL.MCS",
+                        "LIBERAL.SPEMED",
+                        "LIBERAL.DENT",
+                        "LIBERAL.LABO",
+                        "LIBERAL.AUTREPRO",
                         "TSU ",
                         "SIS",
+                        "SIS.MEDSP",
+                        "SIS.ISP",
+                        "SIS.SP",
                         "AASC",
                         "FDO",
-                        "AUTRE"
-                    ]
-                },
-                "vehiculeType": {
-                    "type": "string",
-                    "title": "Type de vecteur",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/vehiculeType",
-                    "description": "A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée) en fonction du type de décision.\nA fournir obligatoirement pour une décision d'intervention ou de transport/orientation.",
-                    "enum": [
-                        "AASC",
-                        "VLSC",
-                        "VPSP",
-                        "AUTRESC",
-                        "AUTREVEC",
-                        "TAXI",
-                        "TRANSP",
-                        "TRAIN",
-                        "AVION",
-                        "PERSO",
-                        "APIED",
+                        "FDO.PN",
+                        "FDO.GEND",
+                        "FDO.PM",
+                        "FDO.DOUANES",
                         "AUTRE",
-                        "AUTRETRA",
-                        "FSI",
-                        "HELIFSI",
-                        "VLFSI",
-                        "FFSI",
-                        "VHFSI",
-                        "LIB",
-                        "MEDV",
-                        "INF",
-                        "AUTREPRO",
-                        "SIS",
-                        "VSAV",
-                        "GRIMP",
-                        "VPL",
-                        "SRSIS",
-                        "FEUSIS",
-                        "VPMA",
-                        "VCH",
-                        "VR",
-                        "PCSIS",
-                        "VLISP",
-                        "VLMSP",
-                        "VLCG",
-                        "VLSIS",
-                        "DRAGON",
-                        "AVSC",
-                        "MOYSSE",
-                        "AUTRESIS",
-                        "NAVISIS",
-                        "SMUR",
-                        "VLM",
-                        "VL",
-                        "PSM1",
-                        "PSM2",
-                        "PSM3",
-                        "PSMP",
-                        "VPC",
-                        "AR",
-                        "AR-BAR",
-                        "AR-PED",
-                        "HELISMUR",
-                        "HELISAN",
-                        "AVSMUR",
-                        "AVSAN",
-                        "NAVISMUR",
-                        "TSU",
-                        "VSL",
-                        "AMB-GV",
-                        "AMB-PV",
-                        "AMB-BAR",
-                        "AMB"
+                        "AUTRE.ADM",
+                        "AUTRE.DAE",
+                        "AUTRE.AUTRE"
                     ]
                 },
                 "medicalTransport": {
@@ -609,7 +562,7 @@
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/notes/0/creation",
                     "description": "A valoriser avec le groupe date heure de création de l'information complémentaire",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "freetext": {
@@ -636,6 +589,9 @@
                     "items": {
                         "$ref": "#/definitions/externalId"
                     }
+                },
+                "generalPractitioner": {
+                    "$ref": "#/definitions/generalPractitioner"
                 }
             },
             "additionalProperties": false,
@@ -772,7 +728,7 @@
                     "x-cols": 6,
                     "example": "example.json#/patient/0/detail/age",
                     "description": "A valoriser avec l'age du patient.\nAu format \"Durée\" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) et en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)",
-                    "pattern": "P[0-9]{1,3}[YMWD]"
+                    "pattern": "^P[0-9]{1,3}[YMWD]$"
                 },
                 "careLevel": {
                     "type": "string",
@@ -787,6 +743,22 @@
                         "R3",
                         "R4"
                     ]
+                },
+                "medicalHistory": {
+                    "type": "string",
+                    "title": "Antécédents",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/detail/medicalHistory",
+                    "description": "Texte libre  pour décrire les antécédents du patient. \nSi ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. "
+                },
+                "treatment": {
+                    "type": "string",
+                    "title": "Traitements",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/detail/treatment",
+                    "description": "Texte libre  pour décrire les traitements du patient.\nSi ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. "
                 }
             },
             "additionalProperties": false,
@@ -849,6 +821,112 @@
             "additionalProperties": false,
             "example": "example.json#/patient/0/administrativeFile/externalId/0"
         },
+        "generalPractitioner": {
+            "type": "object",
+            "title": "Médecin traitant ",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "detailedName"
+            ],
+            "properties": {
+                "detailedName": {
+                    "$ref": "#/definitions/detailedName"
+                },
+                "rppsId": {
+                    "type": "string",
+                    "title": "Identifiant RPPS",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/administrativeFile/generalPractitioner/rppsId",
+                    "description": "Numéro RPPS du médecin traitant"
+                },
+                "contact": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/personalContact"
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/patient/0/administrativeFile/generalPractitioner"
+        },
+        "detailedName": {
+            "type": "object",
+            "title": "Prénom & nom usuel",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "complete"
+            ],
+            "properties": {
+                "complete": {
+                    "type": "string",
+                    "title": "Prénom et nom",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/administrativeFile/generalPractitioner/detailedName/complete",
+                    "description": "A valoriser avec le prénom et le nom usuel du requérant/appelant.\nSi les champs callerLastName et callerFirstName sont également renseignés, le champ callerName doit être valorisé ainsi : \"{callerFirstName} {callerLastName}\".\n\nSpécificités 15-18  : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés."
+                },
+                "lastName": {
+                    "type": "string",
+                    "title": "Nom",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/administrativeFile/generalPractitioner/detailedName/lastName",
+                    "description": "A valoriser avec le nom usuel du requérant"
+                },
+                "firstName": {
+                    "type": "string",
+                    "title": "Prénom",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/administrativeFile/generalPractitioner/detailedName/firstName",
+                    "description": "A valoriser avec le prénom usuel du réquérant.\nPar convention les prénoms composés doivent préférablement être séparés par le caractère \"-\""
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/patient/0/administrativeFile/generalPractitioner/detailedName"
+        },
+        "personalContact": {
+            "type": "object",
+            "title": "Contact médecin",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "type",
+                "detail"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "title": "Type de contact",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/administrativeFile/generalPractitioner/contact/0/type",
+                    "description": "A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.",
+                    "enum": [
+                        "EMAIL",
+                        "FAX",
+                        "MSS",
+                        "POSTAL",
+                        "RADIO",
+                        "TEL",
+                        "WEB"
+                    ]
+                },
+                "detail": {
+                    "type": "string",
+                    "title": "URI du contact",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/administrativeFile/generalPractitioner/contact/0/detail",
+                    "description": "A valoriser avec la valeur de l'URI utilisée.\nLe format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/patient/0/administrativeFile/generalPractitioner/contact/0"
+        },
         "insStrictFeatures": {
             "type": "object",
             "title": "Traits stricts de l'identité",
@@ -871,7 +949,7 @@
                     "x-cols": 6,
                     "example": "example.json#/patient/0/identity/strictFeatures/birthDate",
                     "description": "A valoriser avec la date de naissance du patient",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}"
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
                 },
                 "sex": {
                     "type": "string",
@@ -881,52 +959,15 @@
                     "example": "example.json#/patient/0/identity/strictFeatures/sex",
                     "description": "A valoriser avec le sexe du patient",
                     "enum": [
-                        "MASC",
-                        "FEM",
-                        "AUTRE",
-                        "INCONNU"
+                        "M",
+                        "F",
+                        "O",
+                        "UN"
                     ]
                 }
             },
             "additionalProperties": false,
             "example": "example.json#/patient/0/identity/strictFeatures"
-        },
-        "detailedName": {
-            "type": "object",
-            "title": "Traits non stricts de l'identité",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
-                "complete"
-            ],
-            "properties": {
-                "complete": {
-                    "type": "string",
-                    "title": "Prénom et nom",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/identity/nonStrictFeatures/complete",
-                    "description": "A valoriser avec le prénom et le nom usuel du requérant/appelant.\nSi les champs callerLastName et callerFirstName sont également renseignés, le champ callerName doit être valorisé ainsi : \"{callerFirstName} {callerLastName}\".\n\nSpécificités 15-18  : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés."
-                },
-                "lastName": {
-                    "type": "string",
-                    "title": "Nom",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/identity/nonStrictFeatures/lastName",
-                    "description": "A valoriser avec le nom usuel du requérant"
-                },
-                "firstName": {
-                    "type": "string",
-                    "title": "Prénom",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/identity/nonStrictFeatures/firstName",
-                    "description": "A valoriser avec le prénom usuel du réquérant.\nPar convention les prénoms composés doivent préférablement être séparés par le caractère \"-\""
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/patient/0/identity/nonStrictFeatures"
         },
         "mainDiagnosis": {
             "type": "object",
@@ -944,7 +985,8 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/hypothesis/mainDiagnosis/code",
-                    "description": "A valoriser avec le code de la nomenclature associée"
+                    "description": "A valoriser avec le code de la nomenclature associée",
+                    "pattern": "^[A-Z]\\d{2}(\\.[\\d\\+\\-]{1,3})?$"
                 },
                 "label": {
                     "type": "string",
@@ -974,7 +1016,8 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/hypothesis/otherDiagnosis/0/code",
-                    "description": "A valoriser avec le code de la nomenclature associée"
+                    "description": "A valoriser avec le code de la nomenclature associée",
+                    "pattern": "^[A-Z]\\d{2}(\\.[\\d\\+\\-]{1,3})?$"
                 },
                 "label": {
                     "type": "string",

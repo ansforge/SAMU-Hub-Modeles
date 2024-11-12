@@ -57,16 +57,16 @@ public class Patient {
 
   /**
    * Sexe du patient, suivant le libellé court de la nomenclature
-   * SI-SAMU-NOMENC_SEXE
+   * NOS-NOMENC_SEXE
    */
   public enum SexEnum {
-    MASC("MASC"),
+    M("M"),
 
-    FEM("FEM"),
+    F("F"),
 
-    AUTRE("AUTRE"),
+    O("O"),
 
-    INCONNU("INCONNU");
+    UN("UN");
 
     private String value;
 
@@ -158,7 +158,7 @@ public class Patient {
 
   /**
    * Sexe du patient, suivant le libellé court de la nomenclature
-   *SI-SAMU-NOMENC_SEXE
+   *NOS-NOMENC_SEXE
    * @return sex
    **/
   @JsonProperty(JSON_PROPERTY_SEX)

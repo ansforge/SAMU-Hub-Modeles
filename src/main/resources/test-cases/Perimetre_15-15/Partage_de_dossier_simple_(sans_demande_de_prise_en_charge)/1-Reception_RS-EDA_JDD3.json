@@ -20,7 +20,7 @@
             },
             "details": {
                 "priority": "P1",
-                "attribution": "MU"
+                "attribution": "DRM.MRU.MU"
             }
         },
         "owner": "fr.health.samu009",
@@ -68,7 +68,7 @@
                     "detail": "561964589",
                     "channel": "Personne"
                 },
-                "language": "FR",
+                "language": "fr",
                 "type": "TIERS",
                 "detailedName": {
                     "complete": "Lucas Bernardi ",

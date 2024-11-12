@@ -56,12 +56,27 @@ ACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE</documentation>
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="deadline" type="string">
+            <element minOccurs="0" name="deadline">
                 <annotation>
-                    <documentation>A valoriser avec le délai de réponse maximum auquel s'engage l'expéditeur (en minutes) 
-Cas particulier : en cas de réponse "Partielle" car le délai souhaité ne peut pas être respecté,  à valoriser obligatoirement avec le délai de réponse maximum auquel s'engage l'expéditeur de la réponse (en minutes).
+                    <documentation>A valoriser avec le délai de réponse auquel s'engage l'expéditeur (cf. nomenclature) 
+Cas particulier : en cas de réponse "Partielle" car le délai souhaité ne peut pas être respecté,  à valoriser obligatoirement avec le délai de réponse maximum auquel s'engage l'expéditeur de la réponse,
 </documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="DEL0"/>
+                        <enumeration value="ASAP"/>
+                        <enumeration value="30M"/>
+                        <enumeration value="45M"/>
+                        <enumeration value="1H"/>
+                        <enumeration value="2H"/>
+                        <enumeration value="4H"/>
+                        <enumeration value="8H"/>
+                        <enumeration value="12H"/>
+                        <enumeration value="24H"/>
+                        <enumeration value="RDV"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>

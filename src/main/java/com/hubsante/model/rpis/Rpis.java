@@ -46,7 +46,7 @@ import java.util.Objects;
 /**
  * Rpis
  */
-@JsonPropertyOrder({Rpis.JSON_PROPERTY_EVENT, Rpis.JSON_PROPERTY_REGULATION,
+@JsonPropertyOrder({Rpis.JSON_PROPERTY_CONTEXT, Rpis.JSON_PROPERTY_REGULATION,
                     Rpis.JSON_PROPERTY_PATIENT, Rpis.JSON_PROPERTY_INTERVENTION,
                     Rpis.JSON_PROPERTY_ORIENTATION})
 @JsonTypeName("rpis")
@@ -55,8 +55,8 @@ import java.util.Objects;
 public class Rpis {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0:rpis";
-  public static final String JSON_PROPERTY_EVENT = "event";
-  private Event event;
+  public static final String JSON_PROPERTY_CONTEXT = "context";
+  private Event context;
 
   public static final String JSON_PROPERTY_REGULATION = "regulation";
   private Regulation regulation;
@@ -72,27 +72,27 @@ public class Rpis {
 
   public Rpis() {}
 
-  public Rpis event(Event event) {
+  public Rpis context(Event context) {
 
-    this.event = event;
+    this.context = context;
     return this;
   }
 
   /**
-   * Get event
-   * @return event
+   * Get context
+   * @return context
    **/
-  @JsonProperty(JSON_PROPERTY_EVENT)
+  @JsonProperty(JSON_PROPERTY_CONTEXT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Event getEvent() {
-    return event;
+  public Event getContext() {
+    return context;
   }
 
-  @JsonProperty(JSON_PROPERTY_EVENT)
+  @JsonProperty(JSON_PROPERTY_CONTEXT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setEvent(Event event) {
-    this.event = event;
+  public void setContext(Event context) {
+    this.context = context;
   }
 
   public Rpis regulation(Regulation regulation) {
@@ -196,7 +196,7 @@ public class Rpis {
       return false;
     }
     Rpis rpis = (Rpis)o;
-    return Objects.equals(this.event, rpis.event) &&
+    return Objects.equals(this.context, rpis.context) &&
         Objects.equals(this.regulation, rpis.regulation) &&
         Objects.equals(this.patient, rpis.patient) &&
         Objects.equals(this.intervention, rpis.intervention) &&
@@ -205,14 +205,15 @@ public class Rpis {
 
   @Override
   public int hashCode() {
-    return Objects.hash(event, regulation, patient, intervention, orientation);
+    return Objects.hash(context, regulation, patient, intervention,
+                        orientation);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Rpis {\n");
-    sb.append("    event: ").append(toIndentedString(event)).append("\n");
+    sb.append("    context: ").append(toIndentedString(context)).append("\n");
     sb.append("    regulation: ")
         .append(toIndentedString(regulation))
         .append("\n");

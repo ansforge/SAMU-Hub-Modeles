@@ -22,6 +22,7 @@ pd.set_option('display.width', 1000)
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
 full_asyncapi = None
+all_model_types = []
 first_codeandlabel_name = ""
 first_codeandlabel_properties = []
 
@@ -92,7 +93,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
         if path_file != '':
             df_nomenclature = pd.read_csv(path_file, sep=",", keep_default_na=False, na_values=['_'], encoding="utf-8",
-                                          dtype={'code': str})   
+                                          dtype={'code': str})
             L_ret = df_nomenclature["code"].values.tolist()
         # ToDo: ajouter un bloc dans le elseif pour détecter des https:// et aller chercher les nomenclatures publiées en ligne (MOS/NOs par exemple)
         else:
@@ -113,6 +114,9 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     def is_custom_content():
         return MODEL_TYPE == "customContent"
+
+    def is_allowing_additional_properties():
+        return is_custom_content() or MODEL_TYPE == "DistributionElement"
 
     Path('out/' + name).mkdir(parents=True, exist_ok=True)
 
@@ -476,7 +480,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         'required': [],
         'properties': {},
         'definitions': {},
-        'additionalProperties': is_custom_content()
+        'additionalProperties': is_allowing_additional_properties()
     }
 
     def has_format_details(elem, details):
@@ -487,11 +491,11 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         """Get the matching type for a given type name"""
         typeName = child['Format (ou type)']
         if typeName == 'date':
-            return 'string', r'\d{4}-\d{2}-\d{2}', None
+            return 'string', r'^\d{4}-\d{2}-\d{2}$', None
         elif typeName == 'datetime':
-            return 'string', r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}', 'date-time'
+            return 'string', r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$', 'date-time'
         elif typeName == 'phoneNumber':
-            return 'string', r'tel:([#\+\*]|37000|00+)?[0-9]{2,15}', None
+            return 'string', r'^tel:([#\+\*]|37000|00+)?[0-9]{2,15}$', None
         else:
             if has_format_details(child, FormatFlags.REGEX):
                 return typeName, child['Détails de format'][len(FormatFlags.REGEX):], None
@@ -567,6 +571,15 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
                 'additionalProperties':  is_source_message(childTrueTypeName),
                 'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
+        elif (childOriginalTypeName != "codeAndLabel"
+              and 'children' in child):
+            """If this is not the first occurrence of the object
+            and it has children, then the model is incorrectly defined and we should throw an error and exit.
+            We make an exception for codeAndLabel"""
+            print(f"{Color.RED}ERROR: object '{childTrueTypeName}' is defined multiple times. ")
+            print(f"Make sure the object is not defined multiple times in the model.{Color.END}")
+            exit(1)
+
         """If this is the first codeAndLabel, we record its name, otherwise we copy the properties from the first 
         codeAndLabel to the current codeAndLabel"""
         if childOriginalTypeName == "codeAndLabel":
@@ -687,6 +700,19 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating JSON schema...{Color.END}')
     DFS(rootObject, build_json_schema)
+
+    """Before dumping, we verify the json schema definitions to make sure no objects with no properties are defined.
+    This verification is skipped for RS-ERROR schema"""
+    if MODEL_TYPE != "error":
+        empty_object_errors = []
+        for key, definition in json_schema['definitions'].items():
+            if not definition['properties']:
+                empty_object_errors.append(f"{Color.RED}ERROR: object '{key}' is defined but has no properties.{Color.END}")
+        if empty_object_errors:
+            for error in empty_object_errors:
+                print(error)
+            print(f"{Color.RED}Make sure no empty objects are defined in the model.{Color.END}")
+            exit(1)
     with open(f'out/{name}/{name}.schema.json', 'w', encoding='utf8') as outfile:
         json.dump(json_schema, outfile, indent=4, ensure_ascii=False)
     print('JSON schema generated.')
@@ -718,17 +744,21 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     with open('template.openapi.yaml') as f:
         full_yaml = yaml.load(f, Loader=yaml.loader.SafeLoader)
 
-        wrapper_yaml = {
-            WRAPPER_NAME: {
-                "type": "object",
-                "required": [MODEL_TYPE],
-                "properties": {
-                    MODEL_TYPE: {
-                        "$ref": "#/components/schemas/" + MODEL_TYPE
+        # Do not append wrapper_yaml if we're generating RC-DE schema
+        if name != 'RC-DE':
+            wrapper_yaml = {
+                WRAPPER_NAME: {
+                    "type": "object",
+                    "required": [MODEL_TYPE],
+                    "properties": {
+                        MODEL_TYPE: {
+                            "$ref": "#/components/schemas/" + MODEL_TYPE
+                        }
                     }
                 }
             }
-        }
+        else:
+            wrapper_yaml = {}
 
         full_yaml['components']['schemas'] = {
             **full_yaml['components']['schemas'],
@@ -754,7 +784,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
         # Adding current asyncapi schemas to full asyncapi schema
         global full_asyncapi
-        if (full_asyncapi is None):
+        if full_asyncapi is None:
             full_asyncapi = asyncapi_yaml
         else:
             full_asyncapi['components']['schemas'].update(asyncapi_yaml['components']['schemas'])
@@ -950,6 +980,9 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
                 def_to_table(MODEL_NAME, json_schema, style=style).save(f'docx-styles/schema-{style}.docx')
             else:
                 def_to_table(MODEL_NAME, json_schema, style=style).save(f'docx-styles/others/schema-{style}.docx')
+
+    # Add MODEL_TYPE to parsed schemas
+    all_model_types.append(MODEL_TYPE)
 
 
 if __name__ == '__main__':
