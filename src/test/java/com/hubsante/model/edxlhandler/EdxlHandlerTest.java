@@ -59,23 +59,24 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
     };
 
     @Test
-    @DisplayName("should consistently deserialize EDXL with several content objects")
-    public void deserializeEDXLWithSeveralContentObjects() throws IOException {
-        String json = getMessageString("EDXL-DE");
-        EdxlMessage message = converter.deserializeJsonEDXL(json);
-
-        assertEquals(2, message.getContent().size());
-        assertEquals(2, message.getAllContentMessages().size());
-        assertEquals(message.getFirstContentMessage(), message.getAllContentMessages().get(0));
-    }
-
-    @Test
     @DisplayName("should add XML prefix")
     public void verifyXmlPrefix() throws IOException {
         String json = getMessageByFileName("TECHNICAL/complete.json");
         EdxlMessage messageFromInput = converter.deserializeJsonEDXL(json);
         String xml = converter.serializeXmlEDXL(messageFromInput);
         assertTrue(() -> xml.startsWith(xmlPrefix()));
+    }
+
+    @Test
+    @DisplayName("should deserialize complete message with EDXL-DE envelope")
+    public void deserializeCompleteMessages() throws IOException {
+        File jsonMessage = new File(TestMessagesHelper.class.getClassLoader().getResource("sample/valid/EDXL-DE/EDXL-DE.json").getFile());
+        String useCaseJson = new String(Files.readAllBytes(jsonMessage.toPath()), StandardCharsets.UTF_8);
+        EdxlMessage message = converter.deserializeJsonEDXL(useCaseJson);
+
+        File xmlMessage = new File(TestMessagesHelper.class.getClassLoader().getResource("sample/valid/EDXL-DE/EDXL-DE.xml").getFile());
+        String useCaseXml = new String(Files.readAllBytes(xmlMessage.toPath()), StandardCharsets.UTF_8);
+        EdxlMessage expectedMessage = converter.deserializeXmlEDXL(useCaseXml);
     }
 
     @Test

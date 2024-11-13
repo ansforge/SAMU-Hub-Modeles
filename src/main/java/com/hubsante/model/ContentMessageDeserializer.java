@@ -24,7 +24,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.hubsante.model.cisu.CreateCaseWrapper;
 import com.hubsante.model.documentlink.DocumentLinkWrapper;
 import com.hubsante.model.edxl.ContentMessage;
+import com.hubsante.model.edxl.Descriptor;
 import com.hubsante.model.edxl.EdxlMessage;
+import com.hubsante.model.edxl.Keyword;
 import com.hubsante.model.emsi.EmsiWrapper;
 import com.hubsante.model.geolocation.GeoPositionsUpdateWrapper;
 import com.hubsante.model.geolocation.GeoResourcesDetailsWrapper;
@@ -76,8 +78,10 @@ public class ContentMessageDeserializer extends JsonDeserializer<ContentMessage>
         ObjectCodec codec = jp.getCodec();
         JsonNode node = codec.readTree(jp);
         String model = null;
+        Descriptor testDesc = ((EdxlMessage) jp.getParsingContext().getParent().getParent().getParent().getParent().getCurrentValue()).getDescriptor();
+        Keyword test = ((EdxlMessage) jp.getParsingContext().getParent().getParent().getParent().getParent().getCurrentValue()).getDescriptor().getKeyword().get(0);
         try {
-            model = ((EdxlMessage) jp.getParsingContext().getParent().getParent().getParent().getParent().getCurrentValue()).getDescriptor().getKeyword().getValue();
+            model = ((EdxlMessage) jp.getParsingContext().getParent().getParent().getParent().getParent().getCurrentValue()).getDescriptor().getKeyword().stream().filter(keyword -> keyword.getValueListURI().equals("urn:hubsante:model")).findFirst().get().getValue();
         } catch (NullPointerException e) {
             throw new JsonParseException(jp, "Model name not found in $.descriptor.keyword.value");
         }

@@ -17,6 +17,7 @@ package com.hubsante.model.edxl;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 @JsonAutoDetect(
         fieldVisibility = JsonAutoDetect.Visibility.ANY,
@@ -24,33 +25,35 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 )
 public class Keyword {
 
-    @JsonProperty(value = "ct:ValueListURI", required = true)
-    public String ValueListURI;
+    @JsonProperty(value = "valueListURI", required = true)
+    @JacksonXmlProperty(namespace = "ct", localName = "ValueListURI", isAttribute = true)
+    public String valueListURI;
 
-    @JsonProperty(value = "ct:Value", required = true)
-    public String Value;
+    @JsonProperty(value = "value", required = true)
+    @JacksonXmlProperty(namespace = "ct", localName = "Value", isAttribute = true)
+    public String value;
 
     public Keyword() {
     }
 
     public Keyword(String ValueListURI, String Value) {
-        this.ValueListURI = ValueListURI;
-        this.Value = Value;
+        this.valueListURI = ValueListURI;
+        this.value = Value;
     }
 
     public String getValueListURI() {
-        return ValueListURI;
+        return valueListURI;
     }
 
     public void setValueListURI(String ValueListURI) {
-        this.ValueListURI = ValueListURI;
+        this.valueListURI = ValueListURI;
     }
 
     public String getValue() {
-        return Value;
+        return value;
     }
 
     public void setValue(String Value) {
-        this.Value = Value;
+        this.value = Value;
     }
 }

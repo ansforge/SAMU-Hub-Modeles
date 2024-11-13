@@ -16,15 +16,25 @@
 package com.hubsante.model.edxl;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @JsonAutoDetect(
         fieldVisibility = JsonAutoDetect.Visibility.ANY,
         getterVisibility = JsonAutoDetect.Visibility.NONE
 )
+@JsonPropertyOrder({
+        "language",
+        "keyword",
+        "explicitAddress"
+})
 public class Descriptor {
 
     @JacksonXmlProperty(localName = "xlink:type", isAttribute = true)
@@ -32,11 +42,11 @@ public class Descriptor {
         return "resource";
     }
 
-    @JsonProperty(value = "keyword", required = true)
-    private Keyword keyword;
-
     @JsonProperty(value = "language", required = true)
     private String language;
+
+    @JsonProperty(value = "keyword", required = true)
+    private List<Keyword> keyword = new ArrayList<>();
 
     @JsonProperty(value = "explicitAddress", required = true)
     private ExplicitAddress explicitAddress;
@@ -44,15 +54,34 @@ public class Descriptor {
     public Descriptor() {
     }
 
-    public Descriptor(String language, ExplicitAddress explicitAddress, Keyword keyword) {
+    public Descriptor(String language, ExplicitAddress explicitAddress, List<Keyword> keyword) {
         this.language = language;
         this.explicitAddress = explicitAddress;
         this.keyword = keyword;
     }
 
-    public Keyword getKeyword() { return keyword; }
+    /**
+     * Get keyword
+     * @return keyword
+     **/
+    @JsonProperty("keyword")
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public List<Keyword> getKeyword() {
+        return keyword;
+    }
 
-    public void setKeyword(Keyword keyword) { this.keyword = keyword; }
+    @JacksonXmlElementWrapper(useWrapping = false)
+    @JsonProperty("keyword")
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setKeyword(List<Keyword> keyword) {
+        if (keyword == null) {
+            return;
+        }
+        if (this.keyword == null) {
+            this.keyword = new ArrayList<>();
+        }
+        this.keyword.addAll(keyword);
+    }
 
     public String getLanguage() {
         return language;
