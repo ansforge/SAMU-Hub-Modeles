@@ -14,9 +14,6 @@ module Health
     # A valoriser avec l'état du dossier dans le système émetteur Spécificité 15-15 : peut être ignoré en réception, partagé à titre indicatif uniquement Spécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE à la tablette
     attr_accessor :status
 
-    # Décrit le type de professionnel médical à qui le dossier est attribué : médecin généraliste, médecin urgentiste etc.
-    attr_accessor :attribution
-
     # Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3
     attr_accessor :priority
 
@@ -49,7 +46,6 @@ module Health
     def self.attribute_map
       {
         :'status' => :'status',
-        :'attribution' => :'attribution',
         :'priority' => :'priority',
         :'care_level' => :'careLevel'
       }
@@ -64,7 +60,6 @@ module Health
     def self.openapi_types
       {
         :'status' => :'String',
-        :'attribution' => :'String',
         :'priority' => :'String',
         :'care_level' => :'String'
       }
@@ -95,10 +90,6 @@ module Health
         self.status = attributes[:'status']
       end
 
-      if attributes.key?(:'attribution')
-        self.attribution = attributes[:'attribution']
-      end
-
       if attributes.key?(:'priority')
         self.priority = attributes[:'priority']
       end
@@ -122,8 +113,6 @@ module Health
       warn '[DEPRECATED] the `valid?` method is obsolete'
       status_validator = EnumAttributeValidator.new('String', ["PROGRAMME", " ACTIF", "ACHEVE", "VALIDE", "CLOTURE", "CLASSE", "ARCHIVE"])
       return false unless status_validator.valid?(@status)
-      attribution_validator = EnumAttributeValidator.new('String', ["DRM", "DRMMRU", "MU", "DENT", "GERIA", "PEDIA", "PSY", "TOXICOL", "INDISPMU", "SSE", "PLANBLAN", "PCSAMU", "DRMMRL", "MG", "INDISPMG", "ABSML", "DR", "DREG", "DRARM", "DRMED", "DRPHARMA", "DRDENT", "DRINFO", "DOS-SIS", "DOS-FDO", "D", "D-MALV", "ERR", "NRP", "MALV", "FAX", "ITERATIF", "D-IDENT", "ADMIN", "PERSO", "AUTRE"])
-      return false unless attribution_validator.valid?(@attribution)
       priority_validator = EnumAttributeValidator.new('String', ["P0", "P1", "P2", "P3", "NR"])
       return false unless priority_validator.valid?(@priority)
       care_level_validator = EnumAttributeValidator.new('String', ["R1", "R2", "R3", "R4"])
@@ -139,16 +128,6 @@ module Health
         fail ArgumentError, "invalid value for \"status\", must be one of #{validator.allowable_values}."
       end
       @status = status
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] attribution Object to be assigned
-    def attribution=(attribution)
-      validator = EnumAttributeValidator.new('String', ["DRM", "DRMMRU", "MU", "DENT", "GERIA", "PEDIA", "PSY", "TOXICOL", "INDISPMU", "SSE", "PLANBLAN", "PCSAMU", "DRMMRL", "MG", "INDISPMG", "ABSML", "DR", "DREG", "DRARM", "DRMED", "DRPHARMA", "DRDENT", "DRINFO", "DOS-SIS", "DOS-FDO", "D", "D-MALV", "ERR", "NRP", "MALV", "FAX", "ITERATIF", "D-IDENT", "ADMIN", "PERSO", "AUTRE"])
-      unless validator.valid?(attribution)
-        fail ArgumentError, "invalid value for \"attribution\", must be one of #{validator.allowable_values}."
-      end
-      @attribution = attribution
     end
 
     # Custom attribute writer method checking allowed values (enum).
@@ -177,7 +156,6 @@ module Health
       return true if self.equal?(o)
       self.class == o.class &&
           status == o.status &&
-          attribution == o.attribution &&
           priority == o.priority &&
           care_level == o.care_level
     end
@@ -191,7 +169,7 @@ module Health
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [status, attribution, priority, care_level].hash
+      [status, priority, care_level].hash
     end
 
     # Builds the object from hash

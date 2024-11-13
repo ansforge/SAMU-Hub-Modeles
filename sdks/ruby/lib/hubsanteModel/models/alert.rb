@@ -11,19 +11,12 @@ require 'time'
 
 module Health
   class Alert
-    # A valoriser avec le groupe date heure de réception de l'alerte/appel
-    attr_accessor :reception
-
     attr_accessor :notes
-
-    attr_accessor :caller
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'reception' => :'reception',
-        :'notes' => :'notes',
-        :'caller' => :'caller'
+        :'notes' => :'notes'
       }
     end
 
@@ -35,9 +28,7 @@ module Health
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'reception' => :'Time',
-        :'notes' => :'Array<Notes>',
-        :'caller' => :'Caller'
+        :'notes' => :'Array<Notes>'
       }
     end
 
@@ -62,22 +53,10 @@ module Health
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'reception')
-        self.reception = attributes[:'reception']
-      else
-        self.reception = nil
-      end
-
       if attributes.key?(:'notes')
         if (value = attributes[:'notes']).is_a?(Array)
           self.notes = value
         end
-      end
-
-      if attributes.key?(:'caller')
-        self.caller = attributes[:'caller']
-      else
-        self.caller = nil
       end
     end
 
@@ -86,19 +65,6 @@ module Health
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @reception.nil?
-        invalid_properties.push('invalid value for "reception", reception cannot be nil.')
-      end
-
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
-      if @reception !~ pattern
-        invalid_properties.push("invalid value for \"reception\", must conform to the pattern #{pattern}.")
-      end
-
-      if @caller.nil?
-        invalid_properties.push('invalid value for "caller", caller cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -106,25 +72,7 @@ module Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @reception.nil?
-      return false if @reception !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
-      return false if @caller.nil?
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] reception Value to be assigned
-    def reception=(reception)
-      if reception.nil?
-        fail ArgumentError, 'reception cannot be nil'
-      end
-
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
-      if reception !~ pattern
-        fail ArgumentError, "invalid value for \"reception\", must conform to the pattern #{pattern}."
-      end
-
-      @reception = reception
     end
 
     # Checks equality by comparing each attribute.
@@ -132,9 +80,7 @@ module Health
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          reception == o.reception &&
-          notes == o.notes &&
-          caller == o.caller
+          notes == o.notes
     end
 
     # @see the `==` method
@@ -146,7 +92,7 @@ module Health
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [reception, notes, caller].hash
+      [notes].hash
     end
 
     # Builds the object from hash

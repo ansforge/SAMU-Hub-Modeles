@@ -137,7 +137,7 @@ module Health
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      pattern = Regexp.new(/\+\d{5,18}/)
+      pattern = Regexp.new(/^\+\d{5,18}$/)
       if !@phone_number.nil? && @phone_number !~ pattern
         invalid_properties.push("invalid value for \"phone_number\", must conform to the pattern #{pattern}.")
       end
@@ -149,7 +149,7 @@ module Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@phone_number.nil? && @phone_number !~ Regexp.new(/\+\d{5,18}/)
+      return false if !@phone_number.nil? && @phone_number !~ Regexp.new(/^\+\d{5,18}$/)
       true
     end
 
@@ -160,7 +160,7 @@ module Health
         fail ArgumentError, 'phone_number cannot be nil'
       end
 
-      pattern = Regexp.new(/\+\d{5,18}/)
+      pattern = Regexp.new(/^\+\d{5,18}$/)
       if phone_number !~ pattern
         fail ArgumentError, "invalid value for \"phone_number\", must conform to the pattern #{pattern}."
       end

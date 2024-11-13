@@ -23,6 +23,12 @@ module Health
     # A valoriser avec le niveau de soins spécifique au patient
     attr_accessor :care_level
 
+    # Texte libre  pour décrire les antécédents du patient.  Si ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. 
+    attr_accessor :medical_history
+
+    # Texte libre  pour décrire les traitements du patient. Si ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. 
+    attr_accessor :treatment
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -51,7 +57,9 @@ module Health
         :'weight' => :'weight',
         :'height' => :'height',
         :'age' => :'age',
-        :'care_level' => :'careLevel'
+        :'care_level' => :'careLevel',
+        :'medical_history' => :'medicalHistory',
+        :'treatment' => :'treatment'
       }
     end
 
@@ -66,7 +74,9 @@ module Health
         :'weight' => :'Float',
         :'height' => :'Float',
         :'age' => :'String',
-        :'care_level' => :'String'
+        :'care_level' => :'String',
+        :'medical_history' => :'String',
+        :'treatment' => :'String'
       }
     end
 
@@ -106,6 +116,14 @@ module Health
       if attributes.key?(:'care_level')
         self.care_level = attributes[:'care_level']
       end
+
+      if attributes.key?(:'medical_history')
+        self.medical_history = attributes[:'medical_history']
+      end
+
+      if attributes.key?(:'treatment')
+        self.treatment = attributes[:'treatment']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -113,7 +131,7 @@ module Health
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      pattern = Regexp.new(/P[0-9]{1,3}[YMWD]/)
+      pattern = Regexp.new(/^P[0-9]{1,3}[YMWD]$/)
       if !@age.nil? && @age !~ pattern
         invalid_properties.push("invalid value for \"age\", must conform to the pattern #{pattern}.")
       end
@@ -125,7 +143,7 @@ module Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@age.nil? && @age !~ Regexp.new(/P[0-9]{1,3}[YMWD]/)
+      return false if !@age.nil? && @age !~ Regexp.new(/^P[0-9]{1,3}[YMWD]$/)
       care_level_validator = EnumAttributeValidator.new('String', ["R1", "R2", "R3", "R4"])
       return false unless care_level_validator.valid?(@care_level)
       true
@@ -138,7 +156,7 @@ module Health
         fail ArgumentError, 'age cannot be nil'
       end
 
-      pattern = Regexp.new(/P[0-9]{1,3}[YMWD]/)
+      pattern = Regexp.new(/^P[0-9]{1,3}[YMWD]$/)
       if age !~ pattern
         fail ArgumentError, "invalid value for \"age\", must conform to the pattern #{pattern}."
       end
@@ -164,7 +182,9 @@ module Health
           weight == o.weight &&
           height == o.height &&
           age == o.age &&
-          care_level == o.care_level
+          care_level == o.care_level &&
+          medical_history == o.medical_history &&
+          treatment == o.treatment
     end
 
     # @see the `==` method
@@ -176,7 +196,7 @@ module Health
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [weight, height, age, care_level].hash
+      [weight, height, age, care_level, medical_history, treatment].hash
     end
 
     # Builds the object from hash

@@ -17,12 +17,12 @@ module Rpis
 
     attr_accessor :smur_status
 
-    attr_accessor :actions_smur
+    attr_accessor :procedure
 
-    # Thésaurus SFMU-FEDORU. A valoriser par un code de la nomenclature Diagnostic SMUR.
+    # Thésaurus SFMU-FEDORU. A valoriser par un code de la nomenclature Diagnostic SMUR(à venir).
     attr_accessor :main_diagnosis
 
-    # Thésaurus SFMU-FEDORU. A valoriser par un code de la nomenclature Diagnostic SMUR.
+    # Thésaurus SFMU-FEDORU. A valoriser par un code de la nomenclature Diagnostic SMUR (à venir).
     attr_accessor :associated_diagnosis
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -31,7 +31,7 @@ module Rpis
         :'location' => :'location',
         :'team' => :'team',
         :'smur_status' => :'smurStatus',
-        :'actions_smur' => :'actionsSMUR',
+        :'procedure' => :'procedure',
         :'main_diagnosis' => :'mainDiagnosis',
         :'associated_diagnosis' => :'associatedDiagnosis'
       }
@@ -48,7 +48,7 @@ module Rpis
         :'location' => :'Location',
         :'team' => :'Team',
         :'smur_status' => :'ResourceStatus',
-        :'actions_smur' => :'Array<String>',
+        :'procedure' => :'Array<String>',
         :'main_diagnosis' => :'String',
         :'associated_diagnosis' => :'String'
       }
@@ -91,9 +91,9 @@ module Rpis
         self.smur_status = attributes[:'smur_status']
       end
 
-      if attributes.key?(:'actions_smur')
-        if (value = attributes[:'actions_smur']).is_a?(Array)
-          self.actions_smur = value
+      if attributes.key?(:'procedure')
+        if (value = attributes[:'procedure']).is_a?(Array)
+          self.procedure = value
         end
       end
 
@@ -146,7 +146,7 @@ module Rpis
           location == o.location &&
           team == o.team &&
           smur_status == o.smur_status &&
-          actions_smur == o.actions_smur &&
+          procedure == o.procedure &&
           main_diagnosis == o.main_diagnosis &&
           associated_diagnosis == o.associated_diagnosis
     end
@@ -160,7 +160,7 @@ module Rpis
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [location, team, smur_status, actions_smur, main_diagnosis, associated_diagnosis].hash
+      [location, team, smur_status, procedure, main_diagnosis, associated_diagnosis].hash
     end
 
     # Builds the object from hash

@@ -73,12 +73,16 @@ namespace HubsanteModel.Health.Model
         /// <param name="height">A valoriser avec la taille en centimètres du patient.</param>
         /// <param name="age">A valoriser avec l&#39;age du patient. Au format \&quot;Durée\&quot; de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) et en n&#39;utilisant qu&#39;une seule unité de durée (années, mois, semaines ou jours).</param>
         /// <param name="careLevel">A valoriser avec le niveau de soins spécifique au patient.</param>
-        public PatientDetail(decimal weight = default(decimal), decimal height = default(decimal), string age = default(string), CareLevelEnum? careLevel = default(CareLevelEnum?))
+        /// <param name="medicalHistory">Texte libre  pour décrire les antécédents du patient.  Si ce n&#39;est pas géré de manière structurés : à afficher dans une note liée au patient en réception. .</param>
+        /// <param name="treatment">Texte libre  pour décrire les traitements du patient. Si ce n&#39;est pas géré de manière structurés : à afficher dans une note liée au patient en réception. .</param>
+        public PatientDetail(decimal weight = default(decimal), decimal height = default(decimal), string age = default(string), CareLevelEnum? careLevel = default(CareLevelEnum?), string medicalHistory = default(string), string treatment = default(string))
         {
             this.Weight = weight;
             this.Height = height;
             this.Age = age;
             this.CareLevel = careLevel;
+            this.MedicalHistory = medicalHistory;
+            this.Treatment = treatment;
         }
 
         /// <summary>
@@ -104,6 +108,22 @@ namespace HubsanteModel.Health.Model
         public string Age { get; set; }
 
         /// <summary>
+        /// Texte libre  pour décrire les antécédents du patient.  Si ce n&#39;est pas géré de manière structurés : à afficher dans une note liée au patient en réception. 
+        /// </summary>
+        /// <value>Texte libre  pour décrire les antécédents du patient.  Si ce n&#39;est pas géré de manière structurés : à afficher dans une note liée au patient en réception. </value>
+        /// <example>example.json#/patient/0/detail/medicalHistory</example>
+        [DataMember(Name = "medicalHistory", EmitDefaultValue = false)]
+        public string MedicalHistory { get; set; }
+
+        /// <summary>
+        /// Texte libre  pour décrire les traitements du patient. Si ce n&#39;est pas géré de manière structurés : à afficher dans une note liée au patient en réception. 
+        /// </summary>
+        /// <value>Texte libre  pour décrire les traitements du patient. Si ce n&#39;est pas géré de manière structurés : à afficher dans une note liée au patient en réception. </value>
+        /// <example>example.json#/patient/0/detail/treatment</example>
+        [DataMember(Name = "treatment", EmitDefaultValue = false)]
+        public string Treatment { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -115,6 +135,8 @@ namespace HubsanteModel.Health.Model
             sb.Append("  Height: ").Append(Height).Append("\n");
             sb.Append("  Age: ").Append(Age).Append("\n");
             sb.Append("  CareLevel: ").Append(CareLevel).Append("\n");
+            sb.Append("  MedicalHistory: ").Append(MedicalHistory).Append("\n");
+            sb.Append("  Treatment: ").Append(Treatment).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -166,6 +188,16 @@ namespace HubsanteModel.Health.Model
                 (
                     this.CareLevel == input.CareLevel ||
                     this.CareLevel.Equals(input.CareLevel)
+                ) && 
+                (
+                    this.MedicalHistory == input.MedicalHistory ||
+                    (this.MedicalHistory != null &&
+                    this.MedicalHistory.Equals(input.MedicalHistory))
+                ) && 
+                (
+                    this.Treatment == input.Treatment ||
+                    (this.Treatment != null &&
+                    this.Treatment.Equals(input.Treatment))
                 );
         }
 
@@ -185,6 +217,14 @@ namespace HubsanteModel.Health.Model
                     hashCode = (hashCode * 59) + this.Age.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.CareLevel.GetHashCode();
+                if (this.MedicalHistory != null)
+                {
+                    hashCode = (hashCode * 59) + this.MedicalHistory.GetHashCode();
+                }
+                if (this.Treatment != null)
+                {
+                    hashCode = (hashCode * 59) + this.Treatment.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -198,7 +238,7 @@ namespace HubsanteModel.Health.Model
         {
             if (this.Age != null) {
                 // Age (string) pattern
-                Regex regexAge = new Regex(@"P[0-9]{1,3}[YMWD]", RegexOptions.CultureInvariant);
+                Regex regexAge = new Regex(@"^P[0-9]{1,3}[YMWD]$", RegexOptions.CultureInvariant);
                 if (!regexAge.Match(this.Age).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Age, must match a pattern of " + regexAge, new [] { "Age" });

@@ -12,12 +12,12 @@ require 'time'
 module Health
   class MedicalNote
     # Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur,   Valorisé comme suit lors de sa création :  {OrgId émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un n°patient unique n'existe pas dans le système émetteur : {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}
-    attr_accessor :id_pat
+    attr_accessor :patient_id
 
     attr_accessor :operator
 
     # Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}  OU - uniquement dans le cas où un ID unique de la note n'est pas disponible dans le système :  {OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}  Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement. 
-    attr_accessor :id_obs
+    attr_accessor :medical_note_id
 
     # A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.
     attr_accessor :creation
@@ -28,9 +28,9 @@ module Health
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id_pat' => :'idPat',
+        :'patient_id' => :'patientId',
         :'operator' => :'operator',
-        :'id_obs' => :'idObs',
+        :'medical_note_id' => :'medicalNoteId',
         :'creation' => :'creation',
         :'freetext' => :'freetext'
       }
@@ -44,9 +44,9 @@ module Health
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id_pat' => :'String',
+        :'patient_id' => :'String',
         :'operator' => :'Operator',
-        :'id_obs' => :'String',
+        :'medical_note_id' => :'String',
         :'creation' => :'Time',
         :'freetext' => :'String'
       }
@@ -73,8 +73,8 @@ module Health
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'id_pat')
-        self.id_pat = attributes[:'id_pat']
+      if attributes.key?(:'patient_id')
+        self.patient_id = attributes[:'patient_id']
       end
 
       if attributes.key?(:'operator')
@@ -83,10 +83,10 @@ module Health
         self.operator = nil
       end
 
-      if attributes.key?(:'id_obs')
-        self.id_obs = attributes[:'id_obs']
+      if attributes.key?(:'medical_note_id')
+        self.medical_note_id = attributes[:'medical_note_id']
       else
-        self.id_obs = nil
+        self.medical_note_id = nil
       end
 
       if attributes.key?(:'creation')
@@ -105,25 +105,25 @@ module Health
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      pattern = Regexp.new(/([\w-]+\.){3,4}patient(\.[\w-]+){1,2}/)
-      if !@id_pat.nil? && @id_pat !~ pattern
-        invalid_properties.push("invalid value for \"id_pat\", must conform to the pattern #{pattern}.")
+      pattern = Regexp.new(/^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$/)
+      if !@patient_id.nil? && @patient_id !~ pattern
+        invalid_properties.push("invalid value for \"patient_id\", must conform to the pattern #{pattern}.")
       end
 
       if @operator.nil?
         invalid_properties.push('invalid value for "operator", operator cannot be nil.')
       end
 
-      if @id_obs.nil?
-        invalid_properties.push('invalid value for "id_obs", id_obs cannot be nil.')
+      if @medical_note_id.nil?
+        invalid_properties.push('invalid value for "medical_note_id", medical_note_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}/)
-      if @id_obs !~ pattern
-        invalid_properties.push("invalid value for \"id_obs\", must conform to the pattern #{pattern}.")
+      pattern = Regexp.new(/^([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}$/)
+      if @medical_note_id !~ pattern
+        invalid_properties.push("invalid value for \"medical_note_id\", must conform to the pattern #{pattern}.")
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if !@creation.nil? && @creation !~ pattern
         invalid_properties.push("invalid value for \"creation\", must conform to the pattern #{pattern}.")
       end
@@ -139,43 +139,43 @@ module Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@id_pat.nil? && @id_pat !~ Regexp.new(/([\w-]+\.){3,4}patient(\.[\w-]+){1,2}/)
+      return false if !@patient_id.nil? && @patient_id !~ Regexp.new(/^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$/)
       return false if @operator.nil?
-      return false if @id_obs.nil?
-      return false if @id_obs !~ Regexp.new(/([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}/)
-      return false if !@creation.nil? && @creation !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      return false if @medical_note_id.nil?
+      return false if @medical_note_id !~ Regexp.new(/^([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}$/)
+      return false if !@creation.nil? && @creation !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       return false if @freetext.nil?
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] id_pat Value to be assigned
-    def id_pat=(id_pat)
-      if id_pat.nil?
-        fail ArgumentError, 'id_pat cannot be nil'
+    # @param [Object] patient_id Value to be assigned
+    def patient_id=(patient_id)
+      if patient_id.nil?
+        fail ArgumentError, 'patient_id cannot be nil'
       end
 
-      pattern = Regexp.new(/([\w-]+\.){3,4}patient(\.[\w-]+){1,2}/)
-      if id_pat !~ pattern
-        fail ArgumentError, "invalid value for \"id_pat\", must conform to the pattern #{pattern}."
+      pattern = Regexp.new(/^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$/)
+      if patient_id !~ pattern
+        fail ArgumentError, "invalid value for \"patient_id\", must conform to the pattern #{pattern}."
       end
 
-      @id_pat = id_pat
+      @patient_id = patient_id
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] id_obs Value to be assigned
-    def id_obs=(id_obs)
-      if id_obs.nil?
-        fail ArgumentError, 'id_obs cannot be nil'
+    # @param [Object] medical_note_id Value to be assigned
+    def medical_note_id=(medical_note_id)
+      if medical_note_id.nil?
+        fail ArgumentError, 'medical_note_id cannot be nil'
       end
 
-      pattern = Regexp.new(/([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}/)
-      if id_obs !~ pattern
-        fail ArgumentError, "invalid value for \"id_obs\", must conform to the pattern #{pattern}."
+      pattern = Regexp.new(/^([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}$/)
+      if medical_note_id !~ pattern
+        fail ArgumentError, "invalid value for \"medical_note_id\", must conform to the pattern #{pattern}."
       end
 
-      @id_obs = id_obs
+      @medical_note_id = medical_note_id
     end
 
     # Custom attribute writer method with validation
@@ -185,7 +185,7 @@ module Health
         fail ArgumentError, 'creation cannot be nil'
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if creation !~ pattern
         fail ArgumentError, "invalid value for \"creation\", must conform to the pattern #{pattern}."
       end
@@ -198,9 +198,9 @@ module Health
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id_pat == o.id_pat &&
+          patient_id == o.patient_id &&
           operator == o.operator &&
-          id_obs == o.id_obs &&
+          medical_note_id == o.medical_note_id &&
           creation == o.creation &&
           freetext == o.freetext
     end
@@ -214,7 +214,7 @@ module Health
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id_pat, operator, id_obs, creation, freetext].hash
+      [patient_id, operator, medical_note_id, creation, freetext].hash
     end
 
     # Builds the object from hash

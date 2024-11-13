@@ -11,7 +11,7 @@ require 'time'
 
 module Rpis
   class Rpis
-    attr_accessor :event
+    attr_accessor :context
 
     attr_accessor :regulation
 
@@ -24,7 +24,7 @@ module Rpis
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'event' => :'event',
+        :'context' => :'context',
         :'regulation' => :'regulation',
         :'patient' => :'patient',
         :'intervention' => :'intervention',
@@ -40,7 +40,7 @@ module Rpis
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'event' => :'Event',
+        :'context' => :'Event',
         :'regulation' => :'Regulation',
         :'patient' => :'Patient',
         :'intervention' => :'Intervention',
@@ -69,10 +69,10 @@ module Rpis
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'event')
-        self.event = attributes[:'event']
+      if attributes.key?(:'context')
+        self.context = attributes[:'context']
       else
-        self.event = nil
+        self.context = nil
       end
 
       if attributes.key?(:'regulation')
@@ -105,8 +105,8 @@ module Rpis
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @event.nil?
-        invalid_properties.push('invalid value for "event", event cannot be nil.')
+      if @context.nil?
+        invalid_properties.push('invalid value for "context", context cannot be nil.')
       end
 
       if @regulation.nil?
@@ -132,7 +132,7 @@ module Rpis
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @event.nil?
+      return false if @context.nil?
       return false if @regulation.nil?
       return false if @patient.nil?
       return false if @intervention.nil?
@@ -145,7 +145,7 @@ module Rpis
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          event == o.event &&
+          context == o.context &&
           regulation == o.regulation &&
           patient == o.patient &&
           intervention == o.intervention &&
@@ -161,7 +161,7 @@ module Rpis
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [event, regulation, patient, intervention, orientation].hash
+      [context, regulation, patient, intervention, orientation].hash
     end
 
     # Builds the object from hash

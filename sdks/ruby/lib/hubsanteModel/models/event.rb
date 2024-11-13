@@ -12,10 +12,10 @@ require 'time'
 module Rpis
   class Event
     # Numéro du SAMU régulant la mission SMUR.  A valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation} 
-    attr_accessor :samu_id
+    attr_accessor :org_id
 
     # Numéro du dossier SAMU à l’origine de la mission SMUR A valoriser par DRFR15DDXAAJJJ00000 :  - DR = désignation d'un dossier sous forme abrégée, - FR : désigne le pays (FR = France), - 15 : désigne le fait que le dossier a été pris en charge par un SAMU / SAS, - DD : désigne le département où est situé le SAMU / SAS qui a traité le dossier, - X : lettre désignant le SAMU / SAS en cas de pluralité de SAMU / SAS sur le même département ou le troisième chiffre des DOM, - AA : année durant laquelle l’appel a été créé, - JJJ : désigne le jour de l'année (de 1j à 365j),\\par - 00000 : numéro d’ordre chronologique du dossier dans la journée de référence ci-dessus.
-    attr_accessor :file_id
+    attr_accessor :sender_case_id
 
     # s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
     attr_accessor :creation_date
@@ -35,8 +35,8 @@ module Rpis
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'samu_id' => :'samuId',
-        :'file_id' => :'fileId',
+        :'org_id' => :'orgId',
+        :'sender_case_id' => :'senderCaseId',
         :'creation_date' => :'creationDate',
         :'decision_date' => :'decisionDate',
         :'ressource_finess_legal' => :'ressourceFinessLegal',
@@ -53,8 +53,8 @@ module Rpis
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'samu_id' => :'String',
-        :'file_id' => :'String',
+        :'org_id' => :'String',
+        :'sender_case_id' => :'String',
         :'creation_date' => :'Time',
         :'decision_date' => :'Time',
         :'ressource_finess_legal' => :'String',
@@ -84,16 +84,16 @@ module Rpis
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'samu_id')
-        self.samu_id = attributes[:'samu_id']
+      if attributes.key?(:'org_id')
+        self.org_id = attributes[:'org_id']
       else
-        self.samu_id = nil
+        self.org_id = nil
       end
 
-      if attributes.key?(:'file_id')
-        self.file_id = attributes[:'file_id']
+      if attributes.key?(:'sender_case_id')
+        self.sender_case_id = attributes[:'sender_case_id']
       else
-        self.file_id = nil
+        self.sender_case_id = nil
       end
 
       if attributes.key?(:'creation_date')
@@ -132,24 +132,24 @@ module Rpis
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @samu_id.nil?
-        invalid_properties.push('invalid value for "samu_id", samu_id cannot be nil.')
+      if @org_id.nil?
+        invalid_properties.push('invalid value for "org_id", org_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/[a-z]{2,3}\.[a-z]+\.\w*/)
-      if @samu_id !~ pattern
-        invalid_properties.push("invalid value for \"samu_id\", must conform to the pattern #{pattern}.")
+      pattern = Regexp.new(/^[a-z]{2,3}\.[a-z]+\.\w*$/)
+      if @org_id !~ pattern
+        invalid_properties.push("invalid value for \"org_id\", must conform to the pattern #{pattern}.")
       end
 
-      if @file_id.nil?
-        invalid_properties.push('invalid value for "file_id", file_id cannot be nil.')
+      if @sender_case_id.nil?
+        invalid_properties.push('invalid value for "sender_case_id", sender_case_id cannot be nil.')
       end
 
       if @creation_date.nil?
         invalid_properties.push('invalid value for "creation_date", creation_date cannot be nil.')
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if @creation_date !~ pattern
         invalid_properties.push("invalid value for \"creation_date\", must conform to the pattern #{pattern}.")
       end
@@ -158,7 +158,7 @@ module Rpis
         invalid_properties.push('invalid value for "decision_date", decision_date cannot be nil.')
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if @decision_date !~ pattern
         invalid_properties.push("invalid value for \"decision_date\", must conform to the pattern #{pattern}.")
       end
@@ -182,13 +182,13 @@ module Rpis
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @samu_id.nil?
-      return false if @samu_id !~ Regexp.new(/[a-z]{2,3}\.[a-z]+\.\w*/)
-      return false if @file_id.nil?
+      return false if @org_id.nil?
+      return false if @org_id !~ Regexp.new(/^[a-z]{2,3}\.[a-z]+\.\w*$/)
+      return false if @sender_case_id.nil?
       return false if @creation_date.nil?
-      return false if @creation_date !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      return false if @creation_date !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       return false if @decision_date.nil?
-      return false if @decision_date !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      return false if @decision_date !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       return false if @ressource_finess_legal.nil?
       return false if @ressource_finess_geo.nil?
       return false if @ressource_structure.nil?
@@ -196,18 +196,18 @@ module Rpis
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] samu_id Value to be assigned
-    def samu_id=(samu_id)
-      if samu_id.nil?
-        fail ArgumentError, 'samu_id cannot be nil'
+    # @param [Object] org_id Value to be assigned
+    def org_id=(org_id)
+      if org_id.nil?
+        fail ArgumentError, 'org_id cannot be nil'
       end
 
-      pattern = Regexp.new(/[a-z]{2,3}\.[a-z]+\.\w*/)
-      if samu_id !~ pattern
-        fail ArgumentError, "invalid value for \"samu_id\", must conform to the pattern #{pattern}."
+      pattern = Regexp.new(/^[a-z]{2,3}\.[a-z]+\.\w*$/)
+      if org_id !~ pattern
+        fail ArgumentError, "invalid value for \"org_id\", must conform to the pattern #{pattern}."
       end
 
-      @samu_id = samu_id
+      @org_id = org_id
     end
 
     # Custom attribute writer method with validation
@@ -217,7 +217,7 @@ module Rpis
         fail ArgumentError, 'creation_date cannot be nil'
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if creation_date !~ pattern
         fail ArgumentError, "invalid value for \"creation_date\", must conform to the pattern #{pattern}."
       end
@@ -232,7 +232,7 @@ module Rpis
         fail ArgumentError, 'decision_date cannot be nil'
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if decision_date !~ pattern
         fail ArgumentError, "invalid value for \"decision_date\", must conform to the pattern #{pattern}."
       end
@@ -245,8 +245,8 @@ module Rpis
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          samu_id == o.samu_id &&
-          file_id == o.file_id &&
+          org_id == o.org_id &&
+          sender_case_id == o.sender_case_id &&
           creation_date == o.creation_date &&
           decision_date == o.decision_date &&
           ressource_finess_legal == o.ressource_finess_legal &&
@@ -263,7 +263,7 @@ module Rpis
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [samu_id, file_id, creation_date, decision_date, ressource_finess_legal, ressource_finess_geo, ressource_structure].hash
+      [org_id, sender_case_id, creation_date, decision_date, ressource_finess_legal, ressource_finess_geo, ressource_structure].hash
     end
 
     # Builds the object from hash

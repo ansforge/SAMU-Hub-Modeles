@@ -9,18 +9,36 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Rpis
+module InterventionReport
   class Patient
     # Identifiant unique du patient.  A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01
     attr_accessor :patient_id
 
+    # Nom de naissance du patient
+    attr_accessor :birth_name
+
+    # Nom usuel du patient
+    attr_accessor :last_name
+
+    # Prénom du patient
+    attr_accessor :first_name
+
     # Date de naissance du patient
     attr_accessor :birth_date
+
+    # La date de naissance n'est pas tout le temps connu, cette donnée permet d'indiquer un âge entier. 
+    attr_accessor :age
 
     # Sexe du patient, suivant le libellé court de la nomenclature SI-SAMU-NOMENC_SEXE
     attr_accessor :sex
 
-    attr_accessor :residential_address
+    attr_accessor :external_id
+
+    # A valoriser avec le poids en kilogrammes
+    attr_accessor :height
+
+    # A valoriser avec la taille en centimètres du patient
+    attr_accessor :weight
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -48,9 +66,15 @@ module Rpis
     def self.attribute_map
       {
         :'patient_id' => :'patientId',
+        :'birth_name' => :'birthName',
+        :'last_name' => :'lastName',
+        :'first_name' => :'firstName',
         :'birth_date' => :'birthDate',
+        :'age' => :'age',
         :'sex' => :'sex',
-        :'residential_address' => :'residentialAddress'
+        :'external_id' => :'externalId',
+        :'height' => :'height',
+        :'weight' => :'weight'
       }
     end
 
@@ -63,9 +87,15 @@ module Rpis
     def self.openapi_types
       {
         :'patient_id' => :'String',
+        :'birth_name' => :'String',
+        :'last_name' => :'String',
+        :'first_name' => :'String',
         :'birth_date' => :'String',
+        :'age' => :'String',
         :'sex' => :'String',
-        :'residential_address' => :'ResidentialAddress'
+        :'external_id' => :'Array<ExternalId>',
+        :'height' => :'Integer',
+        :'weight' => :'Integer'
       }
     end
 
@@ -79,13 +109,13 @@ module Rpis
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Rpis::Patient` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `InterventionReport::Patient` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Rpis::Patient`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `InterventionReport::Patient`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -96,20 +126,46 @@ module Rpis
         self.patient_id = nil
       end
 
+      if attributes.key?(:'birth_name')
+        self.birth_name = attributes[:'birth_name']
+      end
+
+      if attributes.key?(:'last_name')
+        self.last_name = attributes[:'last_name']
+      else
+        self.last_name = nil
+      end
+
+      if attributes.key?(:'first_name')
+        self.first_name = attributes[:'first_name']
+      else
+        self.first_name = nil
+      end
+
       if attributes.key?(:'birth_date')
         self.birth_date = attributes[:'birth_date']
-      else
-        self.birth_date = nil
+      end
+
+      if attributes.key?(:'age')
+        self.age = attributes[:'age']
       end
 
       if attributes.key?(:'sex')
         self.sex = attributes[:'sex']
-      else
-        self.sex = nil
       end
 
-      if attributes.key?(:'residential_address')
-        self.residential_address = attributes[:'residential_address']
+      if attributes.key?(:'external_id')
+        if (value = attributes[:'external_id']).is_a?(Array)
+          self.external_id = value
+        end
+      end
+
+      if attributes.key?(:'height')
+        self.height = attributes[:'height']
+      end
+
+      if attributes.key?(:'weight')
+        self.weight = attributes[:'weight']
       end
     end
 
@@ -122,12 +178,12 @@ module Rpis
         invalid_properties.push('invalid value for "patient_id", patient_id cannot be nil.')
       end
 
-      if @birth_date.nil?
-        invalid_properties.push('invalid value for "birth_date", birth_date cannot be nil.')
+      if @last_name.nil?
+        invalid_properties.push('invalid value for "last_name", last_name cannot be nil.')
       end
 
-      if @sex.nil?
-        invalid_properties.push('invalid value for "sex", sex cannot be nil.')
+      if @first_name.nil?
+        invalid_properties.push('invalid value for "first_name", first_name cannot be nil.')
       end
 
       invalid_properties
@@ -138,9 +194,9 @@ module Rpis
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @patient_id.nil?
-      return false if @birth_date.nil?
-      return false if @sex.nil?
-      sex_validator = EnumAttributeValidator.new('String', ["MASC", "FEM", "AUTRE", "INCONNU"])
+      return false if @last_name.nil?
+      return false if @first_name.nil?
+      sex_validator = EnumAttributeValidator.new('String', ["M", "F", "O", "UN"])
       return false unless sex_validator.valid?(@sex)
       true
     end
@@ -148,7 +204,7 @@ module Rpis
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] sex Object to be assigned
     def sex=(sex)
-      validator = EnumAttributeValidator.new('String', ["MASC", "FEM", "AUTRE", "INCONNU"])
+      validator = EnumAttributeValidator.new('String', ["M", "F", "O", "UN"])
       unless validator.valid?(sex)
         fail ArgumentError, "invalid value for \"sex\", must be one of #{validator.allowable_values}."
       end
@@ -161,9 +217,15 @@ module Rpis
       return true if self.equal?(o)
       self.class == o.class &&
           patient_id == o.patient_id &&
+          birth_name == o.birth_name &&
+          last_name == o.last_name &&
+          first_name == o.first_name &&
           birth_date == o.birth_date &&
+          age == o.age &&
           sex == o.sex &&
-          residential_address == o.residential_address
+          external_id == o.external_id &&
+          height == o.height &&
+          weight == o.weight
     end
 
     # @see the `==` method
@@ -175,7 +237,7 @@ module Rpis
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [patient_id, birth_date, sex, residential_address].hash
+      [patient_id, birth_name, last_name, first_name, birth_date, age, sex, external_id, height, weight].hash
     end
 
     # Builds the object from hash
@@ -239,7 +301,7 @@ module Rpis
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Rpis.const_get(type)
+        klass = InterventionReport.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

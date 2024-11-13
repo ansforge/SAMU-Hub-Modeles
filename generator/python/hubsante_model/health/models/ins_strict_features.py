@@ -37,8 +37,8 @@ class InsStrictFeatures(BaseModel):
         if value is None:
             return value
 
-        if not re.match(r"\d{4}-\d{2}-\d{2}", value):
-            raise ValueError(r"must validate the regular expression /\d{4}-\d{2}-\d{2}/")
+        if not re.match(r"^\d{4}-\d{2}-\d{2}$", value):
+            raise ValueError(r"must validate the regular expression /^\d{4}-\d{2}-\d{2}$/")
         return value
 
     @field_validator('sex')
@@ -47,8 +47,8 @@ class InsStrictFeatures(BaseModel):
         if value is None:
             return value
 
-        if value not in ('MASC', 'FEM', 'AUTRE', 'INCONNU'):
-            raise ValueError("must be one of enum values ('MASC', 'FEM', 'AUTRE', 'INCONNU')")
+        if value not in ('M', 'F', 'O', 'UN'):
+            raise ValueError("must be one of enum values ('M', 'F', 'O', 'UN')")
         return value
 
     model_config = {

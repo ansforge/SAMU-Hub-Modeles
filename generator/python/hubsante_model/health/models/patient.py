@@ -31,19 +31,19 @@ class Patient(BaseModel):
     """
     Patient
     """ # noqa: E501
-    id_pat: Annotated[str, Field(strict=True)] = Field(description="Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient. Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un n°patient unique n'existe pas dans le système émetteur : {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}   ", alias="idPat")
+    patient_id: Annotated[str, Field(strict=True)] = Field(description="Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient. Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un n°patient unique n'existe pas dans le système émetteur : {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}   ", alias="patientId")
     administrative_file: Optional[AdministrativeFile] = Field(default=None, alias="administrativeFile")
     identity: Optional[Identity] = None
     health_motive: Optional[HealthMotive] = Field(default=None, alias="healthMotive")
     detail: Optional[PatientDetail] = None
     hypothesis: Optional[Hypothesis] = None
-    __properties: ClassVar[List[str]] = ["idPat", "administrativeFile", "identity", "healthMotive", "detail", "hypothesis"]
+    __properties: ClassVar[List[str]] = ["patientId", "administrativeFile", "identity", "healthMotive", "detail", "hypothesis"]
 
-    @field_validator('id_pat')
-    def id_pat_validate_regular_expression(cls, value):
+    @field_validator('patient_id')
+    def patient_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"([\w-]+\.){3,4}patient(\.[\w-]+){1,2}", value):
-            raise ValueError(r"must validate the regular expression /([\w-]+\.){3,4}patient(\.[\w-]+){1,2}/")
+        if not re.match(r"^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$", value):
+            raise ValueError(r"must validate the regular expression /^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$/")
         return value
 
     model_config = {
@@ -109,7 +109,7 @@ class Patient(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "idPat": obj.get("idPat"),
+            "patientId": obj.get("patientId"),
             "administrativeFile": AdministrativeFile.from_dict(obj.get("administrativeFile")) if obj.get("administrativeFile") is not None else None,
             "identity": Identity.from_dict(obj.get("identity")) if obj.get("identity") is not None else None,
             "healthMotive": HealthMotive.from_dict(obj.get("healthMotive")) if obj.get("healthMotive") is not None else None,

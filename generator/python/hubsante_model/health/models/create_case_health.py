@@ -51,15 +51,15 @@ class CreateCaseHealth(BaseModel):
     @field_validator('case_id')
     def case_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"fr(\.[\w-]+){3,4}", value):
-            raise ValueError(r"must validate the regular expression /fr(\.[\w-]+){3,4}/")
+        if not re.match(r"^fr(\.[\w-]+){3,4}$", value):
+            raise ValueError(r"must validate the regular expression /^fr(\.[\w-]+){3,4}$/")
         return value
 
     @field_validator('creation')
     def creation_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}", value):
-            raise ValueError(r"must validate the regular expression /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/")
+        if not re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", value):
+            raise ValueError(r"must validate the regular expression /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/")
         return value
 
     @field_validator('perimeter')
@@ -85,8 +85,8 @@ class CreateCaseHealth(BaseModel):
     @field_validator('owner')
     def owner_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"fr(\.[\w-]+){2,3}", value):
-            raise ValueError(r"must validate the regular expression /fr(\.[\w-]+){2,3}/")
+        if not re.match(r"^fr(\.[\w-]+){2,3}$", value):
+            raise ValueError(r"must validate the regular expression /^fr(\.[\w-]+){2,3}$/")
         return value
 
     model_config = {

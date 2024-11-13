@@ -12,14 +12,14 @@ require 'time'
 module Health
   class Geometry
     # A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation.  Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.
-    attr_accessor :obs_datime
+    attr_accessor :datetime
 
     attr_accessor :point
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'obs_datime' => :'obsDatime',
+        :'datetime' => :'datetime',
         :'point' => :'point'
       }
     end
@@ -32,7 +32,7 @@ module Health
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'obs_datime' => :'Time',
+        :'datetime' => :'Time',
         :'point' => :'Point'
       }
     end
@@ -58,10 +58,10 @@ module Health
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'obs_datime')
-        self.obs_datime = attributes[:'obs_datime']
+      if attributes.key?(:'datetime')
+        self.datetime = attributes[:'datetime']
       else
-        self.obs_datime = nil
+        self.datetime = nil
       end
 
       if attributes.key?(:'point')
@@ -74,13 +74,13 @@ module Health
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @obs_datime.nil?
-        invalid_properties.push('invalid value for "obs_datime", obs_datime cannot be nil.')
+      if @datetime.nil?
+        invalid_properties.push('invalid value for "datetime", datetime cannot be nil.')
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
-      if @obs_datime !~ pattern
-        invalid_properties.push("invalid value for \"obs_datime\", must conform to the pattern #{pattern}.")
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      if @datetime !~ pattern
+        invalid_properties.push("invalid value for \"datetime\", must conform to the pattern #{pattern}.")
       end
 
       invalid_properties
@@ -90,24 +90,24 @@ module Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @obs_datime.nil?
-      return false if @obs_datime !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      return false if @datetime.nil?
+      return false if @datetime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] obs_datime Value to be assigned
-    def obs_datime=(obs_datime)
-      if obs_datime.nil?
-        fail ArgumentError, 'obs_datime cannot be nil'
+    # @param [Object] datetime Value to be assigned
+    def datetime=(datetime)
+      if datetime.nil?
+        fail ArgumentError, 'datetime cannot be nil'
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
-      if obs_datime !~ pattern
-        fail ArgumentError, "invalid value for \"obs_datime\", must conform to the pattern #{pattern}."
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      if datetime !~ pattern
+        fail ArgumentError, "invalid value for \"datetime\", must conform to the pattern #{pattern}."
       end
 
-      @obs_datime = obs_datime
+      @datetime = datetime
     end
 
     # Checks equality by comparing each attribute.
@@ -115,7 +115,7 @@ module Health
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          obs_datime == o.obs_datime &&
+          datetime == o.datetime &&
           point == o.point
     end
 
@@ -128,7 +128,7 @@ module Health
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [obs_datime, point].hash
+      [datetime, point].hash
     end
 
     # Builds the object from hash

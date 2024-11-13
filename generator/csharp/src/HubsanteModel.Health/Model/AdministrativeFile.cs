@@ -30,9 +30,11 @@ namespace HubsanteModel.Health.Model
         /// Initializes a new instance of the <see cref="AdministrativeFile" /> class.
         /// </summary>
         /// <param name="externalId">externalId.</param>
-        public AdministrativeFile(List<ExternalId> externalId = default(List<ExternalId>))
+        /// <param name="generalPractitioner">generalPractitioner.</param>
+        public AdministrativeFile(List<ExternalId> externalId = default(List<ExternalId>), GeneralPractitioner generalPractitioner = default(GeneralPractitioner))
         {
             this.ExternalId = externalId;
+            this.GeneralPractitioner = generalPractitioner;
         }
 
         /// <summary>
@@ -40,6 +42,12 @@ namespace HubsanteModel.Health.Model
         /// </summary>
         [DataMember(Name = "externalId", EmitDefaultValue = false)]
         public List<ExternalId> ExternalId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets GeneralPractitioner
+        /// </summary>
+        [DataMember(Name = "generalPractitioner", EmitDefaultValue = false)]
+        public GeneralPractitioner GeneralPractitioner { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -50,6 +58,7 @@ namespace HubsanteModel.Health.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class AdministrativeFile {\n");
             sb.Append("  ExternalId: ").Append(ExternalId).Append("\n");
+            sb.Append("  GeneralPractitioner: ").Append(GeneralPractitioner).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -90,6 +99,11 @@ namespace HubsanteModel.Health.Model
                     this.ExternalId != null &&
                     input.ExternalId != null &&
                     this.ExternalId.SequenceEqual(input.ExternalId)
+                ) && 
+                (
+                    this.GeneralPractitioner == input.GeneralPractitioner ||
+                    (this.GeneralPractitioner != null &&
+                    this.GeneralPractitioner.Equals(input.GeneralPractitioner))
                 );
         }
 
@@ -105,6 +119,10 @@ namespace HubsanteModel.Health.Model
                 if (this.ExternalId != null)
                 {
                     hashCode = (hashCode * 59) + this.ExternalId.GetHashCode();
+                }
+                if (this.GeneralPractitioner != null)
+                {
+                    hashCode = (hashCode * 59) + this.GeneralPractitioner.GetHashCode();
                 }
                 return hashCode;
             }

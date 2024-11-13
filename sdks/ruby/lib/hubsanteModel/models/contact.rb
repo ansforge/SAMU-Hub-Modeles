@@ -9,7 +9,7 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Resources
+module ResourcesInfo
   class Contact
     # A valoriser avec le type de l'URI utilisée. Cf nomenclature associée.
     attr_accessor :type
@@ -70,13 +70,13 @@ module Resources
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Resources::Contact` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `ResourcesInfo::Contact` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Resources::Contact`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `ResourcesInfo::Contact`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -102,7 +102,7 @@ module Resources
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      type_validator = EnumAttributeValidator.new('String', ["TEL", "EMAIL", "FAX", "POSTAL", "WEB", "RADIO"])
+      type_validator = EnumAttributeValidator.new('String', ["EMAIL", "FAX", "MSS", "POSTAL", "RADIO", "TEL", "WEB"])
       return false unless type_validator.valid?(@type)
       true
     end
@@ -110,7 +110,7 @@ module Resources
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] type Object to be assigned
     def type=(type)
-      validator = EnumAttributeValidator.new('String', ["TEL", "EMAIL", "FAX", "POSTAL", "WEB", "RADIO"])
+      validator = EnumAttributeValidator.new('String', ["EMAIL", "FAX", "MSS", "POSTAL", "RADIO", "TEL", "WEB"])
       unless validator.valid?(type)
         fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
       end
@@ -199,7 +199,7 @@ module Resources
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Resources.const_get(type)
+        klass = ResourcesInfo.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

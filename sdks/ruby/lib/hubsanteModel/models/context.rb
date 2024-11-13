@@ -195,7 +195,7 @@ module Emsi
         invalid_properties.push('invalid value for "msgtype", msgtype cannot be nil.')
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if !@creation.nil? && @creation !~ pattern
         invalid_properties.push("invalid value for \"creation\", must conform to the pattern #{pattern}.")
       end
@@ -214,7 +214,7 @@ module Emsi
       return false if @msgtype.nil?
       msgtype_validator = EnumAttributeValidator.new('String', ["ACK", "ALERT", "CANCEL", "ERROR", "UPDATE"])
       return false unless msgtype_validator.valid?(@msgtype)
-      return false if !@creation.nil? && @creation !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      return false if !@creation.nil? && @creation !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       level_validator = EnumAttributeValidator.new('String', ["STRTGC", "OPR", "TACTCL"])
       return false unless level_validator.valid?(@level)
       seclass_validator = EnumAttributeValidator.new('String', ["CONFID", "RESTRC", "SECRET", "TOPSRT", "UNCLAS", "UNMARK"])
@@ -251,7 +251,7 @@ module Emsi
         fail ArgumentError, 'creation cannot be nil'
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if creation !~ pattern
         fail ArgumentError, "invalid value for \"creation\", must conform to the pattern #{pattern}."
       end

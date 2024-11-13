@@ -9,23 +9,41 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Rpis
+module ResourcesInfo
   class Team
-    # Permet d'identifier si un médecin compose l'équipe. Cette donnée peut être automatiquement déduite, dès que le nom et prénom du médecin est saisi sur la tablette. 
-    attr_accessor :doctor
+    # A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature associée
+    attr_accessor :medical_level
 
-    # Permet d'identifier si un infirmier compose l'équipe. Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'infirmier est saisi sur la tablette. 
-    attr_accessor :nurse
+    # A valoriser avec le nom de l'équipe à bord du vecteur (celui communiqué par l'organisation à laquelle l'équipe appartient)
+    attr_accessor :name
 
-    # Permet d'identifier si un ambulancier compose l'équipe. Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'ambulancier est saisi sur la tablette. 
-    attr_accessor :driver
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'doctor' => :'doctor',
-        :'nurse' => :'nurse',
-        :'driver' => :'driver'
+        :'medical_level' => :'medicalLevel',
+        :'name' => :'name'
       }
     end
 
@@ -37,9 +55,8 @@ module Rpis
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'doctor' => :'Boolean',
-        :'nurse' => :'Boolean',
-        :'driver' => :'Boolean'
+        :'medical_level' => :'String',
+        :'name' => :'String'
       }
     end
 
@@ -53,33 +70,23 @@ module Rpis
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Rpis::Team` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `ResourcesInfo::Team` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Rpis::Team`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `ResourcesInfo::Team`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'doctor')
-        self.doctor = attributes[:'doctor']
-      else
-        self.doctor = nil
+      if attributes.key?(:'medical_level')
+        self.medical_level = attributes[:'medical_level']
       end
 
-      if attributes.key?(:'nurse')
-        self.nurse = attributes[:'nurse']
-      else
-        self.nurse = nil
-      end
-
-      if attributes.key?(:'driver')
-        self.driver = attributes[:'driver']
-      else
-        self.driver = nil
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
       end
     end
 
@@ -88,18 +95,6 @@ module Rpis
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @doctor.nil?
-        invalid_properties.push('invalid value for "doctor", doctor cannot be nil.')
-      end
-
-      if @nurse.nil?
-        invalid_properties.push('invalid value for "nurse", nurse cannot be nil.')
-      end
-
-      if @driver.nil?
-        invalid_properties.push('invalid value for "driver", driver cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -107,10 +102,19 @@ module Rpis
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @doctor.nil?
-      return false if @nurse.nil?
-      return false if @driver.nil?
+      medical_level_validator = EnumAttributeValidator.new('String', ["MED", "PARAMED", "SECOURS"])
+      return false unless medical_level_validator.valid?(@medical_level)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] medical_level Object to be assigned
+    def medical_level=(medical_level)
+      validator = EnumAttributeValidator.new('String', ["MED", "PARAMED", "SECOURS"])
+      unless validator.valid?(medical_level)
+        fail ArgumentError, "invalid value for \"medical_level\", must be one of #{validator.allowable_values}."
+      end
+      @medical_level = medical_level
     end
 
     # Checks equality by comparing each attribute.
@@ -118,9 +122,8 @@ module Rpis
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          doctor == o.doctor &&
-          nurse == o.nurse &&
-          driver == o.driver
+          medical_level == o.medical_level &&
+          name == o.name
     end
 
     # @see the `==` method
@@ -132,7 +135,7 @@ module Rpis
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [doctor, nurse, driver].hash
+      [medical_level, name].hash
     end
 
     # Builds the object from hash
@@ -196,7 +199,7 @@ module Rpis
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Rpis.const_get(type)
+        klass = ResourcesInfo.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

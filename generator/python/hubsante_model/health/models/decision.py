@@ -26,21 +26,20 @@ class Decision(BaseModel):
     """
     Decision
     """ # noqa: E501
-    id_pat: Optional[StrictStr] = Field(default=None, description="A valoriser avec l'ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur", alias="idPat")
+    patient_id: Optional[StrictStr] = Field(default=None, description="A valoriser avec l'ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur", alias="patientId")
     creation: datetime = Field(description="A valoriser avec le groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.")
     operator: Operator
     decision_type: StrictStr = Field(description="A valoriser avec le type de décision prise (cf.nomenclature associée)", alias="decisionType")
     resource_type: Optional[StrictStr] = Field(default=None, description="A valoriser avec le type de ressource souhaitée ou engagée (cf.nomenclature associée) - en fonction du type de décision. A fournir obligatoirement pour une décision d'intervention ou de transport/orientation.", alias="resourceType")
-    vehicule_type: Optional[StrictStr] = Field(default=None, description="A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée) en fonction du type de décision. A fournir obligatoirement pour une décision d'intervention ou de transport/orientation.", alias="vehiculeType")
     medical_transport: Optional[StrictBool] = Field(default=None, description="A valoriser obligatoirement en cas de décision de transport, pour indiquer si ce dernier est médicalisé. True = transport médicalisé False = transport non médicalisé", alias="medicalTransport")
     orientation_type: Optional[StrictStr] = Field(default=None, description="Indique le type de destination en cas de décision d'orientation (cf. nomenclature associée)", alias="orientationType")
-    __properties: ClassVar[List[str]] = ["idPat", "creation", "operator", "decisionType", "resourceType", "vehiculeType", "medicalTransport", "orientationType"]
+    __properties: ClassVar[List[str]] = ["patientId", "creation", "operator", "decisionType", "resourceType", "medicalTransport", "orientationType"]
 
     @field_validator('creation')
     def creation_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}", value):
-            raise ValueError(r"must validate the regular expression /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/")
+        if not re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", value):
+            raise ValueError(r"must validate the regular expression /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/")
         return value
 
     @field_validator('decision_type')
@@ -56,18 +55,8 @@ class Decision(BaseModel):
         if value is None:
             return value
 
-        if value not in ('SMUR', 'HOSPIT', 'LIB', 'TSU ', 'SIS', 'AASC', 'FDO', 'AUTRE'):
-            raise ValueError("must be one of enum values ('SMUR', 'HOSPIT', 'LIB', 'TSU ', 'SIS', 'AASC', 'FDO', 'AUTRE')")
-        return value
-
-    @field_validator('vehicule_type')
-    def vehicule_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in ('AASC', 'VLSC', 'VPSP', 'AUTRESC', 'AUTREVEC', 'TAXI', 'TRANSP', 'TRAIN', 'AVION', 'PERSO', 'APIED', 'AUTRE', 'AUTRETRA', 'FSI', 'HELIFSI', 'VLFSI', 'FFSI', 'VHFSI', 'LIB', 'MEDV', 'INF', 'AUTREPRO', 'SIS', 'VSAV', 'GRIMP', 'VPL', 'SRSIS', 'FEUSIS', 'VPMA', 'VCH', 'VR', 'PCSIS', 'VLISP', 'VLMSP', 'VLCG', 'VLSIS', 'DRAGON', 'AVSC', 'MOYSSE', 'AUTRESIS', 'NAVISIS', 'SMUR', 'VLM', 'VL', 'PSM1', 'PSM2', 'PSM3', 'PSMP', 'VPC', 'AR', 'AR-BAR', 'AR-PED', 'HELISMUR', 'HELISAN', 'AVSMUR', 'AVSAN', 'NAVISMUR', 'TSU', 'VSL', 'AMB-GV', 'AMB-PV', 'AMB-BAR', 'AMB'):
-            raise ValueError("must be one of enum values ('AASC', 'VLSC', 'VPSP', 'AUTRESC', 'AUTREVEC', 'TAXI', 'TRANSP', 'TRAIN', 'AVION', 'PERSO', 'APIED', 'AUTRE', 'AUTRETRA', 'FSI', 'HELIFSI', 'VLFSI', 'FFSI', 'VHFSI', 'LIB', 'MEDV', 'INF', 'AUTREPRO', 'SIS', 'VSAV', 'GRIMP', 'VPL', 'SRSIS', 'FEUSIS', 'VPMA', 'VCH', 'VR', 'PCSIS', 'VLISP', 'VLMSP', 'VLCG', 'VLSIS', 'DRAGON', 'AVSC', 'MOYSSE', 'AUTRESIS', 'NAVISIS', 'SMUR', 'VLM', 'VL', 'PSM1', 'PSM2', 'PSM3', 'PSMP', 'VPC', 'AR', 'AR-BAR', 'AR-PED', 'HELISMUR', 'HELISAN', 'AVSMUR', 'AVSAN', 'NAVISMUR', 'TSU', 'VSL', 'AMB-GV', 'AMB-PV', 'AMB-BAR', 'AMB')")
+        if value not in ('SMUR', 'SMUR.ADULT', 'SMUR.PED', 'SMUR.UMH-S', 'SMUR.CUMP', 'HOSPIT', 'LIBERAL', 'LIBERAL.MG', 'LIBERAL.PHARM', 'LIBERAL.INF', 'LIBERAL.KINE', 'LIBERAL.SOS', 'LIBERAL.MMG', 'LIBERAL.MSPD', 'LIBERAL.MCS', 'LIBERAL.SPEMED', 'LIBERAL.DENT', 'LIBERAL.LABO', 'LIBERAL.AUTREPRO', 'TSU ', 'SIS', 'SIS.MEDSP', 'SIS.ISP', 'SIS.SP', 'AASC', 'FDO', 'FDO.PN', 'FDO.GEND', 'FDO.PM', 'FDO.DOUANES', 'AUTRE', 'AUTRE.ADM', 'AUTRE.DAE', 'AUTRE.AUTRE'):
+            raise ValueError("must be one of enum values ('SMUR', 'SMUR.ADULT', 'SMUR.PED', 'SMUR.UMH-S', 'SMUR.CUMP', 'HOSPIT', 'LIBERAL', 'LIBERAL.MG', 'LIBERAL.PHARM', 'LIBERAL.INF', 'LIBERAL.KINE', 'LIBERAL.SOS', 'LIBERAL.MMG', 'LIBERAL.MSPD', 'LIBERAL.MCS', 'LIBERAL.SPEMED', 'LIBERAL.DENT', 'LIBERAL.LABO', 'LIBERAL.AUTREPRO', 'TSU ', 'SIS', 'SIS.MEDSP', 'SIS.ISP', 'SIS.SP', 'AASC', 'FDO', 'FDO.PN', 'FDO.GEND', 'FDO.PM', 'FDO.DOUANES', 'AUTRE', 'AUTRE.ADM', 'AUTRE.DAE', 'AUTRE.AUTRE')")
         return value
 
     @field_validator('orientation_type')
@@ -131,12 +120,11 @@ class Decision(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "idPat": obj.get("idPat"),
+            "patientId": obj.get("patientId"),
             "creation": obj.get("creation"),
             "operator": Operator.from_dict(obj.get("operator")) if obj.get("operator") is not None else None,
             "decisionType": obj.get("decisionType"),
             "resourceType": obj.get("resourceType"),
-            "vehiculeType": obj.get("vehiculeType"),
             "medicalTransport": obj.get("medicalTransport"),
             "orientationType": obj.get("orientationType")
         })

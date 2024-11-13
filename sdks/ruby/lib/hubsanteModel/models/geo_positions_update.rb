@@ -57,6 +57,8 @@ module Geolocation
         if (value = attributes[:'position']).is_a?(Array)
           self.position = value
         end
+      else
+        self.position = nil
       end
     end
 
@@ -65,6 +67,14 @@ module Geolocation
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @position.nil?
+        invalid_properties.push('invalid value for "position", position cannot be nil.')
+      end
+
+      if @position.length < 1
+        invalid_properties.push('invalid value for "position", number of items must be greater than or equal to 1.')
+      end
+
       invalid_properties
     end
 
@@ -72,7 +82,23 @@ module Geolocation
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @position.nil?
+      return false if @position.length < 1
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] position Value to be assigned
+    def position=(position)
+      if position.nil?
+        fail ArgumentError, 'position cannot be nil'
+      end
+
+      if position.length < 1
+        fail ArgumentError, 'invalid value for "position", number of items must be greater than or equal to 1.'
+      end
+
+      @position = position
     end
 
     # Checks equality by comparing each attribute.

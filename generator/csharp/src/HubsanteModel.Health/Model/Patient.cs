@@ -34,20 +34,20 @@ namespace HubsanteModel.Health.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Patient" /> class.
         /// </summary>
-        /// <param name="idPat">Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient. Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un n°patient unique n&#39;existe pas dans le système émetteur : {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}    (required).</param>
+        /// <param name="patientId">Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient. Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un n°patient unique n&#39;existe pas dans le système émetteur : {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}    (required).</param>
         /// <param name="administrativeFile">administrativeFile.</param>
         /// <param name="identity">identity.</param>
         /// <param name="healthMotive">healthMotive.</param>
         /// <param name="detail">detail.</param>
         /// <param name="hypothesis">hypothesis.</param>
-        public Patient(string idPat = default(string), AdministrativeFile administrativeFile = default(AdministrativeFile), Identity identity = default(Identity), HealthMotive healthMotive = default(HealthMotive), PatientDetail detail = default(PatientDetail), Hypothesis hypothesis = default(Hypothesis))
+        public Patient(string patientId = default(string), AdministrativeFile administrativeFile = default(AdministrativeFile), Identity identity = default(Identity), HealthMotive healthMotive = default(HealthMotive), PatientDetail detail = default(PatientDetail), Hypothesis hypothesis = default(Hypothesis))
         {
-            // to ensure "idPat" is required (not null)
-            if (idPat == null)
+            // to ensure "patientId" is required (not null)
+            if (patientId == null)
             {
-                throw new ArgumentNullException("idPat is a required property for Patient and cannot be null");
+                throw new ArgumentNullException("patientId is a required property for Patient and cannot be null");
             }
-            this.IdPat = idPat;
+            this.PatientId = patientId;
             this.AdministrativeFile = administrativeFile;
             this.Identity = identity;
             this.HealthMotive = healthMotive;
@@ -59,9 +59,9 @@ namespace HubsanteModel.Health.Model
         /// Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient. Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un n°patient unique n&#39;existe pas dans le système émetteur : {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}   
         /// </summary>
         /// <value>Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient. Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un n°patient unique n&#39;existe pas dans le système émetteur : {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}   </value>
-        /// <example>example.json#/patient/0/idPat</example>
-        [DataMember(Name = "idPat", IsRequired = true, EmitDefaultValue = true)]
-        public string IdPat { get; set; }
+        /// <example>example.json#/patient/0/patientId</example>
+        [DataMember(Name = "patientId", IsRequired = true, EmitDefaultValue = true)]
+        public string PatientId { get; set; }
 
         /// <summary>
         /// Gets or Sets AdministrativeFile
@@ -101,7 +101,7 @@ namespace HubsanteModel.Health.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Patient {\n");
-            sb.Append("  IdPat: ").Append(IdPat).Append("\n");
+            sb.Append("  PatientId: ").Append(PatientId).Append("\n");
             sb.Append("  AdministrativeFile: ").Append(AdministrativeFile).Append("\n");
             sb.Append("  Identity: ").Append(Identity).Append("\n");
             sb.Append("  HealthMotive: ").Append(HealthMotive).Append("\n");
@@ -143,9 +143,9 @@ namespace HubsanteModel.Health.Model
             }
             return 
                 (
-                    this.IdPat == input.IdPat ||
-                    (this.IdPat != null &&
-                    this.IdPat.Equals(input.IdPat))
+                    this.PatientId == input.PatientId ||
+                    (this.PatientId != null &&
+                    this.PatientId.Equals(input.PatientId))
                 ) && 
                 (
                     this.AdministrativeFile == input.AdministrativeFile ||
@@ -183,9 +183,9 @@ namespace HubsanteModel.Health.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.IdPat != null)
+                if (this.PatientId != null)
                 {
-                    hashCode = (hashCode * 59) + this.IdPat.GetHashCode();
+                    hashCode = (hashCode * 59) + this.PatientId.GetHashCode();
                 }
                 if (this.AdministrativeFile != null)
                 {
@@ -218,12 +218,12 @@ namespace HubsanteModel.Health.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            if (this.IdPat != null) {
-                // IdPat (string) pattern
-                Regex regexIdPat = new Regex(@"([\w-]+\.){3,4}patient(\.[\w-]+){1,2}", RegexOptions.CultureInvariant);
-                if (!regexIdPat.Match(this.IdPat).Success)
+            if (this.PatientId != null) {
+                // PatientId (string) pattern
+                Regex regexPatientId = new Regex(@"^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$", RegexOptions.CultureInvariant);
+                if (!regexPatientId.Match(this.PatientId).Success)
                 {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IdPat, must match a pattern of " + regexIdPat, new [] { "IdPat" });
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PatientId, must match a pattern of " + regexPatientId, new [] { "PatientId" });
                 }
             }
 

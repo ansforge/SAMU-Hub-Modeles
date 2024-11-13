@@ -279,7 +279,7 @@ namespace HubsanteModel.Health.Model
         {
             if (this.PhoneNumber != null) {
                 // PhoneNumber (string) pattern
-                Regex regexPhoneNumber = new Regex(@"\+\d{5,18}", RegexOptions.CultureInvariant);
+                Regex regexPhoneNumber = new Regex(@"^\+\d{5,18}$", RegexOptions.CultureInvariant);
                 if (!regexPhoneNumber.Match(this.PhoneNumber).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PhoneNumber, must match a pattern of " + regexPhoneNumber, new [] { "PhoneNumber" });

@@ -9,7 +9,7 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Resources
+module ResourcesResponse
   class ResourcesResponse
     # A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier).  Il est valorisé comme suit lors de sa création :  {pays}.{domaine}.{organisation}.{senderCaseId}  Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.
     attr_accessor :case_id
@@ -52,13 +52,13 @@ module Resources
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Resources::ResourcesResponse` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `ResourcesResponse::ResourcesResponse` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Resources::ResourcesResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `ResourcesResponse::ResourcesResponse`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -91,7 +91,7 @@ module Resources
         invalid_properties.push('invalid value for "case_id", case_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/fr(\.[\w-]+){3,4}/)
+      pattern = Regexp.new(/^fr(\.[\w-]+){3,4}$/)
       if @case_id !~ pattern
         invalid_properties.push("invalid value for \"case_id\", must conform to the pattern #{pattern}.")
       end
@@ -100,7 +100,7 @@ module Resources
         invalid_properties.push('invalid value for "request_id", request_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/([\w-]+\.){3,4}request(\.[\w-]+){1,2}/)
+      pattern = Regexp.new(/^([\w-]+\.){3,4}request(\.[\w-]+){1,2}$/)
       if @request_id !~ pattern
         invalid_properties.push("invalid value for \"request_id\", must conform to the pattern #{pattern}.")
       end
@@ -117,9 +117,9 @@ module Resources
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @case_id.nil?
-      return false if @case_id !~ Regexp.new(/fr(\.[\w-]+){3,4}/)
+      return false if @case_id !~ Regexp.new(/^fr(\.[\w-]+){3,4}$/)
       return false if @request_id.nil?
-      return false if @request_id !~ Regexp.new(/([\w-]+\.){3,4}request(\.[\w-]+){1,2}/)
+      return false if @request_id !~ Regexp.new(/^([\w-]+\.){3,4}request(\.[\w-]+){1,2}$/)
       return false if @response.nil?
       true
     end
@@ -131,7 +131,7 @@ module Resources
         fail ArgumentError, 'case_id cannot be nil'
       end
 
-      pattern = Regexp.new(/fr(\.[\w-]+){3,4}/)
+      pattern = Regexp.new(/^fr(\.[\w-]+){3,4}$/)
       if case_id !~ pattern
         fail ArgumentError, "invalid value for \"case_id\", must conform to the pattern #{pattern}."
       end
@@ -146,7 +146,7 @@ module Resources
         fail ArgumentError, 'request_id cannot be nil'
       end
 
-      pattern = Regexp.new(/([\w-]+\.){3,4}request(\.[\w-]+){1,2}/)
+      pattern = Regexp.new(/^([\w-]+\.){3,4}request(\.[\w-]+){1,2}$/)
       if request_id !~ pattern
         fail ArgumentError, "invalid value for \"request_id\", must conform to the pattern #{pattern}."
       end
@@ -237,7 +237,7 @@ module Resources
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Resources.const_get(type)
+        klass = ResourcesResponse.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

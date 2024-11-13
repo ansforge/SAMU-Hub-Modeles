@@ -9,18 +9,18 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Resources
+module ResourcesInfo
   class ResourcesInfo
     # A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier).  Il est valorisé comme suit lors de sa création :  {pays}.{domaine}.{organisation}.{senderCaseId}  Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.
     attr_accessor :case_id
 
-    attr_accessor :mobilized_resource
+    attr_accessor :resource
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'case_id' => :'caseId',
-        :'mobilized_resource' => :'mobilizedResource'
+        :'resource' => :'resource'
       }
     end
 
@@ -33,7 +33,7 @@ module Resources
     def self.openapi_types
       {
         :'case_id' => :'String',
-        :'mobilized_resource' => :'Array<Resource>'
+        :'resource' => :'Array<Resource>'
       }
     end
 
@@ -47,13 +47,13 @@ module Resources
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Resources::ResourcesInfo` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `ResourcesInfo::ResourcesInfo` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Resources::ResourcesInfo`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `ResourcesInfo::ResourcesInfo`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -64,12 +64,12 @@ module Resources
         self.case_id = nil
       end
 
-      if attributes.key?(:'mobilized_resource')
-        if (value = attributes[:'mobilized_resource']).is_a?(Array)
-          self.mobilized_resource = value
+      if attributes.key?(:'resource')
+        if (value = attributes[:'resource']).is_a?(Array)
+          self.resource = value
         end
       else
-        self.mobilized_resource = nil
+        self.resource = nil
       end
     end
 
@@ -82,17 +82,17 @@ module Resources
         invalid_properties.push('invalid value for "case_id", case_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/fr(\.[\w-]+){3,4}/)
+      pattern = Regexp.new(/^fr(\.[\w-]+){3,4}$/)
       if @case_id !~ pattern
         invalid_properties.push("invalid value for \"case_id\", must conform to the pattern #{pattern}.")
       end
 
-      if @mobilized_resource.nil?
-        invalid_properties.push('invalid value for "mobilized_resource", mobilized_resource cannot be nil.')
+      if @resource.nil?
+        invalid_properties.push('invalid value for "resource", resource cannot be nil.')
       end
 
-      if @mobilized_resource.length < 1
-        invalid_properties.push('invalid value for "mobilized_resource", number of items must be greater than or equal to 1.')
+      if @resource.length < 1
+        invalid_properties.push('invalid value for "resource", number of items must be greater than or equal to 1.')
       end
 
       invalid_properties
@@ -103,9 +103,9 @@ module Resources
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @case_id.nil?
-      return false if @case_id !~ Regexp.new(/fr(\.[\w-]+){3,4}/)
-      return false if @mobilized_resource.nil?
-      return false if @mobilized_resource.length < 1
+      return false if @case_id !~ Regexp.new(/^fr(\.[\w-]+){3,4}$/)
+      return false if @resource.nil?
+      return false if @resource.length < 1
       true
     end
 
@@ -116,7 +116,7 @@ module Resources
         fail ArgumentError, 'case_id cannot be nil'
       end
 
-      pattern = Regexp.new(/fr(\.[\w-]+){3,4}/)
+      pattern = Regexp.new(/^fr(\.[\w-]+){3,4}$/)
       if case_id !~ pattern
         fail ArgumentError, "invalid value for \"case_id\", must conform to the pattern #{pattern}."
       end
@@ -125,17 +125,17 @@ module Resources
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] mobilized_resource Value to be assigned
-    def mobilized_resource=(mobilized_resource)
-      if mobilized_resource.nil?
-        fail ArgumentError, 'mobilized_resource cannot be nil'
+    # @param [Object] resource Value to be assigned
+    def resource=(resource)
+      if resource.nil?
+        fail ArgumentError, 'resource cannot be nil'
       end
 
-      if mobilized_resource.length < 1
-        fail ArgumentError, 'invalid value for "mobilized_resource", number of items must be greater than or equal to 1.'
+      if resource.length < 1
+        fail ArgumentError, 'invalid value for "resource", number of items must be greater than or equal to 1.'
       end
 
-      @mobilized_resource = mobilized_resource
+      @resource = resource
     end
 
     # Checks equality by comparing each attribute.
@@ -144,7 +144,7 @@ module Resources
       return true if self.equal?(o)
       self.class == o.class &&
           case_id == o.case_id &&
-          mobilized_resource == o.mobilized_resource
+          resource == o.resource
     end
 
     # @see the `==` method
@@ -156,7 +156,7 @@ module Resources
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [case_id, mobilized_resource].hash
+      [case_id, resource].hash
     end
 
     # Builds the object from hash
@@ -220,7 +220,7 @@ module Resources
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Resources.const_get(type)
+        klass = ResourcesInfo.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

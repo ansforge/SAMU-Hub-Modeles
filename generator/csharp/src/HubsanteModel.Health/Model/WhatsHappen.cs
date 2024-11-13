@@ -502,70 +502,70 @@ namespace HubsanteModel.Health.Model
             C021404 = 78,
 
             /// <summary>
-            /// Enum C0214002 for value: C02.14.00
-            /// </summary>
-            [EnumMember(Value = "C02.14.00")]
-            C0214002 = 79,
-
-            /// <summary>
-            /// Enum C0214012 for value: C02.14.01
-            /// </summary>
-            [EnumMember(Value = "C02.14.01")]
-            C0214012 = 80,
-
-            /// <summary>
-            /// Enum C0214022 for value: C02.14.02
-            /// </summary>
-            [EnumMember(Value = "C02.14.02")]
-            C0214022 = 81,
-
-            /// <summary>
-            /// Enum C0214032 for value: C02.14.03
-            /// </summary>
-            [EnumMember(Value = "C02.14.03")]
-            C0214032 = 82,
-
-            /// <summary>
-            /// Enum C0214042 for value: C02.14.04
-            /// </summary>
-            [EnumMember(Value = "C02.14.04")]
-            C0214042 = 83,
-
-            /// <summary>
-            /// Enum C021405 for value: C02.14.05
-            /// </summary>
-            [EnumMember(Value = "C02.14.05")]
-            C021405 = 84,
-
-            /// <summary>
-            /// Enum C021406 for value: C02.14.06
-            /// </summary>
-            [EnumMember(Value = "C02.14.06")]
-            C021406 = 85,
-
-            /// <summary>
             /// Enum C021500 for value: C02.15.00
             /// </summary>
             [EnumMember(Value = "C02.15.00")]
-            C021500 = 86,
+            C021500 = 79,
 
             /// <summary>
             /// Enum C021501 for value: C02.15.01
             /// </summary>
             [EnumMember(Value = "C02.15.01")]
-            C021501 = 87,
+            C021501 = 80,
 
             /// <summary>
             /// Enum C021502 for value: C02.15.02
             /// </summary>
             [EnumMember(Value = "C02.15.02")]
-            C021502 = 88,
+            C021502 = 81,
 
             /// <summary>
             /// Enum C021503 for value: C02.15.03
             /// </summary>
             [EnumMember(Value = "C02.15.03")]
-            C021503 = 89,
+            C021503 = 82,
+
+            /// <summary>
+            /// Enum C021504 for value: C02.15.04
+            /// </summary>
+            [EnumMember(Value = "C02.15.04")]
+            C021504 = 83,
+
+            /// <summary>
+            /// Enum C021505 for value: C02.15.05
+            /// </summary>
+            [EnumMember(Value = "C02.15.05")]
+            C021505 = 84,
+
+            /// <summary>
+            /// Enum C021506 for value: C02.15.06
+            /// </summary>
+            [EnumMember(Value = "C02.15.06")]
+            C021506 = 85,
+
+            /// <summary>
+            /// Enum C021600 for value: C02.16.00
+            /// </summary>
+            [EnumMember(Value = "C02.16.00")]
+            C021600 = 86,
+
+            /// <summary>
+            /// Enum C021601 for value: C02.16.01
+            /// </summary>
+            [EnumMember(Value = "C02.16.01")]
+            C021601 = 87,
+
+            /// <summary>
+            /// Enum C021602 for value: C02.16.02
+            /// </summary>
+            [EnumMember(Value = "C02.16.02")]
+            C021602 = 88,
+
+            /// <summary>
+            /// Enum C021603 for value: C02.16.03
+            /// </summary>
+            [EnumMember(Value = "C02.16.03")]
+            C021603 = 89,
 
             /// <summary>
             /// Enum C030000 for value: C03.00.00

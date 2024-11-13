@@ -13,10 +13,13 @@ module Health
   class AdministrativeFile
     attr_accessor :external_id
 
+    attr_accessor :general_practitioner
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'external_id' => :'externalId'
+        :'external_id' => :'externalId',
+        :'general_practitioner' => :'generalPractitioner'
       }
     end
 
@@ -28,7 +31,8 @@ module Health
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'external_id' => :'Array<ExternalId>'
+        :'external_id' => :'Array<ExternalId>',
+        :'general_practitioner' => :'GeneralPractitioner'
       }
     end
 
@@ -58,6 +62,10 @@ module Health
           self.external_id = value
         end
       end
+
+      if attributes.key?(:'general_practitioner')
+        self.general_practitioner = attributes[:'general_practitioner']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -80,7 +88,8 @@ module Health
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          external_id == o.external_id
+          external_id == o.external_id &&
+          general_practitioner == o.general_practitioner
     end
 
     # @see the `==` method
@@ -92,7 +101,7 @@ module Health
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [external_id].hash
+      [external_id, general_practitioner].hash
     end
 
     # Builds the object from hash

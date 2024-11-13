@@ -9,7 +9,7 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Resources
+module ResourcesStatus
   class State
     # A valoriser avec la date et heure d'engagement de changement vers le nouveau statut
     attr_accessor :datetime
@@ -75,13 +75,13 @@ module Resources
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Resources::State` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `ResourcesStatus::State` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Resources::State`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `ResourcesStatus::State`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -112,7 +112,7 @@ module Resources
         invalid_properties.push('invalid value for "datetime", datetime cannot be nil.')
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if @datetime !~ pattern
         invalid_properties.push("invalid value for \"datetime\", must conform to the pattern #{pattern}.")
       end
@@ -129,9 +129,9 @@ module Resources
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @datetime.nil?
-      return false if @datetime !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      return false if @datetime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       return false if @status.nil?
-      status_validator = EnumAttributeValidator.new('String', ["DECISION", "DECLENCHE", "DEPART", "ARRIVE", "PEC", "ANNULE", "BILAN", "TRANSPOR", "ETAPE1", "TRANSP2", "ETAPE2", "TRANSP3", "DESTIN", "FINPEC", "RETOUR", "RET-BASE", "REN-BASE"])
+      status_validator = EnumAttributeValidator.new('String', ["DECISION", "DECLENCHE", "DEPART", "ANNULE", "ARRIVEE", "PEC", "BILAN", "TRANSP", "ETAPE1", "TRANSP2", "ETAPE2", "TRANSP3", "DESTIN", "FINMED", "RETOUR", "RET-BASE", "REN-BASE"])
       return false unless status_validator.valid?(@status)
       true
     end
@@ -143,7 +143,7 @@ module Resources
         fail ArgumentError, 'datetime cannot be nil'
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if datetime !~ pattern
         fail ArgumentError, "invalid value for \"datetime\", must conform to the pattern #{pattern}."
       end
@@ -154,7 +154,7 @@ module Resources
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] status Object to be assigned
     def status=(status)
-      validator = EnumAttributeValidator.new('String', ["DECISION", "DECLENCHE", "DEPART", "ARRIVE", "PEC", "ANNULE", "BILAN", "TRANSPOR", "ETAPE1", "TRANSP2", "ETAPE2", "TRANSP3", "DESTIN", "FINPEC", "RETOUR", "RET-BASE", "REN-BASE"])
+      validator = EnumAttributeValidator.new('String', ["DECISION", "DECLENCHE", "DEPART", "ANNULE", "ARRIVEE", "PEC", "BILAN", "TRANSP", "ETAPE1", "TRANSP2", "ETAPE2", "TRANSP3", "DESTIN", "FINMED", "RETOUR", "RET-BASE", "REN-BASE"])
       unless validator.valid?(status)
         fail ArgumentError, "invalid value for \"status\", must be one of #{validator.allowable_values}."
       end
@@ -244,7 +244,7 @@ module Resources
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Resources.const_get(type)
+        klass = ResourcesStatus.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

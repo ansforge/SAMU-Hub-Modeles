@@ -11,13 +11,13 @@ require 'time'
 
 module Rpis
   class Destination
-    # A valoriser par le libellé court de la nomenclature SIGLPAYS
+    # A valoriser par le code de la nomenclature associée
     attr_accessor :destination_country
 
     # A valoriser par le code de la nomenclature associée
     attr_accessor :destination_category
 
-    # A valoriser par le code de la nomenclature ActiviteOperationnelle
+    # A valoriser par le code de la nomenclature ActiviteOperationnelle (à venir). 
     attr_accessor :healthcare_type
 
     # FINESS géographique de l’établissement de destination (9 chiffres)

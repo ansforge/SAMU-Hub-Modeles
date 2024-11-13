@@ -17,6 +17,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel
 from pydantic import Field
 from hubsante_model.health.models.external_id import ExternalId
+from hubsante_model.health.models.general_practitioner import GeneralPractitioner
 try:
     from typing import Self
 except ImportError:
@@ -27,7 +28,8 @@ class AdministrativeFile(BaseModel):
     AdministrativeFile
     """ # noqa: E501
     external_id: Optional[List[ExternalId]] = Field(default=None, alias="externalId")
-    __properties: ClassVar[List[str]] = ["externalId"]
+    general_practitioner: Optional[GeneralPractitioner] = Field(default=None, alias="generalPractitioner")
+    __properties: ClassVar[List[str]] = ["externalId", "generalPractitioner"]
 
     model_config = {
         "populate_by_name": True,
@@ -72,6 +74,9 @@ class AdministrativeFile(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['externalId'] = _items
+        # override the default output from pydantic by calling `to_dict()` of general_practitioner
+        if self.general_practitioner:
+            _dict['generalPractitioner'] = self.general_practitioner.to_dict()
         return _dict
 
     @classmethod
@@ -84,7 +89,8 @@ class AdministrativeFile(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "externalId": [ExternalId.from_dict(_item) for _item in obj.get("externalId")] if obj.get("externalId") is not None else None
+            "externalId": [ExternalId.from_dict(_item) for _item in obj.get("externalId")] if obj.get("externalId") is not None else None,
+            "generalPractitioner": GeneralPractitioner.from_dict(obj.get("generalPractitioner")) if obj.get("generalPractitioner") is not None else None
         })
         return _obj
 

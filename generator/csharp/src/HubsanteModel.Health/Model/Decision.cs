@@ -86,46 +86,202 @@ namespace HubsanteModel.Health.Model
             SMUR = 1,
 
             /// <summary>
+            /// Enum SMURADULT for value: SMUR.ADULT
+            /// </summary>
+            [EnumMember(Value = "SMUR.ADULT")]
+            SMURADULT = 2,
+
+            /// <summary>
+            /// Enum SMURPED for value: SMUR.PED
+            /// </summary>
+            [EnumMember(Value = "SMUR.PED")]
+            SMURPED = 3,
+
+            /// <summary>
+            /// Enum SMURUMHS for value: SMUR.UMH-S
+            /// </summary>
+            [EnumMember(Value = "SMUR.UMH-S")]
+            SMURUMHS = 4,
+
+            /// <summary>
+            /// Enum SMURCUMP for value: SMUR.CUMP
+            /// </summary>
+            [EnumMember(Value = "SMUR.CUMP")]
+            SMURCUMP = 5,
+
+            /// <summary>
             /// Enum HOSPIT for value: HOSPIT
             /// </summary>
             [EnumMember(Value = "HOSPIT")]
-            HOSPIT = 2,
+            HOSPIT = 6,
 
             /// <summary>
-            /// Enum LIB for value: LIB
+            /// Enum LIBERAL for value: LIBERAL
             /// </summary>
-            [EnumMember(Value = "LIB")]
-            LIB = 3,
+            [EnumMember(Value = "LIBERAL")]
+            LIBERAL = 7,
+
+            /// <summary>
+            /// Enum LIBERALMG for value: LIBERAL.MG
+            /// </summary>
+            [EnumMember(Value = "LIBERAL.MG")]
+            LIBERALMG = 8,
+
+            /// <summary>
+            /// Enum LIBERALPHARM for value: LIBERAL.PHARM
+            /// </summary>
+            [EnumMember(Value = "LIBERAL.PHARM")]
+            LIBERALPHARM = 9,
+
+            /// <summary>
+            /// Enum LIBERALINF for value: LIBERAL.INF
+            /// </summary>
+            [EnumMember(Value = "LIBERAL.INF")]
+            LIBERALINF = 10,
+
+            /// <summary>
+            /// Enum LIBERALKINE for value: LIBERAL.KINE
+            /// </summary>
+            [EnumMember(Value = "LIBERAL.KINE")]
+            LIBERALKINE = 11,
+
+            /// <summary>
+            /// Enum LIBERALSOS for value: LIBERAL.SOS
+            /// </summary>
+            [EnumMember(Value = "LIBERAL.SOS")]
+            LIBERALSOS = 12,
+
+            /// <summary>
+            /// Enum LIBERALMMG for value: LIBERAL.MMG
+            /// </summary>
+            [EnumMember(Value = "LIBERAL.MMG")]
+            LIBERALMMG = 13,
+
+            /// <summary>
+            /// Enum LIBERALMSPD for value: LIBERAL.MSPD
+            /// </summary>
+            [EnumMember(Value = "LIBERAL.MSPD")]
+            LIBERALMSPD = 14,
+
+            /// <summary>
+            /// Enum LIBERALMCS for value: LIBERAL.MCS
+            /// </summary>
+            [EnumMember(Value = "LIBERAL.MCS")]
+            LIBERALMCS = 15,
+
+            /// <summary>
+            /// Enum LIBERALSPEMED for value: LIBERAL.SPEMED
+            /// </summary>
+            [EnumMember(Value = "LIBERAL.SPEMED")]
+            LIBERALSPEMED = 16,
+
+            /// <summary>
+            /// Enum LIBERALDENT for value: LIBERAL.DENT
+            /// </summary>
+            [EnumMember(Value = "LIBERAL.DENT")]
+            LIBERALDENT = 17,
+
+            /// <summary>
+            /// Enum LIBERALLABO for value: LIBERAL.LABO
+            /// </summary>
+            [EnumMember(Value = "LIBERAL.LABO")]
+            LIBERALLABO = 18,
+
+            /// <summary>
+            /// Enum LIBERALAUTREPRO for value: LIBERAL.AUTREPRO
+            /// </summary>
+            [EnumMember(Value = "LIBERAL.AUTREPRO")]
+            LIBERALAUTREPRO = 19,
 
             /// <summary>
             /// Enum TSU for value: TSU 
             /// </summary>
             [EnumMember(Value = "TSU ")]
-            TSU = 4,
+            TSU = 20,
 
             /// <summary>
             /// Enum SIS for value: SIS
             /// </summary>
             [EnumMember(Value = "SIS")]
-            SIS = 5,
+            SIS = 21,
+
+            /// <summary>
+            /// Enum SISMEDSP for value: SIS.MEDSP
+            /// </summary>
+            [EnumMember(Value = "SIS.MEDSP")]
+            SISMEDSP = 22,
+
+            /// <summary>
+            /// Enum SISISP for value: SIS.ISP
+            /// </summary>
+            [EnumMember(Value = "SIS.ISP")]
+            SISISP = 23,
+
+            /// <summary>
+            /// Enum SISSP for value: SIS.SP
+            /// </summary>
+            [EnumMember(Value = "SIS.SP")]
+            SISSP = 24,
 
             /// <summary>
             /// Enum AASC for value: AASC
             /// </summary>
             [EnumMember(Value = "AASC")]
-            AASC = 6,
+            AASC = 25,
 
             /// <summary>
             /// Enum FDO for value: FDO
             /// </summary>
             [EnumMember(Value = "FDO")]
-            FDO = 7,
+            FDO = 26,
+
+            /// <summary>
+            /// Enum FDOPN for value: FDO.PN
+            /// </summary>
+            [EnumMember(Value = "FDO.PN")]
+            FDOPN = 27,
+
+            /// <summary>
+            /// Enum FDOGEND for value: FDO.GEND
+            /// </summary>
+            [EnumMember(Value = "FDO.GEND")]
+            FDOGEND = 28,
+
+            /// <summary>
+            /// Enum FDOPM for value: FDO.PM
+            /// </summary>
+            [EnumMember(Value = "FDO.PM")]
+            FDOPM = 29,
+
+            /// <summary>
+            /// Enum FDODOUANES for value: FDO.DOUANES
+            /// </summary>
+            [EnumMember(Value = "FDO.DOUANES")]
+            FDODOUANES = 30,
 
             /// <summary>
             /// Enum AUTRE for value: AUTRE
             /// </summary>
             [EnumMember(Value = "AUTRE")]
-            AUTRE = 8
+            AUTRE = 31,
+
+            /// <summary>
+            /// Enum AUTREADM for value: AUTRE.ADM
+            /// </summary>
+            [EnumMember(Value = "AUTRE.ADM")]
+            AUTREADM = 32,
+
+            /// <summary>
+            /// Enum AUTREDAE for value: AUTRE.DAE
+            /// </summary>
+            [EnumMember(Value = "AUTRE.DAE")]
+            AUTREDAE = 33,
+
+            /// <summary>
+            /// Enum AUTREAUTRE for value: AUTRE.AUTRE
+            /// </summary>
+            [EnumMember(Value = "AUTRE.AUTRE")]
+            AUTREAUTRE = 34
         }
 
 
@@ -136,400 +292,6 @@ namespace HubsanteModel.Health.Model
         /// <example>example.json#/decision/0/resourceType</example>
         [DataMember(Name = "resourceType", EmitDefaultValue = false)]
         public ResourceTypeEnum? ResourceType { get; set; }
-        /// <summary>
-        /// A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée) en fonction du type de décision. A fournir obligatoirement pour une décision d&#39;intervention ou de transport/orientation.
-        /// </summary>
-        /// <value>A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée) en fonction du type de décision. A fournir obligatoirement pour une décision d&#39;intervention ou de transport/orientation.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum VehiculeTypeEnum
-        {
-            /// <summary>
-            /// Enum AASC for value: AASC
-            /// </summary>
-            [EnumMember(Value = "AASC")]
-            AASC = 1,
-
-            /// <summary>
-            /// Enum VLSC for value: VLSC
-            /// </summary>
-            [EnumMember(Value = "VLSC")]
-            VLSC = 2,
-
-            /// <summary>
-            /// Enum VPSP for value: VPSP
-            /// </summary>
-            [EnumMember(Value = "VPSP")]
-            VPSP = 3,
-
-            /// <summary>
-            /// Enum AUTRESC for value: AUTRESC
-            /// </summary>
-            [EnumMember(Value = "AUTRESC")]
-            AUTRESC = 4,
-
-            /// <summary>
-            /// Enum AUTREVEC for value: AUTREVEC
-            /// </summary>
-            [EnumMember(Value = "AUTREVEC")]
-            AUTREVEC = 5,
-
-            /// <summary>
-            /// Enum TAXI for value: TAXI
-            /// </summary>
-            [EnumMember(Value = "TAXI")]
-            TAXI = 6,
-
-            /// <summary>
-            /// Enum TRANSP for value: TRANSP
-            /// </summary>
-            [EnumMember(Value = "TRANSP")]
-            TRANSP = 7,
-
-            /// <summary>
-            /// Enum TRAIN for value: TRAIN
-            /// </summary>
-            [EnumMember(Value = "TRAIN")]
-            TRAIN = 8,
-
-            /// <summary>
-            /// Enum AVION for value: AVION
-            /// </summary>
-            [EnumMember(Value = "AVION")]
-            AVION = 9,
-
-            /// <summary>
-            /// Enum PERSO for value: PERSO
-            /// </summary>
-            [EnumMember(Value = "PERSO")]
-            PERSO = 10,
-
-            /// <summary>
-            /// Enum APIED for value: APIED
-            /// </summary>
-            [EnumMember(Value = "APIED")]
-            APIED = 11,
-
-            /// <summary>
-            /// Enum AUTRE for value: AUTRE
-            /// </summary>
-            [EnumMember(Value = "AUTRE")]
-            AUTRE = 12,
-
-            /// <summary>
-            /// Enum AUTRETRA for value: AUTRETRA
-            /// </summary>
-            [EnumMember(Value = "AUTRETRA")]
-            AUTRETRA = 13,
-
-            /// <summary>
-            /// Enum FSI for value: FSI
-            /// </summary>
-            [EnumMember(Value = "FSI")]
-            FSI = 14,
-
-            /// <summary>
-            /// Enum HELIFSI for value: HELIFSI
-            /// </summary>
-            [EnumMember(Value = "HELIFSI")]
-            HELIFSI = 15,
-
-            /// <summary>
-            /// Enum VLFSI for value: VLFSI
-            /// </summary>
-            [EnumMember(Value = "VLFSI")]
-            VLFSI = 16,
-
-            /// <summary>
-            /// Enum FFSI for value: FFSI
-            /// </summary>
-            [EnumMember(Value = "FFSI")]
-            FFSI = 17,
-
-            /// <summary>
-            /// Enum VHFSI for value: VHFSI
-            /// </summary>
-            [EnumMember(Value = "VHFSI")]
-            VHFSI = 18,
-
-            /// <summary>
-            /// Enum LIB for value: LIB
-            /// </summary>
-            [EnumMember(Value = "LIB")]
-            LIB = 19,
-
-            /// <summary>
-            /// Enum MEDV for value: MEDV
-            /// </summary>
-            [EnumMember(Value = "MEDV")]
-            MEDV = 20,
-
-            /// <summary>
-            /// Enum INF for value: INF
-            /// </summary>
-            [EnumMember(Value = "INF")]
-            INF = 21,
-
-            /// <summary>
-            /// Enum AUTREPRO for value: AUTREPRO
-            /// </summary>
-            [EnumMember(Value = "AUTREPRO")]
-            AUTREPRO = 22,
-
-            /// <summary>
-            /// Enum SIS for value: SIS
-            /// </summary>
-            [EnumMember(Value = "SIS")]
-            SIS = 23,
-
-            /// <summary>
-            /// Enum VSAV for value: VSAV
-            /// </summary>
-            [EnumMember(Value = "VSAV")]
-            VSAV = 24,
-
-            /// <summary>
-            /// Enum GRIMP for value: GRIMP
-            /// </summary>
-            [EnumMember(Value = "GRIMP")]
-            GRIMP = 25,
-
-            /// <summary>
-            /// Enum VPL for value: VPL
-            /// </summary>
-            [EnumMember(Value = "VPL")]
-            VPL = 26,
-
-            /// <summary>
-            /// Enum SRSIS for value: SRSIS
-            /// </summary>
-            [EnumMember(Value = "SRSIS")]
-            SRSIS = 27,
-
-            /// <summary>
-            /// Enum FEUSIS for value: FEUSIS
-            /// </summary>
-            [EnumMember(Value = "FEUSIS")]
-            FEUSIS = 28,
-
-            /// <summary>
-            /// Enum VPMA for value: VPMA
-            /// </summary>
-            [EnumMember(Value = "VPMA")]
-            VPMA = 29,
-
-            /// <summary>
-            /// Enum VCH for value: VCH
-            /// </summary>
-            [EnumMember(Value = "VCH")]
-            VCH = 30,
-
-            /// <summary>
-            /// Enum VR for value: VR
-            /// </summary>
-            [EnumMember(Value = "VR")]
-            VR = 31,
-
-            /// <summary>
-            /// Enum PCSIS for value: PCSIS
-            /// </summary>
-            [EnumMember(Value = "PCSIS")]
-            PCSIS = 32,
-
-            /// <summary>
-            /// Enum VLISP for value: VLISP
-            /// </summary>
-            [EnumMember(Value = "VLISP")]
-            VLISP = 33,
-
-            /// <summary>
-            /// Enum VLMSP for value: VLMSP
-            /// </summary>
-            [EnumMember(Value = "VLMSP")]
-            VLMSP = 34,
-
-            /// <summary>
-            /// Enum VLCG for value: VLCG
-            /// </summary>
-            [EnumMember(Value = "VLCG")]
-            VLCG = 35,
-
-            /// <summary>
-            /// Enum VLSIS for value: VLSIS
-            /// </summary>
-            [EnumMember(Value = "VLSIS")]
-            VLSIS = 36,
-
-            /// <summary>
-            /// Enum DRAGON for value: DRAGON
-            /// </summary>
-            [EnumMember(Value = "DRAGON")]
-            DRAGON = 37,
-
-            /// <summary>
-            /// Enum AVSC for value: AVSC
-            /// </summary>
-            [EnumMember(Value = "AVSC")]
-            AVSC = 38,
-
-            /// <summary>
-            /// Enum MOYSSE for value: MOYSSE
-            /// </summary>
-            [EnumMember(Value = "MOYSSE")]
-            MOYSSE = 39,
-
-            /// <summary>
-            /// Enum AUTRESIS for value: AUTRESIS
-            /// </summary>
-            [EnumMember(Value = "AUTRESIS")]
-            AUTRESIS = 40,
-
-            /// <summary>
-            /// Enum NAVISIS for value: NAVISIS
-            /// </summary>
-            [EnumMember(Value = "NAVISIS")]
-            NAVISIS = 41,
-
-            /// <summary>
-            /// Enum SMUR for value: SMUR
-            /// </summary>
-            [EnumMember(Value = "SMUR")]
-            SMUR = 42,
-
-            /// <summary>
-            /// Enum VLM for value: VLM
-            /// </summary>
-            [EnumMember(Value = "VLM")]
-            VLM = 43,
-
-            /// <summary>
-            /// Enum VL for value: VL
-            /// </summary>
-            [EnumMember(Value = "VL")]
-            VL = 44,
-
-            /// <summary>
-            /// Enum PSM1 for value: PSM1
-            /// </summary>
-            [EnumMember(Value = "PSM1")]
-            PSM1 = 45,
-
-            /// <summary>
-            /// Enum PSM2 for value: PSM2
-            /// </summary>
-            [EnumMember(Value = "PSM2")]
-            PSM2 = 46,
-
-            /// <summary>
-            /// Enum PSM3 for value: PSM3
-            /// </summary>
-            [EnumMember(Value = "PSM3")]
-            PSM3 = 47,
-
-            /// <summary>
-            /// Enum PSMP for value: PSMP
-            /// </summary>
-            [EnumMember(Value = "PSMP")]
-            PSMP = 48,
-
-            /// <summary>
-            /// Enum VPC for value: VPC
-            /// </summary>
-            [EnumMember(Value = "VPC")]
-            VPC = 49,
-
-            /// <summary>
-            /// Enum AR for value: AR
-            /// </summary>
-            [EnumMember(Value = "AR")]
-            AR = 50,
-
-            /// <summary>
-            /// Enum ARBAR for value: AR-BAR
-            /// </summary>
-            [EnumMember(Value = "AR-BAR")]
-            ARBAR = 51,
-
-            /// <summary>
-            /// Enum ARPED for value: AR-PED
-            /// </summary>
-            [EnumMember(Value = "AR-PED")]
-            ARPED = 52,
-
-            /// <summary>
-            /// Enum HELISMUR for value: HELISMUR
-            /// </summary>
-            [EnumMember(Value = "HELISMUR")]
-            HELISMUR = 53,
-
-            /// <summary>
-            /// Enum HELISAN for value: HELISAN
-            /// </summary>
-            [EnumMember(Value = "HELISAN")]
-            HELISAN = 54,
-
-            /// <summary>
-            /// Enum AVSMUR for value: AVSMUR
-            /// </summary>
-            [EnumMember(Value = "AVSMUR")]
-            AVSMUR = 55,
-
-            /// <summary>
-            /// Enum AVSAN for value: AVSAN
-            /// </summary>
-            [EnumMember(Value = "AVSAN")]
-            AVSAN = 56,
-
-            /// <summary>
-            /// Enum NAVISMUR for value: NAVISMUR
-            /// </summary>
-            [EnumMember(Value = "NAVISMUR")]
-            NAVISMUR = 57,
-
-            /// <summary>
-            /// Enum TSU for value: TSU
-            /// </summary>
-            [EnumMember(Value = "TSU")]
-            TSU = 58,
-
-            /// <summary>
-            /// Enum VSL for value: VSL
-            /// </summary>
-            [EnumMember(Value = "VSL")]
-            VSL = 59,
-
-            /// <summary>
-            /// Enum AMBGV for value: AMB-GV
-            /// </summary>
-            [EnumMember(Value = "AMB-GV")]
-            AMBGV = 60,
-
-            /// <summary>
-            /// Enum AMBPV for value: AMB-PV
-            /// </summary>
-            [EnumMember(Value = "AMB-PV")]
-            AMBPV = 61,
-
-            /// <summary>
-            /// Enum AMBBAR for value: AMB-BAR
-            /// </summary>
-            [EnumMember(Value = "AMB-BAR")]
-            AMBBAR = 62,
-
-            /// <summary>
-            /// Enum AMB for value: AMB
-            /// </summary>
-            [EnumMember(Value = "AMB")]
-            AMB = 63
-        }
-
-
-        /// <summary>
-        /// A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée) en fonction du type de décision. A fournir obligatoirement pour une décision d&#39;intervention ou de transport/orientation.
-        /// </summary>
-        /// <value>A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée) en fonction du type de décision. A fournir obligatoirement pour une décision d&#39;intervention ou de transport/orientation.</value>
-        /// <example>example.json#/decision/0/vehiculeType</example>
-        [DataMember(Name = "vehiculeType", EmitDefaultValue = false)]
-        public VehiculeTypeEnum? VehiculeType { get; set; }
         /// <summary>
         /// Indique le type de destination en cas de décision d&#39;orientation (cf. nomenclature associée)
         /// </summary>
@@ -590,15 +352,14 @@ namespace HubsanteModel.Health.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Decision" /> class.
         /// </summary>
-        /// <param name="idPat">A valoriser avec l&#39;ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur.</param>
+        /// <param name="patientId">A valoriser avec l&#39;ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur.</param>
         /// <param name="creation">A valoriser avec le groupe date heure de création de la décision.  L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé. (required).</param>
         /// <param name="varOperator">varOperator (required).</param>
         /// <param name="decisionType">A valoriser avec le type de décision prise (cf.nomenclature associée) (required).</param>
         /// <param name="resourceType">A valoriser avec le type de ressource souhaitée ou engagée (cf.nomenclature associée) - en fonction du type de décision. A fournir obligatoirement pour une décision d&#39;intervention ou de transport/orientation..</param>
-        /// <param name="vehiculeType">A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée) en fonction du type de décision. A fournir obligatoirement pour une décision d&#39;intervention ou de transport/orientation..</param>
         /// <param name="medicalTransport">A valoriser obligatoirement en cas de décision de transport, pour indiquer si ce dernier est médicalisé. True &#x3D; transport médicalisé False &#x3D; transport non médicalisé.</param>
         /// <param name="orientationType">Indique le type de destination en cas de décision d&#39;orientation (cf. nomenclature associée).</param>
-        public Decision(string idPat = default(string), DateTime creation = default(DateTime), Operator varOperator = default(Operator), DecisionTypeEnum decisionType = default(DecisionTypeEnum), ResourceTypeEnum? resourceType = default(ResourceTypeEnum?), VehiculeTypeEnum? vehiculeType = default(VehiculeTypeEnum?), bool medicalTransport = default(bool), OrientationTypeEnum? orientationType = default(OrientationTypeEnum?))
+        public Decision(string patientId = default(string), DateTime creation = default(DateTime), Operator varOperator = default(Operator), DecisionTypeEnum decisionType = default(DecisionTypeEnum), ResourceTypeEnum? resourceType = default(ResourceTypeEnum?), bool medicalTransport = default(bool), OrientationTypeEnum? orientationType = default(OrientationTypeEnum?))
         {
             this.Creation = creation;
             // to ensure "varOperator" is required (not null)
@@ -608,9 +369,8 @@ namespace HubsanteModel.Health.Model
             }
             this.VarOperator = varOperator;
             this.DecisionType = decisionType;
-            this.IdPat = idPat;
+            this.PatientId = patientId;
             this.ResourceType = resourceType;
-            this.VehiculeType = vehiculeType;
             this.MedicalTransport = medicalTransport;
             this.OrientationType = orientationType;
         }
@@ -619,9 +379,9 @@ namespace HubsanteModel.Health.Model
         /// A valoriser avec l&#39;ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur
         /// </summary>
         /// <value>A valoriser avec l&#39;ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur</value>
-        /// <example>example.json#/decision/0/idPat</example>
-        [DataMember(Name = "idPat", EmitDefaultValue = false)]
-        public string IdPat { get; set; }
+        /// <example>example.json#/decision/0/patientId</example>
+        [DataMember(Name = "patientId", EmitDefaultValue = false)]
+        public string PatientId { get; set; }
 
         /// <summary>
         /// A valoriser avec le groupe date heure de création de la décision.  L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé.
@@ -652,12 +412,11 @@ namespace HubsanteModel.Health.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Decision {\n");
-            sb.Append("  IdPat: ").Append(IdPat).Append("\n");
+            sb.Append("  PatientId: ").Append(PatientId).Append("\n");
             sb.Append("  Creation: ").Append(Creation).Append("\n");
             sb.Append("  VarOperator: ").Append(VarOperator).Append("\n");
             sb.Append("  DecisionType: ").Append(DecisionType).Append("\n");
             sb.Append("  ResourceType: ").Append(ResourceType).Append("\n");
-            sb.Append("  VehiculeType: ").Append(VehiculeType).Append("\n");
             sb.Append("  MedicalTransport: ").Append(MedicalTransport).Append("\n");
             sb.Append("  OrientationType: ").Append(OrientationType).Append("\n");
             sb.Append("}\n");
@@ -696,9 +455,9 @@ namespace HubsanteModel.Health.Model
             }
             return 
                 (
-                    this.IdPat == input.IdPat ||
-                    (this.IdPat != null &&
-                    this.IdPat.Equals(input.IdPat))
+                    this.PatientId == input.PatientId ||
+                    (this.PatientId != null &&
+                    this.PatientId.Equals(input.PatientId))
                 ) && 
                 (
                     this.Creation == input.Creation ||
@@ -719,10 +478,6 @@ namespace HubsanteModel.Health.Model
                     this.ResourceType.Equals(input.ResourceType)
                 ) && 
                 (
-                    this.VehiculeType == input.VehiculeType ||
-                    this.VehiculeType.Equals(input.VehiculeType)
-                ) && 
-                (
                     this.MedicalTransport == input.MedicalTransport ||
                     this.MedicalTransport.Equals(input.MedicalTransport)
                 ) && 
@@ -741,9 +496,9 @@ namespace HubsanteModel.Health.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.IdPat != null)
+                if (this.PatientId != null)
                 {
-                    hashCode = (hashCode * 59) + this.IdPat.GetHashCode();
+                    hashCode = (hashCode * 59) + this.PatientId.GetHashCode();
                 }
                 if (this.Creation != null)
                 {
@@ -755,7 +510,6 @@ namespace HubsanteModel.Health.Model
                 }
                 hashCode = (hashCode * 59) + this.DecisionType.GetHashCode();
                 hashCode = (hashCode * 59) + this.ResourceType.GetHashCode();
-                hashCode = (hashCode * 59) + this.VehiculeType.GetHashCode();
                 hashCode = (hashCode * 59) + this.MedicalTransport.GetHashCode();
                 hashCode = (hashCode * 59) + this.OrientationType.GetHashCode();
                 return hashCode;
@@ -771,7 +525,7 @@ namespace HubsanteModel.Health.Model
         {
             if (this.Creation != null) {
                 // Creation (DateTime) pattern
-                Regex regexCreation = new Regex(@"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}", RegexOptions.CultureInvariant);
+                Regex regexCreation = new Regex(@"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", RegexOptions.CultureInvariant);
                 if (!regexCreation.Match(this.Creation).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Creation, must match a pattern of " + regexCreation, new [] { "Creation" });

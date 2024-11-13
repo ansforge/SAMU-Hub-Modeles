@@ -16,7 +16,7 @@ module Rpis
     attr_accessor :health_motive
 
     # Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN. Permet de déduire avec la donnée \"niveau de médicalisation du transport\", si un UMHP est devenu un SMUR. 
-    attr_accessor :initial_team_care
+    attr_accessor :medical_level
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -45,7 +45,7 @@ module Rpis
       {
         :'whats_happen' => :'whatsHappen',
         :'health_motive' => :'healthMotive',
-        :'initial_team_care' => :'initialTeamCare'
+        :'medical_level' => :'medicalLevel'
       }
     end
 
@@ -59,7 +59,7 @@ module Rpis
       {
         :'whats_happen' => :'WhatsHappen',
         :'health_motive' => :'HealthMotive',
-        :'initial_team_care' => :'String'
+        :'medical_level' => :'String'
       }
     end
 
@@ -96,10 +96,10 @@ module Rpis
         self.health_motive = nil
       end
 
-      if attributes.key?(:'initial_team_care')
-        self.initial_team_care = attributes[:'initial_team_care']
+      if attributes.key?(:'medical_level')
+        self.medical_level = attributes[:'medical_level']
       else
-        self.initial_team_care = nil
+        self.medical_level = nil
       end
     end
 
@@ -116,8 +116,8 @@ module Rpis
         invalid_properties.push('invalid value for "health_motive", health_motive cannot be nil.')
       end
 
-      if @initial_team_care.nil?
-        invalid_properties.push('invalid value for "initial_team_care", initial_team_care cannot be nil.')
+      if @medical_level.nil?
+        invalid_properties.push('invalid value for "medical_level", medical_level cannot be nil.')
       end
 
       invalid_properties
@@ -129,20 +129,20 @@ module Rpis
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @whats_happen.nil?
       return false if @health_motive.nil?
-      return false if @initial_team_care.nil?
-      initial_team_care_validator = EnumAttributeValidator.new('String', ["MED", "PARAMED", "SECOURS"])
-      return false unless initial_team_care_validator.valid?(@initial_team_care)
+      return false if @medical_level.nil?
+      medical_level_validator = EnumAttributeValidator.new('String', ["MED", "PARAMED", "SECOURS"])
+      return false unless medical_level_validator.valid?(@medical_level)
       true
     end
 
     # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] initial_team_care Object to be assigned
-    def initial_team_care=(initial_team_care)
+    # @param [Object] medical_level Object to be assigned
+    def medical_level=(medical_level)
       validator = EnumAttributeValidator.new('String', ["MED", "PARAMED", "SECOURS"])
-      unless validator.valid?(initial_team_care)
-        fail ArgumentError, "invalid value for \"initial_team_care\", must be one of #{validator.allowable_values}."
+      unless validator.valid?(medical_level)
+        fail ArgumentError, "invalid value for \"medical_level\", must be one of #{validator.allowable_values}."
       end
-      @initial_team_care = initial_team_care
+      @medical_level = medical_level
     end
 
     # Checks equality by comparing each attribute.
@@ -152,7 +152,7 @@ module Rpis
       self.class == o.class &&
           whats_happen == o.whats_happen &&
           health_motive == o.health_motive &&
-          initial_team_care == o.initial_team_care
+          medical_level == o.medical_level
     end
 
     # @see the `==` method
@@ -164,7 +164,7 @@ module Rpis
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [whats_happen, health_motive, initial_team_care].hash
+      [whats_happen, health_motive, medical_level].hash
     end
 
     # Builds the object from hash

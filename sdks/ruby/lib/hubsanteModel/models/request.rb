@@ -9,7 +9,7 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Resources
+module ResourcesRequest
   class Request
     # Identifiant unique partagé de la demande de ressource,  généré une seule fois par le système du partenaire qui émet la demande  Il est valorisé comme suit lors de sa création :  {orgID}.request.{ID unique de la demande dans le système émetteur}  OU - uniquement si un ID unique de la demande n'est pas disponible :  {OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}
     attr_accessor :request_id
@@ -90,13 +90,13 @@ module Resources
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Resources::Request` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `ResourcesRequest::Request` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Resources::Request`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `ResourcesRequest::Request`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -141,16 +141,11 @@ module Resources
         invalid_properties.push('invalid value for "request_id", request_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/([\w-]+\.){3,4}request(\.[\w-]+){1,2}/)
-      if @request_id !~ pattern
-        invalid_properties.push("invalid value for \"request_id\", must conform to the pattern #{pattern}.")
-      end
-
       if @datetime.nil?
         invalid_properties.push('invalid value for "datetime", datetime cannot be nil.')
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if @datetime !~ pattern
         invalid_properties.push("invalid value for \"datetime\", must conform to the pattern #{pattern}.")
       end
@@ -167,32 +162,16 @@ module Resources
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @request_id.nil?
-      return false if @request_id !~ Regexp.new(/([\w-]+\.){3,4}request(\.[\w-]+){1,2}/)
       return false if @datetime.nil?
-      return false if @datetime !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      return false if @datetime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       convention_validator = EnumAttributeValidator.new('String', ["DRSIS", "MISSION", "ITSP", "CARENCE", "CONVENT", "SPE", "HORS", "AUTRE1", "AUTRE2", "AUTRE3"])
       return false unless convention_validator.valid?(@convention)
       return false if @purpose.nil?
       purpose_validator = EnumAttributeValidator.new('String', ["SAP", "REGUL", "CUMP", "SMUR", "MG", "PARAMED", "SAMU", "RELEVE", "NOVI", "TIH", "BRANCARD", "BARIA"])
       return false unless purpose_validator.valid?(@purpose)
-      deadline_validator = EnumAttributeValidator.new('String', ["DEL0", "ASAP", "DEL30M", "DEL45M", "DEL1H", "DEL2H", "DEL4H", "DEL8H", "DEL12H", "DEL24H", "RDV"])
+      deadline_validator = EnumAttributeValidator.new('String', ["DEL0", "ASAP", "30M", "45M", "1H", "2H", "4H", "8H", "12H", "24H", "RDV"])
       return false unless deadline_validator.valid?(@deadline)
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] request_id Value to be assigned
-    def request_id=(request_id)
-      if request_id.nil?
-        fail ArgumentError, 'request_id cannot be nil'
-      end
-
-      pattern = Regexp.new(/([\w-]+\.){3,4}request(\.[\w-]+){1,2}/)
-      if request_id !~ pattern
-        fail ArgumentError, "invalid value for \"request_id\", must conform to the pattern #{pattern}."
-      end
-
-      @request_id = request_id
     end
 
     # Custom attribute writer method with validation
@@ -202,7 +181,7 @@ module Resources
         fail ArgumentError, 'datetime cannot be nil'
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if datetime !~ pattern
         fail ArgumentError, "invalid value for \"datetime\", must conform to the pattern #{pattern}."
       end
@@ -233,7 +212,7 @@ module Resources
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] deadline Object to be assigned
     def deadline=(deadline)
-      validator = EnumAttributeValidator.new('String', ["DEL0", "ASAP", "DEL30M", "DEL45M", "DEL1H", "DEL2H", "DEL4H", "DEL8H", "DEL12H", "DEL24H", "RDV"])
+      validator = EnumAttributeValidator.new('String', ["DEL0", "ASAP", "30M", "45M", "1H", "2H", "4H", "8H", "12H", "24H", "RDV"])
       unless validator.valid?(deadline)
         fail ArgumentError, "invalid value for \"deadline\", must be one of #{validator.allowable_values}."
       end
@@ -326,7 +305,7 @@ module Resources
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Resources.const_get(type)
+        klass = ResourcesRequest.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

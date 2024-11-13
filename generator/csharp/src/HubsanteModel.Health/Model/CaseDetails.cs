@@ -98,214 +98,232 @@ namespace HubsanteModel.Health.Model
             DRM = 1,
 
             /// <summary>
-            /// Enum DRMMRU for value: DRMMRU
+            /// Enum DRMMRU for value: DRM.MRU
             /// </summary>
-            [EnumMember(Value = "DRMMRU")]
+            [EnumMember(Value = "DRM.MRU")]
             DRMMRU = 2,
 
             /// <summary>
-            /// Enum MU for value: MU
+            /// Enum DRMMRUMU for value: DRM.MRU.MU
             /// </summary>
-            [EnumMember(Value = "MU")]
-            MU = 3,
+            [EnumMember(Value = "DRM.MRU.MU")]
+            DRMMRUMU = 3,
 
             /// <summary>
-            /// Enum DENT for value: DENT
+            /// Enum DRMMRUINDISPMU for value: DRM.MRU.INDISPMU
             /// </summary>
-            [EnumMember(Value = "DENT")]
-            DENT = 4,
+            [EnumMember(Value = "DRM.MRU.INDISPMU")]
+            DRMMRUINDISPMU = 4,
 
             /// <summary>
-            /// Enum GERIA for value: GERIA
+            /// Enum DRMMRUSSE for value: DRM.MRU.SSE
             /// </summary>
-            [EnumMember(Value = "GERIA")]
-            GERIA = 5,
+            [EnumMember(Value = "DRM.MRU.SSE")]
+            DRMMRUSSE = 5,
 
             /// <summary>
-            /// Enum PEDIA for value: PEDIA
+            /// Enum DRMMRUPLANBLAN for value: DRM.MRU.PLANBLAN
             /// </summary>
-            [EnumMember(Value = "PEDIA")]
-            PEDIA = 6,
+            [EnumMember(Value = "DRM.MRU.PLANBLAN")]
+            DRMMRUPLANBLAN = 6,
 
             /// <summary>
-            /// Enum PSY for value: PSY
+            /// Enum DRMMRUPCSAMU for value: DRM.MRU.PCSAMU
             /// </summary>
-            [EnumMember(Value = "PSY")]
-            PSY = 7,
+            [EnumMember(Value = "DRM.MRU.PCSAMU")]
+            DRMMRUPCSAMU = 7,
 
             /// <summary>
-            /// Enum TOXICOL for value: TOXICOL
+            /// Enum DRMSPE for value: DRM.SPE
             /// </summary>
-            [EnumMember(Value = "TOXICOL")]
-            TOXICOL = 8,
+            [EnumMember(Value = "DRM.SPE")]
+            DRMSPE = 8,
 
             /// <summary>
-            /// Enum INDISPMU for value: INDISPMU
+            /// Enum DRMSPEDENT for value: DRM.SPE.DENT
             /// </summary>
-            [EnumMember(Value = "INDISPMU")]
-            INDISPMU = 9,
+            [EnumMember(Value = "DRM.SPE.DENT")]
+            DRMSPEDENT = 9,
 
             /// <summary>
-            /// Enum SSE for value: SSE
+            /// Enum DRMSPEGERIA for value: DRM.SPE.GERIA
             /// </summary>
-            [EnumMember(Value = "SSE")]
-            SSE = 10,
+            [EnumMember(Value = "DRM.SPE.GERIA")]
+            DRMSPEGERIA = 10,
 
             /// <summary>
-            /// Enum PLANBLAN for value: PLANBLAN
+            /// Enum DRMSPEPEDIA for value: DRM.SPE.PEDIA
             /// </summary>
-            [EnumMember(Value = "PLANBLAN")]
-            PLANBLAN = 11,
+            [EnumMember(Value = "DRM.SPE.PEDIA")]
+            DRMSPEPEDIA = 11,
 
             /// <summary>
-            /// Enum PCSAMU for value: PCSAMU
+            /// Enum DRMSPEOBST for value: DRM.SPE.OBST
             /// </summary>
-            [EnumMember(Value = "PCSAMU")]
-            PCSAMU = 12,
+            [EnumMember(Value = "DRM.SPE.OBST")]
+            DRMSPEOBST = 12,
 
             /// <summary>
-            /// Enum DRMMRL for value: DRMMRL
+            /// Enum DRMSPEPSY for value: DRM.SPE.PSY
             /// </summary>
-            [EnumMember(Value = "DRMMRL")]
-            DRMMRL = 13,
+            [EnumMember(Value = "DRM.SPE.PSY")]
+            DRMSPEPSY = 13,
 
             /// <summary>
-            /// Enum MG for value: MG
+            /// Enum DRMSPETOXICOL for value: DRM.SPE.TOXICOL
             /// </summary>
-            [EnumMember(Value = "MG")]
-            MG = 14,
+            [EnumMember(Value = "DRM.SPE.TOXICOL")]
+            DRMSPETOXICOL = 14,
 
             /// <summary>
-            /// Enum INDISPMG for value: INDISPMG
+            /// Enum DRMMRL for value: DRM.MRL
             /// </summary>
-            [EnumMember(Value = "INDISPMG")]
-            INDISPMG = 15,
+            [EnumMember(Value = "DRM.MRL")]
+            DRMMRL = 15,
 
             /// <summary>
-            /// Enum ABSML for value: ABSML
+            /// Enum DRMMRLMG for value: DRM.MRL.MG
             /// </summary>
-            [EnumMember(Value = "ABSML")]
-            ABSML = 16,
+            [EnumMember(Value = "DRM.MRL.MG")]
+            DRMMRLMG = 16,
+
+            /// <summary>
+            /// Enum DRMMRLINDISPMG for value: DRM.MRL.INDISPMG
+            /// </summary>
+            [EnumMember(Value = "DRM.MRL.INDISPMG")]
+            DRMMRLINDISPMG = 17,
+
+            /// <summary>
+            /// Enum DRMMRLABSML for value: DRM.MRL.ABSML
+            /// </summary>
+            [EnumMember(Value = "DRM.MRL.ABSML")]
+            DRMMRLABSML = 18,
 
             /// <summary>
             /// Enum DR for value: DR
             /// </summary>
             [EnumMember(Value = "DR")]
-            DR = 17,
+            DR = 19,
 
             /// <summary>
-            /// Enum DREG for value: DREG
+            /// Enum DRDREG for value: DR.DREG
             /// </summary>
-            [EnumMember(Value = "DREG")]
-            DREG = 18,
+            [EnumMember(Value = "DR.DREG")]
+            DRDREG = 20,
 
             /// <summary>
-            /// Enum DRARM for value: DRARM
+            /// Enum DRDREGDRARM for value: DR.DREG.DRARM
             /// </summary>
-            [EnumMember(Value = "DRARM")]
-            DRARM = 19,
+            [EnumMember(Value = "DR.DREG.DRARM")]
+            DRDREGDRARM = 21,
 
             /// <summary>
-            /// Enum DRMED for value: DRMED
+            /// Enum DRDREGDRDAC for value: DR.DREG.DRDAC
             /// </summary>
-            [EnumMember(Value = "DRMED")]
-            DRMED = 20,
+            [EnumMember(Value = "DR.DREG.DRDAC")]
+            DRDREGDRDAC = 22,
 
             /// <summary>
-            /// Enum DRPHARMA for value: DRPHARMA
+            /// Enum DRDREGDRMED for value: DR.DREG.DRMED
             /// </summary>
-            [EnumMember(Value = "DRPHARMA")]
-            DRPHARMA = 21,
+            [EnumMember(Value = "DR.DREG.DRMED")]
+            DRDREGDRMED = 23,
 
             /// <summary>
-            /// Enum DRDENT for value: DRDENT
+            /// Enum DRDREGDRPHARMA for value: DR.DREG.DRPHARMA
             /// </summary>
-            [EnumMember(Value = "DRDENT")]
-            DRDENT = 22,
+            [EnumMember(Value = "DR.DREG.DRPHARMA")]
+            DRDREGDRPHARMA = 24,
 
             /// <summary>
-            /// Enum DRINFO for value: DRINFO
+            /// Enum DRDREGDRDENT for value: DR.DREG.DRDENT
             /// </summary>
-            [EnumMember(Value = "DRINFO")]
-            DRINFO = 23,
+            [EnumMember(Value = "DR.DREG.DRDENT")]
+            DRDREGDRDENT = 25,
 
             /// <summary>
-            /// Enum DOSSIS for value: DOS-SIS
+            /// Enum DRDREGDRINFO for value: DR.DREG.DRINFO
             /// </summary>
-            [EnumMember(Value = "DOS-SIS")]
-            DOSSIS = 24,
+            [EnumMember(Value = "DR.DREG.DRINFO")]
+            DRDREGDRINFO = 26,
 
             /// <summary>
-            /// Enum DOSFDO for value: DOS-FDO
+            /// Enum DRDREGDOSSIS for value: DR.DREG.DOS-SIS
             /// </summary>
-            [EnumMember(Value = "DOS-FDO")]
-            DOSFDO = 25,
+            [EnumMember(Value = "DR.DREG.DOS-SIS")]
+            DRDREGDOSSIS = 27,
+
+            /// <summary>
+            /// Enum DRDREGDOSFDO for value: DR.DREG.DOS-FDO
+            /// </summary>
+            [EnumMember(Value = "DR.DREG.DOS-FDO")]
+            DRDREGDOSFDO = 28,
 
             /// <summary>
             /// Enum D for value: D
             /// </summary>
             [EnumMember(Value = "D")]
-            D = 26,
+            D = 29,
 
             /// <summary>
-            /// Enum DMALV for value: D-MALV
+            /// Enum DDMALV for value: D.D-MALV
             /// </summary>
-            [EnumMember(Value = "D-MALV")]
-            DMALV = 27,
+            [EnumMember(Value = "D.D-MALV")]
+            DDMALV = 30,
 
             /// <summary>
-            /// Enum ERR for value: ERR
+            /// Enum DDMALVERR for value: D.D-MALV.ERR
             /// </summary>
-            [EnumMember(Value = "ERR")]
-            ERR = 28,
+            [EnumMember(Value = "D.D-MALV.ERR")]
+            DDMALVERR = 31,
 
             /// <summary>
-            /// Enum NRP for value: NRP
+            /// Enum DDMALVNRP for value: D.D-MALV.NRP
             /// </summary>
-            [EnumMember(Value = "NRP")]
-            NRP = 29,
+            [EnumMember(Value = "D.D-MALV.NRP")]
+            DDMALVNRP = 32,
 
             /// <summary>
-            /// Enum MALV for value: MALV
+            /// Enum DDMALVMALV for value: D.D-MALV.MALV
             /// </summary>
-            [EnumMember(Value = "MALV")]
-            MALV = 30,
+            [EnumMember(Value = "D.D-MALV.MALV")]
+            DDMALVMALV = 33,
 
             /// <summary>
-            /// Enum FAX for value: FAX
+            /// Enum DDMALVFAX for value: D.D-MALV.FAX
             /// </summary>
-            [EnumMember(Value = "FAX")]
-            FAX = 31,
+            [EnumMember(Value = "D.D-MALV.FAX")]
+            DDMALVFAX = 34,
 
             /// <summary>
-            /// Enum ITERATIF for value: ITERATIF
+            /// Enum DDMALVITERATIF for value: D.D-MALV.ITERATIF
             /// </summary>
-            [EnumMember(Value = "ITERATIF")]
-            ITERATIF = 32,
+            [EnumMember(Value = "D.D-MALV.ITERATIF")]
+            DDMALVITERATIF = 35,
 
             /// <summary>
-            /// Enum DIDENT for value: D-IDENT
+            /// Enum DDIDENT for value: D.D-IDENT
             /// </summary>
-            [EnumMember(Value = "D-IDENT")]
-            DIDENT = 33,
+            [EnumMember(Value = "D.D-IDENT")]
+            DDIDENT = 36,
 
             /// <summary>
-            /// Enum ADMIN for value: ADMIN
+            /// Enum DDIDENTADMIN for value: D.D-IDENT.ADMIN
             /// </summary>
-            [EnumMember(Value = "ADMIN")]
-            ADMIN = 34,
+            [EnumMember(Value = "D.D-IDENT.ADMIN")]
+            DDIDENTADMIN = 37,
 
             /// <summary>
-            /// Enum PERSO for value: PERSO
+            /// Enum DDIDENTPERSO for value: D.D-IDENT.PERSO
             /// </summary>
-            [EnumMember(Value = "PERSO")]
-            PERSO = 35,
+            [EnumMember(Value = "D.D-IDENT.PERSO")]
+            DDIDENTPERSO = 38,
 
             /// <summary>
-            /// Enum AUTRE for value: AUTRE
+            /// Enum DDIDENTAUTRE for value: D.D-IDENT.AUTRE
             /// </summary>
-            [EnumMember(Value = "AUTRE")]
-            AUTRE = 36
+            [EnumMember(Value = "D.D-IDENT.AUTRE")]
+            DDIDENTAUTRE = 39
         }
 
 

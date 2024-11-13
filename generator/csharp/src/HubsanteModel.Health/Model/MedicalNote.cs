@@ -34,12 +34,12 @@ namespace HubsanteModel.Health.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MedicalNote" /> class.
         /// </summary>
-        /// <param name="idPat">Identifiant partagé du patient concerné par l&#39;observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur,   Valorisé comme suit lors de sa création :  {OrgId émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un n°patient unique n&#39;existe pas dans le système émetteur : {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}.</param>
+        /// <param name="patientId">Identifiant partagé du patient concerné par l&#39;observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur,   Valorisé comme suit lors de sa création :  {OrgId émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un n°patient unique n&#39;existe pas dans le système émetteur : {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}.</param>
         /// <param name="varOperator">varOperator (required).</param>
-        /// <param name="idObs">Identifiant partagé de l&#39;observation, généré une seule fois par le système du partenaire qui créé l&#39;observation Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}  OU - uniquement dans le cas où un ID unique de la note n&#39;est pas disponible dans le système :  {OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}  Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.  (required).</param>
+        /// <param name="medicalNoteId">Identifiant partagé de l&#39;observation, généré une seule fois par le système du partenaire qui créé l&#39;observation Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}  OU - uniquement dans le cas où un ID unique de la note n&#39;est pas disponible dans le système :  {OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}  Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.  (required).</param>
         /// <param name="creation">A valoriser avec le groupe date heure de création de l&#39;observation.  L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé..</param>
         /// <param name="freetext">Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé. (required).</param>
-        public MedicalNote(string idPat = default(string), Operator varOperator = default(Operator), string idObs = default(string), DateTime creation = default(DateTime), string freetext = default(string))
+        public MedicalNote(string patientId = default(string), Operator varOperator = default(Operator), string medicalNoteId = default(string), DateTime creation = default(DateTime), string freetext = default(string))
         {
             // to ensure "varOperator" is required (not null)
             if (varOperator == null)
@@ -47,19 +47,19 @@ namespace HubsanteModel.Health.Model
                 throw new ArgumentNullException("varOperator is a required property for MedicalNote and cannot be null");
             }
             this.VarOperator = varOperator;
-            // to ensure "idObs" is required (not null)
-            if (idObs == null)
+            // to ensure "medicalNoteId" is required (not null)
+            if (medicalNoteId == null)
             {
-                throw new ArgumentNullException("idObs is a required property for MedicalNote and cannot be null");
+                throw new ArgumentNullException("medicalNoteId is a required property for MedicalNote and cannot be null");
             }
-            this.IdObs = idObs;
+            this.MedicalNoteId = medicalNoteId;
             // to ensure "freetext" is required (not null)
             if (freetext == null)
             {
                 throw new ArgumentNullException("freetext is a required property for MedicalNote and cannot be null");
             }
             this.Freetext = freetext;
-            this.IdPat = idPat;
+            this.PatientId = patientId;
             this.Creation = creation;
         }
 
@@ -67,9 +67,9 @@ namespace HubsanteModel.Health.Model
         /// Identifiant partagé du patient concerné par l&#39;observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur,   Valorisé comme suit lors de sa création :  {OrgId émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un n°patient unique n&#39;existe pas dans le système émetteur : {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}
         /// </summary>
         /// <value>Identifiant partagé du patient concerné par l&#39;observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur,   Valorisé comme suit lors de sa création :  {OrgId émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un n°patient unique n&#39;existe pas dans le système émetteur : {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}</value>
-        /// <example>example.json#/medicalNote/0/idPat</example>
-        [DataMember(Name = "idPat", EmitDefaultValue = false)]
-        public string IdPat { get; set; }
+        /// <example>example.json#/medicalNote/0/patientId</example>
+        [DataMember(Name = "patientId", EmitDefaultValue = false)]
+        public string PatientId { get; set; }
 
         /// <summary>
         /// Gets or Sets VarOperator
@@ -81,9 +81,9 @@ namespace HubsanteModel.Health.Model
         /// Identifiant partagé de l&#39;observation, généré une seule fois par le système du partenaire qui créé l&#39;observation Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}  OU - uniquement dans le cas où un ID unique de la note n&#39;est pas disponible dans le système :  {OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}  Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement. 
         /// </summary>
         /// <value>Identifiant partagé de l&#39;observation, généré une seule fois par le système du partenaire qui créé l&#39;observation Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}  OU - uniquement dans le cas où un ID unique de la note n&#39;est pas disponible dans le système :  {OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}  Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement. </value>
-        /// <example>example.json#/medicalNote/0/idObs</example>
-        [DataMember(Name = "idObs", IsRequired = true, EmitDefaultValue = true)]
-        public string IdObs { get; set; }
+        /// <example>example.json#/medicalNote/0/medicalNoteId</example>
+        [DataMember(Name = "medicalNoteId", IsRequired = true, EmitDefaultValue = true)]
+        public string MedicalNoteId { get; set; }
 
         /// <summary>
         /// A valoriser avec le groupe date heure de création de l&#39;observation.  L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé.
@@ -108,9 +108,9 @@ namespace HubsanteModel.Health.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class MedicalNote {\n");
-            sb.Append("  IdPat: ").Append(IdPat).Append("\n");
+            sb.Append("  PatientId: ").Append(PatientId).Append("\n");
             sb.Append("  VarOperator: ").Append(VarOperator).Append("\n");
-            sb.Append("  IdObs: ").Append(IdObs).Append("\n");
+            sb.Append("  MedicalNoteId: ").Append(MedicalNoteId).Append("\n");
             sb.Append("  Creation: ").Append(Creation).Append("\n");
             sb.Append("  Freetext: ").Append(Freetext).Append("\n");
             sb.Append("}\n");
@@ -149,9 +149,9 @@ namespace HubsanteModel.Health.Model
             }
             return 
                 (
-                    this.IdPat == input.IdPat ||
-                    (this.IdPat != null &&
-                    this.IdPat.Equals(input.IdPat))
+                    this.PatientId == input.PatientId ||
+                    (this.PatientId != null &&
+                    this.PatientId.Equals(input.PatientId))
                 ) && 
                 (
                     this.VarOperator == input.VarOperator ||
@@ -159,9 +159,9 @@ namespace HubsanteModel.Health.Model
                     this.VarOperator.Equals(input.VarOperator))
                 ) && 
                 (
-                    this.IdObs == input.IdObs ||
-                    (this.IdObs != null &&
-                    this.IdObs.Equals(input.IdObs))
+                    this.MedicalNoteId == input.MedicalNoteId ||
+                    (this.MedicalNoteId != null &&
+                    this.MedicalNoteId.Equals(input.MedicalNoteId))
                 ) && 
                 (
                     this.Creation == input.Creation ||
@@ -184,17 +184,17 @@ namespace HubsanteModel.Health.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.IdPat != null)
+                if (this.PatientId != null)
                 {
-                    hashCode = (hashCode * 59) + this.IdPat.GetHashCode();
+                    hashCode = (hashCode * 59) + this.PatientId.GetHashCode();
                 }
                 if (this.VarOperator != null)
                 {
                     hashCode = (hashCode * 59) + this.VarOperator.GetHashCode();
                 }
-                if (this.IdObs != null)
+                if (this.MedicalNoteId != null)
                 {
-                    hashCode = (hashCode * 59) + this.IdObs.GetHashCode();
+                    hashCode = (hashCode * 59) + this.MedicalNoteId.GetHashCode();
                 }
                 if (this.Creation != null)
                 {
@@ -215,27 +215,27 @@ namespace HubsanteModel.Health.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            if (this.IdPat != null) {
-                // IdPat (string) pattern
-                Regex regexIdPat = new Regex(@"([\w-]+\.){3,4}patient(\.[\w-]+){1,2}", RegexOptions.CultureInvariant);
-                if (!regexIdPat.Match(this.IdPat).Success)
+            if (this.PatientId != null) {
+                // PatientId (string) pattern
+                Regex regexPatientId = new Regex(@"^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$", RegexOptions.CultureInvariant);
+                if (!regexPatientId.Match(this.PatientId).Success)
                 {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IdPat, must match a pattern of " + regexIdPat, new [] { "IdPat" });
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PatientId, must match a pattern of " + regexPatientId, new [] { "PatientId" });
                 }
             }
 
-            if (this.IdObs != null) {
-                // IdObs (string) pattern
-                Regex regexIdObs = new Regex(@"([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}", RegexOptions.CultureInvariant);
-                if (!regexIdObs.Match(this.IdObs).Success)
+            if (this.MedicalNoteId != null) {
+                // MedicalNoteId (string) pattern
+                Regex regexMedicalNoteId = new Regex(@"^([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}$", RegexOptions.CultureInvariant);
+                if (!regexMedicalNoteId.Match(this.MedicalNoteId).Success)
                 {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for IdObs, must match a pattern of " + regexIdObs, new [] { "IdObs" });
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for MedicalNoteId, must match a pattern of " + regexMedicalNoteId, new [] { "MedicalNoteId" });
                 }
             }
 
             if (this.Creation != null) {
                 // Creation (DateTime) pattern
-                Regex regexCreation = new Regex(@"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}", RegexOptions.CultureInvariant);
+                Regex regexCreation = new Regex(@"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", RegexOptions.CultureInvariant);
                 if (!regexCreation.Match(this.Creation).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Creation, must match a pattern of " + regexCreation, new [] { "Creation" });

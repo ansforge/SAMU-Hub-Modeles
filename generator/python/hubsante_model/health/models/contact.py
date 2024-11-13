@@ -40,8 +40,8 @@ class Contact(BaseModel):
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('TEL', 'EMAIL', 'FAX', 'POSTAL', 'WEB', 'RADIO'):
-            raise ValueError("must be one of enum values ('TEL', 'EMAIL', 'FAX', 'POSTAL', 'WEB', 'RADIO')")
+        if value not in ('EMAIL', 'FAX', 'MSS', 'POSTAL', 'RADIO', 'TEL', 'WEB'):
+            raise ValueError("must be one of enum values ('EMAIL', 'FAX', 'MSS', 'POSTAL', 'RADIO', 'TEL', 'WEB')")
         return value
 
     model_config = {

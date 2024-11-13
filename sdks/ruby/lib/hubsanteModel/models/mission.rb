@@ -149,6 +149,8 @@ module Emsi
 
       if attributes.key?(:'id')
         self.id = attributes[:'id']
+      else
+        self.id = nil
       end
 
       if attributes.key?(:'org_id')
@@ -157,10 +159,14 @@ module Emsi
 
       if attributes.key?(:'name')
         self.name = attributes[:'name']
+      else
+        self.name = nil
       end
 
       if attributes.key?(:'status')
         self.status = attributes[:'status']
+      else
+        self.status = nil
       end
 
       if attributes.key?(:'start_time')
@@ -211,12 +217,24 @@ module Emsi
         invalid_properties.push('invalid value for "type", type cannot be nil.')
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      if @id.nil?
+        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      end
+
+      if @name.nil?
+        invalid_properties.push('invalid value for "name", name cannot be nil.')
+      end
+
+      if @status.nil?
+        invalid_properties.push('invalid value for "status", status cannot be nil.')
+      end
+
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if !@start_time.nil? && @start_time !~ pattern
         invalid_properties.push("invalid value for \"start_time\", must conform to the pattern #{pattern}.")
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if !@end_time.nil? && @end_time !~ pattern
         invalid_properties.push("invalid value for \"end_time\", must conform to the pattern #{pattern}.")
       end
@@ -231,10 +249,13 @@ module Emsi
       return false if @type.nil?
       type_validator = EnumAttributeValidator.new('String', ["SAV/ASC", "FR_MED/REGLTN", "GEN/SUPRTN", "SAV/AR/FR_MED", "SAV/AR/FR_PARAMD", "SAV", "GEN/TRNSPN", "SAV/SARCSL", "SAV/ASC/FR_PPL/LIFT", "GEN/RECVRY", "SAV/RHD", "FFST/FR_FIRE", "FSTT/RRHAZ/FR_CO", "CBRN/TSA", "INT/RECCE/FR_SMLL", "FSTT/TA", "SAV/AR/FR_PPL/GRP", "INT/RECCE", "GEN/TRNSPN/FR_SECNDRY", "OPR/LOG", "SAV/AR/FR_PPL/OBS", "FSTT/TA/FR_CLRACCSS"])
       return false unless type_validator.valid?(@type)
+      return false if @id.nil?
+      return false if @name.nil?
+      return false if @status.nil?
       status_validator = EnumAttributeValidator.new('String', ["ABO", "NST", "CANCLD", "COM", "IPR", "PAU"])
       return false unless status_validator.valid?(@status)
-      return false if !@start_time.nil? && @start_time !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
-      return false if !@end_time.nil? && @end_time !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      return false if !@start_time.nil? && @start_time !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      return false if !@end_time.nil? && @end_time !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       priority_validator = EnumAttributeValidator.new('String', ["0", "1", "2", "3", "4", "5"])
       return false unless priority_validator.valid?(@priority)
       true
@@ -267,7 +288,7 @@ module Emsi
         fail ArgumentError, 'start_time cannot be nil'
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if start_time !~ pattern
         fail ArgumentError, "invalid value for \"start_time\", must conform to the pattern #{pattern}."
       end
@@ -282,7 +303,7 @@ module Emsi
         fail ArgumentError, 'end_time cannot be nil'
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if end_time !~ pattern
         fail ArgumentError, "invalid value for \"end_time\", must conform to the pattern #{pattern}."
       end

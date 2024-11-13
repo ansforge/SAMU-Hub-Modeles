@@ -11,49 +11,14 @@ require 'time'
 
 module Health
   class Qualification
-    # A valoriser avec le numéro de provenance de l'appel.
-    attr_accessor :origin
-
     attr_accessor :risk_threat
 
-    attr_accessor :whats_happen
-
-    attr_accessor :location_kind
-
-    attr_accessor :health_motive
-
     attr_accessor :details
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'origin' => :'origin',
         :'risk_threat' => :'riskThreat',
-        :'whats_happen' => :'whatsHappen',
-        :'location_kind' => :'locationKind',
-        :'health_motive' => :'healthMotive',
         :'details' => :'details'
       }
     end
@@ -66,11 +31,7 @@ module Health
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'origin' => :'String',
         :'risk_threat' => :'Array<RiskThreat>',
-        :'whats_happen' => :'WhatsHappen',
-        :'location_kind' => :'LocationKind',
-        :'health_motive' => :'HealthMotive',
         :'details' => :'CaseDetails'
       }
     end
@@ -96,26 +57,10 @@ module Health
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'origin')
-        self.origin = attributes[:'origin']
-      end
-
       if attributes.key?(:'risk_threat')
         if (value = attributes[:'risk_threat']).is_a?(Array)
           self.risk_threat = value
         end
-      end
-
-      if attributes.key?(:'whats_happen')
-        self.whats_happen = attributes[:'whats_happen']
-      end
-
-      if attributes.key?(:'location_kind')
-        self.location_kind = attributes[:'location_kind']
-      end
-
-      if attributes.key?(:'health_motive')
-        self.health_motive = attributes[:'health_motive']
       end
 
       if attributes.key?(:'details')
@@ -135,19 +80,7 @@ module Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      origin_validator = EnumAttributeValidator.new('String', ["15", "17", "18", "112", "116117"])
-      return false unless origin_validator.valid?(@origin)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] origin Object to be assigned
-    def origin=(origin)
-      validator = EnumAttributeValidator.new('String', ["15", "17", "18", "112", "116117"])
-      unless validator.valid?(origin)
-        fail ArgumentError, "invalid value for \"origin\", must be one of #{validator.allowable_values}."
-      end
-      @origin = origin
     end
 
     # Checks equality by comparing each attribute.
@@ -155,11 +88,7 @@ module Health
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          origin == o.origin &&
           risk_threat == o.risk_threat &&
-          whats_happen == o.whats_happen &&
-          location_kind == o.location_kind &&
-          health_motive == o.health_motive &&
           details == o.details
     end
 
@@ -172,7 +101,7 @@ module Health
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [origin, risk_threat, whats_happen, location_kind, health_motive, details].hash
+      [risk_threat, details].hash
     end
 
     # Builds the object from hash

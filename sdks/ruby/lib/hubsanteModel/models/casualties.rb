@@ -133,7 +133,7 @@ module Emsi
         invalid_properties.push('invalid value for "context", context cannot be nil.')
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if !@datime.nil? && @datime !~ pattern
         invalid_properties.push("invalid value for \"datime\", must conform to the pattern #{pattern}.")
       end
@@ -146,7 +146,7 @@ module Emsi
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @context.nil?
-      return false if !@datime.nil? && @datime !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      return false if !@datime.nil? && @datime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       true
     end
 
@@ -157,7 +157,7 @@ module Emsi
         fail ArgumentError, 'datime cannot be nil'
       end
 
-      pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       if datime !~ pattern
         fail ArgumentError, "invalid value for \"datime\", must conform to the pattern #{pattern}."
       end

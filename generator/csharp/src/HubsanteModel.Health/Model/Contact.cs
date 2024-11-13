@@ -86,22 +86,22 @@ namespace HubsanteModel.Health.Model
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum TEL for value: TEL
-            /// </summary>
-            [EnumMember(Value = "TEL")]
-            TEL = 1,
-
-            /// <summary>
             /// Enum EMAIL for value: EMAIL
             /// </summary>
             [EnumMember(Value = "EMAIL")]
-            EMAIL = 2,
+            EMAIL = 1,
 
             /// <summary>
             /// Enum FAX for value: FAX
             /// </summary>
             [EnumMember(Value = "FAX")]
-            FAX = 3,
+            FAX = 2,
+
+            /// <summary>
+            /// Enum MSS for value: MSS
+            /// </summary>
+            [EnumMember(Value = "MSS")]
+            MSS = 3,
 
             /// <summary>
             /// Enum POSTAL for value: POSTAL
@@ -110,16 +110,22 @@ namespace HubsanteModel.Health.Model
             POSTAL = 4,
 
             /// <summary>
-            /// Enum WEB for value: WEB
-            /// </summary>
-            [EnumMember(Value = "WEB")]
-            WEB = 5,
-
-            /// <summary>
             /// Enum RADIO for value: RADIO
             /// </summary>
             [EnumMember(Value = "RADIO")]
-            RADIO = 6
+            RADIO = 5,
+
+            /// <summary>
+            /// Enum TEL for value: TEL
+            /// </summary>
+            [EnumMember(Value = "TEL")]
+            TEL = 6,
+
+            /// <summary>
+            /// Enum WEB for value: WEB
+            /// </summary>
+            [EnumMember(Value = "WEB")]
+            WEB = 7
         }
 
 

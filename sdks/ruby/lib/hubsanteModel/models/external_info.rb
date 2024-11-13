@@ -9,16 +9,16 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Emsi
+module Health
   class ExternalInfo
-    # Optionnel
+    # A valoriser avec le système fournissant le localisant
     attr_accessor :freetext
 
-    # Optionnel
-    attr_accessor :uri
-
-    # Optionnel
+    # A valoriser avec la définition du type d'objet dans le système  Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)
     attr_accessor :type
+
+    # Identifiant dans le système concerné
+    attr_accessor :uri
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -45,9 +45,9 @@ module Emsi
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'freetext' => :'FREETEXT',
-        :'uri' => :'URI',
-        :'type' => :'TYPE'
+        :'freetext' => :'freetext',
+        :'type' => :'type',
+        :'uri' => :'uri'
       }
     end
 
@@ -60,8 +60,8 @@ module Emsi
     def self.openapi_types
       {
         :'freetext' => :'String',
-        :'uri' => :'String',
-        :'type' => :'String'
+        :'type' => :'String',
+        :'uri' => :'String'
       }
     end
 
@@ -75,29 +75,31 @@ module Emsi
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Emsi::ExternalInfo` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Health::ExternalInfo` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Emsi::ExternalInfo`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Health::ExternalInfo`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
       if attributes.key?(:'freetext')
         self.freetext = attributes[:'freetext']
+      else
+        self.freetext = nil
+      end
+
+      if attributes.key?(:'type')
+        self.type = attributes[:'type']
       end
 
       if attributes.key?(:'uri')
         self.uri = attributes[:'uri']
       else
         self.uri = nil
-      end
-
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
       end
     end
 
@@ -106,6 +108,10 @@ module Emsi
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @freetext.nil?
+        invalid_properties.push('invalid value for "freetext", freetext cannot be nil.')
+      end
+
       if @uri.nil?
         invalid_properties.push('invalid value for "uri", uri cannot be nil.')
       end
@@ -117,16 +123,29 @@ module Emsi
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @uri.nil?
-      type_validator = EnumAttributeValidator.new('String', ["MANUAL", "MAP", "OTHER", "PHOTO", "WEBSIT"])
+      return false if @freetext.nil?
+      freetext_validator = EnumAttributeValidator.new('String', ["BAN", "IGN", "NEXSIS"])
+      return false unless freetext_validator.valid?(@freetext)
+      type_validator = EnumAttributeValidator.new('String', ["MANUEL", "CARTE", "AUTRE", "PHOTO", "SITE_INTERNET"])
       return false unless type_validator.valid?(@type)
+      return false if @uri.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] freetext Object to be assigned
+    def freetext=(freetext)
+      validator = EnumAttributeValidator.new('String', ["BAN", "IGN", "NEXSIS"])
+      unless validator.valid?(freetext)
+        fail ArgumentError, "invalid value for \"freetext\", must be one of #{validator.allowable_values}."
+      end
+      @freetext = freetext
     end
 
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] type Object to be assigned
     def type=(type)
-      validator = EnumAttributeValidator.new('String', ["MANUAL", "MAP", "OTHER", "PHOTO", "WEBSIT"])
+      validator = EnumAttributeValidator.new('String', ["MANUEL", "CARTE", "AUTRE", "PHOTO", "SITE_INTERNET"])
       unless validator.valid?(type)
         fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
       end
@@ -139,8 +158,8 @@ module Emsi
       return true if self.equal?(o)
       self.class == o.class &&
           freetext == o.freetext &&
-          uri == o.uri &&
-          type == o.type
+          type == o.type &&
+          uri == o.uri
     end
 
     # @see the `==` method
@@ -152,7 +171,7 @@ module Emsi
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [freetext, uri, type].hash
+      [freetext, type, uri].hash
     end
 
     # Builds the object from hash
@@ -216,7 +235,7 @@ module Emsi
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Emsi.const_get(type)
+        klass = Health.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

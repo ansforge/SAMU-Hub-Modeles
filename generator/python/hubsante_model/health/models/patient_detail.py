@@ -30,7 +30,9 @@ class PatientDetail(BaseModel):
     height: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="A valoriser avec la taille en centimètres du patient")
     age: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="A valoriser avec l'age du patient. Au format \"Durée\" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) et en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)")
     care_level: Optional[StrictStr] = Field(default=None, description="A valoriser avec le niveau de soins spécifique au patient", alias="careLevel")
-    __properties: ClassVar[List[str]] = ["weight", "height", "age", "careLevel"]
+    medical_history: Optional[StrictStr] = Field(default=None, description="Texte libre  pour décrire les antécédents du patient.  Si ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. ", alias="medicalHistory")
+    treatment: Optional[StrictStr] = Field(default=None, description="Texte libre  pour décrire les traitements du patient. Si ce n'est pas géré de manière structurés : à afficher dans une note liée au patient en réception. ")
+    __properties: ClassVar[List[str]] = ["weight", "height", "age", "careLevel", "medicalHistory", "treatment"]
 
     @field_validator('age')
     def age_validate_regular_expression(cls, value):
@@ -38,8 +40,8 @@ class PatientDetail(BaseModel):
         if value is None:
             return value
 
-        if not re.match(r"P[0-9]{1,3}[YMWD]", value):
-            raise ValueError(r"must validate the regular expression /P[0-9]{1,3}[YMWD]/")
+        if not re.match(r"^P[0-9]{1,3}[YMWD]$", value):
+            raise ValueError(r"must validate the regular expression /^P[0-9]{1,3}[YMWD]$/")
         return value
 
     @field_validator('care_level')
@@ -103,7 +105,9 @@ class PatientDetail(BaseModel):
             "weight": obj.get("weight"),
             "height": obj.get("height"),
             "age": obj.get("age"),
-            "careLevel": obj.get("careLevel")
+            "careLevel": obj.get("careLevel"),
+            "medicalHistory": obj.get("medicalHistory"),
+            "treatment": obj.get("treatment")
         })
         return _obj
 
