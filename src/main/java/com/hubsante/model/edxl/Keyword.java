@@ -24,13 +24,12 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
         getterVisibility = JsonAutoDetect.Visibility.NONE
 )
 public class Keyword {
-
     @JsonProperty(value = "valueListURI", required = true)
-    @JacksonXmlProperty(namespace = "ct", localName = "ValueListURI", isAttribute = true)
+    @JacksonXmlProperty( namespace = "ct",localName = "ValueListURI" )
     public String valueListURI;
 
     @JsonProperty(value = "value", required = true)
-    @JacksonXmlProperty(namespace = "ct", localName = "Value", isAttribute = true)
+    @JacksonXmlProperty( namespace = "ct", localName = "Value" )
     public String value;
 
     public Keyword() {

@@ -22,8 +22,7 @@
             <contentXML>
                 <embeddedXMLContent>
                     <message xmlns="urn:emergency:cisu:2.0">
-                        <technicalNoreq>
-                            <key>value</key>
+                        <technicalNoreq xmlns="urn:emergency:cisu:2.0:technicalNoreq">
                         </technicalNoreq>
                     </message>
                 </embeddedXMLContent>

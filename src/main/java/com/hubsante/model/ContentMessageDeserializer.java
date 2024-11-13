@@ -78,12 +78,10 @@ public class ContentMessageDeserializer extends JsonDeserializer<ContentMessage>
         ObjectCodec codec = jp.getCodec();
         JsonNode node = codec.readTree(jp);
         String model = null;
-        Descriptor testDesc = ((EdxlMessage) jp.getParsingContext().getParent().getParent().getParent().getParent().getCurrentValue()).getDescriptor();
-        Keyword test = ((EdxlMessage) jp.getParsingContext().getParent().getParent().getParent().getParent().getCurrentValue()).getDescriptor().getKeyword().get(0);
         try {
             model = ((EdxlMessage) jp.getParsingContext().getParent().getParent().getParent().getParent().getCurrentValue()).getDescriptor().getKeyword().stream().filter(keyword -> keyword.getValueListURI().equals("urn:hubsante:model")).findFirst().get().getValue();
         } catch (NullPointerException e) {
-            throw new JsonParseException(jp, "Model name not found in $.descriptor.keyword.value");
+            throw new JsonParseException(jp, "Model name not found in $.descriptor.keyword[0].value");
         }
         // Find model in useCases map, throw JsonParseException if not found
         Class clazz = useCases.get(model);

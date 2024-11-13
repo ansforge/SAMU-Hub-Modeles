@@ -24,6 +24,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.edxl.EdxlEnvelope;
 import com.hubsante.model.edxl.EdxlMessage;
+import com.hubsante.model.edxl.Keyword;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -35,7 +36,9 @@ public class EdxlHandler {
 
     public EdxlHandler() {
         xmlMapper = (XmlMapper) new XmlMapper()
-                .registerModule(new JavaTimeModule().addDeserializer(ContentMessage.class, new ContentMessageDeserializer()))
+                .registerModule(new JavaTimeModule()
+                        .addSerializer(Keyword.class, new KeywordSerializer())
+                        .addDeserializer(ContentMessage.class, new ContentMessageDeserializer()))
                 .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
                 .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
@@ -44,7 +47,8 @@ public class EdxlHandler {
         xmlMapper.configure(com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator.Feature.WRITE_XML_DECLARATION, true);
 
         jsonMapper = new ObjectMapper()
-                .registerModule(new JavaTimeModule().addDeserializer(ContentMessage.class, new ContentMessageDeserializer()))
+                .registerModule(new JavaTimeModule()
+                        .addDeserializer(ContentMessage.class, new ContentMessageDeserializer()))
                 .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
                 .disable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
