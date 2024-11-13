@@ -35,7 +35,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.edxl.ContentMessage;
-import com.hubsante.model.rcde.DistributionElement;
 import com.hubsante.model.technical.noreq.TechnicalNoreq;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -44,6 +43,7 @@ import java.util.Objects;
 /**
  * TechnicalNoreqWrapper
  */
+@JsonPropertyOrder({TechnicalNoreqWrapper.JSON_PROPERTY_TECHNICAL_NOREQ})
 @JsonTypeName("technicalNoreqWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
