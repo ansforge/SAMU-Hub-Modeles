@@ -1,5 +1,5 @@
 {
-  "inputSpec": "./input/RS-DR.openapi.yaml",
+  "inputSpec": "./input/TECHNICAL_NOREQ.openapi.yaml",
   "outputDir": "ruby/ruby_classes/",
   "generatorName": "ruby",
   "globalProperties": {
@@ -11,7 +11,7 @@
     "modelTests": false
   },
   "additionalProperties": {
-    "moduleName": "ResourcesRequest",
+    "moduleName": "TechnicalNoreq",
     "gemName": "hubsanteModel",
     "allowUnicodeIdentifiers": true,
     "useAutoload": true,

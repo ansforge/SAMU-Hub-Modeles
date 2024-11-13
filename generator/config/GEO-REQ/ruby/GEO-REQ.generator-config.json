@@ -11,7 +11,7 @@
     "modelTests": false
   },
   "additionalProperties": {
-    "moduleName": "GeoLocation",
+    "moduleName": "Geolocation",
     "gemName": "hubsanteModel",
     "allowUnicodeIdentifiers": true,
     "useAutoload": true,

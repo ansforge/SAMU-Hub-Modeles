@@ -11,7 +11,7 @@
     "modelTests": false
   },
   "additionalProperties": {
-    "moduleName": "Resources",
+    "moduleName": "ResourcesResponse",
     "gemName": "hubsanteModel",
     "allowUnicodeIdentifiers": true,
     "useAutoload": true,
