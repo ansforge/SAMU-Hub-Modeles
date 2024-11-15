@@ -59,7 +59,8 @@
             <xs:element name="language" type="xs:language" minOccurs="0"/>
             <xs:element name="senderRole" type="ct:ValueListType" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="recipientRole" type="ct:ValueListType" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="keyword" type="ct:ValueListType" minOccurs="0" maxOccurs="unbounded"/>
+            <!-- La valeur "1" de l'attribut "minOccurs" de l'élément keyword est une extension HubSanté  -->
+            <xs:element name="keyword" type="ct:ValueListType" minOccurs="1" maxOccurs="unbounded"/>
             <xs:element name="explicitAddress" type="ValueSchemeType" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="targetAreas" type="TargetAreasType" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element name="urgency" type="UrgencyType" minOccurs="0"/>
