@@ -3,7 +3,6 @@ plugins {
     id 'maven-publish'
     id 'com.github.hierynomus.license' version '0.16.1'
     id 'jacoco'
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 task generateXml(type:JavaExec) {
@@ -40,11 +39,6 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
 }
-
-// I let this in the code waiting for use case explanation
-//shadowJar {
-//    archiveClassifier.set('')
-//}
 
 jacocoTestReport {
     reports {
