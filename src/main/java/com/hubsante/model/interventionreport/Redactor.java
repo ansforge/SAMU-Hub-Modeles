@@ -62,6 +62,10 @@ public class Redactor {
 
     MEDECIN("MEDECIN"),
 
+    PILOTE("PILOTE"),
+
+    TCM("TCM"),
+
     AUTRE("AUTRE"),
 
     INCONNU("INCONNU");

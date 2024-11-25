@@ -138,7 +138,8 @@
                     "enum": [
                         "MED",
                         "PARAMED",
-                        "SECOURS"
+                        "SECOURS",
+                        "SANS"
                     ]
                 }
             },
@@ -1513,7 +1514,8 @@
                     "enum": [
                         "MED",
                         "PARAMED",
-                        "SECOURS"
+                        "SECOURS",
+                        "SANS"
                     ]
                 }
             },

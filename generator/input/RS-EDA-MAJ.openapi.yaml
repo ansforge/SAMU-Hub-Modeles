@@ -380,6 +380,7 @@ components:
             \ (cf. nomenclature associ\xE9e)"
           enum:
           - URGENCES
+          - REA-USI
           - SANTE
           - CABINET
           - DOMICILE
@@ -387,6 +388,8 @@ components:
           - AUTRE
           examples:
           - EPHAD
+        location:
+          $ref: '#/components/schemas/location'
       additionalProperties: false
       example: example.json#/decision/0
       examples:
@@ -401,6 +404,7 @@ components:
         resourceType: SMUR, Pompiers
         medicalTransport: 'True'
         orientationType: EPHAD
+        location: {}
     additionalInformation:
       type: object
       title: "Informations compl\xE9mentaires"
@@ -507,8 +511,8 @@ components:
             \ : \xE0 utiliser \xE0 minima pour transmettre le statut CLOTURE \xE0\
             \ la tablette"
           enum:
-          - PROGRAMME
-          - ' ACTIF'
+          - PROGRAM
+          - ACTIF
           - ACHEVE
           - VALIDE
           - CLOTURE
@@ -1167,6 +1171,8 @@ components:
           - ARM
           - INFIRMIER
           - MEDECIN
+          - PILOTE
+          - TCM
           - AUTRE
           - INCONNU
           examples:

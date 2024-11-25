@@ -238,6 +238,7 @@ False = transport non médicalisé</documentation>
                 <simpleType>
                     <restriction base="string">
                         <enumeration value="URGENCES"/>
+                        <enumeration value="REA-USI"/>
                         <enumeration value="SANTE"/>
                         <enumeration value="CABINET"/>
                         <enumeration value="DOMICILE"/>
@@ -246,6 +247,7 @@ False = transport non médicalisé</documentation>
                     </restriction>
                 </simpleType>
             </element>
+            <element minOccurs="0" name="location" type="x:location"/>
         </sequence>
     </complexType>
     <complexType name="additionalInformation">
@@ -319,8 +321,8 @@ Spécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="PROGRAMME"/>
-                        <enumeration value=" ACTIF"/>
+                        <enumeration value="PROGRAM"/>
+                        <enumeration value="ACTIF"/>
                         <enumeration value="ACHEVE"/>
                         <enumeration value="VALIDE"/>
                         <enumeration value="CLOTURE"/>
@@ -723,6 +725,8 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                         <enumeration value="ARM"/>
                         <enumeration value="INFIRMIER"/>
                         <enumeration value="MEDECIN"/>
+                        <enumeration value="PILOTE"/>
+                        <enumeration value="TCM"/>
                         <enumeration value="AUTRE"/>
                         <enumeration value="INCONNU"/>
                     </restriction>

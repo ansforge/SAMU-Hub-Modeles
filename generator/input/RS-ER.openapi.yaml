@@ -47,7 +47,8 @@ components:
       title: Ressource
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - vehicleType
       properties:
         vehicleType:
           type: string
@@ -170,6 +171,7 @@ components:
           - MED
           - PARAMED
           - SECOURS
+          - SANS
           examples:
           - MED
         name:

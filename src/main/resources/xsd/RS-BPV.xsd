@@ -49,6 +49,8 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                         <enumeration value="ARM"/>
                         <enumeration value="INFIRMIER"/>
                         <enumeration value="MEDECIN"/>
+                        <enumeration value="PILOTE"/>
+                        <enumeration value="TCM"/>
                         <enumeration value="AUTRE"/>
                         <enumeration value="INCONNU"/>
                     </restriction>
@@ -183,6 +185,11 @@ A valoriser par un code de la nomenclature Diagnostic SMUR.</documentation>
             <element name="value" type="string">
                 <annotation>
                     <documentation>Indique la valeur de la dernière constante prise</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="precision" type="string">
+                <annotation>
+                    <documentation>bras droit/gauche, débit oxygène, …</documentation>
                 </annotation>
             </element>
         </sequence>

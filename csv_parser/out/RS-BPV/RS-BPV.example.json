@@ -34,7 +34,8 @@
         "parameter": [
             {
                 "type": "Fréquence cardiaque, Pression artérielle, Saturation en oxygène, Fréquence respiratoire, Température, Hemoglucotest, Glasgow",
-                "value": "None"
+                "value": "None",
+                "precision": "None"
             }
         ],
         "medicalHistory": "None",

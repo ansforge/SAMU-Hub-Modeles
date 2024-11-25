@@ -112,7 +112,8 @@
             "decisionType": "conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire",
             "resourceType": "SMUR, Pompiers",
             "medicalTransport": "True",
-            "orientationType": "EPHAD"
+            "orientationType": "EPHAD",
+            "location": {}
         }
     ],
     "freetext": "adresse : 7bis rue du château - Neuilly sur Seine",

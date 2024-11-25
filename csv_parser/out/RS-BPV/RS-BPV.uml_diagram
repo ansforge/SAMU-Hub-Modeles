@@ -28,7 +28,7 @@ strict digraph {
                 <TR>
                 <TD ><B>parameter</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet vital</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >value <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet vital</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >value <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >precision <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	parameter -> evaluation [headlabel=1 taillabel="0..*"]
 	evaluation [label=<<TABLE>

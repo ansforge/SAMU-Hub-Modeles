@@ -81,6 +81,8 @@
                         "ARM",
                         "INFIRMIER",
                         "MEDECIN",
+                        "PILOTE",
+                        "TCM",
                         "AUTRE",
                         "INCONNU"
                     ]
@@ -336,6 +338,14 @@
                     "x-cols": 6,
                     "example": "example.json#/evaluation/parameter/0/value",
                     "description": "Indique la valeur de la dernière constante prise"
+                },
+                "precision": {
+                    "type": "string",
+                    "title": "Précision sur la mesure",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/evaluation/parameter/0/precision",
+                    "description": "bras droit/gauche, débit oxygène, …"
                 }
             },
             "additionalProperties": false,

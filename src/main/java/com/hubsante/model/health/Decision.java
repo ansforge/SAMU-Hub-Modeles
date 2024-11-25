@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.health.Location;
 import com.hubsante.model.health.Operator;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
@@ -48,7 +49,7 @@ import java.util.Objects;
      Decision.JSON_PROPERTY_OPERATOR, Decision.JSON_PROPERTY_DECISION_TYPE,
      Decision.JSON_PROPERTY_RESOURCE_TYPE,
      Decision.JSON_PROPERTY_MEDICAL_TRANSPORT,
-     Decision.JSON_PROPERTY_ORIENTATION_TYPE})
+     Decision.JSON_PROPERTY_ORIENTATION_TYPE, Decision.JSON_PROPERTY_LOCATION})
 @JsonTypeName("decision")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -217,6 +218,8 @@ public class Decision {
   public enum OrientationTypeEnum {
     URGENCES("URGENCES"),
 
+    REA_USI("REA-USI"),
+
     SANTE("SANTE"),
 
     CABINET("CABINET"),
@@ -254,6 +257,9 @@ public class Decision {
 
   public static final String JSON_PROPERTY_ORIENTATION_TYPE = "orientationType";
   private OrientationTypeEnum orientationType;
+
+  public static final String JSON_PROPERTY_LOCATION = "location";
+  private Location location;
 
   public Decision() {}
 
@@ -425,6 +431,29 @@ public class Decision {
     this.orientationType = orientationType;
   }
 
+  public Decision location(Location location) {
+
+    this.location = location;
+    return this;
+  }
+
+  /**
+   * Get location
+   * @return location
+   **/
+  @JsonProperty(JSON_PROPERTY_LOCATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Location getLocation() {
+    return location;
+  }
+
+  @JsonProperty(JSON_PROPERTY_LOCATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLocation(Location location) {
+    this.location = location;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -440,13 +469,15 @@ public class Decision {
         Objects.equals(this.decisionType, decision.decisionType) &&
         Objects.equals(this.resourceType, decision.resourceType) &&
         Objects.equals(this.medicalTransport, decision.medicalTransport) &&
-        Objects.equals(this.orientationType, decision.orientationType);
+        Objects.equals(this.orientationType, decision.orientationType) &&
+        Objects.equals(this.location, decision.location);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(patientId, creation, operator, decisionType,
-                        resourceType, medicalTransport, orientationType);
+                        resourceType, medicalTransport, orientationType,
+                        location);
   }
 
   @Override
@@ -470,6 +501,7 @@ public class Decision {
     sb.append("    orientationType: ")
         .append(toIndentedString(orientationType))
         .append("\n");
+    sb.append("    location: ").append(toIndentedString(location)).append("\n");
     sb.append("}");
     return sb.toString();
   }

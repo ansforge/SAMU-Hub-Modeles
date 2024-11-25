@@ -41,7 +41,8 @@ import java.util.Objects;
 /**
  * Vital
  */
-@JsonPropertyOrder({Vital.JSON_PROPERTY_TYPE, Vital.JSON_PROPERTY_VALUE})
+@JsonPropertyOrder({Vital.JSON_PROPERTY_TYPE, Vital.JSON_PROPERTY_VALUE,
+                    Vital.JSON_PROPERTY_PRECISION})
 @JsonTypeName("vital")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -96,6 +97,9 @@ public class Vital {
   public static final String JSON_PROPERTY_VALUE = "value";
   private String value;
 
+  public static final String JSON_PROPERTY_PRECISION = "precision";
+  private String precision;
+
   public Vital() {}
 
   public Vital type(TypeEnum type) {
@@ -144,6 +148,29 @@ public class Vital {
     this.value = value;
   }
 
+  public Vital precision(String precision) {
+
+    this.precision = precision;
+    return this;
+  }
+
+  /**
+   * bras droit/gauche, débit oxygène, …
+   * @return precision
+   **/
+  @JsonProperty(JSON_PROPERTY_PRECISION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getPrecision() {
+    return precision;
+  }
+
+  @JsonProperty(JSON_PROPERTY_PRECISION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPrecision(String precision) {
+    this.precision = precision;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -154,12 +181,13 @@ public class Vital {
     }
     Vital vital = (Vital)o;
     return Objects.equals(this.type, vital.type) &&
-        Objects.equals(this.value, vital.value);
+        Objects.equals(this.value, vital.value) &&
+        Objects.equals(this.precision, vital.precision);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, value);
+    return Objects.hash(type, value, precision);
   }
 
   @Override
@@ -168,6 +196,9 @@ public class Vital {
     sb.append("class Vital {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    precision: ")
+        .append(toIndentedString(precision))
+        .append("\n");
     sb.append("}");
     return sb.toString();
   }
