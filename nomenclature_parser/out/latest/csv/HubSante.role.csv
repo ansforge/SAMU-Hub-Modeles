@@ -1,9 +1,0 @@
-,code,label_n1,Libellé niveau 2,description,commentaire
-0,AMBULANCIER,Ambulancier,,L'opérateur est un ambulancier,
-1,ARM,ARM,,L'opérateur est un ARM,
-2,INFIRMIER,Infirmier,,L'opérateur est un infirmier,
-3,MEDECIN,Médecin,,L'opérateur est un médecin,
-4,PILOTE,Pilote,,L'opérateur est un pilote d'aéronef,
-5,TCM,Technicien de bord,,Assistant du pilote,
-6,AUTRE,Autre,,"Le rôle de l'opérateur est connu, mais n'est pas détaillé dans la liste des valeurs fournie",
-7,INCONNU,Inconnu,,Le rôle de l'opérateur est inconnu,
