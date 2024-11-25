@@ -225,9 +225,9 @@ def parse_sheet(filename_in, sheet_name_in):
     df_params.fillna("", inplace=True)
     params = {}
     # If df_params has "Identifiant nomenclature", we use it as "nomenclature_id" parameter, otherwise we use the sheet name
-    params["nomenclature_id"] = df_params.loc["Identifiant nomenclature"].iloc[0] if "Identifiant nomenclature" in df_params.index else sheet_name_in
     params["nomenclature_ref"] = df_params.loc["Référentiel nomenclature"].iloc[0]
     params["nomenclature_name"] = df_params.loc["Nom Nomenclature"].iloc[0]
+    params["nomenclature_id"] = df_params.loc["Identifiant nomenclature"].iloc[0] if "Identifiant nomenclature" in df_params.index else params["nomenclature_ref"] + "-" + params["nomenclature_name"]
     params["levels"] = df_params.loc["Nombre de niveau"].iloc[0]
     # parsing levels as int
     try:
