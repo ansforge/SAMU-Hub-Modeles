@@ -160,7 +160,7 @@ def export_docx_nomenclature(params_in, df_nomenclature_in, folder_output):
 
     # .docx
     # create word dir if not exist
-    file_out_docx = params_in["nomenclature_ref"] + "-" + params_in["nomenclature_name"] + ".docx"
+    file_out_docx = params_in["nomenclature_id"] + ".docx"
     try:
         os.mkdir(os.path.join(folder_output, "word"))
         print("Creating folder " + str(os.path.join(folder_output, "word")) + " ...")
