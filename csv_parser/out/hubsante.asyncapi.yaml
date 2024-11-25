@@ -6267,6 +6267,7 @@ components:
             \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
             \ pas disponible : \n{OrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
+          pattern: ^([\w-]+\.){3,4}request(\.[\w-]+){1,2}$
           examples:
           - 'fr.health.samu770.request.1249875
 
@@ -7677,7 +7678,7 @@ components:
       properties:
         caseId:
           type: string
-          title: "Identifiant partag\xE9 du dossier de r\xE9gulation m\xE9dicale (DRM)"
+          title: "Identifiant partag\xE9 du dossier "
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
@@ -7734,8 +7735,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/redactor/label
-          description: "A valoriser avec le pr\xE9nom et le nom du r\xE9dacteur ou\
-            \ un num\xE9ro RPPS. "
+          description: "A valoriser avec le pr\xE9nom et le nom du r\xE9dacteur, un\
+            \ num\xE9ro RPPS, un matricule, etc. "
           examples:
           - Julien Montclar
         role:
@@ -7772,7 +7773,7 @@ components:
           x-health-only: false
           items:
             type: string
-            title: "Actes r\xE9alis\xE9s par le SMUR"
+            title: "Actes r\xE9alis\xE9s par la ressource"
             x-health-only: false
             x-cols: 6
             example: example.json#/evaluation/procedure/0
@@ -7793,15 +7794,18 @@ components:
           examples:
           - MD30.Z
         associatedDiagnosis:
-          type: string
-          title: "Diagnostic associ\xE9  SMUR"
+          type: array
           x-health-only: false
-          x-cols: 6
-          example: example.json#/evaluation/associatedDiagnosis
-          description: "Th\xE9saurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature\
-            \ Diagnostic SMUR."
-          examples:
-          - 8B22.1
+          items:
+            type: string
+            title: "Diagnostic associ\xE9  SMUR"
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/evaluation/associatedDiagnosis/0
+            description: "Th\xE9saurus SFMU-FEDORU.\nA valoriser par un code de la\
+              \ nomenclature Diagnostic SMUR."
+            examples:
+            - 8B22.1
         parameter:
           type: array
           items:
@@ -7834,7 +7838,7 @@ components:
             x-cols: 6
             example: example.json#/evaluation/freetext/0
             description: "Permettrait de concat\xE9ner dans une zone de commentaire\
-              \ d'autres champs (ex. anamn\xE8se : allergies,, traitements, symptomes,\
+              \ d'autres champs (ex. anamn\xE8se : allergies, traitements, symptomes,\
               \ ant\xE9c\xE9dents)"
             examples:
             - None

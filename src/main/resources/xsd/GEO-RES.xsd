@@ -67,7 +67,7 @@ L'immatriculation peut être utilisée dans le nom courant des véhicules.</docu
                         <enumeration value="FIXE"/>
                         <enumeration value="VEHICULE"/>
                         <enumeration value="HELICOPTERE"/>
-                        <enumeration value="SHIP "/>
+                        <enumeration value="SHIP"/>
                     </restriction>
                 </simpleType>
             </element>

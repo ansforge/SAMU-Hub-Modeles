@@ -48,9 +48,9 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     HEADER_LINE = 7  # ligne avec les en-têtes (ID Excel - 1)
 
     class FormatFlags(StrEnum):
-        NOMENCLATURE = 'NOMENCLATURE: '
-        ENUM = 'ENUM: '
-        REGEX = 'REGEX: '
+        NOMENCLATURE = 'NOMENCLATURE'
+        ENUM = 'ENUM'
+        REGEX = 'REGEX'
 
 
     def get_params_from_sheet(sheet):
@@ -84,7 +84,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     def get_nomenclature(elem):
         # filename to target (.csv format)
-        nomenclature_name = elem['Détails de format'][len(FormatFlags.NOMENCLATURE):]
+        nomenclature_name = elem['Détails de format'][elem['Détails de format'].index(':')+1:].strip()
         path_file = ''
         nomenclature_files = os.listdir(os.path.join("..", "nomenclature_parser", "out", "latest", "csv"))
         for filename in nomenclature_files:
@@ -498,7 +498,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             return 'string', r'^tel:([#\+\*]|37000|00+)?[0-9]{2,15}$', None
         else:
             if has_format_details(child, FormatFlags.REGEX):
-                return typeName, child['Détails de format'][len(FormatFlags.REGEX):], None
+                return typeName, child['Détails de format'][child['Détails de format'].index(':')+1:].strip(), None
             else:
                 return typeName, None, None
 
@@ -532,7 +532,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         if format is not None:
             childDetails['format'] = format
         if has_format_details(child, FormatFlags.ENUM):
-            childDetails['enum'] = child['Détails de format'][len(FormatFlags.ENUM):].split(', ')
+            childDetails['enum'] = child['Détails de format'][child['Détails de format'].index(':')+1:].strip().split(', ')
         # key word nomenclature trigger search over nomenclature folder for matching file
         if has_format_details(child, FormatFlags.NOMENCLATURE):
             childDetails['enum'] = get_nomenclature(child)
