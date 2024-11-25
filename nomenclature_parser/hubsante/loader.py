@@ -82,7 +82,7 @@ def export_pdf_nomenclature(params_in, df_nomenclature_in, folder_output):
     # concatenate html parts
     html = html_start + html_style + html_corps + html_end
 
-    file_out = params_in["nomenclature_ref"] + "-" + params_in["nomenclature_name"] + ".pdf"
+    file_out = params_in["nomenclature_id"] + ".pdf"
     # create pdf dir if not exist
     try:
         os.mkdir(os.path.join(folder_output, "pdf"))
