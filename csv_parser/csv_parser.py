@@ -485,7 +485,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     def has_format_details(elem, details):
         """Does elem have a format details starting with details?"""
-        return str(elem['Détails de format']) != 'nan' and details in elem['Détails de format']
+        return str(elem['Détails de format']) != 'nan' and elem['Détails de format'].startswith(details)
 
     def type_matching(child):
         """Get the matching type for a given type name"""
