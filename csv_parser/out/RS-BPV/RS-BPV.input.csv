@@ -34,7 +34,7 @@ A valoriser par un code de la nomenclature Diagnostic SMUR.",8B22.1,associatedDi
 ,Paramètres vitaux,,,,,,,parameter,0..n,X,vital,
 ,,Type de constante,,,,Permet d'indiquer le type de constante associé à la valeur envoyée,"Fréquence cardiaque, Pression artérielle, Saturation en oxygène, Fréquence respiratoire, Température, Hemoglucotest, Glasgow",type,1..1,,string,"ENUM: FREQUENCE_CARDIAQUE, PRESSION_ARTERIELLE, SATURATION_OXYGENE, FREQUENCE_RESPIRATOIRE, TEMPERATURE, HEMOGLOCOTEST, GLASGOW"
 ,,Valeur de la dernière constante prise,,,,Indique la valeur de la dernière constante prise,,value,1..1,,string,
-,,Précision sur la mesure,,,,"bras droit/gauche, débit oxygène, …",,precision,0..1,,string,
+,,Précision sur la mesure,,,,Permet d'apporter des précisions sur la constante prise (ex. le débit d'oxygène lors de la prise de constante de saturation en oxygène),"bras droit/gauche, débit oxygène, …",precision,0..1,,string,
 ,Antécédents,,,,,Précise les antécédents du patient,,medicalHistory,0..1,,string,
 ,Traitement,,,,,Précise le traitement du patient,,treatment,0..1,,string,
 ,Informations complémentaires,,,,,"Permettrait de concaténer dans une zone de commentaire d'autres champs (ex. anamnèse : allergies, traitements, symptomes, antécédents)",,freetext,0..n,,string,

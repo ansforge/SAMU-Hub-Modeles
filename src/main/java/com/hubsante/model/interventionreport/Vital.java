@@ -155,7 +155,8 @@ public class Vital {
   }
 
   /**
-   * bras droit/gauche, débit oxygène, …
+   * Permet d&#39;apporter des précisions sur la constante prise (ex. le débit
+   *d&#39;oxygène lors de la prise de constante de saturation en oxygène)
    * @return precision
    **/
   @JsonProperty(JSON_PROPERTY_PRECISION)

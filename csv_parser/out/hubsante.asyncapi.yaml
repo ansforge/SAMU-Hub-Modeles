@@ -7897,13 +7897,15 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/evaluation/parameter/0/precision
-          description: "bras droit/gauche, d\xE9bit oxyg\xE8ne, \u2026"
+          description: "Permet d'apporter des pr\xE9cisions sur la constante prise\
+            \ (ex. le d\xE9bit d'oxyg\xE8ne lors de la prise de constante de saturation\
+            \ en oxyg\xE8ne)"
           examples:
-          - None
+          - "bras droit/gauche, d\xE9bit oxyg\xE8ne, \u2026"
       additionalProperties: false
       example: example.json#/evaluation/parameter/0
       examples:
       - type: "Fr\xE9quence cardiaque, Pression art\xE9rielle, Saturation en oxyg\xE8\
           ne, Fr\xE9quence respiratoire, Temp\xE9rature, Hemoglucotest, Glasgow"
         value: None
-        precision: None
+        precision: "bras droit/gauche, d\xE9bit oxyg\xE8ne, \u2026"

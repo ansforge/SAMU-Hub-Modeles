@@ -35,7 +35,7 @@
             {
                 "type": "Fréquence cardiaque, Pression artérielle, Saturation en oxygène, Fréquence respiratoire, Température, Hemoglucotest, Glasgow",
                 "value": "None",
-                "precision": "None"
+                "precision": "bras droit/gauche, débit oxygène, …"
             }
         ],
         "medicalHistory": "None",

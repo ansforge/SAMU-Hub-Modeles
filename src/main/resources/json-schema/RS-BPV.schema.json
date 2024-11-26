@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-BPV.schema.json#",
-    "version": "24.11.25",
+    "version": "24.11.26",
     "example": "example.json#",
     "type": "object",
     "title": "interventionReport",
@@ -345,7 +345,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/evaluation/parameter/0/precision",
-                    "description": "bras droit/gauche, débit oxygène, …"
+                    "description": "Permet d'apporter des précisions sur la constante prise (ex. le débit d'oxygène lors de la prise de constante de saturation en oxygène)"
                 }
             },
             "additionalProperties": false,
