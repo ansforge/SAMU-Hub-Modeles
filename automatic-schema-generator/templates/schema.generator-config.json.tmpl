@@ -1,0 +1,28 @@
+{{ define "generator-config" }}{
+  "inputSpec": "./input/{{.schema}}.openapi.yaml",
+  "outputDir": "classes/",
+  "generatorName": "java",
+  "templateDir": "templates/child-classes/",
+  "globalProperties": {
+    "models": "",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "library": "native",
+    "modelPackage": "com.hubsante.model.{{.package}}",
+    "serializationLibrary": "jackson",
+    "openApiNullable": true,
+    "supportUrlQuery": false,
+    "enablePostProcessFile": true
+  }
+}
+{{ end }}
+{{- range (datasource "config").schemas }}
+    {{ if and (eq .automaticGeneration "Y") (eq .subschema "N") }}
+        {{- tmpl.Exec "generator-config" . | file.Write (printf "output/%s/%s.generator-config.json" .schema .schema) }}
+    {{end}}
+{{end}}

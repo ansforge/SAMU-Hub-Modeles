@@ -19,26 +19,6 @@ args = parser.parse_args()
 print(args.stage)
 
 # ---------------------------------------- SCHEMAS CONFIGURATION
-sheets = [
-    'RC-DE',
-    'RC-EDA',
-    'EMSI',
-    'GEO-POS',
-    'GEO-REQ',
-    'GEO-RES',
-    'RC-REF',
-    'RS-ERROR',
-    'RS-INFO',
-    'RS-RI',
-    'RS-DR',
-    'RS-RR',
-    'RS-RPIS',
-    'customContent',
-    'RS-SR',
-    'TECHNICAL',
-    'RS-URL',
-    'RS-BPV'
-]
 
 perimeters = [{
     'name': 'Périmetre 15-15',
@@ -48,6 +28,12 @@ perimeters = [{
 
 # ---------------------------------------- STAGE FUNCTIONS
 def parser_and_mv():
+    # Iterate over files in the models folder and extract every sheet name that doesn't start with #
+    sheets = []
+    for file in os.listdir('models'):
+        if file.endswith('.xlsx'):
+            sheets += [sheet for sheet in pd.ExcelFile(f'./models/{file}').sheet_names if not sheet.startswith('#')]
+    
     # Iterate over each sheet
     for sheet in sheets:
         full_df = None

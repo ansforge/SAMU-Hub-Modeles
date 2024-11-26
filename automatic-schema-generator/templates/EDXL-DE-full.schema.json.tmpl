@@ -1,0 +1,608 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "classpath:/json-schema/schema#",
+  "required": [
+    "senderID",
+    "distributionID",
+    "dateTimeSent",
+    "dateTimeExpires",
+    "distributionStatus",
+    "distributionKind",
+    "descriptor",
+    "content"
+  ],
+  "properties": {
+    "senderID": {
+      "type": "string"
+    },
+    "distributionID": {
+      "type": "string"
+    },
+    "dateTimeSent": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "dateTimeExpires": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "content": {
+      "$ref": "#/definitions/Content"
+    },
+    "descriptor": {
+      "$ref": "#/definitions/Descriptor"
+    },
+    "distributionKind": {
+      "$ref": "#/definitions/DistributionKind"
+    },
+    "distributionStatus": {
+      "$ref": "#/definitions/DistributionStatus"
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "Content": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ContentObject"
+      },
+      "minItems": 1
+    },
+    "ContentObject": {
+      "type": "object",
+      "required": [
+        "jsonContent"
+      ],
+      "properties": {
+        "jsonContent": {
+          "$ref": "#/definitions/JsonContent"
+        }
+      }
+    },
+    "JsonContent": {
+      "type": "object",
+      "required": [
+        "embeddedJsonContent"
+      ],
+      "properties": {
+        "embeddedJsonContent": {
+          "$ref": "#/definitions/EmbeddedJsonContent"
+        }
+      }
+    },
+    "EmbeddedJsonContent": {
+      "type": "object",
+      "oneOf": [{{ range (datasource "config").schemas }}
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "createCase": {
+                      "$ref": "RC-EDA.schema.json"
+                    }
+                  },
+                  "required": [
+                    "createCase"
+                  ]
+                }
+              }
+            }
+          ]
+        },{{end}}
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "createCase": {
+                      "$ref": "RC-EDA.schema.json"
+                    }
+                  },
+                  "required": [
+                    "createCase"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "createCaseHealth": {
+                      "$ref": "RS-EDA.schema.json"
+                    }
+                  },
+                  "required": [
+                    "createCaseHealth"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "createCaseHealthUpdate": {
+                      "$ref": "RS-EDA-MAJ.schema.json"
+                    }
+                  },
+                  "required": [
+                    "createCaseHealthUpdate"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "reference": {
+                      "$ref": "RC-REF.schema.json"
+                    }
+                  },
+                  "required": [
+                    "reference"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "properties": {
+            "message": {
+              "properties": {
+                "info": {
+                  "$ref": "RS-INFO.schema.json"
+                }
+              },
+              "required": [
+                "info"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "message": {
+              "properties": {
+                "error": {
+                  "$ref": "RS-ERROR.schema.json"
+                }
+              },
+              "required": [
+                "error"
+              ]
+            }
+          }
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "emsi": {
+                      "$ref": "EMSI.schema.json"
+                    }
+                  },
+                  "required": [
+                    "emsi"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "resourcesInfo": {
+                      "$ref": "RS-RI.schema.json"
+                    }
+                  },
+                  "required": [
+                    "resourcesInfo"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "resourcesRequest": {
+                      "$ref": "RS-DR.schema.json"
+                    }
+                  },
+                  "required": [
+                    "resourcesRequest"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "resourcesStatus": {
+                      "$ref": "RS-SR.schema.json"
+                    }
+                  },
+                  "required": [
+                    "resourcesStatus"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "resourcesResponse": {
+                      "$ref": "RS-RR.schema.json"
+                    }
+                  },
+                  "required": [
+                    "resourcesResponse"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "rpis": {
+                      "$ref": "RS-RPIS.schema.json"
+                    }
+                  },
+                  "required": [
+                    "rpis"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "documentLink": {
+                      "$ref": "RS-URL.schema.json"
+                    }
+                  },
+                  "required": [
+                    "documentLink"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "resourcesEngagement": {
+                      "$ref": "RS-ER.schema.json"
+                    }
+                  },
+                  "required": [
+                    "resourcesEngagement"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "interventionReport": {
+                      "$ref": "RS-BPV.schema.json"
+                    }
+                  },
+                  "required": [
+                    "interventionReport"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "properties": {
+            "message": {
+              "properties": {
+                "customContent": {
+                  "$ref": "customContent.schema.json"
+                }
+              },
+              "required": [
+                "customContent"
+              ]
+            }
+          }
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "geoPositionsUpdate": {
+                          "$ref": "GEO-POS.schema.json"
+                        }
+                      },
+                      "required": [
+                        "geoPositionsUpdate"
+                      ]
+                    },
+                    {
+                      "properties": {
+                        "geoResourcesRequest": {
+                          "$ref": "GEO-REQ.schema.json"
+                        }
+                      },
+                      "required": [
+                        "geoResourcesRequest"
+                      ]
+                    },
+                    {
+                      "properties": {
+                        "geoResourcesDetails": {
+                          "$ref": "GEO-RES.schema.json"
+                        }
+                      },
+                      "required": [
+                        "geoResourcesDetails"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "technical": {
+                      "$ref": "TECHNICAL.schema.json"
+                    }
+                  },
+                  "required": [
+                    "technical"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "properties": {
+            "message": {
+              "properties": {
+                "technicalNoreq": {
+                  "$ref": "TECHNICAL_NOREQ.schema.json"
+                }
+              },
+              "required": [
+                "technicalNoreq"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "Descriptor": {
+      "type": "object",
+      "properties": {
+        "explicitAddress": {
+          "$ref": "#/definitions/ExplicitAddress"
+        },
+        "language": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "explicitAddress",
+        "language"
+      ]
+    },
+    "DistributionKind": {
+      "type": "string",
+      "enum": [
+        "Report",
+        "Update",
+        "Cancel",
+        "Ack",
+        "Error"
+      ]
+    },
+    "DistributionStatus": {
+      "type": "string",
+      "enum": [
+        "Actual",
+        "Exercise"
+      ]
+    },
+    "ExplicitAddress": {
+      "type": "object",
+      "properties": {
+        "explicitAddressScheme": {
+          "type": "string"
+        },
+        "explicitAddressValue": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "explicitAddressScheme",
+        "explicitAddressValue"
+      ]
+    }
+  }
+}

@@ -1,0 +1,144 @@
+schemas:
+  - filename: model
+    sheet: RC-DE
+    schema: RC-DE
+    perimeter: 15-15
+    rootElement: DistributionElement
+    package: report
+    customExtendPackage: null
+    customExtendClass: null
+    automaticGeneration: N
+    subschema: N
+    header: N
+
+  - filename: model
+    sheet: RC-EDA
+    schema: RC-EDA
+    perimeter: 15-18
+    rootElement: createCase
+    package: cisu
+    customExtendPackage: null
+    customExtendClass: null
+    automaticGeneration: Y
+    subschema: N
+    header: Y
+
+  - filename: model
+    sheet: RC-EDA
+    schema: RS-EDA
+    perimeter: 15-15
+    rootElement: createCaseHealth
+    package: health
+    customExtendPackage: null
+    customExtendClass: null
+    automaticGeneration: Y
+    subschema: N
+    header: Y
+
+  - filename: model
+    sheet: RC-EDA
+    schema: RS-EDA-MAJ
+    perimeter: 15-MAJ
+    rootElement: createCaseHealthUpdate
+    package: health
+    customExtendPackage: null
+    customExtendClass: null
+    automaticGeneration: Y
+    subschema: Y
+    header: Y
+
+  - filename: model
+    sheet: EMSI
+    schema: EMSI
+    perimeter: 15-15
+    rootElement: emsi
+    package: emsi
+    customExtendPackage: null
+    customExtendClass: null
+    automaticGeneration: Y
+    subschema: N
+    header: Y
+
+  - filename: model
+    sheet: RS-RI
+    schema: RS-RI
+    perimeter: 15-15
+    rootElement: resourcesInfo
+    package: resources.info
+    customExtendPackage: null
+    customExtendClass: null
+    automaticGeneration: Y
+    subschema: N
+    header: Y
+
+  - filename: model
+    sheet: RS-RI
+    schema: RS-ER
+    perimeter: 15-SMUR
+    rootElement: resourcesEngagement
+    package: resources.info
+    customExtendPackage: null
+    customExtendClass: null
+    automaticGeneration: Y
+    subschema: Y
+    header: Y
+
+  - filename: model
+    sheet: RS-SR
+    schema: RS-SR
+    perimeter: 15-15
+    rootElement: resourcesStatus
+    package: resources.status
+    customExtendPackage: null
+    customExtendClass: null
+    automaticGeneration: Y
+    subschema: N
+    header: Y
+
+  - filename: model
+    sheet: RS-DR
+    schema: RS-DE
+    perimeter: 15-15
+    rootElement: resourcesRequest
+    package: resources.request
+    customExtendPackage: null
+    customExtendClass: null
+    automaticGeneration: Y
+    subschema: N
+    header: Y
+
+  - filename: model
+    sheet: RS-RR
+    schema: RS-RR
+    perimeter: 15-15
+    rootElement: resourcesResponse
+    package: resources.response
+    customExtendPackage: null
+    customExtendClass: null
+    automaticGeneration: Y
+    subschema: N
+    header: Y
+  
+  - filename: model
+    sheet: RS-RPIS
+    schema: RS-RPIS
+    perimeter: 15-RPIS
+    rootElement: rpis
+    package: rpis
+    customExtendPackage: null
+    customExtendClass: null
+    automaticGeneration: Y
+    subschema: N
+    header: Y
+    
+  - filename: model
+    sheet: RS-ERROR
+    schema: RS-ERROR
+    perimeter: 15-15
+    rootElement: error
+    package: report
+    customExtendPackage: com.hubsante.model.edxl
+    customExtendClass: ContentMessage
+    automaticGeneration: Y
+    subschema: N
+    header: Y
