@@ -7,7 +7,7 @@
 
     <xs:include schemaLocation="RC-DE.xsd"/>
     <xs:include schemaLocation="CustomContent.xsd"/>
-    {{ range (datasource "config").schemas }}{{if .xmlns}}<xs:import namespace="urn:emergency{{.xmlns}}{{.rootElement}}" schemaLocation="{{.schema}}.xsd"/>{{end}}
+    {{- range (datasource "config").schemas }}{{if .xmlns}}<xs:import namespace="urn:emergency:{{.xmlns}}" schemaLocation="{{.schema}}.xsd"/>{{end}}
     {{end}}<xs:import namespace="urn:emergency:cisu:2.0:reference" schemaLocation="RC-REF.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">

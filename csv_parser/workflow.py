@@ -12,7 +12,7 @@ parser = argparse.ArgumentParser(
     prog='Workflow Automator',
     description='Automates the build workflow for the model (specs, schemas, ...)',
 )
-parser.add_argument('-s', '--stage', required=True, choices=['parser_and_mv', 'test_case_parser'],
+parser.add_argument('-s', '--stage', required=True, choices=['parser_and_mv', 'test_case_parser', 'output_schemas_yaml'],
                     help='The workflow stage to run')
 args = parser.parse_args()
 
@@ -33,7 +33,7 @@ def parser_and_mv():
     for file in os.listdir('models'):
         if file.endswith('.xlsx'):
             sheets += [sheet for sheet in pd.ExcelFile(f'./models/{file}').sheet_names if not sheet.startswith('#')]
-    
+
     # Iterate over each sheet
     for sheet in sheets:
         full_df = None
@@ -109,11 +109,62 @@ def test_case_parser():
     # Generate test-cases.json
     test_case_generator.run(perimeters)
 
+def output_schemas_yaml():
+    # Iterate over every non-# sheet in the models folder and extract the mini-tables starting at A1 which contain
+    # all the necessary schema information; specifically the following fields in the following order:
+    # schema, perimeter, rootElement, package, customExtendPackage, customExtendClass, automaticGeneration, subschema
+    # header, xmlns
+    schemaMap = {'schemas': []}
+    for file in os.listdir('models'):
+        if file.endswith('.xlsx'):
+            for sheet in pd.ExcelFile(f'./models/{file}').sheet_names:
+                if not sheet.startswith('#'):
+                    full_df = pd.read_excel(f'./models/{file}', header=None, sheet_name=sheet)
+                    try:
+                        #First, find the cell containing the header 'schema', which denotes the start of the schema details table
+                        schemaIndex = None
+                        for i in range(full_df.shape[0]):
+                            if full_df.iloc[i, 0] == 'schema':
+                                schemaIndex = i
+                                break
+                        #Then, find the width of the schema details table
+                        schemaWidth = None
+                        for i in range(full_df.shape[1]):
+                            if pd.isna(full_df.iloc[schemaIndex, i]):
+                                schemaWidth = i
+                                break
+
+                        #Then, find the end of the table
+                        endIndex = None
+                        for i in range(schemaIndex + 1, full_df.shape[0]):
+                            if pd.isna(full_df.iloc[i, 0]):
+                                endIndex = i
+                                break
+                    except:
+                        print(f"Error in sheet {sheet}: schema details table is not well formatted.")
+                        exit(1)
+                    #Now that we have the dimensions of the table, we can extract it
+                    schemaTable = full_df.iloc[schemaIndex:endIndex, 0:schemaWidth]
+                    schemaTable.columns = schemaTable.iloc[0]
+                    schemaTable = schemaTable[1:]
+
+                    #Replace NaN values with null
+                    schemaTable = schemaTable.where(pd.notnull(schemaTable), None)
+
+                    #Add the dataframe as a dict to the schemaMap['schemas']
+                    schemaMap['schemas'].append(schemaTable.to_dict(orient='records')[0])
+
+    #Write the schemaMap to a yaml file
+    with open('schemas.yaml', 'w') as file:
+        yaml.dump(schemaMap, file)
+
+
 
 # ---------------------------------------- RUN
 if args.stage == 'parser_and_mv':
     parser_and_mv()
 elif args.stage == 'test_case_parser':
     test_case_parser()
-else:
+elif args.stage == 'output_schemas_yaml':
+    output_schemas_yaml()
     exit(1)
