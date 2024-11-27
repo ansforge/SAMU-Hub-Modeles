@@ -247,7 +247,6 @@ False = transport non médicalisé</documentation>
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="location" type="x:location"/>
         </sequence>
     </complexType>
     <complexType name="additionalInformation">

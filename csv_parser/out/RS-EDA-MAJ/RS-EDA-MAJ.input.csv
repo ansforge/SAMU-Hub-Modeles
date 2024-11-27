@@ -131,7 +131,6 @@ A fournir obligatoirement pour une décision d'intervention ou de transport/orie
 True = transport médicalisé
 False = transport non médicalisé",True,medicalTransport,0..1,,boolean,
 ,Type d'orientation,,,,,Indique le type de destination en cas de décision d'orientation (cf. nomenclature associée),EPHAD,orientationType,0..1,,string,NOMENCLATURE: HubSante.typeOrientation
-,Localisation de la destination d'orientation,# Voir type location,,,,Objet qui permet de décrire la localisation de la destination en cas de décision d'orientation.,,location,0..1,X,location,
 Informations supplémentaires modifiées,,,,,,"Champ libre qui permet de concaténer en une seule note toutes les autres valeurs modifiées dans le dossier, ne figurant pas de manière structurée dans le RS-EDA-MAJ.",adresse : 7bis rue du château - Neuilly sur Seine,freetext,0..1,,string,
 Informations complémentaires,,,,,,"Objet qui permet d'ajouter jusqu'à 3 données supplémentaires, dans l'éventualité où ces dernières ne sont pas déjà prévues dans le modèle",,additionalInformation,0..1,X,additionalInformation,
 ,Clé valeur adaptable,,,,,Objet qui permet de rajouter des clés-valeurs de façon libre afin d'adapter le modèle à des besoins locaux ou urgents,,customMap,0..3,X,customMap,

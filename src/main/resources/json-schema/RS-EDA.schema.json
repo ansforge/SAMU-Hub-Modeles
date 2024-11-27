@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.11.26",
+    "version": "24.11.27",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -460,8 +460,8 @@
                         "AUTRE"
                     ]
                 },
-                "location": {
-                    "$ref": "#/definitions/location"
+                "destination": {
+                    "$ref": "#/definitions/destination"
                 }
             },
             "additionalProperties": false,
@@ -2476,6 +2476,31 @@
             },
             "additionalProperties": false,
             "example": "example.json#/medicalNote/0/operator"
+        },
+        "destination": {
+            "type": "object",
+            "title": "Localisation de la destination d'orientation",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "externalLocationId": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/externalLocationId"
+                    }
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Informations complémentaires sur la localisation",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/destination/freetext",
+                    "description": "Champ libre qui permet de compléter les informations liées à la localisation.\n\nSpécificités 15-15 :\nEn envoi, il est souhaitable de mapper ici toute valeur en lien avec la localisation de l'intervention qui ne pourrait pas être transmise de manière structurée dans l'objet location. \nEn réception, il est très important d'intégrer et d'afficher la valeur de cet attribut, qui est suceptible de contenir des informations d'accès importantes."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/decision/0/destination"
         },
         "customMap": {
             "type": "object",

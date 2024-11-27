@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.Location;
+import com.hubsante.model.health.Destination;
 import com.hubsante.model.health.Operator;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
@@ -49,7 +49,8 @@ import java.util.Objects;
      Decision.JSON_PROPERTY_OPERATOR, Decision.JSON_PROPERTY_DECISION_TYPE,
      Decision.JSON_PROPERTY_RESOURCE_TYPE,
      Decision.JSON_PROPERTY_MEDICAL_TRANSPORT,
-     Decision.JSON_PROPERTY_ORIENTATION_TYPE, Decision.JSON_PROPERTY_LOCATION})
+     Decision.JSON_PROPERTY_ORIENTATION_TYPE,
+     Decision.JSON_PROPERTY_DESTINATION})
 @JsonTypeName("decision")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -258,8 +259,8 @@ public class Decision {
   public static final String JSON_PROPERTY_ORIENTATION_TYPE = "orientationType";
   private OrientationTypeEnum orientationType;
 
-  public static final String JSON_PROPERTY_LOCATION = "location";
-  private Location location;
+  public static final String JSON_PROPERTY_DESTINATION = "destination";
+  private Destination destination;
 
   public Decision() {}
 
@@ -431,27 +432,27 @@ public class Decision {
     this.orientationType = orientationType;
   }
 
-  public Decision location(Location location) {
+  public Decision destination(Destination destination) {
 
-    this.location = location;
+    this.destination = destination;
     return this;
   }
 
   /**
-   * Get location
-   * @return location
+   * Get destination
+   * @return destination
    **/
-  @JsonProperty(JSON_PROPERTY_LOCATION)
+  @JsonProperty(JSON_PROPERTY_DESTINATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Location getLocation() {
-    return location;
+  public Destination getDestination() {
+    return destination;
   }
 
-  @JsonProperty(JSON_PROPERTY_LOCATION)
+  @JsonProperty(JSON_PROPERTY_DESTINATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLocation(Location location) {
-    this.location = location;
+  public void setDestination(Destination destination) {
+    this.destination = destination;
   }
 
   @Override
@@ -470,14 +471,14 @@ public class Decision {
         Objects.equals(this.resourceType, decision.resourceType) &&
         Objects.equals(this.medicalTransport, decision.medicalTransport) &&
         Objects.equals(this.orientationType, decision.orientationType) &&
-        Objects.equals(this.location, decision.location);
+        Objects.equals(this.destination, decision.destination);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(patientId, creation, operator, decisionType,
                         resourceType, medicalTransport, orientationType,
-                        location);
+                        destination);
   }
 
   @Override
@@ -501,7 +502,9 @@ public class Decision {
     sb.append("    orientationType: ")
         .append(toIndentedString(orientationType))
         .append("\n");
-    sb.append("    location: ").append(toIndentedString(location)).append("\n");
+    sb.append("    destination: ")
+        .append(toIndentedString(destination))
+        .append("\n");
     sb.append("}");
     return sb.toString();
   }

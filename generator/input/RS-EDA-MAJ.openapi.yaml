@@ -388,8 +388,6 @@ components:
           - AUTRE
           examples:
           - EPHAD
-        location:
-          $ref: '#/components/schemas/location'
       additionalProperties: false
       example: example.json#/decision/0
       examples:
@@ -404,7 +402,6 @@ components:
         resourceType: SMUR, Pompiers
         medicalTransport: 'True'
         orientationType: EPHAD
-        location: {}
     additionalInformation:
       type: object
       title: "Informations compl\xE9mentaires"

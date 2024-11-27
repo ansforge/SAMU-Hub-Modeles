@@ -322,7 +322,7 @@ False = transport non médicalisé</documentation>
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="location" type="x:location"/>
+            <element minOccurs="0" name="destination" type="x:destination"/>
         </sequence>
     </complexType>
     <complexType name="additionalInformation">
@@ -1898,6 +1898,20 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                         <enumeration value="INCONNU"/>
                     </restriction>
                 </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="destination">
+        <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="externalLocationId" type="x:externalLocationId"/>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Champ libre qui permet de compléter les informations liées à la localisation.
+
+Spécificités 15-15 :
+En envoi, il est souhaitable de mapper ici toute valeur en lien avec la localisation de l'intervention qui ne pourrait pas être transmise de manière structurée dans l'objet location. 
+En réception, il est très important d'intégrer et d'afficher la valeur de cet attribut, qui est suceptible de contenir des informations d'accès importantes.</documentation>
+                </annotation>
             </element>
         </sequence>
     </complexType>

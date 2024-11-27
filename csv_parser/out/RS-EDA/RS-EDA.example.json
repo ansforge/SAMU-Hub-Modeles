@@ -194,7 +194,12 @@
             "resourceType": "SMUR, Pompiers",
             "medicalTransport": "True",
             "orientationType": "EPHAD",
-            "location": {}
+            "destination": {
+                "externalLocationId": [
+                    {}
+                ],
+                "freetext": "Clé derrière le pot de fleur"
+            }
         }
     ],
     "additionalInformation": {

@@ -501,23 +501,10 @@ components:
           - AUTRE
           examples:
           - EPHAD
-        location:
-          $ref: '#/components/schemas/location'
+        destination:
+          $ref: '#/components/schemas/destination'
       additionalProperties: false
       example: example.json#/decision/0
-      examples:
-      - patientId: 'fr.health.samu690.patient.P23AZ59
-
-          fr.health.samu690.patient.DRFR15690242370035.1'
-        creation: '2022-09-27T08:23:34+02:00'
-        operator: {}
-        decisionType: "conseil m\xE9dical  / d\xE9cision d\u2019intervention / d\xE9\
-          cision d\u2019orientation et de transport / Pas de d\xE9cision suppl\xE9\
-          mentaire"
-        resourceType: SMUR, Pompiers
-        medicalTransport: 'True'
-        orientationType: EPHAD
-        location: {}
     additionalInformation:
       type: object
       title: "Informations compl\xE9mentaires"
@@ -2665,6 +2652,34 @@ components:
       examples:
       - label: None
         role: ARM
+    destination:
+      type: object
+      title: Localisation de la destination d'orientation
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        externalLocationId:
+          type: array
+          items:
+            $ref: '#/components/schemas/externalLocationId'
+        freetext:
+          type: string
+          title: "Informations compl\xE9mentaires sur la localisation"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/destination/freetext
+          description: "Champ libre qui permet de compl\xE9ter les informations li\xE9\
+            es \xE0 la localisation.\n\nSp\xE9cificit\xE9s 15-15 :\nEn envoi, il est\
+            \ souhaitable de mapper ici toute valeur en lien avec la localisation\
+            \ de l'intervention qui ne pourrait pas \xEAtre transmise de mani\xE8\
+            re structur\xE9e dans l'objet location. \nEn r\xE9ception, il est tr\xE8\
+            s important d'int\xE9grer et d'afficher la valeur de cet attribut, qui\
+            \ est suceptible de contenir des informations d'acc\xE8s importantes."
+          examples:
+          - "Cl\xE9 derri\xE8re le pot de fleur"
+      additionalProperties: false
+      example: example.json#/decision/0/destination
     customMap:
       type: object
       title: "Cl\xE9 valeur adaptable"

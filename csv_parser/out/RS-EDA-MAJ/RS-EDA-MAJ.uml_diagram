@@ -171,20 +171,6 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet operator</I></TD></TR><TR><TD BORDER="0" >label <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >role <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	operator -> decision [headlabel=1 taillabel=1]
-	externalInfo [label=<<TABLE>
-                <TR>
-                <TD ><B>externalInfo</B></TD>
-                </TR>
-                <TR><TD  BORDER="0"><I>objet externalInfo</I></TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >uri <I>string</I> : [1..1] </TD></TR>
-                </TABLE>>]
-	externalInfo -> location [headlabel=1 taillabel="0..*"]
-	location [label=<<TABLE>
-                <TR>
-                <TD ><B>location</B></TD>
-                </TR>
-                <TR><TD  BORDER="0"><I>objet location</I></TD></TR>
-                </TABLE>>]
-	location -> decision [headlabel=1 taillabel="0..1"]
 	decision [label=<<TABLE>
                 <TR>
                 <TD ><B>decision</B></TD>
