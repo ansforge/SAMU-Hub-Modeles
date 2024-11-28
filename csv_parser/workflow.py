@@ -110,6 +110,7 @@ def test_case_parser():
     test_case_generator.run(perimeters)
 
 def output_schemas_yaml():
+    print("Generating schemas.yaml file...")
     # Iterate over every non-# sheet in the models folder and extract the mini-tables starting at A1 which contain
     # all the necessary schema information; specifically the following fields in the following order:
     # schema, perimeter, rootElement, package, customExtendPackage, customExtendClass, automaticGeneration, subschema
@@ -147,16 +148,21 @@ def output_schemas_yaml():
                     schemaTable = full_df.iloc[schemaIndex:endIndex, 0:schemaWidth]
                     schemaTable.columns = schemaTable.iloc[0]
                     schemaTable = schemaTable[1:]
+                    schemaTable.reset_index(drop=True, inplace=True)
 
                     #Replace NaN values with null
                     schemaTable = schemaTable.where(pd.notnull(schemaTable), None)
 
-                    #Add the dataframe as a dict to the schemaMap['schemas']
-                    schemaMap['schemas'].append(schemaTable.to_dict(orient='records')[0])
+                    #Add the dataframes as dicts to the schemaMap['schemas']
+                    print("Successfully detected schema table in sheet", sheet)
+                    for i in range(schemaTable.shape[0]):
+                        schemaMap['schemas'].append(schemaTable.iloc[i].to_dict())
+                        print("Added schema to schemaMap:", schemaTable.at[i, 'schema'])
 
     #Write the schemaMap to a yaml file
-    with open('schemas.yaml', 'w') as file:
+    with open('out/schemas.yaml', 'w') as file:
         yaml.dump(schemaMap, file)
+    print("schemas.yaml successfully written to file.")
 
 
 

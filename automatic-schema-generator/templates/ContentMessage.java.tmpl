@@ -18,16 +18,17 @@ package com.hubsante.model.edxl;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-{{ range (datasource "config").schemas }}import com.hubsante.model.{{ .package }}.{{ .rootElement | title }};
+{{ range (datasource "config").schemas }}{{if eq .automaticGeneration "Y"}}import com.hubsante.model.{{ .package }}.{{ .rootElement | title }};
 import com.hubsante.model.{{ .package }}.{{ .rootElement | title }}Wrapper;
-{{ end }}
+{{ end }}{{ end }}import com.hubsante.model.report.ErrorWrapper;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
-@JsonSubTypes({{ range $i, $e := (datasource "config").schemas }}
-        @JsonSubTypes.Type({{ .rootElement | title }}Wrapper.class){{if ne $i (sub (len (datasource "config").schemas) 1)}},{{end}}{{end}}
+@JsonSubTypes({{ range $i, $e := (datasource "config").schemas }}{{if eq .automaticGeneration "Y"}}
+        @JsonSubTypes.Type({{ .rootElement | title }}Wrapper.class),{{end}}{{end}}
+        @JsonSubTypes.Type(ErrorWrapper.class)
 })
 public class ContentMessage {
 
@@ -49,8 +50,9 @@ public class ContentMessage {
 
     public static class UseCaseHelper {
         public static final Map<String,String> useCases = Stream.of(new String[][] {
-                  {"reference", Reference.class.getCanonicalName()},{{ range $i, $e := (datasource "config").schemas }}{{if .automaticGeneration}}
-                  {"{{ .rootElement }}", {{ .rootElement | title }}.class.getCanonicalName()}{{if ne (add $i 1) (len (datasource "config").schemas)}},{{end}}{{end}}{{end}}
+                  {"reference", Reference.class.getCanonicalName()},{{ range $i, $e := (datasource "config").schemas }}{{if eq .automaticGeneration "Y"}}
+                  {"{{ .rootElement }}", {{ .rootElement | title }}.class.getCanonicalName()},{{end}}{{end}}
+                  {"error", ErrorWrapper.class.getCanonicalName()}
         }).collect(Collectors.toMap(useCaseData -> useCaseData[0], useCaseData -> useCaseData[1]));
     }
 }

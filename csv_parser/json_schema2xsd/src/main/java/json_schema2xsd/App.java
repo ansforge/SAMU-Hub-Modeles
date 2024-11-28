@@ -36,7 +36,7 @@ public class App {
         Logger logger = Logger.getLogger(App.class.getName());
         List<String> regexErrors = new ArrayList<>();
         
-        //Get the schemas.csv file from resource folder
+        //Get the schemas.yaml file from resource folder
         InputStream schemaStream = App.class.getResourceAsStream("/schemas.yaml");
         assert schemaStream != null;
         InputStreamReader schemaReader = new InputStreamReader(schemaStream);

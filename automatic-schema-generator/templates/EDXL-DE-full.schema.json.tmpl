@@ -72,7 +72,7 @@
     },
     "EmbeddedJsonContent": {
       "type": "object",
-      "oneOf": [{{ range (datasource "config").schemas }}{{if eq .header "Y"}}
+      "oneOf": [{{ range (datasource "config").schemas }}{{if eq .automaticGeneration "Y"}}{{if eq .header "Y"}}
         {
           "allOf": [
             {
@@ -111,7 +111,7 @@
               ]
             }
           }
-        },{{end}}{{end}}
+        },{{end}}{{end}}{{end}}
         {
           "properties": {
             "message": {
