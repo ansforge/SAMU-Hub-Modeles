@@ -125,11 +125,15 @@ public class CreateCaseHealth {
    * (première intervention urgente) ou secondaire (par exemple TIH)
    */
   public enum InterventionTypeEnum {
-    PRIMAIRE("PRIMAIRE"),
+    T1("T1"),
 
-    SECONDAIRE("SECONDAIRE"),
+    T2_INTER("T2-INTER"),
 
-    RETOUR_A_DOMICILE("RETOUR A DOMICILE");
+    T2_INTRA("T2-INTRA"),
+
+    T3("T3"),
+
+    T4("T4");
 
     private String value;
 

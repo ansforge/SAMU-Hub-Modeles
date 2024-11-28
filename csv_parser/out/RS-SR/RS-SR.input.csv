@@ -14,7 +14,7 @@ N.B. Il s'agit de l'orgId de l'organisation à qui appartient la ressource","fr.
 fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1",resourceId,1..1,,string,"REGEX: ^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$"
 Etat vecteur,,,,,,"Objet qui permet de décrire l'état d'un vecteur mobilisé - sous forme de liste, il permet de décrire l'historique des états connus d'un même vecteur. ",,state,1..1,X,state,
 ,Date/heure de changement de statut,,,,,A valoriser avec la date et heure d'engagement de changement vers le nouveau statut,2022-09-27T08:23:34+02:00,datetime,1..1,,datetime,Format datetime décrit dans le DSF
-,Statut du vecteur,,,,,A valoriser avec le statut du vecteur. Cf nomenclature associée.,ARRIVE,status,1..1,,string,NOMENCLATURE: SI-SAMU-STATUS_VECTEUR
+,Statut du vecteur,,,,,A valoriser avec le statut du vecteur. Cf nomenclature associée.,ARRIVE,status,1..1,,string,NOMENCLATURE: HubSante.statutVecteur
 ,Disponibilité du vecteur,,,,,"A valoriser de manière à indiquer la disponibilité du vecteur.
 TRUE = DISPONIBLE
 FALSE = INDISPONIBLE

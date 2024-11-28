@@ -28,11 +28,14 @@
             "O20"
         ],
         "mainDiagnosis": "MD30.Z",
-        "associatedDiagnosis": "8B22.1",
+        "associatedDiagnosis": [
+            "8B22.1"
+        ],
         "parameter": [
             {
                 "type": "Fréquence cardiaque, Pression artérielle, Saturation en oxygène, Fréquence respiratoire, Température, Hemoglucotest, Glasgow",
-                "value": "None"
+                "value": "None",
+                "precision": "bras droit/gauche, débit oxygène, …"
             }
         ],
         "medicalHistory": "None",
