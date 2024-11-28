@@ -2,14 +2,13 @@
 <schema xmlns:x="urn:emergency:cisu:2.0"
         xmlns:xs="http://www.w3.org/2001/XMLSchema" 
         {{ range (datasource "config").schemas }}{{if .xmlns}}xmlns:{{.rootElement}}="urn:emergency:{{.xmlns}}"{{end}}
-        {{end -}}
-        xmlns:rcref="urn:emergency:cisu:2.0:reference"
+        {{end}}xmlns:rcref="urn:emergency:cisu:2.0:reference"
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
     <xs:include schemaLocation="RC-DE.xsd"/>
     <xs:include schemaLocation="CustomContent.xsd"/>
-    {{- range (datasource "config").schemas }}{{if .xmlns}}<xs:import namespace="urn:emergency:{{.xmlns}}" schemaLocation="{{.schema}}.xsd"/>{{end}}
+    {{ range (datasource "config").schemas }}{{if .xmlns}}<xs:import namespace="urn:emergency:{{.xmlns}}" schemaLocation="{{.schema}}.xsd"/>{{end}}
     {{end}}<xs:import namespace="urn:emergency:cisu:2.0:reference" schemaLocation="RC-REF.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
