@@ -50,5 +50,8 @@ jobs:
           cp -r output/json-schema ../src/main/resources
           cp -r output/xsd ../src/main/resources
           
-        
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: ⚙️ Auto-génération des schemas et fichiers de configuration
           
