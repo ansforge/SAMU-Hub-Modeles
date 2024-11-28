@@ -1,4 +1,24 @@
 schemas:
+- automaticGeneration: Y
+  customExtendClass: null
+  customExtendPackage: null
+  header: Y
+  package: technical
+  perimeter: TECHNICAL
+  rootElement: technical
+  schema: TECHNICAL
+  subschema: N
+  xmlns: :cisu:2.0:technical
+- automaticGeneration: Y
+  customExtendClass: null
+  customExtendPackage: null
+  header: N
+  package: technical.noreq
+  perimeter: TECHNICAL_NOREQ
+  rootElement: technicalNoreq
+  schema: TECHNICAL_NOREQ
+  subschema: N
+  xmlns: :cisu:2.0:technicalnoreq
 - automaticGeneration: N
   customExtendClass: null
   customExtendPackage: null
@@ -189,23 +209,3 @@ schemas:
   schema: customContent
   subschema: N
   xmlns: null
-- automaticGeneration: Y
-  customExtendClass: null
-  customExtendPackage: null
-  header: Y
-  package: technical
-  perimeter: TECHNICAL
-  rootElement: technical
-  schema: TECHNICAL
-  subschema: N
-  xmlns: :cisu:2.0:technical
-- automaticGeneration: Y
-  customExtendClass: null
-  customExtendPackage: null
-  header: N
-  package: technical.noreq
-  perimeter: TECHNICAL_NOREQ
-  rootElement: technicalNoreq
-  schema: TECHNICAL_NOREQ
-  subschema: N
-  xmlns: :cisu:2.0:technicalnoreq

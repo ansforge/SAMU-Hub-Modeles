@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns:x="urn:emergency:cisu:2.0"
         xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+        xmlns:technical="urn:emergency::cisu:2.0:technical"
+        xmlns:technicalNoreq="urn:emergency::cisu:2.0:technicalnoreq"
         
         xmlns:createCase="urn:emergency:eda:1.9"
         xmlns:createCaseHealth="urn:emergency:cisu:2.0:createCaseHealth"
@@ -20,14 +22,14 @@
         xmlns:error="urn:emergency:cisu:2.0:error"
         xmlns:reference="urn:emergency:cisu:2.0:rcref"
         
-        xmlns:technical="urn:emergency::cisu:2.0:technical"
-        xmlns:technicalNoreq="urn:emergency::cisu:2.0:technicalnoreq"
         xmlns:rcref="urn:emergency:cisu:2.0:reference"
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
     <xs:include schemaLocation="RC-DE.xsd"/>
-    <xs:include schemaLocation="CustomContent.xsd"/>
+    <xs:include schemaLocation="CustomContent.xsd"/><xs:import namespace="urn:emergency::cisu:2.0:technical" schemaLocation="TECHNICAL.xsd"/>
+    <xs:import namespace="urn:emergency::cisu:2.0:technicalnoreq" schemaLocation="TECHNICAL_NOREQ.xsd"/>
+    
     <xs:import namespace="urn:emergency:eda:1.9" schemaLocation="RC-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:createCaseHealthUpdate" schemaLocation="RS-EDA-MAJ.xsd"/>
@@ -46,8 +48,6 @@
     <xs:import namespace="urn:emergency:cisu:2.0:error" schemaLocation="RS-ERROR.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:rcref" schemaLocation="RC-REF.xsd"/>
     
-    <xs:import namespace="urn:emergency::cisu:2.0:technical" schemaLocation="TECHNICAL.xsd"/>
-    <xs:import namespace="urn:emergency::cisu:2.0:technicalnoreq" schemaLocation="TECHNICAL_NOREQ.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:reference" schemaLocation="RC-REF.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
@@ -67,6 +67,7 @@
             <xs:extension base="x:distributionElement">
                 <xs:sequence>
                     <xs:choice>
+                        <xs:element ref="technical:technical"/>
                         <xs:element ref="createCase:createCase"/>
                         <xs:element ref="createCaseHealth:createCaseHealth"/>
                         <xs:element ref="createCaseHealthUpdate:createCaseHealthUpdate"/>
@@ -83,7 +84,6 @@
                         <xs:element ref="geoResourcesRequest:geoResourcesRequest"/>
                         <xs:element ref="geoResourcesDetails:geoResourcesDetails"/>
                         <xs:element ref="reference:reference"/>
-                        <xs:element ref="technical:technical"/>
                         <xs:element ref="rcref:reference"/>
                     </xs:choice>
                 </xs:sequence>
@@ -94,8 +94,8 @@
     <xs:complexType name="NoHeaderMessageType">
         <xs:sequence>
             <xs:choice>
-                <xs:element ref="error:error"/>
                 <xs:element ref="technicalNoreq:technicalNoreq"/>
+                <xs:element ref="error:error"/>
                 <xs:element ref="x:customContent"/>
             </xs:choice>
         </xs:sequence>
