@@ -43,7 +43,7 @@ jobs:
         working-directory: ./automatic-schema-generator
         run: |
           rm -r output || true
-          automatic-generator.sh
+          ./automatic-generator.sh
           cp -r output/generator ..
           cp -r output/edxl ../src/main/java/com/hubsante/model
           cp -r output/json-schema ../src/main/resources
