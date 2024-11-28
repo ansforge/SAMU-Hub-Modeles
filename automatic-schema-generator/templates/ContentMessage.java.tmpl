@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
-@JsonSubTypes({{ range $i, $e := (datasource "config").schemas }}{{if eq .automaticGeneration "Y"}}
+@JsonSubTypes({{{ range $i, $e := (datasource "config").schemas }}{{if eq .automaticGeneration "Y"}}
         @JsonSubTypes.Type({{ .rootElement | title }}Wrapper.class),{{end}}{{end}}
         @JsonSubTypes.Type(ErrorWrapper.class)
 })
