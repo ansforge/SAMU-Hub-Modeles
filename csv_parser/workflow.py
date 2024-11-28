@@ -173,4 +173,5 @@ elif args.stage == 'test_case_parser':
     test_case_parser()
 elif args.stage == 'output_schemas_yaml':
     output_schemas_yaml()
+else:
     exit(1)
