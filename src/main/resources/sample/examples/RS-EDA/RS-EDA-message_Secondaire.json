@@ -1,0 +1,140 @@
+{
+  "createCaseHealth": {
+    "caseId": "fr.health.samu680.DRFR154402413800555",
+    "senderCaseId": "DRFR154402413800555",
+    "creation": "2024-11-18T06:57:00+02:00",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C11.06.00",
+        "label": "Autre nature de fait"
+      },
+      "locationKind": {
+        "label": "Hôpital",
+        "code": "L04.07.01"
+      },
+      "healthMotive": {
+        "label": "Autre motif",
+        "code": "M06.04"
+      },
+      "details": {
+        "priority": "P2",
+        "status": "ACTIF"
+      },
+      "origin": "15"
+    },
+    "location": {
+      "detailedAddress": {
+        "wayName": {
+          "type": "Avenue",
+          "name": "d'Altkirch",
+          "complete": "Avenue d'Altkirch"
+        },
+        "complete": "87 Avenue d'Altkirch",
+        "number": "87"
+      },
+      "city": {
+        "name": "Mulhouse",
+        "inseeCode": "68224"
+      },
+      "access": {
+        "floor": "2",
+        "entity": "Soins Intensifs",
+        "phoneNumber": "+33389646464"
+      },
+      "geometry": {
+        "point": {
+          "coord": {
+            "lat": 47.73673,
+            "precision": "EXACTE",
+            "lon": 7.33173
+          }
+        },
+        "datetime": "2024-11-18T00:00:00+01:00"
+      },
+      "name": "Hôpital du Hasenrain"
+    },
+    "initialAlert": {
+      "reception": "2024-11-18T06:55:00+02:00",
+      "caller": {
+        "callerContact": {
+          "type": "TEL",
+          "detail": "+33389646464",
+          "channel": "PERSONNE"
+        },
+        "detailedName": {
+          "complete": "Olivier Drobit",
+          "lastName": "Drobit",
+          "firstName": "Olivier"
+        },
+        "language": "fr",
+        "type": "MED",
+        "callbackContact": {
+          "channel": "PERSONNE",
+          "type": "TEL",
+          "detail": "+33671832676"
+        }
+      },
+      "notes": [
+        {
+          "creation": "2024-11-18T07:00:00+02:00",
+          "freetext": "Transfert du patient vers l'hôpital de Saint-Louis"
+        }
+      ]
+    },
+    "patient": [
+      {
+        "identity": {
+          "strictFeatures": {
+            "birthDate": "1967-09-17",
+            "sex": "M"
+          },
+          "nonStrictFeatures": {
+            "lastName": "Vermande",
+            "firstName": "Robert",
+            "complete": "Robert Vermande"
+          }
+        },
+        "patientId": "fr.health.samu680.patient.68263",
+        "administrativeFile": {
+          "generalPractitioner": {
+            "detailedName": {
+              "complete": "Dominique Herbeaut",
+              "lastName": "Herbeaut",
+              "firstName": "Dominique "
+            },
+            "contact": [
+              {
+                "type": "TEL",
+                "detail": "+33456243849"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "owner": "fr.health.samu680",
+    "interventionType": "T2-INTER",
+    "decision": [
+      {
+        "operator": {
+          "role": "MEDECIN",
+          "label": "Louis Percoin"
+        },
+        "creation": "2024-11-18T07:00:00+02:00",
+        "decisionType": "ORIENT",
+        "resourceType": "SMUR",
+        "medicalTransport": true,
+        "orientationType": "AUTRE",
+        "destination": {
+          "freetext": "Hôpital Saint-Louis",
+          "externalLocationId": [
+            {
+              "source": "FINESS_GEOGRAPHIQUE",
+              "value": "680020096"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
