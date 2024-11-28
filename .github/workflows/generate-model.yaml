@@ -61,8 +61,9 @@ jobs:
         run: python workflow.py --stage output_schemas_yaml
 
       - name: Collect schemas.yaml and copy it to json_schema2xsd
+        working-directory: ./csv_parser
         run: |
-          cp ./csv_parser/out/schemas.yaml ./json_schema2xsd/src/main/resources/schemas.yaml
+          cp ./out/schemas.yaml ./json_schema2xsd/src/main/resources/schemas.yaml
 
 # TODO: Reactivate test case autogeneration
 #      - name: Run test_case_generator and move the folder test-cases to src/main/resources/sample/test-cases
