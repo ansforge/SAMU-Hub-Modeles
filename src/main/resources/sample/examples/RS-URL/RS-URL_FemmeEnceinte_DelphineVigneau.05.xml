@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<documentLink xmlns="urn:emergency:cisu:2.0:documentLink">
-  <caseId>fr.fire.sis044.cga-044.SC-20240526-044-cga-AL8</caseId>
-  <patientId>fr.health.samu440.patient.DRFR154402414300123.1</patientId>
-  <document>
-    <documentType>BILAN</documentType>
-    <url>https://hub.esante.gouv.fr/</url>
-  </document>
-</documentLink>

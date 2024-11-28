@@ -203,8 +203,9 @@ schemas:
   customExtendClass: null
   customExtendPackage: null
   header: N
-  package: rcde
+  package: customContent
   perimeter: 15-15
-  rootElement: DistributionElement
-  schema: RC-DE
+  rootElement: customContent
+  schema: customContent
   subschema: N
+  xmlns: null
