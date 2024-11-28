@@ -32,7 +32,7 @@ jobs:
           cp ./csv_parser/out/schemas.yaml ./automatic-schema-generator/schemas.yaml
           
       - name: Setup gomplate
-        uses: jason-dour/action-setup-gomplate@v1.0.0
+        uses: jason-dour/action-setup-gomplate@v1.1.0
         with:
           gomplate-version: v4.2.0
         env:
