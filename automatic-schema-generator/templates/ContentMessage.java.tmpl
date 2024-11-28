@@ -50,7 +50,7 @@ public class ContentMessage {
 
     public static class UseCaseHelper {
         public static final Map<String,String> useCases = Stream.of(new String[][] {
-                  {"reference", Reference.class.getCanonicalName()},{{ range $i, $e := (datasource "config").schemas }}{{if eq .automaticGeneration "Y"}}
+                  {{ range $i, $e := (datasource "config").schemas }}{{if eq .automaticGeneration "Y"}}
                   {"{{ .rootElement }}", {{ .rootElement | title }}.class.getCanonicalName()},{{end}}{{end}}
                   {"error", ErrorWrapper.class.getCanonicalName()}
         }).collect(Collectors.toMap(useCaseData -> useCaseData[0], useCaseData -> useCaseData[1]));
