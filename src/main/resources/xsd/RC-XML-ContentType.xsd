@@ -7,46 +7,47 @@
         xmlns:createCase="urn:emergency:eda:1.9"
         xmlns:createCaseHealth="urn:emergency:cisu:2.0:createCaseHealth"
         xmlns:createCaseHealthUpdate="urn:emergency:cisu:2.0:createCaseHealthUpdate"
-        xmlns:emsi="urn:emergency:cisu:2.0:emsi"
-        xmlns:resourcesInfo="urn:emergency:cisu:2.0:resourcesinfo"
-        xmlns:resourcesEngagement="urn:emergency:cisu:2.0:resourcesengagement"
-        xmlns:resourcesStatus="urn:emergency:cisu:2.0:resourcesstatus"
-        xmlns:resourcesRequest="urn:emergency:cisu:2.0:resourcesrequest"
-        xmlns:resourcesResponse="urn:emergency:cisu:2.0:resourcesresponse"
-        xmlns:rpis="urn:emergency:cisu:2.0:rpis"
-        xmlns:interventionReport="urn:emergency:cisu:2.0:interventionreport"
-        xmlns:documentLink="urn:emergency:cisu:2.0:documentlink"
-        xmlns:geoPositionsUpdate="urn:emergency:cisu:2.0:geopositionsupdate"
-        xmlns:geoResourcesRequest="urn:emergency:cisu:2.0:georesourcesrequest"
-        xmlns:geoResourcesDetails="urn:emergency:cisu:2.0:georesourcesdetails"
-        xmlns:error="urn:emergency:cisu:2.0:error"
-        xmlns:reference="urn:emergency:cisu:2.0:rcref"
+        xmlns:emsi="urn:emergency:emsi"
+        xmlns:resourcesInfo="urn:emergency:resourcesinfo"
+        xmlns:resourcesEngagement="urn:emergency:resourcesengagement"
+        xmlns:resourcesStatus="urn:emergency:resourcesstatus"
+        xmlns:resourcesRequest="urn:emergency:resourcesrequest"
+        xmlns:resourcesResponse="urn:emergency:resourcesresponse"
+        xmlns:rpis="urn:emergency:rpis"
+        xmlns:interventionReport="urn:emergency:interventionreport"
+        xmlns:documentLink="urn:emergency:documentlink"
+        xmlns:geoPositionsUpdate="urn:emergency:geopositionsupdate"
+        xmlns:geoResourcesRequest="urn:emergency:georesourcesrequest"
+        xmlns:geoResourcesDetails="urn:emergency:georesourcesdetails"
+        xmlns:error="urn:emergency:error"
+        xmlns:reference="urn:emergency:rcref"
         
         xmlns:rcref="urn:emergency:cisu:2.0:reference"
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
     <xs:include schemaLocation="RC-DE.xsd"/>
-    <xs:include schemaLocation="CustomContent.xsd"/><xs:import namespace="urn:emergency::cisu:2.0:technical" schemaLocation="TECHNICAL.xsd"/>
+    <xs:include schemaLocation="CustomContent.xsd"/>
+    <xs:import namespace="urn:emergency::cisu:2.0:technical" schemaLocation="TECHNICAL.xsd"/>
     <xs:import namespace="urn:emergency::cisu:2.0:technicalnoreq" schemaLocation="TECHNICAL_NOREQ.xsd"/>
     
     <xs:import namespace="urn:emergency:eda:1.9" schemaLocation="RC-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:createCaseHealthUpdate" schemaLocation="RS-EDA-MAJ.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:emsi" schemaLocation="EMSI.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:resourcesinfo" schemaLocation="RS-RI.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:resourcesengagement" schemaLocation="RS-ER.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:resourcesstatus" schemaLocation="RS-SR.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:resourcesrequest" schemaLocation="RS-DR.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:resourcesresponse" schemaLocation="RS-RR.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:rpis" schemaLocation="RS-RPIS.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:interventionreport" schemaLocation="RS-BPV.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:documentlink" schemaLocation="RS-URL.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:geopositionsupdate" schemaLocation="GEO-POS.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:georesourcesrequest" schemaLocation="GEO-REQ.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:georesourcesdetails" schemaLocation="GEO-RES.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:error" schemaLocation="RS-ERROR.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:rcref" schemaLocation="RC-REF.xsd"/>
+    <xs:import namespace="urn:emergency:emsi" schemaLocation="EMSI.xsd"/>
+    <xs:import namespace="urn:emergency:resourcesinfo" schemaLocation="RS-RI.xsd"/>
+    <xs:import namespace="urn:emergency:resourcesengagement" schemaLocation="RS-ER.xsd"/>
+    <xs:import namespace="urn:emergency:resourcesstatus" schemaLocation="RS-SR.xsd"/>
+    <xs:import namespace="urn:emergency:resourcesrequest" schemaLocation="RS-DR.xsd"/>
+    <xs:import namespace="urn:emergency:resourcesresponse" schemaLocation="RS-RR.xsd"/>
+    <xs:import namespace="urn:emergency:rpis" schemaLocation="RS-RPIS.xsd"/>
+    <xs:import namespace="urn:emergency:interventionreport" schemaLocation="RS-BPV.xsd"/>
+    <xs:import namespace="urn:emergency:documentlink" schemaLocation="RS-URL.xsd"/>
+    <xs:import namespace="urn:emergency:geopositionsupdate" schemaLocation="GEO-POS.xsd"/>
+    <xs:import namespace="urn:emergency:georesourcesrequest" schemaLocation="GEO-REQ.xsd"/>
+    <xs:import namespace="urn:emergency:georesourcesdetails" schemaLocation="GEO-RES.xsd"/>
+    <xs:import namespace="urn:emergency:error" schemaLocation="RS-ERROR.xsd"/>
+    <xs:import namespace="urn:emergency:rcref" schemaLocation="RC-REF.xsd"/>
     
     <xs:import namespace="urn:emergency:cisu:2.0:reference" schemaLocation="RC-REF.xsd"/>
 
