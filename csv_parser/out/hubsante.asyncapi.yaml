@@ -6890,9 +6890,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/status
-          description: "A valoriser avec la valeur ANNULEE uniquement pour signifier\
-            \ l'annulation d'une demande de ressources. Les autres champs de la demande\
-            \ sont remplis \xE0 l'identique de la demande initiale envoy\xE9e."
+          description: "A quoi \xE7a sert d'avoir un objet demande "
           enum:
           - ANNULEE
           examples:

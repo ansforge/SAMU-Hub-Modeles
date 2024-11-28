@@ -29,7 +29,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/status",
-            "description": "A valoriser avec la valeur ANNULEE uniquement pour signifier l'annulation d'une demande de ressources. Les autres champs de la demande sont remplis à l'identique de la demande initiale envoyée.",
+            "description": "A quoi ça sert d'avoir un objet demande ",
             "enum": [
                 "ANNULEE"
             ]

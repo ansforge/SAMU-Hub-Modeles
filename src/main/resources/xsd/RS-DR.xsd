@@ -20,7 +20,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
             <element name="request" type="x:request"/>
             <element minOccurs="0" name="status">
                 <annotation>
-                    <documentation>A valoriser avec la valeur ANNULEE uniquement pour signifier l'annulation d'une demande de ressources. Les autres champs de la demande sont remplis à l'identique de la demande initiale envoyée.</documentation>
+                    <documentation>A quoi ça sert d'avoir un objet demande </documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
