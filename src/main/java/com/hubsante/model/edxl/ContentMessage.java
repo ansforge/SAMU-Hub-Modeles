@@ -101,7 +101,7 @@ public class ContentMessage {
 
     public static class UseCaseHelper {
         public static final Map<String,String> useCases = Stream.of(new String[][] {
-                  {"reference", Reference.class.getCanonicalName()},
+                  
                   {"technical", Technical.class.getCanonicalName()},
                   {"technicalNoreq", TechnicalNoreq.class.getCanonicalName()},
                   {"createCase", CreateCase.class.getCanonicalName()},
