@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resourcesInfo xmlns="urn:emergency:cisu:2.0:resourcesInfo">
+  <caseId>fr.health.samu770.DRFR157702400400055</caseId>
+  <resource>
+    <datetime>2024-01-04T08:05:00+01:00</datetime>
+    <resourceId>fr.health.samu770.resource.VLM250</resourceId>
+    <orgId>fr.health.samu770</orgId>
+    <vehicleType>SMUR.VLM</vehicleType>
+    <name>VLM 77 - 250</name>
+    <team>
+      <medicalLevel>MED</medicalLevel>
+      <name>Equipe SMUR A</name>
+    </team>
+    <state>
+      <datetime>2024-01-04T08:05:00+01:00</datetime>
+      <status>DECLENCHE</status>
+      <availability>false</availability>
+    </state>
+    <state>
+      <datetime>2024-01-04T08:04:00+01:00</datetime>
+      <status>DECISION</status>
+    </state>
+  </resource>
+  <resource>
+    <datetime>2024-01-04T08:06:00+01:00</datetime>
+    <resourceId>fr.fire.sis077.cgo-077.resource.VSAV32</resourceId>
+    <orgId>fr.fire.sdis77.cgo-077</orgId>
+    <vehicleType>SIS.VSAV</vehicleType>
+    <name>VSAV 77 - A7B</name>
+    <team>
+      <medicalLevel>SECOURS</medicalLevel>
+      <name>Equipe 89</name>
+    </team>
+    <state>
+      <datetime>2024-01-04T08:06:00+01:00</datetime>
+      <status>DECLENCHE</status>
+    </state>
+  </resource>
+</resourcesInfo>
