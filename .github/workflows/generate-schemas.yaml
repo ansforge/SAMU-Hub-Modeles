@@ -2,6 +2,9 @@ name: Generate schemas and relevant generator config files and java classes
 
 on:
   workflow_dispatch: {}
+  pull_request:
+    branches:
+      - '**'
 
 jobs:
   generate-schemas:
