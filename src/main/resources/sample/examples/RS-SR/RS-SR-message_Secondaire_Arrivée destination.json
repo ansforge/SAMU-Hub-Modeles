@@ -1,0 +1,10 @@
+{
+  "resourcesStatus": {
+    "caseId": "fr.health.samu680.DRFR154402413800555",
+    "resourceId": "fr.health.samu680.resource.AR1",
+    "state": {
+      "datetime": "2024-11-18T07:08:00+02:00",
+      "status": "DESTIN"
+    }
+  }
+}
