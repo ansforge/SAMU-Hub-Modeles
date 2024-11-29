@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns:x="urn:emergency:cisu:2.0"
         xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-        xmlns:technical="urn:emergency::cisu:2.0:technical"
-        xmlns:technicalNoreq="urn:emergency::cisu:2.0:technicalnoreq"
+        xmlns:technical="urn:emergency:cisu:2.0:technical"
+        xmlns:technicalNoreq="urn:emergency:cisu:2.0:technicalNoreq"
         
         xmlns:createCase="urn:emergency:eda:1.9"
         xmlns:createCaseHealth="urn:emergency:cisu:2.0:createCaseHealth"
