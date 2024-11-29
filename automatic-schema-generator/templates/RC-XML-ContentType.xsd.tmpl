@@ -7,7 +7,7 @@
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
     <xs:include schemaLocation="RC-DE.xsd"/>
-    <xs:include schemaLocation="CustomContent.xsd"/>
+    <xs:include schemaLocation="customContent.xsd"/>
     {{ range (datasource "config").schemas }}{{if .xmlns}}<xs:import namespace="urn:emergency:{{.xmlns}}" schemaLocation="{{.schema}}.xsd"/>{{end}}
     {{end}}<xs:import namespace="urn:emergency:cisu:2.0:reference" schemaLocation="RC-REF.xsd"/>
 
