@@ -28,7 +28,7 @@
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
     <xs:include schemaLocation="RC-DE.xsd"/>
-    <xs:include schemaLocation="CustomContent.xsd"/>
+    <xs:include schemaLocation="customContent.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:technical" schemaLocation="TECHNICAL.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:technicalNoreq" schemaLocation="TECHNICAL_NOREQ.xsd"/>
     
