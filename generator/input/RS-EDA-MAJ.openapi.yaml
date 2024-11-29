@@ -380,6 +380,7 @@ components:
             \ (cf. nomenclature associ\xE9e)"
           enum:
           - URGENCES
+          - REA-USI
           - SANTE
           - CABINET
           - DOMICILE
@@ -507,8 +508,8 @@ components:
             \ : \xE0 utiliser \xE0 minima pour transmettre le statut CLOTURE \xE0\
             \ la tablette"
           enum:
-          - PROGRAMME
-          - ' ACTIF'
+          - PROGRAM
+          - ACTIF
           - ACHEVE
           - VALIDE
           - CLOTURE
@@ -1167,6 +1168,8 @@ components:
           - ARM
           - INFIRMIER
           - MEDECIN
+          - PILOTE
+          - TCM
           - AUTRE
           - INCONNU
           examples:

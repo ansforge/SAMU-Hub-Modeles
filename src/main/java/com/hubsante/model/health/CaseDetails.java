@@ -56,9 +56,9 @@ public class CaseDetails {
    * CLOTURE à la tablette
    */
   public enum StatusEnum {
-    PROGRAMME("PROGRAMME"),
+    PROGRAM("PROGRAM"),
 
-    _ACTIF(" ACTIF"),
+    ACTIF("ACTIF"),
 
     ACHEVE("ACHEVE"),
 
@@ -130,6 +130,8 @@ public class CaseDetails {
     DRM_SPE_PSY("DRM.SPE.PSY"),
 
     DRM_SPE_TOXICOL("DRM.SPE.TOXICOL"),
+
+    DRM_SPE_AUTRESPE("DRM.SPE.AUTRESPE"),
 
     DRM_MRL("DRM.MRL"),
 

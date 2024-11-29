@@ -66,7 +66,7 @@
             ],
             "elevator": "C3",
             "buildingName": "Batiment B",
-            "entrance": "Zone Sud",
+            "entrance": "A valoriser avec le nom de l'entrée",
             "entity": "Infirmerie",
             "phoneNumber": "+33123452323"
         },
@@ -193,7 +193,13 @@
             "decisionType": "conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire",
             "resourceType": "SMUR, Pompiers",
             "medicalTransport": "True",
-            "orientationType": "EPHAD"
+            "orientationType": "EPHAD",
+            "destination": {
+                "externalLocationId": [
+                    {}
+                ],
+                "freetext": "Clé derrière le pot de fleur"
+            }
         }
     ],
     "additionalInformation": {

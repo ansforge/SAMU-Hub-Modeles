@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "24.10.21",
+    "version": "24.11.28",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -594,7 +594,7 @@
         },
         "whatsHappen": {
             "type": "object",
-            "title": "Nature de fait ",
+            "title": "Nature de fait",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -2112,7 +2112,7 @@
                         "APPLICATION",
                         "BAU",
                         "DAU",
-                        "DEFIBRILLATEUR, ",
+                        "DEFIBRILLATEUR",
                         "ECALL",
                         "PERSONNE"
                     ]

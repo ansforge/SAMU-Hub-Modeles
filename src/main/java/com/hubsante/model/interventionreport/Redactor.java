@@ -62,6 +62,10 @@ public class Redactor {
 
     MEDECIN("MEDECIN"),
 
+    PILOTE("PILOTE"),
+
+    TCM("TCM"),
+
     AUTRE("AUTRE"),
 
     INCONNU("INCONNU");
@@ -103,7 +107,8 @@ public class Redactor {
   }
 
   /**
-   * A valoriser avec le prénom et le nom du rédacteur ou un numéro RPPS.
+   * A valoriser avec le prénom et le nom du rédacteur, un numéro RPPS, un
+   *matricule, etc.
    * @return label
    **/
   @JsonProperty(JSON_PROPERTY_LABEL)

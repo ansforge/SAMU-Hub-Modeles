@@ -152,7 +152,7 @@ public class Resource {
 
     HELICOPTERE("HELICOPTERE"),
 
-    SHIP_("SHIP ");
+    SHIP("SHIP");
 
     private String value;
 

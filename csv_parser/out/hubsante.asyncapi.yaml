@@ -1706,7 +1706,7 @@ components:
           example: example.json#/location/access/entrance
           description: "A valoriser avec le nom de l'entr\xE9e"
           examples:
-          - Zone Sud
+          - "A valoriser avec le nom de l'entr\xE9e"
         entity:
           type: string
           title: Service
@@ -2604,9 +2604,11 @@ components:
           description: "A valoriser en indiquant s'il s'agit d'un dossier dit primaire\
             \ (premi\xE8re intervention urgente) ou secondaire (par exemple TIH)"
           enum:
-          - PRIMAIRE
-          - SECONDAIRE
-          - RETOUR A DOMICILE
+          - T1
+          - T2-INTER
+          - T2-INTRA
+          - T3
+          - T4
           examples:
           - PRIMAIRE
         qualification:
@@ -2966,6 +2968,7 @@ components:
           - MED
           - PARAMED
           - SECOURS
+          - SANS
           examples:
           - PARAMED
       additionalProperties: false
@@ -2993,8 +2996,8 @@ components:
             \ : \xE0 utiliser \xE0 minima pour transmettre le statut CLOTURE \xE0\
             \ la tablette"
           enum:
-          - PROGRAMME
-          - ' ACTIF'
+          - PROGRAM
+          - ACTIF
           - ACHEVE
           - VALIDE
           - CLOTURE
@@ -3466,6 +3469,8 @@ components:
           - ARM
           - INFIRMIER
           - MEDECIN
+          - PILOTE
+          - TCM
           - AUTRE
           - INCONNU
           examples:
@@ -3475,6 +3480,304 @@ components:
       examples:
       - label: None
         role: ARM
+    destination:
+      type: object
+      title: Destination
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - destinationCountry
+      - destinationCategory
+      - healthcareType
+      - finess
+      properties:
+        destinationCountry:
+          type: string
+          title: Pays de destination
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/destination/destinationCountry
+          description: "A valoriser par le code de la nomenclature associ\xE9e"
+          enum:
+          - AF
+          - AX
+          - AL
+          - DZ
+          - AS
+          - AD
+          - AO
+          - AI
+          - AQ
+          - AG
+          - AR
+          - AM
+          - AW
+          - AU
+          - AT
+          - AZ
+          - BS
+          - BH
+          - BD
+          - BB
+          - BY
+          - BE
+          - BZ
+          - BJ
+          - BM
+          - BT
+          - BO
+          - BA
+          - BW
+          - BV
+          - BR
+          - IO
+          - BN
+          - BG
+          - BF
+          - BI
+          - CV
+          - KH
+          - CM
+          - CA
+          - KY
+          - CF
+          - TD
+          - CL
+          - CN
+          - CX
+          - CC
+          - CO
+          - KM
+          - CG
+          - CK
+          - CR
+          - CI
+          - HR
+          - CU
+          - CW
+          - CY
+          - CZ
+          - DK
+          - DJ
+          - DM
+          - DO
+          - EC
+          - EG
+          - SV
+          - GQ
+          - ER
+          - EE
+          - SZ
+          - ET
+          - FK
+          - FO
+          - FJ
+          - FI
+          - FR
+          - GF
+          - PF
+          - TF
+          - GA
+          - GM
+          - GE
+          - DE
+          - GH
+          - GI
+          - GR
+          - GL
+          - GD
+          - GP
+          - GU
+          - GT
+          - GG
+          - GN
+          - GW
+          - GY
+          - HT
+          - HM
+          - VA
+          - HN
+          - HK
+          - HU
+          - IS
+          - IN
+          - ID
+          - IR
+          - IQ
+          - IE
+          - IM
+          - IL
+          - IT
+          - JM
+          - JP
+          - JE
+          - JO
+          - KZ
+          - KE
+          - KI
+          - KP
+          - KW
+          - KG
+          - LA
+          - LV
+          - LB
+          - LS
+          - LR
+          - LY
+          - LI
+          - LT
+          - LU
+          - MO
+          - MG
+          - MW
+          - MY
+          - MV
+          - ML
+          - MT
+          - MH
+          - MQ
+          - MR
+          - MU
+          - YT
+          - MX
+          - FM
+          - MC
+          - MN
+          - ME
+          - MS
+          - MA
+          - MZ
+          - MM
+          - NA
+          - NR
+          - NP
+          - NL
+          - NC
+          - NZ
+          - NI
+          - NE
+          - NG
+          - NU
+          - NF
+          - MK
+          - MP
+          - 'NO'
+          - OM
+          - PK
+          - PW
+          - PA
+          - PG
+          - PY
+          - PE
+          - PH
+          - PN
+          - PL
+          - PT
+          - PR
+          - QA
+          - RE
+          - RO
+          - RU
+          - RW
+          - BL
+          - KN
+          - LC
+          - MF
+          - PM
+          - VC
+          - WS
+          - SM
+          - ST
+          - SA
+          - SN
+          - RS
+          - SC
+          - SL
+          - SG
+          - SX
+          - SK
+          - SI
+          - SB
+          - SO
+          - ZA
+          - GS
+          - SS
+          - ES
+          - LK
+          - SD
+          - SR
+          - SJ
+          - SE
+          - CH
+          - SY
+          - TJ
+          - TH
+          - TL
+          - TG
+          - TK
+          - TO
+          - TT
+          - TN
+          - TR
+          - TM
+          - TC
+          - TV
+          - UG
+          - UA
+          - AE
+          - GB
+          - US
+          - UM
+          - UY
+          - UZ
+          - VU
+          - VE
+          - VN
+          - VG
+          - VI
+          - WF
+          - EH
+          - YE
+          - ZM
+          - ZW
+          examples:
+          - FR
+        destinationCategory:
+          type: string
+          title: "Cat\xE9gorie de l'\xE9tablissement de destination"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/destination/destinationCategory
+          description: "A valoriser par le code de la nomenclature associ\xE9e"
+          examples:
+          - None
+        healthcareType:
+          type: string
+          title: "Type d'activit\xE9 de soins de l'unit\xE9 fonctionnelle de destination"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/destination/healthcareType
+          description: "A valoriser par le code de la nomenclature ActiviteOperationnelle\
+            \ (\xE0 venir). "
+          examples:
+          - None
+        finess:
+          type: string
+          title: "FINESS g\xE9ographique"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/destination/finess
+          description: "FINESS g\xE9ographique de l\u2019\xE9tablissement de destination\
+            \ (9 chiffres)"
+          examples:
+          - None
+      additionalProperties: false
+      example: example.json#/orientation/destination
+      examples:
+      - destinationCountry: FR
+        destinationCategory: None
+        healthcareType: None
+        finess: None
     createCaseHealthUpdate:
       $id: classpath:/json-schema/schema#
       x-id: RS-EDA-MAJ.schema.json#
@@ -4105,7 +4408,8 @@ components:
       title: Ressource
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - vehicleType
       properties:
         vehicleType:
           type: string
@@ -6138,13 +6442,14 @@ components:
           - ARRIVEE
           - PEC
           - BILAN
+          - ORIENTAT
           - TRANSP
           - ETAPE1
           - TRANSP2
           - ETAPE2
           - TRANSP3
           - DESTIN
-          - FINMED
+          - FINPEC
           - RETOUR
           - RET-BASE
           - REN-BASE
@@ -6267,6 +6572,7 @@ components:
             \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
             \ pas disponible : \n{OrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
+          pattern: ^([\w-]+\.){3,4}request(\.[\w-]+){1,2}$
           examples:
           - 'fr.health.samu770.request.1249875
 
@@ -6549,6 +6855,7 @@ components:
           - MED
           - PARAMED
           - SECOURS
+          - SANS
           examples:
           - PARAMED
       additionalProperties: false
@@ -6761,304 +7068,6 @@ components:
         arrivedDestination: '2022-09-27T08:23:34+02:00'
         teamAvailable: '2022-09-27T08:23:34+02:00'
         returnSmur: '2022-09-27T08:23:34+02:00'
-    destination:
-      type: object
-      title: Destination
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - destinationCountry
-      - destinationCategory
-      - healthcareType
-      - finess
-      properties:
-        destinationCountry:
-          type: string
-          title: Pays de destination
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/orientation/destination/destinationCountry
-          description: "A valoriser par le code de la nomenclature associ\xE9e"
-          enum:
-          - AF
-          - AX
-          - AL
-          - DZ
-          - AS
-          - AD
-          - AO
-          - AI
-          - AQ
-          - AG
-          - AR
-          - AM
-          - AW
-          - AU
-          - AT
-          - AZ
-          - BS
-          - BH
-          - BD
-          - BB
-          - BY
-          - BE
-          - BZ
-          - BJ
-          - BM
-          - BT
-          - BO
-          - BA
-          - BW
-          - BV
-          - BR
-          - IO
-          - BN
-          - BG
-          - BF
-          - BI
-          - CV
-          - KH
-          - CM
-          - CA
-          - KY
-          - CF
-          - TD
-          - CL
-          - CN
-          - CX
-          - CC
-          - CO
-          - KM
-          - CG
-          - CK
-          - CR
-          - CI
-          - HR
-          - CU
-          - CW
-          - CY
-          - CZ
-          - DK
-          - DJ
-          - DM
-          - DO
-          - EC
-          - EG
-          - SV
-          - GQ
-          - ER
-          - EE
-          - SZ
-          - ET
-          - FK
-          - FO
-          - FJ
-          - FI
-          - FR
-          - GF
-          - PF
-          - TF
-          - GA
-          - GM
-          - GE
-          - DE
-          - GH
-          - GI
-          - GR
-          - GL
-          - GD
-          - GP
-          - GU
-          - GT
-          - GG
-          - GN
-          - GW
-          - GY
-          - HT
-          - HM
-          - VA
-          - HN
-          - HK
-          - HU
-          - IS
-          - IN
-          - ID
-          - IR
-          - IQ
-          - IE
-          - IM
-          - IL
-          - IT
-          - JM
-          - JP
-          - JE
-          - JO
-          - KZ
-          - KE
-          - KI
-          - KP
-          - KW
-          - KG
-          - LA
-          - LV
-          - LB
-          - LS
-          - LR
-          - LY
-          - LI
-          - LT
-          - LU
-          - MO
-          - MG
-          - MW
-          - MY
-          - MV
-          - ML
-          - MT
-          - MH
-          - MQ
-          - MR
-          - MU
-          - YT
-          - MX
-          - FM
-          - MC
-          - MN
-          - ME
-          - MS
-          - MA
-          - MZ
-          - MM
-          - NA
-          - NR
-          - NP
-          - NL
-          - NC
-          - NZ
-          - NI
-          - NE
-          - NG
-          - NU
-          - NF
-          - MK
-          - MP
-          - 'NO'
-          - OM
-          - PK
-          - PW
-          - PA
-          - PG
-          - PY
-          - PE
-          - PH
-          - PN
-          - PL
-          - PT
-          - PR
-          - QA
-          - RE
-          - RO
-          - RU
-          - RW
-          - BL
-          - KN
-          - LC
-          - MF
-          - PM
-          - VC
-          - WS
-          - SM
-          - ST
-          - SA
-          - SN
-          - RS
-          - SC
-          - SL
-          - SG
-          - SX
-          - SK
-          - SI
-          - SB
-          - SO
-          - ZA
-          - GS
-          - SS
-          - ES
-          - LK
-          - SD
-          - SR
-          - SJ
-          - SE
-          - CH
-          - SY
-          - TJ
-          - TH
-          - TL
-          - TG
-          - TK
-          - TO
-          - TT
-          - TN
-          - TR
-          - TM
-          - TC
-          - TV
-          - UG
-          - UA
-          - AE
-          - GB
-          - US
-          - UM
-          - UY
-          - UZ
-          - VU
-          - VE
-          - VN
-          - VG
-          - VI
-          - WF
-          - EH
-          - YE
-          - ZM
-          - ZW
-          examples:
-          - FR
-        destinationCategory:
-          type: string
-          title: "Cat\xE9gorie de l'\xE9tablissement de destination"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/orientation/destination/destinationCategory
-          description: "A valoriser par le code de la nomenclature associ\xE9e"
-          examples:
-          - None
-        healthcareType:
-          type: string
-          title: "Type d'activit\xE9 de soins de l'unit\xE9 fonctionnelle de destination"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/orientation/destination/healthcareType
-          description: "A valoriser par le code de la nomenclature ActiviteOperationnelle\
-            \ (\xE0 venir). "
-          examples:
-          - None
-        finess:
-          type: string
-          title: "FINESS g\xE9ographique"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/orientation/destination/finess
-          description: "FINESS g\xE9ographique de l\u2019\xE9tablissement de destination\
-            \ (9 chiffres)"
-          examples:
-          - None
-      additionalProperties: false
-      example: example.json#/orientation/destination
-      examples:
-      - destinationCountry: FR
-        destinationCategory: None
-        healthcareType: None
-        finess: None
     customContent:
       $id: classpath:/json-schema/schema#
       x-id: customContent.schema.json#
@@ -7677,7 +7686,7 @@ components:
       properties:
         caseId:
           type: string
-          title: "Identifiant partag\xE9 du dossier de r\xE9gulation m\xE9dicale (DRM)"
+          title: "Identifiant partag\xE9 du dossier "
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
@@ -7734,8 +7743,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/redactor/label
-          description: "A valoriser avec le pr\xE9nom et le nom du r\xE9dacteur ou\
-            \ un num\xE9ro RPPS. "
+          description: "A valoriser avec le pr\xE9nom et le nom du r\xE9dacteur, un\
+            \ num\xE9ro RPPS, un matricule, etc. "
           examples:
           - Julien Montclar
         role:
@@ -7751,6 +7760,8 @@ components:
           - ARM
           - INFIRMIER
           - MEDECIN
+          - PILOTE
+          - TCM
           - AUTRE
           - INCONNU
           examples:
@@ -7772,7 +7783,7 @@ components:
           x-health-only: false
           items:
             type: string
-            title: "Actes r\xE9alis\xE9s par le SMUR"
+            title: "Actes r\xE9alis\xE9s par la ressource"
             x-health-only: false
             x-cols: 6
             example: example.json#/evaluation/procedure/0
@@ -7793,15 +7804,18 @@ components:
           examples:
           - MD30.Z
         associatedDiagnosis:
-          type: string
-          title: "Diagnostic associ\xE9  SMUR"
+          type: array
           x-health-only: false
-          x-cols: 6
-          example: example.json#/evaluation/associatedDiagnosis
-          description: "Th\xE9saurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature\
-            \ Diagnostic SMUR."
-          examples:
-          - 8B22.1
+          items:
+            type: string
+            title: "Diagnostic associ\xE9  SMUR"
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/evaluation/associatedDiagnosis/0
+            description: "Th\xE9saurus SFMU-FEDORU.\nA valoriser par un code de la\
+              \ nomenclature Diagnostic SMUR."
+            examples:
+            - 8B22.1
         parameter:
           type: array
           items:
@@ -7834,7 +7848,7 @@ components:
             x-cols: 6
             example: example.json#/evaluation/freetext/0
             description: "Permettrait de concat\xE9ner dans une zone de commentaire\
-              \ d'autres champs (ex. anamn\xE8se : allergies,, traitements, symptomes,\
+              \ d'autres champs (ex. anamn\xE8se : allergies, traitements, symptomes,\
               \ ant\xE9c\xE9dents)"
             examples:
             - None
@@ -7877,9 +7891,21 @@ components:
           description: "Indique la valeur de la derni\xE8re constante prise"
           examples:
           - None
+        precision:
+          type: string
+          title: "Pr\xE9cision sur la mesure"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/evaluation/parameter/0/precision
+          description: "Permet d'apporter des pr\xE9cisions sur la constante prise\
+            \ (ex. le d\xE9bit d'oxyg\xE8ne lors de la prise de constante de saturation\
+            \ en oxyg\xE8ne)"
+          examples:
+          - "bras droit/gauche, d\xE9bit oxyg\xE8ne, \u2026"
       additionalProperties: false
       example: example.json#/evaluation/parameter/0
       examples:
       - type: "Fr\xE9quence cardiaque, Pression art\xE9rielle, Saturation en oxyg\xE8\
           ne, Fr\xE9quence respiratoire, Temp\xE9rature, Hemoglucotest, Glasgow"
         value: None
+        precision: "bras droit/gauche, d\xE9bit oxyg\xE8ne, \u2026"

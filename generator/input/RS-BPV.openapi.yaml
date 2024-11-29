@@ -23,7 +23,7 @@ components:
       properties:
         caseId:
           type: string
-          title: "Identifiant partag\xE9 du dossier de r\xE9gulation m\xE9dicale (DRM)"
+          title: "Identifiant partag\xE9 du dossier "
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
@@ -80,8 +80,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/redactor/label
-          description: "A valoriser avec le pr\xE9nom et le nom du r\xE9dacteur ou\
-            \ un num\xE9ro RPPS. "
+          description: "A valoriser avec le pr\xE9nom et le nom du r\xE9dacteur, un\
+            \ num\xE9ro RPPS, un matricule, etc. "
           examples:
           - Julien Montclar
         role:
@@ -97,6 +97,8 @@ components:
           - ARM
           - INFIRMIER
           - MEDECIN
+          - PILOTE
+          - TCM
           - AUTRE
           - INCONNU
           examples:
@@ -224,7 +226,7 @@ components:
           x-health-only: false
           items:
             type: string
-            title: "Actes r\xE9alis\xE9s par le SMUR"
+            title: "Actes r\xE9alis\xE9s par la ressource"
             x-health-only: false
             x-cols: 6
             example: example.json#/evaluation/procedure/0
@@ -245,15 +247,18 @@ components:
           examples:
           - MD30.Z
         associatedDiagnosis:
-          type: string
-          title: "Diagnostic associ\xE9  SMUR"
+          type: array
           x-health-only: false
-          x-cols: 6
-          example: example.json#/evaluation/associatedDiagnosis
-          description: "Th\xE9saurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature\
-            \ Diagnostic SMUR."
-          examples:
-          - 8B22.1
+          items:
+            type: string
+            title: "Diagnostic associ\xE9  SMUR"
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/evaluation/associatedDiagnosis/0
+            description: "Th\xE9saurus SFMU-FEDORU.\nA valoriser par un code de la\
+              \ nomenclature Diagnostic SMUR."
+            examples:
+            - 8B22.1
         parameter:
           type: array
           items:
@@ -286,7 +291,7 @@ components:
             x-cols: 6
             example: example.json#/evaluation/freetext/0
             description: "Permettrait de concat\xE9ner dans une zone de commentaire\
-              \ d'autres champs (ex. anamn\xE8se : allergies,, traitements, symptomes,\
+              \ d'autres champs (ex. anamn\xE8se : allergies, traitements, symptomes,\
               \ ant\xE9c\xE9dents)"
             examples:
             - None
@@ -367,9 +372,21 @@ components:
           description: "Indique la valeur de la derni\xE8re constante prise"
           examples:
           - None
+        precision:
+          type: string
+          title: "Pr\xE9cision sur la mesure"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/evaluation/parameter/0/precision
+          description: "Permet d'apporter des pr\xE9cisions sur la constante prise\
+            \ (ex. le d\xE9bit d'oxyg\xE8ne lors de la prise de constante de saturation\
+            \ en oxyg\xE8ne)"
+          examples:
+          - "bras droit/gauche, d\xE9bit oxyg\xE8ne, \u2026"
       additionalProperties: false
       example: example.json#/evaluation/parameter/0
       examples:
       - type: "Fr\xE9quence cardiaque, Pression art\xE9rielle, Saturation en oxyg\xE8\
           ne, Fr\xE9quence respiratoire, Temp\xE9rature, Hemoglucotest, Glasgow"
         value: None
+        precision: "bras droit/gauche, d\xE9bit oxyg\xE8ne, \u2026"
