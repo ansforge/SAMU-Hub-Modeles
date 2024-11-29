@@ -388,20 +388,10 @@ components:
           - AUTRE
           examples:
           - EPHAD
+        destination:
+          $ref: '#/components/schemas/destination'
       additionalProperties: false
       example: example.json#/decision/0
-      examples:
-      - patientId: 'fr.health.samu690.patient.P23AZ59
-
-          fr.health.samu690.patient.DRFR15690242370035.1'
-        creation: '2022-09-27T08:23:34+02:00'
-        operator: {}
-        decisionType: "conseil m\xE9dical  / d\xE9cision d\u2019intervention / d\xE9\
-          cision d\u2019orientation et de transport / Pas de d\xE9cision suppl\xE9\
-          mentaire"
-        resourceType: SMUR, Pompiers
-        medicalTransport: 'True'
-        orientationType: EPHAD
     additionalInformation:
       type: object
       title: "Informations compl\xE9mentaires"
@@ -1179,6 +1169,75 @@ components:
       examples:
       - label: None
         role: ARM
+    destination:
+      type: object
+      title: Localisation de la destination d'orientation
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        externalLocationId:
+          type: array
+          items:
+            $ref: '#/components/schemas/externalLocationId'
+        freetext:
+          type: string
+          title: "Informations compl\xE9mentaires sur la localisation"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/destination/freetext
+          description: "Champ libre qui permet de compl\xE9ter les informations li\xE9\
+            es \xE0 la localisation.\n\nSp\xE9cificit\xE9s 15-15 :\nEn envoi, il est\
+            \ souhaitable de mapper ici toute valeur en lien avec la localisation\
+            \ de l'intervention qui ne pourrait pas \xEAtre transmise de mani\xE8\
+            re structur\xE9e dans l'objet location. \nEn r\xE9ception, il est tr\xE8\
+            s important d'int\xE9grer et d'afficher la valeur de cet attribut, qui\
+            \ est suceptible de contenir des informations d'acc\xE8s importantes."
+          examples:
+          - "Cl\xE9 derri\xE8re le pot de fleur"
+      additionalProperties: false
+      example: example.json#/decision/0/destination
+    externalLocationId:
+      type: object
+      title: Identifiant(s) du lieu
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - source
+      - value
+      properties:
+        source:
+          type: string
+          title: Source  /  type d'identifiant
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/destination/externalLocationId/0/source
+          description: "A valoriser avec le type de l'identifiant fourni. Cf nomenclature\
+            \ associ\xE9e."
+          enum:
+          - FINESS_ADMINISTRATIF
+          - FINESS_GEOGRAPHIQUE
+          - SIREN
+          - SIRET
+          - APE_NAF
+          examples:
+          - "FINESS g\xE9ographique, FINESS administratif, SIREN, SIRET, APE, NAF"
+        value:
+          type: string
+          title: Identifiant
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/destination/externalLocationId/0/value
+          description: "A valoriser avec l'identifiant en lui-m\xEAme"
+          pattern: ^([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])$
+          examples:
+          - "920000650\_"
+      additionalProperties: false
+      example: example.json#/decision/0/destination/externalLocationId/0
+      examples:
+      - source: "FINESS g\xE9ographique, FINESS administratif, SIREN, SIRET, APE,\
+          \ NAF"
+        value: "920000650\_"
     customMap:
       type: object
       title: "Cl\xE9 valeur adaptable"

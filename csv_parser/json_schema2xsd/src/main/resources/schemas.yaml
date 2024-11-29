@@ -8,7 +8,7 @@ schemas:
   rootElement: technical
   schema: TECHNICAL
   subschema: N
-  xmlns: :cisu:2.0:technical
+  xmlns: cisu:2.0:technical
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -18,14 +18,14 @@ schemas:
   rootElement: technicalNoreq
   schema: TECHNICAL_NOREQ
   subschema: N
-  xmlns: :cisu:2.0:technicalnoreq
+  xmlns: cisu:2.0:technicalNoreq
 - automaticGeneration: N
   customExtendClass: null
   customExtendPackage: null
   header: N
   package: rcde
   perimeter: 15-15
-  rootElement: DistributionElement
+  rootElement: distributionElement
   schema: RC-DE
   subschema: N
   xmlns: null
@@ -68,7 +68,7 @@ schemas:
   rootElement: emsi
   schema: EMSI
   subschema: N
-  xmlns: emsi
+  xmlns: cisu:2.0:emsi
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -78,7 +78,7 @@ schemas:
   rootElement: resourcesInfo
   schema: RS-RI
   subschema: N
-  xmlns: resourcesinfo
+  xmlns: cisu:2.0:resourcesinfo
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -88,7 +88,7 @@ schemas:
   rootElement: resourcesEngagement
   schema: RS-ER
   subschema: Y
-  xmlns: resourcesengagement
+  xmlns: cisu:2.0:resourcesengagement
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -98,7 +98,7 @@ schemas:
   rootElement: resourcesStatus
   schema: RS-SR
   subschema: N
-  xmlns: resourcesstatus
+  xmlns: cisu:2.0:resourcesstatus
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -108,7 +108,7 @@ schemas:
   rootElement: resourcesRequest
   schema: RS-DR
   subschema: N
-  xmlns: resourcesrequest
+  xmlns: cisu:2.0:resourcesrequest
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -118,7 +118,7 @@ schemas:
   rootElement: resourcesResponse
   schema: RS-RR
   subschema: N
-  xmlns: resourcesresponse
+  xmlns: cisu:2.0:resourcesresponse
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -128,7 +128,7 @@ schemas:
   rootElement: rpis
   schema: RS-RPIS
   subschema: N
-  xmlns: rpis
+  xmlns: cisu:2.0:rpis
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -138,7 +138,7 @@ schemas:
   rootElement: interventionReport
   schema: RS-BPV
   subschema: N
-  xmlns: interventionreport
+  xmlns: cisu:2.0:interventionreport
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -148,7 +148,7 @@ schemas:
   rootElement: documentLink
   schema: RS-URL
   subschema: N
-  xmlns: documentlink
+  xmlns: cisu:2.0:documentlink
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -158,7 +158,7 @@ schemas:
   rootElement: geoPositionsUpdate
   schema: GEO-POS
   subschema: N
-  xmlns: geopositionsupdate
+  xmlns: cisu:2.0:geopositionsupdate
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -168,7 +168,7 @@ schemas:
   rootElement: geoResourcesRequest
   schema: GEO-REQ
   subschema: N
-  xmlns: georesourcesrequest
+  xmlns: cisu:2.0:georesourcesrequest
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -178,7 +178,7 @@ schemas:
   rootElement: geoResourcesDetails
   schema: GEO-RES
   subschema: N
-  xmlns: georesourcesdetails
+  xmlns: cisu:2.0:georesourcesdetails
 - automaticGeneration: N
   customExtendClass: null
   customExtendPackage: null
@@ -188,7 +188,7 @@ schemas:
   rootElement: error
   schema: RS-ERROR
   subschema: N
-  xmlns: error
+  xmlns: cisu:2.0:error
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -198,7 +198,7 @@ schemas:
   rootElement: reference
   schema: RC-REF
   subschema: N
-  xmlns: rcref
+  xmlns: cisu:2.0:rcref
 - automaticGeneration: N
   customExtendClass: null
   customExtendPackage: null

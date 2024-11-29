@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<resourcesStatus xmlns="urn:emergency:cisu:2.0:resourcesStatus">
+<resourcesStatus xmlns="urn:emergency:cisu:2.0:resourcesstatus">
   <caseId>fr.health.samu950.DRFR159502401800159</caseId>
   <resourceId>fr.health.samu780.resource.SMUR78-E</resourceId>
   <state>
