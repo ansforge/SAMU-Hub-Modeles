@@ -120,7 +120,7 @@ components:
       properties:
         patientId:
           type: string
-          title: ID Patient
+          title: "ID partag\xE9 du patient"
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/patientId

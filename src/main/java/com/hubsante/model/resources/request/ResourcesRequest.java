@@ -58,9 +58,7 @@ public class ResourcesRequest {
   private Request request;
 
   /**
-   * A valoriser avec la valeur ANNULEE uniquement pour signifier
-   * l&#39;annulation d&#39;une demande de ressources. Les autres champs de la
-   * demande sont remplis à l&#39;identique de la demande initiale envoyée.
+   * A quoi ça sert d&#39;avoir un objet demande
    */
   public enum StatusEnum {
     ANNULEE("ANNULEE");
@@ -155,9 +153,7 @@ public class ResourcesRequest {
   }
 
   /**
-   * A valoriser avec la valeur ANNULEE uniquement pour signifier
-   *l&#39;annulation d&#39;une demande de ressources. Les autres champs de la
-   *demande sont remplis à l&#39;identique de la demande initiale envoyée.
+   * A quoi ça sert d&#39;avoir un objet demande
    * @return status
    **/
   @JsonProperty(JSON_PROPERTY_STATUS)
