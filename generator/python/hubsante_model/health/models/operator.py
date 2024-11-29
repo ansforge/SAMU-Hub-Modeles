@@ -32,8 +32,8 @@ class Operator(BaseModel):
     @field_validator('role')
     def role_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('AMBULANCIER', 'ARM', 'INFIRMIER', 'MEDECIN', 'AUTRE', 'INCONNU'):
-            raise ValueError("must be one of enum values ('AMBULANCIER', 'ARM', 'INFIRMIER', 'MEDECIN', 'AUTRE', 'INCONNU')")
+        if value not in ('AMBULANCIER', 'ARM', 'INFIRMIER', 'MEDECIN', 'PILOTE', 'TCM', 'AUTRE', 'INCONNU'):
+            raise ValueError("must be one of enum values ('AMBULANCIER', 'ARM', 'INFIRMIER', 'MEDECIN', 'PILOTE', 'TCM', 'AUTRE', 'INCONNU')")
         return value
 
     model_config = {

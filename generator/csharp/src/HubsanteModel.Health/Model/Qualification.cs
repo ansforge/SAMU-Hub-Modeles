@@ -40,16 +40,16 @@ namespace HubsanteModel.Health.Model
             _15 = 1,
 
             /// <summary>
-            /// Enum _17 for value: 17
+            /// Enum _116117 for value: 116117
             /// </summary>
-            [EnumMember(Value = "17")]
-            _17 = 2,
+            [EnumMember(Value = "116117")]
+            _116117 = 2,
 
             /// <summary>
-            /// Enum _18 for value: 18
+            /// Enum AUTOCOM for value: AUTOCOM
             /// </summary>
-            [EnumMember(Value = "18")]
-            _18 = 3,
+            [EnumMember(Value = "AUTOCOM")]
+            AUTOCOM = 3,
 
             /// <summary>
             /// Enum _112 for value: 112
@@ -58,10 +58,94 @@ namespace HubsanteModel.Health.Model
             _112 = 4,
 
             /// <summary>
-            /// Enum _116117 for value: 116117
+            /// Enum _115 for value: 115
             /// </summary>
-            [EnumMember(Value = "116117")]
-            _116117 = 5
+            [EnumMember(Value = "115")]
+            _115 = 5,
+
+            /// <summary>
+            /// Enum CRRA for value: CRRA
+            /// </summary>
+            [EnumMember(Value = "CRRA")]
+            CRRA = 6,
+
+            /// <summary>
+            /// Enum AUTREC15 for value: AUTREC15
+            /// </summary>
+            [EnumMember(Value = "AUTREC15")]
+            AUTREC15 = 7,
+
+            /// <summary>
+            /// Enum CTACONF for value: CTA-CONF
+            /// </summary>
+            [EnumMember(Value = "CTA-CONF")]
+            CTACONF = 8,
+
+            /// <summary>
+            /// Enum CTAPI for value: CTA-PI
+            /// </summary>
+            [EnumMember(Value = "CTA-PI")]
+            CTAPI = 9,
+
+            /// <summary>
+            /// Enum AUTRECTA for value: AUTRECTA
+            /// </summary>
+            [EnumMember(Value = "AUTRECTA")]
+            AUTRECTA = 10,
+
+            /// <summary>
+            /// Enum CNR for value: CNR
+            /// </summary>
+            [EnumMember(Value = "CNR")]
+            CNR = 11,
+
+            /// <summary>
+            /// Enum FDO for value: FDO
+            /// </summary>
+            [EnumMember(Value = "FDO")]
+            FDO = 12,
+
+            /// <summary>
+            /// Enum SNATED for value: SNATED
+            /// </summary>
+            [EnumMember(Value = "SNATED")]
+            SNATED = 13,
+
+            /// <summary>
+            /// Enum PDSSOS for value: PDSSOS
+            /// </summary>
+            [EnumMember(Value = "PDSSOS")]
+            PDSSOS = 14,
+
+            /// <summary>
+            /// Enum TELASSIST for value: TELASSIST
+            /// </summary>
+            [EnumMember(Value = "TELASSIST")]
+            TELASSIST = 15,
+
+            /// <summary>
+            /// Enum CROSS for value: CROSS
+            /// </summary>
+            [EnumMember(Value = "CROSS")]
+            CROSS = 16,
+
+            /// <summary>
+            /// Enum PUBLIC for value: PUBLIC
+            /// </summary>
+            [EnumMember(Value = "PUBLIC")]
+            PUBLIC = 17,
+
+            /// <summary>
+            /// Enum DATA for value: DATA
+            /// </summary>
+            [EnumMember(Value = "DATA")]
+            DATA = 18,
+
+            /// <summary>
+            /// Enum AUTRE for value: AUTRE
+            /// </summary>
+            [EnumMember(Value = "AUTRE")]
+            AUTRE = 19
         }
 
 

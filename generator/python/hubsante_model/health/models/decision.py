@@ -16,6 +16,7 @@ from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, StrictBool, StrictStr, field_validator
 from pydantic import Field
+from hubsante_model.health.models.destination import Destination
 from hubsante_model.health.models.operator import Operator
 try:
     from typing import Self
@@ -33,7 +34,8 @@ class Decision(BaseModel):
     resource_type: Optional[StrictStr] = Field(default=None, description="A valoriser avec le type de ressource souhaitée ou engagée (cf.nomenclature associée) - en fonction du type de décision. A fournir obligatoirement pour une décision d'intervention ou de transport/orientation.", alias="resourceType")
     medical_transport: Optional[StrictBool] = Field(default=None, description="A valoriser obligatoirement en cas de décision de transport, pour indiquer si ce dernier est médicalisé. True = transport médicalisé False = transport non médicalisé", alias="medicalTransport")
     orientation_type: Optional[StrictStr] = Field(default=None, description="Indique le type de destination en cas de décision d'orientation (cf. nomenclature associée)", alias="orientationType")
-    __properties: ClassVar[List[str]] = ["patientId", "creation", "operator", "decisionType", "resourceType", "medicalTransport", "orientationType"]
+    destination: Optional[Destination] = None
+    __properties: ClassVar[List[str]] = ["patientId", "creation", "operator", "decisionType", "resourceType", "medicalTransport", "orientationType", "destination"]
 
     @field_validator('creation')
     def creation_validate_regular_expression(cls, value):
@@ -65,8 +67,8 @@ class Decision(BaseModel):
         if value is None:
             return value
 
-        if value not in ('URGENCES', 'SANTE', 'CABINET', 'DOMICILE', 'EPHAD', 'AUTRE'):
-            raise ValueError("must be one of enum values ('URGENCES', 'SANTE', 'CABINET', 'DOMICILE', 'EPHAD', 'AUTRE')")
+        if value not in ('URGENCES', 'REA-USI', 'SANTE', 'CABINET', 'DOMICILE', 'EPHAD', 'AUTRE'):
+            raise ValueError("must be one of enum values ('URGENCES', 'REA-USI', 'SANTE', 'CABINET', 'DOMICILE', 'EPHAD', 'AUTRE')")
         return value
 
     model_config = {
@@ -108,6 +110,9 @@ class Decision(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of operator
         if self.operator:
             _dict['operator'] = self.operator.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of destination
+        if self.destination:
+            _dict['destination'] = self.destination.to_dict()
         return _dict
 
     @classmethod
@@ -126,7 +131,8 @@ class Decision(BaseModel):
             "decisionType": obj.get("decisionType"),
             "resourceType": obj.get("resourceType"),
             "medicalTransport": obj.get("medicalTransport"),
-            "orientationType": obj.get("orientationType")
+            "orientationType": obj.get("orientationType"),
+            "destination": Destination.from_dict(obj.get("destination")) if obj.get("destination") is not None else None
         })
         return _obj
 

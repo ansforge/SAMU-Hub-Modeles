@@ -52,9 +52,9 @@ namespace HubsanteModel.Health.Model
             DAU = 3,
 
             /// <summary>
-            /// Enum DEFIBRILLATEUR for value: DEFIBRILLATEUR, 
+            /// Enum DEFIBRILLATEUR for value: DEFIBRILLATEUR
             /// </summary>
-            [EnumMember(Value = "DEFIBRILLATEUR, ")]
+            [EnumMember(Value = "DEFIBRILLATEUR")]
             DEFIBRILLATEUR = 4,
 
             /// <summary>

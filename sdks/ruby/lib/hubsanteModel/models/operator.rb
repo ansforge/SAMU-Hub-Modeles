@@ -109,7 +109,7 @@ module Health
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @role.nil?
-      role_validator = EnumAttributeValidator.new('String', ["AMBULANCIER", "ARM", "INFIRMIER", "MEDECIN", "AUTRE", "INCONNU"])
+      role_validator = EnumAttributeValidator.new('String', ["AMBULANCIER", "ARM", "INFIRMIER", "MEDECIN", "PILOTE", "TCM", "AUTRE", "INCONNU"])
       return false unless role_validator.valid?(@role)
       true
     end
@@ -117,7 +117,7 @@ module Health
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] role Object to be assigned
     def role=(role)
-      validator = EnumAttributeValidator.new('String', ["AMBULANCIER", "ARM", "INFIRMIER", "MEDECIN", "AUTRE", "INCONNU"])
+      validator = EnumAttributeValidator.new('String', ["AMBULANCIER", "ARM", "INFIRMIER", "MEDECIN", "PILOTE", "TCM", "AUTRE", "INCONNU"])
       unless validator.valid?(role)
         fail ArgumentError, "invalid value for \"role\", must be one of #{validator.allowable_values}."
       end

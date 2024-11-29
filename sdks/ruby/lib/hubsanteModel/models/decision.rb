@@ -31,6 +31,8 @@ module Health
     # Indique le type de destination en cas de décision d'orientation (cf. nomenclature associée)
     attr_accessor :orientation_type
 
+    attr_accessor :destination
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -62,7 +64,8 @@ module Health
         :'decision_type' => :'decisionType',
         :'resource_type' => :'resourceType',
         :'medical_transport' => :'medicalTransport',
-        :'orientation_type' => :'orientationType'
+        :'orientation_type' => :'orientationType',
+        :'destination' => :'destination'
       }
     end
 
@@ -80,7 +83,8 @@ module Health
         :'decision_type' => :'String',
         :'resource_type' => :'String',
         :'medical_transport' => :'Boolean',
-        :'orientation_type' => :'String'
+        :'orientation_type' => :'String',
+        :'destination' => :'Destination'
       }
     end
 
@@ -138,6 +142,10 @@ module Health
       if attributes.key?(:'orientation_type')
         self.orientation_type = attributes[:'orientation_type']
       end
+
+      if attributes.key?(:'destination')
+        self.destination = attributes[:'destination']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -177,7 +185,7 @@ module Health
       return false unless decision_type_validator.valid?(@decision_type)
       resource_type_validator = EnumAttributeValidator.new('String', ["SMUR", "SMUR.ADULT", "SMUR.PED", "SMUR.UMH-S", "SMUR.CUMP", "HOSPIT", "LIBERAL", "LIBERAL.MG", "LIBERAL.PHARM", "LIBERAL.INF", "LIBERAL.KINE", "LIBERAL.SOS", "LIBERAL.MMG", "LIBERAL.MSPD", "LIBERAL.MCS", "LIBERAL.SPEMED", "LIBERAL.DENT", "LIBERAL.LABO", "LIBERAL.AUTREPRO", "TSU ", "SIS", "SIS.MEDSP", "SIS.ISP", "SIS.SP", "AASC", "FDO", "FDO.PN", "FDO.GEND", "FDO.PM", "FDO.DOUANES", "AUTRE", "AUTRE.ADM", "AUTRE.DAE", "AUTRE.AUTRE"])
       return false unless resource_type_validator.valid?(@resource_type)
-      orientation_type_validator = EnumAttributeValidator.new('String', ["URGENCES", "SANTE", "CABINET", "DOMICILE", "EPHAD", "AUTRE"])
+      orientation_type_validator = EnumAttributeValidator.new('String', ["URGENCES", "REA-USI", "SANTE", "CABINET", "DOMICILE", "EPHAD", "AUTRE"])
       return false unless orientation_type_validator.valid?(@orientation_type)
       true
     end
@@ -220,7 +228,7 @@ module Health
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] orientation_type Object to be assigned
     def orientation_type=(orientation_type)
-      validator = EnumAttributeValidator.new('String', ["URGENCES", "SANTE", "CABINET", "DOMICILE", "EPHAD", "AUTRE"])
+      validator = EnumAttributeValidator.new('String', ["URGENCES", "REA-USI", "SANTE", "CABINET", "DOMICILE", "EPHAD", "AUTRE"])
       unless validator.valid?(orientation_type)
         fail ArgumentError, "invalid value for \"orientation_type\", must be one of #{validator.allowable_values}."
       end
@@ -238,7 +246,8 @@ module Health
           decision_type == o.decision_type &&
           resource_type == o.resource_type &&
           medical_transport == o.medical_transport &&
-          orientation_type == o.orientation_type
+          orientation_type == o.orientation_type &&
+          destination == o.destination
     end
 
     # @see the `==` method
@@ -250,7 +259,7 @@ module Health
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [patient_id, creation, operator, decision_type, resource_type, medical_transport, orientation_type].hash
+      [patient_id, creation, operator, decision_type, resource_type, medical_transport, orientation_type, destination].hash
     end
 
     # Builds the object from hash

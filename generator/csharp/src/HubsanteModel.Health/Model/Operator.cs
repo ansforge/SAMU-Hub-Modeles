@@ -58,16 +58,28 @@ namespace HubsanteModel.Health.Model
             MEDECIN = 4,
 
             /// <summary>
+            /// Enum PILOTE for value: PILOTE
+            /// </summary>
+            [EnumMember(Value = "PILOTE")]
+            PILOTE = 5,
+
+            /// <summary>
+            /// Enum TCM for value: TCM
+            /// </summary>
+            [EnumMember(Value = "TCM")]
+            TCM = 6,
+
+            /// <summary>
             /// Enum AUTRE for value: AUTRE
             /// </summary>
             [EnumMember(Value = "AUTRE")]
-            AUTRE = 5,
+            AUTRE = 7,
 
             /// <summary>
             /// Enum INCONNU for value: INCONNU
             /// </summary>
             [EnumMember(Value = "INCONNU")]
-            INCONNU = 6
+            INCONNU = 8
         }
 
 

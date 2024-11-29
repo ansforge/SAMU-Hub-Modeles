@@ -251,7 +251,7 @@ module Health
       return false if @creation !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       perimeter_validator = EnumAttributeValidator.new('String', ["AMU", "NEONAT", "PSY", "SNP"])
       return false unless perimeter_validator.valid?(@perimeter)
-      intervention_type_validator = EnumAttributeValidator.new('String', ["PRIMAIRE", "SECONDAIRE", "RETOUR A DOMICILE"])
+      intervention_type_validator = EnumAttributeValidator.new('String', ["T1", "T2-INTER", "T2-INTRA", "T3", "T4"])
       return false unless intervention_type_validator.valid?(@intervention_type)
       return false if @qualification.nil?
       return false if @location.nil?
@@ -303,7 +303,7 @@ module Health
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] intervention_type Object to be assigned
     def intervention_type=(intervention_type)
-      validator = EnumAttributeValidator.new('String', ["PRIMAIRE", "SECONDAIRE", "RETOUR A DOMICILE"])
+      validator = EnumAttributeValidator.new('String', ["T1", "T2-INTER", "T2-INTRA", "T3", "T4"])
       unless validator.valid?(intervention_type)
         fail ArgumentError, "invalid value for \"intervention_type\", must be one of #{validator.allowable_values}."
       end

@@ -16,7 +16,6 @@ module InterventionReport
     # Thésaurus SFMU-FEDORU. A valoriser par un code de la nomenclature Diagnostic SMUR.
     attr_accessor :main_diagnosis
 
-    # Thésaurus SFMU-FEDORU. A valoriser par un code de la nomenclature Diagnostic SMUR.
     attr_accessor :associated_diagnosis
 
     attr_accessor :parameter
@@ -52,7 +51,7 @@ module InterventionReport
       {
         :'procedure' => :'Array<String>',
         :'main_diagnosis' => :'String',
-        :'associated_diagnosis' => :'String',
+        :'associated_diagnosis' => :'Array<String>',
         :'parameter' => :'Array<Vital>',
         :'medical_history' => :'String',
         :'treatment' => :'String',
@@ -92,7 +91,9 @@ module InterventionReport
       end
 
       if attributes.key?(:'associated_diagnosis')
-        self.associated_diagnosis = attributes[:'associated_diagnosis']
+        if (value = attributes[:'associated_diagnosis']).is_a?(Array)
+          self.associated_diagnosis = value
+        end
       end
 
       if attributes.key?(:'parameter')

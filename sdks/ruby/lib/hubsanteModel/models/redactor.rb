@@ -11,7 +11,7 @@ require 'time'
 
 module InterventionReport
   class Redactor
-    # A valoriser avec le prénom et le nom du rédacteur ou un numéro RPPS. 
+    # A valoriser avec le prénom et le nom du rédacteur, un numéro RPPS, un matricule, etc. 
     attr_accessor :label
 
     # A valoriser avec le rôle du rédacteur du bilan (ex. médecin, infirmier, ambulancier). 
@@ -109,7 +109,7 @@ module InterventionReport
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @role.nil?
-      role_validator = EnumAttributeValidator.new('String', ["AMBULANCIER", "ARM", "INFIRMIER", "MEDECIN", "AUTRE", "INCONNU"])
+      role_validator = EnumAttributeValidator.new('String', ["AMBULANCIER", "ARM", "INFIRMIER", "MEDECIN", "PILOTE", "TCM", "AUTRE", "INCONNU"])
       return false unless role_validator.valid?(@role)
       true
     end
@@ -117,7 +117,7 @@ module InterventionReport
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] role Object to be assigned
     def role=(role)
-      validator = EnumAttributeValidator.new('String', ["AMBULANCIER", "ARM", "INFIRMIER", "MEDECIN", "AUTRE", "INCONNU"])
+      validator = EnumAttributeValidator.new('String', ["AMBULANCIER", "ARM", "INFIRMIER", "MEDECIN", "PILOTE", "TCM", "AUTRE", "INCONNU"])
       unless validator.valid?(role)
         fail ArgumentError, "invalid value for \"role\", must be one of #{validator.allowable_values}."
       end

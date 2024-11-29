@@ -17,6 +17,9 @@ module InterventionReport
     # Indique la valeur de la dernière constante prise
     attr_accessor :value
 
+    # Permet d'apporter des précisions sur la constante prise (ex. le débit d'oxygène lors de la prise de constante de saturation en oxygène)
+    attr_accessor :precision
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -43,7 +46,8 @@ module InterventionReport
     def self.attribute_map
       {
         :'type' => :'type',
-        :'value' => :'value'
+        :'value' => :'value',
+        :'precision' => :'precision'
       }
     end
 
@@ -56,7 +60,8 @@ module InterventionReport
     def self.openapi_types
       {
         :'type' => :'String',
-        :'value' => :'String'
+        :'value' => :'String',
+        :'precision' => :'String'
       }
     end
 
@@ -91,6 +96,10 @@ module InterventionReport
         self.value = attributes[:'value']
       else
         self.value = nil
+      end
+
+      if attributes.key?(:'precision')
+        self.precision = attributes[:'precision']
       end
     end
 
@@ -137,7 +146,8 @@ module InterventionReport
       return true if self.equal?(o)
       self.class == o.class &&
           type == o.type &&
-          value == o.value
+          value == o.value &&
+          precision == o.precision
     end
 
     # @see the `==` method
@@ -149,7 +159,7 @@ module InterventionReport
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, value].hash
+      [type, value, precision].hash
     end
 
     # Builds the object from hash

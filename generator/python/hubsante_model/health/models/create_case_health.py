@@ -78,8 +78,8 @@ class CreateCaseHealth(BaseModel):
         if value is None:
             return value
 
-        if value not in ('PRIMAIRE', 'SECONDAIRE', 'RETOUR A DOMICILE'):
-            raise ValueError("must be one of enum values ('PRIMAIRE', 'SECONDAIRE', 'RETOUR A DOMICILE')")
+        if value not in ('T1', 'T2-INTER', 'T2-INTRA', 'T3', 'T4'):
+            raise ValueError("must be one of enum values ('T1', 'T2-INTER', 'T2-INTRA', 'T3', 'T4')")
         return value
 
     @field_validator('owner')

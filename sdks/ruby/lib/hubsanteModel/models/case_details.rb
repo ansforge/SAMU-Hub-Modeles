@@ -111,7 +111,7 @@ module Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      status_validator = EnumAttributeValidator.new('String', ["PROGRAMME", " ACTIF", "ACHEVE", "VALIDE", "CLOTURE", "CLASSE", "ARCHIVE"])
+      status_validator = EnumAttributeValidator.new('String', ["PROGRAM", "ACTIF", "ACHEVE", "VALIDE", "CLOTURE", "CLASSE", "ARCHIVE"])
       return false unless status_validator.valid?(@status)
       priority_validator = EnumAttributeValidator.new('String', ["P0", "P1", "P2", "P3", "NR"])
       return false unless priority_validator.valid?(@priority)
@@ -123,7 +123,7 @@ module Health
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] status Object to be assigned
     def status=(status)
-      validator = EnumAttributeValidator.new('String', ["PROGRAMME", " ACTIF", "ACHEVE", "VALIDE", "CLOTURE", "CLASSE", "ARCHIVE"])
+      validator = EnumAttributeValidator.new('String', ["PROGRAM", "ACTIF", "ACHEVE", "VALIDE", "CLOTURE", "CLASSE", "ARCHIVE"])
       unless validator.valid?(status)
         fail ArgumentError, "invalid value for \"status\", must be one of #{validator.allowable_values}."
       end

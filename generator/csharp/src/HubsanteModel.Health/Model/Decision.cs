@@ -306,34 +306,40 @@ namespace HubsanteModel.Health.Model
             URGENCES = 1,
 
             /// <summary>
+            /// Enum REAUSI for value: REA-USI
+            /// </summary>
+            [EnumMember(Value = "REA-USI")]
+            REAUSI = 2,
+
+            /// <summary>
             /// Enum SANTE for value: SANTE
             /// </summary>
             [EnumMember(Value = "SANTE")]
-            SANTE = 2,
+            SANTE = 3,
 
             /// <summary>
             /// Enum CABINET for value: CABINET
             /// </summary>
             [EnumMember(Value = "CABINET")]
-            CABINET = 3,
+            CABINET = 4,
 
             /// <summary>
             /// Enum DOMICILE for value: DOMICILE
             /// </summary>
             [EnumMember(Value = "DOMICILE")]
-            DOMICILE = 4,
+            DOMICILE = 5,
 
             /// <summary>
             /// Enum EPHAD for value: EPHAD
             /// </summary>
             [EnumMember(Value = "EPHAD")]
-            EPHAD = 5,
+            EPHAD = 6,
 
             /// <summary>
             /// Enum AUTRE for value: AUTRE
             /// </summary>
             [EnumMember(Value = "AUTRE")]
-            AUTRE = 6
+            AUTRE = 7
         }
 
 
@@ -359,7 +365,8 @@ namespace HubsanteModel.Health.Model
         /// <param name="resourceType">A valoriser avec le type de ressource souhaitée ou engagée (cf.nomenclature associée) - en fonction du type de décision. A fournir obligatoirement pour une décision d&#39;intervention ou de transport/orientation..</param>
         /// <param name="medicalTransport">A valoriser obligatoirement en cas de décision de transport, pour indiquer si ce dernier est médicalisé. True &#x3D; transport médicalisé False &#x3D; transport non médicalisé.</param>
         /// <param name="orientationType">Indique le type de destination en cas de décision d&#39;orientation (cf. nomenclature associée).</param>
-        public Decision(string patientId = default(string), DateTime creation = default(DateTime), Operator varOperator = default(Operator), DecisionTypeEnum decisionType = default(DecisionTypeEnum), ResourceTypeEnum? resourceType = default(ResourceTypeEnum?), bool medicalTransport = default(bool), OrientationTypeEnum? orientationType = default(OrientationTypeEnum?))
+        /// <param name="destination">destination.</param>
+        public Decision(string patientId = default(string), DateTime creation = default(DateTime), Operator varOperator = default(Operator), DecisionTypeEnum decisionType = default(DecisionTypeEnum), ResourceTypeEnum? resourceType = default(ResourceTypeEnum?), bool medicalTransport = default(bool), OrientationTypeEnum? orientationType = default(OrientationTypeEnum?), Destination destination = default(Destination))
         {
             this.Creation = creation;
             // to ensure "varOperator" is required (not null)
@@ -373,6 +380,7 @@ namespace HubsanteModel.Health.Model
             this.ResourceType = resourceType;
             this.MedicalTransport = medicalTransport;
             this.OrientationType = orientationType;
+            this.Destination = destination;
         }
 
         /// <summary>
@@ -405,6 +413,12 @@ namespace HubsanteModel.Health.Model
         public bool MedicalTransport { get; set; }
 
         /// <summary>
+        /// Gets or Sets Destination
+        /// </summary>
+        [DataMember(Name = "destination", EmitDefaultValue = false)]
+        public Destination Destination { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -419,6 +433,7 @@ namespace HubsanteModel.Health.Model
             sb.Append("  ResourceType: ").Append(ResourceType).Append("\n");
             sb.Append("  MedicalTransport: ").Append(MedicalTransport).Append("\n");
             sb.Append("  OrientationType: ").Append(OrientationType).Append("\n");
+            sb.Append("  Destination: ").Append(Destination).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -484,6 +499,11 @@ namespace HubsanteModel.Health.Model
                 (
                     this.OrientationType == input.OrientationType ||
                     this.OrientationType.Equals(input.OrientationType)
+                ) && 
+                (
+                    this.Destination == input.Destination ||
+                    (this.Destination != null &&
+                    this.Destination.Equals(input.Destination))
                 );
         }
 
@@ -512,6 +532,10 @@ namespace HubsanteModel.Health.Model
                 hashCode = (hashCode * 59) + this.ResourceType.GetHashCode();
                 hashCode = (hashCode * 59) + this.MedicalTransport.GetHashCode();
                 hashCode = (hashCode * 59) + this.OrientationType.GetHashCode();
+                if (this.Destination != null)
+                {
+                    hashCode = (hashCode * 59) + this.Destination.GetHashCode();
+                }
                 return hashCode;
             }
         }

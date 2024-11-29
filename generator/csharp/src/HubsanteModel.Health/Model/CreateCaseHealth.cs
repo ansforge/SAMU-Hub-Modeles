@@ -74,22 +74,34 @@ namespace HubsanteModel.Health.Model
         public enum InterventionTypeEnum
         {
             /// <summary>
-            /// Enum PRIMAIRE for value: PRIMAIRE
+            /// Enum T1 for value: T1
             /// </summary>
-            [EnumMember(Value = "PRIMAIRE")]
-            PRIMAIRE = 1,
+            [EnumMember(Value = "T1")]
+            T1 = 1,
 
             /// <summary>
-            /// Enum SECONDAIRE for value: SECONDAIRE
+            /// Enum T2INTER for value: T2-INTER
             /// </summary>
-            [EnumMember(Value = "SECONDAIRE")]
-            SECONDAIRE = 2,
+            [EnumMember(Value = "T2-INTER")]
+            T2INTER = 2,
 
             /// <summary>
-            /// Enum RETOURADOMICILE for value: RETOUR A DOMICILE
+            /// Enum T2INTRA for value: T2-INTRA
             /// </summary>
-            [EnumMember(Value = "RETOUR A DOMICILE")]
-            RETOURADOMICILE = 3
+            [EnumMember(Value = "T2-INTRA")]
+            T2INTRA = 3,
+
+            /// <summary>
+            /// Enum T3 for value: T3
+            /// </summary>
+            [EnumMember(Value = "T3")]
+            T3 = 4,
+
+            /// <summary>
+            /// Enum T4 for value: T4
+            /// </summary>
+            [EnumMember(Value = "T4")]
+            T4 = 5
         }
 
 

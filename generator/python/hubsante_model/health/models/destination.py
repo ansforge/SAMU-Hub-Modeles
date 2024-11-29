@@ -13,36 +13,22 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List
-from pydantic import BaseModel, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictStr
 from pydantic import Field
+from hubsante_model.health.models.external_location_id import ExternalLocationId
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class Contact(BaseModel):
+class Destination(BaseModel):
     """
-    Contact
+    Destination
     """ # noqa: E501
-    channel: StrictStr = Field(description="A valoriser avec  l'origine du canal établi : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL")
-    type: StrictStr = Field(description="A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.")
-    detail: StrictStr = Field(description="A valoriser avec la valeur de l'URI utilisée. Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}")
-    __properties: ClassVar[List[str]] = ["channel", "type", "detail"]
-
-    @field_validator('channel')
-    def channel_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in ('APPLICATION', 'BAU', 'DAU', 'DEFIBRILLATEUR', 'ECALL', 'PERSONNE'):
-            raise ValueError("must be one of enum values ('APPLICATION', 'BAU', 'DAU', 'DEFIBRILLATEUR', 'ECALL', 'PERSONNE')")
-        return value
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in ('EMAIL', 'FAX', 'MSS', 'POSTAL', 'RADIO', 'TEL', 'WEB'):
-            raise ValueError("must be one of enum values ('EMAIL', 'FAX', 'MSS', 'POSTAL', 'RADIO', 'TEL', 'WEB')")
-        return value
+    external_location_id: Optional[List[ExternalLocationId]] = Field(default=None, alias="externalLocationId")
+    freetext: Optional[StrictStr] = Field(default=None, description="Champ libre qui permet de compléter les informations liées à la localisation.  Spécificités 15-15 : En envoi, il est souhaitable de mapper ici toute valeur en lien avec la localisation de l'intervention qui ne pourrait pas être transmise de manière structurée dans l'objet location.  En réception, il est très important d'intégrer et d'afficher la valeur de cet attribut, qui est suceptible de contenir des informations d'accès importantes.")
+    __properties: ClassVar[List[str]] = ["externalLocationId", "freetext"]
 
     model_config = {
         "populate_by_name": True,
@@ -61,7 +47,7 @@ class Contact(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of Contact from a JSON string"""
+        """Create an instance of Destination from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,11 +66,18 @@ class Contact(BaseModel):
             },
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in external_location_id (list)
+        _items = []
+        if self.external_location_id:
+            for _item in self.external_location_id:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['externalLocationId'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of Contact from a dict"""
+        """Create an instance of Destination from a dict"""
         if obj is None:
             return None
 
@@ -92,9 +85,8 @@ class Contact(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "channel": obj.get("channel"),
-            "type": obj.get("type"),
-            "detail": obj.get("detail")
+            "externalLocationId": [ExternalLocationId.from_dict(_item) for _item in obj.get("externalLocationId")] if obj.get("externalLocationId") is not None else None,
+            "freetext": obj.get("freetext")
         })
         return _obj
 

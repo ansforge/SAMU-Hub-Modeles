@@ -131,7 +131,7 @@ module ResourcesStatus
       return false if @datetime.nil?
       return false if @datetime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       return false if @status.nil?
-      status_validator = EnumAttributeValidator.new('String', ["DECISION", "DECLENCHE", "DEPART", "ANNULE", "ARRIVEE", "PEC", "BILAN", "TRANSP", "ETAPE1", "TRANSP2", "ETAPE2", "TRANSP3", "DESTIN", "FINMED", "RETOUR", "RET-BASE", "REN-BASE"])
+      status_validator = EnumAttributeValidator.new('String', ["DECISION", "DECLENCHE", "DEPART", "ANNULE", "ARRIVEE", "PEC", "BILAN", "ORIENTAT", "TRANSP", "ETAPE1", "TRANSP2", "ETAPE2", "TRANSP3", "DESTIN", "FINPEC", "RETOUR", "RET-BASE", "REN-BASE"])
       return false unless status_validator.valid?(@status)
       true
     end
@@ -154,7 +154,7 @@ module ResourcesStatus
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] status Object to be assigned
     def status=(status)
-      validator = EnumAttributeValidator.new('String', ["DECISION", "DECLENCHE", "DEPART", "ANNULE", "ARRIVEE", "PEC", "BILAN", "TRANSP", "ETAPE1", "TRANSP2", "ETAPE2", "TRANSP3", "DESTIN", "FINMED", "RETOUR", "RET-BASE", "REN-BASE"])
+      validator = EnumAttributeValidator.new('String', ["DECISION", "DECLENCHE", "DEPART", "ANNULE", "ARRIVEE", "PEC", "BILAN", "ORIENTAT", "TRANSP", "ETAPE1", "TRANSP2", "ETAPE2", "TRANSP3", "DESTIN", "FINPEC", "RETOUR", "RET-BASE", "REN-BASE"])
       unless validator.valid?(status)
         fail ArgumentError, "invalid value for \"status\", must be one of #{validator.allowable_values}."
       end

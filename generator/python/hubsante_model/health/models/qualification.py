@@ -44,8 +44,8 @@ class Qualification(BaseModel):
         if value is None:
             return value
 
-        if value not in ('15', '17', '18', '112', '116117'):
-            raise ValueError("must be one of enum values ('15', '17', '18', '112', '116117')")
+        if value not in ('15', '116117', 'AUTOCOM', '112', '115', 'CRRA', 'AUTREC15', 'CTA-CONF', 'CTA-PI', 'AUTRECTA', 'CNR', 'FDO', 'SNATED', 'PDSSOS', 'TELASSIST', 'CROSS', 'PUBLIC', 'DATA', 'AUTRE'):
+            raise ValueError("must be one of enum values ('15', '116117', 'AUTOCOM', '112', '115', 'CRRA', 'AUTREC15', 'CTA-CONF', 'CTA-PI', 'AUTRECTA', 'CNR', 'FDO', 'SNATED', 'PDSSOS', 'TELASSIST', 'CROSS', 'PUBLIC', 'DATA', 'AUTRE')")
         return value
 
     model_config = {

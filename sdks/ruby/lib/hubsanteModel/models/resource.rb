@@ -91,6 +91,8 @@ module ResourcesInfo
 
       if attributes.key?(:'vehicle_type')
         self.vehicle_type = attributes[:'vehicle_type']
+      else
+        self.vehicle_type = nil
       end
 
       if attributes.key?(:'name')
@@ -113,6 +115,10 @@ module ResourcesInfo
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @vehicle_type.nil?
+        invalid_properties.push('invalid value for "vehicle_type", vehicle_type cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -120,6 +126,7 @@ module ResourcesInfo
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @vehicle_type.nil?
       vehicle_type_validator = EnumAttributeValidator.new('String', ["AASC", "AASC.VLSC", "AASC.VPSP", "AASC.AUTRESC", "AUTREVEC", "AUTREVEC.APIED", "AUTREVEC.AVION", "AUTREVEC.PERSO", "AUTREVEC.TAXI", "AUTREVEC.TRAIN", "AUTREVEC.TRANSP", "AUTREVEC.AUTRE", "AUTREVEC.AUTRETRA", "FSI", "FSI.HELIFSI", "FSI.VLFSI", "FSI.FFSI", "FSI.VHFSI", "LIB", "LIB.MEDV", "LIB.INF", "LIB.AUTREPRO", "SIS", "SIS.DRAGON", "SIS.AVSC", "SIS.FEUSIS", "SIS.GRIMP", "SIS.NAVISIS", "SIS.PCSIS", "SIS.SRSIS", "SIS.VCH", "SIS.VLCG", "SIS.VLISP", "SIS.VLMSP", "SIS.VLSIS", "SIS.VPL", "SIS.VPMA", "SIS.VR", "SIS.VSAV", "SIS.MOYSSE", "SIS.AUTRESIS", "SMUR", "SMUR.VLM", "SMUR.VL", "SMUR.PSM1", "SMUR.PSM2", "SMUR.PSM3", "SMUR.PSMP", "SMUR.VPC", "SMUR.AR", "SMUR.AR-BAR", "SMUR.AR-PED", "SMUR.HELISMUR", "SMUR.HELISAN", "SMUR.AVSMUR", "SMUR.AVSAN", "SMUR.NAVISMUR", "TSU", "TSU.VSL", "TSU.AMB-GV", "TSU.AMB-PV", "TSU.AMB-BAR", "TSU.AMB"])
       return false unless vehicle_type_validator.valid?(@vehicle_type)
       true

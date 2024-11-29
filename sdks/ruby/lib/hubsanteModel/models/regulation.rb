@@ -130,7 +130,7 @@ module Rpis
       return false if @whats_happen.nil?
       return false if @health_motive.nil?
       return false if @medical_level.nil?
-      medical_level_validator = EnumAttributeValidator.new('String', ["MED", "PARAMED", "SECOURS"])
+      medical_level_validator = EnumAttributeValidator.new('String', ["MED", "PARAMED", "SECOURS", "SANS"])
       return false unless medical_level_validator.valid?(@medical_level)
       true
     end
@@ -138,7 +138,7 @@ module Rpis
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] medical_level Object to be assigned
     def medical_level=(medical_level)
-      validator = EnumAttributeValidator.new('String', ["MED", "PARAMED", "SECOURS"])
+      validator = EnumAttributeValidator.new('String', ["MED", "PARAMED", "SECOURS", "SANS"])
       unless validator.valid?(medical_level)
         fail ArgumentError, "invalid value for \"medical_level\", must be one of #{validator.allowable_values}."
       end

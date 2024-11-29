@@ -16,7 +16,7 @@ module ResourcesRequest
 
     attr_accessor :request
 
-    # A valoriser avec la valeur ANNULEE uniquement pour signifier l'annulation d'une demande de ressources. Les autres champs de la demande sont remplis à l'identique de la demande initiale envoyée.
+    # A quoi ça sert d'avoir un objet demande 
     attr_accessor :status
 
     class EnumAttributeValidator
