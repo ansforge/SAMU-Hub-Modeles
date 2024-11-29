@@ -23,7 +23,7 @@
         xmlns:info="urn:emergency:info"
         xmlns:reference="urn:emergency:cisu:2.0:rcref"
         
-        xmlns:rcref="urn:emergency:cisu:2.0:reference"
+        
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
@@ -87,7 +87,6 @@
                         <xs:element ref="geoResourcesRequest:geoResourcesRequest"/>
                         <xs:element ref="geoResourcesDetails:geoResourcesDetails"/>
                         <xs:element ref="reference:reference"/>
-                        <xs:element ref="rcref:reference"/>
                     </xs:choice>
                 </xs:sequence>
             </xs:extension>
