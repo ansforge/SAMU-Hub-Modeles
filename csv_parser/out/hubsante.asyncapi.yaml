@@ -325,6 +325,7 @@ components:
       - $ref: '#/components/schemas/geoResourcesRequest'
       - $ref: '#/components/schemas/geoResourcesDetails'
       - $ref: '#/components/schemas/error'
+      - $ref: '#/components/schemas/info'
       - $ref: '#/components/schemas/reference'
       - $ref: '#/components/schemas/customContent'
     EmbeddedXMLContent:
@@ -7869,6 +7870,27 @@ components:
       example: example.json#/sourceMessage
       examples:
       - {}
+    info:
+      $id: classpath:/json-schema/schema#
+      x-id: RS-INFO.schema.json#
+      example: example.json#
+      type: object
+      title: info
+      required:
+      - info
+      properties:
+        info:
+          type: string
+          title: Information
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/info
+          description: "\_Champ libre permettant de transmettre des informations quelconques"
+          examples:
+          - None
+      additionalProperties: false
+      examples:
+      - info: None
     customContent:
       $id: classpath:/json-schema/schema#
       x-id: customContent.schema.json#
