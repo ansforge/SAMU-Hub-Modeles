@@ -8,7 +8,7 @@ schemas:
   rootElement: technical
   schema: TECHNICAL
   subschema: N
-  xmlns: :cisu:2.0:technical
+  xmlns: cisu:2.0:technical
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -18,7 +18,7 @@ schemas:
   rootElement: technicalNoreq
   schema: TECHNICAL_NOREQ
   subschema: N
-  xmlns: :cisu:2.0:technicalnoreq
+  xmlns: cisu:2.0:technicalNoreq
 - automaticGeneration: N
   customExtendClass: null
   customExtendPackage: null

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns:x="urn:emergency:cisu:2.0"
         xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-        xmlns:technical="urn:emergency::cisu:2.0:technical"
-        xmlns:technicalNoreq="urn:emergency::cisu:2.0:technicalnoreq"
+        xmlns:technical="urn:emergency:cisu:2.0:technical"
+        xmlns:technicalNoreq="urn:emergency:cisu:2.0:technicalNoreq"
         
         xmlns:createCase="urn:emergency:eda:1.9"
         xmlns:createCaseHealth="urn:emergency:cisu:2.0:createCaseHealth"
@@ -28,8 +28,8 @@
 
     <xs:include schemaLocation="RC-DE.xsd"/>
     <xs:include schemaLocation="CustomContent.xsd"/>
-    <xs:import namespace="urn:emergency::cisu:2.0:technical" schemaLocation="TECHNICAL.xsd"/>
-    <xs:import namespace="urn:emergency::cisu:2.0:technicalnoreq" schemaLocation="TECHNICAL_NOREQ.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:technical" schemaLocation="TECHNICAL.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:technicalNoreq" schemaLocation="TECHNICAL_NOREQ.xsd"/>
     
     <xs:import namespace="urn:emergency:eda:1.9" schemaLocation="RC-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
