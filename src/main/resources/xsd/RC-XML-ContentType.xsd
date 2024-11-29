@@ -21,7 +21,7 @@
         xmlns:geoResourcesDetails="urn:emergency:cisu:2.0:georesourcesdetails"
         xmlns:error="urn:emergency:cisu:2.0:error"
         xmlns:info="urn:emergency:info"
-        xmlns:reference="urn:emergency:cisu:2.0:reference"
+        xmlns:reference="urn:emergency:cisu:2.0:rcref"
         
         xmlns:rcref="urn:emergency:cisu:2.0:reference"
         elementFormDefault="qualified"
@@ -99,6 +99,7 @@
             <xs:choice>
                 <xs:element ref="technicalNoreq:technicalNoreq"/>
                 <xs:element ref="error:error"/>
+                <xs:element ref="info:info"/>
                 <xs:element ref="x:customContent"/>
             </xs:choice>
         </xs:sequence>
