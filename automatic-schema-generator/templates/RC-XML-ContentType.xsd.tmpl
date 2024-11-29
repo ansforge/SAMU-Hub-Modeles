@@ -2,7 +2,7 @@
 <schema xmlns:x="urn:emergency:cisu:2.0"
         xmlns:xs="http://www.w3.org/2001/XMLSchema" 
         {{ range (datasource "config").schemas }}{{if .xmlns}}xmlns:{{.rootElement}}="urn:emergency:{{.xmlns}}"{{end}}
-        {{end}}xmlns:rcref="urn:emergency:cisu:2.0:reference"
+        {{end}}
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
@@ -29,7 +29,6 @@
                 <xs:sequence>
                     <xs:choice>{{ range (datasource "config").schemas }}{{if and (eq .header "Y") .xmlns}}
                         <xs:element ref="{{.rootElement}}:{{.rootElement}}"/>{{end}}{{end}}
-                        <xs:element ref="rcref:reference"/>
                     </xs:choice>
                 </xs:sequence>
             </xs:extension>
