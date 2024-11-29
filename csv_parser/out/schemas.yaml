@@ -189,16 +189,6 @@ schemas:
   schema: RS-ERROR
   subschema: N
   xmlns: cisu:2.0:error
-- automaticGeneration: N
-  customExtendClass: null
-  customExtendPackage: null
-  header: N
-  package: info
-  perimeter: 15-15
-  rootElement: info
-  schema: RS-INFO
-  subschema: N
-  xmlns: info
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -208,7 +198,7 @@ schemas:
   rootElement: reference
   schema: RC-REF
   subschema: N
-  xmlns: cisu:2.0:rcref
+  xmlns: cisu:2.0:reference
 - automaticGeneration: N
   customExtendClass: null
   customExtendPackage: null
@@ -218,4 +208,4 @@ schemas:
   rootElement: customContent
   schema: customContent
   subschema: N
-  xmlns: null
+  xmlns: cisu:2.0
