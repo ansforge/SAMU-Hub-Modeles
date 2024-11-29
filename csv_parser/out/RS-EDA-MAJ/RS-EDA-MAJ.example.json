@@ -112,7 +112,16 @@
             "decisionType": "conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire",
             "resourceType": "SMUR, Pompiers",
             "medicalTransport": "True",
-            "orientationType": "EPHAD"
+            "orientationType": "EPHAD",
+            "destination": {
+                "externalLocationId": [
+                    {
+                        "source": "FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",
+                        "value": "920000650 "
+                    }
+                ],
+                "freetext": "Clé derrière le pot de fleur"
+            }
         }
     ],
     "freetext": "adresse : 7bis rue du château - Neuilly sur Seine",

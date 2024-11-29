@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:geoResourcesDetails" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:geoResourcesDetails" xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:georesourcesdetails" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:georesourcesdetails" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="geoResourcesDetails" type="x:geoResourcesDetails"/>
     <complexType name="geoResourcesDetails">
         <sequence>
@@ -67,7 +67,7 @@ L'immatriculation peut être utilisée dans le nom courant des véhicules.</docu
                         <enumeration value="FIXE"/>
                         <enumeration value="VEHICULE"/>
                         <enumeration value="HELICOPTERE"/>
-                        <enumeration value="SHIP "/>
+                        <enumeration value="SHIP"/>
                     </restriction>
                 </simpleType>
             </element>

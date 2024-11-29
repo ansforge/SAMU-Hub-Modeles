@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:x="urn:emergency:cisu:2.0"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+        {{ range (datasource "config").schemas }}{{if .xmlns}}xmlns:{{.rootElement}}="urn:emergency:{{.xmlns}}"{{end}}
+        {{end}}xmlns:rcref="urn:emergency:cisu:2.0:reference"
+        elementFormDefault="qualified"
+        targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
+
+    <xs:include schemaLocation="RC-DE.xsd"/>
+    <xs:include schemaLocation="CustomContent.xsd"/>
+    {{ range (datasource "config").schemas }}{{if .xmlns}}<xs:import namespace="urn:emergency:{{.xmlns}}" schemaLocation="{{.schema}}.xsd"/>{{end}}
+    {{end}}<xs:import namespace="urn:emergency:cisu:2.0:reference" schemaLocation="RC-REF.xsd"/>
+
+    <xs:complexType name="cisuXMLContentType">
+        <xs:sequence>
+            <xs:element name="message" type="x:MessageType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="cisuXMLContentTypeNoHeader">
+        <xs:sequence>
+            <xs:element name="message" type="x:NoHeaderMessageType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MessageType">
+        <xs:complexContent>
+            <xs:extension base="x:distributionElement">
+                <xs:sequence>
+                    <xs:choice>{{ range (datasource "config").schemas }}{{if and (eq .header "Y") .xmlns}}
+                        <xs:element ref="{{.rootElement}}:{{.rootElement}}"/>{{end}}{{end}}
+                        <xs:element ref="rcref:reference"/>
+                    </xs:choice>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="NoHeaderMessageType">
+        <xs:sequence>
+            <xs:choice>{{ range (datasource "config").schemas }}{{if and (eq .header "N") .xmlns}}
+                <xs:element ref="{{.rootElement}}:{{.rootElement}}"/>{{end}}{{end}}
+                <xs:element ref="x:customContent"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+</schema>

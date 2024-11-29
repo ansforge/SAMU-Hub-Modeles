@@ -7,19 +7,24 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.yaml.snakeyaml.Yaml;
 
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -31,8 +36,22 @@ public class App {
         Logger logger = Logger.getLogger(App.class.getName());
         List<String> regexErrors = new ArrayList<>();
         
-        for (String schema : Arrays.asList("EMSI", "RC-DE", "RC-EDA", "RC-REF", "RS-EDA", "RS-INFO", "GEO-RES", "GEO-REQ", "GEO-POS", "RS-ERROR", "RS-RI",
-                "RS-DR", "RS-RR", "RS-RPIS", "RS-EDA-MAJ", "RS-SR", "TECHNICAL", "TECHNICAL_NOREQ", "RS-URL", "RS-ER", "RS-BPV")) {
+        //Get the schemas.yaml file from resource folder
+        InputStream schemaStream = App.class.getResourceAsStream("/schemas.yaml");
+        assert schemaStream != null;
+        InputStreamReader schemaReader = new InputStreamReader(schemaStream);
+        Map<String, List<HashMap<String,String>>> yamlMap = new HashMap<>();
+        try (Reader reader = new BufferedReader(schemaReader)) {
+            Yaml yaml = new Yaml();
+            yamlMap = yaml.load(reader);
+        } catch (IOException e) {
+            logger.severe("Error while reading schemas.yaml: " + e);
+            System.exit(1);
+        }
+        List<HashMap<String,String>> schemas = yamlMap.get("schemas");
+        
+        for (HashMap<String, String> scheMap : schemas) {
+            String schema = scheMap.get("schema");
             // Specify the path to your JSON schema file
             String jsonSchemaResourcePath = "/" + schema + ".schema.json";
 
@@ -41,10 +60,10 @@ public class App {
 
             // Create a Config object to customize the conversion
             Config config = new Config.Builder()
-                    .targetNamespace(getTargetNamespace(schema))
+                    .targetNamespace(getTargetNamespace(scheMap))
                     .unwrapArrays(true)
                     .createRootElement(true)
-                    .name(getRootElementNameFromSchema(schema))
+                    .name(scheMap.get("rootElement"))
                     .build();
 
             try {
@@ -127,82 +146,10 @@ public class App {
         }
     }
     
-    private static String getTargetNamespace(String schema) {
-        if (schema.equalsIgnoreCase("RC-DE")) {
+    private static String getTargetNamespace(HashMap<String, String> schema) {
+        if (schema.get("schema").equals("RC-DE")) {
             return "urn:emergency:cisu:2.0";
-        } else return "urn:emergency:cisu:2.0:" + getRootElementNameFromSchema(schema);
-    }
-
-    private static String getRootElementNameFromSchema(String schema) {
-        String root;
-        switch (schema) {
-            case "EMSI":
-                root = "emsi";
-                break;
-            case "RC-DE":
-                root = "distributionElement";
-                break;
-            case "RC-REF":
-                root = "reference";
-                break;
-            case "RC-EDA":
-                root = "createCase";
-                break;
-            case "RS-EDA":
-                root = "createCaseHealth";
-                break;
-            case "RS-INFO":
-                root = "info";
-                break;
-            case "GEO-RES":
-                root = "geoResourcesDetails";
-                break;
-            case "GEO-REQ":
-                root = "geoResourcesRequest";
-                break;
-            case "GEO-POS":
-                root = "geoPositionsUpdate";
-                break;
-            case "RS-ERROR":
-                root = "error";
-                break;
-            case "RS-RI":
-                root = "resourcesInfo";
-                break;
-            case "RS-DR":
-                root = "resourcesRequest";
-                break;
-            case "RS-RR":
-                root = "resourcesResponse";
-                break;
-            case "RS-RPIS":
-                root = "rpis";
-                break;
-            case "TECHNICAL":
-                root = "technical";
-                break;
-            case "TECHNICAL_NOREQ":
-                root = "technicalNoreq";
-                break;
-            case "RS-EDA-MAJ":
-                root = "createCaseHealthUpdate";
-                break;
-            case "RS-SR":
-                root = "resourcesStatus";
-                break;
-            case "RS-URL":
-                root = "documentLink";
-                break;
-            case "RS-ER":
-                root = "resourcesEngagement";
-                break;
-            case "RS-BPV":
-                root = "interventionReport";
-                break;
-            default:
-                root = "";
-        }
-        return root;
+        } else return "urn:emergency:" + (schema.get("xmlns") != null ? schema.get("xmlns") : "cisu:2.0:"+schema.get("schema"));
     }
 
     /*

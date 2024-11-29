@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:interventionReport" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:interventionReport" xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:interventionreport" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:interventionreport" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="interventionReport" type="x:interventionReport"/>
     <complexType name="interventionReport">
         <sequence>
@@ -36,7 +36,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
         <sequence>
             <element minOccurs="0" name="label" type="string">
                 <annotation>
-                    <documentation>A valoriser avec le prénom et le nom du rédacteur ou un numéro RPPS. </documentation>
+                    <documentation>A valoriser avec le prénom et le nom du rédacteur, un numéro RPPS, un matricule, etc. </documentation>
                 </annotation>
             </element>
             <element name="role">
@@ -49,6 +49,8 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                         <enumeration value="ARM"/>
                         <enumeration value="INFIRMIER"/>
                         <enumeration value="MEDECIN"/>
+                        <enumeration value="PILOTE"/>
+                        <enumeration value="TCM"/>
                         <enumeration value="AUTRE"/>
                         <enumeration value="INCONNU"/>
                     </restriction>
@@ -124,12 +126,7 @@ A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre 
 A valoriser par un code de la nomenclature Diagnostic SMUR.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="associatedDiagnosis" type="string">
-                <annotation>
-                    <documentation>Thésaurus SFMU-FEDORU.
-A valoriser par un code de la nomenclature Diagnostic SMUR.</documentation>
-                </annotation>
-            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="associatedDiagnosis" type="string"/>
             <element maxOccurs="unbounded" minOccurs="0" name="parameter" type="x:vital"/>
             <element minOccurs="0" name="medicalHistory" type="string">
                 <annotation>
@@ -188,6 +185,11 @@ A valoriser par un code de la nomenclature Diagnostic SMUR.</documentation>
             <element name="value" type="string">
                 <annotation>
                     <documentation>Indique la valeur de la dernière constante prise</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="precision" type="string">
+                <annotation>
+                    <documentation>Permet d'apporter des précisions sur la constante prise (ex. le débit d'oxygène lors de la prise de constante de saturation en oxygène)</documentation>
                 </annotation>
             </element>
         </sequence>

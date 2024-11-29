@@ -1,0 +1,8 @@
+,code,label_n1,Libellé niveau 2,description,commentaire
+0,URGENCES,Service d’urgences d’un établissement de sante,,,
+1,REA-USI,Service de réanimation ou de soins intensifs,,,
+2,SANTE,Autres services d’un établissement de sante,,,
+3,CABINET,Cabinet d’un professionnel de sante,,,
+4,DOMICILE,Domicile,,,
+5,EPHAD,EPHAD ou Long séjour,,,
+6,AUTRE,Autre,,,
