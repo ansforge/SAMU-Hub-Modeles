@@ -51,6 +51,10 @@ public class App {
         List<HashMap<String,String>> schemas = yamlMap.get("schemas");
         
         for (HashMap<String, String> scheMap : schemas) {
+            // If automaticGeneration is set to 'N', skip the schema
+            if (scheMap.containsKey("automaticGeneration") && scheMap.get("automaticGeneration").equals("N")) {
+                continue;
+            }
             String schema = scheMap.get("schema");
             // Specify the path to your JSON schema file
             String jsonSchemaResourcePath = "/" + schema + ".schema.json";
