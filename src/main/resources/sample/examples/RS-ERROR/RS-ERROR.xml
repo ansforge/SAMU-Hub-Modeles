@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<error xmlns="urn:emergency:">
+<error xmlns="urn:emergency:cisu:2.0:error">
   <errorCode>
     <statusCode>100</statusCode>
     <statusString>DELIVERY_MODE_INCONSISTENCY</statusString>
