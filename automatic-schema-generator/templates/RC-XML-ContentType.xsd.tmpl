@@ -3,13 +3,14 @@
         xmlns:xs="http://www.w3.org/2001/XMLSchema" 
         {{ range (datasource "config").schemas }}{{if and (eq .automaticGeneration "Y") .xmlns}}xmlns:{{.rootElement}}="urn:emergency:{{.xmlns}}"{{end}}
         {{end}}
+        xmlns:error="urn:emergency:cisu:2.0:error"
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
     <xs:include schemaLocation="RC-DE.xsd"/>
     <xs:include schemaLocation="customContent.xsd"/>
     {{ range (datasource "config").schemas }}{{if and (eq .automaticGeneration "Y") .xmlns}}<xs:import namespace="urn:emergency:{{.xmlns}}" schemaLocation="{{.schema}}.xsd"/>{{end}}
-    {{end}}<xs:import namespace="urn:emergency:cisu:2.0:reference" schemaLocation="RC-REF.xsd"/>
+    {{end}}<xs:import namespace="urn:emergency:cisu:2.0:error" schemaLocation="RS-ERROR.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
         <xs:sequence>
@@ -39,6 +40,7 @@
         <xs:sequence>
             <xs:choice>{{ range (datasource "config").schemas }}{{if and (eq .automaticGeneration "Y") (and (eq .header "N") .xmlns)}}
                 <xs:element ref="{{.rootElement}}:{{.rootElement}}"/>{{end}}{{end}}
+                <xs:element ref="error:error"/>
                 <xs:element ref="x:customContent"/>
             </xs:choice>
         </xs:sequence>
