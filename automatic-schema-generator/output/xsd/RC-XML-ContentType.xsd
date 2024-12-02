@@ -19,9 +19,9 @@
         xmlns:geoPositionsUpdate="urn:emergency:cisu:2.0:geopositionsupdate"
         xmlns:geoResourcesRequest="urn:emergency:cisu:2.0:georesourcesrequest"
         xmlns:geoResourcesDetails="urn:emergency:cisu:2.0:georesourcesdetails"
-        xmlns:error="urn:emergency:cisu:2.0:error"
+        
         xmlns:reference="urn:emergency:cisu:2.0:reference"
-        xmlns:customContent="urn:emergency:cisu:2.0"
+        
         
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
@@ -46,9 +46,9 @@
     <xs:import namespace="urn:emergency:cisu:2.0:geopositionsupdate" schemaLocation="GEO-POS.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:georesourcesrequest" schemaLocation="GEO-REQ.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:georesourcesdetails" schemaLocation="GEO-RES.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:error" schemaLocation="RS-ERROR.xsd"/>
+    
     <xs:import namespace="urn:emergency:cisu:2.0:reference" schemaLocation="RC-REF.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0" schemaLocation="customContent.xsd"/>
+    
     <xs:import namespace="urn:emergency:cisu:2.0:reference" schemaLocation="RC-REF.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
@@ -95,8 +95,6 @@
         <xs:sequence>
             <xs:choice>
                 <xs:element ref="technicalNoreq:technicalNoreq"/>
-                <xs:element ref="error:error"/>
-                <xs:element ref="customContent:customContent"/>
                 <xs:element ref="x:customContent"/>
             </xs:choice>
         </xs:sequence>
