@@ -91,7 +91,6 @@ jobs:
         working-directory: ./csv_parser/json_schema2xsd
         if: steps.filter.outputs.parsing_required == 'true'
         run: |
-          rm out/RS-ERROR.xsd
           # Clean XSD repo but keep manual XSDs
           find ../../src/main/resources/xsd -type f -name '*.xsd' ! -name 'EDXL-DE-*.xsd' ! -name 'CustomContent.xsd' ! -name 'RC-XML-ContentType.xsd' ! -name 'RS-ERROR.xsd' ! -path '**/other-supporting-schema/*' -exec rm {} +
           mv out/*.xsd ../../src/main/resources/xsd/
