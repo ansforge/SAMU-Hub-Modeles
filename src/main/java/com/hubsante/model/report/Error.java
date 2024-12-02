@@ -52,7 +52,7 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Error {
-  @JacksonXmlProperty(isAttribute = true) String xmlns = "urn:emergency:";
+  @JacksonXmlProperty(isAttribute = true) String xmlns = "urn:emergency:cisu:2.0:error";
   public static final String JSON_PROPERTY_ERROR_CODE = "errorCode";
   private ErrorCode errorCode;
 
