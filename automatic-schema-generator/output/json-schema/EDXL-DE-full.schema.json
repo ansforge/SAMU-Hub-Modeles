@@ -525,6 +525,20 @@
               ]
             }
           }
+        },
+        {
+          "properties": {
+            "message": {
+              "properties": {
+                "error": {
+                  "$ref": "RS-ERROR.schema.json"
+                }
+              },
+              "required": [
+                "error"
+              ]
+            }
+          }
         }
       ]
     },

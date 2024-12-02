@@ -23,6 +23,7 @@
         xmlns:reference="urn:emergency:cisu:2.0:reference"
         
         
+        xmlns:error="urn:emergency:cisu:2.0:error"
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
@@ -49,7 +50,7 @@
     
     <xs:import namespace="urn:emergency:cisu:2.0:reference" schemaLocation="RC-REF.xsd"/>
     
-    <xs:import namespace="urn:emergency:cisu:2.0:reference" schemaLocation="RC-REF.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:error" schemaLocation="RS-ERROR.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
         <xs:sequence>
@@ -95,6 +96,7 @@
         <xs:sequence>
             <xs:choice>
                 <xs:element ref="technicalNoreq:technicalNoreq"/>
+                <xs:element ref="error:error"/>
                 <xs:element ref="x:customContent"/>
             </xs:choice>
         </xs:sequence>
