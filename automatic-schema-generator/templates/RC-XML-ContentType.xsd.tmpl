@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns:x="urn:emergency:cisu:2.0"
         xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-        {{ range (datasource "config").schemas }}{{if .xmlns}}xmlns:{{.rootElement}}="urn:emergency:{{.xmlns}}"{{end}}
+        {{ range (datasource "config").schemas }}{{if and (eq .automaticGeneration "Y") .xmlns}}xmlns:{{.rootElement}}="urn:emergency:{{.xmlns}}"{{end}}
         {{end}}
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
     <xs:include schemaLocation="RC-DE.xsd"/>
     <xs:include schemaLocation="customContent.xsd"/>
-    {{ range (datasource "config").schemas }}{{if .xmlns}}<xs:import namespace="urn:emergency:{{.xmlns}}" schemaLocation="{{.schema}}.xsd"/>{{end}}
+    {{ range (datasource "config").schemas }}{{if and (eq .automaticGeneration "Y") .xmlns}}<xs:import namespace="urn:emergency:{{.xmlns}}" schemaLocation="{{.schema}}.xsd"/>{{end}}
     {{end}}<xs:import namespace="urn:emergency:cisu:2.0:reference" schemaLocation="RC-REF.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
@@ -27,7 +27,7 @@
         <xs:complexContent>
             <xs:extension base="x:distributionElement">
                 <xs:sequence>
-                    <xs:choice>{{ range (datasource "config").schemas }}{{if and (eq .header "Y") .xmlns}}
+                    <xs:choice>{{ range (datasource "config").schemas }}{{if and (eq .automaticGeneration "Y") (and (eq .header "Y") .xmlns)}}
                         <xs:element ref="{{.rootElement}}:{{.rootElement}}"/>{{end}}{{end}}
                     </xs:choice>
                 </xs:sequence>
@@ -37,7 +37,7 @@
 
     <xs:complexType name="NoHeaderMessageType">
         <xs:sequence>
-            <xs:choice>{{ range (datasource "config").schemas }}{{if and (eq .header "N") .xmlns}}
+            <xs:choice>{{ range (datasource "config").schemas }}{{if and (eq .automaticGeneration "Y") (and (eq .header "N") .xmlns)}}
                 <xs:element ref="{{.rootElement}}:{{.rootElement}}"/>{{end}}{{end}}
                 <xs:element ref="x:customContent"/>
             </xs:choice>
