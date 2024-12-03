@@ -56,6 +56,15 @@ jobs:
         if: steps.filter.outputs.parsing_required == 'true'
         run: python workflow.py --stage parser_and_mv
 
+      - name: Run csv_parser to generate schemas.yaml
+        working-directory: ./csv_parser
+        run: python workflow.py --stage output_schemas_yaml
+
+      - name: Collect schemas.yaml and copy it to json_schema2xsd
+        working-directory: ./csv_parser
+        run: |
+          cp ./out/schemas.yaml ./json_schema2xsd/src/main/resources/schemas.yaml
+
 # TODO: Reactivate test case autogeneration
 #      - name: Run test_case_generator and move the folder test-cases to src/main/resources/sample/test-cases
 #        working-directory: ./csv_parser
@@ -82,9 +91,8 @@ jobs:
         working-directory: ./csv_parser/json_schema2xsd
         if: steps.filter.outputs.parsing_required == 'true'
         run: |
-          rm out/RS-ERROR.xsd
           # Clean XSD repo but keep manual XSDs
-          find ../../src/main/resources/xsd -type f -name '*.xsd' ! -name 'EDXL-DE-*.xsd' ! -name 'CustomContent.xsd' ! -name 'RC-XML-ContentType.xsd' ! -name 'RS-ERROR.xsd' ! -path '**/other-supporting-schema/*' -exec rm {} +
+          find ../../src/main/resources/xsd -type f -name '*.xsd' ! -name 'EDXL-DE-*.xsd' ! -name 'customContent.xsd' ! -name 'RC-DE.xsd' ! -name 'RC-XML-ContentType.xsd' ! -name 'RS-ERROR.xsd' ! -path '**/other-supporting-schema/*' -exec rm {} +
           mv out/*.xsd ../../src/main/resources/xsd/
 
       - name: Remove input JSON Schemas
