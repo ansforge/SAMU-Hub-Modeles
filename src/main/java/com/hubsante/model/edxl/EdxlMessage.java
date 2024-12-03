@@ -49,7 +49,6 @@ public class EdxlMessage extends EdxlEnvelope {
                        ContentMessage innerMessage) {
         super(distributionID, senderID, dateTimeSent, dateTimeExpires, distributionStatus, distributionKind, descriptor);
         this.setContentFrom(innerMessage);
-//        this.setOther(other);
     }
 
     public EdxlMessage content(List<ContentObject> content) {
@@ -80,22 +79,6 @@ public class EdxlMessage extends EdxlEnvelope {
     public void setContent(List<ContentObject> content) {
         this.content = content;
     }
-
-//    @JacksonXmlElementWrapper(useWrapping = true, localName = "other")
-//    @JsonProperty(value = "other")
-//    @JacksonXmlProperty(localName = "other")
-//    @JsonInclude(value = JsonInclude.Include.ALWAYS)
-//    public EdxlOther getOther() {
-//        return other;
-//    }
-
-//    @JacksonXmlElementWrapper(useWrapping = true, localName = "other")
-//    @JsonProperty(value = "other")
-//    @JacksonXmlProperty(localName = "other")
-//    @JsonInclude(value = JsonInclude.Include.ALWAYS)
-//    public void setOther(EdxlOther other) {
-//        this.other = other;
-//    }
 
     public <T extends ContentMessage> void setContentFrom(T embeddedContent) {
         List<ContentObject> contentObjectList = new ArrayList<>();
@@ -138,7 +121,6 @@ public class EdxlMessage extends EdxlEnvelope {
                 "    distributionStatus: " + toIndentedString(super.getDistributionStatus()) + "\n" +
                 "    distributionKind: " + toIndentedString(super.getDistributionKind()) + "\n" +
                 "    descriptor: " + toIndentedString(super.getDescriptor()) + "\n" +
-//                "    other: " + toIndentedString(other) + "\n" +
                 "    content: " + toIndentedString(content) + "\n" +
                 "}";
     }

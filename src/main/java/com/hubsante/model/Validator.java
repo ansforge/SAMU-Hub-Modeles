@@ -249,9 +249,12 @@ public class Validator {
                 JsonNode modelKeyword = null;
                 for (JsonNode keyword : descriptor.get("keyword")) {
                     if (keyword.has("valueListURI") && keyword.get("valueListURI").asText().equals("urn:hubsante:model")) {
-                        containsModelKeyword = true;
-                        modelKeyword = keyword;
-                        break;
+                        if (containsModelKeyword) {
+                            customErrorMessages.add("The '$.descriptor.keyword' array contains multiple elements with 'valueListURI' equal to 'urn:hubsante:model'.");
+                        } else {
+                            containsModelKeyword = true;
+                            modelKeyword = keyword;
+                        }
                     }
                 }
                 if (!containsModelKeyword) {
