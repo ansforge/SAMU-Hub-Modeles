@@ -265,6 +265,10 @@ public class Validator {
                     if (!modelKeyword.has("value")){
                         customErrorMessages.add("The '$.descriptor.keyword' array element with 'valueListURI' equal to 'urn:hubsante:model' is missing the 'value' property.");
                     } else {
+                        // One one value is allowed, so if we find an array instead of a string we throw
+                        if (modelKeyword.get("value").isArray()) {
+                            customErrorMessages.add("Only one value is allowed for the '$.descriptor.keyword' array element with 'valueListURI' equal to 'urn:hubsante:model'.");
+                        }
                         String model = modelKeyword.get("value").asText();
                         if (!ContentMessage.UseCaseHelper.useCases.containsKey(model)) {
                             customErrorMessages.add("The '$.descriptor.keyword' array element with 'valueListURI' equal to 'urn:hubsante:model' has an invalid 'value' property.");

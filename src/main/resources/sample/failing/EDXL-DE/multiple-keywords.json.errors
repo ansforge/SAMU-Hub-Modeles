@@ -1,0 +1,2 @@
+Could not validate message against schema : errors occurred. 
+The '$.descriptor.keyword' array contains multiple elements with 'valueListURI' equal to 'urn:hubsante:model'.
