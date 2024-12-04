@@ -18,4 +18,4 @@ fr.health.samu690.request.DRFR15690242370035.3",requestId,1..1,,string,"REGEX:^(
 ,Effet à obtenir,,,,,A valoriser avec le motif de la demande de ressource auprès du partenaire. Cf Nomenclature associée.,SMUR,purpose,1..1,,string,NOMENCLATURE: HubSante.effet
 ,Délai d'intervention,,,,,A valoriser avec le délai d'intervention maximum souhaité (cf. nomenclature associée),10,deadline,0..1,,string,NOMENCLATURE: HubSante.delai
 ,Précisions sur la demande,,,,,Texte libre permettant de détailler la demande,Prévoir un kit pédiatrique,freetext,0..1,,string,
-Etat annulation,,,,,,A valoriser avec la valeur ANNULEE uniquement pour signifier l'annulation d'une demande de ressources. Les autres champs de la demande sont remplis à l'identique de la demande initiale envoyée.,ANNULEE,status,0..1,,string,NOMENCLATURE: HubSante.etatDemande
+Etat annulation,,,,,,A quoi ça sert d'avoir un objet demande ,ANNULEE,status,0..1,,string,NOMENCLATURE: HubSante.etatDemande

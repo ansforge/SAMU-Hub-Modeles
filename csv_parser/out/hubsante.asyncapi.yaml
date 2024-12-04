@@ -1533,7 +1533,7 @@ components:
           title: Source  /  type d'identifiant
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/externalLocationId/0/source
+          example: example.json#/decision/0/destination/externalLocationId/0/source
           description: "A valoriser avec le type de l'identifiant fourni. Cf nomenclature\
             \ associ\xE9e."
           enum:
@@ -1549,13 +1549,13 @@ components:
           title: Identifiant
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/externalLocationId/0/value
+          example: example.json#/decision/0/destination/externalLocationId/0/value
           description: "A valoriser avec l'identifiant en lui-m\xEAme"
           pattern: ^([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])$
           examples:
           - "920000650\_"
       additionalProperties: false
-      example: example.json#/location/externalLocationId/0
+      example: example.json#/decision/0/destination/externalLocationId/0
       examples:
       - source: "FINESS g\xE9ographique, FINESS administratif, SIREN, SIRET, APE,\
           \ NAF"
@@ -2656,7 +2656,7 @@ components:
       properties:
         patientId:
           type: string
-          title: ID Patient
+          title: "ID partag\xE9 du patient"
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/patientId
@@ -6541,9 +6541,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/status
-          description: "A valoriser avec la valeur ANNULEE uniquement pour signifier\
-            \ l'annulation d'une demande de ressources. Les autres champs de la demande\
-            \ sont remplis \xE0 l'identique de la demande initiale envoy\xE9e."
+          description: "A quoi \xE7a sert d'avoir un objet demande "
           enum:
           - ANNULEE
           examples:
