@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.rcde.DistributionElement;
+import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.technical.noreq.TechnicalNoreq;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -43,17 +43,11 @@ import java.util.Objects;
 /**
  * TechnicalNoreqWrapper
  */
-@JsonPropertyOrder({DistributionElement.JSON_PROPERTY_MESSAGE_ID,
-                    DistributionElement.JSON_PROPERTY_SENDER,
-                    DistributionElement.JSON_PROPERTY_SENT_AT,
-                    DistributionElement.JSON_PROPERTY_KIND,
-                    DistributionElement.JSON_PROPERTY_STATUS,
-                    DistributionElement.JSON_PROPERTY_RECIPIENT,
-                    TechnicalNoreqWrapper.JSON_PROPERTY_TECHNICAL_NOREQ})
+@JsonPropertyOrder({TechnicalNoreqWrapper.JSON_PROPERTY_TECHNICAL_NOREQ})
 @JsonTypeName("technicalNoreqWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class TechnicalNoreqWrapper extends DistributionElement {
+public class TechnicalNoreqWrapper extends ContentMessage {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";
   public static final String JSON_PROPERTY_TECHNICAL_NOREQ = "technicalNoreq";

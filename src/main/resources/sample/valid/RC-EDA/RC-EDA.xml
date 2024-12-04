@@ -15,6 +15,10 @@
             <explicitAddressScheme>hubex</explicitAddressScheme>
             <explicitAddressValue>fr.health.samuA</explicitAddressValue>
         </explicitAddress>
+        <keyword>
+            <ct:ValueListURI>urn:hubsante:model</ct:ValueListURI>
+            <ct:Value>createCase</ct:Value>
+        </keyword>
     </descriptor>
     <content>
         <contentObject xlink:type="resource">
