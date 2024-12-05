@@ -50,11 +50,11 @@ import java.util.Objects;
 @JsonPropertyOrder(
     {Resource.JSON_PROPERTY_DATETIME, Resource.JSON_PROPERTY_RESOURCE_ID,
      Resource.JSON_PROPERTY_REQUEST_ID, Resource.JSON_PROPERTY_MISSION_ID,
-     Resource.JSON_PROPERTY_ORG_ID, Resource.JSON_PROPERTY_CENTER_NAME,
-     Resource.JSON_PROPERTY_VEHICLE_TYPE, Resource.JSON_PROPERTY_NAME,
-     Resource.JSON_PROPERTY_CENTER_CITY, Resource.JSON_PROPERTY_TEAM,
-     Resource.JSON_PROPERTY_STATE, Resource.JSON_PROPERTY_CONTACT,
-     Resource.JSON_PROPERTY_FREETEXT})
+     Resource.JSON_PROPERTY_ORG_ID, Resource.JSON_PROPERTY_PATIENT_ID,
+     Resource.JSON_PROPERTY_CENTER_NAME, Resource.JSON_PROPERTY_VEHICLE_TYPE,
+     Resource.JSON_PROPERTY_NAME, Resource.JSON_PROPERTY_CENTER_CITY,
+     Resource.JSON_PROPERTY_TEAM, Resource.JSON_PROPERTY_STATE,
+     Resource.JSON_PROPERTY_CONTACT, Resource.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("resource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -73,6 +73,9 @@ public class Resource {
 
   public static final String JSON_PROPERTY_ORG_ID = "orgId";
   private String orgId;
+
+  public static final String JSON_PROPERTY_PATIENT_ID = "patientId";
+  private String patientId;
 
   public static final String JSON_PROPERTY_CENTER_NAME = "centerName";
   private String centerName;
@@ -381,6 +384,34 @@ public class Resource {
     this.orgId = orgId;
   }
 
+  public Resource patientId(String patientId) {
+
+    this.patientId = patientId;
+    return this;
+  }
+
+  /**
+   * Identifiant partagé du patient qui est transporté. Ce n&#39;est à remplir
+   *que lorsque l&#39;on sait quel vecteur transporte quel patient.  Il est
+   *valorisé comme suit lors de sa création :  {OrgId
+   *émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un
+   *n°patient unique n&#39;existe pas dans le système émetteur : {ID
+   *émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}
+   * @return patientId
+   **/
+  @JsonProperty(JSON_PROPERTY_PATIENT_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getPatientId() {
+    return patientId;
+  }
+
+  @JsonProperty(JSON_PROPERTY_PATIENT_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPatientId(String patientId) {
+    this.patientId = patientId;
+  }
+
   public Resource centerName(String centerName) {
 
     this.centerName = centerName;
@@ -612,6 +643,7 @@ public class Resource {
         Objects.equals(this.requestId, resource.requestId) &&
         Objects.equals(this.missionId, resource.missionId) &&
         Objects.equals(this.orgId, resource.orgId) &&
+        Objects.equals(this.patientId, resource.patientId) &&
         Objects.equals(this.centerName, resource.centerName) &&
         Objects.equals(this.vehicleType, resource.vehicleType) &&
         Objects.equals(this.name, resource.name) &&
@@ -625,8 +657,8 @@ public class Resource {
   @Override
   public int hashCode() {
     return Objects.hash(datetime, resourceId, requestId, missionId, orgId,
-                        centerName, vehicleType, name, centerCity, team, state,
-                        contact, freetext);
+                        patientId, centerName, vehicleType, name, centerCity,
+                        team, state, contact, freetext);
   }
 
   @Override
@@ -644,6 +676,9 @@ public class Resource {
         .append(toIndentedString(missionId))
         .append("\n");
     sb.append("    orgId: ").append(toIndentedString(orgId)).append("\n");
+    sb.append("    patientId: ")
+        .append(toIndentedString(patientId))
+        .append("\n");
     sb.append("    centerName: ")
         .append(toIndentedString(centerName))
         .append("\n");

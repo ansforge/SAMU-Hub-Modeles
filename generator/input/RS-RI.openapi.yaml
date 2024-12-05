@@ -118,6 +118,21 @@ components:
             \ appartient la ressource, norm\xE9 comme suit : \n{pays}.{domaine}.{organisation}"
           examples:
           - fr.health.samu440
+        patientId:
+          type: string
+          title: "ID partag\xE9 du patient transport\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/resource/0/patientId
+          description: "Identifiant partag\xE9 du patient qui est transport\xE9. Ce\
+            \ n'est \xE0 remplir que lorsque l'on sait quel vecteur transporte quel\
+            \ patient. \nIl est valoris\xE9 comme suit lors de sa cr\xE9ation : \n\
+            {OrgId \xE9metteur}.patient.{n\xB0patient unique dans le syst\xE8me \xE9\
+            metteur}\n\nOU, si un n\xB0patient unique n'existe pas dans le syst\xE8\
+            me \xE9metteur :\n{ID \xE9metteur}.{senderCaseId}.patient.{num\xE9ro d\u2019\
+            ordre chronologique au dossier}"
+          examples:
+          - fr.health.samu440.patient.P23AZ59
         centerName:
           type: string
           title: "Nom du centre d\u2019affectation"
@@ -264,6 +279,7 @@ components:
           - MED
           - PARAMED
           - SECOURS
+          - SANS
           examples:
           - MED
         name:
@@ -318,13 +334,14 @@ components:
           - ARRIVEE
           - PEC
           - BILAN
+          - ORIENTAT
           - TRANSP
           - ETAPE1
           - TRANSP2
           - ETAPE2
           - TRANSP3
           - DESTIN
-          - FINMED
+          - FINPEC
           - RETOUR
           - RET-BASE
           - REN-BASE

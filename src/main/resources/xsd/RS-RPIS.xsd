@@ -79,6 +79,7 @@ Permet de déduire avec la donnée "niveau de médicalisation du transport", si 
                         <enumeration value="MED"/>
                         <enumeration value="PARAMED"/>
                         <enumeration value="SECOURS"/>
+                        <enumeration value="SANS"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1240,6 +1241,7 @@ A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN.</documentation>
                         <enumeration value="MED"/>
                         <enumeration value="PARAMED"/>
                         <enumeration value="SECOURS"/>
+                        <enumeration value="SANS"/>
                     </restriction>
                 </simpleType>
             </element>

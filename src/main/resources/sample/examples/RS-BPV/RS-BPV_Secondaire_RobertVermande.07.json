@@ -1,0 +1,34 @@
+{
+  "interventionReport": {
+    "redactor": {
+      "label": "Arthur Bambi",
+      "role": "MEDECIN"
+    },
+    "patient": {
+      "patientId": "fr.health.samu680.patient.68263",
+      "firstName": "Robert",
+      "sex": "M",
+      "lastName": "Vermande",
+      "birthDate": "1967-09-17"
+    },
+    "caseId": "fr.health.samu680.DRFR154402413800555",
+    "creation": "2024-05-26T13:19:00+02:00",
+    "evaluation": {
+      "parameter": [
+        {
+          "type": "FREQUENCE_CARDIAQUE",
+          "value": "110-120"
+        },
+        {
+          "type": "TEMPERATURE",
+          "value": "37"
+        },
+        {
+          "type": "FREQUENCE_RESPIRATOIRE",
+          "value": "12/mn"
+        }
+      ]
+    },
+    "reportId": "38978621TG"
+  }
+}

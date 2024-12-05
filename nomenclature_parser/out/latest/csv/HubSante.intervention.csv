@@ -1,0 +1,8 @@
+,code,label_n1,Libellé niveau 2,description,commentaire
+0,T1,Primaire,,"Prise en charge médicale spécialisée d’un ou de plusieurs patients ne se
+trouvant pas admis dans un établissement de santé et dont l’état requiert de façon urgente une
+expertise médicale pour des soins d’urgences ou de réanimation et pour leur orientation.",
+1,T2-INTER,Transfert Inter Hospitalier,,"Prise en charge médicale spécialisée d’un patient hospitalisé ou pris en charge par un service (d’urgences ou non), au sein d’un établissement de santé vers un établissement de santé ne faisant pas partie de la même entité juridique, que le transport ait finalement lieu ou non.",
+2,T2-INTRA,Transfert Intra Hospitalier,,"Prise en charge médicale spécialisée d’un patient hospitalisé ou pris en charge par un service (d’urgences ou non), au sein d’un établissement de santé vers n même établissement de santé ou entre deux établissements de santé appartenant à la même entité juridique. ",
+3,T3,Retour,,Prise en charge médicale spécialisée d’un patient hospitalisé en vue de son retour à son domicile ou dans une structure n’étant pas un établissement de santé (par exemple un EHPAD).,
+4,T4,Rapat/Evasan,,"Prise en charge médicale spécialisée d’un patient en vue de son transport le plus souvent vers un établissement de soins, par exemple dans le cadre d’un rapprochement familial.",

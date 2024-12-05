@@ -69,6 +69,8 @@ public class State {
 
     BILAN("BILAN"),
 
+    ORIENTAT("ORIENTAT"),
+
     TRANSP("TRANSP"),
 
     ETAPE1("ETAPE1"),
@@ -81,7 +83,7 @@ public class State {
 
     DESTIN("DESTIN"),
 
-    FINMED("FINMED"),
+    FINPEC("FINPEC"),
 
     RETOUR("RETOUR"),
 

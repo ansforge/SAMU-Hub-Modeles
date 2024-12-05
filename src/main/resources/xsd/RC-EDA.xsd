@@ -1679,7 +1679,7 @@ La ressource est hashée avec le protocole SHA-256</documentation>
                         <enumeration value="APPLICATION"/>
                         <enumeration value="BAU"/>
                         <enumeration value="DAU"/>
-                        <enumeration value="DEFIBRILLATEUR, "/>
+                        <enumeration value="DEFIBRILLATEUR"/>
                         <enumeration value="ECALL"/>
                         <enumeration value="PERSONNE"/>
                     </restriction>

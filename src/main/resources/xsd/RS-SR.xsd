@@ -55,13 +55,14 @@ N.B. Il s'agit de l'orgId de l'organisation à qui appartient la ressource</docu
                         <enumeration value="ARRIVEE"/>
                         <enumeration value="PEC"/>
                         <enumeration value="BILAN"/>
+                        <enumeration value="ORIENTAT"/>
                         <enumeration value="TRANSP"/>
                         <enumeration value="ETAPE1"/>
                         <enumeration value="TRANSP2"/>
                         <enumeration value="ETAPE2"/>
                         <enumeration value="TRANSP3"/>
                         <enumeration value="DESTIN"/>
-                        <enumeration value="FINMED"/>
+                        <enumeration value="FINPEC"/>
                         <enumeration value="RETOUR"/>
                         <enumeration value="RET-BASE"/>
                         <enumeration value="REN-BASE"/>
