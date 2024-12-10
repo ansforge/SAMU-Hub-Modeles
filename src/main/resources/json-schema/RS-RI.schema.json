@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RI.schema.json#",
-    "version": "24.10.22",
+    "version": "24.11.29",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesInfo",
@@ -83,6 +83,14 @@
                     "x-cols": 6,
                     "example": "example.json#/resource/0/orgId",
                     "description": "A valoriser avec l'identifiant de l'organisation à laquelle appartient la ressource, normé comme suit : \n{pays}.{domaine}.{organisation}"
+                },
+                "patientId": {
+                    "type": "string",
+                    "title": "ID partagé du patient transporté",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/resource/0/patientId",
+                    "description": "Identifiant partagé du patient qui est transporté. Ce n'est à remplir que lorsque l'on sait quel vecteur transporte quel patient. \nIl est valorisé comme suit lors de sa création : \n{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}\n\nOU, si un n°patient unique n'existe pas dans le système émetteur :\n{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}"
                 },
                 "centerName": {
                     "type": "string",
@@ -227,7 +235,8 @@
                     "enum": [
                         "MED",
                         "PARAMED",
-                        "SECOURS"
+                        "SECOURS",
+                        "SANS"
                     ]
                 },
                 "name": {
@@ -277,13 +286,14 @@
                         "ARRIVEE",
                         "PEC",
                         "BILAN",
+                        "ORIENTAT",
                         "TRANSP",
                         "ETAPE1",
                         "TRANSP2",
                         "ETAPE2",
                         "TRANSP3",
                         "DESTIN",
-                        "FINMED",
+                        "FINPEC",
                         "RETOUR",
                         "RET-BASE",
                         "REN-BASE"

@@ -16,7 +16,6 @@ parser.add_argument('-f', '--folder', default="in", help='the folder to be parse
 parser.add_argument('-r', '--release', action=argparse.BooleanOptionalAction)
 args = parser.parse_args()
 
-VERSION = "v" + (args.version or date.today().strftime("%y.%m.%d"))
 FOLDER = args.folder
 OUTPUT_LATEST = "out/latest/"
 
@@ -26,10 +25,7 @@ def main():
     shutil.rmtree(OUTPUT_LATEST)
     os.mkdir(OUTPUT_LATEST)
     # Parse nomenclatures
-    loader.parse_folder(FOLDER, VERSION, OUTPUT_LATEST)
-    # If release, copy it to specific folder
-    if args.release:
-        copy_tree(OUTPUT_LATEST, f"out/{VERSION}")
+    loader.parse_folder(FOLDER, OUTPUT_LATEST)
 
 
 if __name__ == '__main__':

@@ -15,8 +15,8 @@ fr.health.samu690.request.DRFR15690242370035.3",requestId,1..1,,string,"REGEX: ^
 Réponse à la demande de ressources,,,,,,Objet permettant de transmettre les détails de la réponse à une demande de ressource,,response,1..1,X,response,Format datetime décrit dans le DSF
 ,Date Heure de réponse,,,,,Groupe date heure de début de la demande,2022-09-27T08:23:34+02:00,datetime,1..1,,datetime,Format datetime décrit dans le DSF
 ,Réponse,,,,,"A valoriser avec la réponse apportée. Cf Nomenclature associée
-ACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE",ACCEPTEE,answer,1..1,,string,NOMENCLATURE: ENUM-REPONSE
+ACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE",ACCEPTEE,answer,1..1,,string,NOMENCLATURE: HubSante.reponseDemande
 ,Délai d'intervention,,,,,"A valoriser avec le délai de réponse auquel s'engage l'expéditeur (cf. nomenclature) 
 Cas particulier : en cas de réponse ""Partielle"" car le délai souhaité ne peut pas être respecté,  à valoriser obligatoirement avec le délai de réponse maximum auquel s'engage l'expéditeur de la réponse,
-",10,deadline,0..1,,string,NOMENCLATURE: SI-SAMU-DELAI
+",10,deadline,0..1,,string,NOMENCLATURE: HubSante.delai
 ,Précisions sur la réponse,,,,,Commentaire libre permettant d'apporter toutes précisions utiles à la réponse. Le motif de refus est notifié dans ce champ.,SMUR 1 non dispo,freetext,0..1,,string,

@@ -62,6 +62,10 @@ public class Operator {
 
     MEDECIN("MEDECIN"),
 
+    PILOTE("PILOTE"),
+
+    TCM("TCM"),
+
     AUTRE("AUTRE"),
 
     INCONNU("INCONNU");

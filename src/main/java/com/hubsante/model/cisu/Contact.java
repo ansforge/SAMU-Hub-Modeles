@@ -59,7 +59,7 @@ public class Contact {
 
     DAU("DAU"),
 
-    DEFIBRILLATEUR_("DEFIBRILLATEUR, "),
+    DEFIBRILLATEUR("DEFIBRILLATEUR"),
 
     ECALL("ECALL"),
 

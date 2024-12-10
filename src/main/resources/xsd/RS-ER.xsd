@@ -22,7 +22,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
     </complexType>
     <complexType name="resource">
         <sequence>
-            <element minOccurs="0" name="vehicleType">
+            <element name="vehicleType">
                 <annotation>
                     <documentation>A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée</documentation>
                 </annotation>
@@ -114,6 +114,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                         <enumeration value="MED"/>
                         <enumeration value="PARAMED"/>
                         <enumeration value="SECOURS"/>
+                        <enumeration value="SANS"/>
                     </restriction>
                 </simpleType>
             </element>
