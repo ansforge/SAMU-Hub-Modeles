@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.hubsante.model.builders.ValidationMessageWrapperBuilder;
+import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.rcde.DistributionElement;
 import com.hubsante.model.exception.ValidationException;
 import com.networknt.schema.JsonSchema;
@@ -139,8 +140,8 @@ public class Validator {
 
         JsonNode jsonNode = jsonMapper.readTree(message);
         Set<ValidationMessage> validationMessages = jsonSchema.validate(jsonNode);
-
-        if (!validationMessages.isEmpty()) {
+        Set<String> customErrors = this.checkKeyword(jsonNode);
+        if (!validationMessages.isEmpty() || !customErrors.isEmpty()) {
             // Log all validation messages
             for (ValidationMessage errorMsg : validationMessages) {
                 log.debug("Validation error: {}", errorMsg);
@@ -221,17 +222,61 @@ public class Validator {
             }
 
             // Append MISC error messages
-            if (validationMessageWrappers.stream().anyMatch(e -> e.getType().equals("MISC"))) {
+            if (validationMessageWrappers.stream().anyMatch(e -> e.getType().equals("MISC")) || !customErrors.isEmpty()) {
                 for (ValidationMessageWrapper validationMessage : validationMessageWrappers.stream().filter(validationMessageWrapper -> validationMessageWrapper.getType().equals("MISC")).collect(java.util.stream.Collectors.toSet())) {
                     String error = formatValidationErrorMessage(validationMessage.getValidationMessage());
                     if (error != null) {
                         errors.append(error).append("\n");
                     }
                 }
+                for (String customError : customErrors) {
+                    errors.append(customError).append("\n");
+                }
             }
 
             throw new ValidationException("Could not validate message against schema : errors occurred. \n" + errors);
         }
+    }
+
+    private Set<String> checkKeyword(JsonNode jsonNode) {
+        Set<String> customErrorMessages = new HashSet<>();
+        // We check if the 'keyword' property is present in the message, specifically in the 'descriptor' property
+        if (jsonNode.has("descriptor")) {
+            JsonNode descriptor = jsonNode.get("descriptor");
+            // We check if the 'keyword' array contains an element with valueListURI equal to 'urn:hubsante:model'
+            if (descriptor.has("keyword") && descriptor.get("keyword").isArray()) {
+                boolean containsModelKeyword = false;
+                JsonNode modelKeyword = null;
+                for (JsonNode keyword : descriptor.get("keyword")) {
+                    if (keyword.has("valueListURI") && keyword.get("valueListURI").asText().equals("urn:hubsante:model")) {
+                        if (containsModelKeyword) {
+                            customErrorMessages.add("The '$.descriptor.keyword' array contains multiple elements with 'valueListURI' equal to 'urn:hubsante:model'.");
+                        } else {
+                            containsModelKeyword = true;
+                            modelKeyword = keyword;
+                        }
+                    }
+                }
+                if (!containsModelKeyword) {
+                    customErrorMessages.add("The '$.descriptor.keyword' array is missing an element with 'valueListURI' equal to 'urn:hubsante:model'.");
+                }
+                // If it does contain the required element, we check the that the value of 'value' property of that element corresponds to known models
+                if (modelKeyword != null)
+                    if (!modelKeyword.has("value")){
+                        customErrorMessages.add("The '$.descriptor.keyword' array element with 'valueListURI' equal to 'urn:hubsante:model' is missing the 'value' property.");
+                    } else {
+                        // One one value is allowed, so if we find an array instead of a string we throw
+                        if (modelKeyword.get("value").isArray()) {
+                            customErrorMessages.add("Only one value is allowed for the '$.descriptor.keyword' array element with 'valueListURI' equal to 'urn:hubsante:model'.");
+                        }
+                        String model = modelKeyword.get("value").asText();
+                        if (!ContentMessage.UseCaseHelper.useCases.containsKey(model)) {
+                            customErrorMessages.add("The '$.descriptor.keyword' array element with 'valueListURI' equal to 'urn:hubsante:model' has an invalid 'value' property.");
+                        }
+                    }
+            }
+        }
+        return customErrorMessages;
     }
 
     private String formatValidationErrorMessage(ValidationMessage errorMsg) {

@@ -114,14 +114,14 @@ public class EdxlMessage extends EdxlEnvelope {
     @Override
     public String toString() {
         return "class EdxlMessage {\n" +
-                        "    distributionID: " + toIndentedString(super.getDistributionID()) + "\n" +
-                        "    senderId: " + toIndentedString(super.getSenderID()) + "\n" +
-                        "    dateTimeSent: " + toIndentedString(super.getDateTimeSent()) + "\n" +
-                        "    dateTimeExpires: " + toIndentedString(super.getDateTimeExpires()) + "\n" +
-                        "    distributionStatus: " + toIndentedString(super.getDistributionStatus()) + "\n" +
-                        "    distributionKind: " + toIndentedString(super.getDistributionKind()) + "\n" +
-                        "    descriptor: " + toIndentedString(super.getDescriptor()) + "\n" +
-                        "    content: " + toIndentedString(content) + "\n" +
+                "    distributionID: " + toIndentedString(super.getDistributionID()) + "\n" +
+                "    senderId: " + toIndentedString(super.getSenderID()) + "\n" +
+                "    dateTimeSent: " + toIndentedString(super.getDateTimeSent()) + "\n" +
+                "    dateTimeExpires: " + toIndentedString(super.getDateTimeExpires()) + "\n" +
+                "    distributionStatus: " + toIndentedString(super.getDistributionStatus()) + "\n" +
+                "    distributionKind: " + toIndentedString(super.getDistributionKind()) + "\n" +
+                "    descriptor: " + toIndentedString(super.getDescriptor()) + "\n" +
+                "    content: " + toIndentedString(content) + "\n" +
                 "}";
     }
 

@@ -7,6 +7,12 @@
   "distributionKind": "Report",
   "descriptor": {
     "language": "fr-FR",
+    "keyword": [
+      {
+        "valueListURI": "urn:hubsante:model",
+        "value": "technicalNoreq"
+      }
+    ],
     "explicitAddress": {
       "explicitAddressScheme": "hubex",
       "explicitAddressValue": "fr.health.samuB"
@@ -19,17 +25,6 @@
           "message": {
             "technicalNoreq": {
               "optionalStringField": "value"
-            }
-          }
-        }
-      }
-    },
-    {
-      "jsonContent": {
-        "embeddedJsonContent": {
-          "message": {
-            "technicalNoreq": {
-              "integerField": 1
             }
           }
         }

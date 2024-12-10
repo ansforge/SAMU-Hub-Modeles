@@ -1,0 +1,3 @@
+Could not validate message against schema : errors occurred. 
+Only one value is allowed for the '$.descriptor.keyword' array element with 'valueListURI' equal to 'urn:hubsante:model'.
+The '$.descriptor.keyword' array element with 'valueListURI' equal to 'urn:hubsante:model' has an invalid 'value' property.
