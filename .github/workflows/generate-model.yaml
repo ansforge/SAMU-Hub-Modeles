@@ -58,12 +58,35 @@ jobs:
 
       - name: Run csv_parser to generate schemas.yaml
         working-directory: ./csv_parser
+        if: steps.filter.outputs.parsing_required == 'true'
         run: python workflow.py --stage output_schemas_yaml
 
       - name: Collect schemas.yaml and copy it to json_schema2xsd
         working-directory: ./csv_parser
+        if: steps.filter.outputs.parsing_required == 'true'
         run: |
           cp ./out/schemas.yaml ./json_schema2xsd/src/main/resources/schemas.yaml
+          
+      - name: Setup gomplate
+        if: steps.filter.outputs.parsing_required == 'true'
+        uses: jason-dour/action-setup-gomplate@v1.1.0
+        with:
+          gomplate-version: v4.2.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run automatic-schema-generator and move generated files to corresponding locations
+        if: steps.filter.outputs.parsing_required == 'true'
+        working-directory: ./automatic-schema-generator
+        run: |
+          rm -r output || true
+          chmod +x ./automatic-generator.sh
+          ./automatic-generator.sh
+          rsync -a --remove-source-files output/generator ..
+          rsync -a --remove-source-files output/edxl ../src/main/java/com/hubsante/model
+          rsync -a --remove-source-files output/json-schema ../src/main/resources
+          rsync -a --remove-source-files output/xsd ../src/main/resources
+          rsync -a --remove-source-files output/deserializer/. ../src/main/java/com/hubsante/model
 
 # TODO: Reactivate test case autogeneration
 #      - name: Run test_case_generator and move the folder test-cases to src/main/resources/sample/test-cases
