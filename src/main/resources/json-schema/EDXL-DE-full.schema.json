@@ -46,8 +46,7 @@
       "items": {
         "$ref": "#/definitions/ContentObject"
       },
-      "minItems": 1,
-      "maxItems": 1
+      "minItems": 1
     },
     "ContentObject": {
       "type": "object",
@@ -74,6 +73,45 @@
     "EmbeddedJsonContent": {
       "type": "object",
       "oneOf": [
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "technical": {
+                      "$ref": "TECHNICAL.schema.json"
+                    }
+                  },
+                  "required": [
+                    "technical"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "properties": {
+            "message": {
+              "properties": {
+                "technicalNoreq": {
+                  "$ref": "TECHNICAL_NOREQ.schema.json"
+                }
+              },
+              "required": [
+                "technicalNoreq"
+              ]
+            }
+          }
+        },
         {
           "allOf": [
             {
@@ -162,59 +200,6 @@
               "properties": {
                 "message": {
                   "properties": {
-                    "reference": {
-                      "$ref": "RC-REF.schema.json"
-                    }
-                  },
-                  "required": [
-                    "reference"
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        {
-          "properties": {
-            "message": {
-              "properties": {
-                "info": {
-                  "$ref": "RS-INFO.schema.json"
-                }
-              },
-              "required": [
-                "info"
-              ]
-            }
-          }
-        },
-        {
-          "properties": {
-            "message": {
-              "properties": {
-                "error": {
-                  "$ref": "RS-ERROR.schema.json"
-                }
-              },
-              "required": [
-                "error"
-              ]
-            }
-          }
-        },
-        {
-          "allOf": [
-            {
-              "properties": {
-                "message": {
-                  "$ref": "RC-DE.schema.json"
-                }
-              }
-            },
-            {
-              "properties": {
-                "message": {
-                  "properties": {
                     "emsi": {
                       "$ref": "EMSI.schema.json"
                     }
@@ -265,12 +250,12 @@
               "properties": {
                 "message": {
                   "properties": {
-                    "resourcesRequest": {
-                      "$ref": "RS-DR.schema.json"
+                    "resourcesEngagement": {
+                      "$ref": "RS-ER.schema.json"
                     }
                   },
                   "required": [
-                    "resourcesRequest"
+                    "resourcesEngagement"
                   ]
                 }
               }
@@ -296,6 +281,31 @@
                   },
                   "required": [
                     "resourcesStatus"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "resourcesRequest": {
+                      "$ref": "RS-DR.schema.json"
+                    }
+                  },
+                  "required": [
+                    "resourcesRequest"
                   ]
                 }
               }
@@ -365,6 +375,31 @@
               "properties": {
                 "message": {
                   "properties": {
+                    "interventionReport": {
+                      "$ref": "RS-BPV.schema.json"
+                    }
+                  },
+                  "required": [
+                    "interventionReport"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
                     "documentLink": {
                       "$ref": "RS-URL.schema.json"
                     }
@@ -390,12 +425,12 @@
               "properties": {
                 "message": {
                   "properties": {
-                    "resourcesEngagement": {
-                      "$ref": "RS-ER.schema.json"
+                    "geoPositionsUpdate": {
+                      "$ref": "GEO-POS.schema.json"
                     }
                   },
                   "required": [
-                    "resourcesEngagement"
+                    "geoPositionsUpdate"
                   ]
                 }
               }
@@ -415,12 +450,62 @@
               "properties": {
                 "message": {
                   "properties": {
-                    "interventionReport": {
-                      "$ref": "RS-BPV.schema.json"
+                    "geoResourcesRequest": {
+                      "$ref": "GEO-REQ.schema.json"
                     }
                   },
                   "required": [
-                    "interventionReport"
+                    "geoResourcesRequest"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "geoResourcesDetails": {
+                      "$ref": "GEO-RES.schema.json"
+                    }
+                  },
+                  "required": [
+                    "geoResourcesDetails"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "reference": {
+                      "$ref": "RC-REF.schema.json"
+                    }
+                  },
+                  "required": [
+                    "reference"
                   ]
                 }
               }
@@ -442,89 +527,15 @@
           }
         },
         {
-          "allOf": [
-            {
-              "properties": {
-                "message": {
-                  "$ref": "RC-DE.schema.json"
-                }
-              }
-            },
-            {
-              "properties": {
-                "message": {
-                  "oneOf": [
-                    {
-                      "properties": {
-                        "geoPositionsUpdate": {
-                          "$ref": "GEO-POS.schema.json"
-                        }
-                      },
-                      "required": [
-                        "geoPositionsUpdate"
-                      ]
-                    },
-                    {
-                      "properties": {
-                        "geoResourcesRequest": {
-                          "$ref": "GEO-REQ.schema.json"
-                        }
-                      },
-                      "required": [
-                        "geoResourcesRequest"
-                      ]
-                    },
-                    {
-                      "properties": {
-                        "geoResourcesDetails": {
-                          "$ref": "GEO-RES.schema.json"
-                        }
-                      },
-                      "required": [
-                        "geoResourcesDetails"
-                      ]
-                    }
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        {
-          "allOf": [
-            {
-              "properties": {
-                "message": {
-                  "$ref": "RC-DE.schema.json"
-                }
-              }
-            },
-            {
-              "properties": {
-                "message": {
-                  "properties": {
-                    "technical": {
-                      "$ref": "TECHNICAL.schema.json"
-                    }
-                  },
-                  "required": [
-                    "technical"
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        {
           "properties": {
             "message": {
               "properties": {
-                "technicalNoreq": {
-                  "$ref": "TECHNICAL_NOREQ.schema.json"
+                "error": {
+                  "$ref": "RS-ERROR.schema.json"
                 }
               },
               "required": [
-                "technicalNoreq"
+                "error"
               ]
             }
           }
