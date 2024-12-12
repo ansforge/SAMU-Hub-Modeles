@@ -10,7 +10,13 @@
     "explicitAddress": {
       "explicitAddressScheme": "hubex",
       "explicitAddressValue": "fr.health.samuB"
-    }
+    },
+    "keyword": [
+      {
+        "valueListURI": "urn:hubsante:model",
+        "value": "technical"
+      }
+    ]
   },
   "content": [
     {
