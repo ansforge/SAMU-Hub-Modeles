@@ -10,8 +10,8 @@ schemas:
   subschema: N
   xmlns: cisu:2.0:technical
 - automaticGeneration: Y
-  customExtendClass: null
-  customExtendPackage: null
+  customExtendClass: ContentMessage
+  customExtendPackage: com.hubsante.model.edxl
   header: N
   package: technical.noreq
   perimeter: TECHNICAL_NOREQ

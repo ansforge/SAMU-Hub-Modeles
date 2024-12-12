@@ -46,8 +46,7 @@
       "items": {
         "$ref": "#/definitions/ContentObject"
       },
-      "minItems": 1,
-      "maxItems": 1
+      "minItems": 1
     },
     "ContentObject": {
       "type": "object",
@@ -546,21 +545,17 @@
     "Descriptor": {
       "type": "object",
       "properties": {
-        "language": {
-          "type": "string"
-        },
-        "keyword": {
-          "$ref": "#/definitions/Keyword"
-        },
         "explicitAddress": {
           "$ref": "#/definitions/ExplicitAddress"
+        },
+        "language": {
+          "type": "string"
         }
       },
       "additionalProperties": false,
       "required": [
-        "language",
-        "keyword",
-        "explicitAddress"
+        "explicitAddress",
+        "language"
       ]
     },
     "DistributionKind": {
@@ -595,17 +590,6 @@
         "explicitAddressScheme",
         "explicitAddressValue"
       ]
-    },
-    "Keyword": {
-      "type": "array",
-      "items": {
-        "ValueListURI" : {
-          "type": "string"
-        },
-        "Value" : {
-          "type": "string"
-        }
-      }
     }
   }
 }

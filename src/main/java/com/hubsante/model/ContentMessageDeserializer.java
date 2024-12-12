@@ -21,29 +21,29 @@ import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.hubsante.model.cisu.CreateCaseWrapper;
-import com.hubsante.model.documentlink.DocumentLinkWrapper;
 import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.edxl.Descriptor;
 import com.hubsante.model.edxl.EdxlMessage;
 import com.hubsante.model.edxl.Keyword;
-import com.hubsante.model.emsi.EmsiWrapper;
-import com.hubsante.model.geolocation.GeoPositionsUpdateWrapper;
-import com.hubsante.model.geolocation.GeoResourcesDetailsWrapper;
-import com.hubsante.model.geolocation.GeoResourcesRequestWrapper;
-import com.hubsante.model.health.CreateCaseHealthUpdateWrapper;
-import com.hubsante.model.health.CreateCaseHealthWrapper;
-import com.hubsante.model.interventionreport.InterventionReportWrapper;
-import com.hubsante.model.reference.ReferenceWrapper;
-import com.hubsante.model.report.ErrorWrapper;
-import com.hubsante.model.resources.info.ResourcesEngagementWrapper;
-import com.hubsante.model.resources.info.ResourcesInfoWrapper;
-import com.hubsante.model.resources.request.ResourcesRequestWrapper;
-import com.hubsante.model.resources.response.ResourcesResponseWrapper;
-import com.hubsante.model.resources.status.ResourcesStatusWrapper;
-import com.hubsante.model.rpis.RpisWrapper;
 import com.hubsante.model.technical.TechnicalWrapper;
 import com.hubsante.model.technical.noreq.TechnicalNoreqWrapper;
+import com.hubsante.model.cisu.CreateCaseWrapper;
+import com.hubsante.model.health.CreateCaseHealthWrapper;
+import com.hubsante.model.health.CreateCaseHealthUpdateWrapper;
+import com.hubsante.model.emsi.EmsiWrapper;
+import com.hubsante.model.resources.info.ResourcesInfoWrapper;
+import com.hubsante.model.resources.info.ResourcesEngagementWrapper;
+import com.hubsante.model.resources.status.ResourcesStatusWrapper;
+import com.hubsante.model.resources.request.ResourcesRequestWrapper;
+import com.hubsante.model.resources.response.ResourcesResponseWrapper;
+import com.hubsante.model.rpis.RpisWrapper;
+import com.hubsante.model.interventionreport.InterventionReportWrapper;
+import com.hubsante.model.documentlink.DocumentLinkWrapper;
+import com.hubsante.model.geolocation.GeoPositionsUpdateWrapper;
+import com.hubsante.model.geolocation.GeoResourcesRequestWrapper;
+import com.hubsante.model.geolocation.GeoResourcesDetailsWrapper;
+import com.hubsante.model.reference.ReferenceWrapper;
+import com.hubsante.model.report.ErrorWrapper;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -51,27 +51,27 @@ import java.util.Map;
 
 public class ContentMessageDeserializer extends JsonDeserializer<ContentMessage> {
 
-    private static final Map<String, Class> useCases = new HashMap<String, Class>() {{
+    private static final Map<String, Class> useCases = new HashMap<String, Class>() { {
+        put("technical", TechnicalWrapper.class);
+        put("technicalNoreq", TechnicalNoreqWrapper.class);
         put("createCase", CreateCaseWrapper.class);
         put("createCaseHealth", CreateCaseHealthWrapper.class);
         put("createCaseHealthUpdate", CreateCaseHealthUpdateWrapper.class);
-        put("reference", ReferenceWrapper.class);
-        put("error", ErrorWrapper.class);
         put("emsi", EmsiWrapper.class);
+        put("resourcesInfo", ResourcesInfoWrapper.class);
+        put("resourcesEngagement", ResourcesEngagementWrapper.class);
+        put("resourcesStatus", ResourcesStatusWrapper.class);
+        put("resourcesRequest", ResourcesRequestWrapper.class);
+        put("resourcesResponse", ResourcesResponseWrapper.class);
+        put("rpis", RpisWrapper.class);
+        put("interventionReport", InterventionReportWrapper.class);
+        put("documentLink", DocumentLinkWrapper.class);
         put("geoPositionsUpdate", GeoPositionsUpdateWrapper.class);
         put("geoResourcesRequest", GeoResourcesRequestWrapper.class);
         put("geoResourcesDetails", GeoResourcesDetailsWrapper.class);
-        put("resourcesInfo", ResourcesInfoWrapper.class);
-        put("resourcesRequest", ResourcesRequestWrapper.class);
-        put("resourcesResponse", ResourcesResponseWrapper.class);
-        put("resourcesStatus", ResourcesStatusWrapper.class);
-        put("rpis", RpisWrapper.class);
-        put("technical", TechnicalWrapper.class);
-        put("technicalNoreq", TechnicalNoreqWrapper.class);
-        put("documentLink", DocumentLinkWrapper.class);
-        put("resourcesEngagement", ResourcesEngagementWrapper.class);
-        put("interventionReport", InterventionReportWrapper.class);
-    }};
+        put("reference", ReferenceWrapper.class);
+        put("error", ErrorWrapper.class);
+    } };
 
     @Override
     public ContentMessage deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
