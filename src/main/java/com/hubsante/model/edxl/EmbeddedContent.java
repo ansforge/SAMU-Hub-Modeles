@@ -16,11 +16,11 @@
 package com.hubsante.model.edxl;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Objects;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class EmbeddedContent {
-
     private ContentMessage useCaseMessage;
     public EmbeddedContent() {
     }

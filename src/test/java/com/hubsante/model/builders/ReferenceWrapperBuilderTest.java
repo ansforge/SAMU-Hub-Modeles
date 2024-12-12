@@ -56,7 +56,6 @@ public class ReferenceWrapperBuilderTest {
         EdxlMessage built = new EDXL_DE_Builder(DISTRIBUTION_ID, SENDER_ID, RECIPIENT_ID)
                 .contentMessage(referenceWrapper)
                 .distributionKind(DistributionKind.ACK)
-                .model("createCase")
                 .build();
 
         assertEquals("id-67890", ((ReferenceWrapper) built.getFirstContentMessage()).getReference().getDistributionID());
