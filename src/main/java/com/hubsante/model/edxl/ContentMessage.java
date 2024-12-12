@@ -55,6 +55,7 @@ import com.hubsante.model.geolocation.GeoResourcesDetailsWrapper;
 import com.hubsante.model.reference.Reference;
 import com.hubsante.model.reference.ReferenceWrapper;
 import com.hubsante.model.report.ErrorWrapper;
+import com.hubsante.model.custom.CustomMessage;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -79,7 +80,8 @@ import java.util.stream.Stream;
         @JsonSubTypes.Type(GeoResourcesRequestWrapper.class),
         @JsonSubTypes.Type(GeoResourcesDetailsWrapper.class),
         @JsonSubTypes.Type(ReferenceWrapper.class),
-        @JsonSubTypes.Type(ErrorWrapper.class)
+        @JsonSubTypes.Type(ErrorWrapper.class),
+        @JsonSubTypes.Type(CustomMessage.class)
 })
 public class ContentMessage {
 
@@ -120,7 +122,8 @@ public class ContentMessage {
                   {"geoResourcesRequest", GeoResourcesRequest.class.getCanonicalName()},
                   {"geoResourcesDetails", GeoResourcesDetails.class.getCanonicalName()},
                   {"reference", Reference.class.getCanonicalName()},
-                  {"error", ErrorWrapper.class.getCanonicalName()}
+                  {"error", ErrorWrapper.class.getCanonicalName()},
+                  {"customContent", CustomMessage.class.getCanonicalName()}
         }).collect(Collectors.toMap(useCaseData -> useCaseData[0], useCaseData -> useCaseData[1]));
     }
 }
