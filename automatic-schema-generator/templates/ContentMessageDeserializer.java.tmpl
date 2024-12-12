@@ -25,8 +25,11 @@ import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.edxl.Descriptor;
 import com.hubsante.model.edxl.EdxlMessage;
 import com.hubsante.model.edxl.Keyword;
-{{ range (datasource "config").schemas }}{{if eq .automaticGeneration "Y"}}import com.hubsante.model.{{ .package }}.{{ .rootElement | title }}Wrapper;
-{{ end }}{{ end }}import com.hubsante.model.report.ErrorWrapper;
+{{ range (datasource "config").schemas }}{{if eq .automaticGeneration "Y" -}}
+import com.hubsante.model.{{ .package }}.{{ .rootElement | title }}Wrapper;
+{{ end }}{{ end -}}
+import com.hubsante.model.report.ErrorWrapper;
+import com.hubsante.model.custom.CustomMessage;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -36,7 +39,9 @@ public class ContentMessageDeserializer extends JsonDeserializer<ContentMessage>
 
     private static final Map<String, Class> useCases = new HashMap<String, Class>() { {
         {{ range (datasource "config").schemas }}{{if eq .automaticGeneration "Y"}}put("{{ .rootElement }}", {{ .rootElement | title }}Wrapper.class);
-        {{ end }}{{ end }}put("error", ErrorWrapper.class);
+        {{ end }}{{ end -}}
+        put("error", ErrorWrapper.class);
+        put("customContent", CustomMessage.class);
     } };
 
     @Override
