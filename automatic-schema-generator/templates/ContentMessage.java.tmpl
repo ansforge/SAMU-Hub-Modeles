@@ -24,14 +24,15 @@ import com.hubsante.model.{{ .package }}.{{ .rootElement | title }};
 import com.hubsante.model.{{ .package }}.{{ .rootElement | title }}Wrapper;
 {{ end }}{{ end -}}
 import com.hubsante.model.report.ErrorWrapper;
+import com.hubsante.model.custom.CustomMessage;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({ {{ range $i, $e := (datasource "config").schemas }}{{if eq .automaticGeneration "Y"}}
         @JsonSubTypes.Type({{ .rootElement | title }}Wrapper.class),{{end}}{{end}}
-        @JsonSubTypes.Type(ErrorWrapper.class)
+        @JsonSubTypes.Type(ErrorWrapper.class),
+        @JsonSubTypes.Type(CustomMessage.class)
 })
 public class ContentMessage {
 
@@ -55,7 +56,8 @@ public class ContentMessage {
         public static final Map<String,String> useCases = Stream.of(new String[][] {
                   {{ range $i, $e := (datasource "config").schemas }}{{if eq .automaticGeneration "Y"}}
                   {"{{ .rootElement }}", {{ .rootElement | title }}.class.getCanonicalName()},{{end}}{{end}}
-                  {"error", ErrorWrapper.class.getCanonicalName()}
+                  {"error", ErrorWrapper.class.getCanonicalName()},
+                  {"customContent", CustomMessage.class.getCanonicalName()}
         }).collect(Collectors.toMap(useCaseData -> useCaseData[0], useCaseData -> useCaseData[1]));
     }
 }
