@@ -19,7 +19,6 @@ import com.hubsante.model.edxl.*;
 
 import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 
 import static java.time.temporal.ChronoUnit.SECONDS;
 
@@ -46,8 +45,7 @@ public class EDXL_DE_Builder {
         this.distributionKind = DistributionKind.REPORT;
 
         ExplicitAddress recipientAddress = new ExplicitAddress("hubex", recipientId);
-        this.descriptor = new Descriptor("fr-FR", recipientAddress, new ArrayList<Keyword>());
-        this.descriptor.getKeyword().add(new Keyword("urn:hubsante:model",null));
+        this.descriptor = new Descriptor("fr-FR", recipientAddress);
 
         this.content = null;
     }
@@ -121,14 +119,9 @@ public class EDXL_DE_Builder {
         return this;
     }
 
-    public EDXL_DE_Builder model(String model) {
-        this.descriptor.getKeyword().stream().filter(keyword -> keyword.getValueListURI().equals("urn:hubsante:model")).findFirst().get().setValue(model);
-        return this;
-    }
-
     public EdxlMessage build() {
         if (this.distributionID == null | this.senderID == null | this.dateTimeSent == null | this.dateTimeExpires == null
-                | this.distributionStatus == null | this.distributionKind == null | this.descriptor == null | this.descriptor.getKeyword().stream().filter(keyword -> keyword.getValueListURI().equals("urn:hubsante:model")).findFirst().get().getValue() == null) {
+                | this.distributionStatus == null | this.distributionKind == null | this.descriptor == null) {
             throw new IllegalArgumentException("unprovided mandatory field(s)");
         }
         this.dateTimeSent = this.dateTimeSent.truncatedTo(SECONDS);

@@ -44,36 +44,30 @@ public class EdxlWrapperUtils {
 
     public static String wrapUseCaseMessage(String useCaseMessage) throws JsonProcessingException {
         JsonNode contentMessage = mapper.readTree(useCaseMessage);
-        // We assume the contentMessage only has one field, and then we extract its name
-        String model = contentMessage.fieldNames().next();
         contentMessage = addDistributionElementFields(contentMessage);
-        JsonNode envelope = addEnvelope(contentMessage, model);
+        JsonNode envelope = addEnvelope(contentMessage);
 
         return mapper.writeValueAsString(envelope);
     }
 
     public static String wrapUseCaseMessageWithoutDistributionElement(String useCaseMessage) throws JsonProcessingException {
         JsonNode contentMessage = mapper.readTree(useCaseMessage);
-        String model = contentMessage.fieldNames().next();
-        JsonNode envelope = addEnvelope(contentMessage, model);
+        JsonNode envelope = addEnvelope(contentMessage);
 
         return mapper.writeValueAsString(envelope);
     }
-
-    public static JsonNode addEnvelope(JsonNode jsonNode, String model) {
+    
+    public static JsonNode addEnvelope(JsonNode jsonNode) {
         OffsetDateTime sentAt = OffsetDateTime.of(LocalDateTime.parse("2023-12-15T00:00:00"), ZoneOffset.ofHours(2)).truncatedTo(ChronoUnit.SECONDS);
         OffsetDateTime expiresAt = sentAt.plusDays(1);
 
         EdxlMessage edxlMessage = new EDXL_DE_Builder("sender_123", "sender", "recipient")
                 .dateTimeSent(sentAt)
                 .dateTimeExpires(expiresAt)
-                .model(model)
                 .build();
 
         ObjectNode envelopeNode = mapper.valueToTree(edxlMessage);
-
         ((ObjectNode) envelopeNode.get("content").get(0).get("jsonContent").get("embeddedJsonContent")).put("message", jsonNode);
-
         return envelopeNode;
     }
 

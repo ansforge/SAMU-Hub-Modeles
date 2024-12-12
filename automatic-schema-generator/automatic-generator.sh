@@ -13,9 +13,6 @@ gomplate -f ./templates/schema.wrapper.generator-config.json.tmpl -d config=./sc
 # generate ContentMessage class
 gomplate -f ./templates/ContentMessage.java.tmpl -d config=./schemas.yaml -o ./output/edxl/ContentMessage.java
 
-# generate ContentMessageDeserializer class
-gomplate -f ./templates/ContentMessageDeserializer.java.tmpl -d config=./schemas.yaml -o ./output/deserializer/ContentMessageDeserializer.java
-
 # generate EDXL-DE json schema
 gomplate -f ./templates/EDXL-DE-full.schema.json.tmpl -d config=./schemas.yaml -o ./output/json-schema/EDXL-DE-full.schema.json
 

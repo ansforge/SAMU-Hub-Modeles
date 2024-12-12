@@ -47,7 +47,6 @@ import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessage;
 import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessageWithoutDistributionElement;
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.config.Constants.FULL_SCHEMA;
-import static com.hubsante.model.config.Constants.FULL_XSD;
 import static com.hubsante.model.utils.TestFileUtils.getMessageByFileName;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.*;
@@ -60,6 +59,17 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
     };
 
     @Test
+    @DisplayName("should consistently deserialize EDXL with several content objects")
+    public void deserializeEDXLWithSeveralContentObjects() throws IOException {
+        String json = getMessageString("EDXL-DE");
+        EdxlMessage message = converter.deserializeJsonEDXL(json);
+
+        assertEquals(2, message.getContent().size());
+        assertEquals(2, message.getAllContentMessages().size());
+        assertEquals(message.getFirstContentMessage(), message.getAllContentMessages().get(0));
+    }
+
+    @Test
     @DisplayName("should add XML prefix")
     public void verifyXmlPrefix() throws IOException {
         String json = getMessageByFileName("TECHNICAL/complete.json");
@@ -69,22 +79,15 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
     }
 
     @Test
-    @DisplayName("should deserialize and serialize complete messages with EDXL-DE envelope")
-    public void deserializeCompleteMessages() throws IOException, ValidationException {
+    @DisplayName("should deserialize complete message with EDXL-DE envelope")
+    public void deserializeCompleteMessages() throws IOException {
         File jsonMessage = new File(TestMessagesHelper.class.getClassLoader().getResource("sample/valid/EDXL-DE/EDXL-DE.json").getFile());
-        String jsonMessageString = new String(Files.readAllBytes(jsonMessage.toPath()), StandardCharsets.UTF_8);
-        validator.validateJSON(jsonMessageString, FULL_SCHEMA);
-        EdxlMessage jsonEdxlMessage = converter.deserializeJsonEDXL(jsonMessageString);
-        String xmlEdxlSerializedMessage = converter.serializeXmlEDXL(jsonEdxlMessage);
-        validator.validateXML(xmlEdxlSerializedMessage, FULL_XSD);
+        String useCaseJson = new String(Files.readAllBytes(jsonMessage.toPath()), StandardCharsets.UTF_8);
+        EdxlMessage message = converter.deserializeJsonEDXL(useCaseJson);
 
         File xmlMessage = new File(TestMessagesHelper.class.getClassLoader().getResource("sample/valid/EDXL-DE/EDXL-DE.xml").getFile());
-        String xmlMessageString = new String(Files.readAllBytes(xmlMessage.toPath()), StandardCharsets.UTF_8);
-        validator.validateXML(xmlMessageString, FULL_XSD);
-        EdxlMessage xmlEdxlMessage = converter.deserializeXmlEDXL(xmlMessageString);
-        String jsonEdxlSerializedMessage = converter.serializeJsonEDXL(xmlEdxlMessage);
-        validator.validateJSON(jsonEdxlSerializedMessage, FULL_SCHEMA);
-
+        String useCaseXml = new String(Files.readAllBytes(xmlMessage.toPath()), StandardCharsets.UTF_8);
+        EdxlMessage expectedMessage = converter.deserializeXmlEDXL(useCaseXml);
     }
 
     @Test

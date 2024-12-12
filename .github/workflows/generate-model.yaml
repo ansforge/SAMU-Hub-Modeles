@@ -86,7 +86,6 @@ jobs:
           rsync -a --remove-source-files output/edxl ../src/main/java/com/hubsante/model
           rsync -a --remove-source-files output/json-schema ../src/main/resources
           rsync -a --remove-source-files output/xsd ../src/main/resources
-          rsync -a --remove-source-files output/deserializer/. ../src/main/java/com/hubsante/model
 
 # TODO: Reactivate test case autogeneration
 #      - name: Run test_case_generator and move the folder test-cases to src/main/resources/sample/test-cases
