@@ -46,8 +46,7 @@
       "items": {
         "$ref": "#/definitions/ContentObject"
       },
-      "minItems": 1,
-      "maxItems": 1
+      "minItems": 1
     },
     "ContentObject": {
       "type": "object",

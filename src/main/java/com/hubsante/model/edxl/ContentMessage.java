@@ -60,7 +60,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({ 
         @JsonSubTypes.Type(TechnicalWrapper.class),
         @JsonSubTypes.Type(TechnicalNoreqWrapper.class),
