@@ -42,10 +42,7 @@ sheets = [
 
 perimeters = [{
     'name': '15-15',
-    'file': 'test-cases-15-15_1.5_v1.0'
-}, {
-    'name': '15-15',
-    'file': 'test-cases-15-15_2.0_v2.0'
+    'file': 'test-cases-15-15'
 }]
 
 
