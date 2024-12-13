@@ -6,9 +6,6 @@ on:
       - '**'
   workflow_dispatch:
 
-env:
-  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RS-RPIS RS-EDA-MAJ RS-SR RS-URL RS-ER RS-BPV TECHNICAL TECHNICAL_NOREQ"
-
 jobs:
   generate:
     runs-on: ubuntu-latest
