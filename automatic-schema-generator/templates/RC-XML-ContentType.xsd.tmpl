@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:x="urn:emergency:cisu:2.0"
+<schema xmlns:x="urn:emergency:eda:1.9"
         xmlns:xs="http://www.w3.org/2001/XMLSchema" 
         {{ range (datasource "config").schemas }}{{if and (eq .automaticGeneration "Y") .xmlns}}xmlns:{{.rootElement}}="urn:emergency:{{.xmlns}}"{{end}}
         {{end}}

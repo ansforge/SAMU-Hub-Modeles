@@ -26,6 +26,11 @@ import java.util.Objects;
 @JacksonXmlRootElement(localName = "ContentXML")
 public class ContentWrapper {
 
+    @JacksonXmlProperty(localName = "xlink:type", isAttribute = true)
+    public String getXmlns() {
+        return "resource";
+    }
+
     @JsonProperty(value = "embeddedJsonContent")
     @JacksonXmlProperty(localName = "embeddedXMLContent")
     private EmbeddedContent embeddedContent;
