@@ -3,7 +3,7 @@
     "categoryLabel":"15-15",
     "testCases":[
       {
-        "label":"Didier Morel R1",
+        "label":"Didier Morel - Rôles : Hub Santé 77 \/ Editeur 94",
         "description":"Partage de dossier simple  et partage de ressources",
         "steps":[
           {
@@ -126,7 +126,7 @@
         ]
       },
       {
-        "label":"Didier Morel R2",
+        "label":"Didier Morel - Rôles : Editeur 77 \/ Hub Santé 94",
         "description":"Partage de dossier simple  et partage de ressources",
         "steps":[
           {
@@ -247,7 +247,7 @@
         ]
       },
       {
-        "label":"Lola HALIMI R1",
+        "label":"Lola HALIMI - Rôles : Hub Santé 95 \/ Editeur 78",
         "description":"Partage de dossier simple  et partage de ressources",
         "steps":[
           {
@@ -357,7 +357,7 @@
         ]
       },
       {
-        "label":"Lola HALIMI R2",
+        "label":"Lola HALIMI - Rôles : Editeur 95 \/ Hub Santé 78",
         "description":"Partage de dossier simple  et partage de ressources",
         "steps":[
           {
@@ -465,7 +465,7 @@
         ]
       },
       {
-        "label":"Monsieur X R1",
+        "label":"Monsieur X - Hub Santé 09 \/ Editeur 31",
         "description":"Partage de dossier simple  ",
         "steps":[
           {
@@ -536,7 +536,7 @@
         ]
       },
       {
-        "label":"Monsieur X R2",
+        "label":"Monsieur X - Editeur 09 \/ Hub Santé 31",
         "description":"Partage de dossier simple  ",
         "steps":[
           {
@@ -609,7 +609,7 @@
         ]
       },
       {
-        "label":"Ouardia Boudadi R1",
+        "label":"Ouardia Boudadi - Hub Santé 95 \/ Editeur 78",
         "description":"Appel Limitrophe",
         "steps":[
           {
@@ -649,7 +649,7 @@
         ]
       },
       {
-        "label":"Ouardia Boudadi R2",
+        "label":"Ouardia Boudadi - Editeur 95 \/ Hub Santé 78",
         "description":"Appel Limitrophe",
         "steps":[
           {
@@ -689,7 +689,7 @@
         ]
       },
       {
-        "label":"Enfants NGUYEN R1",
+        "label":"Enfants NGUYEN - Hub Santé 80 \/ Editeur 76A",
         "description":"Appel Limitrophe et partage de ressources",
         "steps":[
           {
@@ -852,7 +852,7 @@
         ]
       },
       {
-        "label":"Enfants NGUYEN R2)",
+        "label":"Enfants NGUYEN - Editeur 80 \/ Hub Santé 76A",
         "description":"Appel Limitrophe et partage de ressources",
         "steps":[
           {
