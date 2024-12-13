@@ -137,17 +137,9 @@ jobs:
       - name: Generate Java classes
         working-directory: ./generator
         run: |
-          npx @openapitools/openapi-generator-cli generate -c ./config/RC-DE/RC-DE.generator-config.json --skip-validate-spec
-          npx @openapitools/openapi-generator-cli generate -c ./config/RC-DE/RC-DE.distribution-element.generator-config.json --skip-validate-spec
-          
-          IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"
-          for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
-            if [ "$SCHEMA" != "RS-EDA-MAJ" ] && [ "$SCHEMA" != "RS-ER" ]; then
-            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.generator-config.json --skip-validate-spec
-            fi
-            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.usecase.generator-config.json --skip-validate-spec
-            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.wrapper.generator-config.json --skip-validate-spec
-          done
+          # Iterate over each file in the ./config directoriy, including the entire subfolder structure
+          # and then run @openapitools/openapi-generator-cli for each file found
+          find ./config/ -type f -exec bash -c "npx @openapitools/openapi-generator-cli generate -c {} --skip-validate-spec" \;
 
       - name: Replace src/ with generated classes
         run: |
