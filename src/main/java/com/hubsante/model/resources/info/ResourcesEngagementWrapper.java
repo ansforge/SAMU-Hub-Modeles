@@ -56,7 +56,7 @@ import java.util.Objects;
 
 public class ResourcesEngagementWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:resourcesengagement";
+  String xmlns = "urn:emergency:cisu:3.0:resourcesengagement";
   public static final String JSON_PROPERTY_RESOURCES_ENGAGEMENT =
       "resourcesEngagement";
   private ResourcesEngagement resourcesEngagement;

@@ -8,7 +8,7 @@ schemas:
   rootElement: technical
   schema: TECHNICAL
   subschema: N
-  xmlns: cisu:2.0:technical
+  xmlns: cisu:3.0:technical
 - automaticGeneration: Y
   customExtendClass: ContentMessage
   customExtendPackage: com.hubsante.model.edxl
@@ -18,7 +18,7 @@ schemas:
   rootElement: technicalNoreq
   schema: TECHNICAL_NOREQ
   subschema: N
-  xmlns: cisu:2.0:technicalNoreq
+  xmlns: cisu:3.0:technicalNoreq
 - automaticGeneration: N
   customExtendClass: null
   customExtendPackage: null
@@ -38,7 +38,7 @@ schemas:
   rootElement: createCase
   schema: RC-EDA
   subschema: N
-  xmlns: eda:1.9
+  xmlns: cisu:3.0
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -48,7 +48,7 @@ schemas:
   rootElement: createCaseHealth
   schema: RS-EDA
   subschema: N
-  xmlns: cisu:2.0:createCaseHealth
+  xmlns: cisu:3.0:createCaseHealth
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -58,7 +58,7 @@ schemas:
   rootElement: createCaseHealthUpdate
   schema: RS-EDA-MAJ
   subschema: Y
-  xmlns: cisu:2.0:createCaseHealthUpdate
+  xmlns: cisu:3.0:createCaseHealthUpdate
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -68,7 +68,7 @@ schemas:
   rootElement: emsi
   schema: EMSI
   subschema: N
-  xmlns: cisu:2.0:emsi
+  xmlns: cisu:3.0:emsi
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -88,7 +88,7 @@ schemas:
   rootElement: resourcesEngagement
   schema: RS-ER
   subschema: Y
-  xmlns: cisu:2.0:resourcesengagement
+  xmlns: cisu:3.0:resourcesengagement
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -98,7 +98,7 @@ schemas:
   rootElement: resourcesStatus
   schema: RS-SR
   subschema: N
-  xmlns: cisu:2.0:resourcesstatus
+  xmlns: cisu:3.0:resourcesstatus
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -108,7 +108,7 @@ schemas:
   rootElement: resourcesRequest
   schema: RS-DR
   subschema: N
-  xmlns: cisu:2.0:resourcesrequest
+  xmlns: cisu:3.0:resourcesrequest
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -118,7 +118,7 @@ schemas:
   rootElement: resourcesResponse
   schema: RS-RR
   subschema: N
-  xmlns: cisu:2.0:resourcesresponse
+  xmlns: cisu:3.0:resourcesresponse
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -128,7 +128,7 @@ schemas:
   rootElement: rpis
   schema: RS-RPIS
   subschema: N
-  xmlns: cisu:2.0:rpis
+  xmlns: cisu:3.0:rpis
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -138,7 +138,7 @@ schemas:
   rootElement: interventionReport
   schema: RS-BPV
   subschema: N
-  xmlns: cisu:2.0:interventionreport
+  xmlns: cisu:3.0:interventionreport
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -148,7 +148,7 @@ schemas:
   rootElement: documentLink
   schema: RS-URL
   subschema: N
-  xmlns: cisu:2.0:documentlink
+  xmlns: cisu:3.0:documentlink
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -158,7 +158,7 @@ schemas:
   rootElement: geoPositionsUpdate
   schema: GEO-POS
   subschema: N
-  xmlns: cisu:2.0:geopositionsupdate
+  xmlns: cisu:3.0:geopositionsupdate
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -168,7 +168,7 @@ schemas:
   rootElement: geoResourcesRequest
   schema: GEO-REQ
   subschema: N
-  xmlns: cisu:2.0:georesourcesrequest
+  xmlns: cisu:3.0:georesourcesrequest
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -178,7 +178,7 @@ schemas:
   rootElement: geoResourcesDetails
   schema: GEO-RES
   subschema: N
-  xmlns: cisu:2.0:georesourcesdetails
+  xmlns: cisu:3.0:georesourcesdetails
 - automaticGeneration: N
   customExtendClass: null
   customExtendPackage: null
@@ -188,7 +188,7 @@ schemas:
   rootElement: error
   schema: RS-ERROR
   subschema: N
-  xmlns: cisu:2.0:error
+  xmlns: cisu:3.0
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -198,7 +198,7 @@ schemas:
   rootElement: reference
   schema: RC-REF
   subschema: N
-  xmlns: cisu:2.0:reference
+  xmlns: cisu:3.0
 - automaticGeneration: N
   customExtendClass: null
   customExtendPackage: null
@@ -208,4 +208,4 @@ schemas:
   rootElement: customContent
   schema: customContent
   subschema: N
-  xmlns: cisu:2.0
+  xmlns: cisu:3.0
