@@ -47,109 +47,27 @@ def run(perimeters):
             test_case["description"] = test_case_df.iloc[3, 5]
             # Create steps array in test_case object
             test_case["steps"] = []
-            # Create empty array with length 5 and object that we'll use to store the potential JSON files for the
-            # 'receive' steps
-            receive_jsons = [{} for i in range(5)]
-            # Holds current step data
-            current_step = {}
-            # Holds current step type overrides
-            type_override_map = {}
             # The beginning of each test case step is marked by the type of the step in the column A, and the
             # end either by the beginning of another step or by the last row in the sheet, containing value 'End'
             for index, row in test_case_inner_df.iterrows():
                 # 'End' marks the end of the test case
                 if row["Pas de test"] == "End":
-                    # If the last step is of 'receive' type, we generate the JSON file for it
-                    if get_type(current_step["Pas de test"]) == "receive":
-                        generate_step_json(perimeter, test_case, current_step, receive_jsons)
                     break
-                # Else if the value is nan, we check if the row represents a 'required' value by checking the V column
+                # Else if the value is nan
                 elif pd.isna(row["Pas de test"]):
-                    # As we iterate over the step, we generate a json object using the ["path JSON"] field, which
-                    # contains a JSONPath string (such as $.createCaseHealth.caseId) and the value of ["JDD n"] column,
-                    # where n is the number of the JDD column (1, 2 or 3) and then we add the object to the array
-                    # of json objects that we'll use to generate n JSON files for the 'receive' steps
-                    for i in range(1,5):
-                        if pd.notna(row[f"JDD {i}"]):
-                            # We split the JSONPath string by '.' and iterate over the keys to create the JSON object,
-                            # dropping the initial '$.' element and creating arrays when the key has a bracketed number
-                            # (such as $.createCaseHealth.patient[0].id)
-                            path = row["path JSON"].split('.')
-                            current = receive_jsons[i-1]
-                            # We iterate over the split path (dropping the $)
-                            for j in range(1, len(path) - 1):
-                                # Presence of '[' indicates an array
-                                if path[j].find('[') != -1:
-                                    # We split on '[' and ']' to get the key and the index
-                                    key = path[j].split('[')[0]
-                                    index = int(path[j].split('[')[1].split(']')[0])
-                                    # If the key is not in the current object, we add it as an empty array
-                                    if key not in current:
-                                        current[key] = []
-                                    # If the index is greater than the length of the array, we add empty objects to the
-                                    # array until the index is reached
-                                    if len(current[key]) <= index:
-                                        current[key].append({})
-                                    # We grab the property at the index and set it as the current object
-                                    current = current[key][index]
-                                else:
-                                    # For properties that are not arrays, we simply add the key to the current object if it
-                                    # is not already present
-                                    if path[j] not in current:
-                                        current[path[j]] = {}
-                                    # We set the current object to the object at the path
-                                    current = current[path[j]]
-                                # We add the value to the last key in the path if we're at the end of the path
-                                if j == len(path) - 2:
-                                    if path[-1] in type_override_map:
-                                        current[path[-1]] = locate(transform_type(type_override_map[path[-1]]))(row[f"JDD {i}"])
-                                    else:
-                                        current[path[-1]] = str(row[f"JDD {i}"])
+                    test_case["steps"][-1]["ignoredProperties"].append(row["Path"])
 
-                    # If the value is not empty, we add it to the required values array of the last step, specifying
-                    # the number in the "verificationLevel" property
-                    if pd.notna(row["V"]):
-                        try:
-                            values = []
-                            for i in range(5):
-                                if pd.notna(row[f"JDD {i + 1}"]):
-                                    values.append(row[f"JDD {i + 1}"])
-
-                            required_value = {
-                                "path": row["path JSON"],
-                                "value": values,
-                                "verificationLevel": int(row["V"]),
-                            }
-                            test_case["steps"][-1]["message"]["requiredValues"].append(required_value)
-                        except ValueError:
-                            print(
-                                f"Error: Invalid verification level in test case {test_case['label']}, row {index + 1}")
-
-                # Else, if the value is not nan, we add a new step to the test case. If the type of the step is
-                # "receive", we also add the property "file" containing a string with the name of the template
-                # file lrm is going to use to generate the message
+                # Else, if the value is not nan 
                 else:
-                    if len(current_step.keys()) > 0 and get_type(current_step["Pas de test"]) == "receive":
-                        generate_step_json(perimeter, test_case, current_step, receive_json)
                     test_case["steps"].append({
-                        "type": get_type(row["Pas de test"]),
-                        "label": row["Pas de test"] + " " + row["Modèle"],
+                        "id" : row["Pas de test"],
+                        "type": get_type(row["Sens"]),
+                        "label": row["Sens"] + " " + row["Modèle"],
                         "description": row["Description"],
-                        "message": {
-                            "requiredValues": [],
-                        }
+                        "file": normalize_path(row["JSON exemple"]),
+                        "model": row["Modèle"],
+                        "ignoredProperties": []
                     })
-                    # For 'receive' steps, we generate a json file using all the values of the step (even unmarked
-                    # ones, through the usage of receive_json object) and save it to the path
-                    # ./out/test-cases/[perimeter_name]/[test_case_name]/[step_name].json
-                    if get_type(row["Pas de test"]) == "receive":
-                        test_case["steps"][-1]["message"][
-                            "file"] =  normalize_path(f'{perimeter["name"]}/{test_case["label"]}/{len(test_case["steps"])}-{row["Pas de test"]} {row["Modèle"]}.json')
-                        # We populate the type_override_map object with the type overrides for the current step
-                        type_override_map = generate_type_override_map(row)
-                    # We update current set and empty the receive_json object
-                    current_step = row
-                    receive_json = {}
 
             # Add the test case object to the perimeter object
             perimeter_object["testCases"].append(test_case)
@@ -157,24 +75,12 @@ def run(perimeters):
         test_cases.append(perimeter_object)
     # Convert object to json
     # We use pandas to convert the array to json, as it handles the conversion of NaN values to null
-    test_cases_json = pd.DataFrame(test_cases).to_json(orient='records', indent=4, force_ascii=False)
+    test_cases_json = pd.DataFrame(test_cases).to_json(orient='records', indent=2, force_ascii=False)
     # Save the test cases array to a json file, overwriting the previous file
     with open(f'./out/test_cases.json', 'w', encoding='utf-8') as file:
         file.write(test_cases_json)
     print('Test cases generated.')
     return test_cases
-
-
-def generate_step_json(perimeter, test_case, row, receive_jsons):
-    # Create the JSON files for the step
-    if not os.path.exists(normalize_path(f'./out/test-cases/{perimeter["name"]}/{test_case["label"]}')):
-        os.makedirs(normalize_path(f'./out/test-cases/{perimeter["name"]}/{test_case["label"]}'))
-    for i in range(len(receive_jsons)):
-        if receive_jsons[i] != {}:  # We only generate the JSON file if there are values in the object
-            with open(
-                    normalize_path(f'./out/test-cases/{perimeter["name"]}/{test_case["label"]}/{len(test_case["steps"])}-{row["Pas de test"]} {row["Modèle"]} JDD{i + 1}.json'),
-                    'w', encoding='utf-8') as outfile:
-                json.dump(receive_jsons[i], outfile, indent=4, ensure_ascii=False)
 
 def normalize_path(text):
     # We normalize the path to remove any accents and replace spaces with underscores
