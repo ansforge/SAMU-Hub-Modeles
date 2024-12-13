@@ -137,8 +137,12 @@ jobs:
       - name: Generate Java classes
         working-directory: ./generator
         run: |
-          # Iterate over each file in the ./config directoriy, including the entire subfolder structure
-          # and then run @openapitools/openapi-generator-cli for each file found
+          # Iterate over each file in the ./config directory, including the entire subfolder structure
+          # and then run @openapitools/openapi-generator-cli generate for each file found
+          # Important notice:          
+          # Results of the find command are sorted in an alphabetic order before being passed to xargs
+          # This means that since the order of class generation is important, it's necessary to maintain an adequately 
+          # named file structure in the ./config directory
           find ./config/ -type f | sort -n | xargs -i npx @openapitools/openapi-generator-cli generate -c {} --skip-validate-spec
           
       - name: Replace src/ with generated classes
