@@ -1,0 +1,23 @@
+{
+  "inputSpec": "./input/RS-RR.openapi.yaml",
+  "outputDir": "classes/",
+  "generatorName": "java",
+  "templateDir": "templates/useCase/",
+  "globalProperties": {
+    "models": "resourcesResponse",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "library": "native",
+    "modelPackage": "com.hubsante.model.resources.response",
+    "serializationLibrary": "jackson",
+    "openApiNullable": true,
+    "supportUrlQuery": false,
+    "xmlns": "cisu:2.0:resourcesresponse",
+    "enablePostProcessFile": true
+  }
+}
