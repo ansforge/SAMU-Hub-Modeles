@@ -20,6 +20,1006 @@
               "$.createCaseHealth.initialAlert.caller.callerContact.type",
               "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
               "$.createCaseHealth.initialAlert.caller.callbackContact.type",
+              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.role",
+              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].idObs",
+              "$.createCaseHealth.medicalNote[1].operator.role",
+              "$.createCaseHealth.medicalNote[1].idPat",
+              "$.createCaseHealth.medicalNote[1].idObs"
+            ]
+          },
+          {
+            "id": "01b",
+            "type": "receive",
+            "label": "Réception RS-RI",
+            "description": "Engagement VSAV et VLM SMUR ",
+            "file": "RS-RI_partageDossier_DidierMorel.01b.json",
+            "model": "RS-RI",
+            "ignoredProperties": [
+              "$.resourcesInfo.caseId",
+              "$.resourcesInfo.mobilizedResource[0].resourceId",
+              "$.resourcesInfo.mobilizedResource[0].orgId",
+              "$.resourcesInfo.mobilizedResource[1].resourceId",
+              "$.resourcesInfo.mobilizedResource[1].orgId"
+            ]
+          },
+          {
+            "id": "02",
+            "type": "receive",
+            "label": "Réception RS-EDA-MAJ",
+            "description": "Malaise de l’épouse : ajout d’un patient au dossier",
+            "file": "RS-EDA-MAJ_partageDossier_DidierMorel.02.json",
+            "model": "RS-EDA-MAJ",
+            "ignoredProperties": [
+              "$.createCaseHealthUpdate.caseId",
+              "$.createCaseHealthUpdate.medicalNote[0].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[0].idPat",
+              "$.createCaseHealthUpdate.medicalNote[0].idObs",
+              "$.createCaseHealthUpdate.patient[0].idPat"
+            ]
+          },
+          {
+            "id": "03a",
+            "type": "receive",
+            "label": "Réception RS-SR",
+            "description": "Le VSAV 77 est arrivé sur les lieux",
+            "file": "RS-SR_partageDossier_DidierMorel.03a.json",
+            "model": "RS-SR",
+            "ignoredProperties": [
+              "$.resourcesStatus.caseId",
+              "$.resourcesStatus.resourceId"
+            ]
+          },
+          {
+            "id": "03b",
+            "type": "receive",
+            "label": "Réception RS-SR",
+            "description": "Le SMUR 77 est arrivé sur les lieux et a commencé la prise en charge",
+            "file": "RS-SR_partageDossier_DidierMorel.03b.json",
+            "model": "RS-SR",
+            "ignoredProperties": [
+              "$.resourcesStatus.caseId",
+              "$.resourcesStatus.resourceId"
+            ]
+          },
+          {
+            "id": "04a",
+            "type": "receive",
+            "label": "Réception RS-DR",
+            "description": "Demande HeliSMUR 94 pour transfert Didier Morel au centre Urgence Mains, Nogent-sur-Marne (94) ",
+            "file": "RS-DR_partageRessources_DidierMorel.04a.json",
+            "model": "RS-DR",
+            "ignoredProperties": [
+              "$.resourcesRequest.caseId",
+              "$.resourcesRequest.request.requestId"
+            ]
+          },
+          {
+            "id": "04b",
+            "type": "send",
+            "label": "Envoi RS-RR",
+            "description": "Réponse du SAMU 94, demande acceptée",
+            "file": "RS-RR_partageRessources_DidierMorel.04b.json",
+            "model": "RS-RR",
+            "ignoredProperties": [
+              "$.resourcesResponse.caseId",
+              "$.resourcesResponse.requestId"
+            ]
+          },
+          {
+            "id": "04c",
+            "type": "send",
+            "label": "Envoi RS-RI",
+            "description": "Engagement de l’HéliSMUR 94 en réponse à la demande du 77.",
+            "file": "RS-RI_partageRessources_DidierMorel.04c.json",
+            "model": "RS-RI",
+            "ignoredProperties": [
+              "$.resourcesInfo.caseId",
+              "$.resourcesInfo.mobilizedResource[0].resourceId",
+              "$.resourcesInfo.mobilizedResource[0].orgId",
+              "$.resourcesInfo.mobilizedResource[0].requestId",
+              "$.resourcesInfo.mobilizedResource[0].name",
+              "$.resourcesInfo.mobilizedResource[0].team.name"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Didier Morel R2",
+        "description": "Partage de dossier simple  et partage de ressources",
+        "steps": [
+          {
+            "id": "01a",
+            "type": "send",
+            "label": "Envoi RS-EDA",
+            "description": "Appel reçu par le SAMU 77 : partage en anticipation besoin en chirurgie de la main (94)",
+            "file": "RS-EDA_partageDossier_DidierMorel.01a.json",
+            "model": "RS-EDA",
+            "ignoredProperties": [
+              "$.createCaseHealth.caseId",
+              "$.createCaseHealth.senderCaseId",
+              "$.createCaseHealth.initialAlert.caller.callerContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callerContact.type",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.type",
+              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.role",
+              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].idObs",
+              "$.createCaseHealth.medicalNote[1].operator.role",
+              "$.createCaseHealth.medicalNote[1].idPat",
+              "$.createCaseHealth.medicalNote[1].idObs"
+            ]
+          },
+          {
+            "id": "01b",
+            "type": "send",
+            "label": "Envoi RS-RI",
+            "description": "Engagement VSAV et VLM SMUR ",
+            "file": "RS-RI_partageDossier_DidierMorel.01b.json",
+            "model": "RS-RI",
+            "ignoredProperties": [
+              "$.resourcesInfo.caseId",
+              "$.resourcesInfo.mobilizedResource[0].resourceId",
+              "$.resourcesInfo.mobilizedResource[0].orgId",
+              "$.resourcesInfo.mobilizedResource[1].resourceId",
+              "$.resourcesInfo.mobilizedResource[1].orgId"
+            ]
+          },
+          {
+            "id": "02",
+            "type": "send",
+            "label": "Envoi RS-EDA-MAJ",
+            "description": "Malaise de l’épouse : ajout d’un patient au dossier",
+            "file": "RS-EDA-MAJ_partageDossier_DidierMorel.02.json",
+            "model": "RS-EDA-MAJ",
+            "ignoredProperties": [
+              "$.createCaseHealthUpdate.caseId",
+              "$.createCaseHealthUpdate.medicalNote[0].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[0].idPat",
+              "$.createCaseHealthUpdate.medicalNote[0].idObs",
+              "$.createCaseHealthUpdate.patient[0].idPat"
+            ]
+          },
+          {
+            "id": "03a",
+            "type": "send",
+            "label": "Envoi RS-SR",
+            "description": "Le VSAV 77 est arrivé sur les lieux",
+            "file": "RS-SR_partageDossier_DidierMorel.03a.json",
+            "model": "RS-SR",
+            "ignoredProperties": [
+              "$.resourcesStatus.caseId",
+              "$.resourcesStatus.resourceId"
+            ]
+          },
+          {
+            "id": "03b",
+            "type": "send",
+            "label": "Envoi RS-SR",
+            "description": "Le SMUR 77 est arrivé sur les lieux et a commencé la prise en charge",
+            "file": "RS-SR_partageDossier_DidierMorel.03b.json",
+            "model": "RS-SR",
+            "ignoredProperties": [
+              "$.resourcesStatus.caseId",
+              "$.resourcesStatus.resourceId"
+            ]
+          },
+          {
+            "id": "04a",
+            "type": "send",
+            "label": "Envoi RS-DR",
+            "description": "Demande HeliSMUR 94 pour transfert Didier Morel au centre Urgence Mains, Nogent-sur-Marne (94) ",
+            "file": "RS-DR_partageRessources_DidierMorel.04a.json",
+            "model": "RS-DR",
+            "ignoredProperties": [
+              "$.resourcesRequest.caseId",
+              "$.resourcesRequest.request.requestId"
+            ]
+          },
+          {
+            "id": "04b",
+            "type": "receive",
+            "label": "Réception RS-RR",
+            "description": "Réponse du SAMU 94, demande acceptée",
+            "file": "RS-RR_partageRessources_DidierMorel.04b.json",
+            "model": "RS-RR",
+            "ignoredProperties": [
+              "$.resourcesResponse.requestId",
+              "$.resourcesResponse.caseId"
+            ]
+          },
+          {
+            "id": "04c",
+            "type": "receive",
+            "label": "Réception RS-RI",
+            "description": "Engagement de l’HéliSMUR 94 en réponse à la demande du 77.",
+            "file": "RS-RI_partageRessources_DidierMorel.04c.json",
+            "model": "RS-RI",
+            "ignoredProperties": [
+              "$.resourcesInfo.mobilizedResource[0].requestId",
+              "$.resourcesInfo.caseId",
+              "$.resourcesInfo.mobilizedResource[0].resourceId",
+              "$.resourcesInfo.mobilizedResource[0].orgId"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Lola HALIMI R1",
+        "description": "Partage de dossier simple  et partage de ressources",
+        "steps": [
+          {
+            "id": "01a",
+            "type": "receive",
+            "label": "Réception RS-EDA",
+            "description": "Appel reçu par le SAMU 95 : situation ressources tendue",
+            "file": "RS-EDA_partageDossier_LolaHalimi.01a.json",
+            "model": "RS-EDA",
+            "ignoredProperties": [
+              "$.createCaseHealth.caseId",
+              "$.createCaseHealth.initialAlert.caller.callerContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callerContact.type",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.type",
+              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.role",
+              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].idObs",
+              "$.createCaseHealth.medicalNote[1].operator.role",
+              "$.createCaseHealth.medicalNote[1].idPat",
+              "$.createCaseHealth.medicalNote[1].idObs",
+              "$.createCaseHealth.medicalNote[2].operator.role",
+              "$.createCaseHealth.medicalNote[2].idPat",
+              "$.createCaseHealth.medicalNote[2].idObs"
+            ]
+          },
+          {
+            "id": "01b",
+            "type": "receive",
+            "label": "Réception RS-RI",
+            "description": "Engagement VSAV",
+            "file": "RS-RI_partageDossier_LolaHalimi.01b.json",
+            "model": "RS-RI",
+            "ignoredProperties": [
+              "$.resourcesInfo.caseId",
+              "$.resourcesInfo.mobilizedResource[0].resourceId",
+              "$.resourcesInfo.mobilizedResource[0].orgId"
+            ]
+          },
+          {
+            "id": "02",
+            "type": "receive",
+            "label": "Réception RS-EDA-MAJ",
+            "description": "Dégradation du patient détectée à la RM nécessitant l’envoi d’un SMUR",
+            "file": "RS-EDA-MAJ_partageDossier_LolaHalimi.02.json",
+            "model": "RS-EDA-MAJ",
+            "ignoredProperties": [
+              "$.createCaseHealthUpdate.caseId",
+              "$.createCaseHealthUpdate.medicalNote[0].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[0].idPat",
+              "$.createCaseHealthUpdate.medicalNote[0].idObs"
+            ]
+          },
+          {
+            "id": "03a",
+            "type": "receive",
+            "label": "Réception RS-DR",
+            "description": "Demande de ressources au 78, pas de SMUR disponible côté 95.",
+            "file": "RS-DR_partageRessources_LolaHalimi.03a.json",
+            "model": "RS-DR",
+            "ignoredProperties": [
+              "$.resourcesRequest.caseId",
+              "$.resourcesRequest.request.requestId"
+            ]
+          },
+          {
+            "id": "03b",
+            "type": "send",
+            "label": "Envoi RS-RR",
+            "description": "Réponse du SAMU 78, demande acceptée",
+            "file": "RS-RR_partageRessources_LolaHalimi.03b.json",
+            "model": "RS-RR",
+            "ignoredProperties": [
+              "$.resourcesResponse.caseId",
+              "$.resourcesResponse.requestId"
+            ]
+          },
+          {
+            "id": "03c",
+            "type": "send",
+            "label": "Envoi RS-RI",
+            "description": "Engagement du SMUR78  en réponse à la demande du 95",
+            "file": "RS-RI_partageRessources_LolaHalimi.03c.json",
+            "model": "RS-RI",
+            "ignoredProperties": [
+              "$.resourcesInfo.caseId",
+              "$.resourcesInfo.mobilizedResource[0].resourceId",
+              "$.resourcesInfo.mobilizedResource[0].orgId",
+              "$.resourcesInfo.mobilizedResource[0].requestId",
+              "$.resourcesInfo.mobilizedResource[0].name",
+              "$.resourcesInfo.mobilizedResource[0].team.name"
+            ]
+          },
+          {
+            "id": "04",
+            "type": "send",
+            "label": "Envoi RS-SR",
+            "description": "Le SMUR 78 quitte la base.",
+            "file": "RS-SR_partageRessources_LolaHalimi.04.json",
+            "model": "RS-SR",
+            "ignoredProperties": [
+              "$.resourcesStatus.caseId",
+              "$.resourcesStatus.resourceId"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Lola HALIMI R2",
+        "description": "Partage de dossier simple  et partage de ressources",
+        "steps": [
+          {
+            "id": "01a",
+            "type": "send",
+            "label": "Envoi RS-EDA",
+            "description": "Appel reçu par le SAMU 95 : situation ressources tendue",
+            "file": "RS-EDA_partageDossier_LolaHalimi.01a.json",
+            "model": "RS-EDA",
+            "ignoredProperties": [
+              "$.createCaseHealth.caseId",
+              "$.createCaseHealth.initialAlert.caller.callerContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callerContact.type",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.type",
+              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.role",
+              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].idObs",
+              "$.createCaseHealth.medicalNote[1].operator.role",
+              "$.createCaseHealth.medicalNote[1].idPat",
+              "$.createCaseHealth.medicalNote[1].idObs",
+              "$.createCaseHealth.medicalNote[2].operator.role",
+              "$.createCaseHealth.medicalNote[2].idPat",
+              "$.createCaseHealth.medicalNote[2].idObs"
+            ]
+          },
+          {
+            "id": "01b",
+            "type": "send",
+            "label": "Envoi RS-RI",
+            "description": "Engagement VSAV",
+            "file": "RS-RI_partageDossier_LolaHalimi.01b.json",
+            "model": "RS-RI",
+            "ignoredProperties": [
+              "$.resourcesInfo.caseId",
+              "$.resourcesInfo.mobilizedResource[0].resourceId",
+              "$.resourcesInfo.mobilizedResource[0].orgId"
+            ]
+          },
+          {
+            "id": "02",
+            "type": "send",
+            "label": "Envoi RS-EDA-MAJ",
+            "description": "Dégradation du patient détectée à la RM nécessitant l’envoi d’un SMUR",
+            "file": "RS-EDA-MAJ_partageDossier_LolaHalimi.02.json",
+            "model": "RS-EDA-MAJ",
+            "ignoredProperties": [
+              "$.createCaseHealthUpdate.caseId",
+              "$.createCaseHealthUpdate.medicalNote[0].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[0].idPat",
+              "$.createCaseHealthUpdate.medicalNote[0].idObs"
+            ]
+          },
+          {
+            "id": "03a",
+            "type": "send",
+            "label": "Envoi RS-DR",
+            "description": "Demande de ressources au 78, pas de SMUR disponible côté 95.",
+            "file": "RS-DR_partageRessources_LolaHalimi.03a.json",
+            "model": "RS-DR",
+            "ignoredProperties": [
+              "$.resourcesRequest.caseId",
+              "$.resourcesRequest.request.requestId"
+            ]
+          },
+          {
+            "id": "03b",
+            "type": "receive",
+            "label": "Réception RS-RR",
+            "description": "Réponse du SAMU 78, demande acceptée",
+            "file": "RS-RR_partageRessources_LolaHalimi.03b.json",
+            "model": "RS-RR",
+            "ignoredProperties": [
+              "$.resourcesResponse.requestId",
+              "$.resourcesResponse.caseId"
+            ]
+          },
+          {
+            "id": "03c",
+            "type": "receive",
+            "label": "Réception RS-RI",
+            "description": "Engagement du SMUR78  en réponse à la demande du 95",
+            "file": "RS-RI_partageRessources_LolaHalimi.03c.json",
+            "model": "RS-RI",
+            "ignoredProperties": [
+              "$.resourcesInfo.mobilizedResource[0].requestId",
+              "$.resourcesInfo.caseId",
+              "$.resourcesInfo.mobilizedResource[0].resourceId",
+              "$.resourcesInfo.mobilizedResource[0].orgId"
+            ]
+          },
+          {
+            "id": "04",
+            "type": "receive",
+            "label": "Réception RS-SR",
+            "description": "Le SMUR 78 quitte la base.",
+            "file": "RS-SR_partageRessources_LolaHalimi.04.json",
+            "model": "RS-SR",
+            "ignoredProperties": [
+              "$.resourcesStatus.caseId",
+              "$.resourcesStatus.resourceId"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Monsieur X R1",
+        "description": "Partage de dossier simple  ",
+        "steps": [
+          {
+            "id": "01",
+            "type": "receive",
+            "label": "Réception RS-EDA",
+            "description": "Appel reçu par le SAMU 09 : partage au 31",
+            "file": "RS-EDA_partageDossier_MonsieurX.01.json",
+            "model": "RS-EDA",
+            "ignoredProperties": [
+              "$.createCaseHealth.caseId",
+              "$.createCaseHealth.initialAlert.caller.callerContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callerContact.type",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.type",
+              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.role",
+              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].idObs"
+            ]
+          },
+          {
+            "id": "02a",
+            "type": "receive",
+            "label": "Réception RS-EDA-MAJ",
+            "description": "Régulation médicale : mise à jour des notes médicales",
+            "file": "RS-EDA-MAJ_partageDossier_MonsieurX.02a.json",
+            "model": "RS-EDA-MAJ",
+            "ignoredProperties": [
+              "$.createCaseHealthUpdate.caseId",
+              "$.createCaseHealthUpdate.medicalNote[0].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[0].idPat",
+              "$.createCaseHealthUpdate.medicalNote[0].idObs",
+              "$.createCaseHealthUpdate.medicalNote[1].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[1].idPat",
+              "$.createCaseHealthUpdate.medicalNote[1].idObs",
+              "$.createCaseHealthUpdate.patient[0].idPat"
+            ]
+          },
+          {
+            "id": "02b",
+            "type": "receive",
+            "label": "Réception RS-EDA-MAJ",
+            "description": "Régulation médicale : ajout décision",
+            "file": "RS-EDA-MAJ_partageDossier_MonsieurX.02b.json",
+            "model": "RS-EDA-MAJ",
+            "ignoredProperties": [
+              "$.createCaseHealthUpdate.caseId",
+              "$.createCaseHealthUpdate.decision[0].operator.role",
+              "$.createCaseHealthUpdate.decision[0].idPat"
+            ]
+          },
+          {
+            "id": "03",
+            "type": "receive",
+            "label": "Réception RS-RI",
+            "description": "Engagement ambulance privée",
+            "file": "RS-RI_partageRessources_MonsieurX.03.json",
+            "model": "RS-RI",
+            "ignoredProperties": [
+              "$.resourcesInfo.caseId",
+              "$.resourcesInfo.mobilizedResource[0].resourceId",
+              "$.resourcesInfo.mobilizedResource[0].orgId",
+              "$.resourcesInfo.mobilizedResource[0].missionId",
+              "$.resourcesInfo.mobilizedResource[0]contact.type"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Monsieur X R2",
+        "description": "Partage de dossier simple  ",
+        "steps": [
+          {
+            "id": "01",
+            "type": "send",
+            "label": "Envoi RS-EDA",
+            "description": "Appel reçu par le SAMU 09 : partage au 31",
+            "file": "RS-EDA_partageDossier_MonsieurX.01.json",
+            "model": "RS-EDA",
+            "ignoredProperties": [
+              "$.createCaseHealth.caseId",
+              "$.createCaseHealth.initialAlert.caller.callerContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callerContact.type",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.type",
+              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.role",
+              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].idObs"
+            ]
+          },
+          {
+            "id": "02a",
+            "type": "send",
+            "label": "Envoi RS-EDA-MAJ",
+            "description": "Régulation médicale : mise à jour des notes médicales",
+            "file": "RS-EDA-MAJ_partageDossier_MonsieurX.02a.json",
+            "model": "RS-EDA-MAJ",
+            "ignoredProperties": [
+              "$.createCaseHealthUpdate.caseId",
+              "$.createCaseHealthUpdate.medicalNote[0].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[0].idPat",
+              "$.createCaseHealthUpdate.medicalNote[0].idObs",
+              "$.createCaseHealthUpdate.medicalNote[1].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[1].idPat",
+              "$.createCaseHealthUpdate.medicalNote[1].idObs",
+              "$.createCaseHealthUpdate.patient[0].idPat"
+            ]
+          },
+          {
+            "id": "02b",
+            "type": "send",
+            "label": "Envoi RS-EDA-MAJ",
+            "description": "Régulation médicale : ajout décision",
+            "file": "RS-EDA-MAJ_partageDossier_MonsieurX.02b.json",
+            "model": "RS-EDA-MAJ",
+            "ignoredProperties": [
+              "$.createCaseHealthUpdate.caseId",
+              "$.createCaseHealthUpdate.decision[0].operator.role",
+              "$.createCaseHealthUpdate.decision[0].idPat"
+            ]
+          },
+          {
+            "id": "03",
+            "type": "send",
+            "label": "Envoi RS-RI",
+            "description": "Engagement ambulance privée",
+            "file": "RS-RI_partageRessources_MonsieurX.03.json",
+            "model": "RS-RI",
+            "ignoredProperties": [
+              "$.resourcesInfo.caseId",
+              "$.resourcesInfo.mobilizedResource[0].resourceId",
+              "$.resourcesInfo.mobilizedResource[0].orgId",
+              "$.resourcesInfo.mobilizedResource[0].missionId",
+              "$.resourcesInfo.mobilizedResource[0]contact.type",
+              "$.resourcesInfo.mobilizedResource[0].name",
+              "$.resourcesInfo.mobilizedResource[0].team.name"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Ouardia Boudadi R1",
+        "description": "Appel Limitrophe",
+        "steps": [
+          {
+            "id": "01",
+            "type": "receive",
+            "label": "Réception RS-EDA",
+            "description": "Appel reçu par le SAMU 95 : partage au 78 car détection d’appel limitrophe",
+            "file": "RS-EDA_partageDossier_OuardiaBoudadi.01.json",
+            "model": "RS-EDA",
+            "ignoredProperties": [
+              "$.createCaseHealth.caseId",
+              "$.createCaseHealth.senderCaseId",
+              "$.createCaseHealth.initialAlert.caller.callerContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callerContact.type",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.type",
+              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.role",
+              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].idObs"
+            ]
+          },
+          {
+            "id": "02",
+            "type": "receive",
+            "label": "Réception RS-EDA-MAJ",
+            "description": "Transfert d’appel terminé et prise en charge côté 78.",
+            "file": "RS-EDA-MAJ_priseEnCharge_OuardiaBoudadi.02.json",
+            "model": "RS-EDA-MAJ",
+            "ignoredProperties": ["$.createCaseHealthUpdate.caseId"],
+            "idOverrideProperties": ["$.createCaseHealthUpdate.owner"]
+          }
+        ]
+      },
+      {
+        "label": "Ouardia Boudadi R2",
+        "description": "Appel Limitrophe",
+        "steps": [
+          {
+            "id": "01",
+            "type": "send",
+            "label": "Envoi RS-EDA",
+            "description": "Appel reçu par le SAMU 95 : partage au 78 car détection d’appel limitrophe",
+            "file": "RS-EDA_partageDossier_OuardiaBoudadi.01.json",
+            "model": "RS-EDA",
+            "ignoredProperties": [
+              "$.createCaseHealth.caseId",
+              "$.createCaseHealth.senderCaseId",
+              "$.createCaseHealth.initialAlert.caller.callerContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callerContact.type",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.type",
+              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.role",
+              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].idObs"
+            ]
+          },
+          {
+            "id": "02",
+            "type": "send",
+            "label": "Envoi RS-EDA-MAJ",
+            "description": "Transfert d’appel terminé et prise en charge côté 78.",
+            "file": "RS-EDA-MAJ_priseEnCharge_OuardiaBoudadi.02.json",
+            "model": "RS-EDA-MAJ",
+            "ignoredProperties": ["$.createCaseHealthUpdate.caseId"],
+            "idOverrideProperties": ["$.createCaseHealthUpdate.owner"]
+          }
+        ]
+      },
+      {
+        "label": "Enfants NGUYEN R1",
+        "description": "Appel Limitrophe et partage de ressources",
+        "steps": [
+          {
+            "id": "01",
+            "type": "receive",
+            "label": "Réception RS-EDA",
+            "description": "Appel reçu par le SAMU 80 : partage au 76A car détection d’appel limitrophe",
+            "file": "RS-EDA_partageDossier_EnfantsNguyen.01.json",
+            "model": "RS-EDA",
+            "ignoredProperties": [
+              "$.createCaseHealth.caseId",
+              "$.createCaseHealth.senderCaseId",
+              "$.createCaseHealth.initialAlert.caller.callerContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callerContact.type",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.type",
+              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.patient[1].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.role",
+              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].idObs",
+              "$.createCaseHealth.medicalNote[1].operator.role",
+              "$.createCaseHealth.medicalNote[1].idPat",
+              "$.createCaseHealth.medicalNote[1].idObs"
+            ]
+          },
+          {
+            "id": "02",
+            "type": "receive",
+            "label": "Réception RS-EDA-MAJ",
+            "description": "Transfert d’appel terminé et prise en charge côté 76A",
+            "file": "RS-EDA-MAJ_priseEnCharge_EnfantsNguyen.02.json",
+            "model": "RS-EDA-MAJ",
+            "ignoredProperties": ["$.createCaseHealthUpdate.caseId"],
+            "idOverrideProperties": ["$.createCaseHealthUpdate.owner"]
+          },
+          {
+            "id": "03a",
+            "type": "send",
+            "label": "Envoi RS-EDA-MAJ",
+            "description": "Régulation médicale : possible hémorragie interne",
+            "file": "RS-EDA-MAJ_partageDossier_EnfantsNguyen.03a.json",
+            "model": "RS-EDA-MAJ",
+            "ignoredProperties": [
+              "$.createCaseHealthUpdate.caseId",
+              "$.createCaseHealthUpdate.medicalNote[0].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[0].idPat",
+              "$.createCaseHealthUpdate.medicalNote[0].idObs",
+              "$.createCaseHealthUpdate.medicalNote[1].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[1].idPat",
+              "$.createCaseHealthUpdate.medicalNote[1].idObs",
+              "$.createCaseHealthUpdate.medicalNote[2].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[2].idPat",
+              "$.createCaseHealthUpdate.medicalNote[2].idObs",
+              "$.createCaseHealthUpdate.medicalNote[3].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[3].idPat",
+              "$.createCaseHealthUpdate.medicalNote[3].idObs",
+              "$.createCaseHealthUpdate.medicalNote[4].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[4].idPat",
+              "$.createCaseHealthUpdate.medicalNote[4].idObs",
+              "$.createCaseHealthUpdate.patient[0].idPat",
+              "$.createCaseHealthUpdate.patient[1].idPat"
+            ]
+          },
+          {
+            "id": "03b",
+            "type": "send",
+            "label": "Envoi RS-RI",
+            "description": "Engagement VSAV + SMUR 76A",
+            "file": "RS-RI_partageDossier_EnfantsNguyen.03b.json",
+            "model": "RS-RI",
+            "ignoredProperties": [
+              "$.resourcesInfo.caseId",
+              "$.resourcesInfo.mobilizedResource[0].contact.type",
+              "$.resourcesInfo.mobilizedResource[0].resourceId",
+              "$.resourcesInfo.mobilizedResource[0].orgId",
+              "$.resourcesInfo.mobilizedResource[1].contact.type",
+              "$.resourcesInfo.mobilizedResource[1].resourceId",
+              "$.resourcesInfo.mobilizedResource[1].orgId"
+            ]
+          },
+          {
+            "id": "04a",
+            "type": "send",
+            "label": "Envoi RS-DR",
+            "description": "Demande SMUR pédiatrique supplémentaire pour prendre en charge les 2 enfants ",
+            "file": "RS-DR_partageRessources_EnfantsNguyen.04a.json",
+            "model": "RS-DR",
+            "ignoredProperties": [
+              "$.resourcesRequest.caseId",
+              "$.resourcesRequest.request.requestId"
+            ]
+          },
+          {
+            "id": "04b",
+            "type": "receive",
+            "label": "Réception RS-RR",
+            "description": "Réponse du SAMU 78, demande acceptée partiellement. Possible uniquement dans 10min",
+            "file": "RS-RR_partageRessources_EnfantsNguyen.04b.json",
+            "model": "RS-RR",
+            "ignoredProperties": [
+              "$.resourcesResponse.requestId",
+              "$.resourcesResponse.caseId"
+            ]
+          },
+          {
+            "id": "04c",
+            "type": "receive",
+            "label": "Réception RS-RI",
+            "description": "Engagement de l’HéliSMUR 80  en réponse à la demande du 76A.",
+            "file": "RS-RI_partageRessources_EnfantsNguyen.04c.json",
+            "model": "RS-RI",
+            "ignoredProperties": [
+              "$.resourcesInfo.mobilizedResource[0].requestId",
+              "$.resourcesInfo.caseId",
+              "$.resourcesInfo.mobilizedResource[0].resourceId",
+              "$.resourcesInfo.mobilizedResource[0].orgId"
+            ]
+          },
+          {
+            "id": "05a",
+            "type": "send",
+            "label": "Envoi RS-SR",
+            "description": "Départ du SMUR 76A vers le lieu de l’intervention après la fin de son intervention précédente.",
+            "file": "RS-SR_partageRessources_EnfantsNguyen.05a.json",
+            "model": "RS-SR",
+            "ignoredProperties": [
+              "$.resourcesStatus.caseId",
+              "$.resourcesStatus.resourceId"
+            ]
+          },
+          {
+            "id": "05b",
+            "type": "send",
+            "label": "Envoi RS-SR",
+            "description": "Arrivée du VSAV 76A sur le lieu de l’intervention",
+            "file": "RS-SR_partageRessources_EnfantsNguyen.05b.json",
+            "model": "RS-SR",
+            "ignoredProperties": [
+              "$.resourcesStatus.caseId",
+              "$.resourcesStatus.resourceId"
+            ]
+          },
+          {
+            "id": "05c",
+            "type": "receive",
+            "label": "Réception RS-SR",
+            "description": ": Arrivée Helismur 80 sur le lieu de l’intervention",
+            "file": "RS-SR_partageRessources_EnfantsNguyen.05c.json",
+            "model": "RS-SR",
+            "ignoredProperties": [
+              "$.resourcesStatus.caseId",
+              "$.resourcesStatus.resourceId"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Enfants NGUYEN R2)",
+        "description": "Appel Limitrophe et partage de ressources",
+        "steps": [
+          {
+            "id": "01",
+            "type": "send",
+            "label": "Envoi RS-EDA",
+            "description": "Appel reçu par le SAMU 80 : partage au 76A car détection d’appel limitrophe",
+            "file": "RS-EDA_partageDossier_EnfantsNguyen.01.json",
+            "model": "RS-EDA",
+            "ignoredProperties": [
+              "$.createCaseHealth.caseId",
+              "$.createCaseHealth.senderCaseId",
+              "$.createCaseHealth.initialAlert.caller.callerContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callerContact.type",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.type",
+              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.patient[1].idPat",
+              "$.createCaseHealth.medicalNote[0].operator.role",
+              "$.createCaseHealth.medicalNote[0].idPat",
+              "$.createCaseHealth.medicalNote[0].idObs",
+              "$.createCaseHealth.medicalNote[1].operator.role",
+              "$.createCaseHealth.medicalNote[1].idPat",
+              "$.createCaseHealth.medicalNote[1].idObs"
+            ]
+          },
+          {
+            "id": "02",
+            "type": "send",
+            "label": "Envoi RS-EDA-MAJ",
+            "description": "Transfert d’appel terminé et prise en charge côté 76A",
+            "file": "RS-EDA-MAJ_priseEnCharge_EnfantsNguyen.02.json",
+            "model": "RS-EDA-MAJ",
+            "ignoredProperties": ["$.createCaseHealthUpdate.caseId"]
+          },
+          {
+            "id": "03a",
+            "type": "receive",
+            "label": "Réception RS-EDA-MAJ",
+            "description": "Régulation médicale : possible hémorragie interne",
+            "file": "RS-EDA-MAJ_partageDossier_EnfantsNguyen.03a.json",
+            "model": "RS-EDA-MAJ",
+            "ignoredProperties": [
+              "$.createCaseHealthUpdate.caseId",
+              "$.createCaseHealthUpdate.medicalNote[0].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[0].idPat",
+              "$.createCaseHealthUpdate.medicalNote[0].idObs",
+              "$.createCaseHealthUpdate.medicalNote[1].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[1].idPat",
+              "$.createCaseHealthUpdate.medicalNote[1].idObs",
+              "$.createCaseHealthUpdate.medicalNote[2].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[2].idPat",
+              "$.createCaseHealthUpdate.medicalNote[2].idObs",
+              "$.createCaseHealthUpdate.medicalNote[3].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[3].idPat",
+              "$.createCaseHealthUpdate.medicalNote[3].idObs",
+              "$.createCaseHealthUpdate.medicalNote[4].operator.role",
+              "$.createCaseHealthUpdate.medicalNote[4].idPat",
+              "$.createCaseHealthUpdate.medicalNote[4].idObs",
+              "$.createCaseHealthUpdate.patient[0].idPat",
+              "$.createCaseHealthUpdate.patient[1].idPat"
+            ]
+          },
+          {
+            "id": "03b",
+            "type": "receive",
+            "label": "Réception RS-RI",
+            "description": "Engagement VSAV + SMUR 76A",
+            "file": "RS-RI_partageDossier_EnfantsNguyen.03b.json",
+            "model": "RS-RI",
+            "ignoredProperties": [
+              "$.resourcesInfo.caseId",
+              "$.resourcesInfo.mobilizedResource[0].contact.type",
+              "$.resourcesInfo.mobilizedResource[0].resourceId",
+              "$.resourcesInfo.mobilizedResource[0].orgId",
+              "$.resourcesInfo.mobilizedResource[1].contact.type",
+              "$.resourcesInfo.mobilizedResource[1].resourceId",
+              "$.resourcesInfo.mobilizedResource[1].orgId"
+            ]
+          },
+          {
+            "id": "04a",
+            "type": "receive",
+            "label": "Réception RS-DR",
+            "description": "Demande SMUR pédiatrique supplémentaire pour prendre en charge les 2 enfants ",
+            "file": "RS-DR_partageRessources_EnfantsNguyen.04a.json",
+            "model": "RS-DR",
+            "ignoredProperties": [
+              "$.resourcesRequest.caseId",
+              "$.resourcesRequest.request.requestId"
+            ]
+          },
+          {
+            "id": "04b",
+            "type": "send",
+            "label": "Envoi RS-RR",
+            "description": "Réponse du SAMU 78, demande acceptée partiellement. Possible uniquement dans 10min",
+            "file": "RS-RR_partageRessources_EnfantsNguyen.04b.json",
+            "model": "RS-RR",
+            "ignoredProperties": [
+              "$.resourcesResponse.requestId",
+              "$.resourcesResponse.caseId"
+            ]
+          },
+          {
+            "id": "04c",
+            "type": "send",
+            "label": "Envoi RS-RI",
+            "description": "Engagement de l’HéliSMUR 80  en réponse à la demande du 76A.",
+            "file": "RS-RI_partageRessources_EnfantsNguyen.04c.json",
+            "model": "RS-RI",
+            "ignoredProperties": [
+              "$.resourcesInfo.mobilizedResource[0].requestId",
+              "$.resourcesInfo.caseId",
+              "$.resourcesInfo.mobilizedResource[0].resourceId",
+              "$.resourcesInfo.mobilizedResource[0].orgId"
+            ]
+          },
+          {
+            "id": "05a",
+            "type": "receive",
+            "label": "Réception RS-SR",
+            "description": "Départ du SMUR 76A vers le lieu de l’intervention après la fin de son intervention précédente.",
+            "file": "RS-SR_partageRessources_EnfantsNguyen.05a.json",
+            "model": "RS-SR",
+            "ignoredProperties": [
+              "$.resourcesStatus.caseId",
+              "$.resourcesStatus.resourceId"
+            ]
+          },
+          {
+            "id": "05b",
+            "type": "receive",
+            "label": "Réception RS-SR",
+            "description": "Arrivée du VSAV 76A sur le lieu de l’intervention",
+            "file": "RS-SR_partageRessources_EnfantsNguyen.05b.json",
+            "model": "RS-SR",
+            "ignoredProperties": [
+              "$.resourcesStatus.caseId",
+              "$.resourcesStatus.resourceId"
+            ]
+          },
+          {
+            "id": "05c",
+            "type": "send",
+            "label": "Envoi RS-SR",
+            "description": ": Arrivée Helismur 80 sur le lieu de l’intervention",
+            "file": "RS-SR_partageRessources_EnfantsNguyen.05c.json",
+            "model": "RS-SR",
+            "ignoredProperties": [
+              "$.resourcesStatus.caseId",
+              "$.resourcesStatus.resourceId"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "categoryLabel": "15-15",
+    "testCases": [
+      {
+        "label": "Didier Morel R1",
+        "description": "Partage de dossier simple  et partage de ressources",
+        "steps": [
+          {
+            "id": "01a",
+            "type": "receive",
+            "label": "Réception RS-EDA",
+            "description": "Appel reçu par le SAMU 77 : partage en anticipation besoin en chirurgie de la main (94)",
+            "file": "RS-EDA_partageDossier_DidierMorel.01a.json",
+            "model": "RS-EDA",
+            "ignoredProperties": [
+              "$.createCaseHealth.caseId",
+              "$.createCaseHealth.senderCaseId",
+              "$.createCaseHealth.initialAlert.caller.callerContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callerContact.type",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
+              "$.createCaseHealth.initialAlert.caller.callbackContact.type",
               "$.createCaseHealth.patient[0].patientId",
               "$.createCaseHealth.medicalNote[0].operator.role",
               "$.createCaseHealth.medicalNote[0].patientId",

@@ -21,7 +21,7 @@ def run(perimeters):
     # Iterate over each perimeter
     for perimeter in perimeters:
         # Load the test cases excel file
-        test_cases_df = pd.read_excel(f'./{perimeter["file"]}.xlsx', header=None, sheet_name=None)
+        test_cases_df = pd.read_excel(f'./test-case-sources/{perimeter["file"]}.xlsx', header=None, sheet_name=None)
 
         # Create an object with the perimeter name in the json
         perimeter_object = {
@@ -34,7 +34,7 @@ def run(perimeters):
             # Create test case object
             test_case = {}
             # Read only the useful rows from the excel. Test case starts at row 8 (headers) and ends at the last row
-            test_case_inner_df = pd.read_excel(f'./{perimeter["file"]}.xlsx', sheet_name=sheet, skiprows=7, dtype=str)
+            test_case_inner_df = pd.read_excel(f'./test-case-sources/{perimeter["file"]}.xlsx', sheet_name=sheet, skiprows=7, dtype=str)
             r_type = sheet.split(" ")[-1]
             # Test case name is located in the cell F3
             test_case["label"] = f"{test_case_df.iloc[2, 5]} {r_type}"
