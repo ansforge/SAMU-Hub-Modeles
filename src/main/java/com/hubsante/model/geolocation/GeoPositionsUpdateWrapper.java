@@ -35,7 +35,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.geolocation.GeoPositionsUpdate;
-import com.hubsante.model.rcde.DistributionElement;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -44,19 +43,11 @@ import java.util.Objects;
  * GeoPositionsUpdateWrapper
  */
 @JsonPropertyOrder(
-    {DistributionElement.JSON_PROPERTY_MESSAGE_ID,
-     DistributionElement.JSON_PROPERTY_SENDER,
-     DistributionElement.JSON_PROPERTY_SENT_AT,
-     DistributionElement.JSON_PROPERTY_KIND,
-     DistributionElement.JSON_PROPERTY_STATUS,
-     DistributionElement.JSON_PROPERTY_RECIPIENT,
-     GeoPositionsUpdateWrapper.JSON_PROPERTY_GEO_POSITIONS_UPDATE})
+    {GeoPositionsUpdateWrapper.JSON_PROPERTY_GEO_POSITIONS_UPDATE})
 @JsonTypeName("geoPositionsUpdateWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoPositionsUpdateWrapper extends DistributionElement {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0";
+public class GeoPositionsUpdateWrapper {
   public static final String JSON_PROPERTY_GEO_POSITIONS_UPDATE =
       "geoPositionsUpdate";
   private GeoPositionsUpdate geoPositionsUpdate;
@@ -75,14 +66,14 @@ public class GeoPositionsUpdateWrapper extends DistributionElement {
    * @return geoPositionsUpdate
    **/
   @JsonProperty(JSON_PROPERTY_GEO_POSITIONS_UPDATE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public GeoPositionsUpdate getGeoPositionsUpdate() {
     return geoPositionsUpdate;
   }
 
   @JsonProperty(JSON_PROPERTY_GEO_POSITIONS_UPDATE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGeoPositionsUpdate(GeoPositionsUpdate geoPositionsUpdate) {
     this.geoPositionsUpdate = geoPositionsUpdate;
   }
@@ -98,20 +89,18 @@ public class GeoPositionsUpdateWrapper extends DistributionElement {
     GeoPositionsUpdateWrapper geoPositionsUpdateWrapper =
         (GeoPositionsUpdateWrapper)o;
     return Objects.equals(this.geoPositionsUpdate,
-                          geoPositionsUpdateWrapper.geoPositionsUpdate) &&
-        super.equals(o);
+                          geoPositionsUpdateWrapper.geoPositionsUpdate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(geoPositionsUpdate, super.hashCode());
+    return Objects.hash(geoPositionsUpdate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GeoPositionsUpdateWrapper {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    geoPositionsUpdate: ")
         .append(toIndentedString(geoPositionsUpdate))
         .append("\n");

@@ -49,8 +49,6 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class GeoResourcesDetails {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:georesourcesdetails";
   public static final String JSON_PROPERTY_RESOURCE = "resource";
   private List<Resource> resource;
 

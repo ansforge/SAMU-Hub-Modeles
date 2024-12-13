@@ -35,7 +35,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.CreateCase;
-import com.hubsante.model.rcde.DistributionElement;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -43,19 +42,11 @@ import java.util.Objects;
 /**
  * CreateCaseWrapper
  */
-@JsonPropertyOrder({DistributionElement.JSON_PROPERTY_MESSAGE_ID,
-                    DistributionElement.JSON_PROPERTY_SENDER,
-                    DistributionElement.JSON_PROPERTY_SENT_AT,
-                    DistributionElement.JSON_PROPERTY_KIND,
-                    DistributionElement.JSON_PROPERTY_STATUS,
-                    DistributionElement.JSON_PROPERTY_RECIPIENT,
-                    CreateCaseWrapper.JSON_PROPERTY_CREATE_CASE})
+@JsonPropertyOrder({CreateCaseWrapper.JSON_PROPERTY_CREATE_CASE})
 @JsonTypeName("createCaseWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class CreateCaseWrapper extends DistributionElement {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0";
+public class CreateCaseWrapper {
   public static final String JSON_PROPERTY_CREATE_CASE = "createCase";
   private CreateCase createCase;
 
@@ -72,14 +63,14 @@ public class CreateCaseWrapper extends DistributionElement {
    * @return createCase
    **/
   @JsonProperty(JSON_PROPERTY_CREATE_CASE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public CreateCase getCreateCase() {
     return createCase;
   }
 
   @JsonProperty(JSON_PROPERTY_CREATE_CASE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreateCase(CreateCase createCase) {
     this.createCase = createCase;
   }
@@ -93,20 +84,18 @@ public class CreateCaseWrapper extends DistributionElement {
       return false;
     }
     CreateCaseWrapper createCaseWrapper = (CreateCaseWrapper)o;
-    return Objects.equals(this.createCase, createCaseWrapper.createCase) &&
-        super.equals(o);
+    return Objects.equals(this.createCase, createCaseWrapper.createCase);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createCase, super.hashCode());
+    return Objects.hash(createCase);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCaseWrapper {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    createCase: ")
         .append(toIndentedString(createCase))
         .append("\n");

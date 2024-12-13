@@ -60,8 +60,6 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class CreateCase {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:eda:1.9";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 
@@ -114,14 +112,14 @@ public class CreateCase {
    * @return caseId
    **/
   @JsonProperty(JSON_PROPERTY_CASE_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getCaseId() {
     return caseId;
   }
 
   @JsonProperty(JSON_PROPERTY_CASE_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCaseId(String caseId) {
     this.caseId = caseId;
   }
@@ -167,14 +165,14 @@ public class CreateCase {
    * @return creation
    **/
   @JsonProperty(JSON_PROPERTY_CREATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getCreation() {
     return creation;
   }
 
   @JsonProperty(JSON_PROPERTY_CREATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreation(OffsetDateTime creation) {
     this.creation = creation;
   }
@@ -192,14 +190,14 @@ public class CreateCase {
    * @return referenceVersion
    **/
   @JsonProperty(JSON_PROPERTY_REFERENCE_VERSION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getReferenceVersion() {
     return referenceVersion;
   }
 
   @JsonProperty(JSON_PROPERTY_REFERENCE_VERSION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReferenceVersion(String referenceVersion) {
     this.referenceVersion = referenceVersion;
   }
@@ -215,14 +213,14 @@ public class CreateCase {
    * @return qualification
    **/
   @JsonProperty(JSON_PROPERTY_QUALIFICATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Qualification getQualification() {
     return qualification;
   }
 
   @JsonProperty(JSON_PROPERTY_QUALIFICATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setQualification(Qualification qualification) {
     this.qualification = qualification;
   }
@@ -238,14 +236,14 @@ public class CreateCase {
    * @return location
    **/
   @JsonProperty(JSON_PROPERTY_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Location getLocation() {
     return location;
   }
 
   @JsonProperty(JSON_PROPERTY_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLocation(Location location) {
     this.location = location;
   }

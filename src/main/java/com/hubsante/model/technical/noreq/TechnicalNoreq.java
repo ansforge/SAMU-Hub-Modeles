@@ -66,8 +66,6 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class TechnicalNoreq {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:technicalNoreq";
   public static final String JSON_PROPERTY_OPTIONAL_STRING_FIELD =
       "optionalStringField";
   private String optionalStringField;
