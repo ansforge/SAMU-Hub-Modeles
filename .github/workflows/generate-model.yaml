@@ -79,6 +79,7 @@ jobs:
           rm -r output || true
           chmod +x ./automatic-generator.sh
           ./automatic-generator.sh
+          rm -r ../generator/config/generated || true
           rsync -a --remove-source-files output/generator ..
           rsync -a --remove-source-files output/edxl ../src/main/java/com/hubsante/model
           rsync -a --remove-source-files output/json-schema ../src/main/resources
