@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:x="urn:emergency:cisu:2.0"
+<schema xmlns:x="urn:emergency:eda:1.9"
         xmlns:xs="http://www.w3.org/2001/XMLSchema" 
         xmlns:technical="urn:emergency:cisu:2.0:technical"
         xmlns:technicalNoreq="urn:emergency:cisu:2.0:technicalNoreq"
@@ -21,6 +21,7 @@
         xmlns:geoResourcesDetails="urn:emergency:cisu:2.0:georesourcesdetails"
         
         xmlns:reference="urn:emergency:cisu:2.0:reference"
+        
         
         xmlns:error="urn:emergency:cisu:2.0:error"
         elementFormDefault="qualified"
