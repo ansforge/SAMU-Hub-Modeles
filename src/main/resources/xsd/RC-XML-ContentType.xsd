@@ -13,7 +13,7 @@
         xmlns:createCaseHealth="urn:emergency:cisu:3.0:createCaseHealth"
         xmlns:createCaseHealthUpdate="urn:emergency:cisu:3.0:createCaseHealthUpdate"
         xmlns:emsi="urn:emergency:cisu:3.0:emsi"
-        xmlns:resourcesInfo="urn:emergency:cisu:2.0:resourcesinfo"
+        xmlns:resourcesInfo="urn:emergency:cisu:3.0:resourcesinfo"
         xmlns:resourcesEngagement="urn:emergency:cisu:3.0:resourcesengagement"
         xmlns:resourcesStatus="urn:emergency:cisu:3.0:resourcesstatus"
         xmlns:resourcesRequest="urn:emergency:cisu:3.0:resourcesrequest"
@@ -41,7 +41,7 @@
     <xs:import namespace="urn:emergency:cisu:3.0:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:3.0:createCaseHealthUpdate" schemaLocation="RS-EDA-MAJ.xsd"/>
     <xs:import namespace="urn:emergency:cisu:3.0:emsi" schemaLocation="EMSI.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:resourcesinfo" schemaLocation="RS-RI.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:3.0:resourcesinfo" schemaLocation="RS-RI.xsd"/>
     <xs:import namespace="urn:emergency:cisu:3.0:resourcesengagement" schemaLocation="RS-ER.xsd"/>
     <xs:import namespace="urn:emergency:cisu:3.0:resourcesstatus" schemaLocation="RS-SR.xsd"/>
     <xs:import namespace="urn:emergency:cisu:3.0:resourcesrequest" schemaLocation="RS-DR.xsd"/>
