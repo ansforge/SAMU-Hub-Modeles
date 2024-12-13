@@ -6,7 +6,6 @@ from pydoc import locate
 
 import pandas as pd
 import warnings
-import math
 from json import dumps
 
 # Improving panda printing | Ref.: https://stackoverflow.com/a/11711637
