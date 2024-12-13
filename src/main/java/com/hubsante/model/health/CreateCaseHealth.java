@@ -68,6 +68,8 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class CreateCaseHealth {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0:createCaseHealth";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 
@@ -207,14 +209,14 @@ public class CreateCaseHealth {
    * @return caseId
    **/
   @JsonProperty(JSON_PROPERTY_CASE_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getCaseId() {
     return caseId;
   }
 
   @JsonProperty(JSON_PROPERTY_CASE_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCaseId(String caseId) {
     this.caseId = caseId;
   }
@@ -260,14 +262,14 @@ public class CreateCaseHealth {
    * @return creation
    **/
   @JsonProperty(JSON_PROPERTY_CREATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public OffsetDateTime getCreation() {
     return creation;
   }
 
   @JsonProperty(JSON_PROPERTY_CREATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCreation(OffsetDateTime creation) {
     this.creation = creation;
   }
@@ -332,14 +334,14 @@ public class CreateCaseHealth {
    * @return qualification
    **/
   @JsonProperty(JSON_PROPERTY_QUALIFICATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public Qualification getQualification() {
     return qualification;
   }
 
   @JsonProperty(JSON_PROPERTY_QUALIFICATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setQualification(Qualification qualification) {
     this.qualification = qualification;
   }
@@ -355,14 +357,14 @@ public class CreateCaseHealth {
    * @return location
    **/
   @JsonProperty(JSON_PROPERTY_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public Location getLocation() {
     return location;
   }
 
   @JsonProperty(JSON_PROPERTY_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setLocation(Location location) {
     this.location = location;
   }
@@ -403,14 +405,14 @@ public class CreateCaseHealth {
    * @return owner
    **/
   @JsonProperty(JSON_PROPERTY_OWNER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getOwner() {
     return owner;
   }
 
   @JsonProperty(JSON_PROPERTY_OWNER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setOwner(String owner) {
     this.owner = owner;
   }

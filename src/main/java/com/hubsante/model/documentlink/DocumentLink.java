@@ -51,6 +51,8 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class DocumentLink {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0:documentlink";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 
@@ -83,14 +85,14 @@ public class DocumentLink {
    * @return caseId
    **/
   @JsonProperty(JSON_PROPERTY_CASE_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getCaseId() {
     return caseId;
   }
 
   @JsonProperty(JSON_PROPERTY_CASE_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCaseId(String caseId) {
     this.caseId = caseId;
   }
@@ -163,7 +165,7 @@ public class DocumentLink {
    * @return document
    **/
   @JsonProperty(JSON_PROPERTY_DOCUMENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public List<Document> getDocument() {
     return document;
@@ -172,7 +174,7 @@ public class DocumentLink {
   @JacksonXmlElementWrapper(useWrapping = false)
 
   @JsonProperty(JSON_PROPERTY_DOCUMENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDocument(List<Document> document) {
     if (document == null) {
       return;

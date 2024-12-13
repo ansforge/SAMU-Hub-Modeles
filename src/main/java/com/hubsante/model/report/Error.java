@@ -52,6 +52,8 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Error {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0:error";
   public static final String JSON_PROPERTY_ERROR_CODE = "errorCode";
   private ErrorCode errorCode;
 
@@ -78,14 +80,14 @@ public class Error {
    * @return errorCode
    **/
   @JsonProperty(JSON_PROPERTY_ERROR_CODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public ErrorCode getErrorCode() {
     return errorCode;
   }
 
   @JsonProperty(JSON_PROPERTY_ERROR_CODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setErrorCode(ErrorCode errorCode) {
     this.errorCode = errorCode;
   }
@@ -101,14 +103,14 @@ public class Error {
    * @return errorCause
    **/
   @JsonProperty(JSON_PROPERTY_ERROR_CAUSE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getErrorCause() {
     return errorCause;
   }
 
   @JsonProperty(JSON_PROPERTY_ERROR_CAUSE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setErrorCause(String errorCause) {
     this.errorCause = errorCause;
   }
@@ -132,15 +134,19 @@ public class Error {
    * @return sourceMessage
    **/
   @JsonProperty(JSON_PROPERTY_SOURCE_MESSAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS,
+               value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Map<String, Object> getSourceMessage() {
+  public Map<String, Object>
+  getSourceMessage() {
     return sourceMessage;
   }
 
   @JsonProperty(JSON_PROPERTY_SOURCE_MESSAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSourceMessage(Map<String, Object> sourceMessage) {
+  @JsonInclude(content = JsonInclude.Include.ALWAYS,
+               value = JsonInclude.Include.USE_DEFAULTS)
+  public void
+  setSourceMessage(Map<String, Object> sourceMessage) {
     this.sourceMessage = sourceMessage;
   }
 
@@ -155,14 +161,14 @@ public class Error {
    * @return referencedDistributionID
    **/
   @JsonProperty(JSON_PROPERTY_REFERENCED_DISTRIBUTION_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getReferencedDistributionID() {
     return referencedDistributionID;
   }
 
   @JsonProperty(JSON_PROPERTY_REFERENCED_DISTRIBUTION_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setReferencedDistributionID(String referencedDistributionID) {
     this.referencedDistributionID = referencedDistributionID;
   }

@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.technical.noreq.TechnicalNoreq;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -46,7 +47,9 @@ import java.util.Objects;
 @JsonTypeName("technicalNoreqWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class TechnicalNoreqWrapper {
+public class TechnicalNoreqWrapper extends ContentMessage {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0";
   public static final String JSON_PROPERTY_TECHNICAL_NOREQ = "technicalNoreq";
   private TechnicalNoreq technicalNoreq;
 
@@ -63,14 +66,14 @@ public class TechnicalNoreqWrapper {
    * @return technicalNoreq
    **/
   @JsonProperty(JSON_PROPERTY_TECHNICAL_NOREQ)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public TechnicalNoreq getTechnicalNoreq() {
     return technicalNoreq;
   }
 
   @JsonProperty(JSON_PROPERTY_TECHNICAL_NOREQ)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTechnicalNoreq(TechnicalNoreq technicalNoreq) {
     this.technicalNoreq = technicalNoreq;
   }
@@ -85,18 +88,20 @@ public class TechnicalNoreqWrapper {
     }
     TechnicalNoreqWrapper technicalNoreqWrapper = (TechnicalNoreqWrapper)o;
     return Objects.equals(this.technicalNoreq,
-                          technicalNoreqWrapper.technicalNoreq);
+                          technicalNoreqWrapper.technicalNoreq) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(technicalNoreq);
+    return Objects.hash(technicalNoreq, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TechnicalNoreqWrapper {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    technicalNoreq: ")
         .append(toIndentedString(technicalNoreq))
         .append("\n");

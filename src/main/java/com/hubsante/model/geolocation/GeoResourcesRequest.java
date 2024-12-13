@@ -48,6 +48,8 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class GeoResourcesRequest {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0:georesourcesrequest";
   public static final String JSON_PROPERTY_RESOURCE_ID = "resourceId";
   private List<String> resourceId = new ArrayList<>();
 
@@ -72,7 +74,7 @@ public class GeoResourcesRequest {
    * @return resourceId
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public List<String> getResourceId() {
     return resourceId;
@@ -81,7 +83,7 @@ public class GeoResourcesRequest {
   @JacksonXmlElementWrapper(useWrapping = false)
 
   @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setResourceId(List<String> resourceId) {
     if (resourceId == null) {
       return;

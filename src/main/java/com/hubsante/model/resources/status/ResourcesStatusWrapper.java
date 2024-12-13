@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.rcde.DistributionElement;
 import com.hubsante.model.resources.status.ResourcesStatus;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -42,11 +43,19 @@ import java.util.Objects;
 /**
  * ResourcesStatusWrapper
  */
-@JsonPropertyOrder({ResourcesStatusWrapper.JSON_PROPERTY_RESOURCES_STATUS})
+@JsonPropertyOrder({DistributionElement.JSON_PROPERTY_MESSAGE_ID,
+                    DistributionElement.JSON_PROPERTY_SENDER,
+                    DistributionElement.JSON_PROPERTY_SENT_AT,
+                    DistributionElement.JSON_PROPERTY_KIND,
+                    DistributionElement.JSON_PROPERTY_STATUS,
+                    DistributionElement.JSON_PROPERTY_RECIPIENT,
+                    ResourcesStatusWrapper.JSON_PROPERTY_RESOURCES_STATUS})
 @JsonTypeName("resourcesStatusWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ResourcesStatusWrapper {
+public class ResourcesStatusWrapper extends DistributionElement {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0";
   public static final String JSON_PROPERTY_RESOURCES_STATUS = "resourcesStatus";
   private ResourcesStatus resourcesStatus;
 
@@ -64,14 +73,14 @@ public class ResourcesStatusWrapper {
    * @return resourcesStatus
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCES_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public ResourcesStatus getResourcesStatus() {
     return resourcesStatus;
   }
 
   @JsonProperty(JSON_PROPERTY_RESOURCES_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setResourcesStatus(ResourcesStatus resourcesStatus) {
     this.resourcesStatus = resourcesStatus;
   }
@@ -86,18 +95,20 @@ public class ResourcesStatusWrapper {
     }
     ResourcesStatusWrapper resourcesStatusWrapper = (ResourcesStatusWrapper)o;
     return Objects.equals(this.resourcesStatus,
-                          resourcesStatusWrapper.resourcesStatus);
+                          resourcesStatusWrapper.resourcesStatus) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resourcesStatus);
+    return Objects.hash(resourcesStatus, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ResourcesStatusWrapper {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    resourcesStatus: ")
         .append(toIndentedString(resourcesStatus))
         .append("\n");

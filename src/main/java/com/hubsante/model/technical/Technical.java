@@ -67,6 +67,8 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Technical {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0:technical";
   public static final String JSON_PROPERTY_REQUIRED_STRING_FIELD =
       "requiredStringField";
   private String requiredStringField;
@@ -252,14 +254,14 @@ public class Technical {
    * @return requiredStringField
    **/
   @JsonProperty(JSON_PROPERTY_REQUIRED_STRING_FIELD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getRequiredStringField() {
     return requiredStringField;
   }
 
   @JsonProperty(JSON_PROPERTY_REQUIRED_STRING_FIELD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setRequiredStringField(String requiredStringField) {
     this.requiredStringField = requiredStringField;
   }
@@ -500,7 +502,7 @@ public class Technical {
    * @return requiredArray
    **/
   @JsonProperty(JSON_PROPERTY_REQUIRED_ARRAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public List<String> getRequiredArray() {
     return requiredArray;
@@ -509,7 +511,7 @@ public class Technical {
   @JacksonXmlElementWrapper(useWrapping = false)
 
   @JsonProperty(JSON_PROPERTY_REQUIRED_ARRAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setRequiredArray(List<String> requiredArray) {
     if (requiredArray == null) {
       return;
