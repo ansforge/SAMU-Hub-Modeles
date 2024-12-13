@@ -139,8 +139,8 @@ jobs:
         run: |
           # Iterate over each file in the ./config directoriy, including the entire subfolder structure
           # and then run @openapitools/openapi-generator-cli for each file found
-          find ./config/ -type f -exec bash -c "npx @openapitools/openapi-generator-cli generate -c {} --skip-validate-spec" \;
-
+          find ./config/ -type f | sort -n | xargs -i npx @openapitools/openapi-generator-cli generate -c {} --skip-validate-spec
+          
       - name: Replace src/ with generated classes
         run: |
           rm -r ./src/main/java/com/hubsante/model/rcde || true
