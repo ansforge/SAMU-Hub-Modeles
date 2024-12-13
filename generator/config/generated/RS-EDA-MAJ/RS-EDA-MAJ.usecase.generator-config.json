@@ -1,0 +1,23 @@
+{
+  "inputSpec": "./input/RS-EDA-MAJ.openapi.yaml",
+  "outputDir": "classes/",
+  "generatorName": "java",
+  "templateDir": "templates/useCase/",
+  "globalProperties": {
+    "models": "createCaseHealthUpdate",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "library": "native",
+    "modelPackage": "com.hubsante.model.health",
+    "serializationLibrary": "jackson",
+    "openApiNullable": true,
+    "supportUrlQuery": false,
+    "xmlns": "cisu:2.0:createCaseHealthUpdate",
+    "enablePostProcessFile": true
+  }
+}
