@@ -78,7 +78,7 @@ schemas:
   rootElement: resourcesInfo
   schema: RS-RI
   subschema: N
-  xmlns: cisu:2.0:resourcesinfo
+  xmlns: cisu:3.0:resourcesinfo
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
