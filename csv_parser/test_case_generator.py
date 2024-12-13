@@ -1,12 +1,7 @@
-import json
-import os
-import collections.abc as collections
 import unicodedata
-from pydoc import locate
 
 import pandas as pd
 import warnings
-from json import dumps
 
 # Improving panda printing | Ref.: https://stackoverflow.com/a/11711637
 pd.set_option('display.max_rows', 500)
@@ -49,13 +44,19 @@ def run(perimeters):
             test_case["steps"] = []
             # The beginning of each test case step is marked by the type of the step in the column A, and the
             # end either by the beginning of another step or by the last row in the sheet, containing value 'End'
-            for index, row in test_case_inner_df.iterrows():
+            for _, row in test_case_inner_df.iterrows():
                 # 'End' marks the end of the test case
                 if row["Pas de test"] == "End":
                     break
                 # Else if the value is nan
                 elif pd.isna(row["Pas de test"]):
-                    test_case["steps"][-1]["ignoredProperties"].append(row["Path"])
+                    if row["Sur"] == "X":
+                        if test_case["steps"][-1].get("idOverrideProperties") == None:
+                            test_case["steps"][-1]["idOverrideProperties"] = [row["Path"]]
+                        else:
+                            test_case["steps"][-1]["idOverrideProperties"].append(row["Path"])
+                    else:
+                        test_case["steps"][-1]["ignoredProperties"].append(row["Path"])
 
                 # Else, if the value is not nan 
                 else:
@@ -91,38 +92,3 @@ def get_type(type_in_french):
         return "send"
     elif type_in_french == "Réception":
         return "receive"
-
-
-def generate_type_override_map(row):
-    # We load the relevant schema from ../src/main/resources/json-schema/row["Pas de test"].schema.json into the
-    # schema object
-    schema = json.load(open(f'../src/main/resources/json-schema/{row["Modèle"]}.schema.json'))
-    # We iterate over all properties recursively in the schem and add those that have simple types different from
-    # string (i.e. integer, number, boolean) to the type_override_map object
-    type_override_map = {}
-    for key, value in nested_dict_iter(schema["definitions"]):
-        if "type" in value and not isinstance(value["type"], collections.Mapping) and value["type"] not in {"string",
-                                                                                                            "object", "array"}:
-            type_override_map[key] = value["type"]
-    for key, value in nested_dict_iter(schema["properties"]):
-        if "type" in value and not isinstance(value["type"], collections.Mapping) and value["type"] not in {"string",
-                                                                                                            "object", "array"}:
-            type_override_map[key] = value["type"]
-    return type_override_map
-
-
-def nested_dict_iter(nested):
-    for key, value in nested.items():
-        if isinstance(value, collections.Mapping):
-            yield key, value
-            for inner_key, inner_value in nested_dict_iter(value):
-                yield inner_key, inner_value
-
-
-def transform_type(type_string):
-    if type_string == "integer":
-        return "int"
-    elif type_string == "number":
-        return "float"
-    else:
-        return type_string
