@@ -38,12 +38,13 @@ def run(perimeters):
         for sheet, test_case_df in test_cases_df.items():
             # Create test case object
             test_case = {}
-            # Read only the useful rows from the excel. Test case starts at row 9 (headers) and ends at the last row
-            test_case_inner_df = pd.read_excel(f'./{perimeter["file"]}.xlsx', sheet_name=sheet, skiprows=8, dtype=str)
-            # Test case name is located in the cell C3
-            test_case["label"] = test_case_df.iloc[2, 2]
-            # Test case description is located in the cell C4
-            test_case["description"] = test_case_df.iloc[3, 2]
+            # Read only the useful rows from the excel. Test case starts at row 8 (headers) and ends at the last row
+            test_case_inner_df = pd.read_excel(f'./{perimeter["file"]}.xlsx', sheet_name=sheet, skiprows=7, dtype=str)
+            r_type = sheet.split(" ")[-1]
+            # Test case name is located in the cell F3
+            test_case["label"] = f"{test_case_df.iloc[2, 5]} {r_type}"
+            # Test case description is located in the cell F4
+            test_case["description"] = test_case_df.iloc[3, 5]
             # Create steps array in test_case object
             test_case["steps"] = []
             # Create empty array with length 5 and object that we'll use to store the potential JSON files for the

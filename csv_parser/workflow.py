@@ -41,7 +41,7 @@ sheets = [
 ]
 
 perimeters = [{
-    'name': 'Périmetre 15-15',
+    'name': '15-15',
     'file': 'test-cases-15-15'
 }]
 
