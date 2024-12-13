@@ -55,7 +55,7 @@ import java.util.Objects;
 
 public class EmsiWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0";
+  String xmlns = "urn:emergency:cisu:2.0:emsi";
   public static final String JSON_PROPERTY_EMSI = "emsi";
   private Emsi emsi;
 
