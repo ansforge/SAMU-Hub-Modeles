@@ -44,20 +44,23 @@ import java.util.Objects;
 /**
  * DocumentLink
  */
-@JsonPropertyOrder({DocumentLink.JSON_PROPERTY_CASE_ID,
-                    DocumentLink.JSON_PROPERTY_PATIENT_ID,
-                    DocumentLink.JSON_PROPERTY_DOCUMENT})
+@JsonPropertyOrder(
+    {DocumentLink.JSON_PROPERTY_CASE_ID, DocumentLink.JSON_PROPERTY_PATIENT_ID,
+     DocumentLink.JSON_PROPERTY_CODE, DocumentLink.JSON_PROPERTY_DOCUMENT})
 @JsonTypeName("documentLink")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class DocumentLink {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:documentLink";
+  String xmlns = "urn:emergency:cisu:2.0:documentlink";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 
   public static final String JSON_PROPERTY_PATIENT_ID = "patientId";
   private String patientId;
+
+  public static final String JSON_PROPERTY_CODE = "code";
+  private String code;
 
   public static final String JSON_PROPERTY_DOCUMENT = "document";
   private List<Document> document = new ArrayList<>();
@@ -118,6 +121,31 @@ public class DocumentLink {
     this.patientId = patientId;
   }
 
+  public DocumentLink code(String code) {
+
+    this.code = code;
+    return this;
+  }
+
+  /**
+   * Code unitaire par bilan qui permet à l&#39;utilisateur qui reçoit ce lien
+   *d&#39;ouvrir le bilan lorsque celui ci ne nécessite pas une connexion
+   *nominative mais un code bilan
+   * @return code
+   **/
+  @JsonProperty(JSON_PROPERTY_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getCode() {
+    return code;
+  }
+
+  @JsonProperty(JSON_PROPERTY_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCode(String code) {
+    this.code = code;
+  }
+
   public DocumentLink document(List<Document> document) {
 
     this.document = document;
@@ -168,12 +196,13 @@ public class DocumentLink {
     DocumentLink documentLink = (DocumentLink)o;
     return Objects.equals(this.caseId, documentLink.caseId) &&
         Objects.equals(this.patientId, documentLink.patientId) &&
+        Objects.equals(this.code, documentLink.code) &&
         Objects.equals(this.document, documentLink.document);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, patientId, document);
+    return Objects.hash(caseId, patientId, code, document);
   }
 
   @Override
@@ -184,6 +213,7 @@ public class DocumentLink {
     sb.append("    patientId: ")
         .append(toIndentedString(patientId))
         .append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    document: ").append(toIndentedString(document)).append("\n");
     sb.append("}");
     return sb.toString();

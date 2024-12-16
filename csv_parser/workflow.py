@@ -12,33 +12,13 @@ parser = argparse.ArgumentParser(
     prog='Workflow Automator',
     description='Automates the build workflow for the model (specs, schemas, ...)',
 )
-parser.add_argument('-s', '--stage', required=True, choices=['parser_and_mv', 'test_case_parser'],
+parser.add_argument('-s', '--stage', required=True, choices=['parser_and_mv', 'test_case_parser', 'output_schemas_yaml'],
                     help='The workflow stage to run')
 args = parser.parse_args()
 
 print(args.stage)
 
 # ---------------------------------------- SCHEMAS CONFIGURATION
-sheets = [
-    'RC-DE',
-    'RC-EDA',
-    'EMSI',
-    'GEO-POS',
-    'GEO-REQ',
-    'GEO-RES',
-    'RC-REF',
-    'RS-ERROR',
-    'RS-INFO',
-    'RS-RI',
-    'RS-DR',
-    'RS-RR',
-    'RS-RPIS',
-    'customContent',
-    'RS-SR',
-    'TECHNICAL',
-    'RS-URL',
-    'RS-BPV'
-]
 
 perimeters = [{
     'name': 'Périmetre 15-15',
@@ -48,6 +28,12 @@ perimeters = [{
 
 # ---------------------------------------- STAGE FUNCTIONS
 def parser_and_mv():
+    # Iterate over files in the models folder and extract every sheet name that doesn't start with #
+    sheets = []
+    for file in os.listdir('models'):
+        if file.endswith('.xlsx'):
+            sheets += [sheet for sheet in pd.ExcelFile(f'./models/{file}').sheet_names if not sheet.startswith('#')]
+
     # Iterate over each sheet
     for sheet in sheets:
         full_df = None
@@ -123,11 +109,69 @@ def test_case_parser():
     # Generate test-cases.json
     test_case_generator.run(perimeters)
 
+def output_schemas_yaml():
+    print("Generating schemas.yaml file...")
+    # Iterate over every non-# sheet in the models folder and extract the mini-tables starting at A1 which contain
+    # all the necessary schema information; specifically the following fields in the following order:
+    # schema, perimeter, rootElement, package, customExtendPackage, customExtendClass, automaticGeneration, subschema
+    # header, xmlns
+    schemaMap = {'schemas': []}
+    for file in os.listdir('models'):
+        if file.endswith('.xlsx'):
+            for sheet in pd.ExcelFile(f'./models/{file}').sheet_names:
+                if not sheet.startswith('#'):
+                    full_df = pd.read_excel(f'./models/{file}', header=None, sheet_name=sheet)
+                    try:
+                        #First, find the cell containing the header 'schema', which denotes the start of the schema details table
+                        schemaIndex = None
+                        for i in range(full_df.shape[0]):
+                            if full_df.iloc[i, 0] == 'schema':
+                                schemaIndex = i
+                                break
+                        #Then, find the width of the schema details table
+                        schemaWidth = None
+                        for i in range(full_df.shape[1]):
+                            if pd.isna(full_df.iloc[schemaIndex, i]):
+                                schemaWidth = i
+                                break
+
+                        #Then, find the end of the table
+                        endIndex = None
+                        for i in range(schemaIndex + 1, full_df.shape[0]):
+                            if pd.isna(full_df.iloc[i, 0]):
+                                endIndex = i
+                                break
+                    except:
+                        print(f"Error in sheet {sheet}: schema details table is not well formatted.")
+                        exit(1)
+                    #Now that we have the dimensions of the table, we can extract it
+                    schemaTable = full_df.iloc[schemaIndex:endIndex, 0:schemaWidth]
+                    schemaTable.columns = schemaTable.iloc[0]
+                    schemaTable = schemaTable[1:]
+                    schemaTable.reset_index(drop=True, inplace=True)
+
+                    #Replace NaN values with null
+                    schemaTable = schemaTable.where(pd.notnull(schemaTable), None)
+
+                    #Add the dataframes as dicts to the schemaMap['schemas']
+                    print("Successfully detected schema table in sheet", sheet)
+                    for i in range(schemaTable.shape[0]):
+                        schemaMap['schemas'].append(schemaTable.iloc[i].to_dict())
+                        print("Added schema to schemaMap:", schemaTable.at[i, 'schema'])
+
+    #Write the schemaMap to a yaml file
+    with open('out/schemas.yaml', 'w') as file:
+        yaml.dump(schemaMap, file)
+    print("schemas.yaml successfully written to file.")
+
+
 
 # ---------------------------------------- RUN
 if args.stage == 'parser_and_mv':
     parser_and_mv()
 elif args.stage == 'test_case_parser':
     test_case_parser()
+elif args.stage == 'output_schemas_yaml':
+    output_schemas_yaml()
 else:
     exit(1)
