@@ -50,7 +50,7 @@ import java.util.Objects;
 
 public class ResourcesStatus {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:resourcesStatus";
+  String xmlns = "urn:emergency:cisu:3.0:resourcesstatus";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 

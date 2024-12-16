@@ -49,7 +49,7 @@ import java.util.Objects;
 
 public class Reference {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:reference";
+  String xmlns = "urn:emergency:cisu:3.0";
   public static final String JSON_PROPERTY_DISTRIBUTION_I_D = "distributionID";
   private String distributionID;
 
