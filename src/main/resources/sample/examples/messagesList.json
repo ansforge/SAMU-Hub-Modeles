@@ -205,8 +205,8 @@
         "environment": "Régulation médicale du médecin urgentiste - Ajout d'observations médicales"
       },
       {
-        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FemmeEnceinte_DelphineVigneau.10.json",
-        "icon": "mdi-human-pregnant",
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FuiteDeGaz_AliceGregoireNormand.10.json",
+        "icon": "mdi-molecule-co2",
         "name": "Alice et Grégoire NORMAND.10",
         "context": "Pas de test suivant: RS-SR - Alice et Grégoire NORMAND.11",
         "environment": "Partage de la décision d'orientation du patient"
