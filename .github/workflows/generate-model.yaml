@@ -48,6 +48,15 @@ jobs:
         if: steps.filter.outputs.parsing_required == 'true' || steps.filter.outputs.test_case_parsing_required == 'true'
         run: pip install -r ./requirements.txt
 
+      - name: Clean up old generated schemas
+        working-directory: ./src/main/resources
+        run: find ./json-schema -type f -name '*.json' ! -name 'customContent.schema.json' ! -name 'EDXL-DE-*.schema.json' -exec rm {} +
+        
+      - name: Clean up old generated java classes
+        working-directory: ./src/main/java/com/hubsante/model
+        # We specifically only remove FOLDERS with the exception of a couple manually created ones
+        run: find . -mindepth 1 -maxdepth 1 -type d ! -name 'builders' ! -name 'config' ! -name 'custom' ! -name 'edxl' ! -name 'exception' ! -name 'report' -exec rm -r {} +
+      
       - name: Run csv_parser and collect OpenAPI & JSON Schemas
         working-directory: ./csv_parser
         if: steps.filter.outputs.parsing_required == 'true'
