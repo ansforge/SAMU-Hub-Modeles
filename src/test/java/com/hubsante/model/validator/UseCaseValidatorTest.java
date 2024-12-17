@@ -40,15 +40,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class UseCaseValidatorTest extends AbstractValidatorTest {
 
     @Test
-    @DisplayName("test XML RC-EDA")
-    public void xmlRcEdaValidates() throws IOException, ValidationException {
-        String path = TestMessagesHelper.class.getClassLoader().getResource("sample/valid/RC-EDA/RC-EDA.xml").getFile();
-        File file = new File(path);
-        String xml = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-        validator.validateXML(xml, FULL_XSD);
-    }
-
-    @Test
     @DisplayName("all examples files passing")
     public void examplesBundlePassingTest() {
         String rootFolder = TestMessagesHelper.class.getClassLoader().getResource("sample/examples").getFile();

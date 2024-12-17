@@ -152,7 +152,7 @@ public class App {
     
     private static String getTargetNamespace(HashMap<String, String> schema) {
         if (schema.get("schema").equals("RC-DE")) {
-            return "urn:emergency:eda:cisu:3.0";
+            return "urn:emergency:cisu:3.0";
         } else return "urn:emergency:" + (schema.get("xmlns") != null ? schema.get("xmlns") : "cisu:3.0:"+schema.get("schema"));
     }
 

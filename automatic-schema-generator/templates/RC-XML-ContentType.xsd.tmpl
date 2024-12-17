@@ -8,7 +8,7 @@
         xmlns:xs="http://www.w3.org/2001/XMLSchema" 
         {{ range (datasource "config").schemas }}{{if and (eq .automaticGeneration "Y") .xmlns}}xmlns:{{.rootElement}}="urn:emergency:{{.xmlns}}"{{end}}
         {{end -}}
-        xmlns:error="urn:emergency:cisu:3.0:error"
+        xmlns:error="urn:emergency:{{ $namespace }}:error"
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:{{ $namespace }}" xmlns="http://www.w3.org/2001/XMLSchema">
 
@@ -16,7 +16,7 @@
     <xs:include schemaLocation="customContent.xsd"/>
     {{ range (datasource "config").schemas }}
     {{- if and (eq .automaticGeneration "Y") .xmlns}}<{{if eq .xmlns $namespace }}xs:include{{else}}xs:import namespace="urn:emergency:{{.xmlns}}"{{end}} schemaLocation="{{.schema}}.xsd"/>{{end}}
-    {{end}}<xs:import namespace="urn:emergency:cisu:3.0:error" schemaLocation="RS-ERROR.xsd"/>
+    {{end}}<xs:import namespace="urn:emergency:{{ $namespace }}:error" schemaLocation="RS-ERROR.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
         <xs:sequence>
