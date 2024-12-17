@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "classpath:/json-schema/schema#",
+    "x-id": "GEO-REQ.schema.json#",
+    "version": "24.12.16",
+    "example": "example.json#",
+    "type": "object",
+    "title": "geoResourcesRequest",
+    "required": [
+        "resourceId"
+    ],
+    "properties": {
+        "resourceId": {
+            "type": "array",
+            "x-health-only": false,
+            "items": {
+                "type": "string",
+                "title": "Identifiant(s) de la ressource(s) partagé(s)",
+                "x-health-only": false,
+                "x-cols": 6,
+                "example": "example.json#/resourceId/0",
+                "description": "Liste des ID des ressources pour lesquels le demandeur a besoin d'obtenir plus de détails. \nA valoriser avec l'identifiant partagé unique de la ressource engagée, normé comme suit :\n{orgID}.resource.{ID unique de la ressource partagée}\nOU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :\n{orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}",
+                "pattern": "^([\\w-]+\\.){3,4}resource(\\.[\\w-]+){1,2}$"
+            },
+            "minItems": 1
+        }
+    },
+    "definitions": {},
+    "additionalProperties": false
+}
