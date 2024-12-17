@@ -53,7 +53,7 @@ import java.util.Objects;
 
 public class Error {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:3.0:error";
+  String xmlns = "urn:emergency:cisu:2.0:error";
   public static final String JSON_PROPERTY_ERROR_CODE = "errorCode";
   private ErrorCode errorCode;
 
