@@ -20,13 +20,13 @@
               "$.createCaseHealth.initialAlert.caller.callerContact.type",
               "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
               "$.createCaseHealth.initialAlert.caller.callbackContact.type",
-              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.patient[0].patientId",
               "$.createCaseHealth.medicalNote[0].operator.role",
-              "$.createCaseHealth.medicalNote[0].idPat",
-              "$.createCaseHealth.medicalNote[0].idObs",
+              "$.createCaseHealth.medicalNote[0].patientId",
+              "$.createCaseHealth.medicalNote[0].medicalNoteId",
               "$.createCaseHealth.medicalNote[1].operator.role",
-              "$.createCaseHealth.medicalNote[1].idPat",
-              "$.createCaseHealth.medicalNote[1].idObs"
+              "$.createCaseHealth.medicalNote[1].patientId",
+              "$.createCaseHealth.medicalNote[1].medicalNoteId"
             ]
           },
           {
@@ -38,10 +38,10 @@
             "model":"RS-RI",
             "ignoredProperties":[
               "$.resourcesInfo.caseId",
-              "$.resourcesInfo.mobilizedResource[0].resourceId",
-              "$.resourcesInfo.mobilizedResource[0].orgId",
-              "$.resourcesInfo.mobilizedResource[1].resourceId",
-              "$.resourcesInfo.mobilizedResource[1].orgId"
+              "$.resourcesInfo.resource[0].resourceId",
+              "$.resourcesInfo.resource[0].orgId",
+              "$.resourcesInfo.resource[1].resourceId",
+              "$.resourcesInfo.resource[1].orgId"
             ]
           },
           {
@@ -54,9 +54,9 @@
             "ignoredProperties":[
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[0].idPat",
-              "$.createCaseHealthUpdate.medicalNote[0].idObs",
-              "$.createCaseHealthUpdate.patient[0].idPat"
+              "$.createCaseHealthUpdate.medicalNote[0].patientId",
+              "$.createCaseHealthUpdate.medicalNote[0].medicalNoteId",
+              "$.createCaseHealthUpdate.patient[0].patientId"
             ]
           },
           {
@@ -116,11 +116,11 @@
             "model":"RS-RI",
             "ignoredProperties":[
               "$.resourcesInfo.caseId",
-              "$.resourcesInfo.mobilizedResource[0].resourceId",
-              "$.resourcesInfo.mobilizedResource[0].orgId",
-              "$.resourcesInfo.mobilizedResource[0].requestId",
-              "$.resourcesInfo.mobilizedResource[0].name",
-              "$.resourcesInfo.mobilizedResource[0].team.name"
+              "$.resourcesInfo.resource[0].resourceId",
+              "$.resourcesInfo.resource[0].orgId",
+              "$.resourcesInfo.resource[0].requestId",
+              "$.resourcesInfo.resource[0].name",
+              "$.resourcesInfo.resource[0].team.name"
             ]
           }
         ]
@@ -143,13 +143,13 @@
               "$.createCaseHealth.initialAlert.caller.callerContact.type",
               "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
               "$.createCaseHealth.initialAlert.caller.callbackContact.type",
-              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.patient[0].patientId",
               "$.createCaseHealth.medicalNote[0].operator.role",
-              "$.createCaseHealth.medicalNote[0].idPat",
-              "$.createCaseHealth.medicalNote[0].idObs",
+              "$.createCaseHealth.medicalNote[0].patientId",
+              "$.createCaseHealth.medicalNote[0].medicalNoteId",
               "$.createCaseHealth.medicalNote[1].operator.role",
-              "$.createCaseHealth.medicalNote[1].idPat",
-              "$.createCaseHealth.medicalNote[1].idObs"
+              "$.createCaseHealth.medicalNote[1].patientId",
+              "$.createCaseHealth.medicalNote[1].operator.medicalNoteId"
             ]
           },
           {
@@ -161,10 +161,10 @@
             "model":"RS-RI",
             "ignoredProperties":[
               "$.resourcesInfo.caseId",
-              "$.resourcesInfo.mobilizedResource[0].resourceId",
-              "$.resourcesInfo.mobilizedResource[0].orgId",
-              "$.resourcesInfo.mobilizedResource[1].resourceId",
-              "$.resourcesInfo.mobilizedResource[1].orgId"
+              "$.resourcesInfo.resource[0].resourceId",
+              "$.resourcesInfo.resource[0].orgId",
+              "$.resourcesInfo.resource[1].resourceId",
+              "$.resourcesInfo.resource[1].orgId"
             ]
           },
           {
@@ -177,9 +177,9 @@
             "ignoredProperties":[
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[0].idPat",
-              "$.createCaseHealthUpdate.medicalNote[0].idObs",
-              "$.createCaseHealthUpdate.patient[0].idPat"
+              "$.createCaseHealthUpdate.medicalNote[0].patientId",
+              "$.createCaseHealthUpdate.medicalNote[0].medicalNoteId",
+              "$.createCaseHealthUpdate.patient[0].patientId"
             ]
           },
           {
@@ -238,10 +238,10 @@
             "file":"RS-RI_partageRessources_DidierMorel.04c.json",
             "model":"RS-RI",
             "ignoredProperties":[
-              "$.resourcesInfo.mobilizedResource[0].requestId",
+              "$.resourcesInfo.resource[0].requestId",
               "$.resourcesInfo.caseId",
-              "$.resourcesInfo.mobilizedResource[0].resourceId",
-              "$.resourcesInfo.mobilizedResource[0].orgId"
+              "$.resourcesInfo.resource[0].resourceId",
+              "$.resourcesInfo.resource[0].orgId"
             ]
           }
         ]
@@ -263,16 +263,16 @@
               "$.createCaseHealth.initialAlert.caller.callerContact.type",
               "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
               "$.createCaseHealth.initialAlert.caller.callbackContact.type",
-              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.patient[0].patientId",
               "$.createCaseHealth.medicalNote[0].operator.role",
-              "$.createCaseHealth.medicalNote[0].idPat",
-              "$.createCaseHealth.medicalNote[0].idObs",
+              "$.createCaseHealth.medicalNote[0].patientId",
+              "$.createCaseHealth.medicalNote[0].medicalNoteId",
               "$.createCaseHealth.medicalNote[1].operator.role",
-              "$.createCaseHealth.medicalNote[1].idPat",
-              "$.createCaseHealth.medicalNote[1].idObs",
+              "$.createCaseHealth.medicalNote[1].patientId",
+              "$.createCaseHealth.medicalNote[1].medicalNoteId",
               "$.createCaseHealth.medicalNote[2].operator.role",
-              "$.createCaseHealth.medicalNote[2].idPat",
-              "$.createCaseHealth.medicalNote[2].idObs"
+              "$.createCaseHealth.medicalNote[2].patientId",
+              "$.createCaseHealth.medicalNote[2].medicalNoteId"
             ]
           },
           {
@@ -284,8 +284,8 @@
             "model":"RS-RI",
             "ignoredProperties":[
               "$.resourcesInfo.caseId",
-              "$.resourcesInfo.mobilizedResource[0].resourceId",
-              "$.resourcesInfo.mobilizedResource[0].orgId"
+              "$.resourcesInfo.resource[0].resourceId",
+              "$.resourcesInfo.resource[0].orgId"
             ]
           },
           {
@@ -298,8 +298,8 @@
             "ignoredProperties":[
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[0].idPat",
-              "$.createCaseHealthUpdate.medicalNote[0].idObs"
+              "$.createCaseHealthUpdate.medicalNote[0].patientId",
+              "$.createCaseHealthUpdate.medicalNote[0].medicalNoteId"
             ]
           },
           {
@@ -335,11 +335,11 @@
             "model":"RS-RI",
             "ignoredProperties":[
               "$.resourcesInfo.caseId",
-              "$.resourcesInfo.mobilizedResource[0].resourceId",
-              "$.resourcesInfo.mobilizedResource[0].orgId",
-              "$.resourcesInfo.mobilizedResource[0].requestId",
-              "$.resourcesInfo.mobilizedResource[0].name",
-              "$.resourcesInfo.mobilizedResource[0].team.name"
+              "$.resourcesInfo.resource[0].resourceId",
+              "$.resourcesInfo.resource[0].orgId",
+              "$.resourcesInfo.resource[0].requestId",
+              "$.resourcesInfo.resource[0].name",
+              "$.resourcesInfo.resource[0].team.name"
             ]
           },
           {
@@ -373,16 +373,16 @@
               "$.createCaseHealth.initialAlert.caller.callerContact.type",
               "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
               "$.createCaseHealth.initialAlert.caller.callbackContact.type",
-              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.patient[0].patientId",
               "$.createCaseHealth.medicalNote[0].operator.role",
-              "$.createCaseHealth.medicalNote[0].idPat",
-              "$.createCaseHealth.medicalNote[0].idObs",
+              "$.createCaseHealth.medicalNote[0].patientId",
+              "$.createCaseHealth.medicalNote[0].medicalNoteId",
               "$.createCaseHealth.medicalNote[1].operator.role",
-              "$.createCaseHealth.medicalNote[1].idPat",
-              "$.createCaseHealth.medicalNote[1].idObs",
+              "$.createCaseHealth.medicalNote[1].patientId",
+              "$.createCaseHealth.medicalNote[1].medicalNoteId",
               "$.createCaseHealth.medicalNote[2].operator.role",
-              "$.createCaseHealth.medicalNote[2].idPat",
-              "$.createCaseHealth.medicalNote[2].idObs"
+              "$.createCaseHealth.medicalNote[2].patientId",
+              "$.createCaseHealth.medicalNote[2].medicalNoteId"
             ]
           },
           {
@@ -394,8 +394,8 @@
             "model":"RS-RI",
             "ignoredProperties":[
               "$.resourcesInfo.caseId",
-              "$.resourcesInfo.mobilizedResource[0].resourceId",
-              "$.resourcesInfo.mobilizedResource[0].orgId"
+              "$.resourcesInfo.resource[0].resourceId",
+              "$.resourcesInfo.resource[0].orgId"
             ]
           },
           {
@@ -408,8 +408,8 @@
             "ignoredProperties":[
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[0].idPat",
-              "$.createCaseHealthUpdate.medicalNote[0].idObs"
+              "$.createCaseHealthUpdate.medicalNote[0].patientId",
+              "$.createCaseHealthUpdate.medicalNote[0].medicalNoteId"
             ]
           },
           {
@@ -444,10 +444,10 @@
             "file":"RS-RI_partageRessources_LolaHalimi.03c.json",
             "model":"RS-RI",
             "ignoredProperties":[
-              "$.resourcesInfo.mobilizedResource[0].requestId",
+              "$.resourcesInfo.resource[0].requestId",
               "$.resourcesInfo.caseId",
-              "$.resourcesInfo.mobilizedResource[0].resourceId",
-              "$.resourcesInfo.mobilizedResource[0].orgId"
+              "$.resourcesInfo.resource[0].resourceId",
+              "$.resourcesInfo.resource[0].orgId"
             ]
           },
           {
@@ -481,10 +481,10 @@
               "$.createCaseHealth.initialAlert.caller.callerContact.type",
               "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
               "$.createCaseHealth.initialAlert.caller.callbackContact.type",
-              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.patient[0].patientId",
               "$.createCaseHealth.medicalNote[0].operator.role",
-              "$.createCaseHealth.medicalNote[0].idPat",
-              "$.createCaseHealth.medicalNote[0].idObs"
+              "$.createCaseHealth.medicalNote[0].patientId",
+              "$.createCaseHealth.medicalNote[0].medicalNoteId"
             ]
           },
           {
@@ -497,12 +497,12 @@
             "ignoredProperties":[
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[0].idPat",
-              "$.createCaseHealthUpdate.medicalNote[0].idObs",
+              "$.createCaseHealthUpdate.medicalNote[0].patientId",
+              "$.createCaseHealthUpdate.medicalNote[0].medicalNoteId",
               "$.createCaseHealthUpdate.medicalNote[1].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[1].idPat",
-              "$.createCaseHealthUpdate.medicalNote[1].idObs",
-              "$.createCaseHealthUpdate.patient[0].idPat"
+              "$.createCaseHealthUpdate.medicalNote[1].patientId",
+              "$.createCaseHealthUpdate.medicalNote[1].medicalNoteId",
+              "$.createCaseHealthUpdate.patient[0].patientId"
             ]
           },
           {
@@ -515,7 +515,7 @@
             "ignoredProperties":[
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.decision[0].operator.role",
-              "$.createCaseHealthUpdate.decision[0].idPat"
+              "$.createCaseHealthUpdate.decision[0].patientId"
             ]
           },
           {
@@ -527,10 +527,10 @@
             "model":"RS-RI",
             "ignoredProperties":[
               "$.resourcesInfo.caseId",
-              "$.resourcesInfo.mobilizedResource[0].resourceId",
-              "$.resourcesInfo.mobilizedResource[0].orgId",
-              "$.resourcesInfo.mobilizedResource[0].missionId",
-              "$.resourcesInfo.mobilizedResource[0]contact.type"
+              "$.resourcesInfo.resource[0].resourceId",
+              "$.resourcesInfo.resource[0].orgId",
+              "$.resourcesInfo.resource[0].missionId",
+              "$.resourcesInfo.resource[0]contact.type"
             ]
           }
         ]
@@ -552,10 +552,10 @@
               "$.createCaseHealth.initialAlert.caller.callerContact.type",
               "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
               "$.createCaseHealth.initialAlert.caller.callbackContact.type",
-              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.patient[0].patientId",
               "$.createCaseHealth.medicalNote[0].operator.role",
-              "$.createCaseHealth.medicalNote[0].idPat",
-              "$.createCaseHealth.medicalNote[0].idObs"
+              "$.createCaseHealth.medicalNote[0].patientId",
+              "$.createCaseHealth.medicalNote[0].medicalNoteId"
             ]
           },
           {
@@ -568,12 +568,12 @@
             "ignoredProperties":[
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[0].idPat",
-              "$.createCaseHealthUpdate.medicalNote[0].idObs",
+              "$.createCaseHealthUpdate.medicalNote[0].patientId",
+              "$.createCaseHealthUpdate.medicalNote[0].medicalNoteId",
               "$.createCaseHealthUpdate.medicalNote[1].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[1].idPat",
-              "$.createCaseHealthUpdate.medicalNote[1].idObs",
-              "$.createCaseHealthUpdate.patient[0].idPat"
+              "$.createCaseHealthUpdate.medicalNote[1].patientId",
+              "$.createCaseHealthUpdate.medicalNote[1].medicalNoteId",
+              "$.createCaseHealthUpdate.patient[0].patientId"
             ]
           },
           {
@@ -586,7 +586,7 @@
             "ignoredProperties":[
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.decision[0].operator.role",
-              "$.createCaseHealthUpdate.decision[0].idPat"
+              "$.createCaseHealthUpdate.decision[0].patientId"
             ]
           },
           {
@@ -598,12 +598,12 @@
             "model":"RS-RI",
             "ignoredProperties":[
               "$.resourcesInfo.caseId",
-              "$.resourcesInfo.mobilizedResource[0].resourceId",
-              "$.resourcesInfo.mobilizedResource[0].orgId",
-              "$.resourcesInfo.mobilizedResource[0].missionId",
-              "$.resourcesInfo.mobilizedResource[0]contact.type",
-              "$.resourcesInfo.mobilizedResource[0].name",
-              "$.resourcesInfo.mobilizedResource[0].team.name"
+              "$.resourcesInfo.resource[0].resourceId",
+              "$.resourcesInfo.resource[0].orgId",
+              "$.resourcesInfo.resource[0].missionId",
+              "$.resourcesInfo.resource[0]contact.type",
+              "$.resourcesInfo.resource[0].name",
+              "$.resourcesInfo.resource[0].team.name"
             ]
           }
         ]
@@ -626,10 +626,10 @@
               "$.createCaseHealth.initialAlert.caller.callerContact.type",
               "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
               "$.createCaseHealth.initialAlert.caller.callbackContact.type",
-              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.patient[0].patientId",
               "$.createCaseHealth.medicalNote[0].operator.role",
-              "$.createCaseHealth.medicalNote[0].idPat",
-              "$.createCaseHealth.medicalNote[0].idObs"
+              "$.createCaseHealth.medicalNote[0].patientId",
+              "$.createCaseHealth.medicalNote[0].operator.medicalNoteId"
             ]
           },
           {
@@ -666,10 +666,10 @@
               "$.createCaseHealth.initialAlert.caller.callerContact.type",
               "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
               "$.createCaseHealth.initialAlert.caller.callbackContact.type",
-              "$.createCaseHealth.patient[0].idPat",
+              "$.createCaseHealth.patient[0].patientId",
               "$.createCaseHealth.medicalNote[0].operator.role",
-              "$.createCaseHealth.medicalNote[0].idPat",
-              "$.createCaseHealth.medicalNote[0].idObs"
+              "$.createCaseHealth.medicalNote[0].patientId",
+              "$.createCaseHealth.medicalNote[0].operator.medicalNoteId"
             ]
           },
           {
@@ -706,14 +706,14 @@
               "$.createCaseHealth.initialAlert.caller.callerContact.type",
               "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
               "$.createCaseHealth.initialAlert.caller.callbackContact.type",
-              "$.createCaseHealth.patient[0].idPat",
-              "$.createCaseHealth.patient[1].idPat",
+              "$.createCaseHealth.patient[0].patientId",
+              "$.createCaseHealth.patient[1].patientId",
               "$.createCaseHealth.medicalNote[0].operator.role",
-              "$.createCaseHealth.medicalNote[0].idPat",
-              "$.createCaseHealth.medicalNote[0].idObs",
+              "$.createCaseHealth.medicalNote[0].patientId",
+              "$.createCaseHealth.medicalNote[0].operator.medicalNoteId",
               "$.createCaseHealth.medicalNote[1].operator.role",
-              "$.createCaseHealth.medicalNote[1].idPat",
-              "$.createCaseHealth.medicalNote[1].idObs"
+              "$.createCaseHealth.medicalNote[1].patientId",
+              "$.createCaseHealth.medicalNote[1].operator.medicalNoteId"
             ]
           },
           {
@@ -740,22 +740,22 @@
             "ignoredProperties":[
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[0].idPat",
-              "$.createCaseHealthUpdate.medicalNote[0].idObs",
+              "$.createCaseHealthUpdate.medicalNote[0].patientId",
+              "$.createCaseHealthUpdate.medicalNote[0].operator.medicalNoteId",
               "$.createCaseHealthUpdate.medicalNote[1].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[1].idPat",
-              "$.createCaseHealthUpdate.medicalNote[1].idObs",
+              "$.createCaseHealthUpdate.medicalNote[1].patientId",
+              "$.createCaseHealthUpdate.medicalNote[1].operator.medicalNoteId",
               "$.createCaseHealthUpdate.medicalNote[2].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[2].idPat",
-              "$.createCaseHealthUpdate.medicalNote[2].idObs",
+              "$.createCaseHealthUpdate.medicalNote[2].patientId",
+              "$.createCaseHealthUpdate.medicalNote[2].operator.medicalNoteId",
               "$.createCaseHealthUpdate.medicalNote[3].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[3].idPat",
-              "$.createCaseHealthUpdate.medicalNote[3].idObs",
+              "$.createCaseHealthUpdate.medicalNote[3].patientId",
+              "$.createCaseHealthUpdate.medicalNote[3].operator.medicalNoteId",
               "$.createCaseHealthUpdate.medicalNote[4].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[4].idPat",
-              "$.createCaseHealthUpdate.medicalNote[4].idObs",
-              "$.createCaseHealthUpdate.patient[0].idPat",
-              "$.createCaseHealthUpdate.patient[1].idPat"
+              "$.createCaseHealthUpdate.medicalNote[4].patientId",
+              "$.createCaseHealthUpdate.medicalNote[4].operator.medicalNoteId",
+              "$.createCaseHealthUpdate.patient[0].patientId",
+              "$.createCaseHealthUpdate.patient[1].patientId"
             ]
           },
           {
@@ -767,12 +767,12 @@
             "model":"RS-RI",
             "ignoredProperties":[
               "$.resourcesInfo.caseId",
-              "$.resourcesInfo.mobilizedResource[0].contact.type",
-              "$.resourcesInfo.mobilizedResource[0].resourceId",
-              "$.resourcesInfo.mobilizedResource[0].orgId",
-              "$.resourcesInfo.mobilizedResource[1].contact.type",
-              "$.resourcesInfo.mobilizedResource[1].resourceId",
-              "$.resourcesInfo.mobilizedResource[1].orgId"
+              "$.resourcesInfo.resource[0].contact.type",
+              "$.resourcesInfo.resource[0].resourceId",
+              "$.resourcesInfo.resource[0].orgId",
+              "$.resourcesInfo.resource[1].contact.type",
+              "$.resourcesInfo.resource[1].resourceId",
+              "$.resourcesInfo.resource[1].orgId"
             ]
           },
           {
@@ -807,10 +807,10 @@
             "file":"RS-RI_partageRessources_EnfantsNguyen.04c.json",
             "model":"RS-RI",
             "ignoredProperties":[
-              "$.resourcesInfo.mobilizedResource[0].requestId",
+              "$.resourcesInfo.resource[0].requestId",
               "$.resourcesInfo.caseId",
-              "$.resourcesInfo.mobilizedResource[0].resourceId",
-              "$.resourcesInfo.mobilizedResource[0].orgId"
+              "$.resourcesInfo.resource[0].resourceId",
+              "$.resourcesInfo.resource[0].orgId"
             ]
           },
           {
@@ -869,14 +869,14 @@
               "$.createCaseHealth.initialAlert.caller.callerContact.type",
               "$.createCaseHealth.initialAlert.caller.callbackContact.channel",
               "$.createCaseHealth.initialAlert.caller.callbackContact.type",
-              "$.createCaseHealth.patient[0].idPat",
-              "$.createCaseHealth.patient[1].idPat",
+              "$.createCaseHealth.patient[0].patientId",
+              "$.createCaseHealth.patient[1].patientId",
               "$.createCaseHealth.medicalNote[0].operator.role",
-              "$.createCaseHealth.medicalNote[0].idPat",
-              "$.createCaseHealth.medicalNote[0].idObs",
+              "$.createCaseHealth.medicalNote[0].patientId",
+              "$.createCaseHealth.medicalNote[0].operator.medicalNoteId",
               "$.createCaseHealth.medicalNote[1].operator.role",
-              "$.createCaseHealth.medicalNote[1].idPat",
-              "$.createCaseHealth.medicalNote[1].idObs"
+              "$.createCaseHealth.medicalNote[1].patientId",
+              "$.createCaseHealth.medicalNote[1].operator.medicalNoteId"
             ]
           },
           {
@@ -900,22 +900,22 @@
             "ignoredProperties":[
               "$.createCaseHealthUpdate.caseId",
               "$.createCaseHealthUpdate.medicalNote[0].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[0].idPat",
-              "$.createCaseHealthUpdate.medicalNote[0].idObs",
+              "$.createCaseHealthUpdate.medicalNote[0].patientId",
+              "$.createCaseHealthUpdate.medicalNote[0].operator.medicalNoteId",
               "$.createCaseHealthUpdate.medicalNote[1].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[1].idPat",
-              "$.createCaseHealthUpdate.medicalNote[1].idObs",
+              "$.createCaseHealthUpdate.medicalNote[1].patientId",
+              "$.createCaseHealthUpdate.medicalNote[1].operator.medicalNoteId",
               "$.createCaseHealthUpdate.medicalNote[2].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[2].idPat",
-              "$.createCaseHealthUpdate.medicalNote[2].idObs",
+              "$.createCaseHealthUpdate.medicalNote[2].patientId",
+              "$.createCaseHealthUpdate.medicalNote[2].operator.medicalNoteId",
               "$.createCaseHealthUpdate.medicalNote[3].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[3].idPat",
-              "$.createCaseHealthUpdate.medicalNote[3].idObs",
+              "$.createCaseHealthUpdate.medicalNote[3].patientId",
+              "$.createCaseHealthUpdate.medicalNote[3].operator.medicalNoteId",
               "$.createCaseHealthUpdate.medicalNote[4].operator.role",
-              "$.createCaseHealthUpdate.medicalNote[4].idPat",
-              "$.createCaseHealthUpdate.medicalNote[4].idObs",
-              "$.createCaseHealthUpdate.patient[0].idPat",
-              "$.createCaseHealthUpdate.patient[1].idPat"
+              "$.createCaseHealthUpdate.medicalNote[4].patientId",
+              "$.createCaseHealthUpdate.medicalNote[4].operator.medicalNoteId",
+              "$.createCaseHealthUpdate.patient[0].patientId",
+              "$.createCaseHealthUpdate.patient[1].patientId"
             ]
           },
           {
@@ -927,12 +927,12 @@
             "model":"RS-RI",
             "ignoredProperties":[
               "$.resourcesInfo.caseId",
-              "$.resourcesInfo.mobilizedResource[0].contact.type",
-              "$.resourcesInfo.mobilizedResource[0].resourceId",
-              "$.resourcesInfo.mobilizedResource[0].orgId",
-              "$.resourcesInfo.mobilizedResource[1].contact.type",
-              "$.resourcesInfo.mobilizedResource[1].resourceId",
-              "$.resourcesInfo.mobilizedResource[1].orgId"
+              "$.resourcesInfo.resource[0].contact.type",
+              "$.resourcesInfo.resource[0].resourceId",
+              "$.resourcesInfo.resource[0].orgId",
+              "$.resourcesInfo.resource[1].contact.type",
+              "$.resourcesInfo.resource[1].resourceId",
+              "$.resourcesInfo.resource[1].orgId"
             ]
           },
           {
@@ -967,10 +967,10 @@
             "file":"RS-RI_partageRessources_EnfantsNguyen.04c.json",
             "model":"RS-RI",
             "ignoredProperties":[
-              "$.resourcesInfo.mobilizedResource[0].requestId",
+              "$.resourcesInfo.resource[0].requestId",
               "$.resourcesInfo.caseId",
-              "$.resourcesInfo.mobilizedResource[0].resourceId",
-              "$.resourcesInfo.mobilizedResource[0].orgId"
+              "$.resourcesInfo.resource[0].resourceId",
+              "$.resourcesInfo.resource[0].orgId"
             ]
           },
           {
