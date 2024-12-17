@@ -27,7 +27,6 @@
         
         xmlns:reference="urn:emergency:cisu:3.0"
         
-        
         xmlns:error="urn:emergency:cisu:3.0:error"
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:3.0" xmlns="http://www.w3.org/2001/XMLSchema">
