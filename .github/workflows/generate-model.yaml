@@ -29,6 +29,7 @@ jobs:
               - '**/model.xlsx'
               - '**/nomenclature_parser/**'
               - '**/json_schema2xsd/**'
+              - '**/automatic-schema-generator/**'
             test_case_parsing_required:
               - '**/test_case_generator.py'
               - '**/workflow.py'
