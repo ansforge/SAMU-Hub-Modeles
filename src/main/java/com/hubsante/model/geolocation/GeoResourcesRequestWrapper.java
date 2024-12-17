@@ -56,7 +56,7 @@ import java.util.Objects;
 
 public class GeoResourcesRequestWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0";
+  String xmlns = "urn:emergency:cisu:3.0:georesourcesrequest";
   public static final String JSON_PROPERTY_GEO_RESOURCES_REQUEST =
       "geoResourcesRequest";
   private GeoResourcesRequest geoResourcesRequest;

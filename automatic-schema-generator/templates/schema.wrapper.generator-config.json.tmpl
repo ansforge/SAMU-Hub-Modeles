@@ -17,6 +17,7 @@
     "serializationLibrary": "jackson",
     "openApiNullable": true,
     "supportUrlQuery": false,
+    "xmlns": "{{if .xmlns}}{{.xmlns}}{{end}}{{if not .xmlns}}cisu:3.0:{{.rootElement}}{{end}}",
     "enablePostProcessFile": true{{ if .customExtendPackage}},
     "customExtend": {
       "package": "{{ .customExtendPackage }}",
