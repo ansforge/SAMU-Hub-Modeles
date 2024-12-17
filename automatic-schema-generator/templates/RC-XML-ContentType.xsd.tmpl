@@ -14,7 +14,8 @@
 
     <xs:include schemaLocation="RC-DE.xsd"/>
     <xs:include schemaLocation="customContent.xsd"/>
-    {{ range (datasource "config").schemas }}{{if and (eq .automaticGeneration "Y") .xmlns}}<xs:import namespace="urn:emergency:{{.xmlns}}" schemaLocation="{{.schema}}.xsd"/>{{end}}
+    {{ range (datasource "config").schemas }}
+    {{- if and (eq .automaticGeneration "Y") .xmlns}}<{{if (.schema | strings.Contains "RC-")}}xs:include{{else}}xs:import namespace="urn:emergency:{{.xmlns}}"{{end}} schemaLocation="{{.schema}}.xsd"/>{{end}}
     {{end}}<xs:import namespace="urn:emergency:cisu:3.0:error" schemaLocation="RS-ERROR.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
