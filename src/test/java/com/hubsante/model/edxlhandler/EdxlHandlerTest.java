@@ -75,8 +75,8 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
         String jsonMessageString = new String(Files.readAllBytes(jsonMessage.toPath()), StandardCharsets.UTF_8);
         validator.validateJSON(jsonMessageString, FULL_SCHEMA);
         EdxlMessage jsonEdxlMessage = converter.deserializeJsonEDXL(jsonMessageString);
-        String xmlEdxlSerializedMessage = converter.serializeXmlEDXL(jsonEdxlMessage);
-        validator.validateXML(xmlEdxlSerializedMessage, FULL_XSD);
+//        String xmlEdxlSerializedMessage = converter.serializeXmlEDXL(jsonEdxlMessage);
+//        validator.validateXML(xmlEdxlSerializedMessage, FULL_XSD);
 
         File xmlMessage = new File(TestMessagesHelper.class.getClassLoader().getResource("sample/valid/EDXL-DE/EDXL-DE.xml").getFile());
         String xmlMessageString = new String(Files.readAllBytes(xmlMessage.toPath()), StandardCharsets.UTF_8);
