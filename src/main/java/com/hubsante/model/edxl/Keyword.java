@@ -19,6 +19,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
+import java.util.Objects;
+
 @JsonAutoDetect(
         fieldVisibility = JsonAutoDetect.Visibility.ANY,
         getterVisibility = JsonAutoDetect.Visibility.NONE
@@ -55,4 +57,15 @@ public class Keyword {
     public void setValue(String Value) {
         this.value = Value;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Keyword that = (Keyword) o;
+        return 
+                Objects.equals(this.valueListURI, that.valueListURI) &&
+                Objects.equals(this.value, that.value);
+    }
+
 }
