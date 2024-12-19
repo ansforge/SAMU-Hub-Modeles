@@ -56,7 +56,7 @@ import java.util.Objects;
 
 public class CreateCaseHealthUpdateWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:3.0:createCaseHealthUpdate";
+  String xmlns = "urn:emergency:cisu:3.0";
   public static final String JSON_PROPERTY_CREATE_CASE_HEALTH_UPDATE =
       "createCaseHealthUpdate";
   private CreateCaseHealthUpdate createCaseHealthUpdate;
