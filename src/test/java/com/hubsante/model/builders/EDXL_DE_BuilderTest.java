@@ -45,6 +45,7 @@ public class EDXL_DE_BuilderTest {
 
         EdxlMessage built = new EDXL_DE_Builder(DISTRIBUTION_ID, SENDER_ID, RECIPIENT_ID)
                 .contentMessage(contentMessage)
+                .model("createCase")
                 .build();
 
         assertEquals(DISTRIBUTION_ID, built.getDistributionID());
@@ -69,6 +70,7 @@ public class EDXL_DE_BuilderTest {
         EdxlMessage built = new EDXL_DE_Builder(DISTRIBUTION_ID, SENDER_ID, RECIPIENT_ID)
                 .contentMessage(contentMessage)
                 .dateTimeSent(customDateTime)
+                .model("createCase")
                 .build();
 
         assertEquals(customDateTime.truncatedTo(ChronoUnit.SECONDS), built.getDateTimeSent());
@@ -84,6 +86,7 @@ public class EDXL_DE_BuilderTest {
         EdxlMessage built = new EDXL_DE_Builder(DISTRIBUTION_ID, SENDER_ID, RECIPIENT_ID)
                 .contentMessage(contentMessage)
                 .dateTimeExpires(customDateTimeExpires)
+                .model("createCase")
                 .build();
 
         assertEquals(customDateTimeExpires.truncatedTo(ChronoUnit.SECONDS), built.getDateTimeExpires());
@@ -99,6 +102,7 @@ public class EDXL_DE_BuilderTest {
                 .contentMessage(contentMessage)
                 .dateTimeSent(customDateTime)
                 .dateTimeExpires(customDateTime.minusHours(1))
+                .model("createCase")
                 .build());
     }
 
@@ -111,6 +115,7 @@ public class EDXL_DE_BuilderTest {
         EdxlMessage built = new EDXL_DE_Builder(DISTRIBUTION_ID, SENDER_ID, RECIPIENT_ID)
                 .contentMessage(contentMessage)
                 .dateTimeSentAndExpiresAfterSeconds(customDateTime, 3600)
+                .model("createCase")
                 .build();
 
         assertEquals(customDateTime.truncatedTo(ChronoUnit.SECONDS), built.getDateTimeSent());
@@ -126,6 +131,7 @@ public class EDXL_DE_BuilderTest {
         EdxlMessage built = new EDXL_DE_Builder(DISTRIBUTION_ID, SENDER_ID, RECIPIENT_ID)
                 .contentMessage(contentMessage)
                 .dateTimeSentAndExpiresAfterHours(customDateTime, 24)
+                .model("createCase")
                 .build();
 
         assertEquals(customDateTime.truncatedTo(ChronoUnit.SECONDS), built.getDateTimeSent());
@@ -141,6 +147,7 @@ public class EDXL_DE_BuilderTest {
         EdxlMessage built = new EDXL_DE_Builder(DISTRIBUTION_ID, SENDER_ID, RECIPIENT_ID)
                 .contentMessage(contentMessage)
                 .dateTimeSentAndExpiresAfterDays(customDateTime, 1)
+                .model("createCase")
                 .build();
 
         assertEquals(customDateTime.truncatedTo(ChronoUnit.SECONDS), built.getDateTimeSent());
@@ -155,6 +162,7 @@ public class EDXL_DE_BuilderTest {
         EdxlMessage built = new EDXL_DE_Builder(DISTRIBUTION_ID, SENDER_ID, RECIPIENT_ID)
                 .distributionStatus(DistributionStatus.EXERCISE)
                 .contentMessage(contentMessage)
+                .model("createCase")
                 .build();
 
         assertEquals(DistributionStatus.EXERCISE, built.getDistributionStatus());
