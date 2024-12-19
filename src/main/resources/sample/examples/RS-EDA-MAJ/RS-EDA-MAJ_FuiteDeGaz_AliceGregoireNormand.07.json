@@ -3,7 +3,7 @@
     "qualification": {
       "details": {
         "priority": "P1",
-        "status": " ACTIF"
+        "status": "ACTIF"
       }
     },
     "medicalNote": [
@@ -12,7 +12,7 @@
           "label": "Pierre Castet",
           "role": "MEDECIN"
         },
-        "patientId": "fr.health.samu440.patient.DRFR154402413800236.P2",
+        "patientId": "fr.health.samu440.patient.DRFR154402413800236.2",
         "freetext": "Se plaint de difficulté respiratoire et de maux de tête. Hospitalisations antérieures pour crises d'asthme sévères (dernière en octobre 2023).  Allergies connues : pollen, acariens",
         "creation": "2024-05-18T18:20:00+02:00",
         "medicalNoteId": "fr.health.samu440.medicalNote.000233"

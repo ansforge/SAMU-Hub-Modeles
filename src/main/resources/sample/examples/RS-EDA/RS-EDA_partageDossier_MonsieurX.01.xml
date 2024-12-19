@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<createCaseHealth xmlns="urn:emergency:cisu:2.0:createCaseHealth">
+<createCaseHealth xmlns="urn:emergency:cisu:3.0:createCaseHealth">
   <caseId>fr.health.samu009.DRFR150092406301259</caseId>
   <creation>2024-03-03T15:00:00+01:00</creation>
   <qualification>

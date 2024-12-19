@@ -1,0 +1,63 @@
+{
+  "rpis": {
+    "orientation": {
+      "decision": {
+        "resourceType": "SMUR",
+        "vehicleType": "SMUR.AR",
+        "medicalLevel": "MED"
+      },
+      "destination": {
+        "destinationCategory": "ES",
+        "finess": "680020096",
+        "destinationCountry": "FR",
+        "healthcareType": "123"
+      },
+      "type": "OK"
+    },
+    "intervention": {
+      "team": {
+        "doctor": true,
+        "driver": true,
+        "nurse": true
+      },
+      "location": {
+        "detailedAddress": {
+          "city": "Mulhouse",
+          "inseeCode": "68224"
+        },
+        "type": "L04.07.01",
+        "finessGeo": "680004538"
+      },
+      "mainDiagnosis": "I26"
+    },
+    "patient": {
+      "residentialAddress": {
+        "city": "Mulhouse",
+        "inseeCode": "68224"
+      },
+      "patientId": "fr.health.samu680.patient.68263",
+      "birthDate": "1967-09-17",
+      "sex": "M"
+    },
+    "regulation": {
+      "healthMotive": {
+        "label": "Autre motif",
+        "code": "M06.04"
+      },
+      "whatsHappen": {
+        "label": "Autre nature de fait",
+        "code": "C11.06.00"
+      },
+      "medicalLevel": "MED"
+    },
+    "context": {
+      "orgId": "fr.health.samu680",
+      "senderCaseId": "DRFR154402413800555",
+      "ressourceFinessLegal": "680020336",
+      "ressourceFinessGeo": "680004538",
+      "ressourceStructure": "0",
+      "creationDate": "2024-11-18T06:57:00+02:00",
+      "decisionDate": "2024-11-18T07:00:00+02:00"
+    }
+  }
+}

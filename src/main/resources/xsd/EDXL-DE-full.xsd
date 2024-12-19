@@ -10,7 +10,7 @@
            xmlns:edxl-gsf="urn:oasis:names:tc:emergency:edxl:gsf:1.0"
            xmlns:ct="urn:oasis:names:tc:emergency:edxl:ct:1.0"
            xmlns="urn:oasis:names:tc:emergency:EDXL:DE:2.0"
-           xmlns:x="urn:emergency:cisu:2.0"
+           xmlns:x="urn:emergency:cisu:3.0"
            xmlns:gml="http://www.opengis.net/gml/3.2"
            xmlns:ext="urn:oasis:names:tc:emergency:edxl:extension:1.0"
            targetNamespace="urn:oasis:names:tc:emergency:EDXL:DE:2.0"
@@ -25,7 +25,7 @@
                schemaLocation="other-supporting-schema/EDXLCT_wd06/edxl-ext-v1.0.xsd"/>
 
     <!--       Hub Santé extensions -->
-    <xs:import namespace="urn:emergency:cisu:2.0" schemaLocation="./RC-XML-ContentType.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:3.0" schemaLocation="./RC-XML-ContentType.xsd"/>
     <!--       Hub Santé extensions -->
 
     <xs:element name="edxlDistribution" type="DEDistributionType"/>

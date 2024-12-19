@@ -1,6 +1,7 @@
 {
     "caseId": "fr.health.samu440.DRFR15440241550012",
     "patientId": "fr.health.samu690.patient.P23AZ59\nfr.health.samu690.patient.DRFR15690242370035.1",
+    "code": "5f5h8s9",
     "document": [
         {
             "documentType": "Photo, ECG, bilan pdf, prescription, carte d'identité",

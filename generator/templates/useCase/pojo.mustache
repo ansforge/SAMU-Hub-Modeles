@@ -26,7 +26,7 @@ public class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{{#vendorExtens
 
 {{/serializableModel}}
     @JacksonXmlProperty(isAttribute = true)
-    String xmlns = "urn:emergency:cisu:2.0:{{name}}";
+    String xmlns = "urn:emergency:{{xmlns}}";
 {{#vars}}    {{#isEnum}}
     {{^isContainer}}
         {{>modelInnerEnum}}

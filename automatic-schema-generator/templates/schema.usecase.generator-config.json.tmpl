@@ -1,0 +1,29 @@
+{{ define "usecase.generator-config" }}{
+  "inputSpec": "./input/{{.schema}}.openapi.yaml",
+  "outputDir": "classes/",
+  "generatorName": "java",
+  "templateDir": "templates/useCase/",
+  "globalProperties": {
+    "models": "{{.rootElement}}",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "library": "native",
+    "modelPackage": "com.hubsante.model.{{.package}}",
+    "serializationLibrary": "jackson",
+    "openApiNullable": true,
+    "supportUrlQuery": false,
+    "xmlns": "{{if .xmlns}}{{.xmlns}}{{end}}{{if not .xmlns}}cisu:3.0:{{.rootElement}}{{end}}",
+    "enablePostProcessFile": true
+  }
+}
+{{ end }}
+{{- range (datasource "config").schemas }}
+    {{ if eq .automaticGeneration "Y" }}
+        {{- tmpl.Exec "usecase.generator-config" . | file.Write (printf "output/generator/config/generated/%s/%s.usecase.generator-config.json" .schema .schema) }}
+    {{end}}
+{{end}}
