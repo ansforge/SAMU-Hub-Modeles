@@ -46,8 +46,7 @@ import java.util.stream.Collectors;
 import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessage;
 import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessageWithoutDistributionElement;
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
-import static com.hubsante.model.config.Constants.FULL_SCHEMA;
-import static com.hubsante.model.config.Constants.FULL_XSD;
+import static com.hubsante.model.config.Constants.*;
 import static com.hubsante.model.utils.TestFileUtils.getMessageByFileName;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.*;
@@ -75,16 +74,15 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
         String jsonMessageString = new String(Files.readAllBytes(jsonMessage.toPath()), StandardCharsets.UTF_8);
         validator.validateJSON(jsonMessageString, FULL_SCHEMA);
         EdxlMessage jsonEdxlMessage = converter.deserializeJsonEDXL(jsonMessageString);
-//        String xmlEdxlSerializedMessage = converter.serializeXmlEDXL(jsonEdxlMessage);
-//        validator.validateXML(xmlEdxlSerializedMessage, FULL_XSD);
+        String xmlEdxlSerializedMessage = converter.serializeXmlEDXL(jsonEdxlMessage);
+        validator.validateXML(xmlEdxlSerializedMessage, FULL_XSD_NO_HEADER);
 
         File xmlMessage = new File(TestMessagesHelper.class.getClassLoader().getResource("sample/valid/EDXL-DE/EDXL-DE.xml").getFile());
         String xmlMessageString = new String(Files.readAllBytes(xmlMessage.toPath()), StandardCharsets.UTF_8);
-        validator.validateXML(xmlMessageString, FULL_XSD);
+        validator.validateXML(xmlMessageString, FULL_XSD_NO_HEADER);
         EdxlMessage xmlEdxlMessage = converter.deserializeXmlEDXL(xmlMessageString);
         String jsonEdxlSerializedMessage = converter.serializeJsonEDXL(xmlEdxlMessage);
         validator.validateJSON(jsonEdxlSerializedMessage, FULL_SCHEMA);
-
     }
 
     @Test
