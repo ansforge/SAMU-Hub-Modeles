@@ -33,6 +33,14 @@
             "x-cols": 6,
             "example": "example.json#/errorDistributionID",
             "description": "Identifiant unique du message d'erreur lié"
+        },
+        "step": {
+            "type": "string",
+            "title": "Etape d'intégration du message",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/step",
+            "description": "Nomenclature permettant d'identifier les différentes étapes d'intégration et de consultation du dossier dans le système émetteur"
         }
     },
     "definitions": {},
