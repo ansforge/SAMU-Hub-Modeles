@@ -43,7 +43,8 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({Reference.JSON_PROPERTY_DISTRIBUTION_I_D,
                     Reference.JSON_PROPERTY_REFUSED,
-                    Reference.JSON_PROPERTY_ERROR_DISTRIBUTION_I_D})
+                    Reference.JSON_PROPERTY_ERROR_DISTRIBUTION_I_D,
+                    Reference.JSON_PROPERTY_STEP})
 @JsonTypeName("reference")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -59,6 +60,9 @@ public class Reference {
   public static final String JSON_PROPERTY_ERROR_DISTRIBUTION_I_D =
       "errorDistributionID";
   private String errorDistributionID;
+
+  public static final String JSON_PROPERTY_STEP = "step";
+  private String step;
 
   public Reference() {}
 
@@ -131,6 +135,30 @@ public class Reference {
     this.errorDistributionID = errorDistributionID;
   }
 
+  public Reference step(String step) {
+
+    this.step = step;
+    return this;
+  }
+
+  /**
+   * Nomenclature permettant d&#39;identifier les différentes étapes
+   *d&#39;intégration et de consultation du dossier dans le système émetteur
+   * @return step
+   **/
+  @JsonProperty(JSON_PROPERTY_STEP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getStep() {
+    return step;
+  }
+
+  @JsonProperty(JSON_PROPERTY_STEP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStep(String step) {
+    this.step = step;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -142,12 +170,14 @@ public class Reference {
     Reference reference = (Reference)o;
     return Objects.equals(this.distributionID, reference.distributionID) &&
         Objects.equals(this.refused, reference.refused) &&
-        Objects.equals(this.errorDistributionID, reference.errorDistributionID);
+        Objects.equals(this.errorDistributionID,
+                       reference.errorDistributionID) &&
+        Objects.equals(this.step, reference.step);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(distributionID, refused, errorDistributionID);
+    return Objects.hash(distributionID, refused, errorDistributionID, step);
   }
 
   @Override
@@ -161,6 +191,7 @@ public class Reference {
     sb.append("    errorDistributionID: ")
         .append(toIndentedString(errorDistributionID))
         .append("\n");
+    sb.append("    step: ").append(toIndentedString(step)).append("\n");
     sb.append("}");
     return sb.toString();
   }
