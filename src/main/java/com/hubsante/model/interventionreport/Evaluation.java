@@ -63,7 +63,7 @@ public class Evaluation {
 
   public static final String JSON_PROPERTY_ASSOCIATED_DIAGNOSIS =
       "associatedDiagnosis";
-  private String associatedDiagnosis;
+  private List<String> associatedDiagnosis;
 
   public static final String JSON_PROPERTY_PARAMETER = "parameter";
   private List<Vital> parameter;
@@ -142,28 +142,43 @@ public class Evaluation {
     this.mainDiagnosis = mainDiagnosis;
   }
 
-  public Evaluation associatedDiagnosis(String associatedDiagnosis) {
+  public Evaluation associatedDiagnosis(List<String> associatedDiagnosis) {
 
     this.associatedDiagnosis = associatedDiagnosis;
     return this;
   }
 
+  public Evaluation addAssociatedDiagnosisItem(String associatedDiagnosisItem) {
+    if (this.associatedDiagnosis == null) {
+      this.associatedDiagnosis = new ArrayList<>();
+    }
+    this.associatedDiagnosis.add(associatedDiagnosisItem);
+    return this;
+  }
+
   /**
-   * Thésaurus SFMU-FEDORU. A valoriser par un code de la nomenclature
-   *Diagnostic SMUR.
+   * Get associatedDiagnosis
    * @return associatedDiagnosis
    **/
   @JsonProperty(JSON_PROPERTY_ASSOCIATED_DIAGNOSIS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getAssociatedDiagnosis() {
+  public List<String> getAssociatedDiagnosis() {
     return associatedDiagnosis;
   }
 
+  @JacksonXmlElementWrapper(useWrapping = false)
+
   @JsonProperty(JSON_PROPERTY_ASSOCIATED_DIAGNOSIS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAssociatedDiagnosis(String associatedDiagnosis) {
-    this.associatedDiagnosis = associatedDiagnosis;
+  public void setAssociatedDiagnosis(List<String> associatedDiagnosis) {
+    if (associatedDiagnosis == null) {
+      return;
+    }
+    if (this.associatedDiagnosis == null) {
+      this.associatedDiagnosis = new ArrayList<>();
+    }
+    this.associatedDiagnosis.addAll(associatedDiagnosis);
   }
 
   public Evaluation parameter(List<Vital> parameter) {

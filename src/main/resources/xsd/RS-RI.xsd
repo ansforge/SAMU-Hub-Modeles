@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:resourcesInfo" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:resourcesInfo" xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:3.0:resourcesinfo" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:3.0:resourcesinfo" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="resourcesInfo" type="x:resourcesInfo"/>
     <complexType name="resourcesInfo">
         <sequence>
@@ -62,6 +62,16 @@ OU - si un ID unique de la demande n'était pas disponible :
                 <annotation>
                     <documentation>A valoriser avec l'identifiant de l'organisation à laquelle appartient la ressource, normé comme suit : 
 {pays}.{domaine}.{organisation}</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="patientId" type="string">
+                <annotation>
+                    <documentation>Identifiant partagé du patient qui est transporté. Ce n'est à remplir que lorsque l'on sait quel vecteur transporte quel patient. 
+Il est valorisé comme suit lors de sa création : 
+{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}
+
+OU, si un n°patient unique n'existe pas dans le système émetteur :
+{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="centerName" type="string">
@@ -173,6 +183,7 @@ OU - si un ID unique de la demande n'était pas disponible :
                         <enumeration value="MED"/>
                         <enumeration value="PARAMED"/>
                         <enumeration value="SECOURS"/>
+                        <enumeration value="SANS"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -203,13 +214,14 @@ OU - si un ID unique de la demande n'était pas disponible :
                         <enumeration value="ARRIVEE"/>
                         <enumeration value="PEC"/>
                         <enumeration value="BILAN"/>
+                        <enumeration value="ORIENTAT"/>
                         <enumeration value="TRANSP"/>
                         <enumeration value="ETAPE1"/>
                         <enumeration value="TRANSP2"/>
                         <enumeration value="ETAPE2"/>
                         <enumeration value="TRANSP3"/>
                         <enumeration value="DESTIN"/>
-                        <enumeration value="FINMED"/>
+                        <enumeration value="FINPEC"/>
                         <enumeration value="RETOUR"/>
                         <enumeration value="RET-BASE"/>
                         <enumeration value="REN-BASE"/>

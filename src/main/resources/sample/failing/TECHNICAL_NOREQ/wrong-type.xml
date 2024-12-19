@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<technicalNoreq xmlns="urn:emergency:cisu:2.0:technicalNoreq">
+<technicalNoreq xmlns="urn:emergency:cisu:3.0:technicalNoreq">
     <optionalStringField>1</optionalStringField>
     <integerField>1.5</integerField>
     <numberField>one</numberField>

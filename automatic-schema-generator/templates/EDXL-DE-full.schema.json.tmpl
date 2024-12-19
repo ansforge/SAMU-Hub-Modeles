@@ -1,0 +1,195 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "classpath:/json-schema/schema#",
+  "required": [
+    "senderID",
+    "distributionID",
+    "dateTimeSent",
+    "dateTimeExpires",
+    "distributionStatus",
+    "distributionKind",
+    "descriptor",
+    "content"
+  ],
+  "properties": {
+    "senderID": {
+      "type": "string"
+    },
+    "distributionID": {
+      "type": "string"
+    },
+    "dateTimeSent": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "dateTimeExpires": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "content": {
+      "$ref": "#/definitions/Content"
+    },
+    "descriptor": {
+      "$ref": "#/definitions/Descriptor"
+    },
+    "distributionKind": {
+      "$ref": "#/definitions/DistributionKind"
+    },
+    "distributionStatus": {
+      "$ref": "#/definitions/DistributionStatus"
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "Content": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ContentObject"
+      },
+      "minItems": 1
+    },
+    "ContentObject": {
+      "type": "object",
+      "required": [
+        "jsonContent"
+      ],
+      "properties": {
+        "jsonContent": {
+          "$ref": "#/definitions/JsonContent"
+        }
+      }
+    },
+    "JsonContent": {
+      "type": "object",
+      "required": [
+        "embeddedJsonContent"
+      ],
+      "properties": {
+        "embeddedJsonContent": {
+          "$ref": "#/definitions/EmbeddedJsonContent"
+        }
+      }
+    },
+    "EmbeddedJsonContent": {
+      "type": "object",
+      "oneOf": [{{ range (datasource "config").schemas }}{{if eq .automaticGeneration "Y"}}{{if eq .header "Y"}}
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "{{.rootElement}}": {
+                      "$ref": "{{.schema}}.schema.json"
+                    }
+                  },
+                  "required": [
+                    "{{.rootElement}}"
+                  ]
+                }
+              }
+            }
+          ]
+        },{{end}}{{if eq .header "N"}}
+        {
+          "properties": {
+            "message": {
+              "properties": {
+                "{{.rootElement}}": {
+                  "$ref": "{{.schema}}.schema.json"
+                }
+              },
+              "required": [
+                "{{.rootElement}}"
+              ]
+            }
+          }
+        },{{end}}{{end}}{{end}}
+        {
+          "properties": {
+            "message": {
+              "properties": {
+                "customContent": {
+                  "$ref": "customContent.schema.json"
+                }
+              },
+              "required": [
+                "customContent"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "message": {
+              "properties": {
+                "error": {
+                  "$ref": "RS-ERROR.schema.json"
+                }
+              },
+              "required": [
+                "error"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "Descriptor": {
+      "type": "object",
+      "properties": {
+        "explicitAddress": {
+          "$ref": "#/definitions/ExplicitAddress"
+        },
+        "language": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "explicitAddress",
+        "language"
+      ]
+    },
+    "DistributionKind": {
+      "type": "string",
+      "enum": [
+        "Report",
+        "Update",
+        "Cancel",
+        "Ack",
+        "Error"
+      ]
+    },
+    "DistributionStatus": {
+      "type": "string",
+      "enum": [
+        "Actual",
+        "Exercise"
+      ]
+    },
+    "ExplicitAddress": {
+      "type": "object",
+      "properties": {
+        "explicitAddressScheme": {
+          "type": "string"
+        },
+        "explicitAddressValue": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "explicitAddressScheme",
+        "explicitAddressValue"
+      ]
+    }
+  }
+}

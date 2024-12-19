@@ -14,7 +14,7 @@ strict digraph {
                 <TR>
                 <TD ><B>resource</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet resource</I></TD></TR><TR><TD BORDER="0" >vehicleType <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet resource</I></TD></TR><TR><TD BORDER="0" >vehicleType <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
 	resource -> resourcesEngagement [headlabel=1 taillabel="1..*"]
 	resourcesEngagement [label=<<TABLE>

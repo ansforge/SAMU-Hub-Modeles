@@ -67,7 +67,9 @@ public class Regulation {
 
     PARAMED("PARAMED"),
 
-    SECOURS("SECOURS");
+    SECOURS("SECOURS"),
+
+    SANS("SANS");
 
     private String value;
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:geoResourcesRequest" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:geoResourcesRequest" xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:3.0:georesourcesrequest" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:3.0:georesourcesrequest" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="geoResourcesRequest" type="x:geoResourcesRequest"/>
     <complexType name="geoResourcesRequest">
         <sequence>

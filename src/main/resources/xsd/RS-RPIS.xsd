@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:rpis" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:rpis" xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:3.0:rpis" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:3.0:rpis" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="rpis" type="x:rpis"/>
     <complexType name="rpis">
         <sequence>
@@ -79,6 +79,7 @@ Permet de déduire avec la donnée "niveau de médicalisation du transport", si 
                         <enumeration value="MED"/>
                         <enumeration value="PARAMED"/>
                         <enumeration value="SECOURS"/>
+                        <enumeration value="SANS"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1240,6 +1241,7 @@ A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN.</documentation>
                         <enumeration value="MED"/>
                         <enumeration value="PARAMED"/>
                         <enumeration value="SECOURS"/>
+                        <enumeration value="SANS"/>
                     </restriction>
                 </simpleType>
             </element>

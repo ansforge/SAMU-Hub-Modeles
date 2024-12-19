@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<createCaseHealth xmlns="urn:emergency:cisu:2.0:createCaseHealth">
+<createCaseHealth xmlns="urn:emergency:cisu:3.0:createCaseHealth">
   <caseId>fr.fire.sis044.cga-044.SC-20240526-044-cga-AL8</caseId>
   <senderCaseId>DRFR154402414300123</senderCaseId>
   <creation>2024-05-26T13:15:00+02:00</creation>
-  <interventionType>PRIMAIRE</interventionType>
+  <interventionType>T1</interventionType>
   <qualification>
-    <origin>18</origin>
+    <origin>CTA-PI</origin>
     <whatsHappen>
       <code>C02.05.02</code>
       <label>Obstétrique</label>

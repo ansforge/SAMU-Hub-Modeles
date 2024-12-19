@@ -20,25 +20,25 @@ A valoriser par DRFR15DDXAAJJJ00000 :
 ,Type de structure SMUR,,,,,"9 = Antenne SMUR, 0 = SMUR général, 1 = SMUR pédiatrique, 2 = SMUR neonatal ",,ressourceStructure,1..1,,string,
 Régulation médicale,,,,,,,,regulation,1..1,X,regulation,
 ,Circonstances ayant données lieu à l’appel,,,,,,,whatsHappen,1..1,X,codeAndLabel,
-,,Code,,,,A valoriser avec le code de la nomenclature associée.,AVPAR,code,1..1,,string,NOMENCLATURE: CISU-Code_Nature_de_fait
+,,Code,,,,A valoriser avec le code de la nomenclature associée.,AVPAR,code,1..1,,string,NOMENCLATURE: HubSante.fait
 ,,Libellé court,,,,"A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Accident routier,label,1..1,,string,
-,Motif de recours ,# Voir whatsHappen (type codeAndLabel),,,,,,healthMotive,1..1,X,codeAndLabel,NOMENCLATURE: CISU-Code_Motif_patient-victime
+,Motif de recours ,# Voir whatsHappen (type codeAndLabel),,,,,,healthMotive,1..1,X,codeAndLabel,NOMENCLATURE: HubSante.motif
 ,Niveau de médicalisation initial,,,,,"Type d’équipe (médical, paramédicale, secouriste).
 A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.
-Permet de déduire avec la donnée ""niveau de médicalisation du transport"", si un UMHP est devenu un SMUR. ",PARAMED,medicalLevel,1..1,,string,NOMENCLATURE: SI-SAMU-NIVSOIN
+Permet de déduire avec la donnée ""niveau de médicalisation du transport"", si un UMHP est devenu un SMUR. ",PARAMED,medicalLevel,1..1,,string,NOMENCLATURE: HubSante.typePEC
 Patient,,,,,,,,patient,1..1,X,patient,
 ,ID Patient,,,,,"Identifiant unique du patient. 
 A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01",fr.health.samu690.patient.DRFR15DDXAAJJJ00001.1,patientId,1..1,,string,
 ,Date de naissance,,,,,Date de naissance du patient,17/02/1936,birthDate,1..1,,string,
-,Sexe,,,,,"Sexe du patient, suivant le libellé court de la nomenclature NOS-NOMENC_SEXE",F,sex,1..1,,string,NOMENCLATURE: NOS-NOMENC_SEXE
+,Sexe,,,,,"Sexe du patient, suivant le libellé court de la nomenclature NOS-NOMENC_SEXE",F,sex,1..1,,string,NOMENCLATURE: HubSante.sexe
 ,Adresse de résidence,,,,,,,residentialAddress,0..1,X,residentialAddress,
 ,,Code INSEE de la commune de résidence,,,,"Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.
 Le Code INSEE peut également précisé le pays de résidence, si étranger. ",92300,inseeCode,1..1,,string,REGEX: ^[0-9]{5}$
 ,,Nom de la commune,,,,Nom officiel de la commune actuelle,Levallois-Perret,city,1..1,,string,
 Intervention,,,,,,,,intervention,1..1,X,intervention,
 ,Lieu d'intervention,,,,,,,location,1..1,X,location,
-,,Type de lieu d’intervention,,,,A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu.,DOMPAV,type,0..1,,string,NOMENCLATURE: CISU-Code_Type_de_lieu
+,,Type de lieu d’intervention,,,,A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu.,DOMPAV,type,0..1,,string,NOMENCLATURE: HubSante.lieu
 ,,FINESS géographique de l’établissement ,,,,"Finess géographique et juridique de l’établissement de santé. 
 A renseigner uniquement si l'intervention a lieu dans un établissement de santé. ",,finessGeo,0..1,,string,
 ,,Unité fonctionnelle ,,,,"Unité fonctionnelle de l'établissement de santé. 
@@ -84,8 +84,8 @@ Si le type d'orientation est sans transport associé, les objets Destination et 
 ,,FINESS géographique,,,,FINESS géographique de l’établissement de destination (9 chiffres),,finess,1..1,,string,
 ,Transport,,,,,,,decision,0..1,X,decision,
 ,,Moyen de transport,,,,"Précise le type de moyen engagé dans l'intervention (SMUR, TSU, HOSPIT, etc.). 
-A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.",SMUR,resourceType,1..1,,string,NOMENCLATURE: SI-SAMU-TYPE_MOYEN
+A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.",SMUR,resourceType,1..1,,string,NOMENCLATURE: HubSante.typeRessource
 ,,Type de vecteur de transport,,,,"Précise le type de véhicule terrestre / aérien / maritime engagé dans l'intervention.
-A valoriser par un code de la nomenclature SI-SAMU-TYPE_VECTEUR.","AR, VLM, VSAV",vehicleType,1..1,,string,NOMENCLATURE: SI-SAMU-TYPE_VECTEUR
+A valoriser par un code de la nomenclature SI-SAMU-TYPE_VECTEUR.","AR, VLM, VSAV",vehicleType,1..1,,string,NOMENCLATURE: HubSante.typeVecteur
 ,,Niveau de médicalisation du transport,,,,"Type d’équipe (médical, paramédicale, secouriste).
-A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN.",PARAMED,medicalLevel,1..1,,string,NOMENCLATURE: SI-SAMU-NIVSOIN
+A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN.",PARAMED,medicalLevel,1..1,,string,NOMENCLATURE: HubSante.typePEC

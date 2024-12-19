@@ -61,7 +61,7 @@
             ],
             "elevator": "C3",
             "buildingName": "Batiment B",
-            "entrance": "Zone Sud",
+            "entrance": "A valoriser avec le nom de l'entrée",
             "entity": "Infirmerie",
             "phoneNumber": "+33123452323"
         },

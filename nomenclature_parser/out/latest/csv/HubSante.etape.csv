@@ -1,0 +1,6 @@
+,code,label_n1,Libellé niveau 2,description,commentaire
+0,RECEPTION,Dossier reçu,,Le dossier a bien été reçu et est en cours d'intégration,
+1,ERREUR,Dossier en erreur,,La création/intégration du dossier est en erreur,
+2,CREATION ,Dossier intégré,,Le dossier est bien créé et intégré dans le système de destination finale,
+3,HUMAIN ,Dossier consulté,,Le dossier a été ouvert  par un utilisateur humain (à la première ouverture uniquement),
+4,SUPPRIME ,Dossier supprimé,,Le dossier dossier a été effacé/supprimé dans le système émetteur,

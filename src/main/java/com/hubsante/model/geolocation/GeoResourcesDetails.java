@@ -50,7 +50,7 @@ import java.util.Objects;
 
 public class GeoResourcesDetails {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:geoResourcesDetails";
+  String xmlns = "urn:emergency:cisu:3.0:georesourcesdetails";
   public static final String JSON_PROPERTY_RESOURCE = "resource";
   private List<Resource> resource;
 

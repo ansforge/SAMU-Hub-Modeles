@@ -2,3 +2,4 @@ Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donn
 Identifiant du message référencé,,,,,,Identifiant unique du message référencé,,distributionID,1..1,,string,
 Indicateur de refus de message,,,,,,Indique si le message acquitté a été refusé,,refused,0..1,,boolean,
 Identifiant du message d'erreur lié,,,,,,Identifiant unique du message d'erreur lié,,errorDistributionID,0..1,,string,
+Etape d'intégration du message,,,,,,Nomenclature permettant d'identifier les différentes étapes d'intégration et de consultation du dossier dans le système émetteur,,step,0..1,,string,
