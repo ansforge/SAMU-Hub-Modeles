@@ -153,6 +153,9 @@ def output_schemas_yaml():
                     #Replace NaN values with null
                     schemaTable = schemaTable.where(pd.notnull(schemaTable), None)
 
+                    schemaTable['file'] = file
+                    schemaTable['sheet'] = sheet
+
                     #Add the dataframes as dicts to the schemaMap['schemas']
                     print("Successfully detected schema table in sheet", sheet)
                     for i in range(schemaTable.shape[0]):
