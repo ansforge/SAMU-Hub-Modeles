@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<createCaseHealth xmlns="urn:emergency:cisu:2.0:createCaseHealth">
+<createCaseHealth xmlns="urn:emergency:cisu:3.0:createCaseHealth">
   <caseId>fr.health.samu770.DRFR157702400400055</caseId>
   <senderCaseId>DRFR157702400400055</senderCaseId>
   <creation>2024-01-04T08:01:00+01:00</creation>
   <perimeter>AMU</perimeter>
-  <interventionType>PRIMAIRE</interventionType>
+  <interventionType>T1</interventionType>
   <qualification>
-    <origin>18</origin>
+    <origin>CTA-PI</origin>
     <whatsHappen>
       <code>C02.08.05</code>
       <label>Atteinte aux personnes ; Traumatisme / Accident ; Par objet tranchant ou perforant</label>

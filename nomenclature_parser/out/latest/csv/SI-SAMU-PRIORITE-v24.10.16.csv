@@ -1,6 +1,0 @@
-,code,label_n1,Libellé niveau 2,Libellé niveau 3,description,commentaire
-0,P0,Ultra-Prioritaire,,,Régulation médicale ultra prioritaire,
-1,P1,Prioritaire,,,Régulation médicale prioritaire,
-2,P2,Non Urgent,,,Régulation médicale non urgente (valeur attribuée par défaut),
-3,P3,Différé,,,Régulation médicale différée ,
-4,NR,Non régulé,,,Pas d’acte de régulation médicale,

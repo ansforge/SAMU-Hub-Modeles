@@ -20,7 +20,7 @@
         "priority": "P0",
         "attribution": "DRM.MRU.MU"
       },
-      "origin": "18"
+      "origin": "CTA-PI"
     },
     "location": {
       "detailedAddress": {
@@ -92,7 +92,7 @@
       }
     ],
     "perimeter": "AMU",
-    "interventionType": "PRIMAIRE",
+    "interventionType": "T1",
     "medicalNote": [
       {
         "operator": {

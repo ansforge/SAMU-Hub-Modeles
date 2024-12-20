@@ -142,7 +142,7 @@
       }
     ],
     "owner": "fr.health.samu440",
-    "interventionType": "PRIMAIRE",
+    "interventionType": "T1",
     "decision": [
       {
         "operator": {

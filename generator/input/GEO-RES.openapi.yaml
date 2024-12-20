@@ -110,7 +110,7 @@ components:
           - FIXE
           - VEHICULE
           - HELICOPTERE
-          - 'SHIP '
+          - SHIP
           examples:
           - VEHICULE
         capacity:

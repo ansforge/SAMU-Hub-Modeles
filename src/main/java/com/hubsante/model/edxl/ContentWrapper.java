@@ -15,6 +15,8 @@
  */
 package com.hubsante.model.edxl;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
@@ -24,7 +26,17 @@ import java.util.Objects;
 
 @JsonRootName(value = "JsonContent")
 @JacksonXmlRootElement(localName = "ContentXML")
+@JsonAutoDetect(
+        fieldVisibility = JsonAutoDetect.Visibility.ANY,
+        getterVisibility = JsonAutoDetect.Visibility.NONE
+)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ContentWrapper {
+
+    @JacksonXmlProperty(localName = "xlink:type", isAttribute = true)
+    public String getXmlns() {
+        return "resource";
+    }
 
     @JsonProperty(value = "embeddedJsonContent")
     @JacksonXmlProperty(localName = "embeddedXMLContent")

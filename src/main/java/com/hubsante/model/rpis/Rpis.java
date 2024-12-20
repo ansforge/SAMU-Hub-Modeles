@@ -54,7 +54,7 @@ import java.util.Objects;
 
 public class Rpis {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:rpis";
+  String xmlns = "urn:emergency:cisu:3.0:rpis";
   public static final String JSON_PROPERTY_CONTEXT = "context";
   private Event context;
 

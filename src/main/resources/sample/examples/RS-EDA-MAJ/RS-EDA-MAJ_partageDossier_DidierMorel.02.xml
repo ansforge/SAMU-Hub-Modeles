@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<createCaseHealthUpdate xmlns="urn:emergency:cisu:2.0:createCaseHealthUpdate">
+<createCaseHealthUpdate xmlns="urn:emergency:cisu:3.0:createCaseHealthUpdate">
   <caseId>fr.health.samu770.DRFR157702400400055</caseId>
   <patient>
     <patientId>fr.health.samu770.patient.DRFR157702400400055.2</patientId>

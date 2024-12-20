@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:resourcesEngagement" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:resourcesEngagement" xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:3.0:resourcesengagement" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:3.0:resourcesengagement" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="resourcesEngagement" type="x:resourcesEngagement"/>
     <complexType name="resourcesEngagement">
         <sequence>
@@ -22,7 +22,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
     </complexType>
     <complexType name="resource">
         <sequence>
-            <element minOccurs="0" name="vehicleType">
+            <element name="vehicleType">
                 <annotation>
                     <documentation>A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée</documentation>
                 </annotation>
@@ -114,6 +114,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                         <enumeration value="MED"/>
                         <enumeration value="PARAMED"/>
                         <enumeration value="SECOURS"/>
+                        <enumeration value="SANS"/>
                     </restriction>
                 </simpleType>
             </element>

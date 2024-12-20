@@ -7,6 +7,6 @@ strict digraph {
                 <TR>
                 <TD ><B>reference</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet reference</I></TD></TR><TR><TD BORDER="0" >distributionID <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >refused <I>boolean</I> : [0..1] </TD></TR><TR><TD BORDER="0" >errorDistributionID <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet reference</I></TD></TR><TR><TD BORDER="0" >distributionID <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >refused <I>boolean</I> : [0..1] </TD></TR><TR><TD BORDER="0" >errorDistributionID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >step <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 }

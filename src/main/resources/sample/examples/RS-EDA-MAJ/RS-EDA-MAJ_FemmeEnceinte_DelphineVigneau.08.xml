@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<createCaseHealthUpdate xmlns="urn:emergency:cisu:2.0:createCaseHealthUpdate">
+<createCaseHealthUpdate xmlns="urn:emergency:cisu:3.0:createCaseHealthUpdate">
   <caseId>fr.fire.cga-044.SC-20240526-044-cga-AL8</caseId>
   <decision>
     <patientId>fr.health.samu440.patient.DRFR154402414300123.1</patientId>
