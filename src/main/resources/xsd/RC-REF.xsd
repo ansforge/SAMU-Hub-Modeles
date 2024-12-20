@@ -17,6 +17,11 @@
                     <documentation>Identifiant unique du message d'erreur lié</documentation>
                 </annotation>
             </element>
+            <element minOccurs="0" name="step" type="string">
+                <annotation>
+                    <documentation>Nomenclature permettant d'identifier les différentes étapes d'intégration et de consultation du dossier dans le système émetteur</documentation>
+                </annotation>
+            </element>
         </sequence>
     </complexType>
 </schema>
