@@ -139,7 +139,7 @@ Si la présence de l'en-tete RC-DE n'est pas désirée, il est seulement nécess
    2. Un import **<xs:import namespace="urn:emergency:cisu:3.0:[Objet racine]" schemaLocation="[Nom du schema].xsd"/>**
    3. Un element **<xs:element ref="[Objet racine (en flatcase)]:[Objet racine]"/>** a l'interieur de l'element <xs:choice> 
 
-## 5 Lancer la génération des fichiers, en créant une pull request depuis la branche feature en question et poussant les modifications, declenchant l'action github sur le repo distant.**
+## 5 Lancer la génération des fichiers, en créant une pull request depuis la branche feature en question et poussant les modifications, declenchant l'action github sur le repo distant.
 
 ## Penser à ajouter des fichiers exemples et des cas passants/non-passants dans src/main/resources/sample, ainsi que mettre en place des tests unitaires vérifiant la validation et la sérialisation/désérialisation des classes 
 
