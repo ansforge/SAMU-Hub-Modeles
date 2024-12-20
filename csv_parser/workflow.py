@@ -37,6 +37,10 @@ def parser_and_mv():
         if file.endswith('.xlsx'):
             sheets += [sheet for sheet in pd.ExcelFile(f'./models/{file}').sheet_names if not sheet.startswith('#')]
 
+    # Load schemas.yaml
+    with open('out/schemas.yaml', 'r') as file:
+        schemas_yaml = yaml.safe_load(file)
+
     # Iterate over each sheet
     for sheet in sheets:
         full_df = None
@@ -57,28 +61,10 @@ def parser_and_mv():
             print(f"Files checked: {os.listdir('models')}")
             exit(1)
 
-        # For each sheet we read the A1 cell and get the list of schemas to generate
-        if not pd.isna(full_df.iloc[0, 0]):
-            schemas_array = full_df.iloc[0, 0].split(' ')
-
-            # Schemas are formatted in the sheet as follows:
-            # "schema1['name']:schema1['filter']:schema1['modelType'] schema2['name']:schema2['filter']:schema2['modelType'] ..."
-            try:
-                schemas = [
-                    {'name': schemas_array[i].split(':')[0], 'sheet': sheet, 'filter': schemas_array[i].split(':')[1],
-                     'model_type': schemas_array[i].split(':')[2]}
-                    for i in range(len(schemas_array))]
-            except IndexError:
-                print(f"Error in sheet {sheet}: schema list (cell A2) is not well formatted. "
-                      f"Should be 'name:filter:modelType' separated by a space. "
-                      f"Ex: 'RC-EDA:15-18:createCase RS-EDA:15-15:createCaseHealth'. "
-                      f"It was: '{full_df.iloc[1, 0]}'")
-                exit(1)
-        else:
-            print(f"Error in sheet {sheet}: schema list (cell A1) is empty. "
-                  f"Should be 'name:filter:modelType' separated by a space. "
-                  f"Ex: 'RC-EDA:15-18:createCase RS-EDA:15-15:createCaseHealth'.")
-            exit(1)
+        # Load the list of schemas to generate for the sheet
+        schemas = [{'name': schema['schema'], 'sheet': schema['sheet'], 'filter': schema['perimeter'],
+                         'model_type': schema['rootElement']} for schema in schemas_yaml['schemas'] if
+                        schema['sheet'] == sheet and schema['file'] == file]
 
         for schema in schemas:
             # Run csv_parser
@@ -155,6 +141,9 @@ def output_schemas_yaml():
 
                     #Replace NaN values with null
                     schemaTable = schemaTable.where(pd.notnull(schemaTable), None)
+
+                    schemaTable['file'] = file
+                    schemaTable['sheet'] = sheet
 
                     #Add the dataframes as dicts to the schemaMap['schemas']
                     print("Successfully detected schema table in sheet", sheet)

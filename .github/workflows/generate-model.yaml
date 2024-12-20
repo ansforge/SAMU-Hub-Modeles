@@ -76,6 +76,11 @@ jobs:
         working-directory: ./csv_parser
         if: steps.filter.outputs.parsing_required == 'true'
         run: python workflow.py --stage output_schemas_yaml
+      
+      - name: Run csv_parser and collect OpenAPI & JSON Schemas
+        working-directory: ./csv_parser
+        if: steps.filter.outputs.parsing_required == 'true'
+        run: python workflow.py --stage parser_and_mv
 
       - name: Collect schemas.yaml and copy it to json_schema2xsd
         working-directory: ./csv_parser
@@ -195,6 +200,11 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: ⚙️ Auto-génération des classes et des specs
+          commit_options: '--no-verify'
+          file_pattern: |
+        csv_parser/json_schema2xsd/src/main/resources/schemas.yaml
+        csv_parser/out/**/*.docx
+        csv_parser/out/**/*.pdf
 
       - name: Build and run TECHNICAL tests
         run: ./gradlew test --info -Ptechnical=true
