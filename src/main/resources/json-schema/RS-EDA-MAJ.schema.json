@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA-MAJ.schema.json#",
-    "version": "24.12.19",
+    "version": "24.12.20",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealthUpdate",
