@@ -29,6 +29,7 @@ jobs:
               - '**/model.xlsx'
               - '**/nomenclature_parser/**'
               - '**/json_schema2xsd/**'
+              - '**/automatic-schema-generator/**'
             test_case_parsing_required:
               - '**/test_case_generator.py'
               - '**/workflow.py'
@@ -49,6 +50,7 @@ jobs:
         run: pip install -r ./requirements.txt
 
       - name: Clean up old generated schemas
+        if: steps.filter.outputs.parsing_required == 'true'
         working-directory: ./src/main/resources
         run: find ./json-schema -type f -name '*.json' ! -name 'customContent.schema.json' ! -name 'EDXL-DE-*.schema.json' -exec rm {} +
         
@@ -71,7 +73,7 @@ jobs:
         working-directory: ./csv_parser
         if: steps.filter.outputs.parsing_required == 'true'
         run: |
-          cp ./out/schemas.yaml ./json_schema2xsd/src/main/resources/schemas.yaml
+          rsync -a --remove-source-files ./out/schemas.yaml ./json_schema2xsd/src/main/resources/schemas.yaml
           
       - name: Setup gomplate
         if: steps.filter.outputs.parsing_required == 'true'
@@ -93,6 +95,7 @@ jobs:
           rsync -a --remove-source-files output/edxl ../src/main/java/com/hubsante/model
           rsync -a --remove-source-files output/json-schema ../src/main/resources
           rsync -a --remove-source-files output/xsd ../src/main/resources
+          rsync -a --remove-source-files output/deserializer/. ../src/main/java/com/hubsante/model
 
 # TODO: Reactivate test case autogeneration
 #      - name: Run test_case_generator and move the folder test-cases to src/main/resources/sample/test-cases

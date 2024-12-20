@@ -8,7 +8,13 @@
     "language": "fr-FR",
     "explicitAddress": {
       "explicitAddressScheme": "hubex"
-    }
+    },
+    "keyword": [
+      {
+        "valueListURI": "urn:hubsante:model",
+        "value": "technicalNoreq"
+      }
+    ]
   },
   "content": [
     {

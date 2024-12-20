@@ -13,7 +13,13 @@
       "_errorexplicitAddressScheme": "hubex",
       "_errorexplicitAddressValue": "fr.health.samuB",
       "_errorUnknownProperty": "URI"
-    }
+    },
+    "keyword": [
+      {
+        "valueListURI": "urn:hubsante:model",
+        "value": "technicalNoreq"
+      }
+    ]
   },
   "content": [
     {
