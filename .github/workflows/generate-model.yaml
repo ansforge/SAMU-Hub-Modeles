@@ -21,6 +21,9 @@ jobs:
       JAVA_POST_PROCESS_FILE: "/usr/bin/clang-format -i"
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Set RELEASE_VERSION based on the trigger type
         run: |
           if [[ "${{ github.event_name }}" == "release" ]]; then
@@ -48,9 +51,6 @@ jobs:
 
           # Export the RELEASE_VERSION environment variable for future steps (in env.RELEASE_VERSION)
           echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
-
-      - name: Checkout
-        uses: actions/checkout@v3
 
       - name: Check for changes requiring running the parser
         uses: dorny/paths-filter@v3
