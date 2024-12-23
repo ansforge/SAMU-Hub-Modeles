@@ -48,8 +48,7 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class ErrorWrapper extends ContentMessage {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0";
+  @JacksonXmlProperty(isAttribute = true) String xmlns = "urn:emergency:";
   public static final String JSON_PROPERTY_ERROR = "error";
   private Error error;
 

@@ -630,7 +630,7 @@ components:
         label: "Rod\xE9o automobile"
     whatsHappen:
       type: object
-      title: 'Nature de fait '
+      title: Nature de fait
       x-display: expansion-panels
       x-health-only: false
       required:
@@ -1529,7 +1529,7 @@ components:
           example: example.json#/location/access/entrance
           description: "A valoriser avec le nom de l'entr\xE9e"
           examples:
-          - Zone Sud
+          - "A valoriser avec le nom de l'entr\xE9e"
         entity:
           type: string
           title: Service
@@ -2283,7 +2283,7 @@ components:
           - APPLICATION
           - BAU
           - DAU
-          - 'DEFIBRILLATEUR, '
+          - DEFIBRILLATEUR
           - ECALL
           - PERSONNE
           examples:

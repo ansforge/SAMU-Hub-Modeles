@@ -79,6 +79,18 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
     }
 
     @Test
+    @DisplayName("should deserialize complete message with EDXL-DE envelope")
+    public void deserializeCompleteMessages() throws IOException {
+        File jsonMessage = new File(TestMessagesHelper.class.getClassLoader().getResource("sample/valid/EDXL-DE/EDXL-DE.json").getFile());
+        String useCaseJson = new String(Files.readAllBytes(jsonMessage.toPath()), StandardCharsets.UTF_8);
+        EdxlMessage message = converter.deserializeJsonEDXL(useCaseJson);
+
+        File xmlMessage = new File(TestMessagesHelper.class.getClassLoader().getResource("sample/valid/EDXL-DE/EDXL-DE.xml").getFile());
+        String useCaseXml = new String(Files.readAllBytes(xmlMessage.toPath()), StandardCharsets.UTF_8);
+        EdxlMessage expectedMessage = converter.deserializeXmlEDXL(useCaseXml);
+    }
+
+    @Test
     @DisplayName("all examples files deserializing")
     public void examplesBundlePassingTest() {
         String rootFolder = TestMessagesHelper.class.getClassLoader().getResource("sample/examples").getFile();

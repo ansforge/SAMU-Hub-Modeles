@@ -16,7 +16,7 @@
     "properties": {
         "caseId": {
             "type": "string",
-            "title": "Identifiant partagé du dossier de régulation médicale (DRM)",
+            "title": "Identifiant partagé du dossier ",
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/caseId",
@@ -67,7 +67,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/redactor/label",
-                    "description": "A valoriser avec le prénom et le nom du rédacteur ou un numéro RPPS. "
+                    "description": "A valoriser avec le prénom et le nom du rédacteur, un numéro RPPS, un matricule, etc. "
                 },
                 "role": {
                     "type": "string",
@@ -81,6 +81,8 @@
                         "ARM",
                         "INFIRMIER",
                         "MEDECIN",
+                        "PILOTE",
+                        "TCM",
                         "AUTRE",
                         "INCONNU"
                     ]
@@ -102,7 +104,7 @@
             "properties": {
                 "patientId": {
                     "type": "string",
-                    "title": "ID Patient",
+                    "title": "ID partagé du patient",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/patientId",
@@ -200,7 +202,7 @@
                     "x-health-only": false,
                     "items": {
                         "type": "string",
-                        "title": "Actes réalisés par le SMUR",
+                        "title": "Actes réalisés par la ressource",
                         "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/evaluation/procedure/0",
@@ -216,12 +218,16 @@
                     "description": "Thésaurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature Diagnostic SMUR."
                 },
                 "associatedDiagnosis": {
-                    "type": "string",
-                    "title": "Diagnostic associé  SMUR",
+                    "type": "array",
                     "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/evaluation/associatedDiagnosis",
-                    "description": "Thésaurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature Diagnostic SMUR."
+                    "items": {
+                        "type": "string",
+                        "title": "Diagnostic associé  SMUR",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/evaluation/associatedDiagnosis/0",
+                        "description": "Thésaurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature Diagnostic SMUR."
+                    }
                 },
                 "parameter": {
                     "type": "array",
@@ -254,7 +260,7 @@
                         "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/evaluation/freetext/0",
-                        "description": "Permettrait de concaténer dans une zone de commentaire d'autres champs (ex. anamnèse : allergies,, traitements, symptomes, antécédents)"
+                        "description": "Permettrait de concaténer dans une zone de commentaire d'autres champs (ex. anamnèse : allergies, traitements, symptomes, antécédents)"
                     }
                 }
             },
@@ -332,6 +338,14 @@
                     "x-cols": 6,
                     "example": "example.json#/evaluation/parameter/0/value",
                     "description": "Indique la valeur de la dernière constante prise"
+                },
+                "precision": {
+                    "type": "string",
+                    "title": "Précision sur la mesure",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/evaluation/parameter/0/precision",
+                    "description": "Permet d'apporter des précisions sur la constante prise (ex. le débit d'oxygène lors de la prise de constante de saturation en oxygène)"
                 }
             },
             "additionalProperties": false,

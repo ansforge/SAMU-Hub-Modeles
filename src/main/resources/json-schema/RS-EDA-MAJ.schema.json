@@ -343,12 +343,16 @@
                     "description": "Indique le type de destination en cas de décision d'orientation (cf. nomenclature associée)",
                     "enum": [
                         "URGENCES",
+                        "REA-USI",
                         "SANTE",
                         "CABINET",
                         "DOMICILE",
                         "EPHAD",
                         "AUTRE"
                     ]
+                },
+                "destination": {
+                    "$ref": "#/definitions/destination"
                 }
             },
             "additionalProperties": false,
@@ -456,8 +460,8 @@
                     "example": "example.json#/qualification/details/status",
                     "description": "A valoriser avec l'état du dossier dans le système émetteur\nSpécificité 15-15 : peut être ignoré en réception, partagé à titre indicatif uniquement\nSpécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE à la tablette",
                     "enum": [
-                        "PROGRAMME",
-                        " ACTIF",
+                        "PROGRAM",
+                        "ACTIF",
                         "ACHEVE",
                         "VALIDE",
                         "CLOTURE",
@@ -1060,6 +1064,8 @@
                         "ARM",
                         "INFIRMIER",
                         "MEDECIN",
+                        "PILOTE",
+                        "TCM",
                         "AUTRE",
                         "INCONNU"
                     ]
@@ -1067,6 +1073,69 @@
             },
             "additionalProperties": false,
             "example": "example.json#/medicalNote/0/operator"
+        },
+        "destination": {
+            "type": "object",
+            "title": "Localisation de la destination d'orientation",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "externalLocationId": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/externalLocationId"
+                    }
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Informations complémentaires sur la localisation",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/destination/freetext",
+                    "description": "Champ libre qui permet de compléter les informations liées à la localisation.\n\nSpécificités 15-15 :\nEn envoi, il est souhaitable de mapper ici toute valeur en lien avec la localisation de l'intervention qui ne pourrait pas être transmise de manière structurée dans l'objet location. \nEn réception, il est très important d'intégrer et d'afficher la valeur de cet attribut, qui est suceptible de contenir des informations d'accès importantes."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/decision/0/destination"
+        },
+        "externalLocationId": {
+            "type": "object",
+            "title": "Identifiant(s) du lieu",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "source",
+                "value"
+            ],
+            "properties": {
+                "source": {
+                    "type": "string",
+                    "title": "Source  /  type d'identifiant",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/destination/externalLocationId/0/source",
+                    "description": "A valoriser avec le type de l'identifiant fourni. Cf nomenclature associée.",
+                    "enum": [
+                        "FINESS_ADMINISTRATIF",
+                        "FINESS_GEOGRAPHIQUE",
+                        "SIREN",
+                        "SIRET",
+                        "APE_NAF"
+                    ]
+                },
+                "value": {
+                    "type": "string",
+                    "title": "Identifiant",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/destination/externalLocationId/0/value",
+                    "description": "A valoriser avec l'identifiant en lui-même",
+                    "pattern": "^([0-9A-Z]{2}0\\d{5}\\d|\\d{9}|\\d{14}|\\d{4}[A-Za-z])$"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/decision/0/destination/externalLocationId/0"
         },
         "customMap": {
             "type": "object",

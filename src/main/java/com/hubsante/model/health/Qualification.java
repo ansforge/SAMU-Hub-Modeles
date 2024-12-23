@@ -65,13 +65,41 @@ public class Qualification {
   public enum OriginEnum {
     _15("15"),
 
-    _17("17"),
+    _116117("116117"),
 
-    _18("18"),
+    AUTOCOM("AUTOCOM"),
 
     _112("112"),
 
-    _116117("116117");
+    _115("115"),
+
+    CRRA("CRRA"),
+
+    AUTREC15("AUTREC15"),
+
+    CTA_CONF("CTA-CONF"),
+
+    CTA_PI("CTA-PI"),
+
+    AUTRECTA("AUTRECTA"),
+
+    CNR("CNR"),
+
+    FDO("FDO"),
+
+    SNATED("SNATED"),
+
+    PDSSOS("PDSSOS"),
+
+    TELASSIST("TELASSIST"),
+
+    CROSS("CROSS"),
+
+    PUBLIC("PUBLIC"),
+
+    DATA("DATA"),
+
+    AUTRE("AUTRE");
 
     private String value;
 

@@ -28,6 +28,14 @@
             "description": "Indique l'identifiant partagé du patient auquel les documents sont rattachés",
             "pattern": "^([\\w-]+\\.){3,4}patient(\\.[\\w-]+){1,2}$"
         },
+        "code": {
+            "type": "string",
+            "title": "Code d'accès au bilan",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/code",
+            "description": "Code unitaire par bilan qui permet à l'utilisateur qui reçoit ce lien d'ouvrir le bilan lorsque celui ci ne nécessite pas une connexion nominative mais un code bilan "
+        },
         "document": {
             "type": "array",
             "items": {

@@ -6,9 +6,6 @@ on:
       - '**'
   workflow_dispatch:
 
-env:
-  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RS-RPIS RS-EDA-MAJ RS-SR RS-URL RS-ER RS-BPV TECHNICAL TECHNICAL_NOREQ"
-
 jobs:
   generate:
     runs-on: ubuntu-latest
@@ -51,6 +48,15 @@ jobs:
         if: steps.filter.outputs.parsing_required == 'true' || steps.filter.outputs.test_case_parsing_required == 'true'
         run: pip install -r ./requirements.txt
 
+      - name: Clean up old generated schemas
+        working-directory: ./src/main/resources
+        run: find ./json-schema -type f -name '*.json' ! -name 'customContent.schema.json' ! -name 'EDXL-DE-*.schema.json' -exec rm {} +
+        
+      - name: Clean up old generated java classes
+        working-directory: ./src/main/java/com/hubsante/model
+        # We specifically only remove FOLDERS with the exception of a couple manually created ones
+        run: find . -mindepth 1 -maxdepth 1 -type d ! -name 'builders' ! -name 'config' ! -name 'custom' ! -name 'edxl' ! -name 'exception' ! -name 'report' -exec rm -r {} +
+      
       - name: Run csv_parser and collect OpenAPI & JSON Schemas
         working-directory: ./csv_parser
         if: steps.filter.outputs.parsing_required == 'true'
@@ -62,6 +68,38 @@ jobs:
         run: |
           rm -r ./out/test-cases || true
           python workflow.py --stage test_case_parser
+
+      - name: Run csv_parser to generate schemas.yaml
+        working-directory: ./csv_parser
+        if: steps.filter.outputs.parsing_required == 'true'
+        run: python workflow.py --stage output_schemas_yaml
+
+      - name: Collect schemas.yaml and copy it to json_schema2xsd
+        working-directory: ./csv_parser
+        if: steps.filter.outputs.parsing_required == 'true'
+        run: |
+          cp ./out/schemas.yaml ./json_schema2xsd/src/main/resources/schemas.yaml
+          
+      - name: Setup gomplate
+        if: steps.filter.outputs.parsing_required == 'true'
+        uses: jason-dour/action-setup-gomplate@v1.1.0
+        with:
+          gomplate-version: v4.2.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run automatic-schema-generator and move generated files to corresponding locations
+        if: steps.filter.outputs.parsing_required == 'true'
+        working-directory: ./automatic-schema-generator
+        run: |
+          rm -r output || true
+          chmod +x ./automatic-generator.sh
+          ./automatic-generator.sh
+          rm -r ../generator/config/generated || true
+          rsync -a --remove-source-files output/generator ..
+          rsync -a --remove-source-files output/edxl ../src/main/java/com/hubsante/model
+          rsync -a --remove-source-files output/json-schema ../src/main/resources
+          rsync -a --remove-source-files output/xsd ../src/main/resources
 
       - name: Install JDK 11
         uses: actions/setup-java@v4
@@ -79,9 +117,8 @@ jobs:
         working-directory: ./csv_parser/json_schema2xsd
         if: steps.filter.outputs.parsing_required == 'true'
         run: |
-          rm out/RS-ERROR.xsd
           # Clean XSD repo but keep manual XSDs
-          find ../../src/main/resources/xsd -type f -name '*.xsd' ! -name 'EDXL-DE-*.xsd' ! -name 'CustomContent.xsd' ! -name 'RC-XML-ContentType.xsd' ! -name 'RS-ERROR.xsd' ! -path '**/other-supporting-schema/*' -exec rm {} +
+          find ../../src/main/resources/xsd -type f -name '*.xsd' ! -name 'EDXL-DE-*.xsd' ! -name 'customContent.xsd' ! -name 'RC-DE.xsd' ! -name 'RC-XML-ContentType.xsd' ! -name 'RS-ERROR.xsd' ! -path '**/other-supporting-schema/*' -exec rm {} +
           mv out/*.xsd ../../src/main/resources/xsd/
 
       - name: Remove input JSON Schemas
@@ -104,18 +141,15 @@ jobs:
       - name: Generate Java classes
         working-directory: ./generator
         run: |
-          npx @openapitools/openapi-generator-cli generate -c ./config/RC-DE/RC-DE.generator-config.json --skip-validate-spec
-          npx @openapitools/openapi-generator-cli generate -c ./config/RC-DE/RC-DE.distribution-element.generator-config.json --skip-validate-spec
-
-          IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"
-          for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
-            if [ "$SCHEMA" != "RS-EDA-MAJ" ] && [ "$SCHEMA" != "RS-ER" ]; then
-            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.generator-config.json --skip-validate-spec
-            fi
-            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.usecase.generator-config.json --skip-validate-spec
-            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.wrapper.generator-config.json --skip-validate-spec
-          done
-
+          # Iterate over each file in the ./config directory, including the entire subfolder structure
+          # and then run @openapitools/openapi-generator-cli generate for each file found
+          # Important notice:          
+          # Results of the find command are sorted in an alphabetic order before being passed to xargs
+          # This means that since the order of class generation is important, it's necessary to maintain an adequately 
+          # named file structure in the ./config/** directories
+          # generator-config.json (if exists) -> usecase.generator-config.json -> wrapper.generator-config.json
+          find ./config/ -type f | sort -n | xargs -i npx @openapitools/openapi-generator-cli generate -c {} --skip-validate-spec
+          
       - name: Replace src/ with generated classes
         run: |
           rm -r ./src/main/java/com/hubsante/model/rcde || true

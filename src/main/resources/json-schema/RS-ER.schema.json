@@ -34,7 +34,9 @@
             "title": "Ressource",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "vehicleType"
+            ],
             "properties": {
                 "vehicleType": {
                     "type": "string",
@@ -153,7 +155,8 @@
                     "enum": [
                         "MED",
                         "PARAMED",
-                        "SECOURS"
+                        "SECOURS",
+                        "SANS"
                     ]
                 },
                 "name": {

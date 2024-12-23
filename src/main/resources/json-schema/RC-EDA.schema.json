@@ -594,7 +594,7 @@
         },
         "whatsHappen": {
             "type": "object",
-            "title": "Nature de fait ",
+            "title": "Nature de fait",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -2112,7 +2112,7 @@
                         "APPLICATION",
                         "BAU",
                         "DAU",
-                        "DEFIBRILLATEUR, ",
+                        "DEFIBRILLATEUR",
                         "ECALL",
                         "PERSONNE"
                     ]
