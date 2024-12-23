@@ -2,13 +2,22 @@
 # required for each schema
 
 # generate base generator config files
-gomplate -f ./templates/schema.generator-config.json.tmpl -d config=./schemas.yaml -o ./output/generator/config
+gomplate -f ./templates/schema.generator-config.json.tmpl -d config=./schemas.yaml
 
 # generate usecase config files
-gomplate -f ./templates/schema.usecase.generator-config.json.tmpl -d config=./schemas.yaml -o ./output/generator/config
+gomplate -f ./templates/schema.usecase.generator-config.json.tmpl -d config=./schemas.yaml
 
 # generate wrapper config files
-gomplate -f ./templates/schema.wrapper.generator-config.json.tmpl -d config=./schemas.yaml -o ./output/generator/config
+gomplate -f ./templates/schema.wrapper.generator-config.json.tmpl -d config=./schemas.yaml
+
+# generate ruby base generator config files
+gomplate -f ./templates/ruby/schema.generator-config.json.tmpl -d config=./schemas.yaml
+
+# generate ruby usecase config files
+gomplate -f ./templates/ruby/schema.usecase.generator-config.json.tmpl -d config=./schemas.yaml
+
+# generate ruby wrapper config files
+gomplate -f ./templates/ruby/schema.wrapper.generator-config.json.tmpl -d config=./schemas.yaml
 
 # generate ContentMessage class
 gomplate -f ./templates/ContentMessage.java.tmpl -d config=./schemas.yaml -o ./output/edxl/ContentMessage.java

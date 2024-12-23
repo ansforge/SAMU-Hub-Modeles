@@ -1,0 +1,20 @@
+{
+  "inputSpec": "../generator/input/RC-EDA.openapi.yaml",
+  "outputDir": "gem/cisu",
+  "generatorName": "ruby",
+  "globalProperties": {
+    "models": "createCase",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "moduleName": "Cisu",
+    "gemName": "hubsanteModel",
+    "allowUnicodeIdentifiers": true,
+    "useAutoload": true,
+    "sortParamsByRequiredFlag": true
+  }
+}

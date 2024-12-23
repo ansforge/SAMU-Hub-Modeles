@@ -4,7 +4,14 @@ on:
   pull_request:
     branches:
       - '**'
+  release:
+    types:
+      - published
   workflow_dispatch:
+    inputs:
+      release_name:
+        description: 'Release name for manual dispatch'
+        required: true
 
 jobs:
   generate:
@@ -14,6 +21,32 @@ jobs:
       JAVA_POST_PROCESS_FILE: "/usr/bin/clang-format -i"
 
     steps:
+      - name: Set RELEASE_VERSION based on the trigger type
+        run: |
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            RELEASE_VERSION="${{ github.ref_name }}"
+          elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            RELEASE_VERSION="${{ github.event.inputs.release_name }}"
+          elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            # Include first 8 chars of commit SHA to avoid collisions
+            RELEASE_VERSION="0.0.0.${{ github.head_ref }}.${{ github.event.pull_request.head.sha::8 }}.${{ github.run_attempt }}"
+          fi
+  
+          # Make the RELEASE_VERSION semver compatible (replacing non letter/digit/. chars with .)
+          RELEASE_VERSION=$(echo "$RELEASE_VERSION" | sed 's/[^a-zA-Z0-9\.]/./g')
+
+          # Display the RELEASE_VERSION for verification
+          echo "The RELEASE_VERSION is: $RELEASE_VERSION"
+
+          # Check if RELEASE_VERSION matches the semver allowed pattern
+          if [[ ! $RELEASE_VERSION =~ ^[0-9]+\.[0-9]+\.[0-9].* ]]; then
+            echo "RELEASE_VERSION is NOT semver compatible (1.1.1.xxx)"
+            exit 1
+          fi
+
+          # Export the RELEASE_VERSION environment variable for future steps (in env.RELEASE_VERSION)
+          echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
+
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -97,6 +130,8 @@ jobs:
           ./automatic-generator.sh
           rm -r ../generator/config/generated || true
           rsync -a --remove-source-files output/generator ..
+          rm -r ../generator_ruby/config/generated || true
+          rsync -a --remove-source-files output/generator_ruby ..
           rsync -a --remove-source-files output/edxl ../src/main/java/com/hubsante/model
           rsync -a --remove-source-files output/json-schema ../src/main/resources
           rsync -a --remove-source-files output/xsd ../src/main/resources
@@ -163,6 +198,33 @@ jobs:
           rm -r ./generator/classes/src/main/java/com/hubsante/model/report/ErrorCode.java || true
           cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
 
+      - name: Generate Ruby classes
+        working-directory: ./generator_ruby
+        run: |
+          # Remove old generated gem
+          rm -r ./gem/ || true
+          
+          # Iterate over each file in the ./config directory, including the entire subfolder structure
+          # and then run @openapitools/openapi-generator-cli generate for each file found
+          # Important notice:          
+          # Results of the find command are sorted in an alphabetic order before being passed to xargs
+          # This means that since the order of class generation is important, it's necessary to maintain an adequately 
+          # named file structure in the ./config/** directories
+          # generator-config.json (if exists) -> usecase.generator-config.json -> wrapper.generator-config.json
+          find ./config/ -type f | sort -n | xargs -i npx @openapitools/openapi-generator-cli generate -c {} --skip-validate-spec
+          
+          # Move generated classes to the correct location
+          for dir in gem/*/; do
+            package=$(basename "$dir")
+            mkdir -p "gem/lib/hubsanteModel/models/$package/"
+            mv "$dir"/lib/hubsanteModel/models/* "gem/lib/hubsanteModel/models/$package/"
+            rmdir "$dir/lib/hubsanteModel/models" && rmdir "$dir/lib/hubsanteModel" && rmdir "$dir/lib" && rmdir "$dir"
+          done;
+
+          # Add key gem files
+          cp hubsante_model.rb gem/lib/hubsanteModel/
+          cp hubsante_model.gemspec gem/
+
       - name: Grant execute permission for Gradlew
         run: chmod +x ./gradlew
 
@@ -217,3 +279,27 @@ jobs:
         with:
           reports: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml
           targetdir: coveragereport
+
+      - name: Ruby - Set up
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+
+      - name: Ruby - Build Gem
+        working-directory: ./generator_ruby/gem/
+        run: gem build hubsante_model.gemspec
+        env:
+          GEM_VERSION: ${{ env.RELEASE_VERSION }}
+
+      - name: Ruby - Upload Gem as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ruby-gem-artifact
+          path: ./generator_ruby/gem/hubsante_model-*.gem
+
+      - name: Ruby - Push Gem to GitHub Packages
+        working-directory: ./generator_ruby/gem/
+        run: gem push --key github --host https://rubygems.pkg.github.com/ansforge ./hubsante_model-*.gem
+        env:
+          GEM_HOST_API_KEY: ${{ secrets.GITHUB_TOKEN }}  # GitHub token used to authenticate

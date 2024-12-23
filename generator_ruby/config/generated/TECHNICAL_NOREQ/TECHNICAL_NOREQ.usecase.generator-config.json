@@ -1,0 +1,20 @@
+{
+  "inputSpec": "../generator/input/TECHNICAL_NOREQ.openapi.yaml",
+  "outputDir": "gem/technicalnoreq",
+  "generatorName": "ruby",
+  "globalProperties": {
+    "models": "technicalNoreq",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "moduleName": "Technicalnoreq",
+    "gemName": "hubsanteModel",
+    "allowUnicodeIdentifiers": true,
+    "useAutoload": true,
+    "sortParamsByRequiredFlag": true
+  }
+}

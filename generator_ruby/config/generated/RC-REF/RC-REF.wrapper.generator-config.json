@@ -1,0 +1,20 @@
+{
+  "inputSpec": "../generator/input/RC-REF.openapi.yaml",
+  "outputDir": "gem/reference",
+  "generatorName": "ruby",
+  "globalProperties": {
+    "models": "referenceWrapper",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "moduleName": "Reference",
+    "gemName": "hubsanteModel",
+    "allowUnicodeIdentifiers": true,
+    "useAutoload": true,
+    "sortParamsByRequiredFlag": true
+  }
+}
