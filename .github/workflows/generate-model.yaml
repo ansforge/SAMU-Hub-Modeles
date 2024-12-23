@@ -62,6 +62,13 @@ jobs:
         if: steps.filter.outputs.parsing_required == 'true'
         run: python workflow.py --stage parser_and_mv
 
+      - name: Run test_case_generator
+        working-directory: ./csv_parser
+        if: steps.filter.outputs.test_case_parsing_required == 'true'
+        run: |
+          rm -r ./out/test-cases || true
+          python workflow.py --stage test_case_parser
+
       - name: Run csv_parser to generate schemas.yaml
         working-directory: ./csv_parser
         if: steps.filter.outputs.parsing_required == 'true'
@@ -93,16 +100,6 @@ jobs:
           rsync -a --remove-source-files output/edxl ../src/main/java/com/hubsante/model
           rsync -a --remove-source-files output/json-schema ../src/main/resources
           rsync -a --remove-source-files output/xsd ../src/main/resources
-
-# TODO: Reactivate test case autogeneration
-#      - name: Run test_case_generator and move the folder test-cases to src/main/resources/sample/test-cases
-#        working-directory: ./csv_parser
-#        if: steps.filter.outputs.test_case_parsing_required == 'true'
-#        run: |
-#          rm -r ./out/test-cases || true
-#          python workflow.py --stage test_case_parser
-#          rm -r ../src/main/resources/test-cases || true
-#          mv ./out/test-cases ../src/main/resources/
 
       - name: Install JDK 11
         uses: actions/setup-java@v4
