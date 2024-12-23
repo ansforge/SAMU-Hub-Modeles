@@ -28,8 +28,8 @@ jobs:
           elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             RELEASE_VERSION="${{ github.event.inputs.release_name }}"
           elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            # Include first 8 chars of commit SHA to avoid collisions
-            RELEASE_VERSION="0.0.0.${{ github.head_ref }}.${{ github.event.pull_request.head.sha::8 }}.${{ github.run_attempt }}"
+            # Include first chars of commit SHA and run attempt number to avoid collisions
+            RELEASE_VERSION="0.0.0.${{ github.head_ref }}.$(git rev-parse --short ${{ github.event.pull_request.head.sha }}).${{ github.run_attempt }}"
           fi
   
           # Make the RELEASE_VERSION semver compatible (replacing non letter/digit/. chars with .)
