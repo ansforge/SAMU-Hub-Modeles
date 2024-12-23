@@ -20,7 +20,7 @@
         <contentObject xlink:type="resource">
             <contentXML>
                 <embeddedXMLContent>
-                    <message xmlns="urn:emergency:cisu:2.0">
+                    <message xmlns="urn:emergency:cisu:3.0">
                         <messageId>messageId</messageId>
                         <sender>
                             <name>samuB</name>
@@ -33,7 +33,7 @@
                             <name>samuA</name>
                             <URI>hubex:fr.health.samuA</URI>
                         </recipient>
-                        <createCase xmlns="urn:emergency:cisu:2.0:createCase">
+                        <createCase xmlns="urn:emergency:cisu:3.0">
                             <caseId>fr.health.samu690.DRFR15690240430050</caseId>
                             <senderCaseId>DRFR15690240430050</senderCaseId>
                             <creation>2023-11-03T10:03:00+01:00</creation>
@@ -91,7 +91,7 @@
                                     <entity>Infirmerie</entity>
                                 </access>
                                 <geometry>
-                                    <obsDatime>2023-11-03T10:04:00+01:00</obsDatime>
+                                    <datetime>2023-11-03T10:04:00+01:00</datetime>
                                     <point>
                                         <coord>
                                             <lat>48.866667</lat>
@@ -131,7 +131,7 @@
                                         <type>TEL</type>
                                         <detail>0607080901</detail>
                                     </callbackContact>
-                                    <language>FR</language>
+                                    <language>fr</language>
                                     <freetext>épouse de la victime</freetext>
                                     <detailedName>
                                         <complete>Albane Armaury</complete>

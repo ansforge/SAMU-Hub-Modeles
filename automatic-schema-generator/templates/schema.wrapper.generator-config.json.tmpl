@@ -17,6 +17,7 @@
     "serializationLibrary": "jackson",
     "openApiNullable": true,
     "supportUrlQuery": false,
+    "xmlns": "cisu:3.0",
     "enablePostProcessFile": true{{ if .customExtendPackage}},
     "customExtend": {
       "package": "{{ .customExtendPackage }}",
@@ -27,6 +28,6 @@
 {{ end }}
 {{- range (datasource "config").schemas }}
     {{ if eq .automaticGeneration "Y" }}
-        {{- tmpl.Exec "wrapper.generator-config" . | file.Write (printf "output/generator/config/%s/%s.wrapper.generator-config.json" .schema .schema) }}
+        {{- tmpl.Exec "wrapper.generator-config" . | file.Write (printf "output/generator/config/generated/%s/%s.wrapper.generator-config.json" .schema .schema) }}
     {{end}}
 {{end}}

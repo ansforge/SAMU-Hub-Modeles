@@ -60,6 +60,13 @@
         "medicalSituation": "Chute d'environ 2m. Multiples contusions et plaies. Possible fractures et trauma crânien"
       },
       {
+        "file": "RS-EDA/RS-EDA_Secondaire_RobertVermande.01.json",
+        "icon": "mdi-image-broken-variant",
+        "name": "Robert VERMANDE.01",
+        "context": "Pas de test suivant: RS-ER - Robert VERMANDE.02",
+        "environment": "Transfert inter hospitalier d'un patient"
+      },
+      {
         "file": "RS-EDA/RS-EDA-SMUR_FuiteDeGaz_AliceGregoireNormand.01.json",
         "icon": "mdi-molecule-co2",
         "context": "Pas de test suivant: RS-ER - 02 ou 2a",
@@ -100,6 +107,13 @@
         "context": "Pas de test suivant: RS-RI - Alice et Grégoire NORMAND.03",
         "name": "Alice et Grégoire NORMAND.02a",
         "environment": "Demande d'engagement de deux SMUR, un par patient"
+      },
+      {
+        "file": "RS-ER/RS-ER_Secondaire_RobertVermande.02.json",
+        "icon": "mdi-image-broken-variant",
+        "context": "Pas de test suivant: RS-RI - Robert VERMANDE.03",
+        "name": "Robert VERMANDE.02",
+        "environment": "Demande d'engagement d'un SMUR pour transfert inter hospitalier"
       },
       {
         "file": "RS-ER/RS-ER_FemmeEnceinte_DelphineVIGNEAU.02.json",
@@ -191,8 +205,8 @@
         "environment": "Régulation médicale du médecin urgentiste - Ajout d'observations médicales"
       },
       {
-        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FemmeEnceinte_DelphineVigneau.10.json",
-        "icon": "mdi-human-pregnant",
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FuiteDeGaz_AliceGregoireNormand.10.json",
+        "icon": "mdi-molecule-co2",
         "name": "Alice et Grégoire NORMAND.10",
         "context": "Pas de test suivant: RS-SR - Alice et Grégoire NORMAND.11",
         "environment": "Partage de la décision d'orientation du patient"
@@ -203,6 +217,13 @@
         "name": "Alice et Grégoire NORMAND.16",
         "context": "Fin du cas d'usage",
         "environment": "Clôture du dossier"
+      },
+      {
+      "file": "RS-EDA-MAJ/RS-EDA-MAJ_Secondaire_RobertVermande.09.json",
+      "icon": "mdi-image-broken-variant",
+      "name": "Robert VERMANDE.09",
+      "context": "Fin du cas d'usage",
+      "environment": "Clôture du dossier"
       }]
   },
   {
@@ -256,6 +277,13 @@
       "name": "Enfants NGUYEN.04c",
       "context": "Pas de test suivant: RS-SR - 05a",
       "environment": "Engagement de l’HéliSMUR 80 en réponse à la demande du 76A"
+    },
+    {
+      "file": "RS-RI/RS-RI_Secondaire_RobertVermande.03.json",
+      "icon": "mdi-image-broken-variant",
+      "context": "Pas de test suivant: RS-SR - Robert VERMANDE.04",
+      "name": "Robert VERMANDE.03",
+      "environment": "Réponse à la demande d'engagement d'un SMUR avec le détail de l'équipe"
     },
     {
       "file": "RS-RI/RS-RI_FemmeEnceinte_DelphineVigneau.03.json",
@@ -379,6 +407,20 @@
         "environment": "Arrivée Helismur 80 sur le lieu de l’intervention"
       },
       {
+      "file": "RS-SR/RS-SR_Secondaire_RobertVermande.04.json",
+      "icon": "mdi-image-broken-variant",
+      "context": "Pas de test suivant: RS-URL - Robert VERMANDE.05",
+      "name": "Robert VERMANDE.04",
+      "environment": "Départ de la base du SMUR"
+      },
+      {
+      "file": "RS-SR/RS-SR_Secondaire_RobertVermande.06.json",
+      "icon": "mdi-image-broken-variant",
+      "context": "Pas de test suivant: RS-BPV - Robert VERMANDE.07",
+      "name": "Robert VERMANDE.06",
+      "environment": "Arrivée à destination du SMUR"
+      },
+      {
         "file": "RS-SR/RS-SR_FemmeEnceinte_DelphineVIGNEAU.04.json",
         "icon": "mdi-human-pregnant",
         "name": "Delphine VIGNEAU.04",
@@ -448,6 +490,13 @@
         "medicalSituation": "Données RPIS du patient"
       },
       {
+      "file": "RS-RPIS/RS-RPIS_Secondaire_RobertVermande.08.json",
+      "icon": "mdi-image-broken-variant",
+      "context": "Pas de test suivant: RS-EDA-MAJ - Robert VERMANDE.09",
+      "name": "Robert VERMANDE.08",
+      "environment": "Données RPIS du patient"
+      },
+      {
         "file": "RS-RPIS/RS-RPIS_FemmeEnceinte_DelphineVigneau.11.json",
         "icon": "mdi-human-pregnant",
         "context": "Pas de test suivant: RS-EDA-MAJ - Delphine VIGNEAU.12",
@@ -466,6 +515,13 @@
         "name": "Delphine VIGNEAU.10",
         "context": "Pas de test suivant: RS-RPIS - Delphine VIGNEAU.11",
         "environment": "Partage du bilan final du patient"
+      },
+      {
+      "file": "RS-BPV/RS-BPV_Secondaire_RobertVermande.07.json",
+      "icon": "mdi-image-broken-variant",
+      "context": "Pas de test suivant: RS-EDA-MAJ - Robert VERMANDE.08",
+      "name": "Robert VERMANDE.07",
+      "environment": "Partage d'éléments du bilan"
       },
       {
         "file": "RS-BPV/RS-BPV_FuiteDeGaz_GregoireNormand.12a.json",
@@ -507,6 +563,13 @@
         "name": "Delphine VIGNEAU.05",
         "context": "Pas de test suivant: RS-EDA-MAJ - Delphine VIGNEAU.06",
         "environment": "Partage du lien url vers le bilan du patient"
+      },
+      {
+      "file": "RS-URL/RS-URL_Secondaire_RobertVermande.05.json",
+      "icon": "mdi-image-broken-variant",
+      "context": "Pas de test suivant: RS-SR - Robert VERMANDE.06",
+      "name": "Robert VERMANDE.05",
+      "environment": "Partage du lien url vers le bilan du patient"
       },
       {
         "file": "RS-URL/RS-URL_FuiteDeGaz_GregoireNormand.05a.json",

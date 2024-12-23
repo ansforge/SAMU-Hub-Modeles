@@ -1,0 +1,18 @@
+{
+  "resourcesInfo": {
+    "resource": [
+      {
+        "team": {
+          "medicalLevel": "MED",
+          "name": "Equipe SMUR 1"
+        },
+        "vehicleType": "SMUR.AR",
+        "name": "AR1",
+        "datetime": "2024-11-18T07:00:00+02:00",
+        "resourceId": "fr.health.samu680.resource.AR1",
+        "orgId": "fr.health.samu680"
+      }
+    ],
+    "caseId": "fr.health.samu680.DRFR154402413800555"
+  }
+}

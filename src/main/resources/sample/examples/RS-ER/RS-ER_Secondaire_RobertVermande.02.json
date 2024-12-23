@@ -1,0 +1,13 @@
+{
+  "resourcesEngagement": {
+    "resource": [
+      {
+        "team": {
+          "medicalLevel": "MED"
+        },
+        "vehicleType": "SMUR.AR"
+      }
+    ],
+    "caseId": "fr.health.samu680.DRFR154402413800555"
+  }
+}

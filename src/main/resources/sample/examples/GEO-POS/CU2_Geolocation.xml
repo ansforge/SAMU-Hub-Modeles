@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<geoPositionsUpdate xmlns="urn:emergency:cisu:2.0:geopositionsupdate">
+<geoPositionsUpdate xmlns="urn:emergency:cisu:3.0:geopositionsupdate">
   <position>
     <resourceId>fr.health.samu760.resource.VLM250</resourceId>
     <datetime>2024-01-27T08:44:00+02:00</datetime>

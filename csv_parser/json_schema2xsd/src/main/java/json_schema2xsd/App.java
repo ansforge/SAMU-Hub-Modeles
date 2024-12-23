@@ -50,8 +50,12 @@ public class App {
         }
         List<HashMap<String,String>> schemas = yamlMap.get("schemas");
         
-        for (HashMap<String, String> scheMap : schemas) {
-            String schema = scheMap.get("schema");
+        for (HashMap<String, String> schemaConfigMap : schemas) {
+            // If automaticGeneration is set to 'N', skip the schema
+            if (schemaConfigMap.containsKey("automaticGeneration") && schemaConfigMap.get("automaticGeneration").equals("N")) {
+                continue;
+            }
+            String schema = schemaConfigMap.get("schema");
             // Specify the path to your JSON schema file
             String jsonSchemaResourcePath = "/" + schema + ".schema.json";
 
@@ -60,10 +64,10 @@ public class App {
 
             // Create a Config object to customize the conversion
             Config config = new Config.Builder()
-                    .targetNamespace(getTargetNamespace(scheMap))
+                    .targetNamespace(getTargetNamespace(schemaConfigMap))
                     .unwrapArrays(true)
                     .createRootElement(true)
-                    .name(scheMap.get("rootElement"))
+                    .name(schemaConfigMap.get("rootElement"))
                     .build();
 
             try {
@@ -147,9 +151,7 @@ public class App {
     }
     
     private static String getTargetNamespace(HashMap<String, String> schema) {
-        if (schema.get("schema").equals("RC-DE")) {
-            return "urn:emergency:cisu:2.0";
-        } else return "urn:emergency:" + (schema.get("xmlns") != null ? schema.get("xmlns") : "cisu:2.0:"+schema.get("schema"));
+        return "urn:emergency:" + (schema.get("xmlns") != null ? schema.get("xmlns") : "cisu:3.0:"+schema.get("schema"));
     }
 
     /*

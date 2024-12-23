@@ -16,3 +16,6 @@ json_schema2xsd/build/
 # ignoring files moved by workflow.py to avoid them been commited locally
 out/**/*.schema.json
 out/**/*.openapi.yaml
+
+# virtual env
+env/
