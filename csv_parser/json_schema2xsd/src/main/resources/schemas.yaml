@@ -124,7 +124,7 @@ schemas:
   customExtendPackage: null
   header: Y
   package: rpis
-  perimeter: 15-15
+  perimeter: 15-RPIS
   rootElement: rpis
   schema: RS-RPIS
   subschema: N
