@@ -17,6 +17,9 @@ module DocumentLink
     # Indique l'identifiant partagé du patient auquel les documents sont rattachés
     attr_accessor :patient_id
 
+    # Code unitaire par bilan qui permet à l'utilisateur qui reçoit ce lien d'ouvrir le bilan lorsque celui ci ne nécessite pas une connexion nominative mais un code bilan 
+    attr_accessor :code
+
     attr_accessor :document
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -24,6 +27,7 @@ module DocumentLink
       {
         :'case_id' => :'caseId',
         :'patient_id' => :'patientId',
+        :'code' => :'code',
         :'document' => :'document'
       }
     end
@@ -38,6 +42,7 @@ module DocumentLink
       {
         :'case_id' => :'String',
         :'patient_id' => :'String',
+        :'code' => :'String',
         :'document' => :'Array<Document>'
       }
     end
@@ -71,6 +76,10 @@ module DocumentLink
 
       if attributes.key?(:'patient_id')
         self.patient_id = attributes[:'patient_id']
+      end
+
+      if attributes.key?(:'code')
+        self.code = attributes[:'code']
       end
 
       if attributes.key?(:'document')
@@ -154,6 +163,7 @@ module DocumentLink
       self.class == o.class &&
           case_id == o.case_id &&
           patient_id == o.patient_id &&
+          code == o.code &&
           document == o.document
     end
 
@@ -166,7 +176,7 @@ module DocumentLink
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [case_id, patient_id, document].hash
+      [case_id, patient_id, code, document].hash
     end
 
     # Builds the object from hash

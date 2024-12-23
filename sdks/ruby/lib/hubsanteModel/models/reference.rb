@@ -20,12 +20,16 @@ module Reference
     # Identifiant unique du message d'erreur lié
     attr_accessor :error_distribution_id
 
+    # Nomenclature permettant d'identifier les différentes étapes d'intégration et de consultation du dossier dans le système émetteur
+    attr_accessor :step
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'distribution_id' => :'distributionID',
         :'refused' => :'refused',
-        :'error_distribution_id' => :'errorDistributionID'
+        :'error_distribution_id' => :'errorDistributionID',
+        :'step' => :'step'
       }
     end
 
@@ -39,7 +43,8 @@ module Reference
       {
         :'distribution_id' => :'String',
         :'refused' => :'Boolean',
-        :'error_distribution_id' => :'String'
+        :'error_distribution_id' => :'String',
+        :'step' => :'String'
       }
     end
 
@@ -77,6 +82,10 @@ module Reference
       if attributes.key?(:'error_distribution_id')
         self.error_distribution_id = attributes[:'error_distribution_id']
       end
+
+      if attributes.key?(:'step')
+        self.step = attributes[:'step']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -106,7 +115,8 @@ module Reference
       self.class == o.class &&
           distribution_id == o.distribution_id &&
           refused == o.refused &&
-          error_distribution_id == o.error_distribution_id
+          error_distribution_id == o.error_distribution_id &&
+          step == o.step
     end
 
     # @see the `==` method
@@ -118,7 +128,7 @@ module Reference
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [distribution_id, refused, error_distribution_id].hash
+      [distribution_id, refused, error_distribution_id, step].hash
     end
 
     # Builds the object from hash
