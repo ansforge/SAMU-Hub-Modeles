@@ -6,3 +6,4 @@ reportgeneratortool/**
 coveragereport/**
 
 web_specs/generated/**
+bin/
