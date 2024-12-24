@@ -82,7 +82,7 @@ jobs:
           # This means that since the order of class generation is important, it's necessary to maintain an adequately 
           # named file structure in the ./config/** directories
           # generator-config.json (if exists) -> usecase.generator-config.json -> wrapper.generator-config.json
-          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli generate -c "$file" --skip-validate-spec; done
+          # find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli generate -c "$file" --skip-validate-spec; done
           
       - name: Python - Prepare package files
         working-directory: ./generator_python/
@@ -102,10 +102,8 @@ jobs:
         run: |
           pip install --upgrade build
           # Set correct version
-          sed -i "s/version = .*/version = \"${{ env.PACKAGE_VERSION }}\"/" pyproject.toml
+          sed -i "s/version = .*/version = \"${{ env.RELEASE_VERSION }}\"/" pyproject.toml
           python -m build
-          env:
-            PACKAGE_VERSION: ${{ env.RELEASE_VERSION }}
 
       - name: Python - Upload package as artifact
         uses: actions/upload-artifact@v3
