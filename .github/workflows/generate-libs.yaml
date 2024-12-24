@@ -167,6 +167,8 @@ jobs:
       # Leverages trusted publisher | Ref.: https://docs.pypi.org/trusted-publishers/adding-a-publisher/
       - name: Python - Publish package to pypi
         uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: ./generator_python/package/dist/
 
       - name: C# - Generate classes
         working-directory: ./generator_csharp
