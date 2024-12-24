@@ -39,11 +39,11 @@ jobs:
             # Include first chars of commit SHA and run attempt number to avoid collisions
             COMMIT_SHA="${{ github.event.pull_request.head.sha }}"
             SHORT_COMMIT_SHA=${COMMIT_SHA::7}
-            RELEASE_VERSION="0.0.0+${{ github.head_ref }}.$SHORT_COMMIT_SHA.${{ github.run_attempt }}"
+            RELEASE_VERSION="0.0.0.${{ github.head_ref }}.$SHORT_COMMIT_SHA.${{ github.run_attempt }}"
           fi
   
-          # Make the RELEASE_VERSION semver compatible (replacing non letter/digit/./+ chars with .)
-          RELEASE_VERSION=$(echo "$RELEASE_VERSION" | sed 's/[^a-zA-Z0-9\.\+]/./g')
+          # Make the RELEASE_VERSION semver compatible (replacing non letter/digit/. chars with .)
+          RELEASE_VERSION=$(echo "$RELEASE_VERSION" | sed 's/[^a-zA-Z0-9\.]/./g')
 
           # Display the RELEASE_VERSION for verification
           echo "The RELEASE_VERSION is: $RELEASE_VERSION"
@@ -114,6 +114,7 @@ jobs:
       # Leverages trusted publisher | Ref.: https://docs.pypi.org/trusted-publishers/adding-a-publisher/
       - name: Python - Publish package to pypi
         uses: pypa/gh-action-pypi-publish@release/v1
+        if: ${{ github.event_name }} != "pull_request"
         with:
           packages-dir: ./generator_python/package/dist/
 
