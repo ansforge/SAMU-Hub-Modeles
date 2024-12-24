@@ -84,6 +84,21 @@ jobs:
           # generator-config.json (if exists) -> usecase.generator-config.json -> wrapper.generator-config.json
           # Add "| head -n 1" after sort for faster iterations while developing
           find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli generate -c "$file" --skip-validate-spec; done
+
+          # There seems to be a bug in the handling of datetime & field_validator import in OpenAPI Generator
+          # ToDo: fix this cleanly with OpenAPI Generator Config
+          # For now, basic bash script that adds field_validator to all pydantic imports  
+          find ./package/src/hubsante_model -type f -name "*.py" | while read -r file; do
+            # Check if 'field_validator' is missing in the 'from pydantic import' line
+            if grep -q 'field_validator' "$file" && ! grep -q '^from pydantic import .*field_validator.*$' "$file"; then
+              # Add field_validator to the import statement
+              sed -i '' '/^from pydantic import /s/$/, field_validator/' "$file"
+            fi
+
+            # Convert datetime to str
+            sed -i '' 's/: datetime = Field/: str = Field/g' "$file"
+            sed -i '' 's/: Optional\[datetime\] = Field/: Optional[str] = Field/g' "$file"
+          done
           
       - name: Python - Prepare package files
         working-directory: ./generator_python/
