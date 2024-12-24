@@ -1,6 +1,6 @@
 [project]
 name = "hubsante_model"
-version = "0.0.0+feat.multi.lang.lib.generation.ed9022f.1"
+version = "0.0.0+feat.multi.lang.lib.generation.bf10d6c.1"
 authors = [
   { name="Romain Fd", email="romain.fd@gmail.com" },
   { name="Hub Santé", email="hubsante.contact@esante.gouv.fr" },
