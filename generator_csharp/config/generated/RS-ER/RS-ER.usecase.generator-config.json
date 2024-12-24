@@ -1,0 +1,16 @@
+{
+  "inputSpec": "../generator/input/RS-ER.openapi.yaml",
+  "outputDir": "package/",
+  "generatorName": "csharp",
+  "globalProperties": {
+    "models": "resourcesEngagement",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "packageName": "HubsanteModel/Resources.info"
+  }
+}

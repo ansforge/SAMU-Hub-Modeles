@@ -1,0 +1,16 @@
+{
+  "inputSpec": "../generator/input/RS-SR.openapi.yaml",
+  "outputDir": "package/",
+  "generatorName": "csharp",
+  "globalProperties": {
+    "models": "resourcesStatus",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "packageName": "HubsanteModel/Resources.status"
+  }
+}

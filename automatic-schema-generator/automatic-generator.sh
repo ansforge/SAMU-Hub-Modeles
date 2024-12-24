@@ -2,7 +2,7 @@
 # required for each schema
 
 # Generate config files for each language
-for lang in "." "ruby" "python"; do
+for lang in "." "ruby" "python" "csharp"; do
     # Handle base path for non-root language
     template_path="./templates"
     if [ "$lang" != "." ]; then
