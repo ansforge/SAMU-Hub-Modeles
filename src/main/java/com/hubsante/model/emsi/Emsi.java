@@ -54,8 +54,6 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Emsi {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:3.0:emsi";
   public static final String JSON_PROPERTY_C_O_N_T_E_X_T = "CONTEXT";
   private Context CONTEXT;
 
@@ -81,14 +79,14 @@ public class Emsi {
    * @return CONTEXT
    **/
   @JsonProperty(JSON_PROPERTY_C_O_N_T_E_X_T)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Context getCONTEXT() {
     return CONTEXT;
   }
 
   @JsonProperty(JSON_PROPERTY_C_O_N_T_E_X_T)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCONTEXT(Context CONTEXT) {
     this.CONTEXT = CONTEXT;
   }
@@ -104,14 +102,14 @@ public class Emsi {
    * @return EVENT
    **/
   @JsonProperty(JSON_PROPERTY_E_V_E_N_T)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Event getEVENT() {
     return EVENT;
   }
 
   @JsonProperty(JSON_PROPERTY_E_V_E_N_T)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEVENT(Event EVENT) {
     this.EVENT = EVENT;
   }
