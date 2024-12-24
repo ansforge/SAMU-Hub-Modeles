@@ -58,16 +58,16 @@ jobs:
         with:
           filters: |
             parsing_required:
-              - '**/csv_parser.py'
-              - '**/uml_generator.py'
-              - '**/workflow.py'
-              - '**/model.xlsx'
-              - '**/nomenclature_parser/**'
-              - '**/json_schema2xsd/**'
+              - 'csv_parser/csv_parser.py'
+              - 'csv_parser/uml_generator.py'
+              - 'csv_parser/workflow.py'
+              - 'csv_parser/models/**'
+              - 'csv_parser/nomenclature_parser/**'
+              - 'csv_parser/json_schema2xsd/**'
             test_case_parsing_required:
-              - '**/test_case_generator.py'
-              - '**/workflow.py'
-              - '**/test-cases-15-15.xlsx'
+              - 'csv_parser/test_case_generator.py'
+              - 'csv_parser/workflow.py'
+              - 'csv_parser/test-cases-sources/**'
 
       - name: Install Graphviz
         if: steps.filter.outputs.parsing_required == 'true'
