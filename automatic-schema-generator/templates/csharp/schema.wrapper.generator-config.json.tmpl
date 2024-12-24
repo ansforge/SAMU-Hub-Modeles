@@ -1,0 +1,22 @@
+{{ define "wrapper.generator-config" }}{
+  "inputSpec": "../generator/input/{{.schema}}.openapi.yaml",
+  "outputDir": "package/",
+  "generatorName": "csharp",
+  "globalProperties": {
+    "models": "{{.rootElement}}Wrapper",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "packageName": "HubsanteModel/{{- .package | strings.Title -}}"
+  }
+}
+{{ end }}
+{{- range (datasource "config").schemas }}
+    {{ if eq .automaticGeneration "Y" }}
+        {{- tmpl.Exec "wrapper.generator-config" . | file.Write (printf "output/generator_csharp/config/generated/%s/%s.wrapper.generator-config.json" .schema .schema) }}
+    {{end}}
+{{end}}

@@ -1,9 +1,12 @@
-name: generate-model
+name: Generate Model
 
 on:
   pull_request:
     branches:
       - '**'
+  release:
+    types:
+      - published
   workflow_dispatch:
 
 jobs:
@@ -15,7 +18,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Check for changes requiring running the parser
         uses: dorny/paths-filter@v3
@@ -23,16 +26,16 @@ jobs:
         with:
           filters: |
             parsing_required:
-              - '**/csv_parser.py'
-              - '**/uml_generator.py'
-              - '**/workflow.py'
-              - '**/model.xlsx'
-              - '**/nomenclature_parser/**'
-              - '**/json_schema2xsd/**'
+              - 'csv_parser/csv_parser.py'
+              - 'csv_parser/uml_generator.py'
+              - 'csv_parser/workflow.py'
+              - 'csv_parser/models/**'
+              - 'csv_parser/nomenclature_parser/**'
+              - 'csv_parser/json_schema2xsd/**'
             test_case_parsing_required:
-              - '**/test_case_generator.py'
-              - '**/workflow.py'
-              - '**/test-cases-15-15.xlsx'
+              - 'csv_parser/test_case_generator.py'
+              - 'csv_parser/workflow.py'
+              - 'csv_parser/test-cases-sources/**'
 
       - name: Install Graphviz
         if: steps.filter.outputs.parsing_required == 'true'
@@ -95,8 +98,18 @@ jobs:
           rm -r output || true
           chmod +x ./automatic-generator.sh
           ./automatic-generator.sh
+
+          # Move generated OpenAPI config files to the corresponding locations
           rm -r ../generator/config/generated || true
           rsync -a --remove-source-files output/generator ..
+          rm -r ../generator_ruby/config/generated || true
+          rsync -a --remove-source-files output/generator_ruby ..
+          rm -r ../generator_python/config/generated || true
+          rsync -a --remove-source-files output/generator_python ..
+          rm -r ../generator_csharp/config/generated || true
+          rsync -a --remove-source-files output/generator_csharp ..
+
+          # Move generated EDXL-DE and JSON Schemas to the corresponding locations
           rsync -a --remove-source-files output/edxl ../src/main/java/com/hubsante/model
           rsync -a --remove-source-files output/json-schema ../src/main/resources
           rsync -a --remove-source-files output/xsd ../src/main/resources
@@ -128,7 +141,7 @@ jobs:
           rm src/main/resources/*.json
 
       - name: Install node env 🏗
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 16
 
@@ -148,7 +161,7 @@ jobs:
           # This means that since the order of class generation is important, it's necessary to maintain an adequately 
           # named file structure in the ./config/** directories
           # generator-config.json (if exists) -> usecase.generator-config.json -> wrapper.generator-config.json
-          find ./config/ -type f | sort -n | xargs -i npx @openapitools/openapi-generator-cli generate -c {} --skip-validate-spec
+          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli generate -c "$file" --skip-validate-spec; done
           
       - name: Replace src/ with generated classes
         run: |

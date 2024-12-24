@@ -1,0 +1,26 @@
+{{ define "usecase.generator-config" }}{
+  "inputSpec": "../generator/input/{{.schema}}.openapi.yaml",
+  "outputDir": "gem/{{- .package | strings.ReplaceAll "." "" -}}",
+  "generatorName": "ruby",
+  "globalProperties": {
+    "models": "{{.rootElement}}",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "moduleName": "{{- .package | strings.Title | strings.ReplaceAll "." "" -}}",
+    "gemName": "hubsanteModel",
+    "allowUnicodeIdentifiers": true,
+    "useAutoload": true,
+    "sortParamsByRequiredFlag": true
+  }
+}
+{{ end }}
+{{- range (datasource "config").schemas }}
+    {{ if eq .automaticGeneration "Y" }}
+        {{- tmpl.Exec "usecase.generator-config" . | file.Write (printf "output/generator_ruby/config/generated/%s/%s.usecase.generator-config.json" .schema .schema) }}
+    {{end}}
+{{end}}
