@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
+from hubsante_model.emsi.models.emsi import Emsi
 from typing import Optional, Set
 from typing_extensions import Self
 

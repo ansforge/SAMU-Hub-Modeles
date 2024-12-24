@@ -88,9 +88,20 @@ jobs:
         working-directory: ./generator_python/
         run: |
           # Add key package files
-          cp __init__.py ./package/src/hubsante_model/
           cp pyproject.toml ./package/
           cp README.md ./package/
+
+          # Generate __init__.py file to import all the *_wrapper classes
+          echo "# Auto-generated imports" > ./package/src/hubsante_model/__init__.py
+          find ./package/src/hubsante_model -type f -name "*_wrapper.py" | while read -r file; do
+            # Extract the relative path from hubsante_model/
+            rel_path=${file#*hubsante_model/}
+            # Convert path to Python import format
+            import_path=${rel_path%.py}
+            import_path=${import_path//\//.}
+            # Add import line
+            echo "from .$import_path import *" >> ./package/src/hubsante_model/__init__.py
+          done
 
       - name: Python - Set up
         uses: actions/setup-python@v4

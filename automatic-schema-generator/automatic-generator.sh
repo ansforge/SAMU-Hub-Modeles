@@ -3,20 +3,17 @@
 
 # Generate config files for each language
 for lang in "." "ruby" "python" "csharp"; do
-    # Handle base path for non-root language
-    template_path="./templates"
-    if [ "$lang" != "." ]; then
-        template_path="$template_path/$lang"
-    fi
-
     # generate base generator config files
     gomplate -f "./templates/$lang/schema.generator-config.json.tmpl" -d config=./schemas.yaml
 
-    # generate usecase config files  
-    gomplate -f "./templates/$lang/schema.usecase.generator-config.json.tmpl" -d config=./schemas.yaml
+    # generate usecase and wrapper overwrite configs only for Java
+    if [ "$lang" == "." ]; then
+        # generate usecase config files  
+        gomplate -f "./templates/$lang/schema.usecase.generator-config.json.tmpl" -d config=./schemas.yaml
 
-    # generate wrapper config files
-    gomplate -f "./templates/$lang/schema.wrapper.generator-config.json.tmpl" -d config=./schemas.yaml
+        # generate wrapper config files
+        gomplate -f "./templates/$lang/schema.wrapper.generator-config.json.tmpl" -d config=./schemas.yaml
+    fi
 done
 
 # generate ContentMessage class

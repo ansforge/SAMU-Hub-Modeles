@@ -19,6 +19,10 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from hubsante_model.emsi.models.context import Context
+from hubsante_model.emsi.models.event import Event
+from hubsante_model.emsi.models.mission import Mission
+from hubsante_model.emsi.models.resource import Resource
 from typing import Optional, Set
 from typing_extensions import Self
 
