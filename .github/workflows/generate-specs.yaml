@@ -1,4 +1,4 @@
-name: Build Web Specs
+name: Generate Web Specs
 
 on:
   release:
