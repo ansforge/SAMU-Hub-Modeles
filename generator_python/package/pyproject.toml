@@ -1,0 +1,18 @@
+[project]
+name = "hubsante_model"
+version = "0.0.1"
+authors = [
+  { name="Romain Fd", email="romain.fd@gmail.com" },
+  { name="Hub Santé", email="hubsante.contact@esante.gouv.fr" },
+]
+description = "Hub Santé Modèles"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://hub.esante.gouv.fr/"
+Issues = "https://github.com/ansforge/SAMU-Hub-Modeles/issues"
