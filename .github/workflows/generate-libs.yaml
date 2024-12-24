@@ -165,8 +165,8 @@ jobs:
       - name: Ruby - Build Gem
         working-directory: ./generator_ruby/gem/
         run: |
-          GEM_VERSION=${{ env.RELEASE_VERSION }}; 
-          GEM_VERSION=${GEM_VERSION//+/.}; 
+          GEM_VERSION=${{ env.RELEASE_VERSION }}
+          export GEM_VERSION=${GEM_VERSION//+/.} 
           gem build hubsante_model.gemspec
 
       - name: Ruby - Upload Gem as artifact
