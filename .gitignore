@@ -10,5 +10,13 @@ bin/
 
 **/openapitools.json
 
+# Generated libraries packages
+# Python
+generator_python/package/pyproject.toml
+generator_python/package/README.md
 generator_python/package/dist/
 generator_python/package/src/hubsante_model.egg-info/
+# Ruby
+generator_ruby/gem/hubsante_model.gemspec
+generator_ruby/gem/lib/hubsanteModel/hubsante_model.rb
+generator_ruby/gem/hubsante_model-*.gem
