@@ -166,6 +166,7 @@ components:
           - MED
           - PARAMED
           - SECOURS
+          - SANS
           examples:
           - PARAMED
       additionalProperties: false
@@ -1599,6 +1600,7 @@ components:
           - MED
           - PARAMED
           - SECOURS
+          - SANS
           examples:
           - PARAMED
       additionalProperties: false

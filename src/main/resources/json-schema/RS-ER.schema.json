@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-ER.schema.json#",
-    "version": "24.10.22",
+    "version": "24.12.24",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesEngagement",
@@ -34,7 +34,9 @@
             "title": "Ressource",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "vehicleType"
+            ],
             "properties": {
                 "vehicleType": {
                     "type": "string",
@@ -153,7 +155,8 @@
                     "enum": [
                         "MED",
                         "PARAMED",
-                        "SECOURS"
+                        "SECOURS",
+                        "SANS"
                     ]
                 },
                 "name": {

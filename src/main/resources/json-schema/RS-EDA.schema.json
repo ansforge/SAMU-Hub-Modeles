@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.10.22",
+    "version": "24.12.24",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -63,9 +63,11 @@
             "example": "example.json#/interventionType",
             "description": "A valoriser en indiquant s'il s'agit d'un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH)",
             "enum": [
-                "PRIMAIRE",
-                "SECONDAIRE",
-                "RETOUR A DOMICILE"
+                "T1",
+                "T2-INTER",
+                "T2-INTRA",
+                "T3",
+                "T4"
             ]
         },
         "qualification": {
@@ -125,10 +127,24 @@
                     "description": "A valoriser avec le numéro de provenance de l'appel.",
                     "enum": [
                         "15",
-                        "17",
-                        "18",
+                        "116117",
+                        "AUTOCOM",
                         "112",
-                        "116117"
+                        "115",
+                        "CRRA",
+                        "AUTREC15",
+                        "CTA-CONF",
+                        "CTA-PI",
+                        "AUTRECTA",
+                        "CNR",
+                        "FDO",
+                        "SNATED",
+                        "PDSSOS",
+                        "TELASSIST",
+                        "CROSS",
+                        "PUBLIC",
+                        "DATA",
+                        "AUTRE"
                     ]
                 },
                 "riskThreat": {
@@ -436,12 +452,16 @@
                     "description": "Indique le type de destination en cas de décision d'orientation (cf. nomenclature associée)",
                     "enum": [
                         "URGENCES",
+                        "REA-USI",
                         "SANTE",
                         "CABINET",
                         "DOMICILE",
                         "EPHAD",
                         "AUTRE"
                     ]
+                },
+                "destination": {
+                    "$ref": "#/definitions/destination"
                 }
             },
             "additionalProperties": false,
@@ -536,7 +556,7 @@
         },
         "whatsHappen": {
             "type": "object",
-            "title": "Nature de fait ",
+            "title": "Nature de fait",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -1175,8 +1195,8 @@
                     "example": "example.json#/qualification/details/status",
                     "description": "A valoriser avec l'état du dossier dans le système émetteur\nSpécificité 15-15 : peut être ignoré en réception, partagé à titre indicatif uniquement\nSpécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE à la tablette",
                     "enum": [
-                        "PROGRAMME",
-                        " ACTIF",
+                        "PROGRAM",
+                        "ACTIF",
                         "ACHEVE",
                         "VALIDE",
                         "CLOTURE",
@@ -1206,6 +1226,7 @@
                         "DRM.SPE.OBST",
                         "DRM.SPE.PSY",
                         "DRM.SPE.TOXICOL",
+                        "DRM.SPE.AUTRESPE",
                         "DRM.MRL",
                         "DRM.MRL.MG",
                         "DRM.MRL.INDISPMG",
@@ -2013,7 +2034,7 @@
                         "APPLICATION",
                         "BAU",
                         "DAU",
-                        "DEFIBRILLATEUR, ",
+                        "DEFIBRILLATEUR",
                         "ECALL",
                         "PERSONNE"
                     ]
@@ -2446,6 +2467,8 @@
                         "ARM",
                         "INFIRMIER",
                         "MEDECIN",
+                        "PILOTE",
+                        "TCM",
                         "AUTRE",
                         "INCONNU"
                     ]
@@ -2453,6 +2476,31 @@
             },
             "additionalProperties": false,
             "example": "example.json#/medicalNote/0/operator"
+        },
+        "destination": {
+            "type": "object",
+            "title": "Localisation de la destination d'orientation",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "externalLocationId": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/externalLocationId"
+                    }
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Informations complémentaires sur la localisation",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/destination/freetext",
+                    "description": "Champ libre qui permet de compléter les informations liées à la localisation.\n\nSpécificités 15-15 :\nEn envoi, il est souhaitable de mapper ici toute valeur en lien avec la localisation de l'intervention qui ne pourrait pas être transmise de manière structurée dans l'objet location. \nEn réception, il est très important d'intégrer et d'afficher la valeur de cet attribut, qui est suceptible de contenir des informations d'accès importantes."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/decision/0/destination"
         },
         "customMap": {
             "type": "object",

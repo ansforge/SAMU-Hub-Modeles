@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-REF.schema.json#",
-    "version": "24.10.22",
+    "version": "24.12.24",
     "example": "example.json#",
     "type": "object",
     "title": "reference",
@@ -33,6 +33,14 @@
             "x-cols": 6,
             "example": "example.json#/errorDistributionID",
             "description": "Identifiant unique du message d'erreur lié"
+        },
+        "step": {
+            "type": "string",
+            "title": "Etape d'intégration du message",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/step",
+            "description": "Nomenclature permettant d'identifier les différentes étapes d'intégration et de consultation du dossier dans le système émetteur"
         }
     },
     "definitions": {},

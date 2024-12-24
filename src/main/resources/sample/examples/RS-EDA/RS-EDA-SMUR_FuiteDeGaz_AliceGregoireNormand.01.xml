@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<createCaseHealth xmlns="urn:emergency:cisu:2.0:createCaseHealth">
+<createCaseHealth xmlns="urn:emergency:cisu:3.0:createCaseHealth">
   <caseId>fr.health.samu440.DRFR154402413800236</caseId>
   <senderCaseId>DRFR154402413800236</senderCaseId>
   <creation>2024-05-18T18:15:00+02:00</creation>
-  <interventionType>PRIMAIRE</interventionType>
+  <interventionType>T1</interventionType>
   <qualification>
     <origin>15</origin>
     <riskThreat>

@@ -94,13 +94,14 @@ components:
           - ARRIVEE
           - PEC
           - BILAN
+          - ORIENTAT
           - TRANSP
           - ETAPE1
           - TRANSP2
           - ETAPE2
           - TRANSP3
           - DESTIN
-          - FINMED
+          - FINPEC
           - RETOUR
           - RET-BASE
           - REN-BASE

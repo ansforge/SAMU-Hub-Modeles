@@ -6,3 +6,9 @@ reportgeneratortool/**
 coveragereport/**
 
 web_specs/generated/**
+bin/
+
+**/openapitools.json
+
+generator_python/package/dist/
+generator_python/package/src/hubsante_model.egg-info/

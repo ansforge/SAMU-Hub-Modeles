@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:documentLink" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:documentLink" xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:3.0:documentlink" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:3.0:documentlink" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="documentLink" type="x:documentLink"/>
     <complexType name="documentLink">
         <sequence>
@@ -21,6 +21,11 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                         <pattern value="([\w-]+\.){3,4}patient(\.[\w-]+){1,2}"/>
                     </restriction>
                 </simpleType>
+            </element>
+            <element minOccurs="0" name="code" type="string">
+                <annotation>
+                    <documentation>Code unitaire par bilan qui permet à l'utilisateur qui reçoit ce lien d'ouvrir le bilan lorsque celui ci ne nécessite pas une connexion nominative mais un code bilan </documentation>
+                </annotation>
             </element>
             <element maxOccurs="unbounded" minOccurs="1" name="document" type="x:document"/>
         </sequence>
