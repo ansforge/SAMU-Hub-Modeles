@@ -92,12 +92,12 @@ jobs:
             # Check if 'field_validator' is missing in the 'from pydantic import' line
             if grep -q 'field_validator' "$file" && ! grep -q '^from pydantic import .*field_validator.*$' "$file"; then
               # Add field_validator to the import statement
-              sed -i '' '/^from pydantic import /s/$/, field_validator/' "$file"
+              sed -i '/^from pydantic import /s/$/, field_validator/' "$file"
             fi
 
             # Convert datetime to str
-            sed -i '' 's/: datetime = Field/: str = Field/g' "$file"
-            sed -i '' 's/: Optional\[datetime\] = Field/: Optional[str] = Field/g' "$file"
+            sed -i 's/: datetime = Field/: str = Field/g' "$file"
+            sed -i 's/: Optional\[datetime\] = Field/: Optional[str] = Field/g' "$file"
           done
           
       - name: Python - Prepare package files
