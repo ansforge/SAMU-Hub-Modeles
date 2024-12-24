@@ -24,6 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     # PyPi trusted publishing | Ref.: https://github.com/pypa/gh-action-pypi-publish?tab=readme-ov-file#trusted-publishing
     permissions:
+      contents: read
+      packages: write
       id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
 
     steps:
