@@ -1,11 +1,7 @@
-name: Zip Files and Upload Artifact
+name: Generate Bundle
 
 on:
   workflow_dispatch:
-
-env:
-  # ToDo: read from yaml list of all schemas (how to handle RC-REF with no examples, cf '|| true' below)
-  SCHEMAS: "RC-DE RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RS-RPIS RS-EDA-MAJ RS-SR RS-URL RS-ER RS-BPV"
 
 jobs:
   zip_and_upload:
@@ -28,23 +24,33 @@ jobs:
         # Modèles
         messagesDir="bundle/Annexes - Messages"
         mkdir "$messagesDir"
-        IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"
-        for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
-          echo $SCHEMA
-          # Create "Annexes" directory
-          schemaDir="$messagesDir/Annexes $SCHEMA"
-          mkdir "$schemaDir"
+        
+        # Read schemas from yaml file
+        while IFS= read -r line || [ -n "$line" ]; do
+          if [[ $line =~ ^[[:space:]]*schema:[[:space:]]*([^[:space:]]*) ]]; then
+            SCHEMA="${BASH_REMATCH[1]}"
+            # Skip schemas that don't need to be included
+            if [ "$SCHEMA" = "TECHNICAL" ] || [ "$SCHEMA" = "TECHNICAL_NOREQ" ] || [ "$SCHEMA" = "customContent" ]; then
+              echo "Skipping $SCHEMA"
+              continue
+            fi
+            echo $SCHEMA
 
-          # Create and populate "Schemas et Exemples" directory
-          mkdir "$schemaDir/Schemas et Exemples"
-          cp src/main/resources/json-schema/$SCHEMA.schema.json "$schemaDir/Schemas et Exemples"
-          cp src/main/resources/xsd/$SCHEMA.xsd "$schemaDir/Schemas et Exemples"
-          cp src/main/resources/sample/examples/$SCHEMA/* "$schemaDir/Schemas et Exemples" || true  # || true as not all schemas have examples: RC-DE, RC-REF and RS-ERROR
+            # Create "Annexes" directory
+            schemaDir="$messagesDir/Annexes $SCHEMA"
+            mkdir "$schemaDir"
 
-          # Populate root elements (docx and UML)
-          cp csv_parser/out/$SCHEMA/$SCHEMA.schema.docx "$schemaDir/Annexe au DSF - $SCHEMA.docx"
-          cp csv_parser/out/$SCHEMA/$SCHEMA.uml_diagram.pdf "$schemaDir/Schema UML - $SCHEMA.pdf"
-        done
+            # Create and populate "Schemas et Exemples" directory
+            mkdir "$schemaDir/Schemas et Exemples"
+            cp src/main/resources/json-schema/$SCHEMA.schema.json "$schemaDir/Schemas et Exemples"
+            cp src/main/resources/xsd/$SCHEMA.xsd "$schemaDir/Schemas et Exemples"
+            cp src/main/resources/sample/examples/$SCHEMA/* "$schemaDir/Schemas et Exemples" || true  # || true as not all schemas have examples
+
+            # Populate root elements (docx and UML)
+            cp csv_parser/out/$SCHEMA/$SCHEMA.schema.docx "$schemaDir/Annexe au DSF - $SCHEMA.docx"
+            cp csv_parser/out/$SCHEMA/$SCHEMA.uml_diagram.pdf "$schemaDir/Schema UML - $SCHEMA.pdf"
+          fi
+        done < csv_parser/out/schemas.yaml
 
     - name: Create zip file with date
       run: |
