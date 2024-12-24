@@ -166,7 +166,7 @@ jobs:
         working-directory: ./generator_ruby/gem/
         run: gem build hubsante_model.gemspec
         env:
-          GEM_VERSION: ${{ env.RELEASE_VERSION }}
+          GEM_VERSION: ${{ env.RELEASE_VERSION | replace('+', '.') }}
 
       - name: Ruby - Upload Gem as artifact
         uses: actions/upload-artifact@v3
