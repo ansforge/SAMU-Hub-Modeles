@@ -34,7 +34,7 @@ class InterventionReport(BaseModel):
     case_id: Annotated[str, Field(strict=True)] = Field(description="Identifiant partagé du dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier).  Il est valorisé comme suit lors de sa création :  {pays}.{domaine}.{organisation}.{senderCaseId}  Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.", alias="caseId")
     report_id: StrictStr = Field(description="Identifiant du bilan du logiciel SMUR", alias="reportId")
     redactor: Redactor
-    creation: datetime = Field(description="s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss")
+    creation: str = Field(description="s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss")
     patient: Patient
     evaluation: Optional[Evaluation] = None
     __properties: ClassVar[List[str]] = ["caseId", "reportId", "redactor", "creation", "patient", "evaluation"]

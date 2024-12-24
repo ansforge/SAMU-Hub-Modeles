@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +27,7 @@ class Notes(BaseModel):
     """
     Notes
     """ # noqa: E501
-    creation: Optional[datetime] = Field(default=None, description="A valoriser avec le groupe date heure de création de l'information complémentaire")
+    creation: Optional[str] = Field(default=None, description="A valoriser avec le groupe date heure de création de l'information complémentaire")
     freetext: Optional[StrictStr] = Field(default=None, description="A valoriser avec un texte libre contenant les indications complémentaires renseignées sur l'alerte/appel.  Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes à caractère médical, qui serait liée à un interrogatoire ARM ou médecin, ou à un patient en particulier")
     __properties: ClassVar[List[str]] = ["creation", "freetext"]
 

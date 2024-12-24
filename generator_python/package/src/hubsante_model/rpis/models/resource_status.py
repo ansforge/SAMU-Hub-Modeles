@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,12 +27,12 @@ class ResourceStatus(BaseModel):
     """
     ResourceStatus
     """ # noqa: E501
-    depart_smur: datetime = Field(description="Date et heure à laquelle le SMUR quitte sa base.  s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss", alias="departSmur")
-    arrived_smur: Optional[datetime] = Field(default=None, description="Date et heure à laquelle le SMUR arrive sur les lieux de l'intervention.  s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss", alias="arrivedSmur")
-    depart_location: Optional[datetime] = Field(default=None, description="Date et heure à laquelle le SMUR quitte les lieux de l'intervention.  s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss", alias="departLocation")
-    arrived_destination: Optional[datetime] = Field(default=None, description="Date et heure à laquelle le SMUR qui transporte arrive à destination.  s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss", alias="arrivedDestination")
-    team_available: datetime = Field(description="Date et heure à laquelle le SMUR est disponible (dispose de tout les équipements pour faire une autre intervention).  s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss", alias="teamAvailable")
-    return_smur: datetime = Field(description="Date et heure à laquelle le SMUR est de retour à la base.  s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss", alias="returnSmur")
+    depart_smur: str = Field(description="Date et heure à laquelle le SMUR quitte sa base.  s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss", alias="departSmur")
+    arrived_smur: Optional[str] = Field(default=None, description="Date et heure à laquelle le SMUR arrive sur les lieux de l'intervention.  s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss", alias="arrivedSmur")
+    depart_location: Optional[str] = Field(default=None, description="Date et heure à laquelle le SMUR quitte les lieux de l'intervention.  s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss", alias="departLocation")
+    arrived_destination: Optional[str] = Field(default=None, description="Date et heure à laquelle le SMUR qui transporte arrive à destination.  s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss", alias="arrivedDestination")
+    team_available: str = Field(description="Date et heure à laquelle le SMUR est disponible (dispose de tout les équipements pour faire une autre intervention).  s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss", alias="teamAvailable")
+    return_smur: str = Field(description="Date et heure à laquelle le SMUR est de retour à la base.  s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss", alias="returnSmur")
     __properties: ClassVar[List[str]] = ["departSmur", "arrivedSmur", "departLocation", "arrivedDestination", "teamAvailable", "returnSmur"]
 
     @field_validator('depart_smur')

@@ -29,7 +29,7 @@ class Request(BaseModel):
     Request
     """ # noqa: E501
     request_id: Annotated[str, Field(strict=True)] = Field(description="Identifiant unique partagé de la demande de ressource,  généré une seule fois par le système du partenaire qui émet la demande  Il est valorisé comme suit lors de sa création :  {orgID}.request.{ID unique de la demande dans le système émetteur}  OU - uniquement si un ID unique de la demande n'est pas disponible :  {OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}", alias="requestId")
-    datetime: datetime = Field(description="A valoriser avec le groupe date heure de création de la demande")
+    datetime: str = Field(description="A valoriser avec le groupe date heure de création de la demande")
     convention: Optional[StrictStr] = Field(default=None, description="A valoriser avec le cadre conventionnel de la demande. Cf nomenclature associée")
     purpose: StrictStr = Field(description="A valoriser avec le motif de la demande de ressource auprès du partenaire. Cf Nomenclature associée.")
     deadline: Optional[StrictStr] = Field(default=None, description="A valoriser avec le délai d'intervention maximum souhaité (cf. nomenclature associée)")

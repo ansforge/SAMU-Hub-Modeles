@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from hubsante_model.cisu.models.point import Point
 from typing import Optional, Set
@@ -28,7 +28,7 @@ class Geometry(BaseModel):
     """
     Geometry
     """ # noqa: E501
-    datetime: datetime = Field(description="A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation.  Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.")
+    datetime: str = Field(description="A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation.  Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.")
     point: Optional[Point] = None
     sketch: Optional[StrictStr] = Field(default=None, description="Objet gml (équivalent xml du geojson). Le langage GML permet de décrire une forme dans un système de projection donné.  Dans le cas d'une alerte donnée sur une zone géographique non précise (par exemple une section d'autoroute ou une zone sur un chemin de randonnée), une indication sur la zone de recherche peut être fournie. En XML, un objet gml est encapsulé dans une balise <sketch xmlns:gml='http://www.opengis.net/gml' version='1.0' > </sketch> En JSON, les balises sont reprises depuis le modèle gml Voir http://www.opengis.net/gml pour le format de l'objet sketch")
     __properties: ClassVar[List[str]] = ["datetime", "point", "sketch"]

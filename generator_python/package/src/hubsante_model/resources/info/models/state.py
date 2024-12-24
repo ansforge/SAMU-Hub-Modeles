@@ -27,7 +27,7 @@ class State(BaseModel):
     """
     State
     """ # noqa: E501
-    datetime: datetime = Field(description="A valoriser avec la date et heure d'engagement de changement vers le nouveau statut")
+    datetime: str = Field(description="A valoriser avec la date et heure d'engagement de changement vers le nouveau statut")
     status: StrictStr = Field(description="A valoriser avec le statut du vecteur. Cf nomenclature associée.")
     availability: Optional[StrictBool] = Field(default=None, description="A valoriser de manière à indiquer la disponibilité du vecteur. TRUE = DISPONIBLE FALSE = INDISPONIBLE VIDE = INCONNU")
     __properties: ClassVar[List[str]] = ["datetime", "status", "availability"]

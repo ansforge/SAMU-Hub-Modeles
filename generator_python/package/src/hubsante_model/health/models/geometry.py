@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from hubsante_model.health.models.point import Point
 from typing import Optional, Set
@@ -28,7 +28,7 @@ class Geometry(BaseModel):
     """
     Geometry
     """ # noqa: E501
-    datetime: datetime = Field(description="A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation.  Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.")
+    datetime: str = Field(description="A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation.  Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.")
     point: Optional[Point] = None
     __properties: ClassVar[List[str]] = ["datetime", "point"]
 

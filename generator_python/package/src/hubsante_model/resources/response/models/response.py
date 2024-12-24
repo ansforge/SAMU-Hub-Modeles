@@ -27,7 +27,7 @@ class Response(BaseModel):
     """
     Response
     """ # noqa: E501
-    datetime: datetime = Field(description="Groupe date heure de début de la demande")
+    datetime: str = Field(description="Groupe date heure de début de la demande")
     answer: StrictStr = Field(description="A valoriser avec la réponse apportée. Cf Nomenclature associée ACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE")
     deadline: Optional[StrictStr] = Field(default=None, description="A valoriser avec le délai de réponse auquel s'engage l'expéditeur (cf. nomenclature)  Cas particulier : en cas de réponse \"Partielle\" car le délai souhaité ne peut pas être respecté,  à valoriser obligatoirement avec le délai de réponse maximum auquel s'engage l'expéditeur de la réponse, ")
     freetext: Optional[StrictStr] = Field(default=None, description="Commentaire libre permettant d'apporter toutes précisions utiles à la réponse. Le motif de refus est notifié dans ce champ.")

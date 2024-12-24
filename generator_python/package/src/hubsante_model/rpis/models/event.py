@@ -30,8 +30,8 @@ class Event(BaseModel):
     """ # noqa: E501
     org_id: Annotated[str, Field(strict=True)] = Field(description="Numéro du SAMU régulant la mission SMUR.  A valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation} ", alias="orgId")
     sender_case_id: StrictStr = Field(description="Numéro du dossier SAMU à l’origine de la mission SMUR A valoriser par DRFR15DDXAAJJJ00000 :  - DR = désignation d'un dossier sous forme abrégée, - FR : désigne le pays (FR = France), - 15 : désigne le fait que le dossier a été pris en charge par un SAMU / SAS, - DD : désigne le département où est situé le SAMU / SAS qui a traité le dossier, - X : lettre désignant le SAMU / SAS en cas de pluralité de SAMU / SAS sur le même département ou le troisième chiffre des DOM, - AA : année durant laquelle l’appel a été créé, - JJJ : désigne le jour de l'année (de 1j à 365j),\\par - 00000 : numéro d’ordre chronologique du dossier dans la journée de référence ci-dessus.", alias="senderCaseId")
-    creation_date: datetime = Field(description="s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss", alias="creationDate")
-    decision_date: datetime = Field(description="s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss", alias="decisionDate")
+    creation_date: str = Field(description="s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss", alias="creationDate")
+    decision_date: str = Field(description="s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss", alias="decisionDate")
     ressource_finess_legal: StrictStr = Field(description="FINESS juridique établissement rattachement SMUR", alias="ressourceFinessLegal")
     ressource_finess_geo: StrictStr = Field(description="FINESS géographique établissement rattachement SMUR ou antenne SMUR", alias="ressourceFinessGeo")
     ressource_structure: StrictStr = Field(description="9 = Antenne SMUR, 0 = SMUR général, 1 = SMUR pédiatrique, 2 = SMUR neonatal ", alias="ressourceStructure")

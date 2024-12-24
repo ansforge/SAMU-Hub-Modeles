@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +27,7 @@ class Evac(BaseModel):
     """
     Evac
     """ # noqa: E501
-    datime: Optional[datetime] = Field(default=None, description="Optionnel", alias="DATIME")
+    datime: Optional[str] = Field(default=None, description="Optionnel", alias="DATIME")
     displaced: Optional[StrictInt] = Field(default=None, description="Optionnel", alias="DISPLACED")
     evacuated: Optional[StrictInt] = Field(default=None, description="Optionnel", alias="EVACUATED")
     __properties: ClassVar[List[str]] = ["DATIME", "DISPLACED", "EVACUATED"]

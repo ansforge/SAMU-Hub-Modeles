@@ -31,7 +31,7 @@ class Resource(BaseModel):
     """
     Resource
     """ # noqa: E501
-    datetime: datetime = Field(description="A valoriser avec la date et heure d'engagement de la ressource/du vecteur")
+    datetime: str = Field(description="A valoriser avec la date et heure d'engagement de la ressource/du vecteur")
     resource_id: Annotated[str, Field(strict=True)] = Field(description="A valoriser avec l'identifiant partagé unique de la ressource engagée, normé comme suit : {orgID}.resource.{ID unique de la ressource partagée} OU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire : {orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}", alias="resourceId")
     request_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="A valoriser avec l'identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), normé comme suit : {orgID}.request.{ID unique de la demande dans le système émetteur} OU - si un ID unique de la demande n'était pas disponible :  {OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}", alias="requestId")
     mission_id: Optional[StrictStr] = Field(default=None, description="A valoriser avec le numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur", alias="missionId")

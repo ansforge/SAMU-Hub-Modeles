@@ -28,7 +28,7 @@ class Egeo(BaseModel):
     """
     Egeo
     """ # noqa: E501
-    datime: Optional[datetime] = Field(default=None, description="Optionnel La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l'intervention est systématiquement reprécisé dans un objet MISSION", alias="DATIME")
+    datime: Optional[str] = Field(default=None, description="Optionnel La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l'intervention est systématiquement reprécisé dans un objet MISSION", alias="DATIME")
     type: Optional[StrictStr] = Field(default=None, description="Optionnel La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l'intervention est systématiquement reprécisé dans un objet MISSION. A constituer depuis ref_mapping_EMSI_EVENT_EGEO_TYPE_NEXSIS_ /!\\ plusieurs champs NEXSIS /!\\ plusieurs valeurs par champs d'où un groupe<EGEO> à créer par type différents", alias="TYPE")
     weather: Optional[List[StrictStr]] = Field(default=None, alias="WEATHER")
     freetext: Optional[StrictStr] = Field(default=None, description="Optionnel La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l'intervention est systématiquement reprécisé dans un objet MISSION", alias="FREETEXT")

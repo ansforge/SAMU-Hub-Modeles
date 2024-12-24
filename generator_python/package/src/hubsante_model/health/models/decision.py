@@ -30,7 +30,7 @@ class Decision(BaseModel):
     Decision
     """ # noqa: E501
     patient_id: Optional[StrictStr] = Field(default=None, description="A valoriser avec l'ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur", alias="patientId")
-    creation: datetime = Field(description="A valoriser avec le groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.")
+    creation: str = Field(description="A valoriser avec le groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.")
     operator: Operator
     decision_type: StrictStr = Field(description="A valoriser avec le type de décision prise (cf.nomenclature associée)", alias="decisionType")
     resource_type: Optional[StrictStr] = Field(default=None, description="A valoriser avec le type de ressource souhaitée ou engagée (cf.nomenclature associée) - en fonction du type de décision. A fournir obligatoirement pour une décision d'intervention ou de transport/orientation.", alias="resourceType")

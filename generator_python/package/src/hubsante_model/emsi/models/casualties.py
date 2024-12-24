@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +28,7 @@ class Casualties(BaseModel):
     Casualties
     """ # noqa: E501
     context: StrictStr = Field(description="Le champ doit être renseigné mais peut ne pas être interprété", alias="CONTEXT")
-    datime: Optional[datetime] = Field(default=None, description="Optionnel", alias="DATIME")
+    datime: Optional[str] = Field(default=None, description="Optionnel", alias="DATIME")
     decont: Optional[StrictInt] = Field(default=None, description="Optionnel", alias="DECONT")
     triagered: Optional[StrictInt] = Field(default=None, description="Optionnel, Triage victime au sens EMSI", alias="TRIAGERED")
     triageyellow: Optional[StrictInt] = Field(default=None, description="Optionnel", alias="TRIAGEYELLOW")

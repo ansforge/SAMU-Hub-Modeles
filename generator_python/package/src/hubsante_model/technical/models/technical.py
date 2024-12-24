@@ -44,7 +44,7 @@ class Technical(BaseModel):
     phone_number_field: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Phone number with regex", alias="phoneNumberField")
     date_field: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Date", alias="dateField")
     email_field: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Email with regex", alias="emailField")
-    datetime_field: Optional[datetime] = Field(default=None, description="Datetime", alias="datetimeField")
+    datetime_field: Optional[str] = Field(default=None, description="Datetime", alias="datetimeField")
     object_level1: Optional[LevelOneData] = Field(default=None, alias="objectLevel1")
     nomenclature_field: Optional[StrictStr] = Field(default=None, description="Enum from extenal nomenclature file", alias="nomenclatureField")
     __properties: ClassVar[List[str]] = ["requiredStringField", "optionalStringField", "enumerationField", "integerField", "numberField", "booleanField", "objectField", "arrayField", "enumArrayField", "requiredArray", "arrayWithMaxLength", "phoneNumberField", "dateField", "emailField", "datetimeField", "objectLevel1", "nomenclatureField"]

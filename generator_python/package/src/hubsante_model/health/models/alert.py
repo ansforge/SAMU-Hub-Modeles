@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from hubsante_model.health.models.caller import Caller
 from hubsante_model.health.models.notes import Notes
@@ -29,7 +29,7 @@ class Alert(BaseModel):
     """
     Alert
     """ # noqa: E501
-    reception: datetime = Field(description="A valoriser avec le groupe date heure de réception de l'alerte/appel")
+    reception: str = Field(description="A valoriser avec le groupe date heure de réception de l'alerte/appel")
     notes: Optional[List[Notes]] = None
     caller: Caller
     __properties: ClassVar[List[str]] = ["reception", "notes", "caller"]

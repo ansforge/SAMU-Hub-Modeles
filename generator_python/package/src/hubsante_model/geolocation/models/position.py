@@ -30,8 +30,8 @@ class Position(BaseModel):
     Position
     """ # noqa: E501
     resource_id: Annotated[str, Field(strict=True)] = Field(description="A valoriser avec l'identifiant partagé unique de la ressource engagée, normé comme suit : {orgID}.resource.{ID unique de la ressource partagée} OU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire : {orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}", alias="resourceId")
-    datetime: datetime = Field(description="Date et heure de la dernière position connue")
-    reception_datetime: Optional[datetime] = Field(default=None, description="Date et heure de la réception de la dernière position connue dans le système de l'organisme", alias="receptionDatetime")
+    datetime: str = Field(description="Date et heure de la dernière position connue")
+    reception_datetime: Optional[str] = Field(default=None, description="Date et heure de la réception de la dernière position connue dans le système de l'organisme", alias="receptionDatetime")
     coord: Annotated[List[Coord], Field(min_length=1)]
     speed: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Vitesse de la ressource enregistrée, exprimée en km/h")
     cap: Optional[StrictStr] = Field(default=None, description="Direction de la ressource, exprimé en degrés")

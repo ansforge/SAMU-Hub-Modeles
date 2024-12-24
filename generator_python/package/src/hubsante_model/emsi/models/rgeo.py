@@ -28,7 +28,7 @@ class Rgeo(BaseModel):
     """
     Rgeo
     """ # noqa: E501
-    datime: Optional[datetime] = Field(default=None, description="Horaire associé à l'arrivée de la ressource sur la position. En fonction du TYPE de position, peut indiquer un horaire de relevé de position, un horaire cible d'arrivée.", alias="DATIME")
+    datime: Optional[str] = Field(default=None, description="Horaire associé à l'arrivée de la ressource sur la position. En fonction du TYPE de position, peut indiquer un horaire de relevé de position, un horaire cible d'arrivée.", alias="DATIME")
     type: StrictStr = Field(description="Type de position indiqué pour la ressource : - ASP : assembly point. Point de rassemblement par défaut des ressources liées à la mission. Peut ne pas être utilisé - CUR : current. Position actualisée de la ressource permettant le suivi géolocalisé des véhicules notamment. Peut ne pas être utilisé - INC : incident. Consigne relative au positionnement de la ressource sur le lieu d'intervention. Peut ne pas être utilisé - STG : staging point. Consigne relative au stationnement des véhicules ou au stockage du matériel par exemple. peut ne pas être utilisé - TGT : targer location. Si renseigné, doit être cohérent avec la position renseignée pour la mission. Plusieurs positions du même type avec des horodatages différents peuvent être fournies. ", alias="TYPE")
     freetext: Optional[StrictStr] = Field(default=None, description="Permet de rajouter des précisions sur la localisation de la ressource transmise", alias="FREETEXT")
     id: Optional[StrictStr] = Field(default=None, description="Identifiant unique de la position dans le système du partenaire", alias="ID")
