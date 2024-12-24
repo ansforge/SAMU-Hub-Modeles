@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.emsi.Emsi;
+import com.hubsante.model.rcde.DistributionElement;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -42,11 +43,19 @@ import java.util.Objects;
 /**
  * EmsiWrapper
  */
-@JsonPropertyOrder({EmsiWrapper.JSON_PROPERTY_EMSI})
+@JsonPropertyOrder({DistributionElement.JSON_PROPERTY_MESSAGE_ID,
+                    DistributionElement.JSON_PROPERTY_SENDER,
+                    DistributionElement.JSON_PROPERTY_SENT_AT,
+                    DistributionElement.JSON_PROPERTY_KIND,
+                    DistributionElement.JSON_PROPERTY_STATUS,
+                    DistributionElement.JSON_PROPERTY_RECIPIENT,
+                    EmsiWrapper.JSON_PROPERTY_EMSI})
 @JsonTypeName("emsiWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class EmsiWrapper {
+public class EmsiWrapper extends DistributionElement {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:3.0";
   public static final String JSON_PROPERTY_EMSI = "emsi";
   private Emsi emsi;
 
@@ -63,14 +72,14 @@ public class EmsiWrapper {
    * @return emsi
    **/
   @JsonProperty(JSON_PROPERTY_EMSI)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public Emsi getEmsi() {
     return emsi;
   }
 
   @JsonProperty(JSON_PROPERTY_EMSI)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setEmsi(Emsi emsi) {
     this.emsi = emsi;
   }
@@ -84,18 +93,19 @@ public class EmsiWrapper {
       return false;
     }
     EmsiWrapper emsiWrapper = (EmsiWrapper)o;
-    return Objects.equals(this.emsi, emsiWrapper.emsi);
+    return Objects.equals(this.emsi, emsiWrapper.emsi) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(emsi);
+    return Objects.hash(emsi, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class EmsiWrapper {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    emsi: ").append(toIndentedString(emsi)).append("\n");
     sb.append("}");
     return sb.toString();
