@@ -15,7 +15,7 @@ on:
   # Workflow dependencies, also to avoid concurrent commits
   # Ref.: https://github.com/orgs/community/discussions/26238
   workflow_run:
-    workflows: ["generate-model"]
+    workflows: ["Generate Model"]
     types:
       - completed
 
