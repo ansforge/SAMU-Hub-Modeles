@@ -1,0 +1,67 @@
+name: Converter Tests
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'converter/**'
+  pull_request:
+    branches:
+      - '**'
+    paths:
+      - 'converter/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: converter
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest-cov
+          pip install -e .
+
+      - name: Run tests with coverage
+        run: python -m pytest --cov=converter --cov-report=xml
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./converter/coverage.xml
+          flags: converter
+          name: converter-python
+          fail_ci_if_error: true
+
+      - name: Generate HTML coverage report
+        run: |
+          pytest --cov=. --cov-report=html
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: tools/converter/htmlcov
+          retention-days: 7
+
+      - name: Check coverage threshold
+        run: |
+          COVERAGE=$(python -c "import xml.etree.ElementTree as ET; tree = ET.parse('coverage.xml'); root = tree.getroot(); print(float(root.attrib['line-rate']) * 100)")
+          if (( $(echo "$COVERAGE < 80" | bc -l) )); then
+            echo "Coverage $COVERAGE% is below threshold of 80%"
+            exit 1
+          fi 
