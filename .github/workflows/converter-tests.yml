@@ -50,7 +50,7 @@ jobs:
       - name: Run ReportGenerator for test coverage
         uses: danielpalme/ReportGenerator-GitHub-Action@5.1.23
         with:
-          reports: ./coverage.xml
+          reports: ./converter/coverage.xml
           targetdir: coveragereport
 
       - name: Check coverage threshold in XML report
