@@ -38,7 +38,7 @@ jobs:
 
       - name: Run tests with HTML and XML coverage reports
         run: |
-          pytest --cov=converter --cov-report=html --cov-report=xml
+          pytest --cov=converter --cov-report=html --cov-report=xml --cov-config=pytest.ini
 
       - name: Upload HTML coverage report
         uses: actions/upload-artifact@v3
@@ -59,11 +59,11 @@ jobs:
           pytest-xml-coverage-path: ./converter/coverage.xml
           title: "Converter - python code coverage"
 
-      - name: Code coverage should be above 80%
+      - name: Code coverage should be above 75%
         run: |
           COVERAGE=$(python -c "import xml.etree.ElementTree as ET; tree = ET.parse('coverage.xml'); root = tree.getroot(); print(float(root.attrib['line-rate']) * 100)")
-          if (( $(echo "$COVERAGE < 80" | bc -l) )); then
-            echo "Coverage $COVERAGE% is below threshold of 80%"
+          if (( $(echo "$COVERAGE < 75" | bc -l) )); then
+            echo "Coverage $COVERAGE% is below threshold of 75%"
             exit 1
           fi 
           

@@ -80,7 +80,7 @@ gunicorn -w 4 -b 0.0.0.0:8080 converter:app
 # Based on https://github.com/ansforge/SAMU-Hub-Sante/blob/main/web/lrm/client/constants.js#L5C30-L45C2
 curl -X POST http://localhost:8080/convert-cisu \
   -H "Content-Type: application/json" \
-  -d "$(jq --argjson usecase "$(cat ../src/main/resources/sample/examples/RC-EDA/RC-EDA-FemmeEnceinte-DelphineVigneau.json)" '.message.content[0].jsonContent.embeddedJsonContent.message |= (. + $usecase)' tests/edxl_envelope_fire_to_health.json)"
+  -d "$(jq --argjson usecase "$(cat ../src/main/resources/sample/examples/RC-EDA/RC-EDA-FemmeEnceinte-DelphineVigneau.json)" '.edxl.content[0].jsonContent.embeddedJsonContent.message |= (. + $usecase)' tests/edxl_envelope_fire_to_health.json)"
 ```
 
 #### Convert Health to CISU Format
@@ -88,7 +88,7 @@ curl -X POST http://localhost:8080/convert-cisu \
 # Based on https://github.com/ansforge/SAMU-Hub-Sante/blob/main/web/lrm/client/constants.js#L5C30-L45C2
 curl -X POST http://localhost:8080/convert-cisu \
   -H "Content-Type: application/json" \
-  -d "$(jq --argjson usecase "$(cat ../src/main/resources/sample/examples/RS-EDA/RS-EDA-SMUR_FemmeEnceinte_DelphineVigneau.01.json)" '.message.content[0].jsonContent.embeddedJsonContent.message |= (. + $usecase)' tests/edxl_envelope_health_to_fire.json)"
+  -d "$(jq --argjson usecase "$(cat ../src/main/resources/sample/examples/RS-EDA/RS-EDA-SMUR_FemmeEnceinte_DelphineVigneau.01.json)" '.edxl.content[0].jsonContent.embeddedJsonContent.message |= (. + $usecase)' tests/edxl_envelope_health_to_fire.json)"
 ```
 
 ## Development

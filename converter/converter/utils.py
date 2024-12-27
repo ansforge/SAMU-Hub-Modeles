@@ -1,6 +1,12 @@
 import re
 from typing import List, Dict, Any
 
+def get_recipient(edxl_json: Dict[str, Any]) -> str:
+    return edxl_json['descriptor']['explicitAddress']['explicitAddressValue']
+
+def get_sender(edxl_json: Dict[str, Any]) -> str:
+    return edxl_json['senderID']
+
 def delete_paths(data: Dict[str, Any], paths: List[str]) -> None:
     """
     Safely deletes keys in a dictionary based on dot-separated paths.

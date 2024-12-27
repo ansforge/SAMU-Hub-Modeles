@@ -1,13 +1,13 @@
 import pytest
 from converter.utils import format_object, delete_paths
 
-class TestVictim:
+class ExampleTestVictim:
     def __init__(self, count: str, condition: str):
         self.count = count
         self.condition = condition
 
-class TestIncident:
-    def __init__(self, type: str, location: str, victim: TestVictim):
+class ExampleTestIncident:
+    def __init__(self, type: str, location: str, victim: ExampleTestVictim):
         self.type = type
         self.location = location
         self.victim = victim
@@ -29,12 +29,12 @@ def test_format_object_dict():
     assert result == expected
 
 def test_format_object_nested():
-    victim = TestVictim("PLUSIEURS", "GRAVE")
-    incident = TestIncident("Accident", "School", victim)
+    victim = ExampleTestVictim("PLUSIEURS", "GRAVE")
+    incident = ExampleTestIncident("Accident", "School", victim)
     
     result = format_object(incident)
     expected = (
-        "Test Incident:\n"
+        "Example Test Incident:\n"
         "- Type: Accident\n"
         "- Location: School\n"
         "- Victim:\n"
