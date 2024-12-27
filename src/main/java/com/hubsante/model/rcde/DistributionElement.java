@@ -34,16 +34,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.rcde.Recipient;
 import com.hubsante.model.rcde.Sender;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -55,9 +52,10 @@ import java.util.Objects;
                     DistributionElement.JSON_PROPERTY_KIND,
                     DistributionElement.JSON_PROPERTY_STATUS,
                     DistributionElement.JSON_PROPERTY_RECIPIENT})
+@JsonTypeName("distributionElement")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class DistributionElement extends ContentMessage {
+public class DistributionElement {
   public static final String JSON_PROPERTY_MESSAGE_ID = "messageId";
   private String messageId;
 
@@ -171,14 +169,14 @@ public class DistributionElement extends ContentMessage {
    * @return messageId
    **/
   @JsonProperty(JSON_PROPERTY_MESSAGE_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getMessageId() {
     return messageId;
   }
 
   @JsonProperty(JSON_PROPERTY_MESSAGE_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMessageId(String messageId) {
     this.messageId = messageId;
   }
@@ -194,14 +192,14 @@ public class DistributionElement extends ContentMessage {
    * @return sender
    **/
   @JsonProperty(JSON_PROPERTY_SENDER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Sender getSender() {
     return sender;
   }
 
   @JsonProperty(JSON_PROPERTY_SENDER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSender(Sender sender) {
     this.sender = sender;
   }
@@ -220,14 +218,14 @@ public class DistributionElement extends ContentMessage {
    * @return sentAt
    **/
   @JsonProperty(JSON_PROPERTY_SENT_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getSentAt() {
     return sentAt;
   }
 
   @JsonProperty(JSON_PROPERTY_SENT_AT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSentAt(OffsetDateTime sentAt) {
     this.sentAt = sentAt;
   }
@@ -243,14 +241,14 @@ public class DistributionElement extends ContentMessage {
    * @return kind
    **/
   @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public KindEnum getKind() {
     return kind;
   }
 
   @JsonProperty(JSON_PROPERTY_KIND)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setKind(KindEnum kind) {
     this.kind = kind;
   }
@@ -267,14 +265,14 @@ public class DistributionElement extends ContentMessage {
    * @return status
    **/
   @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public StatusEnum getStatus() {
     return status;
   }
 
   @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
@@ -298,7 +296,7 @@ public class DistributionElement extends ContentMessage {
    * @return recipient
    **/
   @JsonProperty(JSON_PROPERTY_RECIPIENT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public List<Recipient> getRecipient() {
     return recipient;
@@ -307,7 +305,7 @@ public class DistributionElement extends ContentMessage {
   @JacksonXmlElementWrapper(useWrapping = false)
 
   @JsonProperty(JSON_PROPERTY_RECIPIENT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRecipient(List<Recipient> recipient) {
     if (recipient == null) {
       return;
@@ -332,21 +330,18 @@ public class DistributionElement extends ContentMessage {
         Objects.equals(this.sentAt, distributionElement.sentAt) &&
         Objects.equals(this.kind, distributionElement.kind) &&
         Objects.equals(this.status, distributionElement.status) &&
-        Objects.equals(this.recipient, distributionElement.recipient) &&
-        super.equals(o);
+        Objects.equals(this.recipient, distributionElement.recipient);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(messageId, sender, sentAt, kind, status, recipient,
-                        super.hashCode());
+    return Objects.hash(messageId, sender, sentAt, kind, status, recipient);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DistributionElement {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    messageId: ")
         .append(toIndentedString(messageId))
         .append("\n");
