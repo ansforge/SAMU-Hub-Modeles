@@ -57,6 +57,7 @@ jobs:
         uses: MishaKav/pytest-coverage-comment@v1.1.53
         with:
           pytest-xml-coverage-path: ./converter/coverage.xml
+          title: "Converter - python code coverage"
 
       - name: Code coverage should be above 80%
         run: |
