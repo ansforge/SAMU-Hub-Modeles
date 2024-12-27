@@ -64,7 +64,8 @@ pytest tests/test_utils.py -k test_format_object_primitive
 
 Development mode:
 ```bash
-python -m flask run
+# In converter/
+FLASK_APP=converter.converter FLASK_ENV=development FLASK_DEBUG=1 flask run --port 8080
 ```
 
 Production mode (using Gunicorn):
@@ -76,18 +77,18 @@ gunicorn -w 4 -b 0.0.0.0:8080 converter:app
 
 #### Convert CISU to Health Format
 ```bash
+# Based on https://github.com/ansforge/SAMU-Hub-Sante/blob/main/web/lrm/client/constants.js#L5C30-L45C2
 curl -X POST http://localhost:8080/convert-cisu \
   -H "Content-Type: application/json" \
-  -d @sample.json \
-  --data-urlencode "direction=forward"
+  -d "$(jq --argjson usecase "$(cat ../src/main/resources/sample/examples/RC-EDA/RC-EDA-FemmeEnceinte-DelphineVigneau.json)" '.message.content[0].jsonContent.embeddedJsonContent.message |= (. + $usecase)' tests/edxl_envelope_fire_to_health.json)"
 ```
 
 #### Convert Health to CISU Format
 ```bash
+# Based on https://github.com/ansforge/SAMU-Hub-Sante/blob/main/web/lrm/client/constants.js#L5C30-L45C2
 curl -X POST http://localhost:8080/convert-cisu \
   -H "Content-Type: application/json" \
-  -d @sample.json \
-  --data-urlencode "direction=backward"
+  -d "$(jq --argjson usecase "$(cat ../src/main/resources/sample/examples/RS-EDA/RS-EDA-SMUR_FemmeEnceinte_DelphineVigneau.01.json)" '.message.content[0].jsonContent.embeddedJsonContent.message |= (. + $usecase)' tests/edxl_envelope_health_to_fire.json)"
 ```
 
 ## Development

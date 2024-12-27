@@ -1,0 +1,10 @@
+{
+  "outerKey": {
+    "innerKey": {
+      "existingKey": "existingValue",
+      "newNestedKey": {
+        "newKey": "newValue"
+      }
+    }
+  }
+}
