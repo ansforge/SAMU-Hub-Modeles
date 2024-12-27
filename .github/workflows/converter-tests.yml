@@ -53,10 +53,16 @@ jobs:
           reports: ./converter/coverage.xml
           targetdir: coveragereport
 
-      - name: Check coverage threshold in XML report
+      - name: Pytest coverage comment
+        uses: MishaKav/pytest-coverage-comment@v1.1.53
+        with:
+          pytest-xml-coverage-path: ./converter/coverage.xml
+
+      - name: Code coverage should be above 80%
         run: |
           COVERAGE=$(python -c "import xml.etree.ElementTree as ET; tree = ET.parse('coverage.xml'); root = tree.getroot(); print(float(root.attrib['line-rate']) * 100)")
           if (( $(echo "$COVERAGE < 80" | bc -l) )); then
             echo "Coverage $COVERAGE% is below threshold of 80%"
             exit 1
           fi 
+          
