@@ -62,7 +62,11 @@ class CISUConverter:
         # Create independent usecase copy for output
         input_usecase_json = input_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCase']
         # - Parse input with model for validation and easier manipulation
-        input_usecase = CreateCase.from_dict(input_usecase_json)
+        try:
+            input_usecase = CreateCase.from_dict(input_usecase_json)
+        except Exception as e:
+            print(f"[ERROR] Deserialization error: {e} on {input_usecase_json}")
+            raise e
         output_usecase_json = copy.deepcopy(input_usecase_json)
 
         # - Deletions
@@ -83,7 +87,11 @@ class CISUConverter:
         # ToDo: implement all rules
 
         # Validate output with model
-        CreateCaseHealth.from_dict(output_usecase_json)
+        try:
+            CreateCaseHealth.from_dict(output_usecase_json)
+        except Exception as e:
+            print(f"[ERROR] Validation error: {e} on {output_usecase_json}")
+            raise e
         
         output_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth'] = output_usecase_json
         return output_json
@@ -108,7 +116,11 @@ class CISUConverter:
         # Create independent usecase copy for output
         input_usecase_json = input_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth']
         # - Parse input with model for validation and easier manipulation
-        input_usecase = CreateCaseHealth.from_dict(input_usecase_json)
+        try:
+            input_usecase = CreateCaseHealth.from_dict(input_usecase_json)
+        except Exception as e:
+            print(f"[ERROR] Deserialization error: {e} on {input_usecase_json}")
+            raise e
         output_usecase_json = copy.deepcopy(input_usecase_json)
 
         # - Deletions
@@ -157,7 +169,11 @@ class CISUConverter:
             output_usecase_json['initialAlert']['location'] = copy.deepcopy(output_usecase_json.get('location'))
 
         # Validate output with model
-        CreateCase.from_dict(output_usecase_json)
+        try:
+            CreateCase.from_dict(output_usecase_json)
+        except Exception as e:
+            print(f"[ERROR] Validation error: {e} on {output_usecase_json}")
+            raise e
         
         output_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCase'] = output_usecase_json
         return output_json

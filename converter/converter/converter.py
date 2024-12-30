@@ -53,7 +53,7 @@ def convert_cisu():
         return jsonify({'edxl': result})
         
     except Exception as e:
-        print(f"[ERROR] Global error: {e}")
+        print(f"[ERROR] Conversion error: {e}")
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
