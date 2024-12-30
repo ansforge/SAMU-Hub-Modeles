@@ -244,7 +244,7 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
     @Test
     @DisplayName("several content elements")
     public void severalContentElements() throws IOException, ValidationException {
-        File jsonMessage = new File(TestMessagesHelper.class.getClassLoader().getResource("sample/failing/EDXL-DE/custom-content.json").getFile());
+        File jsonMessage = new File(TestMessagesHelper.class.getClassLoader().getResource("sample/valid/CustomContent/custom-content.json").getFile());
         String json = new String(Files.readAllBytes(jsonMessage.toPath()), StandardCharsets.UTF_8);
         EdxlMessage message = converter.deserializeJsonEDXL(json);
         String xml = converter.serializeXmlEDXL(message);
