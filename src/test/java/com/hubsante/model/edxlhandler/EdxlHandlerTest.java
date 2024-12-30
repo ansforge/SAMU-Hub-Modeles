@@ -229,4 +229,14 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
             fail("Some files are not equivalent");
         }
     }
+
+    @Test
+    @DisplayName("serialized Xml EdxlMessages should contain xlink type")
+    public void serializedXmlEdxlMessagesShouldContainXlinkType() throws IOException {
+        File jsonMessage = new File(TestMessagesHelper.class.getClassLoader().getResource("sample/valid/RC-EDA/RC-EDA.json").getFile());
+        String json = new String(Files.readAllBytes(jsonMessage.toPath()), StandardCharsets.UTF_8);
+        EdxlMessage message = converter.deserializeJsonEDXL(json);
+        String xml = converter.serializeXmlEDXL(message);
+        assertTrue(xml.contains("<content xlink:type=\"resource\""));
+    }
 }
