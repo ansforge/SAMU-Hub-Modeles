@@ -22,18 +22,22 @@ def convert_cisu():
 
     """CISU conversion endpoint: back and forth between CISU and Health"""
     if not request.is_json:
+        print("[ERROR] Content-Type must be application/json")
         return jsonify({'error': 'Content-Type must be application/json'}), 400
     
     try:
         edxl_json = request.get_json()['edxl']
     except KeyError:
-        return jsonify({'error': 'Message key not found'}), 400
+        print("[ERROR] 'edxl' key not found")
+        return jsonify({'error': "'edxl' key not found"}), 400
     
     # Compute direction based on sender / recipient
+    print(f"[INFO] edxl_json: {type(edxl_json)}")
     sender = get_sender(edxl_json)
     recipient = get_recipient(edxl_json)
     if sender.startswith('fr.health') and recipient.startswith('fr.health'):
-        return jsonify({'error': 'Both sender and recipient are health'}), 400
+        print(f"[ERROR] Both sender and recipient are health: {sender} -> {recipient}")
+        return jsonify({'error': f'Both sender and recipient are health: {sender} -> {recipient}'}), 400
     elif recipient.startswith('fr.fire'):
         direction = TO_CISU
     else:
@@ -51,6 +55,7 @@ def convert_cisu():
         return jsonify({'edxl': result})
         
     except Exception as e:
+        print(f"[ERROR] Global error: {e}")
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
