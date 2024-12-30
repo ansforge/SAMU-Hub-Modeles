@@ -38,7 +38,7 @@ jobs:
 
       - name: Run tests with HTML and XML coverage reports
         run: |
-          pytest --cov=converter --cov-report=html --cov-report=xml --cov-config=pytest.ini
+          pytest --cov=converter --cov-report=html --cov-report=xml --cov-config=pytest.ini -rP
 
       - name: Upload HTML coverage report
         uses: actions/upload-artifact@v3

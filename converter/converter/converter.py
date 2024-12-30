@@ -1,19 +1,18 @@
 from flask import Flask, request, jsonify
-import json
 
 from .utils import get_recipient, get_sender
 from .cisu_converter import CISUConverter
 
 app = Flask(__name__)
 
-@app.route('/convert-version', methods=['POST'])
-def convert_version():
-    """Convert version endpoint"""
-    if not request.is_json:
-        return jsonify({'error': 'Content-Type must be application/json'}), 400
+# @app.route('/convert-version', methods=['POST'])
+# def convert_version():
+#     """Convert version endpoint"""
+#     if not request.is_json:
+#         return jsonify({'error': 'Content-Type must be application/json'}), 400
         
-    data = request.get_json()
-    return jsonify(data)
+#     data = request.get_json()
+#     return jsonify(data)
 
 @app.route('/convert-cisu', methods=['POST'])
 def convert_cisu():
@@ -32,13 +31,12 @@ def convert_cisu():
         return jsonify({'error': "'edxl' key not found"}), 400
     
     # Compute direction based on sender / recipient
-    print(f"[INFO] edxl_json: {type(edxl_json)}")
     sender = get_sender(edxl_json)
     recipient = get_recipient(edxl_json)
     if sender.startswith('fr.health') and recipient.startswith('fr.health'):
         print(f"[ERROR] Both sender and recipient are health: {sender} -> {recipient}")
         return jsonify({'error': f'Both sender and recipient are health: {sender} -> {recipient}'}), 400
-    elif recipient.startswith('fr.fire'):
+    elif sender.startswith('fr.health'):
         direction = TO_CISU
     else:
         direction = FROM_CISU

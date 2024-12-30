@@ -58,6 +58,9 @@ pytest tests/test_utils.py
 
 # Run specific test
 pytest tests/test_utils.py -k test_format_object_primitive
+
+# Run with prints visible | Ref.: https://stackoverflow.com/a/59156707/10115198
+pytest -rP
 ```
 
 ### Running the Service
