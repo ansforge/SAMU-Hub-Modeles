@@ -69,13 +69,13 @@ def test_from_cisu_conversion_on_all_samples():
         additiona_health_checks
     )
 
-# def test_to_cisu_conversion_on_all_samples():
-#     """
-#     Test conversion from Health to CISU format for all sample files
-#     """
-#     conversion_helper(
-#         "RS-EDA",
-#         "tests/edxl_envelope_health_to_fire.json",
-#         CISUConverter.to_cisu,
-#         RC_EDA_SCHEMA
-#     )
+def test_to_cisu_conversion_on_all_samples():
+    """
+    Test conversion from Health to CISU format for all sample files
+    """
+    conversion_helper(
+        "RS-EDA",
+        "tests/edxl_envelope_health_to_fire.json",
+        CISUConverter.to_cisu,
+        RC_EDA_SCHEMA
+    )

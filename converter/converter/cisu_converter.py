@@ -1,8 +1,10 @@
 from typing import Dict, Any
-import json
 import copy
+import random
+import string
+from datetime import datetime
 from hubsante_model import CreateCase, CreateCaseHealth
-from .utils import delete_paths, format_object, get_recipient
+from .utils import delete_paths, format_object, get_recipient, get_sender
 
 class CISUConverter:
     """Handles CISU format conversions"""
@@ -28,7 +30,16 @@ class CISUConverter:
     ]
 
     HEALTH_PATHS_TO_DELETE = [
-        "owner"
+        "owner",
+        "patient",
+        "medicalNote",
+        "decision",
+        "perimeter",
+        "interventionType", 
+        "qualification.origin",
+        "qualification.details",
+        "location.detailedAddress.highway",
+        "location.geometry.point.isAml"
     ]
 
     @classmethod
@@ -62,11 +73,8 @@ class CISUConverter:
         output_usecase_json['owner'] = get_recipient(input_json)
             
         # Handle victims information
-        if ('qualification' in input_usecase and 
-            'victims' in input_usecase['qualification'] and 
-            'initialAlert' in input_usecase):
-            
-            if 'notes' not in output_json['initialAlert']:
+        if (input_usecase.qualification and input_usecase.qualification.victims and input_usecase.initial_alert):            
+            if 'notes' not in output_usecase_json['initialAlert']:
                 output_usecase_json['initialAlert']['notes'] = []
                 
             victims_text = format_object(input_usecase.qualification.victims)
@@ -106,8 +114,47 @@ class CISUConverter:
         # - Deletions
         delete_paths(output_usecase_json, cls.HEALTH_PATHS_TO_DELETE)
         
-        # - Updates  
-        # ToDo: implement all rules (deletions and updates)
+        # - Updates
+        # Victims
+        nb_victims = len(input_usecase.patient) if input_usecase.patient else 0
+        output_usecase_json['qualification']['victims'] = {'count': '0' if nb_victims == 0 else ('1' if nb_victims == 1 else ('PLUSIEURS' if nb_victims < 5 else 'BEAUCOUP'))}
+
+        # Country: based on INSEE code
+        input_insee_code = input_usecase_json.get('location', {}).get('city', {}).get('inseeCode')
+        if input_insee_code:
+            # ToDo: get country from INSEE code | Ref.: https://www.insee.fr/fr/information/7766585#titre-bloc-25
+            output_usecase_json['location']['country'] = 'FR'  
+        else:
+            output_usecase_json['location']['country'] = 'FR' # Default value
+
+        # Set reference version
+        # ToDo: pass this by ConfigMap and based on the version of the model
+        output_usecase_json['referenceVersion'] = "3.0"
+            
+        # CallTaker
+        sender_id = get_sender(input_json)
+        crra_code = sender_id[len("fr.health."):]  # fr.health.samu780(.xxx) -> samu780(.xxx)
+        output_usecase_json['initialAlert']['callTaker'] = {
+            'organization': sender_id,
+            'controlRoom': crra_code.replace('.', '').title()  # samu780(.xxx) -> Samu780( Xxx)
+        }
+        
+        # Generate unique IDs
+        timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
+        random_str = ''.join(random.choices(string.ascii_lowercase + string.digits, k=4))
+        
+        if 'location' in output_usecase_json:
+            output_usecase_json['location']['locID'] = f"LOC-{timestamp}-{random_str}"
+            
+        # InitialAlert
+        if 'initialAlert' in output_usecase_json:
+            # Set initialAlert ID, reception and reporting
+            output_usecase_json['initialAlert']['id'] = f"INAL-{timestamp}-{random_str}"
+            output_usecase_json['initialAlert']['reception'] = input_usecase_json.get('creation')
+            output_usecase_json['initialAlert']['reporting'] = 'ATTENTION' if input_usecase_json.get('caseDetails', {}).get('priority') in ['P0', 'P1'] else 'STANDARD'
+            # Copy output case qualification and location to initialAlert
+            output_usecase_json['initialAlert']['qualification'] = copy.deepcopy(output_usecase_json.get('qualification'))   
+            output_usecase_json['initialAlert']['location'] = copy.deepcopy(output_usecase_json.get('location'))
 
         # Validate output with model
         CreateCase.from_dict(output_usecase_json)
