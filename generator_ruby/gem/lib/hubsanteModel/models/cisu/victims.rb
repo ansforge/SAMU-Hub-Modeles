@@ -115,21 +115,9 @@ module Cisu
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      count_validator = EnumAttributeValidator.new('String', ["0", "1", "PLUSIEURS", "BEAUCOUP", "INCONNU", "NON DEFINI"])
-      return false unless count_validator.valid?(@count)
       main_victim_validator = EnumAttributeValidator.new('String', ["NOURRISSON", "ENFANT", "ADULTE", "SENIOR", "ENCEINTE"])
       return false unless main_victim_validator.valid?(@main_victim)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] count Object to be assigned
-    def count=(count)
-      validator = EnumAttributeValidator.new('String', ["0", "1", "PLUSIEURS", "BEAUCOUP", "INCONNU", "NON DEFINI"])
-      unless validator.valid?(count)
-        fail ArgumentError, "invalid value for \"count\", must be one of #{validator.allowable_values}."
-      end
-      @count = count
     end
 
     # Custom attribute writer method checking allowed values (enum).

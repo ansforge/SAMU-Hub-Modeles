@@ -32,60 +32,6 @@ namespace HubsanteModel/Cisu.Model
     public partial class Victims : IValidatableObject
     {
         /// <summary>
-        /// Indique le nombre de victimes selon la nomenclature du référentiel CISU
-        /// </summary>
-        /// <value>Indique le nombre de victimes selon la nomenclature du référentiel CISU</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum CountEnum
-        {
-            /// <summary>
-            /// Enum _0 for value: 0
-            /// </summary>
-            [EnumMember(Value = "0")]
-            _0 = 1,
-
-            /// <summary>
-            /// Enum _1 for value: 1
-            /// </summary>
-            [EnumMember(Value = "1")]
-            _1 = 2,
-
-            /// <summary>
-            /// Enum PLUSIEURS for value: PLUSIEURS
-            /// </summary>
-            [EnumMember(Value = "PLUSIEURS")]
-            PLUSIEURS = 3,
-
-            /// <summary>
-            /// Enum BEAUCOUP for value: BEAUCOUP
-            /// </summary>
-            [EnumMember(Value = "BEAUCOUP")]
-            BEAUCOUP = 4,
-
-            /// <summary>
-            /// Enum INCONNU for value: INCONNU
-            /// </summary>
-            [EnumMember(Value = "INCONNU")]
-            INCONNU = 5,
-
-            /// <summary>
-            /// Enum NONDEFINI for value: NON DEFINI
-            /// </summary>
-            [EnumMember(Value = "NON DEFINI")]
-            NONDEFINI = 6
-        }
-
-
-        /// <summary>
-        /// Indique le nombre de victimes selon la nomenclature du référentiel CISU
-        /// </summary>
-        /// <value>Indique le nombre de victimes selon la nomenclature du référentiel CISU</value>
-        /*
-        <example>example.json#/qualification/victims/count</example>
-        */
-        [DataMember(Name = "count", EmitDefaultValue = false)]
-        public CountEnum? Count { get; set; }
-        /// <summary>
         /// Identifie le type de la principale victime (celle dont l&#39;état de santé provoque le déclenchement de l&#39;envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.
         /// </summary>
         /// <value>Identifie le type de la principale victime (celle dont l&#39;état de santé provoque le déclenchement de l&#39;envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.</value>
@@ -139,12 +85,22 @@ namespace HubsanteModel/Cisu.Model
         /// <param name="count">Indique le nombre de victimes selon la nomenclature du référentiel CISU.</param>
         /// <param name="mainVictim">Identifie le type de la principale victime (celle dont l&#39;état de santé provoque le déclenchement de l&#39;envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS..</param>
         /// <param name="freetext">Permet de complémenter en commentaire libre la(les) victime(s).</param>
-        public Victims(CountEnum? count = default(CountEnum?), MainVictimEnum? mainVictim = default(MainVictimEnum?), string freetext = default(string))
+        public Victims(string count = default(string), MainVictimEnum? mainVictim = default(MainVictimEnum?), string freetext = default(string))
         {
             this.Count = count;
             this.MainVictim = mainVictim;
             this.Freetext = freetext;
         }
+
+        /// <summary>
+        /// Indique le nombre de victimes selon la nomenclature du référentiel CISU
+        /// </summary>
+        /// <value>Indique le nombre de victimes selon la nomenclature du référentiel CISU</value>
+        /*
+        <example>example.json#/qualification/victims/count</example>
+        */
+        [DataMember(Name = "count", EmitDefaultValue = false)]
+        public string Count { get; set; }
 
         /// <summary>
         /// Permet de complémenter en commentaire libre la(les) victime(s)
