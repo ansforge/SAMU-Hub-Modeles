@@ -2,9 +2,10 @@ Flask==2.2.5
 Werkzeug==3.0.6
 requests==2.32.2
 gunicorn==23.0.0
-hubsante_model==0.1.1
 typing-extensions>=4.5.0
 pytest>=7.0.0
 pytest-cov>=4.1.0 
 jsonschema==4.23.0
 pydantic==2.10.4
+# Adapt this to use the version from the release
+hubsante_model==0.1.1

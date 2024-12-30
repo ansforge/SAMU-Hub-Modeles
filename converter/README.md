@@ -73,7 +73,7 @@ FLASK_APP=converter.converter FLASK_ENV=development FLASK_DEBUG=1 flask run --po
 
 Production mode (using Gunicorn):
 ```bash
-gunicorn -w 4 -b 0.0.0.0:8080 converter:app
+gunicorn -w 4 -b 0.0.0.0:8080 converter.converter:app
 ```
 
 ### API Endpoints
