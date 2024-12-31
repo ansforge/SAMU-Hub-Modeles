@@ -7,5 +7,3 @@ pytest>=7.0.0
 pytest-cov>=4.1.0 
 jsonschema==4.23.0
 pydantic==2.10.4
-# Adapt this to use the version from the release
-hubsante_model==0.1.1

@@ -3,7 +3,6 @@ import copy
 import random
 import string
 from datetime import datetime
-from hubsante_model import CreateCase, CreateCaseHealth
 from .utils import delete_paths, format_object, get_recipient, get_sender
 
 class CISUConverter:
@@ -61,12 +60,6 @@ class CISUConverter:
             
         # Create independent usecase copy for output
         input_usecase_json = input_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCase']
-        # - Parse input with model for validation and easier manipulation
-        try:
-            input_usecase = CreateCase.from_dict(input_usecase_json)
-        except Exception as e:
-            print(f"[ERROR] Deserialization error: {e} on {input_usecase_json}")
-            raise e
         output_usecase_json = copy.deepcopy(input_usecase_json)
 
         # - Deletions
@@ -77,21 +70,14 @@ class CISUConverter:
         output_usecase_json['owner'] = get_recipient(input_json)
             
         # Handle victims information
-        if (input_usecase.qualification and input_usecase.qualification.victims and input_usecase.initial_alert):            
+        if input_usecase_json.get('qualification', {}).get('victims') and input_usecase_json.get('initial_alert'):            
             if 'notes' not in output_usecase_json['initialAlert']:
                 output_usecase_json['initialAlert']['notes'] = []
                 
-            victims_text = format_object(input_usecase.qualification.victims)
+            victims_text = format_object(input_usecase_json['qualification']['victims'])
             output_usecase_json['initialAlert']['notes'].append({"freetext": victims_text})
 
         # ToDo: implement all rules
-
-        # Validate output with model
-        try:
-            CreateCaseHealth.from_dict(output_usecase_json)
-        except Exception as e:
-            print(f"[ERROR] Validation error: {e} on {output_usecase_json}")
-            raise e
         
         output_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth'] = output_usecase_json
         return output_json
@@ -115,12 +101,6 @@ class CISUConverter:
             
         # Create independent usecase copy for output
         input_usecase_json = input_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth']
-        # - Parse input with model for validation and easier manipulation
-        try:
-            input_usecase = CreateCaseHealth.from_dict(input_usecase_json)
-        except Exception as e:
-            print(f"[ERROR] Deserialization error: {e} on {input_usecase_json}")
-            raise e
         output_usecase_json = copy.deepcopy(input_usecase_json)
 
         # - Deletions
@@ -128,7 +108,7 @@ class CISUConverter:
         
         # - Updates
         # Victims
-        nb_victims = len(input_usecase.patient) if input_usecase.patient else 0
+        nb_victims = len(input_usecase_json['patient']) if input_usecase_json['patient'] else 0
         output_usecase_json['qualification']['victims'] = {'count': '0' if nb_victims == 0 else ('1' if nb_victims == 1 else ('PLUSIEURS' if nb_victims < 5 else 'BEAUCOUP'))}
 
         # Country: based on INSEE code
@@ -167,13 +147,6 @@ class CISUConverter:
             # Copy output case qualification and location to initialAlert
             output_usecase_json['initialAlert']['qualification'] = copy.deepcopy(output_usecase_json.get('qualification'))   
             output_usecase_json['initialAlert']['location'] = copy.deepcopy(output_usecase_json.get('location'))
-
-        # Validate output with model
-        try:
-            CreateCase.from_dict(output_usecase_json)
-        except Exception as e:
-            print(f"[ERROR] Validation error: {e} on {output_usecase_json}")
-            raise e
         
         output_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCase'] = output_usecase_json
         return output_json
