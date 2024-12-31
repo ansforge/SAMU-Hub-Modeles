@@ -36,7 +36,12 @@ def convert():
         )
 
     if cisu_conversion:
-        edxl_json = convert_cisu(edxl_json, source_version)
+        try:
+            edxl_json = convert_cisu(edxl_json, source_version)
+        except ValueError as e:
+            return raise_error(str(e))
+        except Exception as e:
+            return raise_error(str(e), 500)
 
     if source_version != target_version:
         # ToDo: implement version conversion
@@ -57,29 +62,23 @@ def convert_cisu(edxl_json, version):
     sender = get_sender(edxl_json)
     recipient = get_recipient(edxl_json)
     if sender.startswith('fr.health') and recipient.startswith('fr.health'):
-        return raise_error(f'Both sender and recipient are health: {sender} -> {recipient}')
+        raise ValueError(f'Both sender and recipient are health: {sender} -> {recipient}')
     elif sender.startswith('fr.health'):
         direction = TO_CISU
     else:
         direction = FROM_CISU
-    
 
     if version not in converters:
-        return raise_error(f"Invalid version {version} for CISU conversion")
+        raise ValueError(f"Invalid version {version} for CISU conversion")
     converter = converters[version]
     print(f"Converting {direction} {version}")
-    try:
-        if direction == TO_CISU:
-            result = converter.to_cisu(edxl_json)
-        elif direction == FROM_CISU:
-            result = converter.from_cisu(edxl_json)
-        else:
-            return raise_error('Invalid direction parameter')
-            
-        return jsonify({'edxl': result})
-        
-    except Exception as e:
-        return raise_error(str(e), 500)
+    
+    if direction == TO_CISU:
+        return converter.to_cisu(edxl_json)
+    elif direction == FROM_CISU:
+        return converter.from_cisu(edxl_json)
+    else:
+        raise ValueError('Invalid direction parameter')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)

@@ -1,5 +1,4 @@
-import pytest
-from converter.cisu_converter import CISUConverter
+from converter.cisu_converter import CISUConverterV3
 from .test_helpers import TestHelper
 
 # Load schemas once for all tests
@@ -15,7 +14,7 @@ def test_from_cisu_conversion():
     TestHelper.conversion_tests_runner(
         sample_dir="RC-EDA",
         envelope_file="tests/edxl_envelope_fire_to_health.json",
-        converter_method=CISUConverter.from_cisu,
+        converter_method=CISUConverterV3.from_cisu,
         target_schema=RS_EDA_SCHEMA,
         additional_validation=validate_health_format
     )
@@ -25,6 +24,6 @@ def test_to_cisu_conversion():
     TestHelper.conversion_tests_runner(
         sample_dir="RS-EDA",
         envelope_file="tests/edxl_envelope_health_to_fire.json",
-        converter_method=CISUConverter.to_cisu,
+        converter_method=CISUConverterV3.to_cisu,
         target_schema=RC_EDA_SCHEMA
     )
