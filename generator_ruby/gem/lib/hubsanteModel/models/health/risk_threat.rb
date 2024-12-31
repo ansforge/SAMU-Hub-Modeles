@@ -21,28 +21,6 @@ module Health
     # A valoriser avec le libellé de la nomenclature associée. Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.
     attr_accessor :label
 
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -107,6 +85,11 @@ module Health
         invalid_properties.push('invalid value for "code", code cannot be nil.')
       end
 
+      pattern = Regexp.new(/^R\d{2}$/)
+      if @code !~ pattern
+        invalid_properties.push("invalid value for \"code\", must conform to the pattern #{pattern}.")
+      end
+
       if @label.nil?
         invalid_properties.push('invalid value for "label", label cannot be nil.')
       end
@@ -119,19 +102,23 @@ module Health
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @code.nil?
-      code_validator = EnumAttributeValidator.new('String', ["R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10", "R11", "R12", "R13", "R14", "R15", "R16", "R17", "R18", "R19", "R20", "R21", "R22", "R23", "R24", "R25", "R26", "R27", "R28", "R29", "R30", "R31", "R32", "R33", "R34", "R35", "R36", "R37"])
-      return false unless code_validator.valid?(@code)
+      return false if @code !~ Regexp.new(/^R\d{2}$/)
       return false if @label.nil?
       true
     end
 
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] code Object to be assigned
+    # Custom attribute writer method with validation
+    # @param [Object] code Value to be assigned
     def code=(code)
-      validator = EnumAttributeValidator.new('String', ["R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10", "R11", "R12", "R13", "R14", "R15", "R16", "R17", "R18", "R19", "R20", "R21", "R22", "R23", "R24", "R25", "R26", "R27", "R28", "R29", "R30", "R31", "R32", "R33", "R34", "R35", "R36", "R37"])
-      unless validator.valid?(code)
-        fail ArgumentError, "invalid value for \"code\", must be one of #{validator.allowable_values}."
+      if code.nil?
+        fail ArgumentError, 'code cannot be nil'
       end
+
+      pattern = Regexp.new(/^R\d{2}$/)
+      if code !~ pattern
+        fail ArgumentError, "invalid value for \"code\", must conform to the pattern #{pattern}."
+      end
+
       @code = code
     end
 
