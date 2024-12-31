@@ -1,6 +1,7 @@
 .gradle/**
 generator/classes/**
 .idea/
+.vscode/
 build/**
 reportgeneratortool/**
 coveragereport/**
