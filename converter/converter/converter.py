@@ -10,15 +10,6 @@ def raise_error(message, code: int = 400):
     print(f"[ERROR] {message}")
     return jsonify({'error': message}), code
 
-# @app.route('/convert-version', methods=['POST'])
-# def convert_version():
-#     """Convert version endpoint"""
-#     if not request.is_json:
-#         return jsonify({'error': 'Content-Type must be application/json'}), 400
-        
-#     data = request.get_json()
-#     return jsonify(data)
-
 @app.route('/convert', methods=['POST'])
 def convert():
     if not request.is_json:
@@ -35,6 +26,10 @@ def convert():
             f"Missing required fields: sourceVersion={source_version}, targetVersion={target_version}, edxl present={edxl_json is not None}"
         )
 
+    if source_version != target_version:
+        # ToDo: implement version conversion
+        return raise_error(f"Source version {source_version} is not equal to target version {target_version}")
+
     if cisu_conversion:
         try:
             edxl_json = convert_cisu(edxl_json, source_version)
@@ -42,10 +37,6 @@ def convert():
             return raise_error(str(e))
         except Exception as e:
             return raise_error(str(e), 500)
-
-    if source_version != target_version:
-        # ToDo: implement version conversion
-        return raise_error(f"Source version {source_version} is not equal to target version {target_version}")
 
     return jsonify({"edxl": edxl_json})
 
