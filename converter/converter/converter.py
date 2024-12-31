@@ -1,9 +1,14 @@
 from flask import Flask, request, jsonify
 
 from .utils import get_recipient, get_sender
-from .cisu_converter import CISUConverter
+from .cisu_converter import CISUConverterV3
 
 app = Flask(__name__)
+
+def raise_error(message, code: int = 400):
+    """Helper function to log and return error responses"""
+    print(f"[ERROR] {message}")
+    return jsonify({'error': message}), code
 
 # @app.route('/convert-version', methods=['POST'])
 # def convert_version():
@@ -14,47 +19,67 @@ app = Flask(__name__)
 #     data = request.get_json()
 #     return jsonify(data)
 
-@app.route('/convert-cisu', methods=['POST'])
-def convert_cisu():
+@app.route('/convert', methods=['POST'])
+def convert():
+    if not request.is_json:
+        return raise_error('Content-Type must be application/json')
+
+    req_data = request.get_json()
+    source_version = req_data.get('sourceVersion')
+    target_version = req_data.get('targetVersion')
+    edxl_json = req_data.get('edxl')
+    cisu_conversion = req_data.get('cisuConversion', False)
+
+    if not source_version or not target_version or not edxl_json:
+        return raise_error(
+            f"Missing required fields: sourceVersion={source_version}, targetVersion={target_version}, edxl present={edxl_json is not None}"
+        )
+
+    if cisu_conversion:
+        edxl_json = convert_cisu(edxl_json, source_version)
+
+    if source_version != target_version:
+        # ToDo: implement version conversion
+        return raise_error(f"Source version {source_version} is not equal to target version {target_version}")
+
+    return jsonify({"edxl": edxl_json})
+
+
+def convert_cisu(edxl_json, version):
+    """CISU conversion endpoint: back and forth between CISU and Health"""
     TO_CISU = "to_CISU"
     FROM_CISU = "from_CISU"
-
-    """CISU conversion endpoint: back and forth between CISU and Health"""
-    if not request.is_json:
-        print("[ERROR] Content-Type must be application/json")
-        return jsonify({'error': 'Content-Type must be application/json'}), 400
-    
-    try:
-        edxl_json = request.get_json()['edxl']
-    except KeyError:
-        print("[ERROR] 'edxl' key not found")
-        return jsonify({'error': "'edxl' key not found"}), 400
+    converters = {
+        'v3': CISUConverterV3
+    }
     
     # Compute direction based on sender / recipient
     sender = get_sender(edxl_json)
     recipient = get_recipient(edxl_json)
     if sender.startswith('fr.health') and recipient.startswith('fr.health'):
-        print(f"[ERROR] Both sender and recipient are health: {sender} -> {recipient}")
-        return jsonify({'error': f'Both sender and recipient are health: {sender} -> {recipient}'}), 400
+        return raise_error(f'Both sender and recipient are health: {sender} -> {recipient}')
     elif sender.startswith('fr.health'):
         direction = TO_CISU
     else:
         direction = FROM_CISU
     
-    print(f"Converting {direction}")
+
+    if version not in converters:
+        return raise_error(f"Invalid version {version} for CISU conversion")
+    converter = converters[version]
+    print(f"Converting {direction} {version}")
     try:
         if direction == TO_CISU:
-            result = CISUConverter.to_cisu(edxl_json)
+            result = converter.to_cisu(edxl_json)
         elif direction == FROM_CISU:
-            result = CISUConverter.from_cisu(edxl_json)
+            result = converter.from_cisu(edxl_json)
         else:
-            return jsonify({'error': 'Invalid direction parameter'}), 400
+            return raise_error('Invalid direction parameter')
             
         return jsonify({'edxl': result})
         
     except Exception as e:
-        print(f"[ERROR] Conversion error: {e}")
-        return jsonify({'error': str(e)}), 500
+        return raise_error(str(e), 500)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080) 
+    app.run(host='0.0.0.0', port=8080)

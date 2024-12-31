@@ -5,7 +5,7 @@ import string
 from datetime import datetime
 from .utils import delete_paths, format_object, get_recipient, get_sender
 
-class CISUConverter:
+class CISUConverterV3:
     """Handles CISU format conversions"""
     
     CISU_PATHS_TO_DELETE = [
