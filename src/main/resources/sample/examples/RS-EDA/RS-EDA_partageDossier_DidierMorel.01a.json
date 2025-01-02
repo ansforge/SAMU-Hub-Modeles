@@ -1,6 +1,6 @@
 {
   "createCaseHealth": {
-    "caseId": "fr.health.samu770.DRFR157702400400055",
+    "caseId": "fr.health.samu770.DRFR157702400400095",
     "senderCaseId": "DRFR157702400400055",
     "creation": "2024-01-04T08:01:00+01:00",
     "qualification": {
@@ -18,9 +18,9 @@
       },
       "details": {
         "priority": "P0",
-        "attribution": "DRM.MRU.MU"
+        "attribution": "MU"
       },
-      "origin": "CTA-PI"
+      "origin": "18"
     },
     "location": {
       "detailedAddress": {
@@ -45,7 +45,7 @@
             "precision": "ADRESSE"
           }
         },
-        "datetime": "2024-01-03T03:00:00+01:00"
+        "obsDatime": "2024-01-04T00:05:00+01:00"
       }
     },
     "initialAlert": {
@@ -56,7 +56,7 @@
           "type": "TEL",
           "detail": "+33607080915"
         },
-        "language": "fr",
+        "language": "FR",
         "freetext": "fils de la victime",
         "detailedName": {
           "complete": "Sébastien Morel ",
@@ -85,21 +85,21 @@
             "firstName": "Didier"
           },
           "strictFeatures": {
-            "sex": "M"
+            "sex": "MASC"
           }
         },
-        "patientId": "fr.health.samu770.patient.DRFR157702400400055.1"
+        "idPat": "fr.health.samu770.patient.DRFR157702400400055.1"
       }
     ],
     "perimeter": "AMU",
-    "interventionType": "T1",
+    "interventionType": "PRIMAIRE",
     "medicalNote": [
       {
         "operator": {
           "role": "ARM"
         },
-        "patientId": "fr.health.samu770.patient.DRFR157702400400055.1",
-        "medicalNoteId": "fr.health.samu770.medicalNote.45db215",
+        "idPat": "fr.health.samu770.patient.DRFR157702400400055.1",
+        "idObs": "fr.health.samu770.medicalNote.45db215",
         "freetext": "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup.",
         "creation": "2024-01-04T08:03:00+01:00"
       },
@@ -107,8 +107,8 @@
         "operator": {
           "role": "ARM"
         },
-        "patientId": "fr.health.samu770.patient.DRFR157702400400055.1",
-        "medicalNoteId": "fr.health.samu770.medicalNote.15as456",
+        "idPat": "fr.health.samu770.patient.DRFR157702400400055.1",
+        "idObs": "fr.health.samu770.medicalNote.15as456",
         "freetext": "La victime est inconsciente (perte de connaissance).",
         "creation": "2024-01-04T08:04:00+01:00"
       }
