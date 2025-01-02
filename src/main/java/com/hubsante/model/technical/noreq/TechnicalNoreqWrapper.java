@@ -1,5 +1,5 @@
 /**
- * Copyright © 2023-2024 Agence du Numerique en Sante (ANS)
+ * Copyright © 2023-2025 Agence du Numerique en Sante (ANS)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.rcde.DistributionElement;
+import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.technical.noreq.TechnicalNoreq;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -47,7 +47,7 @@ import java.util.Objects;
 @JsonTypeName("technicalNoreqWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class TechnicalNoreqWrapper extends DistributionElement {
+public class TechnicalNoreqWrapper extends ContentMessage {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:3.0";
   public static final String JSON_PROPERTY_TECHNICAL_NOREQ = "technicalNoreq";
