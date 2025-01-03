@@ -19,7 +19,7 @@
         <explicitAddressValue>fr.health.samuB</explicitAddressValue>
       </explicitAddress>
     </descriptor>
-    <content>
+    <content xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="resource">
       <jsonContent>
         <embeddedJsonContent>
           <message>

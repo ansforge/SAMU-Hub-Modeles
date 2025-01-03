@@ -70,6 +70,7 @@ public class EdxlHandler {
     }
 
     public String serializeXmlEDXL(EdxlMessage edxlMessage) throws JsonProcessingException {
-        return xmlMapper.writeValueAsString(edxlMessage);
+        String baseXml = xmlMapper.writeValueAsString(edxlMessage);
+        return baseXml.replace("<content><contentObject", "<content xlink:type=\"resource\"><contentObject");
     }
 }
