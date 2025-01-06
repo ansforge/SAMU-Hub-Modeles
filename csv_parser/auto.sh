@@ -3,6 +3,7 @@
 # Set variables
 NOMENCLATURE_IN_FOLDER="/Users/romainfouilland/Library/CloudStorage/OneDrive-SharedLibraries-ANS/Espace Projets - Espace Programme SI-SAMU/01 - Equipe projet/07 - Innovation et prospectif/12 - Hub Santé/17 - MDD/Nomenclatures/01 - Base interne/"
 NOMENCLATURE_FOLDER="../nomenclature_parser/in/"
+TEST_CASE_SOURCES_FOLDER="./test-case-sources/"
 MODELS_IN_FILE="/Users/romainfouilland/Library/CloudStorage/OneDrive-SharedLibraries-ANS/Espace Projets - Espace Programme SI-SAMU/01 - Equipe projet/07 - Innovation et prospectif/12 - Hub Santé/17 - MDD/MDD - Hub Santé.xlsx"
 TECHNICAL_MODELS_IN_FILE="/Users/romainfouilland/Library/CloudStorage/OneDrive-SharedLibraries-ANS/Espace Projets - Espace Programme SI-SAMU/01 - Equipe projet/07 - Innovation et prospectif/12 - Hub Santé/17 - MDD/MDD TECHNICAL - Hub Santé.xlsx"
 MODELS_FILE="models/model.xlsx"
@@ -36,6 +37,17 @@ nomenclatures() {
   fi
 }
 
+# Function to check for changes in test case sources folder and run generation of test cases json
+test_cases() {
+  if git diff-index --quiet HEAD -- "$TEST_CASE_SOURCES_FOLDER"; then
+    echo "No changes in $TEST_CASE_SOURCES_FOLDER, skipping test cases generation..."
+  else
+    echo "Changes detected in $TEST_CASE_SOURCES_FOLDER, running test cases generation..."
+    /Users/romainfouilland/code/envs/all/bin/python workflow.py --stage test_case_parser || (git stash && exit 1)
+    git add .
+  fi
+}
+
 # Function to run the script
 run() {
   echo "[$DATE] Running script..." | tee -a "$LOG_FILE"
@@ -45,6 +57,7 @@ run() {
   setup
   git add ..
   nomenclatures
+  test_cases
   if git diff-index --quiet HEAD -- ..; then
     echo "No changes found, skipping commit."
   else
