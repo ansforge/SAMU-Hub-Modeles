@@ -1,24 +1,4 @@
 schemas:
-- automaticGeneration: Y
-  customExtendClass: null
-  customExtendPackage: null
-  header: Y
-  package: technical
-  perimeter: TECHNICAL
-  rootElement: technical
-  schema: TECHNICAL
-  subschema: N
-  xmlns: cisu:3.0:technical
-- automaticGeneration: Y
-  customExtendClass: ContentMessage
-  customExtendPackage: com.hubsante.model.edxl
-  header: N
-  package: technical.noreq
-  perimeter: TECHNICAL_NOREQ
-  rootElement: technicalNoreq
-  schema: TECHNICAL_NOREQ
-  subschema: N
-  xmlns: cisu:3.0:technicalNoreq
 - automaticGeneration: N
   customExtendClass: null
   customExtendPackage: null
@@ -209,3 +189,23 @@ schemas:
   schema: customContent
   subschema: N
   xmlns: cisu:3.0
+- automaticGeneration: Y
+  customExtendClass: null
+  customExtendPackage: null
+  header: Y
+  package: technical
+  perimeter: TECHNICAL
+  rootElement: technical
+  schema: TECHNICAL
+  subschema: N
+  xmlns: cisu:3.0:technical
+- automaticGeneration: Y
+  customExtendClass: ContentMessage
+  customExtendPackage: com.hubsante.model.edxl
+  header: N
+  package: technical.noreq
+  perimeter: TECHNICAL_NOREQ
+  rootElement: technicalNoreq
+  schema: TECHNICAL_NOREQ
+  subschema: N
+  xmlns: cisu:3.0:technicalNoreq

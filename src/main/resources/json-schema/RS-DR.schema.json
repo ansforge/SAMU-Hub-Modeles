@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-DR.schema.json#",
-    "version": "25.01.03",
+    "version": "25.01.07",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesRequest",
@@ -29,7 +29,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/status",
-            "description": "A quoi ça sert d'avoir un objet demande ",
+            "description": "A valoriser avec l'état d'annulation de la demande le cas échéant",
             "enum": [
                 "ANNULEE"
             ]

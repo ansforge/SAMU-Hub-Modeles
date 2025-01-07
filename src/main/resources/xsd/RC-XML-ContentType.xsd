@@ -6,8 +6,6 @@
 -->
 <schema xmlns:x="urn:emergency:cisu:3.0"
         xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-        xmlns:technical="urn:emergency:cisu:3.0:technical"
-        xmlns:technicalNoreq="urn:emergency:cisu:3.0:technicalNoreq"
         
         xmlns:createCase="urn:emergency:cisu:3.0"
         xmlns:createCaseHealth="urn:emergency:cisu:3.0:createCaseHealth"
@@ -27,14 +25,14 @@
         
         xmlns:reference="urn:emergency:cisu:3.0"
         
+        xmlns:technical="urn:emergency:cisu:3.0:technical"
+        xmlns:technicalNoreq="urn:emergency:cisu:3.0:technicalNoreq"
         xmlns:error="urn:emergency:cisu:3.0:error"
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:3.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
     <xs:include schemaLocation="RC-DE.xsd"/>
     <xs:include schemaLocation="customContent.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:3.0:technical" schemaLocation="TECHNICAL.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:3.0:technicalNoreq" schemaLocation="TECHNICAL_NOREQ.xsd"/>
     
     <xs:include schemaLocation="RC-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:3.0:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
@@ -54,6 +52,8 @@
     
     <xs:include schemaLocation="RC-REF.xsd"/>
     
+    <xs:import namespace="urn:emergency:cisu:3.0:technical" schemaLocation="TECHNICAL.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:3.0:technicalNoreq" schemaLocation="TECHNICAL_NOREQ.xsd"/>
     <xs:import namespace="urn:emergency:cisu:3.0:error" schemaLocation="RS-ERROR.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
@@ -73,7 +73,6 @@
             <xs:extension base="x:distributionElement">
                 <xs:sequence>
                     <xs:choice>
-                        <xs:element ref="technical:technical"/>
                         <xs:element ref="createCase:createCase"/>
                         <xs:element ref="createCaseHealth:createCaseHealth"/>
                         <xs:element ref="createCaseHealthUpdate:createCaseHealthUpdate"/>
@@ -90,6 +89,7 @@
                         <xs:element ref="geoResourcesRequest:geoResourcesRequest"/>
                         <xs:element ref="geoResourcesDetails:geoResourcesDetails"/>
                         <xs:element ref="reference:reference"/>
+                        <xs:element ref="technical:technical"/>
                     </xs:choice>
                 </xs:sequence>
             </xs:extension>

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA-MAJ.schema.json#",
-    "version": "25.01.03",
+    "version": "25.01.07",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealthUpdate",
@@ -422,13 +422,7 @@
                     "example": "example.json#/qualification/details/status",
                     "description": "A valoriser avec l'état du dossier dans le système émetteur\nSpécificité 15-15 : peut être ignoré en réception, partagé à titre indicatif uniquement\nSpécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE à la tablette",
                     "enum": [
-                        "PROGRAM",
-                        "ACTIF",
-                        "ACHEVE",
-                        "VALIDE",
-                        "CLOTURE",
-                        "CLASSE",
-                        "ARCHIVE"
+                        "ANNULEE"
                     ]
                 },
                 "priority": {
