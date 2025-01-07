@@ -11,6 +11,7 @@ TECHNICAL_MODELS_FILE="models/model-technical.xlsx"
 TRACKING_BRANCH_NAME="auto/model_tracker"
 DATE=$(date +'%y.%m.%d %H:%M')
 LOG_FILE="cron.log"
+PYTHON_CMD="/Users/romainfouilland/code/envs/all/bin/python"
 
 # Enable printing of each command
 set -x
@@ -26,24 +27,24 @@ setup() {
 }
 
 # Function to check for changes in nomenclature folder and run nomenclatures generation
-nomenclatures() {
+update_nomenclatures() {
   if git diff-index --quiet HEAD -- "$NOMENCLATURE_FOLDER"; then
     echo "No changes in $NOMENCLATURE_FOLDER, skipping nomenclatures generation..."
   else
     echo "Changes detected in $NOMENCLATURE_FOLDER, running nomenclatures generation..."
     cd ../nomenclature_parser
-    /Users/romainfouilland/code/envs/all/bin/python nomenclature_parser.py || (git stash && exit 1)
+    ${PYTHON_CMD[@]} nomenclature_parser.py || (git stash && exit 1)
     git add .
   fi
 }
 
 # Function to check for changes in test case sources folder and run generation of test cases json
-test_cases() {
+update_test_cases() {
   if git diff-index --quiet HEAD -- "$TEST_CASE_SOURCES_FOLDER"; then
     echo "No changes in $TEST_CASE_SOURCES_FOLDER, skipping test cases generation..."
   else
     echo "Changes detected in $TEST_CASE_SOURCES_FOLDER, running test cases generation..."
-    /Users/romainfouilland/code/envs/all/bin/python workflow.py --stage test_case_parser || (git stash && exit 1)
+    ${PYTHON_CMD[@]} workflow.py --stage test_case_parser || (git stash && exit 1)
     git add .
   fi
 }
@@ -56,8 +57,8 @@ run() {
   git pull --rebase
   setup
   git add ..
-  nomenclatures
-  test_cases
+  update_nomenclatures
+  update_test_cases
   if git diff-index --quiet HEAD -- ..; then
     echo "No changes found, skipping commit."
   else
