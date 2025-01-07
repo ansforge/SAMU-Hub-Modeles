@@ -20,7 +20,7 @@ module Resourcesrequest
 
     attr_accessor :request
 
-    # A quoi ça sert d'avoir un objet demande 
+    # A valoriser avec l'état d'annulation de la demande le cas échéant
     attr_accessor :status
 
     class EnumAttributeValidator

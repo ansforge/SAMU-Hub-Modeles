@@ -39,46 +39,10 @@ namespace HubsanteModel/Health.Model
         public enum StatusEnum
         {
             /// <summary>
-            /// Enum PROGRAM for value: PROGRAM
+            /// Enum ANNULEE for value: ANNULEE
             /// </summary>
-            [EnumMember(Value = "PROGRAM")]
-            PROGRAM = 1,
-
-            /// <summary>
-            /// Enum ACTIF for value: ACTIF
-            /// </summary>
-            [EnumMember(Value = "ACTIF")]
-            ACTIF = 2,
-
-            /// <summary>
-            /// Enum ACHEVE for value: ACHEVE
-            /// </summary>
-            [EnumMember(Value = "ACHEVE")]
-            ACHEVE = 3,
-
-            /// <summary>
-            /// Enum VALIDE for value: VALIDE
-            /// </summary>
-            [EnumMember(Value = "VALIDE")]
-            VALIDE = 4,
-
-            /// <summary>
-            /// Enum CLOTURE for value: CLOTURE
-            /// </summary>
-            [EnumMember(Value = "CLOTURE")]
-            CLOTURE = 5,
-
-            /// <summary>
-            /// Enum CLASSE for value: CLASSE
-            /// </summary>
-            [EnumMember(Value = "CLASSE")]
-            CLASSE = 6,
-
-            /// <summary>
-            /// Enum ARCHIVE for value: ARCHIVE
-            /// </summary>
-            [EnumMember(Value = "ARCHIVE")]
-            ARCHIVE = 7
+            [EnumMember(Value = "ANNULEE")]
+            ANNULEE = 1
         }
 
 

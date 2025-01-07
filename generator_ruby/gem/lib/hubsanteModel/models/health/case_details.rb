@@ -124,7 +124,7 @@ module Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      status_validator = EnumAttributeValidator.new('String', ["PROGRAM", "ACTIF", "ACHEVE", "VALIDE", "CLOTURE", "CLASSE", "ARCHIVE"])
+      status_validator = EnumAttributeValidator.new('String', ["ANNULEE"])
       return false unless status_validator.valid?(@status)
       attribution_validator = EnumAttributeValidator.new('String', ["DRM", "DRM.MRU", "DRM.MRU.MU", "DRM.MRU.INDISPMU", "DRM.MRU.SSE", "DRM.MRU.PLANBLAN", "DRM.MRU.PCSAMU", "DRM.SPE", "DRM.SPE.DENT", "DRM.SPE.GERIA", "DRM.SPE.PEDIA", "DRM.SPE.OBST", "DRM.SPE.PSY", "DRM.SPE.TOXICOL", "DRM.SPE.AUTRESPE", "DRM.MRL", "DRM.MRL.MG", "DRM.MRL.INDISPMG", "DRM.MRL.ABSML", "DR", "DR.DREG", "DR.DREG.DRARM", "DR.DREG.DRDAC", "DR.DREG.DRMED", "DR.DREG.DRPHARMA", "DR.DREG.DRDENT", "DR.DREG.DRINFO", "DR.DREG.DOS-SIS", "DR.DREG.DOS-FDO", "D", "D.D-MALV", "D.D-MALV.ERR", "D.D-MALV.NRP", "D.D-MALV.MALV", "D.D-MALV.FAX", "D.D-MALV.ITERATIF", "D.D-IDENT", "D.D-IDENT.ADMIN", "D.D-IDENT.PERSO", "D.D-IDENT.AUTRE"])
       return false unless attribution_validator.valid?(@attribution)
@@ -138,7 +138,7 @@ module Health
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] status Object to be assigned
     def status=(status)
-      validator = EnumAttributeValidator.new('String', ["PROGRAM", "ACTIF", "ACHEVE", "VALIDE", "CLOTURE", "CLASSE", "ARCHIVE"])
+      validator = EnumAttributeValidator.new('String', ["ANNULEE"])
       unless validator.valid?(status)
         fail ArgumentError, "invalid value for \"status\", must be one of #{validator.allowable_values}."
       end
