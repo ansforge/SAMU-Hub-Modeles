@@ -62,6 +62,11 @@ jobs:
         # We specifically only remove FOLDERS with the exception of a couple manually created ones
         run: find . -mindepth 1 -maxdepth 1 -type d ! -name 'builders' ! -name 'config' ! -name 'custom' ! -name 'edxl' ! -name 'exception' ! -name 'report' -exec rm -r {} +
       
+      - name: Run csv_parser to generate schemas.yaml
+        working-directory: ./csv_parser
+        if: steps.filter.outputs.parsing_required == 'true'
+        run: python workflow.py --stage output_schemas_yaml
+
       - name: Run csv_parser and collect OpenAPI & JSON Schemas
         working-directory: ./csv_parser
         if: steps.filter.outputs.parsing_required == 'true'
@@ -73,11 +78,6 @@ jobs:
         run: |
           rm -r ./out/test-cases || true
           python workflow.py --stage test_case_parser
-
-      - name: Run csv_parser to generate schemas.yaml
-        working-directory: ./csv_parser
-        if: steps.filter.outputs.parsing_required == 'true'
-        run: python workflow.py --stage output_schemas_yaml
 
       - name: Collect schemas.yaml and copy it to json_schema2xsd
         working-directory: ./csv_parser

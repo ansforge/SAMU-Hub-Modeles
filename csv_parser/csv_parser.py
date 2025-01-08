@@ -116,8 +116,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     def is_custom_content():
         return MODEL_TYPE == "customContent"
 
-    def is_allowing_additional_properties():
-        return is_custom_content() or MODEL_TYPE == "DistributionElement"
+    def is_allowing_additional_properties(name):
+        return is_custom_content() or MODEL_TYPE == "DistributionElement" or name == "RC-DE"
 
     Path('out/' + name).mkdir(parents=True, exist_ok=True)
 
@@ -481,7 +481,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         'required': [],
         'properties': {},
         'definitions': {},
-        'additionalProperties': is_allowing_additional_properties()
+        'additionalProperties': is_allowing_additional_properties(name)
     }
 
     def has_format_details(elem, details):
