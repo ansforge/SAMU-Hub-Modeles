@@ -38,8 +38,8 @@ class CaseDetails(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['ANNULEE']):
-            raise ValueError("must be one of enum values ('ANNULEE')")
+        if value not in set(['PROGRAM', 'ACTIF', 'ACHEVE', 'VALIDE', 'CLOTURE', 'CLASSE', 'ARCHIVE']):
+            raise ValueError("must be one of enum values ('PROGRAM', 'ACTIF', 'ACHEVE', 'VALIDE', 'CLOTURE', 'CLASSE', 'ARCHIVE')")
         return value
 
     @field_validator('attribution')
