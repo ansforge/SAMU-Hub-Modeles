@@ -53,10 +53,12 @@ jobs:
 
       - name: Clean up old generated schemas
         working-directory: ./src/main/resources
+        if: steps.filter.outputs.parsing_required == 'true'
         run: find ./json-schema -type f -name '*.json' ! -name 'customContent.schema.json' ! -name 'EDXL-DE-*.schema.json' -exec rm {} +
         
       - name: Clean up old generated java classes
         working-directory: ./src/main/java/com/hubsante/model
+        if: steps.filter.outputs.parsing_required == 'true'
         # We specifically only remove FOLDERS with the exception of a couple manually created ones
         run: find . -mindepth 1 -maxdepth 1 -type d ! -name 'builders' ! -name 'config' ! -name 'custom' ! -name 'edxl' ! -name 'exception' ! -name 'report' -exec rm -r {} +
       
@@ -142,16 +144,20 @@ jobs:
 
       - name: Install node env 🏗
         uses: actions/setup-node@v4
+        if: steps.filter.outputs.parsing_required == 'true'
         with:
           node-version: 16
 
       - name: Install openapi-generator-cli
+        if: steps.filter.outputs.parsing_required == 'true'
         run: npm install -g @openapitools/openapi-generator-cli
 
       - name: Install linter
+        if: steps.filter.outputs.parsing_required == 'true'
         run: sudo apt install -y clang-format
 
       - name: Generate Java classes
+        if: steps.filter.outputs.parsing_required == 'true'
         working-directory: ./generator
         run: |
           # Iterate over each file in the ./config directory, including the entire subfolder structure
@@ -164,6 +170,7 @@ jobs:
           find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli generate -c "$file" --skip-validate-spec; done
           
       - name: Replace src/ with generated classes
+        if: steps.filter.outputs.parsing_required == 'true'
         run: |
           rm -r ./src/main/java/com/hubsante/model/rcde || true
           rm -r ./src/main/java/com/hubsante/model/cisu || true
@@ -180,19 +187,23 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Apply license
+        if: steps.filter.outputs.parsing_required == 'true'
         run: ./gradlew licenseFormat
 
       - name: Delete old xml files
+        if: steps.filter.outputs.parsing_required == 'true'
         run: |
           find ./src/main/resources/sample/examples -name "*.xml" -type f -delete
 
       - name: Generate XML files
+        if: steps.filter.outputs.parsing_required == 'true'
         run: |
           ./gradlew generateXml
         continue-on-error: true
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
+        if: steps.filter.outputs.parsing_required == 'true'
         with:
           commit_message: ⚙️ Auto-génération des classes et des specs
 
