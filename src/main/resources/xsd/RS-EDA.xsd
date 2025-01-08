@@ -471,7 +471,13 @@ Spécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="ANNULEE"/>
+                        <enumeration value="PROGRAM"/>
+                        <enumeration value="ACTIF"/>
+                        <enumeration value="ACHEVE"/>
+                        <enumeration value="VALIDE"/>
+                        <enumeration value="CLOTURE"/>
+                        <enumeration value="CLASSE"/>
+                        <enumeration value="ARCHIVE"/>
                     </restriction>
                 </simpleType>
             </element>

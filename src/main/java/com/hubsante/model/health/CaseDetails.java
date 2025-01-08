@@ -56,7 +56,19 @@ public class CaseDetails {
    * CLOTURE à la tablette
    */
   public enum StatusEnum {
-    ANNULEE(String.valueOf("ANNULEE"));
+    PROGRAM(String.valueOf("PROGRAM")),
+
+    ACTIF(String.valueOf("ACTIF")),
+
+    ACHEVE(String.valueOf("ACHEVE")),
+
+    VALIDE(String.valueOf("VALIDE")),
+
+    CLOTURE(String.valueOf("CLOTURE")),
+
+    CLASSE(String.valueOf("CLASSE")),
+
+    ARCHIVE(String.valueOf("ARCHIVE"));
 
     private String value;
 
