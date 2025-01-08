@@ -22,6 +22,8 @@ package com.hubsante.model.edxl;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import com.hubsante.model.reference.Reference;
+import com.hubsante.model.reference.ReferenceWrapper;
 import com.hubsante.model.cisu.CreateCase;
 import com.hubsante.model.cisu.CreateCaseWrapper;
 import com.hubsante.model.health.CreateCaseHealth;
@@ -52,8 +54,6 @@ import com.hubsante.model.geolocation.GeoResourcesRequest;
 import com.hubsante.model.geolocation.GeoResourcesRequestWrapper;
 import com.hubsante.model.geolocation.GeoResourcesDetails;
 import com.hubsante.model.geolocation.GeoResourcesDetailsWrapper;
-import com.hubsante.model.reference.Reference;
-import com.hubsante.model.reference.ReferenceWrapper;
 import com.hubsante.model.technical.Technical;
 import com.hubsante.model.technical.TechnicalWrapper;
 import com.hubsante.model.technical.noreq.TechnicalNoreq;
@@ -66,6 +66,7 @@ import java.util.stream.Stream;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({ 
+        @JsonSubTypes.Type(ReferenceWrapper.class),
         @JsonSubTypes.Type(CreateCaseWrapper.class),
         @JsonSubTypes.Type(CreateCaseHealthWrapper.class),
         @JsonSubTypes.Type(CreateCaseHealthUpdateWrapper.class),
@@ -81,7 +82,6 @@ import java.util.stream.Stream;
         @JsonSubTypes.Type(GeoPositionsUpdateWrapper.class),
         @JsonSubTypes.Type(GeoResourcesRequestWrapper.class),
         @JsonSubTypes.Type(GeoResourcesDetailsWrapper.class),
-        @JsonSubTypes.Type(ReferenceWrapper.class),
         @JsonSubTypes.Type(TechnicalWrapper.class),
         @JsonSubTypes.Type(TechnicalNoreqWrapper.class),
         @JsonSubTypes.Type(ErrorWrapper.class),
@@ -108,6 +108,7 @@ public class ContentMessage {
     public static class UseCaseHelper {
         public static final Map<String,String> useCases = Stream.of(new String[][] {
                   
+                  {"reference", Reference.class.getCanonicalName()},
                   {"createCase", CreateCase.class.getCanonicalName()},
                   {"createCaseHealth", CreateCaseHealth.class.getCanonicalName()},
                   {"createCaseHealthUpdate", CreateCaseHealthUpdate.class.getCanonicalName()},
@@ -123,7 +124,6 @@ public class ContentMessage {
                   {"geoPositionsUpdate", GeoPositionsUpdate.class.getCanonicalName()},
                   {"geoResourcesRequest", GeoResourcesRequest.class.getCanonicalName()},
                   {"geoResourcesDetails", GeoResourcesDetails.class.getCanonicalName()},
-                  {"reference", Reference.class.getCanonicalName()},
                   {"technical", Technical.class.getCanonicalName()},
                   {"technicalNoreq", TechnicalNoreq.class.getCanonicalName()},
                   {"error", ErrorWrapper.class.getCanonicalName()},

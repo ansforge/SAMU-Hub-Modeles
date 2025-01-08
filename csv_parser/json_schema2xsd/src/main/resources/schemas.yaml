@@ -13,6 +13,16 @@ schemas:
   customExtendClass: null
   customExtendPackage: null
   header: Y
+  package: reference
+  perimeter: 15-15
+  rootElement: reference
+  schema: RC-REF
+  subschema: N
+  xmlns: cisu:3.0
+- automaticGeneration: Y
+  customExtendClass: null
+  customExtendPackage: null
+  header: Y
   package: cisu
   perimeter: 15-18
   rootElement: createCase
@@ -167,16 +177,6 @@ schemas:
   perimeter: 15-15
   rootElement: error
   schema: RS-ERROR
-  subschema: N
-  xmlns: cisu:3.0
-- automaticGeneration: Y
-  customExtendClass: null
-  customExtendPackage: null
-  header: Y
-  package: reference
-  perimeter: 15-15
-  rootElement: reference
-  schema: RC-REF
   subschema: N
   xmlns: cisu:3.0
 - automaticGeneration: N

@@ -307,6 +307,7 @@ components:
     EmbeddedJsonContent:
       oneOf: &id001
       - $ref: '#/components/schemas/DistributionElement'
+      - $ref: '#/components/schemas/reference'
       - $ref: '#/components/schemas/createCase'
       - $ref: '#/components/schemas/createCaseHealth'
       - $ref: '#/components/schemas/createCaseHealthUpdate'
@@ -323,7 +324,6 @@ components:
       - $ref: '#/components/schemas/geoResourcesRequest'
       - $ref: '#/components/schemas/geoResourcesDetails'
       - $ref: '#/components/schemas/error'
-      - $ref: '#/components/schemas/reference'
       - $ref: '#/components/schemas/customContent'
       - $ref: '#/components/schemas/technical'
       - $ref: '#/components/schemas/technicalNoreq'
@@ -387,6 +387,45 @@ components:
           type: string
         URI:
           type: string
+    reference:
+      type: object
+      title: "Lien vers d'autres objets \xE9v\xE9nements EMSI"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - ORG_ID
+      - OTHER_EVENT_ID
+      properties:
+        ORG_ID:
+          type: string
+          title: ID de l'organisation
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/EVENT/REFERENCE/0/ORG_ID
+          description: "Le format est le suivant {pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*.\nNB : ce champ (EVENT.REFERENCE.ORG_ID)\
+            \ ne peut pas \xEAtre le m\xEAme que le champ CONTEXT.LINK.ID ou EVENT.ID"
+          examples:
+          - fr.fire.cgo044
+        OTHER_EVENT_ID:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: ID des autres event
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/EVENT/REFERENCE/0/OTHER_EVENT_ID/0
+            description: "Indique d'autres identifiants utilis\xE9s pour l'affaire\
+              \ dans le syst\xE8me partenaire.\nA renseigner avec l'identifiant de\
+              \ l'organisation suivi de l'identifiant local de l'affaire du partenaire\
+              \ dans son syst\xE8me.\n{pays}.{domaine}.{organisation}.{structure interne}*.{unit\xE9\
+              \ fonctionnelle}*-{num\xE9ro de dossier}"
+            examples:
+            - None
+          minItems: 1
+      additionalProperties: false
+      example: example.json#/EVENT/REFERENCE/0
     createCase:
       $id: classpath:/json-schema/schema#
       x-id: RC-EDA.schema.json#
@@ -4692,59 +4731,6 @@ components:
           - CDIS/RIOT
       additionalProperties: false
       example: example.json#/EVENT/ETYPE
-    reference:
-      $id: classpath:/json-schema/schema#
-      x-id: RC-REF.schema.json#
-      example: example.json#
-      type: object
-      title: reference
-      required:
-      - distributionID
-      properties:
-        distributionID:
-          type: string
-          title: "Identifiant du message r\xE9f\xE9renc\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/distributionID
-          description: "Identifiant unique du message r\xE9f\xE9renc\xE9"
-          examples:
-          - None
-        refused:
-          type: boolean
-          title: Indicateur de refus de message
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/refused
-          description: "Indique si le message acquitt\xE9 a \xE9t\xE9 refus\xE9"
-          examples:
-          - None
-        errorDistributionID:
-          type: string
-          title: "Identifiant du message d'erreur li\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/errorDistributionID
-          description: "Identifiant unique du message d'erreur li\xE9"
-          examples:
-          - None
-        step:
-          type: string
-          title: "Etape d'int\xE9gration du message"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/step
-          description: "Nomenclature permettant d'identifier les diff\xE9rentes \xE9\
-            tapes d'int\xE9gration et de consultation du dossier dans le syst\xE8\
-            me \xE9metteur"
-          examples:
-          - None
-      additionalProperties: false
-      examples:
-      - distributionID: None
-        refused: None
-        errorDistributionID: None
-        step: None
     casualties:
       type: object
       title: Victimes

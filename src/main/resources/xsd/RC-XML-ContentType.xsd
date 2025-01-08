@@ -7,6 +7,7 @@
 <schema xmlns:x="urn:emergency:cisu:3.0"
         xmlns:xs="http://www.w3.org/2001/XMLSchema" 
         
+        xmlns:reference="urn:emergency:cisu:3.0"
         xmlns:createCase="urn:emergency:cisu:3.0"
         xmlns:createCaseHealth="urn:emergency:cisu:3.0:createCaseHealth"
         xmlns:createCaseHealthUpdate="urn:emergency:cisu:3.0:createCaseHealthUpdate"
@@ -23,7 +24,6 @@
         xmlns:geoResourcesRequest="urn:emergency:cisu:3.0:georesourcesrequest"
         xmlns:geoResourcesDetails="urn:emergency:cisu:3.0:georesourcesdetails"
         
-        xmlns:reference="urn:emergency:cisu:3.0"
         
         xmlns:technical="urn:emergency:cisu:3.0:technical"
         xmlns:technicalNoreq="urn:emergency:cisu:3.0:technicalNoreq"
@@ -34,6 +34,7 @@
     <xs:include schemaLocation="RC-DE.xsd"/>
     <xs:include schemaLocation="customContent.xsd"/>
     
+    <xs:include schemaLocation="RC-REF.xsd"/>
     <xs:include schemaLocation="RC-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:3.0:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:3.0:createCaseHealthUpdate" schemaLocation="RS-EDA-MAJ.xsd"/>
@@ -50,7 +51,6 @@
     <xs:import namespace="urn:emergency:cisu:3.0:georesourcesrequest" schemaLocation="GEO-REQ.xsd"/>
     <xs:import namespace="urn:emergency:cisu:3.0:georesourcesdetails" schemaLocation="GEO-RES.xsd"/>
     
-    <xs:include schemaLocation="RC-REF.xsd"/>
     
     <xs:import namespace="urn:emergency:cisu:3.0:technical" schemaLocation="TECHNICAL.xsd"/>
     <xs:import namespace="urn:emergency:cisu:3.0:technicalNoreq" schemaLocation="TECHNICAL_NOREQ.xsd"/>
@@ -73,6 +73,7 @@
             <xs:extension base="x:distributionElement">
                 <xs:sequence>
                     <xs:choice>
+                        <xs:element ref="reference:reference"/>
                         <xs:element ref="createCase:createCase"/>
                         <xs:element ref="createCaseHealth:createCaseHealth"/>
                         <xs:element ref="createCaseHealthUpdate:createCaseHealthUpdate"/>
@@ -88,7 +89,6 @@
                         <xs:element ref="geoPositionsUpdate:geoPositionsUpdate"/>
                         <xs:element ref="geoResourcesRequest:geoResourcesRequest"/>
                         <xs:element ref="geoResourcesDetails:geoResourcesDetails"/>
-                        <xs:element ref="reference:reference"/>
                         <xs:element ref="technical:technical"/>
                     </xs:choice>
                 </xs:sequence>
