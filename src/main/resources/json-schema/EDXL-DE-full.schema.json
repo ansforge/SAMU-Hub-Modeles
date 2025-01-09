@@ -74,6 +74,20 @@
       "type": "object",
       "oneOf": [
         {
+          "properties": {
+            "message": {
+              "properties": {
+                "distributionElement": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              },
+              "required": [
+                "distributionElement"
+              ]
+            }
+          }
+        },
+        {
           "allOf": [
             {
               "properties": {

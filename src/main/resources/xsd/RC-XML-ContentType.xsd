@@ -6,7 +6,7 @@
 -->
 <schema xmlns:x="urn:emergency:cisu:3.0"
         xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-        
+        xmlns:distributionElement="urn:emergency:cisu:3.0"
         xmlns:reference="urn:emergency:cisu:3.0"
         xmlns:createCase="urn:emergency:cisu:3.0"
         xmlns:createCaseHealth="urn:emergency:cisu:3.0:createCaseHealth"
@@ -33,7 +33,7 @@
 
     <xs:include schemaLocation="RC-DE.xsd"/>
     <xs:include schemaLocation="customContent.xsd"/>
-    
+    <xs:include schemaLocation="RC-DE.xsd"/>
     <xs:include schemaLocation="RC-REF.xsd"/>
     <xs:include schemaLocation="RC-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:3.0:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
@@ -99,6 +99,7 @@
     <xs:complexType name="NoHeaderMessageType">
         <xs:sequence>
             <xs:choice>
+                <xs:element ref="distributionElement:distributionElement"/>
                 <xs:element ref="technicalNoreq:technicalNoreq"/>
                 <xs:element ref="error:error"/>
                 <xs:element ref="x:customContent"/>

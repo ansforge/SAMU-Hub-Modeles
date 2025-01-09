@@ -1,14 +1,14 @@
 schemas:
-- automaticGeneration: N
-  customExtendClass: null
-  customExtendPackage: null
+- automaticGeneration: Y
+  customExtendClass: ContentMessage
+  customExtendPackage: com.hubsante.model.edxl
   header: N
   package: rcde
   perimeter: 15-15
   rootElement: distributionElement
   schema: RC-DE
   subschema: N
-  xmlns: null
+  xmlns: cisu:3.0
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
