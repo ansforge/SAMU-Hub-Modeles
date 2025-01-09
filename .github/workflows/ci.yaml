@@ -12,6 +12,9 @@ on:
 jobs:
   generate-models:
     runs-on: ubuntu-latest
+    
+    env:  
+      JAVA_POST_PROCESS_FILE: "/usr/bin/clang-format -i"
 
     steps:
       - name: Checkout
@@ -36,11 +39,11 @@ jobs:
       
       - name: Run test_cases generation
         if: steps.filter.outputs.test_case_parsing_required == 'true'
-        uses: ./.github/workflows/generate-test-cases.yaml
+        uses: ./.github/actions/generate-test-cases
 
       - name: Run model generation
         if: steps.filter.outputs.parsing_required == 'true'
-        uses: ./.github/workflows/generate-models.yaml
+        uses: ./.github/actions/generate-models
     
       - name: Grant execute permission for Gradlew
         run: chmod +x ./gradlew
