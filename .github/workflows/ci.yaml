@@ -1,0 +1,99 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - '**'
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+jobs:
+  generate-models:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Check for changes requiring running the parser
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            parsing_required:
+              - 'csv_parser/csv_parser.py'
+              - 'csv_parser/uml_generator.py'
+              - 'csv_parser/workflow.py'
+              - 'csv_parser/models/**'
+              - 'csv_parser/nomenclature_parser/**'
+              - 'csv_parser/json_schema2xsd/**'
+            test_case_parsing_required:
+              - 'csv_parser/test_case_generator.py'
+              - 'csv_parser/workflow.py'
+              - 'csv_parser/test-cases-sources/**'
+      
+      - name: Run test_cases generation
+        if: steps.filter.outputs.test_case_parsing_required == 'true'
+        uses: ./.github/workflows/generate-test-cases.yaml
+
+      - name: Run model generation
+        if: steps.filter.outputs.parsing_required == 'true'
+        uses: ./.github/workflows/generate-models.yaml
+    
+      - name: Grant execute permission for Gradlew
+        run: chmod +x ./gradlew
+
+      - name: Apply license
+        run: ./gradlew licenseFormat
+
+      - name: Commit and push changes from license
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: ⚙️ Auto-génération des licenses
+  
+  run-tests:
+    runs-on: ubuntu-latest
+    needs: generate-models
+
+    steps: 
+      # Checkout to integrate changes made by generate-models workflow
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build and run TECHNICAL tests
+        run: ./gradlew test --info -Ptechnical=true
+
+      - name: Build and run REAL MESSAGES tests
+        run: ./gradlew test --info
+
+      # Ref.: https://github.com/gradle/gradle-build-action/issues/619#issuecomment-1453244157
+      - name: Upload test report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: build/reports/tests/test/**
+
+      - name: Add coverage to PR
+        id: jacoco
+        uses: madrapps/jacoco-report@v1.3
+        with:
+          paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          min-coverage-overall: 40
+          min-coverage-changed-files: 60
+
+      # Required to execute ReportGenerator
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.x
+          dotnet-quality: 'ga'
+
+      - name: Run ReportGenerator for test coverage
+        uses: danielpalme/ReportGenerator-GitHub-Action@5.1.23
+        with:
+          reports: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml
+          targetdir: coveragereport
