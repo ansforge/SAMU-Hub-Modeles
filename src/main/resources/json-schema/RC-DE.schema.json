@@ -5,7 +5,7 @@
     "version": "25.01.09",
     "example": "example.json#",
     "type": "object",
-    "title": "DistributionElement",
+    "title": "distributionElement",
     "required": [
         "messageId",
         "sender",
