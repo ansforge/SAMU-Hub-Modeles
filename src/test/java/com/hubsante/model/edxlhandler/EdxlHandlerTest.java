@@ -47,6 +47,7 @@ import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessage;
 import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessageWithoutDistributionElement;
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.config.Constants.FULL_SCHEMA;
+import static com.hubsante.model.config.Constants.FULL_XSD;
 import static com.hubsante.model.utils.TestFileUtils.getMessageByFileName;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.*;
@@ -228,5 +229,28 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
         if (!allPass.get()) {
             fail("Some files are not equivalent");
         }
+    }
+
+    @Test
+    @DisplayName("serialized Xml EdxlMessages should contain xlink type")
+    public void serializedXmlEdxlMessagesShouldContainXlinkType() throws IOException {
+        File jsonMessage = new File(TestMessagesHelper.class.getClassLoader().getResource("sample/valid/RC-EDA/RC-EDA.json").getFile());
+        String json = new String(Files.readAllBytes(jsonMessage.toPath()), StandardCharsets.UTF_8);
+        EdxlMessage message = converter.deserializeJsonEDXL(json);
+        String xml = converter.serializeXmlEDXL(message);
+        assertTrue(xml.contains("<content xlink:type=\"resource\""));
+    }
+
+    @Test
+    @DisplayName("several content elements")
+    public void severalContentElements() throws IOException, ValidationException {
+        File jsonMessage = new File(TestMessagesHelper.class.getClassLoader().getResource("sample/valid/CustomContent/custom-content.json").getFile());
+        String json = new String(Files.readAllBytes(jsonMessage.toPath()), StandardCharsets.UTF_8);
+        EdxlMessage message = converter.deserializeJsonEDXL(json);
+        String xml = converter.serializeXmlEDXL(message);
+        validator.validateXML(xml, FULL_XSD);
+        // xlink attribute must have been added at the EDXL Content Element, but not lower
+        assertTrue(xml.contains("</descriptor><content xlink:type=\"resource\""));
+        assertFalse(xml.contains("<customContent><content xlink:type=\"resource\""));
     }
 }
