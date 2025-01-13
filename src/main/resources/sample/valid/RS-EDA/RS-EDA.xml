@@ -18,7 +18,7 @@
         <contentObject xlink:type="resource">
             <contentXML>
                 <embeddedXMLContent>
-                    <message xmlns="urn:emergency:cisu:3.0">
+                    <message xmlns="urn:emergency:eda:1.9">
                         <messageId>fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea</messageId>
                         <sender>
                             <name>samuA</name>
@@ -31,7 +31,7 @@
                             <name>samuB</name>
                             <URI>hubex:fr.health.samuB</URI>
                         </recipient>
-                        <createCaseHealth xmlns="urn:emergency:cisu:3.0:createCaseHealth">
+                        <createCaseHealth xmlns="urn:emergency:eda:1.9:createCaseHealth">
                             <caseId>fr.health.samu950-DRFR159502401000233</caseId>
                             <senderCaseId>DRFR159502401000233</senderCaseId>
                             <creation>2024-01-10T14:07:00+01:00</creation>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<resourcesRequest xmlns="urn:emergency:cisu:3.0:resourcesrequest">
+<resourcesRequest xmlns="urn:emergency:eda:1.9:resourcesrequest">
   <caseId>fr.health.samu950.DRFR159502401800159</caseId>
   <request>
     <requestId>fr.health.samu950.request.zs498qo</requestId>

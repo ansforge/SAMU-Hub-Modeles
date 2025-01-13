@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:3.0:resourcesrequest" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:3.0:resourcesrequest" xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:eda:1.9:resourcesrequest" elementFormDefault="qualified" targetNamespace="urn:emergency:eda:1.9:resourcesrequest" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="resourcesRequest" type="x:resourcesRequest"/>
     <complexType name="resourcesRequest">
         <sequence>

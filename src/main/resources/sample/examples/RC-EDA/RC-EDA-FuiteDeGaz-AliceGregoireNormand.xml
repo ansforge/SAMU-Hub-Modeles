@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<createCase xmlns="urn:emergency:cisu:3.0">
+<createCase xmlns="urn:emergency:eda:1.9">
   <caseId>fr.health.samu440.DRFR154402413800236</caseId>
   <senderCaseId>DRFR154402413800236</senderCaseId>
   <creation>2024-05-18T18:15:00+02:00</creation>
