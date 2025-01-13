@@ -52,7 +52,7 @@ import java.util.Objects;
 
 public class DocumentLink {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:eda:1.9:documentlink";
+  String xmlns = "urn:emergency:cisu:3.0:documentlink";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 

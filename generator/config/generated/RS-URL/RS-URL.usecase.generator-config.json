@@ -17,7 +17,7 @@
     "serializationLibrary": "jackson",
     "openApiNullable": true,
     "supportUrlQuery": false,
-    "xmlns": "eda:1.9:documentlink",
+    "xmlns": "cisu:3.0:documentlink",
     "enablePostProcessFile": true
   }
 }
