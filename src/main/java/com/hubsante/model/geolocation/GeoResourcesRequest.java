@@ -49,7 +49,7 @@ import java.util.Objects;
 
 public class GeoResourcesRequest {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:3.0:georesourcesrequest";
+  String xmlns = "urn:emergency:eda:1.9:georesourcesrequest";
   public static final String JSON_PROPERTY_RESOURCE_ID = "resourceId";
   private List<String> resourceId = new ArrayList<>();
 

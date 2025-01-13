@@ -29,7 +29,7 @@ import java.util.Objects;
 public class CustomMessage extends ContentMessage {
 
     @JacksonXmlProperty(isAttribute = true)
-    String xmlns = "urn:emergency:cisu:3.0";
+    String xmlns = "urn:emergency:eda:1.9";
     public static final String JSON_PROPERTY_ATTRIBUTES_WRAPPER = "customContent";
     private JsonNode customContent;
 

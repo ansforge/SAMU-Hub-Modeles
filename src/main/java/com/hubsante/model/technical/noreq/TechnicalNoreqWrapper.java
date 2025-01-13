@@ -49,7 +49,7 @@ import java.util.Objects;
 
 public class TechnicalNoreqWrapper extends ContentMessage {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:3.0";
+  String xmlns = "urn:emergency:eda:1.9";
   public static final String JSON_PROPERTY_TECHNICAL_NOREQ = "technicalNoreq";
   private TechnicalNoreq technicalNoreq;
 

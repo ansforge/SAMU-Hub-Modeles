@@ -17,7 +17,7 @@ La generation automatique des fichiers d'un schema est séparé en plusieurs eta
 2. Construire le tableau représentant le schema en suivant les règles décrites sur la [feuille "Mode d'emploi" du fichier](https://esantegouv.sharepoint.com/:x:/r/sites/GED-Calypso/espace-projets/_layouts/15/Doc.aspx?sourcedoc=%7B6E6E8D74-7768-41E8-9A03-DAAD2DEDCE19%7D&file=MDD%20-%20Hub%20Sant%C3%A9.xlsx&action=default&mobileredirect=true).
 3. Construire le tableau de 'configuration' de l'onglet au dessus du tableau principal, en suivant la structure suivante (exemple du schema RC-EDA):
    |schema|perimeter|rootElement|package|customExtendPackage|customExtendClass|automaticGeneration|subschema|header|xmlns|
-   |RC-EDA|15-18|createCase|cisu|||Y|N|Y|cisu:3.0|
+   |RC-EDA|15-18|createCase|cisu|||Y|N|Y|eda:1.9|
    Les colonnes correspondant aux informations suivantes:
    1. schema: Nom du schema (RC-EDA, RS-EDA, RS-ER, RS-ERROR)
    2. perimetre: L'en-tete de la colonne perimetre correspondante (15-18, 15-15, 15-SMUR, 15-15)
@@ -135,8 +135,8 @@ Les propriétés "templateDir" et "models" vont varier selon le fichier:
 Si la présence de l'en-tete RC-DE n'est pas désirée, il est seulement nécessaire d'ajouter la partie "properties" contenant le nouveau schema.
 
 3. Modifier le xsd schema *RC-XML-ContentType.xsd.tmpl* en ajoutant les éléments suivants:
-   1. Une propriété **xmlns:[Objet racine (en flatcase)]="urn:emergency:cisu:3.0:[Objet racine]"** dans l'élément <schema> 
-   2. Un import **<xs:import namespace="urn:emergency:cisu:3.0:[Objet racine]" schemaLocation="[Nom du schema].xsd"/>**
+   1. Une propriété **xmlns:[Objet racine (en flatcase)]="urn:emergency:eda:1.9:[Objet racine]"** dans l'élément <schema> 
+   2. Un import **<xs:import namespace="urn:emergency:eda:1.9:[Objet racine]" schemaLocation="[Nom du schema].xsd"/>**
    3. Un element **<xs:element ref="[Objet racine (en flatcase)]:[Objet racine]"/>** a l'interieur de l'element <xs:choice> 
 
 ## 5 Lancer la génération des fichiers, en créant une pull request depuis la branche feature en question et poussant les modifications, declenchant l'action github sur le repo distant.
