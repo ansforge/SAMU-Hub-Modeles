@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:eda:1.9:documentlink" elementFormDefault="qualified" targetNamespace="urn:emergency:eda:1.9:documentlink" xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:3.0:documentlink" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:3.0:documentlink" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="documentLink" type="x:documentLink"/>
     <complexType name="documentLink">
         <sequence>

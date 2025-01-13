@@ -56,7 +56,7 @@ import java.util.Objects;
 
 public class InterventionReport {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:eda:1.9:interventionreport";
+  String xmlns = "urn:emergency:cisu:3.0:interventionreport";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 

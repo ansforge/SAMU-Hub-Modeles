@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:eda:1.9" elementFormDefault="qualified" targetNamespace="urn:emergency:eda:1.9" xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:3.0" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:3.0" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="distributionElement" type="x:distributionElement"/>
     <complexType name="distributionElement">
         <sequence>
