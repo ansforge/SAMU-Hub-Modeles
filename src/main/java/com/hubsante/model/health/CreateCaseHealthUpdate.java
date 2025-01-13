@@ -68,7 +68,7 @@ import java.util.Objects;
 
 public class CreateCaseHealthUpdate {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:3.0:createCaseHealthUpdate";
+  String xmlns = "urn:emergency:eda:1.9:createCaseHealthUpdate";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 
