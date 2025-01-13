@@ -564,6 +564,9 @@
         },
         "language": {
           "type": "string"
+        },
+        "keyword": {
+          "$ref": "#/definitions/Keyword"
         }
       },
       "additionalProperties": false,
@@ -604,6 +607,17 @@
         "explicitAddressScheme",
         "explicitAddressValue"
       ]
+    },
+    "Keyword": {
+      "type": "array",
+      "items": {
+        "ValueListURI" : {
+          "type": "string"
+        },
+        "Value" : {
+          "type": "string"
+        }
+      }
     }
   }
 }
