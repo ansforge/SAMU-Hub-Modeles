@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import com.hubsante.model.rcde.DistributionElement;
+import com.hubsante.model.rcde.DistributionElementWrapper;
 import com.hubsante.model.reference.Reference;
 import com.hubsante.model.reference.ReferenceWrapper;
 import com.hubsante.model.cisu.CreateCase;
@@ -66,7 +67,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
-@JsonSubTypes({
+@JsonSubTypes({ 
+        @JsonSubTypes.Type(DistributionElementWrapper.class),
         @JsonSubTypes.Type(ReferenceWrapper.class),
         @JsonSubTypes.Type(CreateCaseWrapper.class),
         @JsonSubTypes.Type(CreateCaseHealthWrapper.class),
@@ -108,6 +110,8 @@ public class ContentMessage {
 
     public static class UseCaseHelper {
         public static final Map<String,String> useCases = Stream.of(new String[][] {
+                  
+                  {"distributionElement", DistributionElement.class.getCanonicalName()},
                   {"reference", Reference.class.getCanonicalName()},
                   {"createCase", CreateCase.class.getCanonicalName()},
                   {"createCaseHealth", CreateCaseHealth.class.getCanonicalName()},
