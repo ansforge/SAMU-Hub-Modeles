@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:eda:1.9:createCaseHealthUpdate" elementFormDefault="qualified" targetNamespace="urn:emergency:eda:1.9:createCaseHealthUpdate" xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:3.0:createCaseHealthUpdate" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:3.0:createCaseHealthUpdate" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="createCaseHealthUpdate" type="x:createCaseHealthUpdate"/>
     <complexType name="createCaseHealthUpdate">
         <sequence>
@@ -321,13 +321,7 @@ Spécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="PROGRAM"/>
-                        <enumeration value="ACTIF"/>
-                        <enumeration value="ACHEVE"/>
-                        <enumeration value="VALIDE"/>
-                        <enumeration value="CLOTURE"/>
-                        <enumeration value="CLASSE"/>
-                        <enumeration value="ARCHIVE"/>
+                        <enumeration value="ANNULEE"/>
                     </restriction>
                 </simpleType>
             </element>

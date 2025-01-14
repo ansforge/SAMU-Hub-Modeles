@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:eda:1.9:emsi" elementFormDefault="qualified" targetNamespace="urn:emergency:eda:1.9:emsi" xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:3.0:emsi" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:3.0:emsi" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="emsi" type="x:emsi"/>
     <complexType name="emsi">
         <sequence>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<emsi xmlns="urn:emergency:eda:1.9:emsi">
+<emsi xmlns="urn:emergency:cisu:3.0:emsi">
   <CONTEXT>
     <ID>d350c9d2-9d76-4568-b0b7-a747ffadc949</ID>
     <MODE>ACTUAL</MODE>

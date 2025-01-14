@@ -498,13 +498,7 @@ components:
             \ : \xE0 utiliser \xE0 minima pour transmettre le statut CLOTURE \xE0\
             \ la tablette"
           enum:
-          - PROGRAM
-          - ACTIF
-          - ACHEVE
-          - VALIDE
-          - CLOTURE
-          - CLASSE
-          - ARCHIVE
+          - ANNULEE
           examples:
           - None
         priority:

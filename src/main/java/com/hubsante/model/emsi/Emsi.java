@@ -1,5 +1,5 @@
 /**
- * Copyright © 2023-2024 Agence du Numerique en Sante (ANS)
+ * Copyright © 2023-2025 Agence du Numerique en Sante (ANS)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ import java.util.Objects;
 
 public class Emsi {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:eda:1.9:emsi";
+  String xmlns = "urn:emergency:cisu:3.0:emsi";
   public static final String JSON_PROPERTY_C_O_N_T_E_X_T = "CONTEXT";
   private Context CONTEXT;
 

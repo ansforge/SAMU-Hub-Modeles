@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<documentLink xmlns="urn:emergency:eda:1.9:documentlink">
+<documentLink xmlns="urn:emergency:cisu:3.0:documentlink">
   <caseId>fr.health.samu680.DRFR154402413800555</caseId>
   <patientId>fr.health.samu680.patient.68263</patientId>
   <document>
