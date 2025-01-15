@@ -1,7 +1,7 @@
 {
   "createCase": {
-    "caseId": "fr.fire.sis044.cga-044.SC-20240526-044-cga-AL8",
-    "senderCaseId": "SC-20240526-044-cga-AL8",
+    "caseId": "fr.health.samu440.DRFR154402413800862",
+    "senderCaseId": "DRFR154402413800862",
     "creation": "2024-05-26T13:15:00+02:00",
     "referenceVersion": "1.3",
     "qualification": {
@@ -45,10 +45,20 @@
           "source": "SIRET",
           "value": "70142121200018"
         }
-      ]
+      ],
+      "geometry": {
+        "point": {
+          "coord": {
+            "lon": -1.6318399,
+            "lat": 47.2224055,
+            "precision": "EXACTE"
+          }
+        },
+        "datetime": "2024-05-26T11:16:00+02:00"
+      }
     },
     "initialAlert": {
-      "id": "CGA044-20240526-AL0182",
+      "id": "samu440-20240526-AL0182",
       "reception": "2024-05-26T13:15:00+02:00",
       "reporting": "STANDARD",
       "caller": {
@@ -109,8 +119,9 @@
         }
       },
       "callTaker": {
-        "organization": "fr.fire.sis044.cga-044",
-        "controlRoom": "CGA44"
+        "organization": "fr.health.samu440",
+        "controlRoom": "CRRA44",
+        "role": "ARM"
       }
     },
     "additionalInformation": {
