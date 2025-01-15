@@ -25,7 +25,7 @@
                schemaLocation="other-supporting-schema/EDXLCT_wd06/edxl-ext-v1.0.xsd"/>
 
     <!--       Hub Santé extensions -->
-    <xs:import namespace="urn:emergency:cisu:3.0" schemaLocation="./RC-XML-ContentType.xsd"/>
+    <xs:import namespace="urn:emergency:eda:1.9" schemaLocation="./RC-XML-ContentType.xsd"/>
     <!--       Hub Santé extensions -->
 
     <xs:element name="edxlDistribution" type="DEDistributionType"/>
