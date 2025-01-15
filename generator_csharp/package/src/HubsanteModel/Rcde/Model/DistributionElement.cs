@@ -28,7 +28,7 @@ namespace HubsanteModel/Rcde.Model
     /// <summary>
     /// DistributionElement
     /// </summary>
-    [DataContract(Name = "DistributionElement")]
+    [DataContract(Name = "distributionElement")]
     public partial class DistributionElement : IValidatableObject
     {
         /// <summary>
