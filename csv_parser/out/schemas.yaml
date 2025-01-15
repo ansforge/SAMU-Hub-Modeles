@@ -22,7 +22,7 @@ schemas:
   schema: RC-REF
   sheet: RC-REF
   subschema: N
-  xmlns: cisu:3.0
+  xmlns: cisu:3.0:reference
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -34,7 +34,7 @@ schemas:
   schema: RC-EDA
   sheet: RC-EDA
   subschema: N
-  xmlns: cisu:3.0
+  xmlns: cisu:3.0:createCase
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null

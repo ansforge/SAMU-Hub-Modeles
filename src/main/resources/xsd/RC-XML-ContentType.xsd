@@ -7,8 +7,8 @@
 <schema xmlns:x="urn:emergency:cisu:3.0"
         xmlns:xs="http://www.w3.org/2001/XMLSchema" 
         xmlns:distributionElement="urn:emergency:cisu:3.0"
-        xmlns:reference="urn:emergency:cisu:3.0"
-        xmlns:createCase="urn:emergency:cisu:3.0"
+        xmlns:reference="urn:emergency:cisu:3.0:reference"
+        xmlns:createCase="urn:emergency:cisu:3.0:createCase"
         xmlns:createCaseHealth="urn:emergency:cisu:3.0:createCaseHealth"
         xmlns:createCaseHealthUpdate="urn:emergency:cisu:3.0:createCaseHealthUpdate"
         xmlns:emsi="urn:emergency:cisu:3.0:emsi"
@@ -34,8 +34,8 @@
     <xs:include schemaLocation="RC-DE.xsd"/>
     <xs:include schemaLocation="customContent.xsd"/>
     <xs:include schemaLocation="RC-DE.xsd"/>
-    <xs:include schemaLocation="RC-REF.xsd"/>
-    <xs:include schemaLocation="RC-EDA.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:3.0:reference" schemaLocation="RC-REF.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:3.0:createCase" schemaLocation="RC-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:3.0:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:3.0:createCaseHealthUpdate" schemaLocation="RS-EDA-MAJ.xsd"/>
     <xs:import namespace="urn:emergency:cisu:3.0:emsi" schemaLocation="EMSI.xsd"/>
