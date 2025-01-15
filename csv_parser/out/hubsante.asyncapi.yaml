@@ -306,7 +306,7 @@ components:
           $ref: '#/components/schemas/EmbeddedXMLContent'
     EmbeddedJsonContent:
       oneOf: &id001
-      - $ref: '#/components/schemas/DistributionElement'
+      - $ref: '#/components/schemas/distributionElement'
       - $ref: '#/components/schemas/reference'
       - $ref: '#/components/schemas/createCase'
       - $ref: '#/components/schemas/createCaseHealth'
@@ -387,6 +387,90 @@ components:
           type: string
         URI:
           type: string
+    distributionElement:
+      $id: classpath:/json-schema/schema#
+      x-id: RC-DE.schema.json#
+      example: example.json#
+      type: object
+      title: distributionElement
+      required:
+      - messageId
+      - sender
+      - sentAt
+      - kind
+      - status
+      - recipient
+      properties:
+        messageId:
+          type: string
+          title: Identifiant du message
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/messageId
+          description: "Identifiant partag\xE9 de l'affaire/dossier, g\xE9n\xE9r\xE9\
+            \ une seule fois par le syst\xE8me du partenaire qui recoit la primo-demande\
+            \ de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit\
+            \ lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+            \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
+            e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
+            \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
+            \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
+            \ num\xE9ro unique dans son syst\xE8me."
+          examples:
+          - d350c9d2-9d76-4568-b0b7-a747ffadc949
+        sender:
+          $ref: '#/components/schemas/sender'
+        sentAt:
+          type: string
+          title: Horodatage envoi message
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/sentAt
+          description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 l'envoi\
+            \ du message. Il doit  \xEAtre coh\xE9rent avec le champ <dateTimeSent>\
+            \ de l'enveloppe EDXL (voir DST).  L'indicateur de fuseau horaire Z ne\
+            \ doit pas \xEAtre utilis\xE9. Le fuseau horaire pour UTC doit \xEAtre\
+            \ repr\xE9sent\xE9 par '-00:00'"
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
+          format: date-time
+          examples:
+          - None
+        kind:
+          type: string
+          title: Type de message
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/kind
+          description: Prend la valeur <distributionKind de l'enveloppe EDXL (voir
+            DST)
+          enum:
+          - Report
+          - Update
+          - Cancel
+          - Ack
+          - Error
+          examples:
+          - ALERT
+        status:
+          type: string
+          title: Statut du message
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/status
+          description: Prend la valeur <distributionStatus> de l'enveloppe EDXL (voir
+            DST)
+          enum:
+          - Actual
+          - Exercise
+          - System
+          examples:
+          - ACTUAL
+        recipient:
+          type: array
+          items:
+            $ref: '#/components/schemas/recipient'
+          minItems: 1
+      additionalProperties: true
     reference:
       type: object
       title: "Lien vers d'autres objets \xE9v\xE9nements EMSI"

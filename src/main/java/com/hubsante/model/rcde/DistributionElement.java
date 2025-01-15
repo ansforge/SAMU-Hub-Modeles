@@ -55,6 +55,7 @@ import java.util.Objects;
                     DistributionElement.JSON_PROPERTY_KIND,
                     DistributionElement.JSON_PROPERTY_STATUS,
                     DistributionElement.JSON_PROPERTY_RECIPIENT})
+@JsonTypeName("distributionElement")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class DistributionElement extends ContentMessage {

@@ -23,7 +23,6 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import com.hubsante.model.rcde.DistributionElement;
-import com.hubsante.model.rcde.DistributionElementWrapper;
 import com.hubsante.model.reference.Reference;
 import com.hubsante.model.reference.ReferenceWrapper;
 import com.hubsante.model.cisu.CreateCase;
@@ -56,6 +55,8 @@ import com.hubsante.model.geolocation.GeoResourcesRequest;
 import com.hubsante.model.geolocation.GeoResourcesRequestWrapper;
 import com.hubsante.model.geolocation.GeoResourcesDetails;
 import com.hubsante.model.geolocation.GeoResourcesDetailsWrapper;
+
+
 import com.hubsante.model.technical.Technical;
 import com.hubsante.model.technical.TechnicalWrapper;
 import com.hubsante.model.technical.noreq.TechnicalNoreq;
@@ -68,7 +69,6 @@ import java.util.stream.Stream;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({ 
-        @JsonSubTypes.Type(DistributionElementWrapper.class),
         @JsonSubTypes.Type(ReferenceWrapper.class),
         @JsonSubTypes.Type(CreateCaseWrapper.class),
         @JsonSubTypes.Type(CreateCaseHealthWrapper.class),

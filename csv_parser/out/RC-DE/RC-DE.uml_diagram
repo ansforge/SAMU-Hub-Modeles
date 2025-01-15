@@ -9,18 +9,18 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet sender</I></TD></TR><TR><TD BORDER="0" >name <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >URI <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
-	sender -> DistributionElement [headlabel=1 taillabel=1]
+	sender -> distributionElement [headlabel=1 taillabel=1]
 	recipient [label=<<TABLE>
                 <TR>
                 <TD ><B>recipient</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet recipient</I></TD></TR><TR><TD BORDER="0" >name <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >URI <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
-	recipient -> DistributionElement [headlabel=1 taillabel="1..*"]
-	DistributionElement [label=<<TABLE>
+	recipient -> distributionElement [headlabel=1 taillabel="1..*"]
+	distributionElement [label=<<TABLE>
                 <TR>
-                <TD ><B>DistributionElement</B></TD>
+                <TD ><B>distributionElement</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet DistributionElement</I></TD></TR><TR><TD BORDER="0" >messageId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >sentAt <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >kind <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >status <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet distributionElement</I></TD></TR><TR><TD BORDER="0" >messageId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >sentAt <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >kind <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >status <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 }
