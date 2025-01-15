@@ -151,7 +151,7 @@ public class App {
     }
     
     private static String getTargetNamespace(HashMap<String, String> schema) {
-        return "urn:emergency:" + (schema.get("xmlns") != null ? schema.get("xmlns") : "cisu:3.0:"+schema.get("schema"));
+        return "urn:emergency:" + (schema.get("xmlns") != null ? schema.get("xmlns") : "eda:1.9:"+schema.get("schema"));
     }
 
     /*

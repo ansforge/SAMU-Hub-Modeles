@@ -10,7 +10,7 @@ schemas:
   schema: RC-DE
   sheet: RC-DE
   subschema: N
-  xmlns: cisu:3.0
+  xmlns: eda:1.9
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -22,7 +22,7 @@ schemas:
   schema: RC-REF
   sheet: RC-REF
   subschema: N
-  xmlns: cisu:3.0:reference
+  xmlns: eda:1.9:reference
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -34,7 +34,7 @@ schemas:
   schema: RC-EDA
   sheet: RC-EDA
   subschema: N
-  xmlns: cisu:3.0:createCase
+  xmlns: eda:1.9:createCase
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -46,7 +46,7 @@ schemas:
   schema: RS-EDA
   sheet: RC-EDA
   subschema: N
-  xmlns: cisu:3.0:createCaseHealth
+  xmlns: eda:1.9:createCaseHealth
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -58,7 +58,7 @@ schemas:
   schema: RS-EDA-MAJ
   sheet: RC-EDA
   subschema: Y
-  xmlns: cisu:3.0:createCaseHealthUpdate
+  xmlns: eda:1.9:createCaseHealthUpdate
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -70,7 +70,7 @@ schemas:
   schema: EMSI
   sheet: EMSI
   subschema: N
-  xmlns: cisu:3.0:emsi
+  xmlns: eda:1.9:emsi
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -82,7 +82,7 @@ schemas:
   schema: RS-RI
   sheet: RS-RI
   subschema: N
-  xmlns: cisu:3.0:resourcesinfo
+  xmlns: eda:1.9:resourcesinfo
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -94,7 +94,7 @@ schemas:
   schema: RS-ER
   sheet: RS-RI
   subschema: Y
-  xmlns: cisu:3.0:resourcesengagement
+  xmlns: eda:1.9:resourcesengagement
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -106,7 +106,7 @@ schemas:
   schema: RS-SR
   sheet: RS-SR
   subschema: N
-  xmlns: cisu:3.0:resourcesstatus
+  xmlns: eda:1.9:resourcesstatus
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -118,7 +118,7 @@ schemas:
   schema: RS-DR
   sheet: RS-DR
   subschema: N
-  xmlns: cisu:3.0:resourcesrequest
+  xmlns: eda:1.9:resourcesrequest
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -130,7 +130,7 @@ schemas:
   schema: RS-RR
   sheet: RS-RR
   subschema: N
-  xmlns: cisu:3.0:resourcesresponse
+  xmlns: eda:1.9:resourcesresponse
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -142,7 +142,7 @@ schemas:
   schema: RS-RPIS
   sheet: RS-RPIS
   subschema: N
-  xmlns: cisu:3.0:rpis
+  xmlns: eda:1.9:rpis
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -154,7 +154,7 @@ schemas:
   schema: RS-BPV
   sheet: RS-BPV
   subschema: N
-  xmlns: cisu:3.0:interventionreport
+  xmlns: eda:1.9:interventionreport
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -166,7 +166,7 @@ schemas:
   schema: RS-URL
   sheet: RS-URL
   subschema: N
-  xmlns: cisu:3.0:documentlink
+  xmlns: eda:1.9:documentlink
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -178,7 +178,7 @@ schemas:
   schema: GEO-POS
   sheet: GEO-POS
   subschema: N
-  xmlns: cisu:3.0:geopositionsupdate
+  xmlns: eda:1.9:geopositionsupdate
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -190,7 +190,7 @@ schemas:
   schema: GEO-REQ
   sheet: GEO-REQ
   subschema: N
-  xmlns: cisu:3.0:georesourcesrequest
+  xmlns: eda:1.9:georesourcesrequest
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -202,7 +202,7 @@ schemas:
   schema: GEO-RES
   sheet: GEO-RES
   subschema: N
-  xmlns: cisu:3.0:georesourcesdetails
+  xmlns: eda:1.9:georesourcesdetails
 - automaticGeneration: N
   customExtendClass: null
   customExtendPackage: null
@@ -214,7 +214,7 @@ schemas:
   schema: RS-ERROR
   sheet: RS-ERROR
   subschema: N
-  xmlns: cisu:3.0
+  xmlns: eda:1.9
 - automaticGeneration: N
   customExtendClass: null
   customExtendPackage: null
@@ -238,7 +238,7 @@ schemas:
   schema: TECHNICAL
   sheet: TECHNICAL
   subschema: N
-  xmlns: cisu:3.0:technical
+  xmlns: eda:1.9:technical
 - automaticGeneration: Y
   customExtendClass: ContentMessage
   customExtendPackage: com.hubsante.model.edxl
@@ -250,4 +250,4 @@ schemas:
   schema: TECHNICAL_NOREQ
   sheet: TECHNICAL
   subschema: N
-  xmlns: cisu:3.0:technicalNoreq
+  xmlns: eda:1.9:technicalNoreq

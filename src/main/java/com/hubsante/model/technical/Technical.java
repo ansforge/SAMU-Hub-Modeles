@@ -68,7 +68,7 @@ import java.util.Objects;
 
 public class Technical {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:3.0:technical";
+  String xmlns = "urn:emergency:eda:1.9:technical";
   public static final String JSON_PROPERTY_REQUIRED_STRING_FIELD =
       "requiredStringField";
   private String requiredStringField;
