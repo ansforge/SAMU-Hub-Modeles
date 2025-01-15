@@ -33,11 +33,6 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ContentWrapper {
 
-    @JacksonXmlProperty(localName = "xlink:type", isAttribute = true)
-    public String getXmlns() {
-        return "resource";
-    }
-
     @JsonProperty(value = "embeddedJsonContent")
     @JacksonXmlProperty(localName = "embeddedXMLContent")
     private EmbeddedContent embeddedContent;
