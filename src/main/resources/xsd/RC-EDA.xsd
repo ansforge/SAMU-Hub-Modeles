@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:eda:1.9:createCase" elementFormDefault="qualified" targetNamespace="urn:emergency:eda:1.9:createCase" xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:3.0:createCase" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:3.0:createCase" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="createCase" type="x:createCase"/>
     <complexType name="createCase">
         <sequence>
