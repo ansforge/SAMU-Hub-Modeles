@@ -25,7 +25,7 @@
         xmlns:geoResourcesDetails="urn:emergency:eda:1.9:georesourcesdetails"
         
         
-        xmlns:technical="urn:emergency:eda:1.9:technicalNoreq"
+        xmlns:technical="urn:emergency:eda:1.9:technical"
         xmlns:technicalNoreq="urn:emergency:eda:1.9:technicalNoreq"
         xmlns:error="urn:emergency:eda:1.9:error"
         elementFormDefault="qualified"
@@ -52,7 +52,7 @@
     <xs:import namespace="urn:emergency:eda:1.9:georesourcesdetails" schemaLocation="GEO-RES.xsd"/>
     
     
-    <xs:import namespace="urn:emergency:eda:1.9:technicalNoreq" schemaLocation="TECHNICAL.xsd"/>
+    <xs:import namespace="urn:emergency:eda:1.9:technical" schemaLocation="TECHNICAL.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:technicalNoreq" schemaLocation="TECHNICAL_NOREQ.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:error" schemaLocation="RS-ERROR.xsd"/>
 
