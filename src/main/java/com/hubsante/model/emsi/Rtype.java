@@ -1291,11 +1291,11 @@ public class Rtype {
   private List<RCLASSEnum> RCLASS = new ArrayList<>();
 
   public static final String JSON_PROPERTY_C_A_P_A_B_I_L_I_T_Y = "CAPABILITY";
-  private List<String> CAPABILITY = new ArrayList<>();
+  private List<String> CAPABILITY;
 
   public static final String JSON_PROPERTY_C_H_A_R_A_C_T_E_R_I_S_T_I_C_S =
       "CHARACTERISTICS";
-  private List<String> CHARACTERISTICS = new ArrayList<>();
+  private List<String> CHARACTERISTICS;
 
   public Rtype() {}
 
@@ -1305,7 +1305,7 @@ public class Rtype {
     return this;
   }
 
-  public Rtype addrCLASSItem(RCLASSEnum RCLASSItem) {
+  public Rtype addRCLASSItem(RCLASSEnum RCLASSItem) {
     if (this.RCLASS == null) {
       this.RCLASS = new ArrayList<>();
     }
@@ -1344,7 +1344,7 @@ public class Rtype {
     return this;
   }
 
-  public Rtype addcAPABILITYItem(String CAPABILITYItem) {
+  public Rtype addCAPABILITYItem(String CAPABILITYItem) {
     if (this.CAPABILITY == null) {
       this.CAPABILITY = new ArrayList<>();
     }
@@ -1383,7 +1383,7 @@ public class Rtype {
     return this;
   }
 
-  public Rtype addcHARACTERISTICSItem(String CHARACTERISTICSItem) {
+  public Rtype addCHARACTERISTICSItem(String CHARACTERISTICSItem) {
     if (this.CHARACTERISTICS == null) {
       this.CHARACTERISTICS = new ArrayList<>();
     }

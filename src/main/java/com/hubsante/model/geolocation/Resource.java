@@ -223,7 +223,7 @@ public class Resource {
   private CapacityEnum capacity;
 
   public static final String JSON_PROPERTY_CONTACTS = "contacts";
-  private List<Contact> contacts = new ArrayList<>();
+  private List<Contact> contacts;
 
   public Resource() {}
 
@@ -401,7 +401,7 @@ public class Resource {
     return this;
   }
 
-  public Resource addcontactsItem(Contact contactsItem) {
+  public Resource addContactsItem(Contact contactsItem) {
     if (this.contacts == null) {
       this.contacts = new ArrayList<>();
     }

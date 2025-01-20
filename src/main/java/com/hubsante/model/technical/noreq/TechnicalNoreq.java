@@ -128,7 +128,7 @@ public class TechnicalNoreq {
   private TechnicalObject objectField;
 
   public static final String JSON_PROPERTY_ARRAY_FIELD = "arrayField";
-  private List<String> arrayField = new ArrayList<>();
+  private List<String> arrayField;
 
   /**
    * This is an array of enumerations
@@ -170,11 +170,11 @@ public class TechnicalNoreq {
   }
 
   public static final String JSON_PROPERTY_ENUM_ARRAY_FIELD = "enumArrayField";
-  private List<EnumArrayFieldEnum> enumArrayField = new ArrayList<>();
+  private List<EnumArrayFieldEnum> enumArrayField;
 
   public static final String JSON_PROPERTY_ARRAY_WITH_MAX_LENGTH =
       "arrayWithMaxLength";
-  private List<String> arrayWithMaxLength = new ArrayList<>();
+  private List<String> arrayWithMaxLength;
 
   public static final String JSON_PROPERTY_PHONE_NUMBER_FIELD =
       "phoneNumberField";
@@ -380,7 +380,7 @@ public class TechnicalNoreq {
     return this;
   }
 
-  public TechnicalNoreq addarrayFieldItem(String arrayFieldItem) {
+  public TechnicalNoreq addArrayFieldItem(String arrayFieldItem) {
     if (this.arrayField == null) {
       this.arrayField = new ArrayList<>();
     }
@@ -421,7 +421,7 @@ public class TechnicalNoreq {
   }
 
   public TechnicalNoreq
-  addenumArrayFieldItem(EnumArrayFieldEnum enumArrayFieldItem) {
+  addEnumArrayFieldItem(EnumArrayFieldEnum enumArrayFieldItem) {
     if (this.enumArrayField == null) {
       this.enumArrayField = new ArrayList<>();
     }
@@ -461,7 +461,7 @@ public class TechnicalNoreq {
   }
 
   public TechnicalNoreq
-  addarrayWithMaxLengthItem(String arrayWithMaxLengthItem) {
+  addArrayWithMaxLengthItem(String arrayWithMaxLengthItem) {
     if (this.arrayWithMaxLength == null) {
       this.arrayWithMaxLength = new ArrayList<>();
     }

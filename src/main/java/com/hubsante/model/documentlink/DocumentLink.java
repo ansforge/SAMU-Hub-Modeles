@@ -152,7 +152,7 @@ public class DocumentLink {
     return this;
   }
 
-  public DocumentLink adddocumentItem(Document documentItem) {
+  public DocumentLink addDocumentItem(Document documentItem) {
     if (this.document == null) {
       this.document = new ArrayList<>();
     }

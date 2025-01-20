@@ -177,13 +177,13 @@ public class CreateCaseHealth {
   private String owner;
 
   public static final String JSON_PROPERTY_PATIENT = "patient";
-  private List<Patient> patient = new ArrayList<>();
+  private List<Patient> patient;
 
   public static final String JSON_PROPERTY_MEDICAL_NOTE = "medicalNote";
-  private List<MedicalNote> medicalNote = new ArrayList<>();
+  private List<MedicalNote> medicalNote;
 
   public static final String JSON_PROPERTY_DECISION = "decision";
-  private List<Decision> decision = new ArrayList<>();
+  private List<Decision> decision;
 
   public static final String JSON_PROPERTY_ADDITIONAL_INFORMATION =
       "additionalInformation";
@@ -423,7 +423,7 @@ public class CreateCaseHealth {
     return this;
   }
 
-  public CreateCaseHealth addpatientItem(Patient patientItem) {
+  public CreateCaseHealth addPatientItem(Patient patientItem) {
     if (this.patient == null) {
       this.patient = new ArrayList<>();
     }
@@ -462,7 +462,7 @@ public class CreateCaseHealth {
     return this;
   }
 
-  public CreateCaseHealth addmedicalNoteItem(MedicalNote medicalNoteItem) {
+  public CreateCaseHealth addMedicalNoteItem(MedicalNote medicalNoteItem) {
     if (this.medicalNote == null) {
       this.medicalNote = new ArrayList<>();
     }
@@ -501,7 +501,7 @@ public class CreateCaseHealth {
     return this;
   }
 
-  public CreateCaseHealth adddecisionItem(Decision decisionItem) {
+  public CreateCaseHealth addDecisionItem(Decision decisionItem) {
     if (this.decision == null) {
       this.decision = new ArrayList<>();
     }

@@ -133,7 +133,7 @@ public class Technical {
   private TechnicalObject objectField;
 
   public static final String JSON_PROPERTY_ARRAY_FIELD = "arrayField";
-  private List<String> arrayField = new ArrayList<>();
+  private List<String> arrayField;
 
   /**
    * This is an array of enumerations
@@ -175,14 +175,14 @@ public class Technical {
   }
 
   public static final String JSON_PROPERTY_ENUM_ARRAY_FIELD = "enumArrayField";
-  private List<EnumArrayFieldEnum> enumArrayField = new ArrayList<>();
+  private List<EnumArrayFieldEnum> enumArrayField;
 
   public static final String JSON_PROPERTY_REQUIRED_ARRAY = "requiredArray";
   private List<String> requiredArray = new ArrayList<>();
 
   public static final String JSON_PROPERTY_ARRAY_WITH_MAX_LENGTH =
       "arrayWithMaxLength";
-  private List<String> arrayWithMaxLength = new ArrayList<>();
+  private List<String> arrayWithMaxLength;
 
   public static final String JSON_PROPERTY_PHONE_NUMBER_FIELD =
       "phoneNumberField";
@@ -410,7 +410,7 @@ public class Technical {
     return this;
   }
 
-  public Technical addarrayFieldItem(String arrayFieldItem) {
+  public Technical addArrayFieldItem(String arrayFieldItem) {
     if (this.arrayField == null) {
       this.arrayField = new ArrayList<>();
     }
@@ -450,7 +450,7 @@ public class Technical {
   }
 
   public Technical
-  addenumArrayFieldItem(EnumArrayFieldEnum enumArrayFieldItem) {
+  addEnumArrayFieldItem(EnumArrayFieldEnum enumArrayFieldItem) {
     if (this.enumArrayField == null) {
       this.enumArrayField = new ArrayList<>();
     }
@@ -489,7 +489,7 @@ public class Technical {
     return this;
   }
 
-  public Technical addrequiredArrayItem(String requiredArrayItem) {
+  public Technical addRequiredArrayItem(String requiredArrayItem) {
     if (this.requiredArray == null) {
       this.requiredArray = new ArrayList<>();
     }
@@ -528,7 +528,7 @@ public class Technical {
     return this;
   }
 
-  public Technical addarrayWithMaxLengthItem(String arrayWithMaxLengthItem) {
+  public Technical addArrayWithMaxLengthItem(String arrayWithMaxLengthItem) {
     if (this.arrayWithMaxLength == null) {
       this.arrayWithMaxLength = new ArrayList<>();
     }

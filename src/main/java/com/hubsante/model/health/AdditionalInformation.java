@@ -50,7 +50,7 @@ import java.util.Objects;
 
 public class AdditionalInformation {
   public static final String JSON_PROPERTY_CUSTOM_MAP = "customMap";
-  private List<CustomMap> customMap = new ArrayList<>();
+  private List<CustomMap> customMap;
 
   public AdditionalInformation() {}
 
@@ -60,7 +60,7 @@ public class AdditionalInformation {
     return this;
   }
 
-  public AdditionalInformation addcustomMapItem(CustomMap customMapItem) {
+  public AdditionalInformation addCustomMapItem(CustomMap customMapItem) {
     if (this.customMap == null) {
       this.customMap = new ArrayList<>();
     }

@@ -96,7 +96,7 @@ public class ResourcesEngagement {
     return this;
   }
 
-  public ResourcesEngagement addresourceItem(Resource resourceItem) {
+  public ResourcesEngagement addResourceItem(Resource resourceItem) {
     if (this.resource == null) {
       this.resource = new ArrayList<>();
     }

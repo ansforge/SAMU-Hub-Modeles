@@ -96,7 +96,7 @@ public class ResourcesInfo {
     return this;
   }
 
-  public ResourcesInfo addresourceItem(Resource resourceItem) {
+  public ResourcesInfo addResourceItem(Resource resourceItem) {
     if (this.resource == null) {
       this.resource = new ArrayList<>();
     }

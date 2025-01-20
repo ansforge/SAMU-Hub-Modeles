@@ -130,7 +130,7 @@ public class Qualification {
   private OriginEnum origin;
 
   public static final String JSON_PROPERTY_RISK_THREAT = "riskThreat";
-  private List<RiskThreat> riskThreat = new ArrayList<>();
+  private List<RiskThreat> riskThreat;
 
   public static final String JSON_PROPERTY_WHATS_HAPPEN = "whatsHappen";
   private WhatsHappen whatsHappen;
@@ -175,7 +175,7 @@ public class Qualification {
     return this;
   }
 
-  public Qualification addriskThreatItem(RiskThreat riskThreatItem) {
+  public Qualification addRiskThreatItem(RiskThreat riskThreatItem) {
     if (this.riskThreat == null) {
       this.riskThreat = new ArrayList<>();
     }

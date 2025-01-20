@@ -61,7 +61,7 @@ public class GeoResourcesRequest {
     return this;
   }
 
-  public GeoResourcesRequest addresourceIdItem(String resourceIdItem) {
+  public GeoResourcesRequest addResourceIdItem(String resourceIdItem) {
     if (this.resourceId == null) {
       this.resourceId = new ArrayList<>();
     }

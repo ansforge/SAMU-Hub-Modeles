@@ -263,16 +263,16 @@ public class Event {
   private RISKASSESMENTEnum RISK_ASSESMENT;
 
   public static final String JSON_PROPERTY_R_E_F_E_R_E_N_C_E = "REFERENCE";
-  private List<Reference> REFERENCE = new ArrayList<>();
+  private List<Reference> REFERENCE;
 
   public static final String JSON_PROPERTY_C_A_S_U_A_L_T_I_E_S = "CASUALTIES";
-  private List<Casualties> CASUALTIES = new ArrayList<>();
+  private List<Casualties> CASUALTIES;
 
   public static final String JSON_PROPERTY_E_V_A_C = "EVAC";
-  private List<Evac> EVAC = new ArrayList<>();
+  private List<Evac> EVAC;
 
   public static final String JSON_PROPERTY_E_G_E_O = "EGEO";
-  private List<Egeo> EGEO = new ArrayList<>();
+  private List<Egeo> EGEO;
 
   /**
    * Optionnel
@@ -629,7 +629,7 @@ public class Event {
     return this;
   }
 
-  public Event addrEFERENCEItem(Reference REFERENCEItem) {
+  public Event addREFERENCEItem(Reference REFERENCEItem) {
     if (this.REFERENCE == null) {
       this.REFERENCE = new ArrayList<>();
     }
@@ -668,7 +668,7 @@ public class Event {
     return this;
   }
 
-  public Event addcASUALTIESItem(Casualties CASUALTIESItem) {
+  public Event addCASUALTIESItem(Casualties CASUALTIESItem) {
     if (this.CASUALTIES == null) {
       this.CASUALTIES = new ArrayList<>();
     }
@@ -707,7 +707,7 @@ public class Event {
     return this;
   }
 
-  public Event addeVACItem(Evac EVACItem) {
+  public Event addEVACItem(Evac EVACItem) {
     if (this.EVAC == null) {
       this.EVAC = new ArrayList<>();
     }
@@ -746,7 +746,7 @@ public class Event {
     return this;
   }
 
-  public Event addeGEOItem(Egeo EGEOItem) {
+  public Event addEGEOItem(Egeo EGEOItem) {
     if (this.EGEO == null) {
       this.EGEO = new ArrayList<>();
     }

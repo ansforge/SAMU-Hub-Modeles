@@ -56,7 +56,7 @@ public class Alert {
   private OffsetDateTime reception;
 
   public static final String JSON_PROPERTY_NOTES = "notes";
-  private List<Notes> notes = new ArrayList<>();
+  private List<Notes> notes;
 
   public static final String JSON_PROPERTY_CALLER = "caller";
   private Caller caller;
@@ -92,7 +92,7 @@ public class Alert {
     return this;
   }
 
-  public Alert addnotesItem(Notes notesItem) {
+  public Alert addNotesItem(Notes notesItem) {
     if (this.notes == null) {
       this.notes = new ArrayList<>();
     }

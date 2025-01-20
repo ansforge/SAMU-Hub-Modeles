@@ -286,7 +286,7 @@ public class DistributionElement extends ContentMessage {
     return this;
   }
 
-  public DistributionElement addrecipientItem(Recipient recipientItem) {
+  public DistributionElement addRecipientItem(Recipient recipientItem) {
     if (this.recipient == null) {
       this.recipient = new ArrayList<>();
     }

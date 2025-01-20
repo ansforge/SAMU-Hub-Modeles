@@ -59,7 +59,7 @@ public class GeneralPractitioner {
   private String rppsId;
 
   public static final String JSON_PROPERTY_CONTACT = "contact";
-  private List<PersonalContact> contact = new ArrayList<>();
+  private List<PersonalContact> contact;
 
   public GeneralPractitioner() {}
 
@@ -115,7 +115,7 @@ public class GeneralPractitioner {
     return this;
   }
 
-  public GeneralPractitioner addcontactItem(PersonalContact contactItem) {
+  public GeneralPractitioner addContactItem(PersonalContact contactItem) {
     if (this.contact == null) {
       this.contact = new ArrayList<>();
     }

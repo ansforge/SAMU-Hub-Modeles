@@ -85,10 +85,10 @@ public class CreateCase {
   private Alert initialAlert;
 
   public static final String JSON_PROPERTY_NEW_ALERT = "newAlert";
-  private List<Alert> newAlert = new ArrayList<>();
+  private List<Alert> newAlert;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private List<String> freetext = new ArrayList<>();
+  private List<String> freetext;
 
   public static final String JSON_PROPERTY_ADDITIONAL_INFORMATION =
       "additionalInformation";
@@ -279,7 +279,7 @@ public class CreateCase {
     return this;
   }
 
-  public CreateCase addnewAlertItem(Alert newAlertItem) {
+  public CreateCase addNewAlertItem(Alert newAlertItem) {
     if (this.newAlert == null) {
       this.newAlert = new ArrayList<>();
     }
@@ -318,7 +318,7 @@ public class CreateCase {
     return this;
   }
 
-  public CreateCase addfreetextItem(String freetextItem) {
+  public CreateCase addFreetextItem(String freetextItem) {
     if (this.freetext == null) {
       this.freetext = new ArrayList<>();
     }

@@ -248,13 +248,13 @@ public class Resource {
   private Team team;
 
   public static final String JSON_PROPERTY_STATE = "state";
-  private List<State> state = new ArrayList<>();
+  private List<State> state;
 
   public static final String JSON_PROPERTY_CONTACT = "contact";
   private Contact contact;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private List<String> freetext = new ArrayList<>();
+  private List<String> freetext;
 
   public Resource() {}
 
@@ -534,7 +534,7 @@ public class Resource {
     return this;
   }
 
-  public Resource addstateItem(State stateItem) {
+  public Resource addStateItem(State stateItem) {
     if (this.state == null) {
       this.state = new ArrayList<>();
     }
@@ -596,7 +596,7 @@ public class Resource {
     return this;
   }
 
-  public Resource addfreetextItem(String freetextItem) {
+  public Resource addFreetextItem(String freetextItem) {
     if (this.freetext == null) {
       this.freetext = new ArrayList<>();
     }

@@ -114,7 +114,7 @@ public class Patient {
   private SexEnum sex;
 
   public static final String JSON_PROPERTY_EXTERNAL_ID = "externalId";
-  private List<ExternalId> externalId = new ArrayList<>();
+  private List<ExternalId> externalId;
 
   public static final String JSON_PROPERTY_HEIGHT = "height";
   private Integer height;
@@ -295,7 +295,7 @@ public class Patient {
     return this;
   }
 
-  public Patient addexternalIdItem(ExternalId externalIdItem) {
+  public Patient addExternalIdItem(ExternalId externalIdItem) {
     if (this.externalId == null) {
       this.externalId = new ArrayList<>();
     }

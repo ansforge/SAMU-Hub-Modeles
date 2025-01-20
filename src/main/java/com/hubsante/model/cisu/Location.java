@@ -71,7 +71,7 @@ public class Location {
 
   public static final String JSON_PROPERTY_EXTERNAL_LOCATION_ID =
       "externalLocationId";
-  private List<ExternalLocationId> externalLocationId = new ArrayList<>();
+  private List<ExternalLocationId> externalLocationId;
 
   public static final String JSON_PROPERTY_DETAILED_ADDRESS = "detailedAddress";
   private DetailedAddress detailedAddress;
@@ -86,7 +86,7 @@ public class Location {
   private Geometry geometry;
 
   public static final String JSON_PROPERTY_EXTERNAL_INFO = "externalInfo";
-  private List<ExternalInfo> externalInfo = new ArrayList<>();
+  private List<ExternalInfo> externalInfo;
 
   /**
    * Gets or Sets country
@@ -691,7 +691,7 @@ public class Location {
   }
 
   public Location
-  addexternalLocationIdItem(ExternalLocationId externalLocationIdItem) {
+  addExternalLocationIdItem(ExternalLocationId externalLocationIdItem) {
     if (this.externalLocationId == null) {
       this.externalLocationId = new ArrayList<>();
     }
@@ -823,7 +823,7 @@ public class Location {
     return this;
   }
 
-  public Location addexternalInfoItem(ExternalInfo externalInfoItem) {
+  public Location addExternalInfoItem(ExternalInfo externalInfoItem) {
     if (this.externalInfo == null) {
       this.externalInfo = new ArrayList<>();
     }

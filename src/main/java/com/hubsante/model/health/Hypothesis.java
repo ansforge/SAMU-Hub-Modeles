@@ -55,7 +55,7 @@ public class Hypothesis {
   private MainDiagnosis mainDiagnosis;
 
   public static final String JSON_PROPERTY_OTHER_DIAGNOSIS = "otherDiagnosis";
-  private List<OtherDiagnosis> otherDiagnosis = new ArrayList<>();
+  private List<OtherDiagnosis> otherDiagnosis;
 
   public Hypothesis() {}
 
@@ -88,7 +88,7 @@ public class Hypothesis {
     return this;
   }
 
-  public Hypothesis addotherDiagnosisItem(OtherDiagnosis otherDiagnosisItem) {
+  public Hypothesis addOtherDiagnosisItem(OtherDiagnosis otherDiagnosisItem) {
     if (this.otherDiagnosis == null) {
       this.otherDiagnosis = new ArrayList<>();
     }

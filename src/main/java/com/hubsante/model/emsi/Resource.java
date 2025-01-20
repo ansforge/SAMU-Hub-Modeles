@@ -75,7 +75,7 @@ public class Resource {
   private String FREETEXT;
 
   public static final String JSON_PROPERTY_R_G_E_O = "RGEO";
-  private List<Rgeo> RGEO = new ArrayList<>();
+  private List<Rgeo> RGEO;
 
   public static final String JSON_PROPERTY_Q_U_A_N_T_I_T_Y = "QUANTITY";
   private BigDecimal QUANTITY;
@@ -272,7 +272,7 @@ public class Resource {
   private String NATIONALITY;
 
   public static final String JSON_PROPERTY_C_O_N_T_A_C_T_S = "CONTACTS";
-  private List<Contact> CONTACTS = new ArrayList<>();
+  private List<Contact> CONTACTS;
 
   public Resource() {}
 
@@ -415,7 +415,7 @@ public class Resource {
     return this;
   }
 
-  public Resource addrGEOItem(Rgeo RGEOItem) {
+  public Resource addRGEOItem(Rgeo RGEOItem) {
     if (this.RGEO == null) {
       this.RGEO = new ArrayList<>();
     }
@@ -558,7 +558,7 @@ public class Resource {
     return this;
   }
 
-  public Resource addcONTACTSItem(Contact CONTACTSItem) {
+  public Resource addCONTACTSItem(Contact CONTACTSItem) {
     if (this.CONTACTS == null) {
       this.CONTACTS = new ArrayList<>();
     }

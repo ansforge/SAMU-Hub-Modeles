@@ -222,15 +222,15 @@ public class Mission {
   private OffsetDateTime END_TIME;
 
   public static final String JSON_PROPERTY_R_E_S_O_U_R_C_E_I_D = "RESOURCE_ID";
-  private List<String> RESOURCE_ID = new ArrayList<>();
+  private List<String> RESOURCE_ID;
 
   public static final String JSON_PROPERTY_P_A_R_E_N_T_M_I_S_S_I_O_N_I_D =
       "PARENT_MISSION_ID";
-  private List<String> PARENT_MISSION_ID = new ArrayList<>();
+  private List<String> PARENT_MISSION_ID;
 
   public static final String JSON_PROPERTY_C_H_I_L_D_M_I_S_S_I_O_N_I_D =
       "CHILD_MISSION_ID";
-  private List<String> CHILD_MISSION_ID = new ArrayList<>();
+  private List<String> CHILD_MISSION_ID;
 
   public static final String JSON_PROPERTY_M_A_I_N_M_I_S_S_I_O_N_I_D =
       "MAIN_MISSION_ID";
@@ -528,7 +528,7 @@ public class Mission {
     return this;
   }
 
-  public Mission addrESOURCEIDItem(String RESOURCE_IDItem) {
+  public Mission addRESOURCEIDItem(String RESOURCE_IDItem) {
     if (this.RESOURCE_ID == null) {
       this.RESOURCE_ID = new ArrayList<>();
     }
@@ -567,7 +567,7 @@ public class Mission {
     return this;
   }
 
-  public Mission addpARENTMISSIONIDItem(String PARENT_MISSION_IDItem) {
+  public Mission addPARENTMISSIONIDItem(String PARENT_MISSION_IDItem) {
     if (this.PARENT_MISSION_ID == null) {
       this.PARENT_MISSION_ID = new ArrayList<>();
     }
@@ -606,7 +606,7 @@ public class Mission {
     return this;
   }
 
-  public Mission addcHILDMISSIONIDItem(String CHILD_MISSION_IDItem) {
+  public Mission addCHILDMISSIONIDItem(String CHILD_MISSION_IDItem) {
     if (this.CHILD_MISSION_ID == null) {
       this.CHILD_MISSION_ID = new ArrayList<>();
     }

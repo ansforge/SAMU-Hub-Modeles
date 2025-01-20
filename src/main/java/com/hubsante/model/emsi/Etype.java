@@ -656,7 +656,7 @@ public class Etype {
     return this;
   }
 
-  public Etype addcATEGORYItem(CATEGORYEnum CATEGORYItem) {
+  public Etype addCATEGORYItem(CATEGORYEnum CATEGORYItem) {
     if (this.CATEGORY == null) {
       this.CATEGORY = new ArrayList<>();
     }
@@ -695,7 +695,7 @@ public class Etype {
     return this;
   }
 
-  public Etype addaCTORItem(ACTOREnum ACTORItem) {
+  public Etype addACTORItem(ACTOREnum ACTORItem) {
     if (this.ACTOR == null) {
       this.ACTOR = new ArrayList<>();
     }
@@ -734,7 +734,7 @@ public class Etype {
     return this;
   }
 
-  public Etype addlOCTYPEItem(String LOCTYPEItem) {
+  public Etype addLOCTYPEItem(String LOCTYPEItem) {
     if (this.LOCTYPE == null) {
       this.LOCTYPE = new ArrayList<>();
     }

@@ -89,7 +89,7 @@ public class Reference {
     return this;
   }
 
-  public Reference addoTHEREVENTIDItem(String OTHER_EVENT_IDItem) {
+  public Reference addOTHEREVENTIDItem(String OTHER_EVENT_IDItem) {
     if (this.OTHER_EVENT_ID == null) {
       this.OTHER_EVENT_ID = new ArrayList<>();
     }

@@ -52,7 +52,7 @@ public class GeoResourcesDetails {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:eda:1.9:georesourcesdetails";
   public static final String JSON_PROPERTY_RESOURCE = "resource";
-  private List<Resource> resource = new ArrayList<>();
+  private List<Resource> resource;
 
   public GeoResourcesDetails() {}
 
@@ -62,7 +62,7 @@ public class GeoResourcesDetails {
     return this;
   }
 
-  public GeoResourcesDetails addresourceItem(Resource resourceItem) {
+  public GeoResourcesDetails addResourceItem(Resource resourceItem) {
     if (this.resource == null) {
       this.resource = new ArrayList<>();
     }

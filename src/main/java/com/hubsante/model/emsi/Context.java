@@ -150,7 +150,7 @@ public class Context {
   private OffsetDateTime CREATION;
 
   public static final String JSON_PROPERTY_L_I_N_K = "LINK";
-  private List<Link> LINK = new ArrayList<>();
+  private List<Link> LINK;
 
   /**
    * A valoriser avec la valeur constante \&quot;OPR\&quot; dans le cadre
@@ -246,7 +246,7 @@ public class Context {
 
   public static final String JSON_PROPERTY_E_X_T_E_R_N_A_L_I_N_F_O =
       "EXTERNAL_INFO";
-  private List<ExternalInfo> EXTERNAL_INFO = new ArrayList<>();
+  private List<ExternalInfo> EXTERNAL_INFO;
 
   /**
    * Niveau d&#39;urgence pour l&#39;affaire en cours Dans le cadre des échanges
@@ -394,7 +394,7 @@ public class Context {
     return this;
   }
 
-  public Context addlINKItem(Link LINKItem) {
+  public Context addLINKItem(Link LINKItem) {
     if (this.LINK == null) {
       this.LINK = new ArrayList<>();
     }
@@ -538,7 +538,7 @@ public class Context {
     return this;
   }
 
-  public Context addeXTERNALINFOItem(ExternalInfo EXTERNAL_INFOItem) {
+  public Context addEXTERNALINFOItem(ExternalInfo EXTERNAL_INFOItem) {
     if (this.EXTERNAL_INFO == null) {
       this.EXTERNAL_INFO = new ArrayList<>();
     }

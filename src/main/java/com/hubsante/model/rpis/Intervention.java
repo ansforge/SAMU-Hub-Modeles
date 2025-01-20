@@ -66,7 +66,7 @@ public class Intervention {
   private ResourceStatus smurStatus;
 
   public static final String JSON_PROPERTY_PROCEDURE = "procedure";
-  private List<String> procedure = new ArrayList<>();
+  private List<String> procedure;
 
   public static final String JSON_PROPERTY_MAIN_DIAGNOSIS = "mainDiagnosis";
   private String mainDiagnosis;
@@ -152,7 +152,7 @@ public class Intervention {
     return this;
   }
 
-  public Intervention addprocedureItem(String procedureItem) {
+  public Intervention addProcedureItem(String procedureItem) {
     if (this.procedure == null) {
       this.procedure = new ArrayList<>();
     }

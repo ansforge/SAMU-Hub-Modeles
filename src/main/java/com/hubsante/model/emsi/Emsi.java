@@ -63,10 +63,10 @@ public class Emsi {
   private Event EVENT;
 
   public static final String JSON_PROPERTY_M_I_S_S_I_O_N = "MISSION";
-  private List<Mission> MISSION = new ArrayList<>();
+  private List<Mission> MISSION;
 
   public static final String JSON_PROPERTY_R_E_S_O_U_R_C_E = "RESOURCE";
-  private List<Resource> RESOURCE = new ArrayList<>();
+  private List<Resource> RESOURCE;
 
   public Emsi() {}
 
@@ -122,7 +122,7 @@ public class Emsi {
     return this;
   }
 
-  public Emsi addmISSIONItem(Mission MISSIONItem) {
+  public Emsi addMISSIONItem(Mission MISSIONItem) {
     if (this.MISSION == null) {
       this.MISSION = new ArrayList<>();
     }
@@ -161,7 +161,7 @@ public class Emsi {
     return this;
   }
 
-  public Emsi addrESOURCEItem(Resource RESOURCEItem) {
+  public Emsi addRESOURCEItem(Resource RESOURCEItem) {
     if (this.RESOURCE == null) {
       this.RESOURCE = new ArrayList<>();
     }

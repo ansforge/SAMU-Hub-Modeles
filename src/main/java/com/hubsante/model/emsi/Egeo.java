@@ -379,7 +379,7 @@ public class Egeo {
   }
 
   public static final String JSON_PROPERTY_W_E_A_T_H_E_R = "WEATHER";
-  private List<WEATHEREnum> WEATHER = new ArrayList<>();
+  private List<WEATHEREnum> WEATHER;
 
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
   private String FREETEXT;
@@ -448,7 +448,7 @@ public class Egeo {
     return this;
   }
 
-  public Egeo addwEATHERItem(WEATHEREnum WEATHERItem) {
+  public Egeo addWEATHERItem(WEATHEREnum WEATHERItem) {
     if (this.WEATHER == null) {
       this.WEATHER = new ArrayList<>();
     }

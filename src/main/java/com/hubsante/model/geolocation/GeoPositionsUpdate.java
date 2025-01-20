@@ -62,7 +62,7 @@ public class GeoPositionsUpdate {
     return this;
   }
 
-  public GeoPositionsUpdate addpositionItem(Position positionItem) {
+  public GeoPositionsUpdate addPositionItem(Position positionItem) {
     if (this.position == null) {
       this.position = new ArrayList<>();
     }

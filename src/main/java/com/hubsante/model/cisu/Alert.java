@@ -108,7 +108,7 @@ public class Alert {
   private ReportingEnum reporting;
 
   public static final String JSON_PROPERTY_NOTES = "notes";
-  private List<Notes> notes = new ArrayList<>();
+  private List<Notes> notes;
 
   public static final String JSON_PROPERTY_CALLER = "caller";
   private Caller caller;
@@ -123,7 +123,7 @@ public class Alert {
   private CallTaker callTaker;
 
   public static final String JSON_PROPERTY_ATTACHMENT = "attachment";
-  private List<Attachment> attachment = new ArrayList<>();
+  private List<Attachment> attachment;
 
   public Alert() {}
 
@@ -221,7 +221,7 @@ public class Alert {
     return this;
   }
 
-  public Alert addnotesItem(Notes notesItem) {
+  public Alert addNotesItem(Notes notesItem) {
     if (this.notes == null) {
       this.notes = new ArrayList<>();
     }
@@ -352,7 +352,7 @@ public class Alert {
     return this;
   }
 
-  public Alert addattachmentItem(Attachment attachmentItem) {
+  public Alert addAttachmentItem(Attachment attachmentItem) {
     if (this.attachment == null) {
       this.attachment = new ArrayList<>();
     }

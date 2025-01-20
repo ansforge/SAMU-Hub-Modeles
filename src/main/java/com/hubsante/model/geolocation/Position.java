@@ -293,7 +293,7 @@ public class Position {
     return this;
   }
 
-  public Position addcoordItem(Coord coordItem) {
+  public Position addCoordItem(Coord coordItem) {
     if (this.coord == null) {
       this.coord = new ArrayList<>();
     }

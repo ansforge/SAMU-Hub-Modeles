@@ -114,7 +114,7 @@ public class Rgeo {
   private String ID;
 
   public static final String JSON_PROPERTY_P_O_S_I_T_I_O_N = "POSITION";
-  private List<Position> POSITION = new ArrayList<>();
+  private List<Position> POSITION;
 
   public Rgeo() {}
 
@@ -229,7 +229,7 @@ public class Rgeo {
     return this;
   }
 
-  public Rgeo addpOSITIONItem(Position POSITIONItem) {
+  public Rgeo addPOSITIONItem(Position POSITIONItem) {
     if (this.POSITION == null) {
       this.POSITION = new ArrayList<>();
     }
