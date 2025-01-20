@@ -184,6 +184,7 @@ jobs:
           rm -r ./src/main/java/com/hubsante/model/technical || true
           rm -r ./generator/classes/src/main/java/com/hubsante/model/report/ErrorCode.java || true
           cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
+          cp ./generator/openapitools.json .
 
       - name: Grant execute permission for Gradlew
         run: chmod +x ./gradlew
