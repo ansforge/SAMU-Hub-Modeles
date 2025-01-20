@@ -145,8 +145,10 @@ jobs:
         with:
           node-version: 16
 
-      - name: Install openapi-generator-cli
-        run: npm install -g @openapitools/openapi-generator-cli
+      - name: Install openapi-generator-cli and setup OpenAPI version
+        run: |
+          npm install -g @openapitools/openapi-generator-cli@2.15.0
+          npx openapi-generator-cli version-manager set 7.9.0
 
       - name: Install linter
         run: sudo apt install -y clang-format
@@ -161,7 +163,7 @@ jobs:
           # This means that since the order of class generation is important, it's necessary to maintain an adequately 
           # named file structure in the ./config/** directories
           # generator-config.json (if exists) -> usecase.generator-config.json -> wrapper.generator-config.json
-          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli generate -c "$file" --skip-validate-spec; done
+          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli@2.15.0 generate -c "$file" --skip-validate-spec; done
           
       - name: Replace src/ with generated classes
         run: |
