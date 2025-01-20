@@ -467,7 +467,7 @@ public class Etype {
 
     VEH_TRK_UND("VEH/TRK/UND"),
 
-    VEH_TRN_3_RL("VEH/TRN/3RL"),
+    VEH_TRN_3RL("VEH/TRN/3RL"),
 
     VEH_TRN_DSL("VEH/TRN/DSL"),
 
