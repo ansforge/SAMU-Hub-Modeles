@@ -148,11 +148,9 @@ jobs:
         with:
           node-version: 16
 
-      - name: Install openapi-generator-cli and setup OpenAPI version
+      - name: Install openapi-generator-cli
         if: steps.filter.outputs.parsing_required == 'true'
-        run: |
-          npm install -g @openapitools/openapi-generator-cli@2.9.0
-          npx openapi-generator-cli version-manager set 7.1.0
+        run: npm install -g @openapitools/openapi-generator-cli@2.9.0
 
       - name: Install linter
         if: steps.filter.outputs.parsing_required == 'true'
@@ -162,6 +160,8 @@ jobs:
         if: steps.filter.outputs.parsing_required == 'true'
         working-directory: ./generator
         run: |
+          # Setup OpenAPI version
+          npx openapi-generator-cli version-manager set 7.1.0
           # Iterate over each file in the ./config directory, including the entire subfolder structure
           # and then run @openapitools/openapi-generator-cli generate for each file found
           # Important notice:          
@@ -184,7 +184,6 @@ jobs:
           rm -r ./src/main/java/com/hubsante/model/technical || true
           rm -r ./generator/classes/src/main/java/com/hubsante/model/report/ErrorCode.java || true
           cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
-          cp ./generator/openapitools.json .
 
       - name: Grant execute permission for Gradlew
         run: chmod +x ./gradlew
