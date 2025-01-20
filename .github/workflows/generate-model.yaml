@@ -161,7 +161,7 @@ jobs:
         working-directory: ./generator
         run: |
           # Setup OpenAPI version
-          npx openapi-generator-cli version-manager set 7.8.0
+          npx openapi-generator-cli version-manager set 7.7.0
           # Iterate over each file in the ./config directory, including the entire subfolder structure
           # and then run @openapitools/openapi-generator-cli generate for each file found
           # Important notice:          
