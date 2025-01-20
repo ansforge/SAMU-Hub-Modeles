@@ -149,17 +149,17 @@ jobs:
           node-version: 16
 
       - name: Install openapi-generator-cli and setup OpenAPI version
-        # if: steps.filter.outputs.parsing_required == 'true'
+        if: steps.filter.outputs.parsing_required == 'true'
         run: |
-          npm install -g @openapitools/openapi-generator-cli@2.15.0
-          npx openapi-generator-cli version-manager set 7.9.0
+          npm install -g @openapitools/openapi-generator-cli@2.9.0
+          npx openapi-generator-cli version-manager set 7.1.0
 
       - name: Install linter
-        # if: steps.filter.outputs.parsing_required == 'true'
+        if: steps.filter.outputs.parsing_required == 'true'
         run: sudo apt install -y clang-format
 
       - name: Generate Java classes
-        # if: steps.filter.outputs.parsing_required == 'true'
+        if: steps.filter.outputs.parsing_required == 'true'
         working-directory: ./generator
         run: |
           # Iterate over each file in the ./config directory, including the entire subfolder structure
@@ -169,10 +169,10 @@ jobs:
           # This means that since the order of class generation is important, it's necessary to maintain an adequately 
           # named file structure in the ./config/** directories
           # generator-config.json (if exists) -> usecase.generator-config.json -> wrapper.generator-config.json
-          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli@2.15.0 generate -c "$file" --skip-validate-spec; done
+          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli@2.9.0 generate -c "$file" --skip-validate-spec; done
 
       - name: Replace src/ with generated classes
-        # if: steps.filter.outputs.parsing_required == 'true'
+        if: steps.filter.outputs.parsing_required == 'true'
         run: |
           rm -r ./src/main/java/com/hubsante/model/rcde || true
           rm -r ./src/main/java/com/hubsante/model/cisu || true
@@ -189,23 +189,23 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Apply license
-        # if: steps.filter.outputs.parsing_required == 'true'
+        if: steps.filter.outputs.parsing_required == 'true'
         run: ./gradlew licenseFormat
 
       - name: Delete old xml files
-        # if: steps.filter.outputs.parsing_required == 'true'
+        if: steps.filter.outputs.parsing_required == 'true'
         run: |
           find ./src/main/resources/sample/examples -name "*.xml" -type f -delete
 
       - name: Generate XML files
-        # if: steps.filter.outputs.parsing_required == 'true'
+        if: steps.filter.outputs.parsing_required == 'true'
         run: |
           ./gradlew generateXml
         continue-on-error: true
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
-        # if: steps.filter.outputs.parsing_required == 'true'
+        if: steps.filter.outputs.parsing_required == 'true'
         with:
           commit_message: ⚙️ Auto-génération des classes et des specs
 

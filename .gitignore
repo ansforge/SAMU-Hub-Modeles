@@ -8,7 +8,7 @@ coveragereport/**
 web_specs/generated/**
 bin/
 
-**/openapitools.json
+# **/openapitools.json
 
 # Generated libraries packages
 # Python
