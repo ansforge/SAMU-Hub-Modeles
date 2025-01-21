@@ -213,7 +213,7 @@ jobs:
         run: ./gradlew test --info -Ptechnical=true
 
       - name: Build and run REAL MESSAGES tests
-        run: ./gradlew test --info
+        run: ./gradlew test --info -Pfunctional=true
 
       # Ref.: https://github.com/gradle/gradle-build-action/issues/619#issuecomment-1453244157
       - name: Upload test report
