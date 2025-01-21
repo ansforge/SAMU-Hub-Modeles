@@ -98,7 +98,7 @@ echo "Building and running TECHNICAL tests..."
 
 echo "Building and running REAL MESSAGES tests..."
 # Build and run REAL MESSAGES tests
-./gradlew test --info
+./gradlew test --info -Pfunctinal=true
 
 echo "Running ReportGenerator for test coverage..."
 # Run ReportGenerator for test coverage

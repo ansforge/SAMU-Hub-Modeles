@@ -52,45 +52,18 @@ task testAll(type: Test) {
     useJUnitPlatform()
     include '**/*Test*.class'
     finalizedBy jacocoTestReport
-
-    doFirst {
-        println "here : Running all tests:"
-        fileTree('src/test/java').matching {
-            include '**/*Test*.java'
-        }.each { File file ->
-            println file
-        }
-    }
 }
 
 task testTechnical(type: Test) {
     useJUnitPlatform()
     include '**/*Technical*.class'
     finalizedBy jacocoTestReport
-
-    doFirst {
-        println "here : Running technical tests:"
-        fileTree('src/test/java').matching {
-            include '**/*Technical*.java'
-        }.each { File file ->
-            println file
-        }
-    }
 }
 
 task testFunctional(type: Test) {
     useJUnitPlatform()
     exclude '**/*Technical*.class'
     finalizedBy jacocoTestReport
-
-    doFirst {
-        println "here : Running functional tests:"
-        fileTree('src/test/java').matching {
-            exclude '**/*Technical*.java'
-        }.each { File file ->
-            println file
-        }
-    }
 }
 
 
