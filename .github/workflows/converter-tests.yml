@@ -1,0 +1,69 @@
+name: Converter Tests
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'converter/**'
+  pull_request:
+    branches:
+      - '**'
+    paths:
+      - 'converter/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: converter
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest-cov
+          pip install -e .
+
+      - name: Run tests with HTML and XML coverage reports
+        run: |
+          pytest --cov=converter --cov-report=html --cov-report=xml --cov-config=pytest.ini -rP
+
+      - name: Upload HTML coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: tools/converter/htmlcov
+          retention-days: 7
+
+      - name: Run ReportGenerator for test coverage
+        uses: danielpalme/ReportGenerator-GitHub-Action@5.1.23
+        with:
+          reports: ./converter/coverage.xml
+          targetdir: coveragereport
+
+      - name: Pytest coverage comment
+        uses: MishaKav/pytest-coverage-comment@v1.1.53
+        with:
+          pytest-xml-coverage-path: ./converter/coverage.xml
+          title: "Converter - python code coverage"
+
+      - name: Code coverage should be above 75%
+        run: |
+          COVERAGE=$(python -c "import xml.etree.ElementTree as ET; tree = ET.parse('coverage.xml'); root = tree.getroot(); print(float(root.attrib['line-rate']) * 100)")
+          if (( $(echo "$COVERAGE < 75" | bc -l) )); then
+            echo "Coverage $COVERAGE% is below threshold of 75%"
+            exit 1
+          fi 
+          
