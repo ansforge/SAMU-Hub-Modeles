@@ -47,25 +47,6 @@ jacocoTestReport {
         xml.required = true
     }
 }
- 
-task testAll(type: Test) {
-    useJUnitPlatform()
-    include '**/*Test*.class'
-    finalizedBy jacocoTestReport
-}
-
-task testTechnical(type: Test) {
-    useJUnitPlatform()
-    include '**/*Technical*.class'
-    finalizedBy jacocoTestReport
-}
-
-task testFunctional(type: Test) {
-    useJUnitPlatform()
-    exclude '**/*Technical*.class'
-    finalizedBy jacocoTestReport
-}
-
 
 allprojects {
     tasks.withType(JavaCompile) {
@@ -74,13 +55,15 @@ allprojects {
 }
 
 tasks.named('test') {
+    useJUnitPlatform()
     if (project.hasProperty('functional')) {
-        dependsOn testFunctional
+        exclude '**/*Technical*.class'
     } else if (project.hasProperty('technical')) {
-        dependsOn testTechnical
+        include '**/*Technical*.class'
     } else {
-        dependsOn testAll
+        include '**/*Test*.class'
     }
+    finalizedBy jacocoTestReport
 }
 
 tasks.named('publish') {
