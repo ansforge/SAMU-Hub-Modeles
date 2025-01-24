@@ -25,18 +25,18 @@ app_token =  os.getenv("SLACK_APP_TOKEN")
 bot_token = os.getenv("SLACK_BOT_TOKEN")
 
 
-file_path = (
+DSF = (
     "https://hub.esante.gouv.fr/resources/Accompagnement/DSF/24.10.23_Hub%20Sante_Dossier%20des%20Specifications.pdf"
 )
-file_path2 = (
+DST = (
     "https://hub.esante.gouv.fr/resources/Accompagnement/tech/23.09%20DST%20v1.2%20-%20Hub%20Sante%20&%20connecteurs.pdf"
 )
 
 
-loader1 = PyPDFLoader(file_path)
+loader1 = PyPDFLoader(DSF)
 doc1 = loader1.load()
 
-loader2 = PyPDFLoader(file_path2)
+loader2 = PyPDFLoader(DST)
 doc2 = loader2.load()
 
 docs = doc1 + doc2
@@ -75,14 +75,35 @@ app = App(token = bot_token)
 @app.event("app_mention")
 def answer_question(event, say):
     # Retreive the message without the chatbot mention
-    # Ref.: https://api.slack.com/events/app_mention
     message = event['text'].replace("<@U089QKJ74HM>", "")
     print("Chatbot called", message)
-
+    
     response = rag_chain.invoke({"input": message})
-    say(response["answer"])
-    print("Chatbot answered", response)
+    print("RAG result", response)
 
+    # Extract sources and page numbers
+    source_pages = {}
+    for doc in response["context"]:
+        source = doc.metadata.get("source")
+        page = doc.metadata.get("page")
+        if source and page:
+            if source not in source_pages:
+                source_pages[source] = set()
+            source_pages[source].add(page)
+    
+    # Add formatted sources to the answer
+    answer_with_sources = response["answer"]
+    if source_pages:
+        answer_with_sources += "\n\n_Sources_ :\n"
+        for source in source_pages:
+            source_name = "DSF" if source == DSF else "DST"
+            page_links = [f"<{source}#page={page + 1}|{page + 1}>" for page in sorted(source_pages[source])]
+            answer_with_sources += f"• {source_name} : pages {', '.join(page_links)}\n"
+    
+    say(answer_with_sources)
+    print("Chatbot answered", answer_with_sources)
+
+ 
 if __name__ == '__main__':
     handler = SocketModeHandler(app, app_token)
     handler.start()
