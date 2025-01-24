@@ -18,7 +18,7 @@ from dotenv import load_dotenv
 
 from langchain_openai import ChatOpenAI
 
-llm = ChatOpenAI(model="gpt-4o-mini", api_key=os.getenv("OPENAI_API_KEY"))
+llm = ChatOpenAI(model="gpt-4o", api_key=os.getenv("OPENAI_API_KEY"))
 
 load_dotenv()
 app_token =  os.getenv("SLACK_APP_TOKEN")
@@ -44,7 +44,7 @@ print("Documents loaded")
 
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=3000, chunk_overlap=500)
 splits = text_splitter.split_documents(docs)
-vectorstore = Chroma.from_documents(documents=splits, embedding=OpenAIEmbeddings())
+vectorstore = Chroma.from_documents(documents=splits, embedding=OpenAIEmbeddings(model="text-embedding-3-large"))
 retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k": 6})
 print("Documents stored")
 
