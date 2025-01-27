@@ -31,6 +31,9 @@ jobs:
           if [[ "$RELEASE_NAME" == converter-* ]]; then
             PROJECT="converter"
             VERSION=${RELEASE_NAME#converter-}
+          elif [[ "$RELEASE_NAME" == chatbot-* ]]; then
+            PROJECT="chatbot"
+            VERSION=${RELEASE_NAME#chatbot-}
           else
             PROJECT="library"
             VERSION=$RELEASE_NAME
@@ -67,3 +70,12 @@ jobs:
           platforms: linux/amd64
           tags: ghcr.io/${{ github.repository_owner }}/hub-converter:${{ steps.extract_info.outputs.version }}
           context: ./converter
+
+      - name: Build and push chatbot Docker image
+        if: steps.extract_info.outputs.project == 'chatbot'
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          platforms: linux/amd64
+          tags: ghcr.io/${{ github.repository_owner }}/hub-chatbot:${{ steps.extract_info.outputs.version }}
+          context: ./chatbot
