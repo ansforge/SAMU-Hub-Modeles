@@ -48,8 +48,50 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Victims {
+
+  /**
+   * Indique le nombre de victimes selon la nomenclature du référentiel CISU
+   */
+  public enum CountEnum {
+    _0("0"),
+
+    _1("1"),
+
+    PLUSIEURS("PLUSIEURS"),
+
+    BEAUCOUP("BEAUCOUP"),
+
+    INCONNU("INCONNU"),
+
+    NON_DEFINI("NON DEFINI");
+
+    private String value;
+
+    CountEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CountEnum fromValue(String value) {
+      for (CountEnum b : CountEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_COUNT = "count";
-  private String count;
+  private CountEnum count;
 
   /**
    * Identifie le type de la principale victime (celle dont l&#39;état de santé
@@ -101,7 +143,7 @@ public class Victims {
 
   public Victims() {}
 
-  public Victims count(String count) {
+  public Victims count(CountEnum count) {
 
     this.count = count;
     return this;
@@ -114,13 +156,13 @@ public class Victims {
   @JsonProperty(JSON_PROPERTY_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getCount() {
+  public CountEnum getCount() {
     return count;
   }
 
   @JsonProperty(JSON_PROPERTY_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCount(String count) {
+  public void setCount(CountEnum count) {
     this.count = count;
   }
 

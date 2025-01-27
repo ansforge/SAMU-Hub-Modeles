@@ -714,6 +714,13 @@ components:
           example: example.json#/qualification/victims/count
           description: "Indique le nombre de victimes selon la nomenclature du r\xE9\
             f\xE9rentiel CISU"
+          enum:
+          - '0'
+          - '1'
+          - PLUSIEURS
+          - BEAUCOUP
+          - INCONNU
+          - NON DEFINI
           examples:
           - PLUSIEURS
         mainVictim:

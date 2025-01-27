@@ -467,10 +467,20 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="victims">
         <sequence>
-            <element minOccurs="0" name="count" type="string">
+            <element minOccurs="0" name="count">
                 <annotation>
                     <documentation>Indique le nombre de victimes selon la nomenclature du référentiel CISU</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="0"/>
+                        <enumeration value="1"/>
+                        <enumeration value="PLUSIEURS"/>
+                        <enumeration value="BEAUCOUP"/>
+                        <enumeration value="INCONNU"/>
+                        <enumeration value="NON DEFINI"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="mainVictim">
                 <annotation>
