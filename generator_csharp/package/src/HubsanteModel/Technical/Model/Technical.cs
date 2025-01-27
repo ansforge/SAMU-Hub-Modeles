@@ -39,34 +39,34 @@ namespace HubsanteModel/Technical.Model
         public enum EnumerationFieldEnum
         {
             /// <summary>
-            /// Enum ENUMVALUE1 for value: ENUM_VALUE_1
+            /// Enum _1 for value: ENUM_VALUE_1
             /// </summary>
             [EnumMember(Value = "ENUM_VALUE_1")]
-            ENUMVALUE1 = 1,
+            _1 = 1,
 
             /// <summary>
-            /// Enum ENUMVALUE2 for value: ENUM_VALUE_2
+            /// Enum _2 for value: ENUM_VALUE_2
             /// </summary>
             [EnumMember(Value = "ENUM_VALUE_2")]
-            ENUMVALUE2 = 2,
+            _2 = 2,
 
             /// <summary>
-            /// Enum ENUMVALUE3 for value: ENUM_VALUE_3
+            /// Enum _3 for value: ENUM_VALUE_3
             /// </summary>
             [EnumMember(Value = "ENUM_VALUE_3")]
-            ENUMVALUE3 = 3,
+            _3 = 3,
 
             /// <summary>
-            /// Enum ENUMVALUE4 for value: ENUM_VALUE_4
+            /// Enum _4 for value: ENUM_VALUE_4
             /// </summary>
             [EnumMember(Value = "ENUM_VALUE_4")]
-            ENUMVALUE4 = 4,
+            _4 = 4,
 
             /// <summary>
-            /// Enum ENUMVALUE5 for value: ENUM_VALUE_5
+            /// Enum _5 for value: ENUM_VALUE_5
             /// </summary>
             [EnumMember(Value = "ENUM_VALUE_5")]
-            ENUMVALUE5 = 5
+            _5 = 5
         }
 
 
@@ -87,34 +87,34 @@ namespace HubsanteModel/Technical.Model
         public enum EnumArrayFieldEnum
         {
             /// <summary>
-            /// Enum ENUMVALUE10 for value: ENUM_VALUE_10
+            /// Enum _10 for value: ENUM_VALUE_10
             /// </summary>
             [EnumMember(Value = "ENUM_VALUE_10")]
-            ENUMVALUE10 = 1,
+            _10 = 1,
 
             /// <summary>
-            /// Enum ENUMVALUE20 for value: ENUM_VALUE_20
+            /// Enum _20 for value: ENUM_VALUE_20
             /// </summary>
             [EnumMember(Value = "ENUM_VALUE_20")]
-            ENUMVALUE20 = 2,
+            _20 = 2,
 
             /// <summary>
-            /// Enum ENUMVALUE30 for value: ENUM_VALUE_30
+            /// Enum _30 for value: ENUM_VALUE_30
             /// </summary>
             [EnumMember(Value = "ENUM_VALUE_30")]
-            ENUMVALUE30 = 3,
+            _30 = 3,
 
             /// <summary>
-            /// Enum ENUMVALUE40 for value: ENUM_VALUE_40
+            /// Enum _40 for value: ENUM_VALUE_40
             /// </summary>
             [EnumMember(Value = "ENUM_VALUE_40")]
-            ENUMVALUE40 = 4,
+            _40 = 4,
 
             /// <summary>
-            /// Enum ENUMVALUE50 for value: ENUM_VALUE_50
+            /// Enum _50 for value: ENUM_VALUE_50
             /// </summary>
             [EnumMember(Value = "ENUM_VALUE_50")]
-            ENUMVALUE50 = 5
+            _50 = 5
         }
 
         /// <summary>
