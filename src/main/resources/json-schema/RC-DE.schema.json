@@ -2,10 +2,17 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-DE.schema.json#",
+<<<<<<< HEAD
     "version": "25.01.21",
     "example": "example.json#",
     "type": "object",
     "title": "distributionElement",
+=======
+    "version": "24.12.27",
+    "example": "example.json#",
+    "type": "object",
+    "title": "DistributionElement",
+>>>>>>> main
     "required": [
         "messageId",
         "sender",
