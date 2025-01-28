@@ -60,8 +60,6 @@ tasks.named('test') {
         exclude '**/*Technical*.class'
     } else if (project.hasProperty('technical')) {
         include '**/*Technical*.class'
-    } else {
-        include '**/*Test*.class'
     }
     finalizedBy jacocoTestReport
 }
