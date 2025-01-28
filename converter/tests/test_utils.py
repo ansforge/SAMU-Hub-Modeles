@@ -16,11 +16,10 @@ def test_format_object_primitive():
     assert format_object("test") == "test"
     assert format_object(123) == "123"
 
-# ToDo: improve list handling and tests
-# def test_format_object_list():
-#     result = format_object(["a", "b", "c"])
-#     expected = "- a\n- b\n- c"
-#     assert result == expected
+def test_format_object_list():
+    result = format_object(["a", "b", "c"])
+    expected = "- a\n- b\n- c"
+    assert result == expected
 
 def test_format_object_dict():
     data = {"key1": "value1", "key2": "value2"}
@@ -31,7 +30,7 @@ def test_format_object_dict():
 def test_format_object_nested():
     victim = ExampleTestVictim("PLUSIEURS", "GRAVE")
     incident = ExampleTestIncident("Accident", "School", victim)
-    
+
     result = format_object(incident)
     expected = (
         "Example Test Incident:\n"
@@ -54,10 +53,10 @@ def test_delete_paths():
         },
         "f": 4
     }
-    
+
     paths = ["a.b.c", "f"]
     delete_paths(data, paths)
-    
+
     assert "c" not in data["a"]["b"]
     assert "f" not in data
     assert data["a"]["b"]["d"] == 2
@@ -70,7 +69,7 @@ def test_delete_paths_missing():
 def test_delete_paths_cleanup():
     data = {"a": {"b": {"c": 1}}}
     delete_paths(data, ["a.b.c"])
-    assert data == {}  # Empty dictionaries should be cleaned up 
+    assert data == {}  # Empty dictionaries should be cleaned up
 
 def test_add_note_to_existing_notes():
     output_json = {
