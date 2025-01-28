@@ -86,3 +86,10 @@ def format_object(obj: Any, indent: int = 0) -> str:
         
     # Base case for primitives
     return f"{indent_str}{obj}" 
+
+
+def add_object_to_initial_alert_notes(output_json, note_text):
+    if 'notes' not in output_json['initialAlert']:
+        output_json['initialAlert']['notes'] = []
+
+    output_json['initialAlert']['notes'].append({"freetext": note_text})
