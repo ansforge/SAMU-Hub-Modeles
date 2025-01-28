@@ -39,7 +39,7 @@ def test_from_cisu_conversion_v3():
         converter_method=CISUConverterV3.from_cisu,
         target_schema=RS_EDA_SCHEMA,
         additional_validation=validate_health_format,
-        online_tag="feat/cisu_conversion"  # ToDo: migrate to "v3" once tag is available
+        online_tag="main"  # ToDo: migrate to "v3" once tag is available
     )
 
 def test_to_cisu_conversion_v3():
@@ -49,5 +49,5 @@ def test_to_cisu_conversion_v3():
         envelope_file="tests/edxl_envelope_health_to_fire.json",
         converter_method=CISUConverterV3.to_cisu,
         target_schema=RC_EDA_SCHEMA,
-        online_tag="feat/cisu_conversion"  # ToDo: migrate to "v3" once tag is available
+        online_tag="main"  # ToDo: migrate to "v3" once tag is available
     )
