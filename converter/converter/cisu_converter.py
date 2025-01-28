@@ -99,7 +99,7 @@ class CISUConverterV3:
             new_alert = format_object(input_usecase_json.get('newAlert'))
             add_object_to_initial_alert_notes(output_usecase_json, new_alert)
 
-        # - Deletions
+        # - Deletions - must to be the last step
         delete_paths(output_usecase_json, cls.CISU_PATHS_TO_DELETE)
 
         output_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth'] = output_usecase_json
