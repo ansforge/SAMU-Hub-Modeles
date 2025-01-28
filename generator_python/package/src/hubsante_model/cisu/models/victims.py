@@ -31,6 +31,16 @@ class Victims(BaseModel):
     freetext: Optional[StrictStr] = Field(default=None, description="Permet de complémenter en commentaire libre la(les) victime(s)")
     __properties: ClassVar[List[str]] = ["count", "mainVictim", "freetext"]
 
+    @field_validator('count')
+    def count_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['0', '1', 'PLUSIEURS', 'BEAUCOUP', 'INCONNU', 'NON DEFINI']):
+            raise ValueError("must be one of enum values ('0', '1', 'PLUSIEURS', 'BEAUCOUP', 'INCONNU', 'NON DEFINI')")
+        return value
+
     @field_validator('main_victim')
     def main_victim_validate_enum(cls, value):
         """Validates the enum"""
