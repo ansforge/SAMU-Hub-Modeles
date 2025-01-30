@@ -100,10 +100,6 @@
             "code": "T58",
             "label": "Effet toxique du monoxyde de carbone"
           }
-        },
-        "healthMotive": {
-          "code": "M03.10",
-          "label": "Malaise avec perte de connaissance initiale"
         }
       },
       {

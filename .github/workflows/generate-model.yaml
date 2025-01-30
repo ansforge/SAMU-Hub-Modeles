@@ -1,9 +1,9 @@
 name: Generate Model
 
 on:
-  # pull_request:
-  #   branches:
-  #     - '**'
+  pull_request:
+    branches:
+      - '**'
   release:
     types:
       - published
@@ -53,13 +53,20 @@ jobs:
 
       - name: Clean up old generated schemas
         working-directory: ./src/main/resources
+        if: steps.filter.outputs.parsing_required == 'true'
         run: find ./json-schema -type f -name '*.json' ! -name 'customContent.schema.json' ! -name 'EDXL-DE-*.schema.json' -exec rm {} +
         
       - name: Clean up old generated java classes
         working-directory: ./src/main/java/com/hubsante/model
+        if: steps.filter.outputs.parsing_required == 'true'
         # We specifically only remove FOLDERS with the exception of a couple manually created ones
         run: find . -mindepth 1 -maxdepth 1 -type d ! -name 'builders' ! -name 'config' ! -name 'custom' ! -name 'edxl' ! -name 'exception' ! -name 'report' -exec rm -r {} +
       
+      - name: Run csv_parser to generate schemas.yaml
+        working-directory: ./csv_parser
+        if: steps.filter.outputs.parsing_required == 'true'
+        run: python workflow.py --stage output_schemas_yaml
+
       - name: Run csv_parser and collect OpenAPI & JSON Schemas
         working-directory: ./csv_parser
         if: steps.filter.outputs.parsing_required == 'true'
@@ -71,11 +78,6 @@ jobs:
         run: |
           rm -r ./out/test-cases || true
           python workflow.py --stage test_case_parser
-
-      - name: Run csv_parser to generate schemas.yaml
-        working-directory: ./csv_parser
-        if: steps.filter.outputs.parsing_required == 'true'
-        run: python workflow.py --stage output_schemas_yaml
 
       - name: Collect schemas.yaml and copy it to json_schema2xsd
         working-directory: ./csv_parser
@@ -142,18 +144,24 @@ jobs:
 
       - name: Install node env 🏗
         uses: actions/setup-node@v4
+        if: steps.filter.outputs.parsing_required == 'true'
         with:
           node-version: 16
 
       - name: Install openapi-generator-cli
-        run: npm install -g @openapitools/openapi-generator-cli
+        if: steps.filter.outputs.parsing_required == 'true'
+        run: npm install -g @openapitools/openapi-generator-cli@2.9.0
 
       - name: Install linter
+        if: steps.filter.outputs.parsing_required == 'true'
         run: sudo apt install -y clang-format
 
       - name: Generate Java classes
+        if: steps.filter.outputs.parsing_required == 'true'
         working-directory: ./generator
         run: |
+          # Setup OpenAPI version
+          npx openapi-generator-cli version-manager set 7.4.0
           # Iterate over each file in the ./config directory, including the entire subfolder structure
           # and then run @openapitools/openapi-generator-cli generate for each file found
           # Important notice:          
@@ -161,9 +169,10 @@ jobs:
           # This means that since the order of class generation is important, it's necessary to maintain an adequately 
           # named file structure in the ./config/** directories
           # generator-config.json (if exists) -> usecase.generator-config.json -> wrapper.generator-config.json
-          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli generate -c "$file" --skip-validate-spec; done
-          
+          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli@2.9.0 generate -c "$file" --skip-validate-spec; done
+
       - name: Replace src/ with generated classes
+        if: steps.filter.outputs.parsing_required == 'true'
         run: |
           rm -r ./src/main/java/com/hubsante/model/rcde || true
           rm -r ./src/main/java/com/hubsante/model/cisu || true
@@ -180,19 +189,23 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Apply license
+        if: steps.filter.outputs.parsing_required == 'true'
         run: ./gradlew licenseFormat
 
       - name: Delete old xml files
+        if: steps.filter.outputs.parsing_required == 'true'
         run: |
           find ./src/main/resources/sample/examples -name "*.xml" -type f -delete
 
       - name: Generate XML files
+        if: steps.filter.outputs.parsing_required == 'true'
         run: |
           ./gradlew generateXml
         continue-on-error: true
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
+        if: steps.filter.outputs.parsing_required == 'true'
         with:
           commit_message: ⚙️ Auto-génération des classes et des specs
 
@@ -200,7 +213,7 @@ jobs:
         run: ./gradlew test --info -Ptechnical=true
 
       - name: Build and run REAL MESSAGES tests
-        run: ./gradlew test --info
+        run: ./gradlew test --info -Pfunctional=true
 
       # Ref.: https://github.com/gradle/gradle-build-action/issues/619#issuecomment-1453244157
       - name: Upload test report

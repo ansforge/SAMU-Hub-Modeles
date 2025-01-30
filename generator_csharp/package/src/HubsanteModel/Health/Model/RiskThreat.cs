@@ -32,246 +32,6 @@ namespace HubsanteModel/Health.Model
     public partial class RiskThreat : IValidatableObject
     {
         /// <summary>
-        /// A valoriser avec le code de la nomenclature associée
-        /// </summary>
-        /// <value>A valoriser avec le code de la nomenclature associée</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum CodeEnum
-        {
-            /// <summary>
-            /// Enum R01 for value: R01
-            /// </summary>
-            [EnumMember(Value = "R01")]
-            R01 = 1,
-
-            /// <summary>
-            /// Enum R02 for value: R02
-            /// </summary>
-            [EnumMember(Value = "R02")]
-            R02 = 2,
-
-            /// <summary>
-            /// Enum R03 for value: R03
-            /// </summary>
-            [EnumMember(Value = "R03")]
-            R03 = 3,
-
-            /// <summary>
-            /// Enum R04 for value: R04
-            /// </summary>
-            [EnumMember(Value = "R04")]
-            R04 = 4,
-
-            /// <summary>
-            /// Enum R05 for value: R05
-            /// </summary>
-            [EnumMember(Value = "R05")]
-            R05 = 5,
-
-            /// <summary>
-            /// Enum R06 for value: R06
-            /// </summary>
-            [EnumMember(Value = "R06")]
-            R06 = 6,
-
-            /// <summary>
-            /// Enum R07 for value: R07
-            /// </summary>
-            [EnumMember(Value = "R07")]
-            R07 = 7,
-
-            /// <summary>
-            /// Enum R08 for value: R08
-            /// </summary>
-            [EnumMember(Value = "R08")]
-            R08 = 8,
-
-            /// <summary>
-            /// Enum R09 for value: R09
-            /// </summary>
-            [EnumMember(Value = "R09")]
-            R09 = 9,
-
-            /// <summary>
-            /// Enum R10 for value: R10
-            /// </summary>
-            [EnumMember(Value = "R10")]
-            R10 = 10,
-
-            /// <summary>
-            /// Enum R11 for value: R11
-            /// </summary>
-            [EnumMember(Value = "R11")]
-            R11 = 11,
-
-            /// <summary>
-            /// Enum R12 for value: R12
-            /// </summary>
-            [EnumMember(Value = "R12")]
-            R12 = 12,
-
-            /// <summary>
-            /// Enum R13 for value: R13
-            /// </summary>
-            [EnumMember(Value = "R13")]
-            R13 = 13,
-
-            /// <summary>
-            /// Enum R14 for value: R14
-            /// </summary>
-            [EnumMember(Value = "R14")]
-            R14 = 14,
-
-            /// <summary>
-            /// Enum R15 for value: R15
-            /// </summary>
-            [EnumMember(Value = "R15")]
-            R15 = 15,
-
-            /// <summary>
-            /// Enum R16 for value: R16
-            /// </summary>
-            [EnumMember(Value = "R16")]
-            R16 = 16,
-
-            /// <summary>
-            /// Enum R17 for value: R17
-            /// </summary>
-            [EnumMember(Value = "R17")]
-            R17 = 17,
-
-            /// <summary>
-            /// Enum R18 for value: R18
-            /// </summary>
-            [EnumMember(Value = "R18")]
-            R18 = 18,
-
-            /// <summary>
-            /// Enum R19 for value: R19
-            /// </summary>
-            [EnumMember(Value = "R19")]
-            R19 = 19,
-
-            /// <summary>
-            /// Enum R20 for value: R20
-            /// </summary>
-            [EnumMember(Value = "R20")]
-            R20 = 20,
-
-            /// <summary>
-            /// Enum R21 for value: R21
-            /// </summary>
-            [EnumMember(Value = "R21")]
-            R21 = 21,
-
-            /// <summary>
-            /// Enum R22 for value: R22
-            /// </summary>
-            [EnumMember(Value = "R22")]
-            R22 = 22,
-
-            /// <summary>
-            /// Enum R23 for value: R23
-            /// </summary>
-            [EnumMember(Value = "R23")]
-            R23 = 23,
-
-            /// <summary>
-            /// Enum R24 for value: R24
-            /// </summary>
-            [EnumMember(Value = "R24")]
-            R24 = 24,
-
-            /// <summary>
-            /// Enum R25 for value: R25
-            /// </summary>
-            [EnumMember(Value = "R25")]
-            R25 = 25,
-
-            /// <summary>
-            /// Enum R26 for value: R26
-            /// </summary>
-            [EnumMember(Value = "R26")]
-            R26 = 26,
-
-            /// <summary>
-            /// Enum R27 for value: R27
-            /// </summary>
-            [EnumMember(Value = "R27")]
-            R27 = 27,
-
-            /// <summary>
-            /// Enum R28 for value: R28
-            /// </summary>
-            [EnumMember(Value = "R28")]
-            R28 = 28,
-
-            /// <summary>
-            /// Enum R29 for value: R29
-            /// </summary>
-            [EnumMember(Value = "R29")]
-            R29 = 29,
-
-            /// <summary>
-            /// Enum R30 for value: R30
-            /// </summary>
-            [EnumMember(Value = "R30")]
-            R30 = 30,
-
-            /// <summary>
-            /// Enum R31 for value: R31
-            /// </summary>
-            [EnumMember(Value = "R31")]
-            R31 = 31,
-
-            /// <summary>
-            /// Enum R32 for value: R32
-            /// </summary>
-            [EnumMember(Value = "R32")]
-            R32 = 32,
-
-            /// <summary>
-            /// Enum R33 for value: R33
-            /// </summary>
-            [EnumMember(Value = "R33")]
-            R33 = 33,
-
-            /// <summary>
-            /// Enum R34 for value: R34
-            /// </summary>
-            [EnumMember(Value = "R34")]
-            R34 = 34,
-
-            /// <summary>
-            /// Enum R35 for value: R35
-            /// </summary>
-            [EnumMember(Value = "R35")]
-            R35 = 35,
-
-            /// <summary>
-            /// Enum R36 for value: R36
-            /// </summary>
-            [EnumMember(Value = "R36")]
-            R36 = 36,
-
-            /// <summary>
-            /// Enum R37 for value: R37
-            /// </summary>
-            [EnumMember(Value = "R37")]
-            R37 = 37
-        }
-
-
-        /// <summary>
-        /// A valoriser avec le code de la nomenclature associée
-        /// </summary>
-        /// <value>A valoriser avec le code de la nomenclature associée</value>
-        /*
-        <example>example.json#/qualification/riskThreat/0/code</example>
-        */
-        [DataMember(Name = "code", IsRequired = true, EmitDefaultValue = true)]
-        public CodeEnum Code { get; set; }
-        /// <summary>
         /// Initializes a new instance of the <see cref="RiskThreat" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -281,8 +41,13 @@ namespace HubsanteModel/Health.Model
         /// </summary>
         /// <param name="code">A valoriser avec le code de la nomenclature associée (required).</param>
         /// <param name="label">A valoriser avec le libellé de la nomenclature associée. Dans le cas où un système n&#39;est pas en mesure de reconnaître un code, il peut choisir d&#39;afficher le libellé qui est obligatoirement fourni avec le code. (required).</param>
-        public RiskThreat(CodeEnum code = default(CodeEnum), string label = default(string))
+        public RiskThreat(string code = default(string), string label = default(string))
         {
+            // to ensure "code" is required (not null)
+            if (code == null)
+            {
+                throw new ArgumentNullException("code is a required property for RiskThreat and cannot be null");
+            }
             this.Code = code;
             // to ensure "label" is required (not null)
             if (label == null)
@@ -291,6 +56,16 @@ namespace HubsanteModel/Health.Model
             }
             this.Label = label;
         }
+
+        /// <summary>
+        /// A valoriser avec le code de la nomenclature associée
+        /// </summary>
+        /// <value>A valoriser avec le code de la nomenclature associée</value>
+        /*
+        <example>example.json#/qualification/riskThreat/0/code</example>
+        */
+        [DataMember(Name = "code", IsRequired = true, EmitDefaultValue = true)]
+        public string Code { get; set; }
 
         /// <summary>
         /// A valoriser avec le libellé de la nomenclature associée. Dans le cas où un système n&#39;est pas en mesure de reconnaître un code, il peut choisir d&#39;afficher le libellé qui est obligatoirement fourni avec le code.
@@ -332,6 +107,15 @@ namespace HubsanteModel/Health.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            if (this.Code != null) {
+                // Code (string) pattern
+                Regex regexCode = new Regex(@"^R\d{2}$", RegexOptions.CultureInvariant);
+                if (!regexCode.Match(this.Code).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, must match a pattern of " + regexCode, new [] { "Code" });
+                }
+            }
+
             yield break;
         }
     }

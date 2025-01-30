@@ -30,7 +30,7 @@ class ResourcesRequest(BaseModel):
     """ # noqa: E501
     case_id: Annotated[str, Field(strict=True)] = Field(description="A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier).  Il est valorisé comme suit lors de sa création :  {pays}.{domaine}.{organisation}.{senderCaseId}  Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.", alias="caseId")
     request: Request
-    status: Optional[StrictStr] = Field(default=None, description="A quoi ça sert d'avoir un objet demande ")
+    status: Optional[StrictStr] = Field(default=None, description="A valoriser avec l'état d'annulation de la demande le cas échéant")
     __properties: ClassVar[List[str]] = ["caseId", "request", "status"]
 
     @field_validator('case_id')

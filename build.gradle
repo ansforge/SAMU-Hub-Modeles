@@ -47,13 +47,6 @@ jacocoTestReport {
         xml.required = true
     }
 }
- 
-test {
-    if (project.hasProperty('technical')) {
-        include '**/*Technical*.class'
-    } else if (!project.hasProperty('allTests'))
-        exclude '**/*Technical*.class'
-}
 
 allprojects {
     tasks.withType(JavaCompile) {
@@ -63,6 +56,11 @@ allprojects {
 
 tasks.named('test') {
     useJUnitPlatform()
+    if (project.hasProperty('functional')) {
+        exclude '**/*Technical*.class'
+    } else if (project.hasProperty('technical')) {
+        include '**/*Technical*.class'
+    }
     finalizedBy jacocoTestReport
 }
 

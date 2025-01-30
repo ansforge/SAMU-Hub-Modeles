@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-REF.schema.json#",
-    "version": "24.12.27",
+    "version": "25.01.30",
     "example": "example.json#",
     "type": "object",
     "title": "reference",
@@ -40,7 +40,14 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/step",
-            "description": "Nomenclature permettant d'identifier les différentes étapes d'intégration et de consultation du dossier dans le système émetteur"
+            "description": "Nomenclature permettant d'identifier les différentes étapes d'intégration et de consultation du message dans le système émetteur",
+            "enum": [
+                "RECU",
+                "ERREUR",
+                "INTEGRE",
+                "CONSULTE",
+                "SUPPRIME"
+            ]
         }
     },
     "definitions": {},

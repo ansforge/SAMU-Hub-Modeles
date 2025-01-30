@@ -87,8 +87,9 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         nomenclature_name = elem['Détails de format'][elem['Détails de format'].index(':')+1:].strip()
         path_file = ''
         nomenclature_files = os.listdir(os.path.join("..", "nomenclature_parser", "out", "latest", "csv"))
+        file_extension = ".csv"
         for filename in nomenclature_files:
-            if filename.startswith(nomenclature_name):
+            if filename[:-len(file_extension)] == nomenclature_name:
                 path_file = os.path.join("..", "nomenclature_parser", "out", "latest", "csv", filename)
 
         if path_file != '':
@@ -115,8 +116,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     def is_custom_content():
         return MODEL_TYPE == "customContent"
 
-    def is_allowing_additional_properties():
-        return is_custom_content() or MODEL_TYPE == "DistributionElement"
+    def is_allowing_additional_properties(name):
+        return is_custom_content() or MODEL_TYPE == "DistributionElement" or name == "RC-DE"
 
     Path('out/' + name).mkdir(parents=True, exist_ok=True)
 
@@ -480,7 +481,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         'required': [],
         'properties': {},
         'definitions': {},
-        'additionalProperties': is_allowing_additional_properties()
+        'additionalProperties': is_allowing_additional_properties(name)
     }
 
     def has_format_details(elem, details):

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:3.0:createCaseHealthUpdate" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:3.0:createCaseHealthUpdate" xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:eda:1.9:createCaseHealthUpdate" elementFormDefault="qualified" targetNamespace="urn:emergency:eda:1.9:createCaseHealthUpdate" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="createCaseHealthUpdate" type="x:createCaseHealthUpdate"/>
     <complexType name="createCaseHealthUpdate">
         <sequence>
@@ -99,7 +99,6 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
             </element>
             <element minOccurs="0" name="administrativeFile" type="x:administrativeFile"/>
             <element minOccurs="0" name="identity" type="x:Identity"/>
-            <element minOccurs="0" name="healthMotive" type="x:healthMotive"/>
             <element minOccurs="0" name="detail" type="x:patientDetail"/>
             <element minOccurs="0" name="hypothesis" type="x:hypothesis"/>
         </sequence>
@@ -263,43 +262,7 @@ False = transport non médicalisé</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="R01"/>
-                        <enumeration value="R02"/>
-                        <enumeration value="R03"/>
-                        <enumeration value="R04"/>
-                        <enumeration value="R05"/>
-                        <enumeration value="R06"/>
-                        <enumeration value="R07"/>
-                        <enumeration value="R08"/>
-                        <enumeration value="R09"/>
-                        <enumeration value="R10"/>
-                        <enumeration value="R11"/>
-                        <enumeration value="R12"/>
-                        <enumeration value="R13"/>
-                        <enumeration value="R14"/>
-                        <enumeration value="R15"/>
-                        <enumeration value="R16"/>
-                        <enumeration value="R17"/>
-                        <enumeration value="R18"/>
-                        <enumeration value="R19"/>
-                        <enumeration value="R20"/>
-                        <enumeration value="R21"/>
-                        <enumeration value="R22"/>
-                        <enumeration value="R23"/>
-                        <enumeration value="R24"/>
-                        <enumeration value="R25"/>
-                        <enumeration value="R26"/>
-                        <enumeration value="R27"/>
-                        <enumeration value="R28"/>
-                        <enumeration value="R29"/>
-                        <enumeration value="R30"/>
-                        <enumeration value="R31"/>
-                        <enumeration value="R32"/>
-                        <enumeration value="R33"/>
-                        <enumeration value="R34"/>
-                        <enumeration value="R35"/>
-                        <enumeration value="R36"/>
-                        <enumeration value="R37"/>
+                        <pattern value="R\d{2}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -426,77 +389,6 @@ Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes �
             <element minOccurs="0" name="nonStrictFeatures" type="x:detailedName"/>
         </sequence>
     </complexType>
-    <complexType name="healthMotive">
-        <sequence>
-            <element name="code">
-                <annotation>
-                    <documentation>A valoriser avec le code de la nomenclature associée</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="M01.00"/>
-                        <enumeration value="M01.01"/>
-                        <enumeration value="M01.02"/>
-                        <enumeration value="M01.03"/>
-                        <enumeration value="M02.00"/>
-                        <enumeration value="M02.01"/>
-                        <enumeration value="M02.02"/>
-                        <enumeration value="M02.03"/>
-                        <enumeration value="M02.04"/>
-                        <enumeration value="M02.05"/>
-                        <enumeration value="M02.06"/>
-                        <enumeration value="M02.07"/>
-                        <enumeration value="M02.08"/>
-                        <enumeration value="M02.09"/>
-                        <enumeration value="M02.10"/>
-                        <enumeration value="M03.00"/>
-                        <enumeration value="M03.01"/>
-                        <enumeration value="M03.02"/>
-                        <enumeration value="M03.03"/>
-                        <enumeration value="M03.04"/>
-                        <enumeration value="M03.05"/>
-                        <enumeration value="M03.06"/>
-                        <enumeration value="M03.07"/>
-                        <enumeration value="M03.08"/>
-                        <enumeration value="M03.09"/>
-                        <enumeration value="M03.10"/>
-                        <enumeration value="M03.11"/>
-                        <enumeration value="M03.12"/>
-                        <enumeration value="M03.13"/>
-                        <enumeration value="M03.14"/>
-                        <enumeration value="M03.15"/>
-                        <enumeration value="M03.16"/>
-                        <enumeration value="M03.17"/>
-                        <enumeration value="M03.18"/>
-                        <enumeration value="M03.19"/>
-                        <enumeration value="M03.20"/>
-                        <enumeration value="M03.21"/>
-                        <enumeration value="M03.22"/>
-                        <enumeration value="M04.00"/>
-                        <enumeration value="M04.01"/>
-                        <enumeration value="M04.02"/>
-                        <enumeration value="M04.03"/>
-                        <enumeration value="M04.04"/>
-                        <enumeration value="M05.00"/>
-                        <enumeration value="M05.01"/>
-                        <enumeration value="M05.02"/>
-                        <enumeration value="M06.00"/>
-                        <enumeration value="M06.01"/>
-                        <enumeration value="M06.02"/>
-                        <enumeration value="M06.03"/>
-                        <enumeration value="M06.04"/>
-                        <enumeration value="M07.00"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element name="label" type="string">
-                <annotation>
-                    <documentation>A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
-                </annotation>
-            </element>
-        </sequence>
-    </complexType>
     <complexType name="patientDetail">
         <sequence>
             <element minOccurs="0" name="weight" type="decimal">
@@ -563,9 +455,9 @@ Si ce n'est pas géré de manière structurés : à afficher dans une note liée
                     <restriction base="string">
                         <enumeration value="NIR"/>
                         <enumeration value="SINUS"/>
-                        <enumeration value="SI-VIC"/>
                         <enumeration value="DOSSARD"/>
                         <enumeration value="PLACE"/>
+                        <enumeration value="AUTRE"/>
                     </restriction>
                 </simpleType>
             </element>

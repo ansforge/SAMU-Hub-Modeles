@@ -51,22 +51,22 @@ namespace HubsanteModel/Interventionreport.Model
             SINUS = 2,
 
             /// <summary>
-            /// Enum SIVIC for value: SI-VIC
-            /// </summary>
-            [EnumMember(Value = "SI-VIC")]
-            SIVIC = 3,
-
-            /// <summary>
             /// Enum DOSSARD for value: DOSSARD
             /// </summary>
             [EnumMember(Value = "DOSSARD")]
-            DOSSARD = 4,
+            DOSSARD = 3,
 
             /// <summary>
             /// Enum PLACE for value: PLACE
             /// </summary>
             [EnumMember(Value = "PLACE")]
-            PLACE = 5
+            PLACE = 4,
+
+            /// <summary>
+            /// Enum AUTRE for value: AUTRE
+            /// </summary>
+            [EnumMember(Value = "AUTRE")]
+            AUTRE = 5
         }
 
 

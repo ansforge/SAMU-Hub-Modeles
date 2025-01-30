@@ -51,8 +51,14 @@ components:
           x-cols: 6
           example: example.json#/step
           description: "Nomenclature permettant d'identifier les diff\xE9rentes \xE9\
-            tapes d'int\xE9gration et de consultation du dossier dans le syst\xE8\
+            tapes d'int\xE9gration et de consultation du message dans le syst\xE8\
             me \xE9metteur"
+          enum:
+          - RECU
+          - ERREUR
+          - INTEGRE
+          - CONSULTE
+          - SUPPRIME
           examples:
           - None
       additionalProperties: false

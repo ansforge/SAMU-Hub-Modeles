@@ -13,7 +13,7 @@ Qualification,,,,,,"Objet qui permet de qualifier l'affaire/dossier en général
 Spécificités 15-18 : 
 La qualification est issue d'une interprétation métier synthétisant l'ensemble des alertes reçues.",,qualification,0..1,X,qualification,
 ,"Risque, menace et sensibilité",# Voir type codeAndLabel,,,,"Décrit les risques, menaces et sensibilités : cf.nomenclature associée.",,riskThreat,0..n,X,codeAndLabel,
-,,Code,,,,A valoriser avec le code de la nomenclature associée,C07.13.02,code,1..1,,string,NOMENCLATURE: HubSante.risque
+,,Code,,,,A valoriser avec le code de la nomenclature associée,C07.13.02,code,1..1,,string,REGEX: ^R\d{2}$
 ,,Libellé,,,,"A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Rodéo automobile,label,1..1,,string,
 ,Détails du dossier ,,,,,Objet qui permet de décrire les détails du dossier,,details,0..1,X,caseDetails,
@@ -80,7 +80,6 @@ Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pa
 ,,,Date de naissance,,,A valoriser avec la date de naissance du patient,,birthDate,0..1,,date,
 ,,,Sexe ,,,A valoriser avec le sexe du patient,F,sex,0..1,,string,NOMENCLATURE: HubSante.sexe
 ,,Traits non stricts de l'identité,# Voir type detailedName,,,"Objet qui permet de décrire les traits stricts de l'identité du patient, c’est-à-dire le nom et le prénom usuels du patient.",,nonStrictFeatures,0..1,X,detailedName,
-,Motif de recours médico-secouriste,# Voir type codeAndLabel,,,,Décrit le motif de recours médico-secouriste associé spécifiquement à un patient : cf.nomenclature associée.,,healthMotive,0..1,X,codeAndLabel,NOMENCLATURE: HubSante.motif
 ,Informations patient,,,,,Objet qui permet de décrire les caractéristiques du patient,,detail,0..1,X,patientDetail,
 ,,Poids,,,,A valoriser avec le poids en kilogrammes,31,weight,0..1,,number,
 ,,Taille,,,,A valoriser avec la taille en centimètres du patient,109,height,0..1,,number,
