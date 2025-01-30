@@ -8,6 +8,6 @@
       <role>MEDECIN</role>
     </operator>
     <decisionType>INTER</decisionType>
-    <resourceType>TSU </resourceType>
+    <resourceType>TSU</resourceType>
   </decision>
 </createCaseHealthUpdate>

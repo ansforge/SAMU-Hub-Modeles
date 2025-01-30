@@ -133,7 +133,7 @@ jobs:
           python -m build
 
       - name: Python - Upload package as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: python-package-artifact
           path: ./generator_python/package/dist/
@@ -186,7 +186,7 @@ jobs:
           gem build hubsante_model.gemspec
 
       - name: Ruby - Upload Gem as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ruby-gem-artifact
           path: ./generator_ruby/gem/hubsante_model-*.gem
@@ -229,7 +229,7 @@ jobs:
     #       dotnet pack --configuration Release -p:Version=${{ env.RELEASE_VERSION }}
 
     #   - name: C# - Upload package as artifact
-    #     uses: actions/upload-artifact@v3
+    #     uses: actions/upload-artifact@v4
     #     with:
     #       name: csharp-package-artifact
     #       path: ./generator_csharp/package/src/bin/Release/*.nupkg

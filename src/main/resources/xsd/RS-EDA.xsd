@@ -280,7 +280,7 @@ A fournir obligatoirement pour une décision d'intervention ou de transport/orie
                         <enumeration value="LIBERAL.DENT"/>
                         <enumeration value="LIBERAL.LABO"/>
                         <enumeration value="LIBERAL.AUTREPRO"/>
-                        <enumeration value="TSU "/>
+                        <enumeration value="TSU"/>
                         <enumeration value="SIS"/>
                         <enumeration value="SIS.MEDSP"/>
                         <enumeration value="SIS.ISP"/>

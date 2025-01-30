@@ -41,7 +41,7 @@ jobs:
           pytest --cov=converter --cov-report=html --cov-report=xml --cov-config=pytest.ini -rP
 
       - name: Upload HTML coverage report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: tools/converter/htmlcov

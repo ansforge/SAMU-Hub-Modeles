@@ -150,7 +150,7 @@ public class Decision {
 
     LIBERAL_AUTREPRO("LIBERAL.AUTREPRO"),
 
-    TSU_("TSU "),
+    TSU("TSU"),
 
     SIS("SIS"),
 
