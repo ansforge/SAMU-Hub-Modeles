@@ -95,7 +95,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         if path_file != '':
             df_nomenclature = pd.read_csv(path_file, sep=",", keep_default_na=False, na_values=['_'], encoding="utf-8",
                                           dtype={'code': str})
-            L_ret = df_nomenclature["code"].values.tolist()
+            # Return codes with replaced commas and trimmed leading and trailing spaces for cleaner values
+            L_ret = [code.replace(',', ' ').strip() for code in df_nomenclature["code"].values.tolist()]
         # ToDo: ajouter un bloc dans le elseif pour détecter des https:// et aller chercher les nomenclatures publiées en ligne (MOS/NOs par exemple)
         else:
             print(f"{Color.RED}ERROR: nomenclature {nomenclature_name} does not exist, could not load associated values.")
