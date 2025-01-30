@@ -16,8 +16,6 @@
 package com.hubsante.model.validator;
 
 import com.hubsante.model.TestMessagesHelper;
-import com.hubsante.model.exception.ValidationException;
-import com.hubsante.model.utils.TestFileUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
