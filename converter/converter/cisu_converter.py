@@ -77,10 +77,10 @@ class CISUConverterV3:
             output_usecase_json['location']['freetext']=input_usecase_json['location']['city']['detail']
 
         # Qualification - case detail priority
-        if input_usecase_json.get('initialAlert', {}).get('reporting') == 'ATTENTION':
+        if input_usecase_json.get('initialAlert', {}).get('reporting'):
             if 'details' not in output_usecase_json['qualification']:
                 output_usecase_json['qualification']['details']={}
-            output_usecase_json['qualification']['details']['priority']= 'P1'
+            output_usecase_json['qualification']['details']['priority']= 'P0' if input_usecase_json.get('caseDetails', {}).get('priority') =='ATTENTION' else 'P2'
 
         # Initial Alert - free text information
         if input_usecase_json.get('initialAlert', {}).get('attachment'):
@@ -144,7 +144,7 @@ class CISUConverterV3:
 
         # Set reference version
         # ToDo: pass this by ConfigMap and based on the version of the model
-        output_usecase_json['referenceVersion'] = "3.0"
+        output_usecase_json['referenceVersion'] = "2.0"
 
         # CallTaker
         sender_id = get_sender(input_json)
