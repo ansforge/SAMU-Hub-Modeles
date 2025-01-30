@@ -25,9 +25,9 @@
                     <restriction base="string">
                         <enumeration value="RECU"/>
                         <enumeration value="ERREUR"/>
-                        <enumeration value="CREE"/>
+                        <enumeration value="INTEGRE"/>
                         <enumeration value="CONSULTE"/>
-                        <enumeration value="SUPPRIME "/>
+                        <enumeration value="SUPPRIME"/>
                     </restriction>
                 </simpleType>
             </element>

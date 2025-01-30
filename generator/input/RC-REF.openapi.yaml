@@ -56,9 +56,9 @@ components:
           enum:
           - RECU
           - ERREUR
-          - CREE
+          - INTEGRE
           - CONSULTE
-          - 'SUPPRIME '
+          - SUPPRIME
           examples:
           - None
       additionalProperties: false

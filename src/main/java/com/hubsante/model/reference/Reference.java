@@ -70,11 +70,11 @@ public class Reference {
 
     ERREUR("ERREUR"),
 
-    CREE("CREE"),
+    INTEGRE("INTEGRE"),
 
     CONSULTE("CONSULTE"),
 
-    SUPPRIME_("SUPPRIME ");
+    SUPPRIME("SUPPRIME");
 
     private String value;
 
