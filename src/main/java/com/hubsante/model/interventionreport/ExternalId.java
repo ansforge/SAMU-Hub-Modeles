@@ -56,11 +56,11 @@ public class ExternalId {
 
     SINUS("SINUS"),
 
-    SI_VIC("SI-VIC"),
-
     DOSSARD("DOSSARD"),
 
-    PLACE("PLACE");
+    PLACE("PLACE"),
+
+    AUTRE("AUTRE");
 
     private String value;
 

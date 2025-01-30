@@ -3130,9 +3130,9 @@ components:
           enum:
           - NIR
           - SINUS
-          - SI-VIC
           - DOSSARD
           - PLACE
+          - AUTRE
           examples:
           - "NIR, SINUS, SI-VIC, \u2026"
         value:

@@ -35,7 +35,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.health.AdministrativeFile;
-import com.hubsante.model.health.HealthMotive;
 import com.hubsante.model.health.Hypothesis;
 import com.hubsante.model.health.Identity;
 import com.hubsante.model.health.PatientDetail;
@@ -49,8 +48,7 @@ import java.util.Objects;
 @JsonPropertyOrder(
     {Patient.JSON_PROPERTY_PATIENT_ID,
      Patient.JSON_PROPERTY_ADMINISTRATIVE_FILE, Patient.JSON_PROPERTY_IDENTITY,
-     Patient.JSON_PROPERTY_HEALTH_MOTIVE, Patient.JSON_PROPERTY_DETAIL,
-     Patient.JSON_PROPERTY_HYPOTHESIS})
+     Patient.JSON_PROPERTY_DETAIL, Patient.JSON_PROPERTY_HYPOTHESIS})
 @JsonTypeName("patient")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -64,9 +62,6 @@ public class Patient {
 
   public static final String JSON_PROPERTY_IDENTITY = "identity";
   private Identity identity;
-
-  public static final String JSON_PROPERTY_HEALTH_MOTIVE = "healthMotive";
-  private HealthMotive healthMotive;
 
   public static final String JSON_PROPERTY_DETAIL = "detail";
   private PatientDetail detail;
@@ -150,29 +145,6 @@ public class Patient {
     this.identity = identity;
   }
 
-  public Patient healthMotive(HealthMotive healthMotive) {
-
-    this.healthMotive = healthMotive;
-    return this;
-  }
-
-  /**
-   * Get healthMotive
-   * @return healthMotive
-   **/
-  @JsonProperty(JSON_PROPERTY_HEALTH_MOTIVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public HealthMotive getHealthMotive() {
-    return healthMotive;
-  }
-
-  @JsonProperty(JSON_PROPERTY_HEALTH_MOTIVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHealthMotive(HealthMotive healthMotive) {
-    this.healthMotive = healthMotive;
-  }
-
   public Patient detail(PatientDetail detail) {
 
     this.detail = detail;
@@ -231,15 +203,14 @@ public class Patient {
     return Objects.equals(this.patientId, patient.patientId) &&
         Objects.equals(this.administrativeFile, patient.administrativeFile) &&
         Objects.equals(this.identity, patient.identity) &&
-        Objects.equals(this.healthMotive, patient.healthMotive) &&
         Objects.equals(this.detail, patient.detail) &&
         Objects.equals(this.hypothesis, patient.hypothesis);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(patientId, administrativeFile, identity, healthMotive,
-                        detail, hypothesis);
+    return Objects.hash(patientId, administrativeFile, identity, detail,
+                        hypothesis);
   }
 
   @Override
@@ -253,9 +224,6 @@ public class Patient {
         .append(toIndentedString(administrativeFile))
         .append("\n");
     sb.append("    identity: ").append(toIndentedString(identity)).append("\n");
-    sb.append("    healthMotive: ")
-        .append(toIndentedString(healthMotive))
-        .append("\n");
     sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("    hypothesis: ")
         .append(toIndentedString(hypothesis))

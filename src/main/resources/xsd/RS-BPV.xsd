@@ -151,9 +151,9 @@ A valoriser par un code de la nomenclature Diagnostic SMUR.</documentation>
                     <restriction base="string">
                         <enumeration value="NIR"/>
                         <enumeration value="SINUS"/>
-                        <enumeration value="SI-VIC"/>
                         <enumeration value="DOSSARD"/>
                         <enumeration value="PLACE"/>
+                        <enumeration value="AUTRE"/>
                     </restriction>
                 </simpleType>
             </element>

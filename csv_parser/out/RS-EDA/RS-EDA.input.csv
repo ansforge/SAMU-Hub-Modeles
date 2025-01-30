@@ -185,7 +185,6 @@ Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pa
 ,,,Date de naissance,,,A valoriser avec la date de naissance du patient,,birthDate,0..1,,date,
 ,,,Sexe ,,,A valoriser avec le sexe du patient,F,sex,0..1,,string,NOMENCLATURE: HubSante.sexe
 ,,Traits non stricts de l'identité,# Voir type detailedName,,,"Objet qui permet de décrire les traits stricts de l'identité du patient, c’est-à-dire le nom et le prénom usuels du patient.",,nonStrictFeatures,0..1,X,detailedName,
-,Motif de recours médico-secouriste,# Voir type codeAndLabel,,,,Décrit le motif de recours médico-secouriste associé spécifiquement à un patient : cf.nomenclature associée.,,healthMotive,0..1,X,codeAndLabel,NOMENCLATURE: HubSante.motif
 ,Informations patient,,,,,Objet qui permet de décrire les caractéristiques du patient,,detail,0..1,X,patientDetail,
 ,,Poids,,,,A valoriser avec le poids en kilogrammes,31,weight,0..1,,number,
 ,,Taille,,,,A valoriser avec la taille en centimètres du patient,109,height,0..1,,number,

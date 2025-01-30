@@ -175,8 +175,6 @@ components:
           $ref: '#/components/schemas/administrativeFile'
         identity:
           $ref: '#/components/schemas/Identity'
-        healthMotive:
-          $ref: '#/components/schemas/healthMotive'
         detail:
           $ref: '#/components/schemas/patientDetail'
         hypothesis:
@@ -630,94 +628,6 @@ components:
           $ref: '#/components/schemas/detailedName'
       additionalProperties: false
       example: example.json#/patient/0/identity
-    healthMotive:
-      type: object
-      title: "Motif de recours m\xE9dico-secouriste"
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - code
-      - label
-      properties:
-        code:
-          type: string
-          title: Code
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/healthMotive/code
-          description: "A valoriser avec le code de la nomenclature associ\xE9e"
-          enum:
-          - M01.00
-          - M01.01
-          - M01.02
-          - M01.03
-          - M02.00
-          - M02.01
-          - M02.02
-          - M02.03
-          - M02.04
-          - M02.05
-          - M02.06
-          - M02.07
-          - M02.08
-          - M02.09
-          - M02.10
-          - M03.00
-          - M03.01
-          - M03.02
-          - M03.03
-          - M03.04
-          - M03.05
-          - M03.06
-          - M03.07
-          - M03.08
-          - M03.09
-          - M03.10
-          - M03.11
-          - M03.12
-          - M03.13
-          - M03.14
-          - M03.15
-          - M03.16
-          - M03.17
-          - M03.18
-          - M03.19
-          - M03.20
-          - M03.21
-          - M03.22
-          - M04.00
-          - M04.01
-          - M04.02
-          - M04.03
-          - M04.04
-          - M05.00
-          - M05.01
-          - M05.02
-          - M06.00
-          - M06.01
-          - M06.02
-          - M06.03
-          - M06.04
-          - M07.00
-          examples:
-          - C07.13.02
-        label:
-          type: string
-          title: "Libell\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/healthMotive/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
-            e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
-            tre un code, il peut choisir d'afficher le libell\xE9 qui est obligatoirement\
-            \ fourni avec le code."
-          examples:
-          - "Rod\xE9o automobile"
-      additionalProperties: false
-      example: example.json#/patient/0/healthMotive
-      examples:
-      - code: C07.13.02
-        label: "Rod\xE9o automobile"
     patientDetail:
       type: object
       title: Informations patient
@@ -835,9 +745,9 @@ components:
           enum:
           - NIR
           - SINUS
-          - SI-VIC
           - DOSSARD
           - PLACE
+          - AUTRE
           examples:
           - "NIR, SINUS, SI-VIC, \u2026"
         value:

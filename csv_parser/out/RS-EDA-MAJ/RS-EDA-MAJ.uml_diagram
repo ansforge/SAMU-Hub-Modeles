@@ -108,13 +108,6 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet Identity</I></TD></TR>
                 </TABLE>>]
 	identity -> patient [headlabel=1 taillabel="0..1"]
-	healthMotive [label=<<TABLE>
-                <TR>
-                <TD ><B>healthMotive</B></TD>
-                </TR>
-                <TR><TD  BORDER="0"><I>objet healthMotive</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
-                </TABLE>>]
-	healthMotive -> patient [headlabel=1 taillabel="0..1"]
 	detail [label=<<TABLE>
                 <TR>
                 <TD ><B>detail</B></TD>
