@@ -17,6 +17,7 @@ package com.hubsante.model.validator;
 
 import com.hubsante.model.TestMessagesHelper;
 import com.hubsante.model.exception.ValidationException;
+import com.hubsante.model.utils.TestFileUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
@@ -32,14 +33,21 @@ import java.util.Objects;
 
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.config.Constants.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class EnvelopeValidatorTest extends AbstractValidatorTest{
     
     private static final Logger log = LoggerFactory.getLogger(EnvelopeValidatorTest.class);
 
-    //region Passes validation
-    //endregion
+    @Test
+    @DisplayName("check EDXL envelope schemas availability")
+    public void checkEdxlEnvelopeSchemasAvailability() {
+        assertDoesNotThrow(() -> new File(Thread.currentThread().getContextClassLoader()
+                .getResource("json-schema/" + ENVELOPE_SCHEMA).getFile()));
+
+        assertDoesNotThrow(() -> new File(Thread.currentThread().getContextClassLoader()
+                .getResource("xsd/" + ENVELOPE_XSD).getFile()));
+    }
 
     //region Fails validation
     @Test
