@@ -21,7 +21,6 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from hubsante_model.health.models.administrative_file import AdministrativeFile
-from hubsante_model.health.models.health_motive import HealthMotive
 from hubsante_model.health.models.hypothesis import Hypothesis
 from hubsante_model.health.models.identity import Identity
 from hubsante_model.health.models.patient_detail import PatientDetail
@@ -35,10 +34,9 @@ class Patient(BaseModel):
     patient_id: Annotated[str, Field(strict=True)] = Field(description="Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient. Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un n°patient unique n'existe pas dans le système émetteur : {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}   ", alias="patientId")
     administrative_file: Optional[AdministrativeFile] = Field(default=None, alias="administrativeFile")
     identity: Optional[Identity] = None
-    health_motive: Optional[HealthMotive] = Field(default=None, alias="healthMotive")
     detail: Optional[PatientDetail] = None
     hypothesis: Optional[Hypothesis] = None
-    __properties: ClassVar[List[str]] = ["patientId", "administrativeFile", "identity", "healthMotive", "detail", "hypothesis"]
+    __properties: ClassVar[List[str]] = ["patientId", "administrativeFile", "identity", "detail", "hypothesis"]
 
     @field_validator('patient_id')
     def patient_id_validate_regular_expression(cls, value):
@@ -92,9 +90,6 @@ class Patient(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of identity
         if self.identity:
             _dict['identity'] = self.identity.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of health_motive
-        if self.health_motive:
-            _dict['healthMotive'] = self.health_motive.to_dict()
         # override the default output from pydantic by calling `to_dict()` of detail
         if self.detail:
             _dict['detail'] = self.detail.to_dict()
@@ -116,7 +111,6 @@ class Patient(BaseModel):
             "patientId": obj.get("patientId"),
             "administrativeFile": AdministrativeFile.from_dict(obj["administrativeFile"]) if obj.get("administrativeFile") is not None else None,
             "identity": Identity.from_dict(obj["identity"]) if obj.get("identity") is not None else None,
-            "healthMotive": HealthMotive.from_dict(obj["healthMotive"]) if obj.get("healthMotive") is not None else None,
             "detail": PatientDetail.from_dict(obj["detail"]) if obj.get("detail") is not None else None,
             "hypothesis": Hypothesis.from_dict(obj["hypothesis"]) if obj.get("hypothesis") is not None else None
         })
