@@ -61,8 +61,48 @@ public class Reference {
       "errorDistributionID";
   private String errorDistributionID;
 
+  /**
+   * Nomenclature permettant d&#39;identifier les différentes étapes
+   * d&#39;intégration et de consultation du message dans le système émetteur
+   */
+  public enum StepEnum {
+    RECU("RECU"),
+
+    ERREUR("ERREUR"),
+
+    CREE("CREE"),
+
+    CONSULTE("CONSULTE"),
+
+    SUPPRIME_("SUPPRIME ");
+
+    private String value;
+
+    StepEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StepEnum fromValue(String value) {
+      for (StepEnum b : StepEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_STEP = "step";
-  private String step;
+  private StepEnum step;
 
   public Reference() {}
 
@@ -135,7 +175,7 @@ public class Reference {
     this.errorDistributionID = errorDistributionID;
   }
 
-  public Reference step(String step) {
+  public Reference step(StepEnum step) {
 
     this.step = step;
     return this;
@@ -149,13 +189,13 @@ public class Reference {
   @JsonProperty(JSON_PROPERTY_STEP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getStep() {
+  public StepEnum getStep() {
     return step;
   }
 
   @JsonProperty(JSON_PROPERTY_STEP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStep(String step) {
+  public void setStep(StepEnum step) {
     this.step = step;
   }
 

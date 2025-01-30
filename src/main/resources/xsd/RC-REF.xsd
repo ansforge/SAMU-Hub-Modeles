@@ -17,10 +17,19 @@
                     <documentation>Identifiant unique du message d'erreur lié</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="step" type="string">
+            <element minOccurs="0" name="step">
                 <annotation>
                     <documentation>Nomenclature permettant d'identifier les différentes étapes d'intégration et de consultation du message dans le système émetteur</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="RECU"/>
+                        <enumeration value="ERREUR"/>
+                        <enumeration value="CREE"/>
+                        <enumeration value="CONSULTE"/>
+                        <enumeration value="SUPPRIME "/>
+                    </restriction>
+                </simpleType>
             </element>
         </sequence>
     </complexType>

@@ -53,6 +53,12 @@ components:
           description: "Nomenclature permettant d'identifier les diff\xE9rentes \xE9\
             tapes d'int\xE9gration et de consultation du message dans le syst\xE8\
             me \xE9metteur"
+          enum:
+          - RECU
+          - ERREUR
+          - CREE
+          - CONSULTE
+          - 'SUPPRIME '
           examples:
           - None
       additionalProperties: false
