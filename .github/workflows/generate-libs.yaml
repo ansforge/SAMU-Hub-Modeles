@@ -133,7 +133,7 @@ jobs:
           python -m build
 
       - name: Python - Upload package as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: python-package-artifact
           path: ./generator_python/package/dist/
