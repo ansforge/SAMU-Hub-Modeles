@@ -143,7 +143,7 @@ public class Reference {
 
   /**
    * Nomenclature permettant d&#39;identifier les différentes étapes
-   *d&#39;intégration et de consultation du dossier dans le système émetteur
+   *d&#39;intégration et de consultation du message dans le système émetteur
    * @return step
    **/
   @JsonProperty(JSON_PROPERTY_STEP)
