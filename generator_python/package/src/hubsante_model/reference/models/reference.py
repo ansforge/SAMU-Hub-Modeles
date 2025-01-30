@@ -38,8 +38,8 @@ class Reference(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['RECU', 'ERREUR', 'CREE', 'CONSULTE', 'SUPPRIME ']):
-            raise ValueError("must be one of enum values ('RECU', 'ERREUR', 'CREE', 'CONSULTE', 'SUPPRIME ')")
+        if value not in set(['RECU', 'ERREUR', 'INTEGRE', 'CONSULTE', 'SUPPRIME']):
+            raise ValueError("must be one of enum values ('RECU', 'ERREUR', 'INTEGRE', 'CONSULTE', 'SUPPRIME')")
         return value
 
     model_config = ConfigDict(

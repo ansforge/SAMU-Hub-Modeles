@@ -134,7 +134,7 @@ module Rpis
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @resource_type.nil?
-      resource_type_validator = EnumAttributeValidator.new('String', ["SMUR", "SMUR.ADULT", "SMUR.PED", "SMUR.UMH-S", "SMUR.CUMP", "HOSPIT", "LIBERAL", "LIBERAL.MG", "LIBERAL.PHARM", "LIBERAL.INF", "LIBERAL.KINE", "LIBERAL.SOS", "LIBERAL.MMG", "LIBERAL.MSPD", "LIBERAL.MCS", "LIBERAL.SPEMED", "LIBERAL.DENT", "LIBERAL.LABO", "LIBERAL.AUTREPRO", "TSU ", "SIS", "SIS.MEDSP", "SIS.ISP", "SIS.SP", "AASC", "FDO", "FDO.PN", "FDO.GEND", "FDO.PM", "FDO.DOUANES", "AUTRE", "AUTRE.ADM", "AUTRE.DAE", "AUTRE.AUTRE"])
+      resource_type_validator = EnumAttributeValidator.new('String', ["SMUR", "SMUR.ADULT", "SMUR.PED", "SMUR.UMH-S", "SMUR.CUMP", "HOSPIT", "LIBERAL", "LIBERAL.MG", "LIBERAL.PHARM", "LIBERAL.INF", "LIBERAL.KINE", "LIBERAL.SOS", "LIBERAL.MMG", "LIBERAL.MSPD", "LIBERAL.MCS", "LIBERAL.SPEMED", "LIBERAL.DENT", "LIBERAL.LABO", "LIBERAL.AUTREPRO", "TSU", "SIS", "SIS.MEDSP", "SIS.ISP", "SIS.SP", "AASC", "FDO", "FDO.PN", "FDO.GEND", "FDO.PM", "FDO.DOUANES", "AUTRE", "AUTRE.ADM", "AUTRE.DAE", "AUTRE.AUTRE"])
       return false unless resource_type_validator.valid?(@resource_type)
       return false if @vehicle_type.nil?
       vehicle_type_validator = EnumAttributeValidator.new('String', ["AASC", "AASC.VLSC", "AASC.VPSP", "AASC.AUTRESC", "AUTREVEC", "AUTREVEC.APIED", "AUTREVEC.AVION", "AUTREVEC.PERSO", "AUTREVEC.TAXI", "AUTREVEC.TRAIN", "AUTREVEC.TRANSP", "AUTREVEC.AUTRE", "AUTREVEC.AUTRETRA", "FSI", "FSI.HELIFSI", "FSI.VLFSI", "FSI.FFSI", "FSI.VHFSI", "LIB", "LIB.MEDV", "LIB.INF", "LIB.AUTREPRO", "SIS", "SIS.DRAGON", "SIS.AVSC", "SIS.FEUSIS", "SIS.GRIMP", "SIS.NAVISIS", "SIS.PCSIS", "SIS.SRSIS", "SIS.VCH", "SIS.VLCG", "SIS.VLISP", "SIS.VLMSP", "SIS.VLSIS", "SIS.VPL", "SIS.VPMA", "SIS.VR", "SIS.VSAV", "SIS.MOYSSE", "SIS.AUTRESIS", "SMUR", "SMUR.VLM", "SMUR.VL", "SMUR.PSM1", "SMUR.PSM2", "SMUR.PSM3", "SMUR.PSMP", "SMUR.VPC", "SMUR.AR", "SMUR.AR-BAR", "SMUR.AR-PED", "SMUR.HELISMUR", "SMUR.HELISAN", "SMUR.AVSMUR", "SMUR.AVSAN", "SMUR.NAVISMUR", "TSU", "TSU.VSL", "TSU.AMB-GV", "TSU.AMB-PV", "TSU.AMB-BAR", "TSU.AMB"])
@@ -148,7 +148,7 @@ module Rpis
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] resource_type Object to be assigned
     def resource_type=(resource_type)
-      validator = EnumAttributeValidator.new('String', ["SMUR", "SMUR.ADULT", "SMUR.PED", "SMUR.UMH-S", "SMUR.CUMP", "HOSPIT", "LIBERAL", "LIBERAL.MG", "LIBERAL.PHARM", "LIBERAL.INF", "LIBERAL.KINE", "LIBERAL.SOS", "LIBERAL.MMG", "LIBERAL.MSPD", "LIBERAL.MCS", "LIBERAL.SPEMED", "LIBERAL.DENT", "LIBERAL.LABO", "LIBERAL.AUTREPRO", "TSU ", "SIS", "SIS.MEDSP", "SIS.ISP", "SIS.SP", "AASC", "FDO", "FDO.PN", "FDO.GEND", "FDO.PM", "FDO.DOUANES", "AUTRE", "AUTRE.ADM", "AUTRE.DAE", "AUTRE.AUTRE"])
+      validator = EnumAttributeValidator.new('String', ["SMUR", "SMUR.ADULT", "SMUR.PED", "SMUR.UMH-S", "SMUR.CUMP", "HOSPIT", "LIBERAL", "LIBERAL.MG", "LIBERAL.PHARM", "LIBERAL.INF", "LIBERAL.KINE", "LIBERAL.SOS", "LIBERAL.MMG", "LIBERAL.MSPD", "LIBERAL.MCS", "LIBERAL.SPEMED", "LIBERAL.DENT", "LIBERAL.LABO", "LIBERAL.AUTREPRO", "TSU", "SIS", "SIS.MEDSP", "SIS.ISP", "SIS.SP", "AASC", "FDO", "FDO.PN", "FDO.GEND", "FDO.PM", "FDO.DOUANES", "AUTRE", "AUTRE.ADM", "AUTRE.DAE", "AUTRE.AUTRE"])
       unless validator.valid?(resource_type)
         fail ArgumentError, "invalid value for \"resource_type\", must be one of #{validator.allowable_values}."
       end

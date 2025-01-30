@@ -187,7 +187,7 @@ module Health
       return false if @decision_type.nil?
       decision_type_validator = EnumAttributeValidator.new('String', ["CONSEIL", "PMT", "INTER", "ORIENT", "PASPLUS"])
       return false unless decision_type_validator.valid?(@decision_type)
-      resource_type_validator = EnumAttributeValidator.new('String', ["SMUR", "SMUR.ADULT", "SMUR.PED", "SMUR.UMH-S", "SMUR.CUMP", "HOSPIT", "LIBERAL", "LIBERAL.MG", "LIBERAL.PHARM", "LIBERAL.INF", "LIBERAL.KINE", "LIBERAL.SOS", "LIBERAL.MMG", "LIBERAL.MSPD", "LIBERAL.MCS", "LIBERAL.SPEMED", "LIBERAL.DENT", "LIBERAL.LABO", "LIBERAL.AUTREPRO", "TSU ", "SIS", "SIS.MEDSP", "SIS.ISP", "SIS.SP", "AASC", "FDO", "FDO.PN", "FDO.GEND", "FDO.PM", "FDO.DOUANES", "AUTRE", "AUTRE.ADM", "AUTRE.DAE", "AUTRE.AUTRE"])
+      resource_type_validator = EnumAttributeValidator.new('String', ["SMUR", "SMUR.ADULT", "SMUR.PED", "SMUR.UMH-S", "SMUR.CUMP", "HOSPIT", "LIBERAL", "LIBERAL.MG", "LIBERAL.PHARM", "LIBERAL.INF", "LIBERAL.KINE", "LIBERAL.SOS", "LIBERAL.MMG", "LIBERAL.MSPD", "LIBERAL.MCS", "LIBERAL.SPEMED", "LIBERAL.DENT", "LIBERAL.LABO", "LIBERAL.AUTREPRO", "TSU", "SIS", "SIS.MEDSP", "SIS.ISP", "SIS.SP", "AASC", "FDO", "FDO.PN", "FDO.GEND", "FDO.PM", "FDO.DOUANES", "AUTRE", "AUTRE.ADM", "AUTRE.DAE", "AUTRE.AUTRE"])
       return false unless resource_type_validator.valid?(@resource_type)
       orientation_type_validator = EnumAttributeValidator.new('String', ["URGENCES", "REA-USI", "SANTE", "CABINET", "DOMICILE", "EPHAD", "AUTRE"])
       return false unless orientation_type_validator.valid?(@orientation_type)
@@ -222,7 +222,7 @@ module Health
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] resource_type Object to be assigned
     def resource_type=(resource_type)
-      validator = EnumAttributeValidator.new('String', ["SMUR", "SMUR.ADULT", "SMUR.PED", "SMUR.UMH-S", "SMUR.CUMP", "HOSPIT", "LIBERAL", "LIBERAL.MG", "LIBERAL.PHARM", "LIBERAL.INF", "LIBERAL.KINE", "LIBERAL.SOS", "LIBERAL.MMG", "LIBERAL.MSPD", "LIBERAL.MCS", "LIBERAL.SPEMED", "LIBERAL.DENT", "LIBERAL.LABO", "LIBERAL.AUTREPRO", "TSU ", "SIS", "SIS.MEDSP", "SIS.ISP", "SIS.SP", "AASC", "FDO", "FDO.PN", "FDO.GEND", "FDO.PM", "FDO.DOUANES", "AUTRE", "AUTRE.ADM", "AUTRE.DAE", "AUTRE.AUTRE"])
+      validator = EnumAttributeValidator.new('String', ["SMUR", "SMUR.ADULT", "SMUR.PED", "SMUR.UMH-S", "SMUR.CUMP", "HOSPIT", "LIBERAL", "LIBERAL.MG", "LIBERAL.PHARM", "LIBERAL.INF", "LIBERAL.KINE", "LIBERAL.SOS", "LIBERAL.MMG", "LIBERAL.MSPD", "LIBERAL.MCS", "LIBERAL.SPEMED", "LIBERAL.DENT", "LIBERAL.LABO", "LIBERAL.AUTREPRO", "TSU", "SIS", "SIS.MEDSP", "SIS.ISP", "SIS.SP", "AASC", "FDO", "FDO.PN", "FDO.GEND", "FDO.PM", "FDO.DOUANES", "AUTRE", "AUTRE.ADM", "AUTRE.DAE", "AUTRE.AUTRE"])
       unless validator.valid?(resource_type)
         fail ArgumentError, "invalid value for \"resource_type\", must be one of #{validator.allowable_values}."
       end
