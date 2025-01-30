@@ -29,7 +29,7 @@ class Reference(BaseModel):
     distribution_id: StrictStr = Field(description="Identifiant unique du message référencé", alias="distributionID")
     refused: Optional[StrictBool] = Field(default=None, description="Indique si le message acquitté a été refusé")
     error_distribution_id: Optional[StrictStr] = Field(default=None, description="Identifiant unique du message d'erreur lié", alias="errorDistributionID")
-    step: Optional[StrictStr] = Field(default=None, description="Nomenclature permettant d'identifier les différentes étapes d'intégration et de consultation du dossier dans le système émetteur")
+    step: Optional[StrictStr] = Field(default=None, description="Nomenclature permettant d'identifier les différentes étapes d'intégration et de consultation du message dans le système émetteur")
     __properties: ClassVar[List[str]] = ["distributionID", "refused", "errorDistributionID", "step"]
 
     model_config = ConfigDict(

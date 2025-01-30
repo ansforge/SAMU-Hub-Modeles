@@ -24,7 +24,7 @@ module Reference
     # Identifiant unique du message d'erreur lié
     attr_accessor :error_distribution_id
 
-    # Nomenclature permettant d'identifier les différentes étapes d'intégration et de consultation du dossier dans le système émetteur
+    # Nomenclature permettant d'identifier les différentes étapes d'intégration et de consultation du message dans le système émetteur
     attr_accessor :step
 
     # Attribute mapping from ruby-style variable name to JSON key.

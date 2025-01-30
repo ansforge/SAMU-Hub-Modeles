@@ -42,7 +42,7 @@ namespace HubsanteModel/Reference.Model
         /// <param name="distributionID">Identifiant unique du message référencé (required).</param>
         /// <param name="refused">Indique si le message acquitté a été refusé.</param>
         /// <param name="errorDistributionID">Identifiant unique du message d&#39;erreur lié.</param>
-        /// <param name="step">Nomenclature permettant d&#39;identifier les différentes étapes d&#39;intégration et de consultation du dossier dans le système émetteur.</param>
+        /// <param name="step">Nomenclature permettant d&#39;identifier les différentes étapes d&#39;intégration et de consultation du message dans le système émetteur.</param>
         public Reference(string distributionID = default(string), bool refused = default(bool), string errorDistributionID = default(string), string step = default(string))
         {
             // to ensure "distributionID" is required (not null)
@@ -87,9 +87,9 @@ namespace HubsanteModel/Reference.Model
         public string ErrorDistributionID { get; set; }
 
         /// <summary>
-        /// Nomenclature permettant d&#39;identifier les différentes étapes d&#39;intégration et de consultation du dossier dans le système émetteur
+        /// Nomenclature permettant d&#39;identifier les différentes étapes d&#39;intégration et de consultation du message dans le système émetteur
         /// </summary>
-        /// <value>Nomenclature permettant d&#39;identifier les différentes étapes d&#39;intégration et de consultation du dossier dans le système émetteur</value>
+        /// <value>Nomenclature permettant d&#39;identifier les différentes étapes d&#39;intégration et de consultation du message dans le système émetteur</value>
         /*
         <example>example.json#/step</example>
         */
