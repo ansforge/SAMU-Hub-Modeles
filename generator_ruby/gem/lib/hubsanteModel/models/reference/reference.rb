@@ -27,6 +27,28 @@ module Reference
     # Nomenclature permettant d'identifier les différentes étapes d'intégration et de consultation du message dans le système émetteur
     attr_accessor :step
 
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -109,7 +131,19 @@ module Reference
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @distribution_id.nil?
+      step_validator = EnumAttributeValidator.new('String', ["RECU", "ERREUR", "CREE", "CONSULTE", "SUPPRIME "])
+      return false unless step_validator.valid?(@step)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] step Object to be assigned
+    def step=(step)
+      validator = EnumAttributeValidator.new('String', ["RECU", "ERREUR", "CREE", "CONSULTE", "SUPPRIME "])
+      unless validator.valid?(step)
+        fail ArgumentError, "invalid value for \"step\", must be one of #{validator.allowable_values}."
+      end
+      @step = step
     end
 
     # Checks equality by comparing each attribute.
