@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:3.0" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:3.0" xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:eda:1.9:reference" elementFormDefault="qualified" targetNamespace="urn:emergency:eda:1.9:reference" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="reference" type="x:reference"/>
     <complexType name="reference">
         <sequence>
@@ -17,10 +17,19 @@
                     <documentation>Identifiant unique du message d'erreur lié</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="step" type="string">
+            <element minOccurs="0" name="step">
                 <annotation>
-                    <documentation>Nomenclature permettant d'identifier les différentes étapes d'intégration et de consultation du dossier dans le système émetteur</documentation>
+                    <documentation>Nomenclature permettant d'identifier les différentes étapes d'intégration et de consultation du message dans le système émetteur</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="RECU"/>
+                        <enumeration value="ERREUR"/>
+                        <enumeration value="INTEGRE"/>
+                        <enumeration value="CONSULTE"/>
+                        <enumeration value="SUPPRIME"/>
+                    </restriction>
+                </simpleType>
             </element>
         </sequence>
     </complexType>

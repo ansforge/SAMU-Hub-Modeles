@@ -42,10 +42,9 @@ namespace HubsanteModel/Health.Model
         /// <param name="patientId">Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient. Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un n°patient unique n&#39;existe pas dans le système émetteur : {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}    (required).</param>
         /// <param name="administrativeFile">administrativeFile.</param>
         /// <param name="identity">identity.</param>
-        /// <param name="healthMotive">healthMotive.</param>
         /// <param name="detail">detail.</param>
         /// <param name="hypothesis">hypothesis.</param>
-        public Patient(string patientId = default(string), AdministrativeFile administrativeFile = default(AdministrativeFile), Identity identity = default(Identity), HealthMotive healthMotive = default(HealthMotive), PatientDetail detail = default(PatientDetail), Hypothesis hypothesis = default(Hypothesis))
+        public Patient(string patientId = default(string), AdministrativeFile administrativeFile = default(AdministrativeFile), Identity identity = default(Identity), PatientDetail detail = default(PatientDetail), Hypothesis hypothesis = default(Hypothesis))
         {
             // to ensure "patientId" is required (not null)
             if (patientId == null)
@@ -55,7 +54,6 @@ namespace HubsanteModel/Health.Model
             this.PatientId = patientId;
             this.AdministrativeFile = administrativeFile;
             this.Identity = identity;
-            this.HealthMotive = healthMotive;
             this.Detail = detail;
             this.Hypothesis = hypothesis;
         }
@@ -83,12 +81,6 @@ namespace HubsanteModel/Health.Model
         public Identity Identity { get; set; }
 
         /// <summary>
-        /// Gets or Sets HealthMotive
-        /// </summary>
-        [DataMember(Name = "healthMotive", EmitDefaultValue = false)]
-        public HealthMotive HealthMotive { get; set; }
-
-        /// <summary>
         /// Gets or Sets Detail
         /// </summary>
         [DataMember(Name = "detail", EmitDefaultValue = false)]
@@ -111,7 +103,6 @@ namespace HubsanteModel/Health.Model
             sb.Append("  PatientId: ").Append(PatientId).Append("\n");
             sb.Append("  AdministrativeFile: ").Append(AdministrativeFile).Append("\n");
             sb.Append("  Identity: ").Append(Identity).Append("\n");
-            sb.Append("  HealthMotive: ").Append(HealthMotive).Append("\n");
             sb.Append("  Detail: ").Append(Detail).Append("\n");
             sb.Append("  Hypothesis: ").Append(Hypothesis).Append("\n");
             sb.Append("}\n");

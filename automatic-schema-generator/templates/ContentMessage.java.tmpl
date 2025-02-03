@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 {{ range (datasource "config").schemas }}
 {{- if eq .automaticGeneration "Y" -}}
-import com.hubsante.model.{{ .package }}.{{ .rootElement | title }};
-import com.hubsante.model.{{ .package }}.{{ .rootElement | title }}Wrapper;
-{{ end }}{{ end -}}
+import com.hubsante.model.{{ .package }}.{{ .rootElement | title }};{{ if ne .rootElement "distributionElement" }}
+import com.hubsante.model.{{ .package }}.{{ .rootElement | title }}Wrapper;{{ end }}{{ end }}
+{{ end -}}
 import com.hubsante.model.report.ErrorWrapper;
 import com.hubsante.model.custom.CustomMessage;
 import java.util.Map;
@@ -19,8 +19,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
-@JsonSubTypes({ {{ range $i, $e := (datasource "config").schemas }}{{if eq .automaticGeneration "Y"}}
-        @JsonSubTypes.Type({{ .rootElement | title }}Wrapper.class),{{end}}{{end}}
+@JsonSubTypes({ {{ range $i, $e := (datasource "config").schemas }}{{if eq .automaticGeneration "Y"}}{{ if ne .rootElement "distributionElement" }}
+        @JsonSubTypes.Type({{ .rootElement | title }}Wrapper.class),{{ end }}{{end}}{{end}}
         @JsonSubTypes.Type(ErrorWrapper.class),
         @JsonSubTypes.Type(CustomMessage.class)
 })

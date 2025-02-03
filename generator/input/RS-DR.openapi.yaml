@@ -44,7 +44,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/status
-          description: "A quoi \xE7a sert d'avoir un objet demande "
+          description: "A valoriser avec l'\xE9tat d'annulation de la demande le cas\
+            \ \xE9ch\xE9ant"
           enum:
           - ANNULEE
           examples:

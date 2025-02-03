@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:3.0:technical" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:3.0:technical" xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:eda:1.9:technical" elementFormDefault="qualified" targetNamespace="urn:emergency:eda:1.9:technical" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="technical" type="x:technical"/>
     <complexType name="technical">
         <sequence>

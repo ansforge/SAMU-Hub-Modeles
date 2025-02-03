@@ -32,9 +32,9 @@ namespace HubsanteModel/Resources.request.Model
     public partial class ResourcesRequest : IValidatableObject
     {
         /// <summary>
-        /// A quoi ça sert d&#39;avoir un objet demande 
+        /// A valoriser avec l&#39;état d&#39;annulation de la demande le cas échéant
         /// </summary>
-        /// <value>A quoi ça sert d&#39;avoir un objet demande </value>
+        /// <value>A valoriser avec l&#39;état d&#39;annulation de la demande le cas échéant</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -47,9 +47,9 @@ namespace HubsanteModel/Resources.request.Model
 
 
         /// <summary>
-        /// A quoi ça sert d&#39;avoir un objet demande 
+        /// A valoriser avec l&#39;état d&#39;annulation de la demande le cas échéant
         /// </summary>
-        /// <value>A quoi ça sert d&#39;avoir un objet demande </value>
+        /// <value>A valoriser avec l&#39;état d&#39;annulation de la demande le cas échéant</value>
         /*
         <example>example.json#/status</example>
         */
@@ -65,7 +65,7 @@ namespace HubsanteModel/Resources.request.Model
         /// </summary>
         /// <param name="caseId">A valoriser avec l&#39;identifiant partagé de l&#39;affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier).  Il est valorisé comme suit lors de sa création :  {pays}.{domaine}.{organisation}.{senderCaseId}  Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.  Il doit être unique dans l&#39;ensemble des systèmes : le numéro de dossier fourni par celui qui génère l&#39;identifiant partagé doit donc être un numéro unique dans son système. (required).</param>
         /// <param name="request">request (required).</param>
-        /// <param name="status">A quoi ça sert d&#39;avoir un objet demande .</param>
+        /// <param name="status">A valoriser avec l&#39;état d&#39;annulation de la demande le cas échéant.</param>
         public ResourcesRequest(string caseId = default(string), Request request = default(Request), StatusEnum? status = default(StatusEnum?))
         {
             // to ensure "caseId" is required (not null)

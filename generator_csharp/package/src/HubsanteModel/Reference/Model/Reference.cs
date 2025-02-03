@@ -32,6 +32,54 @@ namespace HubsanteModel/Reference.Model
     public partial class Reference : IValidatableObject
     {
         /// <summary>
+        /// Nomenclature permettant d&#39;identifier les différentes étapes d&#39;intégration et de consultation du message dans le système émetteur
+        /// </summary>
+        /// <value>Nomenclature permettant d&#39;identifier les différentes étapes d&#39;intégration et de consultation du message dans le système émetteur</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StepEnum
+        {
+            /// <summary>
+            /// Enum RECU for value: RECU
+            /// </summary>
+            [EnumMember(Value = "RECU")]
+            RECU = 1,
+
+            /// <summary>
+            /// Enum ERREUR for value: ERREUR
+            /// </summary>
+            [EnumMember(Value = "ERREUR")]
+            ERREUR = 2,
+
+            /// <summary>
+            /// Enum CREE for value: CREE
+            /// </summary>
+            [EnumMember(Value = "CREE")]
+            CREE = 3,
+
+            /// <summary>
+            /// Enum CONSULTE for value: CONSULTE
+            /// </summary>
+            [EnumMember(Value = "CONSULTE")]
+            CONSULTE = 4,
+
+            /// <summary>
+            /// Enum SUPPRIME for value: SUPPRIME 
+            /// </summary>
+            [EnumMember(Value = "SUPPRIME ")]
+            SUPPRIME = 5
+        }
+
+
+        /// <summary>
+        /// Nomenclature permettant d&#39;identifier les différentes étapes d&#39;intégration et de consultation du message dans le système émetteur
+        /// </summary>
+        /// <value>Nomenclature permettant d&#39;identifier les différentes étapes d&#39;intégration et de consultation du message dans le système émetteur</value>
+        /*
+        <example>example.json#/step</example>
+        */
+        [DataMember(Name = "step", EmitDefaultValue = false)]
+        public StepEnum? Step { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="Reference" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -42,8 +90,8 @@ namespace HubsanteModel/Reference.Model
         /// <param name="distributionID">Identifiant unique du message référencé (required).</param>
         /// <param name="refused">Indique si le message acquitté a été refusé.</param>
         /// <param name="errorDistributionID">Identifiant unique du message d&#39;erreur lié.</param>
-        /// <param name="step">Nomenclature permettant d&#39;identifier les différentes étapes d&#39;intégration et de consultation du dossier dans le système émetteur.</param>
-        public Reference(string distributionID = default(string), bool refused = default(bool), string errorDistributionID = default(string), string step = default(string))
+        /// <param name="step">Nomenclature permettant d&#39;identifier les différentes étapes d&#39;intégration et de consultation du message dans le système émetteur.</param>
+        public Reference(string distributionID = default(string), bool refused = default(bool), string errorDistributionID = default(string), StepEnum? step = default(StepEnum?))
         {
             // to ensure "distributionID" is required (not null)
             if (distributionID == null)
@@ -85,16 +133,6 @@ namespace HubsanteModel/Reference.Model
         */
         [DataMember(Name = "errorDistributionID", EmitDefaultValue = false)]
         public string ErrorDistributionID { get; set; }
-
-        /// <summary>
-        /// Nomenclature permettant d&#39;identifier les différentes étapes d&#39;intégration et de consultation du dossier dans le système émetteur
-        /// </summary>
-        /// <value>Nomenclature permettant d&#39;identifier les différentes étapes d&#39;intégration et de consultation du dossier dans le système émetteur</value>
-        /*
-        <example>example.json#/step</example>
-        */
-        [DataMember(Name = "step", EmitDefaultValue = false)]
-        public string Step { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

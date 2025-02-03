@@ -102,10 +102,6 @@
             "code": "O20",
             "label": "Hémorragie en début de grossesse"
           }
-        },
-        "healthMotive": {
-          "code": "M03.10",
-          "label": "Malaise avec perte de connaissance initiale"
         }
       }
     ],

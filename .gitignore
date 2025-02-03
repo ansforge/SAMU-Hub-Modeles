@@ -1,6 +1,7 @@
 .gradle/**
 generator/classes/**
 .idea/
+.vscode/
 build/**
 reportgeneratortool/**
 coveragereport/**
@@ -8,7 +9,8 @@ coveragereport/**
 web_specs/generated/**
 bin/
 
-**/openapitools.json
+# À versionner pour suivre la version d'OpenAPI utilisé pour la génération
+# **/openapitools.json
 
 # Generated libraries packages
 # Python

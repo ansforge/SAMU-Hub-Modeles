@@ -1,0 +1,60 @@
+{
+    "input": "<@U089QKJ74HM>  Sur quelles versions des spécifications es-tu entrainé ?",
+    "context": [
+        {
+            "id": "702ca1c5-7c15-49de-86eb-40c91ecc6ae9",
+            "metadata": {
+                "page": 74,
+                "page_label": "75",
+                "source": "https://hub.esante.gouv.fr/resources/Accompagnement/DSF/24.10.23_Hub%20Sante_Dossier%20des%20Specifications.pdf"
+            },
+            "page_content": "4\n15-15\nVersion 2.0\nAvec la participation de :\n75/189"
+        },
+        {
+            "id": "4dcadcb1-1a23-4aa4-80e7-5a1ce84ec634", 
+            "metadata": {
+                "page": 148,
+                "page_label": "149",
+                "source": "https://hub.esante.gouv.fr/resources/Accompagnement/DSF/24.10.23_Hub%20Sante_Dossier%20des%20Specifications.pdf"
+            },
+            "page_content": "7\n15-NEXSIS\nVersion 1.9\nAvec la participation de :\n149/189"
+        },
+        {
+            "id": "d5383b60-91ce-478d-8dcb-69eb63cb8e63",
+            "metadata": {
+                "page": 112,
+                "page_label": "113", 
+                "source": "https://hub.esante.gouv.fr/resources/Accompagnement/DSF/24.10.23_Hub%20Sante_Dossier%20des%20Specifications.pdf"
+            },
+            "page_content": "5\n15-TABLETTE SMUR\nVersion 1.6\nAvec la participation de :\n113/189"
+        },
+        {
+            "id": "bd66caca-5f4e-489c-aa7a-eb56ba7bff27",
+            "metadata": {
+                "page": 3,
+                "page_label": "4",
+                "source": "https://hub.esante.gouv.fr/resources/Accompagnement/tech/23.09%20DST%20v1.2%20-%20Hub%20Sante%20&%20connecteurs.pdf"
+            },
+            "page_content": "Pilote Hub Santé & connecteurs   \nStatut : En cours | Classification : Restreinte | Version 1.2 Page 3/26 Ce document est la propriété de l'ANS - Son utilisation, sa reproduction ou sa diffusion sans l'autorisation préalable et écrite de l'ANS sont interdites. \n5. Evolutions techniques ........................................................................................................................... 24 6. Développements à réaliser .................................................................................................................... 25 7. Annexes .................................................................................................................................................. 26 7.1. Génération d'un certificat ................................................................................................................... 26  \n1. INTRODUCTION  1.1. Objet du document Ce document décrit en détail les principes et les spécifications techniques permettant de connecter et de gérer les échanges entre : • Le « Hub Santé » de l'ANS • Les logiciels d'éditeurs (appelés « Clients ») se conformant au DST : LRM (Logiciels de Régulation Médicale), logiciels de gestion des hélicoptères, logiciels de tablettes, … \n1.2. Contexte Dans un cadre d'interopérabilité des services d'urgences aussi bien Santé qu'inter-forces, l'ANS souhaite construire une solution d'échanges de messages appelée « Hub Santé » et la connecter avec les logiciels des éditeurs Santé. Afin de connecter ces Clients avec le Hub Santé, l'ANS partage les présentes spécifications. \n1.3. Versions et approche itérative Les travaux et spécifications pour mettre en œuvre un pilote de Hub Santé et de connecteurs associés sont réalisés selon une approche itérative et agile1. La démarche est constituée de petites étapes consécutives permettant de délivrer rapidement des fonctionnalités, valider progressivement les travaux réalisés et de s'adapter aux retours, aux contraintes d'implémentation et à l'expérience acquise lors de la réalisation.  Pour cadrer ces itérations, nous avons introduit un système de versions correspondant à des « sprints »2 et permettant de suivre les différentes étapes du projet. Les sprints concernent le Hub Santé au sens large et n'impliquent donc pas tous des modifications côté Client. La liste des différentes versions réalisée est la suivante :  - v0.1 = Messages vides et acquittements techniques - v0.2 = + Accusés de réception finale - v0.3 = + Sécurisation par certificats et mTLS - v0.4 = + Transcodage et spécifications AsyncAPI - v0.5 = + Hub en Spring Boot et messages CISU  - v0.6 = + Transcodage et validation, authentification par certificat - v0.7 = + Migration Cloud et gestion JSON/XML - v0.8 = + Web (landing & JSV), stabilisation et tests \n 1 Nous cherchons notamment à suivre une approche inspirée par l'Agile Manifesto https://agilemanifesto.org/iso/fr/principles.html  2 https://www.atlassian.com/agile/scrum/sprints"
+        },
+        {
+            "id": "f7534c84-e52b-41e8-93a0-3e3aeeebda6b",
+            "metadata": {
+                "page": 5,
+                "page_label": "6",
+                "source": "https://hub.esante.gouv.fr/resources/Accompagnement/tech/23.09%20DST%20v1.2%20-%20Hub%20Sante%20&%20connecteurs.pdf"
+            },
+            "page_content": "Pilote Hub Santé & connecteurs   \nStatut : En cours | Classification : Restreinte | Version 1.2 Page 5/26 Ce document est la propriété de l'ANS - Son utilisation, sa reproduction ou sa diffusion sans l'autorisation préalable et écrite de l'ANS sont interdites. \n- Développements à réaliser pour plus de détails). En fonction des besoins et contributions, l'ajout d'autres langages est envisageable. Le GitHub est pour le moment privé et les utilisateurs doivent être ajoutés manuellement pour accéder au contenu. Pour cela, il vous suffit de transmettre les identifiants6 des personnes impliquées chez vous à l'adresse mail hubsante.contact@esante.gouv.fr \n1.5. Lexique Abréviations Significations AC Autorité de Certification AMQP Advanced Message Queuing Protocol CISU Cadre d'Interopérabilité des Services d'Urgence CSR Certificate Signing Request DSF Dossier des Spécifications Fonctionnelles : document spécifiant les cas d'usage couverts ainsi que les modèles de données et cinématiques associés DST Dossier des Spécifications Techniques : document spécifiant le fonctionnement du Hub Santé et les caractéristiques techniques du raccordement au Hub Santé EDXL Emergency Data Exchange Language HubEx Plate-forme d'échanges – Hub d'échanges MOM Middleware Orienté Messages PoC Proof of concept PTP Point To Point XML eXtensible Markup Language XSD XML Schema Definition   \n 6 Si besoin, l'inscription à GitHub est gratuite et accessible au lien suivant https://github.com/signup"
+        },
+        {
+            "id": "338c26ad-9f00-485c-96dc-0d1aa693f231",
+            "metadata": {
+                "page": 5,
+                "page_label": "6",
+                "source": "https://hub.esante.gouv.fr/resources/Accompagnement/DSF/24.10.23_Hub%20Sante_Dossier%20des%20Specifications.pdf"
+            },
+            "page_content": "1\nGUIDE DE LECTURE\nCe document détaille les contrats d'interface (appelés Dossier des Spécifications Fonctionnelles -\nDSF) du Hub Santé dans le cadre des échanges de données entre différents acteurs de l'urgence. Il\nregroupe ainsi différents périmètres tels que le 15-15 ou encore le 15-NexSIS.\nLe présent dossier des spécifications est donc découpé en plusieurs DSF1 qui correspondent à ces\ndifférents périmètres fonctionnels; et regroupés dans la table des matières ci-avant.\nLa partie intitulée \"Principes transverses\",reprend l'ensemble des concepts et éléments qui sont\ncommuns à au moins deux périmètres, et ce afin d'éviter de les répéter à plusieurs endroits du\ndocument. Certains de ces éléments ne s'appliquent donc pas forcément à tous les périmètres.\nLa partie intitulée \"Formats d'échange\", détaille l'intégralité des messages qui peuvent transiter\npar le Hub Santé, indépendemment de leur périmètre fonctionnel2 .\nPour faciliter la lecture et l'utilisation générale du document, il est conseillé de vous reporter\ndirectement à la partie qui traite du périmètre que vous souhaitez consulter3.\nChaque partie détaille un DSF et décrit l'ensemble des informations qui lui sont spécifiques; y\ncompris les renvois vers les éléments transverses qui sont nécessaires à la bonne compréhension du\npérimètre.\nPour l'ensemble des spécifications techniquesmerci de vous référer directement à la dernière\nversion du Dossier des Spécifications Techniques (DST); qui n'est pas encore inclus dans ce docu-\nment.\n1. Dossier des spécifications fonctionnelles.\n2. Les messages utilisés pour un périmètre sont précisés dans la partie dédiée à ce périmètre.\n3. Par exemple, la partie15-NexSIS ou la partie15-15\n6/189"
+        }
+    ],
+    "answer": "Je suis entraîné sur les spécifications des versions suivantes : \n\n- 15-15 (Version 2.0)\n- 15-NEXSIS (Version 1.9)\n- 15-TABLETTE SMUR (Version 1.6)\n\nCes versions incluent des participations spécifiques : 75/189 pour 15-15, 149/189 pour 15-NEXSIS, et 113/189 pour 15-TABLETTE SMUR."
+}

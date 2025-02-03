@@ -1,12 +1,12 @@
 openapi: 3.0.0
 components:
   schemas:
-    DistributionElement:
+    distributionElement:
       $id: classpath:/json-schema/schema#
       x-id: RC-DE.schema.json#
       example: example.json#
       type: object
-      title: DistributionElement
+      title: distributionElement
       required:
       - messageId
       - sender

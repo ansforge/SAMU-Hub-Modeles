@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,8 +29,18 @@ class Reference(BaseModel):
     distribution_id: StrictStr = Field(description="Identifiant unique du message référencé", alias="distributionID")
     refused: Optional[StrictBool] = Field(default=None, description="Indique si le message acquitté a été refusé")
     error_distribution_id: Optional[StrictStr] = Field(default=None, description="Identifiant unique du message d'erreur lié", alias="errorDistributionID")
-    step: Optional[StrictStr] = Field(default=None, description="Nomenclature permettant d'identifier les différentes étapes d'intégration et de consultation du dossier dans le système émetteur")
+    step: Optional[StrictStr] = Field(default=None, description="Nomenclature permettant d'identifier les différentes étapes d'intégration et de consultation du message dans le système émetteur")
     __properties: ClassVar[List[str]] = ["distributionID", "refused", "errorDistributionID", "step"]
+
+    @field_validator('step')
+    def step_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['RECU', 'ERREUR', 'CREE', 'CONSULTE', 'SUPPRIME ']):
+            raise ValueError("must be one of enum values ('RECU', 'ERREUR', 'CREE', 'CONSULTE', 'SUPPRIME ')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

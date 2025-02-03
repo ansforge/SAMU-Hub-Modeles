@@ -147,10 +147,6 @@
                 },
                 "nonStrictFeatures": {}
             },
-            "healthMotive": {
-                "code": "C07.13.02",
-                "label": "Rodéo automobile"
-            },
             "detail": {
                 "weight": 31,
                 "height": 109,

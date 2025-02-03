@@ -119,7 +119,7 @@ module Health
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @source.nil?
-      source_validator = EnumAttributeValidator.new('String', ["NIR", "SINUS", "SI-VIC", "DOSSARD", "PLACE"])
+      source_validator = EnumAttributeValidator.new('String', ["NIR", "SINUS", "DOSSARD", "PLACE", "AUTRE"])
       return false unless source_validator.valid?(@source)
       return false if @value.nil?
       true
@@ -128,7 +128,7 @@ module Health
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] source Object to be assigned
     def source=(source)
-      validator = EnumAttributeValidator.new('String', ["NIR", "SINUS", "SI-VIC", "DOSSARD", "PLACE"])
+      validator = EnumAttributeValidator.new('String', ["NIR", "SINUS", "DOSSARD", "PLACE", "AUTRE"])
       unless validator.valid?(source)
         fail ArgumentError, "invalid value for \"source\", must be one of #{validator.allowable_values}."
       end

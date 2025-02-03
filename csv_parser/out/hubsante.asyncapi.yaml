@@ -306,9 +306,8 @@ components:
           $ref: '#/components/schemas/EmbeddedXMLContent'
     EmbeddedJsonContent:
       oneOf: &id001
-      - $ref: '#/components/schemas/technical'
-      - $ref: '#/components/schemas/technicalNoreq'
-      - $ref: '#/components/schemas/DistributionElement'
+      - $ref: '#/components/schemas/distributionElement'
+      - $ref: '#/components/schemas/reference'
       - $ref: '#/components/schemas/createCase'
       - $ref: '#/components/schemas/createCaseHealth'
       - $ref: '#/components/schemas/createCaseHealthUpdate'
@@ -325,8 +324,9 @@ components:
       - $ref: '#/components/schemas/geoResourcesRequest'
       - $ref: '#/components/schemas/geoResourcesDetails'
       - $ref: '#/components/schemas/error'
-      - $ref: '#/components/schemas/reference'
       - $ref: '#/components/schemas/customContent'
+      - $ref: '#/components/schemas/technical'
+      - $ref: '#/components/schemas/technicalNoreq'
     EmbeddedXMLContent:
       oneOf: *id001
     DistributionElement:
@@ -387,470 +387,129 @@ components:
           type: string
         URI:
           type: string
-    technical:
+    distributionElement:
       $id: classpath:/json-schema/schema#
-      x-id: TECHNICAL.schema.json#
+      x-id: RC-DE.schema.json#
       example: example.json#
       type: object
-      title: technical
+      title: distributionElement
       required:
-      - requiredStringField
-      - requiredArray
+      - messageId
+      - sender
+      - sentAt
+      - kind
+      - status
+      - recipient
       properties:
-        requiredStringField:
+        messageId:
           type: string
-          title: Required string
+          title: Identifiant du message
           x-health-only: false
           x-cols: 6
-          example: example.json#/requiredStringField
-          description: This field is required
+          example: example.json#/messageId
+          description: "Identifiant partag\xE9 de l'affaire/dossier, g\xE9n\xE9r\xE9\
+            \ une seule fois par le syst\xE8me du partenaire qui recoit la primo-demande\
+            \ de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit\
+            \ lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+            \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
+            e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
+            \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
+            \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
+            \ num\xE9ro unique dans son syst\xE8me."
+          examples:
+          - d350c9d2-9d76-4568-b0b7-a747ffadc949
+        sender:
+          $ref: '#/components/schemas/sender'
+        sentAt:
+          type: string
+          title: Horodatage envoi message
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/sentAt
+          description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 l'envoi\
+            \ du message. Il doit  \xEAtre coh\xE9rent avec le champ <dateTimeSent>\
+            \ de l'enveloppe EDXL (voir DST).  L'indicateur de fuseau horaire Z ne\
+            \ doit pas \xEAtre utilis\xE9. Le fuseau horaire pour UTC doit \xEAtre\
+            \ repr\xE9sent\xE9 par '-00:00'"
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
+          format: date-time
           examples:
           - None
-        optionalStringField:
+        kind:
           type: string
-          title: Optional string
+          title: Type de message
           x-health-only: false
           x-cols: 6
-          example: example.json#/optionalStringField
-          description: This field is optional
-          examples:
-          - None
-        enumerationField:
-          type: string
-          title: Enumeration
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/enumerationField
-          description: This is an enumeration
+          example: example.json#/kind
+          description: Prend la valeur <distributionKind de l'enveloppe EDXL (voir
+            DST)
           enum:
-          - ENUM_VALUE_1
-          - ENUM_VALUE_2
-          - ENUM_VALUE_3
-          - ENUM_VALUE_4
-          - ENUM_VALUE_5
+          - Report
+          - Update
+          - Cancel
+          - Ack
+          - Error
           examples:
-          - None
-        integerField:
-          type: integer
-          title: Optional integer
+          - ALERT
+        status:
+          type: string
+          title: Statut du message
           x-health-only: false
           x-cols: 6
-          example: example.json#/integerField
-          description: This is an integer
+          example: example.json#/status
+          description: Prend la valeur <distributionStatus> de l'enveloppe EDXL (voir
+            DST)
+          enum:
+          - Actual
+          - Exercise
+          - System
           examples:
-          - None
-        numberField:
-          type: number
-          title: Optional number
+          - ACTUAL
+        recipient:
+          type: array
+          items:
+            $ref: '#/components/schemas/recipient'
+          minItems: 1
+      additionalProperties: true
+    reference:
+      type: object
+      title: "Lien vers d'autres objets \xE9v\xE9nements EMSI"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - ORG_ID
+      - OTHER_EVENT_ID
+      properties:
+        ORG_ID:
+          type: string
+          title: ID de l'organisation
           x-health-only: false
           x-cols: 6
-          example: example.json#/numberField
-          description: This is a number
+          example: example.json#/EVENT/REFERENCE/0/ORG_ID
+          description: "Le format est le suivant {pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*.\nNB : ce champ (EVENT.REFERENCE.ORG_ID)\
+            \ ne peut pas \xEAtre le m\xEAme que le champ CONTEXT.LINK.ID ou EVENT.ID"
           examples:
-          - None
-        booleanField:
-          type: boolean
-          title: Optional boolean
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/booleanField
-          description: This is a boolean
-          examples:
-          - None
-        objectField:
-          $ref: '#/components/schemas/technicalObject'
-        arrayField:
+          - fr.fire.cgo044
+        OTHER_EVENT_ID:
           type: array
           x-health-only: false
           items:
             type: string
-            title: Array
+            title: ID des autres event
             x-health-only: false
             x-cols: 6
-            example: example.json#/arrayField/0
-            description: This is an array
-            examples:
-            - None
-        enumArrayField:
-          type: array
-          x-health-only: false
-          items:
-            type: string
-            title: Array of enumerations
-            x-health-only: false
-            x-cols: 6
-            example: example.json#/enumArrayField/0
-            description: This is an array of enumerations
-            enum:
-            - ENUM_VALUE_10
-            - ENUM_VALUE_20
-            - ENUM_VALUE_30
-            - ENUM_VALUE_40
-            - ENUM_VALUE_50
-            examples:
-            - None
-        requiredArray:
-          type: array
-          x-health-only: false
-          items:
-            type: string
-            title: Required array
-            x-health-only: false
-            x-cols: 6
-            example: example.json#/requiredArray/0
-            description: This array is required
+            example: example.json#/EVENT/REFERENCE/0/OTHER_EVENT_ID/0
+            description: "Indique d'autres identifiants utilis\xE9s pour l'affaire\
+              \ dans le syst\xE8me partenaire.\nA renseigner avec l'identifiant de\
+              \ l'organisation suivi de l'identifiant local de l'affaire du partenaire\
+              \ dans son syst\xE8me.\n{pays}.{domaine}.{organisation}.{structure interne}*.{unit\xE9\
+              \ fonctionnelle}*-{num\xE9ro de dossier}"
             examples:
             - None
           minItems: 1
-        arrayWithMaxLength:
-          type: array
-          x-health-only: false
-          items:
-            type: string
-            title: Array with maximum length
-            x-health-only: false
-            x-cols: 6
-            example: example.json#/arrayWithMaxLength/0
-            description: This is an array with a maximum length
-            examples:
-            - None
-          maxItems: 5
-        phoneNumberField:
-          type: string
-          title: Phone number with regex
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/phoneNumberField
-          description: Phone number with regex
-          pattern: ^\+?[0-9]{2,14}$
-          examples:
-          - None
-        dateField:
-          type: string
-          title: Date
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/dateField
-          description: Date
-          pattern: ^\d{4}-\d{2}-\d{2}$
-          examples:
-          - None
-        emailField:
-          type: string
-          title: Email with regex
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/emailField
-          description: Email with regex
-          pattern: ^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$
-          examples:
-          - None
-        datetimeField:
-          type: string
-          title: Datetime
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/datetimeField
-          description: Datetime
-          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
-          format: date-time
-          examples:
-          - None
-        objectLevel1:
-          $ref: '#/components/schemas/levelOneData'
-        nomenclatureField:
-          type: string
-          title: Nomenclature
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/nomenclatureField
-          description: Enum from extenal nomenclature file
-          enum:
-          - M
-          - F
-          - O
-          - UN
-          examples:
-          - None
       additionalProperties: false
-    technicalObject:
-      type: object
-      title: Object
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - objectPropertyRequiredString
-      properties:
-        objectPropertyString:
-          type: string
-          title: Object property A
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/objectField/objectPropertyString
-          description: Object property string
-          examples:
-          - None
-        objectPropertyNumber:
-          type: number
-          title: Object property B
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/objectField/objectPropertyNumber
-          description: Object property number
-          examples:
-          - None
-        objectPropertyRequiredString:
-          type: string
-          title: Required Object Property
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/objectField/objectPropertyRequiredString
-          description: Required object property
-          examples:
-          - None
-      additionalProperties: false
-      example: example.json#/objectField
-      examples:
-      - objectPropertyString: None
-        objectPropertyNumber: None
-        objectPropertyRequiredString: None
-    levelOneData:
-      type: object
-      title: Level 1 Object
-      x-display: expansion-panels
-      x-health-only: false
-      required: []
-      properties:
-        object1Level2:
-          $ref: '#/components/schemas/levelTwoData'
-        stringLevel2:
-          type: string
-          title: Level 2 Field
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/objectLevel1/stringLevel2
-          description: String field at level 2
-          examples:
-          - None
-        object2Level2:
-          $ref: '#/components/schemas/secondLevelTwoData'
-      additionalProperties: false
-      example: example.json#/objectLevel1
-    levelTwoData:
-      type: object
-      title: Level 2 Object 1
-      x-display: expansion-panels
-      x-health-only: false
-      required: []
-      properties:
-        object1Level3:
-          $ref: '#/components/schemas/levelThreeData'
-        stringLevel3:
-          type: string
-          title: Level 3 Field
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/objectLevel1/object1Level2/stringLevel3
-          description: String field at level 3
-          examples:
-          - None
-      additionalProperties: false
-      example: example.json#/objectLevel1/object1Level2
-    secondLevelTwoData:
-      type: object
-      title: Level 2 Object 2
-      x-display: expansion-panels
-      x-health-only: false
-      required: []
-      properties:
-        object2Level3:
-          $ref: '#/components/schemas/levelThreeData'
-      additionalProperties: false
-      example: example.json#/objectLevel1/object2Level2
-      examples:
-      - object2Level3: {}
-    levelThreeData:
-      type: object
-      title: Level 3 Object 1
-      x-display: expansion-panels
-      x-health-only: false
-      required: []
-      properties:
-        stringLevel4:
-          type: string
-          title: Level 4 Field
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/objectLevel1/object1Level2/object1Level3/stringLevel4
-          description: String field at level 4
-          examples:
-          - None
-      additionalProperties: false
-      example: example.json#/objectLevel1/object1Level2/object1Level3
-      examples:
-      - stringLevel4: None
-    technicalNoreq:
-      $id: classpath:/json-schema/schema#
-      x-id: TECHNICAL_NOREQ.schema.json#
-      example: example.json#
-      type: object
-      title: technicalNoreq
-      required: []
-      properties:
-        optionalStringField:
-          type: string
-          title: Optional string
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/optionalStringField
-          description: This field is optional
-          examples:
-          - None
-        enumerationField:
-          type: string
-          title: Enumeration
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/enumerationField
-          description: This is an enumeration
-          enum:
-          - ENUM_VALUE_1
-          - ENUM_VALUE_2
-          - ENUM_VALUE_3
-          - ENUM_VALUE_4
-          - ENUM_VALUE_5
-          examples:
-          - None
-        integerField:
-          type: integer
-          title: Optional integer
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/integerField
-          description: This is an integer
-          examples:
-          - None
-        numberField:
-          type: number
-          title: Optional number
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/numberField
-          description: This is a number
-          examples:
-          - None
-        booleanField:
-          type: boolean
-          title: Optional boolean
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/booleanField
-          description: This is a boolean
-          examples:
-          - None
-        objectField:
-          $ref: '#/components/schemas/technicalObject'
-        arrayField:
-          type: array
-          x-health-only: false
-          items:
-            type: string
-            title: Array
-            x-health-only: false
-            x-cols: 6
-            example: example.json#/arrayField/0
-            description: This is an array
-            examples:
-            - None
-        enumArrayField:
-          type: array
-          x-health-only: false
-          items:
-            type: string
-            title: Array of enumerations
-            x-health-only: false
-            x-cols: 6
-            example: example.json#/enumArrayField/0
-            description: This is an array of enumerations
-            enum:
-            - ENUM_VALUE_10
-            - ENUM_VALUE_20
-            - ENUM_VALUE_30
-            - ENUM_VALUE_40
-            - ENUM_VALUE_50
-            examples:
-            - None
-        arrayWithMaxLength:
-          type: array
-          x-health-only: false
-          items:
-            type: string
-            title: Array with maximum length
-            x-health-only: false
-            x-cols: 6
-            example: example.json#/arrayWithMaxLength/0
-            description: This is an array with a maximum length
-            examples:
-            - None
-          maxItems: 5
-        phoneNumberField:
-          type: string
-          title: Phone number with regex
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/phoneNumberField
-          description: Phone number with regex
-          pattern: ^\+?[0-9]{2,14}$
-          examples:
-          - None
-        dateField:
-          type: string
-          title: Date
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/dateField
-          description: Date
-          pattern: ^\d{4}-\d{2}-\d{2}$
-          examples:
-          - None
-        emailField:
-          type: string
-          title: Email with regex
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/emailField
-          description: Email with regex
-          pattern: ^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$
-          examples:
-          - None
-        datetimeField:
-          type: string
-          title: Datetime
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/datetimeField
-          description: Datetime
-          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
-          format: date-time
-          examples:
-          - None
-        objectLevel1:
-          $ref: '#/components/schemas/levelOneData'
-        nomenclatureField:
-          type: string
-          title: Nomenclature
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/nomenclatureField
-          description: Enum from extenal nomenclature file
-          enum:
-          - M
-          - F
-          - O
-          - UN
-          examples:
-          - None
-      additionalProperties: false
+      example: example.json#/EVENT/REFERENCE/0
     createCase:
       $id: classpath:/json-schema/schema#
       x-id: RC-EDA.schema.json#
@@ -1230,44 +889,7 @@ components:
           x-cols: 6
           example: example.json#/qualification/riskThreat/0/code
           description: "A valoriser avec le code de la nomenclature associ\xE9e"
-          enum:
-          - R01
-          - R02
-          - R03
-          - R04
-          - R05
-          - R06
-          - R07
-          - R08
-          - R09
-          - R10
-          - R11
-          - R12
-          - R13
-          - R14
-          - R15
-          - R16
-          - R17
-          - R18
-          - R19
-          - R20
-          - R21
-          - R22
-          - R23
-          - R24
-          - R25
-          - R26
-          - R27
-          - R28
-          - R29
-          - R30
-          - R31
-          - R32
-          - R33
-          - R34
-          - R35
-          - R36
-          - R37
+          pattern: ^R\d{2}$
           examples:
           - C07.13.02
         label:
@@ -1638,186 +1260,7 @@ components:
           x-cols: 6
           example: example.json#/qualification/locationKind/code
           description: "A valoriser avec le code de la nomenclature associ\xE9e"
-          enum:
-          - L01.00.00
-          - L01.01.00
-          - L01.01.01
-          - L01.01.02
-          - L01.01.03
-          - L01.01.04
-          - L01.02.00
-          - L01.02.01
-          - L01.02.02
-          - L01.02.03
-          - L01.02.04
-          - L01.02.05
-          - L01.02.06
-          - L01.02.07
-          - L01.02.08
-          - L01.02.09
-          - L01.02.10
-          - L01.02.11
-          - L01.02.12
-          - L01.03.00
-          - L01.03.01
-          - L01.03.02
-          - L01.03.03
-          - L01.04.00
-          - L02.00.00
-          - L02.01.00
-          - L02.02.00
-          - L02.02.01
-          - L02.02.02
-          - L02.02.03
-          - L02.02.04
-          - L02.02.05
-          - L02.03.00
-          - L02.03.01
-          - L02.03.02
-          - L02.03.03
-          - L02.04.00
-          - L02.05.00
-          - L02.05.01
-          - L02.05.02
-          - L02.05.03
-          - L02.05.04
-          - L02.05.05
-          - L02.05.06
-          - L02.05.07
-          - L02.05.08
-          - L02.05.09
-          - L02.05.10
-          - L02.05.11
-          - L02.05.12
-          - L02.05.13
-          - L02.05.14
-          - L02.05.15
-          - L02.05.16
-          - L02.06.00
-          - L02.06.01
-          - L02.06.02
-          - L02.06.03
-          - L02.06.04
-          - L02.06.05
-          - L02.06.06
-          - L02.06.07
-          - L02.06.08
-          - L02.07.00
-          - L02.07.01
-          - L02.07.02
-          - L02.08.00
-          - L03.00.00
-          - L03.01.00
-          - L03.02.00
-          - L03.03.00
-          - L03.04.00
-          - L03.05.00
-          - L04.00.00
-          - L04.01.00
-          - L04.02.00
-          - L04.02.01
-          - L04.02.02
-          - L04.02.03
-          - L04.03.00
-          - L04.03.01
-          - L04.03.02
-          - L04.03.03
-          - L04.04.00
-          - L04.05.00
-          - L04.06.00
-          - L04.06.01
-          - L04.06.02
-          - L04.06.03
-          - L04.06.04
-          - L04.06.05
-          - L04.07.00
-          - L04.07.01
-          - L04.07.02
-          - L04.07.03
-          - L04.08.00
-          - L04.08.01
-          - L04.08.02
-          - L04.09.00
-          - L04.09.01
-          - L04.09.02
-          - L04.10.00
-          - L04.11.00
-          - L04.11.01
-          - L04.11.02
-          - L04.11.03
-          - L04.11.04
-          - L04.12.00
-          - L04.12.01
-          - L04.12.02
-          - L04.12.03
-          - L04.12.04
-          - L04.13.00
-          - L04.13.01
-          - L04.13.02
-          - L04.13.03
-          - L04.13.04
-          - L04.14.00
-          - L04.14.01
-          - L04.14.02
-          - L04.15.00
-          - L04.16.00
-          - L05.00.00
-          - L05.01.00
-          - L05.01.01
-          - L05.01.02
-          - L05.01.03
-          - L05.01.04
-          - L05.02.00
-          - L05.02.01
-          - L05.02.02
-          - L05.02.03
-          - L05.02.04
-          - L05.03.00
-          - L05.03.01
-          - L05.03.02
-          - L05.04.00
-          - L05.04.01
-          - L05.04.02
-          - L05.04.03
-          - L05.04.04
-          - L05.04.05
-          - L05.04.06
-          - L05.05.00
-          - L05.06.00
-          - L05.07.00
-          - L06.00.00
-          - L06.01.00
-          - L06.01.01
-          - L06.01.02
-          - L06.01.03
-          - L06.01.04
-          - L06.01.05
-          - L06.01.06
-          - L06.01.07
-          - L06.01.08
-          - L06.02.00
-          - L06.03.00
-          - L06.03.01
-          - L06.03.02
-          - L06.03.03
-          - L06.03.04
-          - L06.03.05
-          - L06.04.00
-          - L06.05.00
-          - L06.05.01
-          - L06.05.02
-          - L06.06.00
-          - L06.06.01
-          - L06.06.02
-          - L06.06.03
-          - L06.06.04
-          - L06.07.00
-          - L06.07.01
-          - L06.07.02
-          - L07.00.00
-          - L07.01.00
-          - L07.01.01
-          - L07.02.00
+          pattern: ^L\d{2}(\.\d{2}){2}$
           examples:
           - C07.13.02
         label:
@@ -3687,9 +3130,9 @@ components:
           enum:
           - NIR
           - SINUS
-          - SI-VIC
           - DOSSARD
           - PLACE
+          - AUTRE
           examples:
           - "NIR, SINUS, SI-VIC, \u2026"
         value:
@@ -5379,59 +4822,6 @@ components:
           - CDIS/RIOT
       additionalProperties: false
       example: example.json#/EVENT/ETYPE
-    reference:
-      $id: classpath:/json-schema/schema#
-      x-id: RC-REF.schema.json#
-      example: example.json#
-      type: object
-      title: reference
-      required:
-      - distributionID
-      properties:
-        distributionID:
-          type: string
-          title: "Identifiant du message r\xE9f\xE9renc\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/distributionID
-          description: "Identifiant unique du message r\xE9f\xE9renc\xE9"
-          examples:
-          - None
-        refused:
-          type: boolean
-          title: Indicateur de refus de message
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/refused
-          description: "Indique si le message acquitt\xE9 a \xE9t\xE9 refus\xE9"
-          examples:
-          - None
-        errorDistributionID:
-          type: string
-          title: "Identifiant du message d'erreur li\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/errorDistributionID
-          description: "Identifiant unique du message d'erreur li\xE9"
-          examples:
-          - None
-        step:
-          type: string
-          title: "Etape d'int\xE9gration du message"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/step
-          description: "Nomenclature permettant d'identifier les diff\xE9rentes \xE9\
-            tapes d'int\xE9gration et de consultation du dossier dans le syst\xE8\
-            me \xE9metteur"
-          examples:
-          - None
-      additionalProperties: false
-      examples:
-      - distributionID: None
-        refused: None
-        errorDistributionID: None
-        step: None
     casualties:
       type: object
       title: Victimes
@@ -6902,7 +6292,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/status
-          description: "A quoi \xE7a sert d'avoir un objet demande "
+          description: "A valoriser avec l'\xE9tat d'annulation de la demande le cas\
+            \ \xE9ch\xE9ant"
           enum:
           - ANNULEE
           examples:
@@ -7903,3 +7294,467 @@ components:
       additionalProperties: true
       examples:
       - {}
+    technical:
+      $id: classpath:/json-schema/schema#
+      x-id: TECHNICAL.schema.json#
+      example: example.json#
+      type: object
+      title: technical
+      required:
+      - requiredStringField
+      - requiredArray
+      properties:
+        requiredStringField:
+          type: string
+          title: Required string
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/requiredStringField
+          description: This field is required
+          examples:
+          - None
+        optionalStringField:
+          type: string
+          title: Optional string
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/optionalStringField
+          description: This field is optional
+          examples:
+          - None
+        enumerationField:
+          type: string
+          title: Enumeration
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/enumerationField
+          description: This is an enumeration
+          enum:
+          - ENUM_VALUE_1
+          - ENUM_VALUE_2
+          - ENUM_VALUE_3
+          - ENUM_VALUE_4
+          - ENUM_VALUE_5
+          examples:
+          - None
+        integerField:
+          type: integer
+          title: Optional integer
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/integerField
+          description: This is an integer
+          examples:
+          - None
+        numberField:
+          type: number
+          title: Optional number
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/numberField
+          description: This is a number
+          examples:
+          - None
+        booleanField:
+          type: boolean
+          title: Optional boolean
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/booleanField
+          description: This is a boolean
+          examples:
+          - None
+        objectField:
+          $ref: '#/components/schemas/technicalObject'
+        arrayField:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Array
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/arrayField/0
+            description: This is an array
+            examples:
+            - None
+        enumArrayField:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Array of enumerations
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/enumArrayField/0
+            description: This is an array of enumerations
+            enum:
+            - ENUM_VALUE_10
+            - ENUM_VALUE_20
+            - ENUM_VALUE_30
+            - ENUM_VALUE_40
+            - ENUM_VALUE_50
+            examples:
+            - None
+        requiredArray:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Required array
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/requiredArray/0
+            description: This array is required
+            examples:
+            - None
+          minItems: 1
+        arrayWithMaxLength:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Array with maximum length
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/arrayWithMaxLength/0
+            description: This is an array with a maximum length
+            examples:
+            - None
+          maxItems: 5
+        phoneNumberField:
+          type: string
+          title: Phone number with regex
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/phoneNumberField
+          description: Phone number with regex
+          pattern: ^\+?[0-9]{2,14}$
+          examples:
+          - None
+        dateField:
+          type: string
+          title: Date
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/dateField
+          description: Date
+          pattern: ^\d{4}-\d{2}-\d{2}$
+          examples:
+          - None
+        emailField:
+          type: string
+          title: Email with regex
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/emailField
+          description: Email with regex
+          pattern: ^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$
+          examples:
+          - None
+        datetimeField:
+          type: string
+          title: Datetime
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/datetimeField
+          description: Datetime
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
+          format: date-time
+          examples:
+          - None
+        objectLevel1:
+          $ref: '#/components/schemas/levelOneData'
+        nomenclatureField:
+          type: string
+          title: Nomenclature
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/nomenclatureField
+          description: Enum from extenal nomenclature file
+          enum:
+          - M
+          - F
+          - O
+          - UN
+          examples:
+          - None
+      additionalProperties: false
+    technicalObject:
+      type: object
+      title: Object
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - objectPropertyRequiredString
+      properties:
+        objectPropertyString:
+          type: string
+          title: Object property A
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/objectField/objectPropertyString
+          description: Object property string
+          examples:
+          - None
+        objectPropertyNumber:
+          type: number
+          title: Object property B
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/objectField/objectPropertyNumber
+          description: Object property number
+          examples:
+          - None
+        objectPropertyRequiredString:
+          type: string
+          title: Required Object Property
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/objectField/objectPropertyRequiredString
+          description: Required object property
+          examples:
+          - None
+      additionalProperties: false
+      example: example.json#/objectField
+      examples:
+      - objectPropertyString: None
+        objectPropertyNumber: None
+        objectPropertyRequiredString: None
+    levelOneData:
+      type: object
+      title: Level 1 Object
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        object1Level2:
+          $ref: '#/components/schemas/levelTwoData'
+        stringLevel2:
+          type: string
+          title: Level 2 Field
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/objectLevel1/stringLevel2
+          description: String field at level 2
+          examples:
+          - None
+        object2Level2:
+          $ref: '#/components/schemas/secondLevelTwoData'
+      additionalProperties: false
+      example: example.json#/objectLevel1
+    levelTwoData:
+      type: object
+      title: Level 2 Object 1
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        object1Level3:
+          $ref: '#/components/schemas/levelThreeData'
+        stringLevel3:
+          type: string
+          title: Level 3 Field
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/objectLevel1/object1Level2/stringLevel3
+          description: String field at level 3
+          examples:
+          - None
+      additionalProperties: false
+      example: example.json#/objectLevel1/object1Level2
+    secondLevelTwoData:
+      type: object
+      title: Level 2 Object 2
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        object2Level3:
+          $ref: '#/components/schemas/levelThreeData'
+      additionalProperties: false
+      example: example.json#/objectLevel1/object2Level2
+      examples:
+      - object2Level3: {}
+    levelThreeData:
+      type: object
+      title: Level 3 Object 1
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        stringLevel4:
+          type: string
+          title: Level 4 Field
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/objectLevel1/object1Level2/object1Level3/stringLevel4
+          description: String field at level 4
+          examples:
+          - None
+      additionalProperties: false
+      example: example.json#/objectLevel1/object1Level2/object1Level3
+      examples:
+      - stringLevel4: None
+    technicalNoreq:
+      $id: classpath:/json-schema/schema#
+      x-id: TECHNICAL_NOREQ.schema.json#
+      example: example.json#
+      type: object
+      title: technicalNoreq
+      required: []
+      properties:
+        optionalStringField:
+          type: string
+          title: Optional string
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/optionalStringField
+          description: This field is optional
+          examples:
+          - None
+        enumerationField:
+          type: string
+          title: Enumeration
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/enumerationField
+          description: This is an enumeration
+          enum:
+          - ENUM_VALUE_1
+          - ENUM_VALUE_2
+          - ENUM_VALUE_3
+          - ENUM_VALUE_4
+          - ENUM_VALUE_5
+          examples:
+          - None
+        integerField:
+          type: integer
+          title: Optional integer
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/integerField
+          description: This is an integer
+          examples:
+          - None
+        numberField:
+          type: number
+          title: Optional number
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/numberField
+          description: This is a number
+          examples:
+          - None
+        booleanField:
+          type: boolean
+          title: Optional boolean
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/booleanField
+          description: This is a boolean
+          examples:
+          - None
+        objectField:
+          $ref: '#/components/schemas/technicalObject'
+        arrayField:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Array
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/arrayField/0
+            description: This is an array
+            examples:
+            - None
+        enumArrayField:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Array of enumerations
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/enumArrayField/0
+            description: This is an array of enumerations
+            enum:
+            - ENUM_VALUE_10
+            - ENUM_VALUE_20
+            - ENUM_VALUE_30
+            - ENUM_VALUE_40
+            - ENUM_VALUE_50
+            examples:
+            - None
+        arrayWithMaxLength:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Array with maximum length
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/arrayWithMaxLength/0
+            description: This is an array with a maximum length
+            examples:
+            - None
+          maxItems: 5
+        phoneNumberField:
+          type: string
+          title: Phone number with regex
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/phoneNumberField
+          description: Phone number with regex
+          pattern: ^\+?[0-9]{2,14}$
+          examples:
+          - None
+        dateField:
+          type: string
+          title: Date
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/dateField
+          description: Date
+          pattern: ^\d{4}-\d{2}-\d{2}$
+          examples:
+          - None
+        emailField:
+          type: string
+          title: Email with regex
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/emailField
+          description: Email with regex
+          pattern: ^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$
+          examples:
+          - None
+        datetimeField:
+          type: string
+          title: Datetime
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/datetimeField
+          description: Datetime
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
+          format: date-time
+          examples:
+          - None
+        objectLevel1:
+          $ref: '#/components/schemas/levelOneData'
+        nomenclatureField:
+          type: string
+          title: Nomenclature
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/nomenclatureField
+          description: Enum from extenal nomenclature file
+          enum:
+          - M
+          - F
+          - O
+          - UN
+          examples:
+          - None
+      additionalProperties: false

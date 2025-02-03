@@ -33,8 +33,8 @@ class ExternalId(BaseModel):
     @field_validator('source')
     def source_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['NIR', 'SINUS', 'SI-VIC', 'DOSSARD', 'PLACE']):
-            raise ValueError("must be one of enum values ('NIR', 'SINUS', 'SI-VIC', 'DOSSARD', 'PLACE')")
+        if value not in set(['NIR', 'SINUS', 'DOSSARD', 'PLACE', 'AUTRE']):
+            raise ValueError("must be one of enum values ('NIR', 'SINUS', 'DOSSARD', 'PLACE', 'AUTRE')")
         return value
 
     model_config = ConfigDict(
