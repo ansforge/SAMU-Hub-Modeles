@@ -3,7 +3,7 @@ import copy
 import random
 import string
 from datetime import datetime
-from .utils import add_object_to_initial_alert_notes, delete_paths, format_object, get_recipient, get_sender
+from .utils import add_to_initial_alert_notes, delete_paths, get_field_value, get_recipient, get_sender, is_field_completed
 
 class CISUConverterV3:
     """Handles CISU format conversions"""
@@ -41,6 +41,14 @@ class CISUConverterV3:
         "location.geometry.point.isAml"
     ]
 
+    CISU_PATHS_TO_ADD_TO_INITIAL_ALERT_NOTES =[
+        '$.qualification.victims',
+        '$.initialAlert.attachment',
+        '$.initialAlert.callTaker',
+        '$.freetext',
+        '$.newAlert'
+    ]
+
     @classmethod
     def from_cisu(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -52,6 +60,17 @@ class CISUConverterV3:
         Returns:
             Converted EDXL Health JSON
         """
+        def add_location_detail(json_data: Dict[str,Any]):
+            if is_field_completed(json_data,'$.location.city.detail'):
+                if not is_field_completed(json_data, '$.location.freetext'):
+                    json_data['location']['freetext']=''
+                json_data['location']['freetext']+= " Détails de commune : " + json_data['location']['city']['detail']
+
+        def add_case_priority(json_data: Dict[str,Any]):
+            if is_field_completed(json_data,'$.initialAlert.reporting'):
+                if not is_field_completed(json_data, '$.qualification.details'):
+                    json_data['qualification']['details']={}
+                json_data['qualification']['details']['priority']= 'P0' if get_field_value(json_data,'$.initialAlert.reporting') =='ATTENTION' else 'P2'
 
         # Create independent envelope copy without usecase for output
         output_json = copy.deepcopy(input_json)
@@ -59,50 +78,24 @@ class CISUConverterV3:
             raise ValueError("Input JSON must contain 'createCase' key")
         del output_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCase']
 
-        # Create independent usecase copy for output
-        input_usecase_json = input_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCase']
-        output_usecase_json = copy.deepcopy(input_usecase_json)
+        # Create independent use case copy for output
+        input_use_case_json = input_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCase']
+        output_use_case_json = copy.deepcopy(input_use_case_json)
 
         # - Updates
         # Set owner to target recipient
-        output_usecase_json['owner'] = get_recipient(input_json)
+        output_use_case_json['owner'] = get_recipient(input_json)
 
-        # Handle victims information
-        if input_usecase_json.get('qualification', {}).get('victims'):
-            victims_text = format_object(input_usecase_json['qualification']['victims'])
-            add_object_to_initial_alert_notes(output_usecase_json, victims_text)
+        add_location_detail(output_use_case_json)
 
-        # Location
-        if input_usecase_json.get('location', {}).get('city', {}).get('detail'):
-            output_usecase_json['location']['freetext']=input_usecase_json['location']['city']['detail']
+        if is_field_completed(output_use_case_json,'$.initialAlert'):
+            add_case_priority(output_use_case_json)
+            add_to_initial_alert_notes(output_use_case_json,cls.CISU_PATHS_TO_ADD_TO_INITIAL_ALERT_NOTES)
 
-        # Qualification - case detail priority
-        if input_usecase_json.get('initialAlert', {}).get('reporting'):
-            if 'details' not in output_usecase_json['qualification']:
-                output_usecase_json['qualification']['details']={}
-            output_usecase_json['qualification']['details']['priority']= 'P0' if input_usecase_json.get('caseDetails', {}).get('priority') =='ATTENTION' else 'P2'
+        # - Delete paths - /!\ It must be the last step
+        delete_paths(output_use_case_json, cls.CISU_PATHS_TO_DELETE)
 
-        # Initial Alert - free text information
-        if input_usecase_json.get('initialAlert', {}).get('attachment'):
-            attachments = format_object(input_usecase_json['initialAlert']['attachment'])
-            add_object_to_initial_alert_notes(output_usecase_json,attachments)
-
-        if input_usecase_json.get('initialAlert', {}).get('callTaker'):
-            call_taker = format_object(input_usecase_json['initialAlert']['callTaker'])
-            add_object_to_initial_alert_notes(output_usecase_json, call_taker)
-
-        if input_usecase_json.get('initialAlert', {}).get('freetext'):
-            description = format_object(input_usecase_json['initialAlert']['freetext'])
-            add_object_to_initial_alert_notes(output_usecase_json, description)
-
-        if input_usecase_json.get('newAlert'):
-            new_alert = format_object(input_usecase_json.get('newAlert'))
-            add_object_to_initial_alert_notes(output_usecase_json, new_alert)
-
-        # - Deletions - must to be the last step
-        delete_paths(output_usecase_json, cls.CISU_PATHS_TO_DELETE)
-
-        output_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth'] = output_usecase_json
+        output_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth'] = output_use_case_json
         return output_json
 
     @classmethod

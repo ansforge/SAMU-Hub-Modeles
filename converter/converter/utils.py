@@ -1,5 +1,8 @@
 import re
 from typing import List, Dict, Any
+from jsonpath_ng import parse
+from yaml import dump
+
 
 def get_recipient(edxl_json: Dict[str, Any]) -> str:
     return edxl_json['descriptor']['explicitAddress']['explicitAddressValue']
@@ -88,8 +91,50 @@ def format_object(obj: Any, indent: int = 0) -> str:
     return f"{indent_str}{obj}"
 
 
-def add_object_to_initial_alert_notes(output_json, note_text):
-    if 'notes' not in output_json['initialAlert']:
-        output_json['initialAlert']['notes'] = []
+def add_object_to_initial_alert_notes(json_data: Dict[str, Any], note_text: str):
+    if not is_field_completed(json_data, '$.initialAlert.notes'):
+        json_data['initialAlert']['notes'] = []
 
-    output_json['initialAlert']['notes'].append({"freetext": note_text})
+    json_data['initialAlert']['notes'].append({"freetext": note_text})
+
+
+def is_field_completed(json_data: Dict[str, Any], json_path:str):
+    try:
+        jsonpath_expr = parse(json_path)
+        return len(jsonpath_expr.find(json_data))>=1
+    except Exception as e:
+        print(f"Error raised in is_field_completed : {e}")
+        raise
+
+def get_field_value(json_data: Dict[str, Any], json_path: str):
+    try:
+        isCompleted = is_field_completed(json_data, json_path)
+
+        if not isCompleted:
+            return None
+
+        jsonpath_expr = parse(json_path)
+        matches = jsonpath_expr.find(json_data)
+
+        if len(matches) > 1:
+            return [match.value for match in matches]
+        return matches[0].value
+
+    except Exception as e:
+        print(f"Error raised in is_field_completed : {e}")
+        raise
+
+
+def add_field_to_initial_alert_notes(data: Dict[str, Any], json_path: str):
+    field_value = get_field_value(data,json_path)
+
+    if field_value == None:
+        return
+
+    formatted_field_value = dump(field_value)
+    add_object_to_initial_alert_notes(data, formatted_field_value)
+
+
+def add_to_initial_alert_notes(data: Dict[str, Any], paths: List[str]):
+    for path in paths:
+        add_field_to_initial_alert_notes(data, path)
