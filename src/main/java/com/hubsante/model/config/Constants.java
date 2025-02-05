@@ -25,4 +25,5 @@ public class Constants {
     public static final String TECHNICAL_NOREQ_SCHEMA = "TECHNICAL_NOREQ.schema.json";
     public static final String TECHNICAL_XSD = "TECHNICAL.xsd";
     public static final String TECHNICAL_NOREQ_XSD = "TECHNICAL_NOREQ.xsd";
+    public static final String HEALTH_PREFIX = "fr.health";
 }
