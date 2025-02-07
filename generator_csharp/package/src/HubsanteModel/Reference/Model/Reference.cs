@@ -51,10 +51,10 @@ namespace HubsanteModel/Reference.Model
             ERREUR = 2,
 
             /// <summary>
-            /// Enum CREE for value: CREE
+            /// Enum INTEGRE for value: INTEGRE
             /// </summary>
-            [EnumMember(Value = "CREE")]
-            CREE = 3,
+            [EnumMember(Value = "INTEGRE")]
+            INTEGRE = 3,
 
             /// <summary>
             /// Enum CONSULTE for value: CONSULTE
@@ -63,9 +63,9 @@ namespace HubsanteModel/Reference.Model
             CONSULTE = 4,
 
             /// <summary>
-            /// Enum SUPPRIME for value: SUPPRIME 
+            /// Enum SUPPRIME for value: SUPPRIME
             /// </summary>
-            [EnumMember(Value = "SUPPRIME ")]
+            [EnumMember(Value = "SUPPRIME")]
             SUPPRIME = 5
         }
 

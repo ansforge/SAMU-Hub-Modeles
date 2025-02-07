@@ -12,7 +12,7 @@
 
 ## Usage
 
-Cette librairie est utilisée par le projet [SAMU-Hub-Santé](https://github/.com/ansforge/SAMU-Hub-Sante).
+Cette librairie est utilisée par le projet [SAMU-Hub-Santé](https://github.com/ansforge/SAMU-Hub-Sante).
 
 Elle contient les classes Java permettant de manipuler les messages échangés entre les acteurs de l'urgence, ainsi que quelques utilitaires (pour les opérations de sérialisation/désérialisation ou de validation notamment).
 

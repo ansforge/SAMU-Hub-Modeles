@@ -131,7 +131,7 @@ module Reference
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @distribution_id.nil?
-      step_validator = EnumAttributeValidator.new('String', ["RECU", "ERREUR", "CREE", "CONSULTE", "SUPPRIME "])
+      step_validator = EnumAttributeValidator.new('String', ["RECU", "ERREUR", "INTEGRE", "CONSULTE", "SUPPRIME"])
       return false unless step_validator.valid?(@step)
       true
     end
@@ -139,7 +139,7 @@ module Reference
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] step Object to be assigned
     def step=(step)
-      validator = EnumAttributeValidator.new('String', ["RECU", "ERREUR", "CREE", "CONSULTE", "SUPPRIME "])
+      validator = EnumAttributeValidator.new('String', ["RECU", "ERREUR", "INTEGRE", "CONSULTE", "SUPPRIME"])
       unless validator.valid?(step)
         fail ArgumentError, "invalid value for \"step\", must be one of #{validator.allowable_values}."
       end

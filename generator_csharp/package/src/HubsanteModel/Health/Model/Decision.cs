@@ -201,9 +201,9 @@ namespace HubsanteModel/Health.Model
             LIBERALAUTREPRO = 19,
 
             /// <summary>
-            /// Enum TSU for value: TSU 
+            /// Enum TSU for value: TSU
             /// </summary>
-            [EnumMember(Value = "TSU ")]
+            [EnumMember(Value = "TSU")]
             TSU = 20,
 
             /// <summary>

@@ -1140,7 +1140,7 @@ A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.</documentation>
                         <enumeration value="LIBERAL.DENT"/>
                         <enumeration value="LIBERAL.LABO"/>
                         <enumeration value="LIBERAL.AUTREPRO"/>
-                        <enumeration value="TSU "/>
+                        <enumeration value="TSU"/>
                         <enumeration value="SIS"/>
                         <enumeration value="SIS.MEDSP"/>
                         <enumeration value="SIS.ISP"/>

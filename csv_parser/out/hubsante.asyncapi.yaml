@@ -2763,7 +2763,7 @@ components:
           - LIBERAL.DENT
           - LIBERAL.LABO
           - LIBERAL.AUTREPRO
-          - 'TSU '
+          - TSU
           - SIS
           - SIS.MEDSP
           - SIS.ISP
