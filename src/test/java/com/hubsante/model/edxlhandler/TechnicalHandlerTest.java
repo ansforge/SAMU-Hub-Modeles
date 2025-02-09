@@ -20,38 +20,25 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.hubsante.model.Utils;
 import com.hubsante.model.technical.Technical;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static com.hubsante.model.utils.TestFileUtils.getMessageByFileName;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class TechnicalHandlerTest {
 
-    private static XmlMapper xmlMapper;
+    private static XmlMapper xmlMapper = Utils.getXmlMapper();
 
-    private static ObjectMapper jsonMapper;
-
-    @BeforeAll
-    public static void setUp() {
-        jsonMapper = new ObjectMapper().registerModule(new JavaTimeModule())
-                .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
-                .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-                .disable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
-
-        xmlMapper = (XmlMapper) new XmlMapper().registerModule(new JavaTimeModule())
-                .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
-                .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
-                .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-                .disable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
-
-        xmlMapper.configure(com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator.Feature.WRITE_XML_DECLARATION, true);
-    }
+    private static ObjectMapper jsonMapper = Utils.getJsonMapper();
 
     @Test
     @DisplayName("Complete TECHNICAL messages should deserialize to same object from json and xml files")
@@ -63,6 +50,14 @@ public class TechnicalHandlerTest {
         Technical xmlTechnical = xmlMapper.readValue(xml, Technical.class);
 
         assertEquals(jsonTechnical, xmlTechnical);
+
+        String jsonSerialized = jsonMapper.writeValueAsString(jsonTechnical);
+        assertTrue(jsonSerialized.contains("2022-09-27T08:25:54+00:00"));
+        assertFalse(jsonSerialized.contains("2022-09-27T08:25:54Z"));
+
+        String xmlSerialized = xmlMapper.writeValueAsString(xmlTechnical);
+        assertTrue(xmlSerialized.contains("2022-09-27T08:25:54+00:00"));
+        assertFalse(xmlSerialized.contains("2022-09-27T08:25:54Z"));
     }
 
     @Test
@@ -112,5 +107,4 @@ public class TechnicalHandlerTest {
         String xml = getMessageByFileName("TECHNICAL/regex-validation.xml");
         assertDoesNotThrow(() -> xmlMapper.readValue(xml, Technical.class));
     }
-
 }

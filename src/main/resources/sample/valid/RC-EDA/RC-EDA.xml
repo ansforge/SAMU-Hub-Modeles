@@ -5,8 +5,8 @@
                   xmlns:xlink="http://www.w3.org/1999/xlink">
     <distributionID>fr.health.samuB_2608323d-507d-4cbf-bf74-52007f8124ea</distributionID>
     <senderID>fr.health.samuB</senderID>
-    <dateTimeSent>2022-07-25T10:04:34+01:00</dateTimeSent>
-    <dateTimeExpires>2072-07-25T10:04:34+01:00</dateTimeExpires>
+    <dateTimeSent>2022-07-25T10:04:34+00:00</dateTimeSent>
+    <dateTimeExpires>2072-07-25T10:04:34+00:00</dateTimeExpires>
     <distributionStatus>Actual</distributionStatus>
     <distributionKind>Report</distributionKind>
     <descriptor xlink:type="resource">
@@ -26,7 +26,7 @@
                             <name>samuB</name>
                             <URI>hubex:fr.health.samuB</URI>
                         </sender>
-                        <sentAt>2022-07-25T10:04:34+01:00</sentAt>
+                        <sentAt>2022-07-25T10:04:34+00:00</sentAt>
                         <kind>Report</kind>
                         <status>Actual</status>
                         <recipient>
@@ -36,7 +36,7 @@
                         <createCase xmlns="urn:emergency:cisu:3.0">
                             <caseId>fr.health.samu690.DRFR15690240430050</caseId>
                             <senderCaseId>DRFR15690240430050</senderCaseId>
-                            <creation>2023-11-03T10:03:00+01:00</creation>
+                            <creation>2023-11-03T10:03:00+00:00</creation>
                             <referenceVersion>1.3</referenceVersion>
                             <qualification>
                                 <riskThreat>
@@ -91,7 +91,7 @@
                                     <entity>Infirmerie</entity>
                                 </access>
                                 <geometry>
-                                    <datetime>2023-11-03T10:04:00+01:00</datetime>
+                                    <datetime>2023-11-03T10:04:00+00:00</datetime>
                                     <point>
                                         <coord>
                                             <lat>48.866667</lat>
@@ -114,10 +114,10 @@
                             </location>
                             <initialAlert>
                                 <id>samu690-20231103-AL01234</id>
-                                <reception>2023-11-03T10:02:00+01:00</reception>
+                                <reception>2023-11-03T10:02:00+00:00</reception>
                                 <reporting>STANDARD</reporting>
                                 <notes>
-                                    <creation>2023-11-03T10:02:00+01:00</creation>
+                                    <creation>2023-11-03T10:02:00+00:00</creation>
                                     <freetext>Accident entre une voiture et un vélo</freetext>
                                 </notes>
                                 <caller>

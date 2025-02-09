@@ -184,18 +184,6 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
         assertThrows(UnrecognizedPropertyException.class, () -> converter.deserializeJsonEDXL(json));
     }
 
-
-    @Test
-    public void test() throws IOException {
-        String inputXmlFilename = TestMessagesHelper.class.getClassLoader().getResource("sample/valid/RC-EDA/test.xml").getFile();
-        File inputXmlFile = new File(inputXmlFilename);
-        String inputXml = new String(Files.readAllBytes(inputXmlFile.toPath()), StandardCharsets.UTF_8);
-        EdxlMessage edxl = converter.deserializeXmlEDXL(inputXml);
-        String outputXml = converter.serializeXmlEDXL(edxl);
-
-        System.out.println("test");
-    }
-
     @Test
     @DisplayName("all json example files deserialize to same object xml example files deserialize to")
     public void jsonAndXmlExampleFilesDeserializeToSameObject() {
