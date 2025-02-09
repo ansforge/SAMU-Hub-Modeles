@@ -36,7 +36,7 @@
   "phoneNumberField": "0123456789",
   "dateField": "2020-01-01",
   "emailField": "email@domain.com",
-  "datetimeField": "2022-09-27T08:25:54+02:00",
+  "datetimeField": "2022-09-27T08:25:54+00:00",
   "objectLevel1": {
     "object1Level2": {
       "object1Level3": {
