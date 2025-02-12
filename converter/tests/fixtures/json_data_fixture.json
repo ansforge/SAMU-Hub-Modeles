@@ -1,0 +1,38 @@
+{
+  "caseId": "fr.health.samu770.DRFR154878900236",
+  "qualification": {
+    "whatsHappen": { "code": "C09.03.00", "label": "Fuite de gaz" },
+    "locationKind": {
+      "code": "L01.01.01",
+      "label": "Maison particulière, pavillon, à l'intérieur"
+    },
+    "riskThreat": [
+      { "code": "R13", "label": "Risque d'explosion, présence de gaz" },
+      { "code": "R12", "label": "Risque d'incendie" }
+    ],
+    "healthMotive": {
+      "code": "M03.10",
+      "label": "Malaise avec perte de connaissance initiale"
+    },
+    "details": { "priority": "P1" }
+  },
+  "location": {
+    "detailedAddress": {
+      "complete": "Rue des Marins",
+      "wayName": {
+        "complete": "Rue des Marins",
+        "type": "Rue",
+        "name": "Des Marins"
+      },
+      "number": "3"
+    },
+    "city": { "name": "Bouaye", "inseeCode": "44018" },
+    "freetext": "Maison aux volets verts",
+    "geometry": {
+      "point": {
+        "coord": { "lat": 47.147005, "lon": -1.690548, "precision": "ADRESSE" }
+      },
+      "datetime": "2024-05-18T18:17:00+02:00"
+    }
+  }
+}

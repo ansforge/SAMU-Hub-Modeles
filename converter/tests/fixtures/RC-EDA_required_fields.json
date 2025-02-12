@@ -1,0 +1,17 @@
+{
+  "createCase": {
+    "caseId": "fr.health.samu440.DRFR154402413800862",
+    "creation": "2024-05-26T13:15:00+02:00",
+    "referenceVersion": "2.0",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C02.05.02",
+        "label": "Obstétrique"
+      }
+    },
+    "location": {
+      "locID": "111fb03a-6fd9-41e0-8e81-990c45188891",
+      "country": "FR"
+    }
+  }
+}
