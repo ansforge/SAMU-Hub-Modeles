@@ -110,6 +110,39 @@ class TestSnapshotCisuConverter(TestCase):
 
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
+class TestVictimsCount(TestCase):
+    def setUp(self):
+        self.fixtures_folder_path = "tests/fixtures/"
+        self.converter = CISUConverterV3()
+
+
+    def test_count_victims_1(self):
+        patients = TestHelper.load_json_file(self.fixtures_folder_path + "patients_list_1.json")
+
+        self.assertEqual(self.converter.get_victim_count(self.converter, patients), {'count': '1'})
+
+    def test_count_victims_beaucoup(self):
+        patients = TestHelper.load_json_file(self.fixtures_folder_path + "patients_list_beaucoup.json")
+
+        self.assertEqual(self.converter.get_victim_count(self.converter, patients), {'count': 'BEAUCOUP'})
+
+    def test_count_victims_plusieurs(self):
+        patients = TestHelper.load_json_file(self.fixtures_folder_path + "patients_list_plusieurs.json")
+
+        self.assertEqual(self.converter.get_victim_count(self.converter, patients), {'count': 'PLUSIEURS'})
+
+    def test_count_victims_1(self):
+        self.assertEqual(self.converter.get_victim_count(self.converter,{"patients":[]} ), {'count': '0'})
+
+    def test_count_victims_no_field(self):
+        patients = TestHelper.load_json_file(self.fixtures_folder_path + "json_data_fixture.json")
+
+        self.assertEqual(self.converter.get_victim_count(self.converter, patients), {'count': '0'})
+
+
+
+
+
 
 if __name__ == "__main__":
     unittest.main()

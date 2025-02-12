@@ -104,6 +104,24 @@ class CISUConverterV3:
         output_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth'] = output_use_case_json
         return output_json
 
+    @staticmethod
+    def count_victims(json_data: Dict[str,Any]) -> int:
+        victims = get_field_value(json_data, '$.patient')
+        if victims == None:
+            return 0
+        return len(victims)
+
+    @staticmethod
+    def get_victim_count(cls, json_data: Dict[str,Any]):
+        victims_count = cls.count_victims(json_data)
+        if victims_count == 0:
+            return {'count': '0'}
+        if victims_count == 1:
+            return {'count': '1'}
+        if victims_count < 5:
+            return {'count': 'PLUSIEURS'}
+        return {'count': 'BEAUCOUP'}
+
     @classmethod
     def to_cisu(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -115,26 +133,11 @@ class CISUConverterV3:
         Returns:
             Converted EDXL CISU JSON
         """
-        def count_victims(json_data: Dict[str,Any]) -> int:
-            victims = get_field_value(json_data, '$.patient')
-            if victims == None:
-                return 0
-            return len(victims)
-
-        def get_victim_count(json_data: Dict[str,Any]):
-            victims_count = count_victims(json_data)
-            if victims_count == 0:
-                return {'count': '0'}
-            if victims_count == 1:
-                return {'count': '1'}
-            if victims_count < 5:
-                return {'count': 'PLUSIEURS'}
-            return {'count': 'BEAUCOUP'}
 
         def add_victim_information(json_data: Dict[str,Any]):
             if not is_field_completed(json_data, '$.qualification'):
                 json_data['qualification']={}
-            json_data['qualification']['victims'] = get_victim_count(input_usecase_json)
+            json_data['qualification']['victims'] = cls.get_victim_count(cls, input_usecase_json)
 
         def get_call_taker_information(json_data: Dict[str,Any]):
             sender_id = get_sender(json_data)

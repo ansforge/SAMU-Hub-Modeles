@@ -1,0 +1,289 @@
+{
+  "patient": [
+    {
+      "detail": {
+        "age": "P40Y",
+        "careLevel": "R1",
+        "weight": 60,
+        "height": 170,
+        "medicalHistory": "Hypertension artérielle",
+        "treatment": "Amlodipine 5 mg/jour"
+      },
+      "identity": {
+        "nonStrictFeatures": {
+          "complete": "Lola Halimi",
+          "firstName": "Lola ",
+          "lastName": "Halimi"
+        },
+        "strictFeatures": {
+          "birthDate": "1984-03-03",
+          "sex": "F",
+          "birthName": "Dubois"
+        }
+      },
+      "patientId": "fr.health.samu950.patient.DRFR159502400400159.1",
+      "administrativeFile": {
+        "generalPractitioner": {
+          "detailedName": {
+            "complete": "Patrick Delmont",
+            "lastName": "Delmont",
+            "firstName": "Patrick"
+          },
+          "rppsId": "10123456789",
+          "contact": [
+            {
+              "type": "TEL",
+              "detail": "+33616162536"
+            }
+          ]
+        },
+        "externalId": [
+          {
+            "source": "NIR",
+            "value": "185067512345689"
+          }
+        ]
+      },
+      "hypothesis": {
+        "mainDiagnosis": {
+          "code": "E11.2",
+          "label": "Complications neurologiques"
+        },
+        "otherDiagnosis": [
+          {
+            "code": "E11.1",
+            "label": "Complications pulmonaires"
+          }
+        ]
+      }
+    },
+    {
+      "detail": {
+        "age": "P40Y",
+        "careLevel": "R1",
+        "weight": 60,
+        "height": 170,
+        "medicalHistory": "Hypertension artérielle",
+        "treatment": "Amlodipine 5 mg/jour"
+      },
+      "identity": {
+        "nonStrictFeatures": {
+          "complete": "Lola Halimi",
+          "firstName": "Lola ",
+          "lastName": "Halimi"
+        },
+        "strictFeatures": {
+          "birthDate": "1984-03-03",
+          "sex": "F",
+          "birthName": "Dubois"
+        }
+      },
+      "patientId": "fr.health.samu950.patient.DRFR159502400400159.1",
+      "administrativeFile": {
+        "generalPractitioner": {
+          "detailedName": {
+            "complete": "Patrick Delmont",
+            "lastName": "Delmont",
+            "firstName": "Patrick"
+          },
+          "rppsId": "10123456789",
+          "contact": [
+            {
+              "type": "TEL",
+              "detail": "+33616162536"
+            }
+          ]
+        },
+        "externalId": [
+          {
+            "source": "NIR",
+            "value": "185067512345689"
+          }
+        ]
+      },
+      "hypothesis": {
+        "mainDiagnosis": {
+          "code": "E11.2",
+          "label": "Complications neurologiques"
+        },
+        "otherDiagnosis": [
+          {
+            "code": "E11.1",
+            "label": "Complications pulmonaires"
+          }
+        ]
+      }
+    },
+    {
+      "detail": {
+        "age": "P40Y",
+        "careLevel": "R1",
+        "weight": 60,
+        "height": 170,
+        "medicalHistory": "Hypertension artérielle",
+        "treatment": "Amlodipine 5 mg/jour"
+      },
+      "identity": {
+        "nonStrictFeatures": {
+          "complete": "Lola Halimi",
+          "firstName": "Lola ",
+          "lastName": "Halimi"
+        },
+        "strictFeatures": {
+          "birthDate": "1984-03-03",
+          "sex": "F",
+          "birthName": "Dubois"
+        }
+      },
+      "patientId": "fr.health.samu950.patient.DRFR159502400400159.1",
+      "administrativeFile": {
+        "generalPractitioner": {
+          "detailedName": {
+            "complete": "Patrick Delmont",
+            "lastName": "Delmont",
+            "firstName": "Patrick"
+          },
+          "rppsId": "10123456789",
+          "contact": [
+            {
+              "type": "TEL",
+              "detail": "+33616162536"
+            }
+          ]
+        },
+        "externalId": [
+          {
+            "source": "NIR",
+            "value": "185067512345689"
+          }
+        ]
+      },
+      "hypothesis": {
+        "mainDiagnosis": {
+          "code": "E11.2",
+          "label": "Complications neurologiques"
+        },
+        "otherDiagnosis": [
+          {
+            "code": "E11.1",
+            "label": "Complications pulmonaires"
+          }
+        ]
+      }
+    },
+    {
+      "detail": {
+        "age": "P40Y",
+        "careLevel": "R1",
+        "weight": 60,
+        "height": 170,
+        "medicalHistory": "Hypertension artérielle",
+        "treatment": "Amlodipine 5 mg/jour"
+      },
+      "identity": {
+        "nonStrictFeatures": {
+          "complete": "Lola Halimi",
+          "firstName": "Lola ",
+          "lastName": "Halimi"
+        },
+        "strictFeatures": {
+          "birthDate": "1984-03-03",
+          "sex": "F",
+          "birthName": "Dubois"
+        }
+      },
+      "patientId": "fr.health.samu950.patient.DRFR159502400400159.1",
+      "administrativeFile": {
+        "generalPractitioner": {
+          "detailedName": {
+            "complete": "Patrick Delmont",
+            "lastName": "Delmont",
+            "firstName": "Patrick"
+          },
+          "rppsId": "10123456789",
+          "contact": [
+            {
+              "type": "TEL",
+              "detail": "+33616162536"
+            }
+          ]
+        },
+        "externalId": [
+          {
+            "source": "NIR",
+            "value": "185067512345689"
+          }
+        ]
+      },
+      "hypothesis": {
+        "mainDiagnosis": {
+          "code": "E11.2",
+          "label": "Complications neurologiques"
+        },
+        "otherDiagnosis": [
+          {
+            "code": "E11.1",
+            "label": "Complications pulmonaires"
+          }
+        ]
+      }
+    },
+    {
+      "detail": {
+        "age": "P40Y",
+        "careLevel": "R1",
+        "weight": 60,
+        "height": 170,
+        "medicalHistory": "Hypertension artérielle",
+        "treatment": "Amlodipine 5 mg/jour"
+      },
+      "identity": {
+        "nonStrictFeatures": {
+          "complete": "Lola Halimi",
+          "firstName": "Lola ",
+          "lastName": "Halimi"
+        },
+        "strictFeatures": {
+          "birthDate": "1984-03-03",
+          "sex": "F",
+          "birthName": "Dubois"
+        }
+      },
+      "patientId": "fr.health.samu950.patient.DRFR159502400400159.1",
+      "administrativeFile": {
+        "generalPractitioner": {
+          "detailedName": {
+            "complete": "Patrick Delmont",
+            "lastName": "Delmont",
+            "firstName": "Patrick"
+          },
+          "rppsId": "10123456789",
+          "contact": [
+            {
+              "type": "TEL",
+              "detail": "+33616162536"
+            }
+          ]
+        },
+        "externalId": [
+          {
+            "source": "NIR",
+            "value": "185067512345689"
+          }
+        ]
+      },
+      "hypothesis": {
+        "mainDiagnosis": {
+          "code": "E11.2",
+          "label": "Complications neurologiques"
+        },
+        "otherDiagnosis": [
+          {
+            "code": "E11.1",
+            "label": "Complications pulmonaires"
+          }
+        ]
+      }
+    }
+  ]
+}
