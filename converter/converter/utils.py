@@ -131,7 +131,7 @@ def add_field_to_initial_alert_notes(data: Dict[str, Any], json_path: str):
     if field_value == None:
         return
 
-    formatted_field_value = dump(field_value)
+    formatted_field_value = dump(field_value, allow_unicode=True)
     add_object_to_initial_alert_notes(data, formatted_field_value)
 
 
