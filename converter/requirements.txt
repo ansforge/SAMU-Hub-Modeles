@@ -9,3 +9,5 @@ jsonschema==4.23.0
 pydantic==2.10.4
 jsonpath-ng==1.7.0
 pyyaml==6.0.2
+snapshottest==0.6.0
+pytest-mock==3.14.0
