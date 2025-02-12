@@ -115,6 +115,15 @@ class CISUConverterV3:
         Returns:
             Converted EDXL CISU JSON
         """
+
+        def get_call_taker_information(json_data: Dict[str,Any]):
+            sender_id = get_sender(json_data)
+            crra_code = sender_id[len("fr.health."):]  # fr.health.samu780(.xxx) -> samu780(.xxx)
+            return {
+                'organization': sender_id,
+                'controlRoom': "CRRA " + crra_code  # samu780(.xxx) -> Samu780( Xxx)
+            }
+
         # Create independent envelope copy without usecase for output
         output_json = copy.deepcopy(input_json)
         if 'createCaseHealth' not in input_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {}):
@@ -145,13 +154,6 @@ class CISUConverterV3:
         # ToDo: pass this by ConfigMap and based on the version of the model
         output_usecase_json['referenceVersion'] = "2.0"
 
-        # CallTaker
-        sender_id = get_sender(input_json)
-        crra_code = sender_id[len("fr.health."):]  # fr.health.samu780(.xxx) -> samu780(.xxx)
-        output_usecase_json['initialAlert']['callTaker'] = {
-            'organization': sender_id,
-            'controlRoom': crra_code.replace('.', '').title()  # samu780(.xxx) -> Samu780( Xxx)
-        }
 
         # Generate unique IDs
         timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
@@ -162,6 +164,7 @@ class CISUConverterV3:
 
         if is_field_completed(input_usecase_json,'$.initialAlert'):
             output_usecase_json['initialAlert']['id'] = f"INAL-{timestamp}-{random_str}"
+            output_usecase_json['initialAlert']['callTaker'] = get_call_taker_information(input_json)
             output_usecase_json['initialAlert']['reception'] = get_field_value(input_usecase_json, '$.creation')
             output_usecase_json['initialAlert']['reporting'] = 'ATTENTION' if get_field_value(input_usecase_json, '$.caseDetails.priority') in ['P0', 'P1'] else 'STANDARD'
             output_usecase_json['initialAlert']['qualification'] = copy.deepcopy(get_field_value(output_usecase_json,'$.qualification'))
