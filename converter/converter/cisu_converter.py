@@ -64,7 +64,7 @@ class CISUConverterV3:
             if is_field_completed(json_data,'$.location.city.detail'):
                 if not is_field_completed(json_data, '$.location.freetext'):
                     json_data['location']['freetext']=''
-                json_data['location']['freetext']+= " Détails de commune : " + json_data['location']['city']['detail']
+                json_data['location']['freetext']+= "\nDétails de commune : " + json_data['location']['city']['detail']
 
         def add_case_priority(json_data: Dict[str,Any]):
             if is_field_completed(json_data,'$.initialAlert.reporting'):
