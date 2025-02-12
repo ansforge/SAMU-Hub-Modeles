@@ -115,6 +115,26 @@ class CISUConverterV3:
         Returns:
             Converted EDXL CISU JSON
         """
+        def count_victims(json_data: Dict[str,Any]) -> int:
+            victims = get_field_value(json_data, '$.patient')
+            if victims == None:
+                return 0
+            return len(victims)
+
+        def get_victim_count(json_data: Dict[str,Any]):
+            victims_count = count_victims(json_data)
+            if victims_count == 0:
+                return {'count': '0'}
+            if victims_count == 1:
+                return {'count': '1'}
+            if victims_count < 5:
+                return {'count': 'PLUSIEURS'}
+            return {'count': 'BEAUCOUP'}
+
+        def add_victim_information(json_data: Dict[str,Any]):
+            if not is_field_completed(json_data, '$.qualification'):
+                json_data['qualification']={}
+            json_data['qualification']['victims'] = get_victim_count(input_usecase_json)
 
         def get_call_taker_information(json_data: Dict[str,Any]):
             sender_id = get_sender(json_data)
@@ -137,10 +157,6 @@ class CISUConverterV3:
         # - Deletions
         delete_paths(output_usecase_json, cls.HEALTH_PATHS_TO_DELETE)
 
-        # - Updates
-        # Victims
-        nb_victims = len(input_usecase_json['patient']) if input_usecase_json['patient'] else 0
-        output_usecase_json['qualification']['victims'] = {'count': '0' if nb_victims == 0 else ('1' if nb_victims == 1 else ('PLUSIEURS' if nb_victims < 5 else 'BEAUCOUP'))}
 
         # Country: based on INSEE code
         input_insee_code = input_usecase_json.get('location', {}).get('city', {}).get('inseeCode')
@@ -150,14 +166,17 @@ class CISUConverterV3:
         else:
             output_usecase_json['location']['country'] = 'FR' # Default value
 
-        # Set reference version
-        # ToDo: pass this by ConfigMap and based on the version of the model
-        output_usecase_json['referenceVersion'] = "2.0"
+
 
 
         # Generate unique IDs
         timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
         random_str = ''.join(random.choices(string.ascii_lowercase + string.digits, k=4))
+
+        # - Updates
+        # ToDo: pass this by ConfigMap and based on the version of the model
+        output_usecase_json['referenceVersion'] = "2.0"
+        add_victim_information(output_usecase_json)
 
         if 'location' in output_usecase_json:
             output_usecase_json['location']['locID'] = f"LOC-{timestamp}-{random_str}"
