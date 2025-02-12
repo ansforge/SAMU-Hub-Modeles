@@ -160,15 +160,12 @@ class CISUConverterV3:
         if 'location' in output_usecase_json:
             output_usecase_json['location']['locID'] = f"LOC-{timestamp}-{random_str}"
 
-        # InitialAlert
-        if 'initialAlert' in output_usecase_json:
-            # Set initialAlert ID, reception and reporting
+        if is_field_completed(input_usecase_json,'$.initialAlert'):
             output_usecase_json['initialAlert']['id'] = f"INAL-{timestamp}-{random_str}"
-            output_usecase_json['initialAlert']['reception'] = input_usecase_json.get('creation')
-            output_usecase_json['initialAlert']['reporting'] = 'ATTENTION' if input_usecase_json.get('caseDetails', {}).get('priority') in ['P0', 'P1'] else 'STANDARD'
-            # Copy output case qualification and location to initialAlert
-            output_usecase_json['initialAlert']['qualification'] = copy.deepcopy(output_usecase_json.get('qualification'))
-            output_usecase_json['initialAlert']['location'] = copy.deepcopy(output_usecase_json.get('location'))
+            output_usecase_json['initialAlert']['reception'] = get_field_value(input_usecase_json, '$.creation')
+            output_usecase_json['initialAlert']['reporting'] = 'ATTENTION' if get_field_value(input_usecase_json, '$.caseDetails.priority') in ['P0', 'P1'] else 'STANDARD'
+            output_usecase_json['initialAlert']['qualification'] = copy.deepcopy(get_field_value(output_usecase_json,'$.qualification'))
+            output_usecase_json['initialAlert']['location'] = copy.deepcopy(get_field_value(output_usecase_json, '$.location'))
 
         output_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCase'] = output_usecase_json
         return output_json
