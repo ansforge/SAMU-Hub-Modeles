@@ -154,20 +154,6 @@ class CISUConverterV3:
         input_usecase_json = input_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth']
         output_usecase_json = copy.deepcopy(input_usecase_json)
 
-        # - Deletions
-        delete_paths(output_usecase_json, cls.HEALTH_PATHS_TO_DELETE)
-
-
-        # Country: based on INSEE code
-        input_insee_code = input_usecase_json.get('location', {}).get('city', {}).get('inseeCode')
-        if input_insee_code:
-            # ToDo: get country from INSEE code | Ref.: https://www.insee.fr/fr/information/7766585#titre-bloc-25
-            output_usecase_json['location']['country'] = 'FR'
-        else:
-            output_usecase_json['location']['country'] = 'FR' # Default value
-
-
-
 
         # Generate unique IDs
         timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
@@ -178,8 +164,15 @@ class CISUConverterV3:
         output_usecase_json['referenceVersion'] = "2.0"
         add_victim_information(output_usecase_json)
 
-        if 'location' in output_usecase_json:
-            output_usecase_json['location']['locID'] = f"LOC-{timestamp}-{random_str}"
+        if not is_field_completed(output_usecase_json,'$.location'):
+            output_usecase_json['location']={}
+
+        output_usecase_json['location']['locID'] = f"LOC-{timestamp}-{random_str}"
+        # ToDo: get country from INSEE code | Ref.: https://www.insee.fr/fr/information/7766585#titre-bloc-25
+        output_usecase_json['location']['country'] = 'FR' # Default value
+
+        # Deletions - /!\ it must be done before copying qualification and location fields
+        delete_paths(output_usecase_json, cls.HEALTH_PATHS_TO_DELETE)
 
         if is_field_completed(input_usecase_json,'$.initialAlert'):
             output_usecase_json['initialAlert']['id'] = f"INAL-{timestamp}-{random_str}"
