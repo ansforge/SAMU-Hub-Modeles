@@ -1,0 +1,178 @@
+{
+  "distributionID": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
+  "senderID": "fr.health.samuA",
+  "dateTimeSent": "2022-07-25T10:04:34+01:00",
+  "dateTimeExpires": "2072-07-25T10:04:34+01:00",
+  "distributionStatus": "Actual",
+  "distributionKind": "Report",
+  "descriptor": {
+    "language": "fr-FR",
+    "explicitAddress": {
+      "explicitAddressScheme": "hubex",
+      "explicitAddressValue": "fr.health.samuB"
+    }
+  },
+  "content": [
+    {
+      "jsonContent": {
+        "embeddedJsonContent": {
+          "message": {
+            "messageId": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
+            "sender": {
+              "name": "samuA",
+              "URI": "hubex:fr.health.samuA"
+            },
+            "sentAt": "2022-07-25T10:04:34+01:00",
+            "kind": "Report",
+            "status": "Actual",
+            "recipient": [
+              {
+                "name": "samuB",
+                "URI": "hubex:fr.health.samuB"
+              }
+            ],
+            "createCaseHealth": {
+              "initialAlert": {
+                "caller": {
+                  "detailedName": {
+                    "complete": "Quentin DIAWARA",
+                    "lastName": "DIAWARA",
+                    "firstName": "Quentin"
+                  },
+                  "callbackContact": {
+                    "channel": "PERSONNE",
+                    "type": "TEL",
+                    "detail": "+33654464295"
+                  },
+                  "callerContact": {
+                    "channel": "PERSONNE",
+                    "type": "TEL",
+                    "detail": "+14165550123"
+                  },
+                  "language": "fr",
+                  "type": "FAMILLE",
+                  "freetext": "beau-père des enfants"
+                },
+                "notes": [
+                  {
+                    "creation": "2024-08-01T04:29:00+02:00",
+                    "freetext": "Enfants ayant chuté d’environ 2 m dans la piscine en travaux (sans eau)."
+                  }
+                ],
+                "reception": "2024-08-01T16:27:00+02:00"
+              },
+              "location": {
+                "geometry": {
+                  "point": {
+                    "coord": {
+                      "lat": 49.59237386471319,
+                      "lon": 1.6958576837577788,
+                      "precision": "RUE"
+                    },
+                    "isAml": false
+                  },
+                  "datetime": "2024-07-16T18:40:00+02:00"
+                },
+                "city": {
+                  "name": "Haussez",
+                  "inseeCode": "76345"
+                },
+                "detailedAddress": {
+                  "wayName": {
+                    "complete": "Rue Pierre Laisne ",
+                    "type": "Rue",
+                    "name": "Pierre Laisne "
+                  },
+                  "complete": "10 Rue Pierre Laisne ",
+                  "number": "10"
+                },
+                "freetext": "piscine au fond du jardin"
+              },
+              "qualification": {
+                "details": {
+                  "priority": "P1",
+                  "attribution": "DRM.SPE.PEDIA"
+                },
+                "healthMotive": {
+                  "code": "M02.07",
+                  "label": "Traumatisme sérieux, plaie intermédiaire "
+                },
+                "locationKind": {
+                  "code": "L01.01.02",
+                  "label": "Domicile; Maison particulière, pavillon ; A l'extérieur"
+                },
+                "whatsHappen": {
+                  "code": "C02.08.02",
+                  "label": "Atteinte aux personnes ; Traumatisme / Accident ; Accident domestique"
+                },
+                "origin": "15"
+              },
+              "medicalNote": [
+                {
+                  "operator": {
+                    "role": "ARM"
+                  },
+                  "patientId": "fr.health.samu800.patient.DRFR158002421400215.1",
+                  "medicalNoteId": "fr.health.samu800.medicalNote.kn569ab",
+                  "creation": "2024-08-01T16:31:00+02:00",
+                  "freetext": "Chute dans la piscine à vide : pleure et crie. Multiples contusions. Plaie importante à l’arcade sourcilière."
+                },
+                {
+                  "operator": {
+                    "role": "ARM"
+                  },
+                  "patientId": "fr.health.samu800.patient.DRFR158002421400215.2",
+                  "medicalNoteId": "fr.health.samu800.medicalNote.bn338bc",
+                  "creation": "2024-08-01T16:32:00+02:00",
+                  "freetext": "Conscient, légèrement choqué. Jambe ouverte et tordue, douleur ++."
+                }
+              ],
+              "patient": [
+                {
+                  "detail": {
+                    "age": "P21M",
+                    "weight": 11
+                  },
+                  "identity": {
+                    "nonStrictFeatures": {
+                      "complete": "Kamélia Nguyen",
+                      "lastName": "Nguyen",
+                      "firstName": "Kamélia "
+                    },
+                    "strictFeatures": {
+                      "birthDate": "2021-10-15",
+                      "sex": "F"
+                    }
+                  },
+                  "patientId": "fr.health.samu800.patient.DRFR158002421400215.1"
+                },
+                {
+                  "detail": {
+                    "age": "P21M"
+                  },
+                  "identity": {
+                    "nonStrictFeatures": {
+                      "complete": "Bao Nguyen",
+                      "lastName": "Nguyen",
+                      "firstName": "Bao"
+                    },
+                    "strictFeatures": {
+                      "birthDate": "2017-11-06",
+                      "sex": "M"
+                    }
+                  },
+                  "patientId": "fr.health.samu800.patient.DRFR158002421400215.2"
+                }
+              ],
+              "caseId": "fr.health.samu800.DRFR158002421400215",
+              "senderCaseId": "DRFR158002421400215",
+              "creation": "2024-08-01T16:28:00+02:00",
+              "owner": "fr.health.samu800",
+              "interventionType": "T1"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
