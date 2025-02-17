@@ -2509,7 +2509,7 @@ components:
           - T3
           - T4
           examples:
-          - PRIMAIRE
+          - T1
         qualification:
           $ref: '#/components/schemas/qualification'
         location:
@@ -2903,7 +2903,7 @@ components:
           - CLASSE
           - ARCHIVE
           examples:
-          - None
+          - ACTIF
         priority:
           type: string
           title: "Priorit\xE9 de r\xE9gulation m\xE9dicale"
@@ -2940,7 +2940,7 @@ components:
       additionalProperties: false
       example: example.json#/qualification/details
       examples:
-      - status: None
+      - status: ACTIF
         priority: P1
         careLevel: R1
     highway:
