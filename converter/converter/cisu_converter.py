@@ -78,6 +78,27 @@ class CISUConverterV3:
                     json_data['qualification']['details']={}
                 json_data['qualification']['details']['priority']= 'P0' if get_field_value(json_data,'$.initialAlert.reporting') =='ATTENTION' else 'P2'
 
+        def merge_notes_freetext(json_data: Dict[str,Any]):
+            if not is_field_completed(json_data, '$.initialAlert.notes'):
+                return json_data
+
+            merged_texts = []
+            other_notes = []
+
+            for note in json_data['initialAlert']['notes']:
+                if "freetext" in note:
+                    merged_texts.append(note["freetext"])
+                else:
+                    other_notes.append(note)
+
+            merged_note = {"freetext": "; ".join(merged_texts)} if merged_texts else {}
+
+            result_notes = [merged_note] if merged_note else []
+            result_notes.extend(other_notes)
+            json_data['initialAlert']['notes']=result_notes
+
+            return json_data
+
         # Create independent envelope copy without usecase for output
         output_json = copy.deepcopy(input_json)
         if 'createCase' not in input_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {}):
@@ -97,6 +118,7 @@ class CISUConverterV3:
         if is_field_completed(output_use_case_json,'$.initialAlert'):
             add_case_priority(output_use_case_json)
             add_to_initial_alert_notes(output_use_case_json,cls.CISU_PATHS_TO_ADD_TO_INITIAL_ALERT_NOTES)
+            merge_notes_freetext(output_use_case_json)
 
         # - Delete paths - /!\ It must be the last step
         delete_paths(output_use_case_json, cls.CISU_PATHS_TO_DELETE)
