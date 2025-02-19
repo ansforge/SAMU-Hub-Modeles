@@ -110,6 +110,28 @@ class TestSnapshotCisuConverter(TestCase):
 
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
+    @patch("converter.cisu_converter.datetime")
+    @patch('converter.cisu_converter.random')
+    def test_snapshot_RS_EDA_exhaustive_bis_message(self,mock_choices, mock_now):
+        mock_now.now.return_value = datetime(2024, 2, 10, 12, 34, 56)
+        mock_now.strftime = datetime.strftime
+
+        mock_choices.choices.return_value = "f5de"
+
+        message = TestHelper.create_edxl_json_from_sample(self.edxl_envelope_health_to_fire_path, self.fixtures_folder_path + "RS-EDA_exhaustive_fill_bis.json")
+        converter = CISUConverterV3()
+
+        output_data = converter.to_cisu(message)
+        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+
+    def test_snapshot_RC_EDA_exhaustive_bis_message(self):
+        message = TestHelper.create_edxl_json_from_sample(self.edxl_envelope_fire_to_health_path, self.fixtures_folder_path + "RC-EDA_exhaustive_fill_bis.json")
+        converter = CISUConverterV3()
+
+        output_data = converter.from_cisu(message)
+
+        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+
 class TestVictimsCount(TestCase):
     def setUp(self):
         self.fixtures_folder_path = "tests/fixtures/"

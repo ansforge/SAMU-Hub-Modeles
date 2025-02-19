@@ -203,7 +203,7 @@ class CISUConverterV3:
             output_usecase_json['initialAlert']['id'] = f"INAL-{timestamp}-{random_str}"
             output_usecase_json['initialAlert']['callTaker'] = get_call_taker_information(input_json)
             output_usecase_json['initialAlert']['reception'] = get_field_value(input_usecase_json, '$.creation')
-            output_usecase_json['initialAlert']['reporting'] = 'ATTENTION' if get_field_value(input_usecase_json, '$.caseDetails.priority') in ['P0', 'P1'] else 'STANDARD'
+            output_usecase_json['initialAlert']['reporting'] = 'ATTENTION' if get_field_value(input_usecase_json, '$.qualification.details.priority') in ['P0', 'P1'] else 'STANDARD'
             output_usecase_json['initialAlert']['qualification'] = copy.deepcopy(get_field_value(output_usecase_json,'$.qualification'))
             output_usecase_json['initialAlert']['location'] = copy.deepcopy(get_field_value(output_usecase_json, '$.location'))
 
