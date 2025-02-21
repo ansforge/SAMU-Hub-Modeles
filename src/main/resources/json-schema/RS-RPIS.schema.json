@@ -6,7 +6,13 @@
     "example": "example.json#",
     "type": "object",
     "title": "rpis",
-    "required": [],
+    "required": [
+        "context",
+        "regulation",
+        "patient",
+        "intervention",
+        "orientation"
+    ],
     "properties": {
         "context": {
             "$ref": "#/definitions/event"
@@ -30,7 +36,15 @@
             "title": "Evènement",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "orgId",
+                "senderCaseId",
+                "creationDate",
+                "decisionDate",
+                "ressourceFinessLegal",
+                "ressourceFinessGeo",
+                "ressourceStructure"
+            ],
             "properties": {
                 "orgId": {
                     "type": "string",
@@ -102,7 +116,11 @@
             "title": "Régulation médicale",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "whatsHappen",
+                "healthMotive",
+                "medicalLevel"
+            ],
             "properties": {
                 "whatsHappen": {
                     "$ref": "#/definitions/whatsHappen"
@@ -133,7 +151,11 @@
             "title": "Patient",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "patientId",
+                "birthDate",
+                "sex"
+            ],
             "properties": {
                 "patientId": {
                     "type": "string",
@@ -177,7 +199,11 @@
             "title": "Intervention",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "location",
+                "team",
+                "mainDiagnosis"
+            ],
             "properties": {
                 "location": {
                     "$ref": "#/definitions/location"
@@ -225,7 +251,9 @@
             "title": "Décision d'orientation",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "type"
+            ],
             "properties": {
                 "type": {
                     "type": "string",
@@ -250,7 +278,10 @@
             "title": "Circonstances ayant données lieu à l’appel",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "code",
+                "label"
+            ],
             "properties": {
                 "code": {
                     "type": "string",
@@ -578,7 +609,10 @@
             "title": "Motif de recours ",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "code",
+                "label"
+            ],
             "properties": {
                 "code": {
                     "type": "string",
@@ -659,7 +693,10 @@
             "title": "Adresse de résidence",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "inseeCode",
+                "city"
+            ],
             "properties": {
                 "inseeCode": {
                     "type": "string",
@@ -687,7 +724,9 @@
             "title": "Lieu d'intervention",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "detailedAddress"
+            ],
             "properties": {
                 "type": {
                     "type": "string",
@@ -906,7 +945,11 @@
             "title": "Composition de l'équipage",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "doctor",
+                "nurse",
+                "driver"
+            ],
             "properties": {
                 "doctor": {
                     "type": "boolean",
@@ -941,7 +984,11 @@
             "title": "Statuts des horaires du SMUR",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "departSmur",
+                "teamAvailable",
+                "returnSmur"
+            ],
             "properties": {
                 "departSmur": {
                     "type": "string",
@@ -1012,7 +1059,10 @@
             "title": "Adresse de l'intervention",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "inseeCode",
+                "city"
+            ],
             "properties": {
                 "inseeCode": {
                     "type": "string",
@@ -1040,7 +1090,12 @@
             "title": "Destination",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "destinationCountry",
+                "destinationCategory",
+                "healthcareType",
+                "finess"
+            ],
             "properties": {
                 "destinationCountry": {
                     "type": "string",
@@ -1326,7 +1381,11 @@
             "title": "Transport",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "resourceType",
+                "vehicleType",
+                "medicalLevel"
+            ],
             "properties": {
                 "resourceType": {
                     "type": "string",

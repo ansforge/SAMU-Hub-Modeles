@@ -2,16 +2,16 @@
     <element name="rpis" type="x:rpis"/>
     <complexType name="rpis">
         <sequence>
-            <element minOccurs="0" name="context" type="x:event"/>
-            <element minOccurs="0" name="regulation" type="x:regulation"/>
-            <element minOccurs="0" name="patient" type="x:patient"/>
-            <element minOccurs="0" name="intervention" type="x:intervention"/>
-            <element minOccurs="0" name="orientation" type="x:orientation"/>
+            <element name="context" type="x:event"/>
+            <element name="regulation" type="x:regulation"/>
+            <element name="patient" type="x:patient"/>
+            <element name="intervention" type="x:intervention"/>
+            <element name="orientation" type="x:orientation"/>
         </sequence>
     </complexType>
     <complexType name="event">
         <sequence>
-            <element minOccurs="0" name="orgId">
+            <element name="orgId">
                 <annotation>
                     <documentation>Numéro du SAMU régulant la mission SMUR. 
 A valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}
@@ -23,7 +23,7 @@ A valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="senderCaseId" type="string">
+            <element name="senderCaseId" type="string">
                 <annotation>
                     <documentation>Numéro du dossier SAMU à l’origine de la mission SMUR
 A valoriser par DRFR15DDXAAJJJ00000 : 
@@ -37,27 +37,27 @@ A valoriser par DRFR15DDXAAJJJ00000 :
 - 00000 : numéro d’ordre chronologique du dossier dans la journée de référence ci-dessus.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="creationDate" type="dateTime">
+            <element name="creationDate" type="dateTime">
                 <annotation>
                     <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="decisionDate" type="dateTime">
+            <element name="decisionDate" type="dateTime">
                 <annotation>
                     <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="ressourceFinessLegal" type="string">
+            <element name="ressourceFinessLegal" type="string">
                 <annotation>
                     <documentation>FINESS juridique établissement rattachement SMUR</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="ressourceFinessGeo" type="string">
+            <element name="ressourceFinessGeo" type="string">
                 <annotation>
                     <documentation>FINESS géographique établissement rattachement SMUR ou antenne SMUR</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="ressourceStructure" type="string">
+            <element name="ressourceStructure" type="string">
                 <annotation>
                     <documentation>9 = Antenne SMUR, 0 = SMUR général, 1 = SMUR pédiatrique, 2 = SMUR neonatal </documentation>
                 </annotation>
@@ -66,9 +66,9 @@ A valoriser par DRFR15DDXAAJJJ00000 :
     </complexType>
     <complexType name="regulation">
         <sequence>
-            <element minOccurs="0" name="whatsHappen" type="x:whatsHappen"/>
-            <element minOccurs="0" name="healthMotive" type="x:healthMotive"/>
-            <element minOccurs="0" name="medicalLevel">
+            <element name="whatsHappen" type="x:whatsHappen"/>
+            <element name="healthMotive" type="x:healthMotive"/>
+            <element name="medicalLevel">
                 <annotation>
                     <documentation>Type d’équipe (médical, paramédicale, secouriste).
 A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.
@@ -87,18 +87,18 @@ Permet de déduire avec la donnée "niveau de médicalisation du transport", si 
     </complexType>
     <complexType name="patient">
         <sequence>
-            <element minOccurs="0" name="patientId" type="string">
+            <element name="patientId" type="string">
                 <annotation>
                     <documentation>Identifiant unique du patient. 
 A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="birthDate" type="string">
+            <element name="birthDate" type="string">
                 <annotation>
                     <documentation>Date de naissance du patient</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="sex">
+            <element name="sex">
                 <annotation>
                     <documentation>Sexe du patient, suivant le libellé court de la nomenclature NOS-NOMENC_SEXE</documentation>
                 </annotation>
@@ -116,11 +116,11 @@ A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre 
     </complexType>
     <complexType name="intervention">
         <sequence>
-            <element minOccurs="0" name="location" type="x:location"/>
-            <element minOccurs="0" name="team" type="x:team"/>
+            <element name="location" type="x:location"/>
+            <element name="team" type="x:team"/>
             <element minOccurs="0" name="smurStatus" type="x:resourceStatus"/>
             <element maxOccurs="unbounded" minOccurs="0" name="procedure" type="string"/>
-            <element minOccurs="0" name="mainDiagnosis" type="string">
+            <element name="mainDiagnosis" type="string">
                 <annotation>
                     <documentation>Thésaurus SFMU-FEDORU.
 A valoriser par un code de la nomenclature Diagnostic SMUR(à venir).</documentation>
@@ -136,7 +136,7 @@ A valoriser par un code de la nomenclature Diagnostic SMUR (à venir).</document
     </complexType>
     <complexType name="orientation">
         <sequence>
-            <element minOccurs="0" name="type" type="string">
+            <element name="type" type="string">
                 <annotation>
                     <documentation>Indique si le patient est transporté ou non (Sans transport associé / avec transport associé). 
 A valoriser par un code de la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.
@@ -149,7 +149,7 @@ Si le type d'orientation est sans transport associé, les objets Destination et 
     </complexType>
     <complexType name="whatsHappen">
         <sequence>
-            <element minOccurs="0" name="code">
+            <element name="code">
                 <annotation>
                     <documentation>A valoriser avec le code de la nomenclature associée.</documentation>
                 </annotation>
@@ -457,7 +457,7 @@ Si le type d'orientation est sans transport associé, les objets Destination et 
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="label" type="string">
+            <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
@@ -467,7 +467,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="healthMotive">
         <sequence>
-            <element minOccurs="0" name="code">
+            <element name="code">
                 <annotation>
                     <documentation>A valoriser avec le code de la nomenclature associée.</documentation>
                 </annotation>
@@ -528,7 +528,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="label" type="string">
+            <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
@@ -538,7 +538,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="residentialAddress">
         <sequence>
-            <element minOccurs="0" name="inseeCode">
+            <element name="inseeCode">
                 <annotation>
                     <documentation>Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.
 Le Code INSEE peut également précisé le pays de résidence, si étranger. </documentation>
@@ -549,7 +549,7 @@ Le Code INSEE peut également précisé le pays de résidence, si étranger. </d
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="city" type="string">
+            <element name="city" type="string">
                 <annotation>
                     <documentation>Nom officiel de la commune actuelle</documentation>
                 </annotation>
@@ -758,24 +758,24 @@ A renseigner uniquement si l'intervention a lieu dans un établissement de sant�
 A renseigner uniquement si l'intervention a lieu dans un établissement de santé. </documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="detailedAddress" type="x:detailedAddress"/>
+            <element name="detailedAddress" type="x:detailedAddress"/>
         </sequence>
     </complexType>
     <complexType name="team">
         <sequence>
-            <element minOccurs="0" name="doctor" type="boolean">
+            <element name="doctor" type="boolean">
                 <annotation>
                     <documentation>Permet d'identifier si un médecin compose l'équipe.
 Cette donnée peut être automatiquement déduite, dès que le nom et prénom du médecin est saisi sur la tablette. </documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="nurse" type="boolean">
+            <element name="nurse" type="boolean">
                 <annotation>
                     <documentation>Permet d'identifier si un infirmier compose l'équipe.
 Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'infirmier est saisi sur la tablette. </documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="driver" type="boolean">
+            <element name="driver" type="boolean">
                 <annotation>
                     <documentation>Permet d'identifier si un ambulancier compose l'équipe.
 Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'ambulancier est saisi sur la tablette. </documentation>
@@ -785,7 +785,7 @@ Cette donnée peut être automatiquement déduite, dès que le nom et prénom de
     </complexType>
     <complexType name="resourceStatus">
         <sequence>
-            <element minOccurs="0" name="departSmur" type="dateTime">
+            <element name="departSmur" type="dateTime">
                 <annotation>
                     <documentation>Date et heure à laquelle le SMUR quitte sa base. 
 s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
@@ -809,13 +809,13 @@ s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
 s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="teamAvailable" type="dateTime">
+            <element name="teamAvailable" type="dateTime">
                 <annotation>
                     <documentation>Date et heure à laquelle le SMUR est disponible (dispose de tout les équipements pour faire une autre intervention). 
 s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="returnSmur" type="dateTime">
+            <element name="returnSmur" type="dateTime">
                 <annotation>
                     <documentation>Date et heure à laquelle le SMUR est de retour à la base. 
 s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
@@ -825,7 +825,7 @@ s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
     </complexType>
     <complexType name="detailedAddress">
         <sequence>
-            <element minOccurs="0" name="inseeCode">
+            <element name="inseeCode">
                 <annotation>
                     <documentation>Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.
 Le Code INSEE peut également précisé le pays d'intervention, si étranger. </documentation>
@@ -836,7 +836,7 @@ Le Code INSEE peut également précisé le pays d'intervention, si étranger. </
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="city" type="string">
+            <element name="city" type="string">
                 <annotation>
                     <documentation>Nom officiel de la commune actuelle</documentation>
                 </annotation>
@@ -845,7 +845,7 @@ Le Code INSEE peut également précisé le pays d'intervention, si étranger. </
     </complexType>
     <complexType name="destination">
         <sequence>
-            <element minOccurs="0" name="destinationCountry">
+            <element name="destinationCountry">
                 <annotation>
                     <documentation>A valoriser par le code de la nomenclature associée</documentation>
                 </annotation>
@@ -1095,17 +1095,17 @@ Le Code INSEE peut également précisé le pays d'intervention, si étranger. </
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="destinationCategory" type="string">
+            <element name="destinationCategory" type="string">
                 <annotation>
                     <documentation>A valoriser par le code de la nomenclature associée</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="healthcareType" type="string">
+            <element name="healthcareType" type="string">
                 <annotation>
                     <documentation>A valoriser par le code de la nomenclature ActiviteOperationnelle (à venir). </documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="finess" type="string">
+            <element name="finess" type="string">
                 <annotation>
                     <documentation>FINESS géographique de l’établissement de destination (9 chiffres)</documentation>
                 </annotation>
@@ -1114,7 +1114,7 @@ Le Code INSEE peut également précisé le pays d'intervention, si étranger. </
     </complexType>
     <complexType name="decision">
         <sequence>
-            <element minOccurs="0" name="resourceType">
+            <element name="resourceType">
                 <annotation>
                     <documentation>Précise le type de moyen engagé dans l'intervention (SMUR, TSU, HOSPIT, etc.). 
 A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.</documentation>
@@ -1158,7 +1158,7 @@ A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.</documentation>
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="vehicleType">
+            <element name="vehicleType">
                 <annotation>
                     <documentation>Précise le type de véhicule terrestre / aérien / maritime engagé dans l'intervention.
 A valoriser par un code de la nomenclature SI-SAMU-TYPE_VECTEUR.</documentation>
@@ -1231,7 +1231,7 @@ A valoriser par un code de la nomenclature SI-SAMU-TYPE_VECTEUR.</documentation>
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="medicalLevel">
+            <element name="medicalLevel">
                 <annotation>
                     <documentation>Type d’équipe (médical, paramédicale, secouriste).
 A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN.</documentation>

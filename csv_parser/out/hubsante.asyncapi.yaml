@@ -628,7 +628,8 @@ components:
       title: Lieu d'intervention
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - detailedAddress
       properties:
         type:
           type: string
@@ -913,7 +914,9 @@ components:
       title: "Circonstances ayant donn\xE9es lieu \xE0 l\u2019appel"
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - code
+      - label
       properties:
         code:
           type: string
@@ -1282,7 +1285,9 @@ components:
       title: 'Motif de recours '
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - code
+      - label
       properties:
         code:
           type: string
@@ -1466,7 +1471,9 @@ components:
       title: Adresse de l'intervention
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - inseeCode
+      - city
       properties:
         inseeCode:
           type: string
@@ -2722,7 +2729,10 @@ components:
       title: Transport
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - resourceType
+      - vehicleType
+      - medicalLevel
       properties:
         resourceType:
           type: string
@@ -3374,7 +3384,11 @@ components:
       title: Destination
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - destinationCountry
+      - destinationCategory
+      - healthcareType
+      - finess
       properties:
         destinationCountry:
           type: string
@@ -3936,7 +3950,14 @@ components:
       title: "Ev\xE8nement"
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - orgId
+      - senderCaseId
+      - creationDate
+      - decisionDate
+      - ressourceFinessLegal
+      - ressourceFinessGeo
+      - ressourceStructure
       properties:
         orgId:
           type: string
@@ -6042,7 +6063,10 @@ components:
       title: "Composition de l'\xE9quipage"
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - doctor
+      - nurse
+      - driver
       properties:
         doctor:
           type: boolean
@@ -6535,7 +6559,12 @@ components:
       example: example.json#
       type: object
       title: rpis
-      required: []
+      required:
+      - context
+      - regulation
+      - patient
+      - intervention
+      - orientation
       properties:
         context:
           $ref: '#/components/schemas/event'
@@ -6553,7 +6582,10 @@ components:
       title: "R\xE9gulation m\xE9dicale"
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - whatsHappen
+      - healthMotive
+      - medicalLevel
       properties:
         whatsHappen:
           $ref: '#/components/schemas/whatsHappen'
@@ -6583,7 +6615,10 @@ components:
       title: Intervention
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - location
+      - team
+      - mainDiagnosis
       properties:
         location:
           $ref: '#/components/schemas/location'
@@ -6633,7 +6668,8 @@ components:
       title: "D\xE9cision d'orientation"
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - type
       properties:
         type:
           type: string
@@ -6659,7 +6695,9 @@ components:
       title: "Adresse de r\xE9sidence"
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - inseeCode
+      - city
       properties:
         inseeCode:
           type: string
@@ -6693,7 +6731,10 @@ components:
       title: Statuts des horaires du SMUR
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - departSmur
+      - teamAvailable
+      - returnSmur
       properties:
         departSmur:
           type: string

@@ -83,14 +83,14 @@ public class Rpis {
    * @return context
    **/
   @JsonProperty(JSON_PROPERTY_CONTEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public Event getContext() {
     return context;
   }
 
   @JsonProperty(JSON_PROPERTY_CONTEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setContext(Event context) {
     this.context = context;
   }
@@ -106,14 +106,14 @@ public class Rpis {
    * @return regulation
    **/
   @JsonProperty(JSON_PROPERTY_REGULATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public Regulation getRegulation() {
     return regulation;
   }
 
   @JsonProperty(JSON_PROPERTY_REGULATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setRegulation(Regulation regulation) {
     this.regulation = regulation;
   }
@@ -129,14 +129,14 @@ public class Rpis {
    * @return patient
    **/
   @JsonProperty(JSON_PROPERTY_PATIENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public Patient getPatient() {
     return patient;
   }
 
   @JsonProperty(JSON_PROPERTY_PATIENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPatient(Patient patient) {
     this.patient = patient;
   }
@@ -152,14 +152,14 @@ public class Rpis {
    * @return intervention
    **/
   @JsonProperty(JSON_PROPERTY_INTERVENTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public Intervention getIntervention() {
     return intervention;
   }
 
   @JsonProperty(JSON_PROPERTY_INTERVENTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setIntervention(Intervention intervention) {
     this.intervention = intervention;
   }
@@ -175,14 +175,14 @@ public class Rpis {
    * @return orientation
    **/
   @JsonProperty(JSON_PROPERTY_ORIENTATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public Orientation getOrientation() {
     return orientation;
   }
 
   @JsonProperty(JSON_PROPERTY_ORIENTATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setOrientation(Orientation orientation) {
     this.orientation = orientation;
   }
