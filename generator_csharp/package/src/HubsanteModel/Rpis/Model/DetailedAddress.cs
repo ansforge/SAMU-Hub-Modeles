@@ -34,26 +34,11 @@ namespace HubsanteModel/Rpis.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DetailedAddress" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected DetailedAddress() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DetailedAddress" /> class.
-        /// </summary>
-        /// <param name="inseeCode">Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné. Le Code INSEE peut également précisé le pays d&#39;intervention, si étranger.  (required).</param>
-        /// <param name="city">Nom officiel de la commune actuelle (required).</param>
+        /// <param name="inseeCode">Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné. Le Code INSEE peut également précisé le pays d&#39;intervention, si étranger. .</param>
+        /// <param name="city">Nom officiel de la commune actuelle.</param>
         public DetailedAddress(string inseeCode = default(string), string city = default(string))
         {
-            // to ensure "inseeCode" is required (not null)
-            if (inseeCode == null)
-            {
-                throw new ArgumentNullException("inseeCode is a required property for DetailedAddress and cannot be null");
-            }
             this.InseeCode = inseeCode;
-            // to ensure "city" is required (not null)
-            if (city == null)
-            {
-                throw new ArgumentNullException("city is a required property for DetailedAddress and cannot be null");
-            }
             this.City = city;
         }
 
@@ -64,7 +49,7 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/intervention/location/detailedAddress/inseeCode</example>
         */
-        [DataMember(Name = "inseeCode", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "inseeCode", EmitDefaultValue = false)]
         public string InseeCode { get; set; }
 
         /// <summary>
@@ -74,7 +59,7 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/intervention/location/detailedAddress/city</example>
         */
-        [DataMember(Name = "city", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "city", EmitDefaultValue = false)]
         public string City { get; set; }
 
         /// <summary>

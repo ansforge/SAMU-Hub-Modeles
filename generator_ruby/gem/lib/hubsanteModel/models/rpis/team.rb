@@ -70,20 +70,14 @@ module Rpis
 
       if attributes.key?(:'doctor')
         self.doctor = attributes[:'doctor']
-      else
-        self.doctor = nil
       end
 
       if attributes.key?(:'nurse')
         self.nurse = attributes[:'nurse']
-      else
-        self.nurse = nil
       end
 
       if attributes.key?(:'driver')
         self.driver = attributes[:'driver']
-      else
-        self.driver = nil
       end
     end
 
@@ -92,18 +86,6 @@ module Rpis
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @doctor.nil?
-        invalid_properties.push('invalid value for "doctor", doctor cannot be nil.')
-      end
-
-      if @nurse.nil?
-        invalid_properties.push('invalid value for "nurse", nurse cannot be nil.')
-      end
-
-      if @driver.nil?
-        invalid_properties.push('invalid value for "driver", driver cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -111,9 +93,6 @@ module Rpis
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @doctor.nil?
-      return false if @nurse.nil?
-      return false if @driver.nil?
       true
     end
 

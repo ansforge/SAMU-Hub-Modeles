@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,13 +27,16 @@ class ResidentialAddress(BaseModel):
     """
     ResidentialAddress
     """ # noqa: E501
-    insee_code: Annotated[str, Field(strict=True)] = Field(description="Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné. Le Code INSEE peut également précisé le pays de résidence, si étranger. ", alias="inseeCode")
-    city: StrictStr = Field(description="Nom officiel de la commune actuelle")
+    insee_code: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné. Le Code INSEE peut également précisé le pays de résidence, si étranger. ", alias="inseeCode")
+    city: Optional[StrictStr] = Field(default=None, description="Nom officiel de la commune actuelle")
     __properties: ClassVar[List[str]] = ["inseeCode", "city"]
 
     @field_validator('insee_code')
     def insee_code_validate_regular_expression(cls, value):
         """Validates the regular expression"""
+        if value is None:
+            return value
+
         if not re.match(r"^[0-9]{5}$", value):
             raise ValueError(r"must validate the regular expression /^[0-9]{5}$/")
         return value

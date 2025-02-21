@@ -75,32 +75,22 @@ module Rpis
 
       if attributes.key?(:'context')
         self.context = attributes[:'context']
-      else
-        self.context = nil
       end
 
       if attributes.key?(:'regulation')
         self.regulation = attributes[:'regulation']
-      else
-        self.regulation = nil
       end
 
       if attributes.key?(:'patient')
         self.patient = attributes[:'patient']
-      else
-        self.patient = nil
       end
 
       if attributes.key?(:'intervention')
         self.intervention = attributes[:'intervention']
-      else
-        self.intervention = nil
       end
 
       if attributes.key?(:'orientation')
         self.orientation = attributes[:'orientation']
-      else
-        self.orientation = nil
       end
     end
 
@@ -109,26 +99,6 @@ module Rpis
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @context.nil?
-        invalid_properties.push('invalid value for "context", context cannot be nil.')
-      end
-
-      if @regulation.nil?
-        invalid_properties.push('invalid value for "regulation", regulation cannot be nil.')
-      end
-
-      if @patient.nil?
-        invalid_properties.push('invalid value for "patient", patient cannot be nil.')
-      end
-
-      if @intervention.nil?
-        invalid_properties.push('invalid value for "intervention", intervention cannot be nil.')
-      end
-
-      if @orientation.nil?
-        invalid_properties.push('invalid value for "orientation", orientation cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -136,11 +106,6 @@ module Rpis
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @context.nil?
-      return false if @regulation.nil?
-      return false if @patient.nil?
-      return false if @intervention.nil?
-      return false if @orientation.nil?
       true
     end
 

@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,14 +26,17 @@ class Decision(BaseModel):
     """
     Decision
     """ # noqa: E501
-    resource_type: StrictStr = Field(description="Précise le type de moyen engagé dans l'intervention (SMUR, TSU, HOSPIT, etc.).  A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.", alias="resourceType")
-    vehicle_type: StrictStr = Field(description="Précise le type de véhicule terrestre / aérien / maritime engagé dans l'intervention. A valoriser par un code de la nomenclature SI-SAMU-TYPE_VECTEUR.", alias="vehicleType")
-    medical_level: StrictStr = Field(description="Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN.", alias="medicalLevel")
+    resource_type: Optional[StrictStr] = Field(default=None, description="Précise le type de moyen engagé dans l'intervention (SMUR, TSU, HOSPIT, etc.).  A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN.", alias="resourceType")
+    vehicle_type: Optional[StrictStr] = Field(default=None, description="Précise le type de véhicule terrestre / aérien / maritime engagé dans l'intervention. A valoriser par un code de la nomenclature SI-SAMU-TYPE_VECTEUR.", alias="vehicleType")
+    medical_level: Optional[StrictStr] = Field(default=None, description="Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN.", alias="medicalLevel")
     __properties: ClassVar[List[str]] = ["resourceType", "vehicleType", "medicalLevel"]
 
     @field_validator('resource_type')
     def resource_type_validate_enum(cls, value):
         """Validates the enum"""
+        if value is None:
+            return value
+
         if value not in set(['SMUR', 'SMUR.ADULT', 'SMUR.PED', 'SMUR.UMH-S', 'SMUR.CUMP', 'HOSPIT', 'LIBERAL', 'LIBERAL.MG', 'LIBERAL.PHARM', 'LIBERAL.INF', 'LIBERAL.KINE', 'LIBERAL.SOS', 'LIBERAL.MMG', 'LIBERAL.MSPD', 'LIBERAL.MCS', 'LIBERAL.SPEMED', 'LIBERAL.DENT', 'LIBERAL.LABO', 'LIBERAL.AUTREPRO', 'TSU', 'SIS', 'SIS.MEDSP', 'SIS.ISP', 'SIS.SP', 'AASC', 'FDO', 'FDO.PN', 'FDO.GEND', 'FDO.PM', 'FDO.DOUANES', 'AUTRE', 'AUTRE.ADM', 'AUTRE.DAE', 'AUTRE.AUTRE']):
             raise ValueError("must be one of enum values ('SMUR', 'SMUR.ADULT', 'SMUR.PED', 'SMUR.UMH-S', 'SMUR.CUMP', 'HOSPIT', 'LIBERAL', 'LIBERAL.MG', 'LIBERAL.PHARM', 'LIBERAL.INF', 'LIBERAL.KINE', 'LIBERAL.SOS', 'LIBERAL.MMG', 'LIBERAL.MSPD', 'LIBERAL.MCS', 'LIBERAL.SPEMED', 'LIBERAL.DENT', 'LIBERAL.LABO', 'LIBERAL.AUTREPRO', 'TSU', 'SIS', 'SIS.MEDSP', 'SIS.ISP', 'SIS.SP', 'AASC', 'FDO', 'FDO.PN', 'FDO.GEND', 'FDO.PM', 'FDO.DOUANES', 'AUTRE', 'AUTRE.ADM', 'AUTRE.DAE', 'AUTRE.AUTRE')")
         return value
@@ -41,6 +44,9 @@ class Decision(BaseModel):
     @field_validator('vehicle_type')
     def vehicle_type_validate_enum(cls, value):
         """Validates the enum"""
+        if value is None:
+            return value
+
         if value not in set(['AASC', 'AASC.VLSC', 'AASC.VPSP', 'AASC.AUTRESC', 'AUTREVEC', 'AUTREVEC.APIED', 'AUTREVEC.AVION', 'AUTREVEC.PERSO', 'AUTREVEC.TAXI', 'AUTREVEC.TRAIN', 'AUTREVEC.TRANSP', 'AUTREVEC.AUTRE', 'AUTREVEC.AUTRETRA', 'FSI', 'FSI.HELIFSI', 'FSI.VLFSI', 'FSI.FFSI', 'FSI.VHFSI', 'LIB', 'LIB.MEDV', 'LIB.INF', 'LIB.AUTREPRO', 'SIS', 'SIS.DRAGON', 'SIS.AVSC', 'SIS.FEUSIS', 'SIS.GRIMP', 'SIS.NAVISIS', 'SIS.PCSIS', 'SIS.SRSIS', 'SIS.VCH', 'SIS.VLCG', 'SIS.VLISP', 'SIS.VLMSP', 'SIS.VLSIS', 'SIS.VPL', 'SIS.VPMA', 'SIS.VR', 'SIS.VSAV', 'SIS.MOYSSE', 'SIS.AUTRESIS', 'SMUR', 'SMUR.VLM', 'SMUR.VL', 'SMUR.PSM1', 'SMUR.PSM2', 'SMUR.PSM3', 'SMUR.PSMP', 'SMUR.VPC', 'SMUR.AR', 'SMUR.AR-BAR', 'SMUR.AR-PED', 'SMUR.HELISMUR', 'SMUR.HELISAN', 'SMUR.AVSMUR', 'SMUR.AVSAN', 'SMUR.NAVISMUR', 'TSU', 'TSU.VSL', 'TSU.AMB-GV', 'TSU.AMB-PV', 'TSU.AMB-BAR', 'TSU.AMB']):
             raise ValueError("must be one of enum values ('AASC', 'AASC.VLSC', 'AASC.VPSP', 'AASC.AUTRESC', 'AUTREVEC', 'AUTREVEC.APIED', 'AUTREVEC.AVION', 'AUTREVEC.PERSO', 'AUTREVEC.TAXI', 'AUTREVEC.TRAIN', 'AUTREVEC.TRANSP', 'AUTREVEC.AUTRE', 'AUTREVEC.AUTRETRA', 'FSI', 'FSI.HELIFSI', 'FSI.VLFSI', 'FSI.FFSI', 'FSI.VHFSI', 'LIB', 'LIB.MEDV', 'LIB.INF', 'LIB.AUTREPRO', 'SIS', 'SIS.DRAGON', 'SIS.AVSC', 'SIS.FEUSIS', 'SIS.GRIMP', 'SIS.NAVISIS', 'SIS.PCSIS', 'SIS.SRSIS', 'SIS.VCH', 'SIS.VLCG', 'SIS.VLISP', 'SIS.VLMSP', 'SIS.VLSIS', 'SIS.VPL', 'SIS.VPMA', 'SIS.VR', 'SIS.VSAV', 'SIS.MOYSSE', 'SIS.AUTRESIS', 'SMUR', 'SMUR.VLM', 'SMUR.VL', 'SMUR.PSM1', 'SMUR.PSM2', 'SMUR.PSM3', 'SMUR.PSMP', 'SMUR.VPC', 'SMUR.AR', 'SMUR.AR-BAR', 'SMUR.AR-PED', 'SMUR.HELISMUR', 'SMUR.HELISAN', 'SMUR.AVSMUR', 'SMUR.AVSAN', 'SMUR.NAVISMUR', 'TSU', 'TSU.VSL', 'TSU.AMB-GV', 'TSU.AMB-PV', 'TSU.AMB-BAR', 'TSU.AMB')")
         return value
@@ -48,6 +54,9 @@ class Decision(BaseModel):
     @field_validator('medical_level')
     def medical_level_validate_enum(cls, value):
         """Validates the enum"""
+        if value is None:
+            return value
+
         if value not in set(['MED', 'PARAMED', 'SECOURS', 'SANS']):
             raise ValueError("must be one of enum values ('MED', 'PARAMED', 'SECOURS', 'SANS')")
         return value

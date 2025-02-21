@@ -65,14 +65,10 @@ module Rpis
 
       if attributes.key?(:'insee_code')
         self.insee_code = attributes[:'insee_code']
-      else
-        self.insee_code = nil
       end
 
       if attributes.key?(:'city')
         self.city = attributes[:'city']
-      else
-        self.city = nil
       end
     end
 
@@ -81,17 +77,9 @@ module Rpis
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @insee_code.nil?
-        invalid_properties.push('invalid value for "insee_code", insee_code cannot be nil.')
-      end
-
       pattern = Regexp.new(/^[0-9]{5}$/)
-      if @insee_code !~ pattern
+      if !@insee_code.nil? && @insee_code !~ pattern
         invalid_properties.push("invalid value for \"insee_code\", must conform to the pattern #{pattern}.")
-      end
-
-      if @city.nil?
-        invalid_properties.push('invalid value for "city", city cannot be nil.')
       end
 
       invalid_properties
@@ -101,9 +89,7 @@ module Rpis
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @insee_code.nil?
-      return false if @insee_code !~ Regexp.new(/^[0-9]{5}$/)
-      return false if @city.nil?
+      return false if !@insee_code.nil? && @insee_code !~ Regexp.new(/^[0-9]{5}$/)
       true
     end
 

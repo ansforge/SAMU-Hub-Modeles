@@ -1126,26 +1126,16 @@ namespace HubsanteModel/Rpis.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Location" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Location() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Location" /> class.
-        /// </summary>
         /// <param name="type">A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu..</param>
         /// <param name="finessGeo">Finess géographique et juridique de l’établissement de santé.  A renseigner uniquement si l&#39;intervention a lieu dans un établissement de santé. .</param>
         /// <param name="service">Unité fonctionnelle de l&#39;établissement de santé.  A renseigner uniquement si l&#39;intervention a lieu dans un établissement de santé. .</param>
-        /// <param name="detailedAddress">detailedAddress (required).</param>
+        /// <param name="detailedAddress">detailedAddress.</param>
         public Location(TypeEnum? type = default(TypeEnum?), string finessGeo = default(string), string service = default(string), DetailedAddress detailedAddress = default(DetailedAddress))
         {
-            // to ensure "detailedAddress" is required (not null)
-            if (detailedAddress == null)
-            {
-                throw new ArgumentNullException("detailedAddress is a required property for Location and cannot be null");
-            }
-            this.DetailedAddress = detailedAddress;
             this.Type = type;
             this.FinessGeo = finessGeo;
             this.Service = service;
+            this.DetailedAddress = detailedAddress;
         }
 
         /// <summary>
@@ -1171,7 +1161,7 @@ namespace HubsanteModel/Rpis.Model
         /// <summary>
         /// Gets or Sets DetailedAddress
         /// </summary>
-        [DataMember(Name = "detailedAddress", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "detailedAddress", EmitDefaultValue = false)]
         public DetailedAddress DetailedAddress { get; set; }
 
         /// <summary>

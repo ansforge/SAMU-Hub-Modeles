@@ -34,21 +34,11 @@ namespace HubsanteModel/Rpis.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Orientation" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Orientation() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Orientation" /> class.
-        /// </summary>
-        /// <param name="type">Indique si le patient est transporté ou non (Sans transport associé / avec transport associé).  A valoriser par un code de la nomenclature SI SAMU-NOMENC_DEVENIR_PAT. Si le type d&#39;orientation est sans transport associé, les objets Destination et Transport sont facultatifs.  (required).</param>
+        /// <param name="type">Indique si le patient est transporté ou non (Sans transport associé / avec transport associé).  A valoriser par un code de la nomenclature SI SAMU-NOMENC_DEVENIR_PAT. Si le type d&#39;orientation est sans transport associé, les objets Destination et Transport sont facultatifs. .</param>
         /// <param name="destination">destination.</param>
         /// <param name="decision">decision.</param>
         public Orientation(string type = default(string), Destination destination = default(Destination), Decision decision = default(Decision))
         {
-            // to ensure "type" is required (not null)
-            if (type == null)
-            {
-                throw new ArgumentNullException("type is a required property for Orientation and cannot be null");
-            }
             this.Type = type;
             this.Destination = destination;
             this.Decision = decision;
@@ -61,7 +51,7 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/orientation/type</example>
         */
-        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
 
         /// <summary>

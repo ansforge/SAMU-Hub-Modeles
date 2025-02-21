@@ -34,14 +34,9 @@ namespace HubsanteModel/Rpis.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Team" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Team() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Team" /> class.
-        /// </summary>
-        /// <param name="doctor">Permet d&#39;identifier si un médecin compose l&#39;équipe. Cette donnée peut être automatiquement déduite, dès que le nom et prénom du médecin est saisi sur la tablette.  (required).</param>
-        /// <param name="nurse">Permet d&#39;identifier si un infirmier compose l&#39;équipe. Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l&#39;infirmier est saisi sur la tablette.  (required).</param>
-        /// <param name="driver">Permet d&#39;identifier si un ambulancier compose l&#39;équipe. Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l&#39;ambulancier est saisi sur la tablette.  (required).</param>
+        /// <param name="doctor">Permet d&#39;identifier si un médecin compose l&#39;équipe. Cette donnée peut être automatiquement déduite, dès que le nom et prénom du médecin est saisi sur la tablette. .</param>
+        /// <param name="nurse">Permet d&#39;identifier si un infirmier compose l&#39;équipe. Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l&#39;infirmier est saisi sur la tablette. .</param>
+        /// <param name="driver">Permet d&#39;identifier si un ambulancier compose l&#39;équipe. Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l&#39;ambulancier est saisi sur la tablette. .</param>
         public Team(bool doctor = default(bool), bool nurse = default(bool), bool driver = default(bool))
         {
             this.Doctor = doctor;
@@ -56,7 +51,7 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>false</example>
         */
-        [DataMember(Name = "doctor", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "doctor", EmitDefaultValue = true)]
         public bool Doctor { get; set; }
 
         /// <summary>
@@ -66,7 +61,7 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>false</example>
         */
-        [DataMember(Name = "nurse", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "nurse", EmitDefaultValue = true)]
         public bool Nurse { get; set; }
 
         /// <summary>
@@ -76,7 +71,7 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>false</example>
         */
-        [DataMember(Name = "driver", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "driver", EmitDefaultValue = true)]
         public bool Driver { get; set; }
 
         /// <summary>

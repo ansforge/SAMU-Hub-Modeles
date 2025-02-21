@@ -1493,40 +1493,20 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/orientation/destination/destinationCountry</example>
         */
-        [DataMember(Name = "destinationCountry", IsRequired = true, EmitDefaultValue = true)]
-        public DestinationCountryEnum DestinationCountry { get; set; }
+        [DataMember(Name = "destinationCountry", EmitDefaultValue = false)]
+        public DestinationCountryEnum? DestinationCountry { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Destination" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Destination() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Destination" /> class.
-        /// </summary>
-        /// <param name="destinationCountry">A valoriser par le code de la nomenclature associée (required).</param>
-        /// <param name="destinationCategory">A valoriser par le code de la nomenclature associée (required).</param>
-        /// <param name="healthcareType">A valoriser par le code de la nomenclature ActiviteOperationnelle (à venir).  (required).</param>
-        /// <param name="finess">FINESS géographique de l’établissement de destination (9 chiffres) (required).</param>
-        public Destination(DestinationCountryEnum destinationCountry = default(DestinationCountryEnum), string destinationCategory = default(string), string healthcareType = default(string), string finess = default(string))
+        /// <param name="destinationCountry">A valoriser par le code de la nomenclature associée.</param>
+        /// <param name="destinationCategory">A valoriser par le code de la nomenclature associée.</param>
+        /// <param name="healthcareType">A valoriser par le code de la nomenclature ActiviteOperationnelle (à venir). .</param>
+        /// <param name="finess">FINESS géographique de l’établissement de destination (9 chiffres).</param>
+        public Destination(DestinationCountryEnum? destinationCountry = default(DestinationCountryEnum?), string destinationCategory = default(string), string healthcareType = default(string), string finess = default(string))
         {
             this.DestinationCountry = destinationCountry;
-            // to ensure "destinationCategory" is required (not null)
-            if (destinationCategory == null)
-            {
-                throw new ArgumentNullException("destinationCategory is a required property for Destination and cannot be null");
-            }
             this.DestinationCategory = destinationCategory;
-            // to ensure "healthcareType" is required (not null)
-            if (healthcareType == null)
-            {
-                throw new ArgumentNullException("healthcareType is a required property for Destination and cannot be null");
-            }
             this.HealthcareType = healthcareType;
-            // to ensure "finess" is required (not null)
-            if (finess == null)
-            {
-                throw new ArgumentNullException("finess is a required property for Destination and cannot be null");
-            }
             this.Finess = finess;
         }
 
@@ -1537,7 +1517,7 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/orientation/destination/destinationCategory</example>
         */
-        [DataMember(Name = "destinationCategory", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "destinationCategory", EmitDefaultValue = false)]
         public string DestinationCategory { get; set; }
 
         /// <summary>
@@ -1547,7 +1527,7 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/orientation/destination/healthcareType</example>
         */
-        [DataMember(Name = "healthcareType", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "healthcareType", EmitDefaultValue = false)]
         public string HealthcareType { get; set; }
 
         /// <summary>
@@ -1557,7 +1537,7 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/orientation/destination/finess</example>
         */
-        [DataMember(Name = "finess", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "finess", EmitDefaultValue = false)]
         public string Finess { get; set; }
 
         /// <summary>

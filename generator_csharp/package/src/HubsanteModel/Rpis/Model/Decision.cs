@@ -251,8 +251,8 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/orientation/decision/resourceType</example>
         */
-        [DataMember(Name = "resourceType", IsRequired = true, EmitDefaultValue = true)]
-        public ResourceTypeEnum ResourceType { get; set; }
+        [DataMember(Name = "resourceType", EmitDefaultValue = false)]
+        public ResourceTypeEnum? ResourceType { get; set; }
         /// <summary>
         /// Précise le type de véhicule terrestre / aérien / maritime engagé dans l&#39;intervention. A valoriser par un code de la nomenclature SI-SAMU-TYPE_VECTEUR.
         /// </summary>
@@ -647,8 +647,8 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/orientation/decision/vehicleType</example>
         */
-        [DataMember(Name = "vehicleType", IsRequired = true, EmitDefaultValue = true)]
-        public VehicleTypeEnum VehicleType { get; set; }
+        [DataMember(Name = "vehicleType", EmitDefaultValue = false)]
+        public VehicleTypeEnum? VehicleType { get; set; }
         /// <summary>
         /// Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN.
         /// </summary>
@@ -689,20 +689,15 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/orientation/decision/medicalLevel</example>
         */
-        [DataMember(Name = "medicalLevel", IsRequired = true, EmitDefaultValue = true)]
-        public MedicalLevelEnum MedicalLevel { get; set; }
+        [DataMember(Name = "medicalLevel", EmitDefaultValue = false)]
+        public MedicalLevelEnum? MedicalLevel { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Decision" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Decision() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Decision" /> class.
-        /// </summary>
-        /// <param name="resourceType">Précise le type de moyen engagé dans l&#39;intervention (SMUR, TSU, HOSPIT, etc.).  A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN. (required).</param>
-        /// <param name="vehicleType">Précise le type de véhicule terrestre / aérien / maritime engagé dans l&#39;intervention. A valoriser par un code de la nomenclature SI-SAMU-TYPE_VECTEUR. (required).</param>
-        /// <param name="medicalLevel">Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN. (required).</param>
-        public Decision(ResourceTypeEnum resourceType = default(ResourceTypeEnum), VehicleTypeEnum vehicleType = default(VehicleTypeEnum), MedicalLevelEnum medicalLevel = default(MedicalLevelEnum))
+        /// <param name="resourceType">Précise le type de moyen engagé dans l&#39;intervention (SMUR, TSU, HOSPIT, etc.).  A valoriser par un code de la nomenclature SI-SAMU-TYPE_MOYEN..</param>
+        /// <param name="vehicleType">Précise le type de véhicule terrestre / aérien / maritime engagé dans l&#39;intervention. A valoriser par un code de la nomenclature SI-SAMU-TYPE_VECTEUR..</param>
+        /// <param name="medicalLevel">Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN..</param>
+        public Decision(ResourceTypeEnum? resourceType = default(ResourceTypeEnum?), VehicleTypeEnum? vehicleType = default(VehicleTypeEnum?), MedicalLevelEnum? medicalLevel = default(MedicalLevelEnum?))
         {
             this.ResourceType = resourceType;
             this.VehicleType = vehicleType;

@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from hubsante_model.rpis.models.health_motive import HealthMotive
 from hubsante_model.rpis.models.whats_happen import WhatsHappen
 from typing import Optional, Set
@@ -28,14 +28,17 @@ class Regulation(BaseModel):
     """
     Regulation
     """ # noqa: E501
-    whats_happen: WhatsHappen = Field(alias="whatsHappen")
-    health_motive: HealthMotive = Field(alias="healthMotive")
-    medical_level: StrictStr = Field(description="Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN. Permet de déduire avec la donnée \"niveau de médicalisation du transport\", si un UMHP est devenu un SMUR. ", alias="medicalLevel")
+    whats_happen: Optional[WhatsHappen] = Field(default=None, alias="whatsHappen")
+    health_motive: Optional[HealthMotive] = Field(default=None, alias="healthMotive")
+    medical_level: Optional[StrictStr] = Field(default=None, description="Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN. Permet de déduire avec la donnée \"niveau de médicalisation du transport\", si un UMHP est devenu un SMUR. ", alias="medicalLevel")
     __properties: ClassVar[List[str]] = ["whatsHappen", "healthMotive", "medicalLevel"]
 
     @field_validator('medical_level')
     def medical_level_validate_enum(cls, value):
         """Validates the enum"""
+        if value is None:
+            return value
+
         if value not in set(['MED', 'PARAMED', 'SECOURS', 'SANS']):
             raise ValueError("must be one of enum values ('MED', 'PARAMED', 'SECOURS', 'SANS')")
         return value

@@ -27,15 +27,18 @@ class Patient(BaseModel):
     """
     Patient
     """ # noqa: E501
-    patient_id: StrictStr = Field(description="Identifiant unique du patient.  A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01", alias="patientId")
-    birth_date: StrictStr = Field(description="Date de naissance du patient", alias="birthDate")
-    sex: StrictStr = Field(description="Sexe du patient, suivant le libellé court de la nomenclature NOS-NOMENC_SEXE")
+    patient_id: Optional[StrictStr] = Field(default=None, description="Identifiant unique du patient.  A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01", alias="patientId")
+    birth_date: Optional[StrictStr] = Field(default=None, description="Date de naissance du patient", alias="birthDate")
+    sex: Optional[StrictStr] = Field(default=None, description="Sexe du patient, suivant le libellé court de la nomenclature NOS-NOMENC_SEXE")
     residential_address: Optional[ResidentialAddress] = Field(default=None, alias="residentialAddress")
     __properties: ClassVar[List[str]] = ["patientId", "birthDate", "sex", "residentialAddress"]
 
     @field_validator('sex')
     def sex_validate_enum(cls, value):
         """Validates the enum"""
+        if value is None:
+            return value
+
         if value not in set(['M', 'F', 'O', 'UN']):
             raise ValueError("must be one of enum values ('M', 'F', 'O', 'UN')")
         return value
