@@ -97,18 +97,26 @@ module Rpis
 
       if attributes.key?(:'destination_country')
         self.destination_country = attributes[:'destination_country']
+      else
+        self.destination_country = nil
       end
 
       if attributes.key?(:'destination_category')
         self.destination_category = attributes[:'destination_category']
+      else
+        self.destination_category = nil
       end
 
       if attributes.key?(:'healthcare_type')
         self.healthcare_type = attributes[:'healthcare_type']
+      else
+        self.healthcare_type = nil
       end
 
       if attributes.key?(:'finess')
         self.finess = attributes[:'finess']
+      else
+        self.finess = nil
       end
     end
 
@@ -117,6 +125,22 @@ module Rpis
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @destination_country.nil?
+        invalid_properties.push('invalid value for "destination_country", destination_country cannot be nil.')
+      end
+
+      if @destination_category.nil?
+        invalid_properties.push('invalid value for "destination_category", destination_category cannot be nil.')
+      end
+
+      if @healthcare_type.nil?
+        invalid_properties.push('invalid value for "healthcare_type", healthcare_type cannot be nil.')
+      end
+
+      if @finess.nil?
+        invalid_properties.push('invalid value for "finess", finess cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -124,8 +148,12 @@ module Rpis
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @destination_country.nil?
       destination_country_validator = EnumAttributeValidator.new('String', ["AF", "AX", "AL", "DZ", "AS", "AD", "AO", "AI", "AQ", "AG", "AR", "AM", "AW", "AU", "AT", "AZ", "BS", "BH", "BD", "BB", "BY", "BE", "BZ", "BJ", "BM", "BT", "BO", "BA", "BW", "BV", "BR", "IO", "BN", "BG", "BF", "BI", "CV", "KH", "CM", "CA", "KY", "CF", "TD", "CL", "CN", "CX", "CC", "CO", "KM", "CG", "CK", "CR", "CI", "HR", "CU", "CW", "CY", "CZ", "DK", "DJ", "DM", "DO", "EC", "EG", "SV", "GQ", "ER", "EE", "SZ", "ET", "FK", "FO", "FJ", "FI", "FR", "GF", "PF", "TF", "GA", "GM", "GE", "DE", "GH", "GI", "GR", "GL", "GD", "GP", "GU", "GT", "GG", "GN", "GW", "GY", "HT", "HM", "VA", "HN", "HK", "HU", "IS", "IN", "ID", "IR", "IQ", "IE", "IM", "IL", "IT", "JM", "JP", "JE", "JO", "KZ", "KE", "KI", "KP", "KW", "KG", "LA", "LV", "LB", "LS", "LR", "LY", "LI", "LT", "LU", "MO", "MG", "MW", "MY", "MV", "ML", "MT", "MH", "MQ", "MR", "MU", "YT", "MX", "FM", "MC", "MN", "ME", "MS", "MA", "MZ", "MM", "NA", "NR", "NP", "NL", "NC", "NZ", "NI", "NE", "NG", "NU", "NF", "MK", "MP", "NO", "OM", "PK", "PW", "PA", "PG", "PY", "PE", "PH", "PN", "PL", "PT", "PR", "QA", "RE", "RO", "RU", "RW", "BL", "KN", "LC", "MF", "PM", "VC", "WS", "SM", "ST", "SA", "SN", "RS", "SC", "SL", "SG", "SX", "SK", "SI", "SB", "SO", "ZA", "GS", "SS", "ES", "LK", "SD", "SR", "SJ", "SE", "CH", "SY", "TJ", "TH", "TL", "TG", "TK", "TO", "TT", "TN", "TR", "TM", "TC", "TV", "UG", "UA", "AE", "GB", "US", "UM", "UY", "UZ", "VU", "VE", "VN", "VG", "VI", "WF", "EH", "YE", "ZM", "ZW"])
       return false unless destination_country_validator.valid?(@destination_country)
+      return false if @destination_category.nil?
+      return false if @healthcare_type.nil?
+      return false if @finess.nil?
       true
     end
 

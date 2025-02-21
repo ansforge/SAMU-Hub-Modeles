@@ -81,10 +81,14 @@ module Rpis
 
       if attributes.key?(:'location')
         self.location = attributes[:'location']
+      else
+        self.location = nil
       end
 
       if attributes.key?(:'team')
         self.team = attributes[:'team']
+      else
+        self.team = nil
       end
 
       if attributes.key?(:'smur_status')
@@ -99,6 +103,8 @@ module Rpis
 
       if attributes.key?(:'main_diagnosis')
         self.main_diagnosis = attributes[:'main_diagnosis']
+      else
+        self.main_diagnosis = nil
       end
 
       if attributes.key?(:'associated_diagnosis')
@@ -111,6 +117,18 @@ module Rpis
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @location.nil?
+        invalid_properties.push('invalid value for "location", location cannot be nil.')
+      end
+
+      if @team.nil?
+        invalid_properties.push('invalid value for "team", team cannot be nil.')
+      end
+
+      if @main_diagnosis.nil?
+        invalid_properties.push('invalid value for "main_diagnosis", main_diagnosis cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -118,6 +136,9 @@ module Rpis
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @location.nil?
+      return false if @team.nil?
+      return false if @main_diagnosis.nil?
       true
     end
 

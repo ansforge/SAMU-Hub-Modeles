@@ -28,7 +28,7 @@ class Orientation(BaseModel):
     """
     Orientation
     """ # noqa: E501
-    type: Optional[StrictStr] = Field(default=None, description="Indique si le patient est transporté ou non (Sans transport associé / avec transport associé).  A valoriser par un code de la nomenclature SI SAMU-NOMENC_DEVENIR_PAT. Si le type d'orientation est sans transport associé, les objets Destination et Transport sont facultatifs. ")
+    type: StrictStr = Field(description="Indique si le patient est transporté ou non (Sans transport associé / avec transport associé).  A valoriser par un code de la nomenclature SI SAMU-NOMENC_DEVENIR_PAT. Si le type d'orientation est sans transport associé, les objets Destination et Transport sont facultatifs. ")
     destination: Optional[Destination] = None
     decision: Optional[Decision] = None
     __properties: ClassVar[List[str]] = ["type", "destination", "decision"]

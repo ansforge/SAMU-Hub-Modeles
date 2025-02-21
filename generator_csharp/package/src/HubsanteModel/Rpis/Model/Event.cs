@@ -34,21 +34,51 @@ namespace HubsanteModel/Rpis.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Event" /> class.
         /// </summary>
-        /// <param name="orgId">Numéro du SAMU régulant la mission SMUR.  A valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation} .</param>
-        /// <param name="senderCaseId">Numéro du dossier SAMU à l’origine de la mission SMUR A valoriser par DRFR15DDXAAJJJ00000 :  - DR &#x3D; désignation d&#39;un dossier sous forme abrégée, - FR : désigne le pays (FR &#x3D; France), - 15 : désigne le fait que le dossier a été pris en charge par un SAMU / SAS, - DD : désigne le département où est situé le SAMU / SAS qui a traité le dossier, - X : lettre désignant le SAMU / SAS en cas de pluralité de SAMU / SAS sur le même département ou le troisième chiffre des DOM, - AA : année durant laquelle l’appel a été créé, - JJJ : désigne le jour de l&#39;année (de 1j à 365j),\\par - 00000 : numéro d’ordre chronologique du dossier dans la journée de référence ci-dessus..</param>
-        /// <param name="creationDate">s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss.</param>
-        /// <param name="decisionDate">s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss.</param>
-        /// <param name="ressourceFinessLegal">FINESS juridique établissement rattachement SMUR.</param>
-        /// <param name="ressourceFinessGeo">FINESS géographique établissement rattachement SMUR ou antenne SMUR.</param>
-        /// <param name="ressourceStructure">9 &#x3D; Antenne SMUR, 0 &#x3D; SMUR général, 1 &#x3D; SMUR pédiatrique, 2 &#x3D; SMUR neonatal .</param>
+        [JsonConstructorAttribute]
+        protected Event() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Event" /> class.
+        /// </summary>
+        /// <param name="orgId">Numéro du SAMU régulant la mission SMUR.  A valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}  (required).</param>
+        /// <param name="senderCaseId">Numéro du dossier SAMU à l’origine de la mission SMUR A valoriser par DRFR15DDXAAJJJ00000 :  - DR &#x3D; désignation d&#39;un dossier sous forme abrégée, - FR : désigne le pays (FR &#x3D; France), - 15 : désigne le fait que le dossier a été pris en charge par un SAMU / SAS, - DD : désigne le département où est situé le SAMU / SAS qui a traité le dossier, - X : lettre désignant le SAMU / SAS en cas de pluralité de SAMU / SAS sur le même département ou le troisième chiffre des DOM, - AA : année durant laquelle l’appel a été créé, - JJJ : désigne le jour de l&#39;année (de 1j à 365j),\\par - 00000 : numéro d’ordre chronologique du dossier dans la journée de référence ci-dessus. (required).</param>
+        /// <param name="creationDate">s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss (required).</param>
+        /// <param name="decisionDate">s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss (required).</param>
+        /// <param name="ressourceFinessLegal">FINESS juridique établissement rattachement SMUR (required).</param>
+        /// <param name="ressourceFinessGeo">FINESS géographique établissement rattachement SMUR ou antenne SMUR (required).</param>
+        /// <param name="ressourceStructure">9 &#x3D; Antenne SMUR, 0 &#x3D; SMUR général, 1 &#x3D; SMUR pédiatrique, 2 &#x3D; SMUR neonatal  (required).</param>
         public Event(string orgId = default(string), string senderCaseId = default(string), DateTime creationDate = default(DateTime), DateTime decisionDate = default(DateTime), string ressourceFinessLegal = default(string), string ressourceFinessGeo = default(string), string ressourceStructure = default(string))
         {
+            // to ensure "orgId" is required (not null)
+            if (orgId == null)
+            {
+                throw new ArgumentNullException("orgId is a required property for Event and cannot be null");
+            }
             this.OrgId = orgId;
+            // to ensure "senderCaseId" is required (not null)
+            if (senderCaseId == null)
+            {
+                throw new ArgumentNullException("senderCaseId is a required property for Event and cannot be null");
+            }
             this.SenderCaseId = senderCaseId;
             this.CreationDate = creationDate;
             this.DecisionDate = decisionDate;
+            // to ensure "ressourceFinessLegal" is required (not null)
+            if (ressourceFinessLegal == null)
+            {
+                throw new ArgumentNullException("ressourceFinessLegal is a required property for Event and cannot be null");
+            }
             this.RessourceFinessLegal = ressourceFinessLegal;
+            // to ensure "ressourceFinessGeo" is required (not null)
+            if (ressourceFinessGeo == null)
+            {
+                throw new ArgumentNullException("ressourceFinessGeo is a required property for Event and cannot be null");
+            }
             this.RessourceFinessGeo = ressourceFinessGeo;
+            // to ensure "ressourceStructure" is required (not null)
+            if (ressourceStructure == null)
+            {
+                throw new ArgumentNullException("ressourceStructure is a required property for Event and cannot be null");
+            }
             this.RessourceStructure = ressourceStructure;
         }
 
@@ -59,7 +89,7 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/context/orgId</example>
         */
-        [DataMember(Name = "orgId", EmitDefaultValue = false)]
+        [DataMember(Name = "orgId", IsRequired = true, EmitDefaultValue = true)]
         public string OrgId { get; set; }
 
         /// <summary>
@@ -69,21 +99,21 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/context/senderCaseId</example>
         */
-        [DataMember(Name = "senderCaseId", EmitDefaultValue = false)]
+        [DataMember(Name = "senderCaseId", IsRequired = true, EmitDefaultValue = true)]
         public string SenderCaseId { get; set; }
 
         /// <summary>
         /// s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
         /// </summary>
         /// <value>s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</value>
-        [DataMember(Name = "creationDate", EmitDefaultValue = false)]
+        [DataMember(Name = "creationDate", IsRequired = true, EmitDefaultValue = true)]
         public DateTime CreationDate { get; set; }
 
         /// <summary>
         /// s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
         /// </summary>
         /// <value>s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</value>
-        [DataMember(Name = "decisionDate", EmitDefaultValue = false)]
+        [DataMember(Name = "decisionDate", IsRequired = true, EmitDefaultValue = true)]
         public DateTime DecisionDate { get; set; }
 
         /// <summary>
@@ -93,7 +123,7 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/context/ressourceFinessLegal</example>
         */
-        [DataMember(Name = "ressourceFinessLegal", EmitDefaultValue = false)]
+        [DataMember(Name = "ressourceFinessLegal", IsRequired = true, EmitDefaultValue = true)]
         public string RessourceFinessLegal { get; set; }
 
         /// <summary>
@@ -103,7 +133,7 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/context/ressourceFinessGeo</example>
         */
-        [DataMember(Name = "ressourceFinessGeo", EmitDefaultValue = false)]
+        [DataMember(Name = "ressourceFinessGeo", IsRequired = true, EmitDefaultValue = true)]
         public string RessourceFinessGeo { get; set; }
 
         /// <summary>
@@ -113,7 +143,7 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/context/ressourceStructure</example>
         */
-        [DataMember(Name = "ressourceStructure", EmitDefaultValue = false)]
+        [DataMember(Name = "ressourceStructure", IsRequired = true, EmitDefaultValue = true)]
         public string RessourceStructure { get; set; }
 
         /// <summary>

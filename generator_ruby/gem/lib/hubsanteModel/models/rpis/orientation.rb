@@ -68,6 +68,8 @@ module Rpis
 
       if attributes.key?(:'type')
         self.type = attributes[:'type']
+      else
+        self.type = nil
       end
 
       if attributes.key?(:'destination')
@@ -84,6 +86,10 @@ module Rpis
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @type.nil?
+        invalid_properties.push('invalid value for "type", type cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -91,6 +97,7 @@ module Rpis
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @type.nil?
       true
     end
 

@@ -29,11 +29,11 @@ class Intervention(BaseModel):
     """
     Intervention
     """ # noqa: E501
-    location: Optional[Location] = None
-    team: Optional[Team] = None
+    location: Location
+    team: Team
     smur_status: Optional[ResourceStatus] = Field(default=None, alias="smurStatus")
     procedure: Optional[List[StrictStr]] = None
-    main_diagnosis: Optional[StrictStr] = Field(default=None, description="Thésaurus SFMU-FEDORU. A valoriser par un code de la nomenclature Diagnostic SMUR(à venir).", alias="mainDiagnosis")
+    main_diagnosis: StrictStr = Field(description="Thésaurus SFMU-FEDORU. A valoriser par un code de la nomenclature Diagnostic SMUR(à venir).", alias="mainDiagnosis")
     associated_diagnosis: Optional[StrictStr] = Field(default=None, description="Thésaurus SFMU-FEDORU. A valoriser par un code de la nomenclature Diagnostic SMUR (à venir).", alias="associatedDiagnosis")
     __properties: ClassVar[List[str]] = ["location", "team", "smurStatus", "procedure", "mainDiagnosis", "associatedDiagnosis"]
 

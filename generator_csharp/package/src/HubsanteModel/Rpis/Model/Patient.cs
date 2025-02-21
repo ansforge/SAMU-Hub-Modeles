@@ -71,18 +71,33 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/patient/sex</example>
         */
-        [DataMember(Name = "sex", EmitDefaultValue = false)]
-        public SexEnum? Sex { get; set; }
+        [DataMember(Name = "sex", IsRequired = true, EmitDefaultValue = true)]
+        public SexEnum Sex { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Patient" /> class.
         /// </summary>
-        /// <param name="patientId">Identifiant unique du patient.  A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01.</param>
-        /// <param name="birthDate">Date de naissance du patient.</param>
-        /// <param name="sex">Sexe du patient, suivant le libellé court de la nomenclature NOS-NOMENC_SEXE.</param>
+        [JsonConstructorAttribute]
+        protected Patient() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Patient" /> class.
+        /// </summary>
+        /// <param name="patientId">Identifiant unique du patient.  A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01 (required).</param>
+        /// <param name="birthDate">Date de naissance du patient (required).</param>
+        /// <param name="sex">Sexe du patient, suivant le libellé court de la nomenclature NOS-NOMENC_SEXE (required).</param>
         /// <param name="residentialAddress">residentialAddress.</param>
-        public Patient(string patientId = default(string), string birthDate = default(string), SexEnum? sex = default(SexEnum?), ResidentialAddress residentialAddress = default(ResidentialAddress))
+        public Patient(string patientId = default(string), string birthDate = default(string), SexEnum sex = default(SexEnum), ResidentialAddress residentialAddress = default(ResidentialAddress))
         {
+            // to ensure "patientId" is required (not null)
+            if (patientId == null)
+            {
+                throw new ArgumentNullException("patientId is a required property for Patient and cannot be null");
+            }
             this.PatientId = patientId;
+            // to ensure "birthDate" is required (not null)
+            if (birthDate == null)
+            {
+                throw new ArgumentNullException("birthDate is a required property for Patient and cannot be null");
+            }
             this.BirthDate = birthDate;
             this.Sex = sex;
             this.ResidentialAddress = residentialAddress;
@@ -95,7 +110,7 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/patient/patientId</example>
         */
-        [DataMember(Name = "patientId", EmitDefaultValue = false)]
+        [DataMember(Name = "patientId", IsRequired = true, EmitDefaultValue = true)]
         public string PatientId { get; set; }
 
         /// <summary>
@@ -105,7 +120,7 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/patient/birthDate</example>
         */
-        [DataMember(Name = "birthDate", EmitDefaultValue = false)]
+        [DataMember(Name = "birthDate", IsRequired = true, EmitDefaultValue = true)]
         public string BirthDate { get; set; }
 
         /// <summary>

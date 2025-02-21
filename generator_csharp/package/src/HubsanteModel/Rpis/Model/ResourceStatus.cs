@@ -34,27 +34,32 @@ namespace HubsanteModel/Rpis.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ResourceStatus" /> class.
         /// </summary>
-        /// <param name="departSmur">Date et heure à laquelle le SMUR quitte sa base.  s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss.</param>
+        [JsonConstructorAttribute]
+        protected ResourceStatus() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ResourceStatus" /> class.
+        /// </summary>
+        /// <param name="departSmur">Date et heure à laquelle le SMUR quitte sa base.  s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss (required).</param>
         /// <param name="arrivedSmur">Date et heure à laquelle le SMUR arrive sur les lieux de l&#39;intervention.  s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss.</param>
         /// <param name="departLocation">Date et heure à laquelle le SMUR quitte les lieux de l&#39;intervention.  s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss.</param>
         /// <param name="arrivedDestination">Date et heure à laquelle le SMUR qui transporte arrive à destination.  s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss.</param>
-        /// <param name="teamAvailable">Date et heure à laquelle le SMUR est disponible (dispose de tout les équipements pour faire une autre intervention).  s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss.</param>
-        /// <param name="returnSmur">Date et heure à laquelle le SMUR est de retour à la base.  s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss.</param>
+        /// <param name="teamAvailable">Date et heure à laquelle le SMUR est disponible (dispose de tout les équipements pour faire une autre intervention).  s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss (required).</param>
+        /// <param name="returnSmur">Date et heure à laquelle le SMUR est de retour à la base.  s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss (required).</param>
         public ResourceStatus(DateTime departSmur = default(DateTime), DateTime arrivedSmur = default(DateTime), DateTime departLocation = default(DateTime), DateTime arrivedDestination = default(DateTime), DateTime teamAvailable = default(DateTime), DateTime returnSmur = default(DateTime))
         {
             this.DepartSmur = departSmur;
+            this.TeamAvailable = teamAvailable;
+            this.ReturnSmur = returnSmur;
             this.ArrivedSmur = arrivedSmur;
             this.DepartLocation = departLocation;
             this.ArrivedDestination = arrivedDestination;
-            this.TeamAvailable = teamAvailable;
-            this.ReturnSmur = returnSmur;
         }
 
         /// <summary>
         /// Date et heure à laquelle le SMUR quitte sa base.  s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
         /// </summary>
         /// <value>Date et heure à laquelle le SMUR quitte sa base.  s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</value>
-        [DataMember(Name = "departSmur", EmitDefaultValue = false)]
+        [DataMember(Name = "departSmur", IsRequired = true, EmitDefaultValue = true)]
         public DateTime DepartSmur { get; set; }
 
         /// <summary>
@@ -82,14 +87,14 @@ namespace HubsanteModel/Rpis.Model
         /// Date et heure à laquelle le SMUR est disponible (dispose de tout les équipements pour faire une autre intervention).  s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
         /// </summary>
         /// <value>Date et heure à laquelle le SMUR est disponible (dispose de tout les équipements pour faire une autre intervention).  s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</value>
-        [DataMember(Name = "teamAvailable", EmitDefaultValue = false)]
+        [DataMember(Name = "teamAvailable", IsRequired = true, EmitDefaultValue = true)]
         public DateTime TeamAvailable { get; set; }
 
         /// <summary>
         /// Date et heure à laquelle le SMUR est de retour à la base.  s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
         /// </summary>
         /// <value>Date et heure à laquelle le SMUR est de retour à la base.  s&#39;exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</value>
-        [DataMember(Name = "returnSmur", EmitDefaultValue = false)]
+        [DataMember(Name = "returnSmur", IsRequired = true, EmitDefaultValue = true)]
         public DateTime ReturnSmur { get; set; }
 
         /// <summary>

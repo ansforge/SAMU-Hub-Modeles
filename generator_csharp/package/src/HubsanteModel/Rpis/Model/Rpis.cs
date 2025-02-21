@@ -34,48 +34,78 @@ namespace HubsanteModel/Rpis.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Rpis" /> class.
         /// </summary>
-        /// <param name="context">context.</param>
-        /// <param name="regulation">regulation.</param>
-        /// <param name="patient">patient.</param>
-        /// <param name="intervention">intervention.</param>
-        /// <param name="orientation">orientation.</param>
+        [JsonConstructorAttribute]
+        protected Rpis() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Rpis" /> class.
+        /// </summary>
+        /// <param name="context">context (required).</param>
+        /// <param name="regulation">regulation (required).</param>
+        /// <param name="patient">patient (required).</param>
+        /// <param name="intervention">intervention (required).</param>
+        /// <param name="orientation">orientation (required).</param>
         public Rpis(Event context = default(Event), Regulation regulation = default(Regulation), Patient patient = default(Patient), Intervention intervention = default(Intervention), Orientation orientation = default(Orientation))
         {
+            // to ensure "context" is required (not null)
+            if (context == null)
+            {
+                throw new ArgumentNullException("context is a required property for Rpis and cannot be null");
+            }
             this.Context = context;
+            // to ensure "regulation" is required (not null)
+            if (regulation == null)
+            {
+                throw new ArgumentNullException("regulation is a required property for Rpis and cannot be null");
+            }
             this.Regulation = regulation;
+            // to ensure "patient" is required (not null)
+            if (patient == null)
+            {
+                throw new ArgumentNullException("patient is a required property for Rpis and cannot be null");
+            }
             this.Patient = patient;
+            // to ensure "intervention" is required (not null)
+            if (intervention == null)
+            {
+                throw new ArgumentNullException("intervention is a required property for Rpis and cannot be null");
+            }
             this.Intervention = intervention;
+            // to ensure "orientation" is required (not null)
+            if (orientation == null)
+            {
+                throw new ArgumentNullException("orientation is a required property for Rpis and cannot be null");
+            }
             this.Orientation = orientation;
         }
 
         /// <summary>
         /// Gets or Sets Context
         /// </summary>
-        [DataMember(Name = "context", EmitDefaultValue = false)]
+        [DataMember(Name = "context", IsRequired = true, EmitDefaultValue = true)]
         public Event Context { get; set; }
 
         /// <summary>
         /// Gets or Sets Regulation
         /// </summary>
-        [DataMember(Name = "regulation", EmitDefaultValue = false)]
+        [DataMember(Name = "regulation", IsRequired = true, EmitDefaultValue = true)]
         public Regulation Regulation { get; set; }
 
         /// <summary>
         /// Gets or Sets Patient
         /// </summary>
-        [DataMember(Name = "patient", EmitDefaultValue = false)]
+        [DataMember(Name = "patient", IsRequired = true, EmitDefaultValue = true)]
         public Patient Patient { get; set; }
 
         /// <summary>
         /// Gets or Sets Intervention
         /// </summary>
-        [DataMember(Name = "intervention", EmitDefaultValue = false)]
+        [DataMember(Name = "intervention", IsRequired = true, EmitDefaultValue = true)]
         public Intervention Intervention { get; set; }
 
         /// <summary>
         /// Gets or Sets Orientation
         /// </summary>
-        [DataMember(Name = "orientation", EmitDefaultValue = false)]
+        [DataMember(Name = "orientation", IsRequired = true, EmitDefaultValue = true)]
         public Orientation Orientation { get; set; }
 
         /// <summary>

@@ -96,14 +96,20 @@ module Rpis
 
       if attributes.key?(:'patient_id')
         self.patient_id = attributes[:'patient_id']
+      else
+        self.patient_id = nil
       end
 
       if attributes.key?(:'birth_date')
         self.birth_date = attributes[:'birth_date']
+      else
+        self.birth_date = nil
       end
 
       if attributes.key?(:'sex')
         self.sex = attributes[:'sex']
+      else
+        self.sex = nil
       end
 
       if attributes.key?(:'residential_address')
@@ -116,6 +122,18 @@ module Rpis
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @patient_id.nil?
+        invalid_properties.push('invalid value for "patient_id", patient_id cannot be nil.')
+      end
+
+      if @birth_date.nil?
+        invalid_properties.push('invalid value for "birth_date", birth_date cannot be nil.')
+      end
+
+      if @sex.nil?
+        invalid_properties.push('invalid value for "sex", sex cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -123,6 +141,9 @@ module Rpis
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @patient_id.nil?
+      return false if @birth_date.nil?
+      return false if @sex.nil?
       sex_validator = EnumAttributeValidator.new('String', ["M", "F", "O", "UN"])
       return false unless sex_validator.valid?(@sex)
       true

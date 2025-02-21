@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from hubsante_model.rpis.models.event import Event
 from hubsante_model.rpis.models.intervention import Intervention
 from hubsante_model.rpis.models.orientation import Orientation
@@ -31,11 +31,11 @@ class Rpis(BaseModel):
     """
     Rpis
     """ # noqa: E501
-    context: Optional[Event] = None
-    regulation: Optional[Regulation] = None
-    patient: Optional[Patient] = None
-    intervention: Optional[Intervention] = None
-    orientation: Optional[Orientation] = None
+    context: Event
+    regulation: Regulation
+    patient: Patient
+    intervention: Intervention
+    orientation: Orientation
     __properties: ClassVar[List[str]] = ["context", "regulation", "patient", "intervention", "orientation"]
 
     model_config = ConfigDict(

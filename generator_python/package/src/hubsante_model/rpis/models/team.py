@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,9 +26,9 @@ class Team(BaseModel):
     """
     Team
     """ # noqa: E501
-    doctor: Optional[StrictBool] = Field(default=None, description="Permet d'identifier si un médecin compose l'équipe. Cette donnée peut être automatiquement déduite, dès que le nom et prénom du médecin est saisi sur la tablette. ")
-    nurse: Optional[StrictBool] = Field(default=None, description="Permet d'identifier si un infirmier compose l'équipe. Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'infirmier est saisi sur la tablette. ")
-    driver: Optional[StrictBool] = Field(default=None, description="Permet d'identifier si un ambulancier compose l'équipe. Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'ambulancier est saisi sur la tablette. ")
+    doctor: StrictBool = Field(description="Permet d'identifier si un médecin compose l'équipe. Cette donnée peut être automatiquement déduite, dès que le nom et prénom du médecin est saisi sur la tablette. ")
+    nurse: StrictBool = Field(description="Permet d'identifier si un infirmier compose l'équipe. Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'infirmier est saisi sur la tablette. ")
+    driver: StrictBool = Field(description="Permet d'identifier si un ambulancier compose l'équipe. Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'ambulancier est saisi sur la tablette. ")
     __properties: ClassVar[List[str]] = ["doctor", "nurse", "driver"]
 
     model_config = ConfigDict(

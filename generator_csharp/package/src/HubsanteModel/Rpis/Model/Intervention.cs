@@ -34,32 +34,52 @@ namespace HubsanteModel/Rpis.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Intervention" /> class.
         /// </summary>
-        /// <param name="location">location.</param>
-        /// <param name="team">team.</param>
+        [JsonConstructorAttribute]
+        protected Intervention() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Intervention" /> class.
+        /// </summary>
+        /// <param name="location">location (required).</param>
+        /// <param name="team">team (required).</param>
         /// <param name="smurStatus">smurStatus.</param>
         /// <param name="procedure">procedure.</param>
-        /// <param name="mainDiagnosis">Thésaurus SFMU-FEDORU. A valoriser par un code de la nomenclature Diagnostic SMUR(à venir)..</param>
+        /// <param name="mainDiagnosis">Thésaurus SFMU-FEDORU. A valoriser par un code de la nomenclature Diagnostic SMUR(à venir). (required).</param>
         /// <param name="associatedDiagnosis">Thésaurus SFMU-FEDORU. A valoriser par un code de la nomenclature Diagnostic SMUR (à venir)..</param>
         public Intervention(Location location = default(Location), Team team = default(Team), ResourceStatus smurStatus = default(ResourceStatus), List<string> procedure = default(List<string>), string mainDiagnosis = default(string), string associatedDiagnosis = default(string))
         {
+            // to ensure "location" is required (not null)
+            if (location == null)
+            {
+                throw new ArgumentNullException("location is a required property for Intervention and cannot be null");
+            }
             this.Location = location;
+            // to ensure "team" is required (not null)
+            if (team == null)
+            {
+                throw new ArgumentNullException("team is a required property for Intervention and cannot be null");
+            }
             this.Team = team;
+            // to ensure "mainDiagnosis" is required (not null)
+            if (mainDiagnosis == null)
+            {
+                throw new ArgumentNullException("mainDiagnosis is a required property for Intervention and cannot be null");
+            }
+            this.MainDiagnosis = mainDiagnosis;
             this.SmurStatus = smurStatus;
             this.Procedure = procedure;
-            this.MainDiagnosis = mainDiagnosis;
             this.AssociatedDiagnosis = associatedDiagnosis;
         }
 
         /// <summary>
         /// Gets or Sets Location
         /// </summary>
-        [DataMember(Name = "location", EmitDefaultValue = false)]
+        [DataMember(Name = "location", IsRequired = true, EmitDefaultValue = true)]
         public Location Location { get; set; }
 
         /// <summary>
         /// Gets or Sets Team
         /// </summary>
-        [DataMember(Name = "team", EmitDefaultValue = false)]
+        [DataMember(Name = "team", IsRequired = true, EmitDefaultValue = true)]
         public Team Team { get; set; }
 
         /// <summary>
@@ -81,7 +101,7 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/intervention/mainDiagnosis</example>
         */
-        [DataMember(Name = "mainDiagnosis", EmitDefaultValue = false)]
+        [DataMember(Name = "mainDiagnosis", IsRequired = true, EmitDefaultValue = true)]
         public string MainDiagnosis { get; set; }
 
         /// <summary>

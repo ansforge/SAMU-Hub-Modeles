@@ -90,14 +90,20 @@ module Rpis
 
       if attributes.key?(:'whats_happen')
         self.whats_happen = attributes[:'whats_happen']
+      else
+        self.whats_happen = nil
       end
 
       if attributes.key?(:'health_motive')
         self.health_motive = attributes[:'health_motive']
+      else
+        self.health_motive = nil
       end
 
       if attributes.key?(:'medical_level')
         self.medical_level = attributes[:'medical_level']
+      else
+        self.medical_level = nil
       end
     end
 
@@ -106,6 +112,18 @@ module Rpis
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @whats_happen.nil?
+        invalid_properties.push('invalid value for "whats_happen", whats_happen cannot be nil.')
+      end
+
+      if @health_motive.nil?
+        invalid_properties.push('invalid value for "health_motive", health_motive cannot be nil.')
+      end
+
+      if @medical_level.nil?
+        invalid_properties.push('invalid value for "medical_level", medical_level cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -113,6 +131,9 @@ module Rpis
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if @whats_happen.nil?
+      return false if @health_motive.nil?
+      return false if @medical_level.nil?
       medical_level_validator = EnumAttributeValidator.new('String', ["MED", "PARAMED", "SECOURS", "SANS"])
       return false unless medical_level_validator.valid?(@medical_level)
       true

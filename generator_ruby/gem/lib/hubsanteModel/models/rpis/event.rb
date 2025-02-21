@@ -90,30 +90,44 @@ module Rpis
 
       if attributes.key?(:'org_id')
         self.org_id = attributes[:'org_id']
+      else
+        self.org_id = nil
       end
 
       if attributes.key?(:'sender_case_id')
         self.sender_case_id = attributes[:'sender_case_id']
+      else
+        self.sender_case_id = nil
       end
 
       if attributes.key?(:'creation_date')
         self.creation_date = attributes[:'creation_date']
+      else
+        self.creation_date = nil
       end
 
       if attributes.key?(:'decision_date')
         self.decision_date = attributes[:'decision_date']
+      else
+        self.decision_date = nil
       end
 
       if attributes.key?(:'ressource_finess_legal')
         self.ressource_finess_legal = attributes[:'ressource_finess_legal']
+      else
+        self.ressource_finess_legal = nil
       end
 
       if attributes.key?(:'ressource_finess_geo')
         self.ressource_finess_geo = attributes[:'ressource_finess_geo']
+      else
+        self.ressource_finess_geo = nil
       end
 
       if attributes.key?(:'ressource_structure')
         self.ressource_structure = attributes[:'ressource_structure']
+      else
+        self.ressource_structure = nil
       end
     end
 
@@ -122,19 +136,47 @@ module Rpis
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @org_id.nil?
+        invalid_properties.push('invalid value for "org_id", org_id cannot be nil.')
+      end
+
       pattern = Regexp.new(/^[a-z]{2,3}\.[a-z]+\.\w*$/)
-      if !@org_id.nil? && @org_id !~ pattern
+      if @org_id !~ pattern
         invalid_properties.push("invalid value for \"org_id\", must conform to the pattern #{pattern}.")
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
-      if !@creation_date.nil? && @creation_date !~ pattern
-        invalid_properties.push("invalid value for \"creation_date\", must conform to the pattern #{pattern}.")
+      if @sender_case_id.nil?
+        invalid_properties.push('invalid value for "sender_case_id", sender_case_id cannot be nil.')
+      end
+
+      if @creation_date.nil?
+        invalid_properties.push('invalid value for "creation_date", creation_date cannot be nil.')
       end
 
       pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
-      if !@decision_date.nil? && @decision_date !~ pattern
+      if @creation_date !~ pattern
+        invalid_properties.push("invalid value for \"creation_date\", must conform to the pattern #{pattern}.")
+      end
+
+      if @decision_date.nil?
+        invalid_properties.push('invalid value for "decision_date", decision_date cannot be nil.')
+      end
+
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      if @decision_date !~ pattern
         invalid_properties.push("invalid value for \"decision_date\", must conform to the pattern #{pattern}.")
+      end
+
+      if @ressource_finess_legal.nil?
+        invalid_properties.push('invalid value for "ressource_finess_legal", ressource_finess_legal cannot be nil.')
+      end
+
+      if @ressource_finess_geo.nil?
+        invalid_properties.push('invalid value for "ressource_finess_geo", ressource_finess_geo cannot be nil.')
+      end
+
+      if @ressource_structure.nil?
+        invalid_properties.push('invalid value for "ressource_structure", ressource_structure cannot be nil.')
       end
 
       invalid_properties
@@ -144,9 +186,16 @@ module Rpis
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@org_id.nil? && @org_id !~ Regexp.new(/^[a-z]{2,3}\.[a-z]+\.\w*$/)
-      return false if !@creation_date.nil? && @creation_date !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
-      return false if !@decision_date.nil? && @decision_date !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      return false if @org_id.nil?
+      return false if @org_id !~ Regexp.new(/^[a-z]{2,3}\.[a-z]+\.\w*$/)
+      return false if @sender_case_id.nil?
+      return false if @creation_date.nil?
+      return false if @creation_date !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      return false if @decision_date.nil?
+      return false if @decision_date !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      return false if @ressource_finess_legal.nil?
+      return false if @ressource_finess_geo.nil?
+      return false if @ressource_structure.nil?
       true
     end
 

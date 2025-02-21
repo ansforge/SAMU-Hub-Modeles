@@ -85,6 +85,8 @@ module Rpis
 
       if attributes.key?(:'depart_smur')
         self.depart_smur = attributes[:'depart_smur']
+      else
+        self.depart_smur = nil
       end
 
       if attributes.key?(:'arrived_smur')
@@ -101,10 +103,14 @@ module Rpis
 
       if attributes.key?(:'team_available')
         self.team_available = attributes[:'team_available']
+      else
+        self.team_available = nil
       end
 
       if attributes.key?(:'return_smur')
         self.return_smur = attributes[:'return_smur']
+      else
+        self.return_smur = nil
       end
     end
 
@@ -113,8 +119,12 @@ module Rpis
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      if @depart_smur.nil?
+        invalid_properties.push('invalid value for "depart_smur", depart_smur cannot be nil.')
+      end
+
       pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
-      if !@depart_smur.nil? && @depart_smur !~ pattern
+      if @depart_smur !~ pattern
         invalid_properties.push("invalid value for \"depart_smur\", must conform to the pattern #{pattern}.")
       end
 
@@ -133,13 +143,21 @@ module Rpis
         invalid_properties.push("invalid value for \"arrived_destination\", must conform to the pattern #{pattern}.")
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
-      if !@team_available.nil? && @team_available !~ pattern
-        invalid_properties.push("invalid value for \"team_available\", must conform to the pattern #{pattern}.")
+      if @team_available.nil?
+        invalid_properties.push('invalid value for "team_available", team_available cannot be nil.')
       end
 
       pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
-      if !@return_smur.nil? && @return_smur !~ pattern
+      if @team_available !~ pattern
+        invalid_properties.push("invalid value for \"team_available\", must conform to the pattern #{pattern}.")
+      end
+
+      if @return_smur.nil?
+        invalid_properties.push('invalid value for "return_smur", return_smur cannot be nil.')
+      end
+
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      if @return_smur !~ pattern
         invalid_properties.push("invalid value for \"return_smur\", must conform to the pattern #{pattern}.")
       end
 
@@ -150,12 +168,15 @@ module Rpis
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@depart_smur.nil? && @depart_smur !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      return false if @depart_smur.nil?
+      return false if @depart_smur !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       return false if !@arrived_smur.nil? && @arrived_smur !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       return false if !@depart_location.nil? && @depart_location !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       return false if !@arrived_destination.nil? && @arrived_destination !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
-      return false if !@team_available.nil? && @team_available !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
-      return false if !@return_smur.nil? && @return_smur !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      return false if @team_available.nil?
+      return false if @team_available !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      return false if @return_smur.nil?
+      return false if @return_smur !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       true
     end
 

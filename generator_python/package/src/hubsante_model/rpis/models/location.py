@@ -30,7 +30,7 @@ class Location(BaseModel):
     type: Optional[StrictStr] = Field(default=None, description="A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu.")
     finess_geo: Optional[StrictStr] = Field(default=None, description="Finess géographique et juridique de l’établissement de santé.  A renseigner uniquement si l'intervention a lieu dans un établissement de santé. ", alias="finessGeo")
     service: Optional[StrictStr] = Field(default=None, description="Unité fonctionnelle de l'établissement de santé.  A renseigner uniquement si l'intervention a lieu dans un établissement de santé. ")
-    detailed_address: Optional[DetailedAddress] = Field(default=None, alias="detailedAddress")
+    detailed_address: DetailedAddress = Field(alias="detailedAddress")
     __properties: ClassVar[List[str]] = ["type", "finessGeo", "service", "detailedAddress"]
 
     @field_validator('type')

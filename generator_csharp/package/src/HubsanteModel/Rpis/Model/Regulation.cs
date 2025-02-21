@@ -71,17 +71,32 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/regulation/medicalLevel</example>
         */
-        [DataMember(Name = "medicalLevel", EmitDefaultValue = false)]
-        public MedicalLevelEnum? MedicalLevel { get; set; }
+        [DataMember(Name = "medicalLevel", IsRequired = true, EmitDefaultValue = true)]
+        public MedicalLevelEnum MedicalLevel { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Regulation" /> class.
         /// </summary>
-        /// <param name="whatsHappen">whatsHappen.</param>
-        /// <param name="healthMotive">healthMotive.</param>
-        /// <param name="medicalLevel">Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN. Permet de déduire avec la donnée \&quot;niveau de médicalisation du transport\&quot;, si un UMHP est devenu un SMUR. .</param>
-        public Regulation(WhatsHappen whatsHappen = default(WhatsHappen), HealthMotive healthMotive = default(HealthMotive), MedicalLevelEnum? medicalLevel = default(MedicalLevelEnum?))
+        [JsonConstructorAttribute]
+        protected Regulation() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Regulation" /> class.
+        /// </summary>
+        /// <param name="whatsHappen">whatsHappen (required).</param>
+        /// <param name="healthMotive">healthMotive (required).</param>
+        /// <param name="medicalLevel">Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN. Permet de déduire avec la donnée \&quot;niveau de médicalisation du transport\&quot;, si un UMHP est devenu un SMUR.  (required).</param>
+        public Regulation(WhatsHappen whatsHappen = default(WhatsHappen), HealthMotive healthMotive = default(HealthMotive), MedicalLevelEnum medicalLevel = default(MedicalLevelEnum))
         {
+            // to ensure "whatsHappen" is required (not null)
+            if (whatsHappen == null)
+            {
+                throw new ArgumentNullException("whatsHappen is a required property for Regulation and cannot be null");
+            }
             this.WhatsHappen = whatsHappen;
+            // to ensure "healthMotive" is required (not null)
+            if (healthMotive == null)
+            {
+                throw new ArgumentNullException("healthMotive is a required property for Regulation and cannot be null");
+            }
             this.HealthMotive = healthMotive;
             this.MedicalLevel = medicalLevel;
         }
@@ -89,13 +104,13 @@ namespace HubsanteModel/Rpis.Model
         /// <summary>
         /// Gets or Sets WhatsHappen
         /// </summary>
-        [DataMember(Name = "whatsHappen", EmitDefaultValue = false)]
+        [DataMember(Name = "whatsHappen", IsRequired = true, EmitDefaultValue = true)]
         public WhatsHappen WhatsHappen { get; set; }
 
         /// <summary>
         /// Gets or Sets HealthMotive
         /// </summary>
-        [DataMember(Name = "healthMotive", EmitDefaultValue = false)]
+        [DataMember(Name = "healthMotive", IsRequired = true, EmitDefaultValue = true)]
         public HealthMotive HealthMotive { get; set; }
 
         /// <summary>

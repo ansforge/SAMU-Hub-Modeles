@@ -1841,16 +1841,26 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/regulation/whatsHappen/code</example>
         */
-        [DataMember(Name = "code", EmitDefaultValue = false)]
-        public CodeEnum? Code { get; set; }
+        [DataMember(Name = "code", IsRequired = true, EmitDefaultValue = true)]
+        public CodeEnum Code { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="WhatsHappen" /> class.
         /// </summary>
-        /// <param name="code">A valoriser avec le code de la nomenclature associée..</param>
-        /// <param name="label">A valoriser avec le libellé de la nomenclature associée. Dans le cas où un système n&#39;est pas en mesure de reconnaître un code, il peut choisir d&#39;afficher le libellé qui est obligatoirement fourni avec le code..</param>
-        public WhatsHappen(CodeEnum? code = default(CodeEnum?), string label = default(string))
+        [JsonConstructorAttribute]
+        protected WhatsHappen() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WhatsHappen" /> class.
+        /// </summary>
+        /// <param name="code">A valoriser avec le code de la nomenclature associée. (required).</param>
+        /// <param name="label">A valoriser avec le libellé de la nomenclature associée. Dans le cas où un système n&#39;est pas en mesure de reconnaître un code, il peut choisir d&#39;afficher le libellé qui est obligatoirement fourni avec le code. (required).</param>
+        public WhatsHappen(CodeEnum code = default(CodeEnum), string label = default(string))
         {
             this.Code = code;
+            // to ensure "label" is required (not null)
+            if (label == null)
+            {
+                throw new ArgumentNullException("label is a required property for WhatsHappen and cannot be null");
+            }
             this.Label = label;
         }
 
@@ -1861,7 +1871,7 @@ namespace HubsanteModel/Rpis.Model
         /*
         <example>example.json#/regulation/whatsHappen/label</example>
         */
-        [DataMember(Name = "label", EmitDefaultValue = false)]
+        [DataMember(Name = "label", IsRequired = true, EmitDefaultValue = true)]
         public string Label { get; set; }
 
         /// <summary>
