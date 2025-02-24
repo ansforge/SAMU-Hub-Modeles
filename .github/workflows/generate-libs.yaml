@@ -36,12 +36,15 @@ jobs:
           elif [[ "${{ github.event.workflow_run.event }}" == "release" ]]; then
             echo "Workflow triggered via Generate Model release"
             RELEASE_VERSION="${{ github.event.workflow_run.head_branch }}"
-          else
+          elif [[ "${{ github.event.workflow_run.event }}" == "pull_request" ]]; then
             echo "Workflow triggered via Generate Model pull request"
             # Include first chars of commit SHA and run attempt number to avoid collisions
             COMMIT_SHA="${{ github.event.workflow_run.head_sha }}"
             SHORT_COMMIT_SHA=${COMMIT_SHA::7}
             RELEASE_VERSION="0.0.0+${{ github.event.workflow_run.head_branch }}.$SHORT_COMMIT_SHA.${{ github.run_attempt }}"
+          else
+            echo "Workflow triggered via unsupported event"
+            exit 1
           fi
   
           # Make the RELEASE_VERSION semver compatible (replacing non letter/digit/./+ chars with .)
