@@ -1,12 +1,6 @@
 name: Generate Libraries
 
 on:
-  pull_request:
-    branches:
-      - '**'
-  release:
-    types:
-      - published
   workflow_dispatch:
     inputs:
       release_name:
@@ -28,18 +22,29 @@ jobs:
       packages: write  # For package upload
       id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
 
+    # Run if this is a direct workflow_dispatch OR if the Generate Model workflow completed successfully
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+
     steps:
       - name: Set RELEASE_VERSION based on the trigger type
         run: |
-          if [[ "${{ github.event_name }}" == "release" ]]; then
-            RELEASE_VERSION="${{ github.ref_name }}"
-          elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "Workflow triggered via workflow_dispatch"
             RELEASE_VERSION="${{ github.event.inputs.release_name }}"
-          elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
+          elif [[ "${{ github.event.workflow_run.event }}" == "release" ]]; then
+            echo "Workflow triggered via Generate Model release"
+            RELEASE_VERSION="${{ github.event.workflow_run.head_branch }}"
+          elif [[ "${{ github.event.workflow_run.event }}" == "pull_request" ]]; then
+            echo "Workflow triggered via Generate Model pull request"
             # Include first chars of commit SHA and run attempt number to avoid collisions
-            COMMIT_SHA="${{ github.event.pull_request.head.sha }}"
+            COMMIT_SHA="${{ github.event.workflow_run.head_sha }}"
             SHORT_COMMIT_SHA=${COMMIT_SHA::7}
-            RELEASE_VERSION="0.0.0+${{ github.head_ref }}.$SHORT_COMMIT_SHA.${{ github.run_attempt }}"
+            RELEASE_VERSION="0.0.0+${{ github.event.workflow_run.head_branch }}.$SHORT_COMMIT_SHA.${{ github.run_attempt }}"
+          else
+            echo "Workflow triggered via unsupported event"
+            exit 1
           fi
   
           # Make the RELEASE_VERSION semver compatible (replacing non letter/digit/./+ chars with .)

@@ -1,0 +1,24 @@
+{
+  "createCaseHealth": {
+    "caseId": "fr.health.samu950.DRFR159502401800159",
+    "creation": "2024-01-18T18:00:00+01:00",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C02.08.02",
+        "label": "Atteinte aux personnes ; Traumatisme / Accident ; Accident domestique"
+      }
+    },
+    "location": {
+      "detailedAddress": {
+        "complete": "4 rue Danielle Mitterrand",
+        "number": "4",
+        "wayName": {
+          "complete": "rue Danielle Mitterrand",
+          "type": "rue",
+          "name": "Danielle Mitterrand"
+        }
+      }
+    },
+    "owner": "fr.health.samu950"
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "createCaseHealth": {
+    "caseId": "fr.health.samu950.DRFR159502401800159",
+    "creation": "2024-01-18T18:00:00+01:00",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C02.08.02",
+        "label": "Atteinte aux personnes ; Traumatisme / Accident ; Accident domestique"
+      },
+      "locationKind": {
+        "code": "L01.02.10",
+        "label": "Domicile ; Lieu d'habitation collectif ou foyer d'hébergement ;  escaliers"
+      },
+      "healthMotive": {
+        "code": "M02.07",
+        "label": "Traumatisme sérieux, plaie intermédiaire"
+      },
+      "details": {
+        "priority": "P0",
+        "attribution": "DRM.MRU.MU",
+        "status": "ACTIF",
+        "careLevel": "R1"
+      },
+      "origin": "15",
+      "riskThreat": [
+        {
+          "code": "R20",
+          "label": "Difficulté d’accès sur site"
+        }
+      ]
+    },
+    "location": {
+      "detailedAddress": {
+        "complete": "4 rue Danielle Mitterrand",
+        "number": "4",
+        "wayName": {
+          "complete": "rue Danielle Mitterrand",
+          "type": "rue",
+          "name": "Danielle Mitterrand"
+        }
+      },
+      "city": {
+        "name": "Bezons",
+        "inseeCode": "95063"
+      },
+      "freetext": "dans la cage d’escalier B",
+      "geometry": {
+        "point": {
+          "coord": {
+            "lat": 48.92399978637695,
+            "lon": 2.2162439823150635,
+            "precision": "ADRESSE"
+          }
+        },
+        "datetime": "2024-01-17T21:06:00+01:00"
+      },
+      "access": {
+        "accessCode": ["5678"],
+        "floor": "3",
+        "interphone": "Halimi",
+        "elevator": "ESC B",
+        "buildingName": "A",
+        "roomNumber": "2",
+        "entrance": "B"
+      }
+    },
+    "initialAlert": {
+      "reception": "2024-01-18T18:00:00+01:00",
+      "caller": {
+        "callerContact": {
+          "type": "TEL",
+          "detail": "+33702880946",
+          "channel": "PERSONNE"
+        },
+        "language": "fr",
+        "detailedName": {
+          "complete": "Amina BERTRAND  ",
+          "lastName": "BERTRAND  ",
+          "firstName": "Amina"
+        },
+        "type": "TIERS",
+        "callbackContact": {
+          "channel": "PERSONNE",
+          "type": "TEL",
+          "detail": "+33617263546"
+        },
+        "communication": "AUCUNE",
+        "freetext": "Choqué par les évènements"
+      },
+      "notes": [
+        {
+          "freetext": "Chute enfant dans les escaliers",
+          "creation": "2024-01-18T18:01:00+01:00"
+        }
+      ]
+    },
+    "owner": "fr.health.samu950",
+    "patient": [
+      {
+        "detail": {
+          "age": "P40Y",
+          "careLevel": "R1",
+          "weight": 60,
+          "height": 170,
+          "medicalHistory": "Hypertension artérielle",
+          "treatment": "Amlodipine 5 mg/jour"
+        },
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Thomas Halimi",
+            "firstName": "Thomas ",
+            "lastName": "Halimi"
+          },
+          "strictFeatures": {
+            "birthDate": "1984-03-03",
+            "sex": "F",
+            "birthName": "Dubois"
+          }
+        },
+        "patientId": "fr.health.samu950.patient.DRFR159545670400159.1",
+        "administrativeFile": {
+          "generalPractitioner": {
+            "detailedName": {
+              "complete": "Patrick Delmont",
+              "lastName": "Delmont",
+              "firstName": "Patrick"
+            },
+            "rppsId": "10123456789",
+            "contact": [
+              {
+                "type": "TEL",
+                "detail": "+33616162536"
+              }
+            ]
+          },
+          "externalId": [
+            {
+              "source": "NIR",
+              "value": "185067512345689"
+            }
+          ]
+        },
+        "hypothesis": {
+          "mainDiagnosis": {
+            "code": "E11.2",
+            "label": "Complications neurologiques"
+          },
+          "otherDiagnosis": [
+            {
+              "code": "E11.1",
+              "label": "Complications pulmonaires"
+            }
+          ]
+        }
+      },
+      {
+        "detail": {
+          "age": "P40Y",
+          "careLevel": "R1",
+          "weight": 60,
+          "height": 170,
+          "medicalHistory": "Hypertension artérielle",
+          "treatment": "Amlodipine 5 mg/jour"
+        },
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Lola Halimi",
+            "firstName": "Lola ",
+            "lastName": "Halimi"
+          },
+          "strictFeatures": {
+            "birthDate": "1984-03-03",
+            "sex": "F",
+            "birthName": "Dubois"
+          }
+        },
+        "patientId": "fr.health.samu950.patient.DRFR159502400400159.1",
+        "administrativeFile": {
+          "generalPractitioner": {
+            "detailedName": {
+              "complete": "Patrick Delmont",
+              "lastName": "Delmont",
+              "firstName": "Patrick"
+            },
+            "rppsId": "10123456789",
+            "contact": [
+              {
+                "type": "TEL",
+                "detail": "+33616162536"
+              }
+            ]
+          },
+          "externalId": [
+            {
+              "source": "NIR",
+              "value": "185067512345689"
+            }
+          ]
+        },
+        "hypothesis": {
+          "mainDiagnosis": {
+            "code": "E11.2",
+            "label": "Complications neurologiques"
+          },
+          "otherDiagnosis": [
+            {
+              "code": "E11.1",
+              "label": "Complications pulmonaires"
+            }
+          ]
+        }
+      }
+    ],
+    "medicalNote": [
+      {
+        "operator": {
+          "role": "ARM",
+          "label": "Arielle Dombas"
+        },
+        "patientId": "fr.health.samu950.patient.DRFR159502400400159.1",
+        "medicalNoteId": "fr.health.samu950.medicalNote.54fg795",
+        "creation": "2024-01-18T18:02:00+01:00",
+        "freetext": "Marche impossible."
+      },
+      {
+        "operator": {
+          "role": "ARM",
+          "label": "Arielle Dombas"
+        },
+        "patientId": "fr.health.samu950.patient.DRFR159502400400159.1",
+        "medicalNoteId": "fr.health.samu950.medicalNote.98qs778",
+        "creation": "2024-01-18T18:04:00+01:00",
+        "freetext": "Cheville gonflée et douloureuse"
+      },
+      {
+        "operator": {
+          "role": "ARM",
+          "label": "Arielle Dombas"
+        },
+        "patientId": "fr.health.samu950.patient.DRFR159502400400159.1",
+        "medicalNoteId": "fr.health.samu950.medicalNote.13co294",
+        "creation": "2024-01-18T18:05:00+01:00",
+        "freetext": "Entorse de la cheville, avec possible fracture."
+      }
+    ],
+    "senderCaseId": "DRFR159502401800159",
+    "perimeter": "AMU",
+    "interventionType": "T1",
+    "decision": [
+      {
+        "operator": {
+          "label": "Dr. Abram",
+          "role": "MEDECIN"
+        },
+        "patientId": "fr.health.samu950.patient.DRFR159502400400159.1",
+        "creation": "2024-05-10T14:09:00+02:00",
+        "decisionType": "INTER",
+        "resourceType": "SIS",
+        "orientationType": "URGENCES",
+        "destination": {
+          "freetext": "Utiliser un VSAV",
+          "externalLocationId": [
+            {
+              "source": "FINESS_ADMINISTRATIF",
+              "value": "750712184"
+            }
+          ]
+        }
+      }
+    ],
+    "additionalInformation": {
+      "customMap": [
+        {
+          "key": "neighborhood",
+          "label": "Quartier",
+          "value": "Saint-Marthe",
+          "freetext": "Nom du quartier d'intervention"
+        }
+      ]
+    }
+  }
+}
