@@ -73,7 +73,7 @@ class V1_V2Converter:
     }
 
     CALLER_TYPE_MAPPING = {
-        "MEDSOS":"	MED.MEDSOS",
+        "MEDSOS":"MED.MEDSOS",
         "MRL":"MED.MRL",
         "EFFML":"MED.EFFML",
         "INF":"SANTE.INF",
