@@ -18,20 +18,28 @@ def delete_paths(data: Dict[str, Any], paths: List[str]) -> None:
         data: Dictionary to modify
         paths: List of dot-separated paths (e.g., "a.b.c")
     """
+    #todo - add test on new use case
     def delete_recursively(d: Dict[str, Any], keys: List[str]) -> None:
-        if not keys or not isinstance(d, dict):
+        if not keys or not isinstance(d, (dict, list)):
             return
 
         key = keys[0]
-        if len(keys) == 1:
+        if key.endswith('[]'):  # Handle array notation
+            key = key[:-2]  # Remove the array notation
+            if key in d and isinstance(d[key], list):
+                for item in d[key]:
+                    if isinstance(item, dict):
+                        delete_recursively(item, keys[1:])
+        elif len(keys) == 1:
             # Delete target key if it exists
-            d.pop(key, None)
+            if isinstance(d, dict):
+                d.pop(key, None)
         else:
             # Recurse if intermediate key exists
             if key in d:
                 delete_recursively(d[key], keys[1:])
-                # Clean up empty dictionaries
-                if isinstance(d[key], dict) and not d[key]:
+                # Clean up empty dictionaries or lists
+                if isinstance(d[key], (dict, list)) and not d[key]:
                     d.pop(key)
 
     for path in paths:
