@@ -1,4 +1,4 @@
-package com.hubsante.model.converter;
+package com.hubsante.model.utils;
 
 import com.hubsante.model.cisu.CreateCaseWrapper;
 import com.hubsante.model.edxl.EdxlMessage;
