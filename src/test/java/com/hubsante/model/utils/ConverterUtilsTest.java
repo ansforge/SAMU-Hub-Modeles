@@ -1,13 +1,13 @@
-package com.hubsante.model.converter;
+package com.hubsante.model.utils;
 
 import com.hubsante.model.EdxlHandler;
 import com.hubsante.model.TestMessagesHelper;
 import com.hubsante.model.edxl.EdxlMessage;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessage;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 import java.io.File;
@@ -39,7 +39,7 @@ public class ConverterUtilsTest {
                     String fullMessage = wrapUseCaseMessage(jsonUseCase);
                     EdxlMessage message = converter.deserializeJsonEDXL(fullMessage);
 
-                    assertEquals(ConverterUtils.isCisuModel(message), isCisu);
+                    Assertions.assertEquals(ConverterUtils.isCisuModel(message), isCisu);
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
