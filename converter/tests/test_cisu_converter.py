@@ -1,6 +1,7 @@
 import unittest
 from unittest.mock import patch
 from converter.cisu_converter import CISUConverterV3
+from converter.converter.constants import Constants
 from .test_helpers import TestHelper
 import json
 from snapshottest import TestCase
@@ -19,8 +20,8 @@ def test_from_cisu_conversion_local():
         assert 'owner' in result, "Health format must contain owner field"
 
     TestHelper.conversion_tests_runner(
-        sample_dir="RC-EDA",
-        envelope_file="tests/edxl_envelope_fire_to_health.json",
+        sample_dir=Constants.RC_EDA_TAG,
+        envelope_file=Constants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
         converter_method=CISUConverterV3.from_cisu,
         target_schema=RS_EDA_SCHEMA,
         additional_validation=validate_health_format
@@ -29,8 +30,8 @@ def test_from_cisu_conversion_local():
 def test_to_cisu_conversion_local():
     """Test conversion from Health to CISU format"""
     TestHelper.conversion_tests_runner(
-        sample_dir="RS-EDA",
-        envelope_file="tests/edxl_envelope_health_to_fire.json",
+        sample_dir=Constants.RS_EDA_TAG,
+        envelope_file=Constants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH,
         converter_method=CISUConverterV3.to_cisu,
         target_schema=RC_EDA_SCHEMA
     )
@@ -41,8 +42,8 @@ def test_from_cisu_conversion_v3():
         assert 'owner' in result, "Health format must contain owner field"
 
     TestHelper.conversion_tests_runner(
-        sample_dir="RC-EDA",
-        envelope_file="tests/edxl_envelope_fire_to_health.json",
+        sample_dir=Constants.RC_EDA_TAG,
+        envelope_file=Constants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
         converter_method=CISUConverterV3.from_cisu,
         target_schema=RS_EDA_SCHEMA,
         additional_validation=validate_health_format,
@@ -52,8 +53,8 @@ def test_from_cisu_conversion_v3():
 def test_to_cisu_conversion_v3():
     """Test conversion from Health to CISU format"""
     TestHelper.conversion_tests_runner(
-        sample_dir="RS-EDA",
-        envelope_file="tests/edxl_envelope_health_to_fire.json",
+        sample_dir=Constants.RS_EDA_TAG,
+        envelope_file=Constants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH,
         converter_method=CISUConverterV3.to_cisu,
         target_schema=RC_EDA_SCHEMA,
         online_tag="main"  # ToDo: migrate to "v3" once tag is available
@@ -62,8 +63,8 @@ def test_to_cisu_conversion_v3():
 
 class TestSnapshotCisuConverter(TestCase):
     def setUp(self):
-        self.edxl_envelope_health_to_fire_path = "tests/edxl_envelope_health_to_fire.json"
-        self.edxl_envelope_fire_to_health_path = "tests/edxl_envelope_fire_to_health.json"
+        self.edxl_envelope_health_to_fire_path = Constants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH
+        self.edxl_envelope_fire_to_health_path = Constants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH
         self.fixtures_folder_path = "tests/fixtures/"
 
     @patch('converter.cisu_converter.datetime')
