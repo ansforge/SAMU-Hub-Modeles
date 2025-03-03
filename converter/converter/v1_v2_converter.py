@@ -2,6 +2,7 @@ from typing import Dict, Any
 import copy
 import re
 
+from converter.v1_v2.utils import add_to_medical_notes
 
 from .utils import delete_paths, get_field_value, is_field_completed, update_json_value
 
@@ -236,6 +237,11 @@ class V1_V2Converter:
         'MSS':'EMAIL'
     }
 
+    V2_PATIENT_PATHS_TO_ADD_TO_MEDICAL_NOTES =[
+        'detail.treatments',
+        'medicalHistory',
+        'administrativeFile.generalPractitioner'
+    ]
 
     @staticmethod
     def map_to_new_value(json_data: Dict[str,Any], json_path: str, mapping_value : Dict[str,str]):
@@ -278,6 +284,7 @@ class V1_V2Converter:
                 correct_format = pattern.match(code)
 
                 if not correct_format:
+                    add_to_medical_notes(output_use_case_json, json_data, [f"hypothesis.{diagnosis_type}"])
                     delete_paths(json_data, [f"hypothesis.{diagnosis_type}"])
 
 
@@ -299,9 +306,9 @@ class V1_V2Converter:
         patients = get_field_value(output_use_case_json,'$.patient')
         for index, patient in enumerate(patients):
             cls.map_to_new_value(output_use_case_json, f"$.patient[{index}].identity.strictFeatures.sex", cls.GENDER_MAPPING)
+            cls.switch_field_name(patient,'idPat','patientId')
             validate_diagnosis_code(patient,"otherDiagnosis")
             validate_diagnosis_code(patient,"mainDiagnosis")
-            cls.switch_field_name(patient,'idPat','patientId')
 
         if is_field_completed(output_use_case_json,'$.location.geometry.obsDatime'):
             cls.switch_field_name(output_use_case_json['location']['geometry'],'obsDatime','datetime')
@@ -347,6 +354,7 @@ class V1_V2Converter:
         for index, patient in enumerate(patients):
             cls.reverse_map_to_new_value(output_use_case_json, f"$.patient[{index}].identity.strictFeatures.sex", cls.GENDER_MAPPING)
             cls.switch_field_name(patient,'patientId','idPat')
+            add_to_medical_notes(output_use_case_json, patient, cls.V2_PATIENT_PATHS_TO_ADD_TO_MEDICAL_NOTES)
 
         decisions = get_field_value(output_use_case_json, '$.decision')
         if decisions != None:
