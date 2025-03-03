@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 from converter.cisu_converter import CISUConverterV3
-from converter.converter.constants import Constants
+from converter.constants import Constants
 from .test_helpers import TestHelper
 import json
 from snapshottest import TestCase
