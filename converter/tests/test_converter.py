@@ -1,6 +1,6 @@
 import pytest
-from converter.converter import app
-from converter.converter.constants import Constants
+from converter import app
+from converter.constants import Constants
 from .test_helpers import TestHelper
 
 @pytest.fixture
