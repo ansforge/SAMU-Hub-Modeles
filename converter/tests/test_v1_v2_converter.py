@@ -1,6 +1,8 @@
+import json
 from converter.constants import Constants
-from converter.converter.v1_v2.v1_v2_converter import V1_V2Converter
+from converter.v1_v2.v1_v2_converter import V1_V2Converter
 from .test_helpers import TestHelper
+from snapshottest import TestCase
 
 
 def get_file_endpoint(version_tag: str):
@@ -29,3 +31,21 @@ def test_V2_to_V1_downgrade():
         target_schema=v1_schema,
         online_tag=Constants.V2_GITHUB_TAG
     )
+
+def test_snapshot_V1_to_V2_upgrade(snapshot):
+    message = TestHelper.create_edxl_json_from_sample(
+        Constants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH,
+        "tests/fixtures/v1_v2/RS-EDA_V1.0_exhaustive_fill.json"
+    )
+    converter = V1_V2Converter()
+    output_data = converter.upgrade(message)
+    snapshot.assert_match(json.dumps(output_data, indent=2))
+
+def test_snapshot_V2_to_V1_upgrade(snapshot):
+    message = TestHelper.create_edxl_json_from_sample(
+        Constants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH,
+        "tests/fixtures/v1_v2/RS-EDA_V2.0_exhaustive_fill.json"
+    )
+    converter = V1_V2Converter()
+    output_data = converter.downgrade(message)
+    snapshot.assert_match(json.dumps(output_data, indent=2))
