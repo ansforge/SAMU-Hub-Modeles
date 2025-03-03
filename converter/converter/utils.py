@@ -146,3 +146,9 @@ def add_field_to_initial_alert_notes(data: Dict[str, Any], json_path: str):
 def add_to_initial_alert_notes(data: Dict[str, Any], paths: List[str]):
     for path in paths:
         add_field_to_initial_alert_notes(data, path)
+
+ # todo : reuse it where needed (+ add test)
+def update_json_value(data, jsonpath_query, new_value):
+    jsonpath_expr = parse(jsonpath_query)
+    matches = jsonpath_expr.find(data)
+    matches[0].full_path.update(data, new_value)
