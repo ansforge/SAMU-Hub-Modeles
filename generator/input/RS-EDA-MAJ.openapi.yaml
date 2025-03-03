@@ -467,7 +467,7 @@ components:
           - CLASSE
           - ARCHIVE
           examples:
-          - None
+          - ACTIF
         priority:
           type: string
           title: "Priorit\xE9 de r\xE9gulation m\xE9dicale"
@@ -504,7 +504,7 @@ components:
       additionalProperties: false
       example: example.json#/qualification/details
       examples:
-      - status: None
+      - status: ACTIF
         priority: P1
         careLevel: R1
     externalInfo:

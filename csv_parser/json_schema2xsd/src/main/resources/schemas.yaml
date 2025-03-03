@@ -137,7 +137,7 @@ schemas:
   file: model.xlsx
   header: Y
   package: rpis
-  perimeter: 15-RPIS
+  perimeter: 15-SMUR
   rootElement: rpis
   schema: RS-RPIS
   sheet: RS-RPIS
