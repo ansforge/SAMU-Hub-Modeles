@@ -3,9 +3,7 @@ import copy
 import re
 
 
-from jsonpath_ng import parse
-
-from .utils import delete_paths, get_field_value, is_field_completed
+from .utils import delete_paths, get_field_value, is_field_completed, update_json_value
 
 class V1_V2Converter:
     DIAGNOSIS_CODE_VALIDATION_REGEX='^[A-Z]\\d{2}(\\.[\\d\\+\\-]{1,3})?$'
@@ -26,7 +24,7 @@ class V1_V2Converter:
         "INCONNU": "UN"
     }
 
-    WHATS_HAPPEN_CODE_MAPPING = {
+    V1_TO_V2_WHATS_HAPPEN_CODE_MAPPING = {
         "C02.15.00": "C02.16.00",
         "C02.15.01": "C02.16.01",
         "C02.15.02": "C02.16.02",
@@ -86,6 +84,33 @@ class V1_V2Converter:
         "LIB":"LIBERAL",
     }
 
+    V1_TO_V2_LANGUAGE = {
+        "FR":"fr",
+        "AU":"en",
+        "CA":"en",
+        "GB":"en",
+        "US":"en",
+        "DE":"de",
+        "IT":"it",
+        "ES":"es",
+    }
+
+
+    @staticmethod
+    def map_to_new_value(json_data: Dict[str,Any], json_path: str, mapping_value : Dict[str,str]):
+        current_value = get_field_value(json_data, json_path)
+
+        if current_value != None:
+            new_value = mapping_value.get(current_value, current_value)
+
+            if new_value != current_value:
+                update_json_value(json_data, json_path, new_value)
+
+    @staticmethod
+    def switch_field_name(json_data: Dict[str, Any], previous_field_name: str, new_field_name: str):
+        if is_field_completed(json_data, '$.'+ previous_field_name):
+                json_data[new_field_name] = json_data[previous_field_name]
+
     @classmethod
     def upgrade(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
         def validate_diagnosis_code(json_data:Dict[str, Any],diagnosis_type:str):
@@ -96,26 +121,6 @@ class V1_V2Converter:
 
                 if not correct_format:
                     delete_paths(json_data, [f"hypothesis.{diagnosis_type}"])
-
-        # todo : move to utils and reuse it where needed (+ add test)
-        def update_json_value(data, jsonpath_query, new_value):
-            jsonpath_expr = parse(jsonpath_query)
-            matches = jsonpath_expr.find(data)
-            matches[0].full_path.update(data, new_value)
-
-        def map_to_new_value(json_data: Dict[str,Any], json_path: str, mapping_value : Dict[str,str]):
-            current_value = get_field_value(json_data, json_path)
-
-            if current_value != None:
-                new_value = mapping_value.get(current_value, current_value)
-
-                if new_value != current_value:
-                    update_json_value(json_data, json_path, new_value)
-
-        # todo : refacto to map fields (old <> new) (be more generic) [{ oldFieldName : newFieldName}]
-        def upgrade_pat_id_field(json_data: Dict[str, Any]):
-            if is_field_completed(json_data, '$.idPat'):
-                    json_data['patientId'] = json_data['idPat']
 
 
         # Create independent envelope copy without use case for output
@@ -128,38 +133,32 @@ class V1_V2Converter:
         input_use_case_json = input_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth']
         output_use_case_json = copy.deepcopy(input_use_case_json)
 
-        map_to_new_value(output_use_case_json,'$.qualification.whatsHappen.code', cls.WHATS_HAPPEN_CODE_MAPPING)
-        map_to_new_value(output_use_case_json,'$.qualification.details.attribution',cls.DETAIL_ATTRIBUTION_MAPPING)
-        map_to_new_value(output_use_case_json,'$.initialAlert.caller.type',cls.CALLER_TYPE_MAPPING)
+        cls.map_to_new_value(output_use_case_json,'$.qualification.whatsHappen.code', cls.V1_TO_V2_WHATS_HAPPEN_CODE_MAPPING)
+        cls.map_to_new_value(output_use_case_json,'$.qualification.details.attribution',cls.DETAIL_ATTRIBUTION_MAPPING)
+        cls.map_to_new_value(output_use_case_json,'$.initialAlert.caller.type',cls.CALLER_TYPE_MAPPING)
+        cls.map_to_new_value(output_use_case_json, '$.initialAlert.caller.language', cls.V1_TO_V2_LANGUAGE)
 
         patients = get_field_value(output_use_case_json,'$.patient')
         for index, patient in enumerate(patients):
-            map_to_new_value(output_use_case_json, f"$.patient[{index}].identity.strictFeatures.sex", cls.GENDER_MAPPING)
+            cls.map_to_new_value(output_use_case_json, f"$.patient[{index}].identity.strictFeatures.sex", cls.GENDER_MAPPING)
             validate_diagnosis_code(patient,"otherDiagnosis")
             validate_diagnosis_code(patient,"mainDiagnosis")
-            upgrade_pat_id_field(patient)
+            cls.switch_field_name(patient,'idPat','patientId')
 
-
-        language: str = get_field_value(output_use_case_json, '$.initialAlert.caller.language')
-        if language:
-            output_use_case_json["initialAlert"]["caller"]["language"]= language.lower()
-
-        obs_datime = get_field_value(output_use_case_json, '$.location.geometry.obsDatime')
-        if obs_datime:
-            output_use_case_json['location']['geometry']['datetime']= obs_datime
+        if is_field_completed(output_use_case_json,'$.location.geometry.obsDatime'):
+            cls.switch_field_name(output_use_case_json['location']['geometry'],'obsDatime','datetime')
 
         decisions = get_field_value(output_use_case_json, '$.decision')
         if decisions != None:
             for index, decision in enumerate(decisions):
-                map_to_new_value(output_use_case_json, f"$.decision[{index}].resourceType", cls.DECISION_RESOURCE_TYPE_MAPPING)
-                upgrade_pat_id_field(decision)
-
+                cls.map_to_new_value(output_use_case_json, f"$.decision[{index}].resourceType", cls.DECISION_RESOURCE_TYPE_MAPPING)
+                cls.switch_field_name(decision,'idPat','patientId')
 
         medical_notes = get_field_value(output_use_case_json, '$.medicalNote')
         if medical_notes != None:
             for note in medical_notes:
-                upgrade_pat_id_field(note)
-                note['medicalNoteId']=note['idObs']
+                cls.switch_field_name(note,'idPat','patientId')
+                cls.switch_field_name(note,'idObs','medicalNoteId')
 
         # /!\ Warning - It must be the last step
         delete_paths(output_use_case_json, cls.V1_PATHS_TO_DELETE)
