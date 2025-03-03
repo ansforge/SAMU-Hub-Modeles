@@ -1,5 +1,5 @@
 from converter.constants import Constants
-from converter.v1_v2_converter import V1_V2Converter
+from converter.converter.v1_v2.v1_v2_converter import V1_V2Converter
 from .test_helpers import TestHelper
 
 
