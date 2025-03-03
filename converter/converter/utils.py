@@ -166,3 +166,9 @@ def translate_key_words(text, word_map):
     for key, value in word_map.items():
         text = text.replace(key, value)
     return text
+
+ # todo : reuse it where needed (+ add test)
+def update_json_value(data, jsonpath_query, new_value):
+    jsonpath_expr = parse(jsonpath_query)
+    matches = jsonpath_expr.find(data)
+    matches[0].full_path.update(data, new_value)
