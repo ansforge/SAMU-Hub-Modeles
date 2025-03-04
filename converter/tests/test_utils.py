@@ -1,5 +1,6 @@
 import pytest
-from converter.utils import add_object_to_initial_alert_notes, concatenate_values, get_field_value, is_field_completed, format_object, delete_paths, translate_key_words
+from converter.cisu.utils import add_object_to_initial_alert_notes
+from converter.utils import concatenate_values, get_field_value, is_field_completed, format_object, delete_paths, translate_key_words
 import unittest
 import json
 import os

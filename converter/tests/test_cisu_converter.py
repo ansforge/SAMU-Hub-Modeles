@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from converter.cisu_converter import CISUConverterV3
+from converter.cisu.cisu_converter import CISUConverterV3
 from converter.constants import Constants
 from .test_helpers import TestHelper
 import json
@@ -67,8 +67,8 @@ class TestSnapshotCisuConverter(TestCase):
         self.edxl_envelope_fire_to_health_path = Constants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH
         self.fixtures_folder_path = "tests/fixtures/"
 
-    @patch('converter.cisu_converter.datetime')
-    @patch('converter.cisu_converter.random')
+    @patch('converter.cisu.cisu_converter.datetime')
+    @patch('converter.cisu.cisu_converter.random')
     def test_snapshot_RS_EDA_exhaustive_message(self, mock_choices, mock_now):
         mock_now.now.return_value = datetime(2024, 2, 10, 12, 34, 56)
         mock_now.strftime = datetime.strftime
@@ -91,8 +91,8 @@ class TestSnapshotCisuConverter(TestCase):
         output_data = converter.from_cisu(message)
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
-    @patch("converter.cisu_converter.datetime")
-    @patch('converter.cisu_converter.random')
+    @patch("converter.cisu.cisu_converter.datetime")
+    @patch('converter.cisu.cisu_converter.random')
     def test_snapshot_RS_EDA_required_field_message(self,mock_choices, mock_now):
         mock_now.now.return_value = datetime(2024, 2, 10, 12, 34, 56)
         mock_now.strftime = datetime.strftime
@@ -116,8 +116,8 @@ class TestSnapshotCisuConverter(TestCase):
 
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
-    @patch("converter.cisu_converter.datetime")
-    @patch('converter.cisu_converter.random')
+    @patch("converter.cisu.cisu_converter.datetime")
+    @patch('converter.cisu.cisu_converter.random')
     def test_snapshot_RS_EDA_exhaustive_bis_message(self,mock_choices, mock_now):
         mock_now.now.return_value = datetime(2024, 2, 10, 12, 34, 56)
         mock_now.strftime = datetime.strftime
