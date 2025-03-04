@@ -2,7 +2,7 @@ from typing import Any, Dict, List
 
 from yaml import dump
 
-from converter.utils import get_field_value, is_field_completed
+from converter.utils import get_field_value, is_field_completed, update_json_value
 
 def add_to_medical_notes(json_data: Dict[str, Any], patient: Dict[str, Any],paths: List[str]):
     if not is_field_completed(json_data, '$.medicalNote'):
@@ -31,4 +31,32 @@ def add_object_to_medical_notes(json_data: Dict[str, Any], patient: Dict[str, An
     new_note = {'patientId': patient_id,'medicalNoteId': medical_note_id,'freetext': note_text, 'operator': {"role": "AUTRE"},}
 
     json_data['medicalNote'].append(new_note)
-    print(json_data['medicalNote'])
+
+def map_to_new_value(json_data: Dict[str,Any], json_path: str, mapping_value : Dict[str,str]):
+    current_value = get_field_value(json_data, json_path)
+
+    if current_value != None:
+        new_value = mapping_value.get(current_value, current_value)
+
+        if new_value != current_value:
+            update_json_value(json_data, json_path, new_value)
+
+def reverse_get(input_value: str, mapping_value : Dict[str,str]) -> str:
+        for key, value in mapping_value.items():
+            if value.upper() == input_value.upper():
+                return key
+        return input_value
+
+
+def reverse_map_to_new_value(json_data: Dict[str,Any], json_path: str, mapping_value : Dict[str,str]):
+    current_value = get_field_value(json_data, json_path)
+
+    if current_value != None:
+        new_value = reverse_get(current_value, mapping_value)
+
+        if new_value != current_value:
+            update_json_value(json_data, json_path, new_value)
+
+def switch_field_name(json_data: Dict[str, Any], previous_field_name: str, new_field_name: str):
+    if is_field_completed(json_data, '$.'+ previous_field_name) == True :
+            json_data[new_field_name] = json_data[previous_field_name]
