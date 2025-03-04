@@ -18,7 +18,6 @@ def delete_paths(data: Dict[str, Any], paths: List[str]) -> None:
         data: Dictionary to modify
         paths: List of dot-separated paths (e.g., "a.b.c")
     """
-    #todo - add test on new use case
     def delete_recursively(d: Dict[str, Any], keys: List[str]) -> None:
         if not keys or not isinstance(d, (dict, list)):
             return
@@ -147,6 +146,13 @@ def translate_key_words(text, word_map):
 
  # todo : reuse it where needed (+ add test)
 def update_json_value(data, jsonpath_query, new_value):
-    jsonpath_expr = parse(jsonpath_query)
-    matches = jsonpath_expr.find(data)
-    matches[0].full_path.update(data, new_value)
+    try:
+        jsonpath_expr = parse(jsonpath_query)
+        matches = jsonpath_expr.find(data)
+
+        for match in matches:
+            match.full_path.update(data, new_value)
+
+    except Exception as e:
+        print(f"Error raised in update_json_value: {e}")
+        raise
