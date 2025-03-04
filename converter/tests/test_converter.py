@@ -1,5 +1,5 @@
 import pytest
-from converter import app
+from converter.converter import app
 from converter.constants import Constants
 from .test_helpers import TestHelper
 

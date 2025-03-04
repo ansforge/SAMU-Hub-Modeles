@@ -5,7 +5,9 @@ import string
 from datetime import datetime
 
 from yaml import dump
-from .utils import add_to_initial_alert_notes, delete_paths, get_field_value, get_recipient, get_sender, is_field_completed, translate_key_words
+
+from .utils import add_to_initial_alert_notes
+from ..utils import delete_paths, get_field_value, get_recipient, get_sender, is_field_completed, translate_key_words
 
 class CISUConverterV3:
     """Handles CISU format conversions"""
