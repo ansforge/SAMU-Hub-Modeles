@@ -2,9 +2,9 @@ from typing import Dict, Any
 import copy
 import re
 
-from converter.v1_v2.utils import add_to_medical_notes
+from converter.v1_v2.utils import add_to_medical_notes, map_to_new_value, reverse_map_to_new_value, switch_field_name
 
-from ..utils import delete_paths, get_field_value, is_field_completed, update_json_value
+from ..utils import delete_paths, get_field_value, is_field_completed
 
 class V1_V2Converter:
     DIAGNOSIS_CODE_VALIDATION_REGEX='^[A-Z]\\d{2}(\\.[\\d\\+\\-]{1,3})?$'
@@ -243,38 +243,6 @@ class V1_V2Converter:
         'administrativeFile.generalPractitioner'
     ]
 
-    @staticmethod
-    def map_to_new_value(json_data: Dict[str,Any], json_path: str, mapping_value : Dict[str,str]):
-        current_value = get_field_value(json_data, json_path)
-
-        if current_value != None:
-            new_value = mapping_value.get(current_value, current_value)
-
-            if new_value != current_value:
-                update_json_value(json_data, json_path, new_value)
-
-    @staticmethod
-    def reverse_get(input_value: str, mapping_value : Dict[str,str]) -> str:
-            for key, value in mapping_value.items():
-                if value == input_value.upper():
-                    return key
-            return input_value
-
-    @staticmethod
-    def reverse_map_to_new_value(json_data: Dict[str,Any], json_path: str, mapping_value : Dict[str,str]):
-        current_value = get_field_value(json_data, json_path)
-
-        if current_value != None:
-            new_value = V1_V2Converter.reverse_get(current_value, mapping_value)
-
-            if new_value != current_value:
-                update_json_value(json_data, json_path, new_value)
-
-    @staticmethod
-    def switch_field_name(json_data: Dict[str, Any], previous_field_name: str, new_field_name: str):
-        if is_field_completed(json_data, '$.'+ previous_field_name):
-                json_data[new_field_name] = json_data[previous_field_name]
-
     @classmethod
     def upgrade(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
         def validate_diagnosis_code(json_data:Dict[str, Any],diagnosis_type:str):
@@ -298,32 +266,32 @@ class V1_V2Converter:
         input_use_case_json = input_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth']
         output_use_case_json = copy.deepcopy(input_use_case_json)
 
-        cls.map_to_new_value(output_use_case_json,'$.qualification.whatsHappen.code', cls.V1_TO_V2_WHATS_HAPPEN_CODE_MAPPING)
-        cls.map_to_new_value(output_use_case_json,'$.qualification.details.attribution',cls.DETAIL_ATTRIBUTION_MAPPING)
-        cls.map_to_new_value(output_use_case_json,'$.initialAlert.caller.type',cls.CALLER_TYPE_MAPPING)
-        cls.map_to_new_value(output_use_case_json, '$.initialAlert.caller.language', cls.V1_TO_V2_LANGUAGE)
+        map_to_new_value(output_use_case_json,'$.qualification.whatsHappen.code', cls.V1_TO_V2_WHATS_HAPPEN_CODE_MAPPING)
+        map_to_new_value(output_use_case_json,'$.qualification.details.attribution',cls.DETAIL_ATTRIBUTION_MAPPING)
+        map_to_new_value(output_use_case_json,'$.initialAlert.caller.type',cls.CALLER_TYPE_MAPPING)
+        map_to_new_value(output_use_case_json, '$.initialAlert.caller.language', cls.V1_TO_V2_LANGUAGE)
 
         patients = get_field_value(output_use_case_json,'$.patient')
         for index, patient in enumerate(patients):
-            cls.map_to_new_value(output_use_case_json, f"$.patient[{index}].identity.strictFeatures.sex", cls.GENDER_MAPPING)
-            cls.switch_field_name(patient,'idPat','patientId')
+            map_to_new_value(output_use_case_json, f"$.patient[{index}].identity.strictFeatures.sex", cls.GENDER_MAPPING)
+            switch_field_name(patient,'idPat','patientId')
             validate_diagnosis_code(patient,"otherDiagnosis")
             validate_diagnosis_code(patient,"mainDiagnosis")
 
         if is_field_completed(output_use_case_json,'$.location.geometry.obsDatime'):
-            cls.switch_field_name(output_use_case_json['location']['geometry'],'obsDatime','datetime')
+            switch_field_name(output_use_case_json['location']['geometry'],'obsDatime','datetime')
 
         decisions = get_field_value(output_use_case_json, '$.decision')
         if decisions != None:
             for index, decision in enumerate(decisions):
-                cls.map_to_new_value(output_use_case_json, f"$.decision[{index}].resourceType", cls.DECISION_RESOURCE_TYPE_MAPPING)
-                cls.switch_field_name(decision,'idPat','patientId')
+                map_to_new_value(output_use_case_json, f"$.decision[{index}].resourceType", cls.DECISION_RESOURCE_TYPE_MAPPING)
+                switch_field_name(decision,'idPat','patientId')
 
         medical_notes = get_field_value(output_use_case_json, '$.medicalNote')
         if medical_notes != None:
             for note in medical_notes:
-                cls.switch_field_name(note,'idPat','patientId')
-                cls.switch_field_name(note,'idObs','medicalNoteId')
+                switch_field_name(note,'idPat','patientId')
+                switch_field_name(note,'idObs','medicalNoteId')
 
         # /!\ Warning - It must be the last step
         delete_paths(output_use_case_json, cls.V1_PATHS_TO_DELETE)
@@ -343,33 +311,33 @@ class V1_V2Converter:
         input_use_case_json = input_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth']
         output_use_case_json = copy.deepcopy(input_use_case_json)
 
-        cls.map_to_new_value(output_use_case_json,'$.qualification.whatsHappen.code', cls.V2_TO_V1_WHATS_HAPPEN_CODE_MAPPING)
-        cls.map_to_new_value(output_use_case_json,'$.qualification.details.attribution',cls.V2_TO_V1_DETAIL_ATTRIBUTION_MAPPING)
-        cls.map_to_new_value(output_use_case_json,'$.initialAlert.caller.type',cls.V2_TO_V1_CALLER_TYPE_MAPPING)
-        cls.map_to_new_value(output_use_case_json,'$.initialAlert.caller.language',cls.V2_TO_V1_LANGUAGE)
-        cls.map_to_new_value(output_use_case_json,'$.initialAlert.caller.callerContact.type',cls.V2_TO_V1_CALLER_CONTACT_TYPE)
-        cls.map_to_new_value(output_use_case_json,'$.initialAlert.caller.callbackContact.type',cls.V2_TO_V1_CALLER_CONTACT_TYPE)
+        map_to_new_value(output_use_case_json,'$.qualification.whatsHappen.code', cls.V2_TO_V1_WHATS_HAPPEN_CODE_MAPPING)
+        map_to_new_value(output_use_case_json,'$.qualification.details.attribution',cls.V2_TO_V1_DETAIL_ATTRIBUTION_MAPPING)
+        map_to_new_value(output_use_case_json,'$.initialAlert.caller.type',cls.V2_TO_V1_CALLER_TYPE_MAPPING)
+        map_to_new_value(output_use_case_json,'$.initialAlert.caller.language',cls.V2_TO_V1_LANGUAGE)
+        map_to_new_value(output_use_case_json,'$.initialAlert.caller.callerContact.type',cls.V2_TO_V1_CALLER_CONTACT_TYPE)
+        map_to_new_value(output_use_case_json,'$.initialAlert.caller.callbackContact.type',cls.V2_TO_V1_CALLER_CONTACT_TYPE)
 
         patients = get_field_value(output_use_case_json,'$.patient')
         for index, patient in enumerate(patients):
-            cls.reverse_map_to_new_value(output_use_case_json, f"$.patient[{index}].identity.strictFeatures.sex", cls.GENDER_MAPPING)
-            cls.switch_field_name(patient,'patientId','idPat')
+            reverse_map_to_new_value(output_use_case_json, f"$.patient[{index}].identity.strictFeatures.sex", cls.GENDER_MAPPING)
+            switch_field_name(patient,'patientId','idPat')
             add_to_medical_notes(output_use_case_json, patient, cls.V2_PATIENT_PATHS_TO_ADD_TO_MEDICAL_NOTES)
 
         decisions = get_field_value(output_use_case_json, '$.decision')
         if decisions != None:
             for index, decision in enumerate(decisions):
-                cls.map_to_new_value(output_use_case_json, f"$.decision[{index}].resourceType", cls.V2_TO_V1_DECISION_RESOURCE_TYPE_MAPPING)
-                cls.switch_field_name(decision,'patientId','idPat')
+                map_to_new_value(output_use_case_json, f"$.decision[{index}].resourceType", cls.V2_TO_V1_DECISION_RESOURCE_TYPE_MAPPING)
+                switch_field_name(decision,'patientId','idPat')
 
         medical_notes = get_field_value(output_use_case_json, '$.medicalNote')
         if medical_notes != None:
             for note in medical_notes:
-                cls.switch_field_name(note,'patientId','idPat')
-                cls.switch_field_name(note,'medicalNoteId','idObs')
+                switch_field_name(note,'patientId','idPat')
+                switch_field_name(note,'medicalNoteId','idObs')
 
         if is_field_completed(output_use_case_json,'$.location.geometry.datetime'):
-            cls.switch_field_name(output_use_case_json['location']['geometry'],'datetime','obsDatime')
+            switch_field_name(output_use_case_json['location']['geometry'],'datetime','obsDatime')
 
         # /!\ Warning - It must be the last step
         delete_paths(output_use_case_json, cls.V2_PATHS_TO_DELETE)
