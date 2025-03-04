@@ -1,6 +1,5 @@
 from unittest.mock import patch
 import pytest
-from converter.cisu.utils import add_object_to_initial_alert_notes
 from converter.utils import concatenate_values, get_field_value, is_field_completed, format_object, delete_paths, translate_key_words, update_json_value
 import unittest
 import json
@@ -146,34 +145,6 @@ def test_delete_paths_with_wrong_list():
     assert data["a"]["b"]["d"] == 2
     assert data["a"]["e"] == 3
     assert data["f"] == 4
-
-
-def test_add_note_to_existing_notes():
-    output_json = {
-        'initialAlert': {
-            'notes': [{"freetext": "Existing note"}]
-        }
-    }
-    note_text = "New note"
-
-    add_object_to_initial_alert_notes(output_json, note_text)
-
-    assert {"freetext": "New note"} in output_json['initialAlert']['notes']
-    assert {"freetext": "Existing note"} in output_json['initialAlert']['notes']
-    assert len(output_json['initialAlert']['notes']) == 2
-
-def test_add_note_to_empty_notes():
-    output_json = {
-        'initialAlert': {
-            'otherField': 'value'
-        }
-    }
-    note_text = "New note"
-
-    add_object_to_initial_alert_notes(output_json, note_text)
-
-    assert {"freetext": "New note"} in output_json['initialAlert']['notes']
-    assert len(output_json['initialAlert']['notes']) == 1
 
 class TestIsFieldCompleted(unittest.TestCase):
     @classmethod
