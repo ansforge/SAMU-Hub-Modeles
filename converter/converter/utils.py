@@ -99,13 +99,6 @@ def format_object(obj: Any, indent: int = 0) -> str:
     return f"{indent_str}{obj}"
 
 
-def add_object_to_initial_alert_notes(json_data: Dict[str, Any], note_text: str):
-    if not is_field_completed(json_data, '$.initialAlert.notes'):
-        json_data['initialAlert']['notes'] = []
-
-    json_data['initialAlert']['notes'].append({"freetext": note_text})
-
-
 def is_field_completed(json_data: Dict[str, Any], json_path:str):
     try:
         jsonpath_expr = parse(json_path)
@@ -131,21 +124,6 @@ def get_field_value(json_data: Dict[str, Any], json_path: str):
     except Exception as e:
         print(f"Error raised in is_field_completed : {e}")
         raise
-
-
-def add_field_to_initial_alert_notes(data: Dict[str, Any], json_path: str):
-    field_value = get_field_value(data,json_path)
-
-    if field_value == None:
-        return
-
-    formatted_field_value = dump(field_value, allow_unicode=True)
-    add_object_to_initial_alert_notes(data, formatted_field_value)
-
-
-def add_to_initial_alert_notes(data: Dict[str, Any], paths: List[str]):
-    for path in paths:
-        add_field_to_initial_alert_notes(data, path)
 
  # todo : reuse it where needed (+ add test)
 def update_json_value(data, jsonpath_query, new_value):

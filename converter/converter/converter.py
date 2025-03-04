@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 
 from .utils import get_recipient, get_sender
-from .cisu_converter import CISUConverterV3
+from .cisu.cisu_converter import CISUConverterV3
 
 app = Flask(__name__)
 
@@ -48,7 +48,7 @@ def convert_cisu(edxl_json, version):
     converters = {
         'v3': CISUConverterV3
     }
-    
+
     # Compute direction based on sender / recipient
     sender = get_sender(edxl_json)
     recipient = get_recipient(edxl_json)
@@ -63,7 +63,7 @@ def convert_cisu(edxl_json, version):
         raise ValueError(f"Invalid version {version} for CISU conversion")
     converter = converters[version]
     print(f"Converting {direction} {version}")
-    
+
     if direction == TO_CISU:
         return converter.to_cisu(edxl_json)
     elif direction == FROM_CISU:
