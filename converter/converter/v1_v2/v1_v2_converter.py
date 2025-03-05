@@ -238,8 +238,8 @@ class V1_V2Converter:
     }
 
     V2_PATIENT_PATHS_TO_ADD_TO_MEDICAL_NOTES =[
-        'detail.treatments',
-        'medicalHistory',
+        'detail.treatment',
+        'detail.medicalHistory',
         'administrativeFile.generalPractitioner'
     ]
 
@@ -301,6 +301,13 @@ class V1_V2Converter:
 
     @classmethod
     def downgrade(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
+        def update_language(json_data:Dict[str, Any]):
+            language = get_field_value(json_data, '$.initialAlert.caller.language')
+            if language in cls.V1_TO_V2_LANGUAGE:
+                map_to_new_value(json_data, '$.initialAlert.caller.language', cls.V2_TO_V1_LANGUAGE)
+            else:
+                delete_paths(json_data, ['initialAlert.caller.language'])
+
         # Create independent envelope copy without use case for output
         output_json = copy.deepcopy(input_json)
         if 'createCaseHealth' not in input_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {}):
@@ -314,9 +321,9 @@ class V1_V2Converter:
         map_to_new_value(output_use_case_json,'$.qualification.whatsHappen.code', cls.V2_TO_V1_WHATS_HAPPEN_CODE_MAPPING)
         map_to_new_value(output_use_case_json,'$.qualification.details.attribution',cls.V2_TO_V1_DETAIL_ATTRIBUTION_MAPPING)
         map_to_new_value(output_use_case_json,'$.initialAlert.caller.type',cls.V2_TO_V1_CALLER_TYPE_MAPPING)
-        map_to_new_value(output_use_case_json,'$.initialAlert.caller.language',cls.V2_TO_V1_LANGUAGE)
         map_to_new_value(output_use_case_json,'$.initialAlert.caller.callerContact.type',cls.V2_TO_V1_CALLER_CONTACT_TYPE)
         map_to_new_value(output_use_case_json,'$.initialAlert.caller.callbackContact.type',cls.V2_TO_V1_CALLER_CONTACT_TYPE)
+        update_language(output_use_case_json)
 
         patients = get_field_value(output_use_case_json,'$.patient')
         for index, patient in enumerate(patients):
