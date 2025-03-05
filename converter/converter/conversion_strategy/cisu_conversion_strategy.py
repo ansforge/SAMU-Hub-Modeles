@@ -1,4 +1,5 @@
 from converter.cisu.cisu_converter import CISUConverterV3
+from converter.constants import Constants
 from converter.utils import get_recipient, get_sender
 
 def cisu_conversion_strategy(edxl_json, source_version):
@@ -12,9 +13,9 @@ def cisu_conversion_strategy(edxl_json, source_version):
     # Compute direction based on sender / recipient
     sender = get_sender(edxl_json)
     recipient = get_recipient(edxl_json)
-    if sender.startswith('fr.health') and recipient.startswith('fr.health'):
+    if sender.startswith(Constants.FR_HEALTH_PREFIX) and recipient.startswith(Constants.FR_HEALTH_PREFIX):
         raise ValueError(f'Both sender and recipient are health: {sender} -> {recipient}')
-    elif sender.startswith('fr.health'):
+    elif sender.startswith(Constants.FR_HEALTH_PREFIX):
         direction = TO_CISU
     else:
         direction = FROM_CISU

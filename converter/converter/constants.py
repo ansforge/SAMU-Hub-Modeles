@@ -7,3 +7,5 @@ class Constants:
 
     RS_EDA_TAG="RS-EDA"
     RC_EDA_TAG="RC-EDA"
+
+    FR_HEALTH_PREFIX="fr.health"
