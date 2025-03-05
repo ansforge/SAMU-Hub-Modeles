@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 
-from converter.conversion_strategy.cisu_conversion_strategy import cisu_conversion_strategy
-
+from converter.conversion_strategy.conversion_strategy import conversion_strategy
 
 app = Flask(__name__)
 
@@ -19,24 +18,19 @@ def convert():
     source_version = req_data.get('sourceVersion')
     target_version = req_data.get('targetVersion')
     edxl_json = req_data.get('edxl')
-    cisu_conversion = req_data.get('cisuConversion', False)
+    is_cisu_conversion = req_data.get('cisuConversion', False)
 
     if not source_version or not target_version or not edxl_json:
         return raise_error(
             f"Missing required fields: sourceVersion={source_version}, targetVersion={target_version}, edxl present={edxl_json is not None}"
         )
 
-    if source_version != target_version:
-        # ToDo: implement version conversion
-        return raise_error(f"Source version {source_version} is not equal to target version {target_version}")
-
-    if cisu_conversion:
-        try:
-            edxl_json = cisu_conversion_strategy(edxl_json, source_version)
-        except ValueError as e:
-            return raise_error(str(e))
-        except Exception as e:
-            return raise_error(str(e), 500)
+    try:
+        edxl_json = conversion_strategy(edxl_json, source_version, target_version, is_cisu_conversion)
+    except ValueError as e:
+        return raise_error(str(e))
+    except Exception as e:
+        return raise_error(str(e), 500)
 
     return jsonify({"edxl": edxl_json})
 

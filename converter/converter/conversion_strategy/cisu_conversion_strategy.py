@@ -1,7 +1,7 @@
 from converter.cisu.cisu_converter import CISUConverterV3
 from converter.utils import get_recipient, get_sender
 
-def cisu_conversion_strategy(edxl_json, version):
+def cisu_conversion_strategy(edxl_json, source_version):
     """CISU conversion endpoint: back and forth between CISU and Health"""
     TO_CISU = "to_CISU"
     FROM_CISU = "from_CISU"
@@ -19,10 +19,10 @@ def cisu_conversion_strategy(edxl_json, version):
     else:
         direction = FROM_CISU
 
-    if version not in converters:
-        raise ValueError(f"Invalid version {version} for CISU conversion")
-    converter = converters[version]
-    print(f"Converting {direction} {version}")
+    if source_version not in converters:
+        raise ValueError(f"Invalid version {source_version} for CISU conversion")
+    converter = converters[source_version]
+    print(f"Converting {direction} {source_version}")
 
     if direction == TO_CISU:
         return converter.to_cisu(edxl_json)
