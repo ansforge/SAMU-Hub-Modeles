@@ -41,7 +41,7 @@ def test_snapshot_V1_to_V2_upgrade(snapshot):
     output_data = converter.upgrade(message)
     snapshot.assert_match(json.dumps(output_data, indent=2))
 
-def test_snapshot_V2_to_V1_upgrade(snapshot):
+def test_snapshot_V2_to_V1_downgrade(snapshot):
     message = TestHelper.create_edxl_json_from_sample(
         Constants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH,
         "tests/fixtures/v1_v2/RS-EDA_V2.0_exhaustive_fill.json"
