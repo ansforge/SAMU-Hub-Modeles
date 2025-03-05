@@ -293,7 +293,7 @@ snapshots['test_snapshot_V1_to_V2_upgrade 1'] = '''{
                   },
                   "creation": "2025-02-27T00:00:00+01:00",
                   "decisionType": "CONSEIL",
-                  "resourceType": "TSU ",
+                  "resourceType": "TSU",
                   "medicalTransport": true,
                   "orientationType": "EPHAD",
                   "patientId": "fr.health.samu770.patient.DRFR157702400400055.1"
@@ -327,7 +327,7 @@ snapshots['test_snapshot_V1_to_V2_upgrade 1'] = '''{
   ]
 }'''
 
-snapshots['test_snapshot_V2_to_V1_upgrade 1'] = '''{
+snapshots['test_snapshot_V2_to_V1_downgrade 1'] = '''{
   "distributionID": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
   "senderID": "fr.health.samuA",
   "dateTimeSent": "2022-09-27T08:23:34+02:00",
@@ -465,7 +465,6 @@ snapshots['test_snapshot_V2_to_V1_upgrade 1'] = '''{
                     "type": "RADIO",
                     "detail": "radiolaposte"
                   },
-                  "language": "af",
                   "type": "AMBULANC",
                   "communication": "HOSTILE",
                   "freetext": "info supp requ\\u00e9rant",
@@ -652,12 +651,44 @@ snapshots['test_snapshot_V2_to_V1_upgrade 1'] = '''{
                   "idObs": "fr.health.samu770.patient.medicalNote.partie1seulement"
                 },
                 {
+                  "freetext": "traitement zero\\n...\\n",
+                  "operator": {
+                    "role": "AUTRE"
+                  },
+                  "idPat": "fr.health.samu770.patient.DRFR157702400400055.1",
+                  "idObs": "fr.health.samu770.medicalNote.DRFR157702400400055.1"
+                },
+                {
+                  "freetext": "antecedent zero\\n...\\n",
+                  "operator": {
+                    "role": "AUTRE"
+                  },
+                  "idPat": "fr.health.samu770.patient.DRFR157702400400055.1",
+                  "idObs": "fr.health.samu770.medicalNote.DRFR157702400400055.1"
+                },
+                {
                   "freetext": "contact:\\n- detail: email@email.com\\n  type: EMAIL\\n- detail: \'+334564789541657\'\\n  type: TEL\\ndetailedName:\\n  complete: Medecin traitant\\n  firstName: medecin\\n  lastName: traitant\\nrppsId: \'12345678901\'\\n",
                   "operator": {
                     "role": "AUTRE"
                   },
                   "idPat": "fr.health.samu770.patient.DRFR157702400400055.1",
                   "idObs": "fr.health.samu770.medicalNote.DRFR157702400400055.1"
+                },
+                {
+                  "freetext": "antecedent\\n...\\n",
+                  "operator": {
+                    "role": "AUTRE"
+                  },
+                  "idPat": "fr.health.samu770.patient.DRFR157702400400055.2",
+                  "idObs": "fr.health.samu770.medicalNote.DRFR157702400400055.2"
+                },
+                {
+                  "freetext": "antecendent\\n...\\n",
+                  "operator": {
+                    "role": "AUTRE"
+                  },
+                  "idPat": "fr.health.samu770.patient.DRFR157702400400055.2",
+                  "idObs": "fr.health.samu770.medicalNote.DRFR157702400400055.2"
                 },
                 {
                   "freetext": "contact:\\n- detail: email@mss.pro\\n  type: MSS\\n- detail: \'103.7\'\\n  type: RADIO\\ndetailedName:\\n  complete: pr\\u00e9nom nom 1\\n  firstName: pr\\u00e9nom\\n  lastName: nom 1\\nrppsId: \'12345678901\'\\n",
