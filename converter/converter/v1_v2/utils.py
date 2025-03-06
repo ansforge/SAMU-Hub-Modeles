@@ -35,11 +35,9 @@ def add_object_to_medical_notes(json_data: Dict[str, Any], patient: Dict[str, An
 def map_to_new_value(json_data: Dict[str,Any], json_path: str, mapping_value : Dict[str,str]):
     current_value = get_field_value(json_data, json_path)
 
-    if current_value != None:
+    if current_value != None and current_value in mapping_value:
         new_value = mapping_value.get(current_value, current_value)
-
-        if new_value != current_value:
-            update_json_value(json_data, json_path, new_value)
+        update_json_value(json_data, json_path, new_value)
 
 def reverse_get(input_value: str, mapping_value : Dict[str,str]) -> str:
         for key, value in mapping_value.items():
