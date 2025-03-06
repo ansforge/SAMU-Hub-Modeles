@@ -14,7 +14,7 @@ def test_V1_to_V2_upgrade():
 
     TestHelper.conversion_tests_runner(
         sample_dir=Constants.RS_EDA_TAG,
-        envelope_file=Constants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH,
+        envelope_file=Constants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
         converter_method=V1_V2Converter.upgrade,
         target_schema=v2_schema,
         online_tag=Constants.V1_GITHUB_TAG
@@ -26,7 +26,7 @@ def test_V2_to_V1_downgrade():
 
     TestHelper.conversion_tests_runner(
         sample_dir=Constants.RS_EDA_TAG,
-        envelope_file=Constants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH,
+        envelope_file=Constants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
         converter_method=V1_V2Converter.downgrade,
         target_schema=v1_schema,
         online_tag=Constants.V2_GITHUB_TAG
@@ -34,7 +34,7 @@ def test_V2_to_V1_downgrade():
 
 def test_snapshot_V1_to_V2_upgrade(snapshot):
     message = TestHelper.create_edxl_json_from_sample(
-        Constants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH,
+        Constants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
         "tests/fixtures/v1_v2/RS-EDA_V1.0_exhaustive_fill.json"
     )
     converter = V1_V2Converter()
@@ -43,7 +43,7 @@ def test_snapshot_V1_to_V2_upgrade(snapshot):
 
 def test_snapshot_V2_to_V1_downgrade(snapshot):
     message = TestHelper.create_edxl_json_from_sample(
-        Constants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH,
+        Constants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
         "tests/fixtures/v1_v2/RS-EDA_V2.0_exhaustive_fill.json"
     )
     converter = V1_V2Converter()

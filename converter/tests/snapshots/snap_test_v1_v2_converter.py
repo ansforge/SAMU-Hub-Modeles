@@ -18,7 +18,7 @@ snapshots['test_snapshot_V1_to_V2_upgrade 1'] = '''{
     "language": "fr-FR",
     "explicitAddress": {
       "explicitAddressScheme": "hubex",
-      "explicitAddressValue": "fr.fire.sdisZ"
+      "explicitAddressValue": "fr.health.samuB"
     }
   },
   "content": [
@@ -36,8 +36,8 @@ snapshots['test_snapshot_V1_to_V2_upgrade 1'] = '''{
             "kind": "Report",
             "recipient": [
               {
-                "name": "sdisZ",
-                "URI": "hubsante:fr.fire.sdisZ"
+                "name": "samuB",
+                "URI": "hubsante:fr.health.samuB"
               }
             ],
             "createCaseHealth": {
@@ -338,7 +338,7 @@ snapshots['test_snapshot_V2_to_V1_downgrade 1'] = '''{
     "language": "fr-FR",
     "explicitAddress": {
       "explicitAddressScheme": "hubex",
-      "explicitAddressValue": "fr.fire.sdisZ"
+      "explicitAddressValue": "fr.health.samuB"
     }
   },
   "content": [
@@ -356,8 +356,8 @@ snapshots['test_snapshot_V2_to_V1_downgrade 1'] = '''{
             "kind": "Report",
             "recipient": [
               {
-                "name": "sdisZ",
-                "URI": "hubsante:fr.fire.sdisZ"
+                "name": "samuB",
+                "URI": "hubsante:fr.health.samuB"
               }
             ],
             "createCaseHealth": {
