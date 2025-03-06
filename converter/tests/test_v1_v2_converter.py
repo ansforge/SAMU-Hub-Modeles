@@ -1,12 +1,9 @@
 import json
 from converter.constants import Constants
 from converter.v1_v2.v1_v2_converter import V1_V2Converter
-from .test_helpers import TestHelper
+from .test_helpers import TestHelper, get_file_endpoint
 from snapshottest import TestCase
 
-
-def get_file_endpoint(version_tag: str):
-    return f"https://raw.githubusercontent.com/ansforge/SAMU-Hub-Modeles/{version_tag}/src/main/resources/json-schema/RS-EDA.schema.json"
 
 def test_V1_to_V2_upgrade():
     v2_schema_endpoint = get_file_endpoint(Constants.V2_GITHUB_TAG)
