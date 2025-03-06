@@ -167,3 +167,7 @@ class TestHelper:
             # Run additional validation if provided
             if additional_validation:
                 additional_validation(converted_message)
+
+
+def get_file_endpoint(version_tag: str):
+    return f"https://raw.githubusercontent.com/ansforge/SAMU-Hub-Modeles/{version_tag}/src/main/resources/json-schema/RS-EDA.schema.json"
