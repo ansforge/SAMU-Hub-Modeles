@@ -246,14 +246,35 @@ class V1_V2Converter:
     @classmethod
     def upgrade(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
         def validate_diagnosis_code(json_data:Dict[str, Any],diagnosis_type:str):
-            code = get_field_value(json_data, f"$.hypothesis.{diagnosis_type}.code")
-            if code != None:
-                pattern = re.compile(cls.DIAGNOSIS_CODE_VALIDATION_REGEX)
-                correct_format = pattern.match(code)
+            diagnosis = get_field_value(json_data, f"$.hypothesis.{diagnosis_type}")
+            pattern = re.compile(cls.DIAGNOSIS_CODE_VALIDATION_REGEX)
 
-                if not correct_format:
-                    add_to_medical_notes(output_use_case_json, json_data, [f"hypothesis.{diagnosis_type}"])
+            if diagnosis == None:
+                return
+
+            if type(diagnosis) is list:
+                for index, diag in enumerate(diagnosis):
+                    code = get_field_value(diag, "$.code")
+                    if code != None:
+                        is_correct_format = pattern.match(code)
+                        if not is_correct_format:
+                            add_to_medical_notes(output_use_case_json, json_data, [f"hypothesis.{diagnosis_type}[{index}]"])
+                            diagnosis.pop(index)
+
+                if len(diagnosis)==0: # no code matches the pattern
                     delete_paths(json_data, [f"hypothesis.{diagnosis_type}"])
+                else:
+                    json_data['hypothesis']['otherDiagnosis']= diagnosis
+                return
+
+            else:
+                code = get_field_value(diagnosis, "$.code")
+                if code != None:
+                    is_correct_format = pattern.match(code)
+                    if not is_correct_format:
+                        add_to_medical_notes(output_use_case_json, json_data, [f"hypothesis.{diagnosis_type}"])
+                        delete_paths(json_data, [f"hypothesis.{diagnosis_type}"])
+                return
 
 
         # Create independent envelope copy without use case for output
