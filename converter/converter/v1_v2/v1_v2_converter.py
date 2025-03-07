@@ -329,6 +329,13 @@ class V1_V2Converter:
             else:
                 delete_paths(json_data, ['initialAlert.caller.language'])
 
+        def update_practitioner_contact(json_data:Dict[str, Any], patient_index:int):
+            practitioner_contact_type = get_field_value(json_data,f'$.patient[{patient_index}].administrativeFile.generalPractitioner.contact')
+            if practitioner_contact_type != None:
+                for contact in practitioner_contact_type:
+                    map_to_new_value(contact, f"$.type", cls.V2_TO_V1_CALLER_CONTACT_TYPE)
+                json_data['patient'][patient_index]['administrativeFile']['generalPractitioner']['contact']=practitioner_contact_type
+
         # Create independent envelope copy without use case for output
         output_json = copy.deepcopy(input_json)
         if 'createCaseHealth' not in input_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {}):
@@ -348,6 +355,7 @@ class V1_V2Converter:
 
         patients = get_field_value(output_use_case_json,'$.patient')
         for index, patient in enumerate(patients):
+            update_practitioner_contact(output_use_case_json, index)
             reverse_map_to_new_value(output_use_case_json, f"$.patient[{index}].identity.strictFeatures.sex", cls.GENDER_MAPPING)
             switch_field_name(patient,'patientId','idPat')
             add_to_medical_notes(output_use_case_json, patient, cls.V2_PATIENT_PATHS_TO_ADD_TO_MEDICAL_NOTES)
