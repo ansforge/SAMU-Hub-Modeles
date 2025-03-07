@@ -42,11 +42,10 @@ class CISUConverterV3:
     ]
 
     CISU_PATHS_TO_ADD_TO_INITIAL_ALERT_NOTES =[
-        '$.qualification.victims',
-        '$.initialAlert.attachment',
-        '$.initialAlert.callTaker',
-        '$.freetext',
-        '$.newAlert'
+        { "path":'$.initialAlert.attachment', "label":'Pièces jointes :'},
+        { "path":'$.initialAlert.callTaker', "label":"Contact de l'opérateur SIS :"},
+        { "path":'$.freetext', "label":""},
+        { "path":'$.newAlert', "label":'Nouvelles alertes :'}
     ]
 
     @classmethod

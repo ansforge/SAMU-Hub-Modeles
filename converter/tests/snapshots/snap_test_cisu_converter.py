@@ -143,7 +143,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_bis_messag
                 },
                 "notes": [
                   {
-                    "freetext": "count: \'1\'\\nfreetext: Femme enceinte de 2 mois qui est tomb\\u00e9 d\'une \\u00e9chelle au bureau. Delphine\\n  Vigneau, 32 ans.\\nmainVictim: ADULTE\\n; - URI: https://hub.esante.gouv.fr/\\n  description: PHOTO\\n; calltakerContact:\\n  channel: PERSONNE\\n  detail: \'+33162863746\'\\n  type: TEL\\ncalltakerId: ARM1234\\ncontrolRoom: CRRA44\\norganization: fr.health.samu440\\nrole: ARM\\n; - Mari m\\u00e9decin\\n"
+                    "freetext": "Pi\\u00e8ces jointes : PHOTO https://hub.esante.gouv.fr/; Contact de l\'op\\u00e9rateur SIS : fr.health.samu440 CRRA44 ARM PERSONNE TEL +33162863746 ARM1234;  Mari m\\u00e9decin"
                   }
                 ]
               },
@@ -300,7 +300,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_message 1'
                 },
                 "notes": [
                   {
-                    "freetext": "count: \'1\'\\nfreetext: Femme enceinte de 2 mois qui est tomb\\u00e9 d\'une \\u00e9chelle au bureau. Delphine\\n  Vigneau, 32 ans.\\nmainVictim: ADULTE\\n; - URI: https://hub.esante.gouv.fr/\\n  description: PHOTO\\n; calltakerContact:\\n  channel: PERSONNE\\n  detail: \'+33162863746\'\\n  type: TEL\\ncalltakerId: ARM1234\\ncontrolRoom: CRRA44\\norganization: fr.health.samu440\\nrole: ARM\\n; - Mari m\\u00e9decin\\n"
+                    "freetext": "Pi\\u00e8ces jointes : PHOTO https://hub.esante.gouv.fr/; Contact de l\'op\\u00e9rateur SIS : fr.health.samu440 CRRA44 ARM PERSONNE TEL +33162863746 ARM1234;  Mari m\\u00e9decin"
                   }
                 ]
               },

@@ -1,5 +1,5 @@
 import pytest
-from converter.utils import add_object_to_initial_alert_notes, get_field_value, is_field_completed, format_object, delete_paths
+from converter.utils import add_object_to_initial_alert_notes, concatenate_values, get_field_value, is_field_completed, format_object, delete_paths, translate_key_words
 import unittest
 import json
 import os
@@ -78,6 +78,35 @@ def test_delete_paths_cleanup():
     data = {"a": {"b": {"c": 1}}}
     delete_paths(data, ["a.b.c"])
     assert data == {}  # Empty dictionaries should be cleaned up
+
+def test_translate_keys():
+    translation_mapping = {
+        "translate":"change",
+        "this": "that ",
+        "a ": "one"
+    }
+    input_text = 'thisis a random string totranslate'
+    output_text = translate_key_words(input_text, translation_mapping)
+    assert output_text == 'that is onerandom string tochange'
+
+def test_concatenate():
+    data = {
+        "key1": "this",
+        "key2": "should",
+        "key3": {
+            "subkey1": "form",
+            "subkey2": "a",
+            "subkey3": "complete"
+        },
+        "key4": "sentence",
+    }
+
+    assert concatenate_values(data) == " this should form a complete sentence"
+
+def test_empty_concatenate():
+    data = {}
+
+    assert concatenate_values(data) == ""
 
 def test_add_note_to_existing_notes():
     output_json = {
