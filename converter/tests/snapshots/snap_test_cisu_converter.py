@@ -116,7 +116,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_bis_messag
                     "uri": "AZ1234"
                   }
                 ],
-                "freetext": "Magasin bleu et jaune\\n Identifiant de localisation : 111fb03a-6fd9-41e0-8e81-990c45188891\\nD\\u00e9tails de commune : Saint-Marthe"
+                "freetext": "Magasin bleu et jaune\\nD\\u00e9tails de commune : Saint-Marthe"
               },
               "initialAlert": {
                 "reception": "2024-05-26T13:15:00+02:00",
@@ -273,7 +273,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_message 1'
                     "uri": "AZ1234"
                   }
                 ],
-                "freetext": "Magasin bleu et jaune\\n Identifiant de localisation : 111fb03a-6fd9-41e0-8e81-990c45188891\\nD\\u00e9tails de commune : Saint-Marthe"
+                "freetext": "Magasin bleu et jaune\\nD\\u00e9tails de commune : Saint-Marthe"
               },
               "initialAlert": {
                 "reception": "2024-05-26T13:15:00+02:00",
@@ -364,7 +364,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_required_field_messag
                 }
               },
               "location": {
-                "freetext": "\\n Identifiant de localisation : 111fb03a-6fd9-41e0-8e81-990c45188891"
+                "freetext": ""
               },
               "owner": "fr.health.samuA"
             }

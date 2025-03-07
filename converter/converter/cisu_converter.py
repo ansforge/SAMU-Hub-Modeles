@@ -60,11 +60,9 @@ class CISUConverterV3:
         Returns:
             Converted EDXL Health JSON
         """
-        def add_location_id(json_data: Dict[str,Any]):
-            if is_field_completed(json_data,'$.location.locID'):
-                if not is_field_completed(json_data, '$.location.freetext'):
-                    json_data['location']['freetext']=''
-                json_data['location']['freetext']+= "\n Identifiant de localisation : " + get_field_value(json_data,'$.location.locID')
+        def add_default_location_freetext(json_data: Dict[str,Any]):
+            if not is_field_completed(json_data,'$.location.freetext'):
+                json_data['location']['freetext']='' # need at least empty value to pass validation
 
         def add_location_detail(json_data: Dict[str,Any]):
             if is_field_completed(json_data,'$.location.city.detail'):
@@ -112,7 +110,7 @@ class CISUConverterV3:
         # - Updates
         output_use_case_json['owner'] = get_recipient(input_json)
 
-        add_location_id(output_use_case_json)
+        add_default_location_freetext(output_use_case_json)
         add_location_detail(output_use_case_json)
 
         if is_field_completed(output_use_case_json,'$.initialAlert'):
