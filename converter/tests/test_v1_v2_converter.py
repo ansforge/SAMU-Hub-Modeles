@@ -1,4 +1,5 @@
 import json
+from unittest.mock import patch
 from converter.constants import Constants
 from converter.v1_v2.v1_v2_converter import V1_V2Converter
 from .test_helpers import TestHelper, get_file_endpoint
@@ -29,20 +30,27 @@ def test_V2_to_V1_downgrade():
         online_tag=Constants.V2_GITHUB_TAG
     )
 
-def test_snapshot_V1_to_V2_upgrade(snapshot):
-    message = TestHelper.create_edxl_json_from_sample(
-        Constants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
-        "tests/fixtures/v1_v2/RS-EDA_V1.0_exhaustive_fill.json"
-    )
-    converter = V1_V2Converter()
-    output_data = converter.upgrade(message)
-    snapshot.assert_match(json.dumps(output_data, indent=2))
+class TestSnapshotV1V2Converter(TestCase):
+    @patch('converter.v1_v2.utils.random')
+    def test_snapshot_V1_to_V2_upgrade(self, mock_choices):
+        mock_choices.choices.side_effect = ["f5de7hj", "a3b2YH8", "c9d8jk9","he9i0kz", "ye7jk6k", "pe9rd2t","4h8rh7h", "67jfq0l", "uh88l1h"]
 
-def test_snapshot_V2_to_V1_downgrade(snapshot):
-    message = TestHelper.create_edxl_json_from_sample(
-        Constants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
-        "tests/fixtures/v1_v2/RS-EDA_V2.0_exhaustive_fill.json"
-    )
-    converter = V1_V2Converter()
-    output_data = converter.downgrade(message)
-    snapshot.assert_match(json.dumps(output_data, indent=2))
+        message = TestHelper.create_edxl_json_from_sample(
+            Constants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
+            "tests/fixtures/v1_v2/RS-EDA_V1.0_exhaustive_fill.json"
+        )
+        converter = V1_V2Converter()
+        output_data = converter.upgrade(message)
+        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+
+    @patch('converter.v1_v2.utils.random')
+    def test_snapshot_V2_to_V1_downgrade(self, mock_choices):
+        mock_choices.choices.side_effect = ["f5de7hj", "a3b2YH8", "c9d8jk9","he9i0kz", "ye7jk6k", "pe9rd2t","4h8rh7h", "67jfq0l", "uh88l1h"]
+
+        message = TestHelper.create_edxl_json_from_sample(
+            Constants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
+            "tests/fixtures/v1_v2/RS-EDA_V2.0_exhaustive_fill.json"
+        )
+        converter = V1_V2Converter()
+        output_data = converter.downgrade(message)
+        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
