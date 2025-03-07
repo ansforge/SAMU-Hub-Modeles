@@ -165,6 +165,10 @@
           },
           "otherDiagnosis": [
             {
+              "code": "MAUVAISCODE",
+              "label": "Faux code"
+            },
+            {
               "code": "E11.9",
               "label": "Diabète sucré de type 2 sans complication"
             }
