@@ -1,3 +1,5 @@
+import random
+import string
 from typing import Any, Dict, List
 
 from yaml import dump
@@ -21,12 +23,13 @@ def add_field_to_medical_notes(data: Dict[str, Any], patient: Dict[str, Any], pa
     add_object_to_medical_notes(data, patient, formatted_field_value)
 
 def add_object_to_medical_notes(json_data: Dict[str, Any], patient: Dict[str, Any], note_text: str):
+    MEDICAL_NOTE_RANDOM_ID_LENGTH = 7
     patient_id = patient["patientId"]
     patient_id_parts = patient_id.split('.')
-    health_service_id = '.'.join(patient_id_parts[:3])
-    random_string_1 = patient_id_parts[-2]
-    random_string_2 = patient_id_parts[-1]
-    medical_note_id = f'{health_service_id}.medicalNote.{random_string_1}.{random_string_2}'
+    health_service_id = '.'.join(patient_id_parts[:3]) # -> fr.health.samuXXX
+    random_str = ''.join(random.choices(string.ascii_lowercase + string.digits, k=MEDICAL_NOTE_RANDOM_ID_LENGTH))
+
+    medical_note_id = f'{health_service_id}.medicalNote.{random_str}'
 
     new_note = {'patientId': patient_id,'medicalNoteId': medical_note_id,'freetext': note_text, 'operator': {"role": "AUTRE"},}
 
