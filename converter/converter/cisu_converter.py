@@ -68,14 +68,13 @@ class CISUConverterV3:
         Returns:
             Converted EDXL Health JSON
         """
-        def add_default_location_freetext(json_data: Dict[str,Any]):
+        def set_default_location_freetext(json_data: Dict[str,Any]):
             if not is_field_completed(json_data,'$.location.freetext'):
                 json_data['location']['freetext']='' # need at least empty value to pass validation
 
         def add_location_detail(json_data: Dict[str,Any]):
             if is_field_completed(json_data,'$.location.city.detail'):
-                if not is_field_completed(json_data, '$.location.freetext'):
-                    json_data['location']['freetext']=''
+                set_default_location_freetext(json_data)
                 json_data['location']['freetext']+= "\nDétails de commune : " + json_data['location']['city']['detail']
 
         def add_case_priority(json_data: Dict[str,Any]):
@@ -111,14 +110,14 @@ class CISUConverterV3:
             if field_value == None:
                 return
             else:
-                if not is_field_completed(json_data, '$.medicalNote'):
-                    json_data['medicalNote'] = []
-
                 formatted_field_value = dump(field_value, allow_unicode=True)
                 translated_text = translate_key_words(formatted_field_value, cls.MEDICAL_NOTE_KEY_TRANSLATIONS)
                 add_object_to_medical_notes(json_data, translated_text, sender_id)
 
         def add_object_to_medical_notes(json_data: Dict[str, Any], note_text: str, sender_id: str):
+            if not is_field_completed(json_data, '$.medicalNote'):
+                json_data['medicalNote'] = []
+
             MEDICAL_NOTE_RANDOM_ID_LENGTH = 7
             random_str = ''.join(random.choices(string.ascii_lowercase + string.digits, k=MEDICAL_NOTE_RANDOM_ID_LENGTH))
             medical_note_id = f'{sender_id}.medicalNote.{random_str}'
@@ -141,7 +140,7 @@ class CISUConverterV3:
         # - Updates
         output_use_case_json['owner'] = get_recipient(input_json)
 
-        add_default_location_freetext(output_use_case_json)
+        set_default_location_freetext(output_use_case_json)
         add_location_detail(output_use_case_json)
 
         if is_field_completed(output_use_case_json,'$.initialAlert'):
