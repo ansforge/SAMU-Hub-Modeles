@@ -247,6 +247,7 @@ class V1_V2Converter:
     def upgrade(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
         def validate_diagnosis_code(json_data:Dict[str, Any],diagnosis_type:str):
             diagnosis = get_field_value(json_data, f"$.hypothesis.{diagnosis_type}")
+            diagnosis_valid_codes = diagnosis
             pattern = re.compile(cls.DIAGNOSIS_CODE_VALIDATION_REGEX)
 
             if diagnosis == None:
@@ -259,9 +260,9 @@ class V1_V2Converter:
                         is_correct_format = pattern.match(code)
                         if not is_correct_format:
                             add_to_medical_notes(output_use_case_json, json_data, [f"hypothesis.{diagnosis_type}[{index}]"])
-                            diagnosis.pop(index)
+                            diagnosis_valid_codes.pop(index)
 
-                if len(diagnosis)==0: # no code matches the pattern
+                if len(diagnosis_valid_codes)==0: # no code matches the pattern
                     delete_paths(json_data, [f"hypothesis.{diagnosis_type}"])
                 else:
                     json_data['hypothesis']['otherDiagnosis']= diagnosis
