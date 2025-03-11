@@ -88,7 +88,6 @@ class TestSnapshotCisuConverter(TestCase):
         converter = CISUConverterV3()
 
         output_data = converter.from_cisu(message)
-        print(output_data['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth']['initialAlert']['notes'])
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
     @patch("converter.cisu_converter.datetime")
