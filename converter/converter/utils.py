@@ -153,3 +153,8 @@ def add_field_to_initial_alert_notes(data: Dict[str, Any], path_and_label: Dict[
 def add_to_initial_alert_notes(data: Dict[str, Any], paths: List[Dict[str, str]]):
     for path in paths:
         add_field_to_initial_alert_notes(data, path)
+
+def translate_key_words(text, word_map):
+    for key, value in word_map.items():
+        text = text.replace(key, value)
+    return text

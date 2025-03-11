@@ -80,7 +80,10 @@ class TestSnapshotCisuConverter(TestCase):
         output_data = converter.to_cisu(message)
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
-    def test_snapshot_RC_EDA_exhaustive_message(self):
+    @patch('converter.cisu_converter.random')
+    def test_snapshot_RC_EDA_exhaustive_message(self, mock_choices):
+        mock_choices.choices.side_effect = ["f5de7hj", "a3b2YH8", "c9d8jk9","he9i0kz"]
+
         message = TestHelper.create_edxl_json_from_sample(self.edxl_envelope_fire_to_health_path, self.fixtures_folder_path + "RC-EDA_exhaustive_fill.json")
         converter = CISUConverterV3()
 
@@ -102,7 +105,10 @@ class TestSnapshotCisuConverter(TestCase):
         output_data = converter.to_cisu(message)
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
-    def test_snapshot_RC_EDA_required_field_message(self):
+    @patch('converter.cisu_converter.random')
+    def test_snapshot_RC_EDA_required_field_message(self, mock_choices):
+        mock_choices.choices.side_effect = ["f5de7hj", "a3b2YH8", "c9d8jk9","he9i0kz"]
+
         message = TestHelper.create_edxl_json_from_sample(self.edxl_envelope_fire_to_health_path, self.fixtures_folder_path + "RC-EDA_required_fields.json")
         converter = CISUConverterV3()
 
@@ -124,7 +130,10 @@ class TestSnapshotCisuConverter(TestCase):
         output_data = converter.to_cisu(message)
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
-    def test_snapshot_RC_EDA_exhaustive_bis_message(self):
+    @patch('converter.cisu_converter.random')
+    def test_snapshot_RC_EDA_exhaustive_bis_message(self, mock_choices):
+        mock_choices.choices.side_effect = ["f5de7hj", "a3b2YH8", "c9d8jk9","he9i0kz"]
+
         message = TestHelper.create_edxl_json_from_sample(self.edxl_envelope_fire_to_health_path, self.fixtures_folder_path + "RC-EDA_exhaustive_fill_bis.json")
         converter = CISUConverterV3()
 
