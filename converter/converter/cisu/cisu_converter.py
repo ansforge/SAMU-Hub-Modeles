@@ -3,7 +3,9 @@ import copy
 import random
 import string
 from datetime import datetime
-from .utils import add_to_initial_alert_notes, delete_paths, get_field_value, get_recipient, get_sender, is_field_completed
+
+from .utils import add_to_initial_alert_notes
+from ..utils import delete_paths, get_field_value, get_recipient, get_sender, is_field_completed
 
 class CISUConverterV3:
     """Handles CISU format conversions"""
