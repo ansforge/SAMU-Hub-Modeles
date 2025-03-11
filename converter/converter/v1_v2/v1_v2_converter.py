@@ -265,7 +265,7 @@ class V1_V2Converter:
                     delete_paths(json_data, [f"hypothesis.{diagnosis_type}"])
                 else:
                     json_data['hypothesis']['otherDiagnosis']= diagnosis
-                return
+
 
             else:
                 code = get_field_value(diagnosis, "$.code")
@@ -274,7 +274,7 @@ class V1_V2Converter:
                     if not is_correct_format:
                         add_to_medical_notes(output_use_case_json, json_data, [f"hypothesis.{diagnosis_type}"])
                         delete_paths(json_data, [f"hypothesis.{diagnosis_type}"])
-                return
+
 
 
         # Create independent envelope copy without use case for output
