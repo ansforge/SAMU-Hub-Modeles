@@ -265,7 +265,7 @@ class V1_V2Converter:
                 if len(diagnosis_valid_codes)==0: # no code matches the pattern
                     delete_paths(json_data, [f"hypothesis.{diagnosis_type}"])
                 else:
-                    json_data['hypothesis']['otherDiagnosis']= diagnosis
+                    json_data['hypothesis']['otherDiagnosis']= diagnosis_valid_codes
 
 
             else:
