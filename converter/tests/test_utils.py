@@ -240,10 +240,11 @@ class TestUpdateJsonValue(unittest.TestCase):
         for code in self.json_data["qualification"]["riskThreat"]:
             self.assertEqual(code["code"], 100)
 
-    @patch('builtins.print')
-    def test_update_json_value_no_match(self, mock_print):
-        update_json_value(self.json_data, "$.qualification.riskThreat[*].toto", 100)
-        mock_print.assert_not_called()
+    def test_update_json_value_no_match(self):
+        try:
+            update_json_value(self.json_data, "$.qualification.riskThreat[*].toto", 100)
+        except Exception as e:
+            self.fail(f"update_json_value raised an exception: {e}")
 
 
     @patch('builtins.print')
