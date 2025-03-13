@@ -124,17 +124,37 @@ def get_field_value(json_data: Dict[str, Any], json_path: str):
         print(f"Error raised in is_field_completed : {e}")
         raise
 
+def concatenate_values(obj):
+    result = ""
+    DIVIDER = " "
 
-def add_field_to_initial_alert_notes(data: Dict[str, Any], json_path: str):
-    field_value = get_field_value(data,json_path)
+    if isinstance(obj, dict):
+        for value in obj.values():
+            result += concatenate_values(value)
+    elif isinstance(obj, (list, tuple, set)):
+        for item in obj:
+            result += concatenate_values(item)
+    elif isinstance(obj, str):
+        result += DIVIDER + obj
+
+    return  result
+
+
+def add_field_to_initial_alert_notes(data: Dict[str, Any], path_and_label: Dict[str, str]):
+    field_value = get_field_value(data,path_and_label['path'])
 
     if field_value == None:
         return
 
-    formatted_field_value = dump(field_value, allow_unicode=True)
+    formatted_field_value = path_and_label['label']+ concatenate_values(field_value)
     add_object_to_initial_alert_notes(data, formatted_field_value)
 
 
-def add_to_initial_alert_notes(data: Dict[str, Any], paths: List[str]):
+def add_to_initial_alert_notes(data: Dict[str, Any], paths: List[Dict[str, str]]):
     for path in paths:
         add_field_to_initial_alert_notes(data, path)
+
+def translate_key_words(text, word_map):
+    for key, value in word_map.items():
+        text = text.replace(key, value)
+    return text

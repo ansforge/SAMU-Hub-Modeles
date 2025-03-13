@@ -3,7 +3,9 @@ import copy
 import random
 import string
 from datetime import datetime
-from .utils import add_to_initial_alert_notes, delete_paths, get_field_value, get_recipient, get_sender, is_field_completed
+
+from yaml import dump
+from .utils import add_to_initial_alert_notes, delete_paths, get_field_value, get_recipient, get_sender, is_field_completed, translate_key_words
 
 class CISUConverterV3:
     """Handles CISU format conversions"""
@@ -42,12 +44,18 @@ class CISUConverterV3:
     ]
 
     CISU_PATHS_TO_ADD_TO_INITIAL_ALERT_NOTES =[
-        '$.qualification.victims',
-        '$.initialAlert.attachment',
-        '$.initialAlert.callTaker',
-        '$.freetext',
-        '$.newAlert'
+        { "path":'$.initialAlert.attachment', "label":'Pièces jointes :'},
+        { "path":'$.initialAlert.callTaker', "label":"Contact de l'opérateur SIS :"},
+        { "path":'$.freetext', "label":""},
+        { "path":'$.newAlert', "label":'Nouvelles alertes :'}
     ]
+
+
+    MEDICAL_NOTE_KEY_TRANSLATIONS = {
+        "freetext:": "Commentaire général :",
+        "mainVictim:": "Victime principale :",
+        "count:": "Nombre de victimes :"
+    }
 
     @classmethod
     def from_cisu(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
@@ -60,16 +68,13 @@ class CISUConverterV3:
         Returns:
             Converted EDXL Health JSON
         """
-        def add_location_id(json_data: Dict[str,Any]):
-            if is_field_completed(json_data,'$.location.locID'):
-                if not is_field_completed(json_data, '$.location.freetext'):
-                    json_data['location']['freetext']=''
-                json_data['location']['freetext']+= "\n Identifiant de localisation : " + get_field_value(json_data,'$.location.locID')
+        def set_default_location_freetext(json_data: Dict[str,Any]):
+            if not is_field_completed(json_data,'$.location.freetext'):
+                json_data['location']['freetext']='' # need at least empty value to pass validation
 
         def add_location_detail(json_data: Dict[str,Any]):
             if is_field_completed(json_data,'$.location.city.detail'):
-                if not is_field_completed(json_data, '$.location.freetext'):
-                    json_data['location']['freetext']=''
+                set_default_location_freetext(json_data)
                 json_data['location']['freetext']+= "\nDétails de commune : " + json_data['location']['city']['detail']
 
         def add_case_priority(json_data: Dict[str,Any]):
@@ -99,6 +104,28 @@ class CISUConverterV3:
 
             return json_data
 
+        def add_victims_to_medical_notes(json_data: Dict[str, Any], sender_id: str):
+            field_value = get_field_value(json_data, '$.qualification.victims')
+
+            if field_value == None:
+                return
+            else:
+                formatted_field_value = dump(field_value, allow_unicode=True)
+                translated_text = translate_key_words(formatted_field_value, cls.MEDICAL_NOTE_KEY_TRANSLATIONS)
+                add_object_to_medical_notes(json_data, translated_text, sender_id)
+
+        def add_object_to_medical_notes(json_data: Dict[str, Any], note_text: str, sender_id: str):
+            if not is_field_completed(json_data, '$.medicalNote'):
+                json_data['medicalNote'] = []
+
+            MEDICAL_NOTE_RANDOM_ID_LENGTH = 7
+            random_str = ''.join(random.choices(string.ascii_lowercase + string.digits, k=MEDICAL_NOTE_RANDOM_ID_LENGTH))
+            medical_note_id = f'{sender_id}.medicalNote.{random_str}'
+
+            new_note = {'medicalNoteId': medical_note_id,'freetext': note_text, 'operator': {"role": "AUTRE"},}
+
+            json_data['medicalNote'].append(new_note)
+
         # Create independent envelope copy without usecase for output
         output_json = copy.deepcopy(input_json)
         if 'createCase' not in input_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {}):
@@ -107,18 +134,21 @@ class CISUConverterV3:
 
         # Create independent use case copy for output
         input_use_case_json = input_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCase']
+        sender_id = get_sender(input_json)
         output_use_case_json = copy.deepcopy(input_use_case_json)
 
         # - Updates
         output_use_case_json['owner'] = get_recipient(input_json)
 
-        add_location_id(output_use_case_json)
+        set_default_location_freetext(output_use_case_json)
         add_location_detail(output_use_case_json)
 
         if is_field_completed(output_use_case_json,'$.initialAlert'):
             add_case_priority(output_use_case_json)
             add_to_initial_alert_notes(output_use_case_json,cls.CISU_PATHS_TO_ADD_TO_INITIAL_ALERT_NOTES)
             merge_notes_freetext(output_use_case_json)
+
+        add_victims_to_medical_notes(output_use_case_json, sender_id)
 
         # - Delete paths - /!\ It must be the last step
         delete_paths(output_use_case_json, cls.CISU_PATHS_TO_DELETE)
