@@ -52,7 +52,7 @@ class CISUConverterV3:
 
 
     MEDICAL_NOTE_KEY_TRANSLATIONS = {
-        "freetext:": "",
+        "freetext:": "Commentaire général :",
         "mainVictim:": "Victime principale :",
         "count:": "Nombre de victimes :"
     }

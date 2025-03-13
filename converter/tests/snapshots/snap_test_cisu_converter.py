@@ -159,7 +159,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_bis_messag
               "medicalNote": [
                 {
                   "medicalNoteId": "fr.fire.sdisZ.medicalNote.f5de7hj",
-                  "freetext": "Nombre de victimes : \'1\'\\n Femme enceinte de 2 mois qui est tomb\\u00e9 d\'une \\u00e9chelle au bureau. Delphine\\n  Vigneau, 32 ans.\\nVictime principale : ADULTE\\n",
+                  "freetext": "Nombre de victimes : \'1\'\\nCommentaire g\\u00e9n\\u00e9ral : Femme enceinte de 2 mois qui est tomb\\u00e9 d\'une \\u00e9chelle au bureau. Delphine\\n  Vigneau, 32 ans.\\nVictime principale : ADULTE\\n",
                   "operator": {
                     "role": "AUTRE"
                   }
@@ -325,7 +325,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_message 1'
               "medicalNote": [
                 {
                   "medicalNoteId": "fr.fire.sdisZ.medicalNote.f5de7hj",
-                  "freetext": "Nombre de victimes : \'1\'\\n Femme enceinte de 2 mois qui est tomb\\u00e9 d\'une \\u00e9chelle au bureau. Delphine\\n  Vigneau, 32 ans.\\nVictime principale : ADULTE\\n",
+                  "freetext": "Nombre de victimes : \'1\'\\nCommentaire g\\u00e9n\\u00e9ral : Femme enceinte de 2 mois qui est tomb\\u00e9 d\'une \\u00e9chelle au bureau. Delphine\\n  Vigneau, 32 ans.\\nVictime principale : ADULTE\\n",
                   "operator": {
                     "role": "AUTRE"
                   }
