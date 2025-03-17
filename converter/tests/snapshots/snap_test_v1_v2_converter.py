@@ -301,7 +301,7 @@ snapshots['TestSnapshotV1V2Converter::test_snapshot_V1_to_V2_upgrade 1'] = '''{
                   },
                   "creation": "2025-02-27T00:00:00+01:00",
                   "decisionType": "CONSEIL",
-                  "resourceType": "TSU",
+                  "resourceType": "TSU ",
                   "medicalTransport": true,
                   "orientationType": "EPHAD",
                   "patientId": "fr.health.samu770.patient.DRFR157702400400055.1"

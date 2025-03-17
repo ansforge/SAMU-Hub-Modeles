@@ -200,7 +200,7 @@ class V1_V2Converter:
         "LIBERAL.DENT":"LIB",
         "LIBERAL.LABO":"LIB",
         "LIBERAL.AUTREPRO":"LIB",
-        "TSU ":"TSU",
+        "TSU ":"TSU ",
         "SIS":"SIS",
         "SIS.MEDSP":"SIS",
         "SIS.ISP":"SIS",
