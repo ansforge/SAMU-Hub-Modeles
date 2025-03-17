@@ -251,7 +251,7 @@
         "idPat": "fr.health.samu770.patient.DRFR157702400400055.1",
         "creation": "2025-02-27T00:00:00+01:00",
         "decisionType": "CONSEIL",
-        "resourceType": "TSU",
+        "resourceType": "TSU ",
         "vehiculeType": "AMB-GV",
         "medicalTransport": true,
         "orientationType": "EPHAD"
