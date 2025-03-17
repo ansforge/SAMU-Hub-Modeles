@@ -20,6 +20,9 @@ class V1_V2Converter:
 
     V2_PATHS_TO_DELETE = [
         "patient[].patientId",
+        "patient[].detail.treatment",
+        "patient[].detail.medicalHistory",
+        "patient[].administrativeFile.generalPractitioner",
         "decision[].patientId",
         "medicalNote[].medicalNoteId",
         "medicalNote[].patientId",
