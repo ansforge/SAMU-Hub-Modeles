@@ -503,24 +503,6 @@ snapshots['TestSnapshotV1V2Converter::test_snapshot_V2_to_V1_downgrade 1'] = '''
               "patient": [
                 {
                   "administrativeFile": {
-                    "generalPractitioner": {
-                      "detailedName": {
-                        "complete": "Medecin traitant",
-                        "lastName": "traitant",
-                        "firstName": "medecin"
-                      },
-                      "rppsId": "12345678901",
-                      "contact": [
-                        {
-                          "type": "EMAIL",
-                          "detail": "email@email.com"
-                        },
-                        {
-                          "type": "TEL",
-                          "detail": "+334564789541657"
-                        }
-                      ]
-                    },
                     "externalId": [
                       {
                         "source": "NIR",
@@ -552,9 +534,7 @@ snapshots['TestSnapshotV1V2Converter::test_snapshot_V2_to_V1_downgrade 1'] = '''
                     "weight": 56,
                     "height": 2000,
                     "age": "P20Y",
-                    "careLevel": "R1",
-                    "medicalHistory": "antecedent zero",
-                    "treatment": "traitement zero"
+                    "careLevel": "R1"
                   },
                   "hypothesis": {
                     "mainDiagnosis": {
@@ -576,24 +556,6 @@ snapshots['TestSnapshotV1V2Converter::test_snapshot_V2_to_V1_downgrade 1'] = '''
                 },
                 {
                   "administrativeFile": {
-                    "generalPractitioner": {
-                      "detailedName": {
-                        "complete": "pr\\u00e9nom nom 1",
-                        "lastName": "nom 1",
-                        "firstName": "pr\\u00e9nom"
-                      },
-                      "rppsId": "12345678901",
-                      "contact": [
-                        {
-                          "type": "EMAIL",
-                          "detail": "email@mss.pro"
-                        },
-                        {
-                          "type": "RADIO",
-                          "detail": "103.7"
-                        }
-                      ]
-                    },
                     "externalId": [
                       {
                         "source": "PLACE",
@@ -621,9 +583,7 @@ snapshots['TestSnapshotV1V2Converter::test_snapshot_V2_to_V1_downgrade 1'] = '''
                     "weight": 32,
                     "height": 90,
                     "age": "P15Y",
-                    "careLevel": "R1",
-                    "medicalHistory": "antecendent",
-                    "treatment": "antecedent"
+                    "careLevel": "R1"
                   },
                   "idPat": "fr.health.samu770.patient.DRFR157702400400055.2"
                 }
