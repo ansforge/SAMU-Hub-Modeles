@@ -1,0 +1,340 @@
+{
+  "createCaseHealth": {
+    "qualification": {
+      "origin": "116117",
+      "riskThreat": [
+        {
+          "code": "R06",
+          "label": "libR06"
+        }
+      ],
+      "whatsHappen": {
+        "code": "C02.15.04",
+        "label": "libelleC021504"
+      },
+      "locationKind": {
+        "code": "L01.01.04",
+        "label": "libellé type de lieu"
+      },
+      "healthMotive": {
+        "code": "M01.02",
+        "label": "libelleM0102"
+      },
+      "details": {
+        "status": "CLASSE",
+        "attribution": "DRM.SPE.OBST",
+        "priority": "NR",
+        "careLevel": "R4"
+      }
+    },
+    "location": {
+      "geometry": {
+        "point": {
+          "coord": {
+            "lat": 22,
+            "lon": 22,
+            "height": 22,
+            "precision": "EXACTE"
+          },
+          "isAml": true
+        },
+        "datetime": "2025-02-06T00:00:00+01:00"
+      },
+      "name": "nom du lieu",
+      "externalLocationId": [
+        {
+          "source": "FINESS_ADMINISTRATIF",
+          "value": "123456789"
+        }
+      ],
+      "detailedAddress": {
+        "highway": {
+          "name": "A1",
+          "pk": "PK2645",
+          "direction": "Sud"
+        },
+        "complete": "56-22 boulevard du désespoir",
+        "number": "56-22",
+        "wayName": {
+          "complete": "boulevard du désespoir",
+          "type": "boulevard ",
+          "name": "du désespoir"
+        }
+      },
+      "city": {
+        "name": "Desesperance",
+        "inseeCode": "12345"
+      },
+      "access": {
+        "floor": "56",
+        "roomNumber": "9",
+        "interphone": "Silence",
+        "accessCode": [
+          "7896542"
+        ],
+        "elevator": "A",
+        "buildingName": "C",
+        "entrance": "Z",
+        "entity": "service",
+        "phoneNumber": "+3345678945678"
+      },
+      "externalInfo": [
+        {
+          "freetext": "IGN",
+          "type": "AUTRE",
+          "uri": "autreidentifiant"
+        },
+        {
+          "freetext": "NEXSIS",
+          "type": "CARTE",
+          "uri": "carteajouer"
+        }
+      ],
+      "freetext": "informations complémentaires sur la localisation"
+    },
+    "initialAlert": {
+      "caller": {
+        "callerContact": {
+          "channel": "ECALL",
+          "type": "POSTAL",
+          "detail": "laposte"
+        },
+        "callbackContact": {
+          "channel": "DAU",
+          "type": "RADIO",
+          "detail": "radiolaposte"
+        },
+        "language": "af",
+        "type": "AMBULANC.AASC",
+        "communication": "HOSTILE",
+        "freetext": "info supp requérant",
+        "detailedName": {
+          "complete": "prenom nom requerant",
+          "lastName": "nom requerant",
+          "firstName": "prenom requerant"
+        }
+      },
+      "reception": "2025-02-27T00:00:00+01:00",
+      "notes": [
+        {
+          "creation": "2025-02-27T00:00:00+01:00",
+          "freetext": "alerte initiale 1"
+        },
+        {
+          "creation": "2025-02-27T00:00:00+01:00",
+          "freetext": "alerte initiale 2"
+        }
+      ]
+    },
+    "caseId": "fr.health.samu770.DRFR157702400400055",
+    "senderCaseId": "DRFR157702400400055.2",
+    "creation": "2025-02-27T12:00:00+01:00",
+    "perimeter": "PSY",
+    "interventionType": "SECONDAIRE",
+    "owner": "fr.health.samu770",
+    "patient": [
+      {
+        "administrativeFile": {
+          "generalPractitioner": {
+            "detailedName": {
+              "complete": "Medecin traitant",
+              "lastName": "traitant",
+              "firstName": "medecin"
+            },
+            "rppsId": "12345678901",
+            "contact": [
+              {
+                "type": "EMAIL",
+                "detail": "email@email.com"
+              },
+              {
+                "type": "TEL",
+                "detail": "+334564789541657"
+              }
+            ]
+          },
+          "externalId": [
+            {
+              "source": "NIR",
+              "value": "123456789123"
+            },
+            {
+              "source": "DOSSARD",
+              "value": "Numero dossard"
+            }
+          ]
+        },
+        "patientId": "fr.health.samu770.patient.DRFR157702400400055.1",
+        "identity": {
+          "strictFeatures": {
+            "birthName": "Naissance patient 0",
+            "birthDate": "2005-02-05",
+            "sex": "O"
+          },
+          "nonStrictFeatures": {
+            "complete": "prénom et nom patient 0",
+            "lastName": "nom patient 0",
+            "firstName": "prénom patient 0"
+          }
+        },
+        "healthMotive": {
+          "code": "M06.03",
+          "label": "libelle m0603"
+        },
+        "detail": {
+          "weight": 56,
+          "height": 2000,
+          "age": "P20Y",
+          "careLevel": "R1",
+          "medicalHistory": "antecedent zero",
+          "treatment": "traitement zero"
+        },
+        "hypothesis": {
+          "mainDiagnosis": {
+            "code": "G40.9",
+            "label": "test"
+          },
+          "otherDiagnosis": [
+            {
+              "code": "M54.5",
+              "label": "libelle M54.5"
+            },
+            {
+              "code": "K21.0",
+              "label": "libelle K21.0"
+            }
+          ]
+        }
+      },
+      {
+        "administrativeFile": {
+          "generalPractitioner": {
+            "detailedName": {
+              "complete": "prénom nom 1",
+              "lastName": "nom 1",
+              "firstName": "prénom"
+            },
+            "rppsId": "12345678901",
+            "contact": [
+              {
+                "type": "MSS",
+                "detail": "email@mss.pro"
+              },
+              {
+                "type": "RADIO",
+                "detail": "103.7"
+              }
+            ]
+          },
+          "externalId": [
+            {
+              "source": "PLACE",
+              "value": "place"
+            }
+          ]
+        },
+        "patientId": "fr.health.samu770.patient.DRFR157702400400055.2",
+        "identity": {
+          "strictFeatures": {
+            "sex": "UN",
+            "birthName": "nom naissance 1",
+            "birthDate": "2010-04-20"
+          },
+          "nonStrictFeatures": {
+            "complete": "prenom nom 1",
+            "lastName": "nom2",
+            "firstName": "prenom1"
+          }
+        },
+        "healthMotive": {
+          "code": "M06.04",
+          "label": "libellé"
+        },
+        "detail": {
+          "weight": 32,
+          "height": 90,
+          "age": "P15Y",
+          "careLevel": "R1",
+          "medicalHistory": "antecendent",
+          "treatment": "antecedent"
+        }
+      }
+    ],
+    "medicalNote": [
+      {
+        "operator": {
+          "label": "labello",
+          "role": "AMBULANCIER"
+        },
+        "patientId": "fr.health.samu770.patient.DRFR157702400400055.1",
+        "medicalNoteId": "fr.health.samu770.medicalNote.bout1.bout2",
+        "creation": "2025-02-27T12:00:00+01:00",
+        "freetext": " note 0"
+      },
+      {
+        "operator": {
+          "label": "label",
+          "role": "AUTRE"
+        },
+        "patientId": "fr.health.samu770.patient.DRFR157702400400055.1",
+        "medicalNoteId": "fr.health.samu770.medicalNote.partie1.partie2",
+        "creation": "2025-02-27T00:00:00+01:00",
+        "freetext": "note1"
+      },
+      {
+        "operator": {
+          "role": "INCONNU"
+        },
+        "patientId": "fr.health.samu770.patient.DRFR157702400400055.1",
+        "medicalNoteId": "fr.health.samu770.patient.medicalNote.partie1seulement",
+        "creation": "2025-02-27T00:00:00+01:00",
+        "freetext": "note2"
+      }
+    ],
+    "decision": [
+      {
+        "operator": {
+          "label": "label",
+          "role": "ARM"
+        },
+        "patientId": "fr.health.samu770.patient.DRFR157702400400055.1",
+        "creation": "2025-02-27T00:00:00+01:00",
+        "decisionType": "INTER",
+        "resourceType": "SMUR.PED",
+        "orientationType": "SANTE"
+      },
+      {
+        "operator": {
+          "role": "MEDECIN"
+        },
+        "patientId": "fr.health.samu770.patient.DRFR157702400400055.1",
+        "creation": "2025-02-27T12:00:00+01:00",
+        "decisionType": "ORIENT",
+        "resourceType": "LIBERAL.SOS",
+        "medicalTransport": true,
+        "orientationType": "DOMICILE"
+      },
+      {
+        "operator": {
+          "role": "AUTRE",
+          "label": "label2"
+        },
+        "patientId": "fr.health.samu770.patient.DRFR157702400400055.1",
+        "creation": "2025-02-27T00:00:00+01:00",
+        "decisionType": "PMT",
+        "resourceType": "FDO.GEND",
+        "orientationType": "AUTRE"
+      }
+    ],
+    "additionalInformation": {
+      "customMap": [
+        {
+          "key": "test",
+          "label": "test",
+          "value": "test",
+          "freetext": "test"
+        }
+      ]
+    }
+  }
+}

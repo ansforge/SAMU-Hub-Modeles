@@ -19,19 +19,26 @@ def delete_paths(data: Dict[str, Any], paths: List[str]) -> None:
         paths: List of dot-separated paths (e.g., "a.b.c")
     """
     def delete_recursively(d: Dict[str, Any], keys: List[str]) -> None:
-        if not keys or not isinstance(d, dict):
+        if not keys or not isinstance(d, (dict, list)):
             return
 
         key = keys[0]
-        if len(keys) == 1:
+        if key.endswith('[]'):  # Handle array notation
+            key = key[:-2]  # Remove the array notation
+            if key in d and isinstance(d[key], list):
+                for item in d[key]:
+                    if isinstance(item, dict):
+                        delete_recursively(item, keys[1:])
+        elif len(keys) == 1:
             # Delete target key if it exists
-            d.pop(key, None)
+            if isinstance(d, dict):
+                d.pop(key, None)
         else:
             # Recurse if intermediate key exists
             if key in d:
                 delete_recursively(d[key], keys[1:])
-                # Clean up empty dictionaries
-                if isinstance(d[key], dict) and not d[key]:
+                # Clean up empty dictionaries or lists
+                if isinstance(d[key], (dict, list)) and not d[key]:
                     d.pop(key)
 
     for path in paths:
@@ -91,13 +98,6 @@ def format_object(obj: Any, indent: int = 0) -> str:
     return f"{indent_str}{obj}"
 
 
-def add_object_to_initial_alert_notes(json_data: Dict[str, Any], note_text: str):
-    if not is_field_completed(json_data, '$.initialAlert.notes'):
-        json_data['initialAlert']['notes'] = []
-
-    json_data['initialAlert']['notes'].append({"freetext": note_text})
-
-
 def is_field_completed(json_data: Dict[str, Any], json_path:str):
     try:
         jsonpath_expr = parse(json_path)
@@ -139,22 +139,20 @@ def concatenate_values(obj):
 
     return  result
 
-
-def add_field_to_initial_alert_notes(data: Dict[str, Any], path_and_label: Dict[str, str]):
-    field_value = get_field_value(data,path_and_label['path'])
-
-    if field_value == None:
-        return
-
-    formatted_field_value = path_and_label['label']+ concatenate_values(field_value)
-    add_object_to_initial_alert_notes(data, formatted_field_value)
-
-
-def add_to_initial_alert_notes(data: Dict[str, Any], paths: List[Dict[str, str]]):
-    for path in paths:
-        add_field_to_initial_alert_notes(data, path)
-
 def translate_key_words(text, word_map):
     for key, value in word_map.items():
         text = text.replace(key, value)
     return text
+
+ # todo : reuse it where needed (+ add test)
+def update_json_value(data, jsonpath_query, new_value):
+    try:
+        jsonpath_expr = parse(jsonpath_query)
+        matches = jsonpath_expr.find(data)
+
+        for match in matches:
+            match.full_path.update(data, new_value)
+
+    except Exception as e:
+        print(f"Error raised in update_json_value: {e}")
+        raise
