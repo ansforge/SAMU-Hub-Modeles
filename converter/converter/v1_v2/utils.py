@@ -1,10 +1,11 @@
 import random
+import re
 import string
 from typing import Any, Dict, List
 
 from yaml import dump
 
-from converter.utils import get_field_value, is_field_completed, update_json_value
+from converter.utils import delete_paths, get_field_value, is_field_completed, update_json_value
 
 def add_to_medical_notes(json_data: Dict[str, Any], patient: Dict[str, Any],paths: List[str]):
     if not is_field_completed(json_data, '$.medicalNote'):
@@ -61,3 +62,38 @@ def reverse_map_to_new_value(json_data: Dict[str,Any], json_path: str, mapping_v
 def switch_field_name(json_data: Dict[str, Any], previous_field_name: str, new_field_name: str):
     if is_field_completed(json_data, '$.'+ previous_field_name) == True :
             json_data[new_field_name] = json_data[previous_field_name]
+
+
+def validate_diagnosis_code(json_data:Dict[str, Any],patient_data:Dict[str, Any],diagnosis_type:str):
+    DIAGNOSIS_CODE_VALIDATION_REGEX='^[A-Z]\\d{2}(\\.[\\d\\+\\-]{1,3})?$'
+    diagnosis = get_field_value(patient_data, f"$.hypothesis.{diagnosis_type}")
+    diagnosis_valid_codes = []
+
+    pattern = re.compile(DIAGNOSIS_CODE_VALIDATION_REGEX)
+
+    if diagnosis == None:
+        return
+
+    if type(diagnosis) is list:
+        for index, diag in enumerate(diagnosis):
+            code = get_field_value(diag, "$.code")
+            if code != None:
+                is_correct_format = pattern.match(code)
+                if not is_correct_format:
+                    add_to_medical_notes(json_data, patient_data, [f"hypothesis.{diagnosis_type}[{index}]"])
+                else :
+                    diagnosis_valid_codes.append(diag)
+
+        if len(diagnosis_valid_codes)==0: # no code matches the pattern
+            delete_paths(patient_data, [f"hypothesis.{diagnosis_type}"])
+        else:
+            patient_data['hypothesis']['otherDiagnosis']= diagnosis_valid_codes
+
+
+    else:
+        code = get_field_value(diagnosis, "$.code")
+        if code != None:
+            is_correct_format = pattern.match(code)
+            if not is_correct_format:
+                add_to_medical_notes(json_data, patient_data, [f"hypothesis.{diagnosis_type}"])
+                delete_paths(patient_data, [f"hypothesis.{diagnosis_type}"])

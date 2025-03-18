@@ -1,8 +1,7 @@
 from typing import Dict, Any
 import copy
-import re
 
-from converter.v1_v2.utils import add_to_medical_notes, map_to_new_value, reverse_map_to_new_value, switch_field_name
+from converter.v1_v2.utils import add_to_medical_notes, map_to_new_value, reverse_map_to_new_value, switch_field_name, validate_diagnosis_code
 
 from ..utils import delete_paths, get_field_value, is_field_completed
 
@@ -248,39 +247,6 @@ class V1_V2Converter:
 
     @classmethod
     def upgrade(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
-        def validate_diagnosis_code(json_data:Dict[str, Any],diagnosis_type:str):
-            diagnosis = get_field_value(json_data, f"$.hypothesis.{diagnosis_type}")
-            diagnosis_valid_codes = diagnosis
-            pattern = re.compile(cls.DIAGNOSIS_CODE_VALIDATION_REGEX)
-
-            if diagnosis == None:
-                return
-
-            if type(diagnosis) is list:
-                for index, diag in enumerate(diagnosis):
-                    code = get_field_value(diag, "$.code")
-                    if code != None:
-                        is_correct_format = pattern.match(code)
-                        if not is_correct_format:
-                            add_to_medical_notes(output_use_case_json, json_data, [f"hypothesis.{diagnosis_type}[{index}]"])
-                            diagnosis_valid_codes.pop(index)
-
-                if len(diagnosis_valid_codes)==0: # no code matches the pattern
-                    delete_paths(json_data, [f"hypothesis.{diagnosis_type}"])
-                else:
-                    json_data['hypothesis']['otherDiagnosis']= diagnosis_valid_codes
-
-
-            else:
-                code = get_field_value(diagnosis, "$.code")
-                if code != None:
-                    is_correct_format = pattern.match(code)
-                    if not is_correct_format:
-                        add_to_medical_notes(output_use_case_json, json_data, [f"hypothesis.{diagnosis_type}"])
-                        delete_paths(json_data, [f"hypothesis.{diagnosis_type}"])
-
-
-
         # Create independent envelope copy without use case for output
         output_json = copy.deepcopy(input_json)
         if 'createCaseHealth' not in input_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {}):
@@ -300,8 +266,8 @@ class V1_V2Converter:
         for index, patient in enumerate(patients):
             map_to_new_value(output_use_case_json, f"$.patient[{index}].identity.strictFeatures.sex", cls.GENDER_MAPPING)
             switch_field_name(patient,'idPat','patientId')
-            validate_diagnosis_code(patient,"otherDiagnosis")
-            validate_diagnosis_code(patient,"mainDiagnosis")
+            validate_diagnosis_code(output_use_case_json,patient,"otherDiagnosis")
+            validate_diagnosis_code(output_use_case_json, patient,"mainDiagnosis")
 
         if is_field_completed(output_use_case_json,'$.location.geometry.obsDatime'):
             switch_field_name(output_use_case_json['location']['geometry'],'obsDatime','datetime')
