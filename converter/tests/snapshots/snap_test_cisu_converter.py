@@ -704,6 +704,18 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_exhaustive_message 1'
                   "roomNumber": "2",
                   "entrance": "B"
                 },
+                "externalInfo": [
+                  {
+                    "freetext": "BAN",
+                    "type": "MANUEL",
+                    "uri": "id987"
+                  },
+                  {
+                    "freetext": "BAN",
+                    "uri": "id999",
+                    "type": "AUTRE"
+                  }
+                ],
                 "locID": "LOC-20240210123456-f5de",
                 "country": "FR"
               },
@@ -801,6 +813,18 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_exhaustive_message 1'
                     "roomNumber": "2",
                     "entrance": "B"
                   },
+                  "externalInfo": [
+                    {
+                      "freetext": "BAN",
+                      "type": "MANUEL",
+                      "uri": "id987"
+                    },
+                    {
+                      "freetext": "BAN",
+                      "uri": "id999",
+                      "type": "AUTRE"
+                    }
+                  ],
                   "locID": "LOC-20240210123456-f5de",
                   "country": "FR"
                 }

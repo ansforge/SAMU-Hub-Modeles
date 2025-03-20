@@ -62,7 +62,18 @@
         "buildingName": "A",
         "roomNumber": "2",
         "entrance": "B"
-      }
+      },
+      "externalInfo": [
+        {
+          "freetext": "BAN",
+          "type": "MANUEL",
+          "uri": "id987"
+        },
+        {
+          "freetext": "BAN",
+          "uri": "id999"
+        }
+      ]
     },
     "initialAlert": {
       "reception": "2024-01-18T18:00:00+01:00",
