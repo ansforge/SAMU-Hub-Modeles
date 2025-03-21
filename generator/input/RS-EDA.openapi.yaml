@@ -97,7 +97,7 @@ components:
           - T3
           - T4
           examples:
-          - PRIMAIRE
+          - T1
         qualification:
           $ref: '#/components/schemas/qualification'
         location:
@@ -166,7 +166,7 @@ components:
           - DATA
           - AUTRE
           examples:
-          - 15, 112, 18
+          - 15, 112, FDO
         riskThreat:
           type: array
           items:
@@ -688,7 +688,7 @@ components:
           - CLASSE
           - ARCHIVE
           examples:
-          - None
+          - ACTIF
         attribution:
           type: string
           title: Attribution du dossier
@@ -740,7 +740,7 @@ components:
           - D.D-IDENT.PERSO
           - D.D-IDENT.AUTRE
           examples:
-          - MU
+          - DRM.MRU.MU
         priority:
           type: string
           title: "Priorit\xE9 de r\xE9gulation m\xE9dicale"
@@ -777,8 +777,8 @@ components:
       additionalProperties: false
       example: example.json#/qualification/details
       examples:
-      - status: None
-        attribution: MU
+      - status: ACTIF
+        attribution: DRM.MRU.MU
         priority: P1
         careLevel: R1
     externalLocationId:
