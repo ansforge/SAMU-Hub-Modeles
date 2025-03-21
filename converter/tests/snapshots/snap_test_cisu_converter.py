@@ -704,6 +704,18 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_exhaustive_message 1'
                   "roomNumber": "2",
                   "entrance": "B"
                 },
+                "externalInfo": [
+                  {
+                    "freetext": "BAN",
+                    "type": "MANUEL",
+                    "uri": "id987"
+                  },
+                  {
+                    "freetext": "BAN",
+                    "uri": "id999",
+                    "type": "AUTRE"
+                  }
+                ],
                 "locID": "LOC-20240210123456-f5de",
                 "country": "FR"
               },
@@ -801,6 +813,18 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_exhaustive_message 1'
                     "roomNumber": "2",
                     "entrance": "B"
                   },
+                  "externalInfo": [
+                    {
+                      "freetext": "BAN",
+                      "type": "MANUEL",
+                      "uri": "id987"
+                    },
+                    {
+                      "freetext": "BAN",
+                      "uri": "id999",
+                      "type": "AUTRE"
+                    }
+                  ],
                   "locID": "LOC-20240210123456-f5de",
                   "country": "FR"
                 }
@@ -862,12 +886,12 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_required_field_messag
               "caseId": "fr.health.samu950.DRFR159502401800159",
               "creation": "2024-01-18T18:00:00+01:00",
               "qualification": {
-                "whatsHappen": {
-                  "code": "C02.08.02",
-                  "label": "Atteinte aux personnes ; Traumatisme / Accident ; Accident domestique"
-                },
                 "victims": {
                   "count": "0"
+                },
+                "whatsHappen": {
+                  "code": "C11.06.00",
+                  "label": "Autre nature de fait"
                 }
               },
               "location": {

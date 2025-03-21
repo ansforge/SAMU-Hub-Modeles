@@ -57,6 +57,8 @@ class CISUConverterV3:
         "count:": "Nombre de victimes :"
     }
 
+    DEFAULT_WHATS_HAPPEN = {"code": "C11.06.00", "label":"Autre nature de fait"}
+
     @classmethod
     def from_cisu(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -199,6 +201,13 @@ class CISUConverterV3:
                 'controlRoom': "CRRA " + crra_code  # samu780(.xxx) -> Samu780( Xxx)
             }
 
+        def add_default_external_info_type(json_data: Dict[str,Any]):
+            external_info = get_field_value(json_data,'$.location.externalInfo')
+            if external_info != None:
+                for info in external_info:
+                    if not is_field_completed(info,"$.type"):
+                        info["type"]='AUTRE'
+
         # Create independent envelope copy without usecase for output
         output_json = copy.deepcopy(input_json)
         if 'createCaseHealth' not in input_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {}):
@@ -225,6 +234,11 @@ class CISUConverterV3:
         output_usecase_json['location']['locID'] = f"LOC-{timestamp}-{random_str}"
         # ToDo: get country from INSEE code | Ref.: https://www.insee.fr/fr/information/7766585#titre-bloc-25
         output_usecase_json['location']['country'] = 'FR' # Default value
+
+        if not is_field_completed(output_usecase_json,'$.qualification.whatsHappen'):
+            output_usecase_json['qualification']['whatsHappen'] = cls.DEFAULT_WHATS_HAPPEN
+
+        add_default_external_info_type(output_usecase_json)
 
         # Deletions - /!\ it must be done before copying qualification and location fields
         delete_paths(output_usecase_json, cls.HEALTH_PATHS_TO_DELETE)
