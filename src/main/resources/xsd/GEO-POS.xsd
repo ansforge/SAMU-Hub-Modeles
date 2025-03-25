@@ -16,7 +16,7 @@ OU - uniquement dans le cas où un ID unique de ressource ne peut pas être gara
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="([\w-]+\.){3,4}resource(\.[\w-]+){1,2}"/>
+                        <pattern value="([\w-]+\.){3,8}resource(\.[\w-]+){1,2}"/>
                     </restriction>
                 </simpleType>
             </element>

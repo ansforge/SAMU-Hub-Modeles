@@ -18,7 +18,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="([\w-]+\.){3,4}patient(\.[\w-]+){1,2}"/>
+                        <pattern value="([\w-]+\.){3,8}patient(\.[\w-]+){1,2}"/>
                     </restriction>
                 </simpleType>
             </element>
