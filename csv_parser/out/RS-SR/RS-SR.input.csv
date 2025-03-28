@@ -4,7 +4,7 @@ Il est valorisé comme suit lors de sa création :
 {pays}.{domaine}.{organisation}.{senderCaseId}
 
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
- Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX: ^(\w+\.){2,8}\w+$"
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX: ^([\w-]+\.?){4,10}$"
 ID Ressource partagé,,,,,,"A valoriser avec l'identifiant partagé unique de la ressource engagée , normé comme suit :
 {orgID}.R.{ID unique de la ressource partagée}
 Ou, uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :

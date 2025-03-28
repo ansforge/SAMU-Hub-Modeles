@@ -13,7 +13,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="(\w+\.){2,8}\w+"/>
+                        <pattern value="([\w-]+\.?){4,10}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -46,7 +46,7 @@ A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{doma
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="(\w+\.){2,7}\w+"/>
+                        <pattern value="([\w-]+\.?){4,9}"/>
                     </restriction>
                 </simpleType>
             </element>
