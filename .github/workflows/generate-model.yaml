@@ -32,6 +32,7 @@ jobs:
               - 'csv_parser/models/**'
               - 'csv_parser/nomenclature_parser/**'
               - 'csv_parser/json_schema2xsd/**'
+              - 'src/main/resources/sample/examples/**'
             test_case_parsing_required:
               - 'csv_parser/test_case_generator.py'
               - 'csv_parser/workflow.py'
