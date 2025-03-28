@@ -41,21 +41,11 @@
                 },
                 "datetime": {
                     "type": "string",
-                    "title": "Date et heure des dernières remontées d'informations de la ressource",
+                    "title": "Date et heure de réception des coordonnées",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/position/0/datetime",
-                    "description": "Date et heure de la dernière position connue",
-                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
-                    "format": "date-time"
-                },
-                "receptionDatetime": {
-                    "type": "string",
-                    "title": "Date et heure de la réception de la dernière localisation",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/position/0/receptionDatetime",
-                    "description": "Date et heure de la réception de la dernière position connue dans le système de l'organisme",
+                    "description": "Date et heure de réception des coordonnées transmises",
                     "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },

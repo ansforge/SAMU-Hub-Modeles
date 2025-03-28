@@ -19,7 +19,7 @@ A valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="[a-z]{2,3}\.[a-z]+\.\w*"/>
+                        <pattern value="(\w+\.){2,8}\w+"/>
                     </restriction>
                 </simpleType>
             </element>

@@ -13,7 +13,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="fr(\.[\w-]+){3,8}"/>
+                        <pattern value="(\w+\.){2,8}\w+"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -60,11 +60,16 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
     </complexType>
     <complexType name="patient">
         <sequence>
-            <element name="patientId" type="string">
+            <element name="patientId">
                 <annotation>
                     <documentation>Identifiant unique du patient. 
 A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="([\w-]+\.){3,8}patient(\.[\w-]+){1,2}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="birthName" type="string">
                 <annotation>

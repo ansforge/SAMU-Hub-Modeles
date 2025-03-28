@@ -36,7 +36,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: ^fr(\.[\w-]+){3,8}$
+          pattern: ^(\w+\.){2,8}\w+$
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -113,7 +113,7 @@ components:
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
             \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
             \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
-          pattern: ^fr(\.[\w-]+){2,3}$
+          pattern: ^(\w+\.){2,7}\w+$
           examples:
           - fr.health.samu440
         patient:

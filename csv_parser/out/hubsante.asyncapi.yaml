@@ -538,7 +538,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: ^fr(\.[\w-]+){3,8}$
+          pattern: ^(\w+\.){2,8}\w+$
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -2454,7 +2454,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: ^fr(\.[\w-]+){3,8}$
+          pattern: ^(\w+\.){2,8}\w+$
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -2531,7 +2531,7 @@ components:
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
             \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
             \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
-          pattern: ^fr(\.[\w-]+){2,3}$
+          pattern: ^(\w+\.){2,7}\w+$
           examples:
           - fr.health.samu440
         patient:
@@ -2568,6 +2568,7 @@ components:
           description: "Identifiant unique du patient. \nA valoriser par {ID du SAMU\
             \ qui engage le SMUR}.{ID du DRM}.P{num\xE9ro d\u2019ordre chronologique}\
             \ : fr.health.samu690.DRFR15DDXAAJJJ00001.P01"
+          pattern: ^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$
           examples:
           - fr.health.samu690.patient.DRFR15DDXAAJJJ00001.1
         birthName:
@@ -3707,7 +3708,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: ^fr(\.[\w-]+){3,8}$
+          pattern: ^(\w+\.){2,8}\w+$
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -3751,7 +3752,7 @@ components:
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
             \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
             \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
-          pattern: ^fr(\.[\w-]+){2,3}$
+          pattern: ^(\w+\.){2,7}\w+$
           examples:
           - fr.health.samu440
         patient:
@@ -3973,7 +3974,7 @@ components:
           example: example.json#/context/orgId
           description: "Num\xE9ro du SAMU r\xE9gulant la mission SMUR. \nA valoriser\
             \ par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n"
-          pattern: ^[a-z]{2,3}\.[a-z]+\.\w*$
+          pattern: ^(\w+\.){2,8}\w+$
           examples:
           - fr.health.samu440
         senderCaseId:
@@ -5185,28 +5186,15 @@ components:
             fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1'
         datetime:
           type: string
-          title: "Date et heure des derni\xE8res remont\xE9es d'informations de la\
-            \ ressource"
+          title: "Date et heure de r\xE9ception des coordonn\xE9es"
           x-health-only: false
           x-cols: 6
           example: example.json#/position/0/datetime
-          description: "Date et heure de la derni\xE8re position connue"
+          description: "Date et heure de r\xE9ception des coordonn\xE9es transmises"
           pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2024-01-27T08:44:00+02:00'
-        receptionDatetime:
-          type: string
-          title: "Date et heure de la r\xE9ception de la derni\xE8re localisation"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/position/0/receptionDatetime
-          description: "Date et heure de la r\xE9ception de la derni\xE8re position\
-            \ connue dans le syst\xE8me de l'organisme"
-          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
-          format: date-time
-          examples:
-          - '2024-01-27T08:45:00+02:00'
         coord:
           $ref: '#/components/schemas/coord'
         speed:
@@ -6052,7 +6040,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: ^fr(\.[\w-]+){3,8}$
+          pattern: ^(\w+\.){2,8}\w+$
           examples:
           - fr.health.samu440.DRFR15440241550012
         resource:
@@ -6201,7 +6189,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: ^fr(\.[\w-]+){3,8}$
+          pattern: ^(\w+\.){2,8}\w+$
           examples:
           - fr.health.samu440.DRFR15440241550012
         resource:
@@ -6236,7 +6224,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: ^fr(\.[\w-]+){3,8}$
+          pattern: ^(\w+\.){2,8}\w+$
           examples:
           - fr.health.samu440.DRFR15440241550012
         resourceId:
@@ -6284,7 +6272,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: ^fr(\.[\w-]+){3,8}$
+          pattern: ^(\w+\.){2,8}\w+$
           examples:
           - fr.health.samu440.DRFR15440241550012
         request:
@@ -6454,7 +6442,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: ^fr(\.[\w-]+){3,8}$
+          pattern: ^(\w+\.){2,8}\w+$
           examples:
           - fr.health.samu440.DRFR15440241550012
         requestId:
@@ -6849,7 +6837,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: ^fr(\.[\w-]+){3,8}$
+          pattern: ^(\w+\.){2,8}\w+$
           examples:
           - fr.health.samu440.DRFR15DDXAAJJJ00000
         reportId:
@@ -7084,6 +7072,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
+          pattern: ^(\w+\.){2,8}\w+$
           examples:
           - fr.health.samu440.DRFR15440241550012
         patientId:

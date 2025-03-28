@@ -52,28 +52,15 @@ components:
             fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1'
         datetime:
           type: string
-          title: "Date et heure des derni\xE8res remont\xE9es d'informations de la\
-            \ ressource"
+          title: "Date et heure de r\xE9ception des coordonn\xE9es"
           x-health-only: false
           x-cols: 6
           example: example.json#/position/0/datetime
-          description: "Date et heure de la derni\xE8re position connue"
+          description: "Date et heure de r\xE9ception des coordonn\xE9es transmises"
           pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2024-01-27T08:44:00+02:00'
-        receptionDatetime:
-          type: string
-          title: "Date et heure de la r\xE9ception de la derni\xE8re localisation"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/position/0/receptionDatetime
-          description: "Date et heure de la r\xE9ception de la derni\xE8re position\
-            \ connue dans le syst\xE8me de l'organisme"
-          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
-          format: date-time
-          examples:
-          - '2024-01-27T08:45:00+02:00'
         coord:
           $ref: '#/components/schemas/coord'
         speed:

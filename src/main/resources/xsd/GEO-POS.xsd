@@ -22,12 +22,7 @@ OU - uniquement dans le cas où un ID unique de ressource ne peut pas être gara
             </element>
             <element name="datetime" type="dateTime">
                 <annotation>
-                    <documentation>Date et heure de la dernière position connue</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="receptionDatetime" type="dateTime">
-                <annotation>
-                    <documentation>Date et heure de la réception de la dernière position connue dans le système de l'organisme</documentation>
+                    <documentation>Date et heure de réception des coordonnées transmises</documentation>
                 </annotation>
             </element>
             <element name="coord" type="x:coord"/>
