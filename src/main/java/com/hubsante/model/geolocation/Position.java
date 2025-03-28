@@ -37,10 +37,8 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.geolocation.Coord;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -68,7 +66,7 @@ public class Position {
   private OffsetDateTime receptionDatetime;
 
   public static final String JSON_PROPERTY_COORD = "coord";
-  private List<Coord> coord = new ArrayList<>();
+  private Coord coord;
 
   public static final String JSON_PROPERTY_SPEED = "speed";
   private BigDecimal speed;
@@ -287,17 +285,9 @@ public class Position {
     this.receptionDatetime = receptionDatetime;
   }
 
-  public Position coord(List<Coord> coord) {
+  public Position coord(Coord coord) {
 
     this.coord = coord;
-    return this;
-  }
-
-  public Position addCoordItem(Coord coordItem) {
-    if (this.coord == null) {
-      this.coord = new ArrayList<>();
-    }
-    this.coord.add(coordItem);
     return this;
   }
 
@@ -308,22 +298,14 @@ public class Position {
   @JsonProperty(JSON_PROPERTY_COORD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Coord> getCoord() {
+  public Coord getCoord() {
     return coord;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
   @JsonProperty(JSON_PROPERTY_COORD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCoord(List<Coord> coord) {
-    if (coord == null) {
-      return;
-    }
-    if (this.coord == null) {
-      this.coord = new ArrayList<>();
-    }
-    this.coord.addAll(coord);
+  public void setCoord(Coord coord) {
+    this.coord = coord;
   }
 
   public Position speed(BigDecimal speed) {

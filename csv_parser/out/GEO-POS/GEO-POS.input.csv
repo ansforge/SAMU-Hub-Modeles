@@ -7,7 +7,7 @@ OU - uniquement dans le cas où un ID unique de ressource ne peut pas être gara
 fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1",resourceId,1..1,,string,"REGEX: ^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$"
 ,Date et heure des dernières remontées d'informations de la ressource,,,,,Date et heure de la dernière position connue,2024-01-27T08:44:00+02:00,datetime,1..1,,datetime,
 ,Date et heure de la réception de la dernière localisation,,,,,Date et heure de la réception de la dernière position connue dans le système de l'organisme,2024-01-27T08:45:00+02:00,receptionDatetime,0..1,,datetime,
-,Coordonnées,,,,,Permet de localiser la resource. ,,coord,1..n,X,coord,
+,Coordonnées,,,,,Permet de localiser la resource. ,,coord,1..1,X,coord,
 ,,Latitude ,,,,"Dernière coordonnée x connue de la ressource, entre −90 and +90",47.221866,lat,1..1,,number,
 ,,Longitude,,,,"Dernière coordonnée y connue de la ressource, entre −180 and +180",-1.575807,lon,1..1,,number,
 ,,Altitude,,,,"Dernière coordonnée z connue de la ressource, en mètres sans bornes",1,height,0..1,,number,

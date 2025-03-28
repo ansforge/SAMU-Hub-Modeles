@@ -9,7 +9,7 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet coord</I></TD></TR><TR><TD BORDER="0" >lat <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >lon <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >height <I>number</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	coord -> position [headlabel=1 taillabel="1..*"]
+	coord -> position [headlabel=1 taillabel=1]
 	position [label=<<TABLE>
                 <TR>
                 <TD ><B>position</B></TD>

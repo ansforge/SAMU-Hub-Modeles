@@ -30,7 +30,7 @@ OU - uniquement dans le cas où un ID unique de ressource ne peut pas être gara
                     <documentation>Date et heure de la réception de la dernière position connue dans le système de l'organisme</documentation>
                 </annotation>
             </element>
-            <element maxOccurs="unbounded" minOccurs="1" name="coord" type="x:coord"/>
+            <element name="coord" type="x:coord"/>
             <element minOccurs="0" name="speed" type="decimal">
                 <annotation>
                     <documentation>Vitesse de la ressource enregistrée, exprimée en km/h</documentation>
