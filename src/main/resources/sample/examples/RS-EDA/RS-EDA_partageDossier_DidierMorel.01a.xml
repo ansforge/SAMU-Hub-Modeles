@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <createCaseHealth xmlns="urn:emergency:eda:1.9:createCaseHealth">
   <caseId>fr.health.samu770.DRFR157702400400055</caseId>
-  <senderCaseId>DRFR157702400400055</senderCaseId>
+  <senderCaseId>DRFR157702400400055test</senderCaseId>
   <creation>2024-01-04T08:01:00+01:00</creation>
   <perimeter>AMU</perimeter>
   <interventionType>T1</interventionType>
