@@ -1,7 +1,7 @@
 {
   "createCaseHealth": {
     "caseId": "fr.health.samu770.DRFR157702400400055",
-    "senderCaseId": "DRFR157702400400055",
+    "senderCaseId": "DRFR157702400400055test",
     "creation": "2024-01-04T08:01:00+01:00",
     "qualification": {
       "whatsHappen": {
