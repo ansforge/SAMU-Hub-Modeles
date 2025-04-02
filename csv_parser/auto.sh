@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Set variables
-NOMENCLATURE_IN_FOLDER="/Users/romainfouilland/Library/CloudStorage/OneDrive-SharedLibraries-ANS/Espace Projets - Espace Programme SI-SAMU/01 - Equipe projet/07 - Innovation et prospectif/12 - Hub Santé/17 - MDD/Nomenclatures/01 - Base interne/"
+NOMENCLATURE_IN_FOLDER="/Users/romainfouilland/Library/CloudStorage/OneDrive-SharedLibraries-ANS/Espace Projets - Espace Programme SI-SAMU/01 - Equipe projet/14 - Hub Santé/12 - Hub Santé/17 - MDD/Nomenclatures/01 - Base interne/"
 NOMENCLATURE_FOLDER="../nomenclature_parser/in/"
 TEST_CASE_SOURCES_FOLDER="./test-case-sources/"
-MODELS_IN_FILE="/Users/romainfouilland/Library/CloudStorage/OneDrive-SharedLibraries-ANS/Espace Projets - Espace Programme SI-SAMU/01 - Equipe projet/07 - Innovation et prospectif/12 - Hub Santé/17 - MDD/MDD - Hub Santé.xlsx"
-TECHNICAL_MODELS_IN_FILE="/Users/romainfouilland/Library/CloudStorage/OneDrive-SharedLibraries-ANS/Espace Projets - Espace Programme SI-SAMU/01 - Equipe projet/07 - Innovation et prospectif/12 - Hub Santé/17 - MDD/MDD TECHNICAL - Hub Santé.xlsx"
+MODELS_IN_FILE="/Users/romainfouilland/Library/CloudStorage/OneDrive-SharedLibraries-ANS/Espace Projets - Espace Programme SI-SAMU/01 - Equipe projet/14 - Hub Santé/12 - Hub Santé/17 - MDD/MDD - Hub Santé.xlsx"
+TECHNICAL_MODELS_IN_FILE="/Users/romainfouilland/Library/CloudStorage/OneDrive-SharedLibraries-ANS/Espace Projets - Espace Programme SI-SAMU/01 - Equipe projet/14 - Hub Santé/12 - Hub Santé/17 - MDD/MDD TECHNICAL - Hub Santé.xlsx"
 MODELS_FILE="models/model.xlsx"
 TECHNICAL_MODELS_FILE="models/model-technical.xlsx"
 TRACKING_BRANCH_NAME="auto/model_tracker"

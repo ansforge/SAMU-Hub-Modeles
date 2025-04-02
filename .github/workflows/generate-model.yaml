@@ -32,6 +32,7 @@ jobs:
               - 'csv_parser/models/**'
               - 'csv_parser/nomenclature_parser/**'
               - 'csv_parser/json_schema2xsd/**'
+              - 'src/main/resources/sample/examples/**'
             test_case_parsing_required:
               - 'csv_parser/test_case_generator.py'
               - 'csv_parser/workflow.py'
@@ -60,7 +61,7 @@ jobs:
         working-directory: ./src/main/java/com/hubsante/model
         if: steps.filter.outputs.parsing_required == 'true'
         # We specifically only remove FOLDERS with the exception of a couple manually created ones
-        run: find . -mindepth 1 -maxdepth 1 -type d ! -name 'builders' ! -name 'config' ! -name 'custom' ! -name 'edxl' ! -name 'exception' ! -name 'report' -exec rm -r {} +
+        run: find . -mindepth 1 -maxdepth 1 -type d ! -name 'builders' ! -name 'config' ! -name 'custom' ! -name 'edxl' ! -name 'exception' ! -name 'report' ! -name 'utils' -exec rm -r {} +
       
       - name: Run csv_parser to generate schemas.yaml
         working-directory: ./csv_parser
