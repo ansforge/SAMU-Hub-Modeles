@@ -2108,7 +2108,7 @@ components:
             s important d'int\xE9grer et d'afficher la valeur de cet attribut, qui\
             \ est suceptible de contenir des informations d'acc\xE8s importantes."
           examples:
-          - "Cl\xE9 derri\xE8re le pot de fleur"
+          - Hopital Henri Mignot
       additionalProperties: false
       example: example.json#/decision/0/destination
     customMap:

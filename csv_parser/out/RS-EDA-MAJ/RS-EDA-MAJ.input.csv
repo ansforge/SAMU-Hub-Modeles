@@ -138,7 +138,7 @@ False = transport non médicalisé",True,medicalTransport,0..1,,boolean,
 
 Spécificités 15-15 :
 En envoi, il est souhaitable de mapper ici toute valeur en lien avec la localisation de l'intervention qui ne pourrait pas être transmise de manière structurée dans l'objet location. 
-En réception, il est très important d'intégrer et d'afficher la valeur de cet attribut, qui est suceptible de contenir des informations d'accès importantes.",Clé derrière le pot de fleur,freetext,0..1,,string,
+En réception, il est très important d'intégrer et d'afficher la valeur de cet attribut, qui est suceptible de contenir des informations d'accès importantes.",Hopital Henri Mignot,freetext,0..1,,string,
 Informations supplémentaires modifiées,,,,,,"Champ libre qui permet de concaténer en une seule note toutes les autres valeurs modifiées dans le dossier, ne figurant pas de manière structurée dans le RS-EDA-MAJ.",adresse : 7bis rue du château - Neuilly sur Seine,freetext,0..1,,string,
 Informations complémentaires,,,,,,"Objet qui permet d'ajouter jusqu'à 3 données supplémentaires, dans l'éventualité où ces dernières ne sont pas déjà prévues dans le modèle",,additionalInformation,0..1,X,additionalInformation,
 ,Clé valeur adaptable,,,,,Objet qui permet de rajouter des clés-valeurs de façon libre afin d'adapter le modèle à des besoins locaux ou urgents,,customMap,0..3,X,customMap,
