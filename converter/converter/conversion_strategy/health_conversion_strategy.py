@@ -6,10 +6,10 @@ def health_conversion_strategy(edxl_json, source_version: str, target_version: s
     converter = V1_V2Converter()
 
     if source_version == 'v1' and target_version == 'v2':
-        converter.upgrade(edxl_json)
+        return converter.upgrade(edxl_json)
 
     elif source_version == 'v2' and target_version == 'v1':
-        converter.downgrade(edxl_json)
+        return converter.downgrade(edxl_json)
 
     else:
         raise ValueError(f'Version conversion from {source_version} to {target_version} is currently not implemented')
