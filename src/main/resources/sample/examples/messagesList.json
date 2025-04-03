@@ -87,7 +87,8 @@
         "victims": "1 patiente, nécessitant assistance SAMU",
         "victim": "Femme, enceinte de 2 mois, 32 ans",
         "medicalSituation": "Problème obstétrique non hémorragique suite à la chute d'une échelle d'une femme enceinte"
-      }]
+      }
+    ]
   },
   {
     "label": "RS-ER",
@@ -121,7 +122,8 @@
         "context": "Pas de test suivant: RS-RI - Delphine VIGNEAU.03",
         "name": "Delphine VIGNEAU.02",
         "environment": "Demande d'engagement d'un SMUR"
-      }]
+      }
+    ]
   },
   {
     "label": "RS-EDA-MAJ",
@@ -219,93 +221,95 @@
         "environment": "Clôture du dossier"
       },
       {
-      "file": "RS-EDA-MAJ/RS-EDA-MAJ_Secondaire_RobertVermande.09.json",
-      "icon": "mdi-image-broken-variant",
-      "name": "Robert VERMANDE.09",
-      "context": "Fin du cas d'usage",
-      "environment": "Clôture du dossier"
-      }]
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_Secondaire_RobertVermande.09.json",
+        "icon": "mdi-image-broken-variant",
+        "name": "Robert VERMANDE.09",
+        "context": "Fin du cas d'usage",
+        "environment": "Clôture du dossier"
+      }
+    ]
   },
   {
     "label": "RS-RI",
     "schemaName": "RS-RI.schema.json",
     "schema": null,
     "examples": [
-    {
-      "file": "RS-RI/RS-RI_partageDossier_DidierMorel.01b.json",
-      "icon": "mdi-circular-saw",
-      "name": "Didier MOREL.01b",
-      "context": "Pas de test suivant: RS-EDA-MAJ - 02a",
-      "environment": "Engagement d'un VSAV et d'un VLM par le 77"
-    },
-    {
+      {
+        "file": "RS-RI/RS-RI_partageDossier_DidierMorel.01b.json",
+        "icon": "mdi-circular-saw",
+        "name": "Didier MOREL.01b",
+        "context": "Pas de test suivant: RS-EDA-MAJ - 02a",
+        "environment": "Engagement d'un VSAV et d'un VLM par le 77"
+      },
+      {
         "file": "RS-RI/RS-RI_partageRessources_DidierMorel.04c.json",
         "icon": "mdi-circular-saw",
         "name": "Didier MOREL.04c",
         "environment": "Engagement de l’HéliSMUR 94 en réponse à la demande du 77"
-    },
-    {
-      "file": "RS-RI/RS-RI_partageDossier_LolaHalimi.01b.json",
-      "icon": "mdi-image-broken-variant",
-      "name": "Lola HALIMI.01b",
-      "context": "Pas de test suivant: RS-EDA-MAJ-02",
-      "environment": "Engagement d'un VSAV par le SAMU 95"
-    },
-    {
-      "file": "RS-RI/RS-RI_partageRessources_LolaHalimi.03c.json",
-      "icon": "mdi-image-broken-variant",
-      "name": "Lola HALIMI.03c",
-      "context": "Pas de test suivant: RS-SR - 04",
-      "environment": "Engagement du SMUR78  en réponse à la demande du 95"
-    },
-    {
-      "file": "RS-RI/RS-RI_partageRessources_MonsieurX.03.json",
-      "icon": "mdi-head-heart-outline",
-      "name": "Monsieur X.03",
-      "environment": "Engagement d’une ambulance privée"
-    },
-    {
-      "file": "RS-RI/RS-RI_partageDossier_EnfantsNguyen.03b.json",
-      "icon": "mdi-baby-face-outline",
-      "name": "Enfants NGUYEN.03b",
-      "context": "Pas de test suivant: RS-DR - 04a",
-      "environment": "Engagement VSAV + envoi VLM SMUR par le 76A"
-    },
-    {
-      "file": "RS-RI/RS-RI_partageRessources_EnfantsNguyen.04c.json",
-      "icon": "mdi-baby-face-outline",
-      "name": "Enfants NGUYEN.04c",
-      "context": "Pas de test suivant: RS-SR - 05a",
-      "environment": "Engagement de l’HéliSMUR 80 en réponse à la demande du 76A"
-    },
-    {
-      "file": "RS-RI/RS-RI_Secondaire_RobertVermande.03.json",
-      "icon": "mdi-image-broken-variant",
-      "context": "Pas de test suivant: RS-SR - Robert VERMANDE.04",
-      "name": "Robert VERMANDE.03",
-      "environment": "Réponse à la demande d'engagement d'un SMUR avec le détail de l'équipe"
-    },
-    {
-      "file": "RS-RI/RS-RI_FemmeEnceinte_DelphineVigneau.03.json",
-      "icon": "mdi-human-pregnant",
-      "name": "Delphine VIGNEAU.03",
-      "context": "Pas de test suivant: RS-SR - Delphine VIGNEAU.04",
-      "environment": "Réponse à la demande d'engagement d'un SMUR avec le détail de l'équipe"
-    },
-    {
-      "file": "RS-RI/RS-RI_FuiteDeGaz_AliceGregoireNORMAND.03.json",
-      "icon": "mdi-molecule-co2",
-      "name": "Alice et Grégoire NORMAND.03",
-      "context": "Pas de test suivant: RS-SR - Alice et Grégoire NORMAND.04",
-      "environment": "Réponse à la demande d'engagement d'un SMUR avec le détail de l'équipe"
-    },
-    {
-      "file": "RS-RI/RS-RI_FuiteDeGaz_AliceGregoireNORMAND.06.json",
-      "icon": "mdi-molecule-co2",
-      "name": "Alice et Grégoire NORMAND.06",
-      "context": "Pas de test suivant: RS-EDA-MAJ - Alice et Grégoire NORMAND.07",
-      "environment": "Partage des ressources engagées avec le SMUR"
-    }]
+      },
+      {
+        "file": "RS-RI/RS-RI_partageDossier_LolaHalimi.01b.json",
+        "icon": "mdi-image-broken-variant",
+        "name": "Lola HALIMI.01b",
+        "context": "Pas de test suivant: RS-EDA-MAJ-02",
+        "environment": "Engagement d'un VSAV par le SAMU 95"
+      },
+      {
+        "file": "RS-RI/RS-RI_partageRessources_LolaHalimi.03c.json",
+        "icon": "mdi-image-broken-variant",
+        "name": "Lola HALIMI.03c",
+        "context": "Pas de test suivant: RS-SR - 04",
+        "environment": "Engagement du SMUR78  en réponse à la demande du 95"
+      },
+      {
+        "file": "RS-RI/RS-RI_partageRessources_MonsieurX.03.json",
+        "icon": "mdi-head-heart-outline",
+        "name": "Monsieur X.03",
+        "environment": "Engagement d’une ambulance privée"
+      },
+      {
+        "file": "RS-RI/RS-RI_partageDossier_EnfantsNguyen.03b.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "Enfants NGUYEN.03b",
+        "context": "Pas de test suivant: RS-DR - 04a",
+        "environment": "Engagement VSAV + envoi VLM SMUR par le 76A"
+      },
+      {
+        "file": "RS-RI/RS-RI_partageRessources_EnfantsNguyen.04c.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "Enfants NGUYEN.04c",
+        "context": "Pas de test suivant: RS-SR - 05a",
+        "environment": "Engagement de l’HéliSMUR 80 en réponse à la demande du 76A"
+      },
+      {
+        "file": "RS-RI/RS-RI_Secondaire_RobertVermande.03.json",
+        "icon": "mdi-image-broken-variant",
+        "context": "Pas de test suivant: RS-SR - Robert VERMANDE.04",
+        "name": "Robert VERMANDE.03",
+        "environment": "Réponse à la demande d'engagement d'un SMUR avec le détail de l'équipe"
+      },
+      {
+        "file": "RS-RI/RS-RI_FemmeEnceinte_DelphineVigneau.03.json",
+        "icon": "mdi-human-pregnant",
+        "name": "Delphine VIGNEAU.03",
+        "context": "Pas de test suivant: RS-SR - Delphine VIGNEAU.04",
+        "environment": "Réponse à la demande d'engagement d'un SMUR avec le détail de l'équipe"
+      },
+      {
+        "file": "RS-RI/RS-RI_FuiteDeGaz_AliceGregoireNORMAND.03.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.03",
+        "context": "Pas de test suivant: RS-SR - Alice et Grégoire NORMAND.04",
+        "environment": "Réponse à la demande d'engagement d'un SMUR avec le détail de l'équipe"
+      },
+      {
+        "file": "RS-RI/RS-RI_FuiteDeGaz_AliceGregoireNORMAND.06.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.06",
+        "context": "Pas de test suivant: RS-EDA-MAJ - Alice et Grégoire NORMAND.07",
+        "environment": "Partage des ressources engagées avec le SMUR"
+      }
+    ]
   },
   {
     "label": "RS-DR",
@@ -332,7 +336,8 @@
         "name": "Enfants NGUYEN.04a",
         "context": "Pas de test suivant: RS-RR - 04b",
         "environment": "Demande SMUR pédiatrique au SAMU 80"
-      }]
+      }
+    ]
   },
   {
     "label": "RS-RR",
@@ -359,7 +364,8 @@
         "name": "Enfants NGUYEN.04b",
         "context": "Pas de test suivant: RS-RI - 04c",
         "environment": "Réponse du SAMU 78, acceptation partielle (engagement dans 10min)"
-      }]
+      }
+    ]
   },
   {
     "label": "RS-SR",
@@ -407,18 +413,18 @@
         "environment": "Arrivée Helismur 80 sur le lieu de l’intervention"
       },
       {
-      "file": "RS-SR/RS-SR_Secondaire_RobertVermande.04.json",
-      "icon": "mdi-image-broken-variant",
-      "context": "Pas de test suivant: RS-URL - Robert VERMANDE.05",
-      "name": "Robert VERMANDE.04",
-      "environment": "Départ de la base du SMUR"
+        "file": "RS-SR/RS-SR_Secondaire_RobertVermande.04.json",
+        "icon": "mdi-image-broken-variant",
+        "context": "Pas de test suivant: RS-URL - Robert VERMANDE.05",
+        "name": "Robert VERMANDE.04",
+        "environment": "Départ de la base du SMUR"
       },
       {
-      "file": "RS-SR/RS-SR_Secondaire_RobertVermande.06.json",
-      "icon": "mdi-image-broken-variant",
-      "context": "Pas de test suivant: RS-BPV - Robert VERMANDE.07",
-      "name": "Robert VERMANDE.06",
-      "environment": "Arrivée à destination du SMUR"
+        "file": "RS-SR/RS-SR_Secondaire_RobertVermande.06.json",
+        "icon": "mdi-image-broken-variant",
+        "context": "Pas de test suivant: RS-BPV - Robert VERMANDE.07",
+        "name": "Robert VERMANDE.06",
+        "environment": "Arrivée à destination du SMUR"
       },
       {
         "file": "RS-SR/RS-SR_FemmeEnceinte_DelphineVIGNEAU.04.json",
@@ -468,7 +474,8 @@
         "name": "Alice et Grégoire NORMAND.13",
         "context": "Pas de test suivant: RS-BPV - Grégoire NORMAND.14a et Alice NORMAND.14b",
         "environment": "Rentrée du SMUR à la base"
-      }]
+      }
+    ]
   },
   {
     "label": "RS-RPIS",
@@ -490,11 +497,11 @@
         "medicalSituation": "Données RPIS du patient"
       },
       {
-      "file": "RS-RPIS/RS-RPIS_Secondaire_RobertVermande.08.json",
-      "icon": "mdi-image-broken-variant",
-      "context": "Pas de test suivant: RS-EDA-MAJ - Robert VERMANDE.09",
-      "name": "Robert VERMANDE.08",
-      "environment": "Données RPIS du patient"
+        "file": "RS-RPIS/RS-RPIS_Secondaire_RobertVermande.08.json",
+        "icon": "mdi-image-broken-variant",
+        "context": "Pas de test suivant: RS-EDA-MAJ - Robert VERMANDE.09",
+        "name": "Robert VERMANDE.08",
+        "environment": "Données RPIS du patient"
       },
       {
         "file": "RS-RPIS/RS-RPIS_FemmeEnceinte_DelphineVigneau.11.json",
@@ -502,7 +509,8 @@
         "context": "Pas de test suivant: RS-EDA-MAJ - Delphine VIGNEAU.12",
         "name": "Delphine VIGNEAU.11",
         "medicalSituation": "Données RPIS du patient"
-      }]
+      }
+    ]
   },
   {
     "label": "RS-BPV",
@@ -517,11 +525,11 @@
         "environment": "Partage du bilan final du patient"
       },
       {
-      "file": "RS-BPV/RS-BPV_Secondaire_RobertVermande.07.json",
-      "icon": "mdi-image-broken-variant",
-      "context": "Pas de test suivant: RS-EDA-MAJ - Robert VERMANDE.08",
-      "name": "Robert VERMANDE.07",
-      "environment": "Partage d'éléments du bilan"
+        "file": "RS-BPV/RS-BPV_Secondaire_RobertVermande.07.json",
+        "icon": "mdi-image-broken-variant",
+        "context": "Pas de test suivant: RS-EDA-MAJ - Robert VERMANDE.08",
+        "name": "Robert VERMANDE.07",
+        "environment": "Partage d'éléments du bilan"
       },
       {
         "file": "RS-BPV/RS-BPV_FuiteDeGaz_GregoireNormand.12a.json",
@@ -550,13 +558,14 @@
         "name": "Alice NORMAND.14b",
         "context": "Pas de test suivant: RS-RPIS - Alice NORMAND.15b",
         "environment": "Partage du bilan final du patient"
-      }]
+      }
+    ]
   },
   {
     "label": "RS-URL",
     "schemaName": "RS-URL.schema.json",
     "schema": null,
-    "examples": [      
+    "examples": [
       {
         "file": "RS-URL/RS-URL_FemmeEnceinte_DelphineVigneau.05.json",
         "icon": "mdi-human-pregnant",
@@ -565,11 +574,11 @@
         "environment": "Partage du lien url vers le bilan du patient"
       },
       {
-      "file": "RS-URL/RS-URL_Secondaire_RobertVermande.05.json",
-      "icon": "mdi-image-broken-variant",
-      "context": "Pas de test suivant: RS-SR - Robert VERMANDE.06",
-      "name": "Robert VERMANDE.05",
-      "environment": "Partage du lien url vers le bilan du patient"
+        "file": "RS-URL/RS-URL_Secondaire_RobertVermande.05.json",
+        "icon": "mdi-image-broken-variant",
+        "context": "Pas de test suivant: RS-SR - Robert VERMANDE.06",
+        "name": "Robert VERMANDE.05",
+        "environment": "Partage du lien url vers le bilan du patient"
       },
       {
         "file": "RS-URL/RS-URL_FuiteDeGaz_GregoireNormand.05a.json",
@@ -591,7 +600,8 @@
         "name": "Alice NORMAND.05b",
         "context": "Pas de test suivant: RS-RI - Alice et Grégoire NORMAND.06",
         "environment": "Partage du lien url vers le bilan du patient"
-      }]
+      }
+    ]
   },
   {
     "label": "RC-EDA",
@@ -619,7 +629,8 @@
         "victims": "1 patiente, nécessitant assistance SAMU",
         "victim": "Femme, enceinte de 2 mois, 32 ans",
         "medicalSituation": "Problème obstétrique non hémorragique"
-      }]
+      }
+    ]
   },
   {
     "label": "EMSI",
@@ -669,7 +680,8 @@
         "victims": "2 victimes, 1 nécessitant assistance SAMU",
         "victim": "Homme, adulte, 43 ans",
         "medicalSituation": "Céphalées, migraines, traumatismes sérieux, plaies intermédiaires"
-      }]
+      }
+    ]
   },
   {
     "label": "GEO-POS",
@@ -677,11 +689,24 @@
     "schema": null,
     "examples": [
       {
-        "file": "GEO-POS/CU2_Geolocation.json",
+        "file": "GEO-POS/CU2_Geolocation_01.json",
         "icon": "mdi-earth",
-        "name": "Positions Updates",
+        "name": "01 Positions Updates",
         "context": "Partage de mises à jour des positions"
-      }]
+      },
+      {
+        "file": "GEO-POS/CU2_Geolocation_02.json",
+        "icon": "mdi-earth",
+        "name": "02 Positions Updates",
+        "context": "Partage de mises à jour des positions"
+      },
+      {
+        "file": "GEO-POS/CU2_Geolocation_03.json",
+        "icon": "mdi-earth",
+        "name": "03 Positions Updates",
+        "context": "Partage de mises à jour des positions"
+      }
+    ]
   },
   {
     "label": "GEO-RES",
@@ -706,6 +731,7 @@
         "icon": "mdi-earth",
         "name": "Resources Request",
         "context": "Demande de partage des détails des ressources"
-      }]
+      }
+    ]
   }
 ]
