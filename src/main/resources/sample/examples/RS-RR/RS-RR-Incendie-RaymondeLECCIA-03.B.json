@@ -1,0 +1,11 @@
+{
+  "resourcesResponse": {
+    "response": {
+      "datetime": "2024-08-13T10:45:00+01:00",
+      "answer": "ACCEPTEE",
+      "freetext": "Ok pour SMUR (oxygène ++ au cas où) - Départ immédiat"
+    },
+    "caseId": "fr.fire.sisXXX.cga-XXX.SC-20240813-XXX-cga-AT517",
+    "requestId": "fr.fire.sdisXXX.cga-XXX.request.SMURAT517"
+  }
+}

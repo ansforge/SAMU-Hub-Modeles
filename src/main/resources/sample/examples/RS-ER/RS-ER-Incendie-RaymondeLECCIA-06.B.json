@@ -1,0 +1,13 @@
+{
+  "resourcesEngagement": {
+    "resource": [
+      {
+        "vehicleType": "SMUR.AR",
+        "team": {
+          "medicalLevel": "MED"
+        }
+      }
+    ],
+    "caseId": "fr.fire.sisXXX.cga-XXX.SC-20240813-XXX-cga-AT517"
+  }
+}

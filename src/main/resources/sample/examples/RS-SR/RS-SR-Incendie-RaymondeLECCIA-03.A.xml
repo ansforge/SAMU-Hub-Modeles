@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resourcesStatus xmlns="urn:emergency:eda:1.9:resourcesstatus">
+  <caseId>fr.fire.sisXXX.cga-XXX.SC-20240813-XXX-cga-AT517</caseId>
+  <resourceId>fr.fire.sisXXX.cga-XXX.resource.FP3</resourceId>
+  <state>
+    <datetime>2024-08-13T10:39:00+01:00</datetime>
+    <status>ARRIVEE</status>
+  </state>
+</resourcesStatus>

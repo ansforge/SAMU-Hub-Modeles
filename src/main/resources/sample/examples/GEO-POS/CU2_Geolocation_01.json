@@ -1,0 +1,17 @@
+{
+  "geoPositionsUpdate": {
+    "position": [
+      {
+        "coord": {
+          "lat": 9.464944,
+          "lon": 1.097341
+        },
+        "resourceId": "fr.health.samu760.resource.VLM25",
+        "datetime": "2025-04-03T13:00:00+02:00",
+        "move": "STATIQUE",
+        "engineOn": false,
+        "status": "DISPONIBLE"
+      }
+    ]
+  }
+}

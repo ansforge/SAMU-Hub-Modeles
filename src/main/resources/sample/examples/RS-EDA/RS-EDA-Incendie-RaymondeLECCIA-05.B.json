@@ -1,0 +1,102 @@
+{
+  "createCaseHealth": {
+    "caseId": "fr.fire.sisXXX.cga-XXX.SC-20240813-XXX-cga-AT517",
+    "senderCaseId": "SC-20240813-XXX-cga-AT517",
+    "creation": "2024-08-13T10:20:00+01:00",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C04.02.01",
+        "label": "Incendie - Bâtiment d'habitation"
+      },
+      "locationKind": {
+        "code": "L01.01.01",
+        "label": "Maison particulière, pavillon, à l'intérieur"
+      },
+      "origin": "PUBLIC",
+      "riskThreat": [
+        {
+          "code": "R14",
+          "label": "Risque lié à l'incendie"
+        }
+      ],
+      "healthMotive": {
+        "code": "M01.01",
+        "label": "Suspicion d’arrêt cardiaque, mort subite"
+      },
+      "details": {
+        "status": "ACTIF"
+      }
+    },
+    "location": {
+      "detailedAddress": {
+        "wayName": {
+          "type": "Rue",
+          "name": "de la république",
+          "complete": "rue de la république"
+        },
+        "complete": "rue de la république",
+        "number": "19"
+      },
+      "city": {
+        "name": "Guichen",
+        "inseeCode": "35580"
+      },
+      "freetext": "Première maison au croisement avec le chemin qui descend vers le lotissement",
+      "geometry": {
+        "point": {
+          "coord": {
+            "lon": -1.7901215596589721,
+            "precision": "ADRESSE",
+            "lat": 47.96579864643481
+          }
+        },
+        "datetime": "2024-08-13T10:26:00+01:00"
+      }
+    },
+    "initialAlert": {
+      "reception": "2024-08-13T10:20:00+01:00",
+      "caller": {
+        "callerContact": {
+          "type": "TEL",
+          "detail": "+33608310965",
+          "channel": "PERSONNE"
+        },
+        "freetext": "Voisine",
+        "detailedName": {
+          "complete": "Christine Michel",
+          "lastName": "Michel",
+          "firstName": "Christine"
+        },
+        "language": "fr",
+        "type": "TIERS",
+        "callbackContact": {
+          "channel": "PERSONNE",
+          "type": "TEL",
+          "detail": "+33608310965"
+        },
+        "communication": "AUCUNE"
+      },
+      "notes": [
+        {
+          "freetext": "Une voisine constate un départ de feu dans la maison de sa voisine Raymonde LECCIA",
+          "creation": "2024-08-13T10:26:00+01:00"
+        }
+      ]
+    },
+    "patient": [
+      {
+        "patientId": "fr.fire.sisXXX.cga-XXX.SC-20240813-XXX-cga-AT517.patient.P23AZ59",
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Raymonde Leccia",
+            "lastName": "Leccia",
+            "firstName": "Raymonde"
+          }
+        }
+      }
+    ],
+    "interventionType": "T1",
+    "perimeter": "AMU",
+    "owner": "fr.fire.sisXXX.cga"
+  }
+}
