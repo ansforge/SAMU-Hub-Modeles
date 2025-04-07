@@ -90,9 +90,9 @@
       },
       {
         "file": "RS-EDA/RS-EDA-Incendie-RaymondeLECCIA-05.B.json",
-        "icon": "mdiFireTruck",
-        "context": "Pas de test suivant : RS-ER - RaymondeLECCIA-06.B",
-        "name": "Raymonde LECCIA - 05.B",
+        "icon": "mdi-FireTruck",
+        "context": "Pas de test suivant : RS-ER - Raymonde LECCIA.06b",
+        "name": "Raymonde LECCIA.05b",
         "caller": "Demande d'un SMUR par les pompiers qui ont découvert une victime lors d'une intervention pour un incendie",
         "environment": "Domicile, maison particulière",
         "victims": "1 victime découverte par les pompiers, urgence vitale",
@@ -136,9 +136,9 @@
       },
       {
         "file": "RS-ER/RS-ER-Incendie-RaymondeLECCIA-06.B.json",
-        "icon": "mdiFireTruck",
-        "name": "Raymonde LECCIA - 06.B",
-        "context": "Pas de test suivant : RS-RI - RaymondeLECCIA-07.B",
+        "icon": "mdi-FireTruck",
+        "name": "Raymonde LECCIA.06b",
+        "context": "Pas de test suivant : RS-RI - Raymonde LECCIA.07b",
         "environment": "Demande d’engagement d’un SMUR"
       }
 
@@ -248,22 +248,22 @@
       },
       {
         "file": "RS-EDA-MAJ/RS-EDA-MAJ-Incendie-RaymondeLECCIA-05.A.json",
-        "icon": "mdiFireTruck",
-        "name": "Raymonde LECCIA - 05.A",
+        "icon": "mdi-FireTruck",
+        "name": "Raymonde LECCIA.05a",
         "context": "Fin du cas d'usage",
         "environment": "Clôture du dossier"
       },
       {
         "file": "RS-EDA-MAJ/RS-EDA-MAJ-Incendie-RaymondeLECCIA-08.B.json",
-        "icon": "mdiFireTruck",
-        "name": "Raymonde LECCIA - 08.B",
-        "context": "Pas de test suivant : RS-EDA-MAJ - RaymondeLECCIA-09.B",
+        "icon": "mdi-FireTruck",
+        "name": "Raymonde LECCIA.08b",
+        "context": "Pas de test suivant : RS-EDA-MAJ - Raymonde LECCIA.09b",
         "environment": "Partage de l’info suivante : SMUR en route"
       },
       {
         "file": "RS-EDA-MAJ/RS-EDA-MAJ-Incendie-RaymondeLECCIA-09.B.json",
-        "icon": "mdiFireTruck",
-        "name": "Raymonde LECCIA - 09.B",
+        "icon": "mdi-FireTruck",
+        "name": "Raymonde LECCIA.09b",
         "context": "Fin du cas d'usage",
         "environment": "Partage de l’info suivante : prise en charge de la patiente terminée et clôture du dossier"
       }
@@ -351,23 +351,23 @@
       },
       {
         "file": "RS-RI/RS-RI-Incendie-RaymondeLECCIA-02.A.json",
-        "icon": "mdiFireTruck",
-        "name": "Raymonde LECCIA - 02.A",
-        "context": "Pas de test suivant : RS-SR - RaymondeLECCIA-03.A",
+        "icon": "mdi-FireTruck",
+        "name": "Raymonde LECCIA.02a",
+        "context": "Pas de test suivant : RS-SR - Raymonde LECCIA.03a",
         "environment": "Détail des ressources SIS mobilisées pour l’intervention"
       },
       {
         "file": "RS-RI/RS-RI-Incendie-RaymondeLECCIA-04.B.json",
-        "icon": "mdiFireTruck",
-        "name": "Raymonde LECCIA - 04.B",
-        "context": "Pas de test suivant : RS-EDA - RaymondeLECCIA-05.B",
+        "icon": "mdi-FireTruck",
+        "name": "Raymonde LECCIA.04b",
+        "context": "Pas de test suivant : RS-EDA - Raymonde LECCIA.05b",
         "environment": "Détail des ressources SMUR mobilisées pour l’intervention"
       },
       {
         "file": "RS-RI/RS-RI-Incendie-RaymondeLECCIA-07.B.json",
-        "icon": "mdiFireTruck",
-        "name": "Raymonde LECCIA - 07.B",
-        "context": "Pas de test suivant : RS-EDA-MAJ - RaymondeLECCIA-08.B",
+        "icon": "mdi-FireTruck",
+        "name": "Raymonde LECCIA.07b",
+        "context": "Pas de test suivant : RS-EDA-MAJ - Raymonde LECCIA.08b",
         "environment": "Réponse à la demande d’engagement d’un SMUR avec le détail de l’équipe"
       }
     ]
@@ -400,9 +400,9 @@
       },
       {
         "file": "RS-DR/RS-DR-Incendie-RaymondeLECCIA-02.B.json",
-        "icon": "mdiFireTruck",
-        "name": "Raymonde LECCIA - 02.B",
-        "context": "Pas de test suivant : RS-RR - RaymondeLECCIA-03.B",
+        "icon": "mdi-FireTruck",
+        "name": "Raymonde LECCIA.02b",
+        "context": "Pas de test suivant : RS-RR - Raymonde LECCIA.03b",
         "environment": "Demande d’un SMUR pour personne inanimée dans un incendie"
       }
     ]
@@ -435,9 +435,9 @@
       },
       {
         "file": "RS-RR/RS-RR-Incendie-RaymondeLECCIA-03.B.json",
-        "icon": "mdiFireTruck",
-        "name": "Raymonde LECCIA - 03.B",
-        "context": "Pas de test suivant : RS-RI - RaymondeLECCIA-04.B",
+        "icon": "mdi-FireTruck",
+        "name": "Raymonde LECCIA.03b",
+        "context": "Pas de test suivant : RS-RI - Raymonde LECCIA.04b",
         "environment": "Réponse à la demande d'un SMUR pour personne inanimée dans un incendie"
       }
     ]
@@ -552,16 +552,16 @@
       },
       {
         "file": "RS-SR/RS-SR-Incendie-RaymondeLECCIA-03.A.json",
-        "icon": "mdiFireTruck",
-        "name": "Raymonde LECCIA - 03.A",
-        "context": "Pas de test suivant : RS-SR - RaymondeLECCIA-04.A",
+        "icon": "mdi-FireTruck",
+        "name": "Raymonde LECCIA.03a",
+        "context": "Pas de test suivant : RS-SR - Raymonde LECCIA.04a",
         "environment": "Arrivée du fourgon-pompe sur les lieux de l’intervention"
       },
       {
         "file": "RS-SR/RS-SR-Incendie-RaymondeLECCIA-04.A.json",
-        "icon": "mdiFireTruck",
-        "name": "Raymonde LECCIA - 04.A",
-        "context": "Pas de test suivant : RS-EDA-MAJ - RaymondeLECCIA-05.A",
+        "icon": "mdi-FireTruck",
+        "name": "Raymonde LECCIA.04a",
+        "context": "Pas de test suivant : RS-EDA-MAJ - Raymonde LECCIA.05a",
         "environment": "Retour du fourgon-pompe à la caserne"
       }
     ]
@@ -721,11 +721,11 @@
       },
       {
         "file": "RC-EDA/RC-EDA-Incendie-RaymondeLECCIA-01.json",
-        "icon": "mdiFireTruck",
+        "icon": "mdi-FireTruck",
         "context": "Incendie de maison et découverte d'une victime inanimée",
-        "name": "Raymonde LECCIA - 01",
+        "name": "Raymonde LECCIA.01",
         "caller": "Christine MICHEL appelle le 18 pour un incendie chez sa voisine",
-        "context": "Pas de test suivant : RS-RI - RaymondeLECCIA-02.A ou RS-DR RaymondeLECCIA-02.B",
+        "context": "Pas de test suivant : RS-RI - Raymonde LECCIA.02a ou RS-DR Raymonde LECCIA.02b",
         "environment": "Domicile, maison particulière",
         "victims": "1 victime découverte par les pompiers, urgence vitale",
         "victim": "Femme non-identifiée",
