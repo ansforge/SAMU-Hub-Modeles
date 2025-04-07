@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<createCaseHealthUpdate xmlns="urn:emergency:eda:1.9:createCaseHealthUpdate">
+  <caseId>fr.fire.sisXXX.cga-XXX.SC-20240813-XXX-cga-AT517</caseId>
+  <senderCaseId>SC-20240813-XXX-cga-AT517</senderCaseId>
+  <perimeter>AMU</perimeter>
+  <qualification>
+    <details>
+      <status>ACTIF</status>
+      <priority>P0</priority>
+      <careLevel>R1</careLevel>
+    </details>
+  </qualification>
+  <initialAlert>
+    <notes>
+      <creation>2024-08-13T10:26:00+01:00</creation>
+      <freetext>Une voisine constate un départ de feu dans la maison de sa voisine Raymonde LECCIA</freetext>
+    </notes>
+  </initialAlert>
+  <owner>fr.health.samuXXX</owner>
+  <freetext>SMUR en route pour prise en charge de la victime</freetext>
+</createCaseHealthUpdate>
