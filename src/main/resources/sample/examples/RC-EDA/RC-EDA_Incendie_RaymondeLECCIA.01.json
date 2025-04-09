@@ -1,0 +1,137 @@
+{
+  "createCase": {
+    "caseId": "fr.fire.sisXXX.cga-XXX.SC-20240813-XXX-cga-AT517",
+    "senderCaseId": "SC-20240813-XXX-cga-AT517",
+    "creation": "2024-08-13T10:20:00+02:00",
+    "referenceVersion": "2.01.3",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C04.02.01",
+        "label": "Incendie - Bâtiment d'habitation"
+      },
+      "locationKind": {
+        "code": "L01.01.01",
+        "label": "Maison particulière, pavillon, à l'intérieur"
+      },
+      "victims": {
+        "count": "NON DEFINI",
+        "mainVictim": "ADULTE",
+        "freetext": "Jeune femme d'une trentaine d'années, inanimée, a priori Raymonde LECCIA la propriétaire des lieux"
+      },
+      "healthMotive": {
+        "code": "M01.01",
+        "label": "Suspicion d’arrêt cardiaque, mort subite"
+      }
+    },
+    "location": {
+      "locID": "111fb03a-6fd9-41e0-8e81-990c05031711",
+      "detailedAddress": {
+        "wayName": {
+          "type": "Rue",
+          "name": "de la république",
+          "complete": "rue de la république"
+        },
+        "complete": "rue de la république",
+        "number": "19"
+      },
+      "city": {
+        "name": "Guichen",
+        "inseeCode": "35580"
+      },
+      "country": "FR",
+      "freetext": "Première maison au croisement avec le chemin qui descend vers le lotissement",
+      "geometry": {
+        "point": {
+          "coord": {
+            "lon": -1.7901215,
+            "precision": "ADRESSE",
+            "lat": 47.9657986
+          }
+        },
+        "datetime": "2024-08-13T10:20:00+02:00"
+      },
+      "locLabel": "Maison pavillonaire"
+    },
+    "initialAlert": {
+      "id": "CGAXXX-20240813-AT517",
+      "reception": "2024-08-13T10:20:00+02:00",
+      "reporting": "STANDARD",
+      "caller": {
+        "callerContact": {
+          "type": "TEL",
+          "detail": "+33608310965",
+          "channel": "PERSONNE"
+        },
+        "freetext": "Voisine",
+        "detailedName": {
+          "complete": "Christine Michel",
+          "lastName": "Michel",
+          "firstName": "Christine"
+        },
+        "type": "TIERS",
+        "callbackContact": {
+          "channel": "PERSONNE",
+          "type": "TEL",
+          "detail": "+33608310965"
+        },
+        "communication": "AUCUNE",
+        "language": "fr"
+      },
+      "location": {
+        "locID": "111fb03a-6fd9-41e0-8e81-990c05031711",
+        "detailedAddress": {
+          "complete": "Rue de la république",
+          "wayName": {
+            "complete": "Rue de la république",
+            "type": "Rue ",
+            "name": "de la république"
+          },
+          "number": "19"
+        },
+        "city": {
+          "name": "Guichen",
+          "inseeCode": "35580"
+        },
+        "country": "FR",
+        "freetext": "Première maison au croisement avec le chemin qui descend vers le lotissement",
+        "geometry": {
+          "point": {
+            "coord": {
+              "lat": 47.9657986,
+              "lon": -1.7901215,
+              "precision": "ADRESSE"
+            }
+          },
+          "datetime": "2024-08-13T10:20:00+02:00"
+        }
+      },
+      "qualification": {
+        "whatsHappen": {
+          "code": "C04.02.01",
+          "label": "Incendie - Bâtiment d'habitation"
+        },
+        "locationKind": {
+          "code": "L01.01.01",
+          "label": "Maison particulière, pavillon, à l'intérieur"
+        },
+        "victims": {
+          "count": "INCONNU"
+        },
+        "healthMotive": {
+          "code": "M01.01",
+          "label": "Suspicion d’arrêt cardiaque, mort subite"
+        }
+      },
+      "callTaker": {
+        "controlRoom": "CGAXX",
+        "organization": "fr.fire.sisXXX.cga-XXX"
+      },
+      "notes": [
+        {
+          "freetext": "Christine MICHEL a déclaré un incendie chez sa voisine Raymonde LECCIA ; jeune-femme inanimée au milieu du salon découverte pendnat l'intervention, en arrêt cardiaque ; a priori la propriétaire des lieux, Raymonde LECCIA, une trentaine d'années",
+          "creation": "2024-08-13T10:20:00+02:00"
+        }
+      ]
+    }
+  }
+}

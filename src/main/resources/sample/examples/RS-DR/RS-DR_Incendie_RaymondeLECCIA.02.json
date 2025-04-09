@@ -1,0 +1,12 @@
+{
+  "resourcesRequest": {
+    "request": {
+      "requestId": "fr.fire.sdisXXX.cga-XXX.request.SMURAT517",
+      "datetime": "2024-08-13T10:21:00+02:00",
+      "freetext": "Raymonde Leccia, trentaine d'années, en arrêt cardiaque et souffrant de brûlures découverte par les pompiers déployés sur un incendie",
+      "purpose": "SMUR",
+      "deadline": "DEL0"
+    },
+    "caseId": "fr.fire.sisXXX.cga-XXX.SC-20240813-XXX-cga-AT517"
+  }
+}
