@@ -1,0 +1,40 @@
+{
+  "resourcesInfo": {
+    "resource": [
+      {
+        "team": {
+          "medicalLevel": "MED",
+          "name": "Equipe FEU 3"
+        },
+        "name": "SMUR-Rea3",
+        "datetime": "2024-08-13T10:23:00+02:00",
+        "resourceId": "fr.health.samuXXX.resource.SMUR268",
+        "orgId": "fr.health.samuXXX",
+        "state": [
+          {
+            "status": "DECLENCHE",
+            "datetime": "2024-08-13T10:24:00+02:00",
+            "availability": false
+          },
+          {
+            "datetime": "2024-08-13T10:23:00+02:00",
+            "status": "DECISION"
+          }
+        ],
+        "vehicleType": "SMUR.AR"
+      },
+      {
+        "team": {
+          "medicalLevel": "MED"
+        },
+        "datetime": "2024-08-13T10:23:00+02:00",
+        "resourceId": "fr.health.samuXXX.resource.SMUR268",
+        "orgId": "fr.health.samuXXX",
+        "vehicleType": "SMUR.AR",
+        "name": "SMUR-Rea3",
+        "centerCity": "35580"
+      }
+    ],
+    "caseId": "fr.fire.sisXXX.cga-XXX.SC-20240813-XXX-cga-AT517"
+  }
+}
