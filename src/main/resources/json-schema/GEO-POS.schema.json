@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "GEO-POS.schema.json#",
-    "version": "25.02.09",
+    "version": "25.04.09",
     "example": "example.json#",
     "type": "object",
     "title": "geoPositionsUpdate",
@@ -37,34 +37,20 @@
                     "x-cols": 6,
                     "example": "example.json#/position/0/resourceId",
                     "description": "A valoriser avec l'identifiant partagé unique de la ressource engagée, normé comme suit :\n{orgID}.resource.{ID unique de la ressource partagée}\nOU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :\n{orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}",
-                    "pattern": "^([\\w-]+\\.){3,4}resource(\\.[\\w-]+){1,2}$"
+                    "pattern": "^([\\w-]+\\.){3,8}resource(\\.[\\w-]+){1,2}$"
                 },
                 "datetime": {
                     "type": "string",
-                    "title": "Date et heure des dernières remontées d'informations de la ressource",
+                    "title": "Date et heure de réception des coordonnées",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/position/0/datetime",
-                    "description": "Date et heure de la dernière position connue",
-                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
-                    "format": "date-time"
-                },
-                "receptionDatetime": {
-                    "type": "string",
-                    "title": "Date et heure de la réception de la dernière localisation",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/position/0/receptionDatetime",
-                    "description": "Date et heure de la réception de la dernière position connue dans le système de l'organisme",
+                    "description": "Date et heure de réception des coordonnées transmises",
                     "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
                 },
                 "coord": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/coord"
-                    },
-                    "minItems": 1
+                    "$ref": "#/definitions/coord"
                 },
                 "speed": {
                     "type": "number",
@@ -162,7 +148,7 @@
                     "title": "Latitude ",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/position/0/coord/0/lat",
+                    "example": "example.json#/position/0/coord/lat",
                     "description": "Dernière coordonnée x connue de la ressource, entre −90 and +90"
                 },
                 "lon": {
@@ -170,7 +156,7 @@
                     "title": "Longitude",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/position/0/coord/0/lon",
+                    "example": "example.json#/position/0/coord/lon",
                     "description": "Dernière coordonnée y connue de la ressource, entre −180 and +180"
                 },
                 "height": {
@@ -178,12 +164,12 @@
                     "title": "Altitude",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/position/0/coord/0/height",
+                    "example": "example.json#/position/0/coord/height",
                     "description": "Dernière coordonnée z connue de la ressource, en mètres sans bornes"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/position/0/coord/0"
+            "example": "example.json#/position/0/coord"
         }
     },
     "additionalProperties": false

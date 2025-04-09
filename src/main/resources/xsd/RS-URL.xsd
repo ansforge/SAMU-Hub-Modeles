@@ -2,7 +2,7 @@
     <element name="documentLink" type="x:documentLink"/>
     <complexType name="documentLink">
         <sequence>
-            <element name="caseId" type="string">
+            <element name="caseId">
                 <annotation>
                     <documentation>Identifiant partagé du dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
 Il est valorisé comme suit lors de sa création : 
@@ -11,6 +11,11 @@ Il est valorisé comme suit lors de sa création :
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="([\w-]+\.?){4,10}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="patientId">
                 <annotation>
@@ -18,7 +23,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="([\w-]+\.){3,4}patient(\.[\w-]+){1,2}"/>
+                        <pattern value="([\w-]+\.){3,8}patient(\.[\w-]+){1,2}"/>
                     </restriction>
                 </simpleType>
             </element>

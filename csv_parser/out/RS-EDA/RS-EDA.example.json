@@ -3,9 +3,9 @@
     "senderCaseId": "DRFR15440241550012",
     "creation": "2022-09-27T08:23:34+02:00",
     "perimeter": "AMU",
-    "interventionType": "PRIMAIRE",
+    "interventionType": "T1",
     "qualification": {
-        "origin": "15, 112, 18",
+        "origin": "15, 112, FDO",
         "riskThreat": [
             {
                 "code": "C07.13.02",
@@ -25,8 +25,8 @@
             "label": "Rodéo automobile"
         },
         "details": {
-            "status": "None",
-            "attribution": "MU",
+            "status": "ACTIF",
+            "attribution": "DRM.MRU.MU",
             "priority": "P1",
             "careLevel": "R1"
         }
@@ -194,7 +194,7 @@
                 "externalLocationId": [
                     {}
                 ],
-                "freetext": "Clé derrière le pot de fleur"
+                "freetext": "Hopital Henri Mignot"
             }
         }
     ],

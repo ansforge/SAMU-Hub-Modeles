@@ -1,0 +1,24 @@
+{
+  "createCaseHealthUpdate": {
+    "caseId": "fr.fire.sisXXX.cga-XXX.SC-20240813-XXX-cga-AT517",
+    "senderCaseId": "SC-20240813-XXX-cga-AT517",
+    "qualification": {
+      "details": {
+        "status": "CLOTURE",
+        "priority": "P0",
+        "careLevel": "R1"
+      }
+    },
+    "initialAlert": {
+      "notes": [
+        {
+          "freetext": "Une voisine constate un départ de feu dans la maison de sa voisine Raymonde LECCIA",
+          "creation": "2024-08-13T10:26:00+01:00"
+        }
+      ]
+    },
+    "freetext": "Patiente réanimée et accompagnée aux urgences du CHU XXX",
+    "perimeter": "AMU",
+    "owner": "fr.health.samuXXX"
+  }
+}

@@ -37,10 +37,8 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.geolocation.Coord;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -48,11 +46,10 @@ import java.util.Objects;
  */
 @JsonPropertyOrder(
     {Position.JSON_PROPERTY_RESOURCE_ID, Position.JSON_PROPERTY_DATETIME,
-     Position.JSON_PROPERTY_RECEPTION_DATETIME, Position.JSON_PROPERTY_COORD,
-     Position.JSON_PROPERTY_SPEED, Position.JSON_PROPERTY_CAP,
-     Position.JSON_PROPERTY_MOVE, Position.JSON_PROPERTY_ENGINE_ON,
-     Position.JSON_PROPERTY_GROUND_STATUS, Position.JSON_PROPERTY_STATUS,
-     Position.JSON_PROPERTY_ENGAGED_STATUS})
+     Position.JSON_PROPERTY_COORD, Position.JSON_PROPERTY_SPEED,
+     Position.JSON_PROPERTY_CAP, Position.JSON_PROPERTY_MOVE,
+     Position.JSON_PROPERTY_ENGINE_ON, Position.JSON_PROPERTY_GROUND_STATUS,
+     Position.JSON_PROPERTY_STATUS, Position.JSON_PROPERTY_ENGAGED_STATUS})
 @JsonTypeName("position")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -63,12 +60,8 @@ public class Position {
   public static final String JSON_PROPERTY_DATETIME = "datetime";
   private OffsetDateTime datetime;
 
-  public static final String JSON_PROPERTY_RECEPTION_DATETIME =
-      "receptionDatetime";
-  private OffsetDateTime receptionDatetime;
-
   public static final String JSON_PROPERTY_COORD = "coord";
-  private List<Coord> coord = new ArrayList<>();
+  private Coord coord;
 
   public static final String JSON_PROPERTY_SPEED = "speed";
   private BigDecimal speed;
@@ -247,7 +240,7 @@ public class Position {
   }
 
   /**
-   * Date et heure de la dernière position connue
+   * Date et heure de réception des coordonnées transmises
    * @return datetime
    **/
   @JsonProperty(JSON_PROPERTY_DATETIME)
@@ -263,41 +256,9 @@ public class Position {
     this.datetime = datetime;
   }
 
-  public Position receptionDatetime(OffsetDateTime receptionDatetime) {
-
-    this.receptionDatetime = receptionDatetime;
-    return this;
-  }
-
-  /**
-   * Date et heure de la réception de la dernière position connue dans le
-   *système de l&#39;organisme
-   * @return receptionDatetime
-   **/
-  @JsonProperty(JSON_PROPERTY_RECEPTION_DATETIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public OffsetDateTime getReceptionDatetime() {
-    return receptionDatetime;
-  }
-
-  @JsonProperty(JSON_PROPERTY_RECEPTION_DATETIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReceptionDatetime(OffsetDateTime receptionDatetime) {
-    this.receptionDatetime = receptionDatetime;
-  }
-
-  public Position coord(List<Coord> coord) {
+  public Position coord(Coord coord) {
 
     this.coord = coord;
-    return this;
-  }
-
-  public Position addCoordItem(Coord coordItem) {
-    if (this.coord == null) {
-      this.coord = new ArrayList<>();
-    }
-    this.coord.add(coordItem);
     return this;
   }
 
@@ -308,22 +269,14 @@ public class Position {
   @JsonProperty(JSON_PROPERTY_COORD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Coord> getCoord() {
+  public Coord getCoord() {
     return coord;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
   @JsonProperty(JSON_PROPERTY_COORD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCoord(List<Coord> coord) {
-    if (coord == null) {
-      return;
-    }
-    if (this.coord == null) {
-      this.coord = new ArrayList<>();
-    }
-    this.coord.addAll(coord);
+  public void setCoord(Coord coord) {
+    this.coord = coord;
   }
 
   public Position speed(BigDecimal speed) {
@@ -502,7 +455,6 @@ public class Position {
     Position position = (Position)o;
     return Objects.equals(this.resourceId, position.resourceId) &&
         Objects.equals(this.datetime, position.datetime) &&
-        Objects.equals(this.receptionDatetime, position.receptionDatetime) &&
         Objects.equals(this.coord, position.coord) &&
         Objects.equals(this.speed, position.speed) &&
         Objects.equals(this.cap, position.cap) &&
@@ -515,9 +467,8 @@ public class Position {
 
   @Override
   public int hashCode() {
-    return Objects.hash(resourceId, datetime, receptionDatetime, coord, speed,
-                        cap, move, engineOn, groundStatus, status,
-                        engagedStatus);
+    return Objects.hash(resourceId, datetime, coord, speed, cap, move, engineOn,
+                        groundStatus, status, engagedStatus);
   }
 
   @Override
@@ -528,9 +479,6 @@ public class Position {
         .append(toIndentedString(resourceId))
         .append("\n");
     sb.append("    datetime: ").append(toIndentedString(datetime)).append("\n");
-    sb.append("    receptionDatetime: ")
-        .append(toIndentedString(receptionDatetime))
-        .append("\n");
     sb.append("    coord: ").append(toIndentedString(coord)).append("\n");
     sb.append("    speed: ").append(toIndentedString(speed)).append("\n");
     sb.append("    cap: ").append(toIndentedString(cap)).append("\n");

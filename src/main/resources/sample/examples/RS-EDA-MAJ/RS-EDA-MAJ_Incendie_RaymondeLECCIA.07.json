@@ -1,0 +1,24 @@
+{
+  "createCaseHealthUpdate": {
+    "caseId": "fr.fire.sisXXX.cga-XXX.SC-20240813-XXX-cga-AT517",
+    "senderCaseId": "SC-20240813-XXX-cga-AT517",
+    "qualification": {
+      "details": {
+        "status": "CLOTURE",
+        "priority": "P0",
+        "careLevel": "R1"
+      }
+    },
+    "initialAlert": {
+      "notes": [
+        {
+          "freetext": "Christine MICHEL a déclaré un incendie chez sa voisine Raymonde LECCIA ; jeune-femme inanimée au milieu du salon découverte pendnat l'intervention, en arrêt cardiaque ; a priori la propriétaire des lieux, Raymonde LECCIA, une trentaine d'années",
+          "creation": "2024-08-13T10:20:00+02:00"
+        }
+      ]
+    },
+    "freetext": "Fin de l'intervention et retour du SMUR en base",
+    "perimeter": "AMU",
+    "owner": "fr.health.samuXXX"
+  }
+}

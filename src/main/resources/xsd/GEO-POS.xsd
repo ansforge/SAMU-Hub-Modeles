@@ -16,21 +16,16 @@ OU - uniquement dans le cas où un ID unique de ressource ne peut pas être gara
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="([\w-]+\.){3,4}resource(\.[\w-]+){1,2}"/>
+                        <pattern value="([\w-]+\.){3,8}resource(\.[\w-]+){1,2}"/>
                     </restriction>
                 </simpleType>
             </element>
             <element name="datetime" type="dateTime">
                 <annotation>
-                    <documentation>Date et heure de la dernière position connue</documentation>
+                    <documentation>Date et heure de réception des coordonnées transmises</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="receptionDatetime" type="dateTime">
-                <annotation>
-                    <documentation>Date et heure de la réception de la dernière position connue dans le système de l'organisme</documentation>
-                </annotation>
-            </element>
-            <element maxOccurs="unbounded" minOccurs="1" name="coord" type="x:coord"/>
+            <element name="coord" type="x:coord"/>
             <element minOccurs="0" name="speed" type="decimal">
                 <annotation>
                     <documentation>Vitesse de la ressource enregistrée, exprimée en km/h</documentation>

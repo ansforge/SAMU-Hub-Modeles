@@ -36,7 +36,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: ^fr(\.[\w-]+){3,4}$
+          pattern: ^([\w-]+\.?){4,10}$
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -97,7 +97,7 @@ components:
           - T3
           - T4
           examples:
-          - PRIMAIRE
+          - T1
         qualification:
           $ref: '#/components/schemas/qualification'
         location:
@@ -113,7 +113,7 @@ components:
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
             \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
             \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
-          pattern: ^fr(\.[\w-]+){2,3}$
+          pattern: ^([\w-]+\.?){4,9}$
           examples:
           - fr.health.samu440
         patient:
@@ -166,7 +166,7 @@ components:
           - DATA
           - AUTRE
           examples:
-          - 15, 112, 18
+          - 15, 112, FDO
         riskThreat:
           type: array
           items:
@@ -279,7 +279,7 @@ components:
             patient unique dans le syst\xE8me \xE9metteur}\n\nOU, si un n\xB0patient\
             \ unique n'existe pas dans le syst\xE8me \xE9metteur :\n{ID \xE9metteur}.{senderCaseId}.patient.{num\xE9\
             ro d\u2019ordre chronologique au dossier}\n\n\n"
-          pattern: ^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$
+          pattern: ^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$
           examples:
           - 'fr.health.samu690.patient.P23AZ59
 
@@ -317,7 +317,7 @@ components:
             me \xE9metteur}\n\nOU, si un n\xB0patient unique n'existe pas dans le\
             \ syst\xE8me \xE9metteur :\n{ID \xE9metteur}.{senderCaseId}.patient.{num\xE9\
             ro d\u2019ordre chronologique au dossier}"
-          pattern: ^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$
+          pattern: ^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$
           examples:
           - 'fr.health.samu690.patient.P23AZ59
 
@@ -339,7 +339,7 @@ components:
             ro chronologique de l\u2019observation}\n\nCet identifiant a vocation\
             \ \xE0 devenir obligatoire pour permettre les mises \xE0 jour, il est\
             \ laiss\xE9 en facultatif temporairement.\n"
-          pattern: ^([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}$
+          pattern: ^([\w-]+\.){3,8}medicalNote(\.[\w-]+){1,2}$
           examples:
           - 'fr.health.samu540.medicalNote.46585A
 
@@ -688,7 +688,7 @@ components:
           - CLASSE
           - ARCHIVE
           examples:
-          - None
+          - ACTIF
         attribution:
           type: string
           title: Attribution du dossier
@@ -740,7 +740,7 @@ components:
           - D.D-IDENT.PERSO
           - D.D-IDENT.AUTRE
           examples:
-          - MU
+          - DRM.MRU.MU
         priority:
           type: string
           title: "Priorit\xE9 de r\xE9gulation m\xE9dicale"
@@ -777,8 +777,8 @@ components:
       additionalProperties: false
       example: example.json#/qualification/details
       examples:
-      - status: None
-        attribution: MU
+      - status: ACTIF
+        attribution: DRM.MRU.MU
         priority: P1
         careLevel: R1
     externalLocationId:
@@ -2108,7 +2108,7 @@ components:
             s important d'int\xE9grer et d'afficher la valeur de cet attribut, qui\
             \ est suceptible de contenir des informations d'acc\xE8s importantes."
           examples:
-          - "Cl\xE9 derri\xE8re le pot de fleur"
+          - Hopital Henri Mignot
       additionalProperties: false
       example: example.json#/decision/0/destination
     customMap:
