@@ -1,135 +1,158 @@
 {
   "createCase": {
-    "caseId": "fr.fire.sisXXX.cga-XXX.SC-20240813-XXX-cga-AT517",
-    "senderCaseId": "SC-20240813-XXX-cga-AT517",
-    "creation": "2024-08-13T10:20:00+02:00",
-    "referenceVersion": "2.01.3",
+    "caseId": "fr.health.samu440.DRFR154402413800236",
+    "senderCaseId": "DRFR154402413800236",
+    "creation": "2024-05-18T18:15:00+02:00",
+    "referenceVersion": "1.3",
     "qualification": {
       "whatsHappen": {
-        "code": "C04.02.01",
-        "label": "Incendie - Bâtiment d'habitation"
+        "code": "C09.03.00",
+        "label": "Fuite de gaz"
       },
       "locationKind": {
         "code": "L01.01.01",
         "label": "Maison particulière, pavillon, à l'intérieur"
       },
-      "victims": {
-        "count": "NON DEFINI",
-        "mainVictim": "ADULTE",
-        "freetext": "Jeune femme d'une trentaine d'années, inanimée, a priori Raymonde LECCIA la propriétaire des lieux"
-      },
+      "riskThreat": [
+        {
+          "code": "R13",
+          "label": "Risque d'explosion, présence de gaz"
+        }
+      ],
       "healthMotive": {
-        "code": "M01.01",
-        "label": "Suspicion d’arrêt cardiaque, mort subite"
+        "code": "M03.10",
+        "label": "Malaise avec perte de connaissance initiale"
+      },
+      "victims": {
+        "count": "PLUSIEURS",
+        "mainVictim": "ENFANT"
       }
     },
     "location": {
-      "locID": "111fb03a-6fd9-41e0-8e81-990c05031711",
+      "locID": "111fb03a-6fd9-41e0-8e81-990c45188889",
       "detailedAddress": {
+        "complete": "Rue des Marins",
         "wayName": {
+          "complete": "Rue des Marins",
           "type": "Rue",
-          "name": "de la république",
-          "complete": "rue de la république"
+          "name": "Des Marins"
         },
-        "complete": "rue de la république",
-        "number": "19"
+        "number": "3"
       },
       "city": {
-        "name": "Guichen",
-        "inseeCode": "35580"
+        "name": "Bouaye",
+        "inseeCode": "44018"
       },
       "country": "FR",
-      "freetext": "Première maison au croisement avec le chemin qui descend vers le lotissement",
+      "freetext": "Maison aux volets verts",
       "geometry": {
         "point": {
           "coord": {
-            "lon": -1.7901215,
-            "precision": "ADRESSE",
-            "lat": 47.9657986
+            "lat": 47.147005,
+            "lon": -1.690548,
+            "precision": "ADRESSE"
           }
         },
-        "datetime": "2024-08-13T10:20:00+02:00"
-      },
-      "locLabel": "Maison pavillonaire"
+        "datetime": "2024-05-18T18:17:00+02:00"
+      }
     },
     "initialAlert": {
-      "id": "CGAXXX-20240813-AT517",
-      "reception": "2024-08-13T10:20:00+02:00",
-      "reporting": "STANDARD",
+      "id": "samu440-20240518-AL0192",
+      "reception": "2023-11-18T18:15:00+01:00",
+      "reporting": "ATTENTION",
       "caller": {
         "callerContact": {
           "type": "TEL",
-          "detail": "+33608310965",
+          "detail": "+33671830523",
           "channel": "PERSONNE"
         },
-        "freetext": "Voisine",
+        "freetext": "Mère des enfants",
         "detailedName": {
-          "complete": "Christine Michel",
-          "lastName": "Michel",
-          "firstName": "Christine"
+          "complete": "Marie Dubois",
+          "lastName": "Dubois",
+          "firstName": "Marie"
         },
-        "type": "TIERS",
+        "language": "fr",
+        "type": "FAMILLE",
         "callbackContact": {
           "channel": "PERSONNE",
           "type": "TEL",
-          "detail": "+33608310965"
+          "detail": "+33671830523"
         },
-        "communication": "AUCUNE",
-        "language": "fr"
+        "communication": "AUCUNE"
       },
       "location": {
-        "locID": "111fb03a-6fd9-41e0-8e81-990c05031711",
+        "locID": "111fb03a-6fd9-41e0-8e81-990c45188889",
         "detailedAddress": {
-          "complete": "Rue de la république",
+          "complete": "Rue des Marins",
           "wayName": {
-            "complete": "Rue de la république",
+            "complete": "Rue des Marins",
             "type": "Rue ",
-            "name": "de la république"
+            "name": "Des Marins"
           },
-          "number": "19"
+          "number": "3"
         },
         "city": {
-          "name": "Guichen",
-          "inseeCode": "35580"
+          "name": "Bouaye",
+          "inseeCode": "44018"
         },
         "country": "FR",
-        "freetext": "Première maison au croisement avec le chemin qui descend vers le lotissement",
+        "freetext": "Maison aux volets verts",
         "geometry": {
           "point": {
             "coord": {
-              "lat": 47.9657986,
-              "lon": -1.7901215,
+              "lat": 47.146089,
+              "lon": -1.691374,
               "precision": "ADRESSE"
             }
           },
-          "datetime": "2024-08-13T10:20:00+02:00"
+          "datetime": "2024-05-18T18:17:00+02:00"
         }
       },
       "qualification": {
         "whatsHappen": {
-          "code": "C04.02.01",
-          "label": "Incendie - Bâtiment d'habitation"
+          "code": "C09.03.00",
+          "label": "Fuite de gaz"
         },
         "locationKind": {
           "code": "L01.01.01",
           "label": "Maison particulière, pavillon, à l'intérieur"
         },
-        "victims": {
-          "count": "INCONNU"
-        },
+        "riskThreat": [
+          {
+            "code": "R13",
+            "label": "Risque d'explosion, présence de gaz"
+          }
+        ],
         "healthMotive": {
-          "code": "M01.01",
-          "label": "Suspicion d’arrêt cardiaque, mort subite"
+          "code": "M03.10",
+          "label": "Malaise avec perte de connaissance initiale"
+        },
+        "victims": {
+          "count": "PLUSIEURS",
+          "mainVictim": "ENFANT"
         }
       },
       "callTaker": {
-        "controlRoom": "CGAXX",
-        "organization": "fr.fire.sisXXX.cga-XXX"
+        "organization": "fr.health.samu440",
+        "controlRoom": "CRRA44",
+        "calltakerContact": {
+          "channel": "PERSONNE",
+          "detail": "0671830587",
+          "type": "TEL"
+        },
+        "role": "ARM",
+        "calltakerId": "1234"
       },
+      "attachment": [
+        {
+          "URI": "https://hub.esante.gouv.fr/resourceExample"
+        }
+      ],
       "notes": [
         {
-          "freetext": "Christine MICHEL a déclaré un incendie chez sa voisine Raymonde LECCIA ; jeune-femme inanimée au milieu du salon découverte pendnat l'intervention, en arrêt cardiaque ; a priori la propriétaire des lieux, Raymonde LECCIA, une trentaine d'années",
-          "creation": "2024-08-13T10:20:00+02:00"
+          "freetext": "Les enfants se plaignent de maux de tête depuis 1h, la mère n'a aucun symptômes",
+          "creation": "2024-05-18T18:17:00+02:00"
         }
       ]
     }
