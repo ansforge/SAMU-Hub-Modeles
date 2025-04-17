@@ -12,10 +12,10 @@
   </qualification>
   <initialAlert>
     <notes>
-      <creation>2024-08-13T10:26:00+01:00</creation>
-      <freetext>Une voisine constate un départ de feu dans la maison de sa voisine Raymonde LECCIA</freetext>
+      <creation>2024-08-13T10:20:00+02:00</creation>
+      <freetext>Christine MICHEL a déclaré un incendie chez sa voisine Raymonde LECCIA ; jeune-femme inanimée au milieu du salon découverte pendnat l'intervention, en arrêt cardiaque ; a priori la propriétaire des lieux, Raymonde LECCIA, une trentaine d'années</freetext>
     </notes>
   </initialAlert>
   <owner>fr.health.samuXXX</owner>
-  <freetext>Patiente réanimée et accompagnée aux urgences du CHU XXX</freetext>
+  <freetext>Fin de l'intervention et retour du SMUR en base</freetext>
 </createCaseHealthUpdate>

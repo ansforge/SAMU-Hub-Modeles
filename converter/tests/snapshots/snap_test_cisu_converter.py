@@ -116,7 +116,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_bis_messag
                     "uri": "AZ1234"
                   }
                 ],
-                "freetext": "Magasin bleu et jaune\\n Identifiant de localisation : 111fb03a-6fd9-41e0-8e81-990c45188891\\nD\\u00e9tails de commune : Saint-Marthe"
+                "freetext": "Magasin bleu et jaune\\nD\\u00e9tails de commune : Saint-Marthe"
               },
               "initialAlert": {
                 "reception": "2024-05-26T13:15:00+02:00",
@@ -143,7 +143,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_bis_messag
                 },
                 "notes": [
                   {
-                    "freetext": "count: \'1\'\\nfreetext: Femme enceinte de 2 mois qui est tomb\\u00e9 d\'une \\u00e9chelle au bureau. Delphine\\n  Vigneau, 32 ans.\\nmainVictim: ADULTE\\n; - URI: https://hub.esante.gouv.fr/\\n  description: PHOTO\\n; calltakerContact:\\n  channel: PERSONNE\\n  detail: \'+33162863746\'\\n  type: TEL\\ncalltakerId: ARM1234\\ncontrolRoom: CRRA44\\norganization: fr.health.samu440\\nrole: ARM\\n; - Mari m\\u00e9decin\\n"
+                    "freetext": "Pi\\u00e8ces jointes : PHOTO https://hub.esante.gouv.fr/; Contact de l\'op\\u00e9rateur SIS : fr.health.samu440 CRRA44 ARM PERSONNE TEL +33162863746 ARM1234;  Mari m\\u00e9decin"
                   }
                 ]
               },
@@ -155,7 +155,16 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_bis_messag
                   }
                 ]
               },
-              "owner": "fr.health.samuA"
+              "owner": "fr.health.samuA",
+              "medicalNote": [
+                {
+                  "medicalNoteId": "fr.fire.sdisZ.medicalNote.f5de7hj",
+                  "freetext": "Nombre de victimes : \'1\'\\nCommentaire g\\u00e9n\\u00e9ral : Femme enceinte de 2 mois qui est tomb\\u00e9 d\'une \\u00e9chelle au bureau. Delphine\\n  Vigneau, 32 ans.\\nVictime principale : ADULTE\\n",
+                  "operator": {
+                    "role": "AUTRE"
+                  }
+                }
+              ]
             }
           }
         }
@@ -273,7 +282,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_message 1'
                     "uri": "AZ1234"
                   }
                 ],
-                "freetext": "Magasin bleu et jaune\\n Identifiant de localisation : 111fb03a-6fd9-41e0-8e81-990c45188891\\nD\\u00e9tails de commune : Saint-Marthe"
+                "freetext": "Magasin bleu et jaune\\nD\\u00e9tails de commune : Saint-Marthe"
               },
               "initialAlert": {
                 "reception": "2024-05-26T13:15:00+02:00",
@@ -300,7 +309,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_message 1'
                 },
                 "notes": [
                   {
-                    "freetext": "count: \'1\'\\nfreetext: Femme enceinte de 2 mois qui est tomb\\u00e9 d\'une \\u00e9chelle au bureau. Delphine\\n  Vigneau, 32 ans.\\nmainVictim: ADULTE\\n; - URI: https://hub.esante.gouv.fr/\\n  description: PHOTO\\n; calltakerContact:\\n  channel: PERSONNE\\n  detail: \'+33162863746\'\\n  type: TEL\\ncalltakerId: ARM1234\\ncontrolRoom: CRRA44\\norganization: fr.health.samu440\\nrole: ARM\\n; - Mari m\\u00e9decin\\n"
+                    "freetext": "Pi\\u00e8ces jointes : PHOTO https://hub.esante.gouv.fr/; Contact de l\'op\\u00e9rateur SIS : fr.health.samu440 CRRA44 ARM PERSONNE TEL +33162863746 ARM1234;  Mari m\\u00e9decin"
                   }
                 ]
               },
@@ -312,7 +321,16 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_message 1'
                   }
                 ]
               },
-              "owner": "fr.health.samuA"
+              "owner": "fr.health.samuA",
+              "medicalNote": [
+                {
+                  "medicalNoteId": "fr.fire.sdisZ.medicalNote.f5de7hj",
+                  "freetext": "Nombre de victimes : \'1\'\\nCommentaire g\\u00e9n\\u00e9ral : Femme enceinte de 2 mois qui est tomb\\u00e9 d\'une \\u00e9chelle au bureau. Delphine\\n  Vigneau, 32 ans.\\nVictime principale : ADULTE\\n",
+                  "operator": {
+                    "role": "AUTRE"
+                  }
+                }
+              ]
             }
           }
         }
@@ -364,7 +382,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_required_field_messag
                 }
               },
               "location": {
-                "freetext": "\\n Identifiant de localisation : 111fb03a-6fd9-41e0-8e81-990c45188891"
+                "freetext": ""
               },
               "owner": "fr.health.samuA"
             }
@@ -686,6 +704,18 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_exhaustive_message 1'
                   "roomNumber": "2",
                   "entrance": "B"
                 },
+                "externalInfo": [
+                  {
+                    "freetext": "BAN",
+                    "type": "MANUEL",
+                    "uri": "id987"
+                  },
+                  {
+                    "freetext": "BAN",
+                    "uri": "id999",
+                    "type": "AUTRE"
+                  }
+                ],
                 "locID": "LOC-20240210123456-f5de",
                 "country": "FR"
               },
@@ -783,6 +813,18 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_exhaustive_message 1'
                     "roomNumber": "2",
                     "entrance": "B"
                   },
+                  "externalInfo": [
+                    {
+                      "freetext": "BAN",
+                      "type": "MANUEL",
+                      "uri": "id987"
+                    },
+                    {
+                      "freetext": "BAN",
+                      "uri": "id999",
+                      "type": "AUTRE"
+                    }
+                  ],
                   "locID": "LOC-20240210123456-f5de",
                   "country": "FR"
                 }
@@ -844,12 +886,12 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_required_field_messag
               "caseId": "fr.health.samu950.DRFR159502401800159",
               "creation": "2024-01-18T18:00:00+01:00",
               "qualification": {
-                "whatsHappen": {
-                  "code": "C02.08.02",
-                  "label": "Atteinte aux personnes ; Traumatisme / Accident ; Accident domestique"
-                },
                 "victims": {
                   "count": "0"
+                },
+                "whatsHappen": {
+                  "code": "C11.06.00",
+                  "label": "Autre nature de fait"
                 }
               },
               "location": {

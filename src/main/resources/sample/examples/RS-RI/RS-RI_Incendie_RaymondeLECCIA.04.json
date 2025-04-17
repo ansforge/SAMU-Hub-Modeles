@@ -4,20 +4,20 @@
       {
         "team": {
           "medicalLevel": "MED",
-          "name": "Equipe SMUR 3"
+          "name": "Equipe FEU 3"
         },
         "name": "SMUR-Rea3",
-        "datetime": "2024-08-13T10:50:00+01:00",
-        "resourceId": "fr.health.samuXXX.resource.FP517",
+        "datetime": "2024-08-13T10:23:00+02:00",
+        "resourceId": "fr.health.samuXXX.resource.SMUR268",
         "orgId": "fr.health.samuXXX",
         "state": [
           {
             "status": "DECLENCHE",
-            "datetime": "2024-08-13T10:50:00+01:00",
+            "datetime": "2024-08-13T10:24:00+02:00",
             "availability": false
           },
           {
-            "datetime": "2024-08-13T10:49:00+01:00",
+            "datetime": "2024-08-13T10:23:00+02:00",
             "status": "DECISION"
           }
         ],
@@ -27,7 +27,7 @@
         "team": {
           "medicalLevel": "MED"
         },
-        "datetime": "2024-08-13T10:50:00+01:00",
+        "datetime": "2024-08-13T10:23:00+02:00",
         "resourceId": "fr.health.samuXXX.resource.SMUR268",
         "orgId": "fr.health.samuXXX",
         "vehicleType": "SMUR.AR",

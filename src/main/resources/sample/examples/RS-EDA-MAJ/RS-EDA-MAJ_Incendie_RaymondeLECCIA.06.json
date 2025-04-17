@@ -12,12 +12,12 @@
     "initialAlert": {
       "notes": [
         {
-          "freetext": "Une voisine constate un départ de feu dans la maison de sa voisine Raymonde LECCIA",
-          "creation": "2024-08-13T10:26:00+01:00"
+          "freetext": "Christine MICHEL a déclaré un incendie chez sa voisine Raymonde LECCIA ; jeune-femme inanimée au milieu du salon découverte pendnat l'intervention, en arrêt cardiaque ; a priori la propriétaire des lieux, Raymonde LECCIA, une trentaine d'années",
+          "creation": "2024-08-13T10:20:00+02:00"
         }
       ]
     },
-    "freetext": "SMUR en route pour prise en charge de la victime",
+    "freetext": "Patiente réanimée et accompagnée aux urgences du CHU XXX",
     "perimeter": "AMU",
     "owner": "fr.health.samuXXX"
   }

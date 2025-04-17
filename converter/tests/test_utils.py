@@ -1,5 +1,6 @@
+from unittest.mock import patch
 import pytest
-from converter.utils import add_object_to_initial_alert_notes, get_field_value, is_field_completed, format_object, delete_paths
+from converter.utils import concatenate_values, get_field_value, is_field_completed, format_object, delete_paths, translate_key_words, update_json_value
 import unittest
 import json
 import os
@@ -79,32 +80,71 @@ def test_delete_paths_cleanup():
     delete_paths(data, ["a.b.c"])
     assert data == {}  # Empty dictionaries should be cleaned up
 
-def test_add_note_to_existing_notes():
-    output_json = {
-        'initialAlert': {
-            'notes': [{"freetext": "Existing note"}]
-        }
+def test_translate_keys():
+    translation_mapping = {
+        "translate":"change",
+        "this": "that ",
+        "a ": "one"
     }
-    note_text = "New note"
+    input_text = 'thisis a random string totranslate'
+    output_text = translate_key_words(input_text, translation_mapping)
+    assert output_text == 'that is onerandom string tochange'
 
-    add_object_to_initial_alert_notes(output_json, note_text)
-
-    assert {"freetext": "New note"} in output_json['initialAlert']['notes']
-    assert {"freetext": "Existing note"} in output_json['initialAlert']['notes']
-    assert len(output_json['initialAlert']['notes']) == 2
-
-def test_add_note_to_empty_notes():
-    output_json = {
-        'initialAlert': {
-            'otherField': 'value'
-        }
+def test_concatenate():
+    data = {
+        "key1": "this",
+        "key2": "should",
+        "key3": {
+            "subkey1": "form",
+            "subkey2": "a",
+            "subkey3": "complete"
+        },
+        "key4": "sentence",
     }
-    note_text = "New note"
 
-    add_object_to_initial_alert_notes(output_json, note_text)
+    assert concatenate_values(data) == " this should form a complete sentence"
 
-    assert {"freetext": "New note"} in output_json['initialAlert']['notes']
-    assert len(output_json['initialAlert']['notes']) == 1
+def test_empty_concatenate():
+    data = {}
+
+    assert concatenate_values(data) == ""
+def test_delete_paths_with_list():
+    data = {
+        "a": {
+            "b": {
+                "c": [{'delete': 1, 'keep':2}, {'delete': 2, 'keep':3}, {'delete': 4, 'keep':5}],
+                "d": 2
+            },
+            "e": 3
+        },
+        "f": 4
+    }
+    delete_paths(data, ["a.b.c[].delete"])
+
+    assert data["a"]["b"]["c"] == [{'keep':2}, {'keep':3}, {'keep':5}]
+    assert len(data["a"]["b"]["c"]) == 3
+    assert data["a"]["b"]["d"] == 2
+    assert data["a"]["e"] == 3
+    assert data["f"] == 4
+
+def test_delete_paths_with_wrong_list():
+    data = {
+        "a": {
+            "b": {
+                "c": [{'delete': 1, 'keep':2}, {'delete': 2, 'keep':3}, {'delete': 4, 'keep':5}],
+                "d": 2
+            },
+            "e": 3
+        },
+        "f": 4
+    }
+    delete_paths(data, ["a.b.c[].toto"])
+
+    assert data["a"]["b"]["c"] == [{'delete': 1, 'keep':2}, {'delete': 2, 'keep':3}, {'delete': 4, 'keep':5}]
+    assert len(data["a"]["b"]["c"]) == 3
+    assert data["a"]["b"]["d"] == 2
+    assert data["a"]["e"] == 3
+    assert data["f"] == 4
 
 class TestIsFieldCompleted(unittest.TestCase):
     @classmethod
@@ -180,6 +220,38 @@ class TestGetFieldValue(unittest.TestCase):
         with self.assertRaises(Exception):
             get_field_value(self.json_data, "$toto")
 
+class TestUpdateJsonValue(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.json_data = load_json_file("./fixtures/json_data_fixture.json")
+
+    def test_update_json_value_single_match(self):
+        self.assertEqual(self.json_data["qualification"]["details"]["priority"], "P1")
+        update_json_value(self.json_data, "$.qualification.details.priority", "P2")
+        self.assertEqual(self.json_data["qualification"]["details"]["priority"], "P2")
+
+    def test_update_json_value_error_case(self):
+        with self.assertRaises(Exception):
+            update_json_value(self.json_data, "$..", "Invalid")
+
+    def test_update_json_value_several_matches(self):
+        self.assertEqual(self.json_data["qualification"]["riskThreat"][0]["code"], "R13")
+        update_json_value(self.json_data, "$.qualification.riskThreat[*].code", 100)
+        for code in self.json_data["qualification"]["riskThreat"]:
+            self.assertEqual(code["code"], 100)
+
+    def test_update_json_value_no_match(self):
+        try:
+            update_json_value(self.json_data, "$.qualification.riskThreat[*].toto", 100)
+        except Exception as e:
+            self.fail(f"update_json_value raised an exception: {e}")
+
+
+    @patch('builtins.print')
+    def test_update_json_value_prints_error(self, mock_print):
+        with self.assertRaises(Exception):
+            update_json_value(self.json_data, "$..", "Invalid")
+        mock_print.assert_called_with("Error raised in update_json_value: Parse error near the end of string!")
 
 if __name__ == "__main__":
     unittest.main()
