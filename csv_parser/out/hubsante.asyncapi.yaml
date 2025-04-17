@@ -7247,7 +7247,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/errorCode/statusCode
-          description: Code numerique represenant l'erreur
+          description: Code numerique representant l'erreur
           examples:
           - 101
         statusString:
