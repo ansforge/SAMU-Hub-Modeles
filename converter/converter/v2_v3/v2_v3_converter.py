@@ -30,23 +30,23 @@ class V2_V3Converter:
     V3_TO_V2_QUALIFICATION_ORIGIN_MAPPING = {
         "15":"15",
         "116117":"116117",
-        "AUTOCOM":"null",
+        "AUTOCOM":None,
         "112":"112",
-        "115":"null",
-        "CRRA":"null",
-        "AUTREC15":"null",
+        "115":None,
+        "CRRA":None,
+        "AUTREC15":None,
         "CTA-CONF":"18",
-        "CTA-PI":"null",
-        "AUTRECTA":"null",
-        "CNR":"null",
+        "CTA-PI":None,
+        "AUTRECTA":None,
+        "CNR":None,
         "FDO":"17",
-        "SNATED":"null",
-        "PDSSOS":"null",
-        "TELASSIST":"null",
-        "CROSS":"null",
-        "PUBLIC":"null",
-        "DATA":"null",
-        "AUTRE":"null",
+        "SNATED":None,
+        "PDSSOS":None,
+        "TELASSIST":None,
+        "CROSS":None,
+        "PUBLIC":None,
+        "DATA":None,
+        "AUTRE":None,
     }
 
     V3_TO_V2_QUALIFICATION_DETAILS_STATUS_MAPPING = {
@@ -155,7 +155,7 @@ class V2_V3Converter:
 
         map_to_new_value(output_use_case_json,'$.interventionType', cls.V3_TO_V2_INTERVENTION_TYPE_MAPPING)
         map_to_new_value(output_use_case_json,'$.qualification.origin', cls.V3_TO_V2_QUALIFICATION_ORIGIN_MAPPING)
-        if(get_field_value(output_use_case_json, '$.qualification.origin') == 'null'): ## todo - passer en medical note
+        if(get_field_value(output_use_case_json, '$.qualification.origin') == None): ## todo - passer en medical note
             delete_paths(output_use_case_json, ["qualification.origin"])
         map_to_new_value(output_use_case_json,'$.qualification.details.status', cls.V3_TO_V2_QUALIFICATION_DETAILS_STATUS_MAPPING)
         map_to_new_value(output_use_case_json,'$.qualification.details.attribution', cls.V3_TO_V2_DETAIL_ATTRIBUTION_MAPPING)
