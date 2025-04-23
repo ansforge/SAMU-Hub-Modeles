@@ -1,0 +1,225 @@
+{
+  "createCaseHealth": {
+    "caseId": "fr.fire.sis044.cga-044.SC-20240526-044-cga-AL8",
+    "senderCaseId": "DRFR154402414300123",
+    "creation": "2024-05-26T13:15:00+02:00",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C02.05.02",
+        "label": "Obstétrique"
+      },
+      "locationKind": {
+        "code": "L04.02.00",
+        "label": "Centre commercial / magasin"
+      },
+      "healthMotive": {
+        "code": "M03.03",
+        "label": "Saignements gynécologiques"
+      },
+      "details": {
+        "priority": "P2",
+        "attribution": "DRM.SPE.AUTRESPE",
+        "status": "PROGRAM"
+      },
+      "origin": "AUTOCOM"
+    },
+    "location": {
+      "detailedAddress": {
+        "complete": "Boulevard Salvador Allende",
+        "wayName": {
+          "complete": "Boulevard Salvador Allende",
+          "type": "Boulevard",
+          "name": "Salvador Allende"
+        }
+      },
+      "city": {
+        "name": "Saint-Herblain",
+        "inseeCode": "44162"
+      },
+      "access": {
+        "floor": "RDC",
+        "buildingName": "Soleil"
+      },
+      "geometry": {
+        "point": {
+          "coord": {
+            "lat": 47.146089,
+            "lon": -1.691374,
+            "precision": "EXACTE"
+          }
+        },
+        "datetime": "2024-05-26T13:13:00+02:00"
+      },
+      "externalLocationId": [
+        {
+          "source": "SIRET",
+          "value": "70142121200018"
+        }
+      ],
+      "name": "Centre Commercial Atlantis"
+    },
+    "initialAlert": {
+      "reception": "2024-05-26T13:15:00+02:00",
+      "caller": {
+        "callerContact": {
+          "type": "TEL",
+          "detail": "+33671832618",
+          "channel": "PERSONNE"
+        },
+        "detailedName": {
+          "complete": "Agnès Duberti",
+          "lastName": "Duberti",
+          "firstName": "Agnès"
+        },
+        "language": "fr",
+        "type": "TIERS",
+        "callbackContact": {
+          "channel": "DEFIBRILLATEUR",
+          "type": "TEL",
+          "detail": "+33671832618"
+        },
+        "communication": "AUCUNE"
+      }
+    },
+    "patient": [
+      {
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Delphine Vigneau",
+            "lastName": "Vigneau",
+            "firstName": "Delphine"
+          },
+          "strictFeatures": {
+            "sex": "F",
+            "birthDate": "1992-03-03"
+          }
+        },
+        "patientId": "fr.health.samu440.patient.DRFR154402414300123.1",
+        "detail": {
+          "age": "P32Y"
+        },
+        "hypothesis": {
+          "mainDiagnosis": {
+            "code": "O20",
+            "label": "Hémorragie en début de grossesse"
+          }
+        },
+        "administrativeFile": {
+          "generalPractitioner": {
+            "detailedName": {
+              "complete": "Medecin traitant",
+              "lastName": "traitant",
+              "firstName": "medecin"
+            },
+            "rppsId": "12345678901",
+            "contact": [
+              {
+                "type": "EMAIL",
+                "detail": "email@email.com"
+              },
+              {
+                "type": "TEL",
+                "detail": "+334564789541657"
+              }
+            ]
+          },
+          "externalId": [
+            {
+              "source": "DOSSARD",
+              "value": "Numero dossard"
+            },
+            {
+              "source": "AUTRE",
+              "value": "123456789123"
+            }
+          ]
+        }
+      },
+      {
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Clément Thomas",
+            "lastName": "Thomas",
+            "firstName": "Clément"
+          },
+          "strictFeatures": {
+            "sex": "F",
+            "birthDate": "1992-03-03"
+          }
+        },
+        "patientId": "fr.health.samu440.patient.DRFR154402414300123.2",
+        "detail": {
+          "age": "P32Y"
+        },
+        "hypothesis": {
+          "mainDiagnosis": {
+            "code": "O20",
+            "label": "Hémorragie en début de grossesse"
+          }
+        }
+      }
+    ],
+    "owner": "fr.health.samu440",
+    "additionalInformation": {
+      "customMap": [
+        {
+          "key": "COMMERCIAL",
+          "value": "IKEA Nantes"
+        }
+      ]
+    },
+    "interventionType": "T1",
+    "decision": [
+      {
+        "operator": {
+          "role": "PILOTE",
+          "label": "Rémi Martin"
+        },
+        "patientId": "fr.health.samu440.patient.DRFR154402414300123.1",
+        "creation": "2024-05-26T13:20:00+02:00",
+        "decisionType": "INTER",
+        "resourceType": "SMUR"
+      },
+      {
+        "operator": {
+          "role": "MEDECIN",
+          "label": "Jean Pat"
+        },
+        "patientId": "fr.health.samu440.patient.DRFR154402414300123.1",
+        "creation": "2024-05-26T13:20:00+02:00",
+        "decisionType": "INTER",
+        "resourceType": "SMUR",
+        "orientationType": "REA-USI",
+        "destination": {
+          "freetext": "Hôpital Saint-Louis",
+          "externalLocationId": [
+            {
+              "source": "FINESS_GEOGRAPHIQUE",
+              "value": "680020096"
+            }
+          ]
+        }
+      }
+    ],
+    "medicalNote": [
+      {
+        "creation": "2024-05-18T18:15:00+02:00",
+        "freetext": "Asthmatique",
+        "operator": {
+          "role": "ARM"
+        },
+        "patientId": "fr.health.samu440.patient.DRFR154402413800236.2",
+        "medicalNoteId": "fr.health.samu440.medicalNote.0001"
+      },
+      {
+        "creation": "2024-05-18T18:15:00+02:00",
+        "freetext": "Asthmatique",
+        "operator": {
+          "role": "PILOTE"
+        },
+        "patientId": "fr.health.samu440.patient.DRFR154402413800236.2",
+        "medicalNoteId": "fr.health.samu440.medicalNote.0001"
+      }
+    ]
+  }
+}
