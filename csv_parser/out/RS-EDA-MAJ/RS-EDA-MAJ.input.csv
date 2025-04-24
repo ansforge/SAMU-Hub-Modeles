@@ -42,7 +42,7 @@ A réception, les informations de cet attribut sont à mapper et afficher dans u
 ,,Date et heure de l'information complémentaire,,,,A valoriser avec le groupe date heure de création de l'information complémentaire,,creation,0..1,,datetime,Format datetime décrit dans le DST
 ,,Commentaire/Observations,,,,"A valoriser avec un texte libre contenant les indications complémentaires renseignées sur l'alerte/appel.
 
-Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes à caractère médical, qui serait liée à un interrogatoire ARM ou médecin, ou à un patient en particulier","Accident de bricolage, accident domestique, déclenchement téléalarme, voisine sur les lieux",freetext,0..1,,string,
+Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes à caractère médical, qui serait liée à un interrogatoire ARM ou médecin, ou à un patient en particulier",n,freetext,0..1,,string,
 CRRA traitant,,,,,,"Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA
 A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{domaine}.{organisation})",fr.health.samu440,owner,0..1,,string,"REGEX: ^([\w-]+\.?){4,9}$"
 Patient,,,,,,Objet qui permet l'identification des patients / victimes,,patient,0..n,X,patient,
