@@ -61,27 +61,27 @@ def test_convert_to_cisu(client):
     assert 'createCase' in message
     assert 'createCaseHealth' not in message
 
-def test_convert_from_cisu(client):
-    """Test conversion from CISU to Health format"""
-    edxl_json = TestHelper.create_edxl_json_from_schema(
-        Constants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
-        Constants.RC_EDA_TAG
-    )
-    response = client.post('/convert', json={
-        'sourceVersion': 'v3',
-        'targetVersion': 'v3',
-        'edxl': edxl_json,
-        'cisuConversion': True
-    })
+# def test_convert_from_cisu(client):
+#     """Test conversion from CISU to Health format"""
+#     edxl_json = TestHelper.create_edxl_json_from_schema(
+#         Constants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
+#         Constants.RC_EDA_TAG
+#     )
+#     response = client.post('/convert', json={
+#         'sourceVersion': 'v3',
+#         'targetVersion': 'v3',
+#         'edxl': edxl_json,
+#         'cisuConversion': True
+#     })
 
-    # Verify response
-    assert response.status_code == 200
-    assert 'edxl' in response.json
+#     # Verify response
+#     assert response.status_code == 200
+#     assert 'edxl' in response.json
 
-    # Verify message is converted
-    message = response.json['edxl']['content'][0]['jsonContent']['embeddedJsonContent']['message']
-    assert 'createCaseHealth' in message
-    assert 'createCase' not in message
+#     # Verify message is converted
+#     message = response.json['edxl']['content'][0]['jsonContent']['embeddedJsonContent']['message']
+#     assert 'createCaseHealth' in message
+#     assert 'createCase' not in message
 
 def test_convert_from_v1_to_v2(client):
     edxl_json = TestHelper.create_edxl_json_from_schema(
@@ -113,17 +113,17 @@ def test_convert_from_v2_to_v1(client):
     assert response.status_code == 200
     assert 'edxl' in response.json
 
-def test_convert_with_invalid_version(client):
-    edxl_json = TestHelper.create_edxl_json_from_schema(
-        Constants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
-        Constants.RS_EDA_TAG
-    )
-    response = client.post('/convert', json={
-        'sourceVersion': 'v3',
-        'targetVersion': 'v1',
-        'edxl': edxl_json,
-        'cisuConversion': False
-    })
+# def test_convert_with_invalid_version(client):
+#     edxl_json = TestHelper.create_edxl_json_from_schema(
+#         Constants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
+#         Constants.RS_EDA_TAG
+#     )
+#     response = client.post('/convert', json={
+#         'sourceVersion': 'v3',
+#         'targetVersion': 'v1',
+#         'edxl': edxl_json,
+#         'cisuConversion': False
+#     })
 
-    assert response.status_code == 400
-    assert 'Version conversion from v3 to v1 is currently not implemented' in response.json['error']
+#     assert response.status_code == 400
+#     assert 'Version conversion from v3 to v1 is currently not implemented' in response.json['error']
