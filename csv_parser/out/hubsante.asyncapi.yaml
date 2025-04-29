@@ -5207,7 +5207,7 @@ components:
           examples:
           - 80
         cap:
-          type: string
+          type: number
           title: Direction de la ressource
           x-health-only: false
           x-cols: 6

@@ -61,7 +61,7 @@
                     "description": "Vitesse de la ressource enregistrée, exprimée en km/h"
                 },
                 "cap": {
-                    "type": "string",
+                    "type": "number",
                     "title": "Direction de la ressource",
                     "x-health-only": false,
                     "x-cols": 6,

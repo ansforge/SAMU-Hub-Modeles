@@ -31,7 +31,7 @@ OU - uniquement dans le cas où un ID unique de ressource ne peut pas être gara
                     <documentation>Vitesse de la ressource enregistrée, exprimée en km/h</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="cap" type="string">
+            <element minOccurs="0" name="cap" type="decimal">
                 <annotation>
                     <documentation>Direction de la ressource, exprimé en degrés</documentation>
                 </annotation>
