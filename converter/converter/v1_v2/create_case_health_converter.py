@@ -5,7 +5,7 @@ from converter.v1_v2.utils import add_to_medical_notes, map_to_new_value, revers
 
 from ..utils import delete_paths, get_field_value, is_field_completed
 
-class V1_V2Converter:
+class CreateHealthCaseConverter:
     DIAGNOSIS_CODE_VALIDATION_REGEX='^[A-Z]\\d{2}(\\.[\\d\\+\\-]{1,3})?$'
 
     V1_PATHS_TO_DELETE = [
