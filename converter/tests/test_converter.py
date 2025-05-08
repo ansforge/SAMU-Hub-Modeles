@@ -126,4 +126,4 @@ def test_convert_with_invalid_version(client):
     })
 
     assert response.status_code == 400
-    assert 'Version conversion from v3 to v1 is currently not implemented' in response.json['error']
+    assert "Version conversion from v3 to v1 for message type 'createCaseHealth' is currently not implemented" in response.json['error']
