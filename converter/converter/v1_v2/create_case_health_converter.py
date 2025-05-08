@@ -1,11 +1,15 @@
 from typing import Dict, Any
 import copy
 
+from converter.v1_v2.base_message_converter import BaseMessageConverter
 from converter.v1_v2.utils import add_to_medical_notes, map_to_new_value, reverse_map_to_new_value, switch_field_name, validate_diagnosis_code
 
 from ..utils import delete_paths, get_field_value, is_field_completed
 
-class CreateHealthCaseConverter:
+class CreateHealthCaseConverter(BaseMessageConverter):
+    def __init__(self):
+        BaseMessageConverter.__init__(self, "createCaseHealth")
+
     DIAGNOSIS_CODE_VALIDATION_REGEX='^[A-Z]\\d{2}(\\.[\\d\\+\\-]{1,3})?$'
 
     V1_PATHS_TO_DELETE = [
@@ -246,7 +250,7 @@ class CreateHealthCaseConverter:
     ]
 
     @classmethod
-    def upgrade(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
+    def convert_v1_to_v2(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
         # Create independent envelope copy without use case for output
         output_json = copy.deepcopy(input_json)
         if 'createCaseHealth' not in input_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {}):
@@ -291,7 +295,7 @@ class CreateHealthCaseConverter:
         return output_json
 
     @classmethod
-    def downgrade(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
+    def convert_v2_to_v1(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
         def update_language(json_data:Dict[str, Any]):
             language = get_field_value(json_data, '$.initialAlert.caller.language')
             if language in cls.V1_TO_V2_LANGUAGE:
