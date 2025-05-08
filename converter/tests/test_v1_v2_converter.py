@@ -13,7 +13,7 @@ def test_V1_to_V2_upgrade():
     TestHelper.conversion_tests_runner(
         sample_dir=Constants.RS_EDA_TAG,
         envelope_file=Constants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
-        converter_method=CreateHealthCaseConverter.upgrade,
+        converter_method=CreateHealthCaseConverter.convert_v1_to_v2,
         target_schema=v2_schema,
         online_tag=Constants.V1_GITHUB_TAG
     )
@@ -25,7 +25,7 @@ def test_V2_to_V1_downgrade():
     TestHelper.conversion_tests_runner(
         sample_dir=Constants.RS_EDA_TAG,
         envelope_file=Constants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
-        converter_method=CreateHealthCaseConverter.downgrade,
+        converter_method=CreateHealthCaseConverter.convert_v2_to_v1,
         target_schema=v1_schema,
         online_tag=Constants.V2_GITHUB_TAG
     )
@@ -40,7 +40,7 @@ class TestSnapshotV1V2Converter(TestCase):
             "tests/fixtures/v1_v2/RS-EDA_V1.0_exhaustive_fill.json"
         )
         converter = CreateHealthCaseConverter()
-        output_data = converter.upgrade(message)
+        output_data = converter.convert_v1_to_v2(message)
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
     @patch('converter.v1_v2.utils.random')
@@ -52,5 +52,5 @@ class TestSnapshotV1V2Converter(TestCase):
             "tests/fixtures/v1_v2/RS-EDA_V2.0_exhaustive_fill.json"
         )
         converter = CreateHealthCaseConverter()
-        output_data = converter.downgrade(message)
+        output_data = converter.convert_v2_to_v1(message)
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
