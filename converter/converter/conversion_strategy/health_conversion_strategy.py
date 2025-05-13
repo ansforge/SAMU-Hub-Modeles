@@ -12,12 +12,12 @@ def health_conversion_strategy(edxl_json, source_version: str, target_version: s
     elif 'reference' in message_content:
         return ReferenceConverter().convert(source_version, target_version, edxl_json)
     else:
-        deducted_message_type = extract_message_type_from_rcde(message_content)
+        deducted_message_type = extract_message_type_from_message_content(message_content)
         BaseMessageConverter(deducted_message_type).raise_conversion_not_implemented_error(source_version, target_version)
 
 unwanted_keys = ["messageId", "sender", "sentAt", "kind", "status", "recipient"]
 
-def extract_message_type_from_rcde(message_content):
+def extract_message_type_from_message_content(message_content):
     filtered_keys = list(filter(lambda key: key not in unwanted_keys, message_content.keys()))
     if len(filtered_keys) == 0:
         return "unknownMessageType"
