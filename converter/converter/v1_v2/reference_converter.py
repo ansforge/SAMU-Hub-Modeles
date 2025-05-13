@@ -4,7 +4,7 @@ from converter.v1_v2.base_message_converter import BaseMessageConverter
 
 class ReferenceConverter(BaseMessageConverter):
     def __init__(self):
-        BaseMessageConverter.__init__(self, "createCaseHealth")
+        BaseMessageConverter.__init__(self, "reference")
 
     def convert_v1_to_v2(self, input_json) -> Dict[str, Any]:
         return input_json
