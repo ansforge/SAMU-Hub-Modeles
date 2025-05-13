@@ -37,7 +37,7 @@ class BaseMessageConverter:
                 edxl_json
             )
 
-            # Call convert with the new source_version
+            # Recursively call convert with the new source_version
             return self.convert(
                 version_order_list[source_version_index + version_delta],
                 target_version, 
