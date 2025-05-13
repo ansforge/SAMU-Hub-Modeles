@@ -5,6 +5,7 @@ generator/classes/**
 build/**
 reportgeneratortool/**
 coveragereport/**
+.github/.tmp/
 
 web_specs/generated/**
 bin/
