@@ -149,6 +149,17 @@ class V2_V3Converter:
                 delete_paths(output_use_case_json, ["qualification.origin"])
             map_to_new_value(output_use_case_json,'$.qualification.origin', cls.V3_TO_V2_QUALIFICATION_ORIGIN_MAPPING)
 
+        def validate_admin_file_external_ids(patient):
+            if(is_field_completed(patient,'$.administrativeFile.externalId')):
+                external_ids = get_field_value(patient,'$.administrativeFile.externalId')
+                external_valid_ids = []
+                for index, external_id in enumerate(external_ids):
+                        if(get_field_value(external_id,'$.source')=="AUTRE"):
+                            add_to_medical_notes(output_use_case_json, patient, [f"administrativeFile.externalId[{index}]"])
+                        else :
+                            external_valid_ids.append(external_id)
+                patient["administrativeFile"]["externalId"]=external_valid_ids
+
         # Create independent envelope copy without use case for output
         output_json = copy.deepcopy(input_json)
         if 'createCaseHealth' not in input_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {}):
@@ -169,15 +180,7 @@ class V2_V3Converter:
 
         patients = get_field_value(output_use_case_json,'$.patient')
         for patient in patients:
-            if(is_field_completed(patient,'$.administrativeFile.externalId')):
-                external_ids = get_field_value(patient,'$.administrativeFile.externalId')
-                external_valid_ids = []
-                for index, external_id in enumerate(external_ids):
-                        if(get_field_value(external_id,'$.source')=="AUTRE"):
-                            add_to_medical_notes(output_use_case_json, patient, [f"administrativeFile.externalId[{index}]"])
-                        else :
-                            external_valid_ids.append(external_id)
-                patient["administrativeFile"]["externalId"]=external_valid_ids
+            validate_admin_file_external_ids(patient)
 
         medical_notes = get_field_value(output_use_case_json,'$.medicalNote')
         if medical_notes != None:
