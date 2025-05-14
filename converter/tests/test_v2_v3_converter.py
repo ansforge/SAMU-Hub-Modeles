@@ -1,7 +1,7 @@
 import json
 from unittest.mock import patch
 from converter.constants import Constants
-from converter.v2_v3.v2_v3_converter import V2_V3Converter
+from converter.v2_v3.create_case_health_converter import CreateHealthCaseConverter
 from .test_helpers import TestHelper, get_file_endpoint
 from snapshottest import TestCase
 
@@ -13,7 +13,7 @@ def test_V2_to_V3_upgrade():
     TestHelper.conversion_tests_runner(
         sample_dir=Constants.RS_EDA_TAG,
         envelope_file=Constants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
-        converter_method=V2_V3Converter.upgrade,
+        converter_method=CreateHealthCaseConverter.convert_v2_to_v3,
         target_schema=v3_schema,
         online_tag=Constants.V2_GITHUB_TAG
     )
@@ -25,7 +25,7 @@ def test_V3_to_V2_downgrade():
     TestHelper.conversion_tests_runner(
         sample_dir=Constants.RS_EDA_TAG,
         envelope_file=Constants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
-        converter_method=V2_V3Converter.downgrade,
+        converter_method=CreateHealthCaseConverter.convert_v3_to_v2,
         target_schema=v2_schema,
         online_tag=Constants.V3_GITHUB_TAG
     )
@@ -39,8 +39,8 @@ class TestSnapshotV2V3Converter(TestCase):
             Constants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
             "tests/fixtures/v2_v3/RS-EDA_V2.0_exhaustive_fill.json"
         )
-        converter = V2_V3Converter()
-        output_data = converter.upgrade(message)
+        converter = CreateHealthCaseConverter()
+        output_data = converter.convert_v2_to_v3(message)
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
     @patch('converter.utils.random')
@@ -52,6 +52,6 @@ class TestSnapshotV2V3Converter(TestCase):
             "tests/fixtures/v2_v3/RS-EDA_V3.0_exhaustive_fill.json"
         )
 
-        converter = V2_V3Converter()
-        output_data = converter.downgrade(message)
+        converter = CreateHealthCaseConverter()
+        output_data = converter.convert_v3_to_v2(message)
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))

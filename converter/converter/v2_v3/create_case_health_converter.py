@@ -1,9 +1,14 @@
 from typing import Dict, Any
 import copy
 
-from converter.utils import add_to_medical_notes, delete_paths, get_field_value, is_field_completed, map_to_new_value
+from converter.v1_v2.base_message_converter import BaseMessageConverter
 
-class V2_V3Converter:
+from ..utils import add_to_medical_notes, delete_paths, get_field_value, is_field_completed, map_to_new_value
+
+class CreateHealthCaseConverter(BaseMessageConverter):
+    def __init__(self):
+        BaseMessageConverter.__init__(self, "createCaseHealth")
+
     V3_TO_V2_INTERVENTION_TYPE_MAPPING = {
         "T1":"PRIMAIRE",
         "T2-INTER":"SECONDAIRE",
@@ -95,7 +100,7 @@ class V2_V3Converter:
     ]
 
     V3_PATHS_TO_DELETE = [
-        "decision[].destination", # todo - passer en medical notes mais pas de patient associé (?)
+        "decision[].destination",
     ]
 
     V2_PATIENT_PATHS_TO_ADD_TO_MEDICAL_NOTES = [
@@ -103,7 +108,7 @@ class V2_V3Converter:
     ]
 
     @classmethod
-    def upgrade(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
+    def convert_v2_to_v3(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
         # Create independent envelope copy without use case for output
         output_json = copy.deepcopy(input_json)
         if 'createCaseHealth' not in input_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {}):
@@ -140,8 +145,9 @@ class V2_V3Converter:
         output_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth'] = output_use_case_json
         return output_json
 
+
     @classmethod
-    def downgrade(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
+    def convert_v3_to_v2(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
         def update_qualification_origin():
             current_origin = get_field_value(output_use_case_json, "$.qualification.origin")
             if(cls.V3_TO_V2_QUALIFICATION_ORIGIN_MAPPING.get(current_origin, current_origin) == None):
