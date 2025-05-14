@@ -186,8 +186,9 @@ class V2_V3Converter:
 
         decisions = get_field_value(output_use_case_json,'$.decision')
         if decisions != None:
-             for decision in decisions:
+             for index, decision in enumerate(decisions):
                   map_to_new_value(decision,'$.orientationType', cls.V3_TO_V2_ORIENTATION_TYPE)
+                  add_to_medical_notes(output_use_case_json, None, [f"decision[{index}].destination"])
 
         # /!\ Warning - It must be the last step
         delete_paths(output_use_case_json, cls.V3_PATHS_TO_DELETE)

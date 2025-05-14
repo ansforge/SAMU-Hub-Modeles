@@ -638,8 +638,15 @@ snapshots['TestSnapshotV2V3Converter::test_snapshot_V3_to_V2_downgrade 1'] = '''
                   "medicalNoteId": "fr.health.samu440.medicalNote.0001"
                 },
                 {
-                  "patientId": "fr.health.samu440.patient.DRFR154402414300123.1",
                   "medicalNoteId": "fr.health.samu440.medicalNote.f5de7hj",
+                  "freetext": "AUTOCOM\\n...\\n",
+                  "operator": {
+                    "role": "AUTRE"
+                  }
+                },
+                {
+                  "patientId": "fr.health.samu440.patient.DRFR154402414300123.1",
+                  "medicalNoteId": "fr.health.samu440.medicalNote.a3b2YH8",
                   "freetext": "source: AUTRE\\nvalue: \'123456789123\'\\n",
                   "operator": {
                     "role": "AUTRE"
