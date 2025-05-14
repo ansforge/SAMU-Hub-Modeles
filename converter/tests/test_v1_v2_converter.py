@@ -1,7 +1,7 @@
 import json
 from unittest.mock import patch
 from converter.constants import Constants
-from converter.v1_v2.create_case_health_converter import CreateHealthCaseConverter
+from converter.versions.create_case_health_converter import CreateHealthCaseConverter
 from .test_helpers import TestHelper, get_file_endpoint
 from snapshottest import TestCase
 

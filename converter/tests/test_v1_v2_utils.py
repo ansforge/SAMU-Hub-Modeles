@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from converter.v1_v2.utils import reverse_map_to_new_value, switch_field_name, validate_diagnosis_code
+from converter.versions.v1_v2.utils import reverse_map_to_new_value, switch_field_name, validate_diagnosis_code
 class TestSwitchFieldName(unittest.TestCase):
     def test_switch_field_name(self):
             json_data = {
