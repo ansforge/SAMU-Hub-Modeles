@@ -142,6 +142,13 @@ class V2_V3Converter:
 
     @classmethod
     def downgrade(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
+        def update_qualification_origin():
+            current_origin = get_field_value(output_use_case_json, "$.qualification.origin")
+            if(cls.V3_TO_V2_QUALIFICATION_ORIGIN_MAPPING.get(current_origin, current_origin) == None):
+                add_to_medical_notes(output_use_case_json, None, [f"qualification.origin"])
+                delete_paths(output_use_case_json, ["qualification.origin"])
+            map_to_new_value(output_use_case_json,'$.qualification.origin', cls.V3_TO_V2_QUALIFICATION_ORIGIN_MAPPING)
+
         # Create independent envelope copy without use case for output
         output_json = copy.deepcopy(input_json)
         if 'createCaseHealth' not in input_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {}):
@@ -152,10 +159,8 @@ class V2_V3Converter:
         input_use_case_json = input_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth']
         output_use_case_json = copy.deepcopy(input_use_case_json)
 
+        update_qualification_origin()
         map_to_new_value(output_use_case_json,'$.interventionType', cls.V3_TO_V2_INTERVENTION_TYPE_MAPPING)
-        map_to_new_value(output_use_case_json,'$.qualification.origin', cls.V3_TO_V2_QUALIFICATION_ORIGIN_MAPPING)
-        if(get_field_value(output_use_case_json, '$.qualification.origin') == None): ## todo - passer en medical note
-            delete_paths(output_use_case_json, ["qualification.origin"])
         map_to_new_value(output_use_case_json,'$.qualification.details.status', cls.V3_TO_V2_QUALIFICATION_DETAILS_STATUS_MAPPING)
         map_to_new_value(output_use_case_json,'$.qualification.details.attribution', cls.V3_TO_V2_DETAIL_ATTRIBUTION_MAPPING)
         map_to_new_value(output_use_case_json,'$.decision.orientationType', cls.V3_TO_V2_ORIENTATION_TYPE)

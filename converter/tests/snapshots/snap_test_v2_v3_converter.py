@@ -644,6 +644,13 @@ snapshots['TestSnapshotV2V3Converter::test_snapshot_V3_to_V2_downgrade 1'] = '''
                   "operator": {
                     "role": "AUTRE"
                   }
+                },
+                {
+                  "medicalNoteId": "fr.health.samu440.medicalNote.c9d8jk9",
+                  "freetext": "externalLocationId:\\n- source: FINESS_GEOGRAPHIQUE\\n  value: \'680020096\'\\nfreetext: H\\u00f4pital Saint-Louis\\n",
+                  "operator": {
+                    "role": "AUTRE"
+                  }
                 }
               ]
             }
