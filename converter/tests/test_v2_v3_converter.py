@@ -31,7 +31,7 @@ def test_V3_to_V2_downgrade():
     )
 
 class TestSnapshotV2V3Converter(TestCase):
-    @patch('converter.v1_v2.utils.random')
+    @patch('converter.utils.random')
     def test_snapshot_V2_to_V3_upgrade(self,mock_choices):
         mock_choices.choices.side_effect = ["f5de7hj", "a3b2YH8", "c9d8jk9","he9i0kz", "ye7jk6k", "pe9rd2t","4h8rh7h", "67jfq0l", "uh88l1h"]
 
@@ -43,7 +43,7 @@ class TestSnapshotV2V3Converter(TestCase):
         output_data = converter.upgrade(message)
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
-    @patch('converter.v1_v2.utils.random')
+    @patch('converter.utils.random')
     def test_snapshot_V3_to_V2_downgrade(self, mock_choices):
         mock_choices.choices.side_effect = ["f5de7hj", "a3b2YH8", "c9d8jk9","he9i0kz", "ye7jk6k", "pe9rd2t","4h8rh7h", "67jfq0l", "uh88l1h"]
 

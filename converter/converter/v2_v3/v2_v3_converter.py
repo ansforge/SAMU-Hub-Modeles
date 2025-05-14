@@ -1,8 +1,7 @@
 from typing import Dict, Any
 import copy
 
-from converter.utils import delete_paths, get_field_value, is_field_completed
-from converter.v1_v2.utils import add_to_medical_notes, map_to_new_value
+from converter.utils import add_to_medical_notes, delete_paths, get_field_value, is_field_completed, map_to_new_value
 
 class V2_V3Converter:
     V3_TO_V2_INTERVENTION_TYPE_MAPPING = {

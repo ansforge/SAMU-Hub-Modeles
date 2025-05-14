@@ -2,9 +2,9 @@ from typing import Dict, Any
 import copy
 
 from converter.v1_v2.base_message_converter import BaseMessageConverter
-from converter.v1_v2.utils import add_to_medical_notes, map_to_new_value, reverse_map_to_new_value, switch_field_name, validate_diagnosis_code
+from converter.v1_v2.utils import reverse_map_to_new_value, switch_field_name, validate_diagnosis_code
 
-from ..utils import delete_paths, get_field_value, is_field_completed
+from ..utils import add_to_medical_notes, delete_paths, get_field_value, is_field_completed, map_to_new_value
 
 class CreateHealthCaseConverter(BaseMessageConverter):
     def __init__(self):
