@@ -1,14 +1,15 @@
 from converter.cisu.cisu_converter import CISUConverterV3
 from converter.constants import Constants
+from converter.conversion_strategy.health_conversion_strategy import health_conversion_strategy
 from converter.utils import get_recipient, get_sender
 
-def cisu_conversion_strategy(edxl_json, source_version):
+def cisu_conversion_strategy(edxl_json, source_version, target_version):
     """CISU conversion endpoint: back and forth between CISU and Health"""
+    print(f"CISU Conversion initiated from {source_version} to {target_version}")
+
     TO_CISU = "to_CISU"
     FROM_CISU = "from_CISU"
-    converters = {
-        'v3': CISUConverterV3
-    }
+    MAINTENED_CISU_VERSION = "v3"
 
     # Compute direction based on sender / recipient
     sender = get_sender(edxl_json)
@@ -20,14 +21,17 @@ def cisu_conversion_strategy(edxl_json, source_version):
     else:
         direction = FROM_CISU
 
-    if source_version not in converters:
-        raise ValueError(f"Invalid version {source_version} for CISU conversion")
-    converter = converters[source_version]
-    print(f"Converting {direction} {source_version}")
-
     if direction == TO_CISU:
-        return converter.to_cisu(edxl_json)
+        if target_version != MAINTENED_CISU_VERSION:
+            raise ValueError(f"Unknown target version {target_version}. Must be: {MAINTENED_CISU_VERSION}")
+
+        rs_json_message = health_conversion_strategy(edxl_json, source_version, MAINTENED_CISU_VERSION)
+        return CISUConverterV3.to_cisu(rs_json_message)
     elif direction == FROM_CISU:
-        return converter.from_cisu(edxl_json)
+        if source_version != MAINTENED_CISU_VERSION:
+            raise ValueError(f"Unknown source version {source_version}. Must be: {MAINTENED_CISU_VERSION}")
+
+        rc_json_message = CISUConverterV3.from_cisu(edxl_json)
+        return health_conversion_strategy(rc_json_message, MAINTENED_CISU_VERSION, target_version)
     else:
         raise ValueError('Invalid direction parameter')
