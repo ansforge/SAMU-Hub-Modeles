@@ -30,11 +30,12 @@ class CreateHealthCaseConverter(BaseMessageConverter):
         map_to_new_value(output_use_case_json, '$.initialAlert.caller.language', V1V2Constants.V1_TO_V2_LANGUAGE)
 
         patients = get_field_value(output_use_case_json,'$.patient')
-        for index, patient in enumerate(patients):
-            map_to_new_value(output_use_case_json, f"$.patient[{index}].identity.strictFeatures.sex", V1V2Constants.GENDER_MAPPING)
-            switch_field_name(patient,'idPat','patientId')
-            validate_diagnosis_code(output_use_case_json,patient,"otherDiagnosis")
-            validate_diagnosis_code(output_use_case_json, patient,"mainDiagnosis")
+        if patients != None:
+            for index, patient in enumerate(patients):
+                map_to_new_value(output_use_case_json, f"$.patient[{index}].identity.strictFeatures.sex", V1V2Constants.GENDER_MAPPING)
+                switch_field_name(patient,'idPat','patientId')
+                validate_diagnosis_code(output_use_case_json,patient,"otherDiagnosis")
+                validate_diagnosis_code(output_use_case_json, patient,"mainDiagnosis")
 
         if is_field_completed(output_use_case_json,'$.location.geometry.obsDatime'):
             switch_field_name(output_use_case_json['location']['geometry'],'obsDatime','datetime')
@@ -91,11 +92,12 @@ class CreateHealthCaseConverter(BaseMessageConverter):
         update_language(output_use_case_json)
 
         patients = get_field_value(output_use_case_json,'$.patient')
-        for index, patient in enumerate(patients):
-            update_practitioner_contact(output_use_case_json, index)
-            reverse_map_to_new_value(output_use_case_json, f"$.patient[{index}].identity.strictFeatures.sex", V1V2Constants.GENDER_MAPPING)
-            switch_field_name(patient,'patientId','idPat')
-            add_to_medical_notes(output_use_case_json, patient, V1V2Constants.V2_PATIENT_PATHS_TO_ADD_TO_MEDICAL_NOTES)
+        if patients != None:
+            for index, patient in enumerate(patients):
+                update_practitioner_contact(output_use_case_json, index)
+                reverse_map_to_new_value(output_use_case_json, f"$.patient[{index}].identity.strictFeatures.sex", V1V2Constants.GENDER_MAPPING)
+                switch_field_name(patient,'patientId','idPat')
+                add_to_medical_notes(output_use_case_json, patient, V1V2Constants.V2_PATIENT_PATHS_TO_ADD_TO_MEDICAL_NOTES)
 
         decisions = get_field_value(output_use_case_json, '$.decision')
         if decisions != None:
@@ -137,18 +139,19 @@ class CreateHealthCaseConverter(BaseMessageConverter):
         map_to_new_value(output_use_case_json,'$.initialAlert.caller.callbackContact.channel', V2V3Constants.V2_TO_V3_CALLER_CONTACT_MAPPING)
 
         patients = get_field_value(output_use_case_json,'$.patient')
-        for patient in patients:
-            add_to_medical_notes(output_use_case_json, patient, V2V3Constants.V2_PATIENT_PATHS_TO_ADD_TO_MEDICAL_NOTES)
+        if patients != None:
+            for patient in patients:
+                add_to_medical_notes(output_use_case_json, patient, V2V3Constants.V2_PATIENT_PATHS_TO_ADD_TO_MEDICAL_NOTES)
 
-            if(is_field_completed(patient,'$.administrativeFile.externalId')):
-                external_ids = get_field_value(patient,'$.administrativeFile.externalId')
-                external_valid_ids = []
-                for index, external_id in enumerate(external_ids):
-                        if(get_field_value(external_id,'$.source')=="SI-VIC"):
-                            add_to_medical_notes(output_use_case_json, patient, [f"administrativeFile.externalId[{index}]"])
-                        else :
-                            external_valid_ids.append(external_id)
-                patient["administrativeFile"]["externalId"]=external_valid_ids
+                if(is_field_completed(patient,'$.administrativeFile.externalId')):
+                    external_ids = get_field_value(patient,'$.administrativeFile.externalId')
+                    external_valid_ids = []
+                    for index, external_id in enumerate(external_ids):
+                            if(get_field_value(external_id,'$.source')=="SI-VIC"):
+                                add_to_medical_notes(output_use_case_json, patient, [f"administrativeFile.externalId[{index}]"])
+                            else :
+                                external_valid_ids.append(external_id)
+                    patient["administrativeFile"]["externalId"]=external_valid_ids
 
         # /!\ Warning - It must be the last step
         delete_paths(output_use_case_json, V2V3Constants.V2_PATHS_TO_DELETE)
@@ -196,8 +199,9 @@ class CreateHealthCaseConverter(BaseMessageConverter):
         map_to_new_value(output_use_case_json,'$.initialAlert.caller.callbackContact.channel', V2V3Constants.V3_TO_V2_CALLER_CONTACT_MAPPING)
 
         patients = get_field_value(output_use_case_json,'$.patient')
-        for patient in patients:
-            validate_admin_file_external_ids(patient)
+        if (patients != None):
+            for patient in patients:
+                validate_admin_file_external_ids(patient)
 
         medical_notes = get_field_value(output_use_case_json,'$.medicalNote')
         if medical_notes != None:
