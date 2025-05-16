@@ -67,7 +67,7 @@ public class Position {
   private BigDecimal speed;
 
   public static final String JSON_PROPERTY_CAP = "cap";
-  private String cap;
+  private BigDecimal cap;
 
   /**
    * Indique si la ressource est en mouvement (MOBILE) ou non (STATIQUE)
@@ -302,7 +302,7 @@ public class Position {
     this.speed = speed;
   }
 
-  public Position cap(String cap) {
+  public Position cap(BigDecimal cap) {
 
     this.cap = cap;
     return this;
@@ -315,13 +315,13 @@ public class Position {
   @JsonProperty(JSON_PROPERTY_CAP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getCap() {
+  public BigDecimal getCap() {
     return cap;
   }
 
   @JsonProperty(JSON_PROPERTY_CAP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCap(String cap) {
+  public void setCap(BigDecimal cap) {
     this.cap = cap;
   }
 
