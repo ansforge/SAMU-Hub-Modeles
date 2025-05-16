@@ -1,6 +1,6 @@
 from typing import Dict, Any
 
-from converter.v1_v2.base_message_converter import BaseMessageConverter
+from converter.versions.base_message_converter import BaseMessageConverter
 
 class ReferenceConverter(BaseMessageConverter):
     def __init__(self):
@@ -11,7 +11,7 @@ class ReferenceConverter(BaseMessageConverter):
 
     def convert_v2_to_v1(self, input_json: Dict[str, Any]) -> Dict[str, Any]:
         return input_json
-    
+
     def convert_v2_to_v3(self, input_json) -> Dict[str, Any]:
         return input_json
 

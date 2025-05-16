@@ -1,4 +1,6 @@
+import random
 import re
+import string
 from typing import List, Dict, Any
 from jsonpath_ng import parse
 from yaml import dump
@@ -156,3 +158,48 @@ def update_json_value(data, jsonpath_query, new_value):
     except Exception as e:
         print(f"Error raised in update_json_value: {e}")
         raise
+
+
+def map_to_new_value(json_data: Dict[str,Any], json_path: str, mapping_value : Dict[str,str]):
+    current_value = get_field_value(json_data, json_path)
+
+    if current_value != None and current_value in mapping_value:
+        new_value = mapping_value.get(current_value, current_value)
+        update_json_value(json_data, json_path, new_value)
+
+
+def add_to_medical_notes(json_data: Dict[str, Any], patient: Dict[str, Any],paths: List[str]):
+    if not is_field_completed(json_data, '$.medicalNote'):
+        json_data['medicalNote'] = []
+
+    for path in paths:
+        add_field_to_medical_notes(json_data, patient, path)
+
+def add_field_to_medical_notes(data: Dict[str, Any], patient: Dict[str, Any], path: str):
+    if patient != None:
+        field_value = get_field_value(patient, f'$.{path}')
+    else:
+        field_value = get_field_value(data, f'$.{path}')
+
+    if field_value == None:
+        return
+
+    formatted_field_value = dump(field_value, allow_unicode=True)
+    add_object_to_medical_notes(data, patient, formatted_field_value)
+
+def add_object_to_medical_notes(json_data: Dict[str, Any], patient: Dict[str, Any], note_text: str):
+    MEDICAL_NOTE_RANDOM_ID_LENGTH = 7
+    random_str = ''.join(random.choices(string.ascii_lowercase + string.digits, k=MEDICAL_NOTE_RANDOM_ID_LENGTH))
+
+    if patient and "patientId" in patient:
+        patient_id = patient["patientId"]
+        patient_id_parts = patient_id.split('.')
+        health_service_id = '.'.join(patient_id_parts[:3]) # -> fr.health.samuXXX
+        medical_note_id = f'{health_service_id}.medicalNote.{random_str}'
+        new_note = {'patientId': patient_id,'medicalNoteId': medical_note_id,'freetext': note_text, 'operator': {"role": "AUTRE"},}
+
+    else:
+        medical_note_id = f'{json_data["owner"]}.medicalNote.{random_str}'
+        new_note = {'medicalNoteId': medical_note_id,'freetext': note_text, 'operator': {"role": "AUTRE"},}
+
+    json_data['medicalNote'].append(new_note)

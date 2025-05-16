@@ -1,7 +1,8 @@
 
-from converter.v1_v2.base_message_converter import BaseMessageConverter
-from converter.v1_v2.create_case_health_converter import CreateHealthCaseConverter
-from converter.v1_v2.reference_converter import ReferenceConverter
+from converter.versions.base_message_converter import BaseMessageConverter
+from converter.versions.reference_converter import ReferenceConverter
+from converter.versions.create_case_health_converter import CreateHealthCaseConverter
+
 
 def health_conversion_strategy(edxl_json, source_version: str, target_version: str):
     print(f"Health Conversion initiated from {source_version} to {target_version}")
