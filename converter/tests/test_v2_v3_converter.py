@@ -55,3 +55,16 @@ class TestSnapshotV2V3Converter(TestCase):
         converter = CreateHealthCaseConverter()
         output_data = converter.convert_v3_to_v2(message)
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+
+    @patch('converter.utils.random')
+    def test_snapshot_V3_to_V2_bis_downgrade(self, mock_choices):
+        mock_choices.choices.side_effect = ["f5de7hj", "a3b2YH8", "c9d8jk9","he9i0kz", "ye7jk6k", "pe9rd2t","4h8rh7h", "67jfq0l", "uh88l1h"]
+
+        message = TestHelper.create_edxl_json_from_sample(
+            Constants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
+            "tests/fixtures/v2_v3/RS-EDA_V3.0_exhaustive_fill_bis.json"
+        )
+
+        converter = CreateHealthCaseConverter()
+        output_data = converter.convert_v3_to_v2(message)
+        self.assertMatchSnapshot(json.dumps(output_data, indent=2))

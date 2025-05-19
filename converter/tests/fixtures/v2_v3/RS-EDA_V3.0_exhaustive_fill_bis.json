@@ -5,19 +5,19 @@
     "creation": "2024-05-26T13:15:00+02:00",
     "qualification": {
       "riskThreat": {
-        "code": "R38",
-        "label": "Non précisé"
+        "code": "R32",
+        "label": "Patient/Victime confiné"
       },
       "whatsHappen": {
-        "code": "C02.13.09",
-        "label": "Obstétrique"
+        "code": "C02.15.01",
+        "label": "Rixe ou bagarre"
       },
       "locationKind": {
-        "code": "L01.02.13",
+        "code": "L08.01.12",
         "label": "Local vélo"
       },
       "healthMotive": {
-        "code": "M03.23",
+        "code": "M08.00",
         "label": "Réaction allergique"
       },
       "details": {
