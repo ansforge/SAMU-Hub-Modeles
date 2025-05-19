@@ -1,4 +1,4 @@
-from typing import Dict, Any
+from typing import Dict, Any, List
 import copy
 
 from converter.utils import add_to_medical_notes, delete_paths, get_field_value, is_field_completed, map_to_new_value
@@ -180,6 +180,28 @@ class CreateHealthCaseConverter(BaseMessageConverter):
                             external_valid_ids.append(external_id)
                 patient["administrativeFile"]["externalId"]=external_valid_ids
 
+        def check_qualification_code(path, valid_codes: List[str], default_code_and_label):
+            code_and_label = get_field_value(output_use_case_json, path)
+            if(code_and_label == None):
+                return
+
+            code = code_and_label["code"]
+            if(code in valid_codes):
+                return
+
+            code_parts = code.split('.') # -> ["C11", "06", "01"]
+            code_parts[-1] = '00' # -> ["C11", "06", "00"]
+            root_code = '.'.join(code_parts) # -> "C11.06.00"
+
+            if (root_code in valid_codes):
+                code_and_label["code"] = root_code
+                return
+
+            add_to_medical_notes(output_use_case_json, None, [f"{path}.label"])
+            code_and_label["code"] = default_code_and_label["code"]
+            code_and_label["label"] = default_code_and_label["label"]
+            return
+
         # Create independent envelope copy without use case for output
         output_json = copy.deepcopy(input_json)
         if 'createCaseHealth' not in input_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {}):
@@ -197,6 +219,15 @@ class CreateHealthCaseConverter(BaseMessageConverter):
         map_to_new_value(output_use_case_json,'$.decision.orientationType', V2V3Constants.V3_TO_V2_ORIENTATION_TYPE)
         map_to_new_value(output_use_case_json,'$.initialAlert.caller.callerContact.channel', V2V3Constants.V3_TO_V2_CALLER_CONTACT_MAPPING)
         map_to_new_value(output_use_case_json,'$.initialAlert.caller.callbackContact.channel', V2V3Constants.V3_TO_V2_CALLER_CONTACT_MAPPING)
+
+        risk_threat_code = get_field_value(output_use_case_json,'$.qualification.riskThreat.code')
+        if(risk_threat_code not in V2V3Constants.V2_RISK_THREAT_CODE):
+            add_to_medical_notes(output_use_case_json, None, [f"qualification.riskThreat.label"])
+            delete_paths(output_use_case_json, ["qualification.riskThreat"])
+
+        check_qualification_code('$.qualification.whatsHappen', V2V3Constants.V2_WHATS_HAPPEN_CODE, V2V3Constants.WHATS_HAPPEN_DEFAULT)
+        check_qualification_code('$.qualification.locationKind', V2V3Constants.V2_LOCATION_KIND_CODE, V2V3Constants.LOCATION_KIND_DEFAULT)
+        check_qualification_code('$.qualification.healthMotive', V2V3Constants.V2_HEALTH_MOTIVE_CODE, V2V3Constants.HEALTH_MOTIVE_DEFAULT)
 
         patients = get_field_value(output_use_case_json,'$.patient')
         if (patients != None):
