@@ -18,11 +18,8 @@ module Geolocation
     # A valoriser avec l'identifiant partagé unique de la ressource engagée, normé comme suit : {orgID}.resource.{ID unique de la ressource partagée} OU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire : {orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}
     attr_accessor :resource_id
 
-    # Date et heure de la dernière position connue
+    # Date et heure de réception des coordonnées transmises
     attr_accessor :datetime
-
-    # Date et heure de la réception de la dernière position connue dans le système de l'organisme
-    attr_accessor :reception_datetime
 
     attr_accessor :coord
 
@@ -74,7 +71,6 @@ module Geolocation
       {
         :'resource_id' => :'resourceId',
         :'datetime' => :'datetime',
-        :'reception_datetime' => :'receptionDatetime',
         :'coord' => :'coord',
         :'speed' => :'speed',
         :'cap' => :'cap',
@@ -96,8 +92,7 @@ module Geolocation
       {
         :'resource_id' => :'String',
         :'datetime' => :'Time',
-        :'reception_datetime' => :'Time',
-        :'coord' => :'Array<Coord>',
+        :'coord' => :'Coord',
         :'speed' => :'Float',
         :'cap' => :'String',
         :'move' => :'String',
@@ -141,14 +136,8 @@ module Geolocation
         self.datetime = nil
       end
 
-      if attributes.key?(:'reception_datetime')
-        self.reception_datetime = attributes[:'reception_datetime']
-      end
-
       if attributes.key?(:'coord')
-        if (value = attributes[:'coord']).is_a?(Array)
-          self.coord = value
-        end
+        self.coord = attributes[:'coord']
       else
         self.coord = nil
       end
@@ -191,7 +180,7 @@ module Geolocation
         invalid_properties.push('invalid value for "resource_id", resource_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$/)
       if @resource_id !~ pattern
         invalid_properties.push("invalid value for \"resource_id\", must conform to the pattern #{pattern}.")
       end
@@ -205,17 +194,8 @@ module Geolocation
         invalid_properties.push("invalid value for \"datetime\", must conform to the pattern #{pattern}.")
       end
 
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
-      if !@reception_datetime.nil? && @reception_datetime !~ pattern
-        invalid_properties.push("invalid value for \"reception_datetime\", must conform to the pattern #{pattern}.")
-      end
-
       if @coord.nil?
         invalid_properties.push('invalid value for "coord", coord cannot be nil.')
-      end
-
-      if @coord.length < 1
-        invalid_properties.push('invalid value for "coord", number of items must be greater than or equal to 1.')
       end
 
       invalid_properties
@@ -226,12 +206,10 @@ module Geolocation
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @resource_id.nil?
-      return false if @resource_id !~ Regexp.new(/^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$/)
+      return false if @resource_id !~ Regexp.new(/^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$/)
       return false if @datetime.nil?
       return false if @datetime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
-      return false if !@reception_datetime.nil? && @reception_datetime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       return false if @coord.nil?
-      return false if @coord.length < 1
       move_validator = EnumAttributeValidator.new('String', ["MOBILE", "STATIQUE"])
       return false unless move_validator.valid?(@move)
       status_validator = EnumAttributeValidator.new('String', ["DISPONIBLE", "INDISPONIBLE", "INCONNU"])
@@ -248,7 +226,7 @@ module Geolocation
         fail ArgumentError, 'resource_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$/)
       if resource_id !~ pattern
         fail ArgumentError, "invalid value for \"resource_id\", must conform to the pattern #{pattern}."
       end
@@ -269,35 +247,6 @@ module Geolocation
       end
 
       @datetime = datetime
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] reception_datetime Value to be assigned
-    def reception_datetime=(reception_datetime)
-      if reception_datetime.nil?
-        fail ArgumentError, 'reception_datetime cannot be nil'
-      end
-
-      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
-      if reception_datetime !~ pattern
-        fail ArgumentError, "invalid value for \"reception_datetime\", must conform to the pattern #{pattern}."
-      end
-
-      @reception_datetime = reception_datetime
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] coord Value to be assigned
-    def coord=(coord)
-      if coord.nil?
-        fail ArgumentError, 'coord cannot be nil'
-      end
-
-      if coord.length < 1
-        fail ArgumentError, 'invalid value for "coord", number of items must be greater than or equal to 1.'
-      end
-
-      @coord = coord
     end
 
     # Custom attribute writer method checking allowed values (enum).
@@ -337,7 +286,6 @@ module Geolocation
       self.class == o.class &&
           resource_id == o.resource_id &&
           datetime == o.datetime &&
-          reception_datetime == o.reception_datetime &&
           coord == o.coord &&
           speed == o.speed &&
           cap == o.cap &&
@@ -357,7 +305,7 @@ module Geolocation
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [resource_id, datetime, reception_datetime, coord, speed, cap, move, engine_on, ground_status, status, engaged_status].hash
+      [resource_id, datetime, coord, speed, cap, move, engine_on, ground_status, status, engaged_status].hash
     end
 
     # Builds the object from hash

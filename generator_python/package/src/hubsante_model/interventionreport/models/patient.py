@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from hubsante_model.interventionreport.models.external_id import ExternalId
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +28,7 @@ class Patient(BaseModel):
     """
     Patient
     """ # noqa: E501
-    patient_id: StrictStr = Field(description="Identifiant unique du patient.  A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01", alias="patientId")
+    patient_id: Annotated[str, Field(strict=True)] = Field(description="Identifiant unique du patient.  A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01", alias="patientId")
     birth_name: Optional[StrictStr] = Field(default=None, description="Nom de naissance du patient", alias="birthName")
     last_name: StrictStr = Field(description="Nom usuel du patient", alias="lastName")
     first_name: StrictStr = Field(description="Prénom du patient", alias="firstName")
@@ -38,6 +39,13 @@ class Patient(BaseModel):
     height: Optional[StrictInt] = Field(default=None, description="A valoriser avec le poids en kilogrammes")
     weight: Optional[StrictInt] = Field(default=None, description="A valoriser avec la taille en centimètres du patient")
     __properties: ClassVar[List[str]] = ["patientId", "birthName", "lastName", "firstName", "birthDate", "age", "sex", "externalId", "height", "weight"]
+
+    @field_validator('patient_id')
+    def patient_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$", value):
+            raise ValueError(r"must validate the regular expression /^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$/")
+        return value
 
     @field_validator('sex')
     def sex_validate_enum(cls, value):
