@@ -11,7 +11,7 @@ fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1",resourceId,1..1,,string,"REGEX:
 ,,Longitude,,,,"Dernière coordonnée y connue de la ressource, entre −180 and +180",-1.575807,lon,1..1,,number,
 ,,Altitude,,,,"Dernière coordonnée z connue de la ressource, en mètres sans bornes",1,height,0..1,,number,
 ,Vitesse de la ressource,,,,,"Vitesse de la ressource enregistrée, exprimée en km/h",80,speed,0..1,,number,
-,Direction de la ressource,,,,,"Direction de la ressource, exprimé en degrés",96,cap,0..1,,string,
+,Direction de la ressource,,,,,"Direction de la ressource, exprimé en degrés",96,cap,0..1,,number,
 ,Mouvement de la ressource,,,,,Indique si la ressource est en mouvement (MOBILE) ou non (STATIQUE),MOBILE,move,0..1,,string,"ENUM: MOBILE, STATIQUE"
 ,Etat du moteur de la ressource,,,,,Indique si le moteur de la ressource est éteint (FAUX) ou allumé/en marche (VRAI),1,engineOn,0..1,,boolean,
 ,Etat de l'hélicoptère,,,,,Indique si l'hélicoptère est au sol (VRAI) ou en l'air (FAUX),1,groundStatus,0..1,,boolean,
