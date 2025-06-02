@@ -1,5 +1,29 @@
 schemas:
 - automaticGeneration: Y
+  customExtendClass: null
+  customExtendPackage: null
+  file: model-technical.xlsx
+  header: Y
+  package: technical
+  perimeter: TECHNICAL
+  rootElement: technical
+  schema: TECHNICAL
+  sheet: TECHNICAL
+  subschema: N
+  xmlns: eda:1.9:technical
+- automaticGeneration: Y
+  customExtendClass: ContentMessage
+  customExtendPackage: com.hubsante.model.edxl
+  file: model-technical.xlsx
+  header: N
+  package: technical.noreq
+  perimeter: TECHNICAL_NOREQ
+  rootElement: technicalNoreq
+  schema: TECHNICAL_NOREQ
+  sheet: TECHNICAL
+  subschema: N
+  xmlns: eda:1.9:technicalNoreq
+- automaticGeneration: Y
   customExtendClass: ContentMessage
   customExtendPackage: com.hubsante.model.edxl
   file: model.xlsx
@@ -227,27 +251,3 @@ schemas:
   sheet: customContent
   subschema: N
   xmlns: cisu:3.0
-- automaticGeneration: Y
-  customExtendClass: null
-  customExtendPackage: null
-  file: model-technical.xlsx
-  header: Y
-  package: technical
-  perimeter: TECHNICAL
-  rootElement: technical
-  schema: TECHNICAL
-  sheet: TECHNICAL
-  subschema: N
-  xmlns: eda:1.9:technical
-- automaticGeneration: Y
-  customExtendClass: ContentMessage
-  customExtendPackage: com.hubsante.model.edxl
-  file: model-technical.xlsx
-  header: N
-  package: technical.noreq
-  perimeter: TECHNICAL_NOREQ
-  rootElement: technicalNoreq
-  schema: TECHNICAL_NOREQ
-  sheet: TECHNICAL
-  subschema: N
-  xmlns: eda:1.9:technicalNoreq
