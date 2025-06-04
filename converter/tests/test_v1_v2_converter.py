@@ -7,7 +7,7 @@ from snapshottest import TestCase
 
 
 def test_V1_to_V2_upgrade():
-    v2_schema_endpoint = get_file_endpoint(Constants.V2_GITHUB_TAG)
+    v2_schema_endpoint = get_file_endpoint(Constants.V2_GITHUB_TAG, Constants.RS_EDA_TAG)
     v2_schema = TestHelper.load_json_file_online(v2_schema_endpoint)
 
     TestHelper.conversion_tests_runner(
@@ -19,7 +19,7 @@ def test_V1_to_V2_upgrade():
     )
 
 def test_V2_to_V1_downgrade():
-    v1_schema_endpoint = get_file_endpoint(Constants.V1_GITHUB_TAG)
+    v1_schema_endpoint = get_file_endpoint(Constants.V1_GITHUB_TAG, Constants.RS_EDA_TAG)
     v1_schema = TestHelper.load_json_file_online(v1_schema_endpoint)
 
     TestHelper.conversion_tests_runner(

@@ -169,5 +169,5 @@ class TestHelper:
                 additional_validation(converted_message)
 
 
-def get_file_endpoint(version_tag: str):
-    return f"https://raw.githubusercontent.com/ansforge/SAMU-Hub-Modeles/{version_tag}/src/main/resources/json-schema/RS-EDA.schema.json"
+def get_file_endpoint(version_tag: str, message_type: str) -> str:
+    return f"https://raw.githubusercontent.com/ansforge/SAMU-Hub-Modeles/{version_tag}/src/main/resources/json-schema/{message_type}.schema.json"
