@@ -53,6 +53,15 @@ class V2V3Constants:
         "ARCHIVE":"ARCHIVE",
     }
 
+
+    V2_TO_V3_DECISION_RESOURCE_TYPE_MAPPING = {
+        "TSU ":"TSU",
+    }
+
+    V3_TO_V2_DECISION_RESOURCE_TYPE_MAPPING = {
+        "TSU":"TSU ",
+    }
+
     V2_TO_V3_QUALIFICATION_DETAILS_STATUS_MAPPING = {
         "PROGRAMME":"PROGRAM",
         " ACTIF":"ACTIF",

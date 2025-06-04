@@ -154,6 +154,11 @@ class CreateHealthCaseConverter(BaseMessageConverter):
                                 external_valid_ids.append(external_id)
                     patient["administrativeFile"]["externalId"]=external_valid_ids
 
+        decisions = get_field_value(output_use_case_json, '$.decision')
+        if decisions is not None:
+            for index, _ in enumerate(decisions):
+                map_to_new_value(output_use_case_json, f"$.decision[{index}].resourceType", V2V3Constants.V2_TO_V3_DECISION_RESOURCE_TYPE_MAPPING)
+
         # /!\ Warning - It must be the last step
         delete_paths(output_use_case_json, V2V3Constants.V2_PATHS_TO_DELETE)
 
@@ -246,8 +251,9 @@ class CreateHealthCaseConverter(BaseMessageConverter):
         decisions = get_field_value(output_use_case_json,'$.decision')
         if decisions != None:
              for index, decision in enumerate(decisions):
-                  map_to_new_value(decision,'$.orientationType', V2V3Constants.V3_TO_V2_ORIENTATION_TYPE)
-                  add_to_medical_notes(output_use_case_json, None, [f"decision[{index}].destination"])
+                map_to_new_value(decision,'$.orientationType', V2V3Constants.V3_TO_V2_ORIENTATION_TYPE)
+                map_to_new_value(output_use_case_json, f"$.decision[{index}].resourceType", V2V3Constants.V3_TO_V2_DECISION_RESOURCE_TYPE_MAPPING)
+                add_to_medical_notes(output_use_case_json, None, [f"decision[{index}].destination"])
 
         # /!\ Warning - It must be the last step
         delete_paths(output_use_case_json, V2V3Constants.V3_PATHS_TO_DELETE)
