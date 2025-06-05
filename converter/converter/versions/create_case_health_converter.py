@@ -9,20 +9,34 @@ from converter.versions.v2_v3.constants import V2V3Constants
 
 
 class CreateHealthCaseConverter(BaseMessageConverter):
-    def __init__(self):
-        BaseMessageConverter.__init__(self, "createCaseHealth")
+    @staticmethod
+    def get_message_type() -> str:
+        return "createCaseHealth"
+
+    @classmethod
+    def copy_input_content(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
+        # Create independent envelope copy without use case for output
+        output_json = copy.deepcopy(input_json)
+        if cls.get_message_type() not in input_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {}):
+            raise ValueError(f"Input JSON must contain {cls.get_message_type()} key")
+        del output_json['content'][0]['jsonContent']['embeddedJsonContent']['message'][cls.get_message_type()]
+        return output_json
+
+    @classmethod
+    def copy_input_use_case_content(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
+        # Create independent use case copy for output
+        input_use_case_json = input_json['content'][0]['jsonContent']['embeddedJsonContent']['message'][cls.get_message_type()]
+        return copy.deepcopy(input_use_case_json)
+
+    @classmethod
+    def format_output_json(cls, output_json: Dict[str, Any], output_use_case_json: Dict[str, Any]) -> Dict[str, Any]:
+        output_json['content'][0]['jsonContent']['embeddedJsonContent']['message'][cls.get_message_type()] = output_use_case_json
+        return output_json
 
     @classmethod
     def convert_v1_to_v2(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
-        # Create independent envelope copy without use case for output
-        output_json = copy.deepcopy(input_json)
-        if 'createCaseHealth' not in input_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {}):
-            raise ValueError("Input JSON must contain 'createCaseHealth' key")
-        del output_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth']
-
-        # Create independent use case copy for output
-        input_use_case_json = input_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth']
-        output_use_case_json = copy.deepcopy(input_use_case_json)
+        output_json = cls.copy_input_content(input_json)
+        output_use_case_json = cls.copy_input_use_case_content(input_json)
 
         map_to_new_value(output_use_case_json,'$.qualification.whatsHappen.code', V1V2Constants.V1_TO_V2_WHATS_HAPPEN_CODE_MAPPING)
         map_to_new_value(output_use_case_json,'$.qualification.details.attribution',V1V2Constants.DETAIL_ATTRIBUTION_MAPPING)
@@ -55,8 +69,7 @@ class CreateHealthCaseConverter(BaseMessageConverter):
         # /!\ Warning - It must be the last step
         delete_paths(output_use_case_json, V1V2Constants.V1_PATHS_TO_DELETE)
 
-        output_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth'] = output_use_case_json
-        return output_json
+        return cls.format_output_json(output_json, output_use_case_json)
 
     @classmethod
     def convert_v2_to_v1(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
@@ -74,15 +87,8 @@ class CreateHealthCaseConverter(BaseMessageConverter):
                     map_to_new_value(contact, f"$.type", V1V2Constants.V2_TO_V1_CALLER_CONTACT_TYPE)
                 json_data['patient'][patient_index]['administrativeFile']['generalPractitioner']['contact']=practitioner_contact_type
 
-        # Create independent envelope copy without use case for output
-        output_json = copy.deepcopy(input_json)
-        if 'createCaseHealth' not in input_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {}):
-            raise ValueError("Input JSON must contain 'createCaseHealth' key")
-        del output_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth']
-
-        # Create independent use case copy for output
-        input_use_case_json = input_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth']
-        output_use_case_json = copy.deepcopy(input_use_case_json)
+        output_json = cls.copy_input_content(input_json)
+        output_use_case_json = cls.copy_input_use_case_content(input_json)
 
         map_to_new_value(output_use_case_json,'$.qualification.whatsHappen.code', V1V2Constants.V2_TO_V1_WHATS_HAPPEN_CODE_MAPPING)
         map_to_new_value(output_use_case_json,'$.qualification.details.attribution',V1V2Constants.V2_TO_V1_DETAIL_ATTRIBUTION_MAPPING)
@@ -117,19 +123,15 @@ class CreateHealthCaseConverter(BaseMessageConverter):
         # /!\ Warning - It must be the last step
         delete_paths(output_use_case_json, V1V2Constants.V2_PATHS_TO_DELETE)
 
-        output_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth'] = output_use_case_json
-        return output_json
+        return cls.format_output_json(output_json, output_use_case_json)
 
     @classmethod
     def convert_v2_to_v3(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
-        # Create independent envelope copy without use case for output
-        output_json = copy.deepcopy(input_json)
-        if 'createCaseHealth' not in input_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {}):
-            raise ValueError("Input JSON must contain 'createCaseHealth' key")
-        del output_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth']
+        output_json = cls.copy_input_content(input_json)
+        output_use_case_json = cls.copy_input_use_case_content(input_json)
 
         # Create independent use case copy for output
-        input_use_case_json = input_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth']
+        input_use_case_json = input_json['content'][0]['jsonContent']['embeddedJsonContent']['message'][cls.get_message_type()]
         output_use_case_json = copy.deepcopy(input_use_case_json)
 
         map_to_new_value(output_use_case_json,'$.interventionType', V2V3Constants.V2_TO_V3_INTERVENTION_TYPE_MAPPING)
@@ -162,9 +164,7 @@ class CreateHealthCaseConverter(BaseMessageConverter):
         # /!\ Warning - It must be the last step
         delete_paths(output_use_case_json, V2V3Constants.V2_PATHS_TO_DELETE)
 
-        output_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth'] = output_use_case_json
-        return output_json
-
+        return cls.format_output_json(output_json, output_use_case_json)
 
     @classmethod
     def convert_v3_to_v2(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
@@ -211,15 +211,8 @@ class CreateHealthCaseConverter(BaseMessageConverter):
             code_and_label["label"] = default_code_and_label["label"]
             return
 
-        # Create independent envelope copy without use case for output
-        output_json = copy.deepcopy(input_json)
-        if 'createCaseHealth' not in input_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {}):
-            raise ValueError("Input JSON must contain 'createCaseHealth' key")
-        del output_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth']
-
-        # Create independent use case copy for output
-        input_use_case_json = input_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth']
-        output_use_case_json = copy.deepcopy(input_use_case_json)
+        output_json = cls.copy_input_content(input_json)
+        output_use_case_json = cls.copy_input_use_case_content(input_json)
 
         update_qualification_origin()
         map_to_new_value(output_use_case_json,'$.interventionType', V2V3Constants.V3_TO_V2_INTERVENTION_TYPE_MAPPING)
@@ -258,5 +251,4 @@ class CreateHealthCaseConverter(BaseMessageConverter):
         # /!\ Warning - It must be the last step
         delete_paths(output_use_case_json, V2V3Constants.V3_PATHS_TO_DELETE)
 
-        output_json['content'][0]['jsonContent']['embeddedJsonContent']['message']['createCaseHealth'] = output_use_case_json
-        return output_json
+        return cls.format_output_json(output_json, output_use_case_json)
