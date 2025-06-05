@@ -1,5 +1,6 @@
 
 from converter.versions.base_message_converter import BaseMessageConverter
+from converter.versions.create_case_health_update_converter import CreateHealthUpdateCaseConverter
 from converter.versions.reference_converter import ReferenceConverter
 from converter.versions.create_case_health_converter import CreateHealthCaseConverter
 
@@ -10,6 +11,8 @@ def health_conversion_strategy(edxl_json, source_version: str, target_version: s
     message_content = edxl_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {})
     if 'createCaseHealth' in message_content:
         return CreateHealthCaseConverter().convert(source_version, target_version, edxl_json)
+    elif 'createCaseHealthUpdate' in message_content:
+        return CreateHealthUpdateCaseConverter().convert(source_version, target_version, edxl_json)
     elif 'reference' in message_content:
         return ReferenceConverter().convert(source_version, target_version, edxl_json)
     else:
