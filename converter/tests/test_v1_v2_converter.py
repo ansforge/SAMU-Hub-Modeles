@@ -39,8 +39,7 @@ class TestSnapshotV1V2Converter(TestCase):
             Constants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
             "tests/fixtures/v1_v2/RS-EDA_V1.0_exhaustive_fill.json"
         )
-        converter = CreateHealthCaseConverter()
-        output_data = converter.convert_v1_to_v2(message)
+        output_data = CreateHealthCaseConverter.convert_v1_to_v2(message)
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
     @patch('converter.utils.random')
@@ -51,6 +50,5 @@ class TestSnapshotV1V2Converter(TestCase):
             Constants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
             "tests/fixtures/v1_v2/RS-EDA_V2.0_exhaustive_fill.json"
         )
-        converter = CreateHealthCaseConverter()
-        output_data = converter.convert_v2_to_v1(message)
+        output_data = CreateHealthCaseConverter.convert_v2_to_v1(message)
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))

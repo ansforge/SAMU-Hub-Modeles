@@ -10,11 +10,11 @@ def health_conversion_strategy(edxl_json, source_version: str, target_version: s
 
     message_content = edxl_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {})
     if 'createCaseHealth' in message_content:
-        return CreateHealthCaseConverter().convert(source_version, target_version, edxl_json)
+        return CreateHealthCaseConverter.convert(source_version, target_version, edxl_json)
     elif 'createCaseHealthUpdate' in message_content:
-        return CreateHealthUpdateCaseConverter().convert(source_version, target_version, edxl_json)
+        return CreateHealthUpdateCaseConverter.convert(source_version, target_version, edxl_json)
     elif 'reference' in message_content:
-        return ReferenceConverter().convert(source_version, target_version, edxl_json)
+        return ReferenceConverter.convert(source_version, target_version, edxl_json)
     else:
         deducted_message_type = extract_message_type_from_message_content(message_content)
         BaseMessageConverter(deducted_message_type).raise_conversion_not_implemented_error(source_version, target_version)
