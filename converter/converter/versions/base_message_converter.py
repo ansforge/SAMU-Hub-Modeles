@@ -1,9 +1,14 @@
 version_order_list = ["v1", "v2", "v3"]
 
 class BaseMessageConverter:
-    def __init__(self, message_type):
-        self.message_type = message_type
+    def __init__(self):
+        raise ValueError("BaseMessageConverter is an abstract class and cannot be instantiated directly. Use a subclass instead.")
 
+    @classmethod
+    def get_message_type() -> str:
+        raise NotImplementedError("Subclasses must implement this method to return the message type.")
+
+    @classmethod
     def convert(self, source_version, target_version, edxl_json):
         source_version_index = -1
         try:
@@ -47,7 +52,7 @@ class BaseMessageConverter:
             print(f"[ERROR] {err}")
             self.raise_conversion_not_implemented_error(source_version, target_version)
 
-
+    @classmethod
     def upgrade(self, source_version, source_version_index, edxl_json):
         if source_version == "v1":
             return self.convert_v1_to_v2(edxl_json)
@@ -56,6 +61,7 @@ class BaseMessageConverter:
         else:
             self.raise_conversion_impossible_error(source_version, version_order_list[source_version_index + 1])
 
+    @classmethod
     def downgrade(self, source_version, source_version_index, edxl_json):
         if source_version == "v2":
             return self.convert_v2_to_v1(edxl_json)
@@ -64,20 +70,26 @@ class BaseMessageConverter:
         else:
             self.raise_conversion_impossible_error(source_version, version_order_list[source_version_index - 1])
 
+    @classmethod
     def convert_v1_to_v2(self, edxl_json):
         self.raise_conversion_not_implemented_error("v1", "v2")
 
+    @classmethod
     def convert_v2_to_v1(self, edxl_json):
         self.raise_conversion_not_implemented_error("v2", "v1")
 
+    @classmethod
     def convert_v2_to_v3(self, edxl_json):
         self.raise_conversion_not_implemented_error("v2", "v3")
 
+    @classmethod
     def convert_v3_to_v2(self, edxl_json):
         self.raise_conversion_not_implemented_error("v3", "v2")
 
+    @classmethod
     def raise_conversion_not_implemented_error(self, source_version, target_version):
         raise ValueError(f"Version conversion from {source_version} to {target_version} for message type '{self.message_type}' is currently not implemented.")
 
+    @classmethod
     def raise_conversion_impossible_error(self, source_version, target_version):
         raise ValueError(f"Version conversion from {source_version} to {target_version} is not possible.")
