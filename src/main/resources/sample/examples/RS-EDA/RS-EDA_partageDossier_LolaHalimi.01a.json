@@ -64,11 +64,6 @@
           "detail": "+33702880946",
           "channel": "PERSONNE"
         },
-        "callbackContact": {
-          "type": "TEL",
-          "detail": "+33702880946",
-          "channel": "PERSONNE"
-        },
         "language": "FR",
         "detailedName": {
           "complete": "Amina BERTRAND  ",
