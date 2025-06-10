@@ -1,5 +1,5 @@
 class Constants:
-    V1_GITHUB_TAG="v1.0.0-fix"
+    V1_GITHUB_TAG="release/1.x-maintenance"
     V2_GITHUB_TAG="v2.0.0-fix"
     V3_GITHUB_TAG="3.0.0"
 
