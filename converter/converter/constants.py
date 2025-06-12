@@ -1,5 +1,5 @@
 class Constants:
-    V1_GITHUB_TAG="v1.0.0-fix"
+    V1_GITHUB_TAG="release/1.x-maintenance"
     V2_GITHUB_TAG="v2.0.0-fix"
     V3_GITHUB_TAG="3.0.0"
 
@@ -8,6 +8,7 @@ class Constants:
     EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH="tests/edxl_envelope_health_to_health.json"
 
     RS_EDA_TAG="RS-EDA"
+    RS_EDA_MAJ_TAG="RS-EDA-MAJ"
     RC_EDA_TAG="RC-EDA"
 
     FR_HEALTH_PREFIX="fr.health"
