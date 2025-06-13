@@ -42,15 +42,15 @@ class MedicalNote(BaseModel):
         if value is None:
             return value
 
-        if not re.match(r"^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$", value):
-            raise ValueError(r"must validate the regular expression /^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$/")
+        if not re.match(r"^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$", value):
+            raise ValueError(r"must validate the regular expression /^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$/")
         return value
 
     @field_validator('medical_note_id')
     def medical_note_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}$", value):
-            raise ValueError(r"must validate the regular expression /^([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}$/")
+        if not re.match(r"^([\w-]+\.){3,8}medicalNote(\.[\w-]+){1,2}$", value):
+            raise ValueError(r"must validate the regular expression /^([\w-]+\.){3,8}medicalNote(\.[\w-]+){1,2}$/")
         return value
 
     @field_validator('creation')

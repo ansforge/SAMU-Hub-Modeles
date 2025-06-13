@@ -238,6 +238,15 @@ namespace HubsanteModel/Interventionreport.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            if (this.PatientId != null) {
+                // PatientId (string) pattern
+                Regex regexPatientId = new Regex(@"^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$", RegexOptions.CultureInvariant);
+                if (!regexPatientId.Match(this.PatientId).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PatientId, must match a pattern of " + regexPatientId, new [] { "PatientId" });
+                }
+            }
+
             yield break;
         }
     }

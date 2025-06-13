@@ -184,8 +184,7 @@ namespace HubsanteModel/Geolocation.Model
         /// Initializes a new instance of the <see cref="Position" /> class.
         /// </summary>
         /// <param name="resourceId">A valoriser avec l&#39;identifiant partagé unique de la ressource engagée, normé comme suit : {orgID}.resource.{ID unique de la ressource partagée} OU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l&#39;organisation propriétaire : {orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource} (required).</param>
-        /// <param name="datetime">Date et heure de la dernière position connue (required).</param>
-        /// <param name="receptionDatetime">Date et heure de la réception de la dernière position connue dans le système de l&#39;organisme.</param>
+        /// <param name="datetime">Date et heure de réception des coordonnées transmises (required).</param>
         /// <param name="coord">coord (required).</param>
         /// <param name="speed">Vitesse de la ressource enregistrée, exprimée en km/h.</param>
         /// <param name="cap">Direction de la ressource, exprimé en degrés.</param>
@@ -194,7 +193,7 @@ namespace HubsanteModel/Geolocation.Model
         /// <param name="groundStatus">Indique si l&#39;hélicoptère est au sol (VRAI) ou en l&#39;air (FAUX).</param>
         /// <param name="status">Définit le statut de disponibilité d&#39;une ressource. - DISPONIBLE : Lorsque la ressource est disponible - INDISPONIBLE : Lorsque la ressource n&#39;est pas disponible, celle-ci peut être engagée ou en maintenance - INCONNU : Lorsque le status est inconnu.</param>
         /// <param name="engagedStatus">Précise le statut d&#39;une ressource qui est engagée sur une mission.</param>
-        public Position(string resourceId = default(string), DateTime datetime = default(DateTime), DateTime receptionDatetime = default(DateTime), List<Coord> coord = default(List<Coord>), decimal speed = default(decimal), string cap = default(string), MoveEnum? move = default(MoveEnum?), bool engineOn = default(bool), bool groundStatus = default(bool), StatusEnum? status = default(StatusEnum?), EngagedStatusEnum? engagedStatus = default(EngagedStatusEnum?))
+        public Position(string resourceId = default(string), DateTime datetime = default(DateTime), Coord coord = default(Coord), decimal speed = default(decimal), string cap = default(string), MoveEnum? move = default(MoveEnum?), bool engineOn = default(bool), bool groundStatus = default(bool), StatusEnum? status = default(StatusEnum?), EngagedStatusEnum? engagedStatus = default(EngagedStatusEnum?))
         {
             // to ensure "resourceId" is required (not null)
             if (resourceId == null)
@@ -209,7 +208,6 @@ namespace HubsanteModel/Geolocation.Model
                 throw new ArgumentNullException("coord is a required property for Position and cannot be null");
             }
             this.Coord = coord;
-            this.ReceptionDatetime = receptionDatetime;
             this.Speed = speed;
             this.Cap = cap;
             this.Move = move;
@@ -230,24 +228,17 @@ namespace HubsanteModel/Geolocation.Model
         public string ResourceId { get; set; }
 
         /// <summary>
-        /// Date et heure de la dernière position connue
+        /// Date et heure de réception des coordonnées transmises
         /// </summary>
-        /// <value>Date et heure de la dernière position connue</value>
+        /// <value>Date et heure de réception des coordonnées transmises</value>
         [DataMember(Name = "datetime", IsRequired = true, EmitDefaultValue = true)]
         public DateTime Datetime { get; set; }
-
-        /// <summary>
-        /// Date et heure de la réception de la dernière position connue dans le système de l&#39;organisme
-        /// </summary>
-        /// <value>Date et heure de la réception de la dernière position connue dans le système de l&#39;organisme</value>
-        [DataMember(Name = "receptionDatetime", EmitDefaultValue = false)]
-        public DateTime ReceptionDatetime { get; set; }
 
         /// <summary>
         /// Gets or Sets Coord
         /// </summary>
         [DataMember(Name = "coord", IsRequired = true, EmitDefaultValue = true)]
-        public List<Coord> Coord { get; set; }
+        public Coord Coord { get; set; }
 
         /// <summary>
         /// Vitesse de la ressource enregistrée, exprimée en km/h
@@ -296,7 +287,6 @@ namespace HubsanteModel/Geolocation.Model
             sb.Append("class Position {\n");
             sb.Append("  ResourceId: ").Append(ResourceId).Append("\n");
             sb.Append("  Datetime: ").Append(Datetime).Append("\n");
-            sb.Append("  ReceptionDatetime: ").Append(ReceptionDatetime).Append("\n");
             sb.Append("  Coord: ").Append(Coord).Append("\n");
             sb.Append("  Speed: ").Append(Speed).Append("\n");
             sb.Append("  Cap: ").Append(Cap).Append("\n");
@@ -327,7 +317,7 @@ namespace HubsanteModel/Geolocation.Model
         {
             if (this.ResourceId != null) {
                 // ResourceId (string) pattern
-                Regex regexResourceId = new Regex(@"^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$", RegexOptions.CultureInvariant);
+                Regex regexResourceId = new Regex(@"^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$", RegexOptions.CultureInvariant);
                 if (!regexResourceId.Match(this.ResourceId).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ResourceId, must match a pattern of " + regexResourceId, new [] { "ResourceId" });
@@ -340,15 +330,6 @@ namespace HubsanteModel/Geolocation.Model
                 if (!regexDatetime.Match(this.Datetime).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Datetime, must match a pattern of " + regexDatetime, new [] { "Datetime" });
-                }
-            }
-
-            if (this.ReceptionDatetime != null) {
-                // ReceptionDatetime (DateTime) pattern
-                Regex regexReceptionDatetime = new Regex(@"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", RegexOptions.CultureInvariant);
-                if (!regexReceptionDatetime.Match(this.ReceptionDatetime).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ReceptionDatetime, must match a pattern of " + regexReceptionDatetime, new [] { "ReceptionDatetime" });
                 }
             }
 
