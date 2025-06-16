@@ -271,7 +271,7 @@ snapshots['TestSnapshotV1V2Converter::test_snapshot_V1_to_V2_upgrade 1'] = '''{
                 {
                   "patientId": "fr.health.samu770.patient.DRFR157702400400055.1",
                   "medicalNoteId": "fr.health.samu770.medicalNote.f5de7hj",
-                  "freetext": "code: MAUVAISCODE\\nlabel: Faux code\\n",
+                  "freetext": "Diagnostique(s) secondaire(s) : code: MAUVAISCODE\\nlabel: Faux code\\n",
                   "operator": {
                     "role": "AUTRE"
                   }
@@ -279,7 +279,7 @@ snapshots['TestSnapshotV1V2Converter::test_snapshot_V1_to_V2_upgrade 1'] = '''{
                 {
                   "patientId": "fr.health.samu770.patient.DRFR157702400400055.2",
                   "medicalNoteId": "fr.health.samu770.medicalNote.a3b2YH8",
-                  "freetext": "code: MAUVAISCODE\\nlabel: Pas CIM 10\\n",
+                  "freetext": "Diagnostique(s) secondaire(s) : code: MAUVAISCODE\\nlabel: Pas CIM 10\\n",
                   "operator": {
                     "role": "AUTRE"
                   }
@@ -287,7 +287,7 @@ snapshots['TestSnapshotV1V2Converter::test_snapshot_V1_to_V2_upgrade 1'] = '''{
                 {
                   "patientId": "fr.health.samu770.patient.DRFR157702400400055.2",
                   "medicalNoteId": "fr.health.samu770.medicalNote.c9d8jk9",
-                  "freetext": "code: 4A00\\nlabel: Code CIM11\\n",
+                  "freetext": "Diagnostique principal : code: 4A00\\nlabel: Code CIM11\\n",
                   "operator": {
                     "role": "AUTRE"
                   }
@@ -619,7 +619,7 @@ snapshots['TestSnapshotV1V2Converter::test_snapshot_V2_to_V1_downgrade 1'] = '''
                   "idObs": "fr.health.samu770.patient.medicalNote.partie1seulement"
                 },
                 {
-                  "freetext": "traitement zero\\n...\\n",
+                  "freetext": "Traitements : traitement zero\\n...\\n",
                   "operator": {
                     "role": "AUTRE"
                   },
@@ -627,7 +627,7 @@ snapshots['TestSnapshotV1V2Converter::test_snapshot_V2_to_V1_downgrade 1'] = '''
                   "idObs": "fr.health.samu770.medicalNote.f5de7hj"
                 },
                 {
-                  "freetext": "antecedent zero\\n...\\n",
+                  "freetext": "Ant\\u00e9c\\u00e9dents : antecedent zero\\n...\\n",
                   "operator": {
                     "role": "AUTRE"
                   },
@@ -635,7 +635,7 @@ snapshots['TestSnapshotV1V2Converter::test_snapshot_V2_to_V1_downgrade 1'] = '''
                   "idObs": "fr.health.samu770.medicalNote.a3b2YH8"
                 },
                 {
-                  "freetext": "contact:\\n- detail: email@email.com\\n  type: EMAIL\\n- detail: \'+334564789541657\'\\n  type: TEL\\ndetailedName:\\n  complete: Medecin traitant\\n  firstName: medecin\\n  lastName: traitant\\nrppsId: \'12345678901\'\\n",
+                  "freetext": "M\\u00e9decin traitant : Contact(s) :\\n-  email@email.com\\n   -  EMAIL\\n-  \'+334564789541657\'\\n   -  TEL\\n\\n  Nom complet : Medecin traitant\\n  Pr\\u00e9nom:  medecin\\n  Nom : traitant\\nIdentifiant RPPS : \'12345678901\'\\n",
                   "operator": {
                     "role": "AUTRE"
                   },
@@ -643,7 +643,7 @@ snapshots['TestSnapshotV1V2Converter::test_snapshot_V2_to_V1_downgrade 1'] = '''
                   "idObs": "fr.health.samu770.medicalNote.c9d8jk9"
                 },
                 {
-                  "freetext": "antecedent\\n...\\n",
+                  "freetext": "Traitements : antecedent\\n...\\n",
                   "operator": {
                     "role": "AUTRE"
                   },
@@ -651,7 +651,7 @@ snapshots['TestSnapshotV1V2Converter::test_snapshot_V2_to_V1_downgrade 1'] = '''
                   "idObs": "fr.health.samu770.medicalNote.he9i0kz"
                 },
                 {
-                  "freetext": "antecendent\\n...\\n",
+                  "freetext": "Ant\\u00e9c\\u00e9dents : antecendent\\n...\\n",
                   "operator": {
                     "role": "AUTRE"
                   },
@@ -659,7 +659,7 @@ snapshots['TestSnapshotV1V2Converter::test_snapshot_V2_to_V1_downgrade 1'] = '''
                   "idObs": "fr.health.samu770.medicalNote.ye7jk6k"
                 },
                 {
-                  "freetext": "contact:\\n- detail: email@mss.pro\\n  type: EMAIL\\n- detail: \'103.7\'\\n  type: RADIO\\ndetailedName:\\n  complete: pr\\u00e9nom nom 1\\n  firstName: pr\\u00e9nom\\n  lastName: nom 1\\nrppsId: \'12345678901\'\\n",
+                  "freetext": "M\\u00e9decin traitant : Contact(s) :\\n-  email@mss.pro\\n   -  EMAIL\\n-  \'103.7\'\\n   -  RADIO\\n\\n  Nom complet : pr\\u00e9nom nom 1\\n  Pr\\u00e9nom:  pr\\u00e9nom\\n  Nom : nom 1\\nIdentifiant RPPS : \'12345678901\'\\n",
                   "operator": {
                     "role": "AUTRE"
                   },
