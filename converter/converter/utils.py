@@ -5,6 +5,8 @@ from typing import List, Dict, Any
 from jsonpath_ng import parse
 from yaml import dump
 
+from converter.constants import Constants
+
 
 def get_recipient(edxl_json: Dict[str, Any]) -> str:
     return edxl_json['descriptor']['explicitAddress']['explicitAddressValue']
@@ -185,7 +187,8 @@ def add_field_to_medical_notes(data: Dict[str, Any], patient: Dict[str, Any], pa
         return
 
     formatted_field_value = path_and_label["label"] + dump(field_value, allow_unicode=True)
-    add_object_to_medical_notes(data, patient, formatted_field_value)
+    output_text =  translate_key_words(formatted_field_value, Constants.MEDICAL_NOTE_KEY_TRANSLATIONS)
+    add_object_to_medical_notes(data, patient, output_text)
 
 def add_object_to_medical_notes(json_data: Dict[str, Any], patient: Dict[str, Any], note_text: str):
     MEDICAL_NOTE_RANDOM_ID_LENGTH = 7
