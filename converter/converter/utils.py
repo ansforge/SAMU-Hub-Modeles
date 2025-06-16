@@ -168,23 +168,23 @@ def map_to_new_value(json_data: Dict[str,Any], json_path: str, mapping_value : D
         update_json_value(json_data, json_path, new_value)
 
 
-def add_to_medical_notes(json_data: Dict[str, Any], patient: Dict[str, Any],paths: List[str]):
+def add_to_medical_notes(json_data: Dict[str, Any], patient: Dict[str, Any],paths_and_labels: List[Dict[str,str]]):
     if not is_field_completed(json_data, '$.medicalNote'):
         json_data['medicalNote'] = []
 
-    for path in paths:
-        add_field_to_medical_notes(json_data, patient, path)
+    for path_and_label in paths_and_labels:
+        add_field_to_medical_notes(json_data, patient, path_and_label)
 
-def add_field_to_medical_notes(data: Dict[str, Any], patient: Dict[str, Any], path: str):
+def add_field_to_medical_notes(data: Dict[str, Any], patient: Dict[str, Any], path_and_label: Dict[str,str]):
     if patient != None:
-        field_value = get_field_value(patient, f'$.{path}')
+        field_value = get_field_value(patient, f'$.{path_and_label["path"]}')
     else:
-        field_value = get_field_value(data, f'$.{path}')
+        field_value = get_field_value(data, f'$.{path_and_label["path"]}')
 
     if field_value == None:
         return
 
-    formatted_field_value = dump(field_value, allow_unicode=True)
+    formatted_field_value = path_and_label["label"] + dump(field_value, allow_unicode=True)
     add_object_to_medical_notes(data, patient, formatted_field_value)
 
 def add_object_to_medical_notes(json_data: Dict[str, Any], patient: Dict[str, Any], note_text: str):

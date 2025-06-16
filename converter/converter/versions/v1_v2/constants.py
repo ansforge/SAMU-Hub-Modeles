@@ -232,8 +232,4 @@ class V1V2Constants:
         'MSS':'EMAIL'
     }
 
-    V2_PATIENT_PATHS_TO_ADD_TO_MEDICAL_NOTES =[
-        'detail.treatment',
-        'detail.medicalHistory',
-        'administrativeFile.generalPractitioner'
-    ]
+    V2_PATIENT_PATHS_TO_ADD_TO_MEDICAL_NOTES = [{ "path": 'detail.treatment', "label":'Traitements : '}, { "path": 'detail.medicalHistory', "label":'Antécédents : '},{ "path": 'administrativeFile.generalPractitioner', "label":'Médecin traitant : '}]

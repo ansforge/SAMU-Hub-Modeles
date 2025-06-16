@@ -34,13 +34,15 @@ def validate_diagnosis_code(json_data:Dict[str, Any],patient_data:Dict[str, Any]
     if diagnosis == None:
         return
 
+    code_label = "Diagnostique(s) secondaire(s) : " if diagnosis_type == "otherDiagnosis" else "Diagnostique principal : "
+
     if type(diagnosis) is list:
         for index, diag in enumerate(diagnosis):
             code = get_field_value(diag, "$.code")
             if code != None:
                 is_correct_format = pattern.match(code)
                 if not is_correct_format:
-                    add_to_medical_notes(json_data, patient_data, [f"hypothesis.{diagnosis_type}[{index}]"])
+                    add_to_medical_notes(json_data, patient_data, [{"path": f"hypothesis.{diagnosis_type}[{index}]", "label": code_label}])
                 else :
                     diagnosis_valid_codes.append(diag)
 
@@ -55,5 +57,5 @@ def validate_diagnosis_code(json_data:Dict[str, Any],patient_data:Dict[str, Any]
         if code != None:
             is_correct_format = pattern.match(code)
             if not is_correct_format:
-                add_to_medical_notes(json_data, patient_data, [f"hypothesis.{diagnosis_type}"])
+                add_to_medical_notes(json_data, patient_data, [{ "path": f"hypothesis.{diagnosis_type}", "label": code_label}])
                 delete_paths(patient_data, [f"hypothesis.{diagnosis_type}"])

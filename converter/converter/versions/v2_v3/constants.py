@@ -102,10 +102,7 @@ class V2V3Constants:
         "decision[].destination",
     ]
 
-    V2_PATIENT_PATHS_TO_ADD_TO_MEDICAL_NOTES = [
-        'healthMotive',
-    ]
-
+    V2_PATIENT_PATHS_TO_ADD_TO_MEDICAL_NOTES = [{ "path": 'healthMotive', "label":'Motif de recours médico-secouriste : '}]
 
     WHATS_HAPPEN_DEFAULT = { "code":"C11.06.00", "label":"Autre nature de fait" }
     LOCATION_KIND_DEFAULT = { "code":"L07.01.00", "label":"Autre lieu d'intervention" }
