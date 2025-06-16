@@ -187,6 +187,14 @@ class CreateHealthCaseConverter(BaseMessageConverter):
                         external_valid_ids.append(external_id)
                 patient["administrativeFile"]["externalId"]=external_valid_ids
 
+        def validate_intervention_type():
+            intervention_type = get_field_value(output_use_case_json,'$.interventionType')
+            T4_TYPE = "T4"
+            if intervention_type == T4_TYPE:
+                add_to_medical_notes(output_use_case_json, None, [{ "path": "interventionType", "label":'Type d`intervention : RAPAT/EVASAN - '}])
+                delete_paths(output_use_case_json, ["interventionType"])
+
+
         def check_qualification_code(path, valid_codes: List[str], default_code_and_label):
             CODE_SEPARATOR = '.'
             ROOT_CODE_DIGITS = '00'
@@ -221,6 +229,8 @@ class CreateHealthCaseConverter(BaseMessageConverter):
         map_to_new_value(output_use_case_json,'$.decision.orientationType', V2V3Constants.V3_TO_V2_ORIENTATION_TYPE)
         map_to_new_value(output_use_case_json,'$.initialAlert.caller.callerContact.channel', V2V3Constants.V3_TO_V2_CALLER_CONTACT_MAPPING)
         map_to_new_value(output_use_case_json,'$.initialAlert.caller.callbackContact.channel', V2V3Constants.V3_TO_V2_CALLER_CONTACT_MAPPING)
+
+        validate_intervention_type()
 
         risk_threat_code = get_field_value(output_use_case_json,'$.qualification.riskThreat.code')
         if(risk_threat_code not in V2V3Constants.V2_RISK_THREAT_CODE):
