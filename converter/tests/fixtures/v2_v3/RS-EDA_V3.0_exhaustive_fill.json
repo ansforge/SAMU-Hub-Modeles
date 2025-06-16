@@ -4,10 +4,12 @@
     "senderCaseId": "DRFR154402414300123",
     "creation": "2024-05-26T13:15:00+02:00",
     "qualification": {
-      "riskThreat": {
-        "code": "R38",
-        "label": "Non précisé"
-      },
+      "riskThreat": [
+        {
+          "code": "R38",
+          "label": "Non précisé"
+        }
+      ],
       "whatsHappen": {
         "code": "C02.13.09",
         "label": "Obstétrique"

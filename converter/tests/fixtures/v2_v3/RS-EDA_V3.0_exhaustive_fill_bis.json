@@ -4,10 +4,12 @@
     "senderCaseId": "DRFR154402414300123",
     "creation": "2024-05-26T13:15:00+02:00",
     "qualification": {
-      "riskThreat": {
-        "code": "R32",
-        "label": "Patient/Victime confiné"
-      },
+      "riskThreat": [
+        {
+          "code": "R32",
+          "label": "Patient/Victime confiné"
+        }
+      ],
       "whatsHappen": {
         "code": "C02.15.01",
         "label": "Rixe ou bagarre"

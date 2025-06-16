@@ -232,10 +232,12 @@ class CreateHealthCaseConverter(BaseMessageConverter):
 
         validate_intervention_type()
 
-        risk_threat_code = get_field_value(output_use_case_json,'$.qualification.riskThreat.code')
-        if(risk_threat_code not in V2V3Constants.V2_RISK_THREAT_CODE):
-            add_to_medical_notes(output_use_case_json, None, [f"qualification.riskThreat.label"])
-            delete_paths(output_use_case_json, ["qualification.riskThreat"])
+        risk_threat = get_field_value(output_use_case_json,'$.qualification.riskThreat')
+        if risk_threat != None:
+            for index, code_and_label in enumerate(risk_threat):
+                if(code_and_label['code'] not in V2V3Constants.V2_RISK_THREAT_CODE):
+                    add_to_medical_notes(output_use_case_json, None, [{ "path": f"qualification.riskThreat[{index}]", "label":'Risque, menace et sensibilité : '}])
+                    delete_paths(output_use_case_json, ["qualification.riskThreat"])
 
         check_qualification_code('$.qualification.whatsHappen', V2V3Constants.V2_WHATS_HAPPEN_CODE, V2V3Constants.WHATS_HAPPEN_DEFAULT)
         check_qualification_code('$.qualification.locationKind', V2V3Constants.V2_LOCATION_KIND_CODE, V2V3Constants.LOCATION_KIND_DEFAULT)
