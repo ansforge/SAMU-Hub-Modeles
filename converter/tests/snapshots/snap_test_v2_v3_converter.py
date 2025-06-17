@@ -136,12 +136,12 @@ snapshots['TestSnapshotV2V3Converter::test_snapshot_V2_to_V3_upgrade 1'] = '''{
               "initialAlert": {
                 "caller": {
                   "callerContact": {
-                    "channel": "DEFIBRILLATEUR",
+                    "channel": "DEFIBRILLATEUR,",
                     "type": "POSTAL",
                     "detail": "laposte"
                   },
                   "callbackContact": {
-                    "channel": "DEFIBRILLATEUR",
+                    "channel": "DEFIBRILLATEUR,",
                     "type": "RADIO",
                     "detail": "radiolaposte"
                   },
@@ -322,7 +322,7 @@ snapshots['TestSnapshotV2V3Converter::test_snapshot_V2_to_V3_upgrade 1'] = '''{
                 {
                   "patientId": "fr.health.samu770.patient.DRFR157702400400055.1",
                   "medicalNoteId": "fr.health.samu770.medicalNote.f5de7hj",
-                  "freetext": "code: M06.03\\nlabel: libelle m0603\\n",
+                  "freetext": "Motif de recours m\\u00e9dico-secouriste : code: M06.03\\nlabel: libelle m0603\\n",
                   "operator": {
                     "role": "AUTRE"
                   }
@@ -330,7 +330,7 @@ snapshots['TestSnapshotV2V3Converter::test_snapshot_V2_to_V3_upgrade 1'] = '''{
                 {
                   "patientId": "fr.health.samu770.patient.DRFR157702400400055.1",
                   "medicalNoteId": "fr.health.samu770.medicalNote.a3b2YH8",
-                  "freetext": "source: SI-VIC\\nvalue: \'123456789123\'\\n",
+                  "freetext": "Identifiant(s) patient(s) : Type : SI-VIC\\nValeur : \'123456789123\'\\n",
                   "operator": {
                     "role": "AUTRE"
                   }
@@ -338,7 +338,7 @@ snapshots['TestSnapshotV2V3Converter::test_snapshot_V2_to_V3_upgrade 1'] = '''{
                 {
                   "patientId": "fr.health.samu770.patient.DRFR157702400400055.2",
                   "medicalNoteId": "fr.health.samu770.medicalNote.c9d8jk9",
-                  "freetext": "code: M06.04\\nlabel: libell\\u00e9\\n",
+                  "freetext": "Motif de recours m\\u00e9dico-secouriste : code: M06.04\\nlabel: libell\\u00e9\\n",
                   "operator": {
                     "role": "AUTRE"
                   }
@@ -435,10 +435,12 @@ snapshots['TestSnapshotV2V3Converter::test_snapshot_V3_to_V2_bis_downgrade 1'] =
               "senderCaseId": "DRFR154402414300123",
               "creation": "2024-05-26T13:15:00+02:00",
               "qualification": {
-                "riskThreat": {
-                  "code": "R32",
-                  "label": "Patient/Victime confin\\u00e9"
-                },
+                "riskThreat": [
+                  {
+                    "code": "R32",
+                    "label": "Patient/Victime confin\\u00e9"
+                  }
+                ],
                 "whatsHappen": {
                   "code": "C02.15.01",
                   "label": "Rixe ou bagarre"
@@ -508,7 +510,7 @@ snapshots['TestSnapshotV2V3Converter::test_snapshot_V3_to_V2_bis_downgrade 1'] =
                   "language": "fr",
                   "type": "TIERS",
                   "callbackContact": {
-                    "channel": "DEFIBRILLATEUR,",
+                    "channel": "DEFIBRILLATEUR, ",
                     "type": "TEL",
                     "detail": "+33671832618"
                   },
@@ -636,28 +638,28 @@ snapshots['TestSnapshotV2V3Converter::test_snapshot_V3_to_V2_bis_downgrade 1'] =
                   "creation": "2024-05-18T18:15:00+02:00",
                   "freetext": "Asthmatique",
                   "operator": {
-                    "role": "INCONNU"
+                    "role": "AUTRE"
                   },
                   "patientId": "fr.health.samu440.patient.DRFR154402413800236.2",
                   "medicalNoteId": "fr.health.samu440.medicalNote.0001"
                 },
                 {
                   "medicalNoteId": "fr.health.samu440.medicalNote.f5de7hj",
-                  "freetext": "AUTOCOM\\n...\\n",
+                  "freetext": "Origine de l`appel : AUTOCOM\\n...\\n",
                   "operator": {
                     "role": "AUTRE"
                   }
                 },
                 {
                   "medicalNoteId": "fr.health.samu440.medicalNote.a3b2YH8",
-                  "freetext": "Local v\\u00e9lo\\n...\\n",
+                  "freetext": "Identifiant(s) patient(s) : Local v\\u00e9lo\\n...\\n",
                   "operator": {
                     "role": "AUTRE"
                   }
                 },
                 {
                   "medicalNoteId": "fr.health.samu440.medicalNote.c9d8jk9",
-                  "freetext": "R\\u00e9action allergique\\n...\\n",
+                  "freetext": "Identifiant(s) patient(s) : R\\u00e9action allergique\\n...\\n",
                   "operator": {
                     "role": "AUTRE"
                   }
@@ -665,14 +667,14 @@ snapshots['TestSnapshotV2V3Converter::test_snapshot_V3_to_V2_bis_downgrade 1'] =
                 {
                   "patientId": "fr.health.samu440.patient.DRFR154402414300123.1",
                   "medicalNoteId": "fr.health.samu440.medicalNote.he9i0kz",
-                  "freetext": "source: AUTRE\\nvalue: \'123456789123\'\\n",
+                  "freetext": "Type de l`identifiant fourni : Type : AUTRE\\nValeur : \'123456789123\'\\n",
                   "operator": {
                     "role": "AUTRE"
                   }
                 },
                 {
                   "medicalNoteId": "fr.health.samu440.medicalNote.ye7jk6k",
-                  "freetext": "externalLocationId:\\n- source: FINESS_GEOGRAPHIQUE\\n  value: \'680020096\'\\nfreetext: H\\u00f4pital Saint-Louis\\n",
+                  "freetext": "Destination : Identifiant(s) du lieu:\\n\\n- Type : FINESS_GEOGRAPHIQUE\\n  Valeur : \'680020096\'\\nInformations compl\\u00e9mentaires : H\\u00f4pital Saint-Louis\\n",
                   "operator": {
                     "role": "AUTRE"
                   }
@@ -793,7 +795,7 @@ snapshots['TestSnapshotV2V3Converter::test_snapshot_V3_to_V2_downgrade 1'] = '''
                   "language": "fr",
                   "type": "TIERS",
                   "callbackContact": {
-                    "channel": "DEFIBRILLATEUR,",
+                    "channel": "DEFIBRILLATEUR, ",
                     "type": "TEL",
                     "detail": "+33671832618"
                   },
@@ -883,7 +885,6 @@ snapshots['TestSnapshotV2V3Converter::test_snapshot_V3_to_V2_downgrade 1'] = '''
                   }
                 ]
               },
-              "interventionType": "PRIMAIRE",
               "decision": [
                 {
                   "operator": {
@@ -921,36 +922,43 @@ snapshots['TestSnapshotV2V3Converter::test_snapshot_V3_to_V2_downgrade 1'] = '''
                   "creation": "2024-05-18T18:15:00+02:00",
                   "freetext": "Asthmatique",
                   "operator": {
-                    "role": "INCONNU"
+                    "role": "AUTRE"
                   },
                   "patientId": "fr.health.samu440.patient.DRFR154402413800236.2",
                   "medicalNoteId": "fr.health.samu440.medicalNote.0001"
                 },
                 {
                   "medicalNoteId": "fr.health.samu440.medicalNote.f5de7hj",
-                  "freetext": "AUTOCOM\\n...\\n",
+                  "freetext": "Origine de l`appel : AUTOCOM\\n...\\n",
                   "operator": {
                     "role": "AUTRE"
                   }
                 },
                 {
                   "medicalNoteId": "fr.health.samu440.medicalNote.a3b2YH8",
-                  "freetext": "Non pr\\u00e9cis\\u00e9\\n...\\n",
+                  "freetext": "Type d`intervention : RAPAT/EVASAN - T4\\n...\\n",
+                  "operator": {
+                    "role": "AUTRE"
+                  }
+                },
+                {
+                  "medicalNoteId": "fr.health.samu440.medicalNote.c9d8jk9",
+                  "freetext": "Risque, menace et sensibilit\\u00e9 : code: R38\\nlabel: Non pr\\u00e9cis\\u00e9\\n",
                   "operator": {
                     "role": "AUTRE"
                   }
                 },
                 {
                   "patientId": "fr.health.samu440.patient.DRFR154402414300123.1",
-                  "medicalNoteId": "fr.health.samu440.medicalNote.c9d8jk9",
-                  "freetext": "source: AUTRE\\nvalue: \'123456789123\'\\n",
+                  "medicalNoteId": "fr.health.samu440.medicalNote.he9i0kz",
+                  "freetext": "Type de l`identifiant fourni : Type : AUTRE\\nValeur : \'123456789123\'\\n",
                   "operator": {
                     "role": "AUTRE"
                   }
                 },
                 {
-                  "medicalNoteId": "fr.health.samu440.medicalNote.he9i0kz",
-                  "freetext": "externalLocationId:\\n- source: FINESS_GEOGRAPHIQUE\\n  value: \'680020096\'\\nfreetext: H\\u00f4pital Saint-Louis\\n",
+                  "medicalNoteId": "fr.health.samu440.medicalNote.ye7jk6k",
+                  "freetext": "Destination : Identifiant(s) du lieu:\\n\\n- Type : FINESS_GEOGRAPHIQUE\\n  Valeur : \'680020096\'\\nInformations compl\\u00e9mentaires : H\\u00f4pital Saint-Louis\\n",
                   "operator": {
                     "role": "AUTRE"
                   }

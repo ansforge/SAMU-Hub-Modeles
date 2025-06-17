@@ -263,9 +263,9 @@ class TestAddToMedicalNotes(unittest.TestCase):
             'patient': [{'patientId': 'fr.health.samuH.ERTYUI.GHK', 'key1':'value1', 'key2':'value2'}]
         }
 
-        expected_medical_notes=[{'patientId': 'fr.health.samuH.ERTYUI.GHK', 'medicalNoteId': 'fr.health.samuH.medicalNote.f5de', 'freetext': 'value1\n...\n', 'operator': {'role': 'AUTRE'}}, {'patientId': 'fr.health.samuH.ERTYUI.GHK', 'medicalNoteId': 'fr.health.samuH.medicalNote.a3b2', 'freetext': 'value2\n...\n', 'operator': {'role': 'AUTRE'}}]
+        expected_medical_notes=[{'patientId': 'fr.health.samuH.ERTYUI.GHK', 'medicalNoteId': 'fr.health.samuH.medicalNote.f5de', 'freetext': 'key 1 label: value1\n...\n', 'operator': {'role': 'AUTRE'}}, {'patientId': 'fr.health.samuH.ERTYUI.GHK', 'medicalNoteId': 'fr.health.samuH.medicalNote.a3b2', 'freetext': 'key 2 label: value2\n...\n', 'operator': {'role': 'AUTRE'}}]
 
-        add_to_medical_notes(json_data, json_data['patient'][0], ['key1','key2'])
+        add_to_medical_notes(json_data, json_data['patient'][0], [{"path": 'key1', "label": "key 1 label: "},{"path": 'key2', "label": "key 2 label: "}])
 
         self.assertEqual(json_data.get('medicalNote'), expected_medical_notes)
         self.assertEqual(len(json_data.get('medicalNote')), 2)
@@ -289,9 +289,9 @@ class TestAddToMedicalNotes(unittest.TestCase):
             'patient': [{'patientId': 'fr.health.samuH.ERTYUI.GHK', 'key1':'value1', 'key2':'value2'}],
             'medicalNote': [medical_note]
         }
-        expected_medical_notes=[{'operator': {'label': 'labello', 'role': 'AMBULANCIER'}, 'patientId': 'fr.health.samu770.patient.DRFR157702400400055.1', 'medicalNoteId': 'fr.health.samu770.medicalNote.bout1.bout2', 'creation': '2025-02-27T12:00:00+01:00', 'freetext': ' note 0'}, {'patientId': 'fr.health.samuH.ERTYUI.GHK', 'medicalNoteId': 'fr.health.samuH.medicalNote.f5de', 'freetext': 'value1\n...\n', 'operator': {'role': 'AUTRE'}}, {'patientId': 'fr.health.samuH.ERTYUI.GHK', 'medicalNoteId': 'fr.health.samuH.medicalNote.a3b2', 'freetext': 'value2\n...\n', 'operator': {'role': 'AUTRE'}}]
+        expected_medical_notes=[{'operator': {'label': 'labello', 'role': 'AMBULANCIER'}, 'patientId': 'fr.health.samu770.patient.DRFR157702400400055.1', 'medicalNoteId': 'fr.health.samu770.medicalNote.bout1.bout2', 'creation': '2025-02-27T12:00:00+01:00', 'freetext': ' note 0'}, {'patientId': 'fr.health.samuH.ERTYUI.GHK', 'medicalNoteId': 'fr.health.samuH.medicalNote.f5de', 'freetext': 'key 1 label: value1\n...\n', 'operator': {'role': 'AUTRE'}}, {'patientId': 'fr.health.samuH.ERTYUI.GHK', 'medicalNoteId': 'fr.health.samuH.medicalNote.a3b2', 'freetext': 'key 2 label: value2\n...\n', 'operator': {'role': 'AUTRE'}}]
 
-        add_to_medical_notes(json_data, json_data['patient'][0], ['key1','key2'])
+        add_to_medical_notes(json_data, json_data['patient'][0], [{"path": 'key1', "label": "key 1 label: "},{"path": 'key2', "label": "key 2 label: "}])
 
         self.assertEqual(json_data.get('medicalNote'), expected_medical_notes)
         self.assertEqual(len(json_data.get('medicalNote')), 3)

@@ -151,7 +151,7 @@ class CreateHealthCaseConverter(BaseMessageConverter):
                     SI_VIC_EXTERNAL_ID = "SI-VIC"
                     for index, external_id in enumerate(external_ids):
                             if(get_field_value(external_id,'$.source') == SI_VIC_EXTERNAL_ID):
-                                add_to_medical_notes(output_use_case_json, patient, [f"administrativeFile.externalId[{index}]"])
+                                add_to_medical_notes(output_use_case_json, patient, [{ "path": f"administrativeFile.externalId[{index}]", "label":'Identifiant(s) patient(s) : '}])
                             else :
                                 external_valid_ids.append(external_id)
                     patient["administrativeFile"]["externalId"]=external_valid_ids
@@ -171,7 +171,7 @@ class CreateHealthCaseConverter(BaseMessageConverter):
         def update_qualification_origin():
             current_origin = get_field_value(output_use_case_json, "$.qualification.origin")
             if(V2V3Constants.V3_TO_V2_QUALIFICATION_ORIGIN_MAPPING.get(current_origin, current_origin) == None):
-                add_to_medical_notes(output_use_case_json, None, [f"qualification.origin"])
+                add_to_medical_notes(output_use_case_json, None, [{ "path": f"qualification.origin", "label":'Origine de l`appel : '}])
                 delete_paths(output_use_case_json, ["qualification.origin"])
             map_to_new_value(output_use_case_json,'$.qualification.origin', V2V3Constants.V3_TO_V2_QUALIFICATION_ORIGIN_MAPPING)
 
@@ -182,10 +182,18 @@ class CreateHealthCaseConverter(BaseMessageConverter):
                 OTHER_FILE_SOURCE = "AUTRE"
                 for index, external_id in enumerate(external_ids):
                     if(get_field_value(external_id,'$.source') == OTHER_FILE_SOURCE):
-                        add_to_medical_notes(output_use_case_json, patient, [f"administrativeFile.externalId[{index}]"])
+                        add_to_medical_notes(output_use_case_json, patient, [{ "path": f"administrativeFile.externalId[{index}]", "label":'Type de l`identifiant fourni : '}])
                     else :
                         external_valid_ids.append(external_id)
                 patient["administrativeFile"]["externalId"]=external_valid_ids
+
+        def validate_intervention_type():
+            intervention_type = get_field_value(output_use_case_json,'$.interventionType')
+            T4_TYPE = "T4"
+            if intervention_type == T4_TYPE:
+                add_to_medical_notes(output_use_case_json, None, [{ "path": "interventionType", "label":'Type d`intervention : RAPAT/EVASAN - '}])
+                delete_paths(output_use_case_json, ["interventionType"])
+
 
         def check_qualification_code(path, valid_codes: List[str], default_code_and_label):
             CODE_SEPARATOR = '.'
@@ -206,7 +214,7 @@ class CreateHealthCaseConverter(BaseMessageConverter):
                 code_and_label["code"] = root_code
                 return
 
-            add_to_medical_notes(output_use_case_json, None, [f"{path}.label"])
+            add_to_medical_notes(output_use_case_json, None, [{ "path": f"{path}.label", "label":'Identifiant(s) patient(s) : '}])
             code_and_label["code"] = default_code_and_label["code"]
             code_and_label["label"] = default_code_and_label["label"]
             return
@@ -222,10 +230,14 @@ class CreateHealthCaseConverter(BaseMessageConverter):
         map_to_new_value(output_use_case_json,'$.initialAlert.caller.callerContact.channel', V2V3Constants.V3_TO_V2_CALLER_CONTACT_MAPPING)
         map_to_new_value(output_use_case_json,'$.initialAlert.caller.callbackContact.channel', V2V3Constants.V3_TO_V2_CALLER_CONTACT_MAPPING)
 
-        risk_threat_code = get_field_value(output_use_case_json,'$.qualification.riskThreat.code')
-        if(risk_threat_code not in V2V3Constants.V2_RISK_THREAT_CODE):
-            add_to_medical_notes(output_use_case_json, None, [f"qualification.riskThreat.label"])
-            delete_paths(output_use_case_json, ["qualification.riskThreat"])
+        validate_intervention_type()
+
+        risk_threat = get_field_value(output_use_case_json,'$.qualification.riskThreat')
+        if risk_threat != None:
+            for index, code_and_label in enumerate(risk_threat):
+                if(code_and_label['code'] not in V2V3Constants.V2_RISK_THREAT_CODE):
+                    add_to_medical_notes(output_use_case_json, None, [{ "path": f"qualification.riskThreat[{index}]", "label":'Risque, menace et sensibilité : '}])
+                    delete_paths(output_use_case_json, ["qualification.riskThreat"])
 
         check_qualification_code('$.qualification.whatsHappen', V2V3Constants.V2_WHATS_HAPPEN_CODE, V2V3Constants.WHATS_HAPPEN_DEFAULT)
         check_qualification_code('$.qualification.locationKind', V2V3Constants.V2_LOCATION_KIND_CODE, V2V3Constants.LOCATION_KIND_DEFAULT)
@@ -246,7 +258,7 @@ class CreateHealthCaseConverter(BaseMessageConverter):
              for index, decision in enumerate(decisions):
                 map_to_new_value(decision,'$.orientationType', V2V3Constants.V3_TO_V2_ORIENTATION_TYPE)
                 map_to_new_value(output_use_case_json, f"$.decision[{index}].resourceType", V2V3Constants.V3_TO_V2_DECISION_RESOURCE_TYPE_MAPPING)
-                add_to_medical_notes(output_use_case_json, None, [f"decision[{index}].destination"])
+                add_to_medical_notes(output_use_case_json, None, [{ "path": f"decision[{index}].destination", "label":'Destination : '}])
 
         # /!\ Warning - It must be the last step
         delete_paths(output_use_case_json, V2V3Constants.V3_PATHS_TO_DELETE)

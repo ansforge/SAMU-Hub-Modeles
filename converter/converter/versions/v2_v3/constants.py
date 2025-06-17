@@ -4,7 +4,6 @@ class V2V3Constants:
         "T2-INTER":"SECONDAIRE",
         "T2-INTRA":"SECONDAIRE",
         "T3":"RETOUR A DOMICILE",
-        "T4":"SECONDAIRE",
     }
 
     V2_TO_V3_INTERVENTION_TYPE_MAPPING = {
@@ -73,10 +72,10 @@ class V2V3Constants:
     }
 
     V2_TO_V3_CALLER_CONTACT_MAPPING = {
-        "DEFIBRILLATEUR,":"DEFIBRILLATEUR",
+        "DEFIBRILLATEUR, ":"DEFIBRILLATEUR",
     }
     V3_TO_V2_CALLER_CONTACT_MAPPING = {
-        "DEFIBRILLATEUR":"DEFIBRILLATEUR,",
+        "DEFIBRILLATEUR":"DEFIBRILLATEUR, ",
     }
 
     V3_TO_V2_ORIENTATION_TYPE = {
@@ -84,8 +83,8 @@ class V2V3Constants:
     }
 
     V3_TO_V2_OPERATOR_ROLE_MAPPING ={
-        "PILOTE":"INCONNU",
-        "TCM":"INCONNU"
+        "PILOTE":"AUTRE",
+        "TCM":"AUTRE"
     }
 
     V3_TO_V2_DETAIL_ATTRIBUTION_MAPPING ={
@@ -102,10 +101,7 @@ class V2V3Constants:
         "decision[].destination",
     ]
 
-    V2_PATIENT_PATHS_TO_ADD_TO_MEDICAL_NOTES = [
-        'healthMotive',
-    ]
-
+    V2_PATIENT_PATHS_TO_ADD_TO_MEDICAL_NOTES = [{ "path": 'healthMotive', "label":'Motif de recours médico-secouriste : '}]
 
     WHATS_HAPPEN_DEFAULT = { "code":"C11.06.00", "label":"Autre nature de fait" }
     LOCATION_KIND_DEFAULT = { "code":"L07.01.00", "label":"Autre lieu d'intervention" }
