@@ -170,7 +170,7 @@ def map_to_new_value(json_data: Dict[str,Any], json_path: str, mapping_value : D
         update_json_value(json_data, json_path, new_value)
 
 
-def add_to_medical_notes(json_data: Dict[str, Any], patient: Dict[str, Any],paths_and_labels: List[Dict[str,str]]):
+def add_to_medical_notes(json_data: Dict[str, Any], patient: Dict[str, Any], paths_and_labels: List[Dict[str,str]]):
     if not is_field_completed(json_data, '$.medicalNote'):
         json_data['medicalNote'] = []
 
