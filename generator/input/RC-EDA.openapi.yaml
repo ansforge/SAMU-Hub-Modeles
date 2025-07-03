@@ -36,7 +36,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: ^([\w-]+\.?){4,10}$
+          pattern: ^([a-zA-Z0-9_-]+\.?){4,10}$
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -1264,14 +1264,12 @@ components:
             \ \xE0 caract\xE8re m\xE9dical, qui serait li\xE9e \xE0 un interrogatoire\
             \ ARM ou m\xE9decin, ou \xE0 un patient en particulier"
           examples:
-          - "Accident de bricolage, accident domestique, d\xE9clenchement t\xE9l\xE9\
-            alarme, voisine sur les lieux"
+          - n
       additionalProperties: false
       example: example.json#/initialAlert/notes/0
       examples:
       - creation: None
-        freetext: "Accident de bricolage, accident domestique, d\xE9clenchement t\xE9\
-          l\xE9alarme, voisine sur les lieux"
+        freetext: n
     caller:
       type: object
       title: "Requ\xE9rant"
@@ -1659,8 +1657,8 @@ components:
           example: example.json#/initialAlert/attachment/0/URI
           description: "Une URI, g\xE9n\xE9ralement une URL, qui permet d'atteindre\
             \ la ressource sur Internet ou sur un r\xE9seau priv\xE9\nNous sugg\xE9\
-            rons d'employer le format suivant de regex (https?|ftp|file):\\/\\/([\\\
-            w-]+(\\.[\\w-]+)*)(\\/[\\w\\-\\.]*)*\\/?(\\?[^\\s]*)?"
+            rons d'employer le format suivant de regex (https?|ftp|file):\\/\\/([a-zA-Z0-9_-]+(\\\
+            .[a-zA-Z0-9_-]+)*)(\\/[a-zA-Z0-9_\\-\\.]*)*\\/?(\\?[^\\s]*)?"
           examples:
           - https://hub.esante.gouv.fr/resourceExample
         derefURI:

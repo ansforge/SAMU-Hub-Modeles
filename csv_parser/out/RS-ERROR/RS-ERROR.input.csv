@@ -1,6 +1,6 @@
 Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise,Cardinalité,Objet,Format (ou type),Détails de format
 Erreur,,,,,,Permet de representer un erreur à l'aide d'un code numérique et une chaine de caractéres,,errorCode,1..1,X,errorCode,
-,Code d'erreur,,,,,Code numerique represenant l'erreur,101,statusCode,1..1,,number,
+,Code d'erreur,,,,,Code numerique representant l'erreur,101,statusCode,1..1,,number,
 ,Titre d'erreur,,,,,Chaine de caracteres representant l'erreur,NOT_ALLOWED_CONTENT_TYPE,statusString,1..1,,string,
 Cause d'erreur,,,,,,La ou les causes d'erreur dans le message source,The following errors have occurred:\nNot allowed content type,errorCause,1..1,,string,
 Message source,,,,,,Message source complet,,sourceMessage,0..1,X,sourceMessage,

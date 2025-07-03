@@ -13,7 +13,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="([\w-]+\.?){4,10}"/>
+                        <pattern value="([a-zA-Z0-9_-]+\.?){4,10}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -67,7 +67,7 @@ A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre 
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="([\w-]+\.){3,8}patient(\.[\w-]+){1,2}"/>
+                        <pattern value="([a-zA-Z0-9_-]+\.){3,8}patient(\.[a-zA-Z0-9_-]+){1,2}"/>
                     </restriction>
                 </simpleType>
             </element>
