@@ -4,7 +4,7 @@ Position,,,,,,Objet de détail de la position de chaque ressource, ,position,1.
 {orgID}.resource.{ID unique de la ressource partagée}
 OU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :
 {orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}","fr.health.samu770.resource.VLM250
-fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1",resourceId,1..1,,string,"REGEX: ^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$"
+fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1",resourceId,1..1,,string,"REGEX: ^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$"
 ,Date et heure de réception des coordonnées,,,,,Date et heure de réception des coordonnées transmises,2024-01-27T08:44:00+02:00,datetime,1..1,,datetime,
 ,Coordonnées,,,,,Permet de localiser la resource. ,,coord,1..1,X,coord,
 ,,Latitude ,,,,"Dernière coordonnée x connue de la ressource, entre −90 and +90",47.221866,lat,1..1,,number,

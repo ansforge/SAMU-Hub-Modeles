@@ -4,4 +4,4 @@ Issues found on the envelope:
  - $.dateField: does not match the regex pattern ^\d{4}-\d{2}-\d{2}$
  - $.datetimeField: 2022-09-27 08:25:54 Z02:00 is an invalid date-time
  - $.datetimeField: does not match the regex pattern ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
- - $.emailField: does not match the regex pattern ^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$
+ - $.emailField: does not match the regex pattern ^[a-zA-Z0-9_.-]+@([a-zA-Z0-9_-]+\.)+[a-zA-Z0-9_-]{2,4}$

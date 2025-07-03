@@ -21,7 +21,7 @@
             "x-cols": 6,
             "example": "example.json#/caseId",
             "description": "Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",
-            "pattern": "^([\\w-]+\\.?){4,10}$"
+            "pattern": "^([a-zA-Z0-9_-]+\\.?){4,10}$"
         },
         "senderCaseId": {
             "type": "string",
@@ -86,7 +86,7 @@
             "x-cols": 6,
             "example": "example.json#/owner",
             "description": "Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA\nA valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{domaine}.{organisation})",
-            "pattern": "^([\\w-]+\\.?){4,9}$"
+            "pattern": "^([a-zA-Z0-9_-]+\\.?){4,9}$"
         },
         "patient": {
             "type": "array",
@@ -269,7 +269,7 @@
                     "x-cols": 6,
                     "example": "example.json#/patient/0/patientId",
                     "description": "Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient.\nIl est valorisé comme suit lors de sa création : \n{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}\n\nOU, si un n°patient unique n'existe pas dans le système émetteur :\n{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}\n\n\n",
-                    "pattern": "^([\\w-]+\\.){3,8}patient(\\.[\\w-]+){1,2}$"
+                    "pattern": "^([a-zA-Z0-9_-]+\\.){3,8}patient(\\.[a-zA-Z0-9_-]+){1,2}$"
                 },
                 "administrativeFile": {
                     "$ref": "#/definitions/administrativeFile"
@@ -305,7 +305,7 @@
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/patientId",
                     "description": "Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, \n\nValorisé comme suit lors de sa création : \n{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}\n\nOU, si un n°patient unique n'existe pas dans le système émetteur :\n{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}",
-                    "pattern": "^([\\w-]+\\.){3,8}patient(\\.[\\w-]+){1,2}$"
+                    "pattern": "^([a-zA-Z0-9_-]+\\.){3,8}patient(\\.[a-zA-Z0-9_-]+){1,2}$"
                 },
                 "operator": {
                     "$ref": "#/definitions/operator"
@@ -317,7 +317,7 @@
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/medicalNoteId",
                     "description": "Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation\nIl est valorisé comme suit lors de sa création : \n{OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}\n\nOU - uniquement dans le cas où un ID unique de la note n'est pas disponible dans le système : \n{OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}\n\nCet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.\n",
-                    "pattern": "^([\\w-]+\\.){3,8}medicalNote(\\.[\\w-]+){1,2}$"
+                    "pattern": "^([a-zA-Z0-9_-]+\\.){3,8}medicalNote(\\.[a-zA-Z0-9_-]+){1,2}$"
                 },
                 "creation": {
                     "type": "string",

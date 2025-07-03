@@ -18,7 +18,7 @@
             "x-cols": 6,
             "example": "example.json#/caseId",
             "description": "A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",
-            "pattern": "^([\\w-]+\\.?){4,10}$"
+            "pattern": "^([a-zA-Z0-9_-]+\\.?){4,10}$"
         },
         "resource": {
             "type": "array",

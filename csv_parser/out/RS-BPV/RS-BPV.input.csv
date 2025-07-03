@@ -4,7 +4,7 @@ Il est valorisé comme suit lors de sa création :
 {pays}.{domaine}.{organisation}.{senderCaseId}
 
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
- Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15DDXAAJJJ00000,caseId,1..1,,string,"REGEX: ^([\w-]+\.?){4,10}$"
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15DDXAAJJJ00000,caseId,1..1,,string,"REGEX: ^([a-zA-Z0-9_-]+\.?){4,10}$"
 Identifiant du bilan,,,,,,Identifiant du bilan du logiciel SMUR,38978624DM,reportId,1..1,,string,
 Professionnel de santé qui réalise le bilan,,,,,,Objet qui permet de décrire le professionnel de santé qui rédige le bilan. ,,redactor,1..1,X,redactor,
 ,Label,,,,,"A valoriser avec le prénom et le nom du rédacteur, un numéro RPPS, un matricule, etc. ",Julien Montclar,label,0..1,,string,
@@ -12,7 +12,7 @@ Professionnel de santé qui réalise le bilan,,,,,,Objet qui permet de décrire 
 Date et heure de l'envoi du bilan,,,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,creation,1..1,,datetime,
 Patient,,,,,,,,patient,1..1,X,patient,
 ,ID partagé du patient,,,,,"Identifiant unique du patient. 
-A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01",fr.health.samu690.patient.DRFR15DDXAAJJJ00001.1,patientId,1..1,,string,"REGEX: ^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$"
+A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01",fr.health.samu690.patient.DRFR15DDXAAJJJ00001.1,patientId,1..1,,string,"REGEX: ^([a-zA-Z0-9_-]+\.){3,8}patient(\.[a-zA-Z0-9_-]+){1,2}$"
 ,Nom de naissance,,,,,Nom de naissance du patient,Dupont,birthName,0..1,,string,
 ,Nom usuel,,,,,Nom usuel du patient,Maleis,lastName,1..1,,string,
 ,Prénom usuel,,,,,Prénom du patient,Jean,firstName,1..1,,string,

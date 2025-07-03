@@ -2,7 +2,7 @@ Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donn
 Evènement,,,,,,,,context,1..1,X,event,
 ,Identifiant de l'organisation du SAMU qui engage le SMUR,,,,,"Numéro du SAMU régulant la mission SMUR. 
 A valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}
-",fr.health.samu440,orgId,1..1,,string,"REGEX: ^([\w-]+\.?){4,10}$"
+",fr.health.samu440,orgId,1..1,,string,"REGEX: ^([a-zA-Z0-9_-]+\.?){4,10}$"
 ,Identifiant local du dossier de régulation médicale (DRM),,,,,"Numéro du dossier SAMU à l’origine de la mission SMUR
 A valoriser par DRFR15DDXAAJJJ00000 : 
 - DR = désignation d'un dossier sous forme abrégée,

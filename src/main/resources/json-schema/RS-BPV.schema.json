@@ -21,7 +21,7 @@
             "x-cols": 6,
             "example": "example.json#/caseId",
             "description": "Identifiant partagé du dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",
-            "pattern": "^([\\w-]+\\.?){4,10}$"
+            "pattern": "^([a-zA-Z0-9_-]+\\.?){4,10}$"
         },
         "reportId": {
             "type": "string",
@@ -109,7 +109,7 @@
                     "x-cols": 6,
                     "example": "example.json#/patient/patientId",
                     "description": "Identifiant unique du patient. \nA valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01",
-                    "pattern": "^([\\w-]+\\.){3,8}patient(\\.[\\w-]+){1,2}$"
+                    "pattern": "^([a-zA-Z0-9_-]+\\.){3,8}patient(\\.[a-zA-Z0-9_-]+){1,2}$"
                 },
                 "birthName": {
                     "type": "string",

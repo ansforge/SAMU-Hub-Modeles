@@ -150,7 +150,7 @@ public class Attachment {
    * Une URI, généralement une URL, qui permet d&#39;atteindre la ressource sur
    *Internet ou sur un réseau privé Nous suggérons d&#39;employer le format
    *suivant de regex
-   *(https?|ftp|file)://([\\w-]+(\\.[\\w-]+)*)(/[\\w\\-\\.]*)*_/?(\\?[^\\s]*)?
+   *(https?|ftp|file)://([a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)*)(/[a-zA-Z0-9_\\-\\.]*)*_/?(\\?[^\\s]*)?
    * @return URI
    **/
   @JsonProperty(JSON_PROPERTY_U_R_I)
