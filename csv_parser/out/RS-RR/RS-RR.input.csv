@@ -4,14 +4,14 @@ Il est valorisé comme suit lors de sa création :
 {pays}.{domaine}.{organisation}.{senderCaseId}
 
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
- Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX: ^([\w-]+\.?){4,10}$"
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX: ^([a-zA-Z0-9_-]+\.?){4,10}$"
 ID Demande partagé,,,,,,"A valoriser avec l'identifiant unique partagé de la demande de ressource,  généré une seule fois par le système du partenaire qui émet la demande 
 Il est valorisé comme suit lors de sa création : 
 {orgID}.request.{ID unique de la demande dans le système émetteur}
 
 OU - uniquement si un ID unique de la demande n'est pas disponible : 
 OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}","fr.health.samu770.request.1249875
-fr.health.samu690.request.DRFR15690242370035.3",requestId,1..1,,string,"REGEX: ^([\w-]+\.){3,8}request(\.[\w-]+){1,2}$"
+fr.health.samu690.request.DRFR15690242370035.3",requestId,1..1,,string,"REGEX: ^([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}$"
 Réponse à la demande de ressources,,,,,,Objet permettant de transmettre les détails de la réponse à une demande de ressource,,response,1..1,X,response,Format datetime décrit dans le DSF
 ,Date Heure de réponse,,,,,Groupe date heure de début de la demande,2022-09-27T08:23:34+02:00,datetime,1..1,,datetime,Format datetime décrit dans le DSF
 ,Réponse,,,,,"A valoriser avec la réponse apportée. Cf Nomenclature associée
