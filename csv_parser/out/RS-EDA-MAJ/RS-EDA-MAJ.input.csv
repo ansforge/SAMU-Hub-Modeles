@@ -4,7 +4,7 @@ Il est valorisé comme suit lors de sa création :
 {pays}.{domaine}.{organisation}.{senderCaseId}
 
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
- Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX: ^([\w-]+\.?){4,10}$"
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX: ^([a-zA-Z0-9_-]+\.?){4,10}$"
 Identifiant local de l'affaire/dossier,,,,,,"A valoriser avec le numéro du dossier dans le SI de l'émetteur du message.
 ",DRFR15440241550012,senderCaseId,0..1,,string,
 Filière,,,,,,"Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée.",AMU,perimeter,0..1,,string,NOMENCLATURE: HubSante.filiere
@@ -44,7 +44,7 @@ A réception, les informations de cet attribut sont à mapper et afficher dans u
 
 Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes à caractère médical, qui serait liée à un interrogatoire ARM ou médecin, ou à un patient en particulier","Accident de bricolage, accident domestique, déclenchement téléalarme, voisine sur les lieux",freetext,0..1,,string,
 CRRA traitant,,,,,,"Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA
-A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{domaine}.{organisation})",fr.health.samu440,owner,0..1,,string,"REGEX: ^([\w-]+\.?){4,9}$"
+A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{domaine}.{organisation})",fr.health.samu440,owner,0..1,,string,"REGEX: ^([a-zA-Z0-9_-]+\.?){4,9}$"
 Patient,,,,,,Objet qui permet l'identification des patients / victimes,,patient,0..n,X,patient,
 ,ID patient partagé,,,,,"Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient.
 Il est valorisé comme suit lors de sa création : 
@@ -55,7 +55,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
 
 
 ","fr.health.samu690.patient.P23AZ59
-fr.health.samu690.patient.DRFR15690242370035.1",patientId,1..1,,string,"REGEX: ^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$"
+fr.health.samu690.patient.DRFR15690242370035.1",patientId,1..1,,string,"REGEX: ^([a-zA-Z0-9_-]+\.){3,8}patient(\.[a-zA-Z0-9_-]+){1,2}$"
 ,Dossier administratif,,,,,Objet qui permet de décrire les données administratives liées au patient,,administrativeFile,0..1,X,administrativeFile,
 ,,Identifiant(s) patient(s),,,,"Objet qui permet de décrire l'ensemble des identifiants qui permettent d'identifier le patient (autre que le matricule INS, qui ne doit jamais être partagé via cet objet)",,externalId,0..n,X,externalId,
 ,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",source,1..1,,string,NOMENCLATURE: HubSante.typeIdPatient
@@ -101,7 +101,7 @@ Valorisé comme suit lors de sa création :
 
 OU, si un n°patient unique n'existe pas dans le système émetteur :
 {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}","fr.health.samu690.patient.P23AZ59
-fr.health.samu690.patient.DRFR15690242370035.1",patientId,0..1,,string,"REGEX: ^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$"
+fr.health.samu690.patient.DRFR15690242370035.1",patientId,0..1,,string,"REGEX: ^([a-zA-Z0-9_-]+\.){3,8}patient(\.[a-zA-Z0-9_-]+){1,2}$"
 ,Professionnel de santé qui réalise l'observation,,,,,Objet qui permet de décrire le professionnel de santé qui réalise l'interrogatoire médical. ,,operator,1..1,X,operator,
 ,,Label,,,,"A valoriser si besoin avec la valeur souhaitée, en fonction des préférences de chaque partenaire : cela peut être le nom et prénom de l'opérateur, ou un identifiant.",,label,0..1,,string,
 ,,Rôle,,,,A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ,ARM,role,1..1,,string,NOMENCLATURE: HubSante.role
@@ -114,7 +114,7 @@ OU - uniquement dans le cas où un ID unique de la note n'est pas disponible dan
 
 Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.
 ","fr.health.samu540.medicalNote.46585A
-fr.health.samu540.medicalNote.DRFR15540241600125.20",medicalNoteId,1..1,,string,"REGEX: ^([\w-]+\.){3,8}medicalNote(\.[\w-]+){1,2}$"
+fr.health.samu540.medicalNote.DRFR15540241600125.20",medicalNoteId,1..1,,string,"REGEX: ^([a-zA-Z0-9_-]+\.){3,8}medicalNote(\.[a-zA-Z0-9_-]+){1,2}$"
 ,Date Heure de l'observation,,,,,A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,0..1,,datetime,Format datetime décrit dans le DST
 ,Observations et commentaires,,,,,"Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé.",,freetext,1..1,,string,
 Décision,,,,,,"Objet qui permet de passer l'ensemble des mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients.
