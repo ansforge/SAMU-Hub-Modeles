@@ -6,8 +6,6 @@
 -->
 <schema xmlns:x="urn:emergency:eda:1.9"
         xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-        xmlns:technical="urn:emergency:eda:1.9:technical"
-        xmlns:technicalNoreq="urn:emergency:eda:1.9:technicalNoreq"
         xmlns:distributionElement="urn:emergency:eda:1.9"
         xmlns:reference="urn:emergency:eda:1.9:reference"
         xmlns:createCase="urn:emergency:eda:1.9:createCase"
@@ -27,14 +25,14 @@
         xmlns:geoResourcesDetails="urn:emergency:eda:1.9:georesourcesdetails"
         
         
+        xmlns:technical="urn:emergency:eda:1.9:technical"
+        xmlns:technicalNoreq="urn:emergency:eda:1.9:technicalNoreq"
         xmlns:error="urn:emergency:eda:1.9:error"
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:eda:1.9" xmlns="http://www.w3.org/2001/XMLSchema">
 
     <xs:include schemaLocation="RC-DE.xsd"/>
     <xs:include schemaLocation="customContent.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:technical" schemaLocation="TECHNICAL.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:technicalNoreq" schemaLocation="TECHNICAL_NOREQ.xsd"/>
     <xs:include schemaLocation="RC-DE.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:reference" schemaLocation="RC-REF.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:createCase" schemaLocation="RC-EDA.xsd"/>
@@ -54,6 +52,8 @@
     <xs:import namespace="urn:emergency:eda:1.9:georesourcesdetails" schemaLocation="GEO-RES.xsd"/>
     
     
+    <xs:import namespace="urn:emergency:eda:1.9:technical" schemaLocation="TECHNICAL.xsd"/>
+    <xs:import namespace="urn:emergency:eda:1.9:technicalNoreq" schemaLocation="TECHNICAL_NOREQ.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:error" schemaLocation="RS-ERROR.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
@@ -73,7 +73,6 @@
             <xs:extension base="x:distributionElement">
                 <xs:sequence>
                     <xs:choice>
-                        <xs:element ref="technical:technical"/>
                         <xs:element ref="reference:reference"/>
                         <xs:element ref="createCase:createCase"/>
                         <xs:element ref="createCaseHealth:createCaseHealth"/>
@@ -90,6 +89,7 @@
                         <xs:element ref="geoPositionsUpdate:geoPositionsUpdate"/>
                         <xs:element ref="geoResourcesRequest:geoResourcesRequest"/>
                         <xs:element ref="geoResourcesDetails:geoResourcesDetails"/>
+                        <xs:element ref="technical:technical"/>
                     </xs:choice>
                 </xs:sequence>
             </xs:extension>
@@ -99,8 +99,8 @@
     <xs:complexType name="NoHeaderMessageType">
         <xs:sequence>
             <xs:choice>
-                <xs:element ref="technicalNoreq:technicalNoreq"/>
                 <xs:element ref="distributionElement:distributionElement"/>
+                <xs:element ref="technicalNoreq:technicalNoreq"/>
                 <xs:element ref="error:error"/>
                 <xs:element ref="x:customContent"/>
             </xs:choice>
