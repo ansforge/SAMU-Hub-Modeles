@@ -261,13 +261,6 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
     }
 
     @Test
-    @DisplayName("later")
-    public void externalEntityInjectionShoudlFailed() throws IOException {
-        String xml = getInvalidMessage("EDXL-DE/external-entity.xml");
-        assertDoesNotThrow(() -> converter.deserializeXmlEDXL(xml));
-    }
-
-    @Test
     @DisplayName("XXE injection should succeed in vulnerable config and fail in safe config")
     public void testXXEDifferentialBehavior() throws Exception {
         String xml = getInvalidMessage("EDXL-DE/external-entity.xml");
