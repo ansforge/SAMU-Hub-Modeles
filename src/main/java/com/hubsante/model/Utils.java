@@ -54,7 +54,7 @@ public class Utils {
     public static XmlMapper getXmlMapper() {
         XMLInputFactory inputFactory = XMLInputFactory.newFactory();
         inputFactory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
-        inputFactory.setProperty("javax.xml.stream.isSupportingExternalEntities", false);
+        inputFactory.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false);
 
         XmlMapper xmlMapper = (XmlMapper) new XmlMapper(inputFactory)
                 .registerModule(createCustomJavaTimeModule())
