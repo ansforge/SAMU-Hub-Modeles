@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+import javax.xml.stream.XMLInputFactory;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
@@ -35,8 +36,11 @@ public class Utils {
     }
 
     public static XmlMapper getXmlMapper() {
-        XmlMapper xmlMapper = new XmlMapper();
-        xmlMapper = (XmlMapper) new XmlMapper()
+        XMLInputFactory inputFactory = XMLInputFactory.newFactory();
+        inputFactory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+        inputFactory.setProperty("javax.xml.stream.isSupportingExternalEntities", false);
+
+        XmlMapper xmlMapper = (XmlMapper) new XmlMapper(inputFactory)
                 .registerModule(createCustomJavaTimeModule())
                 .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
                 .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
