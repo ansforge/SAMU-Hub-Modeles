@@ -15,8 +15,12 @@
  */
 package com.hubsante.model.edxlhandler;
 
+import com.ctc.wstx.stax.WstxInputFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.hubsante.model.TestMessagesHelper;
 import com.hubsante.model.edxl.EdxlMessage;
 import com.hubsante.model.exception.ValidationException;
@@ -25,6 +29,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import javax.xml.stream.XMLInputFactory;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -41,6 +46,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
+import static com.hubsante.model.Utils.createCustomJavaTimeModule;
+import static com.hubsante.model.Utils.getXmlMapper;
 import static com.hubsante.model.config.Constants.FULL_SCHEMA;
 import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessage;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
@@ -152,5 +159,33 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
         assertThrows(UnrecognizedPropertyException.class, () -> converter.deserializeJsonEDXL(json));
     }
 
+    @Test
+    @DisplayName("XXE injection should succeed in vulnerable config and fail in safe config")
+    public void testXXEDifferentialBehavior() throws Exception {
+        String xml = getInvalidMessage("EDXL-DE/external-entity.xml");
+
+        // Mapper vulnérable (sans protection)
+        WstxInputFactory vulInputFactory = new WstxInputFactory();
+        vulInputFactory.setProperty(XMLInputFactory.SUPPORT_DTD, true);
+        vulInputFactory.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, true);
+        XmlMapper vulnerableMapper = new XmlMapper(vulInputFactory);
+        vulnerableMapper.registerModule(createCustomJavaTimeModule()).disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);// config par défaut
+
+        // Mapper sécurisé (protection DTD + entités externes)
+        XmlMapper secureMapper = getXmlMapper();
+
+        // 1. Mapper vulnérable : doit injecter le contenu de l'entité
+        EdxlMessage vulnerableMessage = vulnerableMapper.readValue(xml, EdxlMessage.class);
+        String distributionID = vulnerableMessage.getDistributionID();
+
+        assertNotNull(distributionID);
+        assertFalse(distributionID.contains("&xxe;")); // Il ne doit pas rester l'entité brute
+
+        // 2. Mapper sécurisé : doit échouer ou ne pas injecter
+        Exception exception = assertThrows(JsonProcessingException.class, () -> {
+            secureMapper.readValue(xml, EdxlMessage.class);
+        });
+        assertTrue(exception.getMessage().contains("Undeclared general entity"));
+    }
 
 }
