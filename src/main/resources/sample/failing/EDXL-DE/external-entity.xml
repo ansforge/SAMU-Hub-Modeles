@@ -21,10 +21,10 @@
         <contentObject xlink:type="resource">
             <contentXML>
                 <embeddedXMLContent>
-                    <message xmlns="urn:emergency:cisu:3.0">
-                        <technicalNoreq>
+                    <message xmlns="urn:emergency:cisu:2.0">
+                        <customContent>
                             <key>value</key>
-                        </technicalNoreq>
+                        </customContent>
                     </message>
                 </embeddedXMLContent>
             </contentXML>
