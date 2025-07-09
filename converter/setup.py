@@ -7,7 +7,7 @@ setup(
     install_requires=[
         "Flask==2.2.5",
         "Werkzeug==3.0.6",
-        "requests==2.32.2",
+        "requests==2.32.4",
         "gunicorn==23.0.0",
         "typing-extensions>=4.5.0",
     ],
