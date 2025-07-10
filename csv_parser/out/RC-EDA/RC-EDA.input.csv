@@ -143,7 +143,7 @@ A réception, les informations de cet attribut sont à mapper et afficher dans u
 ,,Date et heure de l'information complémentaire,,,,A valoriser avec le groupe date heure de création de l'information complémentaire,,creation,0..1,,datetime,Format datetime décrit dans le DST
 ,,Commentaire/Observations,,,,"A valoriser avec un texte libre contenant les indications complémentaires renseignées sur l'alerte/appel.
 
-Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes à caractère médical, qui serait liée à un interrogatoire ARM ou médecin, ou à un patient en particulier",n,freetext,0..1,,string,
+Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes à caractère médical, qui serait liée à un interrogatoire ARM ou médecin, ou à un patient en particulier","Accident de bricolage, accident domestique, déclenchement téléalarme, voisine sur les lieux",freetext,0..1,,string,
 ,Requérant,,,,,Objet qui permet d'identifer la personne qui a alerté les secours et de la recontacter,,caller,1..1,X,caller,
 ,,Contact,,,,"Objet qui permet de décrire le type et la valeur de l'URI utilisée par un contact, ici spécifiquement le requérant/appelant à l'origine de l'alerte.
 
