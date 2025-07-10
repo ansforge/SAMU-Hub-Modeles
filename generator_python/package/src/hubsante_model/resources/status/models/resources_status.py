@@ -36,15 +36,15 @@ class ResourcesStatus(BaseModel):
     @field_validator('case_id')
     def case_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^fr(\.[\w-]+){3,4}$", value):
-            raise ValueError(r"must validate the regular expression /^fr(\.[\w-]+){3,4}$/")
+        if not re.match(r"^([\w-]+\.?){4,10}$", value):
+            raise ValueError(r"must validate the regular expression /^([\w-]+\.?){4,10}$/")
         return value
 
     @field_validator('resource_id')
     def resource_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$", value):
-            raise ValueError(r"must validate the regular expression /^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$/")
+        if not re.match(r"^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$", value):
+            raise ValueError(r"must validate the regular expression /^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$/")
         return value
 
     model_config = ConfigDict(

@@ -129,9 +129,18 @@ namespace HubsanteModel/Documentlink.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            if (this.CaseId != null) {
+                // CaseId (string) pattern
+                Regex regexCaseId = new Regex(@"^([\w-]+\.?){4,10}$", RegexOptions.CultureInvariant);
+                if (!regexCaseId.Match(this.CaseId).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CaseId, must match a pattern of " + regexCaseId, new [] { "CaseId" });
+                }
+            }
+
             if (this.PatientId != null) {
                 // PatientId (string) pattern
-                Regex regexPatientId = new Regex(@"^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$", RegexOptions.CultureInvariant);
+                Regex regexPatientId = new Regex(@"^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$", RegexOptions.CultureInvariant);
                 if (!regexPatientId.Match(this.PatientId).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PatientId, must match a pattern of " + regexPatientId, new [] { "PatientId" });
