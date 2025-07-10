@@ -592,12 +592,14 @@ components:
             \ \xE0 caract\xE8re m\xE9dical, qui serait li\xE9e \xE0 un interrogatoire\
             \ ARM ou m\xE9decin, ou \xE0 un patient en particulier"
           examples:
-          - n
+          - "Accident de bricolage, accident domestique, d\xE9clenchement t\xE9l\xE9\
+            alarme, voisine sur les lieux"
       additionalProperties: false
       example: example.json#/initialAlert/notes/0
       examples:
       - creation: None
-        freetext: n
+        freetext: "Accident de bricolage, accident domestique, d\xE9clenchement t\xE9\
+          l\xE9alarme, voisine sur les lieux"
     administrativeFile:
       type: object
       title: Dossier administratif
