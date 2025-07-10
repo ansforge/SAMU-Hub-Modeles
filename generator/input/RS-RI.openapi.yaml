@@ -33,7 +33,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: ^([\w-]+\.?){4,10}$
+          pattern: ^([a-zA-Z0-9_-]+\.?){4,10}$
           examples:
           - fr.health.samu440.DRFR15440241550012
         resource:
@@ -76,7 +76,7 @@ components:
             \ de ressource ne peut pas \xEAtre garanti par l'organisation propri\xE9\
             taire :\n{orgID}.resource.{sendercaseId}.{n\xB0 d\u2019ordre chronologique\
             \ de la ressource}"
-          pattern: ^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$
+          pattern: ^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$
           examples:
           - 'fr.health.samu770.resource.VLM250
 
@@ -93,7 +93,7 @@ components:
             \ de la demande dans le syst\xE8me \xE9metteur}\nOU - si un ID unique\
             \ de la demande n'\xE9tait pas disponible : \n{OrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
-          pattern: ^([\w-]+\.){3,8}request(\.[\w-]+){1,2}$
+          pattern: ^([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}$
           examples:
           - 'fr.health.samu770.request.1249875
 

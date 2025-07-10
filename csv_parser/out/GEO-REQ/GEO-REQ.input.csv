@@ -4,4 +4,4 @@ A valoriser avec l'identifiant partagé unique de la ressource engagée, normé 
 {orgID}.resource.{ID unique de la ressource partagée}
 OU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :
 {orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}","fr.health.samu770.resource.VLM250
-fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1",resourceId,1..n,,string,"REGEX: ^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$"
+fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1",resourceId,1..n,,string,"REGEX: ^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$"
