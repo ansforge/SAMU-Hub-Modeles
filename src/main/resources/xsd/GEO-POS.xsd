@@ -16,7 +16,7 @@ OU - uniquement dans le cas où un ID unique de ressource ne peut pas être gara
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="([\w-]+\.){3,8}resource(\.[\w-]+){1,2}"/>
+                        <pattern value="([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -31,7 +31,7 @@ OU - uniquement dans le cas où un ID unique de ressource ne peut pas être gara
                     <documentation>Vitesse de la ressource enregistrée, exprimée en km/h</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="cap" type="string">
+            <element minOccurs="0" name="cap" type="decimal">
                 <annotation>
                     <documentation>Direction de la ressource, exprimé en degrés</documentation>
                 </annotation>

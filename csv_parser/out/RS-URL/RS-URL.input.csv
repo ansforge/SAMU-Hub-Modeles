@@ -4,9 +4,9 @@ Il est valorisé comme suit lors de sa création :
 {pays}.{domaine}.{organisation}.{senderCaseId}
 
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
- Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX:^([\w-]+\.?){4,10}$"
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX:^([a-zA-Z0-9_-]+\.?){4,10}$"
 Identifiant partagé du patient,,,,,,Indique l'identifiant partagé du patient auquel les documents sont rattachés,"fr.health.samu690.patient.P23AZ59
-fr.health.samu690.patient.DRFR15690242370035.1",patientId,0..1,,string,"REGEX: ^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$"
+fr.health.samu690.patient.DRFR15690242370035.1",patientId,0..1,,string,"REGEX: ^([a-zA-Z0-9_-]+\.){3,8}patient(\.[a-zA-Z0-9_-]+){1,2}$"
 Code d'accès au bilan,,,,,,Code unitaire par bilan qui permet à l'utilisateur qui reçoit ce lien d'ouvrir le bilan lorsque celui ci ne nécessite pas une connexion nominative mais un code bilan ,5f5h8s9,code,0..1,,string,
 Documents,,,,,,,,document,1..n,X,document,
 ,Type de document,,,,,Informe l'utilisateur du type de document que le lien URL permet d'ouvrir,"Photo, ECG, bilan pdf, prescription, carte d'identité",documentType,0..1,,string,

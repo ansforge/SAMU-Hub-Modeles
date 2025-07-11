@@ -1,6 +1,5 @@
 from unittest.mock import patch
-import pytest
-from converter.utils import concatenate_values, get_field_value, is_field_completed, format_object, delete_paths, translate_key_words, update_json_value
+from converter.utils import add_to_medical_notes, concatenate_values, get_field_value, is_field_completed, format_object, delete_paths, map_to_new_value, translate_key_words, update_json_value
 import unittest
 import json
 import os
@@ -252,6 +251,78 @@ class TestUpdateJsonValue(unittest.TestCase):
         with self.assertRaises(Exception):
             update_json_value(self.json_data, "$..", "Invalid")
         mock_print.assert_called_with("Error raised in update_json_value: Parse error near the end of string!")
+
+
+class TestAddToMedicalNotes(unittest.TestCase):
+    @patch('converter.utils.random')
+    def test_add_to_empty_medical_notes(self,mock_choices):
+        mock_choices.choices.side_effect = ["f5de", "a3b2", "c9d8"]
+
+        json_data = {
+            'otherKey': 'otherValue',
+            'patient': [{'patientId': 'fr.health.samuH.ERTYUI.GHK', 'key1':'value1', 'key2':'value2'}]
+        }
+
+        expected_medical_notes=[{'patientId': 'fr.health.samuH.ERTYUI.GHK', 'medicalNoteId': 'fr.health.samuH.medicalNote.f5de', 'freetext': 'key 1 label: value1\n...\n', 'operator': {'role': 'AUTRE'}}, {'patientId': 'fr.health.samuH.ERTYUI.GHK', 'medicalNoteId': 'fr.health.samuH.medicalNote.a3b2', 'freetext': 'key 2 label: value2\n...\n', 'operator': {'role': 'AUTRE'}}]
+
+        add_to_medical_notes(json_data, json_data['patient'][0], [{"path": 'key1', "label": "key 1 label: "},{"path": 'key2', "label": "key 2 label: "}])
+
+        self.assertEqual(json_data.get('medicalNote'), expected_medical_notes)
+        self.assertEqual(len(json_data.get('medicalNote')), 2)
+
+    @patch('converter.utils.random')
+    def test_add_to_medical_notes(self, mock_choices):
+        mock_choices.choices.side_effect = ["f5de", "a3b2", "c9d8"]
+        medical_note = {
+                "operator": {
+                "label": "labello",
+                "role": "AMBULANCIER"
+                },
+                "patientId": "fr.health.samu770.patient.DRFR157702400400055.1",
+                "medicalNoteId": "fr.health.samu770.medicalNote.bout1.bout2",
+                "creation": "2025-02-27T12:00:00+01:00",
+                "freetext": " note 0"
+        }
+
+        json_data = {
+            'otherKey': 'otherValue',
+            'patient': [{'patientId': 'fr.health.samuH.ERTYUI.GHK', 'key1':'value1', 'key2':'value2'}],
+            'medicalNote': [medical_note]
+        }
+        expected_medical_notes=[{'operator': {'label': 'labello', 'role': 'AMBULANCIER'}, 'patientId': 'fr.health.samu770.patient.DRFR157702400400055.1', 'medicalNoteId': 'fr.health.samu770.medicalNote.bout1.bout2', 'creation': '2025-02-27T12:00:00+01:00', 'freetext': ' note 0'}, {'patientId': 'fr.health.samuH.ERTYUI.GHK', 'medicalNoteId': 'fr.health.samuH.medicalNote.f5de', 'freetext': 'key 1 label: value1\n...\n', 'operator': {'role': 'AUTRE'}}, {'patientId': 'fr.health.samuH.ERTYUI.GHK', 'medicalNoteId': 'fr.health.samuH.medicalNote.a3b2', 'freetext': 'key 2 label: value2\n...\n', 'operator': {'role': 'AUTRE'}}]
+
+        add_to_medical_notes(json_data, json_data['patient'][0], [{"path": 'key1', "label": "key 1 label: "},{"path": 'key2', "label": "key 2 label: "}])
+
+        self.assertEqual(json_data.get('medicalNote'), expected_medical_notes)
+        self.assertEqual(len(json_data.get('medicalNote')), 3)
+
+class TestMapToNewValue(unittest.TestCase):
+    def test_value_map_to_new_value_with_valid_mapping(self):
+        json_data = {'key': 'old_value'}
+        json_path_to_update = '$.key'
+        mapping_value = {'old_value': 'new_value', 'other_key': 'other_value'}
+
+        map_to_new_value(json_data, json_path_to_update, mapping_value)
+
+        self.assertEqual(json_data['key'], 'new_value')
+
+    def test_map_to_new_value_with_no_match(self):
+        json_data = {'key': 'unchanged_value'}
+        json_path_to_update = '$.key'
+        mapping_value = {'old_value': 'new_value', 'other_key': 'other_value'}
+
+        map_to_new_value(json_data, json_path_to_update, mapping_value)
+
+        self.assertEqual(json_data['key'], 'unchanged_value')
+
+    def test_map_to_new_value_with_none_value(self):
+        json_data = {'key': 'other_value'}
+        json_path_to_update = '$.key'
+        mapping_value = {'old_value': 'new_value'}
+
+        map_to_new_value(json_data, json_path_to_update, mapping_value)
+
+        self.assertEqual(json_data['key'], 'other_value')
 
 if __name__ == "__main__":
     unittest.main()
