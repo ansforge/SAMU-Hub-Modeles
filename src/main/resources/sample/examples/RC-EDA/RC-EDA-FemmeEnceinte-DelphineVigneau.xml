@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <createCase xmlns="urn:emergency:cisu:2.0:createCase">
-  <caseId>fr.fire.sis044.cga-044.SC-20240526-044-cga-AL8</caseId>
+  <caseId>fr.fire.sis044.CGA_national-044.SC-20240526-044-CGA_national-AL8</caseId>
   <senderCaseId>SC-20240526-044-cga-AL8</senderCaseId>
   <creation>2024-05-26T13:15:00+02:00</creation>
   <referenceVersion>1.3</referenceVersion>

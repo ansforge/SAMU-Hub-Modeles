@@ -13,7 +13,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="fr(\.[\w-]+){3,4}"/>
+                        <pattern value="fr(\.[a-zA-Z0-9_-]+){3,4}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -46,7 +46,7 @@ A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{doma
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="fr(\.[\w-]+){2,3}"/>
+                        <pattern value="fr(\.[a-zA-Z0-9_-]+){2,3}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -93,7 +93,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="([\w-]+\.){3,4}patient(\.[\w-]+){1,2}"/>
+                        <pattern value="([a-zA-Z0-9_-]+\.){3,4}patient(\.[a-zA-Z0-9_-]+){1,2}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -118,7 +118,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="([\w-]+\.){3,4}patient(\.[\w-]+){1,2}"/>
+                        <pattern value="([a-zA-Z0-9_-]+\.){3,4}patient(\.[a-zA-Z0-9_-]+){1,2}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -137,7 +137,7 @@ Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jo
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="([\w-]+\.){3,4}medicalNote(\.[\w-]+){1,2}"/>
+                        <pattern value="([a-zA-Z0-9_-]+\.){3,4}medicalNote(\.[a-zA-Z0-9_-]+){1,2}"/>
                     </restriction>
                 </simpleType>
             </element>

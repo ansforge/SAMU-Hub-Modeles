@@ -13,7 +13,7 @@ Array of enumerations,,,,,,This is an array of enumerations,,enumArrayField,0..n
 Array with maximum length,,,,,,This is an array with a maximum length,,arrayWithMaxLength,0..5,,string,
 Phone number with regex,,,,,,Phone number with regex,,phoneNumberField,0..1,,string,"REGEX: ^\+?[0-9]{2,14}$"
 Date,,,,,,Date,,dateField,0..1,,date,
-Email with regex,,,,,,Email with regex,,emailField,0..1,,string,"REGEX: ^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$"
+Email with regex,,,,,,Email with regex,,emailField,0..1,,string,"REGEX: ^[a-zA-Z0-9_.-]+@([a-zA-Z0-9_-]+\.)+[a-zA-Z0-9_-]{2,4}$"
 Datetime,,,,,,Datetime,,datetimeField,0..1,,datetime,
 Level 1 Object,,,,,,Object at data level 1,,objectLevel1,0..1,X,levelOneData,
 ,Level 2 Object 1,,,,,Object 1 at data level 2,,object1Level2,0..1,X,levelTwoData,

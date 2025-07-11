@@ -4,7 +4,7 @@ Il est valorisé comme suit lors de sa création :
 {pays}.{domaine}.{organisation}.{senderCaseId}
 
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
- Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15DDXAAJJJ00000,caseId,1..1,,string,"REGEX: ^fr(\.[\w-]+){3,4}$"
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15DDXAAJJJ00000,caseId,1..1,,string,"REGEX: ^fr(\.[a-zA-Z0-9_-]+){3,4}$"
 Identifiant du bilan,,,,,,Identifiant du bilan du logiciel SMUR,38978624DM,reportId,1..1,,string,
 Professionnel de santé qui réalise le bilan,,,,,,Objet qui permet de décrire le professionnel de santé qui rédige le bilan. ,,redactor,1..1,X,redactor,
 ,Label,,,,,A valoriser avec le prénom et le nom du rédacteur ou un numéro RPPS. ,Julien Montclar,label,0..1,,string,
