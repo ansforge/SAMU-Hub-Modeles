@@ -306,7 +306,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,4}
+          pattern: fr(\.[a-zA-Z0-9_-]+){3,4}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -2325,8 +2325,8 @@ components:
           example: example.json#/initialAlert/attachment/0/URI
           description: "Une URI, g\xE9n\xE9ralement une URL, qui permet d'atteindre\
             \ la ressource sur Internet ou sur un r\xE9seau priv\xE9\nNous sugg\xE9\
-            rons d'employer le format suivant de regex (https?|ftp|file):\\/\\/([\\\
-            w-]+(\\.[\\w-]+)*)(\\/[\\w\\-\\.]*)*\\/?(\\?[^\\s]*)?"
+            rons d'employer le format suivant de regex (https?|ftp|file):\\/\\/([a-zA-Z0-9_-]+(\\\
+            .[a-zA-Z0-9_-]+)*)(\\/[a-zA-Z0-9_.-]*)*\\/?(\\?[^\\s]*)?"
           examples:
           - https://hub.esante.gouv.fr/resourceExample
         derefURI:
@@ -2529,7 +2529,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,4}
+          pattern: fr(\.[a-zA-Z0-9_-]+){3,4}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -2604,7 +2604,7 @@ components:
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
             \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
             \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
-          pattern: fr(\.[\w-]+){2,3}
+          pattern: fr(\.[a-zA-Z0-9_-]+){2,3}
           examples:
           - fr.health.samu440
         patient:
@@ -2694,7 +2694,7 @@ components:
             me \xE9metteur}\n\nOU, si un n\xB0patient unique n'existe pas dans le\
             \ syst\xE8me \xE9metteur :\n{ID \xE9metteur}.{senderCaseId}.patient.{num\xE9\
             ro d\u2019ordre chronologique au dossier}"
-          pattern: ([\w-]+\.){3,4}patient(\.[\w-]+){1,2}
+          pattern: ([a-zA-Z0-9_-]+\.){3,4}patient(\.[a-zA-Z0-9_-]+){1,2}
           examples:
           - 'fr.health.samu690.patient.P23AZ59
 
@@ -2716,7 +2716,7 @@ components:
             ro chronologique de l\u2019observation}\n\nCet identifiant a vocation\
             \ \xE0 devenir obligatoire pour permettre les mises \xE0 jour, il est\
             \ laiss\xE9 en facultatif temporairement.\n"
-          pattern: ([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}
+          pattern: ([a-zA-Z0-9_-]+\.){3}medicalNote(\.[a-zA-Z0-9_-]+){1,2}
           examples:
           - 'fr.health.samu540.medicalNote.46585A
 
@@ -3300,7 +3300,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,4}
+          pattern: fr(\.[a-zA-Z0-9_-]+){3,4}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -3344,7 +3344,7 @@ components:
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
             \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
             \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
-          pattern: fr(\.[\w-]+){2,3}
+          pattern: fr(\.[a-zA-Z0-9_-]+){2,3}
           examples:
           - fr.health.samu440
         patient:
@@ -3566,7 +3566,7 @@ components:
           example: example.json#/event/samuId
           description: "Num\xE9ro du SAMU r\xE9gulant la mission SMUR. \nA valoriser\
             \ par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n"
-          pattern: '[a-z]{2,3}\.[a-z]+\.\w*'
+          pattern: '[a-z]{2,3}\.[a-z]+\.[a-zA-Z0-9_]*'
           examples:
           - fr.health.samu440
         fileId:
@@ -3932,7 +3932,7 @@ components:
             \ de ressource ne peut pas \xEAtre garanti par l'organisation propri\xE9\
             taire :\n{orgID}.resource.{sendercaseId}.{n\xB0 d\u2019ordre chronologique\
             \ de la ressource}"
-          pattern: ([\w-]+\.){3,4}resource(\.[\w-]+){1,2}
+          pattern: ([a-zA-Z0-9_-]+\.){3,4}resource(\.[a-zA-Z0-9_-]+){1,2}
           examples:
           - 'fr.health.samu770.resource.VLM250
 
@@ -3949,7 +3949,7 @@ components:
             \ de la demande dans le syst\xE8me \xE9metteur}\nOU - si un ID unique\
             \ de la demande n'\xE9tait pas disponible : \n{OrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
-          pattern: ([\w-]+\.){3,4}request(\.[\w-]+){1,2}
+          pattern: ([a-zA-Z0-9_-]+\.){3,4}request(\.[a-zA-Z0-9_-]+){1,2}
           examples:
           - 'fr.health.samu770.request.1249875
 
@@ -5946,7 +5946,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,4}
+          pattern: fr(\.[a-zA-Z0-9_-]+){3,4}
           examples:
           - fr.health.samu440.DRFR15440241550012
         mobilizedResource:
@@ -6094,7 +6094,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,4}
+          pattern: fr(\.[a-zA-Z0-9_-]+){3,4}
           examples:
           - fr.health.samu440.DRFR15440241550012
         request:
@@ -6136,7 +6136,7 @@ components:
             \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
             \ pas disponible : \n{OrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
-          pattern: ([\w-]+\.){3,4}request(\.[\w-]+){1,2}
+          pattern: ([a-zA-Z0-9_-]+\.){3,4}request(\.[a-zA-Z0-9_-]+){1,2}
           examples:
           - 'fr.health.samu770.request.1249875
 
@@ -6265,7 +6265,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,4}
+          pattern: fr(\.[a-zA-Z0-9_-]+){3,4}
           examples:
           - fr.health.samu440.DRFR15440241550012
         requestId:
@@ -6281,7 +6281,7 @@ components:
             \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
             \ pas disponible : \nOrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
-          pattern: ([\w-]+\.){3,4}request(\.[\w-]+){1,2}
+          pattern: ([a-zA-Z0-9_-]+\.){3,4}request(\.[a-zA-Z0-9_-]+){1,2}
           examples:
           - 'fr.health.samu770.request.1249875
 
@@ -6954,7 +6954,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,4}
+          pattern: fr(\.[a-zA-Z0-9_-]+){3,4}
           examples:
           - fr.health.samu440.DRFR15440241550012
         resourceId:
@@ -6969,7 +6969,7 @@ components:
             \ ne peut pas \xEAtre garanti par l'organisation propri\xE9taire :\n{orgID}.R.{ID\
             \ du dossier partag\xE9}.{num\xE9ro d\u2019ordre chronologique ressource}\n\
             \nN.B. Il s'agit de l'orgId de l'organisation \xE0 qui appartient la ressource"
-          pattern: ([\w-]+\.){3,4}resource(\.[\w-]+){1,2}
+          pattern: ([a-zA-Z0-9_-]+\.){3,4}resource(\.[a-zA-Z0-9_-]+){1,2}
           examples:
           - 'fr.health.samu770.resource.VLM250 ;
 
