@@ -54,7 +54,7 @@ components:
           example: example.json#/context/orgId
           description: "Num\xE9ro du SAMU r\xE9gulant la mission SMUR. \nA valoriser\
             \ par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n"
-          pattern: ^[a-z]{2,3}\.[a-z]+\.\w*$
+          pattern: ^[a-z]{2,3}\.[a-z]+\.[a-zA-Z0-9_]*$
           examples:
           - fr.health.samu440
         senderCaseId:
