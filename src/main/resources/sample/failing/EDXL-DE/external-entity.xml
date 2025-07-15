@@ -21,7 +21,7 @@
         <contentObject xlink:type="resource">
             <contentXML>
                 <embeddedXMLContent>
-                    <message xmlns="urn:emergency:cisu:3.0">
+                    <message xmlns="urn:emergency:cisu:2.0">
                         <technicalNoreq>
                             <key>value</key>
                         </technicalNoreq>
