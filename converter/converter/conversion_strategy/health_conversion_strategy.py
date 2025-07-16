@@ -17,7 +17,7 @@ def health_conversion_strategy(edxl_json, source_version: str, target_version: s
         return ReferenceConverter.convert(source_version, target_version, edxl_json)
     else:
         deducted_message_type = extract_message_type_from_message_content(message_content)
-        BaseMessageConverter(deducted_message_type).raise_conversion_not_implemented_error(source_version, target_version)
+        raise ValueError(f"Version conversion from {source_version} to {target_version} for message type '{deducted_message_type}' is currently not implemented.")
 
 unwanted_keys = ["messageId", "sender", "sentAt", "kind", "status", "recipient"]
 
