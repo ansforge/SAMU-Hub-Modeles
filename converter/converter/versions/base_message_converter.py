@@ -88,7 +88,7 @@ class BaseMessageConverter:
 
     @classmethod
     def raise_conversion_not_implemented_error(self, source_version, target_version):
-        raise ValueError(f"Version conversion from {source_version} to {target_version} for message type '{self.message_type}' is currently not implemented.")
+        raise ValueError(f"Version conversion from {source_version} to {target_version} for message type '{self.get_message_type()}' is currently not implemented.")
 
     @classmethod
     def raise_conversion_impossible_error(self, source_version, target_version):
