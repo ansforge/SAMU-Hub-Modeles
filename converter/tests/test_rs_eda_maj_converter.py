@@ -18,8 +18,6 @@ def test_V2_to_V1_upgrade():
     v1_schema_endpoint = get_file_endpoint(Constants.V1_GITHUB_TAG, Constants.RS_EDA_MAJ_TAG)
     v1_schema = TestHelper.load_json_file_online(v1_schema_endpoint)
 
-
-
     TestHelper.conversion_tests_runner(
         sample_dir=Constants.RS_EDA_MAJ_TAG,
         envelope_file=Constants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
