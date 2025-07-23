@@ -1,5 +1,5 @@
 from converter.constants import Constants
-from converter.versions.create_case_health_update_converter import CreateHealthUpdateCaseConverter
+from converter.versions.create_case_health.create_case_health_update_converter import CreateHealthUpdateCaseConverter
 from .test_helpers import TestHelper, get_file_endpoint
 
 def test_V1_to_V2_upgrade():
@@ -17,8 +17,6 @@ def test_V1_to_V2_upgrade():
 def test_V2_to_V1_upgrade():
     v1_schema_endpoint = get_file_endpoint(Constants.V1_GITHUB_TAG, Constants.RS_EDA_MAJ_TAG)
     v1_schema = TestHelper.load_json_file_online(v1_schema_endpoint)
-
-
 
     TestHelper.conversion_tests_runner(
         sample_dir=Constants.RS_EDA_MAJ_TAG,

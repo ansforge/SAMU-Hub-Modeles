@@ -1,0 +1,12 @@
+{
+  "resourcesInfo": {
+    "mobilizedResource": [
+      {
+        "datetime": "2024-08-01T16:55:00+02:00",
+        "resourceId": "fr.health.samu800.resource.Heli80bec6",
+        "resourceType": "SMUR"
+      }
+    ],
+    "caseId": "fr.health.samu800.DRFR158002421400215"
+  }
+}
