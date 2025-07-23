@@ -3,9 +3,9 @@ import copy
 
 from converter.utils import add_to_medical_notes, delete_paths, get_field_value, is_field_completed, map_to_new_value
 from converter.versions.base_message_converter import BaseMessageConverter
-from converter.versions.v1_v2.constants import V1V2Constants
-from converter.versions.v1_v2.utils import reverse_map_to_new_value, switch_field_name, validate_diagnosis_code
-from converter.versions.v2_v3.constants import V2V3Constants
+from converter.versions.create_case_health.v1_v2.constants import V1V2Constants
+from converter.versions.create_case_health.v2_v3.constants import V2V3Constants
+from converter.versions.utils import reverse_map_to_new_value, switch_field_name, validate_diagnosis_code
 
 
 class CreateHealthCaseConverter(BaseMessageConverter):

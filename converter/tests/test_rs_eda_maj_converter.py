@@ -1,5 +1,5 @@
 from converter.constants import Constants
-from converter.versions.create_case_health_update_converter import CreateHealthUpdateCaseConverter
+from converter.versions.create_case_health.create_case_health_update_converter import CreateHealthUpdateCaseConverter
 from .test_helpers import TestHelper, get_file_endpoint
 
 def test_V1_to_V2_upgrade():
