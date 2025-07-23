@@ -75,7 +75,7 @@ class TestSnapshotCisuConverter(TestCase):
 
         mock_choices.choices.return_value = "f5de"
 
-        message = TestHelper.create_edxl_json_from_sample(self.edxl_envelope_health_to_fire_path, self.fixtures_folder_path + "RS-EDA_exhaustive_fill.json")
+        message = TestHelper.create_edxl_json_from_sample(self.edxl_envelope_health_to_fire_path, self.fixtures_folder_path + "RS-EDA/cisu_case/RS-EDA_exhaustive_fill.json")
         converter = CISUConverterV3()
 
         output_data = converter.to_cisu(message)
@@ -99,7 +99,7 @@ class TestSnapshotCisuConverter(TestCase):
 
         mock_choices.choices.return_value = "f5de"
 
-        message = TestHelper.create_edxl_json_from_sample(self.edxl_envelope_health_to_fire_path, self.fixtures_folder_path + "RS-EDA_required_fields.json")
+        message = TestHelper.create_edxl_json_from_sample(self.edxl_envelope_health_to_fire_path, self.fixtures_folder_path + "RS-EDA/cisu_case/RS-EDA_required_fields.json")
         converter = CISUConverterV3()
 
         output_data = converter.to_cisu(message)
@@ -124,7 +124,7 @@ class TestSnapshotCisuConverter(TestCase):
 
         mock_choices.choices.return_value = "f5de"
 
-        message = TestHelper.create_edxl_json_from_sample(self.edxl_envelope_health_to_fire_path, self.fixtures_folder_path + "RS-EDA_exhaustive_fill_bis.json")
+        message = TestHelper.create_edxl_json_from_sample(self.edxl_envelope_health_to_fire_path, self.fixtures_folder_path + "RS-EDA/cisu_case/RS-EDA_exhaustive_fill_bis.json")
         converter = CISUConverterV3()
 
         output_data = converter.to_cisu(message)
