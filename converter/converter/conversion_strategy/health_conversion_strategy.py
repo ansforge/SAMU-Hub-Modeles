@@ -4,7 +4,8 @@ from converter.versions.create_case_health.create_case_health_update_converter i
 from converter.versions.error_converter import ErrorConverter
 from converter.versions.reference_converter import ReferenceConverter
 from converter.versions.create_case_health.create_case_health_converter import CreateHealthCaseConverter
-
+from converter.versions.resources_info.resources_info_converter import ResourcesInfoConverter
+from converter.versions.resources_status.resources_status_converter import ResourcesStatusConverter
 
 def health_conversion_strategy(edxl_json, source_version: str, target_version: str):
     print(f"Health Conversion initiated from {source_version} to {target_version}")
@@ -18,6 +19,10 @@ def health_conversion_strategy(edxl_json, source_version: str, target_version: s
         return ReferenceConverter.convert(source_version, target_version, edxl_json)
     elif 'error' in message_content:
         return ErrorConverter.convert(source_version, target_version, edxl_json)
+    elif 'resourcesStatus' in message_content:
+        return ResourcesStatusConverter.convert(source_version, target_version, edxl_json)
+    elif 'resourcesInfo' in message_content:
+        return ResourcesInfoConverter.convert(source_version, target_version, edxl_json)
     else:
         deducted_message_type = extract_message_type_from_message_content(message_content)
         raise ValueError(f"Version conversion from {source_version} to {target_version} for message type '{deducted_message_type}' is currently not implemented.")
