@@ -2,12 +2,12 @@ import copy
 from typing import Dict, Any
 
 from converter.utils import map_to_new_value
-from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.conversion_mixin import ConversionMixin
+from converter.versions.identical_message_converter import IdenticalMessageConverter
 from converter.versions.resources_request.resources_request_constants import ResourcesRequestConstants
 from converter.versions.utils import reverse_map_to_new_value
 
-class ResourcesRequestConverter(BaseMessageConverter, ConversionMixin):
+class ResourcesRequestConverter(IdenticalMessageConverter, ConversionMixin):
     @staticmethod
     def get_message_type():
         return "resourcesRequest"
@@ -29,11 +29,3 @@ class ResourcesRequestConverter(BaseMessageConverter, ConversionMixin):
         reverse_map_to_new_value(output_use_case_json,'$.request.deadline', ResourcesRequestConstants.V1_TO_V2_DEADLINE_MAPPING)
 
         return cls.format_output_json(output_json, output_use_case_json)
-
-    @classmethod
-    def convert_v2_to_v3(cls, input_json) -> Dict[str, Any]:
-        return input_json
-
-    @classmethod
-    def convert_v3_to_v2(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
-        return input_json
