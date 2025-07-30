@@ -66,9 +66,6 @@ class CreateHealthCaseConverter(BaseMessageConverter):
                 switch_field_name(note,'idPat','patientId')
                 switch_field_name(note,'idObs','medicalNoteId')
 
-        # /!\ Warning - It must be the last step
-        delete_paths(output_use_case_json, V1V2Constants.V1_PATHS_TO_DELETE)
-
         return cls.format_output_json(output_json, output_use_case_json)
 
     @classmethod
@@ -119,9 +116,6 @@ class CreateHealthCaseConverter(BaseMessageConverter):
 
         if is_field_completed(output_use_case_json,'$.location.geometry.datetime'):
             switch_field_name(output_use_case_json['location']['geometry'],'datetime','obsDatime')
-
-        # /!\ Warning - It must be the last step
-        delete_paths(output_use_case_json, V1V2Constants.V2_PATHS_TO_DELETE)
 
         return cls.format_output_json(output_json, output_use_case_json)
 
