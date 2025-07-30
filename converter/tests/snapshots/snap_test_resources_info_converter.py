@@ -70,11 +70,11 @@ snapshots['TestSnapshotV1V2Converter::test_exhaustive_snapshot_V1_to_V2_upgrade 
                   "centerName": "Centre SMUR 800",
                   "centerCity": "80000",
                   "orgId": "fr.health.samu800",
-                  "plate": "BCE6",
                   "name": "HELISMUR 80 - BEC6",
                   "freetext": [
                     "Premier commentaire",
-                    "Deuxi\\u00e8me commentaire"
+                    "Deuxi\\u00e8me commentaire",
+                    "Immatriculation : BCE6"
                   ],
                   "vehicleType": "LIB"
                 },

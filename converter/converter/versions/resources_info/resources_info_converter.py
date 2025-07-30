@@ -25,6 +25,12 @@ class ResourcesInfoConverter(BaseMessageConverter, ConversionMixin):
                     for state in states:
                         map_to_new_value(state,'$.status', ResourcesInfoConstants.V1_TO_V2_STATUS_MAPPING)
 
+                plate = get_field_value(mobilizedResource, '$.plate')
+                if plate is not None:
+                    freetext = mobilizedResource.get('freetext', [])
+                    freetext.append("Immatriculation : " + plate)
+                    output_use_case_json['mobilizedResource'][index]['freetext'] = freetext
+
                 map_to_new_value(mobilizedResource, '$.vehiculeType', ResourcesInfoConstants.V1_TO_V2_VEHICULE_TYPE_MAPPING)
                 vehiculeType = get_field_value(mobilizedResource, '$.vehiculeType')
                 if vehiculeType is not None:

@@ -24,6 +24,7 @@ class ResourcesInfoConstants:
         "resource[].vehiculeType",
         "resource[].team.teamCare",
         "resource[].resourceType",
+        "resource[].plate",
         "mobilizedResource"
     ]
 
