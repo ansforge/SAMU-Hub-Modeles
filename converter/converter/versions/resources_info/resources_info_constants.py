@@ -3,6 +3,12 @@ class ResourcesInfoConstants:
         "FINPEC": "FINMED",
     }
 
+    V1_TO_V2_STATUS_MAPPING = {
+        "ARRIVE": "ARRIVEE",
+        "TRANSPOR": "TRANSP",
+        "FINPEC": "FINMED",
+    }
+
     V2_PATHS_TO_DELETE = [
         "resource",
         "mobilizedResource[].team.medicalLevel",

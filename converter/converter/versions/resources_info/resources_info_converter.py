@@ -19,7 +19,12 @@ class ResourcesInfoConverter(BaseMessageConverter, ConversionMixin):
 
         mobilizedResources = get_field_value(output_use_case_json, '$.mobilizedResource')
         if mobilizedResources is not None:
-            for mobilizedResource in mobilizedResources:
+            for index, mobilizedResource in enumerate(mobilizedResources):
+                states = get_field_value(mobilizedResource, '$.state')
+                if states is not None:
+                    for state in states:
+                        map_to_new_value(state,'$.status', ResourcesInfoConstants.V1_TO_V2_STATUS_MAPPING)
+
                 map_to_new_value(mobilizedResource, '$.vehiculeType', ResourcesInfoConstants.V1_TO_V2_VEHICULE_TYPE_MAPPING)
                 vehiculeType = get_field_value(mobilizedResource, '$.vehiculeType')
                 if vehiculeType is not None:
@@ -45,6 +50,11 @@ class ResourcesInfoConverter(BaseMessageConverter, ConversionMixin):
         resources = get_field_value(output_use_case_json, '$.resource')
         if resources is not None:
             for resource in resources:
+                states = get_field_value(resource, '$.state')
+                if states is not None:
+                    for state in states:
+                        reverse_map_to_new_value(state, '$.status', ResourcesInfoConstants.V1_TO_V2_STATUS_MAPPING)
+
                 reverse_map_to_new_value(resource, '$.vehicleType', ResourcesInfoConstants.V1_TO_V2_VEHICULE_TYPE_MAPPING)
                 vehicleType = get_field_value(resource, '$.vehicleType')
                 if vehicleType is not None:

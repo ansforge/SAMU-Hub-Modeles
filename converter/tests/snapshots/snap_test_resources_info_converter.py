@@ -55,11 +55,11 @@ snapshots['TestSnapshotV1V2Converter::test_exhaustive_snapshot_V1_to_V2_upgrade 
                   "state": [
                     {
                       "datetime": "2024-08-06T16:45:00+02:00",
-                      "status": "DECISION"
+                      "status": "TRANSP"
                     },
                     {
                       "datetime": "2024-08-06T16:55:00+02:00",
-                      "status": "DECLENCHE",
+                      "status": "ARRIVEE",
                       "availability": true
                     }
                   ],
@@ -197,7 +197,7 @@ snapshots['TestSnapshotV2V1Converter::test_exhaustive_snapshot_V2_to_V1_upgrade 
                     },
                     {
                       "datetime": "2024-05-26T13:20:00+02:00",
-                      "status": "FINMED"
+                      "status": "FINPEC"
                     }
                   ],
                   "contact": {
