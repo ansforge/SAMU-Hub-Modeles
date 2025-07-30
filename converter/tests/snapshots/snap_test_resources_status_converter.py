@@ -239,7 +239,7 @@ snapshots['TestSnapshotV1V2Converter::test_required_fields_snapshot_V1_to_V2_upg
               "resourceId": "fr.health.samu800.resource.Heli80bec6",
               "state": {
                 "datetime": "2024-08-01T17:15:00+02:00",
-                "status": "DESTIN"
+                "status": "FINMED"
               }
             }
           }
