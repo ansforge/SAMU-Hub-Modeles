@@ -91,4 +91,15 @@ class ResourcesInfoConverter(BaseMessageConverter, ConversionMixin):
 
         cls.map_state_status(output_use_case_json, reverse_mapping=False)
 
+        resources = get_field_value(output_use_case_json, '$.resource')
+        if resources is not None:
+            for index, resource in enumerate(resources):
+                patient_id = get_field_value(resource, '$.patientId')
+                if patient_id is not None:
+                    freetext = resource.get('freetext', [])
+                    freetext.append("Patient ID : " + patient_id)
+                    output_use_case_json['resource'][index]['freetext'] = freetext
+
+        delete_paths(output_use_case_json, ResourcesInfoConstants.V3_PATHS_TO_DELETE)
+
         return cls.format_output_json(output_json, output_use_case_json)

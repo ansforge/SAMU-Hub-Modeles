@@ -22,6 +22,7 @@
           }
         ],
         "datetime": "2024-08-01T16:42:00+02:00",
+        "patientId": "fr.fire.sis076.cgo-076.patient.179",
         "resourceId": "fr.health.samu76A.resource.VLM12",
         "orgId": "fr.health.samu76A",
         "vehicleType": "SMUR.VLM",

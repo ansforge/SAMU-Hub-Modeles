@@ -434,7 +434,10 @@ snapshots['TestSnapshotV2V3Converter::test_exhaustive_snapshot_V3_to_V2_upgrade 
                   "resourceId": "fr.health.samu76A.resource.VLM12",
                   "orgId": "fr.health.samu76A",
                   "vehicleType": "SMUR.VLM",
-                  "name": "VLM 76 - A45"
+                  "name": "VLM 76 - A45",
+                  "freetext": [
+                    "Patient ID : fr.fire.sis076.cgo-076.patient.179"
+                  ]
                 },
                 {
                   "contact": {
@@ -457,14 +460,14 @@ snapshots['TestSnapshotV2V3Converter::test_exhaustive_snapshot_V3_to_V2_upgrade 
                   "requestId": "fr.fire.sis076.cgo-076.request.177",
                   "centerName": "Centre de Secours 76 - A",
                   "missionId": "fr.fire.sis076.cgo-076.mission.177",
-                  "patientId": "fr.fire.sis076.cgo-076.patient.177",
                   "centerCity": "75011",
                   "orgId": "fr.fire.sdis76.cgo-076",
                   "name": "VSAV 76 - 22D8",
                   "vehicleType": "LIB.AUTREPRO",
                   "freetext": [
                     "commentaire",
-                    "autre commentaire"
+                    "autre commentaire",
+                    "Patient ID : fr.fire.sis076.cgo-076.patient.177"
                   ]
                 }
               ],

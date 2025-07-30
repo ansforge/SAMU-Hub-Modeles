@@ -9,6 +9,10 @@ class ResourcesInfoConstants:
         "mobilizedResource[].vehicleType",
     ]
 
+    V3_PATHS_TO_DELETE = [
+        "resource[].patientId",
+    ]
+
     V1_PATHS_TO_DELETE = [
         "resource[].coord",
         "resource[].vehiculeType",
