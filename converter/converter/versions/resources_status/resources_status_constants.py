@@ -13,7 +13,8 @@ class ResourcesStatusConstants:
 
     V1_TO_V2_STATUS_MAPPING = {
         "ARRIVE": "ARRIVEE",
-        "TRANSPOR": "TRANSP"
+        "TRANSPOR": "TRANSP",
+        "FINPEC": "FINMED",
     }
 
     V3_TO_V2_STATUS_MAPPING = {

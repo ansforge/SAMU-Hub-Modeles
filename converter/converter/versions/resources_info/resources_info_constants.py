@@ -3,10 +3,20 @@ class ResourcesInfoConstants:
         "FINPEC": "FINMED",
     }
 
+    V1_TO_V2_STATUS_MAPPING = {
+        "ARRIVE": "ARRIVEE",
+        "TRANSPOR": "TRANSP",
+        "FINPEC": "FINMED",
+    }
+
     V2_PATHS_TO_DELETE = [
         "resource",
         "mobilizedResource[].team.medicalLevel",
         "mobilizedResource[].vehicleType",
+    ]
+
+    V3_PATHS_TO_DELETE = [
+        "resource[].patientId",
     ]
 
     V1_PATHS_TO_DELETE = [
@@ -14,6 +24,7 @@ class ResourcesInfoConstants:
         "resource[].vehiculeType",
         "resource[].team.teamCare",
         "resource[].resourceType",
+        "resource[].plate",
         "mobilizedResource"
     ]
 

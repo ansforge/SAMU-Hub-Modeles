@@ -55,11 +55,11 @@ snapshots['TestSnapshotV1V2Converter::test_exhaustive_snapshot_V1_to_V2_upgrade 
                   "state": [
                     {
                       "datetime": "2024-08-06T16:45:00+02:00",
-                      "status": "DECISION"
+                      "status": "TRANSP"
                     },
                     {
                       "datetime": "2024-08-06T16:55:00+02:00",
-                      "status": "DECLENCHE",
+                      "status": "ARRIVEE",
                       "availability": true
                     }
                   ],
@@ -70,11 +70,11 @@ snapshots['TestSnapshotV1V2Converter::test_exhaustive_snapshot_V1_to_V2_upgrade 
                   "centerName": "Centre SMUR 800",
                   "centerCity": "80000",
                   "orgId": "fr.health.samu800",
-                  "plate": "BCE6",
                   "name": "HELISMUR 80 - BEC6",
                   "freetext": [
                     "Premier commentaire",
-                    "Deuxi\\u00e8me commentaire"
+                    "Deuxi\\u00e8me commentaire",
+                    "Immatriculation : BCE6"
                   ],
                   "vehicleType": "LIB"
                 },
@@ -197,7 +197,7 @@ snapshots['TestSnapshotV2V1Converter::test_exhaustive_snapshot_V2_to_V1_upgrade 
                     },
                     {
                       "datetime": "2024-05-26T13:20:00+02:00",
-                      "status": "FINMED"
+                      "status": "FINPEC"
                     }
                   ],
                   "contact": {
@@ -434,7 +434,10 @@ snapshots['TestSnapshotV2V3Converter::test_exhaustive_snapshot_V3_to_V2_upgrade 
                   "resourceId": "fr.health.samu76A.resource.VLM12",
                   "orgId": "fr.health.samu76A",
                   "vehicleType": "SMUR.VLM",
-                  "name": "VLM 76 - A45"
+                  "name": "VLM 76 - A45",
+                  "freetext": [
+                    "Patient ID : fr.fire.sis076.cgo-076.patient.179"
+                  ]
                 },
                 {
                   "contact": {
@@ -457,14 +460,14 @@ snapshots['TestSnapshotV2V3Converter::test_exhaustive_snapshot_V3_to_V2_upgrade 
                   "requestId": "fr.fire.sis076.cgo-076.request.177",
                   "centerName": "Centre de Secours 76 - A",
                   "missionId": "fr.fire.sis076.cgo-076.mission.177",
-                  "patientId": "fr.fire.sis076.cgo-076.patient.177",
                   "centerCity": "75011",
                   "orgId": "fr.fire.sdis76.cgo-076",
                   "name": "VSAV 76 - 22D8",
                   "vehicleType": "LIB.AUTREPRO",
                   "freetext": [
                     "commentaire",
-                    "autre commentaire"
+                    "autre commentaire",
+                    "Patient ID : fr.fire.sis076.cgo-076.patient.177"
                   ]
                 }
               ],

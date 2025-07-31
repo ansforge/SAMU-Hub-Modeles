@@ -12,6 +12,8 @@ class Constants:
     RC_EDA_TAG="RC-EDA"
     RS_SR_TAG="RS-SR"
     RS_RI_TAG="RS-RI"
+    RS_DR_TAG="RS-DR"
+    RS_RR_TAG="RS-RR"
 
     FR_HEALTH_PREFIX="fr.health"
 
