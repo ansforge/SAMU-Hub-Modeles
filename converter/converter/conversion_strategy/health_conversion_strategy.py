@@ -12,26 +12,33 @@ from converter.versions.resources_status.resources_status_converter import Resou
 def health_conversion_strategy(edxl_json, source_version: str, target_version: str):
     print(f"Health Conversion initiated from {source_version} to {target_version}")
 
-    message_content = edxl_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {})
+    message_content = extract_message_content(edxl_json)
+    selected_strategy = select_conversion_strategy(message_content)
+    return selected_strategy.convert(source_version, target_version, edxl_json)
+
+def extract_message_content(edxl_json):
+    return edxl_json.get('content', [{}])[0].get('jsonContent', {}).get('embeddedJsonContent', {}).get('message', {})
+
+def select_conversion_strategy(message_content):
     if 'createCaseHealth' in message_content:
-        return CreateHealthCaseConverter.convert(source_version, target_version, edxl_json)
+        return CreateHealthCaseConverter
     elif 'createCaseHealthUpdate' in message_content:
-        return CreateHealthUpdateCaseConverter.convert(source_version, target_version, edxl_json)
+        return CreateHealthUpdateCaseConverter
     elif 'reference' in message_content:
-        return ReferenceConverter.convert(source_version, target_version, edxl_json)
+        return ReferenceConverter
     elif 'error' in message_content:
-        return ErrorConverter.convert(source_version, target_version, edxl_json)
+        return ErrorConverter
     elif 'resourcesStatus' in message_content:
-        return ResourcesStatusConverter.convert(source_version, target_version, edxl_json)
+        return ResourcesStatusConverter
     elif 'resourcesInfo' in message_content:
-        return ResourcesInfoConverter.convert(source_version, target_version, edxl_json)
+        return ResourcesInfoConverter
     elif 'resourcesResponse' in message_content:
-        return ResourcesResponseConverter.convert(source_version, target_version, edxl_json)
+        return ResourcesResponseConverter
     elif 'resourcesRequest' in message_content:
-        return ResourcesRequestConverter.convert(source_version, target_version, edxl_json)
+        return ResourcesRequestConverter
     else:
         deducted_message_type = extract_message_type_from_message_content(message_content)
-        raise ValueError(f"Version conversion from {source_version} to {target_version} for message type '{deducted_message_type}' is currently not implemented.")
+        raise ValueError(f"Version conversion for message type '{deducted_message_type}' is currently not implemented.")
 
 unwanted_keys = ["messageId", "sender", "sentAt", "kind", "status", "recipient"]
 
