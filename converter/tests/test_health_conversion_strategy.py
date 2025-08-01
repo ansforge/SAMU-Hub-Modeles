@@ -7,7 +7,7 @@ class TestConversionStrategy(unittest.TestCase):
         source_version = 'v1'
         target_version = 'v2'
 
-        with self.assertRaisesRegex(ValueError, "Version conversion from v1 to v2 for message type 'notSupportedMessageType' is currently not implemented."):
+        with self.assertRaisesRegex(ValueError, "Version conversion for message type 'notSupportedMessageType' is currently not implemented."):
             health_conversion_strategy(edxl_json, source_version, target_version)
 
 
