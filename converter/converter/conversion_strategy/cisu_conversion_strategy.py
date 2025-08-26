@@ -8,7 +8,7 @@ def cisu_conversion_strategy(edxl_json, source_version, target_version):
 
     TO_CISU = "to_CISU"
     FROM_CISU = "from_CISU"
-    MAINTAINED_CISU_VERSION = "v3"
+    MAINTAINED_CISU_VERSION = Constants.V3_VERSION
 
     # Compute direction based on sender / recipient
     sender = get_sender(edxl_json)
