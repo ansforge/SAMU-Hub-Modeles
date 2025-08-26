@@ -27,8 +27,8 @@ def add_to_initial_alert_notes(data: Dict[str, Any], paths: List[Dict[str, str]]
     for path in paths:
         add_field_to_initial_alert_notes(data, path)
 
-def find_in_mrms_cisu_nomenclature(search_value: str, search_columns: list, return_column: str) -> str:
-    file_path = os.path.join(os.path.dirname(__file__), Constants.MRSM_CISU_UPDATED_NOMENCLATURE_FILE)
+def find_in_cisu_nomenclature(search_value: str, search_columns: list, return_column: str, filename: str) -> str:
+    file_path = os.path.join(os.path.dirname(__file__), filename)
     with open(file_path, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile, delimiter=Constants.CSV_DELIMITER)
         for row in reader:
@@ -38,17 +38,19 @@ def find_in_mrms_cisu_nomenclature(search_value: str, search_columns: list, retu
     return None
 
 def get_deprecated_code_cisu_from_health_motive(health_motive_code: str) -> str:
-    return find_in_mrms_cisu_nomenclature(
+    return find_in_cisu_nomenclature(
         health_motive_code,
         [Constants.MR0_LABEL, Constants.MR1_LABEL],
-        Constants.OLD_MR_LABEL
+        Constants.OLD_MR_LABEL,
+        Constants.MRSM_CISU_UPDATED_NOMENCLATURE_FILE
     )
 
 def get_code_cisu_mr0_from_health_motive(health_motive_code: str) -> str:
-    return find_in_mrms_cisu_nomenclature(
+    return find_in_cisu_nomenclature(
         health_motive_code,
         [Constants.OLD_MR_LABEL],
-        Constants.MR0_LABEL
+        Constants.MR0_LABEL,
+        Constants.MRSM_CISU_UPDATED_NOMENCLATURE_FILE
     )
 
 def update_health_motive_code(json_data: Dict[str, Any], isCodeDeprecated: bool):
