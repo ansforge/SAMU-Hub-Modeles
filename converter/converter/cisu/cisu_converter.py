@@ -6,10 +6,16 @@ from datetime import datetime
 
 from yaml import dump
 
+from converter.constants import Constants
+
 from .utils import add_to_initial_alert_notes, update_health_motive_code
 from ..utils import delete_paths, get_field_value, get_recipient, get_sender, is_field_completed, translate_key_words
 
 class CISUConverterV3:
+    # Todo: revert change when all editors use the new CISU nomenclature or are in V3 or above
+    target_version=""
+    def __init__(self, target_version: str):
+        self.target_version = target_version
 
     CISU_PATHS_TO_DELETE = [
         "qualification.victims",
@@ -143,8 +149,9 @@ class CISUConverterV3:
         # - Updates
         output_use_case_json['owner'] = get_recipient(input_json)
 
-        # /!\ it must be done before copying qualification
-        update_health_motive_code(output_use_case_json, True)
+        if cls.target_version != Constants.V3_VERSION:
+            # /!\ it must be done before copying qualification
+            update_health_motive_code(output_use_case_json, True)
 
         set_default_location_freetext(output_use_case_json)
         add_location_detail(output_use_case_json)

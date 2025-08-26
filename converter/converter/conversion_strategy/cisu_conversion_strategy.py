@@ -25,12 +25,12 @@ def cisu_conversion_strategy(edxl_json, source_version, target_version):
             raise ValueError(f"Unknown target version {target_version}. Must be: {MAINTAINED_CISU_VERSION}")
 
         rs_json_message = health_conversion_strategy(edxl_json, source_version, MAINTAINED_CISU_VERSION)
-        return CISUConverterV3.to_cisu(rs_json_message)
+        return CISUConverterV3(target_version).to_cisu(rs_json_message)
     elif direction == FROM_CISU:
         if source_version != MAINTAINED_CISU_VERSION:
             raise ValueError(f"Unknown source version {source_version}. Must be: {MAINTAINED_CISU_VERSION}")
 
-        rc_json_message = CISUConverterV3.from_cisu(edxl_json)
+        rc_json_message = CISUConverterV3(target_version).from_cisu(edxl_json)
         return health_conversion_strategy(rc_json_message, MAINTAINED_CISU_VERSION, target_version)
     else:
         raise ValueError('Invalid direction parameter')
