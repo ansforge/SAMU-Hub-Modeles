@@ -6,11 +6,10 @@ from datetime import datetime
 
 from yaml import dump
 
-from .utils import add_to_initial_alert_notes
+from .utils import add_to_initial_alert_notes, update_health_motive_code
 from ..utils import delete_paths, get_field_value, get_recipient, get_sender, is_field_completed, translate_key_words
 
 class CISUConverterV3:
-    """Handles CISU format conversions"""
 
     CISU_PATHS_TO_DELETE = [
         "qualification.victims",
@@ -144,6 +143,9 @@ class CISUConverterV3:
         # - Updates
         output_use_case_json['owner'] = get_recipient(input_json)
 
+        # /!\ it must be done before copying qualification
+        update_health_motive_code(output_use_case_json, True)
+
         set_default_location_freetext(output_use_case_json)
         add_location_detail(output_use_case_json)
 
@@ -239,6 +241,9 @@ class CISUConverterV3:
 
         if not is_field_completed(output_usecase_json,'$.qualification.whatsHappen'):
             output_usecase_json['qualification']['whatsHappen'] = cls.DEFAULT_WHATS_HAPPEN
+
+        # /!\ it must be done before copying qualification
+        update_health_motive_code(output_usecase_json, False)
 
         add_default_external_info_type(output_usecase_json)
 
