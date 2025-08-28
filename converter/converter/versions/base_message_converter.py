@@ -1,4 +1,7 @@
-version_order_list = ["v1", "v2", "v3"]
+from converter.constants import Constants
+
+
+version_order_list = [Constants.V1_VERSION, Constants.V2_VERSION, Constants.V3_VERSION]
 
 class BaseMessageConverter:
     def __init__(self):
@@ -54,37 +57,37 @@ class BaseMessageConverter:
 
     @classmethod
     def upgrade(cls, source_version, source_version_index, edxl_json):
-        if source_version == "v1":
+        if source_version == Constants.V1_VERSION:
             return cls.convert_v1_to_v2(edxl_json)
-        elif source_version == "v2":
+        elif source_version == Constants.V2_VERSION:
             return cls.convert_v2_to_v3(edxl_json)
         else:
             cls.raise_conversion_impossible_error(source_version, version_order_list[source_version_index + 1])
 
     @classmethod
     def downgrade(cls, source_version, source_version_index, edxl_json):
-        if source_version == "v2":
+        if source_version == Constants.V2_VERSION:
             return cls.convert_v2_to_v1(edxl_json)
-        elif source_version == "v3":
+        elif source_version == Constants.V3_VERSION:
             return cls.convert_v3_to_v2(edxl_json)
         else:
             cls.raise_conversion_impossible_error(source_version, version_order_list[source_version_index - 1])
 
     @classmethod
     def convert_v1_to_v2(cls, edxl_json):
-        cls.raise_conversion_not_implemented_error("v1", "v2")
+        cls.raise_conversion_not_implemented_error(Constants.V1_VERSION, Constants.V2_VERSION)
 
     @classmethod
     def convert_v2_to_v1(cls, edxl_json):
-        cls.raise_conversion_not_implemented_error("v2", "v1")
+        cls.raise_conversion_not_implemented_error(Constants.V2_VERSION, Constants.V1_VERSION)
 
     @classmethod
     def convert_v2_to_v3(cls, edxl_json):
-        cls.raise_conversion_not_implemented_error("v2", "v3")
+        cls.raise_conversion_not_implemented_error(Constants.V2_VERSION, Constants.V3_VERSION)
 
     @classmethod
     def convert_v3_to_v2(cls, edxl_json):
-        cls.raise_conversion_not_implemented_error("v3", "v2")
+        cls.raise_conversion_not_implemented_error(Constants.V3_VERSION, Constants.V2_VERSION)
 
     @classmethod
     def raise_conversion_not_implemented_error(cls, source_version, target_version):
