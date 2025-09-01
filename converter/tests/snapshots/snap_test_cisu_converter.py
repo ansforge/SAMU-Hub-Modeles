@@ -220,7 +220,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_message 1'
                   "label": "Autre probl\\u00e8me obst\\u00e9trique non h\\u00e9morragique"
                 },
                 "locationKind": {
-                  "code": "L04.02.00",
+                  "code": "L07.00.00",
                   "label": "Centre commercial / magasin"
                 },
                 "riskThreat": [
@@ -651,7 +651,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_exhaustive_message 1'
                   "label": "Atteinte aux personnes ; Traumatisme / Accident ; Accident domestique"
                 },
                 "locationKind": {
-                  "code": "L01.02.10",
+                  "code": "L01.02.13",
                   "label": "Domicile ; Lieu d\'habitation collectif ou foyer d\'h\\u00e9bergement ;  escaliers"
                 },
                 "healthMotive": {
@@ -760,7 +760,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_exhaustive_message 1'
                     "label": "Atteinte aux personnes ; Traumatisme / Accident ; Accident domestique"
                   },
                   "locationKind": {
-                    "code": "L01.02.10",
+                    "code": "L01.02.13",
                     "label": "Domicile ; Lieu d\'habitation collectif ou foyer d\'h\\u00e9bergement ;  escaliers"
                   },
                   "healthMotive": {
