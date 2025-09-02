@@ -8,7 +8,7 @@ from yaml import dump
 
 from converter.constants import Constants
 
-from .utils import add_to_initial_alert_notes, update_health_motive_code
+from .utils import add_to_initial_alert_notes, update_health_motive_code, update_location_kind_code
 from ..utils import delete_paths, get_field_value, get_recipient, get_sender, is_field_completed, translate_key_words
 
 class CISUConverterV3:
@@ -150,8 +150,11 @@ class CISUConverterV3:
         output_use_case_json['owner'] = get_recipient(input_json)
 
         if cls.target_version != Constants.V3_VERSION:
+            is_code_deprecated = True
             # /!\ it must be done before copying qualification
-            update_health_motive_code(output_use_case_json, True)
+            update_health_motive_code(output_use_case_json, is_code_deprecated)
+            update_location_kind_code(output_use_case_json, is_code_deprecated)
+
 
         set_default_location_freetext(output_use_case_json)
         add_location_detail(output_use_case_json)
@@ -250,7 +253,9 @@ class CISUConverterV3:
             output_usecase_json['qualification']['whatsHappen'] = cls.DEFAULT_WHATS_HAPPEN
 
         # /!\ it must be done before copying qualification
-        update_health_motive_code(output_usecase_json, False)
+        is_code_deprecated = False
+        update_health_motive_code(output_usecase_json, is_code_deprecated)
+        update_location_kind_code(output_usecase_json, is_code_deprecated)
 
         add_default_external_info_type(output_usecase_json)
 
