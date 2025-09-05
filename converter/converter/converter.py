@@ -34,5 +34,24 @@ def convert():
 
     return jsonify({"edxl": edxl_json})
 
+@app.route('/health', methods=['GET'])
+def health_check():
+    converter_name = "SAMU Hub Converter"
+    up_status = "UP"
+    down_status = "DOWN"
+    try:
+        health_data = {
+            "status": up_status,
+            "service": converter_name,
+        }
+        return jsonify(health_data), 200
+    except Exception as e:
+        error_data = {
+            "status": down_status,
+            "service": converter_name,
+            "error": str(e)
+        }
+        return jsonify(error_data), 503
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
