@@ -173,3 +173,13 @@ def test_convert_to_cisu_with_invalid_cisu_source_version(client):
 
     assert response.status_code == 400
     assert "Unknown source version" in response.json['error']
+
+
+def test_health_endpoint(client):
+    response = client.get('/health')
+    expected_response = {
+        "status": "UP",
+    }
+
+    assert response.status_code == 200
+    assert  expected_response == response.json
