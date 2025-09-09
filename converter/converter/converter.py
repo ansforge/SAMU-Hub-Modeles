@@ -5,7 +5,6 @@ from converter.conversion_strategy.conversion_strategy import conversion_strateg
 app = Flask(__name__)
 
 def raise_error(message, code: int = 400):
-    """Helper function to log and return error responses"""
     print(f"[ERROR] {message}")
     return jsonify({'error': message}), code
 
@@ -33,6 +32,13 @@ def convert():
         return raise_error(str(e), 500)
 
     return jsonify({"edxl": edxl_json})
+
+@app.route('/health', methods=['GET'])
+def health_check():
+    return jsonify({
+        "status": "UP",
+    }), 200
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
