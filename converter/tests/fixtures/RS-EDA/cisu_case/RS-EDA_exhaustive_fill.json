@@ -8,7 +8,7 @@
         "label": "Atteinte aux personnes ; Traumatisme / Accident ; Accident domestique"
       },
       "locationKind": {
-        "code": "L01.02.12",
+        "code": "L01.02.10",
         "label": "Domicile ; Lieu d'habitation collectif ou foyer d'hébergement ;  escaliers"
       },
       "healthMotive": {

@@ -67,34 +67,3 @@ def update_health_motive_code(json_data: Dict[str, Any], isCodeDeprecated: bool)
                 'code': updated_health_motive_code,
                 'label': get_field_value(json_data, '$.qualification.healthMotive.label')
             }
-
-def get_deprecated_code_cisu_from_location_type(location_type_code: str) -> str:
-    return find_in_cisu_nomenclature(
-        location_type_code,
-        [Constants.NEW_LOCATION_KIND_LABEL],
-        Constants.OLD_LOCATION_KIND_LABEL,
-        Constants.LOCATION_KIND_CISU_DEPRECATED_NOMENCLATURE_FILE
-    )
-
-def get_code_new_cisu_from_location_type(location_type_code: str) -> str:
-    return find_in_cisu_nomenclature(
-        location_type_code,
-        [Constants.OLD_LOCATION_KIND_LABEL],
-        Constants.NEW_LOCATION_KIND_LABEL,
-        Constants.LOCATION_KIND_CISU_UPDATED_NOMENCLATURE_FILE
-    )
-
-def update_location_kind_code(json_data: Dict[str, Any], isCodeDeprecated: bool):
-    location_kind_code = get_field_value(json_data, '$.qualification.locationKind.code')
-
-    if location_kind_code is not None:
-        if isCodeDeprecated:
-            updated_location_kind_code = get_deprecated_code_cisu_from_location_type(location_kind_code)
-        else:
-            updated_location_kind_code = get_code_new_cisu_from_location_type(location_kind_code)
-
-        if updated_location_kind_code is not None:
-            json_data['qualification']['locationKind'] = {
-                'code': updated_location_kind_code,
-                'label': get_field_value(json_data, '$.qualification.locationKind.label')
-            }
