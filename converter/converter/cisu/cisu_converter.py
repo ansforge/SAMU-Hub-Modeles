@@ -13,7 +13,6 @@ from ..utils import delete_paths, get_field_value, get_recipient, get_sender, is
 
 class CISUConverterV3:
     # Todo: revert change when all editors use the new CISU nomenclature or are in V3 or above
-    target_version=""
     def __init__(self, target_version: str):
         self.target_version = target_version
 
@@ -67,7 +66,7 @@ class CISUConverterV3:
     DEFAULT_WHATS_HAPPEN = {"code": "C11.06.00", "label":"Autre nature de fait"}
 
     @classmethod
-    def from_cisu(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
+    def from_cisu(cls, input_json: Dict[str, Any], target_version: str) -> Dict[str, Any]:
         """
         Convert from CISU to Health format
 
@@ -148,8 +147,7 @@ class CISUConverterV3:
 
         # - Updates
         output_use_case_json['owner'] = get_recipient(input_json)
-
-        if cls.target_version != Constants.V3_VERSION:
+        if target_version != Constants.V3_VERSION:
             # /!\ it must be done before copying qualification
             update_health_motive_code(output_use_case_json, True)
 
