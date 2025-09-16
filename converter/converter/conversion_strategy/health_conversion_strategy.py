@@ -1,9 +1,8 @@
-
-from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.create_case_health.create_case_health_update_converter import CreateHealthUpdateCaseConverter
 from converter.versions.error_converter import ErrorConverter
 from converter.versions.reference.reference_converter import ReferenceConverter
 from converter.versions.create_case_health.create_case_health_converter import CreateHealthCaseConverter
+from converter.versions.resources_engagement.resources_engagement import ResourcesEngagementConverter
 from converter.versions.resources_info.resources_info_converter import ResourcesInfoConverter
 from converter.versions.resources_request.resources_request_converter import ResourcesRequestConverter
 from converter.versions.resources_response.resources_response_converter import ResourcesResponseConverter
@@ -36,6 +35,8 @@ def select_conversion_strategy(message_content):
         return ResourcesResponseConverter
     elif 'resourcesRequest' in message_content:
         return ResourcesRequestConverter
+    elif 'resourcesEngagement' in message_content:
+        return ResourcesEngagementConverter
     else:
         deducted_message_type = extract_message_type_from_message_content(message_content)
         raise ValueError(f"Version conversion for message type '{deducted_message_type}' is currently not implemented.")
