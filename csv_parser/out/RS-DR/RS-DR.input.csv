@@ -4,7 +4,7 @@ Il est valorisé comme suit lors de sa création :
 {pays}.{domaine}.{organisation}.{senderCaseId}
 
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
- Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX: ^([\w-]+\.?){4,10}$"
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX: ^([a-zA-Z0-9_-]+\.?){4,10}$"
 Demande de ressource,,,,,,Objet qui permet de transmettre les détails de la demande de ressources,,request,1..1,X,request,Format datetime décrit dans le DSF
 ,ID Demande partagé,,,,,"Identifiant unique partagé de la demande de ressource,  généré une seule fois par le système du partenaire qui émet la demande 
 Il est valorisé comme suit lors de sa création : 
@@ -12,7 +12,7 @@ Il est valorisé comme suit lors de sa création :
 
 OU - uniquement si un ID unique de la demande n'est pas disponible : 
 {OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}","fr.health.samu770.request.1249875
-fr.health.samu690.request.DRFR15690242370035.3",requestId,1..1,,string,"REGEX:^([\w-]+\.){3,8}request(\.[\w-]+){1,2}$"
+fr.health.samu690.request.DRFR15690242370035.3",requestId,1..1,,string,"REGEX:^([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}$"
 ,Date Heure de création de la demande,,,,,A valoriser avec le groupe date heure de création de la demande,2022-09-27T08:23:34+02:00,datetime,1..1,,datetime,Format datetime décrit dans le DSF
 ,Cadre conventionnel,,,,,A valoriser avec le cadre conventionnel de la demande. Cf nomenclature associée,HORS,convention,0..1,,string,NOMENCLATURE: HubSante.cadre
 ,Effet à obtenir,,,,,A valoriser avec le motif de la demande de ressource auprès du partenaire. Cf Nomenclature associée.,SMUR,purpose,1..1,,string,NOMENCLATURE: HubSante.effet

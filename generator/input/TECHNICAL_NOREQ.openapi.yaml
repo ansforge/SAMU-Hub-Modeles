@@ -139,7 +139,7 @@ components:
           x-cols: 6
           example: example.json#/emailField
           description: Email with regex
-          pattern: ^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$
+          pattern: ^[a-zA-Z0-9_.-]+@([a-zA-Z0-9_-]+\.)+[a-zA-Z0-9_-]{2,4}$
           examples:
           - None
         datetimeField:

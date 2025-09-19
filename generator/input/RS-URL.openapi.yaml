@@ -33,7 +33,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: ^([\w-]+\.?){4,10}$
+          pattern: ^([a-zA-Z0-9_-]+\.?){4,10}$
           examples:
           - fr.health.samu440.DRFR15440241550012
         patientId:
@@ -44,7 +44,7 @@ components:
           example: example.json#/patientId
           description: "Indique l'identifiant partag\xE9 du patient auquel les documents\
             \ sont rattach\xE9s"
-          pattern: ^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$
+          pattern: ^([a-zA-Z0-9_-]+\.){3,8}patient(\.[a-zA-Z0-9_-]+){1,2}$
           examples:
           - 'fr.health.samu690.patient.P23AZ59
 
