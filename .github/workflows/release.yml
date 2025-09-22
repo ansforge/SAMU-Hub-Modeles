@@ -45,8 +45,20 @@ jobs:
           echo "::set-output name=project::$PROJECT"
           echo "::set-output name=version::$VERSION"
 
+      - name: Validate X.Y.Z version format for Maven publishing
+        id: validate_xyz
+        run: |
+          VERSION=${{ steps.extract_info.outputs.version }}
+          if [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::set-output name=is_xyz_version::true"
+            echo "Version $VERSION matches X.Y.Z format - Maven publishing will proceed"
+          else
+            echo "::set-output name=is_xyz_version::false"
+            echo "Version $VERSION does not match X.Y.Z format - Maven publishing will be skipped"
+          fi
+
       - name: Build, run tests and publish library
-        if: steps.extract_info.outputs.project == 'library'
+        if: steps.extract_info.outputs.project == 'library' && steps.validate_xyz.outputs.is_xyz_version == 'true'
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

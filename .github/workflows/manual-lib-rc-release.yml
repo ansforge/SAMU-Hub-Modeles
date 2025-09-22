@@ -1,0 +1,63 @@
+name: Manual Library Release for RC
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch to run the workflow on"
+        required: true
+        default: "main"
+        type: string
+      version:
+        description: "RC Version (e.g., 1.2.3-RC-1)"
+        required: true
+        type: string
+
+jobs:
+  build_and_publish_rc:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch }}
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: "11"
+          distribution: "temurin"
+
+      - name: Grant execute permission for Gradlew
+        run: chmod +x gradlew
+
+      - name: Validate RC version format
+        id: validate_rc_version
+        run: |
+          VERSION="${{ github.event.inputs.version }}"
+          echo "Validating RC version: $VERSION"
+
+          # Check if version matches x.y.z-RC-n pattern
+          RC_PATTERN="^[0-9]+\.[0-9]+\.[0-9]+-RC-[0-9]+$"
+          if [[ ! "$VERSION" =~ $RC_PATTERN ]]; then
+            echo "Invalid RC version format. Expected format: x.y.z-RC-n (e.g., 1.2.3-RC-1)"
+            echo "Provided version: $VERSION"
+            exit 1
+          fi
+
+          echo "RC version format is valid"
+          echo "::set-output name=version::$VERSION"
+
+      - name: Build, run tests and publish library
+        env:
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Building and publishing RC version: ${{ steps.validate_rc_version.outputs.version }}"
+          ./gradlew -Pversion=${{ steps.validate_rc_version.outputs.version }} publish
+
+      - name: Summary
+        run: |
+          echo "Successfully published RC version: ${{ steps.validate_rc_version.outputs.version }}"
+          echo "Do not forget to delete RC in Github Packages after tests are done to avoid clutter."
