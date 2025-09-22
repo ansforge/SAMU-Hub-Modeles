@@ -124,6 +124,9 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
+      - name: Grant execute permission for Gradlew
+        run: chmod +x gradlew
+
       - name: Generate XSDs
         working-directory: ./csv_parser/json_schema2xsd
         if: steps.filter.outputs.parsing_required == 'true'
