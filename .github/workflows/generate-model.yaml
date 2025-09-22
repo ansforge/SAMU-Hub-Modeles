@@ -125,6 +125,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Grant execute permission for Gradlew
+        working-directory: ./csv_parser/json_schema2xsd
         run: chmod +x gradlew
 
       - name: Generate XSDs
