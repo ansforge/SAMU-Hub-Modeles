@@ -500,6 +500,31 @@
               "properties": {
                 "message": {
                   "properties": {
+                    "createAppointment": {
+                      "$ref": "RS-SAS-RDV.schema.json"
+                    }
+                  },
+                  "required": [
+                    "createAppointment"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
                     "technical": {
                       "$ref": "TECHNICAL.schema.json"
                     }

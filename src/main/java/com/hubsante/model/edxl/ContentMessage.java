@@ -55,6 +55,8 @@ import com.hubsante.model.geolocation.GeoResourcesRequest;
 import com.hubsante.model.geolocation.GeoResourcesRequestWrapper;
 import com.hubsante.model.geolocation.GeoResourcesDetails;
 import com.hubsante.model.geolocation.GeoResourcesDetailsWrapper;
+import com.hubsante.model.sas.CreateAppointment;
+import com.hubsante.model.sas.CreateAppointmentWrapper;
 
 
 import com.hubsante.model.technical.Technical;
@@ -85,6 +87,7 @@ import java.util.stream.Stream;
         @JsonSubTypes.Type(GeoPositionsUpdateWrapper.class),
         @JsonSubTypes.Type(GeoResourcesRequestWrapper.class),
         @JsonSubTypes.Type(GeoResourcesDetailsWrapper.class),
+        @JsonSubTypes.Type(CreateAppointmentWrapper.class),
         @JsonSubTypes.Type(TechnicalWrapper.class),
         @JsonSubTypes.Type(TechnicalNoreqWrapper.class),
         @JsonSubTypes.Type(ErrorWrapper.class),
@@ -128,6 +131,7 @@ public class ContentMessage {
                   {"geoPositionsUpdate", GeoPositionsUpdate.class.getCanonicalName()},
                   {"geoResourcesRequest", GeoResourcesRequest.class.getCanonicalName()},
                   {"geoResourcesDetails", GeoResourcesDetails.class.getCanonicalName()},
+                  {"createAppointment", CreateAppointment.class.getCanonicalName()},
                   {"technical", Technical.class.getCanonicalName()},
                   {"technicalNoreq", TechnicalNoreq.class.getCanonicalName()},
                   {"error", ErrorWrapper.class.getCanonicalName()},

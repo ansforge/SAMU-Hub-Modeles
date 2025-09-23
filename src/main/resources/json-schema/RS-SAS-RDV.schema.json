@@ -1,0 +1,167 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "classpath:/json-schema/schema#",
+    "x-id": "RS-SAS-RDV.schema.json#",
+    "version": "25.09.23",
+    "example": "example.json#",
+    "type": "object",
+    "title": "createAppointment",
+    "required": [
+        "appointmentId",
+        "created",
+        "start",
+        "end",
+        "status"
+    ],
+    "properties": {
+        "appointmentId": {
+            "type": "string",
+            "title": "Identifiant du rendez-vous",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/appointmentId",
+            "description": "Un identifiant technique unique par RDV est transmis. \n\nCet identifiant est défini par la plateforme numérique SAS et peut prendre la forme d’un UUID par exemple. \nLa solution éditeur devra s’appuyer sur cet ID pour la gestion des requêtes de mises à jour."
+        },
+        "created": {
+            "type": "string",
+            "title": "Date et heure de la prise de rendez-vous",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/created",
+            "description": "Indique la date et l’heure de la prise de RDV",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
+            "format": "date-time"
+        },
+        "start": {
+            "type": "string",
+            "title": "Date et heure de début du rendez-vous",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/start",
+            "description": "Indique la date et l’horaire de début du rendez-vous",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
+            "format": "date-time"
+        },
+        "end": {
+            "type": "string",
+            "title": "Date et heure de fin du rendez-vous",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/end",
+            "description": "Indique la date et l’horaire de fin du rendez-vous",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
+            "format": "date-time"
+        },
+        "status": {
+            "type": "string",
+            "title": "Statut du rendez-vous",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/status",
+            "description": "Indique le statut du rendez-vous"
+        },
+        "orientationCategory": {
+            "type": "string",
+            "title": "Catégorie d'orientation",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/orientationCategory",
+            "description": "Indique la catégorie de l’orientation de rendez-vous"
+        },
+        "practitioner": {
+            "$ref": "#/definitions/practitioner"
+        },
+        "organization": {
+            "$ref": "#/definitions/organization"
+        }
+    },
+    "definitions": {
+        "practitioner": {
+            "type": "object",
+            "title": "Professionnel de santé",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "rppsId",
+                "lastName",
+                "firstName"
+            ],
+            "properties": {
+                "rppsId": {
+                    "type": "string",
+                    "title": "Identifiant RPPS",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/practitioner/rppsId",
+                    "description": "Identifiant national (RPPS) du PS"
+                },
+                "lastName": {
+                    "type": "string",
+                    "title": "Nom du PS",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/practitioner/lastName",
+                    "description": "Nom du professionnel de santé"
+                },
+                "firstName": {
+                    "type": "array",
+                    "x-health-only": false,
+                    "items": {
+                        "type": "string",
+                        "title": "Prénom du PS",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/practitioner/firstName/0",
+                        "description": "Prénom du professionnel de santé"
+                    },
+                    "minItems": 1
+                },
+                "speciality": {
+                    "type": "array",
+                    "x-health-only": false,
+                    "items": {
+                        "type": "string",
+                        "title": "Spécialité",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/practitioner/speciality/0",
+                        "description": "Code de la spécialité du professionnel de santé"
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/practitioner"
+        },
+        "organization": {
+            "type": "object",
+            "title": "Structure",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "organizationId",
+                "name"
+            ],
+            "properties": {
+                "organizationId": {
+                    "type": "string",
+                    "title": "Identifiant national de la structure",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/organization/organizationId",
+                    "description": "Indique l'identifiant national de la structure"
+                },
+                "name": {
+                    "type": "string",
+                    "title": "Nom de la structure",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/organization/name",
+                    "description": "Indique le nom de la structure"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/organization"
+        }
+    },
+    "additionalProperties": false
+}
