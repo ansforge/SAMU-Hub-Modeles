@@ -50,7 +50,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_bis_messag
                   "label": "Obst\\u00e9trique"
                 },
                 "healthMotive": {
-                  "code": "M03.02",
+                  "code": "M03.14",
                   "label": "Autre probl\\u00e8me obst\\u00e9trique non h\\u00e9morragique"
                 },
                 "locationKind": {
@@ -216,7 +216,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_message 1'
                   "label": "Obst\\u00e9trique"
                 },
                 "healthMotive": {
-                  "code": "M03.02",
+                  "code": "M06.03",
                   "label": "Autre probl\\u00e8me obst\\u00e9trique non h\\u00e9morragique"
                 },
                 "locationKind": {
@@ -439,7 +439,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_exhaustive_bis_messag
                   "label": "Domicile ; Lieu d\'habitation collectif ou foyer d\'h\\u00e9bergement ;  escaliers"
                 },
                 "healthMotive": {
-                  "code": "M02.07",
+                  "code": "M24.00",
                   "label": "Traumatisme s\\u00e9rieux, plaie interm\\u00e9diaire"
                 },
                 "riskThreat": [
@@ -536,7 +536,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_exhaustive_bis_messag
                     "label": "Domicile ; Lieu d\'habitation collectif ou foyer d\'h\\u00e9bergement ;  escaliers"
                   },
                   "healthMotive": {
-                    "code": "M02.07",
+                    "code": "M24.00",
                     "label": "Traumatisme s\\u00e9rieux, plaie interm\\u00e9diaire"
                   },
                   "riskThreat": [
@@ -655,7 +655,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_exhaustive_message 1'
                   "label": "Domicile ; Lieu d\'habitation collectif ou foyer d\'h\\u00e9bergement ;  escaliers"
                 },
                 "healthMotive": {
-                  "code": "M02.07",
+                  "code": "M80.00",
                   "label": "Traumatisme s\\u00e9rieux, plaie interm\\u00e9diaire"
                 },
                 "riskThreat": [
@@ -764,7 +764,7 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_exhaustive_message 1'
                     "label": "Domicile ; Lieu d\'habitation collectif ou foyer d\'h\\u00e9bergement ;  escaliers"
                   },
                   "healthMotive": {
-                    "code": "M02.07",
+                    "code": "M80.00",
                     "label": "Traumatisme s\\u00e9rieux, plaie interm\\u00e9diaire"
                   },
                   "riskThreat": [

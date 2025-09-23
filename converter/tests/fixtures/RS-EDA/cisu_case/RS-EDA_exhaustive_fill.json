@@ -12,7 +12,7 @@
         "label": "Domicile ; Lieu d'habitation collectif ou foyer d'hébergement ;  escaliers"
       },
       "healthMotive": {
-        "code": "M02.07",
+        "code": "M03.01",
         "label": "Traumatisme sérieux, plaie intermédiaire"
       },
       "details": {
