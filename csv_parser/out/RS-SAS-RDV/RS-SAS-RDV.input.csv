@@ -1,0 +1,18 @@
+Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise,Cardinalité,Objet,Format (ou type),Détails de format
+Identifiant du rendez-vous,,,,,,"Un identifiant technique unique par RDV est transmis. 
+
+Cet identifiant est défini par la plateforme numérique SAS et peut prendre la forme d’un UUID par exemple. 
+La solution éditeur devra s’appuyer sur cet ID pour la gestion des requêtes de mises à jour.",12348,appointmentId,1..1,,string,
+Date et heure de la prise de rendez-vous,,,,,,Indique la date et l’heure de la prise de RDV,2025-06-17T10:15:56+01:00,created,1..1,,datetime,
+Date et heure de début du rendez-vous,,,,,,Indique la date et l’horaire de début du rendez-vous,2025-06-17T14:00:00+01:00,start,1..1,,datetime,
+Date et heure de fin du rendez-vous,,,,,,Indique la date et l’horaire de fin du rendez-vous,2025-06-17T14:20:00+01:00,end,1..1,,datetime,
+Statut du rendez-vous,,,,,,Indique le statut du rendez-vous,booked,status,1..1,,string,
+Catégorie d'orientation,,,,,,Indique la catégorie de l’orientation de rendez-vous,604,orientationCategory,0..1,,string,
+Professionnel de santé,,,,,,Représente le professionnel de santé associé au rendez-vous,,practitioner,0..1,X,practitioner,
+,Identifiant RPPS,,,,,Identifiant national (RPPS) du PS,810002909371,rppsId,1..1,,string,
+,Nom du PS,,,,,Nom du professionnel de santé,Dupont,lastName,1..1,,string,
+,Prénom du PS,,,,,Prénom du professionnel de santé,Jean,firstName,1..n,,string,
+,Spécialité,,,,,Code de la spécialité du professionnel de santé,SM54,speciality,0..n,,string,
+Structure,,,,,,Représente la structure du PS ou la structure associée au rendez-vous si le PS n'est pas connu,,organization,0..1,X,organization,
+,Identifiant national de la structure,,,,,Indique l'identifiant national de la structure,050005917,organizationId,1..1,,string,
+,Nom de la structure,,,,,Indique le nom de la structure,CDS DENTAIRE,name,1..1,,string,

@@ -1,0 +1,26 @@
+// UML MDD Hub Sante
+strict digraph {
+	node [shape=none]
+	edge [arrowhead=odiamond arrowtail=none]
+	rankdir=BT
+	practitioner [label=<<TABLE>
+                <TR>
+                <TD ><B>practitioner</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet practitioner</I></TD></TR><TR><TD BORDER="0" >rppsId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >lastName <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >firstName <I>string</I> : [1..*] </TD></TR><TR><TD BORDER="0" >speciality <I>string</I> : [0..*] </TD></TR>
+                </TABLE>>]
+	practitioner -> createAppointment [headlabel=1 taillabel="0..1"]
+	organization [label=<<TABLE>
+                <TR>
+                <TD ><B>organization</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet organization</I></TD></TR><TR><TD BORDER="0" >organizationId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	organization -> createAppointment [headlabel=1 taillabel="0..1"]
+	createAppointment [label=<<TABLE>
+                <TR>
+                <TD ><B>createAppointment</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet createAppointment</I></TD></TR><TR><TD BORDER="0" >appointmentId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >created <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >start <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >end <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >status <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >orientationCategory <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+}
