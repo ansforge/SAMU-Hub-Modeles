@@ -1,0 +1,21 @@
+[project]
+name = "converter"
+version = "0.1.0"
+description = "Converter service for SAMU-Hub-Modeles"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "flask>=3.1.2",
+    "gunicorn>=23.0.0",
+    "jsonpath-ng>=1.7.0",
+    "jsonschema>=4.25.1",
+    "pydantic>=2.11.9",
+    "pytest>=8.4.2",
+    "pytest-cov>=7.0.0",
+    "pytest-mock>=3.15.1",
+    "pyyaml>=6.0.2",
+    "requests>=2.32.5",
+    "snapshottest>=0.6.0",
+    "typing-extensions>=4.15.0",
+    "werkzeug>=3.1.3",
+]
