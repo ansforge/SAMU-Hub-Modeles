@@ -30,9 +30,8 @@ class Position(BaseModel):
     Position
     """ # noqa: E501
     resource_id: Annotated[str, Field(strict=True)] = Field(description="A valoriser avec l'identifiant partagé unique de la ressource engagée, normé comme suit : {orgID}.resource.{ID unique de la ressource partagée} OU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire : {orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}", alias="resourceId")
-    datetime: str = Field(description="Date et heure de la dernière position connue")
-    reception_datetime: Optional[str] = Field(default=None, description="Date et heure de la réception de la dernière position connue dans le système de l'organisme", alias="receptionDatetime")
-    coord: Annotated[List[Coord], Field(min_length=1)]
+    datetime: str = Field(description="Date et heure de réception des coordonnées transmises")
+    coord: Coord
     speed: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Vitesse de la ressource enregistrée, exprimée en km/h")
     cap: Optional[StrictStr] = Field(default=None, description="Direction de la ressource, exprimé en degrés")
     move: Optional[StrictStr] = Field(default=None, description="Indique si la ressource est en mouvement (MOBILE) ou non (STATIQUE)")
@@ -40,28 +39,18 @@ class Position(BaseModel):
     ground_status: Optional[StrictBool] = Field(default=None, description="Indique si l'hélicoptère est au sol (VRAI) ou en l'air (FAUX)", alias="groundStatus")
     status: Optional[StrictStr] = Field(default=None, description="Définit le statut de disponibilité d'une ressource. - DISPONIBLE : Lorsque la ressource est disponible - INDISPONIBLE : Lorsque la ressource n'est pas disponible, celle-ci peut être engagée ou en maintenance - INCONNU : Lorsque le status est inconnu")
     engaged_status: Optional[StrictStr] = Field(default=None, description="Précise le statut d'une ressource qui est engagée sur une mission", alias="engagedStatus")
-    __properties: ClassVar[List[str]] = ["resourceId", "datetime", "receptionDatetime", "coord", "speed", "cap", "move", "engineOn", "groundStatus", "status", "engagedStatus"]
+    __properties: ClassVar[List[str]] = ["resourceId", "datetime", "coord", "speed", "cap", "move", "engineOn", "groundStatus", "status", "engagedStatus"]
 
     @field_validator('resource_id')
     def resource_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$", value):
-            raise ValueError(r"must validate the regular expression /^([\w-]+\.){3,4}resource(\.[\w-]+){1,2}$/")
+        if not re.match(r"^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$", value):
+            raise ValueError(r"must validate the regular expression /^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$/")
         return value
 
     @field_validator('datetime')
     def datetime_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/")
-        return value
-
-    @field_validator('reception_datetime')
-    def reception_datetime_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
         if not re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", value):
             raise ValueError(r"must validate the regular expression /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/")
         return value
@@ -135,13 +124,9 @@ class Position(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in coord (list)
-        _items = []
+        # override the default output from pydantic by calling `to_dict()` of coord
         if self.coord:
-            for _item_coord in self.coord:
-                if _item_coord:
-                    _items.append(_item_coord.to_dict())
-            _dict['coord'] = _items
+            _dict['coord'] = self.coord.to_dict()
         return _dict
 
     @classmethod
@@ -156,8 +141,7 @@ class Position(BaseModel):
         _obj = cls.model_validate({
             "resourceId": obj.get("resourceId"),
             "datetime": obj.get("datetime"),
-            "receptionDatetime": obj.get("receptionDatetime"),
-            "coord": [Coord.from_dict(_item) for _item in obj["coord"]] if obj.get("coord") is not None else None,
+            "coord": Coord.from_dict(obj["coord"]) if obj.get("coord") is not None else None,
             "speed": obj.get("speed"),
             "cap": obj.get("cap"),
             "move": obj.get("move"),

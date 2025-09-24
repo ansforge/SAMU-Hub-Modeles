@@ -40,8 +40,8 @@ class Event(BaseModel):
     @field_validator('org_id')
     def org_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^[a-z]{2,3}\.[a-z]+\.\w*$", value):
-            raise ValueError(r"must validate the regular expression /^[a-z]{2,3}\.[a-z]+\.\w*$/")
+        if not re.match(r"^([\w-]+\.?){4,10}$", value):
+            raise ValueError(r"must validate the regular expression /^([\w-]+\.?){4,10}$/")
         return value
 
     @field_validator('creation_date')
