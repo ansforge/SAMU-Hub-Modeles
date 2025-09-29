@@ -1,33 +1,51 @@
-# Use an official Python runtime as a parent image
+# Use Python 3.11 slim as base image
 FROM python:3.11-slim
 
-# Set environment variables for better security
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    UV_CACHE_DIR=/opt/uv-cache \
+    UV_LINK_MODE=copy
 
-# Set the working directory in the container
-WORKDIR /app
+# Install system dependencies and uv
+RUN apt-get update && apt-get install -y \
+    curl \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/* \
+    && curl -LsSf https://astral.sh/uv/install.sh | sh \
+    && mv /root/.local/bin/uv /usr/local/bin/uv \
+    && mv /root/.local/bin/uvx /usr/local/bin/uvx
 
-# Copy only necessary files to leverage Docker caching
-COPY requirements.txt ./
+# Create non-root user and group
+RUN groupadd -r -g 1000 converter && \
+    useradd -r -u 1000 -g converter -m -d /home/converter converter
 
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Create and set up working directory
+WORKDIR /home/converter/app
 
-# Copy the current directory contents into the container at /app
-COPY . .
+# Create UV cache directory with proper permissions and set ownership of working directory
+RUN mkdir -p $UV_CACHE_DIR && \
+    chown -R converter:converter $UV_CACHE_DIR && \
+    chown -R converter:converter /home/converter/app
 
-# Create a non-root user and group
-RUN groupadd -r -g 1000 converter && useradd -r -u 1000 -g converter converter
-
-# Change ownership of the working directory
-RUN chown -R converter:converter /app
-
-# Switch to the non-root user
+# Switch to non-root user
 USER converter
 
-# Make port 8080 available to the world outside this container
+# Copy dependency files first for better layer caching
+COPY --chown=converter:converter pyproject.toml uv.lock ./
+
+# Install dependencies using uv
+RUN uv sync --frozen --no-dev
+
+# Copy application code
+COPY --chown=converter:converter . .
+
+# Expose port
 EXPOSE 8080
 
-# Use Gunicorn to serve the Flask app
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8080", "converter.converter:app", "--timeout", "30", "--log-level", "debug"]
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8080/health || exit 1
+
+# Use Gunicorn for production deployment
+CMD ["uv", "run", "gunicorn", "-w", "4", "-b", "0.0.0.0:8080", "converter.converter:app"]
