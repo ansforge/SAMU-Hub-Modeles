@@ -12,14 +12,14 @@ This Python service provides REST endpoints used to convert:
 1. Create and activate a virtual environment (recommended):
 
 ```bash
-python -m venv venv
+uv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
 2. Install the package in development mode:
 
 ```bash
-pip install -e .
+uv sync
 ```
 
 ### Production Setup
@@ -37,16 +37,15 @@ docker run -p 8080:8080 cisu-converter
 
 ```bash
 # Run all tests with coverage
-pytest
-
+uv run pytest
 # Run specific test file
-pytest tests/test_utils.py
+uv run pytest tests/test_utils.py
 
 # Run specific test
-pytest tests/test_utils.py -k test_format_object_primitive
+uv run pytest tests/test_utils.py -k test_format_object_primitive
 
 # Run with prints visible | Ref.: https://stackoverflow.com/a/59156707/10115198
-pytest -rP
+uv run pytest -rP
 ```
 
 ### Running the Service
@@ -54,8 +53,11 @@ pytest -rP
 Development mode:
 
 ```bash
-# In converter/
-FLASK_APP=converter.converter FLASK_ENV=development FLASK_DEBUG=1 flask run --port 8080
+# In converter/, run the command:
+FLASK_APP=converter.converter \
+FLASK_ENV=development \
+FLASK_DEBUG=1 \
+uv run python -m flask run --port 8080
 ```
 
 Production mode (using Gunicorn):
