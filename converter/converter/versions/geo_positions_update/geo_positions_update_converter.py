@@ -1,7 +1,11 @@
 from typing import Dict, Any
 
+from converter.utils import get_field_value, update_json_value, delete_paths
 from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.conversion_mixin import ConversionMixin
+from converter.versions.geo_positions_update.geo_positions_update_constants import (
+    GeoPositionsUpdateConstants,
+)
 
 
 class GeoPositionsUpdateConverter(BaseMessageConverter, ConversionMixin):
@@ -13,10 +17,52 @@ class GeoPositionsUpdateConverter(BaseMessageConverter, ConversionMixin):
     def convert_v2_to_v3(cls, input_json) -> Dict[str, Any]:
         output_json = cls.copy_input_content(input_json)
         output_use_case_json = cls.copy_input_use_case_content(input_json)
+        delete_paths(output_use_case_json, ["position[].receptionDatetime"])
+
+        geo_positions = get_field_value(
+            output_use_case_json, GeoPositionsUpdateConstants.POSITION_PATH
+        )
+        new_geo_positions = []
+        for position in geo_positions:
+            coord = position.get(GeoPositionsUpdateConstants.COORD_KEY, [])
+            if len(coord) > 0:
+                coord_value = coord[0]
+            else:
+                coord_value = None
+            new_geo_positions.append(
+                {**position, GeoPositionsUpdateConstants.COORD_KEY: coord_value}
+            )
+
+        update_json_value(
+            output_use_case_json,
+            GeoPositionsUpdateConstants.POSITION_PATH,
+            new_geo_positions,
+        )
+
         return cls.format_output_json(output_json, output_use_case_json)
 
     @classmethod
     def convert_v3_to_v2(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
         output_json = cls.copy_input_content(input_json)
         output_use_case_json = cls.copy_input_use_case_content(input_json)
+
+        geo_positions = get_field_value(
+            output_use_case_json, GeoPositionsUpdateConstants.POSITION_PATH
+        )
+        new_geo_positions = []
+        for position in geo_positions:
+            coordinates_array = []
+            if GeoPositionsUpdateConstants.COORD_KEY in position:
+                coordinates_array.append(
+                    position[GeoPositionsUpdateConstants.COORD_KEY]
+                )
+            new_geo_positions.append(
+                {**position, GeoPositionsUpdateConstants.COORD_KEY: coordinates_array}
+            )
+        update_json_value(
+            output_use_case_json,
+            GeoPositionsUpdateConstants.POSITION_PATH,
+            new_geo_positions,
+        )
+
         return cls.format_output_json(output_json, output_use_case_json)
