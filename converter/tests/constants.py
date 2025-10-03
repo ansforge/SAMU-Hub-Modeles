@@ -20,3 +20,4 @@ class TestConstants:
     RS_RI_TAG = "RS-RI"
     RS_DR_TAG = "RS-DR"
     RS_RR_TAG = "RS-RR"
+    RS_ER_TAG = "RS-ER"
