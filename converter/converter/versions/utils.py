@@ -32,7 +32,7 @@ def reverse_map_to_new_value(
 def switch_field_name(
     json_data: Dict[str, Any], previous_field_name: str, new_field_name: str
 ):
-    if is_field_completed(json_data, "$." + previous_field_name) == True:
+    if is_field_completed(json_data, "$." + previous_field_name):
         json_data[new_field_name] = json_data[previous_field_name]
 
 
