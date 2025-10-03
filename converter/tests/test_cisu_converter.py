@@ -203,7 +203,7 @@ class TestVictimsCount(TestCase):
             {"count": "PLUSIEURS"},
         )
 
-    def test_count_victims_1(self):
+    def test_count_victims_0(self):
         self.assertEqual(
             self.converter.get_victim_count(self.converter, {"patients": []}),
             {"count": "0"},
