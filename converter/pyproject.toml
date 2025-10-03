@@ -44,3 +44,8 @@ exclude_lines = [
     "pass",
     "raise ImportError",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.13.3",
+]
