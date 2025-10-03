@@ -1,95 +1,89 @@
 class V2V3Constants:
     V3_TO_V2_INTERVENTION_TYPE_MAPPING = {
-        "T1":"PRIMAIRE",
-        "T2-INTER":"SECONDAIRE",
-        "T2-INTRA":"SECONDAIRE",
-        "T3":"RETOUR A DOMICILE",
+        "T1": "PRIMAIRE",
+        "T2-INTER": "SECONDAIRE",
+        "T2-INTRA": "SECONDAIRE",
+        "T3": "RETOUR A DOMICILE",
     }
 
     V2_TO_V3_INTERVENTION_TYPE_MAPPING = {
-        "PRIMAIRE":"T1",
-        "SECONDAIRE":"T2-INTER",
-        "RETOUR A DOMICILE":"T3"
+        "PRIMAIRE": "T1",
+        "SECONDAIRE": "T2-INTER",
+        "RETOUR A DOMICILE": "T3",
     }
 
     V2_TO_V3_QUALIFICATION_ORIGIN_MAPPING = {
-        "15":"15",
-        "116117":"116117",
-        "112":"112",
-        "18":"CTA-CONF",
-        "17":"FDO"
+        "15": "15",
+        "116117": "116117",
+        "112": "112",
+        "18": "CTA-CONF",
+        "17": "FDO",
     }
 
     V3_TO_V2_QUALIFICATION_ORIGIN_MAPPING = {
-        "15":"15",
-        "116117":"116117",
-        "AUTOCOM":None,
-        "112":"112",
-        "115":None,
-        "CRRA":None,
-        "AUTREC15":None,
-        "CTA-CONF":"18",
-        "CTA-PI":None,
-        "AUTRECTA":None,
-        "CNR":None,
-        "FDO":"17",
-        "SNATED":None,
-        "PDSSOS":None,
-        "TELASSIST":None,
-        "CROSS":None,
-        "PUBLIC":None,
-        "DATA":None,
-        "AUTRE":None,
+        "15": "15",
+        "116117": "116117",
+        "AUTOCOM": None,
+        "112": "112",
+        "115": None,
+        "CRRA": None,
+        "AUTREC15": None,
+        "CTA-CONF": "18",
+        "CTA-PI": None,
+        "AUTRECTA": None,
+        "CNR": None,
+        "FDO": "17",
+        "SNATED": None,
+        "PDSSOS": None,
+        "TELASSIST": None,
+        "CROSS": None,
+        "PUBLIC": None,
+        "DATA": None,
+        "AUTRE": None,
     }
 
     V3_TO_V2_QUALIFICATION_DETAILS_STATUS_MAPPING = {
-        "PROGRAM":"PROGRAMME",
+        "PROGRAM": "PROGRAMME",
         "ACTIF": " ACTIF",
-        "ACHEVE":"ACHEVE",
-        "VALIDE":"VALIDE",
-        "CLOTURE":"CLOTURE",
-        "CLASSE":"CLASSE",
-        "ARCHIVE":"ARCHIVE",
+        "ACHEVE": "ACHEVE",
+        "VALIDE": "VALIDE",
+        "CLOTURE": "CLOTURE",
+        "CLASSE": "CLASSE",
+        "ARCHIVE": "ARCHIVE",
     }
 
-
     V2_TO_V3_DECISION_RESOURCE_TYPE_MAPPING = {
-        "TSU ":"TSU",
+        "TSU ": "TSU",
     }
 
     V3_TO_V2_DECISION_RESOURCE_TYPE_MAPPING = {
-        "TSU":"TSU ",
+        "TSU": "TSU ",
     }
 
     V2_TO_V3_QUALIFICATION_DETAILS_STATUS_MAPPING = {
-        "PROGRAMME":"PROGRAM",
-        " ACTIF":"ACTIF",
-        "ACHEVE":"ACHEVE",
-        "VALIDE":"VALIDE",
-        "CLOTURE":"CLOTURE",
-        "CLASSE":"CLASSE",
-        "ARCHIVE":"ARCHIVE",
+        "PROGRAMME": "PROGRAM",
+        " ACTIF": "ACTIF",
+        "ACHEVE": "ACHEVE",
+        "VALIDE": "VALIDE",
+        "CLOTURE": "CLOTURE",
+        "CLASSE": "CLASSE",
+        "ARCHIVE": "ARCHIVE",
     }
 
     V2_TO_V3_CALLER_CONTACT_MAPPING = {
-        "DEFIBRILLATEUR, ":"DEFIBRILLATEUR",
+        "DEFIBRILLATEUR, ": "DEFIBRILLATEUR",
     }
     V3_TO_V2_CALLER_CONTACT_MAPPING = {
-        "DEFIBRILLATEUR":"DEFIBRILLATEUR, ",
+        "DEFIBRILLATEUR": "DEFIBRILLATEUR, ",
     }
 
     V3_TO_V2_ORIENTATION_TYPE = {
-        "REA-USI":"AUTRE",
+        "REA-USI": "AUTRE",
     }
 
-    V3_TO_V2_OPERATOR_ROLE_MAPPING ={
-        "PILOTE":"AUTRE",
-        "TCM":"AUTRE"
-    }
+    V3_TO_V2_OPERATOR_ROLE_MAPPING = {"PILOTE": "AUTRE", "TCM": "AUTRE"}
 
-    V3_TO_V2_DETAIL_ATTRIBUTION_MAPPING ={
-        "DRM.SPE.AUTRESPE":"DRM.SPE"
-    }
+    V3_TO_V2_DETAIL_ATTRIBUTION_MAPPING = {"DRM.SPE.AUTRESPE": "DRM.SPE"}
 
     V2_PATHS_TO_DELETE = [
         "patient[].healthMotive",
@@ -101,11 +95,13 @@ class V2V3Constants:
         "decision[].destination",
     ]
 
-    V2_PATIENT_PATHS_TO_ADD_TO_MEDICAL_NOTES = [{ "path": 'healthMotive', "label":'Motif de recours médico-secouriste : '}]
+    V2_PATIENT_PATHS_TO_ADD_TO_MEDICAL_NOTES = [
+        {"path": "healthMotive", "label": "Motif de recours médico-secouriste : "}
+    ]
 
-    WHATS_HAPPEN_DEFAULT = { "code":"C11.06.00", "label":"Autre nature de fait" }
-    LOCATION_KIND_DEFAULT = { "code":"L07.01.00", "label":"Autre lieu d'intervention" }
-    HEALTH_MOTIVE_DEFAULT = { "code":"M06.04", "label":"Autre motif" }
+    WHATS_HAPPEN_DEFAULT = {"code": "C11.06.00", "label": "Autre nature de fait"}
+    LOCATION_KIND_DEFAULT = {"code": "L07.01.00", "label": "Autre lieu d'intervention"}
+    HEALTH_MOTIVE_DEFAULT = {"code": "M06.04", "label": "Autre motif"}
 
     V2_RISK_THREAT_CODE = [
         "R01",
@@ -144,7 +140,7 @@ class V2V3Constants:
         "R34",
         "R35",
         "R36",
-        "R37"
+        "R37",
     ]
 
     V2_WHATS_HAPPEN_CODE = [
@@ -446,7 +442,7 @@ class V2V3Constants:
         "C11.05.01",
         "C11.05.02",
         "C11.05.03",
-        "C11.06.00"
+        "C11.06.00",
     ]
 
     V2_LOCATION_KIND_CODE = [
@@ -628,7 +624,7 @@ class V2V3Constants:
         "L07.00.00",
         "L07.01.00",
         "L07.01.01",
-        "L07.02.00"
+        "L07.02.00",
     ]
 
     V2_HEALTH_MOTIVE_CODE = [
@@ -683,5 +679,5 @@ class V2V3Constants:
         "M06.02",
         "M06.03",
         "M06.04",
-        "M07.00"
+        "M07.00",
     ]

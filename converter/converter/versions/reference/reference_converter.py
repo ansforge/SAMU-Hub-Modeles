@@ -3,6 +3,7 @@ from converter.versions.conversion_mixin import ConversionMixin
 from converter.versions.identical_message_converter import IdenticalMessageConverter
 from converter.versions.reference.reference_constants import ReferenceConstants
 
+
 class ReferenceConverter(IdenticalMessageConverter, ConversionMixin):
     @staticmethod
     def get_message_type():

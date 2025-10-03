@@ -1,5 +1,5 @@
 class Constants:
-    FR_HEALTH_PREFIX="fr.health"
+    FR_HEALTH_PREFIX = "fr.health"
 
     MEDICAL_NOTE_KEY_TRANSLATIONS = {
         "externalLocationId:": "Identifiant(s) du lieu:\n",
