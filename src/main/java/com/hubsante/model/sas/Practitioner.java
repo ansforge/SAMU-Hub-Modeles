@@ -34,10 +34,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -46,7 +44,10 @@ import java.util.Objects;
 @JsonPropertyOrder({Practitioner.JSON_PROPERTY_RPPS_ID,
                     Practitioner.JSON_PROPERTY_LAST_NAME,
                     Practitioner.JSON_PROPERTY_FIRST_NAME,
-                    Practitioner.JSON_PROPERTY_SPECIALITY})
+                    Practitioner.JSON_PROPERTY_SPECIALITY_CODE,
+                    Practitioner.JSON_PROPERTY_SPECIALITY_URL,
+                    Practitioner.JSON_PROPERTY_PROFESSION_CODE,
+                    Practitioner.JSON_PROPERTY_PROFESSION_URL})
 @JsonTypeName("practitioner")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -58,10 +59,19 @@ public class Practitioner {
   private String lastName;
 
   public static final String JSON_PROPERTY_FIRST_NAME = "firstName";
-  private List<String> firstName = new ArrayList<>();
+  private String firstName;
 
-  public static final String JSON_PROPERTY_SPECIALITY = "speciality";
-  private List<String> speciality;
+  public static final String JSON_PROPERTY_SPECIALITY_CODE = "specialityCode";
+  private String specialityCode;
+
+  public static final String JSON_PROPERTY_SPECIALITY_URL = "specialityUrl";
+  private String specialityUrl;
+
+  public static final String JSON_PROPERTY_PROFESSION_CODE = "professionCode";
+  private String professionCode;
+
+  public static final String JSON_PROPERTY_PROFESSION_URL = "professionUrl";
+  private String professionUrl;
 
   public Practitioner() {}
 
@@ -111,82 +121,119 @@ public class Practitioner {
     this.lastName = lastName;
   }
 
-  public Practitioner firstName(List<String> firstName) {
+  public Practitioner firstName(String firstName) {
 
     this.firstName = firstName;
     return this;
   }
 
-  public Practitioner addFirstNameItem(String firstNameItem) {
-    if (this.firstName == null) {
-      this.firstName = new ArrayList<>();
-    }
-    this.firstName.add(firstNameItem);
-    return this;
-  }
-
   /**
-   * Get firstName
+   * Prénom du professionnel de santé
    * @return firstName
    **/
   @JsonProperty(JSON_PROPERTY_FIRST_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<String> getFirstName() {
+  public String getFirstName() {
     return firstName;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
   @JsonProperty(JSON_PROPERTY_FIRST_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFirstName(List<String> firstName) {
-    if (firstName == null) {
-      return;
-    }
-    if (this.firstName == null) {
-      this.firstName = new ArrayList<>();
-    }
-    this.firstName.addAll(firstName);
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
   }
 
-  public Practitioner speciality(List<String> speciality) {
+  public Practitioner specialityCode(String specialityCode) {
 
-    this.speciality = speciality;
-    return this;
-  }
-
-  public Practitioner addSpecialityItem(String specialityItem) {
-    if (this.speciality == null) {
-      this.speciality = new ArrayList<>();
-    }
-    this.speciality.add(specialityItem);
+    this.specialityCode = specialityCode;
     return this;
   }
 
   /**
-   * Get speciality
-   * @return speciality
+   * Code de la spécialité du professionnel de santé
+   * @return specialityCode
    **/
-  @JsonProperty(JSON_PROPERTY_SPECIALITY)
+  @JsonProperty(JSON_PROPERTY_SPECIALITY_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<String> getSpeciality() {
-    return speciality;
+  public String getSpecialityCode() {
+    return specialityCode;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_SPECIALITY)
+  @JsonProperty(JSON_PROPERTY_SPECIALITY_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSpeciality(List<String> speciality) {
-    if (speciality == null) {
-      return;
-    }
-    if (this.speciality == null) {
-      this.speciality = new ArrayList<>();
-    }
-    this.speciality.addAll(speciality);
+  public void setSpecialityCode(String specialityCode) {
+    this.specialityCode = specialityCode;
+  }
+
+  public Practitioner specialityUrl(String specialityUrl) {
+
+    this.specialityUrl = specialityUrl;
+    return this;
+  }
+
+  /**
+   * Url de la terminologie utilisée pour la spécialité
+   * @return specialityUrl
+   **/
+  @JsonProperty(JSON_PROPERTY_SPECIALITY_URL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getSpecialityUrl() {
+    return specialityUrl;
+  }
+
+  @JsonProperty(JSON_PROPERTY_SPECIALITY_URL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSpecialityUrl(String specialityUrl) {
+    this.specialityUrl = specialityUrl;
+  }
+
+  public Practitioner professionCode(String professionCode) {
+
+    this.professionCode = professionCode;
+    return this;
+  }
+
+  /**
+   * Code de la profession du professionnel de santé
+   * @return professionCode
+   **/
+  @JsonProperty(JSON_PROPERTY_PROFESSION_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getProfessionCode() {
+    return professionCode;
+  }
+
+  @JsonProperty(JSON_PROPERTY_PROFESSION_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setProfessionCode(String professionCode) {
+    this.professionCode = professionCode;
+  }
+
+  public Practitioner professionUrl(String professionUrl) {
+
+    this.professionUrl = professionUrl;
+    return this;
+  }
+
+  /**
+   * Url de la terminologie utilisée pour la profession
+   * @return professionUrl
+   **/
+  @JsonProperty(JSON_PROPERTY_PROFESSION_URL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getProfessionUrl() {
+    return professionUrl;
+  }
+
+  @JsonProperty(JSON_PROPERTY_PROFESSION_URL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setProfessionUrl(String professionUrl) {
+    this.professionUrl = professionUrl;
   }
 
   @Override
@@ -201,12 +248,16 @@ public class Practitioner {
     return Objects.equals(this.rppsId, practitioner.rppsId) &&
         Objects.equals(this.lastName, practitioner.lastName) &&
         Objects.equals(this.firstName, practitioner.firstName) &&
-        Objects.equals(this.speciality, practitioner.speciality);
+        Objects.equals(this.specialityCode, practitioner.specialityCode) &&
+        Objects.equals(this.specialityUrl, practitioner.specialityUrl) &&
+        Objects.equals(this.professionCode, practitioner.professionCode) &&
+        Objects.equals(this.professionUrl, practitioner.professionUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(rppsId, lastName, firstName, speciality);
+    return Objects.hash(rppsId, lastName, firstName, specialityCode,
+                        specialityUrl, professionCode, professionUrl);
   }
 
   @Override
@@ -218,8 +269,17 @@ public class Practitioner {
     sb.append("    firstName: ")
         .append(toIndentedString(firstName))
         .append("\n");
-    sb.append("    speciality: ")
-        .append(toIndentedString(speciality))
+    sb.append("    specialityCode: ")
+        .append(toIndentedString(specialityCode))
+        .append("\n");
+    sb.append("    specialityUrl: ")
+        .append(toIndentedString(specialityUrl))
+        .append("\n");
+    sb.append("    professionCode: ")
+        .append(toIndentedString(professionCode))
+        .append("\n");
+    sb.append("    professionUrl: ")
+        .append(toIndentedString(professionUrl))
         .append("\n");
     sb.append("}");
     return sb.toString();

@@ -500,12 +500,12 @@
               "properties": {
                 "message": {
                   "properties": {
-                    "createAppointment": {
+                    "appointment": {
                       "$ref": "RS-SAS-RDV.schema.json"
                     }
                   },
                   "required": [
-                    "createAppointment"
+                    "appointment"
                   ]
                 }
               }

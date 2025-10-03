@@ -2,15 +2,15 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-SAS-RDV.schema.json#",
-    "version": "25.09.23",
+    "version": "25.10.03",
     "example": "example.json#",
     "type": "object",
-    "title": "createAppointment",
+    "title": "appointment",
     "required": [
         "appointmentId",
+        "method",
         "created",
         "start",
-        "end",
         "status"
     ],
     "properties": {
@@ -21,6 +21,18 @@
             "x-cols": 6,
             "example": "example.json#/appointmentId",
             "description": "Un identifiant technique unique par RDV est transmis. \n\nCet identifiant est défini par la plateforme numérique SAS et peut prendre la forme d’un UUID par exemple. \nLa solution éditeur devra s’appuyer sur cet ID pour la gestion des requêtes de mises à jour."
+        },
+        "method": {
+            "type": "string",
+            "title": "Méthode",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/method",
+            "description": "Indique un message de création ou de modification du rendez-vous",
+            "enum": [
+                "CreateAppointment",
+                "UpdateAppointment"
+            ]
         },
         "created": {
             "type": "string",
@@ -58,7 +70,14 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/status",
-            "description": "Indique le statut du rendez-vous"
+            "description": "Indique le statut du rendez-vous",
+            "enum": [
+                "pending",
+                "booked",
+                "fulfilled",
+                "noshow",
+                "cancelled"
+            ]
         },
         "orientationCategory": {
             "type": "string",
@@ -66,7 +85,15 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/orientationCategory",
-            "description": "Indique la catégorie de l’orientation de rendez-vous"
+            "description": "Indique la catégorie de l’orientation de rendez-vous",
+            "enum": [
+                "CPTS",
+                "MSP",
+                "CDS",
+                "SOS",
+                "PS",
+                "PDM"
+            ]
         },
         "practitioner": {
             "$ref": "#/definitions/practitioner"
@@ -93,7 +120,8 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/practitioner/rppsId",
-                    "description": "Identifiant national (RPPS) du PS"
+                    "description": "Identifiant national (RPPS) du PS",
+                    "pattern": "^81[0-9]{10}$"
                 },
                 "lastName": {
                     "type": "string",
@@ -104,29 +132,44 @@
                     "description": "Nom du professionnel de santé"
                 },
                 "firstName": {
-                    "type": "array",
+                    "type": "string",
+                    "title": "Prénom du PS",
                     "x-health-only": false,
-                    "items": {
-                        "type": "string",
-                        "title": "Prénom du PS",
-                        "x-health-only": false,
-                        "x-cols": 6,
-                        "example": "example.json#/practitioner/firstName/0",
-                        "description": "Prénom du professionnel de santé"
-                    },
-                    "minItems": 1
+                    "x-cols": 6,
+                    "example": "example.json#/practitioner/firstName",
+                    "description": "Prénom du professionnel de santé"
                 },
-                "speciality": {
-                    "type": "array",
+                "specialityCode": {
+                    "type": "string",
+                    "title": "Spécialité",
                     "x-health-only": false,
-                    "items": {
-                        "type": "string",
-                        "title": "Spécialité",
-                        "x-health-only": false,
-                        "x-cols": 6,
-                        "example": "example.json#/practitioner/speciality/0",
-                        "description": "Code de la spécialité du professionnel de santé"
-                    }
+                    "x-cols": 6,
+                    "example": "example.json#/practitioner/specialityCode",
+                    "description": "Code de la spécialité du professionnel de santé"
+                },
+                "specialityUrl": {
+                    "type": "string",
+                    "title": "Terminologie spécialité",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/practitioner/specialityUrl",
+                    "description": "Url de la terminologie utilisée pour la spécialité"
+                },
+                "professionCode": {
+                    "type": "string",
+                    "title": "Profession",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/practitioner/professionCode",
+                    "description": "Code de la profession du professionnel de santé"
+                },
+                "professionUrl": {
+                    "type": "string",
+                    "title": "Terminologie profession",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/practitioner/professionUrl",
+                    "description": "Url de la terminologie utilisée pour la profession"
                 }
             },
             "additionalProperties": false,

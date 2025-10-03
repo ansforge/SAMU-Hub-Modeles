@@ -4,7 +4,7 @@
   "generatorName": "java",
   "templateDir": "templates/wrapper/",
   "globalProperties": {
-    "models": "createAppointmentWrapper",
+    "models": "appointmentWrapper",
     "apis": false,
     "apiTests": false,
     "apiDocs": false,
