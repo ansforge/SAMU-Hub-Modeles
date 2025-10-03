@@ -1,4 +1,3 @@
-from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.create_case_health.create_case_health_update_converter import (
     CreateHealthUpdateCaseConverter,
 )

@@ -1,4 +1,3 @@
-import copy
 from typing import Dict, Any
 
 from converter.utils import get_field_value

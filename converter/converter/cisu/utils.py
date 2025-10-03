@@ -1,6 +1,5 @@
 from typing import Any, Dict, List
 
-from yaml import dump
 from ..utils import concatenate_values, get_field_value, is_field_completed
 
 

@@ -1,5 +1,4 @@
 from typing import Dict, Any, List
-import copy
 
 from converter.utils import (
     add_to_medical_notes,
@@ -109,7 +108,7 @@ class CreateHealthCaseConverter(BaseMessageConverter, ConversionMixin):
             if practitioner_contact_type is not None:
                 for contact in practitioner_contact_type:
                     map_to_new_value(
-                        contact, f"$.type", V1V2Constants.V2_TO_V1_CALLER_CONTACT_TYPE
+                        contact, "$.type", V1V2Constants.V2_TO_V1_CALLER_CONTACT_TYPE
                     )
                 json_data["patient"][patient_index]["administrativeFile"][
                     "generalPractitioner"
@@ -283,7 +282,7 @@ class CreateHealthCaseConverter(BaseMessageConverter, ConversionMixin):
                     None,
                     [
                         {
-                            "path": f"qualification.origin",
+                            "path": "qualification.origin",
                             "label": "Origine de l`appel : ",
                         }
                     ],
