@@ -126,9 +126,7 @@ def is_field_completed(json_data: Dict[str, Any], json_path: str):
 
 def get_field_value(json_data: Dict[str, Any], json_path: str):
     try:
-        isCompleted = is_field_completed(json_data, json_path)
-
-        if not isCompleted:
+        if not is_field_completed(json_data, json_path):
             return None
 
         jsonpath_expr = parse(json_path)
