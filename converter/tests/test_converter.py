@@ -1,6 +1,6 @@
 import pytest
 from converter.converter import app
-from converter.constants import Constants
+from tests.constants import TestConstants
 from tests.test_helpers import TestHelper
 
 @pytest.fixture
@@ -25,7 +25,7 @@ def test_convert_missing_required_fields(client):
 def test_convert_cisu_invalid_direction(client):
     """Test sending request with both sender and recipient as health"""
     # Load base envelope
-    envelope = TestHelper.load_json_file(Constants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH)
+    envelope = TestHelper.load_json_file(TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH)
 
     # Modify sender to be health
     envelope['edxl']['senderID'] = 'fr.health.test'
@@ -41,8 +41,8 @@ def test_convert_cisu_invalid_direction(client):
 
 def test_convert_version_with_invalid_source_version(client):
     edxl_json = TestHelper.create_edxl_json_from_schema(
-        Constants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
-        Constants.RS_EDA_TAG
+        TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
+        TestConstants.RS_EDA_TAG
     )
     response = client.post('/convert', json={
         'sourceVersion': 'v4',
@@ -56,8 +56,8 @@ def test_convert_version_with_invalid_source_version(client):
 
 def test_convert_version_with_invalid_target_version(client):
     edxl_json = TestHelper.create_edxl_json_from_schema(
-        Constants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
-        Constants.RS_EDA_TAG
+        TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
+        TestConstants.RS_EDA_TAG
     )
     response = client.post('/convert', json={
         'sourceVersion': 'v1',
@@ -79,8 +79,8 @@ def test_convert_version_with_invalid_target_version(client):
 ])
 def test_convert_edxl_versions(client, source_version, target_version):
     edxl_json = TestHelper.create_edxl_json_from_schema(
-        Constants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
-        Constants.RS_EDA_TAG
+        TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
+        TestConstants.RS_EDA_TAG
     )
     response = client.post('/convert', json={
         'sourceVersion': source_version,
@@ -99,8 +99,8 @@ def test_convert_edxl_versions(client, source_version, target_version):
 ])
 def test_convert_from_cisu(client,rs_target_version):
     edxl_json = TestHelper.create_edxl_json_from_schema(
-        Constants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
-        Constants.RC_EDA_TAG
+        TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
+        TestConstants.RC_EDA_TAG
     )
     response = client.post('/convert', json={
         'sourceVersion': 'v3',
@@ -125,8 +125,8 @@ def test_convert_from_cisu(client,rs_target_version):
 ])
 def test_convert_to_cisu(client,rs_source_version):
     edxl_json = TestHelper.create_edxl_json_from_schema(
-        Constants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH,
-        Constants.RS_EDA_TAG
+        TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH,
+        TestConstants.RS_EDA_TAG
     )
     response = client.post('/convert', json={
         'sourceVersion': rs_source_version,
@@ -146,8 +146,8 @@ def test_convert_to_cisu(client,rs_source_version):
 
 def test_convert_to_cisu_with_invalid_cisu_target_version(client):
     edxl_json = TestHelper.create_edxl_json_from_schema(
-        Constants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH,
-        Constants.RS_EDA_TAG
+        TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH,
+        TestConstants.RS_EDA_TAG
     )
     response = client.post('/convert', json={
         'sourceVersion': 'v1',
@@ -161,8 +161,8 @@ def test_convert_to_cisu_with_invalid_cisu_target_version(client):
 
 def test_convert_to_cisu_with_invalid_cisu_source_version(client):
     edxl_json = TestHelper.create_edxl_json_from_schema(
-        Constants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
-        Constants.RC_EDA_TAG
+        TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
+        TestConstants.RC_EDA_TAG
     )
     response = client.post('/convert', json={
         'sourceVersion': 'v2',
