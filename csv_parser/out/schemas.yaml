@@ -203,6 +203,18 @@ schemas:
   sheet: GEO-RES
   subschema: N
   xmlns: eda:1.9:georesourcesdetails
+- automaticGeneration: Y
+  customExtendClass: null
+  customExtendPackage: null
+  file: model.xlsx
+  header: Y
+  package: sas
+  perimeter: 15-SAS
+  rootElement: createAppointment
+  schema: RS-SAS-RDV
+  sheet: RS-SAS-RDV
+  subschema: N
+  xmlns: eda:1.9:createAppointment
 - automaticGeneration: N
   customExtendClass: null
   customExtendPackage: null

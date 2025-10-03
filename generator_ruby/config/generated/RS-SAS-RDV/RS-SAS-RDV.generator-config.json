@@ -1,0 +1,20 @@
+{
+  "inputSpec": "../generator/input/RS-SAS-RDV.openapi.yaml",
+  "outputDir": "gem/sas",
+  "generatorName": "ruby",
+  "globalProperties": {
+    "models": "",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "moduleName": "Sas",
+    "gemName": "hubsanteModel",
+    "allowUnicodeIdentifiers": true,
+    "useAutoload": true,
+    "sortParamsByRequiredFlag": true
+  }
+}
