@@ -51,7 +51,7 @@ class CreateHealthCaseConverter(BaseMessageConverter, ConversionMixin):
         )
 
         patients = get_field_value(output_use_case_json, "$.patient")
-        if patients != None:
+        if patients is not None:
             for index, patient in enumerate(patients):
                 map_to_new_value(
                     output_use_case_json,
@@ -68,7 +68,7 @@ class CreateHealthCaseConverter(BaseMessageConverter, ConversionMixin):
             )
 
         decisions = get_field_value(output_use_case_json, "$.decision")
-        if decisions != None:
+        if decisions is not None:
             for index, decision in enumerate(decisions):
                 map_to_new_value(
                     output_use_case_json,
@@ -78,7 +78,7 @@ class CreateHealthCaseConverter(BaseMessageConverter, ConversionMixin):
                 switch_field_name(decision, "idPat", "patientId")
 
         medical_notes = get_field_value(output_use_case_json, "$.medicalNote")
-        if medical_notes != None:
+        if medical_notes is not None:
             for note in medical_notes:
                 switch_field_name(note, "idPat", "patientId")
                 switch_field_name(note, "idObs", "medicalNoteId")
@@ -106,7 +106,7 @@ class CreateHealthCaseConverter(BaseMessageConverter, ConversionMixin):
                 json_data,
                 f"$.patient[{patient_index}].administrativeFile.generalPractitioner.contact",
             )
-            if practitioner_contact_type != None:
+            if practitioner_contact_type is not None:
                 for contact in practitioner_contact_type:
                     map_to_new_value(
                         contact, f"$.type", V1V2Constants.V2_TO_V1_CALLER_CONTACT_TYPE
@@ -146,7 +146,7 @@ class CreateHealthCaseConverter(BaseMessageConverter, ConversionMixin):
         update_language(output_use_case_json)
 
         patients = get_field_value(output_use_case_json, "$.patient")
-        if patients != None:
+        if patients is not None:
             for index, patient in enumerate(patients):
                 update_practitioner_contact(output_use_case_json, index)
                 reverse_map_to_new_value(
@@ -162,7 +162,7 @@ class CreateHealthCaseConverter(BaseMessageConverter, ConversionMixin):
                 )
 
         decisions = get_field_value(output_use_case_json, "$.decision")
-        if decisions != None:
+        if decisions is not None:
             for index, decision in enumerate(decisions):
                 map_to_new_value(
                     output_use_case_json,
@@ -172,7 +172,7 @@ class CreateHealthCaseConverter(BaseMessageConverter, ConversionMixin):
                 switch_field_name(decision, "patientId", "idPat")
 
         medical_notes = get_field_value(output_use_case_json, "$.medicalNote")
-        if medical_notes != None:
+        if medical_notes is not None:
             for note in medical_notes:
                 switch_field_name(note, "patientId", "idPat")
                 switch_field_name(note, "medicalNoteId", "idObs")
@@ -219,7 +219,7 @@ class CreateHealthCaseConverter(BaseMessageConverter, ConversionMixin):
         )
 
         patients = get_field_value(output_use_case_json, "$.patient")
-        if patients != None:
+        if patients is not None:
             for patient in patients:
                 add_to_medical_notes(
                     output_use_case_json,
@@ -276,7 +276,7 @@ class CreateHealthCaseConverter(BaseMessageConverter, ConversionMixin):
                 V2V3Constants.V3_TO_V2_QUALIFICATION_ORIGIN_MAPPING.get(
                     current_origin, current_origin
                 )
-                == None
+                is None
             ):
                 add_to_medical_notes(
                     output_use_case_json,
@@ -342,7 +342,7 @@ class CreateHealthCaseConverter(BaseMessageConverter, ConversionMixin):
             CODE_SEPARATOR = "."
             ROOT_CODE_DIGITS = "00"
             code_and_label = get_field_value(output_use_case_json, path)
-            if code_and_label == None:
+            if code_and_label is None:
                 return
 
             code = code_and_label["code"]
@@ -406,7 +406,7 @@ class CreateHealthCaseConverter(BaseMessageConverter, ConversionMixin):
         risk_threat = get_field_value(
             output_use_case_json, "$.qualification.riskThreat"
         )
-        if risk_threat != None:
+        if risk_threat is not None:
             for index, code_and_label in enumerate(risk_threat):
                 if code_and_label["code"] not in V2V3Constants.V2_RISK_THREAT_CODE:
                     add_to_medical_notes(
@@ -438,12 +438,12 @@ class CreateHealthCaseConverter(BaseMessageConverter, ConversionMixin):
         )
 
         patients = get_field_value(output_use_case_json, "$.patient")
-        if patients != None:
+        if patients is not None:
             for patient in patients:
                 validate_admin_file_external_ids(patient)
 
         medical_notes = get_field_value(output_use_case_json, "$.medicalNote")
-        if medical_notes != None:
+        if medical_notes is not None:
             for note in medical_notes:
                 map_to_new_value(
                     note,
@@ -452,7 +452,7 @@ class CreateHealthCaseConverter(BaseMessageConverter, ConversionMixin):
                 )
 
         decisions = get_field_value(output_use_case_json, "$.decision")
-        if decisions != None:
+        if decisions is not None:
             for index, decision in enumerate(decisions):
                 map_to_new_value(
                     decision,

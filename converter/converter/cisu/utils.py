@@ -16,7 +16,7 @@ def add_field_to_initial_alert_notes(
 ):
     field_value = get_field_value(data, path_and_label["path"])
 
-    if field_value == None:
+    if field_value is None:
         return
 
     formatted_field_value = path_and_label["label"] + concatenate_values(field_value)

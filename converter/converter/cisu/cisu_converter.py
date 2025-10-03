@@ -128,7 +128,7 @@ class CISUConverterV3:
         def add_victims_to_medical_notes(json_data: Dict[str, Any], sender_id: str):
             field_value = get_field_value(json_data, "$.qualification.victims")
 
-            if field_value == None:
+            if field_value is None:
                 return
             else:
                 formatted_field_value = dump(field_value, allow_unicode=True)
@@ -203,7 +203,7 @@ class CISUConverterV3:
     @staticmethod
     def count_victims(json_data: Dict[str, Any]) -> int:
         victims = get_field_value(json_data, "$.patient")
-        if victims == None:
+        if victims is None:
             return 0
         return len(victims)
 
@@ -249,7 +249,7 @@ class CISUConverterV3:
 
         def add_default_external_info_type(json_data: Dict[str, Any]):
             external_info = get_field_value(json_data, "$.location.externalInfo")
-            if external_info != None:
+            if external_info is not None:
                 for info in external_info:
                     if not is_field_completed(info, "$.type"):
                         info["type"] = "AUTRE"

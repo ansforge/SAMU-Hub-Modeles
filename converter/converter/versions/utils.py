@@ -22,7 +22,7 @@ def reverse_map_to_new_value(
 ):
     current_value = get_field_value(json_data, json_path)
 
-    if current_value != None:
+    if current_value is not None:
         new_value = reverse_get(current_value, mapping_value)
 
         if new_value != current_value:
@@ -45,7 +45,7 @@ def validate_diagnosis_code(
 
     pattern = re.compile(DIAGNOSIS_CODE_VALIDATION_REGEX)
 
-    if diagnosis == None:
+    if diagnosis is None:
         return
 
     code_label = (
@@ -57,7 +57,7 @@ def validate_diagnosis_code(
     if type(diagnosis) is list:
         for index, diag in enumerate(diagnosis):
             code = get_field_value(diag, "$.code")
-            if code != None:
+            if code is not None:
                 is_correct_format = pattern.match(code)
                 if not is_correct_format:
                     add_to_medical_notes(
@@ -80,7 +80,7 @@ def validate_diagnosis_code(
 
     else:
         code = get_field_value(diagnosis, "$.code")
-        if code != None:
+        if code is not None:
             is_correct_format = pattern.match(code)
             if not is_correct_format:
                 add_to_medical_notes(
