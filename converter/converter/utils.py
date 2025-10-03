@@ -184,7 +184,7 @@ def map_to_new_value(
 ):
     current_value = get_field_value(json_data, json_path)
 
-    if current_value != None and current_value in mapping_value:
+    if current_value is not None and current_value in mapping_value:
         new_value = mapping_value.get(current_value, current_value)
         update_json_value(json_data, json_path, new_value)
 
@@ -204,12 +204,12 @@ def add_to_medical_notes(
 def add_field_to_medical_notes(
     data: Dict[str, Any], patient: Dict[str, Any], path_and_label: Dict[str, str]
 ):
-    if patient != None:
+    if patient is not None:
         field_value = get_field_value(patient, f"$.{path_and_label['path']}")
     else:
         field_value = get_field_value(data, f"$.{path_and_label['path']}")
 
-    if field_value == None:
+    if field_value is None:
         return
 
     formatted_field_value = path_and_label["label"] + dump(
