@@ -1,4 +1,3 @@
-import copy
 from typing import Dict, Any
 
 from converter.utils import map_to_new_value
