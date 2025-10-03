@@ -25,7 +25,7 @@ def test_convert_missing_required_fields(client):
 def test_convert_cisu_invalid_direction(client):
     """Test sending request with both sender and recipient as health"""
     # Load base envelope
-    envelope = TestHelper.load_json_file('tests/edxl_envelope_fire_to_health.json')
+    envelope = TestHelper.load_json_file(Constants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH)
 
     # Modify sender to be health
     envelope['edxl']['senderID'] = 'fr.health.test'
