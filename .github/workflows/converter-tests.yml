@@ -39,6 +39,9 @@ jobs:
       - name: Check formatting
         run: uv run ruff format --check .
 
+      - name: Check linting
+        run: uv run ruff check .
+
       - name: Run tests with HTML and XML coverage reports
         run: |
           uv run pytest --cov=converter --cov-report=html --cov-report=xml --cov-config=pyproject.toml -rP
