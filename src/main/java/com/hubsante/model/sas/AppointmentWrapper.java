@@ -35,13 +35,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.rcde.DistributionElement;
-import com.hubsante.model.sas.CreateAppointment;
+import com.hubsante.model.sas.Appointment;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * CreateAppointmentWrapper
+ * AppointmentWrapper
  */
 @JsonPropertyOrder({DistributionElement.JSON_PROPERTY_MESSAGE_ID,
                     DistributionElement.JSON_PROPERTY_SENDER,
@@ -49,41 +49,39 @@ import java.util.Objects;
                     DistributionElement.JSON_PROPERTY_KIND,
                     DistributionElement.JSON_PROPERTY_STATUS,
                     DistributionElement.JSON_PROPERTY_RECIPIENT,
-                    CreateAppointmentWrapper.JSON_PROPERTY_CREATE_APPOINTMENT})
-@JsonTypeName("createAppointmentWrapper")
+                    AppointmentWrapper.JSON_PROPERTY_APPOINTMENT})
+@JsonTypeName("appointmentWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class CreateAppointmentWrapper extends DistributionElement {
+public class AppointmentWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:eda:1.9";
-  public static final String JSON_PROPERTY_CREATE_APPOINTMENT =
-      "createAppointment";
-  private CreateAppointment createAppointment;
+  public static final String JSON_PROPERTY_APPOINTMENT = "appointment";
+  private Appointment appointment;
 
-  public CreateAppointmentWrapper() {}
+  public AppointmentWrapper() {}
 
-  public CreateAppointmentWrapper
-  createAppointment(CreateAppointment createAppointment) {
+  public AppointmentWrapper appointment(Appointment appointment) {
 
-    this.createAppointment = createAppointment;
+    this.appointment = appointment;
     return this;
   }
 
   /**
-   * Get createAppointment
-   * @return createAppointment
+   * Get appointment
+   * @return appointment
    **/
-  @JsonProperty(JSON_PROPERTY_CREATE_APPOINTMENT)
+  @JsonProperty(JSON_PROPERTY_APPOINTMENT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public CreateAppointment getCreateAppointment() {
-    return createAppointment;
+  public Appointment getAppointment() {
+    return appointment;
   }
 
-  @JsonProperty(JSON_PROPERTY_CREATE_APPOINTMENT)
+  @JsonProperty(JSON_PROPERTY_APPOINTMENT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCreateAppointment(CreateAppointment createAppointment) {
-    this.createAppointment = createAppointment;
+  public void setAppointment(Appointment appointment) {
+    this.appointment = appointment;
   }
 
   @Override
@@ -94,25 +92,23 @@ public class CreateAppointmentWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateAppointmentWrapper createAppointmentWrapper =
-        (CreateAppointmentWrapper)o;
-    return Objects.equals(this.createAppointment,
-                          createAppointmentWrapper.createAppointment) &&
+    AppointmentWrapper appointmentWrapper = (AppointmentWrapper)o;
+    return Objects.equals(this.appointment, appointmentWrapper.appointment) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createAppointment, super.hashCode());
+    return Objects.hash(appointment, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateAppointmentWrapper {\n");
+    sb.append("class AppointmentWrapper {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    createAppointment: ")
-        .append(toIndentedString(createAppointment))
+    sb.append("    appointment: ")
+        .append(toIndentedString(appointment))
         .append("\n");
     sb.append("}");
     return sb.toString();

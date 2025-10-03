@@ -4,7 +4,7 @@
   "generatorName": "java",
   "templateDir": "templates/useCase/",
   "globalProperties": {
-    "models": "createAppointment",
+    "models": "appointment",
     "apis": false,
     "apiTests": false,
     "apiDocs": false,
@@ -17,7 +17,7 @@
     "serializationLibrary": "jackson",
     "openApiNullable": true,
     "supportUrlQuery": false,
-    "xmlns": "eda:1.9:createAppointment",
+    "xmlns": "eda:1.9:appointment",
     "enablePostProcessFile": true
   }
 }

@@ -42,24 +42,59 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * CreateAppointment
+ * Appointment
  */
-@JsonPropertyOrder({CreateAppointment.JSON_PROPERTY_APPOINTMENT_ID,
-                    CreateAppointment.JSON_PROPERTY_CREATED,
-                    CreateAppointment.JSON_PROPERTY_START,
-                    CreateAppointment.JSON_PROPERTY_END,
-                    CreateAppointment.JSON_PROPERTY_STATUS,
-                    CreateAppointment.JSON_PROPERTY_ORIENTATION_CATEGORY,
-                    CreateAppointment.JSON_PROPERTY_PRACTITIONER,
-                    CreateAppointment.JSON_PROPERTY_ORGANIZATION})
-@JsonTypeName("createAppointment")
+@JsonPropertyOrder(
+    {Appointment.JSON_PROPERTY_APPOINTMENT_ID, Appointment.JSON_PROPERTY_METHOD,
+     Appointment.JSON_PROPERTY_CREATED, Appointment.JSON_PROPERTY_START,
+     Appointment.JSON_PROPERTY_END, Appointment.JSON_PROPERTY_STATUS,
+     Appointment.JSON_PROPERTY_ORIENTATION_CATEGORY,
+     Appointment.JSON_PROPERTY_PRACTITIONER,
+     Appointment.JSON_PROPERTY_ORGANIZATION})
+@JsonTypeName("appointment")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class CreateAppointment {
+public class Appointment {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:eda:1.9:createAppointment";
+  String xmlns = "urn:emergency:eda:1.9:appointment";
   public static final String JSON_PROPERTY_APPOINTMENT_ID = "appointmentId";
   private String appointmentId;
+
+  /**
+   * Indique un message de création ou de modification du rendez-vous
+   */
+  public enum MethodEnum {
+    CREATEAPPOINTMENT("CreateAppointment"),
+
+    UPDATEAPPOINTMENT("UpdateAppointment");
+
+    private String value;
+
+    MethodEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static MethodEnum fromValue(String value) {
+      for (MethodEnum b : MethodEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_METHOD = "method";
+  private MethodEnum method;
 
   public static final String JSON_PROPERTY_CREATED = "created";
   private OffsetDateTime created;
@@ -70,12 +105,92 @@ public class CreateAppointment {
   public static final String JSON_PROPERTY_END = "end";
   private OffsetDateTime end;
 
+  /**
+   * Indique le statut du rendez-vous
+   */
+  public enum StatusEnum {
+    PENDING("pending"),
+
+    BOOKED("booked"),
+
+    FULFILLED("fulfilled"),
+
+    NOSHOW("noshow"),
+
+    CANCELLED("cancelled");
+
+    private String value;
+
+    StatusEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_STATUS = "status";
-  private String status;
+  private StatusEnum status;
+
+  /**
+   * Indique la catégorie de l’orientation de rendez-vous
+   */
+  public enum OrientationCategoryEnum {
+    CPTS("CPTS"),
+
+    MSP("MSP"),
+
+    CDS("CDS"),
+
+    SOS("SOS"),
+
+    PS("PS"),
+
+    PDM("PDM");
+
+    private String value;
+
+    OrientationCategoryEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static OrientationCategoryEnum fromValue(String value) {
+      for (OrientationCategoryEnum b : OrientationCategoryEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
 
   public static final String JSON_PROPERTY_ORIENTATION_CATEGORY =
       "orientationCategory";
-  private String orientationCategory;
+  private OrientationCategoryEnum orientationCategory;
 
   public static final String JSON_PROPERTY_PRACTITIONER = "practitioner";
   private Practitioner practitioner;
@@ -83,9 +198,9 @@ public class CreateAppointment {
   public static final String JSON_PROPERTY_ORGANIZATION = "organization";
   private Organization organization;
 
-  public CreateAppointment() {}
+  public Appointment() {}
 
-  public CreateAppointment appointmentId(String appointmentId) {
+  public Appointment appointmentId(String appointmentId) {
 
     this.appointmentId = appointmentId;
     return this;
@@ -111,7 +226,30 @@ public class CreateAppointment {
     this.appointmentId = appointmentId;
   }
 
-  public CreateAppointment created(OffsetDateTime created) {
+  public Appointment method(MethodEnum method) {
+
+    this.method = method;
+    return this;
+  }
+
+  /**
+   * Indique un message de création ou de modification du rendez-vous
+   * @return method
+   **/
+  @JsonProperty(JSON_PROPERTY_METHOD)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public MethodEnum getMethod() {
+    return method;
+  }
+
+  @JsonProperty(JSON_PROPERTY_METHOD)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setMethod(MethodEnum method) {
+    this.method = method;
+  }
+
+  public Appointment created(OffsetDateTime created) {
 
     this.created = created;
     return this;
@@ -134,7 +272,7 @@ public class CreateAppointment {
     this.created = created;
   }
 
-  public CreateAppointment start(OffsetDateTime start) {
+  public Appointment start(OffsetDateTime start) {
 
     this.start = start;
     return this;
@@ -157,7 +295,7 @@ public class CreateAppointment {
     this.start = start;
   }
 
-  public CreateAppointment end(OffsetDateTime end) {
+  public Appointment end(OffsetDateTime end) {
 
     this.end = end;
     return this;
@@ -168,19 +306,19 @@ public class CreateAppointment {
    * @return end
    **/
   @JsonProperty(JSON_PROPERTY_END)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getEnd() {
     return end;
   }
 
   @JsonProperty(JSON_PROPERTY_END)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEnd(OffsetDateTime end) {
     this.end = end;
   }
 
-  public CreateAppointment status(String status) {
+  public Appointment status(StatusEnum status) {
 
     this.status = status;
     return this;
@@ -193,17 +331,18 @@ public class CreateAppointment {
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getStatus() {
+  public StatusEnum getStatus() {
     return status;
   }
 
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setStatus(String status) {
+  public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
-  public CreateAppointment orientationCategory(String orientationCategory) {
+  public Appointment
+  orientationCategory(OrientationCategoryEnum orientationCategory) {
 
     this.orientationCategory = orientationCategory;
     return this;
@@ -216,17 +355,18 @@ public class CreateAppointment {
   @JsonProperty(JSON_PROPERTY_ORIENTATION_CATEGORY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getOrientationCategory() {
+  public OrientationCategoryEnum getOrientationCategory() {
     return orientationCategory;
   }
 
   @JsonProperty(JSON_PROPERTY_ORIENTATION_CATEGORY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOrientationCategory(String orientationCategory) {
+  public void
+  setOrientationCategory(OrientationCategoryEnum orientationCategory) {
     this.orientationCategory = orientationCategory;
   }
 
-  public CreateAppointment practitioner(Practitioner practitioner) {
+  public Appointment practitioner(Practitioner practitioner) {
 
     this.practitioner = practitioner;
     return this;
@@ -249,7 +389,7 @@ public class CreateAppointment {
     this.practitioner = practitioner;
   }
 
-  public CreateAppointment organization(Organization organization) {
+  public Appointment organization(Organization organization) {
 
     this.organization = organization;
     return this;
@@ -280,32 +420,33 @@ public class CreateAppointment {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateAppointment createAppointment = (CreateAppointment)o;
-    return Objects.equals(this.appointmentId,
-                          createAppointment.appointmentId) &&
-        Objects.equals(this.created, createAppointment.created) &&
-        Objects.equals(this.start, createAppointment.start) &&
-        Objects.equals(this.end, createAppointment.end) &&
-        Objects.equals(this.status, createAppointment.status) &&
+    Appointment appointment = (Appointment)o;
+    return Objects.equals(this.appointmentId, appointment.appointmentId) &&
+        Objects.equals(this.method, appointment.method) &&
+        Objects.equals(this.created, appointment.created) &&
+        Objects.equals(this.start, appointment.start) &&
+        Objects.equals(this.end, appointment.end) &&
+        Objects.equals(this.status, appointment.status) &&
         Objects.equals(this.orientationCategory,
-                       createAppointment.orientationCategory) &&
-        Objects.equals(this.practitioner, createAppointment.practitioner) &&
-        Objects.equals(this.organization, createAppointment.organization);
+                       appointment.orientationCategory) &&
+        Objects.equals(this.practitioner, appointment.practitioner) &&
+        Objects.equals(this.organization, appointment.organization);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(appointmentId, created, start, end, status,
+    return Objects.hash(appointmentId, method, created, start, end, status,
                         orientationCategory, practitioner, organization);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateAppointment {\n");
+    sb.append("class Appointment {\n");
     sb.append("    appointmentId: ")
         .append(toIndentedString(appointmentId))
         .append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    start: ").append(toIndentedString(start)).append("\n");
     sb.append("    end: ").append(toIndentedString(end)).append("\n");
