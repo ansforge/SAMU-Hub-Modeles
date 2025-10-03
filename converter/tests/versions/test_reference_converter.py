@@ -2,7 +2,7 @@ import json
 from snapshottest import TestCase
 from converter.constants import Constants
 from converter.versions.reference.reference_converter import ReferenceConverter
-from .test_helpers import TestHelper
+from tests.test_helpers import TestHelper
 
 class TestSnapshotV2V3Converter(TestCase):
     def test_exhaustive_snapshot_V2_to_V3_upgrade(self):

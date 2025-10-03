@@ -2,7 +2,7 @@ import json
 from snapshottest import TestCase
 from converter.constants import Constants
 from converter.versions.resources_request.resources_request_converter import ResourcesRequestConverter
-from .test_helpers import TestHelper, get_file_endpoint
+from tests.test_helpers import TestHelper, get_file_endpoint
 
 def test_V1_to_V2_upgrade():
     v2_schema_endpoint = get_file_endpoint(Constants.V2_GITHUB_TAG, Constants.RS_DR_TAG)
