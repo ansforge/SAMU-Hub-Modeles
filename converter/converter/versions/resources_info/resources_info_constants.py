@@ -25,7 +25,7 @@ class ResourcesInfoConstants:
         "resource[].team.teamCare",
         "resource[].resourceType",
         "resource[].plate",
-        "mobilizedResource"
+        "mobilizedResource",
     ]
 
     V1_TO_V2_VEHICULE_TYPE_MAPPING = {
