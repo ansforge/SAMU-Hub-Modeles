@@ -7,7 +7,9 @@ from snapshottest import Snapshot
 
 snapshots = Snapshot()
 
-snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_bis_message 1'] = '''{
+snapshots[
+    "TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_bis_message 1"
+] = """{
   "distributionID": "fr.fire.sdisZ_2608323d-507d-4cbf-bf74-52007f8124ea",
   "senderID": "fr.fire.sdisZ",
   "dateTimeSent": "2022-09-27T08:23:34+02:00",
@@ -171,9 +173,9 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_bis_messag
       }
     }
   ]
-}'''
+}"""
 
-snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_message 1'] = '''{
+snapshots["TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_message 1"] = """{
   "distributionID": "fr.fire.sdisZ_2608323d-507d-4cbf-bf74-52007f8124ea",
   "senderID": "fr.fire.sdisZ",
   "dateTimeSent": "2022-09-27T08:23:34+02:00",
@@ -337,9 +339,11 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_exhaustive_message 1'
       }
     }
   ]
-}'''
+}"""
 
-snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_required_field_message 1'] = '''{
+snapshots[
+    "TestSnapshotCisuConverter::test_snapshot_RC_EDA_required_field_message 1"
+] = """{
   "distributionID": "fr.fire.sdisZ_2608323d-507d-4cbf-bf74-52007f8124ea",
   "senderID": "fr.fire.sdisZ",
   "dateTimeSent": "2022-09-27T08:23:34+02:00",
@@ -391,9 +395,11 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RC_EDA_required_field_messag
       }
     }
   ]
-}'''
+}"""
 
-snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_exhaustive_bis_message 1'] = '''{
+snapshots[
+    "TestSnapshotCisuConverter::test_snapshot_RS_EDA_exhaustive_bis_message 1"
+] = """{
   "distributionID": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
   "senderID": "fr.health.samuA",
   "dateTimeSent": "2022-09-27T08:23:34+02:00",
@@ -607,9 +613,9 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_exhaustive_bis_messag
       }
     }
   ]
-}'''
+}"""
 
-snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_exhaustive_message 1'] = '''{
+snapshots["TestSnapshotCisuConverter::test_snapshot_RS_EDA_exhaustive_message 1"] = """{
   "distributionID": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
   "senderID": "fr.health.samuA",
   "dateTimeSent": "2022-09-27T08:23:34+02:00",
@@ -847,9 +853,11 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_exhaustive_message 1'
       }
     }
   ]
-}'''
+}"""
 
-snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_required_field_message 1'] = '''{
+snapshots[
+    "TestSnapshotCisuConverter::test_snapshot_RS_EDA_required_field_message 1"
+] = """{
   "distributionID": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
   "senderID": "fr.health.samuA",
   "dateTimeSent": "2022-09-27T08:23:34+02:00",
@@ -914,4 +922,4 @@ snapshots['TestSnapshotCisuConverter::test_snapshot_RS_EDA_required_field_messag
       }
     }
   ]
-}'''
+}"""
