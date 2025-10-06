@@ -18,6 +18,9 @@ from converter.versions.resources_response.resources_response_converter import (
 from converter.versions.resources_status.resources_status_converter import (
     ResourcesStatusConverter,
 )
+from converter.versions.resources_engagement.resources_engagement_converter import (
+    ResourcesEngagementConverter,
+)
 
 
 def health_conversion_strategy(edxl_json, source_version: str, target_version: str):
@@ -54,6 +57,8 @@ def select_conversion_strategy(message_content):
         return ResourcesResponseConverter
     elif "resourcesRequest" in message_content:
         return ResourcesRequestConverter
+    elif "resourcesEngagement" in message_content:
+        return ResourcesEngagementConverter
     else:
         deducted_message_type = extract_message_type_from_message_content(
             message_content
