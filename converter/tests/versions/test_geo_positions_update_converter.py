@@ -1,8 +1,8 @@
 from converter.versions.geo_positions_update.geo_positions_update_converter import (
     GeoPositionsUpdateConverter,
 )
-from .constants import TestConstants
-from .test_helpers import TestHelper, get_file_endpoint
+from tests.constants import TestConstants
+from tests.test_helpers import TestHelper, get_file_endpoint
 
 
 def test_v2_to_v3_upgrade():

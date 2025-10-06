@@ -1,8 +1,8 @@
 from converter.versions.resources_engagement.resources_engagement_converter import (
     ResourcesEngagementConverter,
 )
-from .constants import TestConstants
-from .test_helpers import TestHelper, get_file_endpoint
+from tests.constants import TestConstants
+from tests.test_helpers import TestHelper, get_file_endpoint
 
 
 def test_v2_to_v3_upgrade():
