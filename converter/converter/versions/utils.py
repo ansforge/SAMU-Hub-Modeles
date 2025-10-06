@@ -1,5 +1,5 @@
 import re
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 from converter.utils import (
     add_to_medical_notes,
@@ -89,3 +89,18 @@ def validate_diagnosis_code(
                     [{"path": f"hypothesis.{diagnosis_type}", "label": code_label}],
                 )
                 delete_paths(patient_data, [f"hypothesis.{diagnosis_type}"])
+
+
+def convert_to_float(value: Optional[str]) -> Optional[float]:
+    if value is None:
+        return None
+    try:
+        return float(value)
+    except ValueError:
+        return None
+
+
+def convert_to_str(value: float) -> Optional[str]:
+    if value is None:
+        return None
+    return str(value)
