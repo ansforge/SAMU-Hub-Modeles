@@ -1,7 +1,7 @@
 import random
 import re
 import string
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from jsonpath_ng import parse
 from yaml import dump
 
@@ -191,7 +191,7 @@ def map_to_new_value(
 
 def add_to_medical_notes(
     json_data: Dict[str, Any],
-    patient: Dict[str, Any],
+    patient: Optional[Dict[str, Any]],
     paths_and_labels: List[Dict[str, str]],
 ):
     if not is_field_completed(json_data, "$.medicalNote"):
@@ -202,7 +202,9 @@ def add_to_medical_notes(
 
 
 def add_field_to_medical_notes(
-    data: Dict[str, Any], patient: Dict[str, Any], path_and_label: Dict[str, str]
+    data: Dict[str, Any],
+    patient: Optional[Dict[str, Any]],
+    path_and_label: Dict[str, str],
 ):
     if patient is not None:
         field_value = get_field_value(patient, f"$.{path_and_label['path']}")
@@ -222,7 +224,7 @@ def add_field_to_medical_notes(
 
 
 def add_object_to_medical_notes(
-    json_data: Dict[str, Any], patient: Dict[str, Any], note_text: str
+    json_data: Dict[str, Any], patient: Optional[Dict[str, Any]], note_text: str
 ):
     MEDICAL_NOTE_RANDOM_ID_LENGTH = 7
     random_str = "".join(

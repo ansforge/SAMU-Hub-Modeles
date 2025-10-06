@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 from jsonschema import validate
 import requests
 
@@ -41,7 +41,7 @@ class TestHelper:
         return json.loads(response.text)
 
     @staticmethod
-    def get_json_files(directory: str, tag: str = None) -> list:
+    def get_json_files(directory: str, tag: Optional[str] = None) -> list:
         """Get all JSON files (name & path) from the specified directory"""
         if tag is not None:
             return TestHelper.get_json_files_online(directory, tag)

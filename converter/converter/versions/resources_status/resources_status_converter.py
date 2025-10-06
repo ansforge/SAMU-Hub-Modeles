@@ -1,7 +1,6 @@
 from typing import Dict, Any
 
 from converter.utils import delete_paths, get_field_value, map_to_new_value
-from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.conversion_mixin import ConversionMixin
 from converter.versions.resources_status.resources_status_constants import (
     ResourcesStatusConstants,
@@ -9,7 +8,7 @@ from converter.versions.resources_status.resources_status_constants import (
 from converter.versions.utils import reverse_map_to_new_value
 
 
-class ResourcesStatusConverter(BaseMessageConverter, ConversionMixin):
+class ResourcesStatusConverter(ConversionMixin):
     @staticmethod
     def get_message_type():
         return "resourcesStatus"

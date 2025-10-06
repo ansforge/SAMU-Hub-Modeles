@@ -1,8 +1,10 @@
 import copy
 from typing import Dict, Any
 
+from converter.versions.base_message_converter import BaseMessageConverter
 
-class ConversionMixin:
+
+class ConversionMixin(BaseMessageConverter):
     CONTENT_KEY = "content"
     JSON_CONTENT_KEY = "jsonContent"
     EMBEDDED_JSON_CONTENT_KEY = "embeddedJsonContent"
