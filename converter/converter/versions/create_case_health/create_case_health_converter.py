@@ -7,7 +7,6 @@ from converter.utils import (
     is_field_completed,
     map_to_new_value,
 )
-from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.conversion_mixin import ConversionMixin
 from converter.versions.create_case_health.v1_v2.constants import V1V2Constants
 from converter.versions.create_case_health.v2_v3.constants import V2V3Constants
@@ -18,7 +17,7 @@ from converter.versions.utils import (
 )
 
 
-class CreateHealthCaseConverter(BaseMessageConverter, ConversionMixin):
+class CreateHealthCaseConverter(ConversionMixin):
     @staticmethod
     def get_message_type() -> str:
         return "createCaseHealth"
