@@ -6,6 +6,7 @@ from converter.versions.conversion_mixin import ConversionMixin
 from converter.versions.geo_positions_update.geo_positions_update_constants import (
     GeoPositionsUpdateConstants,
 )
+from converter.versions.utils import convert_to_float, convert_to_str
 
 
 class GeoPositionsUpdateConverter(BaseMessageConverter, ConversionMixin):
@@ -29,9 +30,21 @@ class GeoPositionsUpdateConverter(BaseMessageConverter, ConversionMixin):
                 coord_value = coord[0]
             else:
                 coord_value = None
-            new_geo_positions.append(
-                {**position, GeoPositionsUpdateConstants.COORD_KEY: coord_value}
-            )
+
+            new_position: Dict[str, Any] = {
+                **position,
+                GeoPositionsUpdateConstants.COORD_KEY: coord_value,
+            }
+
+            cap_str = position.get(GeoPositionsUpdateConstants.CAP_KEY)
+            cap_float = convert_to_float(cap_str)
+
+            if cap_float is not None:
+                new_position[GeoPositionsUpdateConstants.CAP_KEY] = cap_str
+            else:
+                new_position.pop(GeoPositionsUpdateConstants.CAP_KEY, None)
+
+            new_geo_positions.append(new_position)
 
         update_json_value(
             output_use_case_json,
@@ -56,9 +69,20 @@ class GeoPositionsUpdateConverter(BaseMessageConverter, ConversionMixin):
                 coordinates_array.append(
                     position[GeoPositionsUpdateConstants.COORD_KEY]
                 )
-            new_geo_positions.append(
-                {**position, GeoPositionsUpdateConstants.COORD_KEY: coordinates_array}
-            )
+            new_position: Dict[str, Any] = {
+                **position,
+                GeoPositionsUpdateConstants.COORD_KEY: coordinates_array,
+            }
+
+            cap_float = position.get(GeoPositionsUpdateConstants.CAP_KEY)
+            cap_str = convert_to_str(cap_float)
+            if cap_str is not None:
+                new_position[GeoPositionsUpdateConstants.CAP_KEY] = cap_str
+            else:
+                new_position.pop(GeoPositionsUpdateConstants.CAP_KEY, None)
+
+            new_geo_positions.append(new_position)
+
         update_json_value(
             output_use_case_json,
             GeoPositionsUpdateConstants.POSITION_PATH,
