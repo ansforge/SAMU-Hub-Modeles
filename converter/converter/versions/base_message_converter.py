@@ -7,8 +7,8 @@ class BaseMessageConverter:
             "BaseMessageConverter is an abstract class and cannot be instantiated directly. Use a subclass instead."
         )
 
-    @classmethod
-    def get_message_type(cls) -> str:
+    @staticmethod
+    def get_message_type() -> str:
         raise NotImplementedError(
             "Subclasses must implement this method to return the message type."
         )

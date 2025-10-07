@@ -47,5 +47,13 @@ exclude_lines = [
 
 [dependency-groups]
 dev = [
+    "mypy>=1.18.2",
     "ruff>=0.13.3",
+    "types-jsonschema>=4.25.1.20250822",
+    "types-pyyaml>=6.0.12.20250915",
+    "types-requests>=2.32.4.20250913",
 ]
+
+[[tool.mypy.overrides]]
+module = ["snapshottest.*", "jsonpath_ng.*"]
+ignore_missing_imports = true
