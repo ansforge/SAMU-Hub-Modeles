@@ -21,6 +21,9 @@ from converter.versions.resources_status.resources_status_converter import (
 from converter.versions.resources_engagement.resources_engagement_converter import (
     ResourcesEngagementConverter,
 )
+from converter.versions.geo_positions_update.geo_positions_update_converter import (
+    GeoPositionsUpdateConverter,
+)
 
 
 def health_conversion_strategy(edxl_json, source_version: str, target_version: str):
@@ -59,6 +62,8 @@ def select_conversion_strategy(message_content):
         return ResourcesRequestConverter
     elif "resourcesEngagement" in message_content:
         return ResourcesEngagementConverter
+    elif "geoPositionsUpdate" in message_content:
+        return GeoPositionsUpdateConverter
     else:
         deducted_message_type = extract_message_type_from_message_content(
             message_content
