@@ -2,6 +2,7 @@ from converter.versions.create_case_health.create_case_health_update_converter i
     CreateHealthUpdateCaseConverter,
 )
 from converter.versions.error_converter import ErrorConverter
+from converter.versions.identical_message_converter import IdenticalMessageConverter
 from converter.versions.reference.reference_converter import ReferenceConverter
 from converter.versions.create_case_health.create_case_health_converter import (
     CreateHealthCaseConverter,
@@ -64,6 +65,8 @@ def select_conversion_strategy(message_content):
         return ResourcesEngagementConverter
     elif "geoPositionsUpdate" in message_content:
         return GeoPositionsUpdateConverter
+    elif "geoResourcesRequest" in message_content:
+        return IdenticalMessageConverter
     else:
         deducted_message_type = extract_message_type_from_message_content(
             message_content
