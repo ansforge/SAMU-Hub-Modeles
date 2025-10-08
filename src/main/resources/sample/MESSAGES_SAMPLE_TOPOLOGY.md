@@ -18,11 +18,11 @@ Although, the use case contents can be deemed to be compliant themselves.
 
 
 ## Valid messages
-These messages are used for passing tests on (de)serialization ops ([EdxlHandlerTest](../../../test/java/com/hubsante/model/edxlhandler/EdxlHandlerTest.java)) and validation ([ValidatorTest](../../../test/java/com/hubsante/model/validator/ValidatorTest.java)).
+These messages are used for passing tests on (de)serialization ops ([EdxlHandlerTest](../../../test/java/com/hubsante/model/edxlhandler/EdxlHandlerTest.java)) and validation ([Validator Tests Folder](../../../test/java/com/hubsante/model/validator)).
 
 They also could be used to easily import a message for testing purposes in projects importing this library as a dependency : the [TestMessagesHelper](../../java/com/hubsante/model/TestMessagesHelper.java) comes with methods to load them as a String.
 
 ## Failing messages
-These messages are mainly used for failing tests on validation ([ValidatorTest](../../../test/java/com/hubsante/model/validator/ValidatorTest.java)).
+These messages are mainly used for failing tests on validation ([Validator Tests Folder](../../../test/java/com/hubsante/model/validator)).
 
 They also could be imported as a String, but it probably may not be useful for projects importing this library as a dependency, which could rather construct their own failing messages based on the specific errors they want to test, and then calling the [Validator](../../java/com/hubsante/model/Validator.java) methods on them.
