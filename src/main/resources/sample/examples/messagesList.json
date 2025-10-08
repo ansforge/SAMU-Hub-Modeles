@@ -786,5 +786,11 @@
         "context": "Demande de partage des détails des ressources"
       }
     ]
+  },
+  {
+    "label": "RS-SAS-RDV",
+    "schemaName": "RS-SAS-RDV.schema.json",
+    "schema": null,
+    "examples": []
   }
 ]
