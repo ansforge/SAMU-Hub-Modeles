@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<appointment xmlns="urn:emergency:eda:1.9:appointment">
+  <appointmentId>0e219a52-0bdd-43fa-ac05-8e9c26429684</appointmentId>
+  <method>CreateAppointment</method>
+  <created>2025-10-09T15:50:00+02:00</created>
+  <start>2025-10-10T09:30:00+02:00</start>
+  <end>2025-10-10T09:50:00+02:00</end>
+  <status>booked</status>
+  <orientationCategory>CDS</orientationCategory>
+  <organization>
+    <organizationId>334173748400020</organizationId>
+    <name>SOS Médecins de Rennes</name>
+  </organization>
+</appointment>
