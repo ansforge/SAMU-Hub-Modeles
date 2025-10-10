@@ -791,6 +791,43 @@
     "label": "RS-SAS-RDV",
     "schemaName": "RS-SAS-RDV.schema.json",
     "schema": null,
-    "examples": []
+    "examples": [
+      {
+        "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_PS.01.json",
+        "icon": "mdi-doctor",
+        "name": "01 Didier MOREL",
+        "context": "Transmission des informations de RDV"
+      },
+      {
+        "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_PS.02.json",
+        "icon": "mdi-doctor",
+        "name": "02 Alice NORMAND",
+        "context": "Transmission des informations de RDV"
+      },
+      {
+        "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_PS.02-MAJ.json",
+        "icon": "mdi-doctor",
+        "name": "02 Alice NORMAND",
+        "context": "Transmission des informations de RDV"
+      },
+      {
+        "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_SOS.01.json",
+        "icon": "mdi-calendar",
+        "name": "01 SOS",
+        "context": "Transmission des informations de RDV"
+      },
+      {
+        "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_SOS.01-MAJ.json",
+        "icon": "mdi-doctor",
+        "name": "01 SOS - Delphine VIGNEAU",
+        "context": "Transmission des informations de RDV"
+      },
+      {
+        "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_CDS.01.json",
+        "icon": "mdi-hospital-box",
+        "name": "01 SOS Médecins de Rennes",
+        "context": "Transmission des informations de RDV"
+      }
+    ]
   }
 ]
