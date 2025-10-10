@@ -1,0 +1,20 @@
+{
+  "appointment": {
+    "appointmentId": "2d2db05f-e2b0-4169-be8f-891806da2c74",
+    "method": "CreateAppointment",
+    "created": "2025-06-17T10:15:00+02:00",
+    "status": "booked",
+    "orientationCategory": "PS",
+    "start": "2025-06-17T14:00:00+02:00",
+    "end": "2025-06-17T14:20:00+02:00",
+    "practitioner": {
+      "rppsId": "810005681340",
+      "lastName": "MOREL",
+      "firstName": "Didier",
+      "specialityCode": "SM42",
+      "specialityUrl": "https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale",
+      "professionUrl": "https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante",
+      "professionCode": "60"
+    }
+  }
+}
