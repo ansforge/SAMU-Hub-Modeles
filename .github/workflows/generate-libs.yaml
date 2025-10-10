@@ -40,8 +40,11 @@ jobs:
             echo "Workflow triggered via Generate Model pull request"
             # Include first chars of commit SHA and run attempt number to avoid collisions
             COMMIT_SHA="${{ github.event.workflow_run.head_sha }}"
-            SHORT_COMMIT_SHA=${COMMIT_SHA::7}
-            RELEASE_VERSION="0.0.0+${{ github.event.workflow_run.head_branch }}.$SHORT_COMMIT_SHA.${{ github.run_attempt }}"
+            SHORT_COMMIT_SHA=${COMMIT_SHA::7} 
+            # Remplace le "+" par "-" et les autres caractères non autorisés par des "."
+            SAFE_BRANCH=$(echo "${{ github.event.workflow_run.head_branch }}" | sed 's/[^a-zA-Z0-9]/./g')
+            RELEASE_VERSION="0.0.0-${SAFE_BRANCH}.$SHORT_COMMIT_SHA.${{ github.run_attempt }}"
+            
           else
             echo "Workflow triggered via unsupported event"
             exit 1
