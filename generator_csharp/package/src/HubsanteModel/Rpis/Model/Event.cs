@@ -183,7 +183,7 @@ namespace HubsanteModel/Rpis.Model
         {
             if (this.OrgId != null) {
                 // OrgId (string) pattern
-                Regex regexOrgId = new Regex(@"^[a-z]{2,3}\.[a-z]+\.\w*$", RegexOptions.CultureInvariant);
+                Regex regexOrgId = new Regex(@"^([\w-]+\.?){4,10}$", RegexOptions.CultureInvariant);
                 if (!regexOrgId.Match(this.OrgId).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OrgId, must match a pattern of " + regexOrgId, new [] { "OrgId" });
