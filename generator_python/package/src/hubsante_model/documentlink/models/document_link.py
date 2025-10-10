@@ -28,11 +28,18 @@ class DocumentLink(BaseModel):
     """
     DocumentLink
     """ # noqa: E501
-    case_id: StrictStr = Field(description="Identifiant partagé du dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier).  Il est valorisé comme suit lors de sa création :  {pays}.{domaine}.{organisation}.{senderCaseId}  Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.", alias="caseId")
+    case_id: Annotated[str, Field(strict=True)] = Field(description="Identifiant partagé du dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier).  Il est valorisé comme suit lors de sa création :  {pays}.{domaine}.{organisation}.{senderCaseId}  Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.", alias="caseId")
     patient_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Indique l'identifiant partagé du patient auquel les documents sont rattachés", alias="patientId")
     code: Optional[StrictStr] = Field(default=None, description="Code unitaire par bilan qui permet à l'utilisateur qui reçoit ce lien d'ouvrir le bilan lorsque celui ci ne nécessite pas une connexion nominative mais un code bilan ")
     document: Annotated[List[Document], Field(min_length=1)]
     __properties: ClassVar[List[str]] = ["caseId", "patientId", "code", "document"]
+
+    @field_validator('case_id')
+    def case_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^([\w-]+\.?){4,10}$", value):
+            raise ValueError(r"must validate the regular expression /^([\w-]+\.?){4,10}$/")
+        return value
 
     @field_validator('patient_id')
     def patient_id_validate_regular_expression(cls, value):
@@ -40,8 +47,8 @@ class DocumentLink(BaseModel):
         if value is None:
             return value
 
-        if not re.match(r"^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$", value):
-            raise ValueError(r"must validate the regular expression /^([\w-]+\.){3,4}patient(\.[\w-]+){1,2}$/")
+        if not re.match(r"^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$", value):
+            raise ValueError(r"must validate the regular expression /^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$/")
         return value
 
     model_config = ConfigDict(
