@@ -1,0 +1,22 @@
+{
+  "appointment": {
+    "appointmentId": "29b7fcca-0b06-43f1-8019-9a7788a241ad",
+    "method": "CreateAppointment",
+    "created": "2025-06-17T10:15:00+02:00",
+    "status": "booked",
+    "orientationCategory": "PS",
+    "start": "2025-06-17T14:00:00+02:00",
+    "end": "2025-06-17T14:20:00+02:00",
+    "practitioner": {
+      "rppsId": "810004768801",
+      "lastName": "NORMAND",
+      "firstName": "Alice",
+      "specialityCode": "SM40",
+      "specialityUrl": "https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale"
+    },
+    "organization": {
+      "organizationId": "334173748400020",
+      "name": "SOS Médecins de Rennes"
+    }
+  }
+}
