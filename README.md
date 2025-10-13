@@ -66,6 +66,18 @@ N. B. : Pour accéder aux versions les plus recentes des fichiers, veuillez util
 Les contributions, *issues* & *pull requests* sont les bienvenues !
 <br />N'hésitez pas à utiliser notre [page d'*issues*](https://github.com/ansforge/SAMU-Hub-Modeles/issues).
 
+### Pre-commit
+
+Ce projet utilise [pre-commit](https://pre-commit.com/) pour faciliter le travail du développeur et qu'il détecte des erreurs de format/lint/typing le plus rapidement possible.
+Pour l'utiliser en local, exécuter les commandes suivantes :
+
+```bash
+pip install pre-commit
+pre-commit install
+```
+
+Avant chaque commit, les hooks seront exécutés automatiquement et le commit sera annulé si des erreurs sont détectées.
+
 ## Montrez votre support
 
 Mettez une ⭐️ si ce projet vous a aidé !
