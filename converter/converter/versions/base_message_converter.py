@@ -15,7 +15,6 @@ class BaseMessageConverter:
 
     @classmethod
     def convert(cls, source_version, target_version, edxl_json):
-        source_version_index = -1
         try:
             source_version_index = version_order_list.index(source_version)
         except ValueError:
@@ -23,7 +22,6 @@ class BaseMessageConverter:
                 f"Unknown source version {source_version}. Must be one of: {version_order_list}"
             )
 
-        target_version_index = -1
         try:
             target_version_index = version_order_list.index(target_version)
         except ValueError:
