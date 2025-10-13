@@ -1,5 +1,5 @@
-{{ define "generator-config" }}{
-  "inputSpec": "../generator/input/{{.schema}}.openapi.yaml",
+{
+  "inputSpec": "../generator/input/RS-RPIS.openapi.yaml",
   "outputDir": "package/",
   "generatorName": "php",
   "templateDir": "templates/php-models/",
@@ -13,8 +13,8 @@
   },
   "additionalProperties": {
     "invokerPackage": "Hubsante",
-    "modelPackage": "Model\\{{.package}}",
-    "packageName": "hubsante_model.{{ .package }}",
+    "modelPackage": "Model\\rpis",
+    "packageName": "hubsante_model.rpis",
     "srcBasePath": "src/",
     "composerVendorName": "hubsante",
     "composerProjectName": "model-sdk",
@@ -30,9 +30,3 @@
     "allowUnicodeIdentifiers": true
   }
 }
-{{ end }}
-{{- range (datasource "config").schemas }}
-    {{ if and (eq .automaticGeneration "Y") (eq .subschema "N") }}
-        {{- tmpl.Exec "generator-config" . | file.Write (printf "output/generator_php/config/generated/%s/%s.generator-config.json" .schema .schema) }}
-    {{end}}
-{{end}}
