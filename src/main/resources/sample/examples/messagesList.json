@@ -807,7 +807,7 @@
       {
         "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_PS.02-MAJ.json",
         "icon": "mdi-doctor",
-        "name": "02 Alice NORMAND",
+        "name": "02 Alice NORMAND MAJ",
         "context": "Transmission des informations de RDV"
       },
       {
@@ -819,7 +819,7 @@
       {
         "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_SOS.01-MAJ.json",
         "icon": "mdi-doctor",
-        "name": "01 SOS - Delphine VIGNEAU",
+        "name": "01 SOS - Delphine VIGNEAU MAJ",
         "context": "Transmission des informations de RDV"
       },
       {
