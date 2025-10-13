@@ -1,0 +1,21 @@
+repos:
+  # Lint & format converter code
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.0
+    hooks:
+      - id: ruff-check
+        files: ^converter/
+      - id: ruff-format
+        args: ["--check"]
+        files: ^converter/
+
+  # Type-check converter code
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.18.2
+    hooks:
+      - id: mypy
+        files: ^converter/
+        additional_dependencies:
+          - types-jsonschema
+          - types-pyyaml
+          - types-requests
