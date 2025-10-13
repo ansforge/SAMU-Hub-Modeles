@@ -230,11 +230,10 @@ class CreateHealthCaseConverter(ConversionMixin):
                         patient, "$.administrativeFile.externalId"
                     )
                     external_valid_ids = []
-                    SI_VIC_EXTERNAL_ID = "SI-VIC"
                     for index, external_id in enumerate(external_ids):
                         if (
                             get_field_value(external_id, "$.source")
-                            == SI_VIC_EXTERNAL_ID
+                            == V2V3Constants.EXTERNAL_ID_SI_VIC
                         ):
                             add_to_medical_notes(
                                 output_use_case_json,
@@ -299,9 +298,11 @@ class CreateHealthCaseConverter(ConversionMixin):
                     patient, "$.administrativeFile.externalId"
                 )
                 external_valid_ids = []
-                OTHER_FILE_SOURCE = "AUTRE"
                 for index, external_id in enumerate(external_ids):
-                    if get_field_value(external_id, "$.source") == OTHER_FILE_SOURCE:
+                    if (
+                        get_field_value(external_id, "$.source")
+                        == V2V3Constants.SOURCE_OTHER_FILE
+                    ):
                         add_to_medical_notes(
                             output_use_case_json,
                             patient,
@@ -320,8 +321,7 @@ class CreateHealthCaseConverter(ConversionMixin):
             intervention_type = get_field_value(
                 output_use_case_json, "$.interventionType"
             )
-            T4_TYPE = "T4"
-            if intervention_type == T4_TYPE:
+            if intervention_type == V2V3Constants.INTERVENTION_TYPE_T4:
                 add_to_medical_notes(
                     output_use_case_json,
                     None,
@@ -337,8 +337,6 @@ class CreateHealthCaseConverter(ConversionMixin):
         def check_qualification_code(
             path, valid_codes: List[str], default_code_and_label
         ):
-            CODE_SEPARATOR = "."
-            ROOT_CODE_DIGITS = "00"
             code_and_label = get_field_value(output_use_case_json, path)
             if code_and_label is None:
                 return
@@ -347,9 +345,11 @@ class CreateHealthCaseConverter(ConversionMixin):
             if code in valid_codes:
                 return
 
-            code_parts = code.split(CODE_SEPARATOR)  # -> ["C11", "06", "01"]
-            code_parts[-1] = ROOT_CODE_DIGITS  # -> ["C11", "06", "00"]
-            root_code = CODE_SEPARATOR.join(code_parts)  # -> "C11.06.00"
+            code_parts = code.split(
+                V2V3Constants.CODE_SEPARATOR
+            )  # -> ["C11", "06", "01"]
+            code_parts[-1] = V2V3Constants.ROOT_CODE_DIGITS  # -> ["C11", "06", "00"]
+            root_code = V2V3Constants.CODE_SEPARATOR.join(code_parts)  # -> "C11.06.00"
 
             if root_code in valid_codes:
                 code_and_label["code"] = root_code
