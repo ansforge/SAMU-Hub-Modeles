@@ -796,37 +796,43 @@
         "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_PS.01.json",
         "icon": "mdi-doctor",
         "name": "01 Didier MOREL",
-        "context": "Transmission des informations de RDV"
+        "context": "Cas création RDV avec PS mais sans structure, exemple PS. indiv"
+      },
+      {
+        "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_PS.01-MAJ.json",
+        "icon": "mdi-doctor",
+        "name": "01 Didier MOREL",
+        "context": "Cas mise à jour (annulation) RDV"
       },
       {
         "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_PS.02.json",
         "icon": "mdi-doctor",
-        "name": "02 Alice NORMAND",
-        "context": "Transmission des informations de RDV"
+        "name": "02 NORMAND ALICE",
+        "context": "Cas création RDV avec PS mais sans structure, exemple PS. indiv"
       },
       {
         "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_PS.02-MAJ.json",
         "icon": "mdi-doctor",
-        "name": "02 Alice NORMAND MAJ",
-        "context": "Transmission des informations de RDV"
+        "name": "02 NORMAND ALICE",
+        "context": "Cas mise à jour RDV (changement statut) avec PS mais sans structure, exemple PS. indiv"
       },
       {
         "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_SOS.01.json",
-        "icon": "mdi-calendar",
+        "icon": "mdi-hospital-box-outline",
         "name": "01 SOS",
-        "context": "Transmission des informations de RDV"
+        "context": "Cas création RDV sans PS ni structure. Ex : SOS Médecins interfacé en attente d'attribution médecin"
       },
       {
         "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_SOS.01-MAJ.json",
-        "icon": "mdi-doctor",
-        "name": "01 SOS - Delphine VIGNEAU MAJ",
-        "context": "Transmission des informations de RDV"
+        "icon": "mdi-hospital-box-outline",
+        "name": "01 SOS Médecins de Rennes - Delphine VIGNEAU MAJ",
+        "context": "Cas mise à jour d'un RDV initialement sans PS (SOS) avec ajout du médecin et de la structure"
       },
       {
         "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_CDS.01.json",
-        "icon": "mdi-hospital-box",
-        "name": "01 SOS Médecins de Rennes",
-        "context": "Transmission des informations de RDV"
+        "icon": "mdi-hospital-building",
+        "name": "01 CDS Dentaire",
+        "context": "Cas création RDV CDS non interfacé (structure sans PS)"
       }
     ]
   }
