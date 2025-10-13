@@ -45,15 +45,17 @@ class BaseMessageConverter:
 
             # Convert message to consecutive version
             version_delta = 1 if source_version_index < target_version_index else -1
+            current_version = version_order_list[source_version_index + version_delta]
+
             converted_edxl_json = cls.convert(
                 source_version,
-                version_order_list[source_version_index + version_delta],
+                current_version,
                 edxl_json,
             )
 
             # Recursively call convert with the new source_version
             return cls.convert(
-                version_order_list[source_version_index + version_delta],
+                current_version,
                 target_version,
                 converted_edxl_json,
             )
