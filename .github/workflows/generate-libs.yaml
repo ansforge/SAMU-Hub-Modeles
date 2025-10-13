@@ -42,7 +42,7 @@ jobs:
             COMMIT_SHA="${{ github.event.workflow_run.head_sha }}"
             SHORT_COMMIT_SHA=${COMMIT_SHA::7} 
             # Remplace le "+" par "-" et les autres caractères non autorisés par des "."
-            SAFE_BRANCH=$(echo "${{ github.event.workflow_run.head_branch }}" | sed 's/[^a-zA-Z0-9]/./g')
+            SAFE_BRANCH=$(echo "${{ github.event.workflow_run.head_branch }}" | sed 's/[^a-zA-Z0-9]/-/g')
             RELEASE_VERSION="0.0.0-${SAFE_BRANCH}.$SHORT_COMMIT_SHA.${{ github.run_attempt }}"
             
           else
