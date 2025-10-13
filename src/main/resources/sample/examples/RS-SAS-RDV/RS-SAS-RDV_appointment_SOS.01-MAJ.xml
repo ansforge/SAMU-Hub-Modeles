@@ -14,4 +14,8 @@
     <professionCode>50</professionCode>
     <professionUrl>https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante</professionUrl>
   </practitioner>
+  <organization>
+    <organizationId>334173748400020</organizationId>
+    <name>SOS Médecins de Rennes</name>
+  </organization>
 </appointment>

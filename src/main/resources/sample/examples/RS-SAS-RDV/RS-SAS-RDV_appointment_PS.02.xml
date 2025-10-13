@@ -14,8 +14,4 @@
     <specialityCode>SM40</specialityCode>
     <specialityUrl>https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale</specialityUrl>
   </practitioner>
-  <organization>
-    <organizationId>334173748400020</organizationId>
-    <name>SOS Médecins de Rennes</name>
-  </organization>
 </appointment>

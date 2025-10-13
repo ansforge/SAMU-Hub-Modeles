@@ -5,7 +5,7 @@
   <created>2025-06-17T10:15:00+02:00</created>
   <start>2025-06-17T14:00:00+02:00</start>
   <end>2025-06-17T14:20:00+02:00</end>
-  <status>cancelled</status>
+  <status>noshow</status>
   <orientationCategory>PS</orientationCategory>
   <practitioner>
     <rppsId>810004768801</rppsId>
@@ -14,8 +14,4 @@
     <specialityCode>SM40</specialityCode>
     <specialityUrl>https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale</specialityUrl>
   </practitioner>
-  <organization>
-    <organizationId>334173748400020</organizationId>
-    <name>SOS Médecins de Rennes</name>
-  </organization>
 </appointment>
