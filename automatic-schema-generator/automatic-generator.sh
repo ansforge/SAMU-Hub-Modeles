@@ -2,7 +2,7 @@
 # required for each schema
 
 # Generate config files for each language
-for lang in "." "ruby" "python" "csharp"; do
+for lang in "." "ruby" "python" "csharp" "php"; do
     # generate base generator config files
     gomplate -f "./templates/$lang/schema.generator-config.json.tmpl" -d config=./schemas.yaml
 
