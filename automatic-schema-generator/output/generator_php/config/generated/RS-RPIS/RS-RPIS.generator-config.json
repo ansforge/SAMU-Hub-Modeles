@@ -2,7 +2,6 @@
   "inputSpec": "../generator/input/RS-RPIS.openapi.yaml",
   "outputDir": "package/",
   "generatorName": "php",
-  "templateDir": "templates/php-models/",
   "globalProperties": {
     "models": "",
     "apis": false,
