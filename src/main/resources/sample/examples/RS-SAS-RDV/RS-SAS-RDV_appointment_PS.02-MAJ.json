@@ -1,7 +1,7 @@
 {
   "appointment": {
     "appointmentId": "29b7fcca-0b06-43f1-8019-9a7788a241ad",
-    "method": "CreateAppointment",
+    "method": "UpdateAppointment",
     "created": "2025-06-17T10:15:00+02:00",
     "status": "cancelled",
     "orientationCategory": "PS",
