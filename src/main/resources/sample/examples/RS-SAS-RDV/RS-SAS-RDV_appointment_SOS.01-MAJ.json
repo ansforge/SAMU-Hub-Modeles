@@ -13,6 +13,10 @@
       "firstName": "Delphine",
       "professionUrl": "https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante",
       "professionCode": "50"
+    },
+    "organization": {
+      "organizationId": "334173748400020",
+      "name": "SOS Médecins de Rennes"
     }
   }
 }
