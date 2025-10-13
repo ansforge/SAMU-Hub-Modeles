@@ -143,7 +143,7 @@ def get_field_value(json_data: Dict[str, Any], json_path: str):
 
 def concatenate_values(obj):
     result = ""
-    DIVIDER = " "
+    divider = " "
 
     if isinstance(obj, dict):
         for value in obj.values():
@@ -152,7 +152,7 @@ def concatenate_values(obj):
         for item in obj:
             result += concatenate_values(item)
     elif isinstance(obj, str):
-        result += DIVIDER + obj
+        result += divider + obj
 
     return result
 
@@ -224,10 +224,10 @@ def add_field_to_medical_notes(
 def add_object_to_medical_notes(
     json_data: Dict[str, Any], patient: Optional[Dict[str, Any]], note_text: str
 ):
-    MEDICAL_NOTE_RANDOM_ID_LENGTH = 7
     random_str = "".join(
         random.choices(
-            string.ascii_lowercase + string.digits, k=MEDICAL_NOTE_RANDOM_ID_LENGTH
+            string.ascii_lowercase + string.digits,
+            k=Constants.MEDICAL_NOTE_RANDOM_ID_LENGTH,
         )
     )
 
