@@ -18,11 +18,11 @@ class ResourcesInfoConverter(ConversionMixin):
         output_json = cls.copy_input_content(input_json)
         output_use_case_json = cls.copy_input_use_case_content(input_json)
 
-        mobilizedResources = get_field_value(
+        mobilized_resources = get_field_value(
             output_use_case_json, "$.mobilizedResource"
         )
-        if mobilizedResources is not None:
-            for index, mobilizedResource in enumerate(mobilizedResources):
+        if mobilized_resources is not None:
+            for index, mobilizedResource in enumerate(mobilized_resources):
                 states = get_field_value(mobilizedResource, "$.state")
                 if states is not None:
                     for state in states:
@@ -45,15 +45,15 @@ class ResourcesInfoConverter(ConversionMixin):
                     "$.vehiculeType",
                     ResourcesInfoConstants.V1_TO_V2_VEHICULE_TYPE_MAPPING,
                 )
-                vehiculeType = get_field_value(mobilizedResource, "$.vehiculeType")
-                if vehiculeType is not None:
-                    mobilizedResource["vehicleType"] = vehiculeType
+                vehicule_type = get_field_value(mobilizedResource, "$.vehiculeType")
+                if vehicule_type is not None:
+                    mobilizedResource["vehicleType"] = vehicule_type
 
-                teamCare = get_field_value(mobilizedResource, "$.team.teamCare")
-                if teamCare is not None:
-                    mobilizedResource["team"]["medicalLevel"] = teamCare
+                team_care = get_field_value(mobilizedResource, "$.team.teamCare")
+                if team_care is not None:
+                    mobilizedResource["team"]["medicalLevel"] = team_care
 
-        output_use_case_json["resource"] = mobilizedResources
+        output_use_case_json["resource"] = mobilized_resources
 
         delete_paths(output_use_case_json, ResourcesInfoConstants.V1_PATHS_TO_DELETE)
 
@@ -83,13 +83,13 @@ class ResourcesInfoConverter(ConversionMixin):
                     "$.vehicleType",
                     ResourcesInfoConstants.V1_TO_V2_VEHICULE_TYPE_MAPPING,
                 )
-                vehicleType = get_field_value(resource, "$.vehicleType")
-                if vehicleType is not None:
-                    resource["vehiculeType"] = vehicleType
+                vehicle_type = get_field_value(resource, "$.vehicleType")
+                if vehicle_type is not None:
+                    resource["vehiculeType"] = vehicle_type
 
-                medicalLevel = get_field_value(resource, "$.team.medicalLevel")
-                if medicalLevel is not None:
-                    resource["team"]["teamCare"] = medicalLevel
+                medical_level = get_field_value(resource, "$.team.medicalLevel")
+                if medical_level is not None:
+                    resource["team"]["teamCare"] = medical_level
 
                 resource["resourceType"] = other_value
 
