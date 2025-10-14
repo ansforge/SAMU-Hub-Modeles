@@ -21,6 +21,7 @@ class TestConstants:
     RS_DR_TAG = "RS-DR"
     RS_RR_TAG = "RS-RR"
     RS_ER_TAG = "RS-ER"
+    RS_URL_TAG = "RS-URL"
     GEO_POS_TAG = "GEO-POS"
     GEO_REQ_TAG = "GEO-REQ"
     GEO_RES_TAG = "GEO-RES"
