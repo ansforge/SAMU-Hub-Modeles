@@ -15,7 +15,6 @@ class BaseMessageConverter:
 
     @classmethod
     def convert(cls, source_version, target_version, edxl_json):
-        source_version_index = -1
         try:
             source_version_index = version_order_list.index(source_version)
         except ValueError:
@@ -23,7 +22,6 @@ class BaseMessageConverter:
                 f"Unknown source version {source_version}. Must be one of: {version_order_list}"
             )
 
-        target_version_index = -1
         try:
             target_version_index = version_order_list.index(target_version)
         except ValueError:
@@ -47,15 +45,17 @@ class BaseMessageConverter:
 
             # Convert message to consecutive version
             version_delta = 1 if source_version_index < target_version_index else -1
+            current_version = version_order_list[source_version_index + version_delta]
+
             converted_edxl_json = cls.convert(
                 source_version,
-                version_order_list[source_version_index + version_delta],
+                current_version,
                 edxl_json,
             )
 
             # Recursively call convert with the new source_version
             return cls.convert(
-                version_order_list[source_version_index + version_delta],
+                current_version,
                 target_version,
                 converted_edxl_json,
             )
@@ -70,7 +70,7 @@ class BaseMessageConverter:
         elif source_version == "v2":
             return cls.convert_v2_to_v3(edxl_json)
         else:
-            cls.raise_conversion_impossible_error(
+            return cls.raise_conversion_impossible_error(
                 source_version, version_order_list[source_version_index + 1]
             )
 
@@ -81,7 +81,7 @@ class BaseMessageConverter:
         elif source_version == "v3":
             return cls.convert_v3_to_v2(edxl_json)
         else:
-            cls.raise_conversion_impossible_error(
+            return cls.raise_conversion_impossible_error(
                 source_version, version_order_list[source_version_index - 1]
             )
 

@@ -7,6 +7,7 @@ from datetime import datetime
 from yaml import dump
 
 from .utils import add_to_initial_alert_notes
+from ..constants import Constants
 from ..utils import (
     delete_paths,
     get_field_value,
@@ -143,11 +144,10 @@ class CISUConverterV3:
             if not is_field_completed(json_data, "$.medicalNote"):
                 json_data["medicalNote"] = []
 
-            MEDICAL_NOTE_RANDOM_ID_LENGTH = 7
             random_str = "".join(
                 random.choices(
                     string.ascii_lowercase + string.digits,
-                    k=MEDICAL_NOTE_RANDOM_ID_LENGTH,
+                    k=Constants.MEDICAL_NOTE_RANDOM_ID_LENGTH,
                 )
             )
             medical_note_id = f"{sender_id}.medicalNote.{random_str}"

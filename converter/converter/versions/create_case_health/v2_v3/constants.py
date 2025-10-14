@@ -85,6 +85,12 @@ class V2V3Constants:
 
     V3_TO_V2_DETAIL_ATTRIBUTION_MAPPING = {"DRM.SPE.AUTRESPE": "DRM.SPE"}
 
+    EXTERNAL_ID_SI_VIC = "SI-VIC"
+
+    SOURCE_OTHER_FILE = "AUTRE"
+
+    INTERVENTION_TYPE_T4 = "T4"
+
     V2_PATHS_TO_DELETE = [
         "patient[].healthMotive",
         "patient[].administrativeFile.externalId.source",
@@ -98,6 +104,9 @@ class V2V3Constants:
     V2_PATIENT_PATHS_TO_ADD_TO_MEDICAL_NOTES = [
         {"path": "healthMotive", "label": "Motif de recours médico-secouriste : "}
     ]
+
+    CODE_SEPARATOR = "."
+    ROOT_CODE_DIGITS = "00"
 
     WHATS_HAPPEN_DEFAULT = {"code": "C11.06.00", "label": "Autre nature de fait"}
     LOCATION_KIND_DEFAULT = {"code": "L07.01.00", "label": "Autre lieu d'intervention"}

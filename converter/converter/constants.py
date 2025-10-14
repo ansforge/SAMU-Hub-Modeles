@@ -15,3 +15,5 @@ class Constants:
         "contact:": "Contact(s) :",
         "detailedName:": "",
     }
+
+    MEDICAL_NOTE_RANDOM_ID_LENGTH = 7
