@@ -2,7 +2,6 @@
   "inputSpec": "../generator/input/GEO-POS.openapi.yaml",
   "outputDir": "package/",
   "generatorName": "php",
-  "templateDir": "templates/php-models/",
   "globalProperties": {
     "models": "",
     "apis": false,
