@@ -1,0 +1,70 @@
+{
+  "rpis": {
+    "orientation": {
+      "decision": {
+        "resourceType": "TSU",
+        "vehicleType": "SMUR.VLM",
+        "medicalLevel": "MED"
+      },
+      "destination": {
+        "destinationCountry": "FR",
+        "destinationCategory": "ES",
+        "healthcareType": "259",
+        "finess": "440000271"
+      },
+      "type": "OK"
+    },
+    "intervention": {
+      "smurStatus": {
+        "departSmur": "2024-05-26T13:21:00+02:00",
+        "arrivedSmur": "2024-05-26T13:32:00+02:00",
+        "departLocation": "2024-05-26T13:45:00+02:00",
+        "arrivedDestination": "2024-05-26T14:03:00+02:00",
+        "teamAvailable": "2024-05-26T14:10:00+02:00",
+        "returnSmur": "2024-05-26T14:21:00+02:00"
+      },
+      "team": {
+        "doctor": true,
+        "driver": true,
+        "nurse": false
+      },
+      "location": {
+        "detailedAddress": {
+          "city": "Saint-Herblain",
+          "inseeCode": "44162"
+        },
+        "type": "L04.02.00"
+      },
+      "mainDiagnosis": "O20"
+    },
+    "patient": {
+      "residentialAddress": {
+        "city": "Nantes",
+        "inseeCode": "44109"
+      },
+      "patientId": "fr.health.samu440.patient.DRFR154402414300123.1",
+      "birthDate": "1992-03-03",
+      "sex": "F"
+    },
+    "regulation": {
+      "healthMotive": {
+        "code": "M03.03",
+        "label": "Saignements gynécologiques"
+      },
+      "whatsHappen": {
+        "code": "C02.05.02",
+        "label": "Obstétrique"
+      },
+      "medicalLevel": "SANS"
+    },
+    "context": {
+      "orgId": "fr.health.samu440",
+      "senderCaseId": "DRFR154402414300123",
+      "ressourceFinessLegal": "440000271",
+      "ressourceFinessGeo": "440000289",
+      "ressourceStructure": "0",
+      "creationDate": "2024-05-26T13:15:00+02:00",
+      "decisionDate": "2024-05-26T13:19:00+02:00"
+    }
+  }
+}
