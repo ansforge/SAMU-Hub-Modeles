@@ -10,7 +10,7 @@
         "label": "Obstétrique"
       },
       "healthMotive": {
-        "code": "M03.02",
+        "code": "M41.01",
         "label": "Autre problème obstétrique non hémorragique"
       },
       "victims": {
@@ -158,7 +158,7 @@
           "label": "Obstétrique"
         },
         "healthMotive": {
-          "code": "M03.02",
+          "code": "M41.01",
           "label": "Autre problème obstétrique non hémorragique"
         },
         "victims": {
