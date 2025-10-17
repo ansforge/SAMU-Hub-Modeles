@@ -31,7 +31,13 @@ class RpisConverter(ConversionMixin):
 
         map_to_new_value(
             output_use_case_json,
-            RpisConstants.MEDICAL_LEVEL_PATH,
+            RpisConstants.REGULATION_MEDICAL_LEVEL_PATH,
+            RpisConstants.V3_TO_V2_MEDICAL_LEVEL_MAPPING,
+        )
+
+        map_to_new_value(
+            output_use_case_json,
+            RpisConstants.ORIENTATION_MEDICAL_LEVEL_PATH,
             RpisConstants.V3_TO_V2_MEDICAL_LEVEL_MAPPING,
         )
 

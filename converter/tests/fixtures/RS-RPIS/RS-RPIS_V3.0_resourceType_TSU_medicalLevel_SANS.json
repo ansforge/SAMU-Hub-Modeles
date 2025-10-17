@@ -2,9 +2,9 @@
   "rpis": {
     "orientation": {
       "decision": {
-        "resourceType": "TSU ",
+        "resourceType": "TSU",
         "vehicleType": "SMUR.VLM",
-        "medicalLevel": "MED"
+        "medicalLevel": "SANS"
       },
       "destination": {
         "destinationCountry": "FR",
@@ -55,7 +55,7 @@
         "code": "C02.05.02",
         "label": "Obstétrique"
       },
-      "medicalLevel": "MED"
+      "medicalLevel": "SANS"
     },
     "context": {
       "orgId": "fr.health.samu440",
