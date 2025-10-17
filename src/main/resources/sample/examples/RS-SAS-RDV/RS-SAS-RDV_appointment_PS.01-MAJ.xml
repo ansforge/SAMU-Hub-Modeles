@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <appointment xmlns="urn:emergency:eda:1.9:appointment">
   <appointmentId>2d2db05f-e2b0-4169-be8f-891806da2c74</appointmentId>
-  <method>CreateAppointment</method>
+  <method>UpdateAppointment</method>
   <created>2025-06-17T10:15:00+02:00</created>
   <start>2025-06-17T14:00:00+02:00</start>
   <end>2025-06-17T14:20:00+02:00</end>
