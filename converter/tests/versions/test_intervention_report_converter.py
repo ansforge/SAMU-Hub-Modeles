@@ -3,6 +3,7 @@ from converter.versions.intervention_report.intervention_report_converter import
 )
 from tests.constants import TestConstants
 from tests.test_helpers import TestHelper, get_file_endpoint
+from jsonschema import validate
 
 
 def get_v3_schema():
@@ -41,3 +42,16 @@ def test_v3_to_v2_downgrade():
         target_schema=v2_schema,
         online_tag=TestConstants.V3_GITHUB_TAG,
     )
+
+
+def test_v2_to_v3_upgrade_breaking_changes():
+    message_raw_v2 = TestHelper.create_edxl_json_from_sample(
+        TestConstants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
+        "tests/fixtures/RS-BPV/RS-BPV_V2.0_breaking_changes_to_V3.0.json",
+    )
+    message_raw_v3 = InterventionReportConverter.convert_v2_to_v3(message_raw_v2)
+    message_v3 = InterventionReportConverter.copy_input_use_case_content(message_raw_v3)
+    message_v2 = InterventionReportConverter.copy_input_use_case_content(message_raw_v2)
+
+    validate(message_v2, get_v2_schema())
+    validate(message_v3, get_v3_schema())
