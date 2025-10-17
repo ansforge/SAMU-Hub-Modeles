@@ -1,0 +1,50 @@
+from typing import Dict, Any
+
+from converter.utils import map_to_new_value
+from converter.versions.conversion_mixin import ConversionMixin
+from converter.versions.rpis.rpis_constants import RpisConstants
+from converter.versions.utils import reverse_map_to_new_value
+
+
+class RpisConverter(ConversionMixin):
+    @staticmethod
+    def get_message_type():
+        return "rpis"
+
+    @classmethod
+    def convert_v2_to_v3(cls, input_json) -> Dict[str, Any]:
+        output_json = cls.copy_input_content(input_json)
+        output_use_case_json = cls.copy_input_use_case_content(input_json)
+
+        reverse_map_to_new_value(
+            output_use_case_json,
+            RpisConstants.RESOURCE_TYPE_PATH,
+            RpisConstants.V3_TO_V2_RESOURCE_TYPE_MAPPING,
+        )
+
+        return cls.format_output_json(output_json, output_use_case_json)
+
+    @classmethod
+    def convert_v3_to_v2(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
+        output_json = cls.copy_input_content(input_json)
+        output_use_case_json = cls.copy_input_use_case_content(input_json)
+
+        map_to_new_value(
+            output_use_case_json,
+            RpisConstants.REGULATION_MEDICAL_LEVEL_PATH,
+            RpisConstants.V3_TO_V2_MEDICAL_LEVEL_MAPPING,
+        )
+
+        map_to_new_value(
+            output_use_case_json,
+            RpisConstants.ORIENTATION_MEDICAL_LEVEL_PATH,
+            RpisConstants.V3_TO_V2_MEDICAL_LEVEL_MAPPING,
+        )
+
+        map_to_new_value(
+            output_use_case_json,
+            RpisConstants.RESOURCE_TYPE_PATH,
+            RpisConstants.V3_TO_V2_RESOURCE_TYPE_MAPPING,
+        )
+
+        return cls.format_output_json(output_json, output_use_case_json)
