@@ -17,6 +17,7 @@ class TestConstants:
     GEO_REQ_TAG = "GEO-REQ"
     GEO_RES_TAG = "GEO-RES"
     RC_EDA_TAG = "RC-EDA"
+    RS_BPV_TAG = "RS-BPV"
     RS_DR_TAG = "RS-DR"
     RS_EDA_TAG = "RS-EDA"
     RS_EDA_MAJ_TAG = "RS-EDA-MAJ"
