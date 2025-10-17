@@ -1,7 +1,5 @@
 import os
 import argparse
-from datetime import date
-from distutils.dir_util import copy_tree
 import shutil
 
 # custom lib
