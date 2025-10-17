@@ -801,7 +801,7 @@
       {
         "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_PS.01-MAJ.json",
         "icon": "mdi-doctor",
-        "name": "01 Didier MOREL",
+        "name": "01 Didier MOREL MAJ (annul)",
         "context": "Cas mise à jour (annulation) RDV"
       },
       {
@@ -813,7 +813,7 @@
       {
         "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_PS.02-MAJ.json",
         "icon": "mdi-doctor",
-        "name": "02 NORMAND ALICE",
+        "name": "02 NORMAND ALICE MAJ (statut)",
         "context": "Cas mise à jour RDV (changement statut) avec PS mais sans structure, exemple PS. indiv"
       },
       {
