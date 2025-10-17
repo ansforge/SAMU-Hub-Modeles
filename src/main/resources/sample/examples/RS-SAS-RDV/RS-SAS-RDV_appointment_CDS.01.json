@@ -1,0 +1,15 @@
+{
+  "appointment": {
+    "appointmentId": "0e219a52-0bdd-43fa-ac05-8e9c26429684",
+    "method": "CreateAppointment",
+    "created": "2025-10-09T15:50:00+02:00",
+    "status": "booked",
+    "orientationCategory": "CDS",
+    "start": "2025-10-10T09:30:00+02:00",
+    "end": "2025-10-10T09:50:00+02:00",
+    "organization": {
+      "organizationId": "050005917",
+      "name": "CDS DENTAIRE"
+    }
+  }
+}

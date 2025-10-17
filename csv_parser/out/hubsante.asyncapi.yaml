@@ -323,6 +323,7 @@ components:
       - $ref: '#/components/schemas/geoPositionsUpdate'
       - $ref: '#/components/schemas/geoResourcesRequest'
       - $ref: '#/components/schemas/geoResourcesDetails'
+      - $ref: '#/components/schemas/appointment'
       - $ref: '#/components/schemas/error'
       - $ref: '#/components/schemas/customContent'
       - $ref: '#/components/schemas/technical'
@@ -7198,6 +7199,229 @@ components:
           items:
             $ref: '#/components/schemas/resource'
       additionalProperties: false
+    appointment:
+      $id: classpath:/json-schema/schema#
+      x-id: RS-SAS-RDV.schema.json#
+      example: example.json#
+      type: object
+      title: appointment
+      required:
+      - appointmentId
+      - method
+      - created
+      - start
+      - status
+      properties:
+        appointmentId:
+          type: string
+          title: Identifiant du rendez-vous
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/appointmentId
+          description: "Un identifiant technique unique par RDV est transmis. \n\n\
+            Cet identifiant est d\xE9fini par la plateforme num\xE9rique SAS et peut\
+            \ prendre la forme d\u2019un UUID par exemple. \nLa solution \xE9diteur\
+            \ devra s\u2019appuyer sur cet ID pour la gestion des requ\xEAtes de mises\
+            \ \xE0 jour."
+          examples:
+          - '12348'
+        method:
+          type: string
+          title: "M\xE9thode"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/method
+          description: "Indique un message de cr\xE9ation ou de modification du rendez-vous"
+          enum:
+          - CreateAppointment
+          - UpdateAppointment
+          examples:
+          - createAppointment
+        created:
+          type: string
+          title: Date et heure de la prise de rendez-vous
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/created
+          description: "Indique la date et l\u2019heure de la prise de RDV"
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
+          format: date-time
+          examples:
+          - '2025-06-17T10:15:56+01:00'
+        start:
+          type: string
+          title: "Date et heure de d\xE9but du rendez-vous"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/start
+          description: "Indique la date et l\u2019horaire de d\xE9but du rendez-vous"
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
+          format: date-time
+          examples:
+          - '2025-06-17T14:00:00+01:00'
+        end:
+          type: string
+          title: Date et heure de fin du rendez-vous
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/end
+          description: "Indique la date et l\u2019horaire de fin du rendez-vous"
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
+          format: date-time
+          examples:
+          - '2025-06-17T14:20:00+01:00'
+        status:
+          type: string
+          title: Statut du rendez-vous
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/status
+          description: Indique le statut du rendez-vous
+          enum:
+          - pending
+          - booked
+          - fulfilled
+          - noshow
+          - cancelled
+          examples:
+          - booked
+        orientationCategory:
+          type: string
+          title: "Cat\xE9gorie d'orientation"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientationCategory
+          description: "Indique la cat\xE9gorie de l\u2019orientation de rendez-vous"
+          enum:
+          - CPTS
+          - MSP
+          - CDS
+          - SOS
+          - PS
+          - PDM
+          examples:
+          - SOS
+        practitioner:
+          $ref: '#/components/schemas/practitioner'
+        organization:
+          $ref: '#/components/schemas/organization'
+      additionalProperties: false
+    practitioner:
+      type: object
+      title: "Professionnel de sant\xE9"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - rppsId
+      - lastName
+      - firstName
+      properties:
+        rppsId:
+          type: string
+          title: Identifiant RPPS
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/practitioner/rppsId
+          description: Identifiant national (RPPS) du PS
+          pattern: ^81[0-9]{10}$
+          examples:
+          - '810002909371'
+        lastName:
+          type: string
+          title: Nom du PS
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/practitioner/lastName
+          description: "Nom du professionnel de sant\xE9"
+          examples:
+          - Dupont
+        firstName:
+          type: string
+          title: "Pr\xE9nom du PS"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/practitioner/firstName
+          description: "Pr\xE9nom du professionnel de sant\xE9"
+          examples:
+          - Jean
+        specialityCode:
+          type: string
+          title: "Sp\xE9cialit\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/practitioner/specialityCode
+          description: "Code de la sp\xE9cialit\xE9 du professionnel de sant\xE9"
+          examples:
+          - SM54
+        specialityUrl:
+          type: string
+          title: "Terminologie sp\xE9cialit\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/practitioner/specialityUrl
+          description: "Url de la terminologie utilis\xE9e pour la sp\xE9cialit\xE9"
+          examples:
+          - https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale
+        professionCode:
+          type: string
+          title: Profession
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/practitioner/professionCode
+          description: "Code de la profession du professionnel de sant\xE9"
+          examples:
+          - '10'
+        professionUrl:
+          type: string
+          title: Terminologie profession
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/practitioner/professionUrl
+          description: "Url de la terminologie utilis\xE9e pour la profession"
+          examples:
+          - https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante
+      additionalProperties: false
+      example: example.json#/practitioner
+      examples:
+      - rppsId: '810002909371'
+        lastName: Dupont
+        firstName: Jean
+        specialityCode: SM54
+        specialityUrl: https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale
+        professionCode: '10'
+        professionUrl: https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante
+    organization:
+      type: object
+      title: Structure
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - organizationId
+      - name
+      properties:
+        organizationId:
+          type: string
+          title: Identifiant national de la structure
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/organization/organizationId
+          description: Indique l'identifiant national de la structure
+          examples:
+          - '334173748400020'
+        name:
+          type: string
+          title: Nom de la structure
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/organization/name
+          description: Indique le nom de la structure
+          examples:
+          - "SOS M\xE9decins de Rennes"
+      additionalProperties: false
+      example: example.json#/organization
+      examples:
+      - organizationId: '334173748400020'
+        name: "SOS M\xE9decins de Rennes"
     error:
       $id: classpath:/json-schema/schema#
       x-id: RS-ERROR.schema.json#

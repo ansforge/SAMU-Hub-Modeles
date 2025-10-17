@@ -1,0 +1,22 @@
+{
+  "appointment": {
+    "appointmentId": "2efdbc9d-f4b2-402a-a134-9647fe7f1f9a",
+    "method": "UpdateAppointment",
+    "created": "2025-06-17T10:15:00+02:00",
+    "status": "fulfilled",
+    "orientationCategory": "SOS",
+    "start": "2025-06-17T14:00:00+02:00",
+    "end": "2025-06-17T14:20:00+02:00",
+    "practitioner": {
+      "rppsId": "810004762901",
+      "lastName": "VIGNEAU",
+      "firstName": "Delphine",
+      "professionUrl": "https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante",
+      "professionCode": "50"
+    },
+    "organization": {
+      "organizationId": "334173748400020",
+      "name": "SOS Médecins de Rennes"
+    }
+  }
+}
