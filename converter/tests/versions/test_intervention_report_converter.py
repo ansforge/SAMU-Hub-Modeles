@@ -55,3 +55,27 @@ def test_v2_to_v3_upgrade_breaking_changes():
 
     validate(message_v2, get_v2_schema())
     validate(message_v3, get_v3_schema())
+
+
+def test_v3_to_v2_upgrade_breaking_changes():
+    message_raw_v3 = TestHelper.create_edxl_json_from_sample(
+        TestConstants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
+        "tests/fixtures/RS-BPV/RS-BPV_V3.0_breaking_changes_to_V2.0.json",
+    )
+    message_raw_v2 = InterventionReportConverter.convert_v3_to_v2(message_raw_v3)
+    message_v2 = InterventionReportConverter.copy_input_use_case_content(message_raw_v2)
+    message_v3 = InterventionReportConverter.copy_input_use_case_content(message_raw_v3)
+
+    validate(message_v3, get_v3_schema())
+    validate(message_v2, get_v2_schema())
+
+    expected_freetext = [
+        message_v3["evaluation"]["freetext"][0],
+        "Rôle du rédacteur: PILOTE",
+        "Diagnostic(s) associé(s) supplémentaire(s): O22, O23",
+        "Précision du paramètre TEMPERATURE: + ou - 1°C",
+        "Précision du paramètre FREQUENCE_RESPIRATOIRE: au repos",
+        "Source de l'identifiant externe patient 123456789: AUTRE",
+    ]
+
+    assert expected_freetext == message_v2["evaluation"]["freetext"]
