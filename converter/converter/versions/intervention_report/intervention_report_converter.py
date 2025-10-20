@@ -31,12 +31,13 @@ class InterventionReportConverter(ConversionMixin):
         external_ids = get_field_value(
             output_use_case_json, InterventionReportConstants.EXTERNAL_ID_PATH
         )
-        for external_id in external_ids:
-            map_to_new_value(
-                external_id,
-                InterventionReportConstants.EXTERNAL_ID_SOURCE_PATH,
-                InterventionReportConstants.V2_TO_V3_EXTERNAL_ID_SOURCE_MAPPING,
-            )
+        if external_ids is not None:
+            for external_id in external_ids:
+                map_to_new_value(
+                    external_id,
+                    InterventionReportConstants.EXTERNAL_ID_SOURCE_PATH,
+                    InterventionReportConstants.V2_TO_V3_EXTERNAL_ID_SOURCE_MAPPING,
+                )
 
         update_json_value(
             output_use_case_json,
@@ -99,6 +100,9 @@ class InterventionReportConverter(ConversionMixin):
             input_json, InterventionReportConstants.EVALUATION_PARAMETER_PATH
         )
 
+        if evaluation_parameters is None:
+            return
+
         for parameter in evaluation_parameters:
             precision = parameter.pop(
                 InterventionReportConstants.EVALUATION_PARAMETER_PRECISION_KEY, None
@@ -117,6 +121,8 @@ class InterventionReportConverter(ConversionMixin):
         external_ids = get_field_value(
             input_json, InterventionReportConstants.EXTERNAL_ID_PATH
         )
+        if external_ids is None:
+            return
 
         for external_id in external_ids:
             source = external_id.get(
