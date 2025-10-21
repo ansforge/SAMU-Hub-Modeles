@@ -4,7 +4,7 @@ class InterventionReportConstants:
     EXTERNAL_ID_PATH = "$.patient.externalId"
     EXTERNAL_ID_VALUE_KEY = "value"
     EXTERNAL_ID_SOURCE_KEY = "source"
-    EXTERNAL_ID_SOURCE_PATH = f"$.{EXTERNAL_ID_SOURCE_KEY}"
+    EXTERNAL_ID_SOURCE_PATH = f"{EXTERNAL_ID_PATH}[*].{EXTERNAL_ID_SOURCE_KEY}"
     V2_TO_V3_EXTERNAL_ID_SOURCE_MAPPING = {"SI-VIC": "AUTRE"}
 
     REDACTOR_ROLE_PATH = "$.redactor.role"

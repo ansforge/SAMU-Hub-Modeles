@@ -33,21 +33,10 @@ class InterventionReportConverter(ConversionMixin):
                 [value],
             )
 
-        external_ids = get_field_value(
-            output_use_case_json, InterventionReportConstants.EXTERNAL_ID_PATH
-        )
-        if external_ids is not None:
-            for external_id in external_ids:
-                map_to_new_value(
-                    external_id,
-                    InterventionReportConstants.EXTERNAL_ID_SOURCE_PATH,
-                    InterventionReportConstants.V2_TO_V3_EXTERNAL_ID_SOURCE_MAPPING,
-                )
-
-        update_json_value(
+        map_to_new_value(
             output_use_case_json,
-            InterventionReportConstants.EXTERNAL_ID_PATH,
-            external_ids,
+            InterventionReportConstants.EXTERNAL_ID_SOURCE_PATH,
+            InterventionReportConstants.V2_TO_V3_EXTERNAL_ID_SOURCE_MAPPING,
         )
 
         return cls.format_output_json(output_json, output_use_case_json)
@@ -151,16 +140,10 @@ class InterventionReportConverter(ConversionMixin):
                     f"Source de l'identifiant externe patient {value}: {source}",
                 )
 
-            reverse_map_to_new_value(
-                external_id,
-                InterventionReportConstants.EXTERNAL_ID_SOURCE_PATH,
-                InterventionReportConstants.V2_TO_V3_EXTERNAL_ID_SOURCE_MAPPING,
-            )
-
-        update_json_value(
+        reverse_map_to_new_value(
             input_json,
-            InterventionReportConstants.EXTERNAL_ID_PATH,
-            external_ids,
+            InterventionReportConstants.EXTERNAL_ID_SOURCE_PATH,
+            InterventionReportConstants.V2_TO_V3_EXTERNAL_ID_SOURCE_MAPPING,
         )
 
     @classmethod
