@@ -1,0 +1,49 @@
+{
+  "interventionReport": {
+    "redactor": {
+      "label": "Louis POINCINOT",
+      "role": "MEDECIN"
+    },
+    "patient": {
+      "patientId": "fr.health.samu440.patient.DRFR154402414300123.1",
+      "birthName": "Zazie",
+      "firstName": "Delphine",
+      "sex": "F",
+      "height": 165,
+      "weight": 70,
+      "lastName": "Vigneau",
+      "birthDate": "1992-03-03",
+      "age": "32",
+      "externalId": [
+        {
+          "source": "SI-VIC",
+          "value": "123456789"
+        }
+      ]
+    },
+    "caseId": "fr.fire.sis044.cga-044.SC-20240526-044-cga-AL8",
+    "creation": "2024-05-26T13:19:00+02:00",
+    "evaluation": {
+      "mainDiagnosis": "O20",
+      "procedure": [
+        "ACC"
+      ],
+      "parameter": [
+        {
+          "type": "FREQUENCE_CARDIAQUE",
+          "value": "110-120"
+        },
+        {
+          "type": "TEMPERATURE",
+          "value": "37"
+        },
+        {
+          "type": "FREQUENCE_RESPIRATOIRE",
+          "value": "12/mn"
+        }
+      ],
+      "associatedDiagnosis": "O21"
+    },
+    "reportId": "38978621DV"
+  }
+}
