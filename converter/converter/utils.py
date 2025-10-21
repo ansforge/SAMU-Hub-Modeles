@@ -177,6 +177,17 @@ def update_json_value(data, jsonpath_query, new_value):
         raise
 
 
+def set_json_value_if_not_exists_or_none(
+    data: Dict[str, Any], json_path: str, value: Any
+):
+    if not get_field_value(data, json_path):
+        keys = json_path.strip("$.").split(".")
+        current = data
+        for key in keys[:-1]:
+            current = current.setdefault(key, {})
+        current[keys[-1]] = value
+
+
 def map_to_new_value(
     json_data: Dict[str, Any], json_path: str, mapping_value: Dict[str, str]
 ):

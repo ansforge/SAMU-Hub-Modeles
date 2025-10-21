@@ -44,6 +44,20 @@ def test_v3_to_v2_downgrade():
     )
 
 
+def test_add_to_evaluation_freetext_with_empty_value():
+    input_json = {"evaluation": {}}
+    InterventionReportConverter.add_to_evaluation_freetext(input_json, "test")
+
+    assert input_json["evaluation"]["freetext"] == ["test"]
+
+
+def test_add_to_evaluation_freetext_with_existing_values():
+    input_json = {"evaluation": {"freetext": ["existing"]}}
+    InterventionReportConverter.add_to_evaluation_freetext(input_json, "test")
+
+    assert input_json["evaluation"]["freetext"] == ["existing", "test"]
+
+
 def test_v2_to_v3_upgrade_breaking_changes():
     message_raw_v2 = TestHelper.create_edxl_json_from_sample(
         TestConstants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,

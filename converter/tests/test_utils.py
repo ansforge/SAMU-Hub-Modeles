@@ -9,6 +9,7 @@ from converter.utils import (
     map_to_new_value,
     translate_key_words,
     update_json_value,
+    set_json_value_if_not_exists_or_none,
 )
 import unittest
 import json
@@ -444,6 +445,53 @@ class TestMapToNewValue(unittest.TestCase):
         map_to_new_value(json_data, json_path_to_update, mapping_value)
 
         self.assertEqual(json_data["key"], "other_value")
+
+
+class TestSetJsonValueIfNotExists(unittest.TestCase):
+    def test_set_on_empty_dict(self):
+        data = {}
+        set_json_value_if_not_exists_or_none(data, "$.alpha.beta.gamma", 123)
+        self.assertEqual(data, {"alpha": {"beta": {"gamma": 123}}})
+        self.assertTrue(is_field_completed(data, "$.alpha.beta.gamma"))
+        self.assertEqual(get_field_value(data, "$.alpha.beta.gamma"), 123)
+
+    def test_does_not_override_existing_value(self):
+        data = {"alpha": {"beta": {"gamma": 999}}}
+        set_json_value_if_not_exists_or_none(data, "$.alpha.beta.gamma", 123)
+        self.assertEqual(data["alpha"]["beta"]["gamma"], 999)
+
+    def test_creates_missing_intermediate_only(self):
+        data = {"alpha": {}}
+        set_json_value_if_not_exists_or_none(data, "$.alpha.beta.gamma", "x")
+        self.assertEqual(data, {"alpha": {"beta": {"gamma": "x"}}})
+
+    def test_partial_path_exists(self):
+        data = {"alpha": {"beta": {"other": 1}}}
+        set_json_value_if_not_exists_or_none(data, "$.alpha.beta.gamma", True)
+        self.assertEqual(data["alpha"]["beta"]["gamma"], True)
+        self.assertEqual(data["alpha"]["beta"]["other"], 1)
+
+    def test_path_already_exists_with_none(self):
+        data = {"alpha": {"beta": {"gamma": None}}}
+        set_json_value_if_not_exists_or_none(data, "$.alpha.beta.gamma", "new")
+        self.assertEqual(data["alpha"]["beta"]["gamma"], "new")
+
+    def test_multiple_calls_no_side_effect(self):
+        data = {}
+        set_json_value_if_not_exists_or_none(data, "$.root.leaf", "v1")
+        set_json_value_if_not_exists_or_none(data, "$.root.leaf", "v2")
+        self.assertEqual(data["root"]["leaf"], "v1")
+
+    def test_set_deep_path(self):
+        data = {}
+        set_json_value_if_not_exists_or_none(data, "$.a.b.c.d.e", 5)
+        self.assertEqual(get_field_value(data, "$.a.b.c.d.e"), 5)
+        self.assertTrue(is_field_completed(data, "$.a.b.c.d"))
+        self.assertTrue(is_field_completed(data, "$.a.b.c.d.e"))
+
+
+if __name__ == "__main__":
+    unittest.main()
 
 
 if __name__ == "__main__":

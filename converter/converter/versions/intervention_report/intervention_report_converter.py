@@ -1,6 +1,11 @@
 from typing import Dict, Any
 
-from converter.utils import get_field_value, update_json_value, map_to_new_value
+from converter.utils import (
+    get_field_value,
+    update_json_value,
+    map_to_new_value,
+    set_json_value_if_not_exists_or_none,
+)
 from converter.versions.conversion_mixin import ConversionMixin
 from converter.versions.intervention_report.intervention_report_constants import (
     InterventionReportConstants,
@@ -56,6 +61,12 @@ class InterventionReportConverter(ConversionMixin):
         )
         if freetext is not None:
             freetext.append(text_to_add)
+        else:
+            set_json_value_if_not_exists_or_none(
+                input_json,
+                InterventionReportConstants.EVALUATION_FREETEXT_PATH,
+                [text_to_add],
+            )
 
     @classmethod
     def update_redactor_role_v3_to_v2(cls, input_json: Dict[str, Any]) -> None:
