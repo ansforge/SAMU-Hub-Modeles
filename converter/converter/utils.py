@@ -177,6 +177,14 @@ def update_json_value(data, jsonpath_query, new_value):
         raise
 
 
+def set_value(data: Dict[str, Any], json_path: str, value: Any):
+    keys = json_path.strip("$.").split(".")
+    for key in keys[:-1]:
+        data = data.setdefault(key, {})
+    data[keys[-1]] = value
+    return value
+
+
 def map_to_new_value(
     json_data: Dict[str, Any], json_path: str, mapping_value: Dict[str, str]
 ):
