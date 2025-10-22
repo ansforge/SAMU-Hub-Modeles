@@ -16,8 +16,16 @@
       "age": "32",
       "externalId": [
         {
+          "source": "DOSSARD",
+          "value": "abcdefghij"
+        },
+        {
           "source": "AUTRE",
           "value": "123456789"
+        },
+        {
+          "source": "PLACE",
+          "value": "9876"
         }
       ]
     },
