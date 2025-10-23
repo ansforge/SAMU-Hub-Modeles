@@ -1,9 +1,4 @@
-pandas
-openpyxl
-pyyaml
-jsonpath-ng
-python-docx
-argparse
-xhtml2pdf
-docs
-datetime
+pandas==2.3.3
+openpyxl==3.1.5
+python-docx==1.2.0
+xhtml2pdf==0.2.17

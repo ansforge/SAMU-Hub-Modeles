@@ -1,5 +1,18 @@
 ## Script pour le parsing des nomenclatures
 
+### Installation
+
+Les dépendances Python nécessaires peuvent être installés via le requirements.txt
+```bash
+pip install -r requirements.txt
+```
+
+L'installation de la librairie Python `xhtml2pdf` peut nécessiter des dépendances supplémentaires.
+Sur MacOS, on devra ainsi installer `pkg-config`.
+```bash
+brew install pkg-config
+```
+
 ### Utilisation
 
 ```python nomenclature_parser.py --version VERSION --folder FOLDER [--release]``` 
