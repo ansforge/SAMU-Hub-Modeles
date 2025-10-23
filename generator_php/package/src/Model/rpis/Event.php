@@ -319,8 +319,8 @@ class Event implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['orgId'] === null) {
             $invalidProperties[] = "'orgId' can't be null";
         }
-        if (!preg_match("/^([\\w-]+\\.?){4,10}$/", $this->container['orgId'])) {
-            $invalidProperties[] = "invalid value for 'orgId', must be conform to the pattern /^([\\w-]+\\.?){4,10}$/.";
+        if (!preg_match("/^([a-zA-Z0-9_-]+\\.?){4,10}$/", $this->container['orgId'])) {
+            $invalidProperties[] = "invalid value for 'orgId', must be conform to the pattern /^([a-zA-Z0-9_-]+\\.?){4,10}$/.";
         }
 
         if ($this->container['senderCaseId'] === null) {
@@ -387,8 +387,8 @@ class Event implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable orgId cannot be null');
         }
 
-        if ((!preg_match("/^([\\w-]+\\.?){4,10}$/", ObjectSerializer::toString($orgId)))) {
-            throw new \InvalidArgumentException("invalid value for \$orgId when calling Event., must conform to the pattern /^([\\w-]+\\.?){4,10}$/.");
+        if ((!preg_match("/^([a-zA-Z0-9_-]+\\.?){4,10}$/", ObjectSerializer::toString($orgId)))) {
+            throw new \InvalidArgumentException("invalid value for \$orgId when calling Event., must conform to the pattern /^([a-zA-Z0-9_-]+\\.?){4,10}$/.");
         }
 
         $this->container['orgId'] = $orgId;

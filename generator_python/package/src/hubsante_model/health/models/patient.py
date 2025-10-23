@@ -41,8 +41,8 @@ class Patient(BaseModel):
     @field_validator('patient_id')
     def patient_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$", value):
-            raise ValueError(r"must validate the regular expression /^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$/")
+        if not re.match(r"^([a-zA-Z0-9_-]+\.){3,8}patient(\.[a-zA-Z0-9_-]+){1,2}$", value):
+            raise ValueError(r"must validate the regular expression /^([a-zA-Z0-9_-]+\.){3,8}patient(\.[a-zA-Z0-9_-]+){1,2}$/")
         return value
 
     model_config = ConfigDict(

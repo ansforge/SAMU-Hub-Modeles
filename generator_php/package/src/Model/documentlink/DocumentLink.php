@@ -298,12 +298,12 @@ class DocumentLink implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['caseId'] === null) {
             $invalidProperties[] = "'caseId' can't be null";
         }
-        if (!preg_match("/^([\\w-]+\\.?){4,10}$/", $this->container['caseId'])) {
-            $invalidProperties[] = "invalid value for 'caseId', must be conform to the pattern /^([\\w-]+\\.?){4,10}$/.";
+        if (!preg_match("/^([a-zA-Z0-9_-]+\\.?){4,10}$/", $this->container['caseId'])) {
+            $invalidProperties[] = "invalid value for 'caseId', must be conform to the pattern /^([a-zA-Z0-9_-]+\\.?){4,10}$/.";
         }
 
-        if (!is_null($this->container['patientId']) && !preg_match("/^([\\w-]+\\.){3,8}patient(\\.[\\w-]+){1,2}$/", $this->container['patientId'])) {
-            $invalidProperties[] = "invalid value for 'patientId', must be conform to the pattern /^([\\w-]+\\.){3,8}patient(\\.[\\w-]+){1,2}$/.";
+        if (!is_null($this->container['patientId']) && !preg_match("/^([a-zA-Z0-9_-]+\\.){3,8}patient(\\.[a-zA-Z0-9_-]+){1,2}$/", $this->container['patientId'])) {
+            $invalidProperties[] = "invalid value for 'patientId', must be conform to the pattern /^([a-zA-Z0-9_-]+\\.){3,8}patient(\\.[a-zA-Z0-9_-]+){1,2}$/.";
         }
 
         if ($this->container['document'] === null) {
@@ -351,8 +351,8 @@ class DocumentLink implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable caseId cannot be null');
         }
 
-        if ((!preg_match("/^([\\w-]+\\.?){4,10}$/", ObjectSerializer::toString($caseId)))) {
-            throw new \InvalidArgumentException("invalid value for \$caseId when calling DocumentLink., must conform to the pattern /^([\\w-]+\\.?){4,10}$/.");
+        if ((!preg_match("/^([a-zA-Z0-9_-]+\\.?){4,10}$/", ObjectSerializer::toString($caseId)))) {
+            throw new \InvalidArgumentException("invalid value for \$caseId when calling DocumentLink., must conform to the pattern /^([a-zA-Z0-9_-]+\\.?){4,10}$/.");
         }
 
         $this->container['caseId'] = $caseId;
@@ -383,8 +383,8 @@ class DocumentLink implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable patientId cannot be null');
         }
 
-        if ((!preg_match("/^([\\w-]+\\.){3,8}patient(\\.[\\w-]+){1,2}$/", ObjectSerializer::toString($patientId)))) {
-            throw new \InvalidArgumentException("invalid value for \$patientId when calling DocumentLink., must conform to the pattern /^([\\w-]+\\.){3,8}patient(\\.[\\w-]+){1,2}$/.");
+        if ((!preg_match("/^([a-zA-Z0-9_-]+\\.){3,8}patient(\\.[a-zA-Z0-9_-]+){1,2}$/", ObjectSerializer::toString($patientId)))) {
+            throw new \InvalidArgumentException("invalid value for \$patientId when calling DocumentLink., must conform to the pattern /^([a-zA-Z0-9_-]+\\.){3,8}patient(\\.[a-zA-Z0-9_-]+){1,2}$/.");
         }
 
         $this->container['patientId'] = $patientId;

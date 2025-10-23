@@ -340,8 +340,8 @@ class CreateCase implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['caseId'] === null) {
             $invalidProperties[] = "'caseId' can't be null";
         }
-        if (!preg_match("/^([\\w-]+\\.?){4,10}$/", $this->container['caseId'])) {
-            $invalidProperties[] = "invalid value for 'caseId', must be conform to the pattern /^([\\w-]+\\.?){4,10}$/.";
+        if (!preg_match("/^([a-zA-Z0-9_-]+\\.?){4,10}$/", $this->container['caseId'])) {
+            $invalidProperties[] = "invalid value for 'caseId', must be conform to the pattern /^([a-zA-Z0-9_-]+\\.?){4,10}$/.";
         }
 
         if ($this->container['creation'] === null) {
@@ -398,8 +398,8 @@ class CreateCase implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable caseId cannot be null');
         }
 
-        if ((!preg_match("/^([\\w-]+\\.?){4,10}$/", ObjectSerializer::toString($caseId)))) {
-            throw new \InvalidArgumentException("invalid value for \$caseId when calling CreateCase., must conform to the pattern /^([\\w-]+\\.?){4,10}$/.");
+        if ((!preg_match("/^([a-zA-Z0-9_-]+\\.?){4,10}$/", ObjectSerializer::toString($caseId)))) {
+            throw new \InvalidArgumentException("invalid value for \$caseId when calling CreateCase., must conform to the pattern /^([a-zA-Z0-9_-]+\\.?){4,10}$/.");
         }
 
         $this->container['caseId'] = $caseId;

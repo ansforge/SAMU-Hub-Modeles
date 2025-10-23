@@ -24,7 +24,7 @@ module Cisu
     # Taille approximative de la ressource en kO
     attr_accessor :size
 
-    # Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé Nous suggérons d'employer le format suivant de regex (https?|ftp|file)://([\\w-]+(\\.[\\w-]+)*)(/[\\w\\-\\.]*)*/?(\\?[^\\s]*)?
+    # Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé Nous suggérons d'employer le format suivant de regex (https?|ftp|file)://([a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)*)(/[a-zA-Z0-9_\\-\\.]*)*/?(\\?[^\\s]*)?
     attr_accessor :uri
 
     # Peut être utilisé à la place de l'élément 'URI' pour envoyer la ressource encodée en base64 pour éviter des problèmes de transcodage (sur des double quotes qui casseraient le message, …)

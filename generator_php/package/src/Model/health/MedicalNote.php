@@ -302,8 +302,8 @@ class MedicalNote implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['patientId']) && !preg_match("/^([\\w-]+\\.){3,8}patient(\\.[\\w-]+){1,2}$/", $this->container['patientId'])) {
-            $invalidProperties[] = "invalid value for 'patientId', must be conform to the pattern /^([\\w-]+\\.){3,8}patient(\\.[\\w-]+){1,2}$/.";
+        if (!is_null($this->container['patientId']) && !preg_match("/^([a-zA-Z0-9_-]+\\.){3,8}patient(\\.[a-zA-Z0-9_-]+){1,2}$/", $this->container['patientId'])) {
+            $invalidProperties[] = "invalid value for 'patientId', must be conform to the pattern /^([a-zA-Z0-9_-]+\\.){3,8}patient(\\.[a-zA-Z0-9_-]+){1,2}$/.";
         }
 
         if ($this->container['operator'] === null) {
@@ -312,8 +312,8 @@ class MedicalNote implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['medicalNoteId'] === null) {
             $invalidProperties[] = "'medicalNoteId' can't be null";
         }
-        if (!preg_match("/^([\\w-]+\\.){3,8}medicalNote(\\.[\\w-]+){1,2}$/", $this->container['medicalNoteId'])) {
-            $invalidProperties[] = "invalid value for 'medicalNoteId', must be conform to the pattern /^([\\w-]+\\.){3,8}medicalNote(\\.[\\w-]+){1,2}$/.";
+        if (!preg_match("/^([a-zA-Z0-9_-]+\\.){3,8}medicalNote(\\.[a-zA-Z0-9_-]+){1,2}$/", $this->container['medicalNoteId'])) {
+            $invalidProperties[] = "invalid value for 'medicalNoteId', must be conform to the pattern /^([a-zA-Z0-9_-]+\\.){3,8}medicalNote(\\.[a-zA-Z0-9_-]+){1,2}$/.";
         }
 
         if (!is_null($this->container['creation']) && !preg_match("/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$/", $this->container['creation'])) {
@@ -361,8 +361,8 @@ class MedicalNote implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable patientId cannot be null');
         }
 
-        if ((!preg_match("/^([\\w-]+\\.){3,8}patient(\\.[\\w-]+){1,2}$/", ObjectSerializer::toString($patientId)))) {
-            throw new \InvalidArgumentException("invalid value for \$patientId when calling MedicalNote., must conform to the pattern /^([\\w-]+\\.){3,8}patient(\\.[\\w-]+){1,2}$/.");
+        if ((!preg_match("/^([a-zA-Z0-9_-]+\\.){3,8}patient(\\.[a-zA-Z0-9_-]+){1,2}$/", ObjectSerializer::toString($patientId)))) {
+            throw new \InvalidArgumentException("invalid value for \$patientId when calling MedicalNote., must conform to the pattern /^([a-zA-Z0-9_-]+\\.){3,8}patient(\\.[a-zA-Z0-9_-]+){1,2}$/.");
         }
 
         $this->container['patientId'] = $patientId;
@@ -420,8 +420,8 @@ class MedicalNote implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable medicalNoteId cannot be null');
         }
 
-        if ((!preg_match("/^([\\w-]+\\.){3,8}medicalNote(\\.[\\w-]+){1,2}$/", ObjectSerializer::toString($medicalNoteId)))) {
-            throw new \InvalidArgumentException("invalid value for \$medicalNoteId when calling MedicalNote., must conform to the pattern /^([\\w-]+\\.){3,8}medicalNote(\\.[\\w-]+){1,2}$/.");
+        if ((!preg_match("/^([a-zA-Z0-9_-]+\\.){3,8}medicalNote(\\.[a-zA-Z0-9_-]+){1,2}$/", ObjectSerializer::toString($medicalNoteId)))) {
+            throw new \InvalidArgumentException("invalid value for \$medicalNoteId when calling MedicalNote., must conform to the pattern /^([a-zA-Z0-9_-]+\\.){3,8}medicalNote(\\.[a-zA-Z0-9_-]+){1,2}$/.");
         }
 
         $this->container['medicalNoteId'] = $medicalNoteId;

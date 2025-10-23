@@ -47,8 +47,8 @@ class CreateCase(BaseModel):
     @field_validator('case_id')
     def case_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^([\w-]+\.?){4,10}$", value):
-            raise ValueError(r"must validate the regular expression /^([\w-]+\.?){4,10}$/")
+        if not re.match(r"^([a-zA-Z0-9_-]+\.?){4,10}$", value):
+            raise ValueError(r"must validate the regular expression /^([a-zA-Z0-9_-]+\.?){4,10}$/")
         return value
 
     @field_validator('creation')

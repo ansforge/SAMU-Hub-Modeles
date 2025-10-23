@@ -196,7 +196,7 @@ namespace HubsanteModel/Cisu.Model
         {
             if (this.CaseId != null) {
                 // CaseId (string) pattern
-                Regex regexCaseId = new Regex(@"^([\w-]+\.?){4,10}$", RegexOptions.CultureInvariant);
+                Regex regexCaseId = new Regex(@"^([a-zA-Z0-9_-]+\.?){4,10}$", RegexOptions.CultureInvariant);
                 if (!regexCaseId.Match(this.CaseId).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CaseId, must match a pattern of " + regexCaseId, new [] { "CaseId" });
