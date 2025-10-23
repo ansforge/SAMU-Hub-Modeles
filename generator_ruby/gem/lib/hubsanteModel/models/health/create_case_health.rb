@@ -211,7 +211,7 @@ module Health
         invalid_properties.push('invalid value for "case_id", case_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/^([\w-]+\.?){4,10}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.?){4,10}$/)
       if @case_id !~ pattern
         invalid_properties.push("invalid value for \"case_id\", must conform to the pattern #{pattern}.")
       end
@@ -237,7 +237,7 @@ module Health
         invalid_properties.push('invalid value for "owner", owner cannot be nil.')
       end
 
-      pattern = Regexp.new(/^([\w-]+\.?){4,9}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.?){4,9}$/)
       if @owner !~ pattern
         invalid_properties.push("invalid value for \"owner\", must conform to the pattern #{pattern}.")
       end
@@ -250,7 +250,7 @@ module Health
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @case_id.nil?
-      return false if @case_id !~ Regexp.new(/^([\w-]+\.?){4,10}$/)
+      return false if @case_id !~ Regexp.new(/^([a-zA-Z0-9_-]+\.?){4,10}$/)
       return false if @creation.nil?
       return false if @creation !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       perimeter_validator = EnumAttributeValidator.new('String', ["AMU", "NEONAT", "PSY", "SNP"])
@@ -260,7 +260,7 @@ module Health
       return false if @qualification.nil?
       return false if @location.nil?
       return false if @owner.nil?
-      return false if @owner !~ Regexp.new(/^([\w-]+\.?){4,9}$/)
+      return false if @owner !~ Regexp.new(/^([a-zA-Z0-9_-]+\.?){4,9}$/)
       true
     end
 
@@ -271,7 +271,7 @@ module Health
         fail ArgumentError, 'case_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.?){4,10}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.?){4,10}$/)
       if case_id !~ pattern
         fail ArgumentError, "invalid value for \"case_id\", must conform to the pattern #{pattern}."
       end
@@ -321,7 +321,7 @@ module Health
         fail ArgumentError, 'owner cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.?){4,9}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.?){4,9}$/)
       if owner !~ pattern
         fail ArgumentError, "invalid value for \"owner\", must conform to the pattern #{pattern}."
       end

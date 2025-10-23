@@ -193,7 +193,7 @@ namespace HubsanteModel/Geolocation.Model
         /// <param name="groundStatus">Indique si l&#39;hélicoptère est au sol (VRAI) ou en l&#39;air (FAUX).</param>
         /// <param name="status">Définit le statut de disponibilité d&#39;une ressource. - DISPONIBLE : Lorsque la ressource est disponible - INDISPONIBLE : Lorsque la ressource n&#39;est pas disponible, celle-ci peut être engagée ou en maintenance - INCONNU : Lorsque le status est inconnu.</param>
         /// <param name="engagedStatus">Précise le statut d&#39;une ressource qui est engagée sur une mission.</param>
-        public Position(string resourceId = default(string), DateTime datetime = default(DateTime), Coord coord = default(Coord), decimal speed = default(decimal), string cap = default(string), MoveEnum? move = default(MoveEnum?), bool engineOn = default(bool), bool groundStatus = default(bool), StatusEnum? status = default(StatusEnum?), EngagedStatusEnum? engagedStatus = default(EngagedStatusEnum?))
+        public Position(string resourceId = default(string), DateTime datetime = default(DateTime), Coord coord = default(Coord), decimal speed = default(decimal), decimal cap = default(decimal), MoveEnum? move = default(MoveEnum?), bool engineOn = default(bool), bool groundStatus = default(bool), StatusEnum? status = default(StatusEnum?), EngagedStatusEnum? engagedStatus = default(EngagedStatusEnum?))
         {
             // to ensure "resourceId" is required (not null)
             if (resourceId == null)
@@ -251,11 +251,8 @@ namespace HubsanteModel/Geolocation.Model
         /// Direction de la ressource, exprimé en degrés
         /// </summary>
         /// <value>Direction de la ressource, exprimé en degrés</value>
-        /*
-        <example>example.json#/position/0/cap</example>
-        */
         [DataMember(Name = "cap", EmitDefaultValue = false)]
-        public string Cap { get; set; }
+        public decimal Cap { get; set; }
 
         /// <summary>
         /// Indique si le moteur de la ressource est éteint (FAUX) ou allumé/en marche (VRAI)
@@ -317,7 +314,7 @@ namespace HubsanteModel/Geolocation.Model
         {
             if (this.ResourceId != null) {
                 // ResourceId (string) pattern
-                Regex regexResourceId = new Regex(@"^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$", RegexOptions.CultureInvariant);
+                Regex regexResourceId = new Regex(@"^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$", RegexOptions.CultureInvariant);
                 if (!regexResourceId.Match(this.ResourceId).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ResourceId, must match a pattern of " + regexResourceId, new [] { "ResourceId" });

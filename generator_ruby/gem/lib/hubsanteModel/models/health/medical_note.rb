@@ -109,7 +109,7 @@ module Health
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      pattern = Regexp.new(/^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}patient(\.[a-zA-Z0-9_-]+){1,2}$/)
       if !@patient_id.nil? && @patient_id !~ pattern
         invalid_properties.push("invalid value for \"patient_id\", must conform to the pattern #{pattern}.")
       end
@@ -122,7 +122,7 @@ module Health
         invalid_properties.push('invalid value for "medical_note_id", medical_note_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,8}medicalNote(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}medicalNote(\.[a-zA-Z0-9_-]+){1,2}$/)
       if @medical_note_id !~ pattern
         invalid_properties.push("invalid value for \"medical_note_id\", must conform to the pattern #{pattern}.")
       end
@@ -143,10 +143,10 @@ module Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if !@patient_id.nil? && @patient_id !~ Regexp.new(/^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$/)
+      return false if !@patient_id.nil? && @patient_id !~ Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}patient(\.[a-zA-Z0-9_-]+){1,2}$/)
       return false if @operator.nil?
       return false if @medical_note_id.nil?
-      return false if @medical_note_id !~ Regexp.new(/^([\w-]+\.){3,8}medicalNote(\.[\w-]+){1,2}$/)
+      return false if @medical_note_id !~ Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}medicalNote(\.[a-zA-Z0-9_-]+){1,2}$/)
       return false if !@creation.nil? && @creation !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       return false if @freetext.nil?
       true
@@ -159,7 +159,7 @@ module Health
         fail ArgumentError, 'patient_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}patient(\.[a-zA-Z0-9_-]+){1,2}$/)
       if patient_id !~ pattern
         fail ArgumentError, "invalid value for \"patient_id\", must conform to the pattern #{pattern}."
       end
@@ -174,7 +174,7 @@ module Health
         fail ArgumentError, 'medical_note_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,8}medicalNote(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}medicalNote(\.[a-zA-Z0-9_-]+){1,2}$/)
       if medical_note_id !~ pattern
         fail ArgumentError, "invalid value for \"medical_note_id\", must conform to the pattern #{pattern}."
       end

@@ -421,7 +421,7 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets uRI
      *
-     * @param string $uRI Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé Nous suggérons d'employer le format suivant de regex (https?|ftp|file)://([\\w-]+(\\.[\\w-]+)*)(/[\\w\\-\\.]*)*_/?(\\?[^\\s]*)?
+     * @param string $uRI Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé Nous suggérons d'employer le format suivant de regex (https?|ftp|file)://([a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)*)(/[a-zA-Z0-9_\\-\\.]*)*_/?(\\?[^\\s]*)?
      *
      * @return self
      */

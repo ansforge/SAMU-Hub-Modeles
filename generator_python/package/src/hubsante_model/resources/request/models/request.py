@@ -39,8 +39,8 @@ class Request(BaseModel):
     @field_validator('request_id')
     def request_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^([\w-]+\.){3,8}request(\.[\w-]+){1,2}$", value):
-            raise ValueError(r"must validate the regular expression /^([\w-]+\.){3,8}request(\.[\w-]+){1,2}$/")
+        if not re.match(r"^([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}$", value):
+            raise ValueError(r"must validate the regular expression /^([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}$/")
         return value
 
     @field_validator('datetime')

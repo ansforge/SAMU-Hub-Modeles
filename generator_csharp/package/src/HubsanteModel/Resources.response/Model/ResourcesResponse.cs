@@ -123,7 +123,7 @@ namespace HubsanteModel/Resources.response.Model
         {
             if (this.CaseId != null) {
                 // CaseId (string) pattern
-                Regex regexCaseId = new Regex(@"^([\w-]+\.?){4,10}$", RegexOptions.CultureInvariant);
+                Regex regexCaseId = new Regex(@"^([a-zA-Z0-9_-]+\.?){4,10}$", RegexOptions.CultureInvariant);
                 if (!regexCaseId.Match(this.CaseId).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CaseId, must match a pattern of " + regexCaseId, new [] { "CaseId" });
@@ -132,7 +132,7 @@ namespace HubsanteModel/Resources.response.Model
 
             if (this.RequestId != null) {
                 // RequestId (string) pattern
-                Regex regexRequestId = new Regex(@"^([\w-]+\.){3,8}request(\.[\w-]+){1,2}$", RegexOptions.CultureInvariant);
+                Regex regexRequestId = new Regex(@"^([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}$", RegexOptions.CultureInvariant);
                 if (!regexRequestId.Match(this.RequestId).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RequestId, must match a pattern of " + regexRequestId, new [] { "RequestId" });

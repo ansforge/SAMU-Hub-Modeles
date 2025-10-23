@@ -401,8 +401,8 @@ class CreateCaseHealth implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['caseId'] === null) {
             $invalidProperties[] = "'caseId' can't be null";
         }
-        if (!preg_match("/^([\\w-]+\\.?){4,10}$/", $this->container['caseId'])) {
-            $invalidProperties[] = "invalid value for 'caseId', must be conform to the pattern /^([\\w-]+\\.?){4,10}$/.";
+        if (!preg_match("/^([a-zA-Z0-9_-]+\\.?){4,10}$/", $this->container['caseId'])) {
+            $invalidProperties[] = "invalid value for 'caseId', must be conform to the pattern /^([a-zA-Z0-9_-]+\\.?){4,10}$/.";
         }
 
         if ($this->container['creation'] === null) {
@@ -439,8 +439,8 @@ class CreateCaseHealth implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['owner'] === null) {
             $invalidProperties[] = "'owner' can't be null";
         }
-        if (!preg_match("/^([\\w-]+\\.?){4,9}$/", $this->container['owner'])) {
-            $invalidProperties[] = "invalid value for 'owner', must be conform to the pattern /^([\\w-]+\\.?){4,9}$/.";
+        if (!preg_match("/^([a-zA-Z0-9_-]+\\.?){4,9}$/", $this->container['owner'])) {
+            $invalidProperties[] = "invalid value for 'owner', must be conform to the pattern /^([a-zA-Z0-9_-]+\\.?){4,9}$/.";
         }
 
         return $invalidProperties;
@@ -481,8 +481,8 @@ class CreateCaseHealth implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable caseId cannot be null');
         }
 
-        if ((!preg_match("/^([\\w-]+\\.?){4,10}$/", ObjectSerializer::toString($caseId)))) {
-            throw new \InvalidArgumentException("invalid value for \$caseId when calling CreateCaseHealth., must conform to the pattern /^([\\w-]+\\.?){4,10}$/.");
+        if ((!preg_match("/^([a-zA-Z0-9_-]+\\.?){4,10}$/", ObjectSerializer::toString($caseId)))) {
+            throw new \InvalidArgumentException("invalid value for \$caseId when calling CreateCaseHealth., must conform to the pattern /^([a-zA-Z0-9_-]+\\.?){4,10}$/.");
         }
 
         $this->container['caseId'] = $caseId;
@@ -727,8 +727,8 @@ class CreateCaseHealth implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable owner cannot be null');
         }
 
-        if ((!preg_match("/^([\\w-]+\\.?){4,9}$/", ObjectSerializer::toString($owner)))) {
-            throw new \InvalidArgumentException("invalid value for \$owner when calling CreateCaseHealth., must conform to the pattern /^([\\w-]+\\.?){4,9}$/.");
+        if ((!preg_match("/^([a-zA-Z0-9_-]+\\.?){4,9}$/", ObjectSerializer::toString($owner)))) {
+            throw new \InvalidArgumentException("invalid value for \$owner when calling CreateCaseHealth., must conform to the pattern /^([a-zA-Z0-9_-]+\\.?){4,9}$/.");
         }
 
         $this->container['owner'] = $owner;

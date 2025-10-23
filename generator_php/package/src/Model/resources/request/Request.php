@@ -411,8 +411,8 @@ class Request implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['requestId'] === null) {
             $invalidProperties[] = "'requestId' can't be null";
         }
-        if (!preg_match("/^([\\w-]+\\.){3,8}request(\\.[\\w-]+){1,2}$/", $this->container['requestId'])) {
-            $invalidProperties[] = "invalid value for 'requestId', must be conform to the pattern /^([\\w-]+\\.){3,8}request(\\.[\\w-]+){1,2}$/.";
+        if (!preg_match("/^([a-zA-Z0-9_-]+\\.){3,8}request(\\.[a-zA-Z0-9_-]+){1,2}$/", $this->container['requestId'])) {
+            $invalidProperties[] = "invalid value for 'requestId', must be conform to the pattern /^([a-zA-Z0-9_-]+\\.){3,8}request(\\.[a-zA-Z0-9_-]+){1,2}$/.";
         }
 
         if ($this->container['datetime'] === null) {
@@ -490,8 +490,8 @@ class Request implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable requestId cannot be null');
         }
 
-        if ((!preg_match("/^([\\w-]+\\.){3,8}request(\\.[\\w-]+){1,2}$/", ObjectSerializer::toString($requestId)))) {
-            throw new \InvalidArgumentException("invalid value for \$requestId when calling Request., must conform to the pattern /^([\\w-]+\\.){3,8}request(\\.[\\w-]+){1,2}$/.");
+        if ((!preg_match("/^([a-zA-Z0-9_-]+\\.){3,8}request(\\.[a-zA-Z0-9_-]+){1,2}$/", ObjectSerializer::toString($requestId)))) {
+            throw new \InvalidArgumentException("invalid value for \$requestId when calling Request., must conform to the pattern /^([a-zA-Z0-9_-]+\\.){3,8}request(\\.[a-zA-Z0-9_-]+){1,2}$/.");
         }
 
         $this->container['requestId'] = $requestId;

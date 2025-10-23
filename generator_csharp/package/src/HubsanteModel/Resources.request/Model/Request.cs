@@ -375,7 +375,7 @@ namespace HubsanteModel/Resources.request.Model
         {
             if (this.RequestId != null) {
                 // RequestId (string) pattern
-                Regex regexRequestId = new Regex(@"^([\w-]+\.){3,8}request(\.[\w-]+){1,2}$", RegexOptions.CultureInvariant);
+                Regex regexRequestId = new Regex(@"^([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}$", RegexOptions.CultureInvariant);
                 if (!regexRequestId.Match(this.RequestId).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RequestId, must match a pattern of " + regexRequestId, new [] { "RequestId" });
