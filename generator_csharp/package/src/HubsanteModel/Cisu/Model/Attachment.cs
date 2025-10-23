@@ -42,7 +42,7 @@ namespace HubsanteModel/Cisu.Model
         /// <param name="description">Décrit la ressource en précisant le type et le contenu, tels que «carte» ou «photo».</param>
         /// <param name="mimeType">L&#39;identifiant du type MIME de contenu et sous-type décrivant la ressource.</param>
         /// <param name="size">Taille approximative de la ressource en kO.</param>
-        /// <param name="uRI">Une URI, généralement une URL, qui permet d&#39;atteindre la ressource sur Internet ou sur un réseau privé Nous suggérons d&#39;employer le format suivant de regex (https?|ftp|file)://([\\w-]+(\\.[\\w-]+)*)(/[\\w\\-\\.]*)*_/?(\\?[^\\s]*)? (required).</param>
+        /// <param name="uRI">Une URI, généralement une URL, qui permet d&#39;atteindre la ressource sur Internet ou sur un réseau privé Nous suggérons d&#39;employer le format suivant de regex (https?|ftp|file)://([a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)*)(/[a-zA-Z0-9_\\-\\.]*)*_/?(\\?[^\\s]*)? (required).</param>
         /// <param name="derefURI">Peut être utilisé à la place de l&#39;élément &#39;URI&#39; pour envoyer la ressource encodée en base64 pour éviter des problèmes de transcodage (sur des double quotes qui casseraient le message, …).</param>
         /// <param name="digest">Hash de la ressource pour confirmer la réception de la bonne ressource La ressource est hashée avec le protocole SHA-256.</param>
         public Attachment(string description = default(string), string mimeType = default(string), int size = default(int), string uRI = default(string), string derefURI = default(string), string digest = default(string))
@@ -88,9 +88,9 @@ namespace HubsanteModel/Cisu.Model
         public int Size { get; set; }
 
         /// <summary>
-        /// Une URI, généralement une URL, qui permet d&#39;atteindre la ressource sur Internet ou sur un réseau privé Nous suggérons d&#39;employer le format suivant de regex (https?|ftp|file)://([\\w-]+(\\.[\\w-]+)*)(/[\\w\\-\\.]*)*_/?(\\?[^\\s]*)?
+        /// Une URI, généralement une URL, qui permet d&#39;atteindre la ressource sur Internet ou sur un réseau privé Nous suggérons d&#39;employer le format suivant de regex (https?|ftp|file)://([a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)*)(/[a-zA-Z0-9_\\-\\.]*)*_/?(\\?[^\\s]*)?
         /// </summary>
-        /// <value>Une URI, généralement une URL, qui permet d&#39;atteindre la ressource sur Internet ou sur un réseau privé Nous suggérons d&#39;employer le format suivant de regex (https?|ftp|file)://([\\w-]+(\\.[\\w-]+)*)(/[\\w\\-\\.]*)*_/?(\\?[^\\s]*)?</value>
+        /// <value>Une URI, généralement une URL, qui permet d&#39;atteindre la ressource sur Internet ou sur un réseau privé Nous suggérons d&#39;employer le format suivant de regex (https?|ftp|file)://([a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)*)(/[a-zA-Z0-9_\\-\\.]*)*_/?(\\?[^\\s]*)?</value>
         /*
         <example>example.json#/initialAlert/attachment/0/URI</example>
         */

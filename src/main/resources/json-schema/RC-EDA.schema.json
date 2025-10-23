@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "25.09.22",
+    "version": "25.10.23",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -21,7 +21,7 @@
             "x-cols": 6,
             "example": "example.json#/caseId",
             "description": "Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",
-            "pattern": "^([\\w-]+\\.?){4,10}$"
+            "pattern": "^([a-zA-Z0-9_-]+\\.?){4,10}$"
         },
         "senderCaseId": {
             "type": "string",
@@ -1497,7 +1497,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/attachment/0/URI",
-                    "description": "Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé\nNous suggérons d'employer le format suivant de regex (https?|ftp|file):\\/\\/([\\w-]+(\\.[\\w-]+)*)(\\/[\\w\\-\\.]*)*\\/?(\\?[^\\s]*)?"
+                    "description": "Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé\nNous suggérons d'employer le format suivant de regex (https?|ftp|file):\\/\\/([a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)*)(\\/[a-zA-Z0-9_\\-\\.]*)*\\/?(\\?[^\\s]*)?"
                 },
                 "derefURI": {
                     "type": "string",

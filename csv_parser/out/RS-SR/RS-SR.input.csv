@@ -4,14 +4,14 @@ Il est valorisé comme suit lors de sa création :
 {pays}.{domaine}.{organisation}.{senderCaseId}
 
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
- Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX: ^([\w-]+\.?){4,10}$"
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX: ^([a-zA-Z0-9_-]+\.?){4,10}$"
 ID Ressource partagé,,,,,,"A valoriser avec l'identifiant partagé unique de la ressource engagée , normé comme suit :
 {orgID}.R.{ID unique de la ressource partagée}
 Ou, uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :
 {orgID}.R.{ID du dossier partagé}.{numéro d’ordre chronologique ressource}
 
 N.B. Il s'agit de l'orgId de l'organisation à qui appartient la ressource","fr.health.samu770.resource.VLM250 ;
-fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1",resourceId,1..1,,string,"REGEX: ^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$"
+fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1",resourceId,1..1,,string,"REGEX: ^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$"
 Etat vecteur,,,,,,"Objet qui permet de décrire l'état d'un vecteur mobilisé - sous forme de liste, il permet de décrire l'historique des états connus d'un même vecteur. ",,state,1..1,X,state,
 ,Date/heure de changement de statut,,,,,A valoriser avec la date et heure d'engagement de changement vers le nouveau statut,2022-09-27T08:23:34+02:00,datetime,1..1,,datetime,Format datetime décrit dans le DSF
 ,Statut du vecteur,,,,,A valoriser avec le statut du vecteur. Cf nomenclature associée.,ARRIVE,status,1..1,,string,NOMENCLATURE: HubSante.statutVecteur

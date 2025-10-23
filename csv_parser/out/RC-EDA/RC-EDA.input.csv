@@ -4,7 +4,7 @@ Il est valorisé comme suit lors de sa création :
 {pays}.{domaine}.{organisation}.{senderCaseId}
 
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
- Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX: ^([\w-]+\.?){4,10}$"
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX: ^([a-zA-Z0-9_-]+\.?){4,10}$"
 Identifiant local de l'affaire/dossier,,,,,,"A valoriser avec le numéro du dossier dans le SI de l'émetteur du message.
 ",DRFR15440241550012,senderCaseId,0..1,,string,
 Date Heure de création de l'affaire/dossier,,,,,,"A valoriser avec le groupe date heure de création du dossier/affaire.
@@ -190,7 +190,7 @@ Les URI doivent correspondre à des espaces sécurisés auxquels les accès ont 
 ,,Type MIME,,,,L'identifiant du type MIME de contenu et sous-type décrivant la ressource,"PDF, XML, JPEG, …",mimeType,0..1,,string,
 ,,Taille approximative,,,,Taille approximative de la ressource en kO,"1235, 35, …",size,0..1,,integer,
 ,,URI,,,,"Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé
-Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?",https://hub.esante.gouv.fr/resourceExample,URI,1..1,,string,
+Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*)(\/[a-zA-Z0-9_\-\.]*)*\/?(\?[^\s]*)?",https://hub.esante.gouv.fr/resourceExample,URI,1..1,,string,
 ,,URI base 64,,,,"Peut être utilisé à la place de l'élément 'URI' pour envoyer la ressource encodée en base64 pour éviter des problèmes de transcodage (sur des double quotes qui casseraient le message, …)",,derefURI,0..1,,string,
 ,,Hash,,,,"Hash de la ressource pour confirmer la réception de la bonne ressource
 La ressource est hashée avec le protocole SHA-256",,digest,0..1,,string,

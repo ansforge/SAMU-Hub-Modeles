@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "GEO-POS.schema.json#",
-    "version": "25.09.22",
+    "version": "25.10.23",
     "example": "example.json#",
     "type": "object",
     "title": "geoPositionsUpdate",
@@ -37,7 +37,7 @@
                     "x-cols": 6,
                     "example": "example.json#/position/0/resourceId",
                     "description": "A valoriser avec l'identifiant partagé unique de la ressource engagée, normé comme suit :\n{orgID}.resource.{ID unique de la ressource partagée}\nOU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :\n{orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}",
-                    "pattern": "^([\\w-]+\\.){3,8}resource(\\.[\\w-]+){1,2}$"
+                    "pattern": "^([a-zA-Z0-9_-]+\\.){3,8}resource(\\.[a-zA-Z0-9_-]+){1,2}$"
                 },
                 "datetime": {
                     "type": "string",
@@ -61,7 +61,7 @@
                     "description": "Vitesse de la ressource enregistrée, exprimée en km/h"
                 },
                 "cap": {
-                    "type": "string",
+                    "type": "number",
                     "title": "Direction de la ressource",
                     "x-health-only": false,
                     "x-cols": 6,

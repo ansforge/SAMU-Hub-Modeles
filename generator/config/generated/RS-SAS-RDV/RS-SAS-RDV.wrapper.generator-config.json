@@ -1,0 +1,23 @@
+{
+  "inputSpec": "./input/RS-SAS-RDV.openapi.yaml",
+  "outputDir": "classes/",
+  "generatorName": "java",
+  "templateDir": "templates/wrapper/",
+  "globalProperties": {
+    "models": "appointmentWrapper",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "library": "native",
+    "modelPackage": "com.hubsante.model.sas",
+    "serializationLibrary": "jackson",
+    "openApiNullable": true,
+    "supportUrlQuery": false,
+    "xmlns": "eda:1.9",
+    "enablePostProcessFile": true
+  }
+}
