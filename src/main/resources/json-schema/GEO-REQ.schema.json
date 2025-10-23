@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "GEO-REQ.schema.json#",
-    "version": "25.09.22",
+    "version": "25.10.23",
     "example": "example.json#",
     "type": "object",
     "title": "geoResourcesRequest",
@@ -20,7 +20,7 @@
                 "x-cols": 6,
                 "example": "example.json#/resourceId/0",
                 "description": "Liste des ID des ressources pour lesquels le demandeur a besoin d'obtenir plus de détails. \nA valoriser avec l'identifiant partagé unique de la ressource engagée, normé comme suit :\n{orgID}.resource.{ID unique de la ressource partagée}\nOU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :\n{orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}",
-                "pattern": "^([\\w-]+\\.){3,8}resource(\\.[\\w-]+){1,2}$"
+                "pattern": "^([a-zA-Z0-9_-]+\\.){3,8}resource(\\.[a-zA-Z0-9_-]+){1,2}$"
             },
             "minItems": 1
         }

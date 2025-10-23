@@ -33,7 +33,7 @@ components:
               \ uniquement dans le cas o\xF9 un ID unique de ressource ne peut pas\
               \ \xEAtre garanti par l'organisation propri\xE9taire :\n{orgID}.resource.{sendercaseId}.{n\xB0\
               \ d\u2019ordre chronologique de la ressource}"
-            pattern: ^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$
+            pattern: ^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$
             examples:
             - 'fr.health.samu770.resource.VLM250
 

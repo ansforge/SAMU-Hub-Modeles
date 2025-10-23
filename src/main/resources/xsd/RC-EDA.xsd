@@ -13,7 +13,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="([\w-]+\.?){4,10}"/>
+                        <pattern value="([a-zA-Z0-9_-]+\.?){4,10}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1089,7 +1089,7 @@ Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{u
             <element name="URI" type="string">
                 <annotation>
                     <documentation>Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé
-Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?</documentation>
+Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*)(\/[a-zA-Z0-9_\-\.]*)*\/?(\?[^\s]*)?</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="derefURI" type="string">

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <createCase xmlns="urn:emergency:eda:1.9:createCase">
-  <caseId>fr.fire.sisXXX.cga-XXX.SC-20240813-XXX-cga-AT517</caseId>
+  <caseId>fr.fire.CGA_national.SC-20240813-CGA_national-AT517</caseId>
   <senderCaseId>SC-20240813-XXX-cga-AT517</senderCaseId>
   <creation>2024-08-13T10:20:00+02:00</creation>
   <referenceVersion>2.01.3</referenceVersion>
