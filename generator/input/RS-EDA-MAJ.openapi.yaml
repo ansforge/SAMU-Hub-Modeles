@@ -32,7 +32,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: ^([\w-]+\.?){4,10}$
+          pattern: ^([a-zA-Z0-9_-]+\.?){4,10}$
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -76,7 +76,7 @@ components:
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
             \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
             \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
-          pattern: ^([\w-]+\.?){4,9}$
+          pattern: ^([a-zA-Z0-9_-]+\.?){4,9}$
           examples:
           - fr.health.samu440
         patient:
@@ -166,7 +166,7 @@ components:
             patient unique dans le syst\xE8me \xE9metteur}\n\nOU, si un n\xB0patient\
             \ unique n'existe pas dans le syst\xE8me \xE9metteur :\n{ID \xE9metteur}.{senderCaseId}.patient.{num\xE9\
             ro d\u2019ordre chronologique au dossier}\n\n\n"
-          pattern: ^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$
+          pattern: ^([a-zA-Z0-9_-]+\.){3,8}patient(\.[a-zA-Z0-9_-]+){1,2}$
           examples:
           - 'fr.health.samu690.patient.P23AZ59
 
@@ -204,7 +204,7 @@ components:
             me \xE9metteur}\n\nOU, si un n\xB0patient unique n'existe pas dans le\
             \ syst\xE8me \xE9metteur :\n{ID \xE9metteur}.{senderCaseId}.patient.{num\xE9\
             ro d\u2019ordre chronologique au dossier}"
-          pattern: ^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$
+          pattern: ^([a-zA-Z0-9_-]+\.){3,8}patient(\.[a-zA-Z0-9_-]+){1,2}$
           examples:
           - 'fr.health.samu690.patient.P23AZ59
 
@@ -226,7 +226,7 @@ components:
             ro chronologique de l\u2019observation}\n\nCet identifiant a vocation\
             \ \xE0 devenir obligatoire pour permettre les mises \xE0 jour, il est\
             \ laiss\xE9 en facultatif temporairement.\n"
-          pattern: ^([\w-]+\.){3,8}medicalNote(\.[\w-]+){1,2}$
+          pattern: ^([a-zA-Z0-9_-]+\.){3,8}medicalNote(\.[a-zA-Z0-9_-]+){1,2}$
           examples:
           - 'fr.health.samu540.medicalNote.46585A
 

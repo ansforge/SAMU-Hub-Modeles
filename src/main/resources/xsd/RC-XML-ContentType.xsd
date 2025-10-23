@@ -23,6 +23,7 @@
         xmlns:geoPositionsUpdate="urn:emergency:eda:1.9:geopositionsupdate"
         xmlns:geoResourcesRequest="urn:emergency:eda:1.9:georesourcesrequest"
         xmlns:geoResourcesDetails="urn:emergency:eda:1.9:georesourcesdetails"
+        xmlns:appointment="urn:emergency:eda:1.9:appointment"
         
         
         xmlns:technical="urn:emergency:eda:1.9:technical"
@@ -50,6 +51,7 @@
     <xs:import namespace="urn:emergency:eda:1.9:geopositionsupdate" schemaLocation="GEO-POS.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:georesourcesrequest" schemaLocation="GEO-REQ.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:georesourcesdetails" schemaLocation="GEO-RES.xsd"/>
+    <xs:import namespace="urn:emergency:eda:1.9:appointment" schemaLocation="RS-SAS-RDV.xsd"/>
     
     
     <xs:import namespace="urn:emergency:eda:1.9:technical" schemaLocation="TECHNICAL.xsd"/>
@@ -89,6 +91,7 @@
                         <xs:element ref="geoPositionsUpdate:geoPositionsUpdate"/>
                         <xs:element ref="geoResourcesRequest:geoResourcesRequest"/>
                         <xs:element ref="geoResourcesDetails:geoResourcesDetails"/>
+                        <xs:element ref="appointment:appointment"/>
                         <xs:element ref="technical:technical"/>
                     </xs:choice>
                 </xs:sequence>

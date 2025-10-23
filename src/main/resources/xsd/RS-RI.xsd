@@ -13,7 +13,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="([\w-]+\.?){4,10}"/>
+                        <pattern value="([a-zA-Z0-9_-]+\.?){4,10}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -36,7 +36,7 @@ OU - uniquement dans le cas où un ID unique de ressource ne peut pas être gara
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="([\w-]+\.){3,8}resource(\.[\w-]+){1,2}"/>
+                        <pattern value="([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -49,7 +49,7 @@ OU - si un ID unique de la demande n'était pas disponible :
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="([\w-]+\.){3,8}request(\.[\w-]+){1,2}"/>
+                        <pattern value="([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}"/>
                     </restriction>
                 </simpleType>
             </element>
