@@ -244,12 +244,6 @@ Si le type d'orientation est sans transport associé, les objets Destination et 
                         <enumeration value="C02.16.01"/>
                         <enumeration value="C02.16.02"/>
                         <enumeration value="C02.16.03"/>
-                        <enumeration value="C07.03.00"/>
-                        <enumeration value="C07.03.01"/>
-                        <enumeration value="C07.03.02"/>
-                        <enumeration value="C07.03.03"/>
-                        <enumeration value="C07.03.04"/>
-                        <enumeration value="C07.03.05"/>
                         <enumeration value="C03.00.00"/>
                         <enumeration value="C03.01.00"/>
                         <enumeration value="C03.01.01"/>
