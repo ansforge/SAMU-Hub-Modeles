@@ -1,7 +1,0 @@
-pandas
-openpyxl
-pyyaml
-jsonpath-ng
-python-docx
-argparse
-graphviz

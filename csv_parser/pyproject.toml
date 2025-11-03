@@ -1,0 +1,26 @@
+[project]
+name = "csv-parser"
+version = "0.1.0"
+description = "CSV Parser service for SAMU-Hub-Modeles"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "pandas>=2.0.0",
+    "openpyxl>=3.0.0",
+    "pyyaml>=6.0.2",
+    "jsonpath-ng>=1.7.0",
+    "python-docx>=1.0.0",
+    "argparse>=1.4.0",
+    "graphviz>=0.20.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

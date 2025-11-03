@@ -42,15 +42,21 @@ jobs:
         if: steps.filter.outputs.parsing_required == 'true'
         uses: ts-graphviz/setup-graphviz@v1
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Install uv
+        if: steps.filter.outputs.parsing_required == 'true' || steps.filter.outputs.test_case_parsing_required == 'true'
+        uses: astral-sh/setup-uv@v7
         with:
           python-version: '3.11'
+          enable-cache: true
+
+      - name: Install Python
+        if: steps.filter.outputs.parsing_required == 'true' || steps.filter.outputs.test_case_parsing_required == 'true'
+        run: uv python install 3.11
 
       - name: Install python requirements
         working-directory: ./csv_parser
         if: steps.filter.outputs.parsing_required == 'true' || steps.filter.outputs.test_case_parsing_required == 'true'
-        run: pip install -r ./requirements.txt
+        run: uv sync
 
       - name: Clean up old generated schemas
         working-directory: ./src/main/resources
@@ -66,19 +72,19 @@ jobs:
       - name: Run csv_parser to generate schemas.yaml
         working-directory: ./csv_parser
         if: steps.filter.outputs.parsing_required == 'true'
-        run: python workflow.py --stage output_schemas_yaml
+        run: uv run python workflow.py --stage output_schemas_yaml
 
       - name: Run csv_parser and collect OpenAPI & JSON Schemas
         working-directory: ./csv_parser
         if: steps.filter.outputs.parsing_required == 'true'
-        run: python workflow.py --stage parser_and_mv
+        run: uv run python workflow.py --stage parser_and_mv
 
       - name: Run test_case_generator
         working-directory: ./csv_parser
         if: steps.filter.outputs.test_case_parsing_required == 'true'
         run: |
           rm -r ./out/test-cases || true
-          python workflow.py --stage test_case_parser
+          uv run python workflow.py --stage test_case_parser
 
       - name: Collect schemas.yaml and copy it to json_schema2xsd
         working-directory: ./csv_parser
