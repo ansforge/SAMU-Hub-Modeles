@@ -19,3 +19,4 @@ out/**/*.openapi.yaml
 
 # virtual env
 env/
+.venv/

@@ -11,7 +11,7 @@ TECHNICAL_MODELS_FILE="models/model-technical.xlsx"
 TRACKING_BRANCH_NAME="auto/model_tracker"
 DATE=$(date +'%y.%m.%d %H:%M')
 LOG_FILE="cron.log"
-PYTHON_CMD="/Users/romainfouilland/code/envs/all/bin/python"
+PYTHON_CMD="uv run python"
 
 # Enable printing of each command
 set -x
@@ -33,7 +33,7 @@ update_nomenclatures() {
   else
     echo "Changes detected in $NOMENCLATURE_FOLDER, running nomenclatures generation..."
     cd ../nomenclature_parser
-    ${PYTHON_CMD[@]} nomenclature_parser.py || (git stash && exit 1)
+    ${PYTHON_CMD} nomenclature_parser.py || (git stash && exit 1)
     git add .
   fi
 }
@@ -44,7 +44,7 @@ update_test_cases() {
     echo "No changes in $TEST_CASE_SOURCES_FOLDER, skipping test cases generation..."
   else
     echo "Changes detected in $TEST_CASE_SOURCES_FOLDER, running test cases generation..."
-    ${PYTHON_CMD[@]} workflow.py --stage test_case_parser || (git stash && exit 1)
+    ${PYTHON_CMD} workflow.py --stage test_case_parser || (git stash && exit 1)
     git add .
   fi
 }

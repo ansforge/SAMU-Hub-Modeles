@@ -1,18 +1,18 @@
 # Installation
 ```bash
-pip install -r requirements.txt
+uv sync
 ```
-For the UML generator (run automatically within the CSV parser), in addition to the `requirements.txt`, you need to install graphviz on your execution environment https://graphviz.org/
+For the UML generator (run automatically within the CSV parser), in addition to the Python dependencies, you need to install graphviz on your execution environment https://graphviz.org/
 
 # Usage
 ## CSV Parser
 ```bash
 # Params to specify the sheet and version
 # by default, integrate uml generation process
-python csv_parser.py -s RC-DE -v 0.5  
-python csv_parser.py --sheet RC-DE --version 0.5
+uv run python csv_parser.py -s RC-DE -v 0.5  
+uv run python csv_parser.py --sheet RC-DE --version 0.5
 # Defaults to RC-EDA and today (YY.MM.DD)
-python csv_parser.py
+uv run python csv_parser.py
 ```
 
 ## Full pipeline
@@ -28,8 +28,8 @@ act -s GITHUB_TOKEN="$(gh auth token)"
 UML generator is called by default in the `csv_parser.py` but you may want to run it directly.
 ```bash
 # Params to specify model and version
-python uml_generator.py -m RC-EDA -o cisu -v 1.12
-python uml_generator.py --model RC-EDA --obj cisu --version 1.12
+uv run python uml_generator.py -m RC-EDA -o cisu -v 1.12
+uv run python uml_generator.py --model RC-EDA --obj cisu --version 1.12
 ```
 
 # Automatic nomenclature & model push
