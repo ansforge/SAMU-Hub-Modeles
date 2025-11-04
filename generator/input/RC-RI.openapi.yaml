@@ -50,6 +50,7 @@ components:
       required:
       - datetime
       - resourceId
+      - vehicleType
       properties:
         datetime:
           type: string
@@ -126,6 +127,19 @@ components:
           description: A valoriser avec le lieu de garage principal
           examples:
           - CHU Nantes
+        vehicleType:
+          type: string
+          title: Type de vecteur
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/resource/0/vehicleType
+          description: "A valoriser avec le type de vecteur mobilis\xE9 : cf. nomenclature\
+            \ associ\xE9e"
+          enum:
+          - SMUR
+          - SDIS
+          examples:
+          - SMUR
         name:
           type: string
           title: Nom du vecteur

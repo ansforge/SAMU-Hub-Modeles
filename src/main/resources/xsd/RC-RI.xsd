@@ -69,6 +69,17 @@ OU - si un ID unique de la demande n'était pas disponible :
                     <documentation>A valoriser avec le lieu de garage principal</documentation>
                 </annotation>
             </element>
+            <element name="vehicleType">
+                <annotation>
+                    <documentation>A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="SMUR"/>
+                        <enumeration value="SDIS"/>
+                    </restriction>
+                </simpleType>
+            </element>
             <element minOccurs="0" name="name" type="string">
                 <annotation>
                     <documentation>A valoriser avec le nom donné à la ressource par l’organisation d’appartenance</documentation>

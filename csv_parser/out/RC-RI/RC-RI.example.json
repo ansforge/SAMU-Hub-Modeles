@@ -8,6 +8,7 @@
             "missionId": "DRFR15DDXAAJJJ0000.M001",
             "orgId": "fr.health.samu440",
             "centerName": "CHU Nantes",
+            "vehicleType": "SMUR",
             "name": "SMUR 123",
             "centerCity": 44109,
             "team": {

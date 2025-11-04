@@ -36,7 +36,8 @@
             "x-health-only": false,
             "required": [
                 "datetime",
-                "resourceId"
+                "resourceId",
+                "vehicleType"
             ],
             "properties": {
                 "datetime": {
@@ -90,6 +91,18 @@
                     "x-cols": 6,
                     "example": "example.json#/resource/0/centerName",
                     "description": "A valoriser avec le lieu de garage principal"
+                },
+                "vehicleType": {
+                    "type": "string",
+                    "title": "Type de vecteur",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/resource/0/vehicleType",
+                    "description": "A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée",
+                    "enum": [
+                        "SMUR",
+                        "SDIS"
+                    ]
                 },
                 "name": {
                     "type": "string",

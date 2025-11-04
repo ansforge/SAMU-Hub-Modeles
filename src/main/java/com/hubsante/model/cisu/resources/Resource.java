@@ -50,8 +50,9 @@ import java.util.Objects;
     {Resource.JSON_PROPERTY_DATETIME, Resource.JSON_PROPERTY_RESOURCE_ID,
      Resource.JSON_PROPERTY_REQUEST_ID, Resource.JSON_PROPERTY_MISSION_ID,
      Resource.JSON_PROPERTY_ORG_ID, Resource.JSON_PROPERTY_CENTER_NAME,
-     Resource.JSON_PROPERTY_NAME, Resource.JSON_PROPERTY_CENTER_CITY,
-     Resource.JSON_PROPERTY_TEAM, Resource.JSON_PROPERTY_STATE})
+     Resource.JSON_PROPERTY_VEHICLE_TYPE, Resource.JSON_PROPERTY_NAME,
+     Resource.JSON_PROPERTY_CENTER_CITY, Resource.JSON_PROPERTY_TEAM,
+     Resource.JSON_PROPERTY_STATE})
 @JsonTypeName("resource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -73,6 +74,42 @@ public class Resource {
 
   public static final String JSON_PROPERTY_CENTER_NAME = "centerName";
   private String centerName;
+
+  /**
+   * A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée
+   */
+  public enum VehicleTypeEnum {
+    SMUR("SMUR"),
+
+    SDIS("SDIS");
+
+    private String value;
+
+    VehicleTypeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static VehicleTypeEnum fromValue(String value) {
+      for (VehicleTypeEnum b : VehicleTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_VEHICLE_TYPE = "vehicleType";
+  private VehicleTypeEnum vehicleType;
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -237,6 +274,29 @@ public class Resource {
     this.centerName = centerName;
   }
 
+  public Resource vehicleType(VehicleTypeEnum vehicleType) {
+
+    this.vehicleType = vehicleType;
+    return this;
+  }
+
+  /**
+   * A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée
+   * @return vehicleType
+   **/
+  @JsonProperty(JSON_PROPERTY_VEHICLE_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public VehicleTypeEnum getVehicleType() {
+    return vehicleType;
+  }
+
+  @JsonProperty(JSON_PROPERTY_VEHICLE_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVehicleType(VehicleTypeEnum vehicleType) {
+    this.vehicleType = vehicleType;
+  }
+
   public Resource name(String name) {
 
     this.name = name;
@@ -361,6 +421,7 @@ public class Resource {
         Objects.equals(this.missionId, resource.missionId) &&
         Objects.equals(this.orgId, resource.orgId) &&
         Objects.equals(this.centerName, resource.centerName) &&
+        Objects.equals(this.vehicleType, resource.vehicleType) &&
         Objects.equals(this.name, resource.name) &&
         Objects.equals(this.centerCity, resource.centerCity) &&
         Objects.equals(this.team, resource.team) &&
@@ -370,7 +431,7 @@ public class Resource {
   @Override
   public int hashCode() {
     return Objects.hash(datetime, resourceId, requestId, missionId, orgId,
-                        centerName, name, centerCity, team, state);
+                        centerName, vehicleType, name, centerCity, team, state);
   }
 
   @Override
@@ -390,6 +451,9 @@ public class Resource {
     sb.append("    orgId: ").append(toIndentedString(orgId)).append("\n");
     sb.append("    centerName: ")
         .append(toIndentedString(centerName))
+        .append("\n");
+    sb.append("    vehicleType: ")
+        .append(toIndentedString(vehicleType))
         .append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    centerCity: ")
