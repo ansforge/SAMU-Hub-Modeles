@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.sas;
+package com.hubsante.model.cisu.resources.info;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -39,53 +39,93 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Organization
+ * Team
  */
-@JsonPropertyOrder({Organization.JSON_PROPERTY_ORGANIZATION_ID,
-                    Organization.JSON_PROPERTY_NAME})
-@JsonTypeName("organization")
+@JsonPropertyOrder({Team.JSON_PROPERTY_MEDICAL_LEVEL, Team.JSON_PROPERTY_NAME})
+@JsonTypeName("team")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Organization {
-  public static final String JSON_PROPERTY_ORGANIZATION_ID = "organizationId";
-  private String organizationId;
+public class Team {
+
+  /**
+   * A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature
+   * associée
+   */
+  public enum MedicalLevelEnum {
+    MED("MED"),
+
+    PARAMED("PARAMED"),
+
+    SECOURS("SECOURS"),
+
+    SANS("SANS");
+
+    private String value;
+
+    MedicalLevelEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static MedicalLevelEnum fromValue(String value) {
+      for (MedicalLevelEnum b : MedicalLevelEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_MEDICAL_LEVEL = "medicalLevel";
+  private MedicalLevelEnum medicalLevel;
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
-  public Organization() {}
+  public Team() {}
 
-  public Organization organizationId(String organizationId) {
+  public Team medicalLevel(MedicalLevelEnum medicalLevel) {
 
-    this.organizationId = organizationId;
+    this.medicalLevel = medicalLevel;
     return this;
   }
 
   /**
-   * Indique l&#39;identifiant national de la structure
-   * @return organizationId
+   * A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature
+   *associée
+   * @return medicalLevel
    **/
-  @JsonProperty(JSON_PROPERTY_ORGANIZATION_ID)
+  @JsonProperty(JSON_PROPERTY_MEDICAL_LEVEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getOrganizationId() {
-    return organizationId;
+  public MedicalLevelEnum getMedicalLevel() {
+    return medicalLevel;
   }
 
-  @JsonProperty(JSON_PROPERTY_ORGANIZATION_ID)
+  @JsonProperty(JSON_PROPERTY_MEDICAL_LEVEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOrganizationId(String organizationId) {
-    this.organizationId = organizationId;
+  public void setMedicalLevel(MedicalLevelEnum medicalLevel) {
+    this.medicalLevel = medicalLevel;
   }
 
-  public Organization name(String name) {
+  public Team name(String name) {
 
     this.name = name;
     return this;
   }
 
   /**
-   * Indique le nom de la structure
+   * A valoriser avec le nom de l&#39;équipe à bord du vecteur (celui communiqué
+   *par l&#39;organisation à laquelle l&#39;équipe appartient)
    * @return name
    **/
   @JsonProperty(JSON_PROPERTY_NAME)
@@ -109,22 +149,22 @@ public class Organization {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Organization organization = (Organization)o;
-    return Objects.equals(this.organizationId, organization.organizationId) &&
-        Objects.equals(this.name, organization.name);
+    Team team = (Team)o;
+    return Objects.equals(this.medicalLevel, team.medicalLevel) &&
+        Objects.equals(this.name, team.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(organizationId, name);
+    return Objects.hash(medicalLevel, name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Organization {\n");
-    sb.append("    organizationId: ")
-        .append(toIndentedString(organizationId))
+    sb.append("class Team {\n");
+    sb.append("    medicalLevel: ")
+        .append(toIndentedString(medicalLevel))
         .append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");

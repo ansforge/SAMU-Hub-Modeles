@@ -1,6 +1,6 @@
 {
-  "inputSpec": "../generator/input/RS-SAS-RDV.openapi.yaml",
-  "outputDir": "gem/sas",
+  "inputSpec": "../generator/input/RC-RI.openapi.yaml",
+  "outputDir": "gem/cisuresourcesinfo",
   "generatorName": "ruby",
   "globalProperties": {
     "models": "",
@@ -11,7 +11,7 @@
     "modelTests": false
   },
   "additionalProperties": {
-    "moduleName": "Sas",
+    "moduleName": "Cisuresourcesinfo",
     "gemName": "hubsanteModel",
     "allowUnicodeIdentifiers": true,
     "useAutoload": true,

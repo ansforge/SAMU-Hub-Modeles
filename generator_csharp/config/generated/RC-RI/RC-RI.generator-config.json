@@ -1,7 +1,7 @@
 {
-  "inputSpec": "../generator/input/RS-SAS-RDV.openapi.yaml",
-  "outputDir": "package/src/",
-  "generatorName": "python",
+  "inputSpec": "../generator/input/RC-RI.openapi.yaml",
+  "outputDir": "package/",
+  "generatorName": "csharp",
   "globalProperties": {
     "models": "",
     "apis": false,
@@ -11,6 +11,6 @@
     "modelTests": false
   },
   "additionalProperties": {
-    "packageName": "hubsante_model.sas"
+    "packageName": "HubsanteModel/Cisu.resources.info"
   }
 }

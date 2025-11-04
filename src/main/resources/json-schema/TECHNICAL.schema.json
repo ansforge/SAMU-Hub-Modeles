@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "TECHNICAL.schema.json#",
-    "version": "25.10.23",
+    "version": "25.11.04",
     "example": "example.json#",
     "type": "object",
     "title": "technical",

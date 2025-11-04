@@ -1,0 +1,34 @@
+{
+    "caseId": "fr.health.samu440.DRFR15440241550012",
+    "resource": [
+        {
+            "datetime": "2022-09-27T08:23:34+02:00",
+            "resourceId": "fr.health.samu770.resource.VLM250\nfr.health.samu440.resource.DRFR15DDXAAJJJ0000.1",
+            "requestId": "fr.health.samu770.request.1249875\nfr.health.samu690.request.DRFR15690242370035.3",
+            "missionId": "DRFR15DDXAAJJJ0000.M001",
+            "orgId": "fr.health.samu440",
+            "centerName": "CHU Nantes",
+            "vehicleType": "SDIS",
+            "name": "SMUR 123",
+            "centerCity": 44109,
+            "team": {
+                "medicalLevel": "MED",
+                "name": "Equipe A"
+            },
+            "state": [
+                {
+                    "datetime": "2022-09-27T08:23:34+02:00",
+                    "status": "ARRIVE",
+                    "availability": "FALSE"
+                }
+            ],
+            "contact": {
+                "type": "PHNADD",
+                "details": "+33671830530"
+            },
+            "freetext": [
+                "SMUR pédiatrique"
+            ]
+        }
+    ]
+}

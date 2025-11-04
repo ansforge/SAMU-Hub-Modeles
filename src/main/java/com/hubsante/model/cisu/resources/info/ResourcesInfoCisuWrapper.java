@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.sas;
+package com.hubsante.model.cisu.resources.info;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,14 +34,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.cisu.resources.info.ResourcesInfoCisu;
 import com.hubsante.model.rcde.DistributionElement;
-import com.hubsante.model.sas.Appointment;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * AppointmentWrapper
+ * ResourcesInfoCisuWrapper
  */
 @JsonPropertyOrder({DistributionElement.JSON_PROPERTY_MESSAGE_ID,
                     DistributionElement.JSON_PROPERTY_SENDER,
@@ -49,39 +49,41 @@ import java.util.Objects;
                     DistributionElement.JSON_PROPERTY_KIND,
                     DistributionElement.JSON_PROPERTY_STATUS,
                     DistributionElement.JSON_PROPERTY_RECIPIENT,
-                    AppointmentWrapper.JSON_PROPERTY_APPOINTMENT})
-@JsonTypeName("appointmentWrapper")
+                    ResourcesInfoCisuWrapper.JSON_PROPERTY_RESOURCES_INFO_CISU})
+@JsonTypeName("resourcesInfoCisuWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class AppointmentWrapper extends DistributionElement {
+public class ResourcesInfoCisuWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:eda:1.9";
-  public static final String JSON_PROPERTY_APPOINTMENT = "appointment";
-  private Appointment appointment;
+  public static final String JSON_PROPERTY_RESOURCES_INFO_CISU =
+      "resourcesInfoCisu";
+  private ResourcesInfoCisu resourcesInfoCisu;
 
-  public AppointmentWrapper() {}
+  public ResourcesInfoCisuWrapper() {}
 
-  public AppointmentWrapper appointment(Appointment appointment) {
+  public ResourcesInfoCisuWrapper
+  resourcesInfoCisu(ResourcesInfoCisu resourcesInfoCisu) {
 
-    this.appointment = appointment;
+    this.resourcesInfoCisu = resourcesInfoCisu;
     return this;
   }
 
   /**
-   * Get appointment
-   * @return appointment
+   * Get resourcesInfoCisu
+   * @return resourcesInfoCisu
    **/
-  @JsonProperty(JSON_PROPERTY_APPOINTMENT)
+  @JsonProperty(JSON_PROPERTY_RESOURCES_INFO_CISU)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Appointment getAppointment() {
-    return appointment;
+  public ResourcesInfoCisu getResourcesInfoCisu() {
+    return resourcesInfoCisu;
   }
 
-  @JsonProperty(JSON_PROPERTY_APPOINTMENT)
+  @JsonProperty(JSON_PROPERTY_RESOURCES_INFO_CISU)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAppointment(Appointment appointment) {
-    this.appointment = appointment;
+  public void setResourcesInfoCisu(ResourcesInfoCisu resourcesInfoCisu) {
+    this.resourcesInfoCisu = resourcesInfoCisu;
   }
 
   @Override
@@ -92,23 +94,25 @@ public class AppointmentWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AppointmentWrapper appointmentWrapper = (AppointmentWrapper)o;
-    return Objects.equals(this.appointment, appointmentWrapper.appointment) &&
+    ResourcesInfoCisuWrapper resourcesInfoCisuWrapper =
+        (ResourcesInfoCisuWrapper)o;
+    return Objects.equals(this.resourcesInfoCisu,
+                          resourcesInfoCisuWrapper.resourcesInfoCisu) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(appointment, super.hashCode());
+    return Objects.hash(resourcesInfoCisu, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AppointmentWrapper {\n");
+    sb.append("class ResourcesInfoCisuWrapper {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    appointment: ")
-        .append(toIndentedString(appointment))
+    sb.append("    resourcesInfoCisu: ")
+        .append(toIndentedString(resourcesInfoCisu))
         .append("\n");
     sb.append("}");
     return sb.toString();

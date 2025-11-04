@@ -1,10 +1,10 @@
 {
-  "inputSpec": "./input/RS-SAS-RDV.openapi.yaml",
+  "inputSpec": "./input/RC-RI.openapi.yaml",
   "outputDir": "classes/",
   "generatorName": "java",
-  "templateDir": "templates/child-classes/",
+  "templateDir": "templates/wrapper/",
   "globalProperties": {
-    "models": "",
+    "models": "resourcesInfoCisuWrapper",
     "apis": false,
     "apiTests": false,
     "apiDocs": false,
@@ -13,10 +13,11 @@
   },
   "additionalProperties": {
     "library": "native",
-    "modelPackage": "com.hubsante.model.sas",
+    "modelPackage": "com.hubsante.model.cisu.resources.info",
     "serializationLibrary": "jackson",
     "openApiNullable": true,
     "supportUrlQuery": false,
+    "xmlns": "eda:1.9",
     "enablePostProcessFile": true
   }
 }

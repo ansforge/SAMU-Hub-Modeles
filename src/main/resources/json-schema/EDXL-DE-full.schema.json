@@ -250,6 +250,31 @@
               "properties": {
                 "message": {
                   "properties": {
+                    "resourcesInfoCisu": {
+                      "$ref": "RC-RI.schema.json"
+                    }
+                  },
+                  "required": [
+                    "resourcesInfoCisu"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
                     "resourcesEngagement": {
                       "$ref": "RS-ER.schema.json"
                     }
@@ -481,31 +506,6 @@
                   },
                   "required": [
                     "geoResourcesDetails"
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        {
-          "allOf": [
-            {
-              "properties": {
-                "message": {
-                  "$ref": "RC-DE.schema.json"
-                }
-              }
-            },
-            {
-              "properties": {
-                "message": {
-                  "properties": {
-                    "appointment": {
-                      "$ref": "RS-SAS-RDV.schema.json"
-                    }
-                  },
-                  "required": [
-                    "appointment"
                   ]
                 }
               }

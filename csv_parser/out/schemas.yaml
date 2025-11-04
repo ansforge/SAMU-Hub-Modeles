@@ -88,6 +88,18 @@ schemas:
   customExtendPackage: null
   file: model.xlsx
   header: Y
+  package: cisu.resources.info
+  perimeter: 15-18
+  rootElement: resourcesInfoCisu
+  schema: RC-RI
+  sheet: RS-RI
+  subschema: N
+  xmlns: eda:1.9:resourcesInfoCisu
+- automaticGeneration: Y
+  customExtendClass: null
+  customExtendPackage: null
+  file: model.xlsx
+  header: Y
   package: resources.info
   perimeter: 15-SMUR
   rootElement: resourcesEngagement
@@ -203,18 +215,6 @@ schemas:
   sheet: GEO-RES
   subschema: N
   xmlns: eda:1.9:georesourcesdetails
-- automaticGeneration: Y
-  customExtendClass: null
-  customExtendPackage: null
-  file: model.xlsx
-  header: Y
-  package: sas
-  perimeter: 15-SAS
-  rootElement: appointment
-  schema: RS-SAS-RDV
-  sheet: RS-SAS-RDV
-  subschema: N
-  xmlns: eda:1.9:appointment
 - automaticGeneration: N
   customExtendClass: null
   customExtendPackage: null
