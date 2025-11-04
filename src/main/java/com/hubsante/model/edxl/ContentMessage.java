@@ -35,6 +35,8 @@ import com.hubsante.model.emsi.Emsi;
 import com.hubsante.model.emsi.EmsiWrapper;
 import com.hubsante.model.resources.info.ResourcesInfo;
 import com.hubsante.model.resources.info.ResourcesInfoWrapper;
+import com.hubsante.model.cisu.resources.ResourcesInfoCisu;
+import com.hubsante.model.cisu.resources.ResourcesInfoCisuWrapper;
 import com.hubsante.model.resources.info.ResourcesEngagement;
 import com.hubsante.model.resources.info.ResourcesEngagementWrapper;
 import com.hubsante.model.resources.status.ResourcesStatus;
@@ -77,6 +79,7 @@ import java.util.stream.Stream;
         @JsonSubTypes.Type(CreateCaseHealthUpdateWrapper.class),
         @JsonSubTypes.Type(EmsiWrapper.class),
         @JsonSubTypes.Type(ResourcesInfoWrapper.class),
+        @JsonSubTypes.Type(ResourcesInfoCisuWrapper.class),
         @JsonSubTypes.Type(ResourcesEngagementWrapper.class),
         @JsonSubTypes.Type(ResourcesStatusWrapper.class),
         @JsonSubTypes.Type(ResourcesRequestWrapper.class),
@@ -121,6 +124,7 @@ public class ContentMessage {
                   {"createCaseHealthUpdate", CreateCaseHealthUpdate.class.getCanonicalName()},
                   {"emsi", Emsi.class.getCanonicalName()},
                   {"resourcesInfo", ResourcesInfo.class.getCanonicalName()},
+                  {"resourcesInfoCisu", ResourcesInfoCisu.class.getCanonicalName()},
                   {"resourcesEngagement", ResourcesEngagement.class.getCanonicalName()},
                   {"resourcesStatus", ResourcesStatus.class.getCanonicalName()},
                   {"resourcesRequest", ResourcesRequest.class.getCanonicalName()},
