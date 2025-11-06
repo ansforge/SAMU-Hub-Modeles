@@ -48,4 +48,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8080/health || exit 1
 
 # Use Gunicorn for production deployment
-CMD ["uv", "run", "gunicorn", "-w", "4", "-b", "0.0.0.0:8080", "converter.converter:app"]
+CMD ["uv", "run", "--no-dev", "gunicorn", "-w", "4", "-b", "0.0.0.0:8080", "converter.converter:app"]

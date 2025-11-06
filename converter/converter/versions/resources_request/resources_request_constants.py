@@ -10,5 +10,5 @@ class ResourcesRequestConstants:
         "DEL8H": "8H",
         "DEL12H": "12H",
         "DEL24H": "24H",
-        "RDV": "RDV"
+        "RDV": "RDV",
     }

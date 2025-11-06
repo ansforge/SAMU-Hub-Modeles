@@ -2,6 +2,7 @@ from typing import Dict, Any
 
 from converter.versions.base_message_converter import BaseMessageConverter
 
+
 class IdenticalMessageConverter(BaseMessageConverter):
     @classmethod
     def convert_v1_to_v2(cls, input_json) -> Dict[str, Any]:

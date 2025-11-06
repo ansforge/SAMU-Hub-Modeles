@@ -1,4 +1,6 @@
-from converter.versions.create_case_health.create_case_health_converter import CreateHealthCaseConverter
+from converter.versions.create_case_health.create_case_health_converter import (
+    CreateHealthCaseConverter,
+)
 
 
 class CreateHealthUpdateCaseConverter(CreateHealthCaseConverter):
