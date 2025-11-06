@@ -4,7 +4,12 @@ from converter.cisu.constants import CISUConstants
 from converter.conversion_strategy.health_conversion_strategy import (
     health_conversion_strategy,
 )
-from converter.utils import get_recipient, get_sender
+from converter.utils import (
+    get_recipient,
+    get_sender,
+    extract_message_content,
+    extract_message_type_from_message_content,
+)
 
 
 def cisu_conversion_strategy(edxl_json, source_version, target_version):
@@ -52,18 +57,6 @@ def cisu_conversion_strategy(edxl_json, source_version, target_version):
         raise ValueError("Invalid direction parameter")
 
 
-def extract_message_content(edxl_json):
-    return (
-        edxl_json.get("content", [{}])[0]
-        .get("jsonContent", {})
-        .get("embeddedJsonContent", {})
-        .get("message", {})
-    )
-
-
-unwanted_keys = ["messageId", "sender", "sentAt", "kind", "status", "recipient"]
-
-
 def select_conversion_strategy(message_content):
     if "createCase" in message_content or "createCaseHealth" in message_content:
         return CISUConverterV3
@@ -74,12 +67,3 @@ def select_conversion_strategy(message_content):
         raise ValueError(
             f"Perimeter translation for message type '{deducted_message_type}' is not implemented."
         )
-
-
-def extract_message_type_from_message_content(message_content):
-    filtered_keys = list(
-        filter(lambda key: key not in unwanted_keys, message_content.keys())
-    )
-    if len(filtered_keys) == 0:
-        return "unknownMessageType"
-    return filtered_keys[0]
