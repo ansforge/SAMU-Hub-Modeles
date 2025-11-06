@@ -22,7 +22,7 @@ def test_from_cisu_conversion_local():
     TestHelper.conversion_tests_runner(
         sample_dir=TestConstants.RC_EDA_TAG,
         envelope_file=TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
-        converter_method=CISUConverterV3.from_cisu,
+        converter_method=CISUConverterV3.from_cisu_to_rs,
         target_schema=RS_EDA_SCHEMA,
         additional_validation=validate_health_format,
     )
@@ -33,7 +33,7 @@ def test_to_cisu_conversion_local():
     TestHelper.conversion_tests_runner(
         sample_dir=TestConstants.RS_EDA_TAG,
         envelope_file=TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH,
-        converter_method=CISUConverterV3.to_cisu,
+        converter_method=CISUConverterV3.from_rs_to_cisu,
         target_schema=RC_EDA_SCHEMA,
     )
 
@@ -47,7 +47,7 @@ def test_from_cisu_conversion_v3():
     TestHelper.conversion_tests_runner(
         sample_dir=TestConstants.RC_EDA_TAG,
         envelope_file=TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
-        converter_method=CISUConverterV3.from_cisu,
+        converter_method=CISUConverterV3.from_cisu_to_rs,
         target_schema=RS_EDA_SCHEMA,
         additional_validation=validate_health_format,
         online_tag="main",  # ToDo: migrate to "v3" once tag is available
@@ -59,7 +59,7 @@ def test_to_cisu_conversion_v3():
     TestHelper.conversion_tests_runner(
         sample_dir=TestConstants.RS_EDA_TAG,
         envelope_file=TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH,
-        converter_method=CISUConverterV3.to_cisu,
+        converter_method=CISUConverterV3.from_rs_to_cisu,
         target_schema=RC_EDA_SCHEMA,
         online_tag="main",  # ToDo: migrate to "v3" once tag is available
     )
@@ -87,9 +87,9 @@ class TestSnapshotCisuConverter(TestCase):
             self.edxl_envelope_health_to_fire_path,
             self.fixtures_folder_path + "RS-EDA/cisu_case/RS-EDA_exhaustive_fill.json",
         )
-        converter = CISUConverterV3()
+        converter = CISUConverterV3
 
-        output_data = converter.to_cisu(message)
+        output_data = converter.from_rs_to_cisu(message)
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
     @patch("converter.cisu.cisu_converter.random")
@@ -100,9 +100,9 @@ class TestSnapshotCisuConverter(TestCase):
             self.edxl_envelope_fire_to_health_path,
             self.fixtures_folder_path + "RC-EDA/RC-EDA_exhaustive_fill.json",
         )
-        converter = CISUConverterV3()
+        converter = CISUConverterV3
 
-        output_data = converter.from_cisu(message)
+        output_data = converter.from_cisu_to_rs(message)
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
     @patch("converter.cisu.cisu_converter.datetime")
@@ -117,9 +117,9 @@ class TestSnapshotCisuConverter(TestCase):
             self.edxl_envelope_health_to_fire_path,
             self.fixtures_folder_path + "RS-EDA/cisu_case/RS-EDA_required_fields.json",
         )
-        converter = CISUConverterV3()
+        converter = CISUConverterV3
 
-        output_data = converter.to_cisu(message)
+        output_data = converter.from_rs_to_cisu(message)
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
     @patch("converter.cisu.cisu_converter.random")
@@ -130,9 +130,9 @@ class TestSnapshotCisuConverter(TestCase):
             self.edxl_envelope_fire_to_health_path,
             self.fixtures_folder_path + "RC-EDA/RC-EDA_required_fields.json",
         )
-        converter = CISUConverterV3()
+        converter = CISUConverterV3
 
-        output_data = converter.from_cisu(message)
+        output_data = converter.from_cisu_to_rs(message)
 
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
@@ -149,9 +149,9 @@ class TestSnapshotCisuConverter(TestCase):
             self.fixtures_folder_path
             + "RS-EDA/cisu_case/RS-EDA_exhaustive_fill_bis.json",
         )
-        converter = CISUConverterV3()
+        converter = CISUConverterV3
 
-        output_data = converter.to_cisu(message)
+        output_data = converter.from_rs_to_cisu(message)
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
     @patch("converter.cisu.cisu_converter.random")
@@ -162,9 +162,9 @@ class TestSnapshotCisuConverter(TestCase):
             self.edxl_envelope_fire_to_health_path,
             self.fixtures_folder_path + "RC-EDA/RC-EDA_exhaustive_fill_bis.json",
         )
-        converter = CISUConverterV3()
+        converter = CISUConverterV3
 
-        output_data = converter.from_cisu(message)
+        output_data = converter.from_cisu_to_rs(message)
 
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
@@ -172,7 +172,7 @@ class TestSnapshotCisuConverter(TestCase):
 class TestVictimsCount(TestCase):
     def setUp(self):
         self.fixtures_folder_path = "tests/fixtures/"
-        self.converter = CISUConverterV3()
+        self.converter = CISUConverterV3
 
     def test_count_victims_1(self):
         patients = TestHelper.load_json_file(

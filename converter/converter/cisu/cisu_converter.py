@@ -17,8 +17,10 @@ from ..utils import (
     translate_key_words,
 )
 
+from .base_cisu_converter import BaseCISUConverter
 
-class CISUConverterV3:
+
+class CISUConverterV3(BaseCISUConverter):
     """Handles CISU format conversions"""
 
     CISU_PATHS_TO_DELETE = [
@@ -70,7 +72,15 @@ class CISUConverterV3:
     DEFAULT_WHATS_HAPPEN = {"code": "C11.06.00", "label": "Autre nature de fait"}
 
     @classmethod
-    def from_cisu(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
+    def get_rs_message_type(cls) -> str:
+        return "createCaseHealth"
+
+    @classmethod
+    def get_cisu_message_type(cls) -> str:
+        return "createCase"
+
+    @classmethod
+    def from_cisu_to_rs(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
         """
         Convert from CISU to Health format
 
@@ -219,7 +229,7 @@ class CISUConverterV3:
         return {"count": "BEAUCOUP"}
 
     @classmethod
-    def to_cisu(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
+    def from_rs_to_cisu(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
         """
         Convert from Health to CISU format
 
