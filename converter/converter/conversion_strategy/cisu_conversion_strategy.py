@@ -1,6 +1,9 @@
 from converter.cisu.create_case.create_case_cisu_converter import (
     CreateCaseCISUConverter,
 )
+from converter.cisu.resources_info.resources_info_cisu_converter import (
+    ResourcesInfoCISUConverter,
+)
 from converter.constants import Constants
 from converter.cisu.constants import CISUConstants
 from converter.conversion_strategy.health_conversion_strategy import (
@@ -65,6 +68,8 @@ def compute_message_direction(edxl_json):
 def select_conversion_strategy(message_content):
     if "createCase" in message_content or "createCaseHealth" in message_content:
         return CreateCaseCISUConverter
+    elif "resourcesInfo" in message_content or "resourcesInfoCisu" in message_content:
+        return ResourcesInfoCISUConverter
     else:
         deducted_message_type = extract_message_type_from_message_content(
             message_content
