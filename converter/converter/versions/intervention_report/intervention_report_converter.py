@@ -6,14 +6,14 @@ from converter.utils import (
     map_to_new_value,
     set_value,
 )
-from converter.versions.conversion_mixin import ConversionMixin
+from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.intervention_report.intervention_report_constants import (
     InterventionReportConstants,
 )
 from converter.versions.utils import reverse_map_to_new_value
 
 
-class InterventionReportConverter(ConversionMixin):
+class InterventionReportConverter(BaseMessageConverter):
     @staticmethod
     def get_message_type():
         return "interventionReport"

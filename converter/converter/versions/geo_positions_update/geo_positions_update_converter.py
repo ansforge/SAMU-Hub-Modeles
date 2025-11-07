@@ -1,14 +1,14 @@
 from typing import Dict, Any
 
 from converter.utils import get_field_value, update_json_value, delete_paths
-from converter.versions.conversion_mixin import ConversionMixin
+from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.geo_positions_update.geo_positions_update_constants import (
     GeoPositionsUpdateConstants,
 )
 from converter.versions.utils import convert_to_float, convert_to_str
 
 
-class GeoPositionsUpdateConverter(ConversionMixin):
+class GeoPositionsUpdateConverter(BaseMessageConverter):
     @staticmethod
     def get_message_type():
         return "geoPositionsUpdate"

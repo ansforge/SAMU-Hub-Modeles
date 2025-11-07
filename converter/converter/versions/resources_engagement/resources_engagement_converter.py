@@ -1,12 +1,11 @@
 from converter.utils import map_to_new_value, get_field_value, update_json_value
-from converter.versions.conversion_mixin import ConversionMixin
 from converter.versions.identical_message_converter import IdenticalMessageConverter
 from converter.versions.resources_engagement.resources_engagement_constants import (
     ResourcesEngagementConstants,
 )
 
 
-class ResourcesEngagementConverter(IdenticalMessageConverter, ConversionMixin):
+class ResourcesEngagementConverter(IdenticalMessageConverter):
     @staticmethod
     def get_message_type():
         return "resourcesEngagement"

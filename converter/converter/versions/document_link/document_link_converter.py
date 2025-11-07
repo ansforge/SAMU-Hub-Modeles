@@ -1,13 +1,13 @@
 from typing import Dict, Any
 
 from converter.utils import delete_paths
-from converter.versions.conversion_mixin import ConversionMixin
+from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.document_link.document_link_constants import (
     DocumentLinkConstants,
 )
 
 
-class DocumentLinkConverter(ConversionMixin):
+class DocumentLinkConverter(BaseMessageConverter):
     @staticmethod
     def get_message_type():
         return "documentLink"

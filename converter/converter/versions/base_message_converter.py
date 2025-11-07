@@ -1,7 +1,10 @@
+from converter.conversion_mixin import ConversionMixin
+from typing import Dict, Any
+
 version_order_list = ["v1", "v2", "v3"]
 
 
-class BaseMessageConverter:
+class BaseMessageConverter(ConversionMixin):
     def __init__(self):
         raise ValueError(
             "BaseMessageConverter is an abstract class and cannot be instantiated directly. Use a subclass instead."
@@ -111,4 +114,22 @@ class BaseMessageConverter:
     def raise_conversion_impossible_error(cls, source_version, target_version):
         raise ValueError(
             f"Version conversion from {source_version} to {target_version} is not possible."
+        )
+
+    @classmethod
+    def copy_input_content(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
+        return cls._copy_input_content(input_json, cls.get_message_type())
+
+    @classmethod
+    def copy_input_use_case_content(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
+        return cls._copy_input_use_case_content(input_json, cls.get_message_type())
+
+    @classmethod
+    def format_output_json(
+        cls,
+        output_json: Dict[str, Any],
+        output_use_case_json: Dict[str, Any],
+    ) -> Dict[str, Any]:
+        return cls._format_output_json(
+            output_json, output_use_case_json, cls.get_message_type()
         )

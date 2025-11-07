@@ -1,19 +1,18 @@
 import copy
 from typing import Dict, Any
 
-from converter.versions.base_message_converter import BaseMessageConverter
 
-
-class ConversionMixin(BaseMessageConverter):
+class ConversionMixin:
     CONTENT_KEY = "content"
     JSON_CONTENT_KEY = "jsonContent"
     EMBEDDED_JSON_CONTENT_KEY = "embeddedJsonContent"
     MESSAGE_KEY = "message"
 
     @classmethod
-    def copy_input_content(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
+    def _copy_input_content(
+        cls, input_json: Dict[str, Any], message_type: str
+    ) -> Dict[str, Any]:
         output_json = copy.deepcopy(input_json)
-        message_type = cls.get_message_type()
 
         message_content = (
             input_json.get(cls.CONTENT_KEY, [{}])[0]
@@ -30,18 +29,21 @@ class ConversionMixin(BaseMessageConverter):
         return output_json
 
     @classmethod
-    def copy_input_use_case_content(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
-        message_type = cls.get_message_type()
+    def _copy_input_use_case_content(
+        cls, input_json: Dict[str, Any], message_type: str
+    ) -> Dict[str, Any]:
         input_use_case_json = input_json[cls.CONTENT_KEY][0][cls.JSON_CONTENT_KEY][
             cls.EMBEDDED_JSON_CONTENT_KEY
         ][cls.MESSAGE_KEY][message_type]
         return copy.deepcopy(input_use_case_json)
 
     @classmethod
-    def format_output_json(
-        cls, output_json: Dict[str, Any], output_use_case_json: Dict[str, Any]
+    def _format_output_json(
+        cls,
+        output_json: Dict[str, Any],
+        output_use_case_json: Dict[str, Any],
+        message_type: str,
     ) -> Dict[str, Any]:
-        message_type = cls.get_message_type()
         output_json[cls.CONTENT_KEY][0][cls.JSON_CONTENT_KEY][
             cls.EMBEDDED_JSON_CONTENT_KEY
         ][cls.MESSAGE_KEY][message_type] = output_use_case_json
