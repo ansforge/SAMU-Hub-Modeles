@@ -35,6 +35,7 @@ omit = [
     "setup.py",
     "**/__init__.py",
 ]
+branch = true
 
 [tool.coverage.report]
 exclude_lines = [
