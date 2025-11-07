@@ -2,7 +2,13 @@ import json
 from pathlib import Path
 from typing import Dict, Any, Optional
 from jsonschema import validate
-import requests
+from requests_cache import CachedSession
+
+
+session = CachedSession(
+    cache_name="schemas_and_samples_cache",
+    expire_after=600,  # 10 minutes
+)
 
 
 class TestHelper:
@@ -36,7 +42,7 @@ class TestHelper:
     @staticmethod
     def load_json_file_online(file_path: str) -> Dict[str, Any]:
         """Load JSON from Github repository"""
-        response = requests.get(file_path)
+        response = session.get(file_path)
         response.raise_for_status()
         return json.loads(response.text)
 
@@ -74,7 +80,7 @@ class TestHelper:
         base_url = f"https://raw.githubusercontent.com/ansforge/SAMU-Hub-Modeles/{tag}/src/main/resources/sample/examples"
         api_url = f"https://api.github.com/repos/ansforge/SAMU-Hub-Modeles/contents/src/main/resources/sample/examples/{directory}?ref={tag}"
 
-        response = requests.get(api_url)
+        response = session.get(api_url)
         response.raise_for_status()
 
         files = []
