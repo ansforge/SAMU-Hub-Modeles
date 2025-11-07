@@ -6,9 +6,9 @@ from datetime import datetime
 
 from yaml import dump
 
-from .utils import add_to_initial_alert_notes
-from ..constants import Constants
-from ..utils import (
+from ..utils import add_to_initial_alert_notes
+from ...constants import Constants
+from ...utils import (
     delete_paths,
     get_field_value,
     get_recipient,
@@ -17,10 +17,10 @@ from ..utils import (
     translate_key_words,
 )
 
-from .base_cisu_converter import BaseCISUConverter
+from ..base_cisu_converter import BaseCISUConverter
 
 
-class CISUConverterV3(BaseCISUConverter):
+class CreateCaseCISUConverter(BaseCISUConverter):
     """Handles CISU format conversions"""
 
     CISU_PATHS_TO_DELETE = [
