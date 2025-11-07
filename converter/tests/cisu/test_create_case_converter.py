@@ -67,7 +67,7 @@ def test_to_cisu_conversion_v3():
     )
 
 
-class TestSnapshotCisuConverter(TestCase):
+class TestSnapshotCreateCaseConverter(TestCase):
     def setUp(self):
         self.edxl_envelope_health_to_fire_path = (
             TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH
