@@ -15,20 +15,7 @@ from converter.utils import (
 def cisu_conversion_strategy(edxl_json, source_version, target_version):
     print(f"CISU Conversion initiated from {source_version} to {target_version}")
 
-    # Compute direction based on sender / recipient
-    sender = get_sender(edxl_json)
-    recipient = get_recipient(edxl_json)
-    if sender.startswith(Constants.FR_HEALTH_PREFIX) and recipient.startswith(
-        Constants.FR_HEALTH_PREFIX
-    ):
-        raise ValueError(
-            f"Both sender and recipient are health: {sender} -> {recipient}"
-        )
-    elif sender.startswith(Constants.FR_HEALTH_PREFIX):
-        direction = CISUConstants.TO_CISU
-    else:
-        direction = CISUConstants.FROM_CISU
-
+    direction = compute_message_direction(edxl_json)
     message_content = extract_message_content(edxl_json)
     selected_strategy = select_conversion_strategy(message_content)
 
@@ -55,6 +42,22 @@ def cisu_conversion_strategy(edxl_json, source_version, target_version):
         )
     else:
         raise ValueError("Invalid direction parameter")
+
+
+def compute_message_direction(edxl_json):
+    # Compute direction based on sender / recipient
+    sender = get_sender(edxl_json)
+    recipient = get_recipient(edxl_json)
+    if sender.startswith(Constants.FR_HEALTH_PREFIX) and recipient.startswith(
+        Constants.FR_HEALTH_PREFIX
+    ):
+        raise ValueError(
+            f"Both sender and recipient are health: {sender} -> {recipient}"
+        )
+    elif sender.startswith(Constants.FR_HEALTH_PREFIX):
+        return CISUConstants.TO_CISU
+    else:
+        return CISUConstants.FROM_CISU
 
 
 def select_conversion_strategy(message_content):
