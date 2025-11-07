@@ -48,6 +48,8 @@ uv run pytest tests/test_utils.py -k test_format_object_primitive
 uv run pytest -rP
 ```
 
+Note : the tests download files (json samples & schemas) using the Github API. To avoid hammering the API leading to tests failure, a cache system has been added for the tests runner. To invalidate the cache and download the files again, delete the `schemas_and_samples_cache.sqlite` file at the root of the repository.
+
 ### Running the Service
 
 Development mode:
