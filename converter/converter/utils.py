@@ -16,7 +16,7 @@ def get_sender(edxl_json: Dict[str, Any]) -> str:
     return edxl_json["senderID"]
 
 
-def extract_message_content(edxl_json):
+def extract_message_content(edxl_json) -> Dict:
     return (
         edxl_json.get("content", [{}])[0]
         .get("jsonContent", {})
@@ -28,7 +28,7 @@ def extract_message_content(edxl_json):
 def extract_message_type_from_message_content(
     message_content,
     unwanted_keys=["messageId", "sender", "sentAt", "kind", "status", "recipient"],
-):
+) -> str:
     filtered_keys = list(
         filter(lambda key: key not in unwanted_keys, message_content.keys())
     )
