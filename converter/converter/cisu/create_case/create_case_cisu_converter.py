@@ -6,9 +6,9 @@ from datetime import datetime
 
 from yaml import dump
 
-from ..utils import add_to_initial_alert_notes
-from ...constants import Constants
-from ...utils import (
+from converter.cisu.utils import add_to_initial_alert_notes
+from converter.constants import Constants
+from converter.utils import (
     delete_paths,
     get_field_value,
     get_recipient,
@@ -16,8 +16,7 @@ from ...utils import (
     is_field_completed,
     translate_key_words,
 )
-
-from ..base_cisu_converter import BaseCISUConverter
+from converter.cisu.base_cisu_converter import BaseCISUConverter
 
 
 class CreateCaseCISUConverter(BaseCISUConverter):

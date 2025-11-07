@@ -1,4 +1,4 @@
-from ..base_cisu_converter import BaseCISUConverter
+from converter.cisu.base_cisu_converter import BaseCISUConverter
 
 
 class ResourcesInfoCISUConverter(BaseCISUConverter):

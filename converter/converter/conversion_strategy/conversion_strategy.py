@@ -1,7 +1,9 @@
 from converter.conversion_strategy.health_conversion_strategy import (
     health_conversion_strategy,
 )
-from .cisu_conversion_strategy import cisu_conversion_strategy
+from converter.conversion_strategy.cisu_conversion_strategy import (
+    cisu_conversion_strategy,
+)
 
 
 def conversion_strategy(

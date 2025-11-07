@@ -4,7 +4,7 @@ from converter.cisu.create_case.create_case_cisu_converter import (
     CreateCaseCISUConverter,
 )
 from tests.constants import TestConstants
-from .test_helpers import TestHelper
+from tests.test_helpers import TestHelper
 import json
 from snapshottest import TestCase
 from datetime import datetime
