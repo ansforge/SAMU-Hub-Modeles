@@ -23,7 +23,7 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet resource</I></TD></TR><TR><TD BORDER="0" >datetime <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >resourceId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >requestId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >missionId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >orgId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >centerName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >vehicleType <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >centerCity <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	resource -> resourcesInfoCisu [headlabel=1 taillabel="1..*"]
+	resource -> resourcesInfoCisu [headlabel=1 taillabel="0..*"]
 	resourcesInfoCisu [label=<<TABLE>
                 <TR>
                 <TD ><B>resourcesInfoCisu</B></TD>

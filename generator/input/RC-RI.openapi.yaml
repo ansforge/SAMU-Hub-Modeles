@@ -16,7 +16,6 @@ components:
       title: resourcesInfoCisu
       required:
       - caseId
-      - resource
       properties:
         caseId:
           type: string
@@ -40,7 +39,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/resource'
-          minItems: 1
       additionalProperties: false
     resource:
       type: object
