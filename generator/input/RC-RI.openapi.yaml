@@ -49,6 +49,7 @@ components:
       - datetime
       - resourceId
       - vehicleType
+      - state
       properties:
         datetime:
           type: string
@@ -135,7 +136,7 @@ components:
             \ associ\xE9e"
           enum:
           - SMUR
-          - SDIS
+          - SIS
           examples:
           - SMUR
         name:
@@ -161,9 +162,23 @@ components:
         team:
           $ref: '#/components/schemas/team'
         state:
+          $ref: '#/components/schemas/state'
+        contact:
+          $ref: '#/components/schemas/contact'
+        freetext:
           type: array
+          x-health-only: false
           items:
-            $ref: '#/components/schemas/state'
+            type: string
+            title: Commentaires
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/resource/0/freetext/0
+            description: "Texte libre permettant de passer toute autre information\
+              \ sur la ressource (\xE9quipements suppl\xE9mentaires / sp\xE9cifiques,\
+              \ particularit\xE9s du vecteur, etc.)"
+            examples:
+            - "SMUR p\xE9diatrique"
       additionalProperties: false
       example: example.json#/resource/0
     team:
@@ -217,7 +232,7 @@ components:
           title: Date/heure de changement de statut
           x-health-only: false
           x-cols: 6
-          example: example.json#/resource/0/state/0/datetime
+          example: example.json#/resource/0/state/datetime
           description: A valoriser avec la date et heure d'engagement de changement
             vers le nouveau statut
           pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
@@ -229,7 +244,7 @@ components:
           title: Statut du vecteur
           x-health-only: false
           x-cols: 6
-          example: example.json#/resource/0/state/0/status
+          example: example.json#/resource/0/state/status
           description: "A valoriser avec le statut du vecteur. Cf nomenclature associ\xE9\
             e."
           enum:
@@ -258,14 +273,55 @@ components:
           title: "Disponibilit\xE9 du vecteur"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resource/0/state/0/availability
+          example: example.json#/resource/0/state/availability
           description: "A valoriser de mani\xE8re \xE0 indiquer la disponibilit\xE9\
             \ du vecteur.\nTRUE = DISPONIBLE\nFALSE = INDISPONIBLE\nVIDE = INCONNU"
           examples:
           - 'FALSE'
       additionalProperties: false
-      example: example.json#/resource/0/state/0
+      example: example.json#/resource/0/state
       examples:
       - datetime: '2022-09-27T08:23:34+02:00'
         status: ARRIVE
         availability: 'FALSE'
+    contact:
+      type: object
+      title: Contact
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        type:
+          type: string
+          title: 'Type de contact '
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/resource/0/contact/type
+          description: "A valoriser avec le type de l'URI utilis\xE9e. Cf nomenclature\
+            \ associ\xE9e."
+          enum:
+          - EMAIL
+          - FAX
+          - MSS
+          - POSTAL
+          - RADIO
+          - TEL
+          - WEB
+          examples:
+          - PHNADD
+        details:
+          type: string
+          title: URI du contact
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/resource/0/contact/details
+          description: "A valoriser avec la valeur de l'URI utilis\xE9e\nLe format\
+            \ attendu pour un num\xE9ro de t\xE9l\xE9phone est le suivant : +{indicatif\
+            \ pays}{num\xE9ro de t\xE9l\xE9phone}"
+          examples:
+          - '+33671830530'
+      additionalProperties: false
+      example: example.json#/resource/0/contact
+      examples:
+      - type: PHNADD
+        details: '+33671830530'

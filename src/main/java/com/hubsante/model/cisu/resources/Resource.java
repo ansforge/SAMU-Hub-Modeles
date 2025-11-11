@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.cisu.resources.Contact;
 import com.hubsante.model.cisu.resources.State;
 import com.hubsante.model.cisu.resources.Team;
 import java.time.OffsetDateTime;
@@ -52,7 +53,8 @@ import java.util.Objects;
      Resource.JSON_PROPERTY_ORG_ID, Resource.JSON_PROPERTY_CENTER_NAME,
      Resource.JSON_PROPERTY_VEHICLE_TYPE, Resource.JSON_PROPERTY_NAME,
      Resource.JSON_PROPERTY_CENTER_CITY, Resource.JSON_PROPERTY_TEAM,
-     Resource.JSON_PROPERTY_STATE})
+     Resource.JSON_PROPERTY_STATE, Resource.JSON_PROPERTY_CONTACT,
+     Resource.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("resource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -81,7 +83,7 @@ public class Resource {
   public enum VehicleTypeEnum {
     SMUR("SMUR"),
 
-    SDIS("SDIS");
+    SIS("SIS");
 
     private String value;
 
@@ -121,7 +123,13 @@ public class Resource {
   private Team team;
 
   public static final String JSON_PROPERTY_STATE = "state";
-  private List<State> state;
+  private State state;
+
+  public static final String JSON_PROPERTY_CONTACT = "contact";
+  private Contact contact;
+
+  public static final String JSON_PROPERTY_FREETEXT = "freetext";
+  private List<String> freetext;
 
   public Resource() {}
 
@@ -367,17 +375,9 @@ public class Resource {
     this.team = team;
   }
 
-  public Resource state(List<State> state) {
+  public Resource state(State state) {
 
     this.state = state;
-    return this;
-  }
-
-  public Resource addStateItem(State stateItem) {
-    if (this.state == null) {
-      this.state = new ArrayList<>();
-    }
-    this.state.add(stateItem);
     return this;
   }
 
@@ -388,22 +388,76 @@ public class Resource {
   @JsonProperty(JSON_PROPERTY_STATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<State> getState() {
+  public State getState() {
     return state;
+  }
+
+  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setState(State state) {
+    this.state = state;
+  }
+
+  public Resource contact(Contact contact) {
+
+    this.contact = contact;
+    return this;
+  }
+
+  /**
+   * Get contact
+   * @return contact
+   **/
+  @JsonProperty(JSON_PROPERTY_CONTACT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Contact getContact() {
+    return contact;
+  }
+
+  @JsonProperty(JSON_PROPERTY_CONTACT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContact(Contact contact) {
+    this.contact = contact;
+  }
+
+  public Resource freetext(List<String> freetext) {
+
+    this.freetext = freetext;
+    return this;
+  }
+
+  public Resource addFreetextItem(String freetextItem) {
+    if (this.freetext == null) {
+      this.freetext = new ArrayList<>();
+    }
+    this.freetext.add(freetextItem);
+    return this;
+  }
+
+  /**
+   * Get freetext
+   * @return freetext
+   **/
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<String> getFreetext() {
+    return freetext;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setState(List<State> state) {
-    if (state == null) {
+  public void setFreetext(List<String> freetext) {
+    if (freetext == null) {
       return;
     }
-    if (this.state == null) {
-      this.state = new ArrayList<>();
+    if (this.freetext == null) {
+      this.freetext = new ArrayList<>();
     }
-    this.state.addAll(state);
+    this.freetext.addAll(freetext);
   }
 
   @Override
@@ -425,13 +479,16 @@ public class Resource {
         Objects.equals(this.name, resource.name) &&
         Objects.equals(this.centerCity, resource.centerCity) &&
         Objects.equals(this.team, resource.team) &&
-        Objects.equals(this.state, resource.state);
+        Objects.equals(this.state, resource.state) &&
+        Objects.equals(this.contact, resource.contact) &&
+        Objects.equals(this.freetext, resource.freetext);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(datetime, resourceId, requestId, missionId, orgId,
-                        centerName, vehicleType, name, centerCity, team, state);
+                        centerName, vehicleType, name, centerCity, team, state,
+                        contact, freetext);
   }
 
   @Override
@@ -461,6 +518,8 @@ public class Resource {
         .append("\n");
     sb.append("    team: ").append(toIndentedString(team)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
+    sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
+    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();
   }

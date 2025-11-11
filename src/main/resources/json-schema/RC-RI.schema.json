@@ -35,7 +35,8 @@
             "required": [
                 "datetime",
                 "resourceId",
-                "vehicleType"
+                "vehicleType",
+                "state"
             ],
             "properties": {
                 "datetime": {
@@ -99,7 +100,7 @@
                     "description": "A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée",
                     "enum": [
                         "SMUR",
-                        "SDIS"
+                        "SIS"
                     ]
                 },
                 "name": {
@@ -123,9 +124,21 @@
                     "$ref": "#/definitions/team"
                 },
                 "state": {
+                    "$ref": "#/definitions/state"
+                },
+                "contact": {
+                    "$ref": "#/definitions/contact"
+                },
+                "freetext": {
                     "type": "array",
+                    "x-health-only": false,
                     "items": {
-                        "$ref": "#/definitions/state"
+                        "type": "string",
+                        "title": "Commentaires",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/resource/0/freetext/0",
+                        "description": "Texte libre permettant de passer toute autre information sur la ressource (équipements supplémentaires / spécifiques, particularités du vecteur, etc.)"
                     }
                 }
             },
@@ -180,7 +193,7 @@
                     "title": "Date/heure de changement de statut",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/resource/0/state/0/datetime",
+                    "example": "example.json#/resource/0/state/datetime",
                     "description": "A valoriser avec la date et heure d'engagement de changement vers le nouveau statut",
                     "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
                     "format": "date-time"
@@ -190,7 +203,7 @@
                     "title": "Statut du vecteur",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/resource/0/state/0/status",
+                    "example": "example.json#/resource/0/state/status",
                     "description": "A valoriser avec le statut du vecteur. Cf nomenclature associée.",
                     "enum": [
                         "DECISION",
@@ -218,12 +231,48 @@
                     "title": "Disponibilité du vecteur",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/resource/0/state/0/availability",
+                    "example": "example.json#/resource/0/state/availability",
                     "description": "A valoriser de manière à indiquer la disponibilité du vecteur.\nTRUE = DISPONIBLE\nFALSE = INDISPONIBLE\nVIDE = INCONNU"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/resource/0/state/0"
+            "example": "example.json#/resource/0/state"
+        },
+        "contact": {
+            "type": "object",
+            "title": "Contact",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "title": "Type de contact ",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/resource/0/contact/type",
+                    "description": "A valoriser avec le type de l'URI utilisée. Cf nomenclature associée.",
+                    "enum": [
+                        "EMAIL",
+                        "FAX",
+                        "MSS",
+                        "POSTAL",
+                        "RADIO",
+                        "TEL",
+                        "WEB"
+                    ]
+                },
+                "details": {
+                    "type": "string",
+                    "title": "URI du contact",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/resource/0/contact/details",
+                    "description": "A valoriser avec la valeur de l'URI utilisée\nLe format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/resource/0/contact"
         }
     },
     "additionalProperties": false

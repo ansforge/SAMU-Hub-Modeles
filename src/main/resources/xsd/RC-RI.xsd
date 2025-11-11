@@ -76,7 +76,7 @@ OU - si un ID unique de la demande n'était pas disponible :
                 <simpleType>
                     <restriction base="string">
                         <enumeration value="SMUR"/>
-                        <enumeration value="SDIS"/>
+                        <enumeration value="SIS"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -96,7 +96,9 @@ OU - si un ID unique de la demande n'était pas disponible :
                 </simpleType>
             </element>
             <element minOccurs="0" name="team" type="x:team"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="state" type="x:state"/>
+            <element name="state" type="x:state"/>
+            <element minOccurs="0" name="contact" type="x:contact"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
         </sequence>
     </complexType>
     <complexType name="team">
@@ -161,6 +163,32 @@ OU - si un ID unique de la demande n'était pas disponible :
 TRUE = DISPONIBLE
 FALSE = INDISPONIBLE
 VIDE = INCONNU</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="contact">
+        <sequence>
+            <element minOccurs="0" name="type">
+                <annotation>
+                    <documentation>A valoriser avec le type de l'URI utilisée. Cf nomenclature associée.</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="EMAIL"/>
+                        <enumeration value="FAX"/>
+                        <enumeration value="MSS"/>
+                        <enumeration value="POSTAL"/>
+                        <enumeration value="RADIO"/>
+                        <enumeration value="TEL"/>
+                        <enumeration value="WEB"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="details" type="string">
+                <annotation>
+                    <documentation>A valoriser avec la valeur de l'URI utilisée
+Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}</documentation>
                 </annotation>
             </element>
         </sequence>

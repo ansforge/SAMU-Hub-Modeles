@@ -15,12 +15,17 @@
                 "medicalLevel": "MED",
                 "name": "Equipe A"
             },
-            "state": [
-                {
-                    "datetime": "2022-09-27T08:23:34+02:00",
-                    "status": "ARRIVE",
-                    "availability": "FALSE"
-                }
+            "state": {
+                "datetime": "2022-09-27T08:23:34+02:00",
+                "status": "ARRIVE",
+                "availability": "FALSE"
+            },
+            "contact": {
+                "type": "PHNADD",
+                "details": "+33671830530"
+            },
+            "freetext": [
+                "SMUR pédiatrique"
             ]
         }
     ]
