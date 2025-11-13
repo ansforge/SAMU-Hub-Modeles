@@ -22,12 +22,10 @@
           "medicalLevel": "SECOURS",
           "name": "Equipe 89"
         },
-        "state": [
-          {
-            "status": "ARRIVE",
-            "datetime": "2024-01-04T08:06:00+01:00"
-          }
-        ],
+        "state": {
+          "status": "ARRIVE",
+          "datetime": "2024-01-04T08:06:00+01:00"
+        },
         "datetime": "2024-01-04T08:06:00+01:00",
         "resourceId": "fr.fire.sis077.cgo-077.resource.VSAV32",
         "orgId": "fr.fire.sdis77.cgo-077",
