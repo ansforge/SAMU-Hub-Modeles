@@ -4,8 +4,11 @@ import string
 from typing import List, Dict, Any, Optional
 from jsonpath_ng import parse
 from yaml import dump
+import logging
 
 from converter.constants import Constants
+
+logger = logging.getLogger(__name__)
 
 
 def get_recipient(edxl_json: Dict[str, Any]) -> str:
@@ -141,7 +144,7 @@ def is_field_completed(json_data: Dict[str, Any], json_path: str):
         jsonpath_expr = parse(json_path)
         return len(jsonpath_expr.find(json_data)) >= 1
     except Exception as e:
-        print(f"Error raised in is_field_completed : {e}")
+        logger.error(f"Error raised in is_field_completed : {e}")
         raise
 
 
@@ -158,7 +161,7 @@ def get_field_value(json_data: Dict[str, Any], json_path: str):
         return matches[0].value
 
     except Exception as e:
-        print(f"Error raised in is_field_completed : {e}")
+        logger.error(f"Error raised in is_field_completed : {e}")
         raise
 
 
@@ -194,7 +197,7 @@ def update_json_value(data, jsonpath_query, new_value):
             match.full_path.update(data, new_value)
 
     except Exception as e:
-        print(f"Error raised in update_json_value: {e}")
+        logger.error(f"Error raised in update_json_value: {e}")
         raise
 
 

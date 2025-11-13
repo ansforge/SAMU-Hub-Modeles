@@ -1,3 +1,6 @@
+import logging
+
+from converter.cisu.cisu_converter import CISUConverterV3
 from converter.cisu.create_case.create_case_cisu_converter import (
     CreateCaseCISUConverter,
 )
@@ -16,9 +19,11 @@ from converter.utils import (
     extract_message_type_from_message_content,
 )
 
+logger = logging.getLogger(__name__)
+
 
 def cisu_conversion_strategy(edxl_json, source_version, target_version):
-    print(f"CISU Conversion initiated from {source_version} to {target_version}")
+    logger.info(f"CISU Conversion initiated from {source_version} to {target_version}")
 
     direction = compute_message_direction(edxl_json)
     message_content = extract_message_content(edxl_json)

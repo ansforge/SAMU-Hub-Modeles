@@ -1,12 +1,17 @@
 from flask import Flask, request, jsonify
-
+import logging
 from converter.conversion_strategy.conversion_strategy import conversion_strategy
+from .logging_config import configure_logging
+
+
+configure_logging()
 
 app = Flask(__name__)
+logger = logging.getLogger(__name__)
 
 
 def raise_error(message, code: int = 400):
-    print(f"[ERROR] {message}")
+    logger.error(message)
     return jsonify({"error": message}), code
 
 
@@ -16,6 +21,7 @@ def convert():
         return raise_error("Content-Type must be application/json")
 
     req_data = request.get_json()
+    logger.debug(f"Received conversion request: {req_data}")
     source_version = req_data.get("sourceVersion")
     target_version = req_data.get("targetVersion")
     edxl_json = req_data.get("edxl")

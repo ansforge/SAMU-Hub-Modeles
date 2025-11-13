@@ -1,6 +1,8 @@
 from converter.conversion_mixin import ConversionMixin
 from typing import Dict, Any
 
+import logging
+
 version_order_list = ["v1", "v2", "v3"]
 
 
@@ -63,7 +65,7 @@ class BaseMessageConverter(ConversionMixin):
                 converted_edxl_json,
             )
         except ValueError as err:
-            print(f"[ERROR] {err}")
+            logging.error(err)
             cls.raise_conversion_not_implemented_error(source_version, target_version)
 
     @classmethod

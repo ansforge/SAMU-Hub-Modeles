@@ -32,6 +32,7 @@ from converter.versions.geo_positions_update.geo_positions_update_converter impo
     GeoPositionsUpdateConverter,
 )
 from converter.versions.rpis.rpis_converter import RpisConverter
+import logging
 
 from converter.utils import (
     extract_message_content,
@@ -40,7 +41,9 @@ from converter.utils import (
 
 
 def health_conversion_strategy(edxl_json, source_version: str, target_version: str):
-    print(f"Health Conversion initiated from {source_version} to {target_version}")
+    logging.info(
+        f"Health Conversion initiated from {source_version} to {target_version}"
+    )
 
     message_content = extract_message_content(edxl_json)
     selected_strategy = select_conversion_strategy(message_content)
