@@ -1,7 +1,6 @@
 from typing import Dict, Any
 
 from converter.utils import map_to_new_value
-from converter.versions.conversion_mixin import ConversionMixin
 from converter.versions.identical_message_converter import IdenticalMessageConverter
 from converter.versions.resources_request.resources_request_constants import (
     ResourcesRequestConstants,
@@ -9,7 +8,7 @@ from converter.versions.resources_request.resources_request_constants import (
 from converter.versions.utils import reverse_map_to_new_value
 
 
-class ResourcesRequestConverter(IdenticalMessageConverter, ConversionMixin):
+class ResourcesRequestConverter(IdenticalMessageConverter):
     @staticmethod
     def get_message_type():
         return "resourcesRequest"

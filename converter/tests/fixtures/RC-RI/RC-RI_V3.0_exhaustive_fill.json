@@ -1,0 +1,51 @@
+{
+  "resourcesInfoCisu": {
+    "resource": [
+      {
+        "contact": {
+          "details": "FM5678",
+          "type": "RADIO"
+        },
+        "team": {
+          "medicalLevel": "SECOURS",
+          "name": "Equipe SMUR 5"
+        },
+        "state": {
+          "datetime": "2024-08-01T16:42:00+02:00",
+          "status": "RET-BASE"
+        },
+        "datetime": "2024-08-01T16:42:00+02:00",
+        "resourceId": "fr.health.samu76A.resource.VLM12",
+        "orgId": "fr.health.samu76A",
+        "vehicleType": "SMUR",
+        "name": "VLM 76 - A45"
+      },
+      {
+        "contact": {
+          "details": "+33645987297",
+          "type": "TEL"
+        },
+        "team": {
+          "name": "Equipe Rouge",
+          "medicalLevel": "SECOURS"
+        },
+        "state": {
+          "datetime": "2024-08-01T16:40:00+02:00",
+          "status": "FINPEC",
+          "availability": false
+        },
+        "datetime": "2024-08-01T16:40:00+02:00",
+        "resourceId": "fr.fire.sis076.cgo-076.resource.VSAV3A",
+        "requestId": "fr.fire.sis076.cgo-076.request.177",
+        "centerName": "Centre de Secours 76 - A",
+        "missionId": "fr.fire.sis076.cgo-076.mission.177",
+        "centerCity": "75011",
+        "orgId": "fr.fire.sdis76.cgo-076",
+        "name": "VSAV 76 - 22D8",
+        "vehicleType": "SIS",
+        "freetext": ["commentaire", "autre commentaire"]
+      }
+    ],
+    "caseId": "fr.health.samu800.DRFR158002421400215"
+  }
+}

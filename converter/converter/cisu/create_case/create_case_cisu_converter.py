@@ -170,21 +170,11 @@ class CreateCaseCISUConverter(BaseCISUConverter):
             json_data["medicalNote"].append(new_note)
 
         # Create independent envelope copy without usecase for output
-        output_json = copy.deepcopy(input_json)
-        if "createCase" not in input_json.get("content", [{}])[0].get(
-            "jsonContent", {}
-        ).get("embeddedJsonContent", {}).get("message", {}):
-            raise ValueError("Input JSON must contain 'createCase' key")
-        del output_json["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
-            "createCase"
-        ]
+        output_json = cls.copy_cisu_input_content(input_json)
 
         # Create independent use case copy for output
-        input_use_case_json = input_json["content"][0]["jsonContent"][
-            "embeddedJsonContent"
-        ]["message"]["createCase"]
         sender_id = get_sender(input_json)
-        output_use_case_json = copy.deepcopy(input_use_case_json)
+        output_use_case_json = cls.copy_cisu_input_use_case_content(input_json)
 
         # - Updates
         output_use_case_json["owner"] = get_recipient(input_json)
@@ -204,10 +194,7 @@ class CreateCaseCISUConverter(BaseCISUConverter):
         # - Delete paths - /!\ It must be the last step
         delete_paths(output_use_case_json, cls.CISU_PATHS_TO_DELETE)
 
-        output_json["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
-            "createCaseHealth"
-        ] = output_use_case_json
-        return output_json
+        return cls.format_rs_output_json(output_json, output_use_case_json)
 
     @staticmethod
     def count_victims(json_data: Dict[str, Any]) -> int:
@@ -264,19 +251,10 @@ class CreateCaseCISUConverter(BaseCISUConverter):
                         info["type"] = "AUTRE"
 
         # Create independent envelope copy without usecase for output
-        output_json = copy.deepcopy(input_json)
-        if "createCaseHealth" not in input_json.get("content", [{}])[0].get(
-            "jsonContent", {}
-        ).get("embeddedJsonContent", {}).get("message", {}):
-            raise ValueError("Input JSON must contain 'createCaseHealth' key")
-        del output_json["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
-            "createCaseHealth"
-        ]
+        output_json = cls.copy_rs_input_content(input_json)
 
         # Create independent usecase copy for output
-        input_usecase_json = input_json["content"][0]["jsonContent"][
-            "embeddedJsonContent"
-        ]["message"]["createCaseHealth"]
+        input_usecase_json = cls.copy_rs_input_use_case_content(input_json)
         output_usecase_json = copy.deepcopy(input_usecase_json)
 
         # Generate unique IDs
@@ -330,7 +308,4 @@ class CreateCaseCISUConverter(BaseCISUConverter):
                 get_field_value(output_usecase_json, "$.location")
             )
 
-        output_json["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
-            "createCase"
-        ] = output_usecase_json
-        return output_json
+        return cls.format_cisu_output_json(output_json, output_usecase_json)
