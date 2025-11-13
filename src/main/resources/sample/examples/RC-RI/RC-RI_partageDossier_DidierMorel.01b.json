@@ -1,0 +1,40 @@
+{
+  "resourcesInfoCisu": {
+    "resource": [
+      {
+        "team": {
+          "medicalLevel": "MED",
+          "name": "Equipe VSR A"
+        },
+        "vehicleType": "SIS",
+        "name": "VSR 77 - 250",
+        "datetime": "2024-01-04T08:05:00+01:00",
+        "resourceId": "fr.fire.sdis77.cgo-077.resource.VSR250",
+        "orgId": "fr.fire.sdis77.cgo-077",
+        "state": {
+          "status": "DECLENCHE",
+          "datetime": "2024-01-04T08:05:00+01:00",
+          "availability": false
+        }
+      },
+      {
+        "team": {
+          "medicalLevel": "SECOURS",
+          "name": "Equipe 89"
+        },
+        "state": [
+          {
+            "status": "ARRIVE",
+            "datetime": "2024-01-04T08:06:00+01:00"
+          }
+        ],
+        "datetime": "2024-01-04T08:06:00+01:00",
+        "resourceId": "fr.fire.sis077.cgo-077.resource.VSAV32",
+        "orgId": "fr.fire.sdis77.cgo-077",
+        "vehicleType": "SIS",
+        "name": "VSAV 77 - A7B"
+      }
+    ],
+    "caseId": "fr.health.samu770.DRFR157702400400055"
+  }
+}

@@ -690,7 +690,48 @@
     "schemaName": "RC-RI.schema.json",
     "schema": null,
     "examples": [
-
+      {
+        "file": "RC-RI/RC-RI_partageDossier_DidierMorel.01b.json",
+        "icon": "mdi-circular-saw",
+        "name": "Didier MOREL.01b",
+        "environment": "Engagement d'un VSR et d'un VSAV par le SDIS 77"
+      },
+      {
+        "file": "RC-RI/RC-RI_partageDossier_LolaHalimi.01b.json",
+        "icon": "mdi-image-broken-variant",
+        "name": "Lola HALIMI.01b",
+        "environment": "Engagement d'un VSAV par le SDIS 95"
+      },
+      {
+        "file": "RC-RI/RC-RI_partageDossier_EnfantsNguyen.03b.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "Enfants NGUYEN.03b",
+        "environment": "Engagement de deux VSAV par le SDIS 76"
+      },
+      {
+        "file": "RC-RI/RC-RI_FemmeEnceinte_DelphineVigneau.03.json",
+        "icon": "mdi-human-pregnant",
+        "name": "Delphine VIGNEAU.03",
+        "environment": "Engagement d'un VSAV par le SDIS 44"
+      },
+      {
+        "file": "RC-RI/RC-RI_FuiteDeGaz_AliceGregoireNORMAND.03.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.03",
+        "environment": "Engagenement d'un VSAV avec le détail de l'équipe"
+      },
+      {
+        "file": "RC-RI/RC-RI_FuiteDeGaz_AliceGregoireNORMAND.06.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.06",
+        "environment": "Partage des ressources engagées avec le SAMU 44"
+      },
+      {
+        "file": "RC-RI/RC-RI_Incendie_RaymondeLECCIA.04.json",
+        "icon": "mdi-fire-truck",
+        "name": "Raymonde LECCIA.04",
+        "environment": "Détail des ressources SIS mobilisées pour l'intervention"
+      }
     ]
   },
   {
