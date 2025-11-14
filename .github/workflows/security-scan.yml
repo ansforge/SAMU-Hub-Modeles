@@ -81,12 +81,21 @@ jobs:
           cache: 'npm'
           cache-dependency-path: '${{ inputs.working-directory }}/package-lock.json'
 
-      - name: Set up Python with uv
+      - name: Set up Python with uv (for pyproject.toml projects)
         if: inputs.project-type == 'python'
         uses: astral-sh/setup-uv@v7
         with:
           version: "latest"
           python-version: ${{ inputs.python-version }}
+          enable-cache: false  # Disable cache to avoid issues with simple projects
+
+      - name: Set up Python (fallback for requirements.txt)
+        if: inputs.project-type == 'python'
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.python-version }}
+          cache: 'pip'
+          cache-dependency-path: '${{ inputs.working-directory }}/requirements.txt'
 
       - name: Set up JDK
         if: inputs.project-type == 'java'
@@ -110,14 +119,16 @@ jobs:
       - name: Install Python security tools
         if: inputs.project-type == 'python' && inputs.dependency-scan
         run: |
-          if [ -f "pyproject.toml" ] || [ -f "requirements.txt" ]; then
-            if [ -f "pyproject.toml" ]; then
-              uv sync --dev || uv sync
-            fi
-            pip install safety bandit || echo "::warning::Failed to install Python security tools"
-          else
-            echo "::warning::No Python dependencies file found"
+          if [ -f "pyproject.toml" ]; then
+            echo "Using uv for pyproject.toml project"
+            uv sync --dev || uv sync || echo "::warning::uv sync failed, falling back to pip"
+          elif [ -f "requirements.txt" ]; then
+            echo "Using pip for requirements.txt project"
+            pip install -r requirements.txt || echo "::warning::Failed to install requirements"
           fi
+          
+          # Install security tools
+          pip install safety bandit || echo "::warning::Failed to install Python security tools"
 
       # Run dependency vulnerability scans
       - name: Scan Python dependencies (Safety)
