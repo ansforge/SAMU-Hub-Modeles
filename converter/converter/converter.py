@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, g
 import logging
 from converter.conversion_strategy.conversion_strategy import conversion_strategy
 from .logging_config import configure_logging
@@ -26,6 +26,9 @@ def convert():
     target_version = req_data.get("targetVersion")
     edxl_json = req_data.get("edxl")
     is_cisu_conversion = req_data.get("cisuConversion", False)
+
+    # Store distributionId in request context to be used in logs
+    g.distributionId = edxl_json.get("distributionID")
 
     if not source_version or not target_version or not edxl_json:
         return raise_error(
