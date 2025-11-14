@@ -1,0 +1,46 @@
+{
+  "resourcesInfoCisu": {
+    "resource": [
+      {
+        "contact": {
+          "details": "+33744947325",
+          "type": "TEL"
+        },
+        "team": {
+          "medicalLevel": "MED",
+          "name": "Equipe VSAV 5"
+        },
+        "state": {
+          "datetime": "2024-08-01T16:42:00+02:00",
+          "status": "DECLENCHE"
+        },
+        "datetime": "2024-08-01T16:42:00+02:00",
+        "resourceId": "fr.fire.sisXXX.cga-XXX.resource.VSAV12",
+        "orgId": "fr.fire.sisXXX.cga-XXX",
+        "vehicleType": "SIS",
+        "name": "VSAV 76 - A45"
+      },
+      {
+        "contact": {
+          "details": "+33645987297",
+          "type": "TEL"
+        },
+        "team": {
+          "name": "Equipe Rouge",
+          "medicalLevel": "SECOURS"
+        },
+        "state": {
+          "datetime": "2024-08-01T16:40:00+02:00",
+          "status": "DECLENCHE",
+          "availability": false
+        },
+        "datetime": "2024-08-01T16:40:00+02:00",
+        "resourceId": "fr.fire.sisXXX.cga-XXX.resource.VSAV3A",
+        "orgId": "fr.fire.sisXXX.cga-XXX",
+        "name": "VSAV 76 - 22D8",
+        "vehicleType": "SIS"
+      }
+    ],
+    "caseId": "fr.health.samu760.DRFR158002421400215"
+  }
+}

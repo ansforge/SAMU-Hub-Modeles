@@ -686,6 +686,55 @@
     ]
   },
   {
+    "label": "RC-RI",
+    "schemaName": "RC-RI.schema.json",
+    "schema": null,
+    "examples": [
+      {
+        "file": "RC-RI/RC-RI_partageDossier_DidierMorel.01b.json",
+        "icon": "mdi-circular-saw",
+        "name": "Didier MOREL.01b",
+        "environment": "Engagement d'un VSR et d'un VSAV par le SDIS 77"
+      },
+      {
+        "file": "RC-RI/RC-RI_partageDossier_LolaHalimi.01b.json",
+        "icon": "mdi-image-broken-variant",
+        "name": "Lola HALIMI.01b",
+        "environment": "Engagement d'un VSAV par le SDIS 95"
+      },
+      {
+        "file": "RC-RI/RC-RI_partageDossier_EnfantsNguyen.03b.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "Enfants NGUYEN.03b",
+        "environment": "Engagement de deux VSAV par le SDIS 76"
+      },
+      {
+        "file": "RC-RI/RC-RI_FemmeEnceinte_DelphineVigneau.03.json",
+        "icon": "mdi-human-pregnant",
+        "name": "Delphine VIGNEAU.03",
+        "environment": "Engagement d'un VSAV par le SDIS 44"
+      },
+      {
+        "file": "RC-RI/RC-RI_FuiteDeGaz_AliceGregoireNORMAND.03.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.03",
+        "environment": "Engagenement d'un VSAV avec le détail de l'équipe"
+      },
+      {
+        "file": "RC-RI/RC-RI_FuiteDeGaz_AliceGregoireNORMAND.06.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.06",
+        "environment": "Partage des ressources engagées avec le SAMU 44"
+      },
+      {
+        "file": "RC-RI/RC-RI_Incendie_RaymondeLECCIA.04.json",
+        "icon": "mdi-fire-truck",
+        "name": "Raymonde LECCIA.04",
+        "environment": "Détail des ressources SIS mobilisées pour l'intervention"
+      }
+    ]
+  },
+  {
     "label": "EMSI",
     "schemaName": "EMSI.schema.json",
     "schema": null,
@@ -784,6 +833,55 @@
         "icon": "mdi-earth",
         "name": "Resources Request",
         "context": "Demande de partage des détails des ressources"
+      }
+    ]
+  },
+  {
+    "label": "RS-SAS-RDV",
+    "schemaName": "RS-SAS-RDV.schema.json",
+    "schema": null,
+    "examples": [
+      {
+        "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_PS.01.json",
+        "icon": "mdi-doctor",
+        "name": "01 Didier MOREL",
+        "context": "Cas création RDV avec PS mais sans structure, exemple PS. indiv"
+      },
+      {
+        "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_PS.01-MAJ.json",
+        "icon": "mdi-doctor",
+        "name": "01 Didier MOREL MAJ (annul)",
+        "context": "Cas mise à jour (annulation) RDV"
+      },
+      {
+        "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_PS.02.json",
+        "icon": "mdi-doctor",
+        "name": "02 NORMAND ALICE",
+        "context": "Cas création RDV avec PS mais sans structure, exemple PS. indiv"
+      },
+      {
+        "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_PS.02-MAJ.json",
+        "icon": "mdi-doctor",
+        "name": "02 NORMAND ALICE MAJ (statut)",
+        "context": "Cas mise à jour RDV (changement statut) avec PS mais sans structure, exemple PS. indiv"
+      },
+      {
+        "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_SOS.01.json",
+        "icon": "mdi-hospital-box-outline",
+        "name": "01 SOS",
+        "context": "Cas création RDV sans PS ni structure. Ex : SOS Médecins interfacé en attente d'attribution médecin"
+      },
+      {
+        "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_SOS.01-MAJ.json",
+        "icon": "mdi-hospital-box-outline",
+        "name": "01 SOS Médecins de Rennes - Delphine VIGNEAU MAJ",
+        "context": "Cas mise à jour d'un RDV initialement sans PS (SOS) avec ajout du médecin et de la structure"
+      },
+      {
+        "file": "RS-SAS-RDV/RS-SAS-RDV_appointment_CDS.01.json",
+        "icon": "mdi-hospital-building",
+        "name": "01 CDS Dentaire",
+        "context": "Cas création RDV CDS non interfacé (structure sans PS)"
       }
     ]
   }

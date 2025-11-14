@@ -35,6 +35,8 @@ import com.hubsante.model.emsi.Emsi;
 import com.hubsante.model.emsi.EmsiWrapper;
 import com.hubsante.model.resources.info.ResourcesInfo;
 import com.hubsante.model.resources.info.ResourcesInfoWrapper;
+import com.hubsante.model.cisu.resources.ResourcesInfoCisu;
+import com.hubsante.model.cisu.resources.ResourcesInfoCisuWrapper;
 import com.hubsante.model.resources.info.ResourcesEngagement;
 import com.hubsante.model.resources.info.ResourcesEngagementWrapper;
 import com.hubsante.model.resources.status.ResourcesStatus;
@@ -55,6 +57,8 @@ import com.hubsante.model.geolocation.GeoResourcesRequest;
 import com.hubsante.model.geolocation.GeoResourcesRequestWrapper;
 import com.hubsante.model.geolocation.GeoResourcesDetails;
 import com.hubsante.model.geolocation.GeoResourcesDetailsWrapper;
+import com.hubsante.model.sas.Appointment;
+import com.hubsante.model.sas.AppointmentWrapper;
 
 
 import com.hubsante.model.technical.Technical;
@@ -75,6 +79,7 @@ import java.util.stream.Stream;
         @JsonSubTypes.Type(CreateCaseHealthUpdateWrapper.class),
         @JsonSubTypes.Type(EmsiWrapper.class),
         @JsonSubTypes.Type(ResourcesInfoWrapper.class),
+        @JsonSubTypes.Type(ResourcesInfoCisuWrapper.class),
         @JsonSubTypes.Type(ResourcesEngagementWrapper.class),
         @JsonSubTypes.Type(ResourcesStatusWrapper.class),
         @JsonSubTypes.Type(ResourcesRequestWrapper.class),
@@ -85,6 +90,7 @@ import java.util.stream.Stream;
         @JsonSubTypes.Type(GeoPositionsUpdateWrapper.class),
         @JsonSubTypes.Type(GeoResourcesRequestWrapper.class),
         @JsonSubTypes.Type(GeoResourcesDetailsWrapper.class),
+        @JsonSubTypes.Type(AppointmentWrapper.class),
         @JsonSubTypes.Type(TechnicalWrapper.class),
         @JsonSubTypes.Type(TechnicalNoreqWrapper.class),
         @JsonSubTypes.Type(ErrorWrapper.class),
@@ -118,6 +124,7 @@ public class ContentMessage {
                   {"createCaseHealthUpdate", CreateCaseHealthUpdate.class.getCanonicalName()},
                   {"emsi", Emsi.class.getCanonicalName()},
                   {"resourcesInfo", ResourcesInfo.class.getCanonicalName()},
+                  {"resourcesInfoCisu", ResourcesInfoCisu.class.getCanonicalName()},
                   {"resourcesEngagement", ResourcesEngagement.class.getCanonicalName()},
                   {"resourcesStatus", ResourcesStatus.class.getCanonicalName()},
                   {"resourcesRequest", ResourcesRequest.class.getCanonicalName()},
@@ -128,6 +135,7 @@ public class ContentMessage {
                   {"geoPositionsUpdate", GeoPositionsUpdate.class.getCanonicalName()},
                   {"geoResourcesRequest", GeoResourcesRequest.class.getCanonicalName()},
                   {"geoResourcesDetails", GeoResourcesDetails.class.getCanonicalName()},
+                  {"appointment", Appointment.class.getCanonicalName()},
                   {"technical", Technical.class.getCanonicalName()},
                   {"technicalNoreq", TechnicalNoreq.class.getCanonicalName()},
                   {"error", ErrorWrapper.class.getCanonicalName()},

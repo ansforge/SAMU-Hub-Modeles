@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resourcesInfoCisu xmlns="urn:emergency:eda:1.9:resourcesInfoCisu">
+  <caseId>fr.health.samu440.DRFR154402413800236</caseId>
+  <resource>
+    <datetime>2024-05-18T18:20:00+02:00</datetime>
+    <resourceId>fr.fire.sis044.cgo-044.resource.VSAV2</resourceId>
+    <orgId>fr.fire.sdis44.cgo-044</orgId>
+    <vehicleType>SIS</vehicleType>
+    <name>VSAV2</name>
+    <team>
+      <name>Equipe VSAV 2</name>
+    </team>
+    <state>
+      <datetime>2024-05-18T18:19:00+02:00</datetime>
+      <status>DECISION</status>
+    </state>
+    <contact>
+      <type>TEL</type>
+      <details>0762865426</details>
+    </contact>
+    <freetext>Eric AZERTY, Marie-Jo ANELI, Pierre LOUITUT</freetext>
+  </resource>
+</resourcesInfoCisu>

@@ -1,0 +1,28 @@
+{
+    "appointmentId": "12348",
+    "method": "createAppointment",
+    "created": "2025-06-17T10:15:56+01:00",
+    "start": "2025-06-17T14:00:00+01:00",
+    "end": "2025-06-17T14:20:00+01:00",
+    "status": "booked",
+    "orientationCategory": "SOS",
+    "practitioner": {
+        "rppsId": "810002909371",
+        "lastName": "Dupont",
+        "firstName": "Jean",
+        "specialityCode": "SM54",
+        "specialityUrl": "https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale",
+        "professionCode": "10",
+        "professionUrl": "https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante"
+    },
+    "organization": {
+        "organizationId": "334173748400020",
+        "name": "SOS Médecins de Rennes"
+    },
+    "regulator": {
+        "regulatorId": "3620100057/70326SR",
+        "regulatorName": "Ricart",
+        "regulatorFirstname": "Pauline",
+        "regulatorEmail": "pauline.ricart@ghsas.fr"
+    }
+}

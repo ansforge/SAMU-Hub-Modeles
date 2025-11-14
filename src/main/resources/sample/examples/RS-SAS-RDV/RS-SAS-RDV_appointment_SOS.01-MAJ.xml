@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<appointment xmlns="urn:emergency:eda:1.9:appointment">
+  <appointmentId>2efdbc9d-f4b2-402a-a134-9647fe7f1f9a</appointmentId>
+  <method>UpdateAppointment</method>
+  <created>2025-06-17T10:15:00+02:00</created>
+  <start>2025-06-17T14:00:00+02:00</start>
+  <end>2025-06-17T14:20:00+02:00</end>
+  <status>fulfilled</status>
+  <orientationCategory>SOS</orientationCategory>
+  <practitioner>
+    <rppsId>810004762901</rppsId>
+    <lastName>VIGNEAU</lastName>
+    <firstName>Delphine</firstName>
+    <professionCode>50</professionCode>
+    <professionUrl>https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante</professionUrl>
+  </practitioner>
+  <organization>
+    <organizationId>334173748400020</organizationId>
+    <name>SOS Médecins de Rennes</name>
+  </organization>
+  <regulator>
+    <regulatorId>3620100057/70326SR</regulatorId>
+    <regulatorName>RICART</regulatorName>
+    <regulatorFirstname>Pauline</regulatorFirstname>
+    <regulatorEmail>pauline.ricart@ghsas.fr</regulatorEmail>
+  </regulator>
+</appointment>

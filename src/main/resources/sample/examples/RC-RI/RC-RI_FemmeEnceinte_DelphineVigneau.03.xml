@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resourcesInfoCisu xmlns="urn:emergency:eda:1.9:resourcesInfoCisu">
+  <caseId>fr.fire.sis044.cga-044.SC-20240526-044-cga-AL8</caseId>
+  <resource>
+    <datetime>2024-05-26T15:05:00+02:00</datetime>
+    <resourceId>fr.fire.sis044.cgo-044.resource.VSAV4</resourceId>
+    <orgId>fr.fire.sdis44.cgo-044</orgId>
+    <vehicleType>SIS</vehicleType>
+    <name>VSAV4</name>
+    <team>
+      <medicalLevel>MED</medicalLevel>
+      <name>Equipe VSAV 4</name>
+    </team>
+    <state>
+      <datetime>2024-05-26T15:05:00+02:00</datetime>
+      <status>DECLENCHE</status>
+      <availability>false</availability>
+    </state>
+  </resource>
+</resourcesInfoCisu>
