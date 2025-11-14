@@ -55,6 +55,11 @@ on:
         required: false
         type: string
         default: ''
+      semgrep-excludes:
+        description: 'Additional Semgrep exclude patterns'
+        required: false
+        type: string
+        default: ''
 
 jobs:
   security-scan:
@@ -159,29 +164,13 @@ jobs:
 
       - name: Run Semgrep (SARIF output)
         if: inputs.static-analysis
+        env:
+          SEMGREP_EXCLUDES: "--exclude=dist --exclude=build --exclude=coverage --exclude=__pycache__ --exclude=.venv --exclude=.cache --exclude=.pytest_cache --exclude=.tox --exclude=.mypy_cache --exclude=uv.lock --exclude=*.pyc --exclude=*.min.js --exclude=*.bundle.js --exclude=.gradle --exclude=gradle/wrapper --exclude=*.class --exclude=*.jar"
         run: |
-          # Base exclude arguments
-          EXCLUDE_ARGS="--exclude=dist --exclude=build --exclude=coverage --exclude=__pycache__ --exclude=.venv --exclude=.cache --exclude=.pytest_cache --exclude=.tox --exclude=.mypy_cache --exclude=uv.lock --exclude=*.pyc --exclude=*.min.js --exclude=*.bundle.js --exclude=.gradle --exclude=gradle/wrapper --exclude=*.class --exclude=*.jar"
-          
-          # Add additional exclude paths if specified
-          if [ -n "${{ inputs.exclude-paths }}" ]; then
-            IFS=',' read -ra EXCLUDE_PATHS <<< "${{ inputs.exclude-paths }}"
-            for path in "${EXCLUDE_PATHS[@]}"; do
-              EXCLUDE_ARGS="$EXCLUDE_ARGS --exclude=$path"
-            done
-          fi
-          
-          # Run Semgrep with proper argument expansion
-          docker run --rm -v "${PWD}:/src" \
-            semgrep/semgrep:latest \
-            --config=p/security-audit \
-            --config=p/secrets \
-            --config=p/ci \
-            --config=p/r2c-ci \
-            --sarif \
-            --output=/src/semgrep.sarif \
-            ${EXCLUDE_ARGS} \
-            /src
+          pip install semgrep
+          semgrep --config auto --sarif --output semgrep.sarif \
+            $SEMGREP_EXCLUDES \
+            ${{ inputs.semgrep-excludes }}
 
       - name: Fix Semgrep SARIF file paths
         if: inputs.static-analysis && hashFiles(format('{0}/semgrep.sarif', inputs.working-directory)) != ''
