@@ -20,3 +20,8 @@ Professionnel de santé,,,,,,Représente le professionnel de santé associé au 
 Structure,,,,,,Représente la structure du PS ou la structure associée au rendez-vous si le PS n'est pas connu,,organization,0..1,X,organization,
 ,Identifiant national de la structure,,,,,Indique l'identifiant national de la structure,334173748400020,organizationId,1..1,,string,
 ,Nom de la structure,,,,,Indique le nom de la structure,SOS Médecins de Rennes,name,1..1,,string,
+Régulateur,,,,,,Représente le régulateur ayant pris le RDV,,regulator,1..1,X,regulator,
+,Identifiant régulateur,,,,,Identifiant du régulateur ayant pris le RDV,3620100057/70326SR,regulatorId,0..1,,string,
+,Nom du régulateur,,,,,Nom du régulateur ayant pris le RDV,Ricart,regulatorName,1..1,,string,
+,Prénom du régulateur,,,,,Prénom du régulateur ayant pris le RDV,Pauline,regulatorFirstname,1..1,,string,
+,Email du régulateur,,,,,Adresse mail du régulateur ayant pris le RDV,pauline.ricart@ghsas.fr,regulatorEmail,1..1,,string,

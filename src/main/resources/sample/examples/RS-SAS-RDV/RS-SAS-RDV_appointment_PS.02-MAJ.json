@@ -13,6 +13,11 @@
       "firstName": "Alice",
       "specialityCode": "SM40",
       "specialityUrl": "https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale"
+    },
+    "regulator": {
+      "regulatorName": "DUPONT",
+      "regulatorFirstname": "Jean",
+      "regulatorEmail": "jean.dupont@ghsas.fr"
     }
   }
 }

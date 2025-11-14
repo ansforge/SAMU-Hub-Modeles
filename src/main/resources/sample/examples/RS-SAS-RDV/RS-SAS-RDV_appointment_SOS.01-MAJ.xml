@@ -18,4 +18,10 @@
     <organizationId>334173748400020</organizationId>
     <name>SOS Médecins de Rennes</name>
   </organization>
+  <regulator>
+    <regulatorId>3620100057/70326SR</regulatorId>
+    <regulatorName>RICART</regulatorName>
+    <regulatorFirstname>Pauline</regulatorFirstname>
+    <regulatorEmail>pauline.ricart@ghsas.fr</regulatorEmail>
+  </regulator>
 </appointment>
