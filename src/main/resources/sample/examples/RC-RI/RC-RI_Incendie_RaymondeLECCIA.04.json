@@ -1,0 +1,39 @@
+{
+  "resourcesInfoCisu": {
+    "resource": [
+      {
+        "team": {
+          "medicalLevel": "MED",
+          "name": "Equipe FEU 3"
+        },
+        "name": "VSR-Rea3",
+        "datetime": "2024-08-13T10:23:00+02:00",
+        "resourceId": "fr.fire.sisXXX.cga-XXX.resource.VSR268",
+        "orgId": "fr.fire.sisXXX.cgo-XXX",
+        "state": {
+          "status": "DECLENCHE",
+          "datetime": "2024-08-13T10:24:00+02:00",
+          "availability": false
+        },
+        "vehicleType": "SIS"
+      },
+      {
+        "team": {
+          "medicalLevel": "MED"
+        },
+        "datetime": "2024-08-13T10:23:00+02:00",
+        "resourceId": "fr.fire.sisXXX.cga-XXX.resource.VSR268",
+        "orgId": "fr.fire.sisXXX.cgo-XXX",
+        "state": {
+          "status": "DECLENCHE",
+          "datetime": "2024-08-13T10:24:00+02:00",
+          "availability": false
+        },        
+        "vehicleType": "SIS",
+        "name": "VSR-Rea3",
+        "centerCity": "35580"
+      }
+    ],
+    "caseId": "fr.fire.sisXXX.cga-XXX.SC-20240813-XXX-cga-AT517"
+  }
+}

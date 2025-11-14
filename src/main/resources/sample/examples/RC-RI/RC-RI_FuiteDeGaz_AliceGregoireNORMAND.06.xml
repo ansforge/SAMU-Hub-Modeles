@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resourcesInfoCisu xmlns="urn:emergency:eda:1.9:resourcesInfoCisu">
+  <caseId>fr.health.samu440.DRFR154402413800236</caseId>
+  <resource>
+    <datetime>2024-05-18T18:20:00+02:00</datetime>
+    <resourceId>fr.fire.sis044.cgo-044.resource.VSAV2</resourceId>
+    <orgId>fr.fire.sdis44.cgo-044</orgId>
+    <vehicleType>SIS</vehicleType>
+    <name>VSAV2</name>
+    <team>
+      <medicalLevel>MED</medicalLevel>
+      <name>Equipe VSAV 2</name>
+    </team>
+    <state>
+      <datetime>2024-05-18T18:20:00+02:00</datetime>
+      <status>DECLENCHE</status>
+      <availability>false</availability>
+    </state>
+  </resource>
+  <resource>
+    <datetime>2024-05-18T18:22:00+02:00</datetime>
+    <resourceId>fr.fire.sis044.cgo-044.resource.VSAV3</resourceId>
+    <orgId>fr.fire.sdis044.cgo-044</orgId>
+    <vehicleType>SIS</vehicleType>
+    <name>VSAV3</name>
+    <centerCity>44109</centerCity>
+    <team>
+      <medicalLevel>SECOURS</medicalLevel>
+    </team>
+    <state>
+      <datetime>2024-05-18T18:20:00+02:00</datetime>
+      <status>DECLENCHE</status>
+      <availability>false</availability>
+    </state>
+  </resource>
+</resourcesInfoCisu>

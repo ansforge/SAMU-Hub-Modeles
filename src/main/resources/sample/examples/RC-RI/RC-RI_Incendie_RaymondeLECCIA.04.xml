@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resourcesInfoCisu xmlns="urn:emergency:eda:1.9:resourcesInfoCisu">
+  <caseId>fr.fire.sisXXX.cga-XXX.SC-20240813-XXX-cga-AT517</caseId>
+  <resource>
+    <datetime>2024-08-13T10:23:00+02:00</datetime>
+    <resourceId>fr.fire.sisXXX.cga-XXX.resource.VSR268</resourceId>
+    <orgId>fr.fire.sisXXX.cgo-XXX</orgId>
+    <vehicleType>SIS</vehicleType>
+    <name>VSR-Rea3</name>
+    <team>
+      <medicalLevel>MED</medicalLevel>
+      <name>Equipe FEU 3</name>
+    </team>
+    <state>
+      <datetime>2024-08-13T10:24:00+02:00</datetime>
+      <status>DECLENCHE</status>
+      <availability>false</availability>
+    </state>
+  </resource>
+  <resource>
+    <datetime>2024-08-13T10:23:00+02:00</datetime>
+    <resourceId>fr.fire.sisXXX.cga-XXX.resource.VSR268</resourceId>
+    <orgId>fr.fire.sisXXX.cgo-XXX</orgId>
+    <vehicleType>SIS</vehicleType>
+    <name>VSR-Rea3</name>
+    <centerCity>35580</centerCity>
+    <team>
+      <medicalLevel>MED</medicalLevel>
+    </team>
+    <state>
+      <datetime>2024-08-13T10:24:00+02:00</datetime>
+      <status>DECLENCHE</status>
+      <availability>false</availability>
+    </state>
+  </resource>
+</resourcesInfoCisu>
