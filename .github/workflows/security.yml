@@ -79,7 +79,7 @@ jobs:
     uses: ./.github/workflows/security-scan.yml
     with:
       working-directory: 'web_specs'
-      project-type: 'python'
+      project-type: 'none'
       python-version: '3.9'
       component-name: 'web-specs'
       dependency-scan: false  # No package.json or pyproject.toml found
