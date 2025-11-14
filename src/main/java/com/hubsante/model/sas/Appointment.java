@@ -36,6 +36,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.sas.Organization;
 import com.hubsante.model.sas.Practitioner;
+import com.hubsante.model.sas.Regulator;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -50,7 +51,8 @@ import java.util.Objects;
      Appointment.JSON_PROPERTY_END, Appointment.JSON_PROPERTY_STATUS,
      Appointment.JSON_PROPERTY_ORIENTATION_CATEGORY,
      Appointment.JSON_PROPERTY_PRACTITIONER,
-     Appointment.JSON_PROPERTY_ORGANIZATION})
+     Appointment.JSON_PROPERTY_ORGANIZATION,
+     Appointment.JSON_PROPERTY_REGULATOR})
 @JsonTypeName("appointment")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -197,6 +199,9 @@ public class Appointment {
 
   public static final String JSON_PROPERTY_ORGANIZATION = "organization";
   private Organization organization;
+
+  public static final String JSON_PROPERTY_REGULATOR = "regulator";
+  private Regulator regulator;
 
   public Appointment() {}
 
@@ -412,6 +417,29 @@ public class Appointment {
     this.organization = organization;
   }
 
+  public Appointment regulator(Regulator regulator) {
+
+    this.regulator = regulator;
+    return this;
+  }
+
+  /**
+   * Get regulator
+   * @return regulator
+   **/
+  @JsonProperty(JSON_PROPERTY_REGULATOR)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Regulator getRegulator() {
+    return regulator;
+  }
+
+  @JsonProperty(JSON_PROPERTY_REGULATOR)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setRegulator(Regulator regulator) {
+    this.regulator = regulator;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -430,13 +458,15 @@ public class Appointment {
         Objects.equals(this.orientationCategory,
                        appointment.orientationCategory) &&
         Objects.equals(this.practitioner, appointment.practitioner) &&
-        Objects.equals(this.organization, appointment.organization);
+        Objects.equals(this.organization, appointment.organization) &&
+        Objects.equals(this.regulator, appointment.regulator);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(appointmentId, method, created, start, end, status,
-                        orientationCategory, practitioner, organization);
+                        orientationCategory, practitioner, organization,
+                        regulator);
   }
 
   @Override
@@ -459,6 +489,9 @@ public class Appointment {
         .append("\n");
     sb.append("    organization: ")
         .append(toIndentedString(organization))
+        .append("\n");
+    sb.append("    regulator: ")
+        .append(toIndentedString(regulator))
         .append("\n");
     sb.append("}");
     return sb.toString();

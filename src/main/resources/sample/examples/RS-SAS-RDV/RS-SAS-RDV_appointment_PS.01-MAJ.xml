@@ -16,4 +16,10 @@
     <professionCode>10</professionCode>
     <professionUrl>https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante</professionUrl>
   </practitioner>
+  <regulator>
+    <regulatorId>3620100057/70326SR</regulatorId>
+    <regulatorName>RICART</regulatorName>
+    <regulatorFirstname>Pauline</regulatorFirstname>
+    <regulatorEmail>pauline.ricart@ghsas.fr</regulatorEmail>
+  </regulator>
 </appointment>
