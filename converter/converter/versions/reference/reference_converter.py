@@ -1,10 +1,9 @@
 from converter.utils import delete_paths
-from converter.versions.conversion_mixin import ConversionMixin
 from converter.versions.identical_message_converter import IdenticalMessageConverter
 from converter.versions.reference.reference_constants import ReferenceConstants
 
 
-class ReferenceConverter(IdenticalMessageConverter, ConversionMixin):
+class ReferenceConverter(IdenticalMessageConverter):
     @staticmethod
     def get_message_type():
         return "reference"

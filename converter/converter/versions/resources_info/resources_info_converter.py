@@ -1,14 +1,14 @@
 from typing import Dict, Any
 
 from converter.utils import delete_paths, get_field_value, map_to_new_value
-from converter.versions.conversion_mixin import ConversionMixin
+from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.resources_info.resources_info_constants import (
     ResourcesInfoConstants,
 )
 from converter.versions.utils import reverse_map_to_new_value
 
 
-class ResourcesInfoConverter(ConversionMixin):
+class ResourcesInfoConverter(BaseMessageConverter):
     @staticmethod
     def get_message_type():
         return "resourcesInfo"

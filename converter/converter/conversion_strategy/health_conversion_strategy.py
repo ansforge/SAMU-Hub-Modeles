@@ -33,6 +33,11 @@ from converter.versions.geo_positions_update.geo_positions_update_converter impo
 )
 from converter.versions.rpis.rpis_converter import RpisConverter
 
+from converter.utils import (
+    extract_message_content,
+    extract_message_type_from_message_content,
+)
+
 
 def health_conversion_strategy(edxl_json, source_version: str, target_version: str):
     print(f"Health Conversion initiated from {source_version} to {target_version}")
@@ -40,15 +45,6 @@ def health_conversion_strategy(edxl_json, source_version: str, target_version: s
     message_content = extract_message_content(edxl_json)
     selected_strategy = select_conversion_strategy(message_content)
     return selected_strategy.convert(source_version, target_version, edxl_json)
-
-
-def extract_message_content(edxl_json):
-    return (
-        edxl_json.get("content", [{}])[0]
-        .get("jsonContent", {})
-        .get("embeddedJsonContent", {})
-        .get("message", {})
-    )
 
 
 def select_conversion_strategy(message_content):
@@ -87,15 +83,3 @@ def select_conversion_strategy(message_content):
         raise ValueError(
             f"Version conversion for message type '{deducted_message_type}' is currently not implemented."
         )
-
-
-unwanted_keys = ["messageId", "sender", "sentAt", "kind", "status", "recipient"]
-
-
-def extract_message_type_from_message_content(message_content):
-    filtered_keys = list(
-        filter(lambda key: key not in unwanted_keys, message_content.keys())
-    )
-    if len(filtered_keys) == 0:
-        return "unknownMessageType"
-    return filtered_keys[0]

@@ -1,12 +1,12 @@
 from typing import Dict, Any
 
 from converter.utils import map_to_new_value
-from converter.versions.conversion_mixin import ConversionMixin
+from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.rpis.rpis_constants import RpisConstants
 from converter.versions.utils import reverse_map_to_new_value
 
 
-class RpisConverter(ConversionMixin):
+class RpisConverter(BaseMessageConverter):
     @staticmethod
     def get_message_type():
         return "rpis"

@@ -1,6 +1,6 @@
 from typing import Any, Dict, List
 
-from ..utils import concatenate_values, get_field_value, is_field_completed
+from converter.utils import concatenate_values, get_field_value, is_field_completed
 
 
 def add_object_to_initial_alert_notes(json_data: Dict[str, Any], note_text: str):

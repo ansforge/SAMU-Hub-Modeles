@@ -1,14 +1,14 @@
 from typing import Dict, Any
 
 from converter.utils import get_field_value, map_to_new_value, update_json_value
-from converter.versions.conversion_mixin import ConversionMixin
+from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.geo_resources_details.geo_resources_details_constants import (
     GeoResourcesDetailsConstants,
 )
 from converter.versions.utils import reverse_map_to_new_value
 
 
-class GeoResourcesDetailsConverter(ConversionMixin):
+class GeoResourcesDetailsConverter(BaseMessageConverter):
     @staticmethod
     def get_message_type():
         return "geoResourcesDetails"
