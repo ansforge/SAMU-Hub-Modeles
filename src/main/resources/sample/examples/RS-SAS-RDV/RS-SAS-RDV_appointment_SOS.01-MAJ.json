@@ -17,6 +17,12 @@
     "organization": {
       "organizationId": "334173748400020",
       "name": "SOS Médecins de Rennes"
+    },
+    "regulator": {
+      "regulatorId": "3620100057/70326SR",
+      "regulatorName": "RICART",
+      "regulatorFirstname": "Pauline",
+      "regulatorEmail": "pauline.ricart@ghsas.fr"
     }
   }
 }

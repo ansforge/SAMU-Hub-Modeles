@@ -15,6 +15,12 @@
       "specialityUrl": "https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale",
       "professionUrl": "https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante",
       "professionCode": "10"
+    },
+    "regulator": {
+      "regulatorId": "3620100057/70326SR",
+      "regulatorName": "RICART",
+      "regulatorFirstname": "Pauline",
+      "regulatorEmail": "pauline.ricart@ghsas.fr"
     }
   }
 }
