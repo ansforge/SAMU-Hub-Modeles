@@ -62,9 +62,6 @@ jobs:
     defaults:
       run:
         working-directory: ${{ inputs.working-directory }}
-    
-    env:
-      SEMGREP_EXCLUDE: "--exclude='dist' --exclude='build' --exclude='coverage' --exclude='__pycache__' --exclude='.venv' --exclude='.cache' --exclude='.pytest_cache' --exclude='.tox' --exclude='.mypy_cache' --exclude='uv.lock' --exclude='*.pyc' --exclude='*.min.js' --exclude='*.bundle.js' --exclude='.gradle' --exclude='gradle/wrapper' --exclude='*.class' --exclude='*.jar'"
 
     steps:
       - name: Checkout repository
@@ -163,14 +160,18 @@ jobs:
       - name: Run Semgrep (SARIF output)
         if: inputs.static-analysis
         run: |
-          EXCLUDE_ARGS="${{ env.SEMGREP_EXCLUDE }}"
+          # Base exclude arguments
+          EXCLUDE_ARGS="--exclude=dist --exclude=build --exclude=coverage --exclude=__pycache__ --exclude=.venv --exclude=.cache --exclude=.pytest_cache --exclude=.tox --exclude=.mypy_cache --exclude=uv.lock --exclude=*.pyc --exclude=*.min.js --exclude=*.bundle.js --exclude=.gradle --exclude=gradle/wrapper --exclude=*.class --exclude=*.jar"
+          
+          # Add additional exclude paths if specified
           if [ -n "${{ inputs.exclude-paths }}" ]; then
             IFS=',' read -ra EXCLUDE_PATHS <<< "${{ inputs.exclude-paths }}"
             for path in "${EXCLUDE_PATHS[@]}"; do
-              EXCLUDE_ARGS="$EXCLUDE_ARGS --exclude='$path'"
+              EXCLUDE_ARGS="$EXCLUDE_ARGS --exclude=$path"
             done
           fi
           
+          # Run Semgrep with proper argument expansion
           docker run --rm -v "${PWD}:/src" \
             semgrep/semgrep:latest \
             --config=p/security-audit \
@@ -179,7 +180,7 @@ jobs:
             --config=p/r2c-ci \
             --sarif \
             --output=/src/semgrep.sarif \
-            $EXCLUDE_ARGS \
+            ${EXCLUDE_ARGS} \
             /src
 
       - name: Fix Semgrep SARIF file paths
