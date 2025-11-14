@@ -1,3 +1,5 @@
+import logging
+
 from converter.cisu.create_case.create_case_cisu_converter import (
     CreateCaseCISUConverter,
 )
@@ -16,15 +18,20 @@ from converter.utils import (
     extract_message_type_from_message_content,
 )
 
+logger = logging.getLogger(__name__)
+
 
 def cisu_conversion_strategy(edxl_json, source_version, target_version):
-    print(f"CISU Conversion initiated from {source_version} to {target_version}")
+    logger.info(f"CISU Conversion initiated from {source_version} to {target_version}")
 
     direction = compute_message_direction(edxl_json)
     message_content = extract_message_content(edxl_json)
     selected_strategy = select_conversion_strategy(message_content)
 
     if direction == CISUConstants.TO_CISU:
+        logger.info(
+            "Conversion RS -> CISU",
+        )
         if target_version != CISUConstants.MAINTAINED_CISU_VERSION:
             raise ValueError(
                 f"Unknown target version {target_version}. Must be: {CISUConstants.MAINTAINED_CISU_VERSION}"
@@ -36,6 +43,9 @@ def cisu_conversion_strategy(edxl_json, source_version, target_version):
 
         return selected_strategy.from_rs_to_cisu(rs_json_message)
     elif direction == CISUConstants.FROM_CISU:
+        logger.info(
+            "Conversion CISU -> RS",
+        )
         if source_version != CISUConstants.MAINTAINED_CISU_VERSION:
             raise ValueError(
                 f"Unknown source version {source_version}. Must be: {CISUConstants.MAINTAINED_CISU_VERSION}"

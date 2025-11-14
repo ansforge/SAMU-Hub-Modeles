@@ -309,11 +309,11 @@ class TestUpdateJsonValue(unittest.TestCase):
         except Exception as e:
             self.fail(f"update_json_value raised an exception: {e}")
 
-    @patch("builtins.print")
-    def test_update_json_value_prints_error(self, mock_print):
+    @patch("converter.utils.logger")
+    def test_update_json_value_logs_error(self, mock_logger):
         with self.assertRaises(Exception):
             update_json_value(self.json_data, "$..", "Invalid")
-        mock_print.assert_called_with(
+        mock_logger.error.assert_called_once_with(
             "Error raised in update_json_value: Parse error near the end of string!"
         )
 
