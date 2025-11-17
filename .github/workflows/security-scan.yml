@@ -198,7 +198,7 @@ jobs:
 
       - name: Upload Semgrep results to GitHub Security tab
         if: inputs.static-analysis && hashFiles(format('{0}/semgrep.sarif', inputs.working-directory)) != ''
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: ${{ inputs.working-directory }}/semgrep.sarif
           category: semgrep-${{ inputs.component-name }}
@@ -225,7 +225,7 @@ jobs:
 
       - name: Upload Trivy filesystem results to GitHub Security tab
         if: hashFiles(format('{0}/trivy-filesystem.sarif', inputs.working-directory)) != ''
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: ${{ inputs.working-directory }}/trivy-filesystem.sarif
           category: trivy-${{ inputs.component-name }}-filesystem
@@ -251,7 +251,7 @@ jobs:
 
       - name: Upload Trivy Dockerfile results to GitHub Security tab
         if: inputs.scan-dockerfile
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: ${{ inputs.working-directory }}/trivy-dockerfile.sarif
           category: trivy-${{ inputs.component-name }}-dockerfile
