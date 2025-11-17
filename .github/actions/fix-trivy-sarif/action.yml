@@ -14,9 +14,10 @@ runs:
   steps:
     - name: Fix SARIF file paths
       shell: bash
+      env:
+        SARIF_FILE: ${{ inputs.sarif-file }}
+        SCAN_PATH: ${{ inputs.scan-path }}
       run: |
-        SARIF_FILE="${{ inputs.sarif-file }}"
-        SCAN_PATH="${{ inputs.scan-path }}"
         
         if [ ! -f "$SARIF_FILE" ]; then
           echo "::error::SARIF file not found: $SARIF_FILE"

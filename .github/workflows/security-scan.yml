@@ -177,11 +177,17 @@ jobs:
         if: inputs.static-analysis
         env:
           SEMGREP_EXCLUDES: "--exclude=dist --exclude=build --exclude=coverage --exclude=__pycache__ --exclude=.venv --exclude=.cache --exclude=.pytest_cache --exclude=.tox --exclude=.mypy_cache --exclude=uv.lock --exclude=*.pyc --exclude=*.min.js --exclude=*.bundle.js --exclude=.gradle --exclude=gradle/wrapper --exclude=*.class --exclude=*.jar"
+          SEMGREP_ADDITIONAL_EXCLUDES: ${{ inputs.semgrep-excludes }}
         run: |
           pip install semgrep
-          semgrep --config auto --sarif --output semgrep.sarif \
-            $SEMGREP_EXCLUDES \
-            ${{ inputs.semgrep-excludes }}
+          if [ -n "$SEMGREP_ADDITIONAL_EXCLUDES" ]; then
+            semgrep --config auto --sarif --output semgrep.sarif \
+              $SEMGREP_EXCLUDES \
+              "$SEMGREP_ADDITIONAL_EXCLUDES"
+          else
+            semgrep --config auto --sarif --output semgrep.sarif \
+              $SEMGREP_EXCLUDES
+          fi
 
       - name: Fix Semgrep SARIF file paths
         if: inputs.static-analysis && hashFiles(format('{0}/semgrep.sarif', inputs.working-directory)) != ''
