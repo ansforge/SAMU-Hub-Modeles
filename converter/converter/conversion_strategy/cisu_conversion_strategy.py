@@ -3,6 +3,7 @@ import logging
 from converter.cisu.create_case.create_case_cisu_converter import (
     CreateCaseCISUConverter,
 )
+from converter.cisu.reference.reference_converter import ReferenceConverter
 from converter.cisu.resources_info.resources_info_cisu_converter import (
     ResourcesInfoCISUConverter,
 )
@@ -80,6 +81,8 @@ def select_conversion_strategy(message_content):
         return CreateCaseCISUConverter
     elif "resourcesInfo" in message_content or "resourcesInfoCisu" in message_content:
         return ResourcesInfoCISUConverter
+    elif "reference" in message_content:
+        return ReferenceConverter
     else:
         deducted_message_type = extract_message_type_from_message_content(
             message_content
