@@ -74,16 +74,16 @@ gunicorn -w 4 -b 0.0.0.0:8080 converter.converter:app
 
 ```bash
 # Based on https://github.com/ansforge/SAMU-Hub-Sante/blob/main/web/lrm/client/constants.js#L5C30-L45C2
-curl -X POST http://localhost:8080/convert-cisu \
+curl -X POST http://localhost:8080/convert \
   -H "Content-Type: application/json" \
-  -d "$(jq --argjson usecase "$(cat ../src/main/resources/sample/examples/RC-EDA/RC-EDA-FemmeEnceinte-DelphineVigneau.json)" '.edxl.content[0].jsonContent.embeddedJsonContent.message |= (. + $usecase)' tests/edxl_envelope_fire_to_health.json)"
+  -d "$(jq --argjson usecase "$(cat ../src/main/resources/sample/examples/RC-EDA/RC-EDA-FemmeEnceinte-DelphineVigneau.json)" '.sourceVersion = "v3" | .targetVersion = "v3" | .cisuConversion = true | .edxl.content[0].jsonContent.embeddedJsonContent.message |= (. + $usecase)' tests/fixtures/EDXL/edxl_envelope_fire_to_health.json)"
 ```
 
 #### Convert Health to CISU Format
 
 ```bash
 # Based on https://github.com/ansforge/SAMU-Hub-Sante/blob/main/web/lrm/client/constants.js#L5C30-L45C2
-curl -X POST http://localhost:8080/convert-cisu \
+curl -X POST http://localhost:8080/convert \
   -H "Content-Type: application/json" \
-  -d "$(jq --argjson usecase "$(cat ../src/main/resources/sample/examples/RS-EDA/RS-EDA-SMUR_FemmeEnceinte_DelphineVigneau.01.json)" '.edxl.content[0].jsonContent.embeddedJsonContent.message |= (. + $usecase)' tests/edxl_envelope_health_to_fire.json)"
+  -d "$(jq --argjson usecase "$(cat ../src/main/resources/sample/examples/RS-EDA/RS-EDA-SMUR_FemmeEnceinte_DelphineVigneau.01.json)" '.sourceVersion = "v3" | .targetVersion = "v3" | .cisuConversion = true | .edxl.content[0].jsonContent.embeddedJsonContent.message |= (. + $usecase)' tests/fixtures/EDXL/edxl_envelope_health_to_fire.json)"
 ```

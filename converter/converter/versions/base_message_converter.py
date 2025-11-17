@@ -1,7 +1,11 @@
 from converter.conversion_mixin import ConversionMixin
 from typing import Dict, Any
 
+import logging
+
 version_order_list = ["v1", "v2", "v3"]
+
+logger = logging.getLogger(__name__)
 
 
 class BaseMessageConverter(ConversionMixin):
@@ -34,14 +38,19 @@ class BaseMessageConverter(ConversionMixin):
 
         # No conversion needed
         if source_version_index == target_version_index:
+            logger.info(
+                "Stopping conversion: source and target versions are identical."
+            )
             return edxl_json
 
         try:
             # Convert directly if version are consecutive
             if abs(source_version_index - target_version_index) == 1:
                 if source_version_index < target_version_index:
+                    logger.info(f"Upgrading message version from {source_version}")
                     return cls.upgrade(source_version, source_version_index, edxl_json)
                 else:
+                    logger.info(f"Downgrading message version from {source_version}")
                     return cls.downgrade(
                         source_version, source_version_index, edxl_json
                     )
@@ -63,7 +72,7 @@ class BaseMessageConverter(ConversionMixin):
                 converted_edxl_json,
             )
         except ValueError as err:
-            print(f"[ERROR] {err}")
+            logger.error(err)
             cls.raise_conversion_not_implemented_error(source_version, target_version)
 
     @classmethod
@@ -118,10 +127,12 @@ class BaseMessageConverter(ConversionMixin):
 
     @classmethod
     def copy_input_content(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
+        logger.info("Copying input content")
         return cls._copy_input_content(input_json, cls.get_message_type())
 
     @classmethod
     def copy_input_use_case_content(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
+        logger.info("Copying input use case content")
         return cls._copy_input_use_case_content(input_json, cls.get_message_type())
 
     @classmethod
@@ -130,6 +141,7 @@ class BaseMessageConverter(ConversionMixin):
         output_json: Dict[str, Any],
         output_use_case_json: Dict[str, Any],
     ) -> Dict[str, Any]:
+        logger.info("Formatting output JSON")
         return cls._format_output_json(
             output_json, output_use_case_json, cls.get_message_type()
         )

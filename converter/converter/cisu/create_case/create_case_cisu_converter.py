@@ -17,6 +17,9 @@ from converter.utils import (
     translate_key_words,
 )
 from converter.cisu.base_cisu_converter import BaseCISUConverter
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class CreateCaseCISUConverter(BaseCISUConverter):
@@ -89,14 +92,17 @@ class CreateCaseCISUConverter(BaseCISUConverter):
         Returns:
             Converted EDXL Health JSON
         """
+        logger.info("Starting CISU to Health format conversion")
 
         def set_default_location_freetext(json_data: Dict[str, Any]):
+            logger.debug("Setting default location freetext")
             if not is_field_completed(json_data, "$.location.freetext"):
                 json_data["location"]["freetext"] = (
                     ""  # need at least empty value to pass validation
                 )
 
         def add_location_detail(json_data: Dict[str, Any]):
+            logger.debug("Adding location detail to freetext")
             if is_field_completed(json_data, "$.location.city.detail"):
                 set_default_location_freetext(json_data)
                 json_data["location"]["freetext"] += (
@@ -104,6 +110,7 @@ class CreateCaseCISUConverter(BaseCISUConverter):
                 )
 
         def add_case_priority(json_data: Dict[str, Any]):
+            logger.debug("Adding case priority")
             if is_field_completed(json_data, "$.initialAlert.reporting"):
                 if not is_field_completed(json_data, "$.qualification.details"):
                     json_data["qualification"]["details"] = {}
@@ -115,6 +122,7 @@ class CreateCaseCISUConverter(BaseCISUConverter):
                 )
 
         def merge_notes_freetext(json_data: Dict[str, Any]):
+            logger.debug("Merging freetext notes")
             if not is_field_completed(json_data, "$.initialAlert.notes"):
                 return json_data
 
@@ -136,6 +144,7 @@ class CreateCaseCISUConverter(BaseCISUConverter):
             return json_data
 
         def add_victims_to_medical_notes(json_data: Dict[str, Any], sender_id: str):
+            logger.debug("Adding victims to medical notes")
             field_value = get_field_value(json_data, "$.qualification.victims")
 
             if field_value is None:
@@ -150,6 +159,7 @@ class CreateCaseCISUConverter(BaseCISUConverter):
         def add_object_to_medical_notes(
             json_data: Dict[str, Any], note_text: str, sender_id: str
         ):
+            logger.debug("Adding object to medical notes")
             if not is_field_completed(json_data, "$.medicalNote"):
                 json_data["medicalNote"] = []
 
@@ -192,6 +202,7 @@ class CreateCaseCISUConverter(BaseCISUConverter):
         add_victims_to_medical_notes(output_use_case_json, sender_id)
 
         # - Delete paths - /!\ It must be the last step
+        logger.debug("Removing unnecessary paths")
         delete_paths(output_use_case_json, cls.CISU_PATHS_TO_DELETE)
 
         return cls.format_rs_output_json(output_json, output_use_case_json)
@@ -225,8 +236,10 @@ class CreateCaseCISUConverter(BaseCISUConverter):
         Returns:
             Converted EDXL CISU JSON
         """
+        logger.info("Starting Health format to CISU conversion")
 
         def add_victim_information(json_data: Dict[str, Any]):
+            logger.debug("Adding victim information")
             if not is_field_completed(json_data, "$.qualification"):
                 json_data["qualification"] = {}
             json_data["qualification"]["victims"] = cls.get_victim_count(
@@ -234,6 +247,7 @@ class CreateCaseCISUConverter(BaseCISUConverter):
             )
 
         def get_call_taker_information(json_data: Dict[str, Any]):
+            logger.debug("Getting call taker information")
             sender_id = get_sender(json_data)
             crra_code = sender_id[
                 len("fr.health.") :
@@ -244,6 +258,7 @@ class CreateCaseCISUConverter(BaseCISUConverter):
             }
 
         def add_default_external_info_type(json_data: Dict[str, Any]):
+            logger.debug("Adding default external info type")
             external_info = get_field_value(json_data, "$.location.externalInfo")
             if external_info is not None:
                 for info in external_info:
@@ -283,6 +298,7 @@ class CreateCaseCISUConverter(BaseCISUConverter):
         add_default_external_info_type(output_usecase_json)
 
         # Deletions - /!\ it must be done before copying qualification and location fields
+        logger.debug("Removing unnecessary paths")
         delete_paths(output_usecase_json, cls.HEALTH_PATHS_TO_DELETE)
 
         if is_field_completed(input_usecase_json, "$.initialAlert"):

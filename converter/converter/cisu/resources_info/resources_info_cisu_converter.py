@@ -7,6 +7,9 @@ from converter.cisu.resources_info.resources_info_cisu_constants import (
     ResourcesInfoCISUConstants,
 )
 from converter.utils import get_field_value, set_value, delete_paths
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class ResourcesInfoCISUConverter(BaseCISUConverter):
@@ -20,6 +23,8 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
 
     @classmethod
     def from_cisu_to_rs(cls, edxl_json: Dict[str, Any]) -> Dict[str, Any]:
+        logger.info("Converting from CISU to RS format for Resources Info message.")
+        logger.debug(f"Message content: {edxl_json}")
         output_json = cls.copy_cisu_input_content(edxl_json)
         output_use_case_json = cls.copy_cisu_input_use_case_content(edxl_json)
         resources = get_field_value(
@@ -27,6 +32,7 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         )
 
         for resource in resources:
+            logger.debug(f"Processing resource: {resource}")
             state = get_field_value(resource, ResourcesInfoCISUConstants.STATE_PATH)
             set_value(resource, ResourcesInfoCISUConstants.STATE_PATH, [state])
 
@@ -34,6 +40,8 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
 
     @classmethod
     def from_rs_to_cisu(cls, edxl_json: Dict[str, Any]) -> Dict[str, Any]:
+        logger.info("Converting from RS to CISU format for Resources Info message.")
+        logger.debug(f"Message content: {edxl_json}")
         output_json = cls.copy_rs_input_content(edxl_json)
         output_use_case_json = cls.copy_rs_input_use_case_content(edxl_json)
 
@@ -41,6 +49,7 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
             output_use_case_json, ResourcesInfoCISUConstants.RESOURCE_PATH
         )
         for resource in resources:
+            logger.debug(f"Processing resource: {resource}")
             rs_vehicle_type = get_field_value(
                 resource, ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH
             )

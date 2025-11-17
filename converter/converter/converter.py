@@ -1,12 +1,22 @@
-from flask import Flask, request, jsonify
-
+from flask import Flask, request, jsonify, g
+import logging
 from converter.conversion_strategy.conversion_strategy import conversion_strategy
+from converter.utils import (
+    get_sender,
+    get_recipient,
+    extract_message_type_from_message_content,
+    extract_message_content,
+)
+from converter.logging_config import configure_logging, LoggingKeys
+
+configure_logging()
 
 app = Flask(__name__)
+logger = logging.getLogger(__name__)
 
 
 def raise_error(message, code: int = 400):
-    print(f"[ERROR] {message}")
+    logger.error(message)
     return jsonify({"error": message}), code
 
 
@@ -16,10 +26,25 @@ def convert():
         return raise_error("Content-Type must be application/json")
 
     req_data = request.get_json()
+    logger.debug(f"Received conversion request: {req_data}")
     source_version = req_data.get("sourceVersion")
     target_version = req_data.get("targetVersion")
     edxl_json = req_data.get("edxl")
     is_cisu_conversion = req_data.get("cisuConversion", False)
+
+    # Store data in request context to be used in logs
+    try:
+        setattr(g, LoggingKeys.DISTRIBUTION_ID.value, edxl_json.get("distributionID"))
+        setattr(g, LoggingKeys.SENDER_ID.value, get_sender(edxl_json))
+        setattr(g, LoggingKeys.RECIPIENT_ID.value, get_recipient(edxl_json))
+        message_content = extract_message_content(edxl_json)
+        setattr(
+            g,
+            LoggingKeys.MESSAGE_TYPE.value,
+            extract_message_type_from_message_content(message_content),
+        )
+    except Exception:
+        pass
 
     if not source_version or not target_version or not edxl_json:
         return raise_error(
