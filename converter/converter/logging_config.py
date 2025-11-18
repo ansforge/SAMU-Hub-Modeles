@@ -1,4 +1,5 @@
 import logging
+import os
 from pythonjsonlogger.json import JsonFormatter
 from flask import has_request_context, g
 from enum import Enum
@@ -38,6 +39,8 @@ def configure_logging():
     handler.addFilter(DistributionContextFilter())
 
     root.addHandler(handler)
-    root.setLevel(logging.INFO)
+
+    log_level = os.getenv("LOG_LEVEL", logging.getLevelName(logging.INFO)).upper()
+    root.setLevel(log_level)
 
     root.propagate = True

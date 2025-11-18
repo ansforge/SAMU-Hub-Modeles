@@ -68,6 +68,10 @@ Production mode (using Gunicorn):
 gunicorn -w 4 -b 0.0.0.0:8080 converter.converter:app
 ```
 
+### Controlling Logging Level
+
+Set the `LOG_LEVEL` environment variable to one of the following values: `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`. The default level is `INFO`.
+
 ### API Endpoints
 
 #### Convert CISU to Health Format
