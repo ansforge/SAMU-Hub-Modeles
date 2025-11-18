@@ -1,5 +1,3 @@
-import datetime
-
 from converter.cisu.base_cisu_converter import BaseCISUConverter
 from typing import Any, Dict
 
@@ -75,14 +73,10 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
     @classmethod
     def keep_last_state(cls, resource: Dict[str, Any]) -> None:
         states = get_field_value(resource, ResourcesInfoCISUConstants.STATE_PATH)
-        if states and len(states) > 0:
-            latest_state = sorted(states, key=lambda x: x.get("datetime", ""))[-1]
-        else:
-            latest_state = {
-                "datetime": datetime.datetime.now(datetime.timezone.utc).isoformat(
-                    timespec="seconds"
-                ),
-                "status": ResourcesInfoCISUConstants.DEFAULT_CISU_STATE_STATUS,
-            }
+        if not states or len(states) == 0:
+            raise ValueError(
+                "No states found in resource, mandatory for CISU conversion."
+            )
 
+        latest_state = sorted(states, key=lambda x: x.get("datetime", ""))[-1]
         set_value(resource, ResourcesInfoCISUConstants.STATE_PATH, latest_state)

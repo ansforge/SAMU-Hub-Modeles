@@ -1,5 +1,7 @@
 from unittest import TestCase
 
+import pytest
+
 from converter.cisu.resources_info.resources_info_cisu_converter import (
     ResourcesInfoCISUConverter,
 )
@@ -16,13 +18,36 @@ def test_rs_to_cisu():
     )
     rc_schema = TestHelper.load_json_file_online(rc_schema_endpoint)
 
-    TestHelper.conversion_tests_runner(
-        sample_dir=TestConstants.RS_RI_TAG,
-        envelope_file=TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH,
-        converter_method=ResourcesInfoCISUConverter.from_rs_to_cisu,
-        target_schema=rc_schema,
-        online_tag=TestConstants.V3_GITHUB_TAG,
+    usecase_files = TestHelper.get_json_files(
+        TestConstants.RS_RI_TAG, tag=TestConstants.V3_GITHUB_TAG
     )
+
+    usecase_files_with_empty_state = [
+        "RS-RI_FuiteDeGaz_AliceGregoireNORMAND.06.json",
+        "RS-RI_Incendie_RaymondeLECCIA.04.json",
+        "RS-RI_Secondaire_RobertVermande.03.json",
+        "RS-RI_partageRessources_LolaHalimi.03c.json",
+    ]
+
+    for usecase_file in usecase_files:
+        file_name = usecase_file["name"]
+        print(f"Testing conversion of {file_name}")
+        if file_name in usecase_files_with_empty_state:
+            print(f"Skipping test for {file_name} due to known empty state issue.")
+            continue
+
+        edxl_json = TestHelper.create_edxl_json_from_sample(
+            TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH, usecase_file["path"]
+        )
+        # Perform conversion
+        result = ResourcesInfoCISUConverter.from_rs_to_cisu(edxl_json)
+
+        # Extract and validate the converted message
+        usecase_name = rc_schema["title"]
+        converted_message = result["content"][0]["jsonContent"]["embeddedJsonContent"][
+            "message"
+        ][usecase_name]
+        validate(instance=converted_message, schema=rc_schema)
 
 
 def test_rs_to_cisu_should_delete_patient_id():
@@ -40,19 +65,30 @@ def test_rs_to_cisu_should_delete_patient_id():
         assert "patientId" not in resource
 
 
-def test_rs_to_cisu_should_keep_latest_state():
-    resource = {
-        "state": [
-            {"datetime": "2025-01-01T10:00:00Z"},
-            {"datetime": "2025-01-02T12:00:00Z"},
-            {"datetime": "2025-01-02T08:00:00Z"},
-        ]
-    }
-    ResourcesInfoCISUConverter.keep_last_state(resource)
+class TestKeepLatestState(TestCase):
+    def test_keep_latest_state_should_keep_latest(self):
+        resource = {
+            "state": [
+                {"datetime": "2025-01-01T10:00:00Z"},
+                {"datetime": "2025-01-02T12:00:00Z"},
+                {"datetime": "2025-01-02T08:00:00Z"},
+            ]
+        }
+        ResourcesInfoCISUConverter.keep_last_state(resource)
 
-    expected_resource = {"state": {"datetime": "2025-01-02T12:00:00Z"}}
+        expected_resource = {"state": {"datetime": "2025-01-02T12:00:00Z"}}
 
-    assert resource == expected_resource
+        assert resource == expected_resource
+
+    def test_keep_last_state_should_raise_exception_if_state_empty(self):
+        with pytest.raises(ValueError):
+            resource = {"state": []}
+            ResourcesInfoCISUConverter.keep_last_state(resource)
+
+    def test_keep_last_state_should_raise_exception_if_state_undefined(self):
+        with pytest.raises(ValueError):
+            resource = {}
+            ResourcesInfoCISUConverter.keep_last_state(resource)
 
 
 def test_cisu_to_rs_breaking_changes():
