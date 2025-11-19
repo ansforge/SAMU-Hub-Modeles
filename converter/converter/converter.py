@@ -21,12 +21,19 @@ logger = logging.getLogger(__name__)
 app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {"/metrics": make_wsgi_app()})
 
 
+convertion_timer = Histogram(
+    "conversion_duration_seconds",
+    "The number of seconds it took to the /convert endpoint to answer",
+)
+
+
 def raise_error(message, code: int = 400):
     logger.error(message)
     return jsonify({"error": message}), code
 
 
 @app.route("/convert", methods=["POST"])
+@convertion_timer.time()
 def convert():
     if not request.is_json:
         return raise_error("Content-Type must be application/json")
