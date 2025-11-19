@@ -8,6 +8,7 @@ dependencies = [
     "flask>=3.1.2",
     "gunicorn>=23.0.0",
     "jsonpath-ng>=1.7.0",
+    "prometheus-client>=0.23.1",
     "pydantic>=2.11.9",
     "python-json-logger>=4.0.0",
     "pyyaml>=6.0.2",
