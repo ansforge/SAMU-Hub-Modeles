@@ -1,5 +1,8 @@
 from flask import Flask, request, jsonify, g
 import logging
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
+from prometheus_client import make_wsgi_app, Histogram
+
 from converter.conversion_strategy.conversion_strategy import conversion_strategy
 from converter.utils import (
     get_sender,
@@ -13,6 +16,9 @@ configure_logging()
 
 app = Flask(__name__)
 logger = logging.getLogger(__name__)
+
+# Add prometheus wsgi middleware to route /metrics requests
+app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {"/metrics": make_wsgi_app()})
 
 
 def raise_error(message, code: int = 400):
