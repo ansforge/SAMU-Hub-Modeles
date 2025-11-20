@@ -18,7 +18,8 @@ app = Flask(__name__)
 logger = logging.getLogger(__name__)
 
 # Add prometheus wsgi middleware to route /metrics requests
-app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {"/metrics": make_wsgi_app()})
+# ignore typing issue with reassigning method
+app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {"/metrics": make_wsgi_app()})  # type: ignore[assignment]
 
 
 convertion_timer = Histogram(
