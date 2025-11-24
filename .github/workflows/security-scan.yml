@@ -93,9 +93,14 @@ jobs:
           ADDITIONAL_EXCLUDES: ${{ inputs.semgrep-excludes }}
         run: |
           pip install semgrep
-          semgrep --config auto --sarif --output "$OUTPUT_FILE" \
-            $SEMGREP_EXCLUDES \
-            "$ADDITIONAL_EXCLUDES"
+          if [ -n "$ADDITIONAL_EXCLUDES" ] && [ "$ADDITIONAL_EXCLUDES" != "" ]; then
+            semgrep --config auto --sarif --output "$OUTPUT_FILE" \
+              $SEMGREP_EXCLUDES \
+              "$ADDITIONAL_EXCLUDES"
+          else
+            semgrep --config auto --sarif --output "$OUTPUT_FILE" \
+              $SEMGREP_EXCLUDES
+          fi
 
       - name: Run Trivy scan
         if: matrix.scan-config.tool == 'trivy' && matrix.scan-config.condition
