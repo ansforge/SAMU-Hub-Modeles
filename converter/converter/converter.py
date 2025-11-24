@@ -1,5 +1,8 @@
 from flask import Flask, request, jsonify, g
 import logging
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
+from prometheus_client import make_wsgi_app, Histogram
+
 from converter.conversion_strategy.conversion_strategy import conversion_strategy
 from converter.utils import (
     get_sender,
@@ -14,6 +17,16 @@ configure_logging()
 app = Flask(__name__)
 logger = logging.getLogger(__name__)
 
+# Add prometheus wsgi middleware to route /metrics requests
+# ignore typing issue with reassigning method
+app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {"/metrics": make_wsgi_app()})  # type: ignore[assignment]
+
+
+convertion_timer = Histogram(
+    "conversion_duration_seconds",
+    "The number of seconds it took to the /convert endpoint to answer",
+)
+
 
 def raise_error(message, code: int = 400):
     logger.error(message)
@@ -21,6 +34,7 @@ def raise_error(message, code: int = 400):
 
 
 @app.route("/convert", methods=["POST"])
+@convertion_timer.time()
 def convert():
     if not request.is_json:
         return raise_error("Content-Type must be application/json")
