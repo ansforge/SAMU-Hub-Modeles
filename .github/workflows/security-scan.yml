@@ -41,9 +41,11 @@ jobs:
 
       - name: Install and run Python dependency scanner
         if: hashFiles(format('{0}/uv.lock', inputs.working-directory)) != ''
+        env:
+          WORKING_DIR: ${{ inputs.working-directory }}
         run: |
           pip install uv-secure
-          uv-secure ${{ inputs.working-directory }}/uv.lock --format json > ${{ inputs.working-directory }}/uv-secure.json || true
+          uv-secure "$WORKING_DIR/uv.lock" --format json > "$WORKING_DIR/uv-secure.json" || true
 
   security-scan:
     runs-on: ubuntu-latest
@@ -86,11 +88,14 @@ jobs:
 
       - name: Run Semgrep scan
         if: matrix.scan-config.tool == 'semgrep' && matrix.scan-config.condition
+        env:
+          OUTPUT_FILE: ${{ matrix.scan-config.output-file }}
+          ADDITIONAL_EXCLUDES: ${{ inputs.semgrep-excludes }}
         run: |
           pip install semgrep
-          semgrep --config auto --sarif --output ${{ matrix.scan-config.output-file }} \
+          semgrep --config auto --sarif --output "$OUTPUT_FILE" \
             $SEMGREP_EXCLUDES \
-            ${{ inputs.semgrep-excludes }}
+            "$ADDITIONAL_EXCLUDES"
 
       - name: Run Trivy scan
         if: matrix.scan-config.tool == 'trivy' && matrix.scan-config.condition
