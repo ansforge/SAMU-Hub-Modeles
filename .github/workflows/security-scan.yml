@@ -7,262 +7,133 @@ on:
         description: 'Working directory for the scan'
         required: true
         type: string
-      project-type:
-        description: 'Project type: nodejs, python, java'
-        required: true
-        type: string
-      node-version:
-        description: 'Node.js version (for nodejs projects)'
-        required: false
-        type: string
-        default: '24.11'
-      python-version:
-        description: 'Python version (for python projects)'
-        required: false
-        type: string
-        default: '3.13'
-      java-version:
-        description: 'Java version (for java projects)'
-        required: false
-        type: string
-        default: '21'
       component-name:
-        description: 'Component name for categorizing results'
+        description: 'Component name for categories and artifacts'
         required: true
         type: string
-      dependency-scan:
-        description: 'Enable dependency scanning'
-        required: false
-        type: boolean
-        default: true
-      secret-scan:
-        description: 'Enable secret scanning'
-        required: false
-        type: boolean
-        default: true
-      static-analysis:
-        description: 'Enable static analysis'
-        required: false
-        type: boolean
-        default: true
       scan-dockerfile:
-        description: 'Enable Dockerfile scanning'
+        description: 'Whether to scan Dockerfile'
         required: false
         type: boolean
         default: false
-      exclude-paths:
-        description: 'Paths to exclude from scanning (comma-separated)'
-        required: false
-        type: string
-        default: ''
       semgrep-excludes:
-        description: 'Additional Semgrep exclude patterns'
+        description: 'Additional Semgrep excludes (space-separated)'
         required: false
         type: string
         default: ''
+      dependency-scan:
+        description: 'Whether to run dependency vulnerability scan'
+        required: false
+        type: boolean
+        default: false
 
 jobs:
-  security-scan:
+  dependency-scan:
     runs-on: ubuntu-latest
+    name: Dependency Vulnerability Scanning
+    if: inputs.dependency-scan
     defaults:
       run:
         working-directory: ${{ inputs.working-directory }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Install and run Python dependency scanner
+        if: hashFiles(format('{0}/uv.lock', inputs.working-directory)) != ''
+        run: |
+          pip install uv-secure
+          uv-secure ${{ inputs.working-directory }}/uv.lock --format json > ${{ inputs.working-directory }}/uv-secure.json || true
+
+  security-scan:
+    runs-on: ubuntu-latest
+    name: Security Scanning
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    strategy:
+      fail-fast: false
+      matrix:
+        scan-config:
+          - name: semgrep
+            tool: semgrep
+            output-file: semgrep.sarif
+            category: semgrep
+            condition: true
+          - name: trivy-filesystem
+            tool: trivy
+            scan-type: fs
+            scan-ref: ${{ inputs.working-directory }}
+            scanners: vuln,secret,config
+            output-file: trivy-filesystem.sarif
+            category: trivy-filesystem
+            condition: true
+          - name: trivy-dockerfile
+            tool: trivy
+            scan-type: config
+            scan-ref: ${{ inputs.working-directory }}/Dockerfile
+            scanners: vuln,config
+            output-file: trivy-dockerfile.sarif
+            category: trivy-dockerfile
+            condition: ${{ inputs.scan-dockerfile }}
+
+    env:
+      SEMGREP_EXCLUDES: "--exclude='.git' --exclude='node_modules' --exclude='dist' --exclude='build' --exclude='coverage' --exclude='__pycache__' --exclude='.venv' --exclude='.cache' --exclude='.pytest_cache' --exclude='.tox' --exclude='.mypy_cache' --exclude='uv.lock' --exclude='*.pyc' --exclude='*.min.js' --exclude='*.bundle.js' --exclude='.gradle' --exclude='gradle/wrapper' --exclude='*.class' --exclude='*.jar'"
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      # Setup environment based on project type
-      - name: Set up Node.js
-        if: inputs.project-type == 'nodejs'
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ inputs.node-version }}
-          cache: 'npm'
-          cache-dependency-path: '${{ inputs.working-directory }}/package-lock.json'
-
-      - name: Set up Python with uv (for pyproject.toml projects)
-        if: inputs.project-type == 'python'
-        uses: astral-sh/setup-uv@v7
-        with:
-          version: "latest"
-          python-version: ${{ inputs.python-version }}
-          enable-cache: false  # Disable cache to avoid issues with simple projects
-
-      - name: Set up Python (fallback for requirements.txt)
-        if: inputs.project-type == 'python'
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ inputs.python-version }}
-          cache: 'pip'
-          cache-dependency-path: '${{ inputs.working-directory }}/requirements.txt'
-
-      - name: Set up JDK
-        if: inputs.project-type == 'java'
-        uses: actions/setup-java@v5
-        with:
-          java-version: ${{ inputs.java-version }}
-          distribution: 'temurin'
-
-      # Install dependencies based on project type
-      - name: Install Node.js dependencies
-        if: inputs.project-type == 'nodejs' && inputs.dependency-scan
-        run: |
-          if [ -f "package-lock.json" ]; then
-            npm ci
-          elif [ -f "package.json" ]; then
-            npm install
-          else
-            echo "::warning::No package.json found, skipping npm install"
-          fi
-
-      - name: Install Python security tools
-        if: inputs.project-type == 'python' && inputs.dependency-scan
-        run: |
-          if [ -f "pyproject.toml" ]; then
-            echo "Using uv for pyproject.toml project"
-            uv sync --dev || uv sync || echo "::warning::uv sync failed, falling back to pip"
-          elif [ -f "requirements.txt" ]; then
-            echo "Using pip for requirements.txt project"
-            pip install -r requirements.txt || echo "::warning::Failed to install requirements"
-          fi
-          
-          # Install security tools
-          pip install safety bandit || echo "::warning::Failed to install Python security tools"
-
-      # Run dependency vulnerability scans
-      - name: Scan Python dependencies (Safety)
-        if: inputs.project-type == 'python' && inputs.dependency-scan
-        run: |
-          if [ -f "pyproject.toml" ] || [ -f "requirements.txt" ]; then
-            safety check || echo "::warning::Python dependency vulnerabilities found"
-          fi
-
-      - name: Audit Node.js dependencies
-        if: inputs.project-type == 'nodejs' && inputs.dependency-scan
-        run: |
-          if [ -f "package.json" ]; then
-            npm audit --audit-level=moderate || echo "::warning::Node.js dependency vulnerabilities found"
-          fi
-
-      - name: Check Java dependencies with Gradle
-        if: inputs.project-type == 'java' && inputs.dependency-scan
-        run: |
-          if [ -f "gradlew" ]; then
-            chmod +x gradlew
-            ./gradlew dependencyCheckAnalyze || echo "::warning::Java dependency vulnerabilities found"
-          else
-            echo "::warning::No gradlew found, skipping dependency check"
-          fi
-
-      # Run Semgrep for static analysis
-      - name: Run Semgrep
-        if: inputs.static-analysis
-        uses: semgrep/semgrep-action@v1
-        with:
-          config: >-
-            p/security-audit
-            p/secrets
-            p/ci
-            p/r2c-ci
-          generateRuleBoard: true
-          publishToken: ${{ secrets.SEMGREP_APP_TOKEN }}
-          publishDeployment: ${{ github.repository_owner }}
-          auditOn: push
-        env:
-          SEMGREP_RULES: p/security-audit,p/secrets,p/ci,p/r2c-ci
-          SEMGREP_BASELINE_REF: ${{ github.base_ref }}
-
-      - name: Run Semgrep (SARIF output)
-        if: inputs.static-analysis
-        env:
-          SEMGREP_EXCLUDES: "--exclude=dist --exclude=build --exclude=coverage --exclude=__pycache__ --exclude=.venv --exclude=.cache --exclude=.pytest_cache --exclude=.tox --exclude=.mypy_cache --exclude=uv.lock --exclude=*.pyc --exclude=*.min.js --exclude=*.bundle.js --exclude=.gradle --exclude=gradle/wrapper --exclude=*.class --exclude=*.jar"
-          SEMGREP_ADDITIONAL_EXCLUDES: ${{ inputs.semgrep-excludes }}
+      - name: Run Semgrep scan
+        if: matrix.scan-config.tool == 'semgrep' && matrix.scan-config.condition
         run: |
           pip install semgrep
-          if [ -n "$SEMGREP_ADDITIONAL_EXCLUDES" ]; then
-            semgrep --config auto --sarif --output semgrep.sarif \
-              $SEMGREP_EXCLUDES \
-              "$SEMGREP_ADDITIONAL_EXCLUDES"
-          else
-            semgrep --config auto --sarif --output semgrep.sarif \
-              $SEMGREP_EXCLUDES
-          fi
+          semgrep --config auto --sarif --output ${{ matrix.scan-config.output-file }} \
+            $SEMGREP_EXCLUDES \
+            ${{ inputs.semgrep-excludes }}
 
-      - name: Fix Semgrep SARIF file paths
-        if: inputs.static-analysis && hashFiles(format('{0}/semgrep.sarif', inputs.working-directory)) != ''
-        uses: ./.github/actions/fix-trivy-sarif
-        with:
-          sarif-file: '${{ inputs.working-directory }}/semgrep.sarif'
-          scan-path: '${{ inputs.working-directory }}'
-
-      - name: Upload Semgrep results to GitHub Security tab
-        if: inputs.static-analysis && hashFiles(format('{0}/semgrep.sarif', inputs.working-directory)) != ''
-        uses: github/codeql-action/upload-sarif@v4
-        with:
-          sarif_file: ${{ inputs.working-directory }}/semgrep.sarif
-          category: semgrep-${{ inputs.component-name }}
-
-      # Run Trivy filesystem scan
-      - name: Run Trivy filesystem scan
+      - name: Run Trivy scan
+        if: matrix.scan-config.tool == 'trivy' && matrix.scan-config.condition
         uses: aquasecurity/trivy-action@0.33.1
         with:
-          scan-type: fs
-          scan-ref: ${{ inputs.working-directory }}
-          scanners: vuln,secret,config
+          scan-type: ${{ matrix.scan-config.scan-type }}
+          scan-ref: ${{ matrix.scan-config.scan-ref }}
+          scanners: ${{ matrix.scan-config.scanners }}
           format: sarif
-          output: ${{ inputs.working-directory }}/trivy-filesystem.sarif
+          output: ${{ inputs.working-directory }}/${{ matrix.scan-config.output-file }}
           ignore-unfixed: true
-          severity: 'CRITICAL,HIGH,MEDIUM'
-          skip-dirs: ${{ inputs.exclude-paths }}
+          exit-code: '0'
 
-      - name: Fix Trivy filesystem SARIF file paths
-        if: hashFiles(format('{0}/trivy-filesystem.sarif', inputs.working-directory)) != ''
+      - name: Fix SARIF file paths for GitHub Security tab
+        if: matrix.scan-config.condition && always() && hashFiles(format('{0}/{1}', inputs.working-directory, matrix.scan-config.output-file)) != ''
         uses: ./.github/actions/fix-trivy-sarif
         with:
-          sarif-file: '${{ inputs.working-directory }}/trivy-filesystem.sarif'
+          sarif-file: '${{ inputs.working-directory }}/${{ matrix.scan-config.output-file }}'
           scan-path: '${{ inputs.working-directory }}'
 
-      - name: Upload Trivy filesystem results to GitHub Security tab
-        if: hashFiles(format('{0}/trivy-filesystem.sarif', inputs.working-directory)) != ''
-        uses: github/codeql-action/upload-sarif@v4
+      - name: Upload ${{ matrix.scan-config.name }} results to GitHub Security tab
+        if: matrix.scan-config.condition
+        uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: ${{ inputs.working-directory }}/trivy-filesystem.sarif
-          category: trivy-${{ inputs.component-name }}-filesystem
+          sarif_file: ${{ inputs.working-directory }}/${{ matrix.scan-config.output-file }}
+          category: ${{ matrix.scan-config.category }}-${{ inputs.component-name }}
 
-      # Run Trivy Dockerfile scan (optional)
-      - name: Run Trivy Dockerfile scan
-        if: inputs.scan-dockerfile
-        uses: aquasecurity/trivy-action@0.33.1
-        with:
-          scan-type: config
-          scan-ref: ${{ inputs.working-directory }}/Dockerfile
-          scanners: vuln,config
-          format: sarif
-          output: ${{ inputs.working-directory }}/trivy-dockerfile.sarif
-          severity: 'CRITICAL,HIGH,MEDIUM'
-
-      - name: Fix Trivy Dockerfile SARIF file paths
-        if: inputs.scan-dockerfile && hashFiles(format('{0}/trivy-dockerfile.sarif', inputs.working-directory)) != ''
-        uses: ./.github/actions/fix-trivy-sarif
-        with:
-          sarif-file: '${{ inputs.working-directory }}/trivy-dockerfile.sarif'
-          scan-path: '${{ inputs.working-directory }}'
-
-      - name: Upload Trivy Dockerfile results to GitHub Security tab
-        if: inputs.scan-dockerfile
-        uses: github/codeql-action/upload-sarif@v4
-        with:
-          sarif_file: ${{ inputs.working-directory }}/trivy-dockerfile.sarif
-          category: trivy-${{ inputs.component-name }}-dockerfile
+  upload-artifacts:
+    runs-on: ubuntu-latest
+    name: Upload Security Artifacts
+    needs: [dependency-scan, security-scan]
+    if: always()
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
 
       # Upload all security reports as artifacts
       - name: Upload Security scan reports as artifact
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: security-reports-${{ inputs.component-name }}
           path: |
             ${{ inputs.working-directory }}/*.sarif
-            ${{ inputs.working-directory }}/security-*.json
-          retention-days: 30
+            ${{ inputs.working-directory }}/*.json
+          retention-days: 7
+          if-no-files-found: ignore

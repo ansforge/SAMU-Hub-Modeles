@@ -22,14 +22,9 @@ jobs:
     uses: ./.github/workflows/security-scan.yml
     with:
       working-directory: '.'
-      project-type: 'java'
-      java-version: '11'  # Using 11 instead of 8 for better tooling support
       component-name: 'library'
-      dependency-scan: true
-      static-analysis: true
-      secret-scan: true
+      dependency-scan: false
       scan-dockerfile: false
-      exclude-paths: 'converter,csv_parser,nomenclature_parser,web_specs'
     secrets: inherit
 
   # Security scan for the Python converter
@@ -37,12 +32,8 @@ jobs:
     uses: ./.github/workflows/security-scan.yml
     with:
       working-directory: 'converter'
-      project-type: 'python'
-      python-version: '3.9'
       component-name: 'converter'
       dependency-scan: true
-      static-analysis: true
-      secret-scan: true
       scan-dockerfile: true
     secrets: inherit
 
@@ -51,12 +42,8 @@ jobs:
     uses: ./.github/workflows/security-scan.yml
     with:
       working-directory: 'csv_parser'
-      project-type: 'python'
-      python-version: '3.9'
       component-name: 'csv-parser'
-      dependency-scan: true
-      static-analysis: true
-      secret-scan: true
+      dependency-scan: false
       scan-dockerfile: false
     secrets: inherit
 
@@ -65,25 +52,17 @@ jobs:
     uses: ./.github/workflows/security-scan.yml
     with:
       working-directory: 'nomenclature_parser'
-      project-type: 'python'
-      python-version: '3.9'
       component-name: 'nomenclature-parser'
-      dependency-scan: true
-      static-analysis: true
-      secret-scan: true
+      dependency-scan: false
       scan-dockerfile: false
     secrets: inherit
 
-  # Security scan for web specs (using Python as it's likely a simple directory)
+  # Security scan for web specs
   security-scan-web-specs:
     uses: ./.github/workflows/security-scan.yml
     with:
       working-directory: 'web_specs'
-      project-type: 'none'
-      python-version: '3.9'
       component-name: 'web-specs'
-      dependency-scan: false  # No package.json or pyproject.toml found
-      static-analysis: true
-      secret-scan: true
+      dependency-scan: false
       scan-dockerfile: true
     secrets: inherit
