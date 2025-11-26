@@ -11,7 +11,7 @@
     "modelDocs": false,
     "modelTests": false
   },
-  "additionalProperties": {
+  "additionalProperties":
     "invokerPackage": "Hubsante",
     "modelPackage": "Model\\resources.info",
     "packageName": "hubsante_model.resources.info",

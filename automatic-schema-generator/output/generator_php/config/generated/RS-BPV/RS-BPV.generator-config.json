@@ -11,7 +11,7 @@
     "modelDocs": false,
     "modelTests": false
   },
-  "additionalProperties": {
+  "additionalProperties":
     "invokerPackage": "Hubsante",
     "modelPackage": "Model\\interventionreport",
     "packageName": "hubsante_model.interventionreport",

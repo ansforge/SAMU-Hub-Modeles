@@ -11,7 +11,7 @@
     "modelDocs": false,
     "modelTests": false
   },
-  "additionalProperties": {
+  "additionalProperties":
     "invokerPackage": "Hubsante",
     "modelPackage": "Model\\technical.noreq",
     "packageName": "hubsante_model.technical.noreq",
