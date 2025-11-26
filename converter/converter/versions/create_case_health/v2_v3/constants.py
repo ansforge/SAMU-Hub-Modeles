@@ -93,8 +93,6 @@ class V2V3Constants:
 
     V2_PATHS_TO_DELETE = [
         "patient[].healthMotive",
-        "patient[].administrativeFile.externalId.source",
-        "patient[].administrativeFile.externalId.value",
     ]
 
     V3_PATHS_TO_DELETE = [
