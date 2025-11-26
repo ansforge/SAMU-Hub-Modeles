@@ -1,5 +1,5 @@
 {
-  "inputSpec": "../generator/input/RS-SR.openapi.yaml",
+  "inputSpec": "../generator/input/RS-SAS-RDV.openapi.yaml",
   "outputDir": "package/",
   "generatorName": "php",
   "globalProperties": {
@@ -12,8 +12,8 @@
   },
   "additionalProperties":
     "invokerPackage": "Hubsante",
-    "modelPackage": "Model\\resources.status",
-    "packageName": "hubsante_model.resources.status",
+    "modelPackage": "Model\\sas",
+    "packageName": "hubsante_model.sas",
     "srcBasePath": "src/",
     "composerVendorName": "hubsante",
     "composerProjectName": "model-sdk",

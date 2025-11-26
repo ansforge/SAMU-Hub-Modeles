@@ -20,7 +20,6 @@ components:
       - created
       - start
       - status
-      - regulator
       properties:
         appointmentId:
           type: string
@@ -115,8 +114,6 @@ components:
           $ref: '#/components/schemas/practitioner'
         organization:
           $ref: '#/components/schemas/organization'
-        regulator:
-          $ref: '#/components/schemas/regulator'
       additionalProperties: false
     practitioner:
       type: object
@@ -234,56 +231,3 @@ components:
       examples:
       - organizationId: '334173748400020'
         name: "SOS M\xE9decins de Rennes"
-    regulator:
-      type: object
-      title: "R\xE9gulateur"
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - regulatorName
-      - regulatorFirstname
-      - regulatorEmail
-      properties:
-        regulatorId:
-          type: string
-          title: "Identifiant r\xE9gulateur"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/regulator/regulatorId
-          description: "Identifiant du r\xE9gulateur ayant pris le RDV"
-          examples:
-          - 3620100057/70326SR
-        regulatorName:
-          type: string
-          title: "Nom du r\xE9gulateur"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/regulator/regulatorName
-          description: "Nom du r\xE9gulateur ayant pris le RDV"
-          examples:
-          - Ricart
-        regulatorFirstname:
-          type: string
-          title: "Pr\xE9nom du r\xE9gulateur"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/regulator/regulatorFirstname
-          description: "Pr\xE9nom du r\xE9gulateur ayant pris le RDV"
-          examples:
-          - Pauline
-        regulatorEmail:
-          type: string
-          title: "Email du r\xE9gulateur"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/regulator/regulatorEmail
-          description: "Adresse mail du r\xE9gulateur ayant pris le RDV"
-          examples:
-          - pauline.ricart@ghsas.fr
-      additionalProperties: false
-      example: example.json#/regulator
-      examples:
-      - regulatorId: 3620100057/70326SR
-        regulatorName: Ricart
-        regulatorFirstname: Pauline
-        regulatorEmail: pauline.ricart@ghsas.fr

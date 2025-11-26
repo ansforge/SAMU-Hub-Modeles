@@ -313,7 +313,6 @@ components:
       - $ref: '#/components/schemas/createCaseHealthUpdate'
       - $ref: '#/components/schemas/emsi'
       - $ref: '#/components/schemas/resourcesInfo'
-      - $ref: '#/components/schemas/resourcesInfoCisu'
       - $ref: '#/components/schemas/resourcesEngagement'
       - $ref: '#/components/schemas/resourcesStatus'
       - $ref: '#/components/schemas/resourcesRequest'
@@ -1017,6 +1016,12 @@ components:
           - C02.16.01
           - C02.16.02
           - C02.16.03
+          - C07.03.00
+          - C07.03.01
+          - C07.03.02
+          - C07.03.03
+          - C07.03.04
+          - C07.03.05
           - C03.00.00
           - C03.01.00
           - C03.01.01
@@ -6160,38 +6165,6 @@ components:
       - datetime: '2022-09-27T08:23:34+02:00'
         status: ARRIVE
         availability: 'FALSE'
-    resourcesInfoCisu:
-      $id: classpath:/json-schema/schema#
-      x-id: RC-RI.schema.json#
-      example: example.json#
-      type: object
-      title: resourcesInfoCisu
-      required:
-      - caseId
-      properties:
-        caseId:
-          type: string
-          title: Identifiant affaire/dossier
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/caseId
-          description: "A valoriser avec l'identifiant partag\xE9 de l'affaire/dossier,\
-            \ g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du partenaire qui recoit\
-            \ la primo-demande de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9\
-            \ comme suit lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
-            \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
-            e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
-            \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
-            \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
-            \ num\xE9ro unique dans son syst\xE8me."
-          pattern: ^([a-zA-Z0-9_-]+\.?){4,10}$
-          examples:
-          - fr.health.samu440.DRFR15440241550012
-        resource:
-          type: array
-          items:
-            $ref: '#/components/schemas/resource'
-      additionalProperties: false
     resourcesEngagement:
       $id: classpath:/json-schema/schema#
       x-id: RS-ER.schema.json#
@@ -7238,7 +7211,6 @@ components:
       - created
       - start
       - status
-      - regulator
       properties:
         appointmentId:
           type: string
@@ -7333,8 +7305,6 @@ components:
           $ref: '#/components/schemas/practitioner'
         organization:
           $ref: '#/components/schemas/organization'
-        regulator:
-          $ref: '#/components/schemas/regulator'
       additionalProperties: false
     practitioner:
       type: object
@@ -7452,59 +7422,6 @@ components:
       examples:
       - organizationId: '334173748400020'
         name: "SOS M\xE9decins de Rennes"
-    regulator:
-      type: object
-      title: "R\xE9gulateur"
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - regulatorName
-      - regulatorFirstname
-      - regulatorEmail
-      properties:
-        regulatorId:
-          type: string
-          title: "Identifiant r\xE9gulateur"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/regulator/regulatorId
-          description: "Identifiant du r\xE9gulateur ayant pris le RDV"
-          examples:
-          - 3620100057/70326SR
-        regulatorName:
-          type: string
-          title: "Nom du r\xE9gulateur"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/regulator/regulatorName
-          description: "Nom du r\xE9gulateur ayant pris le RDV"
-          examples:
-          - Ricart
-        regulatorFirstname:
-          type: string
-          title: "Pr\xE9nom du r\xE9gulateur"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/regulator/regulatorFirstname
-          description: "Pr\xE9nom du r\xE9gulateur ayant pris le RDV"
-          examples:
-          - Pauline
-        regulatorEmail:
-          type: string
-          title: "Email du r\xE9gulateur"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/regulator/regulatorEmail
-          description: "Adresse mail du r\xE9gulateur ayant pris le RDV"
-          examples:
-          - pauline.ricart@ghsas.fr
-      additionalProperties: false
-      example: example.json#/regulator
-      examples:
-      - regulatorId: 3620100057/70326SR
-        regulatorName: Ricart
-        regulatorFirstname: Pauline
-        regulatorEmail: pauline.ricart@ghsas.fr
     error:
       $id: classpath:/json-schema/schema#
       x-id: RS-ERROR.schema.json#
@@ -7748,7 +7665,7 @@ components:
           x-cols: 6
           example: example.json#/emailField
           description: Email with regex
-          pattern: ^[a-zA-Z0-9_.-]+@([a-zA-Z0-9_-]+\.)+[a-zA-Z0-9_-]{2,4}$
+          pattern: ^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$
           examples:
           - None
         datetimeField:
@@ -8026,7 +7943,7 @@ components:
           x-cols: 6
           example: example.json#/emailField
           description: Email with regex
-          pattern: ^[a-zA-Z0-9_.-]+@([a-zA-Z0-9_-]+\.)+[a-zA-Z0-9_-]{2,4}$
+          pattern: ^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$
           examples:
           - None
         datetimeField:

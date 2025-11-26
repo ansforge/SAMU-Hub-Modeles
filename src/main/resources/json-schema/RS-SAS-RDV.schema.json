@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-SAS-RDV.schema.json#",
-    "version": "25.11.14",
+    "version": "25.10.23",
     "example": "example.json#",
     "type": "object",
     "title": "appointment",
@@ -11,8 +11,7 @@
         "method",
         "created",
         "start",
-        "status",
-        "regulator"
+        "status"
     ],
     "properties": {
         "appointmentId": {
@@ -101,9 +100,6 @@
         },
         "organization": {
             "$ref": "#/definitions/organization"
-        },
-        "regulator": {
-            "$ref": "#/definitions/regulator"
         }
     },
     "definitions": {
@@ -208,53 +204,6 @@
             },
             "additionalProperties": false,
             "example": "example.json#/organization"
-        },
-        "regulator": {
-            "type": "object",
-            "title": "Régulateur",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
-                "regulatorName",
-                "regulatorFirstname",
-                "regulatorEmail"
-            ],
-            "properties": {
-                "regulatorId": {
-                    "type": "string",
-                    "title": "Identifiant régulateur",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/regulator/regulatorId",
-                    "description": "Identifiant du régulateur ayant pris le RDV"
-                },
-                "regulatorName": {
-                    "type": "string",
-                    "title": "Nom du régulateur",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/regulator/regulatorName",
-                    "description": "Nom du régulateur ayant pris le RDV"
-                },
-                "regulatorFirstname": {
-                    "type": "string",
-                    "title": "Prénom du régulateur",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/regulator/regulatorFirstname",
-                    "description": "Prénom du régulateur ayant pris le RDV"
-                },
-                "regulatorEmail": {
-                    "type": "string",
-                    "title": "Email du régulateur",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/regulator/regulatorEmail",
-                    "description": "Adresse mail du régulateur ayant pris le RDV"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/regulator"
         }
     },
     "additionalProperties": false

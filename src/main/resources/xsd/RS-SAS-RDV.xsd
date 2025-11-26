@@ -67,7 +67,6 @@ La solution éditeur devra s’appuyer sur cet ID pour la gestion des requêtes 
             </element>
             <element minOccurs="0" name="practitioner" type="x:practitioner"/>
             <element minOccurs="0" name="organization" type="x:organization"/>
-            <element name="regulator" type="x:regulator"/>
         </sequence>
     </complexType>
     <complexType name="practitioner">
@@ -124,30 +123,6 @@ La solution éditeur devra s’appuyer sur cet ID pour la gestion des requêtes 
             <element name="name" type="string">
                 <annotation>
                     <documentation>Indique le nom de la structure</documentation>
-                </annotation>
-            </element>
-        </sequence>
-    </complexType>
-    <complexType name="regulator">
-        <sequence>
-            <element minOccurs="0" name="regulatorId" type="string">
-                <annotation>
-                    <documentation>Identifiant du régulateur ayant pris le RDV</documentation>
-                </annotation>
-            </element>
-            <element name="regulatorName" type="string">
-                <annotation>
-                    <documentation>Nom du régulateur ayant pris le RDV</documentation>
-                </annotation>
-            </element>
-            <element name="regulatorFirstname" type="string">
-                <annotation>
-                    <documentation>Prénom du régulateur ayant pris le RDV</documentation>
-                </annotation>
-            </element>
-            <element name="regulatorEmail" type="string">
-                <annotation>
-                    <documentation>Adresse mail du régulateur ayant pris le RDV</documentation>
                 </annotation>
             </element>
         </sequence>
