@@ -1,9 +1,6 @@
-import re
 from typing import Any, Dict, Optional
 
 from converter.utils import (
-    add_to_medical_notes,
-    delete_paths,
     get_field_value,
     is_field_completed,
     update_json_value,
@@ -34,61 +31,6 @@ def switch_field_name(
 ):
     if is_field_completed(json_data, "$." + previous_field_name):
         json_data[new_field_name] = json_data[previous_field_name]
-
-
-def validate_diagnosis_code(
-    json_data: Dict[str, Any], patient_data: Dict[str, Any], diagnosis_type: str
-):
-    DIAGNOSIS_CODE_VALIDATION_REGEX = "^[A-Z]\\d{2}(\\.[\\d\\+\\-]{1,3})?$"
-    diagnosis = get_field_value(patient_data, f"$.hypothesis.{diagnosis_type}")
-    diagnosis_valid_codes = []
-
-    pattern = re.compile(DIAGNOSIS_CODE_VALIDATION_REGEX)
-
-    if diagnosis is None:
-        return
-
-    code_label = (
-        "Diagnostique(s) secondaire(s) : "
-        if diagnosis_type == "otherDiagnosis"
-        else "Diagnostique principal : "
-    )
-
-    if type(diagnosis) is list:
-        for index, diag in enumerate(diagnosis):
-            code = get_field_value(diag, "$.code")
-            if code is not None:
-                is_correct_format = pattern.match(code)
-                if not is_correct_format:
-                    add_to_medical_notes(
-                        json_data,
-                        patient_data,
-                        [
-                            {
-                                "path": f"hypothesis.{diagnosis_type}[{index}]",
-                                "label": code_label,
-                            }
-                        ],
-                    )
-                else:
-                    diagnosis_valid_codes.append(diag)
-
-        if len(diagnosis_valid_codes) == 0:  # no code matches the pattern
-            delete_paths(patient_data, [f"hypothesis.{diagnosis_type}"])
-        else:
-            patient_data["hypothesis"]["otherDiagnosis"] = diagnosis_valid_codes
-
-    else:
-        code = get_field_value(diagnosis, "$.code")
-        if code is not None:
-            is_correct_format = pattern.match(code)
-            if not is_correct_format:
-                add_to_medical_notes(
-                    json_data,
-                    patient_data,
-                    [{"path": f"hypothesis.{diagnosis_type}", "label": code_label}],
-                )
-                delete_paths(patient_data, [f"hypothesis.{diagnosis_type}"])
 
 
 def convert_to_float(value: Optional[str]) -> Optional[float]:

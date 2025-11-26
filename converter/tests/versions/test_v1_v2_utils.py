@@ -1,9 +1,10 @@
 import unittest
 from unittest.mock import patch
+
+from converter.versions.create_case_health.v1_v2.utils import validate_diagnosis_code
 from converter.versions.utils import (
     reverse_map_to_new_value,
     switch_field_name,
-    validate_diagnosis_code,
 )
 
 
