@@ -10,7 +10,7 @@
     "modelDocs": false,
     "modelTests": false
   },
-  "additionalProperties":
+  "additionalProperties": {
     "invokerPackage": "Hubsante",
     "modelPackage": "Model\\sas",
     "packageName": "hubsante_model.sas",

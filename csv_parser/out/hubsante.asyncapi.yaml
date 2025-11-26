@@ -1016,12 +1016,6 @@ components:
           - C02.16.01
           - C02.16.02
           - C02.16.03
-          - C07.03.00
-          - C07.03.01
-          - C07.03.02
-          - C07.03.03
-          - C07.03.04
-          - C07.03.05
           - C03.00.00
           - C03.01.00
           - C03.01.01
@@ -7665,7 +7659,7 @@ components:
           x-cols: 6
           example: example.json#/emailField
           description: Email with regex
-          pattern: ^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$
+          pattern: ^[a-zA-Z0-9_.-]+@([a-zA-Z0-9_-]+\.)+[a-zA-Z0-9_-]{2,4}$
           examples:
           - None
         datetimeField:
@@ -7943,7 +7937,7 @@ components:
           x-cols: 6
           example: example.json#/emailField
           description: Email with regex
-          pattern: ^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$
+          pattern: ^[a-zA-Z0-9_.-]+@([a-zA-Z0-9_-]+\.)+[a-zA-Z0-9_-]{2,4}$
           examples:
           - None
         datetimeField:

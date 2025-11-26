@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "TECHNICAL_NOREQ.schema.json#",
-    "version": "25.10.23",
+    "version": "25.11.26",
     "example": "example.json#",
     "type": "object",
     "title": "technicalNoreq",
@@ -127,7 +127,7 @@
             "x-cols": 6,
             "example": "example.json#/emailField",
             "description": "Email with regex",
-            "pattern": "^[\\w\\-\\.]+@([\\w\\-]+\\.)+[\\w\\-]{2,4}$"
+            "pattern": "^[a-zA-Z0-9_.-]+@([a-zA-Z0-9_-]+\\.)+[a-zA-Z0-9_-]{2,4}$"
         },
         "datetimeField": {
             "type": "string",
