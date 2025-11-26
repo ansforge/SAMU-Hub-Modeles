@@ -22,43 +22,6 @@ package com.hubsante.model.edxl;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import com.hubsante.model.rcde.DistributionElement;
-import com.hubsante.model.reference.Reference;
-import com.hubsante.model.reference.ReferenceWrapper;
-import com.hubsante.model.cisu.CreateCase;
-import com.hubsante.model.cisu.CreateCaseWrapper;
-import com.hubsante.model.health.CreateCaseHealth;
-import com.hubsante.model.health.CreateCaseHealthWrapper;
-import com.hubsante.model.health.CreateCaseHealthUpdate;
-import com.hubsante.model.health.CreateCaseHealthUpdateWrapper;
-import com.hubsante.model.emsi.Emsi;
-import com.hubsante.model.emsi.EmsiWrapper;
-import com.hubsante.model.resources.info.ResourcesInfo;
-import com.hubsante.model.resources.info.ResourcesInfoWrapper;
-import com.hubsante.model.resources.info.ResourcesEngagement;
-import com.hubsante.model.resources.info.ResourcesEngagementWrapper;
-import com.hubsante.model.resources.status.ResourcesStatus;
-import com.hubsante.model.resources.status.ResourcesStatusWrapper;
-import com.hubsante.model.resources.request.ResourcesRequest;
-import com.hubsante.model.resources.request.ResourcesRequestWrapper;
-import com.hubsante.model.resources.response.ResourcesResponse;
-import com.hubsante.model.resources.response.ResourcesResponseWrapper;
-import com.hubsante.model.rpis.Rpis;
-import com.hubsante.model.rpis.RpisWrapper;
-import com.hubsante.model.interventionreport.InterventionReport;
-import com.hubsante.model.interventionreport.InterventionReportWrapper;
-import com.hubsante.model.documentlink.DocumentLink;
-import com.hubsante.model.documentlink.DocumentLinkWrapper;
-import com.hubsante.model.geolocation.GeoPositionsUpdate;
-import com.hubsante.model.geolocation.GeoPositionsUpdateWrapper;
-import com.hubsante.model.geolocation.GeoResourcesRequest;
-import com.hubsante.model.geolocation.GeoResourcesRequestWrapper;
-import com.hubsante.model.geolocation.GeoResourcesDetails;
-import com.hubsante.model.geolocation.GeoResourcesDetailsWrapper;
-import com.hubsante.model.sas.Appointment;
-import com.hubsante.model.sas.AppointmentWrapper;
-
-
 import com.hubsante.model.technical.Technical;
 import com.hubsante.model.technical.TechnicalWrapper;
 import com.hubsante.model.technical.noreq.TechnicalNoreq;
@@ -71,23 +34,6 @@ import java.util.stream.Stream;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({ 
-        @JsonSubTypes.Type(ReferenceWrapper.class),
-        @JsonSubTypes.Type(CreateCaseWrapper.class),
-        @JsonSubTypes.Type(CreateCaseHealthWrapper.class),
-        @JsonSubTypes.Type(CreateCaseHealthUpdateWrapper.class),
-        @JsonSubTypes.Type(EmsiWrapper.class),
-        @JsonSubTypes.Type(ResourcesInfoWrapper.class),
-        @JsonSubTypes.Type(ResourcesEngagementWrapper.class),
-        @JsonSubTypes.Type(ResourcesStatusWrapper.class),
-        @JsonSubTypes.Type(ResourcesRequestWrapper.class),
-        @JsonSubTypes.Type(ResourcesResponseWrapper.class),
-        @JsonSubTypes.Type(RpisWrapper.class),
-        @JsonSubTypes.Type(InterventionReportWrapper.class),
-        @JsonSubTypes.Type(DocumentLinkWrapper.class),
-        @JsonSubTypes.Type(GeoPositionsUpdateWrapper.class),
-        @JsonSubTypes.Type(GeoResourcesRequestWrapper.class),
-        @JsonSubTypes.Type(GeoResourcesDetailsWrapper.class),
-        @JsonSubTypes.Type(AppointmentWrapper.class),
         @JsonSubTypes.Type(TechnicalWrapper.class),
         @JsonSubTypes.Type(TechnicalNoreqWrapper.class),
         @JsonSubTypes.Type(ErrorWrapper.class),
@@ -114,24 +60,6 @@ public class ContentMessage {
     public static class UseCaseHelper {
         public static final Map<String,String> useCases = Stream.of(new String[][] {
                   
-                  {"distributionElement", DistributionElement.class.getCanonicalName()},
-                  {"reference", Reference.class.getCanonicalName()},
-                  {"createCase", CreateCase.class.getCanonicalName()},
-                  {"createCaseHealth", CreateCaseHealth.class.getCanonicalName()},
-                  {"createCaseHealthUpdate", CreateCaseHealthUpdate.class.getCanonicalName()},
-                  {"emsi", Emsi.class.getCanonicalName()},
-                  {"resourcesInfo", ResourcesInfo.class.getCanonicalName()},
-                  {"resourcesEngagement", ResourcesEngagement.class.getCanonicalName()},
-                  {"resourcesStatus", ResourcesStatus.class.getCanonicalName()},
-                  {"resourcesRequest", ResourcesRequest.class.getCanonicalName()},
-                  {"resourcesResponse", ResourcesResponse.class.getCanonicalName()},
-                  {"rpis", Rpis.class.getCanonicalName()},
-                  {"interventionReport", InterventionReport.class.getCanonicalName()},
-                  {"documentLink", DocumentLink.class.getCanonicalName()},
-                  {"geoPositionsUpdate", GeoPositionsUpdate.class.getCanonicalName()},
-                  {"geoResourcesRequest", GeoResourcesRequest.class.getCanonicalName()},
-                  {"geoResourcesDetails", GeoResourcesDetails.class.getCanonicalName()},
-                  {"appointment", Appointment.class.getCanonicalName()},
                   {"technical", Technical.class.getCanonicalName()},
                   {"technicalNoreq", TechnicalNoreq.class.getCanonicalName()},
                   {"error", ErrorWrapper.class.getCanonicalName()},

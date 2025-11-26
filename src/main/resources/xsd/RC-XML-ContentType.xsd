@@ -6,26 +6,6 @@
 -->
 <schema xmlns:x="urn:emergency:eda:1.9"
         xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-        xmlns:distributionElement="urn:emergency:eda:1.9"
-        xmlns:reference="urn:emergency:eda:1.9:reference"
-        xmlns:createCase="urn:emergency:eda:1.9:createCase"
-        xmlns:createCaseHealth="urn:emergency:eda:1.9:createCaseHealth"
-        xmlns:createCaseHealthUpdate="urn:emergency:eda:1.9:createCaseHealthUpdate"
-        xmlns:emsi="urn:emergency:eda:1.9:emsi"
-        xmlns:resourcesInfo="urn:emergency:eda:1.9:resourcesinfo"
-        xmlns:resourcesEngagement="urn:emergency:eda:1.9:resourcesengagement"
-        xmlns:resourcesStatus="urn:emergency:eda:1.9:resourcesstatus"
-        xmlns:resourcesRequest="urn:emergency:eda:1.9:resourcesrequest"
-        xmlns:resourcesResponse="urn:emergency:eda:1.9:resourcesresponse"
-        xmlns:rpis="urn:emergency:eda:1.9:rpis"
-        xmlns:interventionReport="urn:emergency:eda:1.9:interventionreport"
-        xmlns:documentLink="urn:emergency:eda:1.9:documentlink"
-        xmlns:geoPositionsUpdate="urn:emergency:eda:1.9:geopositionsupdate"
-        xmlns:geoResourcesRequest="urn:emergency:eda:1.9:georesourcesrequest"
-        xmlns:geoResourcesDetails="urn:emergency:eda:1.9:georesourcesdetails"
-        xmlns:appointment="urn:emergency:eda:1.9:appointment"
-        
-        
         xmlns:technical="urn:emergency:eda:1.9:technical"
         xmlns:technicalNoreq="urn:emergency:eda:1.9:technicalNoreq"
         xmlns:error="urn:emergency:eda:1.9:error"
@@ -34,26 +14,6 @@
 
     <xs:include schemaLocation="RC-DE.xsd"/>
     <xs:include schemaLocation="customContent.xsd"/>
-    <xs:include schemaLocation="RC-DE.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:reference" schemaLocation="RC-REF.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:createCase" schemaLocation="RC-EDA.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:createCaseHealthUpdate" schemaLocation="RS-EDA-MAJ.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:emsi" schemaLocation="EMSI.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:resourcesinfo" schemaLocation="RS-RI.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:resourcesengagement" schemaLocation="RS-ER.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:resourcesstatus" schemaLocation="RS-SR.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:resourcesrequest" schemaLocation="RS-DR.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:resourcesresponse" schemaLocation="RS-RR.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:rpis" schemaLocation="RS-RPIS.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:interventionreport" schemaLocation="RS-BPV.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:documentlink" schemaLocation="RS-URL.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:geopositionsupdate" schemaLocation="GEO-POS.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:georesourcesrequest" schemaLocation="GEO-REQ.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:georesourcesdetails" schemaLocation="GEO-RES.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:appointment" schemaLocation="RS-SAS-RDV.xsd"/>
-    
-    
     <xs:import namespace="urn:emergency:eda:1.9:technical" schemaLocation="TECHNICAL.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:technicalNoreq" schemaLocation="TECHNICAL_NOREQ.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:error" schemaLocation="RS-ERROR.xsd"/>
@@ -75,23 +35,6 @@
             <xs:extension base="x:distributionElement">
                 <xs:sequence>
                     <xs:choice>
-                        <xs:element ref="reference:reference"/>
-                        <xs:element ref="createCase:createCase"/>
-                        <xs:element ref="createCaseHealth:createCaseHealth"/>
-                        <xs:element ref="createCaseHealthUpdate:createCaseHealthUpdate"/>
-                        <xs:element ref="emsi:emsi"/>
-                        <xs:element ref="resourcesInfo:resourcesInfo"/>
-                        <xs:element ref="resourcesEngagement:resourcesEngagement"/>
-                        <xs:element ref="resourcesStatus:resourcesStatus"/>
-                        <xs:element ref="resourcesRequest:resourcesRequest"/>
-                        <xs:element ref="resourcesResponse:resourcesResponse"/>
-                        <xs:element ref="rpis:rpis"/>
-                        <xs:element ref="interventionReport:interventionReport"/>
-                        <xs:element ref="documentLink:documentLink"/>
-                        <xs:element ref="geoPositionsUpdate:geoPositionsUpdate"/>
-                        <xs:element ref="geoResourcesRequest:geoResourcesRequest"/>
-                        <xs:element ref="geoResourcesDetails:geoResourcesDetails"/>
-                        <xs:element ref="appointment:appointment"/>
                         <xs:element ref="technical:technical"/>
                     </xs:choice>
                 </xs:sequence>
@@ -102,7 +45,6 @@
     <xs:complexType name="NoHeaderMessageType">
         <xs:sequence>
             <xs:choice>
-                <xs:element ref="distributionElement:distributionElement"/>
                 <xs:element ref="technicalNoreq:technicalNoreq"/>
                 <xs:element ref="error:error"/>
                 <xs:element ref="x:customContent"/>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<documentLink xmlns="urn:emergency:eda:1.9:documentlink">
-  <caseId>fr.health.samu680.DRFR154402413800555</caseId>
-  <patientId>fr.health.samu680.patient.68263</patientId>
-  <document>
-    <documentType>BILAN</documentType>
-    <url>https://hub.esante.gouv.fr/</url>
-  </document>
-</documentLink>

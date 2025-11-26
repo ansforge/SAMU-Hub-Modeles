@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<createCaseHealthUpdate xmlns="urn:emergency:eda:1.9:createCaseHealthUpdate">
-  <caseId>fr.fire.cga-044.SC-20240526-044-cga-AL8</caseId>
-  <qualification>
-    <details>
-      <status>CLOTURE</status>
-    </details>
-  </qualification>
-</createCaseHealthUpdate>
