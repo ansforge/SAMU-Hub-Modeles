@@ -1,0 +1,37 @@
+{{ define "generator-config" }}{
+  "inputSpec": "../generator/input/{{.schema}}.openapi.yaml",
+  "outputDir": "package/",
+  "generatorName": "php-symfony",
+  "globalProperties": {
+    "models": "",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "invokerPackage": "Hubsante",
+    "modelPackage": "Model\\{{.package}}",
+    "packageName": "hubsante_model.{{ .package }}",
+    "srcBasePath": "src/",
+    "composerVendorName": "hubsante",
+    "composerProjectName": "model-sdk",
+    "variableNamingConvention": "camelCase",
+    "useStrictTypes": true,
+    "useEnumCaseInsensitive": false,
+    "phpVersion": "8.3",
+    "legacyDiscriminatorBehavior": false,
+    "generateModelTests": false,
+    "generateModelDocumentation": false,
+    "withInterfaces": true,
+    "withAbstractClasses": false,
+    "allowUnicodeIdentifiers": true
+  }
+}
+{{ end }}
+{{- range (datasource "config").schemas }}
+    {{ if and (eq .automaticGeneration "Y") (eq .subschema "N") }}
+        {{- tmpl.Exec "generator-config" . | file.Write (printf "output/generator_php-symfony/config/generated/%s/%s.generator-config.json" .schema .schema) }}
+    {{end}}
+{{end}}

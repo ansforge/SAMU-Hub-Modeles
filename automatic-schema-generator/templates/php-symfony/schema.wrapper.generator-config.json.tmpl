@@ -1,0 +1,22 @@
+{{ define "wrapper.generator-config" }}{
+  "inputSpec": "../generator/input/{{.schema}}.openapi.yaml",
+  "outputDir": "package/src/",
+  "generatorName": "python",
+  "globalProperties": {
+    "models": "{{.rootElement}}Wrapper",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "packageName": "hubsante_model.{{ .package }}"
+  }
+}
+{{ end }}
+{{- range (datasource "config").schemas }}
+    {{ if eq .automaticGeneration "Y" }}
+        {{- tmpl.Exec "wrapper.generator-config" . | file.Write (printf "output/generator_php-symfony/config/generated/%s/%s.wrapper.generator-config.json" .schema .schema) }}
+    {{end}}
+{{end}}
