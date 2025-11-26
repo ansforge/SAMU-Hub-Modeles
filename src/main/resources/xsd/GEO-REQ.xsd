@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:eda:1.9:georesourcesrequest" elementFormDefault="qualified" targetNamespace="urn:emergency:eda:1.9:georesourcesrequest" xmlns="http://www.w3.org/2001/XMLSchema">
-    <element name="geoResourcesRequest" type="x:geoResourcesRequest"/>
-    <complexType name="geoResourcesRequest">
-        <sequence>
-            <element maxOccurs="unbounded" minOccurs="1" name="resourceId" type="string"/>
-        </sequence>
-    </complexType>
-</schema>

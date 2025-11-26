@@ -17,13 +17,6 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet organization</I></TD></TR><TR><TD BORDER="0" >organizationId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	organization -> appointment [headlabel=1 taillabel="0..1"]
-	regulator [label=<<TABLE>
-                <TR>
-                <TD ><B>regulator</B></TD>
-                </TR>
-                <TR><TD  BORDER="0"><I>objet regulator</I></TD></TR><TR><TD BORDER="0" >regulatorId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >regulatorName <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >regulatorFirstname <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >regulatorEmail <I>string</I> : [1..1] </TD></TR>
-                </TABLE>>]
-	regulator -> appointment [headlabel=1 taillabel=1]
 	appointment [label=<<TABLE>
                 <TR>
                 <TD ><B>appointment</B></TD>

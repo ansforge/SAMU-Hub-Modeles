@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<resourcesStatus xmlns="urn:emergency:eda:1.9:resourcesstatus">
-  <caseId>fr.health.samu800.DRFR158002421400215</caseId>
-  <resourceId>fr.health.samu76A.resource.VLM12</resourceId>
-  <state>
-    <datetime>2024-08-01T16:58:00+02:00</datetime>
-    <status>DEPART</status>
-  </state>
-</resourcesStatus>

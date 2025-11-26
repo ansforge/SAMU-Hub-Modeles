@@ -140,7 +140,7 @@ module Rpis
         invalid_properties.push('invalid value for "org_id", org_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/^([\w-]+\.?){4,10}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.?){4,10}$/)
       if @org_id !~ pattern
         invalid_properties.push("invalid value for \"org_id\", must conform to the pattern #{pattern}.")
       end
@@ -187,7 +187,7 @@ module Rpis
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @org_id.nil?
-      return false if @org_id !~ Regexp.new(/^([\w-]+\.?){4,10}$/)
+      return false if @org_id !~ Regexp.new(/^([a-zA-Z0-9_-]+\.?){4,10}$/)
       return false if @sender_case_id.nil?
       return false if @creation_date.nil?
       return false if @creation_date !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
@@ -206,7 +206,7 @@ module Rpis
         fail ArgumentError, 'org_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.?){4,10}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.?){4,10}$/)
       if org_id !~ pattern
         fail ArgumentError, "invalid value for \"org_id\", must conform to the pattern #{pattern}."
       end

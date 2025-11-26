@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<createCaseHealthUpdate xmlns="urn:emergency:eda:1.9:createCaseHealthUpdate">
-  <caseId>fr.health.samu680.DRFR154402413800555</caseId>
-  <qualification>
-    <details>
-      <status>CLOTURE</status>
-    </details>
-  </qualification>
-</createCaseHealthUpdate>

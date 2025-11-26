@@ -145,7 +145,7 @@ module Resourcesrequest
         invalid_properties.push('invalid value for "request_id", request_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,8}request(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}$/)
       if @request_id !~ pattern
         invalid_properties.push("invalid value for \"request_id\", must conform to the pattern #{pattern}.")
       end
@@ -171,7 +171,7 @@ module Resourcesrequest
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @request_id.nil?
-      return false if @request_id !~ Regexp.new(/^([\w-]+\.){3,8}request(\.[\w-]+){1,2}$/)
+      return false if @request_id !~ Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}$/)
       return false if @datetime.nil?
       return false if @datetime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       convention_validator = EnumAttributeValidator.new('String', ["DRSIS", "MISSION", "ITSP", "CARENCE", "CONVENT", "SPE", "HORS", "AUTRE1", "AUTRE2", "AUTRE3"])
@@ -191,7 +191,7 @@ module Resourcesrequest
         fail ArgumentError, 'request_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,8}request(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}$/)
       if request_id !~ pattern
         fail ArgumentError, "invalid value for \"request_id\", must conform to the pattern #{pattern}."
       end

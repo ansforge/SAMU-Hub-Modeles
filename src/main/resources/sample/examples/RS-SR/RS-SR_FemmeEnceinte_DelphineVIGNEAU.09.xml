@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<resourcesStatus xmlns="urn:emergency:eda:1.9:resourcesstatus">
-  <caseId>fr.fire.sis044.cga-044.SC-20240526-044-cga-AL8</caseId>
-  <resourceId>fr.health.samu440.resource.VLM4</resourceId>
-  <state>
-    <datetime>2024-05-26T13:48:00+02:00</datetime>
-    <status>RETOUR</status>
-  </state>
-</resourcesStatus>
