@@ -1,8 +1,10 @@
 import unittest
 from unittest.mock import patch
 
+from converter.cisu.constants import CISUConstants
 from converter.conversion_strategy.cisu_conversion_strategy import (
     cisu_conversion_strategy,
+    compute_message_direction,
 )
 from tests.constants import TestConstants
 from tests.test_helpers import TestHelper
@@ -155,3 +157,70 @@ class TestCisuConversionStrategy(unittest.TestCase):
             "Unknown source version v1. Must be: v3",
         ):
             cisu_conversion_strategy(edxl_json, invalid_source_version, "v1")
+
+
+class TestComputeMessageDirection(unittest.TestCase):
+    def test_compute_message_direction_should_return_to_cisu_when_sender_is_health_and_not_recipient(
+        self,
+    ):
+        sender_id = "fr.health.sender"
+        recipient_id = "nonhealth.recipient"
+        edxl_json = {
+            "content": [
+                {
+                    "jsonContent": {
+                        "embeddedJsonContent": {"message": {"createCase": {}}}
+                    }
+                }
+            ],
+            "senderID": sender_id,
+            "descriptor": {"explicitAddress": {"explicitAddressValue": recipient_id}},
+        }
+
+        message_direction = compute_message_direction(edxl_json)
+
+        assert message_direction == CISUConstants.TO_CISU
+
+    def test_compute_message_direction_should_return_from_cisu_when_sender_is_not_health(
+        self,
+    ):
+        sender_id = "nonhealth.sender"
+        recipient_id = "nonhealth.recipient"
+        edxl_json = {
+            "content": [
+                {
+                    "jsonContent": {
+                        "embeddedJsonContent": {"message": {"createCase": {}}}
+                    }
+                }
+            ],
+            "senderID": sender_id,
+            "descriptor": {"explicitAddress": {"explicitAddressValue": recipient_id}},
+        }
+
+        message_direction = compute_message_direction(edxl_json)
+
+        assert message_direction == CISUConstants.FROM_CISU
+
+    def test_compute_message_direction_should_raise_error_when_sender_and_recipient_are_health(
+        self,
+    ):
+        sender_id = "fr.health.sender"
+        recipient_id = "fr.health.recipient"
+        edxl_json = {
+            "content": [
+                {
+                    "jsonContent": {
+                        "embeddedJsonContent": {"message": {"createCase": {}}}
+                    }
+                }
+            ],
+            "senderID": sender_id,
+            "descriptor": {"explicitAddress": {"explicitAddressValue": recipient_id}},
+        }
+
+        with self.assertRaisesRegex(
+            ValueError,
+            f"Both sender and recipient are health: {sender_id} -> {recipient_id}",
+        ):
+            compute_message_direction(edxl_json)
