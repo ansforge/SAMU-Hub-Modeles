@@ -90,7 +90,7 @@ class CreateHealthCaseConverter(BaseMessageConverter):
     def convert_v2_to_v1(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
         def update_language(json_data: Dict[str, Any]):
             language = get_field_value(json_data, "$.initialAlert.caller.language")
-            if language in V1V2Constants.V1_TO_V2_LANGUAGE:
+            if language in V1V2Constants.V2_TO_V1_LANGUAGE:
                 map_to_new_value(
                     json_data,
                     "$.initialAlert.caller.language",
