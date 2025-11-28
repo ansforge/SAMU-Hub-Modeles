@@ -9,7 +9,10 @@ from converter.utils import (
 )
 from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.create_case_health.v1_v2.constants import V1V2Constants
-from converter.versions.create_case_health.v1_v2.utils import validate_diagnosis_code
+from converter.versions.create_case_health.v1_v2.utils import (
+    update_language,
+    validate_diagnosis_code,
+)
 from converter.versions.create_case_health.v2_v3.constants import V2V3Constants
 from converter.versions.utils import (
     reverse_map_to_new_value,
@@ -42,11 +45,7 @@ class CreateHealthCaseConverter(BaseMessageConverter):
             "$.initialAlert.caller.type",
             V1V2Constants.CALLER_TYPE_MAPPING,
         )
-        map_to_new_value(
-            output_use_case_json,
-            "$.initialAlert.caller.language",
-            V1V2Constants.V1_TO_V2_LANGUAGE,
-        )
+        update_language(output_use_case_json, V1V2Constants.V1_TO_V2_LANGUAGE)
 
         patients = get_field_value(output_use_case_json, "$.patient")
         if patients is not None:
@@ -88,17 +87,6 @@ class CreateHealthCaseConverter(BaseMessageConverter):
 
     @classmethod
     def convert_v2_to_v1(cls, input_json: Dict[str, Any]) -> Dict[str, Any]:
-        def update_language(json_data: Dict[str, Any]):
-            language = get_field_value(json_data, "$.initialAlert.caller.language")
-            if language in V1V2Constants.V2_TO_V1_LANGUAGE:
-                map_to_new_value(
-                    json_data,
-                    "$.initialAlert.caller.language",
-                    V1V2Constants.V2_TO_V1_LANGUAGE,
-                )
-            else:
-                delete_paths(json_data, ["initialAlert.caller.language"])
-
         def update_practitioner_contact(json_data: Dict[str, Any], patient_index: int):
             practitioner_contact_type = get_field_value(
                 json_data,
@@ -141,7 +129,7 @@ class CreateHealthCaseConverter(BaseMessageConverter):
             "$.initialAlert.caller.callbackContact.type",
             V1V2Constants.V2_TO_V1_CALLER_CONTACT_TYPE,
         )
-        update_language(output_use_case_json)
+        update_language(output_use_case_json, V1V2Constants.V2_TO_V1_LANGUAGE)
 
         patients = get_field_value(output_use_case_json, "$.patient")
         if patients is not None:

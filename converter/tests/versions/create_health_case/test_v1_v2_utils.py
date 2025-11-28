@@ -3,6 +3,12 @@ from unittest.mock import patch
 
 from converter.versions.create_case_health.v1_v2.utils import validate_diagnosis_code
 
+from converter.versions.create_case_health.v1_v2.utils import (
+    update_language,
+    get_field_value,
+)
+from converter.versions.create_case_health.constants import Constants
+
 
 class TestValidateDiagnosisCode(unittest.TestCase):
     def test_validate_diagnosis_code_no_diagnosis(self):
@@ -161,4 +167,34 @@ class TestValidateDiagnosisCode(unittest.TestCase):
                     },
                 ],
             },
+        )
+
+
+class TestUpdateLanguage(unittest.TestCase):
+    @staticmethod
+    def message(lang):
+        data = {"initialAlert": {"caller": {"language": lang}}}
+        return data
+
+    def test_update_language_should_change_value_if_available_in_map(self):
+        message = self.message("fr")
+        update_language(message, {"fr": "FR"})
+        assert (
+            get_field_value(message, Constants.INITIAL_ALERT_CALLER_LANGUAGE_PATH)
+            == "FR"
+        )
+
+    def test_update_language_should_delete_path_if_value_not_in_map(self):
+        message = self.message("de")
+        update_language(message, {"fr": "FR"})
+        assert (
+            get_field_value(message, Constants.INITIAL_ALERT_CALLER_LANGUAGE_PATH)
+            is None
+        )
+
+    def test_update_language_should_delete_value_with_empty_mapping(self):
+        data = self.message("fr")
+        update_language(data, {})
+        assert (
+            get_field_value(data, Constants.INITIAL_ALERT_CALLER_LANGUAGE_PATH) is None
         )
