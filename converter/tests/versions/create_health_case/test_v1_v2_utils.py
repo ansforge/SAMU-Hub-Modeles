@@ -6,8 +6,11 @@ from converter.versions.create_case_health.v1_v2.utils import validate_diagnosis
 from converter.versions.create_case_health.v1_v2.utils import (
     update_language,
     get_field_value,
+    set_value,
 )
 from converter.versions.create_case_health.constants import Constants
+
+from converter.versions.create_case_health.v1_v2.utils import add_to_initial_alert_notes
 
 
 class TestValidateDiagnosisCode(unittest.TestCase):
@@ -198,3 +201,42 @@ class TestUpdateLanguage(unittest.TestCase):
         assert (
             get_field_value(data, Constants.INITIAL_ALERT_CALLER_LANGUAGE_PATH) is None
         )
+
+
+class TestAddToInitialNotes(unittest.TestCase):
+    def test_add_note_when_none_exists(self):
+        message = {}
+
+        add_to_initial_alert_notes(message, "First note")
+
+        notes = get_field_value(message, Constants.INITIAL_ALERT_NOTES_PATH)
+        assert len(notes) == 1
+        assert notes[0]["freetext"] == "First note"
+
+    def test_add_note_when_list_exists(self):
+        message = {}
+        set_value(
+            message, Constants.INITIAL_ALERT_NOTES_PATH, [{"freetext": "Old note"}]
+        )
+
+        add_to_initial_alert_notes(message, "New note")
+
+        notes = get_field_value(message, Constants.INITIAL_ALERT_NOTES_PATH)
+
+        assert len(notes) == 2
+        assert notes[0]["freetext"] == "Old note"
+        assert notes[1]["freetext"] == "New note"
+
+    def test_multiple_additions(self):
+        message = {}
+
+        add_to_initial_alert_notes(message, "Note A")
+        add_to_initial_alert_notes(message, "Note B")
+        add_to_initial_alert_notes(message, "Note C")
+
+        notes = get_field_value(message, Constants.INITIAL_ALERT_NOTES_PATH)
+
+        assert len(notes) == 3
+        assert notes[0]["freetext"] == "Note A"
+        assert notes[1]["freetext"] == "Note B"
+        assert notes[2]["freetext"] == "Note C"

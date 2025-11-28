@@ -1,5 +1,7 @@
+import datetime
+
 from converter.versions.create_case_health.constants import Constants
-from converter.utils import get_field_value, map_to_new_value, delete_paths
+from converter.utils import get_field_value, map_to_new_value, delete_paths, set_value
 import re
 from typing import Any, Dict
 
@@ -72,4 +74,22 @@ def update_language(message: Dict[str, Any], language_map: Dict[str, str]) -> No
             language_map,
         )
     else:
+        add_to_initial_alert_notes(message, f"Langue du requérant: {language}")
         delete_paths(message, [Constants.INITIAL_ALERT_CALLER_LANGUAGE_KEY])
+
+
+def add_to_initial_alert_notes(
+    message: Dict[str, Any],
+    note: str,
+) -> None:
+    current_notes = get_field_value(message, Constants.INITIAL_ALERT_NOTES_PATH)
+    if not current_notes:
+        current_notes = []
+
+    note_to_add = {
+        "freetext": note,
+        "creation": datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S+00:00"),
+    }
+
+    current_notes.append(note_to_add)
+    set_value(message, Constants.INITIAL_ALERT_NOTES_PATH, current_notes)

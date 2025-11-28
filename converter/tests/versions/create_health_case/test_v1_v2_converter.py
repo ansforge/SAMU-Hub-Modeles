@@ -114,3 +114,6 @@ def test_upgrade_with_unknown_v2_language_code():
         converted_message_content, "$.initialAlert.caller.language"
     )
     assert language is None
+    notes = get_field_value(converted_message_content, "$.initialAlert.notes")
+    assert len(notes) > 1
+    assert "Langue du requérant: AX" in notes[-1]["freetext"]
