@@ -491,6 +491,10 @@ snapshots["TestSnapshotV1V2Converter::test_snapshot_V2_to_V1_downgrade 1"] = """
                   {
                     "creation": "2025-02-27T00:00:00+01:00",
                     "freetext": "alerte initiale 2"
+                  },
+                  {
+                    "freetext": "Langue du requ\\u00e9rant: af",
+                    "creation": "2025-01-01T00:00:00+00:00"
                   }
                 ]
               },

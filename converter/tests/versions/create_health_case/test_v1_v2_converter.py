@@ -1,3 +1,4 @@
+import datetime
 import json
 from unittest.mock import patch
 
@@ -75,10 +76,12 @@ class TestSnapshotV1V2Converter(TestCase):
             get_v1_schema(),
         )
         output_data = CreateHealthCaseConverter.convert_v1_to_v2(message)
+
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
+    @patch("converter.versions.create_case_health.v1_v2.utils.datetime")
     @patch("converter.utils.random")
-    def test_snapshot_V2_to_V1_downgrade(self, mock_choices):
+    def test_snapshot_V2_to_V1_downgrade(self, mock_choices, mock_datetime):
         mock_choices.choices.side_effect = [
             "f5de7hj",
             "a3b2YH8",
@@ -90,12 +93,16 @@ class TestSnapshotV1V2Converter(TestCase):
             "67jfq0l",
             "uh88l1h",
         ]
+        mock_datetime.datetime.now.return_value = datetime.datetime(2025, 1, 1, 0, 0, 0)
+        mock_datetime.datetime.strftime = datetime.datetime.strftime
 
         message = TestHelper.create_edxl_json_from_sample(
             TestConstants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
             "tests/fixtures/RS-EDA/RS-EDA_V2.0_exhaustive_fill_bis.json",
         )
         output_data = CreateHealthCaseConverter.convert_v2_to_v1(message)
+
+        self.maxDiff = None
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
 
