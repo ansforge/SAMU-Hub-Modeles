@@ -29,9 +29,10 @@ def extract_message_content(edxl_json) -> Dict:
 
 
 def extract_message_type_from_message_content(
-    message_content,
-    unwanted_keys=["messageId", "sender", "sentAt", "kind", "status", "recipient"],
+    message_content: Dict[str, Any],
 ) -> str:
+    unwanted_keys = ["messageId", "sender", "sentAt", "kind", "status", "recipient"]
+
     filtered_keys = list(
         filter(lambda key: key not in unwanted_keys, message_content.keys())
     )
