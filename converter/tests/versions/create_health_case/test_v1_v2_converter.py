@@ -111,6 +111,6 @@ def test_upgrade_with_unknown_v2_language_code():
     validate(converted_message_content, get_v2_schema())
 
     language = get_field_value(
-        converted_message_content, "$.initialAlerte.caller.language"
+        converted_message_content, "$.initialAlert.caller.language"
     )
     assert language is None
