@@ -1,0 +1,282 @@
+{
+  "createCaseHealth": {
+    "qualification": {
+      "origin": "112",
+      "riskThreat": [
+        {
+          "code": "R01",
+          "label": "libellé R01"
+        }
+      ],
+      "whatsHappen": {
+        "code": "C02.15.01",
+        "label": "libellé de C021501"
+      },
+      "locationKind": {
+        "code": "L01.00.00",
+        "label": "libellé type de lieu"
+      },
+      "healthMotive": {
+        "code": "M03.11",
+        "label": "libellé motif de recours"
+      },
+      "details": {
+        "status": " ACTIF",
+        "attribution": "PEDIA",
+        "priority": "P1",
+        "careLevel": "R3"
+      }
+    },
+    "location": {
+      "geometry": {
+        "point": {
+          "coord": {
+            "lat": 37.7749,
+            "lon": 122.4194,
+            "height": 16,
+            "precision": "INCONNUE"
+          },
+          "isAml": true
+        },
+        "obsDatime": "2025-02-27T06:30:00+01:00"
+      },
+      "name": "nom du lieu",
+      "externalLocationId": [
+        {
+          "source": "SIREN",
+          "value": "123456789"
+        }
+      ],
+      "detailedAddress": {
+        "highway": {
+          "name": "A4",
+          "pk": "PK10",
+          "direction": "est"
+        },
+        "complete": "12 rue de nulle part",
+        "number": "12",
+        "wayName": {
+          "complete": "rue de nulle part",
+          "type": "rue",
+          "name": "de nulle part"
+        }
+      },
+      "city": {
+        "name": "nowhere",
+        "inseeCode": "99999"
+      },
+      "access": {
+        "floor": "1",
+        "roomNumber": "12",
+        "interphone": "45678",
+        "accessCode": ["4598"],
+        "elevator": "z",
+        "buildingName": "E",
+        "entrance": "EST",
+        "entity": "Service",
+        "phoneNumber": "+33156487811"
+      },
+      "externalInfo": [
+        {
+          "freetext": "BAN",
+          "type": "PHOTO",
+          "uri": "identifiantBAN"
+        }
+      ],
+      "freetext": "infos complémentaires sur le lieu"
+    },
+    "initialAlert": {
+      "caller": {
+        "callerContact": {
+          "channel": "PERSONNE",
+          "type": "TEL",
+          "detail": "+33645897846457895"
+        },
+        "callbackContact": {
+          "channel": "ECALL",
+          "type": "FAX",
+          "detail": "uriducontact"
+        },
+        "language": "AX",
+        "type": "MEDSOS",
+        "communication": "LANGUE",
+        "freetext": "infos supp sur le requérant",
+        "detailedName": {
+          "complete": "prénom et nom du requérant",
+          "lastName": "nom du requérant",
+          "firstName": "prénom du requérant"
+        }
+      },
+      "reception": "2025-02-13T15:00:00+01:00",
+      "notes": [
+        {
+          "creation": "2025-02-27T00:00:00+01:00",
+          "freetext": "commentaire alerte initiale"
+        },
+        {
+          "creation": "2025-02-27T00:00:00+01:00",
+          "freetext": "commentaire alerte initiale 2"
+        }
+      ]
+    },
+    "caseId": "fr.health.samu770.DRFR157702400400055",
+    "senderCaseId": "DRFR157702400400055",
+    "creation": "2025-02-27T01:15:00+01:00",
+    "perimeter": "AMU",
+    "interventionType": "PRIMAIRE",
+    "owner": "fr.health.samu770",
+    "patient": [
+      {
+        "idPat": "fr.health.samu770.patient.DRFR157702400400055.1",
+        "administrativeFile": {
+          "externalId": [
+            {
+              "source": "NIR",
+              "value": "154088045698715"
+            }
+          ]
+        },
+        "identity": {
+          "strictFeatures": {
+            "birthName": "Nom de naissance",
+            "birthDate": "1954-08-12",
+            "sex": "MASC"
+          },
+          "nonStrictFeatures": {
+            "complete": "prénom et nom",
+            "lastName": "nom",
+            "firstName": "prénom"
+          }
+        },
+        "healthMotive": {
+          "code": "M01.00",
+          "label": "Détresse vitale"
+        },
+        "detail": {
+          "weight": 80,
+          "height": 178,
+          "age": "P80Y",
+          "careLevel": "R2"
+        },
+        "hypothesis": {
+          "mainDiagnosis": {
+            "code": "J14",
+            "label": " Pneumopathie due à Haemophilus influenzae"
+          },
+          "otherDiagnosis": [
+            {
+              "code": "MAUVAISCODE",
+              "label": "Faux code"
+            },
+            {
+              "code": "E11.9",
+              "label": "Diabète sucré de type 2 sans complication"
+            }
+          ]
+        }
+      },
+      {
+        "idPat": "fr.health.samu770.patient.DRFR157702400400055.2",
+        "administrativeFile": {
+          "externalId": [
+            {
+              "source": "DOSSARD",
+              "value": "blablabla"
+            }
+          ]
+        },
+        "identity": {
+          "strictFeatures": {
+            "birthName": "nom de naissance 2",
+            "birthDate": "1959-05-23",
+            "sex": "FEM"
+          },
+          "nonStrictFeatures": {
+            "complete": "prénom et nom 2",
+            "lastName": "nom 2",
+            "firstName": "prénom 2"
+          }
+        },
+        "healthMotive": {
+          "code": "M02.01",
+          "label": "Blessure"
+        },
+        "detail": {
+          "weight": 54,
+          "height": 160,
+          "age": "P65Y",
+          "careLevel": "R4"
+        },
+        "hypothesis": {
+          "mainDiagnosis": {
+            "code": "4A00",
+            "label": "Code CIM11"
+          },
+          "otherDiagnosis": [
+            {
+              "code": "MAUVAISCODE",
+              "label": "Pas CIM 10"
+            }
+          ]
+        }
+      }
+    ],
+    "medicalNote": [
+      {
+        "operator": {
+          "label": "Label 1",
+          "role": "ARM"
+        },
+        "idPat": "fr.health.samu770.patient.DRFR157702400400055.1",
+        "idObs": "fr.health.samu770.medicalNote.nimpnawak",
+        "creation": "2025-02-27T12:06:00+01:00",
+        "freetext": "Note liée à un patient n°1"
+      },
+      {
+        "operator": {
+          "label": "label 2",
+          "role": "AUTRE"
+        },
+        "idObs": "fr.health.samu770.medicalNote.onsenfout",
+        "creation": "2025-02-27T00:00:00+01:00",
+        "freetext": "note médicale non liée à patient n°2"
+      }
+    ],
+    "decision": [
+      {
+        "operator": {
+          "label": "label 3",
+          "role": "MEDECIN"
+        },
+        "idPat": "fr.health.samu770.patient.DRFR157702400400055.1",
+        "creation": "2025-02-27T00:00:00+01:00",
+        "decisionType": "CONSEIL",
+        "resourceType": "TSU ",
+        "vehiculeType": "AMB-GV",
+        "medicalTransport": true,
+        "orientationType": "EPHAD"
+      },
+      {
+        "operator": {
+          "role": "INFIRMIER"
+        },
+        "idPat": "fr.health.samu770.patient.DRFR157702400400055.2",
+        "creation": "2025-02-27T18:00:00+01:00",
+        "decisionType": "ORIENT",
+        "resourceType": "LIB",
+        "vehiculeType": "VLM",
+        "orientationType": "URGENCES"
+      }
+    ],
+    "additionalInformation": {
+      "customMap": [
+        {
+          "key": "test",
+          "label": "test",
+          "value": "test",
+          "freetext": "test"
+        }
+      ]
+    }
+  }
+}
