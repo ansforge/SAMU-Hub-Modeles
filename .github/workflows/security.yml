@@ -43,7 +43,7 @@ jobs:
     with:
       working-directory: 'csv_parser'
       component-name: 'csv-parser'
-      dependency-scan: false
+      dependency-scan: true
       scan-dockerfile: false
     secrets: inherit
 
@@ -53,7 +53,7 @@ jobs:
     with:
       working-directory: 'nomenclature_parser'
       component-name: 'nomenclature-parser'
-      dependency-scan: false
+      dependency-scan: true
       scan-dockerfile: false
     secrets: inherit
 
