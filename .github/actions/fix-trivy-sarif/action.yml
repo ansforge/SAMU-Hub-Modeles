@@ -26,28 +26,14 @@ runs:
         
         echo "🔧 Fixing SARIF file paths in $SARIF_FILE for scan path: $SCAN_PATH"
         
-        # Use jq to fix the file paths in the SARIF output
-        jq --arg scan_path "$SCAN_PATH" '
-          def fix_uri:
-            if startswith("/") then
-              . as $full_path |
-              ($full_path | split("/") | reverse) as $parts |
-              ($scan_path | split("/") | reverse) as $scan_parts |
-              # Find the matching suffix and construct the relative path
-              if ($parts | length) > ($scan_parts | length) then
-                ($parts[0:($scan_parts | length)] == $scan_parts) as $matches |
-                if $matches then
-                  $parts | reverse | join("/")
-                else
-                  .
-                end
-              else
-                .
-              end
+        # Fix all URI paths in the SARIF file
+        jq --arg prefix "${SCAN_PATH}/" '
+          def fix_uri: 
+            if . and (startswith($prefix) | not) and (. != "") then
+              $prefix + .
             else
               .
             end;
-          
           (.runs[]?.results[]?.locations[]?.physicalLocation?.artifactLocation?.uri?) |= fix_uri |
           (.runs[]?.artifacts[]?.location?.uri?) |= fix_uri
         ' "$SARIF_FILE" > "${SARIF_FILE}.tmp" && mv "${SARIF_FILE}.tmp" "$SARIF_FILE"
