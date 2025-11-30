@@ -50,8 +50,8 @@ jobs:
             exit 1
           fi
   
-          # Make the RELEASE_VERSION semver compatible (replacing non letter/digit/./+ chars with .)
-          RELEASE_VERSION=$(echo "$RELEASE_VERSION" | sed 's/[^a-zA-Z0-9\.\+]/./g')
+          # Make the RELEASE_VERSION semver compatible (replacing non letter/digit/./+/- chars with .)
+          RELEASE_VERSION=$(echo "$RELEASE_VERSION" | sed 's/[^a-zA-Z0-9\.\+\-]/./g')
 
           # Display the RELEASE_VERSION for verification
           echo "The RELEASE_VERSION is: $RELEASE_VERSION"
