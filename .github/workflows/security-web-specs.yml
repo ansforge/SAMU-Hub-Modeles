@@ -1,0 +1,24 @@
+name: Security Scan - Web Specs
+
+on:
+  push:
+    paths:
+      - 'web_specs/**'
+      - '.github/workflows/security-web-specs.yml'
+  pull_request:
+    paths:
+      - 'web_specs/**'
+      - '.github/workflows/security-web-specs.yml'
+  schedule:
+    - cron: '0 3 * * 1'
+  workflow_dispatch:
+
+jobs:
+  security-scan-web-specs:
+    uses: ./.github/workflows/security-scan.yml
+    with:
+      working-directory: 'web_specs'
+      component-name: 'web-specs'
+      dependency-scan: false
+      scan-dockerfile: true
+    secrets: inherit

@@ -1,0 +1,28 @@
+name: Security Scan - Java Library
+
+on:
+  push:
+    paths:
+      - 'src/**'
+      - 'build.gradle'
+      - 'settings.gradle'
+      - '.github/workflows/security-library.yml'
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'build.gradle'
+      - 'settings.gradle'
+      - '.github/workflows/security-library.yml'
+  schedule:
+    - cron: '0 3 * * 1'
+  workflow_dispatch:
+
+jobs:
+  security-scan-library:
+    uses: ./.github/workflows/security-scan.yml
+    with:
+      working-directory: '.'
+      component-name: 'library'
+      dependency-scan: false
+      scan-dockerfile: false
+    secrets: inherit

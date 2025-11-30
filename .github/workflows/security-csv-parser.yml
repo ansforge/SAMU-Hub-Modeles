@@ -1,0 +1,24 @@
+name: Security Scan - CSV Parser
+
+on:
+  push:
+    paths:
+      - 'csv_parser/**'
+      - '.github/workflows/security-csv-parser.yml'
+  pull_request:
+    paths:
+      - 'csv_parser/**'
+      - '.github/workflows/security-csv-parser.yml'
+  schedule:
+    - cron: '0 3 * * 1'
+  workflow_dispatch:
+
+jobs:
+  security-scan-csv-parser:
+    uses: ./.github/workflows/security-scan.yml
+    with:
+      working-directory: 'csv_parser'
+      component-name: 'csv-parser'
+      dependency-scan: true
+      scan-dockerfile: false
+    secrets: inherit

@@ -1,0 +1,24 @@
+name: Security Scan - Nomenclature Parser
+
+on:
+  push:
+    paths:
+      - 'nomenclature_parser/**'
+      - '.github/workflows/security-nomenclature-parser.yml'
+  pull_request:
+    paths:
+      - 'nomenclature_parser/**'
+      - '.github/workflows/security-nomenclature-parser.yml'
+  schedule:
+    - cron: '0 3 * * 1'
+  workflow_dispatch:
+
+jobs:
+  security-scan-nomenclature-parser:
+    uses: ./.github/workflows/security-scan.yml
+    with:
+      working-directory: 'nomenclature_parser'
+      component-name: 'nomenclature-parser'
+      dependency-scan: true
+      scan-dockerfile: false
+    secrets: inherit

@@ -1,0 +1,24 @@
+name: Security Scan - Converter
+
+on:
+  push:
+    paths:
+      - 'converter/**'
+      - '.github/workflows/security-converter.yml'
+  pull_request:
+    paths:
+      - 'converter/**'
+      - '.github/workflows/security-converter.yml'
+  schedule:
+    - cron: '0 3 * * 1'
+  workflow_dispatch:
+
+jobs:
+  security-scan-converter:
+    uses: ./.github/workflows/security-scan.yml
+    with:
+      working-directory: 'converter'
+      component-name: 'converter'
+      dependency-scan: true
+      scan-dockerfile: true
+    secrets: inherit
