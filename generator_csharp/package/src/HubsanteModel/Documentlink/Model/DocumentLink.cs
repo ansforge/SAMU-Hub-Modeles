@@ -131,7 +131,7 @@ namespace HubsanteModel/Documentlink.Model
         {
             if (this.CaseId != null) {
                 // CaseId (string) pattern
-                Regex regexCaseId = new Regex(@"^([\w-]+\.?){4,10}$", RegexOptions.CultureInvariant);
+                Regex regexCaseId = new Regex(@"^([a-zA-Z0-9_-]+\.?){4,10}$", RegexOptions.CultureInvariant);
                 if (!regexCaseId.Match(this.CaseId).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CaseId, must match a pattern of " + regexCaseId, new [] { "CaseId" });
@@ -140,7 +140,7 @@ namespace HubsanteModel/Documentlink.Model
 
             if (this.PatientId != null) {
                 // PatientId (string) pattern
-                Regex regexPatientId = new Regex(@"^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$", RegexOptions.CultureInvariant);
+                Regex regexPatientId = new Regex(@"^([a-zA-Z0-9_-]+\.){3,8}patient(\.[a-zA-Z0-9_-]+){1,2}$", RegexOptions.CultureInvariant);
                 if (!regexPatientId.Match(this.PatientId).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PatientId, must match a pattern of " + regexPatientId, new [] { "PatientId" });

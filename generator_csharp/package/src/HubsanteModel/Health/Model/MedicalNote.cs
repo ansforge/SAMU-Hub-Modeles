@@ -146,7 +146,7 @@ namespace HubsanteModel/Health.Model
         {
             if (this.PatientId != null) {
                 // PatientId (string) pattern
-                Regex regexPatientId = new Regex(@"^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$", RegexOptions.CultureInvariant);
+                Regex regexPatientId = new Regex(@"^([a-zA-Z0-9_-]+\.){3,8}patient(\.[a-zA-Z0-9_-]+){1,2}$", RegexOptions.CultureInvariant);
                 if (!regexPatientId.Match(this.PatientId).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PatientId, must match a pattern of " + regexPatientId, new [] { "PatientId" });
@@ -155,7 +155,7 @@ namespace HubsanteModel/Health.Model
 
             if (this.MedicalNoteId != null) {
                 // MedicalNoteId (string) pattern
-                Regex regexMedicalNoteId = new Regex(@"^([\w-]+\.){3,8}medicalNote(\.[\w-]+){1,2}$", RegexOptions.CultureInvariant);
+                Regex regexMedicalNoteId = new Regex(@"^([a-zA-Z0-9_-]+\.){3,8}medicalNote(\.[a-zA-Z0-9_-]+){1,2}$", RegexOptions.CultureInvariant);
                 if (!regexMedicalNoteId.Match(this.MedicalNoteId).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for MedicalNoteId, must match a pattern of " + regexMedicalNoteId, new [] { "MedicalNoteId" });
