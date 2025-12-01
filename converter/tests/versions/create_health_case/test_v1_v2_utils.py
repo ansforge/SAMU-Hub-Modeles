@@ -3,6 +3,15 @@ from unittest.mock import patch
 
 from converter.versions.create_case_health.v1_v2.utils import validate_diagnosis_code
 
+from converter.versions.create_case_health.v1_v2.utils import (
+    update_language,
+    get_field_value,
+    set_value,
+)
+from converter.versions.create_case_health.constants import Constants
+
+from converter.versions.create_case_health.v1_v2.utils import add_to_initial_alert_notes
+
 
 class TestValidateDiagnosisCode(unittest.TestCase):
     def test_validate_diagnosis_code_no_diagnosis(self):
@@ -162,3 +171,72 @@ class TestValidateDiagnosisCode(unittest.TestCase):
                 ],
             },
         )
+
+
+class TestUpdateLanguage(unittest.TestCase):
+    @staticmethod
+    def message(lang):
+        data = {"initialAlert": {"caller": {"language": lang}}}
+        return data
+
+    def test_update_language_should_change_value_if_available_in_map(self):
+        message = self.message("fr")
+        update_language(message, {"fr": "FR"})
+        assert (
+            get_field_value(message, Constants.INITIAL_ALERT_CALLER_LANGUAGE_PATH)
+            == "FR"
+        )
+
+    def test_update_language_should_delete_path_if_value_not_in_map(self):
+        message = self.message("de")
+        update_language(message, {"fr": "FR"})
+        assert (
+            get_field_value(message, Constants.INITIAL_ALERT_CALLER_LANGUAGE_PATH)
+            is None
+        )
+
+    def test_update_language_should_delete_value_with_empty_mapping(self):
+        data = self.message("fr")
+        update_language(data, {})
+        assert (
+            get_field_value(data, Constants.INITIAL_ALERT_CALLER_LANGUAGE_PATH) is None
+        )
+
+
+class TestAddToInitialNotes(unittest.TestCase):
+    def test_add_note_when_none_exists(self):
+        message = {}
+
+        add_to_initial_alert_notes(message, "First note")
+
+        notes = get_field_value(message, Constants.INITIAL_ALERT_NOTES_PATH)
+        assert len(notes) == 1
+        assert notes[0]["freetext"] == "First note"
+
+    def test_add_note_when_list_exists(self):
+        message = {}
+        set_value(
+            message, Constants.INITIAL_ALERT_NOTES_PATH, [{"freetext": "Old note"}]
+        )
+
+        add_to_initial_alert_notes(message, "New note")
+
+        notes = get_field_value(message, Constants.INITIAL_ALERT_NOTES_PATH)
+
+        assert len(notes) == 2
+        assert notes[0]["freetext"] == "Old note"
+        assert notes[1]["freetext"] == "New note"
+
+    def test_multiple_additions(self):
+        message = {}
+
+        add_to_initial_alert_notes(message, "Note A")
+        add_to_initial_alert_notes(message, "Note B")
+        add_to_initial_alert_notes(message, "Note C")
+
+        notes = get_field_value(message, Constants.INITIAL_ALERT_NOTES_PATH)
+
+        assert len(notes) == 3
+        assert notes[0]["freetext"] == "Note A"
+        assert notes[1]["freetext"] == "Note B"
+        assert notes[2]["freetext"] == "Note C"
