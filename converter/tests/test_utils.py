@@ -10,6 +10,7 @@ from converter.utils import (
     translate_key_words,
     update_json_value,
     set_value,
+    extract_message_type_from_message_content,
 )
 import unittest
 import json
@@ -483,3 +484,43 @@ class TestSetValue(unittest.TestCase):
         self.assertEqual(get_field_value(data, "$.a.b.c.d.e"), 5)
         self.assertTrue(is_field_completed(data, "$.a.b.c.d"))
         self.assertTrue(is_field_completed(data, "$.a.b.c.d.e"))
+
+
+class TestExtractMessageTypeFromMessageContent(unittest.TestCase):
+    def test_returns_unknown_when_only_unwanted_keys(self):
+        content = {"messageId": "123", "sender": "abc", "status": "active"}
+        assert (
+            extract_message_type_from_message_content(content) == "unknownMessageType"
+        )
+
+    def test_returns_unknown_when_empty_dict(self):
+        assert extract_message_type_from_message_content({}) == "unknownMessageType"
+
+    def test_returns_single_allowed_key(self):
+        content = {"createCaseHealth": {"foo": "bar"}, "sender": "x"}
+        assert extract_message_type_from_message_content(content) == "createCaseHealth"
+
+    def test_returns_first_allowed_key_when_multiple(self):
+        content = {
+            "createCaseHealth": {},
+            "rpis": {},
+            "sender": "x",
+            "status": "y",
+        }
+        assert extract_message_type_from_message_content(content) == "createCaseHealth"
+
+    def test_ignores_unwanted_keys_mixed_with_allowed(self):
+        content = {
+            "messageId": "123",
+            "recipient": "abc",
+            "createCaseHealth": {},
+            "kind": "K",
+        }
+        assert extract_message_type_from_message_content(content) == "createCaseHealth"
+
+    def test_non_string_values_are_supported(self):
+        content = {
+            "createCaseHealth": [1, 2, 3],
+            "status": "ok",
+        }
+        assert extract_message_type_from_message_content(content) == "createCaseHealth"
