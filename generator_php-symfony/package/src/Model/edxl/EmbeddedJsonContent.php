@@ -1,6 +1,6 @@
 <?php
 /**
- * Content
+ * EmbeddedJsonContent
  *
  * PHP version 8.1.1
  *
@@ -29,29 +29,28 @@
 
 namespace Hubsante\Model\edxl;
 
+use App\Model\edxl\ContentMessage;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\Accessor;
 use JMS\Serializer\Annotation\SerializedName;
 
 /**
- * Class representing the Content model.
+ * Class representing the EmbeddedJsonContent model.
  *
  * @package Hubsante\Model\edxl
  * @author  OpenAPI Generator team
  */
 
-class Content 
+class EmbeddedJsonContent 
 {
         /**
-     * @var ContentObject|null
-     * @SerializedName("contentObject")
-     * @Type("Hubsante\Model\edxl\ContentObject")
+     * @var array|null
+     * @SerializedName("message")
+     * @Type("array")
     */
-    #[Assert\NotNull]
-    #[Assert\Valid]
-    #[Assert\Type("Hubsante\Model\edxl\ContentObject")]
-    protected ?ContentObject $contentObject = null;
+    #[Assert\Type("Hubsante\Model\edxl\ContentMessage")]
+    protected ?ContentMessage $message = null;
 
     /**
      * Constructor
@@ -60,30 +59,30 @@ class Content
     public function __construct(?array $data = null)
     {
         if (is_array($data)) {
-            $this->contentObject = array_key_exists('contentObject', $data) ? $data['contentObject'] : $this->contentObject;
+            $this->message = array_key_exists('message', $data) ? $data['message'] : $this->message;
         }
     }
 
     /**
-     * Gets contentObject.
+     * Gets message.
      *
-     * @return ContentObject|null
+     * @return array|null
      */
-    public function getContentObject(): ?ContentObject
+    public function getMessage(): ?array
     {
-        return $this->contentObject;
+        return $this->message;
     }
 
     /**
-    * Sets contentObject.
+    * Sets message.
     *
-    * @param ContentObject|null $contentObject
+    * @param array|null $message
     *
     * @return $this
     */
-    public function setContentObject(?ContentObject $contentObject): self
+    public function setMessage(?array $message = null): self
     {
-        $this->contentObject = $contentObject;
+        $this->message = $message;
 
         return $this;
     }

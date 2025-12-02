@@ -1,6 +1,6 @@
 <?php
 /**
- * Content
+ * JsonContent
  *
  * PHP version 8.1.1
  *
@@ -35,23 +35,21 @@ use JMS\Serializer\Annotation\Accessor;
 use JMS\Serializer\Annotation\SerializedName;
 
 /**
- * Class representing the Content model.
+ * Class representing the JsonContent model.
  *
  * @package Hubsante\Model\edxl
  * @author  OpenAPI Generator team
  */
 
-class Content 
+class JsonContent 
 {
         /**
-     * @var ContentObject|null
-     * @SerializedName("contentObject")
-     * @Type("Hubsante\Model\edxl\ContentObject")
+     * @var EmbeddedJsonContent|null
+     * @SerializedName("embeddedJsonContent")
+     * @Type("Hubsante\Model\edxl\EmbeddedJsonContent")
     */
-    #[Assert\NotNull]
-    #[Assert\Valid]
-    #[Assert\Type("Hubsante\Model\edxl\ContentObject")]
-    protected ?ContentObject $contentObject = null;
+    #[Assert\Type("Hubsante\Model\edxl\EmbeddedJsonContent")]
+    protected ?EmbeddedJsonContent $embeddedJsonContent = null;
 
     /**
      * Constructor
@@ -60,30 +58,30 @@ class Content
     public function __construct(?array $data = null)
     {
         if (is_array($data)) {
-            $this->contentObject = array_key_exists('contentObject', $data) ? $data['contentObject'] : $this->contentObject;
+            $this->embeddedJsonContent = array_key_exists('embeddedJsonContent', $data) ? $data['embeddedJsonContent'] : $this->embeddedJsonContent;
         }
     }
 
     /**
-     * Gets contentObject.
+     * Gets embeddedJsonContent.
      *
-     * @return ContentObject|null
+     * @return EmbeddedJsonContent|null
      */
-    public function getContentObject(): ?ContentObject
+    public function getEmbeddedJsonContent(): ?EmbeddedJsonContent
     {
-        return $this->contentObject;
+        return $this->embeddedJsonContent;
     }
 
     /**
-    * Sets contentObject.
+    * Sets embeddedJsonContent.
     *
-    * @param ContentObject|null $contentObject
+    * @param EmbeddedJsonContent|null $embeddedJsonContent
     *
     * @return $this
     */
-    public function setContentObject(?ContentObject $contentObject): self
+    public function setEmbeddedJsonContent(?EmbeddedJsonContent $embeddedJsonContent = null): self
     {
-        $this->contentObject = $contentObject;
+        $this->embeddedJsonContent = $embeddedJsonContent;
 
         return $this;
     }
