@@ -1,11 +1,11 @@
 <?php
 /**
- * CreateCaseHealthWrapper
+ * ErrorWrapper
  *
  * PHP version 8.1.1
  *
  * @category Class
- * @package  Hubsante\Model\health
+ * @package  Hubsante\Model\report
  * @author   OpenAPI Generator team
  * @link     https://github.com/openapitools/openapi-generator
  */
@@ -27,7 +27,7 @@
  * Do not edit the class manually.
  */
 
-namespace Hubsante\Model\health;
+namespace Hubsante\Model\report;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation\Type;
@@ -35,23 +35,23 @@ use JMS\Serializer\Annotation\Accessor;
 use JMS\Serializer\Annotation\SerializedName;
 
 /**
- * Class representing the CreateCaseHealthWrapper model.
+ * Class representing the ErrorWrapper model.
  *
- * @package Hubsante\Model\health
+ * @package Hubsante\Model\report
  * @author  OpenAPI Generator team
  */
 
-class CreateCaseHealthWrapper extends DistributionElement
+class ErrorWrapper extends ContentMessage
 {
         /**
-     * @var CreateCaseHealth|null
-     * @SerializedName("createCaseHealth")
-     * @Type("Hubsante\Model\health\CreateCaseHealth")
+     * @var Error|null
+     * @SerializedName("error")
+     * @Type("Hubsante\Model\report\Error")
     */
     #[Assert\NotNull]
     #[Assert\Valid]
-    #[Assert\Type("Hubsante\Model\health\CreateCaseHealth")]
-    protected ?CreateCaseHealth $createCaseHealth = null;
+    #[Assert\Type("Hubsante\Model\report\Error")]
+    protected ?Error $error = null;
 
     /**
      * Constructor
@@ -60,30 +60,30 @@ class CreateCaseHealthWrapper extends DistributionElement
     public function __construct(?array $data = null)
     {
         if (is_array($data)) {
-            $this->createCaseHealth = array_key_exists('createCaseHealth', $data) ? $data['createCaseHealth'] : $this->createCaseHealth;
+            $this->error = array_key_exists('error', $data) ? $data['error'] : $this->error;
         }
     }
 
     /**
-     * Gets createCaseHealth.
+     * Gets error.
      *
-     * @return CreateCaseHealth|null
+     * @return Error|null
      */
-    public function getCreateCaseHealth(): ?CreateCaseHealth
+    public function getError(): ?Error
     {
-        return $this->createCaseHealth;
+        return $this->error;
     }
 
     /**
-    * Sets createCaseHealth.
+    * Sets error.
     *
-    * @param CreateCaseHealth|null $createCaseHealth
+    * @param Error|null $error
     *
     * @return $this
     */
-    public function setCreateCaseHealth(?CreateCaseHealth $createCaseHealth): self
+    public function setError(?Error $error): self
     {
-        $this->createCaseHealth = $createCaseHealth;
+        $this->error = $error;
 
         return $this;
     }

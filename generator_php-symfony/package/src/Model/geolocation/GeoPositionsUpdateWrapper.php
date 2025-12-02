@@ -41,7 +41,7 @@ use JMS\Serializer\Annotation\SerializedName;
  * @author  OpenAPI Generator team
  */
 
-class GeoPositionsUpdateWrapper 
+class GeoPositionsUpdateWrapper extends DistributionElement
 {
         /**
      * @var GeoPositionsUpdate|null

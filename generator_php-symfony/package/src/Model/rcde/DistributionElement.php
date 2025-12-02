@@ -41,7 +41,7 @@ use JMS\Serializer\Annotation\SerializedName;
  * @author  OpenAPI Generator team
  */
 
-class DistributionElement 
+class DistributionElement extends ContentMessage
 {
         /**
      * Identifiant partagé de l&#39;affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier).  Il est valorisé comme suit lors de sa création :  {pays}.{domaine}.{organisation}.{senderCaseId}  Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.  Il doit être unique dans l&#39;ensemble des systèmes : le numéro de dossier fourni par celui qui génère l&#39;identifiant partagé doit donc être un numéro unique dans son système.

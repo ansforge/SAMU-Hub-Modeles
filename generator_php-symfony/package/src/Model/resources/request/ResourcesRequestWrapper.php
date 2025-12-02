@@ -41,7 +41,7 @@ use JMS\Serializer\Annotation\SerializedName;
  * @author  OpenAPI Generator team
  */
 
-class ResourcesRequestWrapper 
+class ResourcesRequestWrapper extends DistributionElement
 {
         /**
      * @var ResourcesRequest|null
