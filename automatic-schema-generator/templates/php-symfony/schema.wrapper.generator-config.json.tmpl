@@ -1,7 +1,8 @@
 {{ define "wrapper.generator-config" }}{
   "inputSpec": "../generator/input/{{.schema}}.openapi.yaml",
-  "outputDir": "package/src/",
-  "generatorName": "python",
+  "outputDir": "package/",
+  "generatorName": "php-symfony",
+  "templateDir": "./config/templates/wrapper",
   "globalProperties": {
     "models": "{{.rootElement}}Wrapper",
     "apis": false,
@@ -11,8 +12,23 @@
     "modelTests": false
   },
   "additionalProperties": {
-    "packageName": "hubsante_model.{{ .package }}"
-  }
+      "invokerPackage": "Hubsante",
+      "modelPackage": "Model\\{{.package}}",
+      "packageName": "hubsante_model.{{ .package }}",
+      "srcBasePath": "src/",
+      "composerVendorName": "hubsante",
+      "composerProjectName": "model-sdk",
+      "variableNamingConvention": "camelCase",
+      "useStrictTypes": true,
+      "useEnumCaseInsensitive": false,
+      "phpVersion": "8.3",
+      "legacyDiscriminatorBehavior": false,
+      "generateModelTests": false,
+      "generateModelDocumentation": false,
+      "withInterfaces": true,
+      "withAbstractClasses": false,
+      "allowUnicodeIdentifiers": true
+    }
 }
 {{ end }}
 {{- range (datasource "config").schemas }}
