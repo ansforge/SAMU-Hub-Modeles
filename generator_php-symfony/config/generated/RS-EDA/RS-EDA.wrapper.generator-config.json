@@ -1,0 +1,32 @@
+{
+  "inputSpec": "../generator/input/RS-EDA.openapi.yaml",
+  "outputDir": "package/",
+  "generatorName": "php-symfony",
+  "templateDir": "./config/templates/wrapper",
+  "globalProperties": {
+    "models": "createCaseHealthWrapper",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+      "invokerPackage": "Hubsante",
+      "modelPackage": "Model\\health",
+      "packageName": "hubsante_model.health",
+      "srcBasePath": "src/",
+      "composerVendorName": "hubsante",
+      "composerProjectName": "model-sdk",
+      "variableNamingConvention": "camelCase",
+      "useStrictTypes": true,
+      "useEnumCaseInsensitive": false,
+      "phpVersion": "8.3",
+      "legacyDiscriminatorBehavior": false,
+      "generateModelTests": false,
+      "generateModelDocumentation": false,
+      "withInterfaces": true,
+      "withAbstractClasses": false,
+      "allowUnicodeIdentifiers": true
+    }
+}
