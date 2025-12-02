@@ -133,6 +133,7 @@ jobs:
           python-version: '3.8'
 
       - name: Python - Build package
+        if: github.event.workflow_run.event != 'pull_request'
         working-directory: ./generator_python/package/
         run: |
           pip install --upgrade build
@@ -149,7 +150,7 @@ jobs:
       # Leverages trusted publisher | Ref.: https://docs.pypi.org/trusted-publishers/adding-a-publisher/
       - name: Python - Publish package to pypi
         uses: pypa/gh-action-pypi-publish@release/v1
-        if: github.event_name != 'pull_request'
+        if: github.event.workflow_run.event != 'pull_request'
         with:
           packages-dir: ./generator_python/package/dist/
 
