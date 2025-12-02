@@ -30,6 +30,11 @@ jobs:
     steps:
       - name: Set RELEASE_VERSION based on the trigger type
         run: |
+          echo ${{ github.event.workflow_run.event }}
+          echo "1"
+          echo ${{ github.event_name }}
+          echo "2"
+          
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             echo "Workflow triggered via workflow_dispatch"
             RELEASE_VERSION="${{ github.event.inputs.release_name }}"
@@ -64,164 +69,160 @@ jobs:
 
           # Export the RELEASE_VERSION environment variable for future steps (in env.RELEASE_VERSION)
           echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
-
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install node env 🏗
-        uses: actions/setup-node@v4
-        with:
-          node-version: 16
-
-      - name: Install openapi-generator-cli
-        run: npm install -g @openapitools/openapi-generator-cli
-
-      - name: Cleaning output directories
-        run: |
-          rm -r generator_ruby/gem/ generator_python/package/ generator_csharp/package/ || true
-
-      - name: Python - Generate classes
-        working-directory: ./generator_python
-        run: |
-          # Iterate over each file in the ./config directory, including the entire subfolder structure
-          # and then run @openapitools/openapi-generator-cli generate for each file found
-          # Important notice:          
-          # Results of the find command are sorted in an alphabetic order before being passed to xargs
-          # This means that since the order of class generation is important, it's necessary to maintain an adequately 
-          # named file structure in the ./config/** directories
-          # generator-config.json (if exists) -> usecase.generator-config.json -> wrapper.generator-config.json
-          # Add "| head -n 1" after sort for faster iterations while developing
-          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli generate -c "$file" --skip-validate-spec; done
-
-          # There seems to be a bug in the handling of datetime & field_validator import in OpenAPI Generator
-          # ToDo: fix this cleanly with OpenAPI Generator Config
-          # For now, basic bash script that adds field_validator to all pydantic imports  
-          find ./package/src/hubsante_model -type f -name "*.py" | while read -r file; do
-            # Check if 'field_validator' is missing in the 'from pydantic import' line
-            if grep -q 'field_validator' "$file" && ! grep -q '^from pydantic import .*field_validator.*$' "$file"; then
-              # Add field_validator to the import statement
-              sed -i '/^from pydantic import /s/$/, field_validator/' "$file"
-            fi
-
-            # Convert datetime to str
-            sed -i 's/: datetime = Field/: str = Field/g' "$file"
-            sed -i 's/: Optional\[datetime\] = Field/: Optional[str] = Field/g' "$file"
-          done
-          
-      - name: Python - Prepare package files
-        working-directory: ./generator_python/
-        run: |
-          # Add key package files
-          cp pyproject.toml ./package/
-          cp README.md ./package/
-
-          # Generate __init__.py file to import all the *_wrapper classes
-          echo "# Auto-generated imports" > ./package/src/hubsante_model/__init__.py
-          find ./package/src/hubsante_model -type f -name "*_wrapper.py" | while read -r file; do
-            # Extract the relative path from hubsante_model/
-            rel_path=${file#*hubsante_model/}
-            # Convert path to Python import format
-            import_path=${rel_path%.py}
-            import_path=${import_path//\//.}
-            # Add import line
-            echo "from .$import_path import *" >> ./package/src/hubsante_model/__init__.py
-          done
-
-      - name: Python - Set up
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.8'
-
-      - name: Python - Build package
-        if: github.event.workflow_run.event != 'pull_request'
-        working-directory: ./generator_python/package/
-        run: |
-          echo github.event.workflow_run.event
-          echo "1"
-          echo github.event_name
-          echo "2"
-          pip install --upgrade build
-          # Set correct version
-          sed -i "s/version = .*/version = \"${{ env.RELEASE_VERSION }}\"/" pyproject.toml
-          python -m build
-
-      - name: Python - Upload package as artifact
-        if: github.event.workflow_run.event != 'pull_request'
-        uses: actions/upload-artifact@v4
-        with:
-          name: python-package-artifact
-          path: ./generator_python/package/dist/
-
-      # Leverages trusted publisher | Ref.: https://docs.pypi.org/trusted-publishers/adding-a-publisher/
-      - name: Python - Publish package to pypi
-        uses: pypa/gh-action-pypi-publish@release/v1
-        if: github.event.workflow_run.event != 'pull_request'
-        with:
-          packages-dir: ./generator_python/package/dist/
-
-      - name: Ruby - Generate classes
-        working-directory: ./generator_ruby
-        run: |       
-          # Iterate over each file in the ./config directory, including the entire subfolder structure
-          # and then run @openapitools/openapi-generator-cli generate for each file found
-          # Important notice:          
-          # Results of the find command are sorted in an alphabetic order before being passed to xargs
-          # This means that since the order of class generation is important, it's necessary to maintain an adequately 
-          # named file structure in the ./config/** directories
-          # generator-config.json (if exists) -> usecase.generator-config.json -> wrapper.generator-config.json
-          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli generate -c "$file" --skip-validate-spec; done
-          
-      - name: Ruby - Prepare Gem files
-        working-directory: ./generator_ruby
-        run: |
-          # Move generated classes to the correct location
-          for dir in gem/*/; do
-            package=$(basename "$dir")
-            mkdir -p "gem/lib/hubsanteModel/models/$package/"
-            mv "$dir"/lib/hubsanteModel/models/* "gem/lib/hubsanteModel/models/$package/"
-            rmdir "$dir/lib/hubsanteModel/models" && rmdir "$dir/lib/hubsanteModel" && rmdir "$dir/lib" && rmdir "$dir"
-          done;
-
-          # Add key gem files
-          cp hubsante_model.rb gem/lib/hubsanteModel/
-          cp hubsante_model.gemspec gem/
-      
-      - name: Ruby - Set up
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.0'
-          bundler-cache: true
-
-      - name: Ruby - Build Gem
-        working-directory: ./generator_ruby/gem/
-        run: |
-          GEM_VERSION=${{ env.RELEASE_VERSION }}
-          export GEM_VERSION=${GEM_VERSION//+/.} 
-          gem build hubsante_model.gemspec
-
-      - name: Ruby - Upload Gem as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ruby-gem-artifact
-          path: ./generator_ruby/gem/hubsante_model-*.gem
-
-      - name: Ruby - Push Gem to GitHub Packages
-        working-directory: ./generator_ruby/gem/
-        run: gem push --key github --host https://rubygems.pkg.github.com/ansforge ./hubsante_model-*.gem
-        env:
-          GEM_HOST_API_KEY: ${{ secrets.GITHUB_TOKEN }}  # GitHub token used to authenticate
-
-      - name: C# - Generate classes
-        working-directory: ./generator_csharp
-        run: |
-          # Iterate over each file in the ./config directory, including the entire subfolder structure
-          # and then run @openapitools/openapi-generator-cli generate for each file found
-          # Important notice:          
-          # Results of the find command are sorted in an alphabetic order before being passed to xargs
-          # This means that since the order of class generation is important, it's necessary to maintain an adequately 
-          # named file structure in the ./config/** directories
-          # generator-config.json (if exists) -> usecase.generator-config.json -> wrapper.generator-config.json
-          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli generate -c "$file" --skip-validate-spec; done
+#
+#      - name: Checkout
+#        uses: actions/checkout@v4
+#
+#      - name: Install node env 🏗
+#        uses: actions/setup-node@v4
+#        with:
+#          node-version: 16
+#
+#      - name: Install openapi-generator-cli
+#        run: npm install -g @openapitools/openapi-generator-cli
+#
+#      - name: Cleaning output directories
+#        run: |
+#          rm -r generator_ruby/gem/ generator_python/package/ generator_csharp/package/ || true
+#
+#      - name: Python - Generate classes
+#        working-directory: ./generator_python
+#        run: |
+#          # Iterate over each file in the ./config directory, including the entire subfolder structure
+#          # and then run @openapitools/openapi-generator-cli generate for each file found
+#          # Important notice:
+#          # Results of the find command are sorted in an alphabetic order before being passed to xargs
+#          # This means that since the order of class generation is important, it's necessary to maintain an adequately
+#          # named file structure in the ./config/** directories
+#          # generator-config.json (if exists) -> usecase.generator-config.json -> wrapper.generator-config.json
+#          # Add "| head -n 1" after sort for faster iterations while developing
+#          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli generate -c "$file" --skip-validate-spec; done
+#
+#          # There seems to be a bug in the handling of datetime & field_validator import in OpenAPI Generator
+#          # ToDo: fix this cleanly with OpenAPI Generator Config
+#          # For now, basic bash script that adds field_validator to all pydantic imports
+#          find ./package/src/hubsante_model -type f -name "*.py" | while read -r file; do
+#            # Check if 'field_validator' is missing in the 'from pydantic import' line
+#            if grep -q 'field_validator' "$file" && ! grep -q '^from pydantic import .*field_validator.*$' "$file"; then
+#              # Add field_validator to the import statement
+#              sed -i '/^from pydantic import /s/$/, field_validator/' "$file"
+#            fi
+#
+#            # Convert datetime to str
+#            sed -i 's/: datetime = Field/: str = Field/g' "$file"
+#            sed -i 's/: Optional\[datetime\] = Field/: Optional[str] = Field/g' "$file"
+#          done
+#
+#      - name: Python - Prepare package files
+#        working-directory: ./generator_python/
+#        run: |
+#          # Add key package files
+#          cp pyproject.toml ./package/
+#          cp README.md ./package/
+#
+#          # Generate __init__.py file to import all the *_wrapper classes
+#          echo "# Auto-generated imports" > ./package/src/hubsante_model/__init__.py
+#          find ./package/src/hubsante_model -type f -name "*_wrapper.py" | while read -r file; do
+#            # Extract the relative path from hubsante_model/
+#            rel_path=${file#*hubsante_model/}
+#            # Convert path to Python import format
+#            import_path=${rel_path%.py}
+#            import_path=${import_path//\//.}
+#            # Add import line
+#            echo "from .$import_path import *" >> ./package/src/hubsante_model/__init__.py
+#          done
+#
+#      - name: Python - Set up
+#        uses: actions/setup-python@v4
+#        with:
+#          python-version: '3.8'
+#
+#      - name: Python - Build package
+#        if: github.event.workflow_run.event != 'pull_request'
+#        working-directory: ./generator_python/package/
+#        run: |
+#          pip install --upgrade build
+#          # Set correct version
+#          sed -i "s/version = .*/version = \"${{ env.RELEASE_VERSION }}\"/" pyproject.toml
+#          python -m build
+#
+#      - name: Python - Upload package as artifact
+#        if: github.event.workflow_run.event != 'pull_request'
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: python-package-artifact
+#          path: ./generator_python/package/dist/
+#
+#      # Leverages trusted publisher | Ref.: https://docs.pypi.org/trusted-publishers/adding-a-publisher/
+#      - name: Python - Publish package to pypi
+#        uses: pypa/gh-action-pypi-publish@release/v1
+#        if: github.event.workflow_run.event != 'pull_request'
+#        with:
+#          packages-dir: ./generator_python/package/dist/
+#
+#      - name: Ruby - Generate classes
+#        working-directory: ./generator_ruby
+#        run: |
+#          # Iterate over each file in the ./config directory, including the entire subfolder structure
+#          # and then run @openapitools/openapi-generator-cli generate for each file found
+#          # Important notice:
+#          # Results of the find command are sorted in an alphabetic order before being passed to xargs
+#          # This means that since the order of class generation is important, it's necessary to maintain an adequately
+#          # named file structure in the ./config/** directories
+#          # generator-config.json (if exists) -> usecase.generator-config.json -> wrapper.generator-config.json
+#          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli generate -c "$file" --skip-validate-spec; done
+#
+#      - name: Ruby - Prepare Gem files
+#        working-directory: ./generator_ruby
+#        run: |
+#          # Move generated classes to the correct location
+#          for dir in gem/*/; do
+#            package=$(basename "$dir")
+#            mkdir -p "gem/lib/hubsanteModel/models/$package/"
+#            mv "$dir"/lib/hubsanteModel/models/* "gem/lib/hubsanteModel/models/$package/"
+#            rmdir "$dir/lib/hubsanteModel/models" && rmdir "$dir/lib/hubsanteModel" && rmdir "$dir/lib" && rmdir "$dir"
+#          done;
+#
+#          # Add key gem files
+#          cp hubsante_model.rb gem/lib/hubsanteModel/
+#          cp hubsante_model.gemspec gem/
+#
+#      - name: Ruby - Set up
+#        uses: ruby/setup-ruby@v1
+#        with:
+#          ruby-version: '3.0'
+#          bundler-cache: true
+#
+#      - name: Ruby - Build Gem
+#        working-directory: ./generator_ruby/gem/
+#        run: |
+#          GEM_VERSION=${{ env.RELEASE_VERSION }}
+#          export GEM_VERSION=${GEM_VERSION//+/.}
+#          gem build hubsante_model.gemspec
+#
+#      - name: Ruby - Upload Gem as artifact
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: ruby-gem-artifact
+#          path: ./generator_ruby/gem/hubsante_model-*.gem
+#
+#      - name: Ruby - Push Gem to GitHub Packages
+#        working-directory: ./generator_ruby/gem/
+#        run: gem push --key github --host https://rubygems.pkg.github.com/ansforge ./hubsante_model-*.gem
+#        env:
+#          GEM_HOST_API_KEY: ${{ secrets.GITHUB_TOKEN }}  # GitHub token used to authenticate
+#
+#      - name: C# - Generate classes
+#        working-directory: ./generator_csharp
+#        run: |
+#          # Iterate over each file in the ./config directory, including the entire subfolder structure
+#          # and then run @openapitools/openapi-generator-cli generate for each file found
+#          # Important notice:
+#          # Results of the find command are sorted in an alphabetic order before being passed to xargs
+#          # This means that since the order of class generation is important, it's necessary to maintain an adequately
+#          # named file structure in the ./config/** directories
+#          # generator-config.json (if exists) -> usecase.generator-config.json -> wrapper.generator-config.json
+#          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli generate -c "$file" --skip-validate-spec; done
 
     #   - name: C# - Prepare package files
     #     working-directory: ./generator_csharp/
