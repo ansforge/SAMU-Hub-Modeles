@@ -1,9 +1,9 @@
-{{ define "usecase.generator-config" }}{
-  "inputSpec": "../generator/input/{{.schema}}.openapi.yaml",
-  "outputDir": "package/src/",
+{
+  "inputSpec": "../generator/input/RS-ERROR.openapi.yaml",
+  "outputDir": "package/",
   "generatorName": "php-symfony",
   "globalProperties": {
-    "models": "{{.rootElement}}",
+    "models": "",
     "apis": false,
     "apiTests": false,
     "apiDocs": false,
@@ -12,8 +12,8 @@
   },
   "additionalProperties": {
     "invokerPackage": "Hubsante",
-    "modelPackage": "Model\\{{.package}}",
-    "packageName": "hubsante_model.{{ .package }}",
+    "modelPackage": "Model\\report",
+    "packageName": "hubsante_model.report",
     "srcBasePath": "src/",
     "composerVendorName": "hubsante",
     "composerProjectName": "model-sdk",
@@ -29,9 +29,3 @@
     "allowUnicodeIdentifiers": true
   }
 }
-{{ end }}
-{{- range (datasource "config").schemas }}
-    {{ if eq .automaticGeneration "Y" }}
-        {{- tmpl.Exec "usecase.generator-config" . | file.Write (printf "output/generator_php-symfony/config/generated/%s/%s.usecase.generator-config.json" .schema .schema) }}
-    {{end}}
-{{end}}
