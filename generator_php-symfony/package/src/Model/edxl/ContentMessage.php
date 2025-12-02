@@ -30,11 +30,6 @@ use Symfony\Component\Serializer\Annotation\DiscriminatorMap;
 ])]
 abstract class ContentMessage
 {
-    /**
-     * Pour reproduire exactement le comportement Java :
-     * - égalité uniquement si la classe est identique
-     * - pas de comparaison de propriétés (il n’y en a pas)
-     */
     public function equals(object $other): bool
     {
         return $this === $other || get_class($this) === get_class($other);
