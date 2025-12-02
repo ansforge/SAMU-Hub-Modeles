@@ -142,6 +142,7 @@ jobs:
           python -m build
 
       - name: Python - Upload package as artifact
+        if: github.event.workflow_run.event != 'pull_request'
         uses: actions/upload-artifact@v4
         with:
           name: python-package-artifact
