@@ -1,6 +1,8 @@
 # Use Python 3.11 slim as base image
 FROM python:3.11-slim
 
+ARG CONVERTER_VERSION
+
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
@@ -46,6 +48,8 @@ EXPOSE 8080
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8080/health || exit 1
+
+ENV CONVERTER_VERSION=${CONVERTER_VERSION}
 
 # Use Gunicorn for production deployment
 CMD ["uv", "run", "--no-dev", "gunicorn", "-w", "4", "-b", "0.0.0.0:8080", "converter.converter:app"]
