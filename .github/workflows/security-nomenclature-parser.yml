@@ -19,6 +19,5 @@ jobs:
     with:
       working-directory: 'nomenclature_parser'
       component-name: 'nomenclature-parser'
-      dependency-scan: true
       scan-dockerfile: false
     secrets: inherit

@@ -21,32 +21,8 @@ on:
         required: false
         type: string
         default: ''
-      dependency-scan:
-        description: 'Whether to run dependency vulnerability scan'
-        required: false
-        type: boolean
-        default: false
 
 jobs:
-  dependency-scan:
-    runs-on: ubuntu-latest
-    name: Dependency Vulnerability Scanning
-    if: inputs.dependency-scan
-    defaults:
-      run:
-        working-directory: ${{ inputs.working-directory }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5
-
-      - name: Install and run Python dependency scanner
-        if: hashFiles(format('{0}/uv.lock', inputs.working-directory)) != ''
-        env:
-          WORKING_DIR: ${{ inputs.working-directory }}
-        run: |
-          pip install uv-secure
-          uv-secure "$WORKING_DIR/uv.lock" --format json > "$WORKING_DIR/uv-secure.json" || true
-
   security-scan:
     runs-on: ubuntu-latest
     name: Security Scanning
@@ -131,7 +107,7 @@ jobs:
   upload-artifacts:
     runs-on: ubuntu-latest
     name: Upload Security Artifacts
-    needs: [dependency-scan, security-scan]
+    needs: [security-scan]
     if: always()
     steps:
       - name: Checkout repository

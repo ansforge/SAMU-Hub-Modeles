@@ -23,6 +23,5 @@ jobs:
     with:
       working-directory: '.'
       component-name: 'library'
-      dependency-scan: false
       scan-dockerfile: false
     secrets: inherit

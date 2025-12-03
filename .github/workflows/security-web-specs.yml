@@ -19,6 +19,5 @@ jobs:
     with:
       working-directory: 'web_specs'
       component-name: 'web-specs'
-      dependency-scan: false
       scan-dockerfile: true
     secrets: inherit
