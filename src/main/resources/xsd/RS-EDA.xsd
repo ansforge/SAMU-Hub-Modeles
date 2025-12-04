@@ -397,7 +397,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="M\d{2}\.\d{2}(?:\.\d{2})?"/>
+                        <pattern value="M\d{2}\.\d{2}(\.\d{2})?"/>
                     </restriction>
                 </simpleType>
             </element>
