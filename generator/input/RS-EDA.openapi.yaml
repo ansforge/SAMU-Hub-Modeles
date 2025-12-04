@@ -641,7 +641,7 @@ components:
           x-cols: 6
           example: example.json#/qualification/healthMotive/code
           description: "A valoriser avec le code de la nomenclature associ\xE9e"
-          pattern: ^M\d{2}\.\d{2}$
+          pattern: ^M\d{2}\.\d{2}(?:\.\d{2})?$
           examples:
           - C07.13.02
         label:
