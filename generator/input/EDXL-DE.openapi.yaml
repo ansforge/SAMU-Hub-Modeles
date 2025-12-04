@@ -1,0 +1,100 @@
+openapi: 3.0.0
+components:
+  schemas:
+    EdxlMessage:
+      properties:
+        distributionID:
+          type: string
+        senderID:
+          type: string
+        dateTimeSent:
+          type: string
+          format: date-time
+        dateTimeExpires:
+          type: string
+          format: date-time
+        distributionStatus:
+          $ref: '#/components/schemas/DistributionStatus'
+        distributionKind:
+          $ref: '#/components/schemas/DistributionKind'
+        descriptor:
+          $ref: '#/components/schemas/Descriptor'
+        content:
+          $ref: '#/components/schemas/Content'
+      additionalProperties: false
+      required:
+        - distributionID
+        - senderID
+        - dateTimeSent
+        - dateTimeExpires
+        - distributionStatus
+        - distributionKind
+        - descriptor
+        - content
+    DistributionStatus:
+      type: string
+      enum:
+        - Actual
+        - Exercise
+        - System
+        - Test
+        - Unknown
+        - NoAppropriateDefault
+    DistributionKind:
+      type: string
+      enum:
+        - Report
+        - Update
+        - Cancel
+        - Request
+        - Response
+        - Dispatch
+        - Ack
+        - Error
+        - SensorConfiguration
+        - SensorControl
+        - SensorStatus
+        - SensorDetection
+        - Unknown
+        - NoAppropriateDefault
+    Descriptor:
+      properties:
+        language:
+          type: string
+        explicitAddress:
+          $ref: '#/components/schemas/ExplicitAddress'
+      additionalProperties: false
+      required:
+        - language
+        - explicitAddress
+    ExplicitAddress:
+      properties:
+        explicitAddressScheme:
+          type: string
+        explicitAddressValue:
+          type: string
+      additionalProperties: false
+      required:
+        - explicitAddressScheme
+        - explicitAddressValue
+    Content:
+      properties:
+        contentObject:
+          $ref: '#/components/schemas/ContentObject'
+      additionalProperties: false
+      required:
+        - contentObject
+    ContentObject:
+      properties:
+        jsonContent:
+          $ref: '#/components/schemas/JsonContent'
+    JsonContent:
+      properties:
+        embeddedJsonContent:
+          $ref: '#/components/schemas/EmbeddedJsonContent'
+    EmbeddedJsonContent:
+      properties:
+        message:
+          $ref: '#/components/schemas/ContentMessage'
+    ContentMessage:
+      type: object

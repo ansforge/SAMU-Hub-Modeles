@@ -226,12 +226,12 @@ module Resourcesinfo
         invalid_properties.push('invalid value for "resource_id", resource_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$/)
       if @resource_id !~ pattern
         invalid_properties.push("invalid value for \"resource_id\", must conform to the pattern #{pattern}.")
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,8}request(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}$/)
       if !@request_id.nil? && @request_id !~ pattern
         invalid_properties.push("invalid value for \"request_id\", must conform to the pattern #{pattern}.")
       end
@@ -255,8 +255,8 @@ module Resourcesinfo
       return false if @datetime.nil?
       return false if @datetime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       return false if @resource_id.nil?
-      return false if @resource_id !~ Regexp.new(/^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$/)
-      return false if !@request_id.nil? && @request_id !~ Regexp.new(/^([\w-]+\.){3,8}request(\.[\w-]+){1,2}$/)
+      return false if @resource_id !~ Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$/)
+      return false if !@request_id.nil? && @request_id !~ Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}$/)
       return false if @vehicle_type.nil?
       vehicle_type_validator = EnumAttributeValidator.new('String', ["AASC", "AASC.VLSC", "AASC.VPSP", "AASC.AUTRESC", "AUTREVEC", "AUTREVEC.APIED", "AUTREVEC.AVION", "AUTREVEC.PERSO", "AUTREVEC.TAXI", "AUTREVEC.TRAIN", "AUTREVEC.TRANSP", "AUTREVEC.AUTRE", "AUTREVEC.AUTRETRA", "FSI", "FSI.HELIFSI", "FSI.VLFSI", "FSI.FFSI", "FSI.VHFSI", "LIB", "LIB.MEDV", "LIB.INF", "LIB.AUTREPRO", "SIS", "SIS.DRAGON", "SIS.AVSC", "SIS.FEUSIS", "SIS.GRIMP", "SIS.NAVISIS", "SIS.PCSIS", "SIS.SRSIS", "SIS.VCH", "SIS.VLCG", "SIS.VLISP", "SIS.VLMSP", "SIS.VLSIS", "SIS.VPL", "SIS.VPMA", "SIS.VR", "SIS.VSAV", "SIS.MOYSSE", "SIS.AUTRESIS", "SMUR", "SMUR.VLM", "SMUR.VL", "SMUR.PSM1", "SMUR.PSM2", "SMUR.PSM3", "SMUR.PSMP", "SMUR.VPC", "SMUR.AR", "SMUR.AR-BAR", "SMUR.AR-PED", "SMUR.HELISMUR", "SMUR.HELISAN", "SMUR.AVSMUR", "SMUR.AVSAN", "SMUR.NAVISMUR", "TSU", "TSU.VSL", "TSU.AMB-GV", "TSU.AMB-PV", "TSU.AMB-BAR", "TSU.AMB"])
       return false unless vehicle_type_validator.valid?(@vehicle_type)
@@ -286,7 +286,7 @@ module Resourcesinfo
         fail ArgumentError, 'resource_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$/)
       if resource_id !~ pattern
         fail ArgumentError, "invalid value for \"resource_id\", must conform to the pattern #{pattern}."
       end
@@ -301,7 +301,7 @@ module Resourcesinfo
         fail ArgumentError, 'request_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,8}request(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}$/)
       if request_id !~ pattern
         fail ArgumentError, "invalid value for \"request_id\", must conform to the pattern #{pattern}."
       end

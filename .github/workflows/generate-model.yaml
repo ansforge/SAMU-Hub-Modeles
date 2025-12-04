@@ -103,14 +103,21 @@ jobs:
           ./automatic-generator.sh
 
           # Move generated OpenAPI config files to the corresponding locations
+          # Java
           rm -r ../generator/config/generated || true
           rsync -a --remove-source-files output/generator ..
+          # Ruby
           rm -r ../generator_ruby/config/generated || true
           rsync -a --remove-source-files output/generator_ruby ..
+          # python
           rm -r ../generator_python/config/generated || true
           rsync -a --remove-source-files output/generator_python ..
+          # C#
           rm -r ../generator_csharp/config/generated || true
           rsync -a --remove-source-files output/generator_csharp ..
+          # php-symfony
+          rm -r ../generator_php-symfony/config/generated || true
+          rsync -a --remove-source-files output/generator_php-symfony ..
 
           # Move generated EDXL-DE and JSON Schemas to the corresponding locations
           rsync -a --remove-source-files output/edxl ../src/main/java/com/hubsante/model

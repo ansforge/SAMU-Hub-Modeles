@@ -29,7 +29,7 @@ class Attachment(BaseModel):
     description: Optional[StrictStr] = Field(default=None, description="Décrit la ressource en précisant le type et le contenu, tels que «carte» ou «photo»")
     mime_type: Optional[StrictStr] = Field(default=None, description="L'identifiant du type MIME de contenu et sous-type décrivant la ressource", alias="mimeType")
     size: Optional[StrictInt] = Field(default=None, description="Taille approximative de la ressource en kO")
-    uri: StrictStr = Field(description="Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé Nous suggérons d'employer le format suivant de regex (https?|ftp|file)://([\\w-]+(\\.[\\w-]+)*)(/[\\w\\-\\.]*)*/?(\\?[^\\s]*)?", alias="URI")
+    uri: StrictStr = Field(description="Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé Nous suggérons d'employer le format suivant de regex (https?|ftp|file)://([a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)*)(/[a-zA-Z0-9_\\-\\.]*)*/?(\\?[^\\s]*)?", alias="URI")
     deref_uri: Optional[StrictStr] = Field(default=None, description="Peut être utilisé à la place de l'élément 'URI' pour envoyer la ressource encodée en base64 pour éviter des problèmes de transcodage (sur des double quotes qui casseraient le message, …)", alias="derefURI")
     digest: Optional[StrictStr] = Field(default=None, description="Hash de la ressource pour confirmer la réception de la bonne ressource La ressource est hashée avec le protocole SHA-256")
     __properties: ClassVar[List[str]] = ["description", "mimeType", "size", "URI", "derefURI", "digest"]

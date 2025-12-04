@@ -1,0 +1,32 @@
+{
+  "inputSpec": "../generator/input/RS-DR.openapi.yaml",
+  "outputDir": "package/",
+  "generatorName": "php-symfony",
+  "templateDir": "./config/templates/wrapper",
+  "globalProperties": {
+    "models": "resourcesRequestWrapper",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+      "invokerPackage": "Hubsante",
+      "modelPackage": "Model\\resources.request",
+      "packageName": "hubsante_model.resources.request",
+      "srcBasePath": "src/",
+      "composerVendorName": "hubsante",
+      "composerProjectName": "model-sdk",
+      "variableNamingConvention": "camelCase",
+      "useStrictTypes": true,
+      "useEnumCaseInsensitive": false,
+      "phpVersion": "8.3",
+      "legacyDiscriminatorBehavior": false,
+      "generateModelTests": false,
+      "generateModelDocumentation": false,
+      "withInterfaces": true,
+      "withAbstractClasses": false,
+      "allowUnicodeIdentifiers": true
+    }
+}

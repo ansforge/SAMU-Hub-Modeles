@@ -42,16 +42,16 @@ jobs:
             COMMIT_SHA="${{ github.event.workflow_run.head_sha }}"
             SHORT_COMMIT_SHA=${COMMIT_SHA::7} 
             # Remplace le "+" par "-" et les autres caractères non autorisés par des "."
-            SAFE_BRANCH=$(echo "${{ github.event.workflow_run.head_branch }}" | sed 's/[^a-zA-Z0-9]/./g')
-            RELEASE_VERSION="0.0.0-${SAFE_BRANCH}.$SHORT_COMMIT_SHA.${{ github.run_attempt }}"
+            SAFE_BRANCH=$(echo "${{ github.event.workflow_run.head_branch }}" | sed 's/[^a-zA-Z0-9]/-/g')
+            RELEASE_VERSION="0.0.0.dev${{ github.run_attempt }}-${SAFE_BRANCH}-$SHORT_COMMIT_SHA-${{ github.run_attempt }}"
             
           else
             echo "Workflow triggered via unsupported event"
             exit 1
           fi
   
-          # Make the RELEASE_VERSION semver compatible (replacing non letter/digit/./+ chars with .)
-          RELEASE_VERSION=$(echo "$RELEASE_VERSION" | sed 's/[^a-zA-Z0-9\.\+]/./g')
+          # Make the RELEASE_VERSION semver compatible (replacing non letter/digit/./+/- chars with .)
+          RELEASE_VERSION=$(echo "$RELEASE_VERSION" | sed 's/[^a-zA-Z0-9\.\+\-]/./g')
 
           # Display the RELEASE_VERSION for verification
           echo "The RELEASE_VERSION is: $RELEASE_VERSION"
@@ -78,8 +78,9 @@ jobs:
 
       - name: Cleaning output directories
         run: |
-          rm -r generator_ruby/gem/ generator_python/package/ generator_csharp/package/ || true
+          rm -r generator_ruby/gem/ generator_python/package/ generator_csharp/package/ generator_php-symfony/package || true
 
+      # Python
       - name: Python - Generate classes
         working-directory: ./generator_python
         run: |
@@ -153,6 +154,7 @@ jobs:
         with:
           packages-dir: ./generator_python/package/dist/
 
+      # Ruby
       - name: Ruby - Generate classes
         working-directory: ./generator_ruby
         run: |       
@@ -205,6 +207,7 @@ jobs:
         env:
           GEM_HOST_API_KEY: ${{ secrets.GITHUB_TOKEN }}  # GitHub token used to authenticate
 
+      # C#
       - name: C# - Generate classes
         working-directory: ./generator_csharp
         run: |
@@ -246,6 +249,20 @@ jobs:
     #     working-directory: ./generator_csharp/package/src/
     #     run: |
     #       dotnet nuget push bin/Release/*.nupkg --source https://nuget.pkg.github.com/ansforge/index.json --api-key ${{ secrets.GITHUB_TOKEN }}
+
+    # Php-symfony
+      - name: PHP - Generate classes
+        working-directory: ./generator_php-symfony
+        run: |
+          # Iterate over each file in the ./config directory, including the entire subfolder structure
+          # and then run @openapitools/openapi-generator-cli generate for each file found
+          # Important notice:          
+          # Results of the find command are sorted in an alphabetic order before being passed to xargs
+          # This means that since the order of class generation is important, it's necessary to maintain an adequately 
+          # named file structure in the ./config/** directories
+          # generator-config.json (if exists) -> usecase.generator-config.json -> wrapper.generator-config.json
+          # Add "| head -n 1" after sort for faster iterations while developing
+          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli generate -c "$file" --skip-validate-spec; done  
 
       - name: Commit and push changes
         if: ${{ !env.ACT }}

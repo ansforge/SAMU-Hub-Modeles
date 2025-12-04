@@ -1,0 +1,14 @@
+{
+  "name": "Hubsante/Model",
+  "description": "HubSante Model",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "HubSante\\Model\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=8.1"
+  }
+}

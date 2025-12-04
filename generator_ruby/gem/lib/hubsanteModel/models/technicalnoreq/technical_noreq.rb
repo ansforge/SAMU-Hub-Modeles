@@ -231,7 +231,7 @@ module Technicalnoreq
         invalid_properties.push("invalid value for \"date_field\", must conform to the pattern #{pattern}.")
       end
 
-      pattern = Regexp.new(/^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/)
+      pattern = Regexp.new(/^[a-zA-Z0-9_.-]+@([a-zA-Z0-9_-]+\.)+[a-zA-Z0-9_-]{2,4}$/)
       if !@email_field.nil? && @email_field !~ pattern
         invalid_properties.push("invalid value for \"email_field\", must conform to the pattern #{pattern}.")
       end
@@ -253,7 +253,7 @@ module Technicalnoreq
       return false if !@array_with_max_length.nil? && @array_with_max_length.length > 5
       return false if !@phone_number_field.nil? && @phone_number_field !~ Regexp.new(/^\+?[0-9]{2,14}$/)
       return false if !@date_field.nil? && @date_field !~ Regexp.new(/^\d{4}-\d{2}-\d{2}$/)
-      return false if !@email_field.nil? && @email_field !~ Regexp.new(/^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/)
+      return false if !@email_field.nil? && @email_field !~ Regexp.new(/^[a-zA-Z0-9_.-]+@([a-zA-Z0-9_-]+\.)+[a-zA-Z0-9_-]{2,4}$/)
       return false if !@datetime_field.nil? && @datetime_field !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       nomenclature_field_validator = EnumAttributeValidator.new('String', ["M", "F", "O", "UN"])
       return false unless nomenclature_field_validator.valid?(@nomenclature_field)
@@ -321,7 +321,7 @@ module Technicalnoreq
         fail ArgumentError, 'email_field cannot be nil'
       end
 
-      pattern = Regexp.new(/^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/)
+      pattern = Regexp.new(/^[a-zA-Z0-9_.-]+@([a-zA-Z0-9_-]+\.)+[a-zA-Z0-9_-]{2,4}$/)
       if email_field !~ pattern
         fail ArgumentError, "invalid value for \"email_field\", must conform to the pattern #{pattern}."
       end

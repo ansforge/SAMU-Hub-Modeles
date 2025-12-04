@@ -2,9 +2,15 @@
 # required for each schema
 
 # Generate config files for each language
-for lang in "." "ruby" "python" "csharp"; do
+for lang in "." "ruby" "python" "csharp" "php-symfony"; do
     # generate base generator config files
     gomplate -f "./templates/$lang/schema.generator-config.json.tmpl" -d config=./schemas.yaml
+
+    # generate usecase and wrapper overwrite configs only for Java
+    if [ "$lang" == "php-symfony" ]; then
+        # generate wrapper config files
+        gomplate -f "./templates/$lang/schema.wrapper.generator-config.json.tmpl" -d config=./schemas.yaml
+    fi
 
     # generate usecase and wrapper overwrite configs only for Java
     if [ "$lang" == "." ]; then

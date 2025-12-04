@@ -95,7 +95,7 @@ module Resourcesresponse
         invalid_properties.push('invalid value for "case_id", case_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/^([\w-]+\.?){4,10}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.?){4,10}$/)
       if @case_id !~ pattern
         invalid_properties.push("invalid value for \"case_id\", must conform to the pattern #{pattern}.")
       end
@@ -104,7 +104,7 @@ module Resourcesresponse
         invalid_properties.push('invalid value for "request_id", request_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,8}request(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}$/)
       if @request_id !~ pattern
         invalid_properties.push("invalid value for \"request_id\", must conform to the pattern #{pattern}.")
       end
@@ -121,9 +121,9 @@ module Resourcesresponse
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @case_id.nil?
-      return false if @case_id !~ Regexp.new(/^([\w-]+\.?){4,10}$/)
+      return false if @case_id !~ Regexp.new(/^([a-zA-Z0-9_-]+\.?){4,10}$/)
       return false if @request_id.nil?
-      return false if @request_id !~ Regexp.new(/^([\w-]+\.){3,8}request(\.[\w-]+){1,2}$/)
+      return false if @request_id !~ Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}$/)
       return false if @response.nil?
       true
     end
@@ -135,7 +135,7 @@ module Resourcesresponse
         fail ArgumentError, 'case_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.?){4,10}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.?){4,10}$/)
       if case_id !~ pattern
         fail ArgumentError, "invalid value for \"case_id\", must conform to the pattern #{pattern}."
       end
@@ -150,7 +150,7 @@ module Resourcesresponse
         fail ArgumentError, 'request_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,8}request(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}$/)
       if request_id !~ pattern
         fail ArgumentError, "invalid value for \"request_id\", must conform to the pattern #{pattern}."
       end
