@@ -15,8 +15,8 @@
       <label>Entreprise, société, lieu de travail</label>
     </locationKind>
     <healthMotive>
-      <code>M02.01.01</code>
-      <label>Douleur thoracique constrictive</label>
+      <code>M02.01</code>
+      <label>Douleur thoracique</label>
     </healthMotive>
     <details>
       <attribution>DRM.MRU.MU</attribution>
@@ -102,7 +102,6 @@
     </hypothesis>
   </patient>
   <decision>
-    <patientId>fr.health.samu440.patient.DRFR154402414300999.1</patientId>
     <creation>2024-12-05T14:35:00+02:00</creation>
     <operator>
       <label>Dr. Sophie Bernard</label>
