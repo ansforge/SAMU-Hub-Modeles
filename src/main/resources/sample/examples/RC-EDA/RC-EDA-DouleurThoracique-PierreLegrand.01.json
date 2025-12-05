@@ -1,0 +1,134 @@
+{
+  "createCase": {
+    "caseId": "fr.health.samu440.DRFR154402413800999",
+    "senderCaseId": "DRFR154402413800999",
+    "creation": "2024-12-05T14:30:00+02:00",
+    "referenceVersion": "1.3",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C11.02.01",
+        "label": "Malaise/détresse vitale"
+      },
+      "healthMotive": {
+        "code": "M02.01",
+        "label": "Douleur thoracique"
+      },
+      "victims": {
+        "freetext": "Homme de 55 ans présentant une douleur thoracique intense avec oppression. Pierre Legrand, 55 ans.",
+        "mainVictim": "ADULTE",
+        "count": "1"
+      },
+      "locationKind": {
+        "code": "L04.09.00",
+        "label": "Entreprise, société, lieu de travail"
+      }
+    },
+    "location": {
+      "locID": "222fb03a-6fd9-41e0-8e81-990c45188892",
+      "locLabel": "42 Avenue Jean Jaurès, 44000 Nantes",
+      "name": "Entreprise ABC",
+      "detailedAddress": {
+        "complete": "42 Avenue Jean Jaurès"
+      },
+      "city": {
+        "name": "Nantes",
+        "inseeCode": "44109"
+      },
+      "country": "FR",
+      "access": {
+        "floor": "1",
+        "entrance": "A",
+        "accessCode": [
+          "5678"
+        ]
+      },
+      "geometry": {
+        "point": {
+          "coord": {
+            "lon": -1.5536,
+            "lat": 47.2184,
+            "precision": "EXACTE"
+          }
+        },
+        "datetime": "2024-12-05T14:30:00+02:00"
+      }
+    },
+    "initialAlert": {
+      "id": "samu440-20241205-AL0234",
+      "reception": "2024-12-05T14:30:00+02:00",
+      "reporting": "STANDARD",
+      "caller": {
+        "callerContact": {
+          "type": "TEL",
+          "detail": "+33678945612",
+          "channel": "PERSONNE"
+        },
+        "callbackContact": {
+          "type": "TEL",
+          "detail": "+33678945612",
+          "channel": "PERSONNE"
+        },
+        "detailedName": {
+          "complete": "Sophie Martin",
+          "lastName": "Martin",
+          "firstName": "Sophie"
+        },
+        "type": "TIERS",
+        "communication": "AUCUNE",
+        "language": "fr"
+      },
+      "location": {
+        "locID": "222fb03a-6fd9-41e0-8e81-990c45188892",
+        "locLabel": "42 Avenue Jean Jaurès, 44000 Nantes",
+        "name": "Entreprise ABC",
+        "detailedAddress": {
+          "complete": "42 Avenue Jean Jaurès"
+        },
+        "city": {
+          "name": "Nantes",
+          "inseeCode": "44109"
+        },
+        "country": "FR",
+        "access": {
+          "floor": "1",
+          "entrance": "A",
+          "accessCode": [
+            "5678"
+          ]
+        }
+      },
+      "qualification": {
+        "whatsHappen": {
+          "code": "C11.02.01",
+          "label": "Malaise/détresse vitale"
+        },
+        "healthMotive": {
+          "code": "M02.01",
+          "label": "Douleur thoracique"
+        },
+        "victims": {
+          "freetext": "Homme de 55 ans présentant une douleur thoracique intense avec oppression. Pierre Legrand, 55 ans.",
+          "mainVictim": "ADULTE",
+          "count": "1"
+        },
+        "locationKind": {
+          "code": "L04.09.00",
+          "label": "Entreprise, société, lieu de travail"
+        }
+      },
+      "callTaker": {
+        "organization": "fr.health.samu440",
+        "controlRoom": "CRRA44",
+        "role": "ARM"
+      }
+    },
+    "additionalInformation": {
+      "customMap": [
+        {
+          "key": "URGENCE",
+          "value": "Urgence cardiaque - Code 3 niveaux"
+        }
+      ]
+    }
+  }
+}

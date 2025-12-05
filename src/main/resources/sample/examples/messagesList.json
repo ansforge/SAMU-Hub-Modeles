@@ -87,6 +87,16 @@
         "victims": "1 patiente, nécessitant assistance SAMU",
         "victim": "Femme, enceinte de 2 mois, 32 ans",
         "medicalSituation": "Problème obstétrique non hémorragique suite à la chute d'une échelle d'une femme enceinte"
+      },
+      {
+        "file": "RS-EDA/RS-EDA-SMUR_DouleurThoracique_PierreLegrand.01.json",
+        "icon": "mdi-heart-pulse",
+        "name": "Pierre LEGRAND.01",
+        "caller": "Sophie Martin, collègue de Pierre Legrand",
+        "environment": "Lieu de travail, entreprise",
+        "victims": "1 patient, nécessitant assistance SAMU",
+        "victim": "Homme, 55 ans",
+        "medicalSituation": "Douleur thoracique constrictive avec irradiation bras gauche - Urgence cardiaque avec code 3 niveaux (M02.01.01)"
       }
     ]
   },
@@ -682,6 +692,17 @@
         "victims": "1 victime découverte par les pompiers, urgence vitale",
         "victim": "Femme non-identifiée",
         "medicalSituation": "Arrêt cardiaque et brûlures"
+      },
+      {
+        "file": "RC-EDA/RC-EDA-DouleurThoracique-PierreLegrand.01.json",
+        "icon": "mdi-heart-pulse",
+        "name": "Pierre LEGRAND.01",
+        "caller": "Sophie Martin, collègue de Pierre Legrand",
+        "context": "Malaise cardiaque en entreprise",
+        "environment": "Entreprise ABC, lieu de travail",
+        "victims": "1 patient",
+        "victim": "Homme, 55 ans",
+        "medicalSituation": "Douleur thoracique constrictive - Urgence cardiaque avec code 3 niveaux (M02.01.01)"
       }
     ]
   },
