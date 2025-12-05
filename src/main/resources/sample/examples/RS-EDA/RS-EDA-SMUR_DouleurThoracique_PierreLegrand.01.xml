@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<createCaseHealth xmlns="urn:emergency:eda:1.9:createCaseHealth">
+  <caseId>fr.fire.sis044.cga-044.SC-20241205-044-cga-AL9</caseId>
+  <senderCaseId>DRFR154402414300999</senderCaseId>
+  <creation>2024-12-05T14:30:00+02:00</creation>
+  <interventionType>T1</interventionType>
+  <qualification>
+    <origin>15</origin>
+    <whatsHappen>
+      <code>C11.02.01</code>
+      <label>Malaise/détresse vitale</label>
+    </whatsHappen>
+    <locationKind>
+      <code>L04.09.00</code>
+      <label>Entreprise, société, lieu de travail</label>
+    </locationKind>
+    <healthMotive>
+      <code>M02.01.01</code>
+      <label>Douleur thoracique constrictive</label>
+    </healthMotive>
+    <details>
+      <attribution>DRM.MRU.MU</attribution>
+      <priority>P1</priority>
+    </details>
+  </qualification>
+  <location>
+    <name>Entreprise ABC</name>
+    <detailedAddress>
+      <complete>42 Avenue Jean Jaurès</complete>
+      <number>42</number>
+      <wayName>
+        <complete>Avenue Jean Jaurès</complete>
+        <type>Avenue</type>
+        <name>Jean Jaurès</name>
+      </wayName>
+    </detailedAddress>
+    <city>
+      <name>Nantes</name>
+      <inseeCode>44109</inseeCode>
+    </city>
+    <access>
+      <floor>1</floor>
+      <accessCode>5678</accessCode>
+      <entrance>A</entrance>
+    </access>
+    <geometry>
+      <datetime>2024-12-05T14:30:00+02:00</datetime>
+      <point>
+        <coord>
+          <lat>47.2184</lat>
+          <lon>-1.5536</lon>
+          <precision>EXACTE</precision>
+        </coord>
+      </point>
+    </geometry>
+  </location>
+  <initialAlert>
+    <reception>2024-12-05T14:30:00+02:00</reception>
+    <caller>
+      <callerContact>
+        <channel>PERSONNE</channel>
+        <type>TEL</type>
+        <detail>+33678945612</detail>
+      </callerContact>
+      <callbackContact>
+        <channel>PERSONNE</channel>
+        <type>TEL</type>
+        <detail>+33678945612</detail>
+      </callbackContact>
+      <language>fr</language>
+      <type>TIERS</type>
+      <communication>AUCUNE</communication>
+      <detailedName>
+        <complete>Sophie Martin</complete>
+        <lastName>Martin</lastName>
+        <firstName>Sophie</firstName>
+      </detailedName>
+    </caller>
+  </initialAlert>
+  <owner>fr.health.samu440</owner>
+  <patient>
+    <patientId>fr.health.samu440.patient.DRFR154402414300999.1</patientId>
+    <identity>
+      <strictFeatures>
+        <birthDate>1969-08-20</birthDate>
+        <sex>M</sex>
+      </strictFeatures>
+      <nonStrictFeatures>
+        <complete>Pierre Legrand</complete>
+        <lastName>Legrand</lastName>
+        <firstName>Pierre</firstName>
+      </nonStrictFeatures>
+    </identity>
+    <detail>
+      <age>P55Y</age>
+    </detail>
+    <hypothesis>
+      <mainDiagnosis>
+        <code>I20.0</code>
+        <label>Angine de poitrine instable</label>
+      </mainDiagnosis>
+    </hypothesis>
+  </patient>
+  <decision>
+    <patientId>fr.health.samu440.patient.DRFR154402414300999.1</patientId>
+    <creation>2024-12-05T14:35:00+02:00</creation>
+    <operator>
+      <label>Dr. Sophie Bernard</label>
+      <role>MEDECIN</role>
+    </operator>
+    <decisionType>INTER</decisionType>
+    <resourceType>SMUR</resourceType>
+  </decision>
+  <additionalInformation>
+    <customMap>
+      <key>URGENCE</key>
+      <value>Urgence cardiaque - Code 3 niveaux</value>
+    </customMap>
+    <customMap>
+      <key>SYMPTOMES</key>
+      <value>Douleur thoracique avec irradiation bras gauche</value>
+    </customMap>
+  </additionalInformation>
+</createCaseHealth>
