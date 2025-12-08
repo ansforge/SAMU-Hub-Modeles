@@ -15,8 +15,8 @@
       <label>Entreprise, société, lieu de travail</label>
     </locationKind>
     <healthMotive>
-      <code>M02.01</code>
-      <label>Douleur thoracique</label>
+      <code>M17.03.01</code>
+      <label>Douleur thoracique - cas d'usage n°1</label>
     </healthMotive>
     <details>
       <attribution>DRM.MRU.MU</attribution>
