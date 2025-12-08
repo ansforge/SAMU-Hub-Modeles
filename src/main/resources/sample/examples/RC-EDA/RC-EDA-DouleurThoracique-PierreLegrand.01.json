@@ -10,8 +10,8 @@
         "label": "Malaise/détresse vitale"
       },
       "healthMotive": {
-        "code": "M02.01",
-        "label": "Douleur thoracique"
+        "code": "M17.03.01",
+        "label": "Douleur thoracique - cas d'usage n°1"
       },
       "victims": {
         "freetext": "Homme de 55 ans présentant une douleur thoracique intense avec oppression. Pierre Legrand, 55 ans.",

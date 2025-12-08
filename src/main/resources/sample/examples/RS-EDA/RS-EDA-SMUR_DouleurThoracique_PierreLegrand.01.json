@@ -13,8 +13,8 @@
         "label": "Entreprise, société, lieu de travail"
       },
       "healthMotive": {
-        "code": "M02.01",
-        "label": "Douleur thoracique"
+        "code": "M17.03.01",
+        "label": "Douleur thoracique - cas d'usage n°1"
       },
       "details": {
         "priority": "P1",
