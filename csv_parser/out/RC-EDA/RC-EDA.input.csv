@@ -25,7 +25,7 @@ La qualification est issue d'une interprétation métier synthétisant l'ensembl
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Rodéo automobile,label,1..1,,string,
 ,Nature de fait,# Voir type codeAndLabel,,,,Décrit la nature de fait de l'alerte : cf.nomenclature associée.,,whatsHappen,1..1,X,codeAndLabel,REGEX: ^C\d{2}(\.\d{2}){2}$
 ,Type de lieu,# Voir type codeAndLabel,,,,Décrit le type de lieu : cf.nomenclature associée.,,locationKind,0..1,X,codeAndLabel,REGEX: ^L\d{2}(\.\d{2}){2}$
-,Motif de recours médico-secouriste,# Voir type codeAndLabel,,,,Décrit le motif de recours médico-secouriste : cf.nomenclature associée.,,healthMotive,0..1,X,codeAndLabel,REGEX: ^M\d{2}\.\d{2}$
+,Motif de recours médico-secouriste,# Voir type codeAndLabel,,,,Décrit le motif de recours médico-secouriste : cf.nomenclature associée.,,healthMotive,0..1,X,codeAndLabel,REGEX: ^M\d{2}\.\d{2}(\.\d{2})?$
 ,Patients-Victimes,,,,,,,victims,0..1,X,victims,
 ,,Nombre de patients-victimes,,,,Indique le nombre de victimes selon la nomenclature du référentiel CISU,PLUSIEURS,count,0..1,,string,NOMENCLATURE: HubSante.nbVictimes
 ,,Type du patient-victime principal,,,,Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.,ENFANT,mainVictim,0..1,,string,NOMENCLATURE: HubSante.patient

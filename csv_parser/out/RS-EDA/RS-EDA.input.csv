@@ -26,7 +26,7 @@ La qualification est issue d'une interprétation métier synthétisant l'ensembl
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Rodéo automobile,label,1..1,,string,
 ,Nature de fait,# Voir type codeAndLabel,,,,Décrit la nature de fait de l'alerte : cf.nomenclature associée.,,whatsHappen,0..1,X,codeAndLabel,REGEX: ^C\d{2}(\.\d{2}){2}$
 ,Type de lieu,# Voir type codeAndLabel,,,,Décrit le type de lieu : cf.nomenclature associée.,,locationKind,0..1,X,codeAndLabel,REGEX: ^L\d{2}(\.\d{2}){2}$
-,Motif de recours médico-secouriste,# Voir type codeAndLabel,,,,Décrit le motif de recours médico-secouriste : cf.nomenclature associée.,,healthMotive,0..1,X,codeAndLabel,REGEX: ^M\d{2}\.\d{2}$
+,Motif de recours médico-secouriste,# Voir type codeAndLabel,,,,Décrit le motif de recours médico-secouriste : cf.nomenclature associée.,,healthMotive,0..1,X,codeAndLabel,REGEX: ^M\d{2}\.\d{2}(\.\d{2})?$
 ,Détails du dossier ,,,,,Objet qui permet de décrire les détails du dossier,,details,0..1,X,caseDetails,
 ,,Etat du dossier,,,,"A valoriser avec l'état du dossier dans le système émetteur
 Spécificité 15-15 : peut être ignoré en réception, partagé à titre indicatif uniquement

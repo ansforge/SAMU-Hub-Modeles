@@ -1,0 +1,132 @@
+{
+  "createCaseHealth": {
+    "caseId": "fr.fire.sis044.cga-044.SC-20241205-044-cga-AL9",
+    "senderCaseId": "DRFR154402414300999",
+    "creation": "2024-12-05T14:30:00+02:00",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C11.02.01",
+        "label": "Malaise/détresse vitale"
+      },
+      "locationKind": {
+        "code": "L04.09.00",
+        "label": "Entreprise, société, lieu de travail"
+      },
+      "healthMotive": {
+        "code": "M17.03.01",
+        "label": "Douleur thoracique - cas d'usage n°1"
+      },
+      "details": {
+        "priority": "P1",
+        "attribution": "DRM.MRU.MU"
+      },
+      "origin": "15"
+    },
+    "location": {
+      "detailedAddress": {
+        "complete": "42 Avenue Jean Jaurès",
+        "number": "42",
+        "wayName": {
+          "complete": "Avenue Jean Jaurès",
+          "type": "Avenue",
+          "name": "Jean Jaurès"
+        }
+      },
+      "city": {
+        "name": "Nantes",
+        "inseeCode": "44109"
+      },
+      "access": {
+        "floor": "1",
+        "entrance": "A",
+        "accessCode": [
+          "5678"
+        ]
+      },
+      "geometry": {
+        "point": {
+          "coord": {
+            "lat": 47.2184,
+            "lon": -1.5536,
+            "precision": "EXACTE"
+          }
+        },
+        "datetime": "2024-12-05T14:30:00+02:00"
+      },
+      "name": "Entreprise ABC"
+    },
+    "initialAlert": {
+      "reception": "2024-12-05T14:30:00+02:00",
+      "caller": {
+        "callerContact": {
+          "type": "TEL",
+          "detail": "+33678945612",
+          "channel": "PERSONNE"
+        },
+        "detailedName": {
+          "complete": "Sophie Martin",
+          "lastName": "Martin",
+          "firstName": "Sophie"
+        },
+        "language": "fr",
+        "type": "TIERS",
+        "callbackContact": {
+          "channel": "PERSONNE",
+          "type": "TEL",
+          "detail": "+33678945612"
+        },
+        "communication": "AUCUNE"
+      }
+    },
+    "patient": [
+      {
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Pierre Legrand",
+            "lastName": "Legrand",
+            "firstName": "Pierre"
+          },
+          "strictFeatures": {
+            "sex": "M",
+            "birthDate": "1969-08-20"
+          }
+        },
+        "patientId": "fr.health.samu440.patient.DRFR154402414300999.1",
+        "detail": {
+          "age": "P55Y"
+        },
+        "hypothesis": {
+          "mainDiagnosis": {
+            "code": "I20.0",
+            "label": "Angine de poitrine instable"
+          }
+        }
+      }
+    ],
+    "owner": "fr.health.samu440",
+    "additionalInformation": {
+      "customMap": [
+        {
+          "key": "URGENCE",
+          "value": "Urgence cardiaque - Code 3 niveaux"
+        },
+        {
+          "key": "SYMPTOMES",
+          "value": "Douleur thoracique avec irradiation bras gauche"
+        }
+      ]
+    },
+    "interventionType": "T1",
+    "decision": [
+      {
+        "operator": {
+          "role": "MEDECIN",
+          "label": "Dr. Sophie Bernard"
+        },
+        "creation": "2024-12-05T14:35:00+02:00",
+        "decisionType": "INTER",
+        "resourceType": "SMUR"
+      }
+    ]
+  }
+}
