@@ -5,7 +5,7 @@ Il est valorisé comme suit lors de sa création :
 
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX: ^([a-zA-Z0-9_-]+\.?){4,10}$"
-Ressource,,,,,,Objet permettant de communquer la liste des ressource et vecteurs mobilisés en 15-15 et 15-SMUR,,resource,0..n,X,resource,
+Ressource,,,,,,Objet permettant de communquer la liste des ressource et vecteurs mobilisés en 15-15 et 15-SMUR,,resource,1..n,X,resource,
 ,Date/heure de déclenchement,,,,,A valoriser avec la date et heure d'engagement de la ressource/du vecteur,2022-09-27T08:23:34+02:00,datetime,1..1,,datetime,Format datetime décrit dans le DSF
 ,ID Ressource partagé,,,,,"A valoriser avec l'identifiant partagé unique de la ressource engagée, normé comme suit :
 {orgID}.resource.{ID unique de la ressource partagée}

@@ -100,31 +100,6 @@
               "properties": {
                 "message": {
                   "properties": {
-                    "reference": {
-                      "$ref": "RC-REF.schema.json"
-                    }
-                  },
-                  "required": [
-                    "reference"
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        {
-          "allOf": [
-            {
-              "properties": {
-                "message": {
-                  "$ref": "RC-DE.schema.json"
-                }
-              }
-            },
-            {
-              "properties": {
-                "message": {
-                  "properties": {
                     "createCase": {
                       "$ref": "RC-EDA.schema.json"
                     }
@@ -181,6 +156,31 @@
                   },
                   "required": [
                     "createCaseHealthUpdate"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "reference": {
+                      "$ref": "RC-REF.schema.json"
+                    }
+                  },
+                  "required": [
+                    "reference"
                   ]
                 }
               }

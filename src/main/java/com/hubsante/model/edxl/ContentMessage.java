@@ -23,14 +23,14 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import com.hubsante.model.rcde.DistributionElement;
-import com.hubsante.model.reference.Reference;
-import com.hubsante.model.reference.ReferenceWrapper;
 import com.hubsante.model.cisu.CreateCase;
 import com.hubsante.model.cisu.CreateCaseWrapper;
 import com.hubsante.model.health.CreateCaseHealth;
 import com.hubsante.model.health.CreateCaseHealthWrapper;
 import com.hubsante.model.health.CreateCaseHealthUpdate;
 import com.hubsante.model.health.CreateCaseHealthUpdateWrapper;
+import com.hubsante.model.reference.Reference;
+import com.hubsante.model.reference.ReferenceWrapper;
 import com.hubsante.model.emsi.Emsi;
 import com.hubsante.model.emsi.EmsiWrapper;
 import com.hubsante.model.resources.info.ResourcesInfo;
@@ -73,10 +73,10 @@ import java.util.stream.Stream;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({ 
-        @JsonSubTypes.Type(ReferenceWrapper.class),
         @JsonSubTypes.Type(CreateCaseWrapper.class),
         @JsonSubTypes.Type(CreateCaseHealthWrapper.class),
         @JsonSubTypes.Type(CreateCaseHealthUpdateWrapper.class),
+        @JsonSubTypes.Type(ReferenceWrapper.class),
         @JsonSubTypes.Type(EmsiWrapper.class),
         @JsonSubTypes.Type(ResourcesInfoWrapper.class),
         @JsonSubTypes.Type(ResourcesInfoCisuWrapper.class),
@@ -118,10 +118,10 @@ public class ContentMessage {
         public static final Map<String,String> useCases = Stream.of(new String[][] {
                   
                   {"distributionElement", DistributionElement.class.getCanonicalName()},
-                  {"reference", Reference.class.getCanonicalName()},
                   {"createCase", CreateCase.class.getCanonicalName()},
                   {"createCaseHealth", CreateCaseHealth.class.getCanonicalName()},
                   {"createCaseHealthUpdate", CreateCaseHealthUpdate.class.getCanonicalName()},
+                  {"reference", Reference.class.getCanonicalName()},
                   {"emsi", Emsi.class.getCanonicalName()},
                   {"resourcesInfo", ResourcesInfo.class.getCanonicalName()},
                   {"resourcesInfoCisu", ResourcesInfoCisu.class.getCanonicalName()},

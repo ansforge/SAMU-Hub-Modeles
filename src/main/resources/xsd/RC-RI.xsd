@@ -17,7 +17,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                     </restriction>
                 </simpleType>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="resource" type="x:resource"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="resource" type="x:resource"/>
         </sequence>
     </complexType>
     <complexType name="resource">

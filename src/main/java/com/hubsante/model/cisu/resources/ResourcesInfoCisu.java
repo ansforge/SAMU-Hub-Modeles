@@ -56,7 +56,7 @@ public class ResourcesInfoCisu {
   private String caseId;
 
   public static final String JSON_PROPERTY_RESOURCE = "resource";
-  private List<Resource> resource;
+  private List<Resource> resource = new ArrayList<>();
 
   public ResourcesInfoCisu() {}
 
@@ -109,7 +109,7 @@ public class ResourcesInfoCisu {
    * @return resource
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public List<Resource> getResource() {
     return resource;
@@ -118,7 +118,7 @@ public class ResourcesInfoCisu {
   @JacksonXmlElementWrapper(useWrapping = false)
 
   @JsonProperty(JSON_PROPERTY_RESOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setResource(List<Resource> resource) {
     if (resource == null) {
       return;
