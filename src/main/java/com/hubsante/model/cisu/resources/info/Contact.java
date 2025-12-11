@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.cisu.resources;
+package com.hubsante.model.cisu.resources.info;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;

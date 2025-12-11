@@ -325,6 +325,31 @@
               "properties": {
                 "message": {
                   "properties": {
+                    "resourcesStatusCisu": {
+                      "$ref": "RC-SR.schema.json"
+                    }
+                  },
+                  "required": [
+                    "resourcesStatusCisu"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
                     "resourcesRequest": {
                       "$ref": "RS-DR.schema.json"
                     }

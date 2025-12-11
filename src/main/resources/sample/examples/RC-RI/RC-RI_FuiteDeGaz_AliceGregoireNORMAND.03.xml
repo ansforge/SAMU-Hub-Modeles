@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<resourcesInfoCisu xmlns="urn:emergency:eda:1.9:resourcesInfoCisu">
+<resourcesInfoCisu xmlns="urn:emergency:eda:1.9:resourcesinfocisu">
   <caseId>fr.health.samu440.DRFR154402413800236</caseId>
   <resource>
     <datetime>2024-05-18T18:20:00+02:00</datetime>

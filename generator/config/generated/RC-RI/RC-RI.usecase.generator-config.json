@@ -13,11 +13,11 @@
   },
   "additionalProperties": {
     "library": "native",
-    "modelPackage": "com.hubsante.model.cisu.resources",
+    "modelPackage": "com.hubsante.model.cisu.resources.info",
     "serializationLibrary": "jackson",
     "openApiNullable": true,
     "supportUrlQuery": false,
-    "xmlns": "eda:1.9:resourcesInfoCisu",
+    "xmlns": "eda:1.9:resourcesinfocisu",
     "enablePostProcessFile": true
   }
 }

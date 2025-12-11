@@ -1,0 +1,23 @@
+{
+  "inputSpec": "./input/RC-SR.openapi.yaml",
+  "outputDir": "classes/",
+  "generatorName": "java",
+  "templateDir": "templates/useCase/",
+  "globalProperties": {
+    "models": "resourcesStatusCisu",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "library": "native",
+    "modelPackage": "com.hubsante.model.cisu.resources.status",
+    "serializationLibrary": "jackson",
+    "openApiNullable": true,
+    "supportUrlQuery": false,
+    "xmlns": "eda:1.9:resourcesstatuscisu",
+    "enablePostProcessFile": true
+  }
+}

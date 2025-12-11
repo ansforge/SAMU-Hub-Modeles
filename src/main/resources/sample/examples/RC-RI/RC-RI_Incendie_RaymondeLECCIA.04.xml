@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<resourcesInfoCisu xmlns="urn:emergency:eda:1.9:resourcesInfoCisu">
+<resourcesInfoCisu xmlns="urn:emergency:eda:1.9:resourcesinfocisu">
   <caseId>fr.fire.sisXXX.cga-XXX.SC-20240813-XXX-cga-AT517</caseId>
   <resource>
     <datetime>2024-08-13T10:23:00+02:00</datetime>

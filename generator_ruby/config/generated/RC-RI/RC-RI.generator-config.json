@@ -1,6 +1,6 @@
 {
   "inputSpec": "../generator/input/RC-RI.openapi.yaml",
-  "outputDir": "gem/cisuresources",
+  "outputDir": "gem/cisuresourcesinfo",
   "generatorName": "ruby",
   "globalProperties": {
     "models": "",
@@ -11,7 +11,7 @@
     "modelTests": false
   },
   "additionalProperties": {
-    "moduleName": "Cisuresources",
+    "moduleName": "Cisuresourcesinfo",
     "gemName": "hubsanteModel",
     "allowUnicodeIdentifiers": true,
     "useAutoload": true,

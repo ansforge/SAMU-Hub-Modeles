@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:eda:1.9:resourcesInfoCisu" elementFormDefault="qualified" targetNamespace="urn:emergency:eda:1.9:resourcesInfoCisu" xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:eda:1.9:resourcesinfocisu" elementFormDefault="qualified" targetNamespace="urn:emergency:eda:1.9:resourcesinfocisu" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="resourcesInfoCisu" type="x:resourcesInfoCisu"/>
     <complexType name="resourcesInfoCisu">
         <sequence>
