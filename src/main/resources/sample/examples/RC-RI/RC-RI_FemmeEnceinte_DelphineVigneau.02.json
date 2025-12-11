@@ -6,7 +6,7 @@
           "medicalLevel": "MED",
           "name": "Equipe SMUR 4"
         },
-        "vehicleType": "SMUR.VLM",
+        "vehicleType": "SMUR",
         "name": "VLM4",
         "datetime": "2024-05-26T13:22:00+02:00",
         "resourceId": "fr.health.samu440.resource.VLM4",
