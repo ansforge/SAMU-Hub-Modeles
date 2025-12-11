@@ -16,18 +16,6 @@ schemas:
   customExtendPackage: null
   file: model.xlsx
   header: Y
-  package: reference
-  perimeter: 15-15
-  rootElement: reference
-  schema: RC-REF
-  sheet: RC-REF
-  subschema: N
-  xmlns: eda:1.9:reference
-- automaticGeneration: Y
-  customExtendClass: null
-  customExtendPackage: null
-  file: model.xlsx
-  header: Y
   package: cisu
   perimeter: 15-18
   rootElement: createCase
@@ -59,6 +47,18 @@ schemas:
   sheet: RC-EDA
   subschema: Y
   xmlns: eda:1.9:createCaseHealthUpdate
+- automaticGeneration: Y
+  customExtendClass: null
+  customExtendPackage: null
+  file: model.xlsx
+  header: Y
+  package: reference
+  perimeter: 15-15
+  rootElement: reference
+  schema: RC-REF
+  sheet: RC-REF
+  subschema: N
+  xmlns: eda:1.9:reference
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null

@@ -7,10 +7,10 @@
 <schema xmlns:x="urn:emergency:eda:1.9"
         xmlns:xs="http://www.w3.org/2001/XMLSchema" 
         xmlns:distributionElement="urn:emergency:eda:1.9"
-        xmlns:reference="urn:emergency:eda:1.9:reference"
         xmlns:createCase="urn:emergency:eda:1.9:createCase"
         xmlns:createCaseHealth="urn:emergency:eda:1.9:createCaseHealth"
         xmlns:createCaseHealthUpdate="urn:emergency:eda:1.9:createCaseHealthUpdate"
+        xmlns:reference="urn:emergency:eda:1.9:reference"
         xmlns:emsi="urn:emergency:eda:1.9:emsi"
         xmlns:resourcesInfo="urn:emergency:eda:1.9:resourcesinfo"
         xmlns:resourcesInfoCisu="urn:emergency:eda:1.9:resourcesInfoCisu"
@@ -36,10 +36,10 @@
     <xs:include schemaLocation="RC-DE.xsd"/>
     <xs:include schemaLocation="customContent.xsd"/>
     <xs:include schemaLocation="RC-DE.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:reference" schemaLocation="RC-REF.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:createCase" schemaLocation="RC-EDA.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:createCaseHealthUpdate" schemaLocation="RS-EDA-MAJ.xsd"/>
+    <xs:import namespace="urn:emergency:eda:1.9:reference" schemaLocation="RC-REF.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:emsi" schemaLocation="EMSI.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:resourcesinfo" schemaLocation="RS-RI.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:resourcesInfoCisu" schemaLocation="RC-RI.xsd"/>
@@ -77,10 +77,10 @@
             <xs:extension base="x:distributionElement">
                 <xs:sequence>
                     <xs:choice>
-                        <xs:element ref="reference:reference"/>
                         <xs:element ref="createCase:createCase"/>
                         <xs:element ref="createCaseHealth:createCaseHealth"/>
                         <xs:element ref="createCaseHealthUpdate:createCaseHealthUpdate"/>
+                        <xs:element ref="reference:reference"/>
                         <xs:element ref="emsi:emsi"/>
                         <xs:element ref="resourcesInfo:resourcesInfo"/>
                         <xs:element ref="resourcesInfoCisu:resourcesInfoCisu"/>
