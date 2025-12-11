@@ -88,13 +88,13 @@ schemas:
   customExtendPackage: null
   file: model.xlsx
   header: Y
-  package: cisu.resources
+  package: cisu.resources.info
   perimeter: 15-18
   rootElement: resourcesInfoCisu
   schema: RC-RI
   sheet: RS-RI
   subschema: N
-  xmlns: eda:1.9:resourcesInfoCisu
+  xmlns: eda:1.9:resourcesinfocisu
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null
@@ -119,6 +119,18 @@ schemas:
   sheet: RS-SR
   subschema: N
   xmlns: eda:1.9:resourcesstatus
+- automaticGeneration: Y
+  customExtendClass: null
+  customExtendPackage: null
+  file: model.xlsx
+  header: Y
+  package: cisu.resources.status
+  perimeter: 15-18
+  rootElement: resourcesStatusCisu
+  schema: RC-SR
+  sheet: RS-SR
+  subschema: N
+  xmlns: eda:1.9:resourcesstatuscisu
 - automaticGeneration: Y
   customExtendClass: null
   customExtendPackage: null

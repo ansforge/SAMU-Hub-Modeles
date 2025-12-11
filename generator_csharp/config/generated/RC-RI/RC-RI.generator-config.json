@@ -11,6 +11,6 @@
     "modelTests": false
   },
   "additionalProperties": {
-    "packageName": "HubsanteModel/Cisu.resources"
+    "packageName": "HubsanteModel/Cisu.resources.info"
   }
 }

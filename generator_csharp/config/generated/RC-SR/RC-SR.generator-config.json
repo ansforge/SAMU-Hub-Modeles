@@ -1,0 +1,16 @@
+{
+  "inputSpec": "../generator/input/RC-SR.openapi.yaml",
+  "outputDir": "package/",
+  "generatorName": "csharp",
+  "globalProperties": {
+    "models": "",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "packageName": "HubsanteModel/Cisu.resources.status"
+  }
+}

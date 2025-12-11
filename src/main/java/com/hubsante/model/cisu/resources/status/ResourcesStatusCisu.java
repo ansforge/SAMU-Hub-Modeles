@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.cisu.resources;
+package com.hubsante.model.cisu.resources.status;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,33 +34,35 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.cisu.resources.Resource;
-import java.util.ArrayList;
+import com.hubsante.model.cisu.resources.status.State;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
- * ResourcesInfoCisu
+ * ResourcesStatusCisu
  */
-@JsonPropertyOrder({ResourcesInfoCisu.JSON_PROPERTY_CASE_ID,
-                    ResourcesInfoCisu.JSON_PROPERTY_RESOURCE})
-@JsonTypeName("resourcesInfoCisu")
+@JsonPropertyOrder({ResourcesStatusCisu.JSON_PROPERTY_CASE_ID,
+                    ResourcesStatusCisu.JSON_PROPERTY_RESOURCE_ID,
+                    ResourcesStatusCisu.JSON_PROPERTY_STATE})
+@JsonTypeName("resourcesStatusCisu")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ResourcesInfoCisu {
+public class ResourcesStatusCisu {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:eda:1.9:resourcesInfoCisu";
+  String xmlns = "urn:emergency:eda:1.9:resourcesstatuscisu";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 
-  public static final String JSON_PROPERTY_RESOURCE = "resource";
-  private List<Resource> resource = new ArrayList<>();
+  public static final String JSON_PROPERTY_RESOURCE_ID = "resourceId";
+  private String resourceId;
 
-  public ResourcesInfoCisu() {}
+  public static final String JSON_PROPERTY_STATE = "state";
+  private State state;
 
-  public ResourcesInfoCisu caseId(String caseId) {
+  public ResourcesStatusCisu() {}
+
+  public ResourcesStatusCisu caseId(String caseId) {
 
     this.caseId = caseId;
     return this;
@@ -90,43 +92,55 @@ public class ResourcesInfoCisu {
     this.caseId = caseId;
   }
 
-  public ResourcesInfoCisu resource(List<Resource> resource) {
+  public ResourcesStatusCisu resourceId(String resourceId) {
 
-    this.resource = resource;
-    return this;
-  }
-
-  public ResourcesInfoCisu addResourceItem(Resource resourceItem) {
-    if (this.resource == null) {
-      this.resource = new ArrayList<>();
-    }
-    this.resource.add(resourceItem);
+    this.resourceId = resourceId;
     return this;
   }
 
   /**
-   * Get resource
-   * @return resource
+   * A valoriser avec l&#39;identifiant partagé unique de la ressource engagée ,
+   *normé comme suit : {orgID}.R.{ID unique de la ressource partagée} Ou,
+   *uniquement dans le cas où un ID unique de ressource ne peut pas être garanti
+   *par l&#39;organisation propriétaire : {orgID}.R.{ID du dossier
+   *partagé}.{numéro d’ordre chronologique ressource}  N.B. Il s&#39;agit de
+   *l&#39;orgId de l&#39;organisation à qui appartient la ressource
+   * @return resourceId
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<Resource> getResource() {
-    return resource;
+  public String getResourceId() {
+    return resourceId;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_RESOURCE)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setResource(List<Resource> resource) {
-    if (resource == null) {
-      return;
-    }
-    if (this.resource == null) {
-      this.resource = new ArrayList<>();
-    }
-    this.resource.addAll(resource);
+  public void setResourceId(String resourceId) {
+    this.resourceId = resourceId;
+  }
+
+  public ResourcesStatusCisu state(State state) {
+
+    this.state = state;
+    return this;
+  }
+
+  /**
+   * Get state
+   * @return state
+   **/
+  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public State getState() {
+    return state;
+  }
+
+  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setState(State state) {
+    this.state = state;
   }
 
   @Override
@@ -137,22 +151,26 @@ public class ResourcesInfoCisu {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResourcesInfoCisu resourcesInfoCisu = (ResourcesInfoCisu)o;
-    return Objects.equals(this.caseId, resourcesInfoCisu.caseId) &&
-        Objects.equals(this.resource, resourcesInfoCisu.resource);
+    ResourcesStatusCisu resourcesStatusCisu = (ResourcesStatusCisu)o;
+    return Objects.equals(this.caseId, resourcesStatusCisu.caseId) &&
+        Objects.equals(this.resourceId, resourcesStatusCisu.resourceId) &&
+        Objects.equals(this.state, resourcesStatusCisu.state);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, resource);
+    return Objects.hash(caseId, resourceId, state);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResourcesInfoCisu {\n");
+    sb.append("class ResourcesStatusCisu {\n");
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
-    sb.append("    resource: ").append(toIndentedString(resource)).append("\n");
+    sb.append("    resourceId: ")
+        .append(toIndentedString(resourceId))
+        .append("\n");
+    sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("}");
     return sb.toString();
   }

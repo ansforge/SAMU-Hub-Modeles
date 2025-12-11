@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.cisu.resources;
+package com.hubsante.model.cisu.resources.info;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,9 +34,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.cisu.resources.Contact;
-import com.hubsante.model.cisu.resources.State;
-import com.hubsante.model.cisu.resources.Team;
+import com.hubsante.model.cisu.resources.info.Contact;
+import com.hubsante.model.cisu.resources.info.State;
+import com.hubsante.model.cisu.resources.info.Team;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
