@@ -77,6 +77,7 @@ OU - si un ID unique de la demande n'était pas disponible :
                     <restriction base="string">
                         <enumeration value="SMUR"/>
                         <enumeration value="SIS"/>
+                        <enumeration value="AUTRE"/>
                     </restriction>
                 </simpleType>
             </element>

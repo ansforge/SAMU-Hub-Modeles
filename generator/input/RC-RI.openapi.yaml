@@ -139,6 +139,7 @@ components:
           enum:
           - SMUR
           - SIS
+          - AUTRE
           examples:
           - SMUR
         name:

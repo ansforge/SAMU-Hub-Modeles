@@ -83,7 +83,9 @@ public class Resource {
   public enum VehicleTypeEnum {
     SMUR("SMUR"),
 
-    SIS("SIS");
+    SIS("SIS"),
+
+    AUTRE("AUTRE");
 
     private String value;
 
