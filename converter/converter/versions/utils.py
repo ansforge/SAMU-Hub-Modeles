@@ -1,3 +1,4 @@
+import logging
 from typing import Any, Dict, Optional
 
 from converter.utils import (
@@ -5,6 +6,8 @@ from converter.utils import (
     is_field_completed,
     update_json_value,
 )
+
+logger = logging.getLogger(__name__)
 
 
 def reverse_get(input_value: str, mapping_value: Dict[str, str]) -> str:
@@ -30,6 +33,9 @@ def switch_field_name(
     json_data: Dict[str, Any], previous_field_name: str, new_field_name: str
 ):
     if is_field_completed(json_data, "$." + previous_field_name):
+        logger.info(
+            "Transforming field name from %s to %s", previous_field_name, new_field_name
+        )
         json_data[new_field_name] = json_data[previous_field_name]
 
 

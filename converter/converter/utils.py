@@ -64,6 +64,7 @@ def delete_paths(data: Dict[str, Any], paths: List[str]) -> None:
         elif len(keys) == 1:
             # Delete target key if it exists
             if isinstance(d, dict):
+                logger.info("Deleting key: %s", key)
                 d.pop(key, None)
         else:
             # Recurse if intermediate key exists
@@ -71,6 +72,7 @@ def delete_paths(data: Dict[str, Any], paths: List[str]) -> None:
                 delete_recursively(d[key], keys[1:])
                 # Clean up empty dictionaries or lists
                 if isinstance(d[key], (dict, list)) and not d[key]:
+                    logger.info("Deleting key: %s", key)
                     d.pop(key)
 
     for path in paths:
@@ -195,6 +197,13 @@ def update_json_value(data, jsonpath_query, new_value):
         matches = jsonpath_expr.find(data)
 
         for match in matches:
+            old_value = get_field_value(data, str(match.full_path))
+            logger.info(
+                "Updating value from %s to %s at path %s",
+                old_value,
+                new_value,
+                match.full_path,
+            )
             match.full_path.update(data, new_value)
 
     except Exception as e:
@@ -207,6 +216,7 @@ def set_value(data: Dict[str, Any], json_path: str, value: Any):
     for key in keys[:-1]:
         data = data.setdefault(key, {})
     data[keys[-1]] = value
+    logger.info("Setting value at path %s", json_path)
     return value
 
 
@@ -245,6 +255,7 @@ def add_field_to_medical_notes(
     if field_value is None:
         return
 
+    logger.info("Adding field %s to medical notes", path_and_label["path"])
     formatted_field_value = path_and_label["label"] + dump(
         field_value, allow_unicode=True
     )
