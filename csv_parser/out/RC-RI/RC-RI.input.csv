@@ -21,7 +21,7 @@ fr.health.samu690.request.DRFR15690242370035.3",requestId,0..1,,string,"REGEX: ^
 ,ID Organisation propriétaire,,,,,"A valoriser avec l'identifiant de l'organisation à laquelle appartient la ressource, normé comme suit : 
 {pays}.{domaine}.{organisation}",fr.health.samu440,orgId,0..1,,string,
 ,Nom du centre d’affectation,,,,,A valoriser avec le lieu de garage principal,CHU Nantes,centerName,0..1,,string,
-,Type de vecteur,,,,,A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée,SMUR,vehicleType,1..1,,string,"ENUM: SMUR, SIS"
+,Type de vecteur,,,,,A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée,SMUR,vehicleType,1..1,,string,"ENUM: SMUR, SIS, AUTRE"
 ,Nom du vecteur,,,,,A valoriser avec le nom donné à la ressource par l’organisation d’appartenance,SMUR 123,name,0..1,,string,
 ,Commune du centre d’affectation,,,,,A valoriser avec le code INSEE de la commune du centre d'affectation,44109,centerCity,0..1,,string,REGEX: ^[0-9]{5}$
 ,Equipe vecteur,,,,,Objet qui décrit l'équipe à bord du vecteur,,team,0..1,X,team,
