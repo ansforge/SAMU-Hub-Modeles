@@ -2,8 +2,6 @@ class TestConstants:
     V1_GITHUB_TAG = "release/1.x-maintenance"
     V2_GITHUB_TAG = "release/2.x-maintenance"
     V3_GITHUB_TAG = "main"
-    # TODO: remove rc tag when rc ri merged to main
-    V3_GITHUB_RC_RI_TAG = "3.2.0-rc.4"
 
     EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH = (
         "tests/fixtures/EDXL/edxl_envelope_health_to_fire.json"

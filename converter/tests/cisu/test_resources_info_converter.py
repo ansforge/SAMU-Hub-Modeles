@@ -14,7 +14,7 @@ RS_RI_SCHEMA = TestHelper.load_schema("RS-RI.schema.json")
 
 def test_rs_to_cisu():
     rc_schema_endpoint = get_file_endpoint(
-        TestConstants.V3_GITHUB_RC_RI_TAG, TestConstants.RC_RI_TAG
+        TestConstants.V3_GITHUB_TAG, TestConstants.RC_RI_TAG
     )
     rc_schema = TestHelper.load_json_file_online(rc_schema_endpoint)
 
@@ -104,52 +104,35 @@ def test_cisu_to_rs_breaking_changes():
     validate(rs_message, RS_RI_SCHEMA)
 
 
-class TestTranslateToCISUVehicleType(TestCase):
-    def test_translate_SIS(self):
-        rs_vehicle_type = "SIS"
-        cisu_vehicle_type = ResourcesInfoCISUConverter.translate_to_cisu_vehicle_type(
-            rs_vehicle_type
-        )
-        self.assertEqual(cisu_vehicle_type, "SIS")
+@pytest.mark.parametrize(
+    "rs_vehicule_type,expected",
+    [
+        pytest.param("SIS", "SIS", id="translates SIS to SIS"),
+        pytest.param("SIS.DRAGON", "SIS", id="translates SIS.DRAGON to SIS"),
+        pytest.param("AUTREVEC", "AUTRE", id="translates AUTREVEC to AUTRE"),
+        pytest.param("FSI.HELIFSI", "AUTRE", id="translates FSI.HELIFSI to AUTRE"),
+        pytest.param("SMUR", "SMUR", id="translates SMUR to SMUR"),
+        pytest.param("SMUR.VLM", "SMUR", id="translates SMUR.VLM to SMUR"),
+        pytest.param("TSU.VSL", "AUTRE", id="translates TSU.VSL to AUTRE"),
+    ],
+)
+def test_translate_vehicule_type_to_cisu(rs_vehicule_type, expected):
+    cisu_vehicle_type = ResourcesInfoCISUConverter.translate_to_cisu_vehicle_type(
+        rs_vehicule_type
+    )
+    assert cisu_vehicle_type == expected
 
-    def test_translate_SIS_DRAGON(self):
-        rs_vehicle_type = "SIS.DRAGON"
-        cisu_vehicle_type = ResourcesInfoCISUConverter.translate_to_cisu_vehicle_type(
-            rs_vehicle_type
-        )
-        self.assertEqual(cisu_vehicle_type, "SIS")
 
-    def test_translate_AUTREVEC(self):
-        rs_vehicle_type = "AUTREVEC"
-        cisu_vehicle_type = ResourcesInfoCISUConverter.translate_to_cisu_vehicle_type(
-            rs_vehicle_type
-        )
-        self.assertEqual(cisu_vehicle_type, "SMUR")
-
-    def test_translate_FSI_HELIFSI(self):
-        rs_vehicle_type = "FSI.HELIFSI"
-        cisu_vehicle_type = ResourcesInfoCISUConverter.translate_to_cisu_vehicle_type(
-            rs_vehicle_type
-        )
-        self.assertEqual(cisu_vehicle_type, "SMUR")
-
-    def test_translate_SMUR(self):
-        rs_vehicle_type = "SMUR"
-        cisu_vehicle_type = ResourcesInfoCISUConverter.translate_to_cisu_vehicle_type(
-            rs_vehicle_type
-        )
-        self.assertEqual(cisu_vehicle_type, "SMUR")
-
-    def test_translate_SMUR_VLM(self):
-        rs_vehicle_type = "SMUR.VLM"
-        cisu_vehicle_type = ResourcesInfoCISUConverter.translate_to_cisu_vehicle_type(
-            rs_vehicle_type
-        )
-        self.assertEqual(cisu_vehicle_type, "SMUR")
-
-    def test_translate_TSU_VSL(self):
-        rs_vehicle_type = "TSU.VSL"
-        cisu_vehicle_type = ResourcesInfoCISUConverter.translate_to_cisu_vehicle_type(
-            rs_vehicle_type
-        )
-        self.assertEqual(cisu_vehicle_type, "SMUR")
+@pytest.mark.parametrize(
+    "cisu_vehicule_type,expected",
+    [
+        pytest.param("SIS", "SIS", id="translates SIS to SIS"),
+        pytest.param("SMUR", "SMUR", id="translates SMUR to SMUR"),
+        pytest.param("AUTRE", "AUTREVEC", id="translates AUTRE to AUTREVEC"),
+    ],
+)
+def test_translate_vehicule_type_to_rs(cisu_vehicule_type, expected):
+    rs_vehicle_type = ResourcesInfoCISUConverter.translate_to_rs_vehicle_type(
+        cisu_vehicule_type
+    )
+    assert rs_vehicle_type == expected
