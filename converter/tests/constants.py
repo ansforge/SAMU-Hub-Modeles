@@ -30,3 +30,4 @@ class TestConstants:
     RS_RR_TAG = "RS-RR"
     RS_SR_TAG = "RS-SR"
     RS_URL_TAG = "RS-URL"
+    RC_SR_TAG = "RC-SR"
