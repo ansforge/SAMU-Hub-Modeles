@@ -1,0 +1,23 @@
+{
+  "resourcesInfoCisu": {
+    "resource": [
+      {
+        "team": {
+          "medicalLevel": "MED",
+          "name": "Equipe FEU 3"
+        },
+        "name": "VSR-Rea3",
+        "datetime": "2024-08-13T10:23:00+02:00",
+        "resourceId": "fr.fire.sisXXX.cga-XXX.resource.VSR268",
+        "orgId": "fr.fire.sisXXX.cgo-XXX",
+        "state": {
+          "status": "DECLENCHE",
+          "datetime": "2024-08-13T10:24:00+02:00",
+          "availability": false
+        },
+        "vehicleType": "SIS"
+      }
+    ],
+    "caseId": "fr.fire.CGA_national.SC-20240813-CGA_national-AT517"
+  }
+}

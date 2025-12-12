@@ -661,10 +661,10 @@
     "schema": null,
     "examples": [
       {
-        "file": "RC-EDA/RC-EDA-FuiteDeGaz-AliceGregoireNormand.json",
+        "file": "RC-EDA/RC-EDA-FuiteDeGaz-AliceGregoireNormand.01.json",
         "icon": "mdi-molecule-co2",
-        "context": "Fuite de gaz",
-        "name": "Alice et Grégoire NORMAND",
+        "context": "Fuite de gaz. Pas de test suivant: RC-RI - Alice et Grégoire Normand.02",
+        "name": "Alice et Grégoire NORMAND.01",
         "caller": "Marie Dubois, mère des enfants, appelle le 15",
         "environment": "Domicile, maison particulière",
         "victims": "2 patients, nécessitant assistance SAMU et l'intervention du SIS pour la fuite de gaz qui a reçu une demande de concours",
@@ -672,11 +672,11 @@
         "medicalSituation": "Malaise, effets secondaires liés au monoxyde de carbone"
       },
       {
-        "file": "RC-EDA/RC-EDA-FemmeEnceinte-DelphineVigneau.json",
+        "file": "RC-EDA/RC-EDA-FemmeEnceinte-DelphineVigneau.01.json",
         "icon": "mdi-human-pregnant",
-        "context": "Chute d'une échelle d'une femme enceinte",
-        "name": "Delphine VIGNEAU",
-        "caller": "Agnès Duberti, appelle le 18 qui nous transfère l'appel et le dossier",
+        "context": "Chute d'une échelle d'une femme enceinte. Pas de test suivant: RC-RI - Delphine Vigneau.02",
+        "name": "Delphine VIGNEAU.01",
+        "caller": "Agnès Duberti, appelle le 15",
         "environment": "Lieu de travail",
         "victims": "1 patiente, nécessitant assistance SAMU",
         "victim": "Femme, enceinte de 2 mois, 32 ans",
@@ -685,7 +685,7 @@
       {
         "file": "RC-EDA/RC-EDA_Incendie_RaymondeLECCIA.01.json",
         "icon": "mdi-fire-truck",
-        "context": "Incendie de maison et découverte d'une victime inanimée",
+        "context": "Incendie de maison et découverte d'une victime inanimée. Pas de test suivant: RC-RI Incendie_RaymondeLECCIA.02",
         "name": "Raymonde LECCIA.01",
         "caller": "Christine MICHEL appelle le 18 pour un incendie chez sa voisine, les pompiers découvrent la jeune femme en arrêt cardiaque",
         "environment": "Domicile, maison particulière",
@@ -694,9 +694,9 @@
         "medicalSituation": "Arrêt cardiaque et brûlures"
       },
       {
-        "file": "RC-EDA/RC-EDA-DouleurThoracique-PierreLegrand.01.json",
+        "file": "RC-EDA/RC-EDA-DouleurThoracique-PierreLegrand.json",
         "icon": "mdi-heart-pulse",
-        "name": "Pierre LEGRAND.01",
+        "name": "Pierre LEGRAND",
         "caller": "Sophie Martin, collègue de Pierre Legrand",
         "context": "Malaise cardiaque en entreprise",
         "environment": "Entreprise ABC, lieu de travail",
@@ -712,46 +712,99 @@
     "schema": null,
     "examples": [
       {
-        "file": "RC-RI/RC-RI_partageDossier_DidierMorel.01b.json",
-        "icon": "mdi-circular-saw",
-        "name": "Didier MOREL.01b",
-        "environment": "Engagement d'un VSR et d'un VSAV par le SDIS 77"
-      },
-      {
-        "file": "RC-RI/RC-RI_partageDossier_LolaHalimi.01b.json",
-        "icon": "mdi-image-broken-variant",
-        "name": "Lola HALIMI.01b",
-        "environment": "Engagement d'un VSAV par le SDIS 95"
-      },
-      {
-        "file": "RC-RI/RC-RI_partageDossier_EnfantsNguyen.03b.json",
-        "icon": "mdi-baby-face-outline",
-        "name": "Enfants NGUYEN.03b",
-        "environment": "Engagement de deux VSAV par le SDIS 76"
-      },
-      {
-        "file": "RC-RI/RC-RI_FemmeEnceinte_DelphineVigneau.03.json",
+        "file": "RC-RI/RC-RI_FemmeEnceinte_DelphineVigneau.02.json",
         "icon": "mdi-human-pregnant",
+        "context": "Pas de test suivant: RC-SR - Delphine Vigneau.03",
         "name": "Delphine VIGNEAU.03",
-        "environment": "Engagement d'un VSAV par le SDIS 44"
+        "environment": "Engagement d'un SMUR par le SAMU 44"
       },
       {
-        "file": "RC-RI/RC-RI_FuiteDeGaz_AliceGregoireNORMAND.03.json",
+        "file": "RC-RI/RC-RI_FuiteDeGaz_AliceGregoireNORMAND.02.json",
         "icon": "mdi-molecule-co2",
-        "name": "Alice et Grégoire NORMAND.03",
+        "name": "Alice et Grégoire NORMAND.02",
+        "context": "Pas de test suivant: RC-SR - Alice et Grégoire NORMAND.03",
+        "environment": "Partage des ressources engagées avec le SDIS"
+      },
+      {
+        "file": "RC-RI/RC-RI_FuiteDeGaz_AliceGregoireNORMAND.05.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.05",
+        "context": "Pas de test suivant: RC-SR - Alice et Grégoire NORMAND.06",
         "environment": "Engagenement d'un VSAV avec le détail de l'équipe"
       },
       {
-        "file": "RC-RI/RC-RI_FuiteDeGaz_AliceGregoireNORMAND.06.json",
-        "icon": "mdi-molecule-co2",
-        "name": "Alice et Grégoire NORMAND.06",
-        "environment": "Partage des ressources engagées avec le SAMU 44"
+        "file": "RC-RI/RC-RI_Incendie_RaymondeLECCIA.02.json",
+        "icon": "mdi-fire-truck",
+        "name": "Raymonde LECCIA.02",
+        "environment": "Détail des ressources SIS mobilisées pour l'intervention"
+      }
+    ]
+  },
+  {
+    "label": "RC-SR",
+    "schemaName": "RC-SR.schema.json",
+    "schema": null,
+    "examples": [
+      {
+        "file": "RC-SR/RC-SR_FemmeEnceinte_DelphineVIGNEAU.03.json",
+        "icon": "mdi-human-pregnant",
+        "name": "Delphine VIGNEAU.03",
+        "context": "Pas de test suivant: RC-SR - Delphine VIGNEAU.04",
+        "environment": "Départ de la base du SMUR"
       },
       {
-        "file": "RC-RI/RC-RI_Incendie_RaymondeLECCIA.04.json",
-        "icon": "mdi-fire-truck",
-        "name": "Raymonde LECCIA.04",
-        "environment": "Détail des ressources SIS mobilisées pour l'intervention"
+        "file": "RC-SR/RC-SR_FemmeEnceinte_DelphineVIGNEAU.04.json",
+        "icon": "mdi-human-pregnant",
+        "name": "Delphine VIGNEAU.04",
+        "context": "Pas de test suivant: RC-SR - Delphine VIGNEAU.05",
+        "environment": "Arrivée sur les lieux de l'intervention du SMUR"
+      },
+      {
+        "file": "RC-SR/RC-SR_FemmeEnceinte_DelphineVIGNEAU.05.json",
+        "icon": "mdi-human-pregnant",
+        "name": "Delphine VIGNEAU.05",
+        "environment": "Retour du SMUR vers la base"
+      },
+      {
+        "file": "RC-SR/RC-SR_FuiteDeGaz_AliceGregoireNORMAND.03.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.03",
+        "context": "Pas de test suivant: RC-SR - Alice et Grégoire NORMAND.04",
+        "environment": "Départ de la base du SMUR"
+      },
+      {
+        "file": "RC-SR/RC-SR_FuiteDeGaz_AliceGregoireNORMAND.04.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.04",
+        "context": "Pas de test suivant: RC-RI - Alice et Grégoire NORMAND.05",
+        "environment": "Arrivée sur les lieux de l'intervention du SMUR"
+      },
+      {
+        "file": "RC-SR/RC-SR_FuiteDeGaz_AliceGregoireNORMAND.06.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.06",
+        "context": "Pas de test suivant: RC-SR - Alice et Grégoire NORMAND.07",
+        "environment": "Arrivée sur les lieux de l'intervention du VSAV"
+      },
+      {
+        "file": "RC-SR/RC-SR_FuiteDeGaz_AliceGregoireNORMAND.07.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.07",
+        "context": "Pas de test suivant: RC-SR - Alice et Grégoire NORMAND.08",
+        "environment": "Départ des lieux du SMUR"
+      },
+      {
+        "file": "RC-SR/RC-SR_FuiteDeGaz_AliceGregoireNORMAND.08.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.08",
+        "context": "Pas de test suivant: RC-SR - Alice et Grégoire NORMAND.09",
+        "environment": "Retour du SMUR vers la base"
+      },
+      {
+        "file": "RC-SR/RC-SR_FuiteDeGaz_AliceGregoireNORMAND.09.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.09",
+        "environment": "Retour du VSAV vers la base"
       }
     ]
   },

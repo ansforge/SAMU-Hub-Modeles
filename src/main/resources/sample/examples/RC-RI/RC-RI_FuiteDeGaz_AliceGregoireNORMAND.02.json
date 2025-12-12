@@ -1,0 +1,39 @@
+{
+  "resourcesInfoCisu": {
+    "resource": [
+      {
+        "team": {
+          "medicalLevel": "MED"
+        },
+        "datetime": "2024-05-18T18:22:00+02:00",
+        "resourceId": "fr.health.samu440.resource.VLM1",
+        "orgId": "fr.health.samu440",
+        "vehicleType": "SMUR",
+        "name": "VLM1",
+        "centerCity": "44109",
+        "state": {
+          "status": "DECLENCHE",
+          "datetime": "2024-05-18T18:10:00+02:00",
+          "availability": false
+        }
+      },
+      {
+        "team": {
+          "medicalLevel": "MED"
+        },
+        "datetime": "2024-05-18T18:22:00+02:00",
+        "resourceId": "fr.health.samu440.resource.VLM2",
+        "orgId": "fr.health.samu440",
+        "vehicleType": "SMUR",
+        "name": "VLM2",
+        "centerCity": "44109",
+        "state": {
+          "status": "DECLENCHE",
+          "datetime": "2024-05-18T18:20:00+02:00",
+          "availability": false
+        }
+      }      
+    ],
+    "caseId": "fr.health.samu440.DRFR154402413800236"
+  }
+}

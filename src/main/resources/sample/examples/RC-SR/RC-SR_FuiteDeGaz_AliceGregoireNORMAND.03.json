@@ -1,0 +1,10 @@
+{
+  "resourcesStatusCisu": {
+    "caseId": "fr.health.samu440.DRFR154402413800236",
+    "resourceId": "fr.health.samu440.resource.VLM1",
+    "state": {
+      "datetime": "2024-05-18T18:15:00+02:00",
+      "status": "DEPART"
+    }
+  }
+}
