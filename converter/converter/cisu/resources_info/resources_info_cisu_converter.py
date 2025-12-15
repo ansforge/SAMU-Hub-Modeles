@@ -29,8 +29,19 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
             output_use_case_json, ResourcesInfoCISUConstants.RESOURCE_PATH
         )
 
-        for resource in resources:
+        for index, resource in enumerate(resources):
             logger.debug(f"Processing resource: {resource}")
+            current_resource_path = (
+                f"{ResourcesInfoCISUConstants.RESOURCE_PATH}[{index}]"
+            )
+
+            current_state_path = (
+                f"{current_resource_path}.{ResourcesInfoCISUConstants.STATE_PATH}"
+            )
+            logger.info(
+                "Transforming state to list format for RS at path %s",
+                current_state_path,
+            )
             state = get_field_value(resource, ResourcesInfoCISUConstants.STATE_PATH)
             set_value(resource, ResourcesInfoCISUConstants.STATE_PATH, [state])
 
@@ -56,7 +67,7 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         resources = get_field_value(
             output_use_case_json, ResourcesInfoCISUConstants.RESOURCE_PATH
         )
-        for resource in resources:
+        for index, resource in enumerate(resources):
             logger.debug(f"Processing resource: {resource}")
             rs_vehicle_type = get_field_value(
                 resource, ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH
@@ -68,6 +79,16 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
                 cisu_vehicle_type,
             )
 
+            current_resource_path = (
+                f"{ResourcesInfoCISUConstants.RESOURCE_PATH}[{index}]"
+            )
+            current_state_path = (
+                f"{current_resource_path}.{ResourcesInfoCISUConstants.STATE_PATH}"
+            )
+            logger.info(
+                "Transforming state to singleton for CISU at path %s",
+                current_state_path,
+            )
             cls.keep_last_state(resource)
 
             delete_paths(resource, [ResourcesInfoCISUConstants.PATIENT_ID_KEY])
