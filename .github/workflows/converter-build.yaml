@@ -1,0 +1,40 @@
+name: Build converter image
+
+on:
+  push:
+    tags:
+      - 'converter-*'
+  workflow_dispatch:
+
+jobs:
+  build_library:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract version from tag
+        id: extract-version
+        run: |
+          TAG_NAME="${{ github.ref_name }}"
+          VERSION=${TAG_NAME#converter-}
+          PATTERN="^[0-9]+\.[0-9]+\.[0-9]+(-RC-[0-9]+)*$"
+          if [[ ! "$VERSION" =~ $PATTERN ]]; then
+            echo "Invalid version number. Expected format: x.y.z with optional '-RC-n' (e.g., 1.2.3 or 1.2.3-RC-1)"
+            echo $VERSION
+            exit 1
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Login to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push converter service Docker image
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          platforms: linux/amd64
+          tags: ghcr.io/${{ github.repository_owner }}/hub-converter:${{ steps.extract-version.outputs.version }}
+          context: ./converter
+          build-args: CONVERTER_VERSION=${{ steps.extract-version.outputs.version }}
