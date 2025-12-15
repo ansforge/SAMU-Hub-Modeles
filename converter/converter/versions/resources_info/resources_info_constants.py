@@ -108,3 +108,4 @@ class ResourcesInfoConstants:
     RESOURCE_VEHICLE_TYPE_PATH = "$.vehicleType"
     RESOURCE_TEAM_MEDICAL_LEVEL_PATH = "$.team.medicalLevel"
     RESOURCE_PATIENT_ID_PATH = "$.patientId"
+    RESOURCE_FREETEXT_PATH = "$.freetext"

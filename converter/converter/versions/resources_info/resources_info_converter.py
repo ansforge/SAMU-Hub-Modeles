@@ -22,7 +22,7 @@ class ResourcesInfoConverter(BaseMessageConverter):
             output_use_case_json, ResourcesInfoConstants.MOBILIZED_RESOURCE_PATH
         )
         if mobilized_resources is not None:
-            for index, mobilizedResource in enumerate(mobilized_resources):
+            for mobilizedResource in mobilized_resources:
                 states = get_field_value(
                     mobilizedResource, ResourcesInfoConstants.RESOURCE_STATE_PATH
                 )
@@ -39,10 +39,18 @@ class ResourcesInfoConverter(BaseMessageConverter):
                     ResourcesInfoConstants.MOBILIZED_RESOURCE_PLATE_PATH,
                 )
                 if plate is not None:
-                    freetext = mobilizedResource.get("freetext", [])
+                    freetext = (
+                        get_field_value(
+                            mobilizedResource,
+                            ResourcesInfoConstants.RESOURCE_FREETEXT_PATH,
+                        )
+                        or []
+                    )
                     freetext.append("Immatriculation : " + plate)
-                    output_use_case_json["mobilizedResource"][index]["freetext"] = (
-                        freetext
+                    set_value(
+                        mobilizedResource,
+                        ResourcesInfoConstants.RESOURCE_FREETEXT_PATH,
+                        freetext,
                     )
 
                 map_to_new_value(
@@ -191,14 +199,23 @@ class ResourcesInfoConverter(BaseMessageConverter):
             output_use_case_json, ResourcesInfoConstants.RESOURCE_PATH
         )
         if resources is not None:
-            for index, resource in enumerate(resources):
+            for resource in resources:
                 patient_id = get_field_value(
                     resource, ResourcesInfoConstants.RESOURCE_PATIENT_ID_PATH
                 )
                 if patient_id is not None:
-                    freetext = resource.get("freetext", [])
+                    freetext = (
+                        get_field_value(
+                            resource, ResourcesInfoConstants.RESOURCE_FREETEXT_PATH
+                        )
+                        or []
+                    )
                     freetext.append("Patient ID : " + patient_id)
-                    output_use_case_json["resource"][index]["freetext"] = freetext
+                    set_value(
+                        resource,
+                        ResourcesInfoConstants.RESOURCE_FREETEXT_PATH,
+                        freetext,
+                    )
 
         delete_paths(output_use_case_json, ResourcesInfoConstants.V3_PATHS_TO_DELETE)
 
