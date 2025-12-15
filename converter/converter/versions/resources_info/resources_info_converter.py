@@ -1,4 +1,5 @@
 from typing import Dict, Any
+import logging
 
 from converter.utils import delete_paths, get_field_value, map_to_new_value, set_value
 from converter.versions.base_message_converter import BaseMessageConverter
@@ -6,6 +7,8 @@ from converter.versions.resources_info.resources_info_constants import (
     ResourcesInfoConstants,
 )
 from converter.versions.utils import reverse_map_to_new_value, switch_field_name
+
+logger = logging.getLogger(__name__)
 
 
 class ResourcesInfoConverter(BaseMessageConverter):
@@ -39,6 +42,10 @@ class ResourcesInfoConverter(BaseMessageConverter):
                     ResourcesInfoConstants.MOBILIZED_RESOURCE_PLATE_PATH,
                 )
                 if plate is not None:
+                    logger.info(
+                        "Adding plate number from %s to freetext",
+                        ResourcesInfoConstants.MOBILIZED_RESOURCE_PLATE_PATH,
+                    )
                     freetext = (
                         get_field_value(
                             mobilizedResource,
@@ -186,6 +193,10 @@ class ResourcesInfoConverter(BaseMessageConverter):
                     resource, ResourcesInfoConstants.RESOURCE_PATIENT_ID_PATH
                 )
                 if patient_id is not None:
+                    logger.info(
+                        "Adding patient Id from %s to freetext",
+                        ResourcesInfoConstants.RESOURCE_PATIENT_ID_PATH,
+                    )
                     freetext = (
                         get_field_value(
                             resource, ResourcesInfoConstants.RESOURCE_FREETEXT_PATH
