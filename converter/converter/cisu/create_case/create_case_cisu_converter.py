@@ -6,6 +6,9 @@ from datetime import datetime
 
 from yaml import dump
 
+from converter.cisu.create_case.create_case_cisu_constants import (
+    CreateCaseCISUConstants,
+)
 from converter.cisu.utils import add_to_initial_alert_notes
 from converter.constants import Constants
 from converter.utils import (
@@ -24,54 +27,6 @@ logger = logging.getLogger(__name__)
 
 class CreateCaseCISUConverter(BaseCISUConverter):
     """Handles CISU format conversions"""
-
-    CISU_PATHS_TO_DELETE = [
-        "qualification.victims",
-        "referenceVersion",
-        "freetext",
-        "location.geometry.point.coord.heading",
-        "location.geometry.point.coord.speed",
-        "location.geometry.sketch",
-        "location.country",
-        "location.locID",
-        "location.locLabel",
-        "location.city.detail",
-        "initialAlert.id",
-        "initialAlert.attachment",
-        "initialAlert.reporting",
-        "initialAlert.qualification",
-        "initialAlert.location",
-        "initialAlert.callTaker",
-        "newAlert",
-    ]
-
-    HEALTH_PATHS_TO_DELETE = [
-        "owner",
-        "patient",
-        "medicalNote",
-        "decision",
-        "perimeter",
-        "interventionType",
-        "qualification.origin",
-        "qualification.details",
-        "location.detailedAddress.highway",
-        "location.geometry.point.isAml",
-    ]
-
-    CISU_PATHS_TO_ADD_TO_INITIAL_ALERT_NOTES = [
-        {"path": "$.initialAlert.attachment", "label": "Pièces jointes :"},
-        {"path": "$.initialAlert.callTaker", "label": "Contact de l'opérateur SIS :"},
-        {"path": "$.freetext", "label": ""},
-        {"path": "$.newAlert", "label": "Nouvelles alertes :"},
-    ]
-
-    MEDICAL_NOTE_KEY_TRANSLATIONS = {
-        "freetext:": "Commentaire général :",
-        "mainVictim:": "Victime principale :",
-        "count:": "Nombre de victimes :",
-    }
-
-    DEFAULT_WHATS_HAPPEN = {"code": "C11.06.00", "label": "Autre nature de fait"}
 
     @classmethod
     def get_rs_message_type(cls) -> str:
@@ -152,7 +107,8 @@ class CreateCaseCISUConverter(BaseCISUConverter):
             else:
                 formatted_field_value = dump(field_value, allow_unicode=True)
                 translated_text = translate_key_words(
-                    formatted_field_value, cls.MEDICAL_NOTE_KEY_TRANSLATIONS
+                    formatted_field_value,
+                    CreateCaseCISUConstants.MEDICAL_NOTE_KEY_TRANSLATIONS,
                 )
                 add_object_to_medical_notes(json_data, translated_text, sender_id)
 
@@ -195,7 +151,8 @@ class CreateCaseCISUConverter(BaseCISUConverter):
         if is_field_completed(output_use_case_json, "$.initialAlert"):
             add_case_priority(output_use_case_json)
             add_to_initial_alert_notes(
-                output_use_case_json, cls.CISU_PATHS_TO_ADD_TO_INITIAL_ALERT_NOTES
+                output_use_case_json,
+                CreateCaseCISUConstants.CISU_PATHS_TO_ADD_TO_INITIAL_ALERT_NOTES,
             )
             merge_notes_freetext(output_use_case_json)
 
@@ -203,7 +160,7 @@ class CreateCaseCISUConverter(BaseCISUConverter):
 
         # - Delete paths - /!\ It must be the last step
         logger.debug("Removing unnecessary paths")
-        delete_paths(output_use_case_json, cls.CISU_PATHS_TO_DELETE)
+        delete_paths(output_use_case_json, CreateCaseCISUConstants.CISU_PATHS_TO_DELETE)
 
         return cls.format_rs_output_json(output_json, output_use_case_json)
 
@@ -292,14 +249,16 @@ class CreateCaseCISUConverter(BaseCISUConverter):
 
         if not is_field_completed(output_usecase_json, "$.qualification.whatsHappen"):
             output_usecase_json["qualification"]["whatsHappen"] = (
-                cls.DEFAULT_WHATS_HAPPEN
+                CreateCaseCISUConstants.DEFAULT_WHATS_HAPPEN
             )
 
         add_default_external_info_type(output_usecase_json)
 
         # Deletions - /!\ it must be done before copying qualification and location fields
         logger.debug("Removing unnecessary paths")
-        delete_paths(output_usecase_json, cls.HEALTH_PATHS_TO_DELETE)
+        delete_paths(
+            output_usecase_json, CreateCaseCISUConstants.HEALTH_PATHS_TO_DELETE
+        )
 
         if is_field_completed(input_usecase_json, "$.initialAlert"):
             output_usecase_json["initialAlert"]["id"] = f"INAL-{timestamp}-{random_str}"
