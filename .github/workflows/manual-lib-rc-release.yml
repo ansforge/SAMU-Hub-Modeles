@@ -9,7 +9,7 @@ on:
         default: "main"
         type: string
       version:
-        description: "RC Version (e.g., 1.2.3-RC-1)"
+        description: "RC Version (e.g., 1.2.3-rc.1)"
         required: true
         type: string
 
@@ -38,10 +38,10 @@ jobs:
           VERSION="${{ github.event.inputs.version }}"
           echo "Validating RC version: $VERSION"
 
-          # Check if version matches x.y.z-RC-n pattern
-          RC_PATTERN="^[0-9]+\.[0-9]+\.[0-9]+-RC-[0-9]+$"
+          # Check if version matches x.y.z-rc.n pattern
+          RC_PATTERN="^[0-9]+\.[0-9]+\.[0-9]+-rc\.[0-9]+$"
           if [[ ! "$VERSION" =~ $RC_PATTERN ]]; then
-            echo "Invalid RC version format. Expected format: x.y.z-RC-n (e.g., 1.2.3-RC-1)"
+            echo "Invalid RC version format. Expected format: x.y.z-rc.n (e.g., 1.2.3-rc.1)"
             echo "Provided version: $VERSION"
             exit 1
           fi

@@ -15,9 +15,9 @@ jobs:
         run: |
           TAG_NAME="${{ github.ref_name }}"
           VERSION=${TAG_NAME#converter-}
-          PATTERN="^[0-9]+\.[0-9]+\.[0-9]+(-RC-[0-9]+)*$"
+          PATTERN="^[0-9]+\.[0-9]+\.[0-9]+(-rc\.[0-9]+)*$"
           if [[ ! "$VERSION" =~ $PATTERN ]]; then
-            echo "Invalid version number. Expected format: x.y.z with optional '-RC-n' (e.g., 1.2.3 or 1.2.3-RC-1)"
+            echo "Invalid version number. Expected format: x.y.z with optional '-rc.n' (e.g., 1.2.3 or 1.2.3-rc.1)"
             echo $VERSION
             exit 1
           fi
