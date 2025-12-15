@@ -9,7 +9,7 @@ on:
         default: "main"
         type: string
       version:
-        description: "RC Version (e.g., 1.2.3-RC-1 or 1.2-RC-1)"
+        description: "RC Version (e.g., 1.2.3-RC-1)"
         required: true
         type: string
 
@@ -39,7 +39,7 @@ jobs:
           echo "Validating RC version: $VERSION"
 
           # Check if version matches x.y.z-RC-n pattern
-          RC_PATTERN="^[0-9]+\.[0-9]+(\.[0-9]+)?+-RC-[0-9]+$"
+          RC_PATTERN="^[0-9]+\.[0-9]+\.[0-9]+-RC-[0-9]+$"
           if [[ ! "$VERSION" =~ $RC_PATTERN ]]; then
             echo "Invalid RC version format. Expected format: x.y.z-RC-n (e.g., 1.2.3-RC-1)"
             echo "Provided version: $VERSION"
