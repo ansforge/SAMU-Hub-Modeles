@@ -5,6 +5,8 @@ from converter.utils import (
     get_field_value,
     is_field_completed,
     update_json_value,
+    delete_paths,
+    set_value,
 )
 
 logger = logging.getLogger(__name__)
@@ -30,13 +32,17 @@ def reverse_map_to_new_value(
 
 
 def switch_field_name(
-    json_data: Dict[str, Any], previous_field_name: str, new_field_name: str
+    json_data: Dict[str, Any], previous_field_path: str, new_field_path: str
 ):
-    if is_field_completed(json_data, "$." + previous_field_name):
+    if is_field_completed(json_data, previous_field_path):
+        value = get_field_value(json_data, previous_field_path)
         logger.info(
-            "Transforming field name from %s to %s", previous_field_name, new_field_name
+            "Transforming field name from %s to %s",
+            previous_field_path,
+            new_field_path,
         )
-        json_data[new_field_name] = json_data[previous_field_name]
+        set_value(json_data, new_field_path, value)
+        delete_paths(json_data, [previous_field_path])
 
 
 def convert_to_float(value: Optional[str]) -> Optional[float]:

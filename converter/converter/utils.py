@@ -76,7 +76,7 @@ def delete_paths(data: Dict[str, Any], paths: List[str]) -> None:
                     d.pop(key)
 
     for path in paths:
-        delete_recursively(data, path.split("."))
+        delete_recursively(data, path.strip("$.").split("."))
 
 
 def add_space_before_uppercase(text):
@@ -275,8 +275,8 @@ def add_object_to_medical_notes(
         )
     )
 
-    if patient and "patientId" in patient:
-        patient_id = patient["patientId"]
+    if patient and ("patientId" in patient or "idPat" in patient):
+        patient_id = patient.get("patientId") or patient.get("idPat", "")
         patient_id_parts = patient_id.split(".")
         health_service_id = ".".join(patient_id_parts[:3])  # -> fr.health.samuXXX
         medical_note_id = f"{health_service_id}.medicalNote.{random_str}"

@@ -11,13 +11,33 @@ class TestSwitchFieldName(unittest.TestCase):
         json_data = {"oldFieldName": "value1", "otherField": "value2"}
         previous_field_name = "oldFieldName"
         new_field_name = "newFieldName"
+        previous_field_path = f"$.{previous_field_name}"
+        new_field_path = f"$.{new_field_name}"
 
         self.assertNotIn(new_field_name, json_data)
+        self.assertIn(previous_field_name, json_data)
 
-        switch_field_name(json_data, previous_field_name, new_field_name)
+        switch_field_name(json_data, previous_field_path, new_field_path)
 
         self.assertIn(new_field_name, json_data)
         self.assertEqual(json_data[new_field_name], "value1")
+        self.assertNotIn(previous_field_name, json_data)
+
+    def test_switch_field_name_with_nested_field(self):
+        json_data = {"parent": {"oldFieldName": "value1"}, "otherField": "value2"}
+        previous_field_name = "oldFieldName"
+        new_field_name = "newFieldName"
+        previous_field_path = f"$.parent.{previous_field_name}"
+        new_field_path = f"$.parent.{new_field_name}"
+
+        self.assertNotIn(new_field_name, json_data["parent"])
+        self.assertIn(previous_field_name, json_data["parent"])
+
+        switch_field_name(json_data, previous_field_path, new_field_path)
+
+        self.assertIn(new_field_name, json_data["parent"])
+        self.assertEqual(json_data["parent"][new_field_name], "value1")
+        self.assertNotIn(previous_field_name, json_data["parent"])
 
 
 class TestReverseMapToNewValue(unittest.TestCase):
