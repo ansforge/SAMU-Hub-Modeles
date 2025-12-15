@@ -5,7 +5,7 @@ from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.resources_info.resources_info_constants import (
     ResourcesInfoConstants,
 )
-from converter.versions.utils import reverse_map_to_new_value
+from converter.versions.utils import reverse_map_to_new_value, switch_field_name
 
 
 class ResourcesInfoConverter(BaseMessageConverter):
@@ -58,32 +58,23 @@ class ResourcesInfoConverter(BaseMessageConverter):
                     ResourcesInfoConstants.MOBILIZED_RESOURCE_VEHICULE_TYPE_PATH,
                     ResourcesInfoConstants.V1_TO_V2_VEHICULE_TYPE_MAPPING,
                 )
-                vehicule_type = get_field_value(
+
+                switch_field_name(
                     mobilizedResource,
                     ResourcesInfoConstants.MOBILIZED_RESOURCE_VEHICULE_TYPE_PATH,
+                    ResourcesInfoConstants.RESOURCE_VEHICLE_TYPE_PATH,
                 )
-                if vehicule_type is not None:
-                    set_value(
-                        mobilizedResource,
-                        ResourcesInfoConstants.RESOURCE_VEHICLE_TYPE_PATH,
-                        vehicule_type,
-                    )
 
-                team_care = get_field_value(
+                switch_field_name(
                     mobilizedResource,
                     ResourcesInfoConstants.MOBILIZED_RESOURCE_TEAM_CARE_PATH,
+                    ResourcesInfoConstants.RESOURCE_TEAM_MEDICAL_LEVEL_PATH,
                 )
-                if team_care is not None:
-                    set_value(
-                        mobilizedResource,
-                        ResourcesInfoConstants.RESOURCE_TEAM_MEDICAL_LEVEL_PATH,
-                        team_care,
-                    )
 
-        set_value(
+        switch_field_name(
             output_use_case_json,
+            ResourcesInfoConstants.MOBILIZED_RESOURCE_PATH,
             ResourcesInfoConstants.RESOURCE_PATH,
-            mobilized_resources,
         )
 
         delete_paths(output_use_case_json, ResourcesInfoConstants.V1_PATHS_TO_DELETE)
@@ -116,25 +107,18 @@ class ResourcesInfoConverter(BaseMessageConverter):
                     ResourcesInfoConstants.RESOURCE_VEHICLE_TYPE_PATH,
                     ResourcesInfoConstants.V1_TO_V2_VEHICULE_TYPE_MAPPING,
                 )
-                vehicle_type = get_field_value(
-                    resource, ResourcesInfoConstants.RESOURCE_VEHICLE_TYPE_PATH
-                )
-                if vehicle_type is not None:
-                    set_value(
-                        resource,
-                        ResourcesInfoConstants.MOBILIZED_RESOURCE_VEHICULE_TYPE_PATH,
-                        vehicle_type,
-                    )
 
-                medical_level = get_field_value(
-                    resource, ResourcesInfoConstants.RESOURCE_TEAM_MEDICAL_LEVEL_PATH
+                switch_field_name(
+                    resource,
+                    ResourcesInfoConstants.RESOURCE_VEHICLE_TYPE_PATH,
+                    ResourcesInfoConstants.MOBILIZED_RESOURCE_VEHICULE_TYPE_PATH,
                 )
-                if medical_level is not None:
-                    set_value(
-                        resource,
-                        ResourcesInfoConstants.MOBILIZED_RESOURCE_TEAM_CARE_PATH,
-                        medical_level,
-                    )
+
+                switch_field_name(
+                    resource,
+                    ResourcesInfoConstants.RESOURCE_TEAM_MEDICAL_LEVEL_PATH,
+                    ResourcesInfoConstants.MOBILIZED_RESOURCE_TEAM_CARE_PATH,
+                )
 
                 set_value(
                     resource,
@@ -142,13 +126,11 @@ class ResourcesInfoConverter(BaseMessageConverter):
                     ResourcesInfoConstants.MOBILIZED_RESOURCE_DEFAULT_VALUE,
                 )
 
-        set_value(
+        switch_field_name(
             output_use_case_json,
+            ResourcesInfoConstants.RESOURCE_PATH,
             ResourcesInfoConstants.MOBILIZED_RESOURCE_PATH,
-            resources,
         )
-
-        delete_paths(output_use_case_json, ResourcesInfoConstants.V2_PATHS_TO_DELETE)
 
         return cls.format_output_json(output_json, output_use_case_json)
 

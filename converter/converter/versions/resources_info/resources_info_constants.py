@@ -9,23 +9,14 @@ class ResourcesInfoConstants:
         "FINPEC": "FINMED",
     }
 
-    V2_PATHS_TO_DELETE = [
-        "resource",
-        "mobilizedResource[].team.medicalLevel",
-        "mobilizedResource[].vehicleType",
-    ]
-
     V3_PATHS_TO_DELETE = [
         "resource[].patientId",
     ]
 
     V1_PATHS_TO_DELETE = [
         "resource[].coord",
-        "resource[].vehiculeType",
-        "resource[].team.teamCare",
         "resource[].resourceType",
         "resource[].plate",
-        "mobilizedResource",
     ]
 
     V1_TO_V2_VEHICULE_TYPE_MAPPING = {
