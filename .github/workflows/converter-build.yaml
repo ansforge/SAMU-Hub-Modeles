@@ -7,9 +7,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_library:
+  build-converter:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
       - name: Extract version from tag
         id: extract-version
         run: |
