@@ -34,6 +34,16 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
             state = get_field_value(resource, ResourcesInfoCISUConstants.STATE_PATH)
             set_value(resource, ResourcesInfoCISUConstants.STATE_PATH, [state])
 
+            cisu_vehicle_type = get_field_value(
+                resource, ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH
+            )
+            rs_vehicle_type = cls.translate_to_rs_vehicle_type(cisu_vehicle_type)
+            set_value(
+                resource,
+                ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH,
+                rs_vehicle_type,
+            )
+
         return cls.format_rs_output_json(output_json, output_use_case_json)
 
     @classmethod
@@ -68,7 +78,15 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
     def translate_to_cisu_vehicle_type(cls, rs_vehicle_type: str) -> str:
         if rs_vehicle_type.startswith(ResourcesInfoCISUConstants.VEHICLE_TYPE_SIS):
             return ResourcesInfoCISUConstants.VEHICLE_TYPE_SIS
-        return ResourcesInfoCISUConstants.DEFAULT_CISU_STATE_VEHICLE_TYPE
+        if rs_vehicle_type.startswith(ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR):
+            return ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR
+        return ResourcesInfoCISUConstants.VEHICULE_TYPE_OTHER
+
+    @classmethod
+    def translate_to_rs_vehicle_type(cls, cisu_vehicle_type: str) -> str:
+        if cisu_vehicle_type == ResourcesInfoCISUConstants.VEHICULE_TYPE_OTHER:
+            return ResourcesInfoCISUConstants.RS_VEHICULE_TYPE_AUTREVEC
+        return cisu_vehicle_type
 
     @classmethod
     def keep_last_state(cls, resource: Dict[str, Any]) -> None:
