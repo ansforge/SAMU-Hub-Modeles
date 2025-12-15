@@ -1,12 +1,18 @@
 from typing import Dict, Any
 import logging
 
-from converter.utils import delete_paths, get_field_value, map_to_new_value, set_value
+from converter.utils import (
+    delete_paths,
+    get_field_value,
+    map_to_new_value,
+    set_value,
+    switch_field_name,
+)
 from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.resources_info.resources_info_constants import (
     ResourcesInfoConstants,
 )
-from converter.versions.utils import reverse_map_to_new_value, switch_field_name
+from converter.versions.utils import reverse_map_to_new_value
 
 logger = logging.getLogger(__name__)
 

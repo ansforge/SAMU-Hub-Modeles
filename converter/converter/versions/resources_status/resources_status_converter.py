@@ -1,11 +1,11 @@
 from typing import Dict, Any
 
-from converter.utils import map_to_new_value
+from converter.utils import map_to_new_value, switch_field_name
 from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.resources_status.resources_status_constants import (
     ResourcesStatusConstants,
 )
-from converter.versions.utils import reverse_map_to_new_value, switch_field_name
+from converter.versions.utils import reverse_map_to_new_value
 
 
 class ResourcesStatusConverter(BaseMessageConverter):

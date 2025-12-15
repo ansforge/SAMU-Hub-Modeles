@@ -296,3 +296,17 @@ def add_object_to_medical_notes(
         }
 
     json_data["medicalNote"].append(new_note)
+
+
+def switch_field_name(
+    json_data: Dict[str, Any], previous_field_path: str, new_field_path: str
+):
+    if is_field_completed(json_data, previous_field_path):
+        value = get_field_value(json_data, previous_field_path)
+        logger.info(
+            "Transforming field name from %s to %s",
+            previous_field_path,
+            new_field_path,
+        )
+        set_value(json_data, new_field_path, value)
+        delete_paths(json_data, [previous_field_path])

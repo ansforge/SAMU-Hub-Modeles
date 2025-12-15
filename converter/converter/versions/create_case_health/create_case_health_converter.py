@@ -6,6 +6,7 @@ from converter.utils import (
     get_field_value,
     is_field_completed,
     map_to_new_value,
+    switch_field_name,
 )
 from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.create_case_health.v1_v2.constants import V1V2Constants
@@ -16,7 +17,6 @@ from converter.versions.create_case_health.v1_v2.utils import (
 from converter.versions.create_case_health.v2_v3.constants import V2V3Constants
 from converter.versions.utils import (
     reverse_map_to_new_value,
-    switch_field_name,
 )
 
 
