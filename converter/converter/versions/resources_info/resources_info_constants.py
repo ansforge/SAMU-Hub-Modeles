@@ -93,3 +93,18 @@ class ResourcesInfoConstants:
         "AMB-BAR": "TSU.AMB-BAR",
         "AMB": "TSU.AMB",
     }
+
+    MOBILIZED_RESOURCE_DEFAULT_VALUE = "AUTRE"
+
+    MOBILIZED_RESOURCE_PATH = "$.mobilizedResource"
+    MOBILIZED_RESOURCE_PLATE_PATH = "$.plate"
+    MOBILIZED_RESOURCE_TEAM_CARE_PATH = "$.team.teamCare"
+    MOBILIZED_RESOURCE_VEHICULE_TYPE_PATH = "$.vehiculeType"
+    MOBILIZED_RESOURCE_RESOURCE_TYPE_PATH = "$.resourceType"
+
+    RESOURCE_PATH = "$.resource"
+    RESOURCE_STATE_PATH = "$.state"
+    RESOURCE_STATE_STATUS_PATH = "$.status"
+    RESOURCE_VEHICLE_TYPE_PATH = "$.vehicleType"
+    RESOURCE_TEAM_MEDICAL_LEVEL_PATH = "$.team.medicalLevel"
+    RESOURCE_PATIENT_ID_PATH = "$.patientId"

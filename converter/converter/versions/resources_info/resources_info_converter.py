@@ -1,6 +1,6 @@
 from typing import Dict, Any
 
-from converter.utils import delete_paths, get_field_value, map_to_new_value
+from converter.utils import delete_paths, get_field_value, map_to_new_value, set_value
 from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.resources_info.resources_info_constants import (
     ResourcesInfoConstants,
@@ -19,20 +19,25 @@ class ResourcesInfoConverter(BaseMessageConverter):
         output_use_case_json = cls.copy_input_use_case_content(input_json)
 
         mobilized_resources = get_field_value(
-            output_use_case_json, "$.mobilizedResource"
+            output_use_case_json, ResourcesInfoConstants.MOBILIZED_RESOURCE_PATH
         )
         if mobilized_resources is not None:
             for index, mobilizedResource in enumerate(mobilized_resources):
-                states = get_field_value(mobilizedResource, "$.state")
+                states = get_field_value(
+                    mobilizedResource, ResourcesInfoConstants.RESOURCE_STATE_PATH
+                )
                 if states is not None:
                     for state in states:
                         map_to_new_value(
                             state,
-                            "$.status",
+                            ResourcesInfoConstants.RESOURCE_STATE_STATUS_PATH,
                             ResourcesInfoConstants.V1_TO_V2_STATUS_MAPPING,
                         )
 
-                plate = get_field_value(mobilizedResource, "$.plate")
+                plate = get_field_value(
+                    mobilizedResource,
+                    ResourcesInfoConstants.MOBILIZED_RESOURCE_PLATE_PATH,
+                )
                 if plate is not None:
                     freetext = mobilizedResource.get("freetext", [])
                     freetext.append("Immatriculation : " + plate)
@@ -42,18 +47,36 @@ class ResourcesInfoConverter(BaseMessageConverter):
 
                 map_to_new_value(
                     mobilizedResource,
-                    "$.vehiculeType",
+                    ResourcesInfoConstants.MOBILIZED_RESOURCE_VEHICULE_TYPE_PATH,
                     ResourcesInfoConstants.V1_TO_V2_VEHICULE_TYPE_MAPPING,
                 )
-                vehicule_type = get_field_value(mobilizedResource, "$.vehiculeType")
+                vehicule_type = get_field_value(
+                    mobilizedResource,
+                    ResourcesInfoConstants.MOBILIZED_RESOURCE_VEHICULE_TYPE_PATH,
+                )
                 if vehicule_type is not None:
-                    mobilizedResource["vehicleType"] = vehicule_type
+                    set_value(
+                        mobilizedResource,
+                        ResourcesInfoConstants.RESOURCE_VEHICLE_TYPE_PATH,
+                        vehicule_type,
+                    )
 
-                team_care = get_field_value(mobilizedResource, "$.team.teamCare")
+                team_care = get_field_value(
+                    mobilizedResource,
+                    ResourcesInfoConstants.MOBILIZED_RESOURCE_TEAM_CARE_PATH,
+                )
                 if team_care is not None:
-                    mobilizedResource["team"]["medicalLevel"] = team_care
+                    set_value(
+                        mobilizedResource,
+                        ResourcesInfoConstants.RESOURCE_TEAM_MEDICAL_LEVEL_PATH,
+                        team_care,
+                    )
 
-        output_use_case_json["resource"] = mobilized_resources
+        set_value(
+            output_use_case_json,
+            ResourcesInfoConstants.RESOURCE_PATH,
+            mobilized_resources,
+        )
 
         delete_paths(output_use_case_json, ResourcesInfoConstants.V1_PATHS_TO_DELETE)
 
@@ -64,36 +87,58 @@ class ResourcesInfoConverter(BaseMessageConverter):
         output_json = cls.copy_input_content(input_json)
         output_use_case_json = cls.copy_input_use_case_content(input_json)
 
-        other_value = "AUTRE"
-
-        resources = get_field_value(output_use_case_json, "$.resource")
+        resources = get_field_value(
+            output_use_case_json, ResourcesInfoConstants.RESOURCE_PATH
+        )
         if resources is not None:
             for resource in resources:
-                states = get_field_value(resource, "$.state")
+                states = get_field_value(
+                    resource, ResourcesInfoConstants.RESOURCE_STATE_PATH
+                )
                 if states is not None:
                     for state in states:
                         reverse_map_to_new_value(
                             state,
-                            "$.status",
+                            ResourcesInfoConstants.RESOURCE_STATE_STATUS_PATH,
                             ResourcesInfoConstants.V1_TO_V2_STATUS_MAPPING,
                         )
 
                 reverse_map_to_new_value(
                     resource,
-                    "$.vehicleType",
+                    ResourcesInfoConstants.RESOURCE_VEHICLE_TYPE_PATH,
                     ResourcesInfoConstants.V1_TO_V2_VEHICULE_TYPE_MAPPING,
                 )
-                vehicle_type = get_field_value(resource, "$.vehicleType")
+                vehicle_type = get_field_value(
+                    resource, ResourcesInfoConstants.RESOURCE_VEHICLE_TYPE_PATH
+                )
                 if vehicle_type is not None:
-                    resource["vehiculeType"] = vehicle_type
+                    set_value(
+                        resource,
+                        ResourcesInfoConstants.MOBILIZED_RESOURCE_VEHICULE_TYPE_PATH,
+                        vehicle_type,
+                    )
 
-                medical_level = get_field_value(resource, "$.team.medicalLevel")
+                medical_level = get_field_value(
+                    resource, ResourcesInfoConstants.RESOURCE_TEAM_MEDICAL_LEVEL_PATH
+                )
                 if medical_level is not None:
-                    resource["team"]["teamCare"] = medical_level
+                    set_value(
+                        resource,
+                        ResourcesInfoConstants.MOBILIZED_RESOURCE_TEAM_CARE_PATH,
+                        medical_level,
+                    )
 
-                resource["resourceType"] = other_value
+                set_value(
+                    resource,
+                    ResourcesInfoConstants.MOBILIZED_RESOURCE_RESOURCE_TYPE_PATH,
+                    ResourcesInfoConstants.MOBILIZED_RESOURCE_DEFAULT_VALUE,
+                )
 
-        output_use_case_json["mobilizedResource"] = resources
+        set_value(
+            output_use_case_json,
+            ResourcesInfoConstants.MOBILIZED_RESOURCE_PATH,
+            resources,
+        )
 
         delete_paths(output_use_case_json, ResourcesInfoConstants.V2_PATHS_TO_DELETE)
 
@@ -103,22 +148,26 @@ class ResourcesInfoConverter(BaseMessageConverter):
     def map_state_status(
         cls, output_use_case_json: Dict[str, Any], reverse_mapping: bool
     ):
-        resources = get_field_value(output_use_case_json, "$.resource")
+        resources = get_field_value(
+            output_use_case_json, ResourcesInfoConstants.RESOURCE_PATH
+        )
         if resources is not None:
             for resource in resources:
-                states = get_field_value(resource, "$.state")
+                states = get_field_value(
+                    resource, ResourcesInfoConstants.RESOURCE_STATE_PATH
+                )
                 if states is not None:
                     for state in states:
                         if reverse_mapping:
                             reverse_map_to_new_value(
                                 state,
-                                "$.status",
+                                ResourcesInfoConstants.RESOURCE_STATE_STATUS_PATH,
                                 ResourcesInfoConstants.V3_TO_V2_STATUS_MAPPING,
                             )
                         else:
                             map_to_new_value(
                                 state,
-                                "$.status",
+                                ResourcesInfoConstants.RESOURCE_STATE_STATUS_PATH,
                                 ResourcesInfoConstants.V3_TO_V2_STATUS_MAPPING,
                             )
 
@@ -138,10 +187,14 @@ class ResourcesInfoConverter(BaseMessageConverter):
 
         cls.map_state_status(output_use_case_json, reverse_mapping=False)
 
-        resources = get_field_value(output_use_case_json, "$.resource")
+        resources = get_field_value(
+            output_use_case_json, ResourcesInfoConstants.RESOURCE_PATH
+        )
         if resources is not None:
             for index, resource in enumerate(resources):
-                patient_id = get_field_value(resource, "$.patientId")
+                patient_id = get_field_value(
+                    resource, ResourcesInfoConstants.RESOURCE_PATIENT_ID_PATH
+                )
                 if patient_id is not None:
                     freetext = resource.get("freetext", [])
                     freetext.append("Patient ID : " + patient_id)
