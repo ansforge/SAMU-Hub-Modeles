@@ -7,7 +7,7 @@ from requests_cache import CachedSession
 
 session = CachedSession(
     cache_name="schemas_and_samples_cache",
-    expire_after=600,  # 10 minutes
+    expire_after=3600,  # 1 hour
 )
 
 
