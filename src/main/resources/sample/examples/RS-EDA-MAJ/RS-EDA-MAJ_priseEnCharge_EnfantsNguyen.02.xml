@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<createCaseHealthUpdate xmlns="urn:emergency:cisu:2.0:createCaseHealthUpdate">
+  <caseId>fr.health.samu800.DRFR158002421400215</caseId>
+  <owner>fr.health.samu76A</owner>
+</createCaseHealthUpdate>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<createCaseHealthUpdate xmlns="urn:emergency:cisu:2.0:createCaseHealthUpdate">
+  <caseId>fr.health.samu950.DRFR159502401800159</caseId>
+  <qualification>
+    <details>
+      <priority>P0</priority>
+    </details>
+  </qualification>
+  <medicalNote>
+    <patientId>fr.health.samu950.patient.DRFR159502400400159.1</patientId>
+    <operator>
+      <role>MEDECIN</role>
+    </operator>
+    <medicalNoteId>fr.health.samu950.medicalNote.12pt341</medicalNoteId>
+    <creation>2024-01-18T18:20:00+01:00</creation>
+    <freetext>Douleur +++. Hématome étendu et violacé.  L'enfant perd conscience par intermittence. Possible hémorragie interne. </freetext>
+  </medicalNote>
+</createCaseHealthUpdate>

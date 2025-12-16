@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resourcesRequest xmlns="urn:emergency:cisu:2.0:resourcesRequest">
+  <caseId>fr.health.samu800.DRFR158002421400215</caseId>
+  <request>
+    <requestId>fr.health.samu76A.request.af78b21</requestId>
+    <datetime>2024-08-01T16:44:00+02:00</datetime>
+    <purpose>SMUR</purpose>
+    <deadline>DEL0</deadline>
+    <freetext>Besoin d’une équipe SMUR pédiatrique supplémentaire, pour prise en charge 2 enfants, dont 1 possible hémorragie interne. </freetext>
+  </request>
+</resourcesRequest>

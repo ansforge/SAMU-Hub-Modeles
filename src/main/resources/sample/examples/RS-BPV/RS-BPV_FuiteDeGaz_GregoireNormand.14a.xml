@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<interventionReport xmlns="urn:emergency:cisu:2.0:interventionReport">
+  <caseId>fr.health.samu440.DRFR154402413800236</caseId>
+  <reportId>38978624GN</reportId>
+  <redactor>
+    <label>Louis POINCINOT</label>
+    <role>MEDECIN</role>
+  </redactor>
+  <creation>2024-05-18T18:41:00+02:00</creation>
+  <patient>
+    <patientId>fr.health.samu440.patient.DRFR154402413800236.2</patientId>
+    <birthName>Normand</birthName>
+    <lastName>Normand</lastName>
+    <firstName>Gregoire</firstName>
+    <birthDate>2013-11-03</birthDate>
+    <age>10</age>
+    <sex>M</sex>
+    <height>149</height>
+    <weight>36</weight>
+  </patient>
+  <evaluation>
+    <mainDiagnosis>T58</mainDiagnosis>
+    <parameter>
+      <type>FREQUENCE_CARDIAQUE</type>
+      <value>80-110</value>
+    </parameter>
+    <parameter>
+      <type>PRESSION_ARTERIELLE</type>
+      <value>110</value>
+    </parameter>
+    <parameter>
+      <type>SATURATION_OXYGENE</type>
+      <value>97</value>
+    </parameter>
+    <medicalHistory>Crise d'asthme récurrente</medicalHistory>
+    <treatment>PULMICORT 0,5 mg/2 ml</treatment>
+  </evaluation>
+</interventionReport>

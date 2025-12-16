@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<createCase xmlns="urn:emergency:cisu:2.0:createCase">
+  <caseId>fr.health.samu440.DRFR154402413800236</caseId>
+  <senderCaseId>DRFR154402413800236</senderCaseId>
+  <creation>2024-05-18T18:15:00+02:00</creation>
+  <referenceVersion>1.3</referenceVersion>
+  <qualification>
+    <riskThreat>
+      <code>R13</code>
+      <label>Risque d'explosion, présence de gaz</label>
+    </riskThreat>
+    <whatsHappen>
+      <code>C09.03.00</code>
+      <label>Fuite de gaz</label>
+    </whatsHappen>
+    <locationKind>
+      <code>L01.01.01</code>
+      <label>Maison particulière, pavillon, à l'intérieur</label>
+    </locationKind>
+    <healthMotive>
+      <code>M03.10</code>
+      <label>Malaise avec perte de connaissance initiale</label>
+    </healthMotive>
+    <victims>
+      <count>PLUSIEURS</count>
+      <mainVictim>ENFANT</mainVictim>
+    </victims>
+  </qualification>
+  <location>
+    <locID>111fb03a-6fd9-41e0-8e81-990c45188889</locID>
+    <detailedAddress>
+      <complete>Rue des Marins</complete>
+      <number>3</number>
+      <wayName>
+        <complete>Rue des Marins</complete>
+        <type>Rue</type>
+        <name>Des Marins</name>
+      </wayName>
+    </detailedAddress>
+    <city>
+      <name>Bouaye</name>
+      <inseeCode>44018</inseeCode>
+    </city>
+    <geometry>
+      <datetime>2024-05-18T18:17:00+02:00</datetime>
+      <point>
+        <coord>
+          <lat>47.147005</lat>
+          <lon>-1.690548</lon>
+          <precision>ADRESSE</precision>
+        </coord>
+      </point>
+    </geometry>
+    <country>FR</country>
+    <freetext>Maison aux volets verts</freetext>
+  </location>
+  <initialAlert>
+    <id>samu440-20240518-AL0192</id>
+    <reception>2023-11-18T18:15:00+01:00</reception>
+    <reporting>ATTENTION</reporting>
+    <notes>
+      <creation>2024-05-18T18:17:00+02:00</creation>
+      <freetext>Les enfants se plaignent de maux de tête depuis 1h, la mère n'a aucun symptômes</freetext>
+    </notes>
+    <caller>
+      <callerContact>
+        <channel>PERSONNE</channel>
+        <type>TEL</type>
+        <detail>+33671830523</detail>
+      </callerContact>
+      <callbackContact>
+        <channel>PERSONNE</channel>
+        <type>TEL</type>
+        <detail>+33671830523</detail>
+      </callbackContact>
+      <language>fr</language>
+      <type>FAMILLE</type>
+      <communication>AUCUNE</communication>
+      <freetext>Mère des enfants</freetext>
+      <detailedName>
+        <complete>Marie Dubois</complete>
+        <lastName>Dubois</lastName>
+        <firstName>Marie</firstName>
+      </detailedName>
+    </caller>
+    <location>
+      <locID>111fb03a-6fd9-41e0-8e81-990c45188889</locID>
+      <detailedAddress>
+        <complete>Rue des Marins</complete>
+        <number>3</number>
+        <wayName>
+          <complete>Rue des Marins</complete>
+          <type>Rue </type>
+          <name>Des Marins</name>
+        </wayName>
+      </detailedAddress>
+      <city>
+        <name>Bouaye</name>
+        <inseeCode>44018</inseeCode>
+      </city>
+      <geometry>
+        <datetime>2024-05-18T18:17:00+02:00</datetime>
+        <point>
+          <coord>
+            <lat>47.146089</lat>
+            <lon>-1.691374</lon>
+            <precision>ADRESSE</precision>
+          </coord>
+        </point>
+      </geometry>
+      <country>FR</country>
+      <freetext>Maison aux volets verts</freetext>
+    </location>
+    <qualification>
+      <riskThreat>
+        <code>R13</code>
+        <label>Risque d'explosion, présence de gaz</label>
+      </riskThreat>
+      <whatsHappen>
+        <code>C09.03.00</code>
+        <label>Fuite de gaz</label>
+      </whatsHappen>
+      <locationKind>
+        <code>L01.01.01</code>
+        <label>Maison particulière, pavillon, à l'intérieur</label>
+      </locationKind>
+      <healthMotive>
+        <code>M03.10</code>
+        <label>Malaise avec perte de connaissance initiale</label>
+      </healthMotive>
+      <victims>
+        <count>PLUSIEURS</count>
+        <mainVictim>ENFANT</mainVictim>
+      </victims>
+    </qualification>
+    <callTaker>
+      <organization>fr.health.samu440</organization>
+      <controlRoom>CRRA44</controlRoom>
+      <role>ARM</role>
+      <calltakerContact>
+        <channel>PERSONNE</channel>
+        <type>TEL</type>
+        <detail>0671830587</detail>
+      </calltakerContact>
+      <calltakerId>1234</calltakerId>
+    </callTaker>
+    <attachment>
+      <URI>https://hub.esante.gouv.fr/resourceExample</URI>
+    </attachment>
+  </initialAlert>
+</createCase>

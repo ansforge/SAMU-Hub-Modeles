@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resourcesInfo xmlns="urn:emergency:cisu:2.0:resourcesInfo">
+  <caseId>fr.health.samu009.DRFR150092406301259</caseId>
+  <resource>
+    <datetime>2024-03-03T15:17:00+01:00</datetime>
+    <resourceId>fr.health.samu780.resource.DRFR150092406301259.1</resourceId>
+    <missionId>DRFR150092406301259.M5698</missionId>
+    <orgId>fr.health.BeauRivage</orgId>
+    <vehicleType>TSU.AMB</vehicleType>
+    <name>Amb. BeauRivage - 56</name>
+    <team>
+      <medicalLevel>PARAMED</medicalLevel>
+    </team>
+    <state>
+      <datetime>2024-08-03T03:17:00+02:00</datetime>
+      <status>DECLENCHE</status>
+      <availability>false</availability>
+    </state>
+    <contact>
+      <type>TEL</type>
+      <details>+33611342658</details>
+    </contact>
+  </resource>
+</resourcesInfo>
