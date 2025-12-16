@@ -117,11 +117,10 @@ jobs:
           rsync -a --remove-source-files output/json-schema ../src/main/resources
           rsync -a --remove-source-files output/xsd ../src/main/resources
 
-      - name: Install JDK 11
+      - name: Install JDK
         uses: actions/setup-java@v4
-        if: steps.filter.outputs.parsing_required == 'true'
         with:
-          java-version: '11'
+          java-version: '21'
           distribution: 'temurin'
 
       - name: Grant execute permission for Gradlew
