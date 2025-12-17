@@ -14,3 +14,5 @@ class ResourcesResponseConstants:
     ]
 
     V2_DEFAULT_DEADLINE = "DEL0"
+
+    RESPONSE_DEADLINE_PATH = "$.response.deadline"

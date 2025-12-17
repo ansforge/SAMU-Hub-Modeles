@@ -2,22 +2,7 @@ import unittest
 
 from converter.versions.utils import (
     reverse_map_to_new_value,
-    switch_field_name,
 )
-
-
-class TestSwitchFieldName(unittest.TestCase):
-    def test_switch_field_name(self):
-        json_data = {"oldFieldName": "value1", "otherField": "value2"}
-        previous_field_name = "oldFieldName"
-        new_field_name = "newFieldName"
-
-        self.assertNotIn(new_field_name, json_data)
-
-        switch_field_name(json_data, previous_field_name, new_field_name)
-
-        self.assertIn(new_field_name, json_data)
-        self.assertEqual(json_data[new_field_name], "value1")
 
 
 class TestReverseMapToNewValue(unittest.TestCase):

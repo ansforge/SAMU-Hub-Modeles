@@ -6,6 +6,7 @@ from converter.utils import (
     get_field_value,
     is_field_completed,
     map_to_new_value,
+    switch_field_name,
 )
 from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.create_case_health.v1_v2.constants import V1V2Constants
@@ -16,7 +17,6 @@ from converter.versions.create_case_health.v1_v2.utils import (
 from converter.versions.create_case_health.v2_v3.constants import V2V3Constants
 from converter.versions.utils import (
     reverse_map_to_new_value,
-    switch_field_name,
 )
 
 
@@ -55,13 +55,15 @@ class CreateHealthCaseConverter(BaseMessageConverter):
                     f"$.patient[{index}].identity.strictFeatures.sex",
                     V1V2Constants.GENDER_MAPPING,
                 )
-                switch_field_name(patient, "idPat", "patientId")
+                switch_field_name(patient, "$.idPat", "$.patientId")
                 validate_diagnosis_code(output_use_case_json, patient, "otherDiagnosis")
                 validate_diagnosis_code(output_use_case_json, patient, "mainDiagnosis")
 
         if is_field_completed(output_use_case_json, "$.location.geometry.obsDatime"):
             switch_field_name(
-                output_use_case_json["location"]["geometry"], "obsDatime", "datetime"
+                output_use_case_json["location"]["geometry"],
+                "$.obsDatime",
+                "$.datetime",
             )
 
         decisions = get_field_value(output_use_case_json, "$.decision")
@@ -72,13 +74,13 @@ class CreateHealthCaseConverter(BaseMessageConverter):
                     f"$.decision[{index}].resourceType",
                     V1V2Constants.DECISION_RESOURCE_TYPE_MAPPING,
                 )
-                switch_field_name(decision, "idPat", "patientId")
+                switch_field_name(decision, "$.idPat", "$.patientId")
 
         medical_notes = get_field_value(output_use_case_json, "$.medicalNote")
         if medical_notes is not None:
             for note in medical_notes:
-                switch_field_name(note, "idPat", "patientId")
-                switch_field_name(note, "idObs", "medicalNoteId")
+                switch_field_name(note, "$.idPat", "$.patientId")
+                switch_field_name(note, "$.idObs", "$.medicalNoteId")
 
         # /!\ Warning - It must be the last step
         delete_paths(output_use_case_json, V1V2Constants.V1_PATHS_TO_DELETE)
@@ -140,7 +142,7 @@ class CreateHealthCaseConverter(BaseMessageConverter):
                     f"$.patient[{index}].identity.strictFeatures.sex",
                     V1V2Constants.GENDER_MAPPING,
                 )
-                switch_field_name(patient, "patientId", "idPat")
+                switch_field_name(patient, "$.patientId", "$.idPat")
                 add_to_medical_notes(
                     output_use_case_json,
                     patient,
@@ -155,17 +157,19 @@ class CreateHealthCaseConverter(BaseMessageConverter):
                     f"$.decision[{index}].resourceType",
                     V1V2Constants.V2_TO_V1_DECISION_RESOURCE_TYPE_MAPPING,
                 )
-                switch_field_name(decision, "patientId", "idPat")
+                switch_field_name(decision, "$.patientId", "$.idPat")
 
         medical_notes = get_field_value(output_use_case_json, "$.medicalNote")
         if medical_notes is not None:
             for note in medical_notes:
-                switch_field_name(note, "patientId", "idPat")
-                switch_field_name(note, "medicalNoteId", "idObs")
+                switch_field_name(note, "$.patientId", "$.idPat")
+                switch_field_name(note, "$.medicalNoteId", "$.idObs")
 
         if is_field_completed(output_use_case_json, "$.location.geometry.datetime"):
             switch_field_name(
-                output_use_case_json["location"]["geometry"], "datetime", "obsDatime"
+                output_use_case_json["location"]["geometry"],
+                "$.datetime",
+                "$.obsDatime",
             )
 
         # /!\ Warning - It must be the last step

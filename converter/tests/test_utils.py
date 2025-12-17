@@ -11,6 +11,7 @@ from converter.utils import (
     update_json_value,
     set_value,
     extract_message_type_from_message_content,
+    switch_field_name,
 )
 import unittest
 import json
@@ -70,27 +71,103 @@ def test_format_object_nested():
     assert result == expected
 
 
-def test_delete_paths():
-    data = {"a": {"b": {"c": 1, "d": 2}, "e": 3}, "f": 4}
+class TestDeletePaths(unittest.TestCase):
+    def test_delete_paths(self):
+        data = {"a": {"b": {"c": 1, "d": 2}, "e": 3}, "f": 4}
 
-    paths = ["a.b.c", "f"]
-    delete_paths(data, paths)
+        paths = ["a.b.c", "f"]
+        delete_paths(data, paths)
 
-    assert "c" not in data["a"]["b"]
-    assert "f" not in data
-    assert data["a"]["b"]["d"] == 2
+        assert "c" not in data["a"]["b"]
+        assert "f" not in data
+        assert data["a"]["b"]["d"] == 2
 
+    def test_delete_paths_missing(self):
+        data = {"a": {"b": 1}}
+        delete_paths(data, ["a.x.y", "z"])
+        assert data == {"a": {"b": 1}}
 
-def test_delete_paths_missing():
-    data = {"a": {"b": 1}}
-    delete_paths(data, ["a.x.y", "z"])
-    assert data == {"a": {"b": 1}}
+    def test_delete_paths_cleanup(self):
+        data = {"a": {"b": {"c": 1}}}
+        delete_paths(data, ["a.b.c"])
+        assert data == {}  # Empty dictionaries should be cleaned up
 
+    def test_delete_paths_with_list(self):
+        data = {
+            "a": {
+                "b": {
+                    "c": [
+                        {"delete": 1, "keep": 2},
+                        {"delete": 2, "keep": 3},
+                        {"delete": 4, "keep": 5},
+                    ],
+                    "d": 2,
+                },
+                "e": 3,
+            },
+            "f": 4,
+        }
+        delete_paths(data, ["a.b.c[].delete"])
 
-def test_delete_paths_cleanup():
-    data = {"a": {"b": {"c": 1}}}
-    delete_paths(data, ["a.b.c"])
-    assert data == {}  # Empty dictionaries should be cleaned up
+        assert data["a"]["b"]["c"] == [{"keep": 2}, {"keep": 3}, {"keep": 5}]
+        assert len(data["a"]["b"]["c"]) == 3
+        assert data["a"]["b"]["d"] == 2
+        assert data["a"]["e"] == 3
+        assert data["f"] == 4
+
+    def test_delete_paths_with_wrong_list(self):
+        data = {
+            "a": {
+                "b": {
+                    "c": [
+                        {"delete": 1, "keep": 2},
+                        {"delete": 2, "keep": 3},
+                        {"delete": 4, "keep": 5},
+                    ],
+                    "d": 2,
+                },
+                "e": 3,
+            },
+            "f": 4,
+        }
+        delete_paths(data, ["a.b.c[].toto"])
+
+        assert data["a"]["b"]["c"] == [
+            {"delete": 1, "keep": 2},
+            {"delete": 2, "keep": 3},
+            {"delete": 4, "keep": 5},
+        ]
+        assert len(data["a"]["b"]["c"]) == 3
+        assert data["a"]["b"]["d"] == 2
+        assert data["a"]["e"] == 3
+        assert data["f"] == 4
+
+    @patch("converter.utils.logger")
+    def test_delete_paths_logs_info(self, mock_logger):
+        # Arrange
+        data = {
+            "a": 1,
+            "b": {
+                "c": 2,
+                "d": 3,
+            },
+        }
+
+        # Act
+        delete_paths(data, ["a", "b.c"])
+
+        # Assert logger has been called twice
+        assert mock_logger.info.call_count == 2
+
+        # Check the log message content
+        first_call_args, _ = mock_logger.info.call_args_list[0]
+        second_call_args, _ = mock_logger.info.call_args_list[1]
+
+        assert first_call_args[0] == "Deleting key: %s"
+        assert first_call_args[1] == "a"
+
+        assert second_call_args[0] == "Deleting key: %s"
+        assert second_call_args[1] == "c"
 
 
 def test_translate_keys():
@@ -115,58 +192,6 @@ def test_empty_concatenate():
     data = {}
 
     assert concatenate_values(data) == ""
-
-
-def test_delete_paths_with_list():
-    data = {
-        "a": {
-            "b": {
-                "c": [
-                    {"delete": 1, "keep": 2},
-                    {"delete": 2, "keep": 3},
-                    {"delete": 4, "keep": 5},
-                ],
-                "d": 2,
-            },
-            "e": 3,
-        },
-        "f": 4,
-    }
-    delete_paths(data, ["a.b.c[].delete"])
-
-    assert data["a"]["b"]["c"] == [{"keep": 2}, {"keep": 3}, {"keep": 5}]
-    assert len(data["a"]["b"]["c"]) == 3
-    assert data["a"]["b"]["d"] == 2
-    assert data["a"]["e"] == 3
-    assert data["f"] == 4
-
-
-def test_delete_paths_with_wrong_list():
-    data = {
-        "a": {
-            "b": {
-                "c": [
-                    {"delete": 1, "keep": 2},
-                    {"delete": 2, "keep": 3},
-                    {"delete": 4, "keep": 5},
-                ],
-                "d": 2,
-            },
-            "e": 3,
-        },
-        "f": 4,
-    }
-    delete_paths(data, ["a.b.c[].toto"])
-
-    assert data["a"]["b"]["c"] == [
-        {"delete": 1, "keep": 2},
-        {"delete": 2, "keep": 3},
-        {"delete": 4, "keep": 5},
-    ]
-    assert len(data["a"]["b"]["c"]) == 3
-    assert data["a"]["b"]["d"] == 2
-    assert data["a"]["e"] == 3
-    assert data["f"] == 4
 
 
 class TestIsFieldCompleted(unittest.TestCase):
@@ -318,6 +343,24 @@ class TestUpdateJsonValue(unittest.TestCase):
             "Error raised in update_json_value: Parse error near the end of string!"
         )
 
+    @patch("converter.utils.logger")
+    def test_update_json_value_logs_info(self, mock_logger):
+        # Arrange
+        data = {"qualification": {"details": {"priority": "P1"}}}
+
+        # Act
+        update_json_value(data, "$.qualification.details.priority", "P2")
+
+        # Assert logger has been called
+        assert mock_logger.info.call_count == 1
+
+        # Check the log message content
+        args, kwargs = mock_logger.info.call_args
+        assert args[0] == "Updating value from %s to %s at path %s"
+        assert args[1] == "P1"
+        assert args[2] == "P2"
+        assert str(args[3]) == "qualification.details.priority"
+
 
 class TestAddToMedicalNotes(unittest.TestCase):
     @patch("converter.utils.random")
@@ -418,6 +461,36 @@ class TestAddToMedicalNotes(unittest.TestCase):
         self.assertEqual(json_data.get("medicalNote"), expected_medical_notes)
         self.assertEqual(len(json_data.get("medicalNote")), 3)
 
+    @patch("converter.utils.logger")
+    def test_add_to_medical_notes_logs_info(self, mock_logger):
+        # Arrange
+        data = {
+            "patient": [
+                {
+                    "patientId": "fr.health.samuH.ERTYUI.GHK",
+                    "key1": "value1",
+                }
+            ],
+            "medicalNote": [],
+        }
+
+        # Act
+        add_to_medical_notes(
+            data,
+            data["patient"][0],
+            [
+                {"path": "key1", "label": "key 1 label: "},
+            ],
+        )
+
+        # Assert logger has been called
+        assert mock_logger.info.call_count == 1
+
+        # Check the log message content
+        args, kwargs = mock_logger.info.call_args
+        assert args[0] == "Adding field %s to medical notes"
+        assert args[1] == "key1"
+
 
 class TestMapToNewValue(unittest.TestCase):
     def test_value_map_to_new_value_with_valid_mapping(self):
@@ -485,6 +558,22 @@ class TestSetValue(unittest.TestCase):
         self.assertTrue(is_field_completed(data, "$.a.b.c.d"))
         self.assertTrue(is_field_completed(data, "$.a.b.c.d.e"))
 
+    @patch("converter.utils.logger")
+    def test_set_value_logs_info(self, mock_logger):
+        # Arrange
+        data = {}
+
+        # Act
+        set_value(data, "$.a", "b")
+
+        # Assert logger has been called
+        assert mock_logger.info.call_count == 1
+
+        # Check the log message content
+        args, kwargs = mock_logger.info.call_args
+        assert args[0] == "Setting value at path %s"
+        assert args[1] == "$.a"
+
 
 class TestExtractMessageTypeFromMessageContent(unittest.TestCase):
     def test_returns_unknown_when_only_unwanted_keys(self):
@@ -524,3 +613,60 @@ class TestExtractMessageTypeFromMessageContent(unittest.TestCase):
             "status": "ok",
         }
         assert extract_message_type_from_message_content(content) == "createCaseHealth"
+
+
+class TestSwitchFieldName(unittest.TestCase):
+    def test_switch_field_name(self):
+        json_data = {"oldFieldName": "value1", "otherField": "value2"}
+        previous_field_name = "oldFieldName"
+        new_field_name = "newFieldName"
+        previous_field_path = f"$.{previous_field_name}"
+        new_field_path = f"$.{new_field_name}"
+
+        self.assertNotIn(new_field_name, json_data)
+        self.assertIn(previous_field_name, json_data)
+
+        switch_field_name(json_data, previous_field_path, new_field_path)
+
+        self.assertIn(new_field_name, json_data)
+        self.assertEqual(json_data[new_field_name], "value1")
+        self.assertNotIn(previous_field_name, json_data)
+
+    def test_switch_field_name_with_nested_field(self):
+        json_data = {"parent": {"oldFieldName": "value1"}, "otherField": "value2"}
+        previous_field_name = "oldFieldName"
+        new_field_name = "newFieldName"
+        previous_field_path = f"$.parent.{previous_field_name}"
+        new_field_path = f"$.parent.{new_field_name}"
+
+        self.assertNotIn(new_field_name, json_data["parent"])
+        self.assertIn(previous_field_name, json_data["parent"])
+
+        switch_field_name(json_data, previous_field_path, new_field_path)
+
+        self.assertIn(new_field_name, json_data["parent"])
+        self.assertEqual(json_data["parent"][new_field_name], "value1")
+        self.assertNotIn(previous_field_name, json_data["parent"])
+
+    @patch("converter.utils.set_value")
+    @patch("converter.utils.delete_paths")
+    @patch("converter.utils.logger")
+    def test_switch_field_logs_info(
+        self, mock_logger, mock_delete_paths, mock_set_value
+    ):
+        # Arrange
+        data = {
+            "a": "value1",
+        }
+
+        # Act
+        switch_field_name(data, "$.a", "$.b")
+
+        # Assert logger has been called
+        assert mock_logger.info.call_count == 1
+
+        # Check the log message content
+        args, kwargs = mock_logger.info.call_args
+        assert args[0] == "Transforming field name from %s to %s"
+        assert args[1] == "$.a"
+        assert args[2] == "$.b"

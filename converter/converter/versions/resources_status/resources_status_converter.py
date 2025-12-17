@@ -1,6 +1,6 @@
 from typing import Dict, Any
 
-from converter.utils import delete_paths, get_field_value, map_to_new_value
+from converter.utils import map_to_new_value, switch_field_name
 from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.resources_status.resources_status_constants import (
     ResourcesStatusConstants,
@@ -20,23 +20,25 @@ class ResourcesStatusConverter(BaseMessageConverter):
 
         map_to_new_value(
             output_use_case_json,
-            "$.status",
+            ResourcesStatusConstants.STATUS_PATH,
             ResourcesStatusConstants.V1_TO_V2_STATUS_MAPPING,
         )
 
-        datetime = get_field_value(output_use_case_json, "$.datetime")
-        status = get_field_value(output_use_case_json, "$.status")
-        availability = get_field_value(output_use_case_json, "$.availability")
-
-        output_use_case_json["state"] = {}
-        output_use_case_json["state"]["datetime"] = datetime
-        output_use_case_json["state"]["status"] = status
-
-        if availability is not None:
-            output_use_case_json["state"]["availability"] = availability
-
-        # /!\ Warning - It must be the last step
-        delete_paths(output_use_case_json, ResourcesStatusConstants.V1_PATHS_TO_DELETE)
+        switch_field_name(
+            output_use_case_json,
+            ResourcesStatusConstants.DATETIME_PATH,
+            ResourcesStatusConstants.STATE_DATETIME_PATH,
+        )
+        switch_field_name(
+            output_use_case_json,
+            ResourcesStatusConstants.STATUS_PATH,
+            ResourcesStatusConstants.STATE_STATUS_PATH,
+        )
+        switch_field_name(
+            output_use_case_json,
+            ResourcesStatusConstants.AVAILABILITY_PATH,
+            ResourcesStatusConstants.STATE_AVAILABILITY_PATH,
+        )
 
         return cls.format_output_json(output_json, output_use_case_json)
 
@@ -47,16 +49,25 @@ class ResourcesStatusConverter(BaseMessageConverter):
 
         reverse_map_to_new_value(
             output_use_case_json,
-            "$.state.status",
+            ResourcesStatusConstants.STATE_STATUS_PATH,
             ResourcesStatusConstants.V1_TO_V2_STATUS_MAPPING,
         )
 
-        state = get_field_value(output_use_case_json, "$.state")
-        if state:
-            output_use_case_json.update(state)
-
-        # /!\ Warning - It must be the last step
-        delete_paths(output_use_case_json, ResourcesStatusConstants.V2_PATHS_TO_DELETE)
+        switch_field_name(
+            output_use_case_json,
+            ResourcesStatusConstants.STATE_DATETIME_PATH,
+            ResourcesStatusConstants.DATETIME_PATH,
+        )
+        switch_field_name(
+            output_use_case_json,
+            ResourcesStatusConstants.STATE_STATUS_PATH,
+            ResourcesStatusConstants.STATUS_PATH,
+        )
+        switch_field_name(
+            output_use_case_json,
+            ResourcesStatusConstants.STATE_AVAILABILITY_PATH,
+            ResourcesStatusConstants.AVAILABILITY_PATH,
+        )
 
         return cls.format_output_json(output_json, output_use_case_json)
 
@@ -67,7 +78,7 @@ class ResourcesStatusConverter(BaseMessageConverter):
 
         reverse_map_to_new_value(
             output_use_case_json,
-            "$.state.status",
+            ResourcesStatusConstants.STATE_STATUS_PATH,
             ResourcesStatusConstants.V3_TO_V2_STATUS_MAPPING,
         )
 
@@ -80,7 +91,7 @@ class ResourcesStatusConverter(BaseMessageConverter):
 
         map_to_new_value(
             output_use_case_json,
-            "$.state.status",
+            ResourcesStatusConstants.STATE_STATUS_PATH,
             ResourcesStatusConstants.V3_TO_V2_STATUS_MAPPING,
         )
 

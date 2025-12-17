@@ -1,4 +1,5 @@
 from typing import Dict, Any
+import logging
 
 from converter.utils import (
     get_field_value,
@@ -11,6 +12,8 @@ from converter.versions.intervention_report.intervention_report_constants import
     InterventionReportConstants,
 )
 from converter.versions.utils import reverse_map_to_new_value
+
+logger = logging.getLogger(__name__)
 
 
 class InterventionReportConverter(BaseMessageConverter):
@@ -73,6 +76,11 @@ class InterventionReportConverter(BaseMessageConverter):
             input_json, InterventionReportConstants.REDACTOR_ROLE_PATH
         )
         if redactor_role in InterventionReportConstants.V3_TO_V2_REDACTOR_ROLE_MAPPING:
+            logger.info(
+                "Saving redactor role from %s to %s",
+                InterventionReportConstants.REDACTOR_ROLE_PATH,
+                InterventionReportConstants.EVALUATION_FREETEXT_PATH,
+            )
             cls.add_to_evaluation_freetext(
                 input_json,
                 f"Rôle du rédacteur: {redactor_role}",
@@ -99,6 +107,11 @@ class InterventionReportConverter(BaseMessageConverter):
                 remaining_associated_diagnosis_formatted = ", ".join(
                     associated_diagnosis[1:]
                 )
+                logger.info(
+                    "Moving remaining associated diagnosis from %s to %s",
+                    InterventionReportConstants.ASSOCIATED_DIAGNOSIS_PATH,
+                    InterventionReportConstants.EVALUATION_FREETEXT_PATH,
+                )
                 cls.add_to_evaluation_freetext(
                     input_json,
                     f"Diagnostic(s) associé(s) supplémentaire(s): {remaining_associated_diagnosis_formatted}",
@@ -120,6 +133,12 @@ class InterventionReportConverter(BaseMessageConverter):
             if precision is not None:
                 parameter_type = parameter.get(
                     InterventionReportConstants.EVALUATION_PARAMETER_TYPE_KEY, ""
+                )
+                evaluation_parameter_type_path = f"{InterventionReportConstants.EVALUATION_PARAMETER_PATH}[{evaluation_parameters.index(parameter)}].{InterventionReportConstants.EVALUATION_PARAMETER_TYPE_KEY}"
+                logger.info(
+                    "Moving evaluation parameter precision type from %s to %s",
+                    evaluation_parameter_type_path,
+                    InterventionReportConstants.EVALUATION_FREETEXT_PATH,
                 )
                 cls.add_to_evaluation_freetext(
                     input_json,
@@ -144,6 +163,12 @@ class InterventionReportConverter(BaseMessageConverter):
             ):
                 value = external_id.get(
                     InterventionReportConstants.EXTERNAL_ID_VALUE_KEY, ""
+                )
+                external_id_source_path = f"{InterventionReportConstants.EXTERNAL_ID_PATH}[{external_ids.index(external_id)}].{InterventionReportConstants.EXTERNAL_ID_VALUE_KEY}"
+                logger.info(
+                    "Moving external id source from %s to %s",
+                    external_id_source_path,
+                    InterventionReportConstants.EVALUATION_FREETEXT_PATH,
                 )
                 cls.add_to_evaluation_freetext(
                     input_json,

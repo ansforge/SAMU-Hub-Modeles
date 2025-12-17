@@ -1,10 +1,12 @@
+import logging
 from typing import Any, Dict, Optional
 
 from converter.utils import (
     get_field_value,
-    is_field_completed,
     update_json_value,
 )
+
+logger = logging.getLogger(__name__)
 
 
 def reverse_get(input_value: str, mapping_value: Dict[str, str]) -> str:
@@ -24,13 +26,6 @@ def reverse_map_to_new_value(
 
         if new_value != current_value:
             update_json_value(json_data, json_path, new_value)
-
-
-def switch_field_name(
-    json_data: Dict[str, Any], previous_field_name: str, new_field_name: str
-):
-    if is_field_completed(json_data, "$." + previous_field_name):
-        json_data[new_field_name] = json_data[previous_field_name]
 
 
 def convert_to_float(value: Optional[str]) -> Optional[float]:

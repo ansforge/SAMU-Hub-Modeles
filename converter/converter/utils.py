@@ -64,6 +64,7 @@ def delete_paths(data: Dict[str, Any], paths: List[str]) -> None:
         elif len(keys) == 1:
             # Delete target key if it exists
             if isinstance(d, dict):
+                logger.info("Deleting key: %s", key)
                 d.pop(key, None)
         else:
             # Recurse if intermediate key exists
@@ -71,10 +72,11 @@ def delete_paths(data: Dict[str, Any], paths: List[str]) -> None:
                 delete_recursively(d[key], keys[1:])
                 # Clean up empty dictionaries or lists
                 if isinstance(d[key], (dict, list)) and not d[key]:
+                    logger.info("Deleting key: %s", key)
                     d.pop(key)
 
     for path in paths:
-        delete_recursively(data, path.split("."))
+        delete_recursively(data, path.strip("$.").split("."))
 
 
 def add_space_before_uppercase(text):
@@ -195,6 +197,13 @@ def update_json_value(data, jsonpath_query, new_value):
         matches = jsonpath_expr.find(data)
 
         for match in matches:
+            old_value = get_field_value(data, str(match.full_path))
+            logger.info(
+                "Updating value from %s to %s at path %s",
+                old_value,
+                new_value,
+                match.full_path,
+            )
             match.full_path.update(data, new_value)
 
     except Exception as e:
@@ -207,6 +216,7 @@ def set_value(data: Dict[str, Any], json_path: str, value: Any):
     for key in keys[:-1]:
         data = data.setdefault(key, {})
     data[keys[-1]] = value
+    logger.info("Setting value at path %s", json_path)
     return value
 
 
@@ -245,6 +255,7 @@ def add_field_to_medical_notes(
     if field_value is None:
         return
 
+    logger.info("Adding field %s to medical notes", path_and_label["path"])
     formatted_field_value = path_and_label["label"] + dump(
         field_value, allow_unicode=True
     )
@@ -264,8 +275,8 @@ def add_object_to_medical_notes(
         )
     )
 
-    if patient and "patientId" in patient:
-        patient_id = patient["patientId"]
+    if patient and ("patientId" in patient or "idPat" in patient):
+        patient_id = patient.get("patientId") or patient.get("idPat", "")
         patient_id_parts = patient_id.split(".")
         health_service_id = ".".join(patient_id_parts[:3])  # -> fr.health.samuXXX
         medical_note_id = f"{health_service_id}.medicalNote.{random_str}"
@@ -285,3 +296,17 @@ def add_object_to_medical_notes(
         }
 
     json_data["medicalNote"].append(new_note)
+
+
+def switch_field_name(
+    json_data: Dict[str, Any], previous_field_path: str, new_field_path: str
+):
+    if is_field_completed(json_data, previous_field_path):
+        value = get_field_value(json_data, previous_field_path)
+        logger.info(
+            "Transforming field name from %s to %s",
+            previous_field_path,
+            new_field_path,
+        )
+        set_value(json_data, new_field_path, value)
+        delete_paths(json_data, [previous_field_path])
