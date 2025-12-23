@@ -47,13 +47,11 @@ class BaseMessageConverter(ConversionMixin):
             # Convert directly if version are consecutive
             if abs(source_version_index - target_version_index) == 1:
                 if source_version_index < target_version_index:
-                    logger.info(f"Upgrading message version from {source_version}")
-                    return cls.upgrade(source_version, source_version_index, edxl_json)
+                    target_version = version_order_list[source_version_index + 1]
+                    return cls.upgrade(source_version, target_version, edxl_json)
                 else:
-                    logger.info(f"Downgrading message version from {source_version}")
-                    return cls.downgrade(
-                        source_version, source_version_index, edxl_json
-                    )
+                    target_version = version_order_list[source_version_index - 1]
+                    return cls.downgrade(source_version, target_version, edxl_json)
 
             # Convert message to consecutive version
             version_delta = 1 if source_version_index < target_version_index else -1
@@ -76,26 +74,28 @@ class BaseMessageConverter(ConversionMixin):
             cls.raise_conversion_not_implemented_error(source_version, target_version)
 
     @classmethod
-    def upgrade(cls, source_version, source_version_index, edxl_json):
+    def upgrade(cls, source_version, target_version, edxl_json):
+        logger.info(
+            f"Upgrading message version from {source_version} to {target_version}"
+        )
         if source_version == "v1":
             return cls.convert_v1_to_v2(edxl_json)
         elif source_version == "v2":
             return cls.convert_v2_to_v3(edxl_json)
         else:
-            return cls.raise_conversion_impossible_error(
-                source_version, version_order_list[source_version_index + 1]
-            )
+            return cls.raise_conversion_impossible_error(source_version, target_version)
 
     @classmethod
-    def downgrade(cls, source_version, source_version_index, edxl_json):
+    def downgrade(cls, source_version, target_version, edxl_json):
+        logger.info(
+            f"Downgrading message version from {source_version} to {target_version}"
+        )
         if source_version == "v2":
             return cls.convert_v2_to_v1(edxl_json)
         elif source_version == "v3":
             return cls.convert_v3_to_v2(edxl_json)
         else:
-            return cls.raise_conversion_impossible_error(
-                source_version, version_order_list[source_version_index - 1]
-            )
+            return cls.raise_conversion_impossible_error(source_version, target_version)
 
     @classmethod
     def convert_v1_to_v2(cls, edxl_json):
