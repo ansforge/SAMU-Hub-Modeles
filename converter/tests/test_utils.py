@@ -418,7 +418,7 @@ class TestUpdateJsonValue(unittest.TestCase):
 
         # Check the log message content
         args, kwargs = mock_logger.info.call_args
-        assert args[0] == "Updating value from %s to %s at path %s"
+        assert args[0] == "Updating value from %s to %s at path $.%s"
         assert args[1] == "P1"
         assert args[2] == "P2"
         assert str(args[3]) == "qualification.details.priority"

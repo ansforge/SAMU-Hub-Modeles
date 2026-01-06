@@ -204,7 +204,7 @@ def update_json_value(data, jsonpath_query, new_value):
         for match in matches:
             old_value = get_field_value(data, str(match.full_path))
             logger.info(
-                "Updating value from %s to %s at path %s",
+                "Updating value from %s to %s at path $.%s",
                 old_value,
                 new_value,
                 match.full_path,
