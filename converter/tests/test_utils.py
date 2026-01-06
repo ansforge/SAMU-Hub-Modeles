@@ -163,11 +163,73 @@ class TestDeletePaths(unittest.TestCase):
         first_call_args, _ = mock_logger.info.call_args_list[0]
         second_call_args, _ = mock_logger.info.call_args_list[1]
 
-        assert first_call_args[0] == "Deleting key: %s"
-        assert first_call_args[1] == "a"
+        assert first_call_args[0] == "Removing path: %s"
+        assert first_call_args[1] == "$.a"
 
-        assert second_call_args[0] == "Deleting key: %s"
-        assert second_call_args[1] == "c"
+        assert second_call_args[0] == "Removing path: %s"
+        assert second_call_args[1] == "$.b.c"
+
+    @patch("converter.utils.logger")
+    def test_delete_array_logs_info(self, mock_logger):
+        # Arrange
+        data = {
+            "a": [
+                {
+                    "b": 1,
+                },
+                {
+                    "b": 2,
+                    "c": 3,
+                },
+            ],
+        }
+
+        # Act
+        delete_paths(data, ["a[].b"])
+
+        # Assert logger has been called twice
+        assert mock_logger.info.call_count == 2
+
+        # Check the log message content
+        first_call_args, _ = mock_logger.info.call_args_list[0]
+        second_call_args, _ = mock_logger.info.call_args_list[1]
+
+        assert first_call_args[0] == "Removing path: %s"
+        assert first_call_args[1] == "$.a[0].b"
+
+        assert second_call_args[0] == "Removing path: %s"
+        assert second_call_args[1] == "$.a[1].b"
+
+    @patch("converter.utils.logger")
+    def test_delete_empty_dict_logs_info(self, mock_logger):
+        # Arrange
+        data = {
+            "a": {
+                "b": {
+                    "c": 1,
+                },
+            }
+        }
+
+        # Act
+        delete_paths(data, ["a.b.c"])
+
+        # Assert logger has been called three times
+        assert mock_logger.info.call_count == 3
+
+        # Check the log message content
+        first_call_args, _ = mock_logger.info.call_args_list[0]
+        second_call_args, _ = mock_logger.info.call_args_list[1]
+        third_call_args, _ = mock_logger.info.call_args_list[2]
+
+        assert first_call_args[0] == "Removing path: %s"
+        assert first_call_args[1] == "$.a.b.c"
+
+        assert second_call_args[0] == "Removing path: %s"
+        assert second_call_args[1] == "$.a.b"
+
+        assert third_call_args[0] == "Removing path: %s"
+        assert third_call_args[1] == "$.a"
 
 
 def test_translate_keys():
