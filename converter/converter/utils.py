@@ -50,7 +50,9 @@ def delete_paths(data: Dict[str, Any], paths: List[str]) -> None:
         paths: List of dot-separated paths (e.g., "a.b.c")
     """
 
-    def delete_recursively(d: Dict[str, Any], keys: List[str]) -> None:
+    def delete_recursively(
+        d: Dict[str, Any], keys: List[str], current_path: str
+    ) -> None:
         if not keys or not isinstance(d, (dict, list)):
             return
 
@@ -58,25 +60,28 @@ def delete_paths(data: Dict[str, Any], paths: List[str]) -> None:
         if key.endswith("[]"):  # Handle array notation
             key = key[:-2]  # Remove the array notation
             if key in d and isinstance(d[key], list):
-                for item in d[key]:
+                for index, item in enumerate(d[key]):
                     if isinstance(item, dict):
-                        delete_recursively(item, keys[1:])
+                        new_current_path = f"{current_path}.{key}[{index}]"
+                        delete_recursively(item, keys[1:], new_current_path)
         elif len(keys) == 1:
             # Delete target key if it exists
             if isinstance(d, dict):
-                logger.info("Deleting key: %s", key)
+                new_current_path = f"{current_path}.{key}"
+                logger.info("Removing path: %s", new_current_path)
                 d.pop(key, None)
         else:
             # Recurse if intermediate key exists
             if key in d:
-                delete_recursively(d[key], keys[1:])
+                new_current_path = f"{current_path}.{key}"
+                delete_recursively(d[key], keys[1:], new_current_path)
                 # Clean up empty dictionaries or lists
                 if isinstance(d[key], (dict, list)) and not d[key]:
-                    logger.info("Deleting key: %s", key)
+                    logger.info("Removing path: %s", new_current_path)
                     d.pop(key)
 
     for path in paths:
-        delete_recursively(data, path.strip("$.").split("."))
+        delete_recursively(data, path.strip("$.").split("."), "$")
 
 
 def add_space_before_uppercase(text):
@@ -199,7 +204,7 @@ def update_json_value(data, jsonpath_query, new_value):
         for match in matches:
             old_value = get_field_value(data, str(match.full_path))
             logger.info(
-                "Updating value from %s to %s at path %s",
+                "Updating value from %s to %s at path $.%s",
                 old_value,
                 new_value,
                 match.full_path,
