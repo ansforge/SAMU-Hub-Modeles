@@ -20,10 +20,10 @@ A valoriser par DRFR15DDXAAJJJ00000 :
 ,Type de structure SMUR,,,,,"9 = Antenne SMUR, 0 = SMUR général, 1 = SMUR pédiatrique, 2 = SMUR neonatal ",,ressourceStructure,1..1,,string,
 Régulation médicale,,,,,,,,regulation,1..1,X,regulation,
 ,Circonstances ayant données lieu à l’appel,,,,,,,whatsHappen,1..1,X,codeAndLabel,
-,,Code,,,,A valoriser avec le code de la nomenclature associée.,AVPAR,code,1..1,,string,NOMENCLATURE: HubSante.fait
+,,Code,,,,A valoriser avec le code de la nomenclature associée.,AVPAR,code,1..1,,string,REGEX: ^C\d{2}(\.\d{2}){2}$
 ,,Libellé court,,,,"A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Accident routier,label,1..1,,string,
-,Motif de recours ,# Voir whatsHappen (type codeAndLabel),,,,,,healthMotive,1..1,X,codeAndLabel,NOMENCLATURE: HubSante.motif
+,Motif de recours ,# Voir whatsHappen (type codeAndLabel),,,,,,healthMotive,1..1,X,codeAndLabel,REGEX: ^M\d{2}\.\d{2}(\.\d{2})?$
 ,Niveau de médicalisation initial,,,,,"Type d’équipe (médical, paramédicale, secouriste).
 A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.
 Permet de déduire avec la donnée ""niveau de médicalisation du transport"", si un UMHP est devenu un SMUR. ",PARAMED,medicalLevel,1..1,,string,NOMENCLATURE: HubSante.typePEC
@@ -38,7 +38,7 @@ Le Code INSEE peut également précisé le pays de résidence, si étranger. ",9
 ,,Nom de la commune,,,,Nom officiel de la commune actuelle,Levallois-Perret,city,1..1,,string,
 Intervention,,,,,,,,intervention,1..1,X,intervention,
 ,Lieu d'intervention,,,,,,,location,1..1,X,location,
-,,Type de lieu d’intervention,,,,A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu.,DOMPAV,type,0..1,,string,NOMENCLATURE: HubSante.lieu
+,,Type de lieu d’intervention,,,,A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu.,DOMPAV,type,0..1,,string,REGEX: ^L\d{2}(\.\d{2}){2}$
 ,,FINESS géographique de l’établissement ,,,,"Finess géographique et juridique de l’établissement de santé. 
 A renseigner uniquement si l'intervention a lieu dans un établissement de santé. ",,finessGeo,0..1,,string,
 ,,Unité fonctionnelle ,,,,"Unité fonctionnelle de l'établissement de santé. 
