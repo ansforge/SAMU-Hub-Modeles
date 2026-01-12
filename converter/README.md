@@ -62,6 +62,8 @@ FLASK_DEBUG=1 \
 uv run python -m flask run --port 8080
 ```
 
+*Note :* enable prometheus metrics, add `DEBUG_METRICS=1` in the above command.
+
 Production mode (using Gunicorn):
 
 ```bash
