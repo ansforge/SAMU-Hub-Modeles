@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify, g
 import logging
-from werkzeug.middleware.dispatcher import DispatcherMiddleware
-from prometheus_client import make_wsgi_app, Histogram
+import os
+from prometheus_flask_exporter.multiprocess import GunicornInternalPrometheusMetrics
+from prometheus_flask_exporter import PrometheusMetrics
 
 from converter.conversion_strategy.conversion_strategy import conversion_strategy
 from converter.utils import (
@@ -15,17 +16,15 @@ from converter.logging_config import configure_logging, LoggingKeys
 configure_logging()
 
 app = Flask(__name__)
+
+is_prod = os.getenv("FLASK_ENV") == "production"
+
+if is_prod:
+    metrics = GunicornInternalPrometheusMetrics(app)
+else:
+    metrics = PrometheusMetrics(app)
+
 logger = logging.getLogger(__name__)
-
-# Add prometheus wsgi middleware to route /metrics requests
-# ignore typing issue with reassigning method
-app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {"/metrics": make_wsgi_app()})  # type: ignore[assignment]
-
-
-convertion_timer = Histogram(
-    "conversion_duration_seconds",
-    "The number of seconds it took to the /convert endpoint to answer",
-)
 
 
 def raise_error(message, code: int = 400):
@@ -34,7 +33,12 @@ def raise_error(message, code: int = 400):
 
 
 @app.route("/convert", methods=["POST"])
-@convertion_timer.time()
+@metrics.do_not_track()
+@metrics.histogram(
+    "conversion_duration_seconds",
+    "The number of seconds it took to the /convert endpoint to answer",
+    labels={"status": lambda r: r.status_code},
+)
 def convert():
     if not request.is_json:
         return raise_error("Content-Type must be application/json")

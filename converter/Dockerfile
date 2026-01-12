@@ -51,5 +51,11 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
 
 ENV CONVERTER_VERSION=${CONVERTER_VERSION}
 
+# Flask Prometheus Exporter setup
+RUN mkdir /tmp/prometheus_metrics
+ENV PROMETHEUS_MULTIPROC_DIR=/tmp/prometheus_metrics
+
+ENV FLASK_ENV=production
+
 # Use Gunicorn for production deployment
-CMD ["uv", "run", "--no-dev", "gunicorn", "-w", "4", "-b", "0.0.0.0:8080", "converter.converter:app"]
+CMD ["uv", "run", "--no-dev", "gunicorn", "-c", "gunicorn.conf.py", "-w", "4", "-b", "0.0.0.0:8080", "converter.converter:app"]
