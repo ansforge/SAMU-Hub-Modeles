@@ -61,9 +61,9 @@
       <finess>690000056</finess>
     </destination>
     <decision>
-      <resourceType>SIS</resourceType>
-      <vehicleType>SIS.VSAV</vehicleType>
-      <medicalLevel>SECOURS</medicalLevel>
+      <resourceType>SMUR</resourceType>
+      <vehicleType>SMUR.VLM</vehicleType>
+      <medicalLevel>MED</medicalLevel>
     </decision>
   </orientation>
 </rpis>
