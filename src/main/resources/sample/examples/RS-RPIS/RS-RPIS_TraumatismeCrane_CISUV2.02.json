@@ -2,9 +2,9 @@
   "rpis": {
     "orientation": {
       "decision": {
-        "resourceType": "SIS",
-        "vehicleType": "SIS.VSAV",
-        "medicalLevel": "SECOURS"
+        "resourceType": "SMUR",
+        "vehicleType": "SMUR.VLM",
+        "medicalLevel": "MED"
       },
       "destination": {
         "destinationCountry": "FR",

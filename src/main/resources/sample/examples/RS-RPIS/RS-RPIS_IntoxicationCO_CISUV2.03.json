@@ -2,8 +2,8 @@
   "rpis": {
     "orientation": {
       "decision": {
-        "resourceType": "TSU",
-        "vehicleType": "TSU.AR",
+        "resourceType": "SMUR",
+        "vehicleType": "SMUR.AR",
         "medicalLevel": "MED"
       },
       "destination": {
