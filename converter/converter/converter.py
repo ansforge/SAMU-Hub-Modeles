@@ -32,12 +32,22 @@ def raise_error(message, code: int = 400):
     return jsonify({"error": message}), code
 
 
+def extract_message_type_from_paylaod():
+    data = request.get_json(silent=True) or {}
+    edxl_json = data.get("edxl")
+    message_content = extract_message_content(edxl_json)
+    return extract_message_type_from_message_content(message_content)
+
+
 @app.route("/convert", methods=["POST"])
 @metrics.do_not_track()
 @metrics.histogram(
     "conversion_duration_seconds",
     "The number of seconds it took to the /convert endpoint to answer",
-    labels={"status": lambda r: r.status_code},
+    labels={
+        "status": lambda r: r.status_code,
+        "message_type": extract_message_type_from_paylaod,
+    },
 )
 def convert():
     if not request.is_json:
