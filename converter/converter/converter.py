@@ -33,10 +33,13 @@ def raise_error(message, code: int = 400):
 
 
 def extract_message_type_from_paylaod():
-    data = request.get_json(silent=True) or {}
-    edxl_json = data.get("edxl")
-    message_content = extract_message_content(edxl_json)
-    return extract_message_type_from_message_content(message_content)
+    try:
+        data = request.get_json(silent=True) or {}
+        edxl_json = data.get("edxl")
+        message_content = extract_message_content(edxl_json)
+        return extract_message_type_from_message_content(message_content)
+    except Exception:
+        return "unknownMessageType"
 
 
 @app.route("/convert", methods=["POST"])
