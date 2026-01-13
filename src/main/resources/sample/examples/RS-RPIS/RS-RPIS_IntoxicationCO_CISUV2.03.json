@@ -1,0 +1,70 @@
+{
+  "rpis": {
+    "orientation": {
+      "decision": {
+        "resourceType": "TSU",
+        "vehicleType": "TSU.AR",
+        "medicalLevel": "MED"
+      },
+      "destination": {
+        "destinationCountry": "FR",
+        "destinationCategory": "ES",
+        "healthcareType": "355",
+        "finess": "130000123"
+      },
+      "type": "TEMP"
+    },
+    "intervention": {
+      "smurStatus": {
+        "departSmur": "2026-01-13T09:25:00+01:00",
+        "arrivedSmur": "2026-01-13T09:34:00+01:00",
+        "departLocation": "2026-01-13T09:52:00+01:00",
+        "arrivedDestination": "2026-01-13T10:08:00+01:00",
+        "teamAvailable": "2026-01-13T10:30:00+01:00",
+        "returnSmur": "2026-01-13T10:45:00+01:00"
+      },
+      "team": {
+        "doctor": true,
+        "driver": true,
+        "nurse": true
+      },
+      "location": {
+        "detailedAddress": {
+          "city": "Marseille",
+          "inseeCode": "13055"
+        },
+        "type": "L01.02.03"
+      },
+      "mainDiagnosis": "T58"
+    },
+    "patient": {
+      "residentialAddress": {
+        "city": "Marseille",
+        "inseeCode": "13055"
+      },
+      "patientId": "fr.health.samu130.patient.DRFR113302601303789.1",
+      "birthDate": "1975-11-08",
+      "sex": "M"
+    },
+    "regulation": {
+      "healthMotive": {
+        "code": "M16.01.01",
+        "label": "Intoxication au CO / fumées - Avec convulsions / troubles de la conscience"
+      },
+      "whatsHappen": {
+        "code": "C09.00.00",
+        "label": "Accident ou incident matériel et/ou environnemental"
+      },
+      "medicalLevel": "MED"
+    },
+    "context": {
+      "orgId": "fr.health.samu130",
+      "senderCaseId": "DRFR113302601303789",
+      "ressourceFinessLegal": "130000123",
+      "ressourceFinessGeo": "130000131",
+      "ressourceStructure": "0",
+      "creationDate": "2026-01-13T09:20:00+01:00",
+      "decisionDate": "2026-01-13T09:23:00+01:00"
+    }
+  }
+}

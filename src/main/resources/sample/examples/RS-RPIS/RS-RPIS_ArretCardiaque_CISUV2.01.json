@@ -1,0 +1,70 @@
+{
+  "rpis": {
+    "orientation": {
+      "decision": {
+        "resourceType": "SIS",
+        "vehicleType": "SIS.VSAV",
+        "medicalLevel": "SECOURS"
+      },
+      "destination": {
+        "destinationCountry": "FR",
+        "destinationCategory": "ES",
+        "healthcareType": "142",
+        "finess": "750000015"
+      },
+      "type": "TEMP"
+    },
+    "intervention": {
+      "smurStatus": {
+        "departSmur": "2026-01-13T14:21:00+01:00",
+        "arrivedSmur": "2026-01-13T14:28:00+01:00",
+        "departLocation": "2026-01-13T14:55:00+01:00",
+        "arrivedDestination": "2026-01-13T15:08:00+01:00",
+        "teamAvailable": "2026-01-13T15:25:00+01:00",
+        "returnSmur": "2026-01-13T15:35:00+01:00"
+      },
+      "team": {
+        "doctor": true,
+        "driver": true,
+        "nurse": true
+      },
+      "location": {
+        "detailedAddress": {
+          "city": "Paris",
+          "inseeCode": "75056"
+        },
+        "type": "L04.11.03"
+      },
+      "mainDiagnosis": "I46.9"
+    },
+    "patient": {
+      "residentialAddress": {
+        "city": "Paris",
+        "inseeCode": "75056"
+      },
+      "patientId": "fr.health.samu750.patient.DRFR157502601301234.1",
+      "birthDate": "1965-03-22",
+      "sex": "M"
+    },
+    "regulation": {
+      "healthMotive": {
+        "code": "M08.02.00",
+        "label": "Arrêt cardio-respiratoire"
+      },
+      "whatsHappen": {
+        "code": "C01.00.00",
+        "label": "Accident ou incident corporel"
+      },
+      "medicalLevel": "MED"
+    },
+    "context": {
+      "orgId": "fr.health.samu750",
+      "senderCaseId": "DRFR157502601301234",
+      "ressourceFinessLegal": "750000015",
+      "ressourceFinessGeo": "750000023",
+      "ressourceStructure": "0",
+      "creationDate": "2026-01-13T14:15:00+01:00",
+      "decisionDate": "2026-01-13T14:18:00+01:00"
+    }
+  }
+}
