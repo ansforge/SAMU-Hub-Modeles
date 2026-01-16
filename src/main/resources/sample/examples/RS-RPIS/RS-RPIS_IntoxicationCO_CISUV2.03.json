@@ -33,7 +33,7 @@
           "city": "Marseille",
           "inseeCode": "13055"
         },
-        "type": "L01.02.03"
+        "type": "L01.02.14"
       },
       "mainDiagnosis": "T58"
     },
@@ -52,8 +52,8 @@
         "label": "Intoxication au CO / fumées - Avec convulsions / troubles de la conscience"
       },
       "whatsHappen": {
-        "code": "C09.00.00",
-        "label": "Accident ou incident matériel et/ou environnemental"
+        "code": "C02.06.02",
+        "label": "Intoxication CO"
       },
       "medicalLevel": "MED"
     },

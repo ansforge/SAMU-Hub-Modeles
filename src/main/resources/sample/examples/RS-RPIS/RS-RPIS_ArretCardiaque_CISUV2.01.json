@@ -33,7 +33,7 @@
           "city": "Paris",
           "inseeCode": "75056"
         },
-        "type": "L04.11.03"
+        "type": "L04.06.06"
       },
       "mainDiagnosis": "I46.9"
     },
@@ -52,8 +52,8 @@
         "label": "Arrêt cardio-respiratoire"
       },
       "whatsHappen": {
-        "code": "C01.00.00",
-        "label": "Accident ou incident corporel"
+        "code": "C02.18.00",
+        "label": "Problème psychiatrique, menace de suicide"
       },
       "medicalLevel": "MED"
     },

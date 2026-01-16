@@ -33,7 +33,7 @@
           "city": "Lyon",
           "inseeCode": "69123"
         },
-        "type": "L02.01.00"
+        "type": "L02.01.03"
       },
       "mainDiagnosis": "S06.9"
     },
@@ -52,8 +52,8 @@
         "label": "Traumatisme tête - cou - Avec perte de connaissance ou troubles de la la conscience"
       },
       "whatsHappen": {
-        "code": "C01.01.00",
-        "label": "Accident de la circulation"
+        "code": "C01.06.01",
+        "label": "Accident routier véhicule léger, fourgon"
       },
       "medicalLevel": "MED"
     },
