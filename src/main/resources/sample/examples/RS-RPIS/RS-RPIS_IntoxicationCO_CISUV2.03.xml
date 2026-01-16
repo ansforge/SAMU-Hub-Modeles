@@ -11,8 +11,8 @@
   </context>
   <regulation>
     <whatsHappen>
-      <code>C09.00.00</code>
-      <label>Accident ou incident matériel et/ou environnemental</label>
+      <code>C02.06.02</code>
+      <label>Intoxication CO</label>
     </whatsHappen>
     <healthMotive>
       <code>M16.01.01</code>
@@ -31,7 +31,7 @@
   </patient>
   <intervention>
     <location>
-      <type>L01.02.03</type>
+      <type>L01.02.14</type>
       <detailedAddress>
         <inseeCode>13055</inseeCode>
         <city>Marseille</city>

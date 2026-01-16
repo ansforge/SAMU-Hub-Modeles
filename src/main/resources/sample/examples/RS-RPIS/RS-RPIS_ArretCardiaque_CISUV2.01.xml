@@ -11,8 +11,8 @@
   </context>
   <regulation>
     <whatsHappen>
-      <code>C01.00.00</code>
-      <label>Accident ou incident corporel</label>
+      <code>C02.18.00</code>
+      <label>Problème psychiatrique, menace de suicide</label>
     </whatsHappen>
     <healthMotive>
       <code>M08.02.00</code>
@@ -31,7 +31,7 @@
   </patient>
   <intervention>
     <location>
-      <type>L04.11.03</type>
+      <type>L04.06.06</type>
       <detailedAddress>
         <inseeCode>75056</inseeCode>
         <city>Paris</city>

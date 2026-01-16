@@ -11,8 +11,8 @@
   </context>
   <regulation>
     <whatsHappen>
-      <code>C01.01.00</code>
-      <label>Accident de la circulation</label>
+      <code>C01.06.01</code>
+      <label>Accident routier véhicule léger, fourgon</label>
     </whatsHappen>
     <healthMotive>
       <code>M13.03.01</code>
@@ -31,7 +31,7 @@
   </patient>
   <intervention>
     <location>
-      <type>L02.01.00</type>
+      <type>L02.01.03</type>
       <detailedAddress>
         <inseeCode>69123</inseeCode>
         <city>Lyon</city>
