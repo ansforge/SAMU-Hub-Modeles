@@ -32,7 +32,7 @@ def raise_error(message, code: int = 400):
     return jsonify({"error": message}), code
 
 
-def extract_message_type_from_paylaod():
+def extract_message_type_from_payload():
     try:
         data = request.get_json(silent=True) or {}
         edxl_json = data.get("edxl")
@@ -49,7 +49,7 @@ def extract_message_type_from_paylaod():
     "The number of seconds it took to the /convert endpoint to answer",
     labels={
         "status": lambda r: r.status_code,
-        "message_type": extract_message_type_from_paylaod,
+        "message_type": extract_message_type_from_payload,
     },
 )
 def convert():
