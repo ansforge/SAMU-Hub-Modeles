@@ -561,6 +561,24 @@
         "context": "Pas de test suivant: RS-EDA-MAJ - Delphine VIGNEAU.12",
         "name": "Delphine VIGNEAU.11",
         "medicalSituation": "Données RPIS du patient"
+      },
+      {
+        "file": "RS-RPIS/RS-RPIS_ArretCardiaque_CISUV2.01.json",
+        "icon": "mdi-heart-pulse",
+        "name": "Arrêt cardiaque.01 (CISU v2)",
+        "medicalSituation": "Exemple avec codes CISU v2 - Arrêt cardio-respiratoire en salle de sport"
+      },
+      {
+        "file": "RS-RPIS/RS-RPIS_TraumatismeCrane_CISUV2.02.json",
+        "icon": "mdi-head-alert",
+        "name": "Traumatisme crânien.02 (CISU v2)",
+        "medicalSituation": "Exemple avec codes CISU v2 - Accident de la circulation avec traumatisme tête-cou"
+      },
+      {
+        "file": "RS-RPIS/RS-RPIS_IntoxicationCO_CISUV2.03.json",
+        "icon": "mdi-smoke",
+        "name": "Intoxication CO.03 (CISU v2)",
+        "medicalSituation": "Exemple avec codes CISU v2 - Intoxication au monoxyde de carbone"
       }
     ]
   },
