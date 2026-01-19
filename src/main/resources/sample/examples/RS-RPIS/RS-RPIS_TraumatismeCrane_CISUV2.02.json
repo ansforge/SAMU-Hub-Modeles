@@ -1,0 +1,70 @@
+{
+  "rpis": {
+    "orientation": {
+      "decision": {
+        "resourceType": "SMUR",
+        "vehicleType": "SMUR.VLM",
+        "medicalLevel": "MED"
+      },
+      "destination": {
+        "destinationCountry": "FR",
+        "destinationCategory": "ES",
+        "healthcareType": "142",
+        "finess": "690000056"
+      },
+      "type": "TEMP"
+    },
+    "intervention": {
+      "smurStatus": {
+        "departSmur": "2026-01-13T16:10:00+01:00",
+        "arrivedSmur": "2026-01-13T16:18:00+01:00",
+        "departLocation": "2026-01-13T16:35:00+01:00",
+        "arrivedDestination": "2026-01-13T16:48:00+01:00",
+        "teamAvailable": "2026-01-13T17:05:00+01:00",
+        "returnSmur": "2026-01-13T17:15:00+01:00"
+      },
+      "team": {
+        "doctor": true,
+        "driver": true,
+        "nurse": false
+      },
+      "location": {
+        "detailedAddress": {
+          "city": "Lyon",
+          "inseeCode": "69123"
+        },
+        "type": "L02.01.03"
+      },
+      "mainDiagnosis": "S06.9"
+    },
+    "patient": {
+      "residentialAddress": {
+        "city": "Lyon",
+        "inseeCode": "69123"
+      },
+      "patientId": "fr.health.samu690.patient.DRFR169902601302456.1",
+      "birthDate": "1988-07-15",
+      "sex": "F"
+    },
+    "regulation": {
+      "healthMotive": {
+        "code": "M13.03.01",
+        "label": "Traumatisme tête - cou - Avec perte de connaissance ou troubles de la la conscience"
+      },
+      "whatsHappen": {
+        "code": "C01.06.01",
+        "label": "Accident routier véhicule léger, fourgon"
+      },
+      "medicalLevel": "MED"
+    },
+    "context": {
+      "orgId": "fr.health.samu690",
+      "senderCaseId": "DRFR169902601302456",
+      "ressourceFinessLegal": "690000056",
+      "ressourceFinessGeo": "690000064",
+      "ressourceStructure": "0",
+      "creationDate": "2026-01-13T16:05:00+01:00",
+      "decisionDate": "2026-01-13T16:08:00+01:00"
+    }
+  }
+}
