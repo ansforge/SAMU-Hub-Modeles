@@ -73,8 +73,10 @@ def update_language(message: Dict[str, Any], language_map: Dict[str, str]) -> No
             Constants.INITIAL_ALERT_CALLER_LANGUAGE_PATH,
             language_map,
         )
-    else:
+    elif language is not None:
         add_to_initial_alert_notes(message, f"Langue du requérant: {language}")
+        delete_paths(message, [Constants.INITIAL_ALERT_CALLER_LANGUAGE_KEY])
+    else:
         delete_paths(message, [Constants.INITIAL_ALERT_CALLER_LANGUAGE_KEY])
 
 

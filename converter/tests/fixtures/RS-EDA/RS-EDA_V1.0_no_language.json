@@ -1,0 +1,98 @@
+{
+  "createCaseHealth": {
+    "qualification": {
+      "origin": "112",
+      "riskThreat": [
+        {
+          "code": "R01",
+          "label": "libellé R01"
+        }
+      ],
+      "whatsHappen": {
+        "code": "C02.15.01",
+        "label": "libellé de C021501"
+      },
+      "locationKind": {
+        "code": "L01.00.00",
+        "label": "libellé type de lieu"
+      },
+      "healthMotive": {
+        "code": "M03.11",
+        "label": "libellé motif de recours"
+      },
+      "details": {
+        "status": " ACTIF",
+        "attribution": "PEDIA",
+        "priority": "P1",
+        "careLevel": "R3"
+      }
+    },
+    "location": {
+      "geometry": {
+        "point": {
+          "coord": {
+            "lat": 37.7749,
+            "lon": 122.4194,
+            "height": 16,
+            "precision": "INCONNUE"
+          },
+          "isAml": true
+        },
+        "obsDatime": "2025-02-27T06:30:00+01:00"
+      },
+      "name": "nom du lieu",
+      "detailedAddress": {
+        "complete": "12 rue de nulle part",
+        "number": "12",
+        "wayName": {
+          "complete": "rue de nulle part",
+          "type": "rue",
+          "name": "de nulle part"
+        }
+      },
+      "city": {
+        "name": "nowhere",
+        "inseeCode": "99999"
+      }
+    },
+    "initialAlert": {
+      "caller": {
+        "callerContact": {
+          "channel": "PERSONNE",
+          "type": "TEL",
+          "detail": "+33645897846457895"
+        },
+        "type": "MEDSOS"
+      },
+      "reception": "2025-02-13T15:00:00+01:00",
+      "notes": [
+        {
+          "creation": "2025-02-27T00:00:00+01:00",
+          "freetext": "commentaire alerte initiale"
+        }
+      ]
+    },
+    "caseId": "fr.health.samu770.DRFR157702400400055",
+    "senderCaseId": "DRFR157702400400055",
+    "creation": "2025-02-27T01:15:00+01:00",
+    "perimeter": "AMU",
+    "interventionType": "PRIMAIRE",
+    "owner": "fr.health.samu770",
+    "patient": [
+      {
+        "idPat": "fr.health.samu770.patient.DRFR157702400400055.1",
+        "identity": {
+          "strictFeatures": {
+            "birthName": "Nom de naissance",
+            "birthDate": "1954-08-12",
+            "sex": "MASC"
+          }
+        },
+        "healthMotive": {
+          "code": "M01.00",
+          "label": "Détresse vitale"
+        }
+      }
+    ]
+  }
+}
