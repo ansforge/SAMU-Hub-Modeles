@@ -55,17 +55,22 @@ Note : the tests download files (json samples & schemas) using the Github API. T
 Development mode:
 
 ```bash
-# In converter/, run the command:
+# In converter/, run the commands:
 FLASK_APP=converter.converter \
 FLASK_ENV=development \
 FLASK_DEBUG=1 \
 uv run python -m flask run --port 8080
 ```
 
+*Note :* enable prometheus metrics, add `DEBUG_METRICS=1` in the above command.
+
 Production mode (using Gunicorn):
 
 ```bash
-gunicorn -w 4 -b 0.0.0.0:8080 converter.converter:app
+# In converter/, run the commands:
+mkdir -p ./tmp/prometheus_metrics
+
+PROMETHEUS_MULTIPROC_DIR=./tmp/prometheus_metrics gunicorn -c gunicorn.conf.py -w 4 -b 0.0.0.0:8080 converter.converter:app
 ```
 
 ### Controlling Logging Level
