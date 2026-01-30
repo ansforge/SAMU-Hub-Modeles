@@ -47,4 +47,22 @@ class RpisConverter(BaseMessageConverter):
             RpisConstants.V3_TO_V2_RESOURCE_TYPE_MAPPING,
         )
 
+        map_to_new_value(
+            output_use_case_json,
+            RpisConstants.WHATS_HAPPEN_CODE_PATH,
+            RpisConstants.V3_TO_V2_WHATS_HAPPEN_CODE_MAPPING,
+        )
+
+        map_to_new_value(
+            output_use_case_json,
+            RpisConstants.HEALTH_MOTIVE_CODE_PATH,
+            RpisConstants.V3_TO_V2_HEALTH_MOTIVE_CODE_MAPPING,
+        )
+
+        map_to_new_value(
+            output_use_case_json,
+            RpisConstants.LOCATION_TYPE_PATH,
+            RpisConstants.V3_TO_V2_LOCATION_TYPE_MAPPING,
+        )
+
         return cls.format_output_json(output_json, output_use_case_json)
