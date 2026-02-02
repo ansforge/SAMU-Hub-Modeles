@@ -66,11 +66,27 @@ class ResourcesInfoConverter(BaseMessageConverter):
                         freetext,
                     )
 
-                map_to_new_value(
+                # Set default vehicle type if missing (required in v2/v3, optional in v1)
+                vehicle_type = get_field_value(
                     mobilizedResource,
                     ResourcesInfoConstants.MOBILIZED_RESOURCE_VEHICULE_TYPE_PATH,
-                    ResourcesInfoConstants.V1_TO_V2_VEHICULE_TYPE_MAPPING,
                 )
+                if vehicle_type is None:
+                    logger.info(
+                        "Setting default vehicle type %s",
+                        ResourcesInfoConstants.DEFAULT_VEHICLE_TYPE,
+                    )
+                    set_value(
+                        mobilizedResource,
+                        ResourcesInfoConstants.MOBILIZED_RESOURCE_VEHICULE_TYPE_PATH,
+                        ResourcesInfoConstants.DEFAULT_VEHICLE_TYPE,
+                    )
+                else:
+                    map_to_new_value(
+                        mobilizedResource,
+                        ResourcesInfoConstants.MOBILIZED_RESOURCE_VEHICULE_TYPE_PATH,
+                        ResourcesInfoConstants.V1_TO_V2_VEHICULE_TYPE_MAPPING,
+                    )
 
                 switch_field_name(
                     mobilizedResource,
