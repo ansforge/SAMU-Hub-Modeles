@@ -1,0 +1,21 @@
+{
+  "resourcesInfo": {
+    "mobilizedResource": [
+      {
+        "datetime": "2024-08-01T16:55:00+02:00",
+        "resourceId": "fr.health.samu770.resource.VLM250",
+        "resourceType": "SMUR",
+        "team": {
+          "teamCare": "MED"
+        },
+        "state": [
+          {
+            "datetime": "2024-08-06T16:45:00+02:00",
+            "status": "ENGAGE"
+          }
+        ]
+      }
+    ],
+    "caseId": "fr.health.samu770.DRFR157702421400215"
+  }
+}
