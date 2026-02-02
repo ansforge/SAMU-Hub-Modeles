@@ -13,5 +13,5 @@ class RpisConstants:
 
     # Fallback codes for v3 to v2 conversion (all v2 codes map to these generic v1.18 codes)
     WHATS_HAPPEN_FALLBACK = "C11.06.00"  # Autre nature de fait
-    HEALTH_MOTIVE_FALLBACK = "M03.14"     # Autre problème médical
-    LOCATION_FALLBACK = "L07.00.00"       # Lieu non explicite
+    HEALTH_MOTIVE_FALLBACK = "M03.14"  # Autre problème médical
+    LOCATION_FALLBACK = "L07.00.00"  # Lieu non explicite
