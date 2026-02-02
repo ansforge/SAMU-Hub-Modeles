@@ -1,6 +1,7 @@
 import datetime
 import json
 from unittest.mock import patch
+import pytest
 
 from converter.utils import get_field_value, extract_message_content
 from converter.versions.create_case_health.create_case_health_converter import (
@@ -126,39 +127,20 @@ def test_upgrade_with_unknown_v2_language_code():
     assert "Langue du requérant: AX" in notes[-1]["freetext"]
 
 
-def test_upgrade_with_no_language_field_v1_to_v2():
-    """Test that when language field is not provided, no note is created (v1->v2)"""
+@pytest.mark.parametrize(
+    "target_version",
+    [
+        ("v2"),
+        ("v3"),
+    ],
+)
+def test_upgrade_with_no_language_field(target_version):
+    """Test that when language field is not provided, no note is created"""
     message = TestHelper.create_edxl_json_from_sample(
         TestConstants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
         "tests/fixtures/RS-EDA/RS-EDA_V1.0_no_language.json",
     )
-    converted_message = CreateHealthCaseConverter.convert_v1_to_v2(message)
-    converted_message_content = extract_message_content(converted_message)[
-        "createCaseHealth"
-    ]
-    validate(converted_message_content, get_v2_schema())
-
-    # Language field should not be present
-    language = get_field_value(
-        converted_message_content, "$.initialAlert.caller.language"
-    )
-    assert language is None
-
-    # No note should be added about language
-    notes = get_field_value(converted_message_content, "$.initialAlert.notes")
-    assert len(notes) == 1
-    # Verify no note contains any language mention
-    for note in notes:
-        assert "Langue du requérant" not in note["freetext"]
-
-
-def test_upgrade_with_no_language_field_v1_to_v3():
-    """Test that when language field is not provided, no note is created (v1->v3)"""
-    message = TestHelper.create_edxl_json_from_sample(
-        TestConstants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
-        "tests/fixtures/RS-EDA/RS-EDA_V1.0_no_language.json",
-    )
-    converted_message = CreateHealthCaseConverter.convert("v1", "v3", message)
+    converted_message = CreateHealthCaseConverter.convert("v1", target_version, message)
     converted_message_content = extract_message_content(converted_message)[
         "createCaseHealth"
     ]
