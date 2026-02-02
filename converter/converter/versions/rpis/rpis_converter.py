@@ -1,6 +1,6 @@
 from typing import Dict, Any
 
-from converter.utils import map_to_new_value
+from converter.utils import map_to_new_value, update_json_value
 from converter.versions.base_message_converter import BaseMessageConverter
 from converter.versions.rpis.rpis_constants import RpisConstants
 from converter.versions.utils import reverse_map_to_new_value
@@ -45,6 +45,25 @@ class RpisConverter(BaseMessageConverter):
             output_use_case_json,
             RpisConstants.RESOURCE_TYPE_PATH,
             RpisConstants.V3_TO_V2_RESOURCE_TYPE_MAPPING,
+        )
+
+        # Map v2 codes to v1.18 fallback values
+        update_json_value(
+            output_use_case_json,
+            RpisConstants.WHATS_HAPPEN_CODE_PATH,
+            RpisConstants.WHATS_HAPPEN_FALLBACK,
+        )
+
+        update_json_value(
+            output_use_case_json,
+            RpisConstants.HEALTH_MOTIVE_CODE_PATH,
+            RpisConstants.HEALTH_MOTIVE_FALLBACK,
+        )
+
+        update_json_value(
+            output_use_case_json,
+            RpisConstants.LOCATION_TYPE_PATH,
+            RpisConstants.LOCATION_FALLBACK,
         )
 
         return cls.format_output_json(output_json, output_use_case_json)
