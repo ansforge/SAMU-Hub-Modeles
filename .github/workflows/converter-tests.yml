@@ -16,7 +16,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     permissions:
+      # Needed to run tests
       contents: read
+      # Needed to create/update comments on PR
+      pull-requests: write
     defaults:
       run:
         working-directory: converter
