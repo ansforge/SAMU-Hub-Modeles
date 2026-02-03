@@ -1,6 +1,5 @@
 import argparse
 from datetime import date
-import warnings
 import graphviz  # doctest: +NO_EXE
 import json
 import os
