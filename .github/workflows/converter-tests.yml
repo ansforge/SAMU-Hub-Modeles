@@ -15,6 +15,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     defaults:
       run:
         working-directory: converter
@@ -48,6 +50,8 @@ jobs:
       - name: Run tests with HTML and XML coverage reports
         run: |
           uv run pytest --cov=converter --cov-report=html --cov-report=xml --cov-config=pyproject.toml -rP
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload HTML coverage report
         uses: actions/upload-artifact@v4
