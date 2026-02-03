@@ -1,4 +1,5 @@
 import json
+import os
 from pathlib import Path
 from typing import Dict, Any, Optional
 from jsonschema import validate
@@ -80,7 +81,13 @@ class TestHelper:
         base_url = f"https://raw.githubusercontent.com/ansforge/SAMU-Hub-Modeles/{tag}/src/main/resources/sample/examples"
         api_url = f"https://api.github.com/repos/ansforge/SAMU-Hub-Modeles/contents/src/main/resources/sample/examples/{directory}?ref={tag}"
 
-        response = session.get(api_url)
+        token = os.getenv("GITHUB_TOKEN")
+
+        if token:
+            headers = {"Authorization": f"Bearer {token}"}
+            response = session.get(api_url, headers=headers)
+        else:
+            response = session.get(api_url)
         response.raise_for_status()
 
         files = []
