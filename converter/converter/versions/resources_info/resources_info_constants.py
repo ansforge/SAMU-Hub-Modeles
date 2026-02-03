@@ -86,6 +86,7 @@ class ResourcesInfoConstants:
     }
 
     MOBILIZED_RESOURCE_DEFAULT_VALUE = "AUTRE"
+    DEFAULT_VEHICLE_TYPE = "AUTREVEC.AUTRE"
 
     MOBILIZED_RESOURCE_PATH = "$.mobilizedResource"
     MOBILIZED_RESOURCE_PLATE_PATH = "$.plate"

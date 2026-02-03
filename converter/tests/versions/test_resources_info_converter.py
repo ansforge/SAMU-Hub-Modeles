@@ -39,6 +39,14 @@ class TestSnapshotV1V2Converter(TestCase):
         output_data = ResourcesInfoConverter.convert_v1_to_v2(message)
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
+    def test_missing_vehicle_type_snapshot_V1_to_V2_upgrade(self):
+        message = TestHelper.create_edxl_json_from_sample(
+            TestConstants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
+            "tests/fixtures/RS-RI/RS-RI_V1.0_missing_vehicleType.json",
+        )
+        output_data = ResourcesInfoConverter.convert_v1_to_v2(message)
+        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+
 
 def test_V2_to_V1_downgrade():
     v1_schema_endpoint = get_file_endpoint(
