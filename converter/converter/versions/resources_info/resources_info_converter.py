@@ -72,10 +72,6 @@ class ResourcesInfoConverter(BaseMessageConverter):
                     ResourcesInfoConstants.MOBILIZED_RESOURCE_VEHICULE_TYPE_PATH,
                 )
                 if vehicle_type is None:
-                    logger.info(
-                        "Setting default vehicle type %s",
-                        ResourcesInfoConstants.DEFAULT_VEHICLE_TYPE,
-                    )
                     set_value(
                         mobilizedResource,
                         ResourcesInfoConstants.MOBILIZED_RESOURCE_VEHICULE_TYPE_PATH,
