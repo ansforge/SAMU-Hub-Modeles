@@ -1,6 +1,7 @@
 import datetime
 import json
 from unittest.mock import patch
+import pytest
 
 from converter.utils import get_field_value, extract_message_content
 from converter.versions.create_case_health.create_case_health_converter import (
@@ -124,3 +125,35 @@ def test_upgrade_with_unknown_v2_language_code():
     notes = get_field_value(converted_message_content, "$.initialAlert.notes")
     assert len(notes) > 1
     assert "Langue du requérant: AX" in notes[-1]["freetext"]
+
+
+@pytest.mark.parametrize(
+    "target_version",
+    [
+        ("v2"),
+        ("v3"),
+    ],
+)
+def test_upgrade_with_no_language_field(target_version):
+    """Test that when language field is not provided, no note is created"""
+    message = TestHelper.create_edxl_json_from_sample(
+        TestConstants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
+        "tests/fixtures/RS-EDA/RS-EDA_V1.0_no_language.json",
+    )
+    converted_message = CreateHealthCaseConverter.convert("v1", target_version, message)
+    converted_message_content = extract_message_content(converted_message)[
+        "createCaseHealth"
+    ]
+
+    # Language field should not be present
+    language = get_field_value(
+        converted_message_content, "$.initialAlert.caller.language"
+    )
+    assert language is None
+
+    # No note should be added about language
+    notes = get_field_value(converted_message_content, "$.initialAlert.notes")
+    assert len(notes) == 1
+    # Verify no note contains any language mention
+    for note in notes:
+        assert "Langue du requérant" not in note["freetext"]
