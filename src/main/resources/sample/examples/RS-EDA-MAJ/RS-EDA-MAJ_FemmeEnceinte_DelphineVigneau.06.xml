@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <createCaseHealthUpdate xmlns="urn:emergency:eda:1.9:createCaseHealthUpdate">
-  <caseId>fr.fire.cga-044.SC-20240526-044-cga-AL8</caseId>
+  <caseId>fr.fire.sis044.cga-044.SC-20240526-044-cga-AL8</caseId>
   <medicalNote>
     <patientId>fr.health.samu440.patient.DRFR154402414300123.1</patientId>
     <operator>
