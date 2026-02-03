@@ -7,7 +7,9 @@ from snapshottest import Snapshot
 
 snapshots = Snapshot()
 
-snapshots['TestSnapshotV1V2Converter::test_exhaustive_snapshot_V1_to_V2_upgrade 1'] = '''{
+snapshots[
+    "TestSnapshotV1V2Converter::test_exhaustive_snapshot_V1_to_V2_upgrade 1"
+] = """{
   "distributionID": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
   "senderID": "fr.health.samuA",
   "dateTimeSent": "2022-09-27T08:23:34+02:00",
@@ -90,9 +92,11 @@ snapshots['TestSnapshotV1V2Converter::test_exhaustive_snapshot_V1_to_V2_upgrade 
       }
     }
   ]
-}'''
+}"""
 
-snapshots['TestSnapshotV1V2Converter::test_missing_vehicle_type_snapshot_V1_to_V2_upgrade 1'] = '''{
+snapshots[
+    "TestSnapshotV1V2Converter::test_missing_vehicle_type_snapshot_V1_to_V2_upgrade 1"
+] = """{
   "distributionID": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
   "senderID": "fr.health.samuA",
   "dateTimeSent": "2022-09-27T08:23:34+02:00",
@@ -149,9 +153,11 @@ snapshots['TestSnapshotV1V2Converter::test_missing_vehicle_type_snapshot_V1_to_V
       }
     }
   ]
-}'''
+}"""
 
-snapshots['TestSnapshotV1V2Converter::test_required_fields_snapshot_V1_to_V2_upgrade 1'] = '''{
+snapshots[
+    "TestSnapshotV1V2Converter::test_required_fields_snapshot_V1_to_V2_upgrade 1"
+] = """{
   "distributionID": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
   "senderID": "fr.health.samuA",
   "dateTimeSent": "2022-09-27T08:23:34+02:00",
@@ -199,9 +205,11 @@ snapshots['TestSnapshotV1V2Converter::test_required_fields_snapshot_V1_to_V2_upg
       }
     }
   ]
-}'''
+}"""
 
-snapshots['TestSnapshotV2V1Converter::test_exhaustive_snapshot_V2_to_V1_upgrade 1'] = '''{
+snapshots[
+    "TestSnapshotV2V1Converter::test_exhaustive_snapshot_V2_to_V1_upgrade 1"
+] = """{
   "distributionID": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
   "senderID": "fr.health.samuA",
   "dateTimeSent": "2022-09-27T08:23:34+02:00",
@@ -292,9 +300,11 @@ snapshots['TestSnapshotV2V1Converter::test_exhaustive_snapshot_V2_to_V1_upgrade 
       }
     }
   ]
-}'''
+}"""
 
-snapshots['TestSnapshotV2V1Converter::test_required_fields_snapshot_V2_to_V1_upgrade 1'] = '''{
+snapshots[
+    "TestSnapshotV2V1Converter::test_required_fields_snapshot_V2_to_V1_upgrade 1"
+] = """{
   "distributionID": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
   "senderID": "fr.health.samuA",
   "dateTimeSent": "2022-09-27T08:23:34+02:00",
@@ -343,9 +353,11 @@ snapshots['TestSnapshotV2V1Converter::test_required_fields_snapshot_V2_to_V1_upg
       }
     }
   ]
-}'''
+}"""
 
-snapshots['TestSnapshotV2V3Converter::test_exhaustive_snapshot_V2_to_V3_upgrade 1'] = '''{
+snapshots[
+    "TestSnapshotV2V3Converter::test_exhaustive_snapshot_V2_to_V3_upgrade 1"
+] = """{
   "distributionID": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
   "senderID": "fr.health.samuA",
   "dateTimeSent": "2022-09-27T08:23:34+02:00",
@@ -434,9 +446,11 @@ snapshots['TestSnapshotV2V3Converter::test_exhaustive_snapshot_V2_to_V3_upgrade 
       }
     }
   ]
-}'''
+}"""
 
-snapshots['TestSnapshotV2V3Converter::test_exhaustive_snapshot_V3_to_V2_upgrade 1'] = '''{
+snapshots[
+    "TestSnapshotV2V3Converter::test_exhaustive_snapshot_V3_to_V2_upgrade 1"
+] = """{
   "distributionID": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
   "senderID": "fr.health.samuA",
   "dateTimeSent": "2022-09-27T08:23:34+02:00",
@@ -539,9 +553,11 @@ snapshots['TestSnapshotV2V3Converter::test_exhaustive_snapshot_V3_to_V2_upgrade 
       }
     }
   ]
-}'''
+}"""
 
-snapshots['TestSnapshotV2V3Converter::test_required_fields_snapshot_V2_to_V3_upgrade 1'] = '''{
+snapshots[
+    "TestSnapshotV2V3Converter::test_required_fields_snapshot_V2_to_V3_upgrade 1"
+] = """{
   "distributionID": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
   "senderID": "fr.health.samuA",
   "dateTimeSent": "2022-09-27T08:23:34+02:00",
@@ -589,9 +605,11 @@ snapshots['TestSnapshotV2V3Converter::test_required_fields_snapshot_V2_to_V3_upg
       }
     }
   ]
-}'''
+}"""
 
-snapshots['TestSnapshotV2V3Converter::test_required_fields_snapshot_V3_to_V2_upgrade 1'] = '''{
+snapshots[
+    "TestSnapshotV2V3Converter::test_required_fields_snapshot_V3_to_V2_upgrade 1"
+] = """{
   "distributionID": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
   "senderID": "fr.health.samuA",
   "dateTimeSent": "2022-09-27T08:23:34+02:00",
@@ -639,4 +657,4 @@ snapshots['TestSnapshotV2V3Converter::test_required_fields_snapshot_V3_to_V2_upg
       }
     }
   ]
-}'''
+}"""
