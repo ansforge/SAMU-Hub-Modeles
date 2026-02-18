@@ -21,28 +21,6 @@ module Rpis
     # A valoriser avec le libellé de la nomenclature associée. Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.
     attr_accessor :label
 
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -107,6 +85,11 @@ module Rpis
         invalid_properties.push('invalid value for "code", code cannot be nil.')
       end
 
+      pattern = Regexp.new(/^M\d{2}\.\d{2}(\.\d{2})?$/)
+      if @code !~ pattern
+        invalid_properties.push("invalid value for \"code\", must conform to the pattern #{pattern}.")
+      end
+
       if @label.nil?
         invalid_properties.push('invalid value for "label", label cannot be nil.')
       end
@@ -119,19 +102,23 @@ module Rpis
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @code.nil?
-      code_validator = EnumAttributeValidator.new('String', ["M01.00", "M01.01", "M01.02", "M01.03", "M02.00", "M02.01", "M02.02", "M02.03", "M02.04", "M02.05", "M02.06", "M02.07", "M02.08", "M02.09", "M02.10", "M03.00", "M03.01", "M03.02", "M03.03", "M03.04", "M03.05", "M03.06", "M03.07", "M03.08", "M03.09", "M03.10", "M03.11", "M03.12", "M03.13", "M03.14", "M03.15", "M03.16", "M03.17", "M03.18", "M03.19", "M03.20", "M03.21", "M03.22", "M04.00", "M04.01", "M04.02", "M04.03", "M04.04", "M05.00", "M05.01", "M05.02", "M06.00", "M06.01", "M06.02", "M06.03", "M06.04", "M07.00"])
-      return false unless code_validator.valid?(@code)
+      return false if @code !~ Regexp.new(/^M\d{2}\.\d{2}(\.\d{2})?$/)
       return false if @label.nil?
       true
     end
 
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] code Object to be assigned
+    # Custom attribute writer method with validation
+    # @param [Object] code Value to be assigned
     def code=(code)
-      validator = EnumAttributeValidator.new('String', ["M01.00", "M01.01", "M01.02", "M01.03", "M02.00", "M02.01", "M02.02", "M02.03", "M02.04", "M02.05", "M02.06", "M02.07", "M02.08", "M02.09", "M02.10", "M03.00", "M03.01", "M03.02", "M03.03", "M03.04", "M03.05", "M03.06", "M03.07", "M03.08", "M03.09", "M03.10", "M03.11", "M03.12", "M03.13", "M03.14", "M03.15", "M03.16", "M03.17", "M03.18", "M03.19", "M03.20", "M03.21", "M03.22", "M04.00", "M04.01", "M04.02", "M04.03", "M04.04", "M05.00", "M05.01", "M05.02", "M06.00", "M06.01", "M06.02", "M06.03", "M06.04", "M07.00"])
-      unless validator.valid?(code)
-        fail ArgumentError, "invalid value for \"code\", must be one of #{validator.allowable_values}."
+      if code.nil?
+        fail ArgumentError, 'code cannot be nil'
       end
+
+      pattern = Regexp.new(/^M\d{2}\.\d{2}(\.\d{2})?$/)
+      if code !~ pattern
+        fail ArgumentError, "invalid value for \"code\", must conform to the pattern #{pattern}."
+      end
+
       @code = code
     end
 

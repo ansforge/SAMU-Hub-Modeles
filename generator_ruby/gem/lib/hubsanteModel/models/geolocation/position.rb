@@ -94,7 +94,7 @@ module Geolocation
         :'datetime' => :'Time',
         :'coord' => :'Coord',
         :'speed' => :'Float',
-        :'cap' => :'String',
+        :'cap' => :'Float',
         :'move' => :'String',
         :'engine_on' => :'Boolean',
         :'ground_status' => :'Boolean',
@@ -180,7 +180,7 @@ module Geolocation
         invalid_properties.push('invalid value for "resource_id", resource_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$/)
       if @resource_id !~ pattern
         invalid_properties.push("invalid value for \"resource_id\", must conform to the pattern #{pattern}.")
       end
@@ -206,7 +206,7 @@ module Geolocation
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @resource_id.nil?
-      return false if @resource_id !~ Regexp.new(/^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$/)
+      return false if @resource_id !~ Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$/)
       return false if @datetime.nil?
       return false if @datetime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
       return false if @coord.nil?
@@ -226,7 +226,7 @@ module Geolocation
         fail ArgumentError, 'resource_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$/)
       if resource_id !~ pattern
         fail ArgumentError, "invalid value for \"resource_id\", must conform to the pattern #{pattern}."
       end

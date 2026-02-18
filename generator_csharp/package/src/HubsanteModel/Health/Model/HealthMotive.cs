@@ -109,7 +109,7 @@ namespace HubsanteModel/Health.Model
         {
             if (this.Code != null) {
                 // Code (string) pattern
-                Regex regexCode = new Regex(@"^M\d{2}\.\d{2}$", RegexOptions.CultureInvariant);
+                Regex regexCode = new Regex(@"^M\d{2}\.\d{2}(\.\d{2})?$", RegexOptions.CultureInvariant);
                 if (!regexCode.Match(this.Code).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Code, must match a pattern of " + regexCode, new [] { "Code" });

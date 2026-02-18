@@ -104,12 +104,12 @@ module Documentlink
         invalid_properties.push('invalid value for "case_id", case_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/^([\w-]+\.?){4,10}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.?){4,10}$/)
       if @case_id !~ pattern
         invalid_properties.push("invalid value for \"case_id\", must conform to the pattern #{pattern}.")
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}patient(\.[a-zA-Z0-9_-]+){1,2}$/)
       if !@patient_id.nil? && @patient_id !~ pattern
         invalid_properties.push("invalid value for \"patient_id\", must conform to the pattern #{pattern}.")
       end
@@ -130,8 +130,8 @@ module Documentlink
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @case_id.nil?
-      return false if @case_id !~ Regexp.new(/^([\w-]+\.?){4,10}$/)
-      return false if !@patient_id.nil? && @patient_id !~ Regexp.new(/^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$/)
+      return false if @case_id !~ Regexp.new(/^([a-zA-Z0-9_-]+\.?){4,10}$/)
+      return false if !@patient_id.nil? && @patient_id !~ Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}patient(\.[a-zA-Z0-9_-]+){1,2}$/)
       return false if @document.nil?
       return false if @document.length < 1
       true
@@ -144,7 +144,7 @@ module Documentlink
         fail ArgumentError, 'case_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.?){4,10}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.?){4,10}$/)
       if case_id !~ pattern
         fail ArgumentError, "invalid value for \"case_id\", must conform to the pattern #{pattern}."
       end
@@ -159,7 +159,7 @@ module Documentlink
         fail ArgumentError, 'patient_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,8}patient(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}patient(\.[a-zA-Z0-9_-]+){1,2}$/)
       if patient_id !~ pattern
         fail ArgumentError, "invalid value for \"patient_id\", must conform to the pattern #{pattern}."
       end

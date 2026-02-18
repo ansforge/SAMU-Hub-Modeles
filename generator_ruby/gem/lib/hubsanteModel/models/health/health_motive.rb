@@ -85,7 +85,7 @@ module Health
         invalid_properties.push('invalid value for "code", code cannot be nil.')
       end
 
-      pattern = Regexp.new(/^M\d{2}\.\d{2}$/)
+      pattern = Regexp.new(/^M\d{2}\.\d{2}(\.\d{2})?$/)
       if @code !~ pattern
         invalid_properties.push("invalid value for \"code\", must conform to the pattern #{pattern}.")
       end
@@ -102,7 +102,7 @@ module Health
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @code.nil?
-      return false if @code !~ Regexp.new(/^M\d{2}\.\d{2}$/)
+      return false if @code !~ Regexp.new(/^M\d{2}\.\d{2}(\.\d{2})?$/)
       return false if @label.nil?
       true
     end
@@ -114,7 +114,7 @@ module Health
         fail ArgumentError, 'code cannot be nil'
       end
 
-      pattern = Regexp.new(/^M\d{2}\.\d{2}$/)
+      pattern = Regexp.new(/^M\d{2}\.\d{2}(\.\d{2})?$/)
       if code !~ pattern
         fail ArgumentError, "invalid value for \"code\", must conform to the pattern #{pattern}."
       end

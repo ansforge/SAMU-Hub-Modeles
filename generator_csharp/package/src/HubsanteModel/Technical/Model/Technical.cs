@@ -397,7 +397,7 @@ namespace HubsanteModel/Technical.Model
 
             if (this.EmailField != null) {
                 // EmailField (string) pattern
-                Regex regexEmailField = new Regex(@"^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$", RegexOptions.CultureInvariant);
+                Regex regexEmailField = new Regex(@"^[a-zA-Z0-9_.-]+@([a-zA-Z0-9_-]+\.)+[a-zA-Z0-9_-]{2,4}$", RegexOptions.CultureInvariant);
                 if (!regexEmailField.Match(this.EmailField).Success)
                 {
                     yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EmailField, must match a pattern of " + regexEmailField, new [] { "EmailField" });

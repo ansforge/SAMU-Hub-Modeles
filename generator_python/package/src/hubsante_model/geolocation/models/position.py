@@ -33,7 +33,7 @@ class Position(BaseModel):
     datetime: str = Field(description="Date et heure de réception des coordonnées transmises")
     coord: Coord
     speed: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Vitesse de la ressource enregistrée, exprimée en km/h")
-    cap: Optional[StrictStr] = Field(default=None, description="Direction de la ressource, exprimé en degrés")
+    cap: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Direction de la ressource, exprimé en degrés")
     move: Optional[StrictStr] = Field(default=None, description="Indique si la ressource est en mouvement (MOBILE) ou non (STATIQUE)")
     engine_on: Optional[StrictBool] = Field(default=None, description="Indique si le moteur de la ressource est éteint (FAUX) ou allumé/en marche (VRAI)", alias="engineOn")
     ground_status: Optional[StrictBool] = Field(default=None, description="Indique si l'hélicoptère est au sol (VRAI) ou en l'air (FAUX)", alias="groundStatus")
@@ -44,8 +44,8 @@ class Position(BaseModel):
     @field_validator('resource_id')
     def resource_id_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not re.match(r"^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$", value):
-            raise ValueError(r"must validate the regular expression /^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$/")
+        if not re.match(r"^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$", value):
+            raise ValueError(r"must validate the regular expression /^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$/")
         return value
 
     @field_validator('datetime')

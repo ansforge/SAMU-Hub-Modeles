@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,15 +27,15 @@ class HealthMotive(BaseModel):
     """
     HealthMotive
     """ # noqa: E501
-    code: StrictStr = Field(description="A valoriser avec le code de la nomenclature associée.")
+    code: Annotated[str, Field(strict=True)] = Field(description="A valoriser avec le code de la nomenclature associée.")
     label: StrictStr = Field(description="A valoriser avec le libellé de la nomenclature associée. Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.")
     __properties: ClassVar[List[str]] = ["code", "label"]
 
     @field_validator('code')
-    def code_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['M01.00', 'M01.01', 'M01.02', 'M01.03', 'M02.00', 'M02.01', 'M02.02', 'M02.03', 'M02.04', 'M02.05', 'M02.06', 'M02.07', 'M02.08', 'M02.09', 'M02.10', 'M03.00', 'M03.01', 'M03.02', 'M03.03', 'M03.04', 'M03.05', 'M03.06', 'M03.07', 'M03.08', 'M03.09', 'M03.10', 'M03.11', 'M03.12', 'M03.13', 'M03.14', 'M03.15', 'M03.16', 'M03.17', 'M03.18', 'M03.19', 'M03.20', 'M03.21', 'M03.22', 'M04.00', 'M04.01', 'M04.02', 'M04.03', 'M04.04', 'M05.00', 'M05.01', 'M05.02', 'M06.00', 'M06.01', 'M06.02', 'M06.03', 'M06.04', 'M07.00']):
-            raise ValueError("must be one of enum values ('M01.00', 'M01.01', 'M01.02', 'M01.03', 'M02.00', 'M02.01', 'M02.02', 'M02.03', 'M02.04', 'M02.05', 'M02.06', 'M02.07', 'M02.08', 'M02.09', 'M02.10', 'M03.00', 'M03.01', 'M03.02', 'M03.03', 'M03.04', 'M03.05', 'M03.06', 'M03.07', 'M03.08', 'M03.09', 'M03.10', 'M03.11', 'M03.12', 'M03.13', 'M03.14', 'M03.15', 'M03.16', 'M03.17', 'M03.18', 'M03.19', 'M03.20', 'M03.21', 'M03.22', 'M04.00', 'M04.01', 'M04.02', 'M04.03', 'M04.04', 'M05.00', 'M05.01', 'M05.02', 'M06.00', 'M06.01', 'M06.02', 'M06.03', 'M06.04', 'M07.00')")
+    def code_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^M\d{2}\.\d{2}(\.\d{2})?$", value):
+            raise ValueError(r"must validate the regular expression /^M\d{2}\.\d{2}(\.\d{2})?$/")
         return value
 
     model_config = ConfigDict(
