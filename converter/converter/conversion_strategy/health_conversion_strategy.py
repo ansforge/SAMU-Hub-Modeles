@@ -31,7 +31,7 @@ from converter.versions.resources_engagement.resources_engagement_converter impo
 from converter.versions.geo_positions_update.geo_positions_update_converter import (
     GeoPositionsUpdateConverter,
 )
-from converter.versions.rpis.rpis_converter import RpisConverter
+
 import logging
 
 from converter.utils import (
@@ -75,8 +75,6 @@ def select_conversion_strategy(message_content):
         return IdenticalMessageConverter
     elif "geoResourcesDetails" in message_content:
         return GeoResourcesDetailsConverter
-    elif "rpis" in message_content:
-        return RpisConverter
     elif "interventionReport" in message_content:
         return InterventionReportConverter
     else:
