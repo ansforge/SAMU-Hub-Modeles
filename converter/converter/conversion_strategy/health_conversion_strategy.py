@@ -6,9 +6,6 @@ from converter.versions.identical_message_converter import IdenticalMessageConve
 from converter.versions.geo_resources_details.geo_resources_details_converter import (
     GeoResourcesDetailsConverter,
 )
-from converter.versions.intervention_report.intervention_report_converter import (
-    InterventionReportConverter,
-)
 from converter.versions.reference.reference_converter import ReferenceConverter
 from converter.versions.create_case_health.create_case_health_converter import (
     CreateHealthCaseConverter,
@@ -31,7 +28,6 @@ from converter.versions.resources_engagement.resources_engagement_converter impo
 from converter.versions.geo_positions_update.geo_positions_update_converter import (
     GeoPositionsUpdateConverter,
 )
-
 import logging
 
 from converter.utils import (
@@ -75,8 +71,6 @@ def select_conversion_strategy(message_content):
         return IdenticalMessageConverter
     elif "geoResourcesDetails" in message_content:
         return GeoResourcesDetailsConverter
-    elif "interventionReport" in message_content:
-        return InterventionReportConverter
     else:
         deducted_message_type = extract_message_type_from_message_content(
             message_content

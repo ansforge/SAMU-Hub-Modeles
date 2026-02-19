@@ -151,12 +151,3 @@ class TestConversionStrategy(unittest.TestCase):
     ):
         args = self.run_health_conversion_strategy(TestConstants.GEO_RES_TAG)
         mock_convert.assert_called_once_with(*args)
-
-    @patch(
-        "converter.versions.intervention_report.intervention_report_converter.InterventionReportConverter.convert"
-    )
-    def test_health_conversion_strategy_should_convert_intervention_report_message(
-        self, mock_convert
-    ):
-        args = self.run_health_conversion_strategy(TestConstants.RS_BPV_TAG)
-        mock_convert.assert_called_once_with(*args)
