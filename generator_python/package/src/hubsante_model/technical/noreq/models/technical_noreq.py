@@ -94,8 +94,8 @@ class TechnicalNoreq(BaseModel):
         if value is None:
             return value
 
-        if not re.match(r"^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$", value):
-            raise ValueError(r"must validate the regular expression /^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$/")
+        if not re.match(r"^[a-zA-Z0-9_.-]+@([a-zA-Z0-9_-]+\.)+[a-zA-Z0-9_-]{2,4}$", value):
+            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9_.-]+@([a-zA-Z0-9_-]+\.)+[a-zA-Z0-9_-]{2,4}$/")
         return value
 
     @field_validator('datetime_field')

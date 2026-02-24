@@ -164,7 +164,7 @@ module Geolocation
         invalid_properties.push('invalid value for "resource_id", resource_id cannot be nil.')
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$/)
       if @resource_id !~ pattern
         invalid_properties.push("invalid value for \"resource_id\", must conform to the pattern #{pattern}.")
       end
@@ -185,7 +185,7 @@ module Geolocation
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @resource_id.nil?
-      return false if @resource_id !~ Regexp.new(/^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$/)
+      return false if @resource_id !~ Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$/)
       return false if @org_id.nil?
       return false if @resource_type.nil?
       resource_type_validator = EnumAttributeValidator.new('String', ["SMUR", "SDIS", "TSU", "SNP", "MSPE", "SHIP"])
@@ -206,7 +206,7 @@ module Geolocation
         fail ArgumentError, 'resource_id cannot be nil'
       end
 
-      pattern = Regexp.new(/^([\w-]+\.){3,8}resource(\.[\w-]+){1,2}$/)
+      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$/)
       if resource_id !~ pattern
         fail ArgumentError, "invalid value for \"resource_id\", must conform to the pattern #{pattern}."
       end
