@@ -6,7 +6,6 @@ build/**
 reportgeneratortool/**
 coveragereport/**
 
-web_specs/generated/**
 bin/
 
 # À versionner pour suivre la version d'OpenAPI utilisé pour la génération

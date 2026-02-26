@@ -211,7 +211,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         if: steps.filter.outputs.parsing_required == 'true'
         with:
-          commit_message: ⚙️ Auto-génération des classes et des specs
+          commit_message: ⚙️ Auto-génération des classes
 
       - name: Build and run TECHNICAL tests
         run: ./gradlew test --info -Ptechnical=true

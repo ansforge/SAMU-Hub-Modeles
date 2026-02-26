@@ -10,7 +10,7 @@ import test_case_generator
 # ---------------------------------------- ARGS CONFIGURATION
 parser = argparse.ArgumentParser(
     prog='Workflow Automator',
-    description='Automates the build workflow for the model (specs, schemas, ... )',
+    description='Automates the build workflow for the model (schemas, classes... )',
 )
 parser.add_argument('-s', '--stage', required=True, choices=['parser_and_mv', 'test_case_parser', 'output_schemas_yaml'],
                     help='The workflow stage to run')
