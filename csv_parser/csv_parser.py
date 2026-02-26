@@ -21,7 +21,6 @@ pd.set_option('display.width', 1000)
 # Ignoring Openpyxl Excel's warnings | Ref.: https://stackoverflow.com/a/64420416
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
-full_asyncapi = None
 all_model_types = []
 first_codeandlabel_name = ""
 first_codeandlabel_properties = []
@@ -773,24 +772,6 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         documents = documents.replace('#/definitions/', "#/components/schemas/")
         file.write(documents)
     print('OpenAPI schema generated.')
-
-    print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Collecting AsyncAPI spec...{Color.END}')
-    with open('template.asyncapi.yaml') as f:
-        asyncapi_yaml = yaml.load(f, Loader=yaml.loader.SafeLoader)
-
-        asyncapi_yaml['components']['schemas'] = {
-            **asyncapi_yaml['components']['schemas'],
-            **common_openapi_components['components']['schemas'],
-            **openapi_components
-        }
-
-        # Adding current asyncapi schemas to full asyncapi schema
-        global full_asyncapi
-        if full_asyncapi is None:
-            full_asyncapi = asyncapi_yaml
-        else:
-            full_asyncapi['components']['schemas'].update(asyncapi_yaml['components']['schemas'])
-    print('AsyncAPI schema collected.')
 
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating UML diagrams...{Color.END}')
     uml_generator.run(name, MODEL_TYPE, version=version)

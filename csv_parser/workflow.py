@@ -10,7 +10,7 @@ import test_case_generator
 # ---------------------------------------- ARGS CONFIGURATION
 parser = argparse.ArgumentParser(
     prog='Workflow Automator',
-    description='Automates the build workflow for the model (specs, schemas, ... )',
+    description='Automates the build workflow for the model (schemas, classes... )',
 )
 parser.add_argument('-s', '--stage', required=True, choices=['parser_and_mv', 'test_case_parser', 'output_schemas_yaml'],
                     help='The workflow stage to run')
@@ -81,17 +81,6 @@ def parser_and_mv():
             if os.path.exists(f"../src/main/resources/json-schema/{name}.schema.json"):
                 os.remove(f"../src/main/resources/json-schema/{name}.schema.json")
             os.rename(f"./out/{name}/{name}.schema.json", f"../src/main/resources/json-schema/{name}.schema.json")
-
-        with open(f'out/hubsante.asyncapi.yaml', 'w') as file:
-            # Adding possible message types to EmbeddedJsonContent and EmbeddedXMLContent
-            schemaRefs = list(map(lambda m: {'$ref': f"#/components/schemas/{m}"}, csv_parser.all_model_types))
-            csv_parser.full_asyncapi['components']['schemas']['EmbeddedJsonContent']['oneOf'] = schemaRefs
-            csv_parser.full_asyncapi['components']['schemas']['EmbeddedXMLContent']['oneOf'] = schemaRefs
-
-            documents = yaml.dump(csv_parser.full_asyncapi, sort_keys=False)
-            documents = documents.replace('#/definitions/', "#/components/schemas/")
-            file.write(documents)
-        print('AsyncAPI schema generated.')
 
 
 def test_case_parser():

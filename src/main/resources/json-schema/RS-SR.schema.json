@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-SR.schema.json#",
-    "version": "26.02.03",
+    "version": "26.02.26",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesStatus",
