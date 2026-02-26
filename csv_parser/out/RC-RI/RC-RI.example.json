@@ -20,6 +20,13 @@
                 "status": "ARRIVE",
                 "availability": "FALSE"
             },
+            "position": {
+                "datetime": "None",
+                "coord": {
+                    "lat": "None",
+                    "lon": "None"
+                }
+            },
             "contact": {
                 "type": "PHNADD",
                 "details": "+33671830530"

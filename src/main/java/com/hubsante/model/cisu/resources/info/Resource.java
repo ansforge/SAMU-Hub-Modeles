@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.resources.info.Contact;
+import com.hubsante.model.cisu.resources.info.Position;
 import com.hubsante.model.cisu.resources.info.State;
 import com.hubsante.model.cisu.resources.info.Team;
 import java.time.OffsetDateTime;
@@ -53,8 +54,8 @@ import java.util.Objects;
      Resource.JSON_PROPERTY_ORG_ID, Resource.JSON_PROPERTY_CENTER_NAME,
      Resource.JSON_PROPERTY_VEHICLE_TYPE, Resource.JSON_PROPERTY_NAME,
      Resource.JSON_PROPERTY_CENTER_CITY, Resource.JSON_PROPERTY_TEAM,
-     Resource.JSON_PROPERTY_STATE, Resource.JSON_PROPERTY_CONTACT,
-     Resource.JSON_PROPERTY_FREETEXT})
+     Resource.JSON_PROPERTY_STATE, Resource.JSON_PROPERTY_POSITION,
+     Resource.JSON_PROPERTY_CONTACT, Resource.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("resource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -83,9 +84,7 @@ public class Resource {
   public enum VehicleTypeEnum {
     SMUR("SMUR"),
 
-    SIS("SIS"),
-
-    AUTRE("AUTRE");
+    SIS("SIS");
 
     private String value;
 
@@ -126,6 +125,9 @@ public class Resource {
 
   public static final String JSON_PROPERTY_STATE = "state";
   private State state;
+
+  public static final String JSON_PROPERTY_POSITION = "position";
+  private Position position;
 
   public static final String JSON_PROPERTY_CONTACT = "contact";
   private Contact contact;
@@ -400,6 +402,29 @@ public class Resource {
     this.state = state;
   }
 
+  public Resource position(Position position) {
+
+    this.position = position;
+    return this;
+  }
+
+  /**
+   * Get position
+   * @return position
+   **/
+  @JsonProperty(JSON_PROPERTY_POSITION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Position getPosition() {
+    return position;
+  }
+
+  @JsonProperty(JSON_PROPERTY_POSITION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPosition(Position position) {
+    this.position = position;
+  }
+
   public Resource contact(Contact contact) {
 
     this.contact = contact;
@@ -482,6 +507,7 @@ public class Resource {
         Objects.equals(this.centerCity, resource.centerCity) &&
         Objects.equals(this.team, resource.team) &&
         Objects.equals(this.state, resource.state) &&
+        Objects.equals(this.position, resource.position) &&
         Objects.equals(this.contact, resource.contact) &&
         Objects.equals(this.freetext, resource.freetext);
   }
@@ -490,7 +516,7 @@ public class Resource {
   public int hashCode() {
     return Objects.hash(datetime, resourceId, requestId, missionId, orgId,
                         centerName, vehicleType, name, centerCity, team, state,
-                        contact, freetext);
+                        position, contact, freetext);
   }
 
   @Override
@@ -520,6 +546,7 @@ public class Resource {
         .append("\n");
     sb.append("    team: ").append(toIndentedString(team)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
+    sb.append("    position: ").append(toIndentedString(position)).append("\n");
     sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");

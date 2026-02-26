@@ -139,7 +139,6 @@ components:
           enum:
           - SMUR
           - SIS
-          - AUTRE
           examples:
           - SMUR
         name:
@@ -166,6 +165,8 @@ components:
           $ref: '#/components/schemas/team'
         state:
           $ref: '#/components/schemas/state'
+        position:
+          $ref: '#/components/schemas/position'
         contact:
           $ref: '#/components/schemas/contact'
         freetext:
@@ -287,6 +288,30 @@ components:
       - datetime: '2022-09-27T08:23:34+02:00'
         status: ARRIVE
         availability: 'FALSE'
+    position:
+      type: object
+      title: Position du vecteur
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - datetime
+      - coord
+      properties:
+        datetime:
+          type: string
+          title: Date/heure de la position
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/resource/0/position/datetime
+          description: "A valoriser avec la date et heure associ\xE9e \xE0 la position"
+          pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
+          format: date-time
+          examples:
+          - None
+        coord:
+          $ref: '#/components/schemas/coord'
+      additionalProperties: false
+      example: example.json#/resource/0/position
     contact:
       type: object
       title: Contact
@@ -328,3 +353,35 @@ components:
       examples:
       - type: PHNADD
         details: '+33671830530'
+    coord:
+      type: object
+      title: "Coordonn\xE9es de la position"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - lat
+      - lon
+      properties:
+        lat:
+          type: number
+          title: Latitude
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/resource/0/position/coord/lat
+          description: A valoriser avec la latitude de la position
+          examples:
+          - None
+        lon:
+          type: number
+          title: Longitude
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/resource/0/position/coord/lon
+          description: A valoriser avec la longitude de la position
+          examples:
+          - None
+      additionalProperties: false
+      example: example.json#/resource/0/position/coord
+      examples:
+      - lat: None
+        lon: None

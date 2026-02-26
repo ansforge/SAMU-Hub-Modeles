@@ -41,8 +41,6 @@ import com.hubsante.model.resources.info.ResourcesEngagement;
 import com.hubsante.model.resources.info.ResourcesEngagementWrapper;
 import com.hubsante.model.resources.status.ResourcesStatus;
 import com.hubsante.model.resources.status.ResourcesStatusWrapper;
-import com.hubsante.model.cisu.resources.status.ResourcesStatusCisu;
-import com.hubsante.model.cisu.resources.status.ResourcesStatusCisuWrapper;
 import com.hubsante.model.resources.request.ResourcesRequest;
 import com.hubsante.model.resources.request.ResourcesRequestWrapper;
 import com.hubsante.model.resources.response.ResourcesResponse;
@@ -84,7 +82,6 @@ import java.util.stream.Stream;
         @JsonSubTypes.Type(ResourcesInfoCisuWrapper.class),
         @JsonSubTypes.Type(ResourcesEngagementWrapper.class),
         @JsonSubTypes.Type(ResourcesStatusWrapper.class),
-        @JsonSubTypes.Type(ResourcesStatusCisuWrapper.class),
         @JsonSubTypes.Type(ResourcesRequestWrapper.class),
         @JsonSubTypes.Type(ResourcesResponseWrapper.class),
         @JsonSubTypes.Type(RpisWrapper.class),
@@ -130,7 +127,6 @@ public class ContentMessage {
                   {"resourcesInfoCisu", ResourcesInfoCisu.class.getCanonicalName()},
                   {"resourcesEngagement", ResourcesEngagement.class.getCanonicalName()},
                   {"resourcesStatus", ResourcesStatus.class.getCanonicalName()},
-                  {"resourcesStatusCisu", ResourcesStatusCisu.class.getCanonicalName()},
                   {"resourcesRequest", ResourcesRequest.class.getCanonicalName()},
                   {"resourcesResponse", ResourcesResponse.class.getCanonicalName()},
                   {"rpis", Rpis.class.getCanonicalName()},

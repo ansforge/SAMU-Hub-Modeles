@@ -21,7 +21,7 @@ fr.health.samu690.request.DRFR15690242370035.3",requestId,0..1,,string,"REGEX: ^
 ,ID Organisation propriétaire,,,,,"A valoriser avec l'identifiant de l'organisation à laquelle appartient la ressource, normé comme suit : 
 {pays}.{domaine}.{organisation}",fr.health.samu440,orgId,0..1,,string,
 ,Nom du centre d’affectation,,,,,A valoriser avec le lieu de garage principal,CHU Nantes,centerName,0..1,,string,
-,Type de vecteur,,,,,A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée,SMUR,vehicleType,1..1,,string,"ENUM: SMUR, SIS, AUTRE"
+,Type de vecteur,,,,,A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée,SMUR,vehicleType,1..1,,string,"ENUM: SMUR, SIS"
 ,Nom du vecteur,,,,,A valoriser avec le nom donné à la ressource par l’organisation d’appartenance,SMUR 123,name,0..1,,string,
 ,Commune du centre d’affectation,,,,,A valoriser avec le code INSEE de la commune du centre d'affectation,44109,centerCity,0..1,,string,REGEX: ^[0-9]{5}$
 ,Equipe vecteur,,,,,Objet qui décrit l'équipe à bord du vecteur,,team,0..1,X,team,
@@ -34,8 +34,13 @@ fr.health.samu690.request.DRFR15690242370035.3",requestId,0..1,,string,"REGEX: ^
 TRUE = DISPONIBLE
 FALSE = INDISPONIBLE
 VIDE = INCONNU",FALSE,availability,0..1,,boolean,
-,Contact,,,,,"Objet qui permet de décrire le type et la valeur de l'URI utilisée par un contact, ici spécifiquement le contact du vecteur mobilisé.",,contact,0..1,X,contact,
-,,Type de contact ,,,,A valoriser avec le type de l'URI utilisée. Cf nomenclature associée.,PHNADD,type,0..1,,string,NOMENCLATURE: HubSante.typeCom
-,,URI du contact,,,,"A valoriser avec la valeur de l'URI utilisée
+,Position du vecteur,,,,,Objet qui permet de transmettre la position du vecteur,,position,0..1,X,position,
+,,Date/heure de la position,,,,A valoriser avec la date et heure associée à la position,,datetime,1..1,,datetime,
+,,Coordonnées de la position,,,,Objet qui permet de transmettre les coordonnées GPS du vecteur,,coord,1..1,X,coord,
+,,,Latitude,,,A valoriser avec la latitude de la position,,lat,1..1,,number,
+,,,Longitude,,,A valoriser avec la longitude de la position,,lon,1..1,,number,
+,Contact,,# Contactitude,,,"Objet qui permet de décrire le type et la valeur de l'URI utilisée par un contact, ici spécifiquement le contact du vecteur mobilisé.",,contact,0..1,X,contact,
+,,Type de contact ,# Typeitude,,,A valoriser avec le type de l'URI utilisée. Cf nomenclature associée.,PHNADD,type,0..1,,string,NOMENCLATURE: HubSante.typeCom
+,,URI du contact,# Detailsitude,,,"A valoriser avec la valeur de l'URI utilisée
 Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}",+33671830530,details,0..1,,string,
-,Commentaires,,,,,"Texte libre permettant de passer toute autre information sur la ressource (équipements supplémentaires / spécifiques, particularités du vecteur, etc.)",SMUR pédiatrique,freetext,0..n,,string,
+,Commentaires,,# Freetextitude,,,"Texte libre permettant de passer toute autre information sur la ressource (équipements supplémentaires / spécifiques, particularités du vecteur, etc.)",SMUR pédiatrique,freetext,0..n,,string,

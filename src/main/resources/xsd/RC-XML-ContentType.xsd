@@ -16,7 +16,6 @@
         xmlns:resourcesInfoCisu="urn:emergency:eda:1.9:resourcesinfocisu"
         xmlns:resourcesEngagement="urn:emergency:eda:1.9:resourcesengagement"
         xmlns:resourcesStatus="urn:emergency:eda:1.9:resourcesstatus"
-        xmlns:resourcesStatusCisu="urn:emergency:eda:1.9:resourcesstatuscisu"
         xmlns:resourcesRequest="urn:emergency:eda:1.9:resourcesrequest"
         xmlns:resourcesResponse="urn:emergency:eda:1.9:resourcesresponse"
         xmlns:rpis="urn:emergency:eda:1.9:rpis"
@@ -46,7 +45,6 @@
     <xs:import namespace="urn:emergency:eda:1.9:resourcesinfocisu" schemaLocation="RC-RI.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:resourcesengagement" schemaLocation="RS-ER.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:resourcesstatus" schemaLocation="RS-SR.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:resourcesstatuscisu" schemaLocation="RC-SR.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:resourcesrequest" schemaLocation="RS-DR.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:resourcesresponse" schemaLocation="RS-RR.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:rpis" schemaLocation="RS-RPIS.xsd"/>
@@ -88,7 +86,6 @@
                         <xs:element ref="resourcesInfoCisu:resourcesInfoCisu"/>
                         <xs:element ref="resourcesEngagement:resourcesEngagement"/>
                         <xs:element ref="resourcesStatus:resourcesStatus"/>
-                        <xs:element ref="resourcesStatusCisu:resourcesStatusCisu"/>
                         <xs:element ref="resourcesRequest:resourcesRequest"/>
                         <xs:element ref="resourcesResponse:resourcesResponse"/>
                         <xs:element ref="rpis:rpis"/>
