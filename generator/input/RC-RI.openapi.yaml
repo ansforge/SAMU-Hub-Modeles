@@ -271,7 +271,7 @@ components:
           - RET-BASE
           - REN-BASE
           examples:
-          - ARRIVE
+          - ARRIVEE
         availability:
           type: boolean
           title: "Disponibilit\xE9 du vecteur"
@@ -286,7 +286,7 @@ components:
       example: example.json#/resource/0/state
       examples:
       - datetime: '2022-09-27T08:23:34+02:00'
-        status: ARRIVE
+        status: ARRIVEE
         availability: 'FALSE'
     position:
       type: object
@@ -336,7 +336,7 @@ components:
           - TEL
           - WEB
           examples:
-          - PHNADD
+          - TEL
         details:
           type: string
           title: URI du contact
@@ -351,7 +351,7 @@ components:
       additionalProperties: false
       example: example.json#/resource/0/contact
       examples:
-      - type: PHNADD
+      - type: TEL
         details: '+33671830530'
     coord:
       type: object

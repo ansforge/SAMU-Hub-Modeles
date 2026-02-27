@@ -29,7 +29,7 @@ fr.health.samu690.request.DRFR15690242370035.3",requestId,0..1,,string,"REGEX: ^
 ,,Nom,,,,A valoriser avec le nom de l'équipe à bord du vecteur (celui communiqué par l'organisation à laquelle l'équipe appartient),Equipe A,name,0..1,,string,
 ,Etat vecteur,,,,,"Objet qui permet de décrire l'état d'un vecteur mobilisé - sous forme de liste, il permet de décrire l'historique des états connus d'un même vecteur. ",,state,1..1,X,state,
 ,,Date/heure de changement de statut,,,,A valoriser avec la date et heure d'engagement de changement vers le nouveau statut,2022-09-27T08:23:34+02:00,datetime,1..1,,datetime,Format datetime décrit dans le DSF
-,,Statut du vecteur,,,,A valoriser avec le statut du vecteur. Cf nomenclature associée.,ARRIVE,status,1..1,,string,NOMENCLATURE: HubSante.statutVecteur
+,,Statut du vecteur,,,,A valoriser avec le statut du vecteur. Cf nomenclature associée.,ARRIVEE,status,1..1,,string,NOMENCLATURE: HubSante.statutVecteur
 ,,Disponibilité du vecteur,,,,"A valoriser de manière à indiquer la disponibilité du vecteur.
 TRUE = DISPONIBLE
 FALSE = INDISPONIBLE
@@ -40,7 +40,7 @@ VIDE = INCONNU",FALSE,availability,0..1,,boolean,
 ,,,Latitude,,,A valoriser avec la latitude de la position,48.866667,lat,1..1,,number,
 ,,,Longitude,,,A valoriser avec la longitude de la position,2.333333,lon,1..1,,number,
 ,Contact,,,,,"Objet qui permet de décrire le type et la valeur de l'URI utilisée par un contact, ici spécifiquement le contact du vecteur mobilisé.",,contact,0..1,X,contact,
-,,Type de contact ,,,,A valoriser avec le type de l'URI utilisée. Cf nomenclature associée.,PHNADD,type,0..1,,string,NOMENCLATURE: HubSante.typeCom
+,,Type de contact ,,,,A valoriser avec le type de l'URI utilisée. Cf nomenclature associée.,TEL,type,0..1,,string,NOMENCLATURE: HubSante.typeCom
 ,,URI du contact,,,,"A valoriser avec la valeur de l'URI utilisée
 Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}",+33671830530,details,0..1,,string,
 ,Commentaires,,,,,"Texte libre permettant de passer toute autre information sur la ressource (équipements supplémentaires / spécifiques, particularités du vecteur, etc.)",SMUR pédiatrique,freetext,0..n,,string,
