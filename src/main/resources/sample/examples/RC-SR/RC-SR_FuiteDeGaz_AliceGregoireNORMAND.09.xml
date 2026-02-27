@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<resourcesStatusCisu xmlns="urn:emergency:eda:1.9:resourcesstatuscisu">
-  <caseId>fr.health.samu440.DRFR154402413800236</caseId>
-  <resourceId>fr.fire.sis044.cgo-044.resource.VSAV2</resourceId>
-  <state>
-    <datetime>2024-05-18T19:15:00+02:00</datetime>
-    <status>RET-BASE</status>
-  </state>
-</resourcesStatusCisu>

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-RI.schema.json#",
-    "version": "26.02.26",
+    "version": "26.02.27",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesInfoCisu",
@@ -102,8 +102,7 @@
                     "description": "A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée",
                     "enum": [
                         "SMUR",
-                        "SIS",
-                        "AUTRE"
+                        "SIS"
                     ]
                 },
                 "name": {
@@ -128,6 +127,9 @@
                 },
                 "state": {
                     "$ref": "#/definitions/state"
+                },
+                "position": {
+                    "$ref": "#/definitions/position"
                 },
                 "contact": {
                     "$ref": "#/definitions/contact"
@@ -241,6 +243,33 @@
             "additionalProperties": false,
             "example": "example.json#/resource/0/state"
         },
+        "position": {
+            "type": "object",
+            "title": "Position du vecteur",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "datetime",
+                "coord"
+            ],
+            "properties": {
+                "datetime": {
+                    "type": "string",
+                    "title": "Date/heure de la position",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/resource/0/position/datetime",
+                    "description": "A valoriser avec la date et heure associée à la position",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}$",
+                    "format": "date-time"
+                },
+                "coord": {
+                    "$ref": "#/definitions/coord"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/resource/0/position"
+        },
         "contact": {
             "type": "object",
             "title": "Contact",
@@ -276,6 +305,36 @@
             },
             "additionalProperties": false,
             "example": "example.json#/resource/0/contact"
+        },
+        "coord": {
+            "type": "object",
+            "title": "Coordonnées de la position",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "lat",
+                "lon"
+            ],
+            "properties": {
+                "lat": {
+                    "type": "number",
+                    "title": "Latitude",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/resource/0/position/coord/lat",
+                    "description": "A valoriser avec la latitude de la position"
+                },
+                "lon": {
+                    "type": "number",
+                    "title": "Longitude",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/resource/0/position/coord/lon",
+                    "description": "A valoriser avec la longitude de la position"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/resource/0/position/coord"
         }
     },
     "additionalProperties": false
