@@ -21,10 +21,10 @@
                 "availability": "FALSE"
             },
             "position": {
-                "datetime": "None",
+                "datetime": "2022-09-27T08:23:34+02:00",
                 "coord": {
-                    "lat": "None",
-                    "lon": "None"
+                    "lat": "48.866667",
+                    "lon": "2.333333"
                 }
             },
             "contact": {

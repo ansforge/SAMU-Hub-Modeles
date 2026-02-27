@@ -35,10 +35,10 @@ TRUE = DISPONIBLE
 FALSE = INDISPONIBLE
 VIDE = INCONNU",FALSE,availability,0..1,,boolean,
 ,Position du vecteur,,,,,Objet qui permet de transmettre la position du vecteur,,position,0..1,X,position,
-,,Date/heure de la position,,,,A valoriser avec la date et heure associée à la position,,datetime,1..1,,datetime,
+,,Date/heure de la position,,,,A valoriser avec la date et heure associée à la position,2022-09-27T08:23:34+02:00,datetime,1..1,,datetime,
 ,,Coordonnées de la position,,,,Objet qui permet de transmettre les coordonnées GPS du vecteur,,coord,1..1,X,coord,
-,,,Latitude,,,A valoriser avec la latitude de la position,,lat,1..1,,number,
-,,,Longitude,,,A valoriser avec la longitude de la position,,lon,1..1,,number,
+,,,Latitude,,,A valoriser avec la latitude de la position,48.866667,lat,1..1,,number,
+,,,Longitude,,,A valoriser avec la longitude de la position,2.333333,lon,1..1,,number,
 ,Contact,,,,,"Objet qui permet de décrire le type et la valeur de l'URI utilisée par un contact, ici spécifiquement le contact du vecteur mobilisé.",,contact,0..1,X,contact,
 ,,Type de contact ,,,,A valoriser avec le type de l'URI utilisée. Cf nomenclature associée.,PHNADD,type,0..1,,string,NOMENCLATURE: HubSante.typeCom
 ,,URI du contact,,,,"A valoriser avec la valeur de l'URI utilisée

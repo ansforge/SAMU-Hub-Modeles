@@ -307,7 +307,7 @@ components:
           pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
-          - None
+          - '2022-09-27T08:23:34+02:00'
         coord:
           $ref: '#/components/schemas/coord'
       additionalProperties: false
@@ -370,7 +370,7 @@ components:
           example: example.json#/resource/0/position/coord/lat
           description: A valoriser avec la latitude de la position
           examples:
-          - None
+          - '48.866667'
         lon:
           type: number
           title: Longitude
@@ -379,9 +379,9 @@ components:
           example: example.json#/resource/0/position/coord/lon
           description: A valoriser avec la longitude de la position
           examples:
-          - None
+          - '2.333333'
       additionalProperties: false
       example: example.json#/resource/0/position/coord
       examples:
-      - lat: None
-        lon: None
+      - lat: '48.866667'
+        lon: '2.333333'
