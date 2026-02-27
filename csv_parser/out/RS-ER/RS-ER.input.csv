@@ -11,4 +11,4 @@ Ressource,,,,,,Objet permettant de communquer la liste des ressource et vecteurs
 ,Equipe vecteur,,,,,Objet qui décrit l'équipe à bord du vecteur,,team,0..1,X,team,
 ,,Type,,,,A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature associée,MED,medicalLevel,0..1,,string,NOMENCLATURE: HubSante.typePEC
 ,,Nom,,,,A valoriser avec le nom de l'équipe à bord du vecteur (celui communiqué par l'organisation à laquelle l'équipe appartient),Equipe A,name,0..1,,string,
-,Commentaires,,# Freetextitude,,,"Texte libre permettant de passer toute autre information sur la ressource (équipements supplémentaires / spécifiques, particularités du vecteur, etc.)",SMUR pédiatrique,freetext,0..n,,string,
+,Commentaires,,,,,"Texte libre permettant de passer toute autre information sur la ressource (équipements supplémentaires / spécifiques, particularités du vecteur, etc.)",SMUR pédiatrique,freetext,0..n,,string,
