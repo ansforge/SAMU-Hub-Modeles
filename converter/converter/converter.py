@@ -3,6 +3,7 @@ import logging
 import os
 from prometheus_flask_exporter.multiprocess import GunicornInternalPrometheusMetrics
 from prometheus_flask_exporter import PrometheusMetrics
+from pymongo import timeout
 
 from converter.conversion_strategy.conversion_strategy import conversion_strategy
 from converter.utils import (
@@ -12,7 +13,7 @@ from converter.utils import (
     extract_message_content,
 )
 from converter.logging_config import configure_logging, LoggingKeys
-from converter.database import init_db, get_client
+from converter.database import init_db, get_db
 
 configure_logging()
 
@@ -98,9 +99,20 @@ def convert():
 
 @app.route("/health", methods=["GET"])
 def health_check():
+    try:
+        with timeout(5):
+            get_db().command("ping")
+            db_status = "UP"
+    except Exception:
+        db_status = "DOWN"
+
+    status = "UP" if db_status == "UP" else "DEGRADED"
     return jsonify(
         {
-            "status": "UP",
+            "status": status,
+            "components": {
+                "mongodb": db_status,
+            },
         }
     ), 200
 
