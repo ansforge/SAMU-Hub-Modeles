@@ -218,11 +218,23 @@ def test_convert_to_cisu_with_invalid_cisu_source_version(client):
     assert "Unknown source version" in response.json["error"]
 
 
-def test_health_endpoint(client):
+def test_health_endpoint(client, mocker):
+    mock_client = mocker.MagicMock()
+    app.extensions["mongodb_client"] = mock_client
+
     response = client.get("/health")
-    expected_response = {
-        "status": "UP",
-    }
 
     assert response.status_code == 200
-    assert expected_response == response.json
+    assert response.json == {"status": "UP", "mongodb": "UP"}
+    mock_client.admin.command.assert_called_once_with("ping")
+
+
+def test_health_endpoint_mongodb_down(client, mocker):
+    mock_client = mocker.MagicMock()
+    mock_client.admin.command.side_effect = Exception("connection refused")
+    app.extensions["mongodb_client"] = mock_client
+
+    response = client.get("/health")
+
+    assert response.status_code == 200
+    assert response.json == {"status": "DEGRADED", "mongodb": "DOWN"}

@@ -98,9 +98,17 @@ def convert():
 
 @app.route("/health", methods=["GET"])
 def health_check():
+    try:
+        get_client().admin.command("ping")
+        db_status = "UP"
+    except Exception:
+        db_status = "DOWN"
+
+    status = "UP" if db_status == "UP" else "DEGRADED"
     return jsonify(
         {
-            "status": "UP",
+            "status": status,
+            "mongodb": db_status,
         }
     ), 200
 
