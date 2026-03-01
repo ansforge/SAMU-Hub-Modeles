@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
     "flask>=3.1.2",
+    "pymongo>=4.16",
     "gunicorn>=23.0.0",
     "jsonpath-ng>=1.7.0",
     "prometheus-flask-exporter>=0.23.2",
