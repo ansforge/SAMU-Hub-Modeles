@@ -12,10 +12,12 @@ from converter.utils import (
     extract_message_content,
 )
 from converter.logging_config import configure_logging, LoggingKeys
+from converter.database import init_db, get_client
 
 configure_logging()
 
 app = Flask(__name__)
+init_db(app)
 
 is_prod = os.getenv("FLASK_ENV") == "production"
 
