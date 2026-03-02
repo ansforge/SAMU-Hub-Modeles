@@ -91,7 +91,7 @@ def convert():
     except Exception as e:
         return raise_error(str(e), 500)
 
-    return jsonify({"edxl": edxl_json})
+    return jsonify({"converted_messages": [edxl_json]})
 
 
 @app.route("/health", methods=["GET"])
