@@ -143,9 +143,9 @@ def test_convert_from_cisu(client, rs_target_version):
     assert isinstance(response.json["converted_messages"], list)
 
     # Verify message is converted
-    message = response.json["converted_messages"][0]["content"][0]["jsonContent"]["embeddedJsonContent"][
-        "message"
-    ]
+    message = response.json["converted_messages"][0]["content"][0]["jsonContent"][
+        "embeddedJsonContent"
+    ]["message"]
     assert "createCaseHealth" in message
     assert "createCase" not in message
 
@@ -178,9 +178,9 @@ def test_convert_to_cisu(client, rs_source_version):
     assert isinstance(response.json["converted_messages"], list)
 
     # Verify converted is converted
-    message = response.json["converted_messages"][0]["content"][0]["jsonContent"]["embeddedJsonContent"][
-        "message"
-    ]
+    message = response.json["converted_messages"][0]["content"][0]["jsonContent"][
+        "embeddedJsonContent"
+    ]["message"]
     assert "createCase" in message
     assert "createCaseHealth" not in message
 
