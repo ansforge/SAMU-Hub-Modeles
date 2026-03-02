@@ -17,11 +17,18 @@
             },
             "state": {
                 "datetime": "2022-09-27T08:23:34+02:00",
-                "status": "ARRIVE",
+                "status": "ARRIVEE",
                 "availability": "FALSE"
             },
+            "position": {
+                "datetime": "2022-09-27T08:23:34+02:00",
+                "coord": {
+                    "lat": "48.866667",
+                    "lon": "2.333333"
+                }
+            },
             "contact": {
-                "type": "PHNADD",
+                "type": "TEL",
                 "details": "+33671830530"
             },
             "freetext": [

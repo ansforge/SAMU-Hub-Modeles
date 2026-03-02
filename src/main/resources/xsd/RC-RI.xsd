@@ -77,7 +77,6 @@ OU - si un ID unique de la demande n'était pas disponible :
                     <restriction base="string">
                         <enumeration value="SMUR"/>
                         <enumeration value="SIS"/>
-                        <enumeration value="AUTRE"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -98,6 +97,7 @@ OU - si un ID unique de la demande n'était pas disponible :
             </element>
             <element minOccurs="0" name="team" type="x:team"/>
             <element name="state" type="x:state"/>
+            <element minOccurs="0" name="position" type="x:position"/>
             <element minOccurs="0" name="contact" type="x:contact"/>
             <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
         </sequence>
@@ -168,6 +168,16 @@ VIDE = INCONNU</documentation>
             </element>
         </sequence>
     </complexType>
+    <complexType name="position">
+        <sequence>
+            <element name="datetime" type="dateTime">
+                <annotation>
+                    <documentation>A valoriser avec la date et heure associée à la position</documentation>
+                </annotation>
+            </element>
+            <element name="coord" type="x:coord"/>
+        </sequence>
+    </complexType>
     <complexType name="contact">
         <sequence>
             <element minOccurs="0" name="type">
@@ -190,6 +200,20 @@ VIDE = INCONNU</documentation>
                 <annotation>
                     <documentation>A valoriser avec la valeur de l'URI utilisée
 Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="coord">
+        <sequence>
+            <element name="lat" type="decimal">
+                <annotation>
+                    <documentation>A valoriser avec la latitude de la position</documentation>
+                </annotation>
+            </element>
+            <element name="lon" type="decimal">
+                <annotation>
+                    <documentation>A valoriser avec la longitude de la position</documentation>
                 </annotation>
             </element>
         </sequence>
