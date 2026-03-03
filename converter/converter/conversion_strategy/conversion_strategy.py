@@ -13,4 +13,4 @@ def conversion_strategy(
         result = cisu_conversion_strategy(edxl_json, source_version, target_version)
     else:
         result = health_conversion_strategy(edxl_json, source_version, target_version)
-    return [result]
+    return result if isinstance(result, list) else [result]
