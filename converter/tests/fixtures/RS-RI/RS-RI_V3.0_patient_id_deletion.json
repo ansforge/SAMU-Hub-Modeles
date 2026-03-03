@@ -1,0 +1,25 @@
+{
+  "resourcesInfo": {
+    "resource": [
+      {
+        "contact": {
+          "details": "FM5678",
+          "type": "RADIO"
+        },
+        "state": [
+          {
+            "datetime": "2024-08-01T16:42:00+02:00",
+            "status": "FINPEC"
+          }
+        ],
+        "datetime": "2024-08-01T16:42:00+02:00",
+        "patientId": "fr.fire.sis076.cgo-076.patient.179",
+        "resourceId": "fr.health.samu76A.resource.VLM12",
+        "orgId": "fr.health.samu76A",
+        "vehicleType": "SMUR.VLM",
+        "name": "VLM 76 - A45"
+      }
+    ],
+    "caseId": "fr.health.samu800.DRFR158002421400215"
+  }
+}
