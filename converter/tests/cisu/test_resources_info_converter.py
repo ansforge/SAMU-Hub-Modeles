@@ -29,22 +29,25 @@ def test_rs_to_cisu():
         "RS-RI_partageRessources_LolaHalimi.03c.json",
     ]
 
+    usecase_files_with_unsupported_vehicle_type = [
+        "RS-RI_partageRessources_MonsieurX.03.json",  # contains TSU.AMB, not mappable to CISU (only SIS/SMUR allowed)
+    ]
+
     for usecase_file in usecase_files:
         file_name = usecase_file["name"]
         print(f"Testing conversion of {file_name}")
         if file_name in usecase_files_with_empty_state:
             print(f"Skipping test for {file_name} due to known empty state issue.")
             continue
+        if file_name in usecase_files_with_unsupported_vehicle_type:
+            print(f"Skipping test for {file_name} due to known unsupported vehicle type.")
+            continue
 
         edxl_json = TestHelper.create_edxl_json_from_sample(
             TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH, usecase_file["path"]
         )
         # Perform conversion
-        try:
-            result = ResourcesInfoCISUConverter.from_rs_to_cisu(edxl_json)
-        except ValueError as e:
-            print(f"Skipping test for {file_name} due to unsupported vehicle type: {e}")
-            continue
+        result = ResourcesInfoCISUConverter.from_rs_to_cisu(edxl_json)
 
         # Extract and validate the converted message
         usecase_name = rc_schema["title"]
