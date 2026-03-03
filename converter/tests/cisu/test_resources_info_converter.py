@@ -40,7 +40,9 @@ def test_rs_to_cisu():
             print(f"Skipping test for {file_name} due to known empty state issue.")
             continue
         if file_name in usecase_files_with_unsupported_vehicle_type:
-            print(f"Skipping test for {file_name} due to known unsupported vehicle type.")
+            print(
+                f"Skipping test for {file_name} due to known unsupported vehicle type."
+            )
             continue
 
         edxl_json = TestHelper.create_edxl_json_from_sample(
