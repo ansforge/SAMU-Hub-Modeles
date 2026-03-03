@@ -83,7 +83,7 @@ def convert():
         )
 
     try:
-        edxl_json = conversion_strategy(
+        converted_messages = conversion_strategy(
             edxl_json, source_version, target_version, is_cisu_conversion
         )
     except ValueError as e:
@@ -91,7 +91,7 @@ def convert():
     except Exception as e:
         return raise_error(str(e), 500)
 
-    return jsonify({"converted_messages": [edxl_json]})
+    return jsonify({"converted_messages": converted_messages})
 
 
 @app.route("/health", methods=["GET"])

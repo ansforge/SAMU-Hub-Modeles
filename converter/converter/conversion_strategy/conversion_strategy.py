@@ -8,8 +8,9 @@ from converter.conversion_strategy.cisu_conversion_strategy import (
 
 def conversion_strategy(
     edxl_json, source_version: str, target_version: str, is_cisu_conversion: bool
-):
+) -> list:
     if is_cisu_conversion:
-        return cisu_conversion_strategy(edxl_json, source_version, target_version)
+        result = cisu_conversion_strategy(edxl_json, source_version, target_version)
     else:
-        return health_conversion_strategy(edxl_json, source_version, target_version)
+        result = health_conversion_strategy(edxl_json, source_version, target_version)
+    return [result]
