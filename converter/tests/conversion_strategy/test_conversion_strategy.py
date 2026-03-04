@@ -70,15 +70,15 @@ class TestConversionStrategy(unittest.TestCase):
         source_version = "source_version"
         target_version = "target_version"
         is_cisu_conversion = False
-        list_result = [{"distributionID": "msg-1"}, {"distributionID": "msg-2"}]
-        mock_health_conversion_strategy.return_value = list_result
+        list_message = [{"distributionID": "msg-1"}, {"distributionID": "msg-2"}]
+        mock_health_conversion_strategy.return_value = list_message
 
         converted_edxl = conversion_strategy(
             edxl_json, source_version, target_version, is_cisu_conversion
         )
 
         assert isinstance(converted_edxl, list)
-        assert converted_edxl == list_result
+        assert converted_edxl == list_message
 
 
 if __name__ == "__main__":
