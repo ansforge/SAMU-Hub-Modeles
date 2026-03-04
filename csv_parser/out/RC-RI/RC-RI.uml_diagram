@@ -17,6 +17,20 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet state</I></TD></TR><TR><TD BORDER="0" >datetime <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >status <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >availability <I>boolean</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	state -> resource [headlabel=1 taillabel=1]
+	coord [label=<<TABLE>
+                <TR>
+                <TD ><B>coord</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet coord</I></TD></TR><TR><TD BORDER="0" >lat <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >lon <I>number</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	coord -> position [headlabel=1 taillabel=1]
+	position [label=<<TABLE>
+                <TR>
+                <TD ><B>position</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet position</I></TD></TR><TR><TD BORDER="0" >datetime <I>date-time</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	position -> resource [headlabel=1 taillabel="0..1"]
 	contact [label=<<TABLE>
                 <TR>
                 <TD ><B>contact</B></TD>

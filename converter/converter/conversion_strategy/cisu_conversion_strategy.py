@@ -7,9 +7,6 @@ from converter.cisu.reference.reference_converter import ReferenceConverter
 from converter.cisu.resources_info.resources_info_cisu_converter import (
     ResourcesInfoCISUConverter,
 )
-from converter.cisu.resources_status.resources_status_converter import (
-    ResourcesStatusConverter,
-)
 from converter.constants import Constants
 from converter.cisu.constants import CISUConstants
 from converter.conversion_strategy.health_conversion_strategy import (
@@ -84,10 +81,6 @@ def select_conversion_strategy(message_content):
         return CreateCaseCISUConverter
     elif "resourcesInfo" in message_content or "resourcesInfoCisu" in message_content:
         return ResourcesInfoCISUConverter
-    elif (
-        "resourcesStatus" in message_content or "resourcesStatusCisu" in message_content
-    ):
-        return ResourcesStatusConverter
     elif "reference" in message_content:
         return ReferenceConverter
     else:

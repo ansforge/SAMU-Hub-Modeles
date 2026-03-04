@@ -758,74 +758,7 @@
       }
     ]
   },
-  {
-    "label": "RC-SR",
-    "schemaName": "RC-SR.schema.json",
-    "schema": null,
-    "examples": [
-      {
-        "file": "RC-SR/RC-SR_FemmeEnceinte_DelphineVIGNEAU.03.json",
-        "icon": "mdi-human-pregnant",
-        "name": "Delphine VIGNEAU.03",
-        "context": "Pas de test suivant: RC-SR - Delphine VIGNEAU.04",
-        "environment": "Départ de la base du SMUR"
-      },
-      {
-        "file": "RC-SR/RC-SR_FemmeEnceinte_DelphineVIGNEAU.04.json",
-        "icon": "mdi-human-pregnant",
-        "name": "Delphine VIGNEAU.04",
-        "context": "Pas de test suivant: RC-SR - Delphine VIGNEAU.05",
-        "environment": "Arrivée sur les lieux de l'intervention du SMUR"
-      },
-      {
-        "file": "RC-SR/RC-SR_FemmeEnceinte_DelphineVIGNEAU.05.json",
-        "icon": "mdi-human-pregnant",
-        "name": "Delphine VIGNEAU.05",
-        "environment": "Retour du SMUR vers la base"
-      },
-      {
-        "file": "RC-SR/RC-SR_FuiteDeGaz_AliceGregoireNORMAND.03.json",
-        "icon": "mdi-molecule-co2",
-        "name": "Alice et Grégoire NORMAND.03",
-        "context": "Pas de test suivant: RC-SR - Alice et Grégoire NORMAND.04",
-        "environment": "Départ de la base du SMUR"
-      },
-      {
-        "file": "RC-SR/RC-SR_FuiteDeGaz_AliceGregoireNORMAND.04.json",
-        "icon": "mdi-molecule-co2",
-        "name": "Alice et Grégoire NORMAND.04",
-        "context": "Pas de test suivant: RC-RI - Alice et Grégoire NORMAND.05",
-        "environment": "Arrivée sur les lieux de l'intervention du SMUR"
-      },
-      {
-        "file": "RC-SR/RC-SR_FuiteDeGaz_AliceGregoireNORMAND.06.json",
-        "icon": "mdi-molecule-co2",
-        "name": "Alice et Grégoire NORMAND.06",
-        "context": "Pas de test suivant: RC-SR - Alice et Grégoire NORMAND.07",
-        "environment": "Arrivée sur les lieux de l'intervention du VSAV"
-      },
-      {
-        "file": "RC-SR/RC-SR_FuiteDeGaz_AliceGregoireNORMAND.07.json",
-        "icon": "mdi-molecule-co2",
-        "name": "Alice et Grégoire NORMAND.07",
-        "context": "Pas de test suivant: RC-SR - Alice et Grégoire NORMAND.08",
-        "environment": "Départ des lieux du SMUR"
-      },
-      {
-        "file": "RC-SR/RC-SR_FuiteDeGaz_AliceGregoireNORMAND.08.json",
-        "icon": "mdi-molecule-co2",
-        "name": "Alice et Grégoire NORMAND.08",
-        "context": "Pas de test suivant: RC-SR - Alice et Grégoire NORMAND.09",
-        "environment": "Retour du SMUR vers la base"
-      },
-      {
-        "file": "RC-SR/RC-SR_FuiteDeGaz_AliceGregoireNORMAND.09.json",
-        "icon": "mdi-molecule-co2",
-        "name": "Alice et Grégoire NORMAND.09",
-        "environment": "Retour du VSAV vers la base"
-      }
-    ]
-  },
+  
   {
     "label": "EMSI",
     "schemaName": "EMSI.schema.json",

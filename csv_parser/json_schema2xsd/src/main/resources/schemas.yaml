@@ -124,18 +124,6 @@ schemas:
   customExtendPackage: null
   file: model.xlsx
   header: Y
-  package: cisu.resources.status
-  perimeter: 15-18
-  rootElement: resourcesStatusCisu
-  schema: RC-SR
-  sheet: RS-SR
-  subschema: N
-  xmlns: eda:1.9:resourcesstatuscisu
-- automaticGeneration: Y
-  customExtendClass: null
-  customExtendPackage: null
-  file: model.xlsx
-  header: Y
   package: resources.request
   perimeter: 15-15
   rootElement: resourcesRequest

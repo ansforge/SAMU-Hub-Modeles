@@ -101,7 +101,10 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
             return ResourcesInfoCISUConstants.VEHICLE_TYPE_SIS
         if rs_vehicle_type.startswith(ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR):
             return ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR
-        return ResourcesInfoCISUConstants.VEHICULE_TYPE_OTHER
+        raise ValueError(
+            f"Vehicle type '{rs_vehicle_type}' cannot be mapped to a valid CISU vehicle type. "
+            f"Accepted values are: {ResourcesInfoCISUConstants.VEHICLE_TYPE_SIS}, {ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR}."
+        )
 
     @classmethod
     def translate_to_rs_vehicle_type(cls, cisu_vehicle_type: str) -> str:
