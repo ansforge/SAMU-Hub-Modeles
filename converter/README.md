@@ -59,10 +59,13 @@ Development mode:
 FLASK_APP=converter.converter \
 FLASK_ENV=development \
 FLASK_DEBUG=1 \
-uv run python -m flask run --port 8080
+uv run python -m flask run --port 8083
 ```
 
-*Note :* enable prometheus metrics, add `DEBUG_METRICS=1` in the above command.
+*Notes :*
+
+- enable prometheus metrics, add `DEBUG_METRICS=1` in the above command.
+- utiliser le port 8083 pour lancer le converter avec la configuration par défaut du setup de dev local
 
 Production mode (using Gunicorn):
 
