@@ -16,5 +16,12 @@
       <status>DECLENCHE</status>
       <availability>false</availability>
     </state>
+    <position>
+      <datetime>2024-08-13T10:24:00+02:00</datetime>
+      <coord>
+        <lat>48.84532</lat>
+        <lon>2.31559</lon>
+      </coord>
+    </position>
   </resource>
 </resourcesInfoCisu>
