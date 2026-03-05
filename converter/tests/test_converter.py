@@ -111,7 +111,8 @@ def test_convert_edxl_versions(client, source_version, target_version):
     )
 
     assert response.status_code == 200
-    assert "edxl" in response.json
+    assert "converted_messages" in response.json
+    assert isinstance(response.json["converted_messages"], list)
 
 
 @pytest.mark.parametrize(
@@ -138,12 +139,13 @@ def test_convert_from_cisu(client, rs_target_version):
 
     # Verify response
     assert response.status_code == 200
-    assert "edxl" in response.json
+    assert "converted_messages" in response.json
+    assert isinstance(response.json["converted_messages"], list)
 
     # Verify message is converted
-    message = response.json["edxl"]["content"][0]["jsonContent"]["embeddedJsonContent"][
-        "message"
-    ]
+    message = response.json["converted_messages"][0]["content"][0]["jsonContent"][
+        "embeddedJsonContent"
+    ]["message"]
     assert "createCaseHealth" in message
     assert "createCase" not in message
 
@@ -172,12 +174,13 @@ def test_convert_to_cisu(client, rs_source_version):
 
     # Verify response
     assert response.status_code == 200
-    assert "edxl" in response.json
+    assert "converted_messages" in response.json
+    assert isinstance(response.json["converted_messages"], list)
 
     # Verify converted is converted
-    message = response.json["edxl"]["content"][0]["jsonContent"]["embeddedJsonContent"][
-        "message"
-    ]
+    message = response.json["converted_messages"][0]["content"][0]["jsonContent"][
+        "embeddedJsonContent"
+    ]["message"]
     assert "createCase" in message
     assert "createCaseHealth" not in message
 
