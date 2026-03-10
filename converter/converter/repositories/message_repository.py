@@ -21,11 +21,19 @@ _CASE_ID_PATH = ".".join([
 
 def get_last_resource_info_cisu_by_case_id(case_id: str) -> Optional[PersistedMessage]:
     """Return the most recently persisted RC-RI document for *case_id*, or ``None``."""
+    if not case_id or not isinstance(case_id, str):
+        logger.warning("Invalid case_id provided: %r", case_id)
+        return None
+
     logger.info("Querying last RC-RI message for caseId=%s", case_id)
 
     collection = get_db()[_COLLECTION]
     query = {"type": _RC_RI_TYPE, _CASE_ID_PATH: case_id}
-    document = collection.find_one(query, sort=[("arrivedAt", DESCENDING)])
+    try:
+        document = collection.find_one(query, sort=[("arrivedAt", DESCENDING)])
+    except Exception:
+        logger.exception("Error querying RC-RI message for caseId=%s", case_id)
+        raise
 
     if document is None:
         logger.info("No RC-RI message found for caseId=%s", case_id)
