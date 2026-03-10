@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.resources.info.Coord;
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -43,14 +44,17 @@ import java.util.Objects;
 /**
  * Position
  */
-@JsonPropertyOrder(
-    {Position.JSON_PROPERTY_DATETIME, Position.JSON_PROPERTY_COORD})
+@JsonPropertyOrder({Position.JSON_PROPERTY_DATETIME,
+                    Position.JSON_PROPERTY_SPEED, Position.JSON_PROPERTY_COORD})
 @JsonTypeName("position")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Position {
   public static final String JSON_PROPERTY_DATETIME = "datetime";
   private OffsetDateTime datetime;
+
+  public static final String JSON_PROPERTY_SPEED = "speed";
+  private BigDecimal speed;
 
   public static final String JSON_PROPERTY_COORD = "coord";
   private Coord coord;
@@ -64,7 +68,7 @@ public class Position {
   }
 
   /**
-   * A valoriser avec la date et heure associée à la position
+   * Date et heure de la dernière position connue
    * @return datetime
    **/
   @JsonProperty(JSON_PROPERTY_DATETIME)
@@ -78,6 +82,29 @@ public class Position {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDatetime(OffsetDateTime datetime) {
     this.datetime = datetime;
+  }
+
+  public Position speed(BigDecimal speed) {
+
+    this.speed = speed;
+    return this;
+  }
+
+  /**
+   * Vitesse de la ressource enregistrée, exprimée en km/h
+   * @return speed
+   **/
+  @JsonProperty(JSON_PROPERTY_SPEED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public BigDecimal getSpeed() {
+    return speed;
+  }
+
+  @JsonProperty(JSON_PROPERTY_SPEED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSpeed(BigDecimal speed) {
+    this.speed = speed;
   }
 
   public Position coord(Coord coord) {
@@ -113,12 +140,13 @@ public class Position {
     }
     Position position = (Position)o;
     return Objects.equals(this.datetime, position.datetime) &&
+        Objects.equals(this.speed, position.speed) &&
         Objects.equals(this.coord, position.coord);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(datetime, coord);
+    return Objects.hash(datetime, speed, coord);
   }
 
   @Override
@@ -126,6 +154,7 @@ public class Position {
     StringBuilder sb = new StringBuilder();
     sb.append("class Position {\n");
     sb.append("    datetime: ").append(toIndentedString(datetime)).append("\n");
+    sb.append("    speed: ").append(toIndentedString(speed)).append("\n");
     sb.append("    coord: ").append(toIndentedString(coord)).append("\n");
     sb.append("}");
     return sb.toString();

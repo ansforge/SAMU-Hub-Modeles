@@ -172,7 +172,12 @@ VIDE = INCONNU</documentation>
         <sequence>
             <element name="datetime" type="dateTime">
                 <annotation>
-                    <documentation>A valoriser avec la date et heure associée à la position</documentation>
+                    <documentation>Date et heure de la dernière position connue</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="speed" type="decimal">
+                <annotation>
+                    <documentation>Vitesse de la ressource enregistrée, exprimée en km/h</documentation>
                 </annotation>
             </element>
             <element name="coord" type="x:coord"/>
@@ -208,12 +213,17 @@ Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pa
         <sequence>
             <element name="lat" type="decimal">
                 <annotation>
-                    <documentation>A valoriser avec la latitude de la position</documentation>
+                    <documentation>Dernière coordonnée x connue de la ressource, entre −90 and +90</documentation>
                 </annotation>
             </element>
             <element name="lon" type="decimal">
                 <annotation>
-                    <documentation>A valoriser avec la longitude de la position</documentation>
+                    <documentation>Dernière coordonnée y connue de la ressource, entre −180 and +180</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="height" type="decimal">
+                <annotation>
+                    <documentation>Dernière coordonnée z connue de la ressource, en mètres sans bornes</documentation>
                 </annotation>
             </element>
         </sequence>
