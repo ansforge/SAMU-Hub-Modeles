@@ -40,10 +40,10 @@ class TestGetLastResourceInfoCisuByCaseId:
         result = get_last_resource_info_cisu_by_case_id(CASE_ID)
 
         assert result == PersistedMessage(
-            id="some-id",
             message_type="ResourcesInfoCisuWrapper",
-            arrivedAt=arrived_at,
             payload={},
+            id="some-id",
+            arrived_at=arrived_at,
         )
 
     def test_returns_none_when_not_found(self, mock_db):

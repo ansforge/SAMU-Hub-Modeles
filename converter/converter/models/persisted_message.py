@@ -1,19 +1,22 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
-from typing import Any, Dict, Optional
 from datetime import datetime
+from typing import Any
+
 
 @dataclass
 class PersistedMessage:
-    id: Optional[str]
     message_type: str
-    arrivedAt: Optional[datetime]
-    payload: Dict[str, Any]
+    payload: dict[str, Any]
+    id: str | None = None
+    arrived_at: datetime | None = None
 
     @classmethod
-    def from_mongo(cls, doc: dict) -> "PersistedMessage":
+    def from_mongo(cls, doc: dict) -> PersistedMessage:
         return cls(
-            id=str(doc["_id"]),
             message_type=doc.get("type"),
-            arrivedAt=doc.get("arrivedAt"),
             payload=doc.get("payload", {}),
+            id=str(doc["_id"]) if doc.get("_id") is not None else None,
+            arrived_at=doc.get("arrivedAt"),
         )
