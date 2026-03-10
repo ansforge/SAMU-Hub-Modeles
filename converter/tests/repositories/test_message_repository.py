@@ -5,7 +5,8 @@ from unittest.mock import MagicMock, patch
 import pytest
 from pymongo import DESCENDING
 
-from converter.repository import get_last_resource_info_cisu_by_case_id
+from converter.models.persisted_message import PersistedMessage
+from converter.repositories.message_repository import get_last_resource_info_cisu_by_case_id
 
 
 CASE_ID = "fr.health.samu800.DRFR158002421400215"
@@ -20,24 +21,30 @@ _CASE_ID_FIELD = ".".join([
 def mock_db():
     """Provide a mocked MongoDB database inside a Flask app context."""
     db = MagicMock()
-    with patch("converter.repository.get_db", return_value=db):
+    with patch("converter.repositories.message_repository.get_db", return_value=db):
         yield db
 
 
 class TestGetLastResourceInfoCisuByCaseId:
     def test_returns_document_when_found(self, mock_db):
-        """Should return the document found by find_one."""
-        expected = {
+        """Should return a PersistedMessage built from the found document."""
+        arrived_at = datetime(2024, 8, 1, 14, 0, 0, tzinfo=timezone.utc)
+        raw_doc = {
             "_id": "some-id",
             "type": "ResourcesInfoCisuWrapper",
-            "arrivedAt": datetime(2024, 8, 1, 14, 0, 0, tzinfo=timezone.utc),
+            "arrivedAt": arrived_at,
             "payload": {},
         }
-        mock_db["messages"].find_one.return_value = expected
+        mock_db["messages"].find_one.return_value = raw_doc
 
         result = get_last_resource_info_cisu_by_case_id(CASE_ID)
 
-        assert result == expected
+        assert result == PersistedMessage(
+            id="some-id",
+            message_type="ResourcesInfoCisuWrapper",
+            arrivedAt=arrived_at,
+            payload={},
+        )
 
     def test_returns_none_when_not_found(self, mock_db):
         """Should return None when no RC-RI document matches the caseId."""
