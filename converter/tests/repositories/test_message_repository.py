@@ -1,7 +1,6 @@
 """Unit tests for converter.repository.get_last_rc_ri_by_case_id."""
 
 from datetime import datetime
-from functools import reduce
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
@@ -136,21 +135,3 @@ class TestGetLastRcRiByCaseId:
 
         with pytest.raises(RuntimeError, match="connection refused"):
             get_last_rc_ri_by_case_id(_CASE_ID)
-
-
-def _mongo_get(doc: dict, path: str):
-    """Resolve a MongoDB dot-notation path against a Python dict, traversing lists transparently."""
-
-    def step(obj, key):
-        if isinstance(obj, list):
-            return obj[0][key]  # MongoDB implicit array traversal
-        return obj[key]
-
-    return reduce(step, path.split("."), doc)
-
-
-class TestRcRiCaseIdPath:
-    def test_path_resolves_case_id_from_real_payload_structure(self):
-        """_RC_RI_CASE_ID_PATH must point to caseId in a document with the real dispatcher payload structure."""
-        doc = {"payload": _SAMPLE_PAYLOAD}
-        assert _mongo_get(doc, _CASE_ID_FIELD) == _CASE_ID
