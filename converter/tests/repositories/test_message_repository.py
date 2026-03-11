@@ -18,7 +18,9 @@ from converter.repositories.message_repository import (
 
 _CASE_ID = "fr.health.samu800.DRFR158002421400215"
 _OTHER_CASE_ID = "fr.health.samu800.OTHERUNRELATEDCASE"
-_SAMPLE_PAYLOAD = json.load(Path("tests/fixtures/RC-RI/sample_rc_ri_payload.json").open())
+_SAMPLE_PAYLOAD = json.load(
+    Path("tests/fixtures/RC-RI/sample_rc_ri_payload.json").open()
+)
 
 
 def _make_payload(case_id: str) -> dict:
