@@ -1,5 +1,4 @@
 import logging
-from typing import Optional
 
 from pymongo import DESCENDING
 
@@ -16,9 +15,9 @@ _CASE_ID_PATH = ".".join([
 ])
 
 
-def get_last_resource_info_cisu_by_case_id(case_id: str) -> Optional[PersistedMessage]:
+def get_last_resource_info_cisu_by_case_id(case_id: str) -> PersistedMessage | None:
     """Return the most recently persisted RC-RI document for *case_id*, or ``None``."""
-    if not case_id or not isinstance(case_id, str):
+    if not isinstance(case_id, str) or not case_id:
         logger.warning("Invalid case_id provided: %r", case_id)
         return None
 

@@ -5,7 +5,7 @@ from datetime import datetime
 from typing import Any
 
 
-@dataclass
+@dataclass(frozen=True)
 class PersistedMessage:
     message_type: str
     payload: dict[str, Any]
@@ -13,7 +13,7 @@ class PersistedMessage:
     id: str | None = None
 
     @classmethod
-    def from_mongo(cls, doc: dict) -> PersistedMessage:
+    def from_mongo(cls, doc: dict[str, Any]) -> PersistedMessage:
         return cls(
             message_type=doc["type"],
             payload=doc["payload"],

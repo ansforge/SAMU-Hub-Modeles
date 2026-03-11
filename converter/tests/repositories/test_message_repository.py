@@ -66,28 +66,16 @@ class TestGetLastResourceInfoCisuByCaseId:
 
         assert result is None
 
-    def test_queries_correct_filter(self, mock_db):
-        """find_one must be called with the correct type and caseId filter."""
+    def test_find_one_called_with_correct_args(self, mock_db):
+        """find_one must receive the correct filter and sort in a single call."""
         mock_db["messages"].find_one.return_value = None
 
         get_last_resource_info_cisu_by_case_id(_CASE_ID)
 
-        call_kwargs = mock_db["messages"].find_one.call_args
-        applied_filter = call_kwargs.kwargs.get("filter") or call_kwargs.args[0]
-
-        assert applied_filter["type"] == "ResourcesInfoCisuWrapper"
-        assert applied_filter[_CASE_ID_FIELD] == _CASE_ID
-
-    def test_sorts_descending_by_arrived_at(self, mock_db):
-        """find_one must sort descending on arrivedAt to get the most recent doc."""
-        mock_db["messages"].find_one.return_value = None
-
-        get_last_resource_info_cisu_by_case_id(_CASE_ID)
-
-        call_kwargs = mock_db["messages"].find_one.call_args
-        applied_sort = call_kwargs.kwargs.get("sort") or call_kwargs.args[1]
-
-        assert applied_sort == [("arrivedAt", DESCENDING)]
+        mock_db["messages"].find_one.assert_called_once_with(
+            {"type": "ResourcesInfoCisuWrapper", _CASE_ID_FIELD: _CASE_ID},
+            sort=[("arrivedAt", DESCENDING)],
+        )
 
     @pytest.mark.parametrize("bad_input", [None, "", 42, [], {}])
     def test_returns_none_for_invalid_case_id(self, mock_db, bad_input):
@@ -102,5 +90,12 @@ class TestGetLastResourceInfoCisuByCaseId:
         mock_db["messages"].find_one.side_effect = RuntimeError("connection refused")
 
         with pytest.raises(RuntimeError, match="connection refused"):
+            get_last_resource_info_cisu_by_case_id(_CASE_ID)
+
+    def test_raises_on_corrupted_document(self, mock_db):
+        """Should propagate KeyError when MongoDB returns a document missing required fields."""
+        mock_db["messages"].find_one.return_value = {"_id": "some-id"}  # missing type/arrivedAt/payload
+
+        with pytest.raises(KeyError):
             get_last_resource_info_cisu_by_case_id(_CASE_ID)
 
