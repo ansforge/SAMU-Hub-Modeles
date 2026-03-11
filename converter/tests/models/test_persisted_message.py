@@ -36,36 +36,16 @@ class TestPersistedMessageFromMongo:
 
         assert result.id is None
 
-    def test_missing_arrived_at_yields_none(self):
-        """Should set arrived_at=None when arrivedAt is absent from the document."""
+    @pytest.mark.parametrize("missing_field", ["type", "arrivedAt", "payload"])
+    def test_missing_required_field_raises(self, missing_field: str):
+        """Should raise KeyError when a required field is absent (corrupted document)."""
         doc = {
             "_id": "abc123",
             "type": "ResourcesInfoCisuWrapper",
-            "payload": {},
+            "arrivedAt": datetime(2024, 1, 1, tzinfo=timezone.utc),
+            "payload": {"key": "value"},
         }
+        del doc[missing_field]
 
-        result = PersistedMessage.from_mongo(doc)
-
-        assert result.arrived_at is None
-
-    def test_missing_payload_defaults_to_empty_dict(self):
-        """Should default payload to {} when absent from the document."""
-        doc = {
-            "_id": "abc123",
-            "type": "ResourcesInfoCisuWrapper",
-        }
-
-        result = PersistedMessage.from_mongo(doc)
-
-        assert result.payload == {}
-
-    def test_all_optional_fields_missing(self):
-        """Should produce a valid object even with only required fields present."""
-        doc = {"type": "ResourcesInfoCisuWrapper"}
-
-        result = PersistedMessage.from_mongo(doc)
-
-        assert result.message_type == "ResourcesInfoCisuWrapper"
-        assert result.id is None
-        assert result.arrived_at is None
-        assert result.payload == {}
+        with pytest.raises(KeyError):
+            PersistedMessage.from_mongo(doc)

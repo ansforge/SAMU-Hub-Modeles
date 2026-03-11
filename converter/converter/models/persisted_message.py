@@ -9,14 +9,14 @@ from typing import Any
 class PersistedMessage:
     message_type: str
     payload: dict[str, Any]
+    arrived_at: datetime
     id: str | None = None
-    arrived_at: datetime | None = None
 
     @classmethod
     def from_mongo(cls, doc: dict) -> PersistedMessage:
         return cls(
-            message_type=doc.get("type"),
-            payload=doc.get("payload", {}),
+            message_type=doc["type"],
+            payload=doc["payload"],
+            arrived_at=doc["arrivedAt"],
             id=str(doc["_id"]) if doc.get("_id") is not None else None,
-            arrived_at=doc.get("arrivedAt"),
         )
