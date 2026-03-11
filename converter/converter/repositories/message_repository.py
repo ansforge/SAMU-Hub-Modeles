@@ -10,9 +10,6 @@ logger = logging.getLogger(__name__)
 
 _COLLECTION = "messages"
 _RC_RI_TYPE = "ResourcesInfoCisuWrapper"
-
-# MongoDB dot-notation path to caseId inside the persisted EDXL payload.
-# Using .join() keeps each segment explicit and easy to update.
 _CASE_ID_PATH = ".".join([
     "payload", "content", "jsonContent",
     "embeddedJsonContent", "message", "resourcesInfoCisu", "caseId",
