@@ -66,6 +66,7 @@ class TestGetLastRcRiByCaseId:
         result = get_last_rc_ri_by_case_id(_CASE_ID)
 
         assert result is not None
+        assert isinstance(result, PersistedMessage)
         assert result.message_type == "ResourcesInfoCisuWrapper"
         assert result.arrived_at == arrived_at
         assert result.payload == _SAMPLE_PAYLOAD
