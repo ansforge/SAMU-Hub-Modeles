@@ -12,7 +12,6 @@ import pytest
 
 from converter.models.persisted_message import PersistedMessage
 from converter.repositories.message_repository import (
-    _RC_RI_CASE_ID_PATH as _CASE_ID_FIELD,
     get_last_rc_ri_by_case_id,
 )
 
@@ -57,7 +56,6 @@ class TestGetLastRcRiByCaseId:
         real_db["messages"].insert_one(
             {
                 "type": "ResourcesInfoCisuWrapper",
-                _CASE_ID_FIELD: _CASE_ID,
                 "arrivedAt": arrived_at,
                 "payload": _SAMPLE_PAYLOAD,
             }
@@ -92,13 +90,11 @@ class TestGetLastRcRiByCaseId:
             [
                 {
                     "type": "ResourcesInfoCisuWrapper",
-                    _CASE_ID_FIELD: _CASE_ID,
                     "arrivedAt": datetime(2024, 1, 1),
                     "payload": _SAMPLE_PAYLOAD,
                 },
                 {
                     "type": "ResourcesInfoCisuWrapper",
-                    _CASE_ID_FIELD: _CASE_ID,
                     "arrivedAt": datetime(2024, 8, 1),  # le plus récent
                     "payload": _SAMPLE_PAYLOAD,
                 },
@@ -114,7 +110,6 @@ class TestGetLastRcRiByCaseId:
         real_db["messages"].insert_one(
             {
                 "type": "SomeOtherWrapper",
-                _CASE_ID_FIELD: _CASE_ID,
                 "arrivedAt": datetime(2024, 8, 1),
                 "payload": _SAMPLE_PAYLOAD,
             }
