@@ -26,7 +26,9 @@ _SAMPLE_PAYLOAD = json.load(Path("tests/fixtures/sample_rc_ri_payload.json").ope
 def _make_payload(case_id: str) -> dict:
     """Build a minimal RC-RI payload with the given caseId embedded in the real nested structure."""
     payload = copy.deepcopy(_SAMPLE_PAYLOAD)
-    payload["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]["resourcesInfoCisu"]["caseId"] = case_id
+    payload["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
+        "resourcesInfoCisu"
+    ]["caseId"] = case_id
     return payload
 
 
@@ -52,12 +54,14 @@ class TestGetLastRcRiByCaseId:
         """Should return a PersistedMessage built from the found document and conform to RC-RI schema."""
         # mongomock (like the real PyMongo driver) returns timezone-naive datetimes
         arrived_at = datetime(2024, 8, 1, 14, 0, 0)
-        real_db["messages"].insert_one({
-            "type": "ResourcesInfoCisuWrapper",
-            _CASE_ID_FIELD: _CASE_ID,
-            "arrivedAt": arrived_at,
-            "payload": _SAMPLE_PAYLOAD,
-        })
+        real_db["messages"].insert_one(
+            {
+                "type": "ResourcesInfoCisuWrapper",
+                _CASE_ID_FIELD: _CASE_ID,
+                "arrivedAt": arrived_at,
+                "payload": _SAMPLE_PAYLOAD,
+            }
+        )
 
         result = get_last_rc_ri_by_case_id(_CASE_ID)
 
@@ -67,7 +71,9 @@ class TestGetLastRcRiByCaseId:
         assert result.payload == _SAMPLE_PAYLOAD
 
         # Validate RC-RI schema conformity
-        rc_ri = result.payload["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]["resourcesInfoCisu"]
+        rc_ri = result.payload["content"][0]["jsonContent"]["embeddedJsonContent"][
+            "message"
+        ]["resourcesInfoCisu"]
         assert "caseId" in rc_ri
         assert isinstance(rc_ri["caseId"], str)
         assert "resource" in rc_ri
@@ -78,31 +84,37 @@ class TestGetLastRcRiByCaseId:
 
     def test_returns_none_when_not_found(self, real_db):
         """Should return None when no RC-RI document exists for the given caseId."""
-        real_db["messages"].insert_one({
-            "type": "ResourcesInfoCisuWrapper",
-            "arrivedAt": datetime(2024, 8, 1),
-            "payload": _make_payload(_OTHER_CASE_ID),  # different caseId in nested path
-        })
+        real_db["messages"].insert_one(
+            {
+                "type": "ResourcesInfoCisuWrapper",
+                "arrivedAt": datetime(2024, 8, 1),
+                "payload": _make_payload(
+                    _OTHER_CASE_ID
+                ),  # different caseId in nested path
+            }
+        )
         result = get_last_rc_ri_by_case_id(_CASE_ID)
 
         assert result is None
 
     def test_returns_most_recent_document(self, real_db):
         """Should return the document with the latest arrivedAt among multiple matches."""
-        real_db["messages"].insert_many([
-            {
-                "type": "ResourcesInfoCisuWrapper",
-                _CASE_ID_FIELD: _CASE_ID,
-                "arrivedAt": datetime(2024, 1, 1),
-                "payload": _SAMPLE_PAYLOAD,
-            },
-            {
-                "type": "ResourcesInfoCisuWrapper",
-                _CASE_ID_FIELD: _CASE_ID,
-                "arrivedAt": datetime(2024, 8, 1),  # le plus récent
-                "payload": _SAMPLE_PAYLOAD,
-            },
-        ])
+        real_db["messages"].insert_many(
+            [
+                {
+                    "type": "ResourcesInfoCisuWrapper",
+                    _CASE_ID_FIELD: _CASE_ID,
+                    "arrivedAt": datetime(2024, 1, 1),
+                    "payload": _SAMPLE_PAYLOAD,
+                },
+                {
+                    "type": "ResourcesInfoCisuWrapper",
+                    _CASE_ID_FIELD: _CASE_ID,
+                    "arrivedAt": datetime(2024, 8, 1),  # le plus récent
+                    "payload": _SAMPLE_PAYLOAD,
+                },
+            ]
+        )
 
         result = get_last_rc_ri_by_case_id(_CASE_ID)
 
