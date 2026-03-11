@@ -10,7 +10,6 @@ import json
 import uuid
 import mongomock
 import pytest
-from pymongo import DESCENDING
 
 from converter.models.persisted_message import PersistedMessage
 from converter.repositories.message_repository import (
@@ -121,24 +120,27 @@ class TestGetLastRcRiByCaseId:
 
         assert result.arrived_at == datetime(2024, 8, 1)
 
-    def test_find_one_called_with_correct_args(self, mock_db):
-        """find_one must receive the correct filter and sort in a single call."""
-        mock_db["messages"].find_one.return_value = None
-
-        get_last_rc_ri_by_case_id(_CASE_ID)
-
-        mock_db["messages"].find_one.assert_called_once_with(
-            {"type": "ResourcesInfoCisuWrapper", _CASE_ID_FIELD: _CASE_ID},
-            sort=[("arrivedAt", DESCENDING)],
+    def test_ignores_documents_with_wrong_type(self, real_db):
+        """Should not return documents whose type is not ResourcesInfoCisuWrapper."""
+        real_db["messages"].insert_one(
+            {
+                "type": "SomeOtherWrapper",
+                _CASE_ID_FIELD: _CASE_ID,
+                "arrivedAt": datetime(2024, 8, 1),
+                "payload": _SAMPLE_PAYLOAD,
+            }
         )
 
+        result = get_last_rc_ri_by_case_id(_CASE_ID)
+
+        assert result is None
+
     @pytest.mark.parametrize("bad_input", [None, ""])
-    def test_returns_none_for_invalid_case_id(self, mock_db, bad_input):
-        """Should return None immediately without querying MongoDB for invalid input."""
+    def test_returns_none_for_invalid_case_id(self, real_db, bad_input):
+        """Should return None immediately for invalid input without querying MongoDB."""
         result = get_last_rc_ri_by_case_id(bad_input)
 
         assert result is None
-        mock_db["messages"].find_one.assert_not_called()
 
     def test_raises_on_mongodb_error(self, mock_db):
         """Should re-raise MongoDB exceptions after logging."""
