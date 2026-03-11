@@ -10,10 +10,18 @@ logger = logging.getLogger(__name__)
 _COLLECTION = "messages"
 
 _RC_RI_TYPE = "ResourcesInfoCisuWrapper"
-_RC_RI_CASE_ID_PATH = ".".join([
-    "payload", "content", "jsonContent",
-    "embeddedJsonContent", "message", "resourcesInfoCisu", "caseId",
-])
+_RC_RI_CASE_ID_PATH = ".".join(
+    [
+        "payload",
+        "content",
+        "jsonContent",
+        "embeddedJsonContent",
+        "message",
+        "resourcesInfoCisu",
+        "caseId",
+    ]
+)
+
 
 def _get_last_by_case_id(
     case_id: str,
@@ -32,7 +40,9 @@ def _get_last_by_case_id(
     try:
         document = collection.find_one(query, sort=[("arrivedAt", DESCENDING)])
     except Exception:
-        logger.exception("Error querying %s message for caseId=%s", message_type, case_id)
+        logger.exception(
+            "Error querying %s message for caseId=%s", message_type, case_id
+        )
         raise
 
     if document is None:

@@ -1,4 +1,5 @@
 """Unit tests for PersistedMessage.from_mongo mapping robustness."""
+
 from datetime import datetime, timezone
 
 import pytest

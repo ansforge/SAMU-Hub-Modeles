@@ -1,4 +1,5 @@
 """Unit tests for converter.repository.get_last_rc_ri_by_case_id."""
+
 from datetime import datetime, timezone
 from unittest.mock import MagicMock, patch
 
@@ -94,8 +95,9 @@ class TestGetLastRcRiByCaseId:
 
     def test_raises_on_corrupted_document(self, mock_db):
         """Should propagate KeyError when MongoDB returns a document missing required fields."""
-        mock_db["messages"].find_one.return_value = {"_id": "some-id"}  # missing type/arrivedAt/payload
+        mock_db["messages"].find_one.return_value = {
+            "_id": "some-id"
+        }  # missing type/arrivedAt/payload
 
         with pytest.raises(KeyError):
             get_last_rc_ri_by_case_id(_CASE_ID)
-
