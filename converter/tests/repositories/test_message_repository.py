@@ -2,8 +2,10 @@
 
 from datetime import datetime, timezone
 from functools import reduce
+from pathlib import Path
 from unittest.mock import MagicMock, patch
 
+import json
 import pytest
 from pymongo import DESCENDING
 
@@ -14,27 +16,7 @@ from converter.repositories.message_repository import (
 )
 
 _CASE_ID = "fr.health.samu800.DRFR158002421400215"
-
-# Reflects the actual structure persisted by the dispatcher: content is a list.
-_SAMPLE_PAYLOAD = {
-    "distributionID": "fr.health.samu800.abc123",
-    "content": [
-        {
-            "jsonContent": {
-                "embeddedJsonContent": {
-                    "message": {
-                        "resourcesInfoCisu": {
-                            "caseId": _CASE_ID,
-                            "resource": [
-                                {"resourceId": "fr.health.samu800.resource.VLM1"}
-                            ],
-                        }
-                    }
-                }
-            }
-        }
-    ],
-}
+_SAMPLE_PAYLOAD = json.load(Path("tests/fixtures/sample_rc_ri_payload.json").open())
 
 
 @pytest.fixture
