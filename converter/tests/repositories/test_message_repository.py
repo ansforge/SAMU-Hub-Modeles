@@ -1,6 +1,6 @@
 """Unit tests for converter.repository.get_last_rc_ri_by_case_id."""
 
-from datetime import datetime, timezone
+from datetime import datetime
 from functools import reduce
 from pathlib import Path
 from unittest.mock import MagicMock, patch
