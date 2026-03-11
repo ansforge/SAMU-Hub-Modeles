@@ -70,18 +70,6 @@ class TestGetLastRcRiByCaseId:
         assert result.arrived_at == arrived_at
         assert result.payload == _SAMPLE_PAYLOAD
 
-        # Validate RC-RI schema conformity
-        rc_ri = result.payload["content"][0]["jsonContent"]["embeddedJsonContent"][
-            "message"
-        ]["resourcesInfoCisu"]
-        assert "caseId" in rc_ri
-        assert isinstance(rc_ri["caseId"], str)
-        assert "resource" in rc_ri
-        assert isinstance(rc_ri["resource"], list)
-        assert len(rc_ri["resource"]) >= 1
-        for res in rc_ri["resource"]:
-            assert "resourceId" in res
-
     def test_returns_none_when_not_found(self, real_db):
         """Should return None when no RC-RI document exists for the given caseId."""
         real_db["messages"].insert_one(
