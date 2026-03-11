@@ -1,0 +1,19 @@
+{
+  "distributionID": "fr.health.samu800.abc123",
+  "content": [
+    {
+      "jsonContent": {
+        "embeddedJsonContent": {
+          "message": {
+            "resourcesInfoCisu": {
+              "caseId": "fr.health.samu800.DRFR158002421400215",
+              "resource": [
+                {"resourceId": "fr.health.samu800.resource.VLM1"}
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}
