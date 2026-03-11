@@ -55,7 +55,17 @@ def _get_last_by_case_id(
         case_id,
         document.get("arrivedAt"),
     )
-    return PersistedMessage.from_mongo(document)
+    try:
+        return PersistedMessage.from_mongo(document)
+    except (KeyError, TypeError) as exc:
+        logger.error(
+            "Corrupted %s document for caseId=%s (id=%s): %s",
+            message_type,
+            case_id,
+            document.get("_id"),
+            exc,
+        )
+        raise
 
 
 def get_last_rc_ri_by_case_id(case_id: str) -> PersistedMessage | None:
