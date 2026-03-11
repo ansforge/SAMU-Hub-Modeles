@@ -1,6 +1,7 @@
 """Unit tests for converter.repository.get_last_rc_ri_by_case_id."""
 
 from datetime import datetime, timezone
+from functools import reduce
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -14,19 +15,23 @@ from converter.repositories.message_repository import (
 
 _CASE_ID = "fr.health.samu800.DRFR158002421400215"
 
+# Reflects the actual structure persisted by the dispatcher: content is a list.
 _SAMPLE_PAYLOAD = {
-    "content": {
-        "jsonContent": {
-            "embeddedJsonContent": {
-                "message": {
-                    "resourcesInfoCisu": {
-                        "caseId": _CASE_ID,
-                        "resourcesInfo": [{"resourceId": "RES-001"}],
+    "distributionID": "fr.health.samu800.abc123",
+    "content": [
+        {
+            "jsonContent": {
+                "embeddedJsonContent": {
+                    "message": {
+                        "resourcesInfoCisu": {
+                            "caseId": _CASE_ID,
+                            "resource": [{"resourceId": "fr.health.samu800.resource.VLM1"}],
+                        }
                     }
                 }
             }
         }
-    }
+    ],
 }
 
 
@@ -101,3 +106,19 @@ class TestGetLastRcRiByCaseId:
 
         with pytest.raises(KeyError):
             get_last_rc_ri_by_case_id(_CASE_ID)
+
+
+def _mongo_get(doc: dict, path: str):
+    """Resolve a MongoDB dot-notation path against a Python dict, traversing lists transparently."""
+    def step(obj, key):
+        if isinstance(obj, list):
+            return obj[0][key]  # MongoDB implicit array traversal
+        return obj[key]
+    return reduce(step, path.split("."), doc)
+
+
+class TestRcRiCaseIdPath:
+    def test_path_resolves_case_id_from_real_payload_structure(self):
+        """_RC_RI_CASE_ID_PATH must point to caseId in a document with the real dispatcher payload structure."""
+        doc = {"payload": _SAMPLE_PAYLOAD}
+        assert _mongo_get(doc, _CASE_ID_FIELD) == _CASE_ID
