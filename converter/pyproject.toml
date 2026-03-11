@@ -57,6 +57,7 @@ dev = [
     "requests>=2.32.5",
     "requests-cache>=1.2.1",
     "snapshottest>=0.6.0",
+    "mongomock>=4.1.2",
 ]
 
 [[tool.mypy.overrides]]
