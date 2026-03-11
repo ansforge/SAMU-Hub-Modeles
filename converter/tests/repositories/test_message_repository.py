@@ -1,4 +1,4 @@
-"""Unit tests for converter.repository.get_last_resource_info_cisu_by_case_id."""
+"""Unit tests for converter.repository.get_last_rc_ri_by_case_id."""
 from datetime import datetime, timezone
 from unittest.mock import MagicMock, patch
 
@@ -7,8 +7,8 @@ from pymongo import DESCENDING
 
 from converter.models.persisted_message import PersistedMessage
 from converter.repositories.message_repository import (
-    _CASE_ID_PATH as _CASE_ID_FIELD,
-    get_last_resource_info_cisu_by_case_id,
+    _RC_RI_CASE_ID_PATH as _CASE_ID_FIELD,
+    get_last_rc_ri_by_case_id,
 )
 
 _CASE_ID = "fr.health.samu800.DRFR158002421400215"
@@ -37,7 +37,7 @@ def mock_db():
         yield db
 
 
-class TestGetLastResourceInfoCisuByCaseId:
+class TestGetLastRcRiByCaseId:
     def test_returns_document_when_found(self, mock_db):
         """Should return a PersistedMessage built from the found document."""
         arrived_at = datetime(2024, 8, 1, 14, 0, 0, tzinfo=timezone.utc)
@@ -49,7 +49,7 @@ class TestGetLastResourceInfoCisuByCaseId:
         }
         mock_db["messages"].find_one.return_value = raw_doc
 
-        result = get_last_resource_info_cisu_by_case_id(_CASE_ID)
+        result = get_last_rc_ri_by_case_id(_CASE_ID)
 
         assert result == PersistedMessage(
             message_type="ResourcesInfoCisuWrapper",
@@ -62,7 +62,7 @@ class TestGetLastResourceInfoCisuByCaseId:
         """Should return None when no RC-RI document matches the caseId."""
         mock_db["messages"].find_one.return_value = None
 
-        result = get_last_resource_info_cisu_by_case_id(_CASE_ID)
+        result = get_last_rc_ri_by_case_id(_CASE_ID)
 
         assert result is None
 
@@ -70,7 +70,7 @@ class TestGetLastResourceInfoCisuByCaseId:
         """find_one must receive the correct filter and sort in a single call."""
         mock_db["messages"].find_one.return_value = None
 
-        get_last_resource_info_cisu_by_case_id(_CASE_ID)
+        get_last_rc_ri_by_case_id(_CASE_ID)
 
         mock_db["messages"].find_one.assert_called_once_with(
             {"type": "ResourcesInfoCisuWrapper", _CASE_ID_FIELD: _CASE_ID},
@@ -80,7 +80,7 @@ class TestGetLastResourceInfoCisuByCaseId:
     @pytest.mark.parametrize("bad_input", [None, "", 42, [], {}])
     def test_returns_none_for_invalid_case_id(self, mock_db, bad_input):
         """Should return None immediately without querying MongoDB for invalid input."""
-        result = get_last_resource_info_cisu_by_case_id(bad_input)
+        result = get_last_rc_ri_by_case_id(bad_input)
 
         assert result is None
         mock_db["messages"].find_one.assert_not_called()
@@ -90,12 +90,12 @@ class TestGetLastResourceInfoCisuByCaseId:
         mock_db["messages"].find_one.side_effect = RuntimeError("connection refused")
 
         with pytest.raises(RuntimeError, match="connection refused"):
-            get_last_resource_info_cisu_by_case_id(_CASE_ID)
+            get_last_rc_ri_by_case_id(_CASE_ID)
 
     def test_raises_on_corrupted_document(self, mock_db):
         """Should propagate KeyError when MongoDB returns a document missing required fields."""
         mock_db["messages"].find_one.return_value = {"_id": "some-id"}  # missing type/arrivedAt/payload
 
         with pytest.raises(KeyError):
-            get_last_resource_info_cisu_by_case_id(_CASE_ID)
+            get_last_rc_ri_by_case_id(_CASE_ID)
 
