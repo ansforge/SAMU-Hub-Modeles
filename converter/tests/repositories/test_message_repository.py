@@ -25,7 +25,9 @@ _SAMPLE_PAYLOAD = {
                     "message": {
                         "resourcesInfoCisu": {
                             "caseId": _CASE_ID,
-                            "resource": [{"resourceId": "fr.health.samu800.resource.VLM1"}],
+                            "resource": [
+                                {"resourceId": "fr.health.samu800.resource.VLM1"}
+                            ],
                         }
                     }
                 }
@@ -110,10 +112,12 @@ class TestGetLastRcRiByCaseId:
 
 def _mongo_get(doc: dict, path: str):
     """Resolve a MongoDB dot-notation path against a Python dict, traversing lists transparently."""
+
     def step(obj, key):
         if isinstance(obj, list):
             return obj[0][key]  # MongoDB implicit array traversal
         return obj[key]
+
     return reduce(step, path.split("."), doc)
 
 
