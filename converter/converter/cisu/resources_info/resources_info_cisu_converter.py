@@ -68,9 +68,9 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
             output_use_case_json, ResourcesInfoCISUConstants.RESOURCE_PATH
         )
 
-        converted_resources = cls.translate_resources_to_cisu(resources)
+        converted_resources = cls.convert_resources_to_cisu(resources)
 
-        if not converted_resources:
+        if len(converted_resources) < 1:
             raise ValueError(
                 "Could not map resources to CISU. "
                 "At least one resource must have a CISU compatible vehicleType. "
@@ -85,7 +85,7 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         return cls.format_cisu_output_json(output_json, output_use_case_json)
 
     @classmethod
-    def translate_resources_to_cisu(
+    def convert_resources_to_cisu(
         cls, resources: list[Dict[str, Any]]
     ) -> list[Dict[str, Any]]:
         converted_resources = []
