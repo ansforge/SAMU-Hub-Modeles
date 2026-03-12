@@ -124,6 +124,31 @@ class TestCisuConversionStrategy(unittest.TestCase):
         mock_convert.assert_called_once()
         mock_health_convert_strategy.assert_called_once()
 
+    @patch(
+        "converter.cisu.resources_info.resources_info_cisu_converter.get_last_rc_ri_by_case_id",
+        return_value=None,
+    )
+    @patch(
+        "converter.conversion_strategy.cisu_conversion_strategy.health_conversion_strategy",
+        side_effect=lambda msg, *_: msg,
+    )
+    def test_cisu_to_rs_resources_info_returns_list(
+        self, mock_health_convert_strategy, mock_repo
+    ):
+        """cisu_conversion_strategy must return a list when from_cisu_to_rs produces multiple messages."""
+        message_json_path = TestHelper.get_json_files(TestConstants.RC_RI_TAG)[0]["path"]
+        edxl_json = TestHelper.create_edxl_json_from_sample(
+            TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH, message_json_path
+        )
+
+        result = cisu_conversion_strategy(
+            edxl_json, CISUConstants.MAINTAINED_CISU_VERSION, "v3"
+        )
+
+        assert isinstance(result, list)
+        # health_conversion_strategy must be called once per produced message
+        assert mock_health_convert_strategy.call_count == len(result)
+
     def test_rs_to_cisu_conversion_strategy_should_raise_error_with_invalid_target_version(
         self,
     ):
