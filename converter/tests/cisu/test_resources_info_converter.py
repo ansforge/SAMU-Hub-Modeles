@@ -11,52 +11,74 @@ from jsonschema import validate
 
 RS_RI_SCHEMA = TestHelper.load_schema("RS-RI.schema.json")
 
+usecase_files_with_empty_state = [
+    "RS-RI_FuiteDeGaz_AliceGregoireNORMAND.06.json",
+    "RS-RI_Incendie_RaymondeLECCIA.04.json",
+    "RS-RI_Secondaire_RobertVermande.03.json",
+    "RS-RI_partageRessources_LolaHalimi.03c.json",
+]
 
-def test_rs_to_cisu():
-    rc_schema_endpoint = get_file_endpoint(
-        TestConstants.V3_GITHUB_TAG, TestConstants.RC_RI_TAG
+usecase_files_with_unsupported_vehicle_type = [
+    "RS-RI_partageRessources_MonsieurX.03.json",  # contains TSU.AMB, not mappable to CISU (only SIS/SMUR allowed)
+]
+all_usecase_files = TestHelper.get_json_files(
+    TestConstants.RS_RI_TAG, tag=TestConstants.V3_GITHUB_TAG
+)
+all_file_names = [f["name"] for f in all_usecase_files]
+
+# Dictionnaire des cas d'erreur : file_name -> message attendu
+ERROR_CASES = {
+    **{
+        name: "No states found in resource, mandatory for CISU conversion."
+        for name in usecase_files_with_empty_state
+    },
+    **{
+        name: "At least one resource must have a CISU compatible vehicleType."
+        for name in usecase_files_with_unsupported_vehicle_type
+    },
+}
+
+TEST_CASES = [
+    (name, ValueError, ERROR_CASES[name]) if name in ERROR_CASES else (name, None, None)
+    for name in all_file_names
+]
+
+
+@pytest.mark.parametrize(
+    "file_name, expected_exception, expected_message",
+    TEST_CASES,
+    ids=[c[0] for c in TEST_CASES],  # rend les sorties pytest lisibles
+)
+def test_rs_to_cisu(file_name, expected_exception, expected_message):
+    """Test RS → CISU conversion for both success and expected error cases."""
+
+    usecase_file = next(f for f in all_usecase_files if f["name"] == file_name)
+
+    edxl_json = TestHelper.create_edxl_json_from_sample(
+        TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH, usecase_file["path"]
     )
-    rc_schema = TestHelper.load_json_file_online(rc_schema_endpoint)
 
-    usecase_files = TestHelper.get_json_files(
-        TestConstants.RS_RI_TAG, tag=TestConstants.V3_GITHUB_TAG
-    )
-
-    usecase_files_with_empty_state = [
-        "RS-RI_FuiteDeGaz_AliceGregoireNORMAND.06.json",
-        "RS-RI_Incendie_RaymondeLECCIA.04.json",
-        "RS-RI_Secondaire_RobertVermande.03.json",
-        "RS-RI_partageRessources_LolaHalimi.03c.json",
-    ]
-
-    usecase_files_with_unsupported_vehicle_type = [
-        "RS-RI_partageRessources_MonsieurX.03.json",  # contains TSU.AMB, not mappable to CISU (only SIS/SMUR allowed)
-    ]
-
-    for usecase_file in usecase_files:
-        file_name = usecase_file["name"]
-        print(f"Testing conversion of {file_name}")
-        if file_name in usecase_files_with_empty_state:
-            print(f"Skipping test for {file_name} due to known empty state issue.")
-            continue
-        if file_name in usecase_files_with_unsupported_vehicle_type:
-            print(
-                f"Skipping test for {file_name} due to known unsupported vehicle type."
-            )
-            continue
-
-        edxl_json = TestHelper.create_edxl_json_from_sample(
-            TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH, usecase_file["path"]
+    if expected_exception is None:
+        # Cas nominal
+        rc_schema_endpoint = get_file_endpoint(
+            TestConstants.V3_GITHUB_TAG,
+            TestConstants.RC_RI_TAG,
         )
-        # Perform conversion
+        rc_schema = TestHelper.load_json_file_online(rc_schema_endpoint)
+
         result = ResourcesInfoCISUConverter.from_rs_to_cisu(edxl_json)
 
-        # Extract and validate the converted message
         usecase_name = rc_schema["title"]
         converted_message = result["content"][0]["jsonContent"]["embeddedJsonContent"][
             "message"
         ][usecase_name]
+
         validate(instance=converted_message, schema=rc_schema)
+
+    else:
+        # Cas d'erreur attendu
+        with pytest.raises(expected_exception, match=expected_message):
+            ResourcesInfoCISUConverter.from_rs_to_cisu(edxl_json)
 
 
 def test_rs_to_cisu_should_delete_patient_id():
@@ -120,6 +142,9 @@ def test_cisu_to_rs_breaking_changes():
         pytest.param("SIS.DRAGON", "SIS", id="translates SIS.DRAGON to SIS"),
         pytest.param("SMUR", "SMUR", id="translates SMUR to SMUR"),
         pytest.param("SMUR.VLM", "SMUR", id="translates SMUR.VLM to SMUR"),
+        pytest.param("AUTREVEC", None, id="AUTREVEC is not mappable to CISU"),
+        pytest.param("FSI.HELIFSI ", None, id="FSI.HELIFSI is not mappable to CISU"),
+        pytest.param("TSU.VSL", None, id="TSU.VSL is not mappable to CISU"),
     ],
 )
 def test_translate_vehicule_type_to_cisu(rs_vehicule_type, expected):
@@ -127,19 +152,6 @@ def test_translate_vehicule_type_to_cisu(rs_vehicule_type, expected):
         rs_vehicule_type
     )
     assert cisu_vehicle_type == expected
-
-
-@pytest.mark.parametrize(
-    "rs_vehicule_type",
-    [
-        pytest.param("AUTREVEC", id="AUTREVEC is not mappable to CISU"),
-        pytest.param("FSI.HELIFSI", id="FSI.HELIFSI is not mappable to CISU"),
-        pytest.param("TSU.VSL", id="TSU.VSL is not mappable to CISU"),
-    ],
-)
-def test_translate_vehicule_type_to_cisu_raises_for_unmappable(rs_vehicule_type):
-    with pytest.raises(ValueError):
-        ResourcesInfoCISUConverter.translate_to_cisu_vehicle_type(rs_vehicule_type)
 
 
 @pytest.mark.parametrize(
