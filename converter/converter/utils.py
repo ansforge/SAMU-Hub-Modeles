@@ -1,6 +1,7 @@
 import random
 import re
 import string
+from functools import lru_cache
 from typing import List, Dict, Any, Optional
 from jsonpath_ng import parse
 from yaml import dump
@@ -9,6 +10,11 @@ import logging
 from converter.constants import Constants
 
 logger = logging.getLogger(__name__)
+
+
+@lru_cache(maxsize=256)
+def _cached_parse(json_path: str):
+    return parse(json_path)
 
 
 def get_recipient(edxl_json: Dict[str, Any]) -> str:
@@ -149,7 +155,7 @@ def format_object(obj: Any, indent: int = 0) -> str:
 
 def is_field_completed(json_data: Dict[str, Any], json_path: str):
     try:
-        jsonpath_expr = parse(json_path)
+        jsonpath_expr = _cached_parse(json_path)
         return len(jsonpath_expr.find(json_data)) >= 1
     except Exception as e:
         logger.error(f"Error raised in is_field_completed : {e}")
@@ -158,18 +164,17 @@ def is_field_completed(json_data: Dict[str, Any], json_path: str):
 
 def get_field_value(json_data: Dict[str, Any], json_path: str):
     try:
-        if not is_field_completed(json_data, json_path):
-            return None
-
-        jsonpath_expr = parse(json_path)
+        jsonpath_expr = _cached_parse(json_path)
         matches = jsonpath_expr.find(json_data)
 
+        if not matches:
+            return None
         if len(matches) > 1:
             return [match.value for match in matches]
         return matches[0].value
 
     except Exception as e:
-        logger.error(f"Error raised in is_field_completed : {e}")
+        logger.error(f"Error raised in get_field_value : {e}")
         raise
 
 
@@ -198,7 +203,7 @@ def translate_key_words(text, word_map):
 # todo : reuse it where needed (+ add test)
 def update_json_value(data, jsonpath_query, new_value):
     try:
-        jsonpath_expr = parse(jsonpath_query)
+        jsonpath_expr = _cached_parse(jsonpath_query)
         matches = jsonpath_expr.find(data)
 
         for match in matches:
