@@ -17,6 +17,8 @@ from converter.repositories.message_repository import (
 
 _CASE_ID = "fr.health.samu800.DRFR158002421400215"
 _OTHER_CASE_ID = "fr.health.samu800.OTHERUNRELATEDCASE"
+_DIST_ID_A = "fr.health.samu800.abc123"
+_DIST_ID_B = "fr.health.samu800.def456"
 _SAMPLE_PAYLOAD = json.load(
     Path("tests/fixtures/RC-RI/sample_rc_ri_payload.json").open()
 )
@@ -29,6 +31,17 @@ def _make_payload(case_id: str) -> dict:
         "resourcesInfoCisu"
     ]["caseId"] = case_id
     return payload
+
+
+def _make_doc(distribution_id: str, arrived_at: datetime) -> dict:
+    """Build a ResourcesInfoCisuWrapper document with the given distributionID."""
+    payload = copy.deepcopy(_SAMPLE_PAYLOAD)
+    payload["distributionID"] = distribution_id
+    return {
+        "type": "ResourcesInfoCisuWrapper",
+        "arrivedAt": arrived_at,
+        "payload": payload,
+    }
 
 
 @pytest.fixture
@@ -132,3 +145,41 @@ class TestGetLastRcRiByCaseId:
 
         with pytest.raises(RuntimeError, match="connection refused"):
             get_last_rc_ri_by_case_id(_CASE_ID)
+
+    # --- exclude_distribution_id ---
+
+    def test_returns_none_when_only_matching_document_is_excluded(self, real_db):
+        """When the only matching document is excluded, should return None."""
+        real_db["messages"].insert_one(_make_doc(_DIST_ID_A, datetime(2024, 8, 1)))
+
+        result = get_last_rc_ri_by_case_id(_CASE_ID, exclude_distribution_id=_DIST_ID_A)
+
+        assert result is None
+
+    def test_returns_previous_when_most_recent_document_is_excluded(self, real_db):
+        """When the most recent document is excluded, should return the previous one."""
+        real_db["messages"].insert_many(
+            [
+                _make_doc(_DIST_ID_A, datetime(2024, 1, 1)),  # old
+                _make_doc(_DIST_ID_B, datetime(2024, 8, 1)),  # new
+            ]
+        )
+
+        result = get_last_rc_ri_by_case_id(_CASE_ID, exclude_distribution_id=_DIST_ID_B)
+
+        assert result is not None
+        assert result.payload["distributionID"] == _DIST_ID_A
+
+    def test_exclude_none_behaves_normally(self, real_db):
+        """Passing exclude_distribution_id=None must not filter anything."""
+        real_db["messages"].insert_many(
+            [
+                _make_doc(_DIST_ID_A, datetime(2024, 8, 1)),
+                _make_doc(_DIST_ID_B, datetime(2024, 3, 1)),
+            ]
+        )
+
+        result = get_last_rc_ri_by_case_id(_CASE_ID, exclude_distribution_id=None)
+
+        assert result is not None
+        assert result.payload["distributionID"] == _DIST_ID_A
