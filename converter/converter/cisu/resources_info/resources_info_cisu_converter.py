@@ -101,6 +101,8 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
 
         cisu_use_case = cls.copy_cisu_input_use_case_content(edxl_json)
         case_id = cisu_use_case.get(ResourcesInfoCISUConstants.CASE_ID_FIELD)
+        if not isinstance(case_id, str):
+            raise ValueError(f"Missing or invalid caseId in RC-RI message: {case_id!r}")
 
         rs_ri = cls._build_rs_ri_from_cisu(edxl_json)
 
