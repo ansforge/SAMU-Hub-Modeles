@@ -68,7 +68,27 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
             output_use_case_json, ResourcesInfoCISUConstants.RESOURCE_PATH
         )
 
-        filtered_resources = []
+        converted_resources = cls.translate_resources_to_cisu(resources)
+
+        if not converted_resources:
+            raise ValueError(
+                "Could not map resources to CISU. "
+                "At least one resource must have a CISU compatible vehicleType. "
+            )
+
+        set_value(
+            output_use_case_json,
+            ResourcesInfoCISUConstants.RESOURCE_PATH,
+            converted_resources,
+        )
+
+        return cls.format_cisu_output_json(output_json, output_use_case_json)
+
+    @classmethod
+    def translate_resources_to_cisu(
+        cls, resources: list[Dict[str, Any]]
+    ) -> list[Dict[str, Any]]:
+        converted_resources = []
 
         for index, resource in enumerate(resources):
             logger.debug(f"Processing resource: {resource}")
@@ -76,14 +96,11 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
                 resource, ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH
             )
 
-            if not cls.is_supported_vehicle_type(rs_vehicle_type):
-                logger.info(
-                    "Removing resource because vehicleType '%s' is not supported",
-                    rs_vehicle_type,
-                )
+            cisu_vehicle_type = cls.translate_to_cisu_vehicle_type(rs_vehicle_type)
+
+            if not cisu_vehicle_type:  # if we couldn't map the vehicleType on a SIS known type, we continue to filter the whole resource out
                 continue
 
-            cisu_vehicle_type = cls.translate_to_cisu_vehicle_type(rs_vehicle_type)
             set_value(
                 resource,
                 ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH,
@@ -104,38 +121,22 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
 
             delete_paths(resource, [ResourcesInfoCISUConstants.PATIENT_ID_KEY])
 
-            filtered_resources.append(resource)
+            converted_resources.append(resource)
 
-        if not filtered_resources:
-            raise ValueError(
-                "Could not map resources to CISU. "
-                "At least one resource must have a CISU compatible vehicleType. "
-            )
-
-        set_value(
-            output_use_case_json,
-            ResourcesInfoCISUConstants.RESOURCE_PATH,
-            filtered_resources,
-        )
-
-        return cls.format_cisu_output_json(output_json, output_use_case_json)
+        return converted_resources
 
     @classmethod
-    def is_supported_vehicle_type(cls, vehicle_type: str) -> bool:
-        return vehicle_type.startswith(
-            ResourcesInfoCISUConstants.VEHICLE_TYPE_SIS
-        ) or vehicle_type.startswith(ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR)
-
-    @classmethod
-    def translate_to_cisu_vehicle_type(cls, rs_vehicle_type: str) -> str:
+    def translate_to_cisu_vehicle_type(cls, rs_vehicle_type: str) -> str | None:
         if rs_vehicle_type.startswith(ResourcesInfoCISUConstants.VEHICLE_TYPE_SIS):
             return ResourcesInfoCISUConstants.VEHICLE_TYPE_SIS
-        if rs_vehicle_type.startswith(ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR):
+        elif rs_vehicle_type.startswith(ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR):
             return ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR
-        raise ValueError(
-            f"Vehicle type '{rs_vehicle_type}' cannot be mapped to a valid CISU vehicle type. "
-            f"Accepted values are: {ResourcesInfoCISUConstants.VEHICLE_TYPE_SIS}, {ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR}."
-        )
+        else:
+            logger.info(
+                "Removing resource because vehicleType '%s' is not supported",
+                rs_vehicle_type,
+            )
+            return None
 
     @classmethod
     def translate_to_rs_vehicle_type(cls, cisu_vehicle_type: str) -> str:
