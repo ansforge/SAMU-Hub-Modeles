@@ -208,7 +208,9 @@ class TestBuildRsSrFromResource:
         result = ResourcesInfoCISUConverter._build_rs_sr_from_resource(
             _RC_RI_WITH_POSITION_EDXL, self._RESOURCE, _CASE_ID
         )
-        rs_sr = result["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]["resourcesStatus"]
+        rs_sr = result["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
+            "resourcesStatus"
+        ]
         assert rs_sr["caseId"] == _CASE_ID
         assert rs_sr["resourceId"] == self._RESOURCE["resourceId"]
         assert rs_sr["state"] == self._RESOURCE["state"]

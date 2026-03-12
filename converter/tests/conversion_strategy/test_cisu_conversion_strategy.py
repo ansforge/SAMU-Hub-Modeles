@@ -136,7 +136,9 @@ class TestCisuConversionStrategy(unittest.TestCase):
         self, mock_health_convert_strategy, mock_repo
     ):
         """cisu_conversion_strategy must return a list when from_cisu_to_rs produces multiple messages."""
-        message_json_path = TestHelper.get_json_files(TestConstants.RC_RI_TAG)[0]["path"]
+        message_json_path = TestHelper.get_json_files(TestConstants.RC_RI_TAG)[0][
+            "path"
+        ]
         edxl_json = TestHelper.create_edxl_json_from_sample(
             TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH, message_json_path
         )
