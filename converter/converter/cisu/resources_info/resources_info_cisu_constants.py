@@ -3,7 +3,9 @@ class ResourcesInfoCISUConstants:
     STATE_PATH = "$.state"
     VEHICLE_TYPE_PATH = "$.vehicleType"
 
+    CASE_ID_FIELD = "caseId"
     PATIENT_ID_KEY = "patientId"
+    POSITION_KEY = "position"
 
     VEHICLE_TYPE_SIS = "SIS"
     VEHICLE_TYPE_SMUR = "SMUR"
