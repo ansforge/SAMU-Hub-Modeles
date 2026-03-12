@@ -1,4 +1,5 @@
 from unittest import TestCase
+from unittest.mock import MagicMock, patch
 
 import pytest
 
@@ -105,7 +106,14 @@ def test_cisu_to_rs_breaking_changes():
         TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
         "tests/fixtures/RC-RI/RC-RI_V3.0_exhaustive_fill.json",
     )
-    rs_raw_message = ResourcesInfoCISUConverter.from_cisu_to_rs(cisu_raw_message)
+    with patch(
+        "converter.cisu.resources_info.resources_info_cisu_converter.get_last_rc_ri_by_case_id",
+        return_value=None,
+    ):
+        results = ResourcesInfoCISUConverter.from_cisu_to_rs(cisu_raw_message)
+
+    # from_cisu_to_rs now returns a list; first element is the RS-RI
+    rs_raw_message = results[0]
     rs_message = ResourcesInfoCISUConverter.copy_rs_input_use_case_content(
         rs_raw_message
     )
@@ -155,3 +163,126 @@ def test_translate_vehicule_type_to_rs(cisu_vehicule_type, expected):
         cisu_vehicule_type
     )
     assert rs_vehicle_type == expected
+
+
+# ---------------------------------------------------------------------------
+# RC-RI → RS (from_cisu_to_rs) — split logic
+# ---------------------------------------------------------------------------
+
+_PATCH_TARGET = "converter.cisu.resources_info.resources_info_cisu_converter.get_last_rc_ri_by_case_id"
+
+_RC_RI_WITH_POSITION_EDXL = TestHelper.create_edxl_json_from_sample(
+    TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
+    "tests/fixtures/RC-RI/RC-RI_V3.0_with_position.json",
+)
+
+_CASE_ID = "fr.health.samu800.DRFR158002421400215"
+
+
+class TestBuildRsRiFromCisu:
+    """Unit tests for _build_rs_ri_from_cisu (1-to-1 conversion helper)."""
+
+    def test_transforms_state_to_list(self):
+        """Each resource state must be wrapped in a list."""
+        result = ResourcesInfoCISUConverter._build_rs_ri_from_cisu(
+            _RC_RI_WITH_POSITION_EDXL
+        )
+        resources_info = result["content"][0]["jsonContent"]["embeddedJsonContent"][
+            "message"
+        ]["resourcesInfo"]
+        for resource in resources_info["resource"]:
+            assert isinstance(resource["state"], list)
+
+
+class TestBuildRsSrFromResource:
+    """Unit tests for _build_rs_sr_from_resource."""
+
+    _RESOURCE = {
+        "resourceId": "fr.health.samu800.resource.VLM1",
+        "orgId": "fr.health.samu800",
+        "vehicleType": "SMUR",
+        "state": {"datetime": "2024-08-01T16:42:00+02:00", "status": "RET-BASE"},
+    }
+
+    def test_rs_sr_content_is_correct(self):
+        result = ResourcesInfoCISUConverter._build_rs_sr_from_resource(
+            _RC_RI_WITH_POSITION_EDXL, self._RESOURCE, _CASE_ID
+        )
+        rs_sr = result["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]["resourcesStatus"]
+        assert rs_sr["caseId"] == _CASE_ID
+        assert rs_sr["resourceId"] == self._RESOURCE["resourceId"]
+        assert rs_sr["state"] == self._RESOURCE["state"]
+
+    def test_rs_sr_does_not_contain_cisu_key(self):
+        """The RS-SR message envelope must not contain the original CISU key."""
+        result = ResourcesInfoCISUConverter._build_rs_sr_from_resource(
+            _RC_RI_WITH_POSITION_EDXL, self._RESOURCE, _CASE_ID
+        )
+        message = result["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]
+        assert "resourcesInfoCisu" not in message
+
+
+class TestFromCisuToRs:
+    """Integration-style tests for the main from_cisu_to_rs entry point."""
+
+    def test_new_case_id_returns_rs_ri_and_rs_sr_per_resource(self):
+        """With an unknown caseId, must return 1 RS-RI + 1 RS-SR per resource."""
+        with patch(_PATCH_TARGET, return_value=None):
+            results = ResourcesInfoCISUConverter.from_cisu_to_rs(
+                _RC_RI_WITH_POSITION_EDXL
+            )
+
+        # fixture has 2 resources → 1 RS-RI + 2 RS-SR = 3 messages
+        assert isinstance(results, list)
+        assert len(results) == 3
+
+    def test_new_case_id_remaining_messages_are_rs_sr(self):
+        """All messages after the first must be RS-SR."""
+        with patch(_PATCH_TARGET, return_value=None):
+            results = ResourcesInfoCISUConverter.from_cisu_to_rs(
+                _RC_RI_WITH_POSITION_EDXL
+            )
+
+        for rs_sr in results[1:]:
+            message = rs_sr["content"][0]["jsonContent"]["embeddedJsonContent"][
+                "message"
+            ]
+            assert "resourcesStatus" in message
+
+    def test_new_case_id_rs_sr_have_distinct_distribution_ids(self):
+        """Every RS-SR must have a unique distributionID different from the input."""
+        with patch(_PATCH_TARGET, return_value=None):
+            results = ResourcesInfoCISUConverter.from_cisu_to_rs(
+                _RC_RI_WITH_POSITION_EDXL
+            )
+
+        dist_ids = [msg["distributionID"] for msg in results]
+        assert len(dist_ids) == len(set(dist_ids)), "distributionIDs must be unique"
+
+    def test_new_case_id_rs_ri_has_no_position(self):
+        """The RS-RI produced for a new caseId must not contain any position field."""
+        with patch(_PATCH_TARGET, return_value=None):
+            results = ResourcesInfoCISUConverter.from_cisu_to_rs(
+                _RC_RI_WITH_POSITION_EDXL
+            )
+
+        resources_info = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"][
+            "message"
+        ]["resourcesInfo"]
+        for resource in resources_info["resource"]:
+            assert "position" not in resource
+
+    def test_known_case_id_returns_only_rs_ri(self):
+        """With a known caseId, must return only the RS-RI (no RS-SR split)."""
+        mock_persisted = MagicMock()
+        with patch(_PATCH_TARGET, return_value=mock_persisted):
+            results = ResourcesInfoCISUConverter.from_cisu_to_rs(
+                _RC_RI_WITH_POSITION_EDXL
+            )
+
+        assert isinstance(results, list)
+        assert len(results) == 1
+        first_message = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"][
+            "message"
+        ]
+        assert "resourcesInfo" in first_message
