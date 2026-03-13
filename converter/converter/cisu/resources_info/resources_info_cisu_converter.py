@@ -83,7 +83,9 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
             "resourceId": resource.get("resourceId"),
             "state": resource.get("state"),
         }
-        return cls._format_output_json(output_json, output_use_case_json, "resourcesStatus")
+        return cls._format_output_json(
+            output_json, output_use_case_json, "resourcesStatus"
+        )
 
     @classmethod
     def from_cisu_to_rs(cls, edxl_json: Dict[str, Any]) -> List[Dict[str, Any]]:
@@ -96,7 +98,9 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         if not isinstance(case_id, str):
             raise ValueError(f"Missing or invalid caseId in RC-RI message: {case_id!r}")
 
-        resources = get_field_value(cisu_use_case, ResourcesInfoCISUConstants.RESOURCE_PATH)
+        resources = get_field_value(
+            cisu_use_case, ResourcesInfoCISUConstants.RESOURCE_PATH
+        )
         current_distribution_id = edxl_json.get("distributionID")
         existing_message = get_last_rc_ri_by_case_id(
             case_id, exclude_distribution_id=current_distribution_id
@@ -104,7 +108,9 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
 
         # New caseId = first reception, RS-RI + one RS-SR per resource
         if existing_message is None:
-            logger.info("New caseId %s — returning RS-RI + one RS-SR per resource.", case_id)
+            logger.info(
+                "New caseId %s — returning RS-RI + one RS-SR per resource.", case_id
+            )
             return [cls._build_rs_ri_from_cisu(edxl_json)] + [
                 cls._build_rs_sr_from_resource(edxl_json, resource, case_id)
                 for resource in resources
