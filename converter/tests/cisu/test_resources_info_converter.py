@@ -209,40 +209,25 @@ class TestBuildRsSrFromResource:
         assert "resourcesInfoCisu" not in message
 
 
-class TestFromCisuToRs:
-    """Integration-style tests for the main from_cisu_to_rs entry point."""
+def test_from_cisu_to_rs_new_case_id():
+    """With an unknown caseId, from_cisu_to_rs must return 1 RS-RI + 1 RS-SR per resource."""
+    with patch(_PATCH_TARGET, return_value=None):
+        results = ResourcesInfoCISUConverter.from_cisu_to_rs(_RC_RI_WITH_POSITION_EDXL)
 
-    @pytest.fixture(autouse=True)
-    def _results(self):
-        with patch(_PATCH_TARGET, return_value=None):
-            self.results = ResourcesInfoCISUConverter.from_cisu_to_rs(
-                _RC_RI_WITH_POSITION_EDXL
-            )
+    # fixture has 2 resources → 1 RS-RI + 2 RS-SR = 3 messages
+    assert isinstance(results, list), "result must be a list"
+    assert len(results) == 3, f"expected 3 messages (1 RS-RI + 2 RS-SR), got {len(results)}"
 
-    def test_new_case_id_returns_rs_ri_and_rs_sr_per_resource(self):
-        """With an unknown caseId, must return 1 RS-RI + 1 RS-SR per resource."""
-        # fixture has 2 resources → 1 RS-RI + 2 RS-SR = 3 messages
-        assert isinstance(self.results, list)
-        assert len(self.results) == 3
-        first_message = self.results[0]["content"][0]["jsonContent"][
-            "embeddedJsonContent"
-        ]["message"]
-        assert "resourcesInfo" in first_message
-        for rs_sr in self.results[1:]:
-            message = rs_sr["content"][0]["jsonContent"]["embeddedJsonContent"][
-                "message"
-            ]
-            assert "resourcesStatus" in message
+    first_message = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]
+    assert "resourcesInfo" in first_message, "first message must be a RS-RI (resourcesInfo key expected)"
 
-    def test_new_case_id_rs_sr_have_distinct_distribution_ids(self):
-        """Every RS-SR must have a unique distributionID different from the input."""
-        dist_ids = [msg["distributionID"] for msg in self.results]
-        assert len(dist_ids) == len(set(dist_ids)), "distributionIDs must be unique"
+    for i, rs_sr in enumerate(results[1:], start=1):
+        message = rs_sr["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]
+        assert "resourcesStatus" in message, f"message {i} must be a RS-SR (resourcesStatus key expected)"
 
-    def test_new_case_id_rs_ri_has_no_position(self):
-        """The RS-RI produced for a new caseId must not contain any position field."""
-        resources_info = self.results[0]["content"][0]["jsonContent"][
-            "embeddedJsonContent"
-        ]["message"]["resourcesInfo"]
-        for resource in resources_info["resource"]:
-            assert "position" not in resource
+    dist_ids = [msg["distributionID"] for msg in results]
+    assert len(dist_ids) == len(set(dist_ids)), "all distributionIDs must be unique"
+
+    resources_info = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]["resourcesInfo"]
+    for resource in resources_info["resource"]:
+        assert "position" not in resource, f"RS-RI resource {resource.get('resourceId')} must not contain a position field"
