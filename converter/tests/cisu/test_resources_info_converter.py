@@ -216,18 +216,30 @@ def test_from_cisu_to_rs_new_case_id():
 
     # fixture has 2 resources → 1 RS-RI + 2 RS-SR = 3 messages
     assert isinstance(results, list), "result must be a list"
-    assert len(results) == 3, f"expected 3 messages (1 RS-RI + 2 RS-SR), got {len(results)}"
+    assert len(results) == 3, (
+        f"expected 3 messages (1 RS-RI + 2 RS-SR), got {len(results)}"
+    )
 
-    first_message = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]
-    assert "resourcesInfo" in first_message, "first message must be a RS-RI (resourcesInfo key expected)"
+    first_message = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"][
+        "message"
+    ]
+    assert "resourcesInfo" in first_message, (
+        "first message must be a RS-RI (resourcesInfo key expected)"
+    )
 
     for i, rs_sr in enumerate(results[1:], start=1):
         message = rs_sr["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]
-        assert "resourcesStatus" in message, f"message {i} must be a RS-SR (resourcesStatus key expected)"
+        assert "resourcesStatus" in message, (
+            f"message {i} must be a RS-SR (resourcesStatus key expected)"
+        )
 
     dist_ids = [msg["distributionID"] for msg in results]
     assert len(dist_ids) == len(set(dist_ids)), "all distributionIDs must be unique"
 
-    resources_info = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]["resourcesInfo"]
+    resources_info = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"][
+        "message"
+    ]["resourcesInfo"]
     for resource in resources_info["resource"]:
-        assert "position" not in resource, f"RS-RI resource {resource.get('resourceId')} must not contain a position field"
+        assert "position" not in resource, (
+            f"RS-RI resource {resource.get('resourceId')} must not contain a position field"
+        )
