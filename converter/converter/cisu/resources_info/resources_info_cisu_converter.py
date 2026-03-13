@@ -131,7 +131,8 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
 
     @classmethod
     def from_cisu_to_rs(cls, edxl_json: Dict[str, Any]) -> List[Dict[str, Any]]:
-        """RC-RI → RS: on first reception RS-RI + one RS-SR per resource; on subsequent updates RS-SR only."""
+        """RC-RI → RS: on first reception RS-RI + one RS-SR per resource;
+        on update RS-RI if the engaged resource list changed + RS-SR per resource with a modified status."""
         logger.info("Converting from CISU to RS format for Resources Info message.")
         logger.debug(f"Message content: {edxl_json}")
 
