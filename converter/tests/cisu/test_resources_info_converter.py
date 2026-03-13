@@ -1,4 +1,5 @@
 from unittest import TestCase
+from unittest.mock import patch
 
 import pytest
 
@@ -127,7 +128,14 @@ def test_cisu_to_rs_breaking_changes():
         TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
         "tests/fixtures/RC-RI/RC-RI_V3.0_exhaustive_fill.json",
     )
-    rs_raw_message = ResourcesInfoCISUConverter.from_cisu_to_rs(cisu_raw_message)
+    with patch(
+        "converter.cisu.resources_info.resources_info_cisu_converter.get_last_rc_ri_by_case_id",
+        return_value=None,
+    ):
+        results = ResourcesInfoCISUConverter.from_cisu_to_rs(cisu_raw_message)
+
+    # from_cisu_to_rs now returns a list; first element is the RS-RI
+    rs_raw_message = results[0]
     rs_message = ResourcesInfoCISUConverter.copy_rs_input_use_case_content(
         rs_raw_message
     )
@@ -167,3 +175,83 @@ def test_translate_vehicule_type_to_rs(cisu_vehicule_type, expected):
         cisu_vehicule_type
     )
     assert rs_vehicle_type == expected
+
+
+# ---------------------------------------------------------------------------
+# RC-RI → RS (from_cisu_to_rs) — split logic
+# ---------------------------------------------------------------------------
+
+_PATCH_TARGET = "converter.cisu.resources_info.resources_info_cisu_converter.get_last_rc_ri_by_case_id"
+
+_RC_RI_WITH_POSITION_EDXL = TestHelper.create_edxl_json_from_sample(
+    TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
+    "tests/fixtures/RC-RI/RC-RI_V3.0_with_position.json",
+)
+
+_CASE_ID = "fr.health.samu800.DRFR158002421400215"
+
+
+class TestBuildRsSrFromResource:
+    """Unit tests for _build_rs_sr_from_resource."""
+
+    _RESOURCE = {
+        "resourceId": "fr.health.samu800.resource.VLM1",
+        "orgId": "fr.health.samu800",
+        "vehicleType": "SMUR",
+        "state": {"datetime": "2024-08-01T16:42:00+02:00", "status": "RET-BASE"},
+    }
+
+    def test_rs_sr_content_is_correct(self):
+        result = ResourcesInfoCISUConverter._build_rs_sr_from_resource(
+            _RC_RI_WITH_POSITION_EDXL, self._RESOURCE, _CASE_ID
+        )
+        rs_sr = result["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
+            "resourcesStatus"
+        ]
+        assert rs_sr["caseId"] == _CASE_ID
+        assert rs_sr["resourceId"] == self._RESOURCE["resourceId"]
+        assert rs_sr["state"] == self._RESOURCE["state"]
+
+    def test_rs_sr_does_not_contain_cisu_key(self):
+        """The RS-SR message envelope must not contain the original CISU key."""
+        result = ResourcesInfoCISUConverter._build_rs_sr_from_resource(
+            _RC_RI_WITH_POSITION_EDXL, self._RESOURCE, _CASE_ID
+        )
+        message = result["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]
+        assert "resourcesInfoCisu" not in message
+
+
+def test_from_cisu_to_rs_new_case_id():
+    """With an unknown caseId, from_cisu_to_rs must return 1 RS-RI + 1 RS-SR per resource."""
+    with patch(_PATCH_TARGET, return_value=None):
+        results = ResourcesInfoCISUConverter.from_cisu_to_rs(_RC_RI_WITH_POSITION_EDXL)
+
+    # fixture has 2 resources → 1 RS-RI + 2 RS-SR = 3 messages
+    assert isinstance(results, list), "result must be a list"
+    assert len(results) == 3, (
+        f"expected 3 messages (1 RS-RI + 2 RS-SR), got {len(results)}"
+    )
+
+    first_message = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"][
+        "message"
+    ]
+    assert "resourcesInfo" in first_message, (
+        "first message must be a RS-RI (resourcesInfo key expected)"
+    )
+
+    for i, rs_sr in enumerate(results[1:], start=1):
+        message = rs_sr["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]
+        assert "resourcesStatus" in message, (
+            f"message {i} must be a RS-SR (resourcesStatus key expected)"
+        )
+
+    dist_ids = [msg["distributionID"] for msg in results]
+    assert len(dist_ids) == len(set(dist_ids)), "all distributionIDs must be unique"
+
+    resources_info = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"][
+        "message"
+    ]["resourcesInfo"]
+    for resource in resources_info["resource"]:
+        assert "position" not in resource, (
+            f"RS-RI resource {resource.get('resourceId')} must not contain a position field"
+        )

@@ -1,9 +1,12 @@
+import uuid
+
 from converter.cisu.base_cisu_converter import BaseCISUConverter
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 from converter.cisu.resources_info.resources_info_cisu_constants import (
     ResourcesInfoCISUConstants,
 )
+from converter.repositories.message_repository import get_last_rc_ri_by_case_id
 from converter.utils import get_field_value, set_value, delete_paths
 import logging
 
@@ -20,9 +23,9 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         return "resourcesInfoCisu"
 
     @classmethod
-    def from_cisu_to_rs(cls, edxl_json: Dict[str, Any]) -> Dict[str, Any]:
-        logger.info("Converting from CISU to RS format for Resources Info message.")
-        logger.debug(f"Message content: {edxl_json}")
+    def _build_rs_ri_from_cisu(cls, edxl_json: Dict[str, Any]) -> Dict[str, Any]:
+        """Convert a RC-RI to a RS-RI, removing the position field from each resource."""
+        logger.info("Building RS-RI from RC-RI.")
         output_json = cls.copy_cisu_input_content(edxl_json)
         output_use_case_json = cls.copy_cisu_input_use_case_content(edxl_json)
         resources = get_field_value(
@@ -55,7 +58,70 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
                 rs_vehicle_type,
             )
 
+            # RS-RI does not carry GPS position — remove it if present
+            delete_paths(resource, [ResourcesInfoCISUConstants.POSITION_KEY])
+
         return cls.format_rs_output_json(output_json, output_use_case_json)
+
+    @classmethod
+    def _build_rs_sr_from_resource(
+        cls, edxl_json: Dict[str, Any], resource: Dict[str, Any], case_id: str
+    ) -> Dict[str, Any]:
+        """Build an RS-SR from a single RC-RI resource, reusing the EDXL envelope."""
+        logger.info(
+            "Building RS-SR for resourceId=%s, caseId=%s.",
+            resource.get("resourceId"),
+            case_id,
+        )
+        output_json = cls.copy_cisu_input_content(edxl_json)
+
+        # Generate a new distributionID for the RS-SR message
+        output_json["distributionID"] = f"{edxl_json['senderID']}_{uuid.uuid4()}"
+
+        output_use_case_json = {
+            "caseId": case_id,
+            "resourceId": resource.get("resourceId"),
+            "state": resource.get("state"),
+        }
+        return cls._format_output_json(
+            output_json, output_use_case_json, "resourcesStatus"
+        )
+
+    @classmethod
+    def from_cisu_to_rs(cls, edxl_json: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """RC-RI → RS: on first reception RS-RI + one RS-SR per resource; on subsequent updates RS-SR only."""
+        logger.info("Converting from CISU to RS format for Resources Info message.")
+        logger.debug(f"Message content: {edxl_json}")
+
+        cisu_use_case = cls.copy_cisu_input_use_case_content(edxl_json)
+        case_id = cisu_use_case.get(ResourcesInfoCISUConstants.CASE_ID_FIELD)
+        if not isinstance(case_id, str):
+            raise ValueError(f"Missing or invalid caseId in RC-RI message: {case_id!r}")
+
+        current_distribution_id = edxl_json.get("distributionID")
+        existing_message = get_last_rc_ri_by_case_id(
+            case_id, exclude_distribution_id=current_distribution_id
+        )
+
+        # New caseId = first reception, RS-RI + one RS-SR per resource
+        if existing_message is None:
+            logger.info(
+                "New caseId %s — returning RS-RI + one RS-SR per resource.", case_id
+            )
+            resources = get_field_value(
+                cisu_use_case, ResourcesInfoCISUConstants.RESOURCE_PATH
+            )
+
+            converted_messages = [cls._build_rs_ri_from_cisu(edxl_json)]
+            for resource in resources:
+                converted_messages.append(
+                    cls._build_rs_sr_from_resource(edxl_json, resource, case_id)
+                )
+            return converted_messages
+
+        # TODO: Known caseId = subsequent update, define what to forward
+        logger.info("Known caseId %s — no message to forward.", case_id)
+        return []
 
     @classmethod
     def from_rs_to_cisu(cls, edxl_json: Dict[str, Any]) -> Dict[str, Any]:

@@ -1,0 +1,34 @@
+{
+  "resourcesInfoCisu": {
+    "caseId": "fr.health.samu800.DRFR158002421400215",
+    "resource": [
+      {
+        "resourceId": "fr.health.samu800.resource.VLM1",
+        "orgId": "fr.health.samu800",
+        "vehicleType": "SMUR",
+        "name": "VLM 800-1",
+        "state": {
+          "datetime": "2024-08-01T16:42:00+02:00",
+          "status": "RET-BASE"
+        },
+        "position": {
+          "datetime": "2024-08-01T16:42:00+02:00",
+          "coord": {
+            "lat": 48.8566,
+            "lon": 2.3522
+          }
+        }
+      },
+      {
+        "resourceId": "fr.fire.sis076.cgo-076.resource.VSAV3A",
+        "orgId": "fr.fire.sdis76.cgo-076",
+        "vehicleType": "SIS",
+        "name": "VSAV 76-22D8",
+        "state": {
+          "datetime": "2024-08-01T16:40:00+02:00",
+          "status": "FINPEC"
+        }
+      }
+    ]
+  }
+}
