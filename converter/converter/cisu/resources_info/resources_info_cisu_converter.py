@@ -88,7 +88,7 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         )
 
     @classmethod
-    def has_ressources_been_updated(cls, reference_edxl: Dict[str, Any], comparison_edxl: Dict[str, Any]) -> Dict[str, Any]:
+    def _has_resources_been_updated(cls, reference_edxl: Dict[str, Any], comparison_edxl: Dict[str, Any]) -> Dict[str, Any]:
         """Compare the resources of two RC-RI messages."""
         reference_use_case = cls.copy_cisu_input_use_case_content(reference_edxl)
         comparison_use_case = cls.copy_cisu_input_use_case_content(comparison_edxl)
@@ -164,7 +164,7 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         # Known caseId — compare resources and emit only what changed
         logger.info("Known caseId %s — comparing resources for updates.", case_id)
 
-        update_result = cls.has_ressources_been_updated(existing_message.payload, edxl_json)
+        update_result = cls._has_resources_been_updated(existing_message.payload, edxl_json)
         engaged_resources_updated: bool = update_result["engaged_resources_updated"]
         modified_status_resources: List[Dict[str, Any]] = update_result["modified_status_resources"]
 

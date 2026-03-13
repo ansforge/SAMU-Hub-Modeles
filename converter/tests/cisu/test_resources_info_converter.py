@@ -265,7 +265,7 @@ def test_from_cisu_to_rs_new_case_id():
 
 
 # ---------------------------------------------------------------------------
-# has_ressources_been_updated — unit tests
+# _has_resources_been_updated — unit tests
 # ---------------------------------------------------------------------------
 
 _RESOURCE_VLM1 = {
@@ -297,13 +297,13 @@ def _make_edxl_with_resources(resources):
     return edxl
 
 
-class TestHasRessourcesBeenUpdated:
+class TestHasResourcesBeenUpdated:
     def test_no_change(self):
         """Identical resource lists → no flag raised, no modified resources."""
         edxl = _make_edxl_with_resources(
             [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
         )
-        result = ResourcesInfoCISUConverter.has_ressources_been_updated(edxl, edxl)
+        result = ResourcesInfoCISUConverter._has_resources_been_updated(edxl, edxl)
 
         assert result["engaged_resources_updated"] is False, (
             "engaged_resources_updated must be False when no resource is added or removed"
@@ -323,7 +323,7 @@ class TestHasRessourcesBeenUpdated:
             [updated_vlm1, copy.deepcopy(_RESOURCE_VSAV3A)]
         )
 
-        result = ResourcesInfoCISUConverter.has_ressources_been_updated(ref, cmp)
+        result = ResourcesInfoCISUConverter._has_resources_been_updated(ref, cmp)
 
         assert result["engaged_resources_updated"] is False, (
             "engaged_resources_updated must stay False when only a status changed (no resource added/removed)"
@@ -352,7 +352,7 @@ class TestHasRessourcesBeenUpdated:
             ]
         )
 
-        result = ResourcesInfoCISUConverter.has_ressources_been_updated(ref, cmp)
+        result = ResourcesInfoCISUConverter._has_resources_been_updated(ref, cmp)
 
         assert result["engaged_resources_updated"] is True, (
             "engaged_resources_updated must be True when a resource is added"
@@ -370,7 +370,7 @@ class TestHasRessourcesBeenUpdated:
         )
         cmp = _make_edxl_with_resources([copy.deepcopy(_RESOURCE_VLM1)])
 
-        result = ResourcesInfoCISUConverter.has_ressources_been_updated(ref, cmp)
+        result = ResourcesInfoCISUConverter._has_resources_been_updated(ref, cmp)
 
         assert result["engaged_resources_updated"] is True, (
             "engaged_resources_updated must be True when a resource is removed"
@@ -388,7 +388,7 @@ class TestHasRessourcesBeenUpdated:
         updated["state"]["datetime"] = "2024-08-01T18:00:00+02:00"
         cmp = _make_edxl_with_resources([updated])
 
-        result = ResourcesInfoCISUConverter.has_ressources_been_updated(ref, cmp)
+        result = ResourcesInfoCISUConverter._has_resources_been_updated(ref, cmp)
 
         assert result["modified_status_resources"][0]["state"]["datetime"] == (
             "2024-08-01T18:00:00+02:00"
