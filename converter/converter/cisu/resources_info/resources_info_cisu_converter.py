@@ -77,7 +77,7 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         output_json = copy.deepcopy(edxl_json)
 
         # Generate a new distributionID for the RS-SR message
-        output_json["distributionID"] = str(uuid.uuid4())
+        output_json["distributionID"] = f"{output_json['senderID']}_{uuid.uuid4()}"
 
         message = output_json["content"][0]["jsonContent"]["embeddedJsonContent"][
             "message"
