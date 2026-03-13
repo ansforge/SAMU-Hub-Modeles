@@ -87,7 +87,7 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
 
     @classmethod
     def from_cisu_to_rs(cls, edxl_json: Dict[str, Any]) -> List[Dict[str, Any]]:
-        """RC-RI → RS: always one RS-RI; on first reception also one RS-SR per resource."""
+        """RC-RI → RS: on first reception RS-RI + one RS-SR per resource; on subsequent updates RS-SR only."""
         logger.info("Converting from CISU to RS format for Resources Info message.")
         logger.debug(f"Message content: {edxl_json}")
 
@@ -96,32 +96,23 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         if not isinstance(case_id, str):
             raise ValueError(f"Missing or invalid caseId in RC-RI message: {case_id!r}")
 
-        rs_ri = cls._build_rs_ri_from_cisu(edxl_json)
-
-        # Known caseId = subsequent update, RS-RI only
+        resources = get_field_value(cisu_use_case, ResourcesInfoCISUConstants.RESOURCE_PATH)
         current_distribution_id = edxl_json.get("distributionID")
         existing_message = get_last_rc_ri_by_case_id(
             case_id, exclude_distribution_id=current_distribution_id
         )
-        if existing_message is not None:
-            logger.info(
-                "Known caseId %s — returning RS-RI only (no RS-SR split).", case_id
-            )
-            return [rs_ri]
 
-        # New caseId = first reception, split into RS-RI + one RS-SR per resource
-        logger.info(
-            "New caseId %s — splitting into RS-RI + one RS-SR per resource.", case_id
-        )
-        resources = get_field_value(
-            cisu_use_case, ResourcesInfoCISUConstants.RESOURCE_PATH
-        )
-        messages: List[Dict[str, Any]] = [rs_ri]
-        for resource in resources:
-            rs_sr = cls._build_rs_sr_from_resource(edxl_json, resource, case_id)
-            messages.append(rs_sr)
+        # New caseId = first reception, RS-RI + one RS-SR per resource
+        if existing_message is None:
+            logger.info("New caseId %s — returning RS-RI + one RS-SR per resource.", case_id)
+            return [cls._build_rs_ri_from_cisu(edxl_json)] + [
+                cls._build_rs_sr_from_resource(edxl_json, resource, case_id)
+                for resource in resources
+            ]
 
-        return messages
+        # TODO: Known caseId = subsequent update, define what to forward
+        logger.info("Known caseId %s — no message to forward.", case_id)
+        return []
 
     @classmethod
     def from_rs_to_cisu(cls, edxl_json: Dict[str, Any]) -> Dict[str, Any]:
