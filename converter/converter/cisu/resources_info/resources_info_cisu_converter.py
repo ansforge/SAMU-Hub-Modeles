@@ -1,4 +1,3 @@
-import copy
 import uuid
 
 from converter.cisu.base_cisu_converter import BaseCISUConverter
@@ -74,24 +73,17 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
             resource.get("resourceId"),
             case_id,
         )
-        output_json = copy.deepcopy(edxl_json)
+        output_json = cls.copy_cisu_input_content(edxl_json)
 
         # Generate a new distributionID for the RS-SR message
-        output_json["distributionID"] = f"{output_json['senderID']}_{uuid.uuid4()}"
+        output_json["distributionID"] = f"{edxl_json['senderID']}_{uuid.uuid4()}"
 
-        message = output_json["content"][0]["jsonContent"]["embeddedJsonContent"][
-            "message"
-        ]
-
-        # Drop the original CISU use-case payload
-        message.pop(cls.get_cisu_message_type(), None)
-
-        message["resourcesStatus"] = {
+        output_use_case_json = {
             "caseId": case_id,
             "resourceId": resource.get("resourceId"),
             "state": resource.get("state"),
         }
-        return output_json
+        return cls._format_output_json(output_json, output_use_case_json, "resourcesStatus")
 
     @classmethod
     def from_cisu_to_rs(cls, edxl_json: Dict[str, Any]) -> List[Dict[str, Any]]:
