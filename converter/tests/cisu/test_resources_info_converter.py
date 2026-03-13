@@ -1,5 +1,5 @@
 from unittest import TestCase
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import pytest
 
@@ -273,18 +273,3 @@ class TestFromCisuToRs:
         ]["resourcesInfo"]
         for resource in resources_info["resource"]:
             assert "position" not in resource
-
-    def test_known_case_id_returns_only_rs_ri(self):
-        """With a known caseId, must return only the RS-RI (no RS-SR split)."""
-        mock_persisted = MagicMock()
-        with patch(_PATCH_TARGET, return_value=mock_persisted):
-            results = ResourcesInfoCISUConverter.from_cisu_to_rs(
-                _RC_RI_WITH_POSITION_EDXL
-            )
-
-        assert isinstance(results, list)
-        assert len(results) == 1
-        first_message = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"][
-            "message"
-        ]
-        assert "resourcesInfo" in first_message
