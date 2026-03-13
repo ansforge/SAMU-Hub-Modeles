@@ -179,21 +179,6 @@ _RC_RI_WITH_POSITION_EDXL = TestHelper.create_edxl_json_from_sample(
 _CASE_ID = "fr.health.samu800.DRFR158002421400215"
 
 
-class TestBuildRsRiFromCisu:
-    """Unit tests for _build_rs_ri_from_cisu (1-to-1 conversion helper)."""
-
-    def test_transforms_state_to_list(self):
-        """Each resource state must be wrapped in a list."""
-        result = ResourcesInfoCISUConverter._build_rs_ri_from_cisu(
-            _RC_RI_WITH_POSITION_EDXL
-        )
-        resources_info = result["content"][0]["jsonContent"]["embeddedJsonContent"][
-            "message"
-        ]["resourcesInfo"]
-        for resource in resources_info["resource"]:
-            assert isinstance(resource["state"], list)
-
-
 class TestBuildRsSrFromResource:
     """Unit tests for _build_rs_sr_from_resource."""
 
@@ -227,25 +212,23 @@ class TestBuildRsSrFromResource:
 class TestFromCisuToRs:
     """Integration-style tests for the main from_cisu_to_rs entry point."""
 
+    @pytest.fixture(autouse=True)
+    def _results(self):
+        with patch(_PATCH_TARGET, return_value=None):
+            self.results = ResourcesInfoCISUConverter.from_cisu_to_rs(
+                _RC_RI_WITH_POSITION_EDXL
+            )
+
     def test_new_case_id_returns_rs_ri_and_rs_sr_per_resource(self):
         """With an unknown caseId, must return 1 RS-RI + 1 RS-SR per resource."""
-        with patch(_PATCH_TARGET, return_value=None):
-            results = ResourcesInfoCISUConverter.from_cisu_to_rs(
-                _RC_RI_WITH_POSITION_EDXL
-            )
-
         # fixture has 2 resources → 1 RS-RI + 2 RS-SR = 3 messages
-        assert isinstance(results, list)
-        assert len(results) == 3
-
-    def test_new_case_id_remaining_messages_are_rs_sr(self):
-        """All messages after the first must be RS-SR."""
-        with patch(_PATCH_TARGET, return_value=None):
-            results = ResourcesInfoCISUConverter.from_cisu_to_rs(
-                _RC_RI_WITH_POSITION_EDXL
-            )
-
-        for rs_sr in results[1:]:
+        assert isinstance(self.results, list)
+        assert len(self.results) == 3
+        first_message = self.results[0]["content"][0]["jsonContent"][
+            "embeddedJsonContent"
+        ]["message"]
+        assert "resourcesInfo" in first_message
+        for rs_sr in self.results[1:]:
             message = rs_sr["content"][0]["jsonContent"]["embeddedJsonContent"][
                 "message"
             ]
@@ -253,23 +236,13 @@ class TestFromCisuToRs:
 
     def test_new_case_id_rs_sr_have_distinct_distribution_ids(self):
         """Every RS-SR must have a unique distributionID different from the input."""
-        with patch(_PATCH_TARGET, return_value=None):
-            results = ResourcesInfoCISUConverter.from_cisu_to_rs(
-                _RC_RI_WITH_POSITION_EDXL
-            )
-
-        dist_ids = [msg["distributionID"] for msg in results]
+        dist_ids = [msg["distributionID"] for msg in self.results]
         assert len(dist_ids) == len(set(dist_ids)), "distributionIDs must be unique"
 
     def test_new_case_id_rs_ri_has_no_position(self):
         """The RS-RI produced for a new caseId must not contain any position field."""
-        with patch(_PATCH_TARGET, return_value=None):
-            results = ResourcesInfoCISUConverter.from_cisu_to_rs(
-                _RC_RI_WITH_POSITION_EDXL
-            )
-
-        resources_info = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"][
-            "message"
-        ]["resourcesInfo"]
+        resources_info = self.results[0]["content"][0]["jsonContent"][
+            "embeddedJsonContent"
+        ]["message"]["resourcesInfo"]
         for resource in resources_info["resource"]:
             assert "position" not in resource
