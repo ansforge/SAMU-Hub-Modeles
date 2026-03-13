@@ -98,9 +98,6 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         if not isinstance(case_id, str):
             raise ValueError(f"Missing or invalid caseId in RC-RI message: {case_id!r}")
 
-        resources = get_field_value(
-            cisu_use_case, ResourcesInfoCISUConstants.RESOURCE_PATH
-        )
         current_distribution_id = edxl_json.get("distributionID")
         existing_message = get_last_rc_ri_by_case_id(
             case_id, exclude_distribution_id=current_distribution_id
@@ -111,10 +108,16 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
             logger.info(
                 "New caseId %s — returning RS-RI + one RS-SR per resource.", case_id
             )
-            return [cls._build_rs_ri_from_cisu(edxl_json)] + [
-                cls._build_rs_sr_from_resource(edxl_json, resource, case_id)
-                for resource in resources
-            ]
+            resources = get_field_value(
+                cisu_use_case, ResourcesInfoCISUConstants.RESOURCE_PATH
+            )
+
+            converted_messages = [cls._build_rs_ri_from_cisu(edxl_json)]
+            for resource in resources:
+                converted_messages.append(
+                    cls._build_rs_sr_from_resource(edxl_json, resource, case_id)
+                )
+            return converted_messages
 
         # TODO: Known caseId = subsequent update, define what to forward
         logger.info("Known caseId %s — no message to forward.", case_id)
