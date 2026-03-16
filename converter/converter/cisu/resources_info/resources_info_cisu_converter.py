@@ -109,10 +109,10 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         )
 
         reference_map: Dict[str, Dict[str, Any]] = {
-            r.get("resourceId"): r for r in reference_resources
+            r["resourceId"]: r for r in reference_resources
         }
         comparison_map: Dict[str, Dict[str, Any]] = {
-            r.get("resourceId"): r for r in comparison_resources
+            r["resourceId"]: r for r in comparison_resources
         }
 
         engaged_resources_updated: bool = set(reference_map.keys()) != set(
