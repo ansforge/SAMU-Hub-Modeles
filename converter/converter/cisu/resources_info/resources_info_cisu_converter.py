@@ -154,7 +154,7 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         """RC-RI → RS: on first reception RS-RI + one RS-SR per resource;
         on update RS-RI if the engaged resource list changed + RS-SR per resource with a modified status."""
         logger.info("Converting from CISU to RS format for Resources Info message.")
-        logger.debug(f"Message content: {edxl_json}")
+        logger.debug("Message content: %s", edxl_json)
 
         cisu_use_case = cls.copy_cisu_input_use_case_content(edxl_json)
         case_id = cisu_use_case.get(ResourcesInfoCISUConstants.CASE_ID_FIELD)
