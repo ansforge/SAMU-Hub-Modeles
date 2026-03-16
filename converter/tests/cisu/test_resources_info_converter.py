@@ -191,11 +191,9 @@ _RC_RI_WITH_POSITION_EDXL = TestHelper.create_edxl_json_from_sample(
     "tests/fixtures/RC-RI/RC-RI_V3.0_with_position.json",
 )
 
-_CASE_ID = (
-    _RC_RI_WITH_POSITION_EDXL["content"][0]["jsonContent"]["embeddedJsonContent"][
-        "message"
-    ]["resourcesInfoCisu"]["caseId"]
-)
+_CASE_ID = _RC_RI_WITH_POSITION_EDXL["content"][0]["jsonContent"][
+    "embeddedJsonContent"
+]["message"]["resourcesInfoCisu"]["caseId"]
 
 
 class TestBuildRsSrFromResource:
@@ -319,9 +317,7 @@ class TestHasResourcesBeenUpdated:
         )
         updated_vlm1 = copy.deepcopy(_RESOURCE_VLM1)
         updated_vlm1["state"]["status"] = "DISP"
-        cmp = _make_edxl_with_resources(
-            [updated_vlm1, copy.deepcopy(_RESOURCE_VSAV3A)]
-        )
+        cmp = _make_edxl_with_resources([updated_vlm1, copy.deepcopy(_RESOURCE_VSAV3A)])
 
         result = ResourcesInfoCISUConverter._has_resources_been_updated(ref, cmp)
 
@@ -392,7 +388,9 @@ class TestHasResourcesBeenUpdated:
 
         assert result["modified_status_resources"][0]["state"]["datetime"] == (
             "2024-08-01T18:00:00+02:00"
-        ), "modified_status_resources must contain the resource from the comparison message, not the reference"
+        ), (
+            "modified_status_resources must contain the resource from the comparison message, not the reference"
+        )
 
 
 # ---------------------------------------------------------------------------
@@ -427,7 +425,9 @@ def test_from_cisu_to_rs_known_case_id_status_changed_only():
     assert len(results) == 1, f"expected 1 RS-SR, got {len(results)}"
     message = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]
     assert "resourcesStatus" in message, "expected RS-SR (resourcesStatus key)"
-    assert "resourcesInfo" not in message, "a status-only change must not produce a RS-RI"
+    assert "resourcesInfo" not in message, (
+        "a status-only change must not produce a RS-RI"
+    )
     assert message["resourcesStatus"]["resourceId"] == _RESOURCE_VLM1["resourceId"], (
         "RS-SR must reference the resource whose status changed"
     )
@@ -465,9 +465,9 @@ def test_from_cisu_to_rs_known_case_id_resource_added():
     assert "resourcesStatus" in second_message, (
         "second message must be a RS-SR for the newly added resource"
     )
-    assert second_message["resourcesStatus"]["resourceId"] == _RESOURCE_NEW["resourceId"], (
-        "RS-SR must reference the newly added resource"
-    )
+    assert (
+        second_message["resourcesStatus"]["resourceId"] == _RESOURCE_NEW["resourceId"]
+    ), "RS-SR must reference the newly added resource"
 
 
 def test_from_cisu_to_rs_known_case_id_resource_removed():
@@ -481,7 +481,9 @@ def test_from_cisu_to_rs_known_case_id_resource_removed():
         results = ResourcesInfoCISUConverter.from_cisu_to_rs(incoming_edxl)
 
     assert isinstance(results, list), "from_cisu_to_rs must return a list"
-    assert len(results) == 1, f"expected exactly 1 RS-RI (no RS-SR for a removed resource), got {len(results)}"
+    assert len(results) == 1, (
+        f"expected exactly 1 RS-RI (no RS-SR for a removed resource), got {len(results)}"
+    )
     message = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]
     assert "resourcesInfo" in message, (
         "when a resource is removed the RS-RI must be produced to reflect the new engaged resource list"
