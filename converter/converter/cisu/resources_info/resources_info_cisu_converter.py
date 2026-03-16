@@ -1,7 +1,7 @@
 import uuid
 
 from converter.cisu.base_cisu_converter import BaseCISUConverter
-from typing import Any, Dict, List
+from typing import Any, Dict, List, TypedDict
 
 from converter.cisu.resources_info.resources_info_cisu_constants import (
     ResourcesInfoCISUConstants,
@@ -12,6 +12,9 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+class ResourceUpdateResult(TypedDict):
+    engaged_resources_updated: bool
+    modified_status_resources: List[Dict[str, Any]]
 
 class ResourcesInfoCISUConverter(BaseCISUConverter):
     @classmethod
@@ -90,7 +93,7 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
     @classmethod
     def _has_resources_been_updated(
         cls, reference_edxl: Dict[str, Any], comparison_edxl: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    ) -> ResourceUpdateResult:
         """Compare the resources of two RC-RI messages."""
         reference_use_case = cls.copy_cisu_input_use_case_content(reference_edxl)
         comparison_use_case = cls.copy_cisu_input_use_case_content(comparison_edxl)
@@ -144,10 +147,10 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
 
         # TODO: handle removed resources (present in reference_map but absent from comparison_map).
 
-        return {
-            "engaged_resources_updated": engaged_resources_updated,
-            "modified_status_resources": modified_status_resources,
-        }
+        return ResourceUpdateResult(
+            engaged_resources_updated=engaged_resources_updated,
+            modified_status_resources=modified_status_resources,
+        )
 
     @classmethod
     def from_cisu_to_rs(cls, edxl_json: Dict[str, Any]) -> List[Dict[str, Any]]:
