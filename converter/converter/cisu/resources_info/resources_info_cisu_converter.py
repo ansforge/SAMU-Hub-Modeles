@@ -12,9 +12,11 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 class ResourceUpdateResult(TypedDict):
     engaged_resources_updated: bool
     modified_status_resources: List[Dict[str, Any]]
+
 
 class ResourcesInfoCISUConverter(BaseCISUConverter):
     @classmethod
