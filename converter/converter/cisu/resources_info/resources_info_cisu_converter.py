@@ -177,11 +177,13 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         # Known caseId — compare resources and emit only what changed
         logger.info("Known caseId %s — comparing resources for updates.", case_id)
 
-        update_result = cls._has_resources_been_updated(
+        resources_comparison_result = cls._has_resources_been_updated(
             existing_message.payload, edxl_json
         )
-        engaged_resources_updated: bool = update_result["engaged_resources_updated"]
-        modified_status_resources: List[Dict[str, Any]] = update_result[
+        engaged_resources_updated: bool = resources_comparison_result[
+            "engaged_resources_updated"
+        ]
+        modified_status_resources: List[Dict[str, Any]] = resources_comparison_result[
             "modified_status_resources"
         ]
 
