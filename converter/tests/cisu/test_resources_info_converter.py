@@ -286,7 +286,7 @@ _RESOURCE_NEW = {
 }
 
 
-def _make_edxl_with_resources(resources):
+def _make_rc_ri_with_resources(resources):
     """Return a copy of the RC-RI fixture with the given resource list."""
     edxl = copy.deepcopy(_RC_RI_WITH_POSITION_EDXL)
     edxl["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
@@ -298,7 +298,7 @@ def _make_edxl_with_resources(resources):
 class TestHasResourcesBeenUpdated:
     def test_no_change(self):
         """Identical resource lists → no flag raised, no modified resources."""
-        edxl = _make_edxl_with_resources(
+        edxl = _make_rc_ri_with_resources(
             [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
         )
         result = ResourcesInfoCISUConverter._has_resources_been_updated(edxl, edxl)
@@ -312,12 +312,12 @@ class TestHasResourcesBeenUpdated:
 
     def test_status_changed(self):
         """A status change → flag stays False, changed resource appears in modified_status_resources in its new version."""
-        ref = _make_edxl_with_resources(
+        ref = _make_rc_ri_with_resources(
             [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
         )
         updated_vlm1 = copy.deepcopy(_RESOURCE_VLM1)
         updated_vlm1["state"]["status"] = "DISP"
-        cmp = _make_edxl_with_resources([updated_vlm1, copy.deepcopy(_RESOURCE_VSAV3A)])
+        cmp = _make_rc_ri_with_resources([updated_vlm1, copy.deepcopy(_RESOURCE_VSAV3A)])
 
         result = ResourcesInfoCISUConverter._has_resources_been_updated(ref, cmp)
 
@@ -337,10 +337,10 @@ class TestHasResourcesBeenUpdated:
 
     def test_resource_added(self):
         """A new resource → flag raised and new resource appears in modified_status_resources."""
-        ref = _make_edxl_with_resources(
+        ref = _make_rc_ri_with_resources(
             [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
         )
-        cmp = _make_edxl_with_resources(
+        cmp = _make_rc_ri_with_resources(
             [
                 copy.deepcopy(_RESOURCE_VLM1),
                 copy.deepcopy(_RESOURCE_VSAV3A),
@@ -361,10 +361,10 @@ class TestHasResourcesBeenUpdated:
 
     def test_resource_removed(self):
         """A removed resource → flag raised, removed resource absent from modified_status_resources."""
-        ref = _make_edxl_with_resources(
+        ref = _make_rc_ri_with_resources(
             [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
         )
-        cmp = _make_edxl_with_resources([copy.deepcopy(_RESOURCE_VLM1)])
+        cmp = _make_rc_ri_with_resources([copy.deepcopy(_RESOURCE_VLM1)])
 
         result = ResourcesInfoCISUConverter._has_resources_been_updated(ref, cmp)
 
@@ -378,11 +378,11 @@ class TestHasResourcesBeenUpdated:
 
     def test_status_change_returns_new_version_of_resource(self):
         """modified_status_resources must contain the resource in its most recent version (from comparison message)."""
-        ref = _make_edxl_with_resources([copy.deepcopy(_RESOURCE_VLM1)])
+        ref = _make_rc_ri_with_resources([copy.deepcopy(_RESOURCE_VLM1)])
         updated = copy.deepcopy(_RESOURCE_VLM1)
         updated["state"]["status"] = "DISP"
         updated["state"]["datetime"] = "2024-08-01T18:00:00+02:00"
-        cmp = _make_edxl_with_resources([updated])
+        cmp = _make_rc_ri_with_resources([updated])
 
         result = ResourcesInfoCISUConverter._has_resources_been_updated(ref, cmp)
 
@@ -409,12 +409,12 @@ def _persisted(edxl: dict) -> PersistedMessage:
 
 def test_from_cisu_to_rs_known_case_id_status_changed_only():
     """Known caseId + only a status change → exactly one RS-SR, no RS-RI."""
-    ref_edxl = _make_edxl_with_resources(
+    ref_edxl = _make_rc_ri_with_resources(
         [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
     )
     updated_vlm1 = copy.deepcopy(_RESOURCE_VLM1)
     updated_vlm1["state"]["status"] = "DISP"
-    incoming_edxl = _make_edxl_with_resources(
+    incoming_edxl = _make_rc_ri_with_resources(
         [updated_vlm1, copy.deepcopy(_RESOURCE_VSAV3A)]
     )
 
@@ -435,10 +435,10 @@ def test_from_cisu_to_rs_known_case_id_status_changed_only():
 
 def test_from_cisu_to_rs_known_case_id_resource_added():
     """Known caseId + new resource → one RS-RI and one RS-SR for the new resource."""
-    ref_edxl = _make_edxl_with_resources(
+    ref_edxl = _make_rc_ri_with_resources(
         [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
     )
-    incoming_edxl = _make_edxl_with_resources(
+    incoming_edxl = _make_rc_ri_with_resources(
         [
             copy.deepcopy(_RESOURCE_VLM1),
             copy.deepcopy(_RESOURCE_VSAV3A),
@@ -472,10 +472,10 @@ def test_from_cisu_to_rs_known_case_id_resource_added():
 
 def test_from_cisu_to_rs_known_case_id_resource_removed():
     """Known caseId + resource removed → one RS-RI, no RS-SR."""
-    ref_edxl = _make_edxl_with_resources(
+    ref_edxl = _make_rc_ri_with_resources(
         [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
     )
-    incoming_edxl = _make_edxl_with_resources([copy.deepcopy(_RESOURCE_VLM1)])
+    incoming_edxl = _make_rc_ri_with_resources([copy.deepcopy(_RESOURCE_VLM1)])
 
     with patch(_PATCH_TARGET, return_value=_persisted(ref_edxl)):
         results = ResourcesInfoCISUConverter.from_cisu_to_rs(incoming_edxl)
@@ -492,10 +492,10 @@ def test_from_cisu_to_rs_known_case_id_resource_removed():
 
 def test_from_cisu_to_rs_known_case_id_no_change():
     """Known caseId + no resource or status change → empty list."""
-    ref_edxl = _make_edxl_with_resources(
+    ref_edxl = _make_rc_ri_with_resources(
         [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
     )
-    incoming_edxl = _make_edxl_with_resources(
+    incoming_edxl = _make_rc_ri_with_resources(
         [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
     )
 
