@@ -317,6 +317,7 @@ class TestHasResourcesBeenUpdated:
         )
         updated_vlm1 = copy.deepcopy(_RESOURCE_VLM1)
         updated_vlm1["state"]["status"] = "DISP"
+        updated_vlm1["state"]["datetime"] = "2024-08-01T18:00:00+02:00"
         cmp = _make_rc_ri_with_resources([updated_vlm1, copy.deepcopy(_RESOURCE_VSAV3A)])
 
         result = ResourcesInfoCISUConverter._has_resources_been_updated(ref, cmp)
@@ -333,6 +334,9 @@ class TestHasResourcesBeenUpdated:
         )
         assert changed["state"]["status"] == "DISP", (
             "modified_status_resources must contain the resource in its most recent version"
+        )
+        assert changed["state"]["datetime"] == "2024-08-01T18:00:00+02:00", (
+            "modified_status_resources must contain the resource from the comparison message, not the reference"
         )
 
     def test_resource_added(self):
@@ -376,21 +380,6 @@ class TestHasResourcesBeenUpdated:
             f"the removed resource {_RESOURCE_VSAV3A['resourceId']} must not appear in modified_status_resources"
         )
 
-    def test_status_change_returns_new_version_of_resource(self):
-        """modified_status_resources must contain the resource in its most recent version (from comparison message)."""
-        ref = _make_rc_ri_with_resources([copy.deepcopy(_RESOURCE_VLM1)])
-        updated = copy.deepcopy(_RESOURCE_VLM1)
-        updated["state"]["status"] = "DISP"
-        updated["state"]["datetime"] = "2024-08-01T18:00:00+02:00"
-        cmp = _make_rc_ri_with_resources([updated])
-
-        result = ResourcesInfoCISUConverter._has_resources_been_updated(ref, cmp)
-
-        assert result["modified_status_resources"][0]["state"]["datetime"] == (
-            "2024-08-01T18:00:00+02:00"
-        ), (
-            "modified_status_resources must contain the resource from the comparison message, not the reference"
-        )
 
 
 # ---------------------------------------------------------------------------
