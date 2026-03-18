@@ -318,7 +318,9 @@ class TestHasResourcesBeenUpdated:
         updated_vlm1 = copy.deepcopy(_RESOURCE_VLM1)
         updated_vlm1["state"]["status"] = "DISP"
         updated_vlm1["state"]["datetime"] = "2024-08-01T18:00:00+02:00"
-        cmp = _make_rc_ri_with_resources([updated_vlm1, copy.deepcopy(_RESOURCE_VSAV3A)])
+        cmp = _make_rc_ri_with_resources(
+            [updated_vlm1, copy.deepcopy(_RESOURCE_VSAV3A)]
+        )
 
         result = ResourcesInfoCISUConverter._has_resources_been_updated(ref, cmp)
 
@@ -379,7 +381,6 @@ class TestHasResourcesBeenUpdated:
         assert _RESOURCE_VSAV3A["resourceId"] not in resource_ids, (
             f"the removed resource {_RESOURCE_VSAV3A['resourceId']} must not appear in modified_status_resources"
         )
-
 
 
 # ---------------------------------------------------------------------------
