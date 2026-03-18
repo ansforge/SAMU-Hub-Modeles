@@ -93,32 +93,21 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         )
 
     @classmethod
+    def _get_resource_map(cls, edxl_json: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
+        """Extract a resourceId → resource mapping from an RC-RI EDXL message."""
+        use_case = cls.copy_cisu_input_use_case_content(edxl_json)
+        resources: List[Dict[str, Any]] = (
+            get_field_value(use_case, ResourcesInfoCISUConstants.RESOURCE_PATH) or []
+        )
+        return {r["resourceId"]: r for r in resources}
+
+    @classmethod
     def _has_resources_been_updated(
         cls, reference_edxl: Dict[str, Any], comparison_edxl: Dict[str, Any]
     ) -> ResourceUpdateResult:
         """Compare the resources of two RC-RI messages."""
-        reference_use_case = cls.copy_cisu_input_use_case_content(reference_edxl)
-        comparison_use_case = cls.copy_cisu_input_use_case_content(comparison_edxl)
-
-        reference_resources: List[Dict[str, Any]] = (
-            get_field_value(
-                reference_use_case, ResourcesInfoCISUConstants.RESOURCE_PATH
-            )
-            or []
-        )
-        comparison_resources: List[Dict[str, Any]] = (
-            get_field_value(
-                comparison_use_case, ResourcesInfoCISUConstants.RESOURCE_PATH
-            )
-            or []
-        )
-
-        reference_map: Dict[str, Dict[str, Any]] = {
-            r["resourceId"]: r for r in reference_resources
-        }
-        comparison_map: Dict[str, Dict[str, Any]] = {
-            r["resourceId"]: r for r in comparison_resources
-        }
+        reference_map = cls._get_resource_map(reference_edxl)
+        comparison_map = cls._get_resource_map(comparison_edxl)
 
         engaged_resources_updated: bool = set(reference_map.keys()) != set(
             comparison_map.keys()
