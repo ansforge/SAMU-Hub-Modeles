@@ -42,7 +42,8 @@ import java.util.Objects;
 /**
  * Coord
  */
-@JsonPropertyOrder({Coord.JSON_PROPERTY_LAT, Coord.JSON_PROPERTY_LON})
+@JsonPropertyOrder({Coord.JSON_PROPERTY_LAT, Coord.JSON_PROPERTY_LON,
+                    Coord.JSON_PROPERTY_HEIGHT})
 @JsonTypeName("coord")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -53,6 +54,9 @@ public class Coord {
   public static final String JSON_PROPERTY_LON = "lon";
   private BigDecimal lon;
 
+  public static final String JSON_PROPERTY_HEIGHT = "height";
+  private BigDecimal height;
+
   public Coord() {}
 
   public Coord lat(BigDecimal lat) {
@@ -62,7 +66,7 @@ public class Coord {
   }
 
   /**
-   * A valoriser avec la latitude de la position
+   * Dernière coordonnée x connue de la ressource, entre −90 and +90
    * @return lat
    **/
   @JsonProperty(JSON_PROPERTY_LAT)
@@ -85,7 +89,7 @@ public class Coord {
   }
 
   /**
-   * A valoriser avec la longitude de la position
+   * Dernière coordonnée y connue de la ressource, entre −180 and +180
    * @return lon
    **/
   @JsonProperty(JSON_PROPERTY_LON)
@@ -101,6 +105,29 @@ public class Coord {
     this.lon = lon;
   }
 
+  public Coord height(BigDecimal height) {
+
+    this.height = height;
+    return this;
+  }
+
+  /**
+   * Dernière coordonnée z connue de la ressource, en mètres sans bornes
+   * @return height
+   **/
+  @JsonProperty(JSON_PROPERTY_HEIGHT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public BigDecimal getHeight() {
+    return height;
+  }
+
+  @JsonProperty(JSON_PROPERTY_HEIGHT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHeight(BigDecimal height) {
+    this.height = height;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -111,12 +138,13 @@ public class Coord {
     }
     Coord coord = (Coord)o;
     return Objects.equals(this.lat, coord.lat) &&
-        Objects.equals(this.lon, coord.lon);
+        Objects.equals(this.lon, coord.lon) &&
+        Objects.equals(this.height, coord.height);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(lat, lon);
+    return Objects.hash(lat, lon, height);
   }
 
   @Override
@@ -125,6 +153,7 @@ public class Coord {
     sb.append("class Coord {\n");
     sb.append("    lat: ").append(toIndentedString(lat)).append("\n");
     sb.append("    lon: ").append(toIndentedString(lon)).append("\n");
+    sb.append("    height: ").append(toIndentedString(height)).append("\n");
     sb.append("}");
     return sb.toString();
   }
