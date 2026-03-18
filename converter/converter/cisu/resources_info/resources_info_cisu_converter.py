@@ -123,10 +123,8 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
                 )
                 modified_status_resources.append(comparison_resource)
             else:
-                ref_status = (reference_map[resource_id].get("state") or {}).get(
-                    "status"
-                )
-                cmp_status = (comparison_resource.get("state") or {}).get("status")
+                ref_status = reference_map[resource_id]["state"]["status"]
+                cmp_status = comparison_resource["state"]["status"]
                 if ref_status != cmp_status:
                     logger.debug(
                         "Resource %s status changed: %r → %r",
