@@ -19,26 +19,33 @@ _CASE_ID = "fr.health.samu800.DRFR158002421400215"
 _OTHER_CASE_ID = "fr.health.samu800.OTHERUNRELATEDCASE"
 _DIST_ID_A = "fr.health.samu800.abc123"
 _DIST_ID_B = "fr.health.samu800.def456"
-_SAMPLE_PAYLOAD = json.load(
+_RC_RI_TYPE = "ResourcesInfoCisuWrapper"
+_RC_RI_PAYLOAD = json.load(
     Path("tests/fixtures/RC-RI/sample_rc_ri_payload.json").open()
+)
+_RS_RI_PAYLOAD = json.load(
+    Path("tests/fixtures/RS-RI/sample_rs_ri_payload.json").open()
+)
+_RS_SR_PAYLOAD = json.load(
+    Path("tests/fixtures/RS-SR/sample_rs_sr_payload.json").open()
 )
 
 
-def _make_payload(case_id: str) -> dict:
+def _make_payload(case_id: str, payload) -> dict:
     """Build a minimal RC-RI payload with the given caseId embedded in the real nested structure."""
-    payload = copy.deepcopy(_SAMPLE_PAYLOAD)
+    payload = copy.deepcopy(payload)
     payload["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
         "resourcesInfoCisu"
     ]["caseId"] = case_id
     return payload
 
 
-def _make_doc(distribution_id: str, arrived_at: datetime) -> dict:
+def _make_doc(messageType: str, distribution_id: str, arrived_at: datetime) -> dict:
     """Build a ResourcesInfoCisuWrapper document with the given distributionID."""
-    payload = copy.deepcopy(_SAMPLE_PAYLOAD)
+    payload = copy.deepcopy(_RC_RI_PAYLOAD)
     payload["distributionID"] = distribution_id
     return {
-        "type": "ResourcesInfoCisuWrapper",
+        "type": messageType,
         "arrivedAt": arrived_at,
         "payload": payload,
     }
@@ -70,7 +77,7 @@ class TestGetLastRcRiByCaseId:
             {
                 "type": "ResourcesInfoCisuWrapper",
                 "arrivedAt": arrived_at,
-                "payload": _SAMPLE_PAYLOAD,
+                "payload": _RC_RI_PAYLOAD,
             }
         )
 
@@ -80,7 +87,7 @@ class TestGetLastRcRiByCaseId:
         assert isinstance(result, PersistedMessage)
         assert result.message_type == "ResourcesInfoCisuWrapper"
         assert result.arrived_at == arrived_at
-        assert result.payload == _SAMPLE_PAYLOAD
+        assert result.payload == _RC_RI_PAYLOAD
 
     def test_returns_none_when_not_found(self, real_db):
         """Should return None when no RC-RI document exists for the given caseId."""
@@ -89,7 +96,8 @@ class TestGetLastRcRiByCaseId:
                 "type": "ResourcesInfoCisuWrapper",
                 "arrivedAt": datetime(2024, 8, 1),
                 "payload": _make_payload(
-                    _OTHER_CASE_ID
+                    _OTHER_CASE_ID,
+                    _RC_RI_PAYLOAD,
                 ),  # different caseId in nested path
             }
         )
@@ -104,12 +112,12 @@ class TestGetLastRcRiByCaseId:
                 {
                     "type": "ResourcesInfoCisuWrapper",
                     "arrivedAt": datetime(2024, 1, 1),
-                    "payload": _SAMPLE_PAYLOAD,
+                    "payload": _RC_RI_PAYLOAD,
                 },
                 {
                     "type": "ResourcesInfoCisuWrapper",
                     "arrivedAt": datetime(2024, 8, 1),  # le plus récent
-                    "payload": _SAMPLE_PAYLOAD,
+                    "payload": _RC_RI_PAYLOAD,
                 },
             ]
         )
@@ -124,7 +132,7 @@ class TestGetLastRcRiByCaseId:
             {
                 "type": "SomeOtherWrapper",
                 "arrivedAt": datetime(2024, 8, 1),
-                "payload": _SAMPLE_PAYLOAD,
+                "payload": _RC_RI_PAYLOAD,
             }
         )
 
@@ -150,7 +158,7 @@ class TestGetLastRcRiByCaseId:
 
     def test_returns_none_when_only_matching_document_is_excluded(self, real_db):
         """When the only matching document is excluded, should return None."""
-        real_db["messages"].insert_one(_make_doc(_DIST_ID_A, datetime(2024, 8, 1)))
+        real_db["messages"].insert_one(_make_doc(_RC_RI_TYPE, _DIST_ID_A, datetime(2024, 8, 1)))
 
         result = get_last_rc_ri_by_case_id(_CASE_ID, exclude_distribution_id=_DIST_ID_A)
 
@@ -160,8 +168,8 @@ class TestGetLastRcRiByCaseId:
         """When the most recent document is excluded, should return the previous one."""
         real_db["messages"].insert_many(
             [
-                _make_doc(_DIST_ID_A, datetime(2024, 1, 1)),  # old
-                _make_doc(_DIST_ID_B, datetime(2024, 8, 1)),  # new
+                _make_doc(_RC_RI_TYPE, _DIST_ID_A, datetime(2024, 1, 1)),  # old
+                _make_doc(_RC_RI_TYPE, _DIST_ID_B, datetime(2024, 8, 1)),  # new
             ]
         )
 
@@ -174,8 +182,8 @@ class TestGetLastRcRiByCaseId:
         """Passing exclude_distribution_id=None must not filter anything."""
         real_db["messages"].insert_many(
             [
-                _make_doc(_DIST_ID_A, datetime(2024, 8, 1)),
-                _make_doc(_DIST_ID_B, datetime(2024, 3, 1)),
+                _make_doc(_RC_RI_TYPE, _DIST_ID_A, datetime(2024, 8, 1)),
+                _make_doc(_RC_RI_TYPE, _DIST_ID_B, datetime(2024, 3, 1)),
             ]
         )
 
