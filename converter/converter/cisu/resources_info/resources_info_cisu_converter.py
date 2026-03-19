@@ -1,7 +1,7 @@
 import uuid
 
 from converter.cisu.base_cisu_converter import BaseCISUConverter
-from typing import Any, Dict, List
+from typing import Any, Dict, List, TypedDict
 
 from converter.cisu.resources_info.resources_info_cisu_constants import (
     ResourcesInfoCISUConstants,
@@ -11,6 +11,11 @@ from converter.utils import get_field_value, set_value, delete_paths
 import logging
 
 logger = logging.getLogger(__name__)
+
+
+class ResourceUpdateResult(TypedDict):
+    engaged_resources_updated: bool
+    modified_status_resources: List[Dict[str, Any]]
 
 
 class ResourcesInfoCISUConverter(BaseCISUConverter):
@@ -88,10 +93,60 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         )
 
     @classmethod
+    def _get_resource_map(cls, edxl_json: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
+        """Extract a resourceId → resource mapping from an RC-RI EDXL message."""
+        use_case = cls.copy_cisu_input_use_case_content(edxl_json)
+        resources: List[Dict[str, Any]] = (
+            get_field_value(use_case, ResourcesInfoCISUConstants.RESOURCE_PATH) or []
+        )
+        return {r["resourceId"]: r for r in resources}
+
+    @classmethod
+    def _has_resources_been_updated(
+        cls, reference_edxl: Dict[str, Any], comparison_edxl: Dict[str, Any]
+    ) -> ResourceUpdateResult:
+        """Compare the resources of two RC-RI messages."""
+        reference_map = cls._get_resource_map(reference_edxl)
+        comparison_map = cls._get_resource_map(comparison_edxl)
+
+        engaged_resources_updated: bool = set(reference_map.keys()) != set(
+            comparison_map.keys()
+        )
+
+        modified_status_resources: List[Dict[str, Any]] = []
+        for resource_id, comparison_resource in comparison_map.items():
+            if resource_id not in reference_map:
+                # Newly added resource — receiver has no previous status for it
+                logger.debug(
+                    "Resource %s is new — adding to modified_status_resources.",
+                    resource_id,
+                )
+                modified_status_resources.append(comparison_resource)
+            else:
+                ref_status = reference_map[resource_id]["state"]["status"]
+                cmp_status = comparison_resource["state"]["status"]
+                if ref_status != cmp_status:
+                    logger.debug(
+                        "Resource %s status changed: %r → %r",
+                        resource_id,
+                        ref_status,
+                        cmp_status,
+                    )
+                    modified_status_resources.append(comparison_resource)
+
+        # TODO: handle removed resources (present in reference_map but absent from comparison_map).
+
+        return ResourceUpdateResult(
+            engaged_resources_updated=engaged_resources_updated,
+            modified_status_resources=modified_status_resources,
+        )
+
+    @classmethod
     def from_cisu_to_rs(cls, edxl_json: Dict[str, Any]) -> List[Dict[str, Any]]:
-        """RC-RI → RS: on first reception RS-RI + one RS-SR per resource; on subsequent updates RS-SR only."""
+        """RC-RI → RS: on first reception RS-RI + one RS-SR per resource;
+        on update RS-RI if the engaged resource list changed + RS-SR per resource with a modified status."""
         logger.info("Converting from CISU to RS format for Resources Info message.")
-        logger.debug(f"Message content: {edxl_json}")
+        logger.debug("Message content: %s", edxl_json)
 
         cisu_use_case = cls.copy_cisu_input_use_case_content(edxl_json)
         case_id = cisu_use_case.get(ResourcesInfoCISUConstants.CASE_ID_FIELD)
@@ -119,9 +174,41 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
                 )
             return converted_messages
 
-        # TODO: Known caseId = subsequent update, define what to forward
-        logger.info("Known caseId %s — no message to forward.", case_id)
-        return []
+        # Known caseId — compare resources and emit only what changed
+        logger.info("Known caseId %s — comparing resources for updates.", case_id)
+
+        resources_comparison_result = cls._has_resources_been_updated(
+            existing_message.payload, edxl_json
+        )
+        engaged_resources_updated: bool = resources_comparison_result[
+            "engaged_resources_updated"
+        ]
+        modified_status_resources: List[Dict[str, Any]] = resources_comparison_result[
+            "modified_status_resources"
+        ]
+
+        messages: List[Dict[str, Any]] = []
+
+        if engaged_resources_updated:
+            logger.info(
+                "Resources added/removed for caseId %s — adding RS-RI to output.",
+                case_id,
+            )
+            rs_ri = cls._build_rs_ri_from_cisu(edxl_json)
+            messages.append(rs_ri)
+
+        for resource in modified_status_resources:
+            logger.info(
+                "Resource %s has a modified status — adding RS-SR to output.",
+                resource.get("resourceId"),
+            )
+            rs_sr = cls._build_rs_sr_from_resource(edxl_json, resource, case_id)
+            messages.append(rs_sr)
+
+        if not messages:
+            logger.info("No resource changes detected for caseId %s.", case_id)
+
+        return messages
 
     @classmethod
     def from_rs_to_cisu(cls, edxl_json: Dict[str, Any]) -> Dict[str, Any]:

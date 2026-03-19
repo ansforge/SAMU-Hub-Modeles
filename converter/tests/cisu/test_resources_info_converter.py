@@ -1,3 +1,5 @@
+import copy
+from datetime import datetime
 from unittest import TestCase
 from unittest.mock import patch
 
@@ -6,6 +8,7 @@ import pytest
 from converter.cisu.resources_info.resources_info_cisu_converter import (
     ResourcesInfoCISUConverter,
 )
+from converter.models.persisted_message import PersistedMessage
 from tests.constants import TestConstants
 from tests.test_helpers import TestHelper, get_file_endpoint
 from jsonschema import validate
@@ -188,7 +191,9 @@ _RC_RI_WITH_POSITION_EDXL = TestHelper.create_edxl_json_from_sample(
     "tests/fixtures/RC-RI/RC-RI_V3.0_with_position.json",
 )
 
-_CASE_ID = "fr.health.samu800.DRFR158002421400215"
+_CASE_ID = _RC_RI_WITH_POSITION_EDXL["content"][0]["jsonContent"][
+    "embeddedJsonContent"
+]["message"]["resourcesInfoCisu"]["caseId"]
 
 
 class TestBuildRsSrFromResource:
@@ -255,3 +260,236 @@ def test_from_cisu_to_rs_new_case_id():
         assert "position" not in resource, (
             f"RS-RI resource {resource.get('resourceId')} must not contain a position field"
         )
+
+
+# ---------------------------------------------------------------------------
+# _has_resources_been_updated — unit tests
+# ---------------------------------------------------------------------------
+
+_RESOURCE_VLM1 = {
+    "resourceId": "fr.health.samu800.resource.VLM1",
+    "orgId": "fr.health.samu800",
+    "vehicleType": "SMUR",
+    "state": {"datetime": "2024-08-01T16:42:00+02:00", "status": "RET-BASE"},
+}
+_RESOURCE_VSAV3A = {
+    "resourceId": "fr.fire.sis076.cgo-076.resource.VSAV3A",
+    "orgId": "fr.fire.sdis76.cgo-076",
+    "vehicleType": "SIS",
+    "state": {"datetime": "2024-08-01T16:40:00+02:00", "status": "FINPEC"},
+}
+_RESOURCE_NEW = {
+    "resourceId": "fr.health.samu800.resource.VLM2",
+    "orgId": "fr.health.samu800",
+    "vehicleType": "SMUR",
+    "state": {"datetime": "2024-08-01T17:00:00+02:00", "status": "RET-BASE"},
+}
+
+
+def _make_rc_ri_with_resources(resources):
+    """Return a copy of the RC-RI fixture with the given resource list."""
+    edxl = copy.deepcopy(_RC_RI_WITH_POSITION_EDXL)
+    edxl["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
+        "resourcesInfoCisu"
+    ]["resource"] = resources
+    return edxl
+
+
+class TestHasResourcesBeenUpdated:
+    def test_no_change(self):
+        """Identical resource lists → no flag raised, no modified resources."""
+        edxl = _make_rc_ri_with_resources(
+            [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
+        )
+        result = ResourcesInfoCISUConverter._has_resources_been_updated(edxl, edxl)
+
+        assert result["engaged_resources_updated"] is False, (
+            "engaged_resources_updated must be False when no resource is added or removed"
+        )
+        assert result["modified_status_resources"] == [], (
+            "modified_status_resources must be empty when no status has changed"
+        )
+
+    def test_status_changed(self):
+        """A status change → flag stays False, changed resource appears in modified_status_resources in its new version."""
+        ref = _make_rc_ri_with_resources(
+            [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
+        )
+        updated_vlm1 = copy.deepcopy(_RESOURCE_VLM1)
+        updated_vlm1["state"]["status"] = "DISP"
+        updated_vlm1["state"]["datetime"] = "2024-08-01T18:00:00+02:00"
+        cmp = _make_rc_ri_with_resources(
+            [updated_vlm1, copy.deepcopy(_RESOURCE_VSAV3A)]
+        )
+
+        result = ResourcesInfoCISUConverter._has_resources_been_updated(ref, cmp)
+
+        assert result["engaged_resources_updated"] is False, (
+            "engaged_resources_updated must stay False when only a status changed (no resource added/removed)"
+        )
+        assert len(result["modified_status_resources"]) == 1, (
+            "exactly one resource should appear in modified_status_resources"
+        )
+        changed = result["modified_status_resources"][0]
+        assert changed["resourceId"] == _RESOURCE_VLM1["resourceId"], (
+            "the resource with the changed status must be present in modified_status_resources"
+        )
+        assert changed["state"]["status"] == "DISP", (
+            "modified_status_resources must contain the resource in its most recent version"
+        )
+        assert changed["state"]["datetime"] == "2024-08-01T18:00:00+02:00", (
+            "modified_status_resources must contain the resource from the comparison message, not the reference"
+        )
+
+    def test_resource_added(self):
+        """A new resource → flag raised and new resource appears in modified_status_resources."""
+        ref = _make_rc_ri_with_resources(
+            [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
+        )
+        cmp = _make_rc_ri_with_resources(
+            [
+                copy.deepcopy(_RESOURCE_VLM1),
+                copy.deepcopy(_RESOURCE_VSAV3A),
+                copy.deepcopy(_RESOURCE_NEW),
+            ]
+        )
+
+        result = ResourcesInfoCISUConverter._has_resources_been_updated(ref, cmp)
+
+        assert result["engaged_resources_updated"] is True, (
+            "engaged_resources_updated must be True when a resource is added"
+        )
+        resource_ids = [r["resourceId"] for r in result["modified_status_resources"]]
+        assert _RESOURCE_NEW["resourceId"] in resource_ids, (
+            f"the new resource {_RESOURCE_NEW['resourceId']} must appear in modified_status_resources "
+            "so that a RS-SR is generated for it"
+        )
+
+    def test_resource_removed(self):
+        """A removed resource → flag raised, removed resource absent from modified_status_resources."""
+        ref = _make_rc_ri_with_resources(
+            [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
+        )
+        cmp = _make_rc_ri_with_resources([copy.deepcopy(_RESOURCE_VLM1)])
+
+        result = ResourcesInfoCISUConverter._has_resources_been_updated(ref, cmp)
+
+        assert result["engaged_resources_updated"] is True, (
+            "engaged_resources_updated must be True when a resource is removed"
+        )
+        resource_ids = [r["resourceId"] for r in result["modified_status_resources"]]
+        assert _RESOURCE_VSAV3A["resourceId"] not in resource_ids, (
+            f"the removed resource {_RESOURCE_VSAV3A['resourceId']} must not appear in modified_status_resources"
+        )
+
+
+# ---------------------------------------------------------------------------
+# from_cisu_to_rs — known caseId scenarios
+# ---------------------------------------------------------------------------
+
+
+def _persisted(edxl: dict) -> PersistedMessage:
+    """Wrap an EDXL dict in a PersistedMessage as the repository would return it."""
+    return PersistedMessage(
+        message_type="RC-RI",
+        payload=edxl,
+        arrived_at=datetime(2024, 8, 1, 14, 0, 0),
+    )
+
+
+def test_from_cisu_to_rs_known_case_id_status_changed_only():
+    """Known caseId + only a status change → exactly one RS-SR, no RS-RI."""
+    ref_edxl = _make_rc_ri_with_resources(
+        [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
+    )
+    updated_vlm1 = copy.deepcopy(_RESOURCE_VLM1)
+    updated_vlm1["state"]["status"] = "DISP"
+    incoming_edxl = _make_rc_ri_with_resources(
+        [updated_vlm1, copy.deepcopy(_RESOURCE_VSAV3A)]
+    )
+
+    with patch(_PATCH_TARGET, return_value=_persisted(ref_edxl)):
+        results = ResourcesInfoCISUConverter.from_cisu_to_rs(incoming_edxl)
+
+    assert isinstance(results, list), "from_cisu_to_rs must return a list"
+    assert len(results) == 1, f"expected 1 RS-SR, got {len(results)}"
+    message = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]
+    assert "resourcesStatus" in message, "expected RS-SR (resourcesStatus key)"
+    assert "resourcesInfo" not in message, (
+        "a status-only change must not produce a RS-RI"
+    )
+    assert message["resourcesStatus"]["resourceId"] == _RESOURCE_VLM1["resourceId"], (
+        "RS-SR must reference the resource whose status changed"
+    )
+
+
+def test_from_cisu_to_rs_known_case_id_resource_added():
+    """Known caseId + new resource → one RS-RI and one RS-SR for the new resource."""
+    ref_edxl = _make_rc_ri_with_resources(
+        [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
+    )
+    incoming_edxl = _make_rc_ri_with_resources(
+        [
+            copy.deepcopy(_RESOURCE_VLM1),
+            copy.deepcopy(_RESOURCE_VSAV3A),
+            copy.deepcopy(_RESOURCE_NEW),
+        ]
+    )
+
+    with patch(_PATCH_TARGET, return_value=_persisted(ref_edxl)):
+        results = ResourcesInfoCISUConverter.from_cisu_to_rs(incoming_edxl)
+
+    assert isinstance(results, list), "from_cisu_to_rs must return a list"
+    assert len(results) == 2, f"expected RS-RI + RS-SR, got {len(results)}"
+
+    first_message = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"][
+        "message"
+    ]
+    assert "resourcesInfo" in first_message, (
+        "first message must be RS-RI when the engaged resource list has changed"
+    )
+
+    second_message = results[1]["content"][0]["jsonContent"]["embeddedJsonContent"][
+        "message"
+    ]
+    assert "resourcesStatus" in second_message, (
+        "second message must be a RS-SR for the newly added resource"
+    )
+    assert (
+        second_message["resourcesStatus"]["resourceId"] == _RESOURCE_NEW["resourceId"]
+    ), "RS-SR must reference the newly added resource"
+
+
+def test_from_cisu_to_rs_known_case_id_resource_removed():
+    """Known caseId + resource removed → one RS-RI, no RS-SR."""
+    ref_edxl = _make_rc_ri_with_resources(
+        [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
+    )
+    incoming_edxl = _make_rc_ri_with_resources([copy.deepcopy(_RESOURCE_VLM1)])
+
+    with patch(_PATCH_TARGET, return_value=_persisted(ref_edxl)):
+        results = ResourcesInfoCISUConverter.from_cisu_to_rs(incoming_edxl)
+
+    assert isinstance(results, list), "from_cisu_to_rs must return a list"
+    assert len(results) == 1, (
+        f"expected exactly 1 RS-RI (no RS-SR for a removed resource), got {len(results)}"
+    )
+    message = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]
+    assert "resourcesInfo" in message, (
+        "when a resource is removed the RS-RI must be produced to reflect the new engaged resource list"
+    )
+
+
+def test_from_cisu_to_rs_known_case_id_no_change():
+    """Known caseId + no resource or status change → empty list."""
+    ref_edxl = _make_rc_ri_with_resources(
+        [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
+    )
+    incoming_edxl = _make_rc_ri_with_resources(
+        [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
+    )
+
+    with patch(_PATCH_TARGET, return_value=_persisted(ref_edxl)):
+        results = ResourcesInfoCISUConverter.from_cisu_to_rs(incoming_edxl)
+
+    assert results == [], f"expected no messages, got {len(results)}"
