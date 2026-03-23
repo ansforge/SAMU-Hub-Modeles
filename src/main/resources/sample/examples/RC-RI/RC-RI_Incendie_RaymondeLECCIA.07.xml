@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resourcesInfoCisu xmlns="urn:emergency:eda:1.9:resourcesinfocisu">
+  <caseId>fr.fire.CGA_national.SC-20240813-CGA_national-AT517</caseId>
+  <resource>
+    <datetime>2026-03-13T10:23:00+02:00</datetime>
+    <resourceId>fr.fire.sisXXX.cga-XXX.resource.VSR268</resourceId>
+    <orgId>fr.fire.sisXXX.cgo-XXX</orgId>
+    <vehicleType>SIS</vehicleType>
+    <name>VSR-Rea3</name>
+    <team>
+      <medicalLevel>MED</medicalLevel>
+      <name>Equipe FEU 3</name>
+    </team>
+    <state>
+      <datetime>2026-03-13T10:35:00+02:00</datetime>
+      <status>ARRIVEE</status>
+      <availability>false</availability>
+    </state>
+    <position>
+      <datetime>2026-03-13T10:35:00+02:00</datetime>
+      <coord>
+        <lat>48.84532</lat>
+        <lon>2.31559</lon>
+      </coord>
+    </position>
+    <freetext>Véhicule VSR</freetext>
+  </resource>
+  <resource>
+    <datetime>2026-03-13T10:30:00+02:00</datetime>
+    <resourceId>fr.fire.sisXXX.cga-XXX.resource.VSAV1</resourceId>
+    <orgId>fr.fire.sisXXX.cgo-XXX</orgId>
+    <vehicleType>SIS</vehicleType>
+    <name>VSAV 1</name>
+    <team>
+      <medicalLevel>MED</medicalLevel>
+      <name>Equipe VSAV 1</name>
+    </team>
+    <state>
+      <datetime>2026-03-13T10:40:00+02:00</datetime>
+      <status>ARRIVEE</status>
+      <availability>false</availability>
+    </state>
+  </resource>
+  <resource>
+    <datetime>2026-03-13T10:40:00+02:00</datetime>
+    <resourceId>fr.fire.sisXXX.cga-XXX.resource.VSAV2</resourceId>
+    <orgId>fr.fire.sisXXX.cgo-XXX</orgId>
+    <vehicleType>SIS</vehicleType>
+    <name>VSAV 2</name>
+    <team>
+      <medicalLevel>MED</medicalLevel>
+      <name>Equipe VSAV 2</name>
+    </team>
+    <state>
+      <datetime>2026-03-13T10:40:00+02:00</datetime>
+      <status>DECLENCHE</status>
+      <availability>false</availability>
+    </state>
+  </resource>
+</resourcesInfoCisu>
