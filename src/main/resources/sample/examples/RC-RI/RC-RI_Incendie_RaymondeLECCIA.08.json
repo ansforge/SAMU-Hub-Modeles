@@ -1,0 +1,63 @@
+{
+  "resourcesInfoCisu": {
+    "resource": [
+      {
+        "team": {
+          "medicalLevel": "MED",
+          "name": "Equipe FEU 3"
+        },
+        "name": "VSR-Rea3",
+        "datetime": "2026-03-13T10:23:00+02:00",
+        "resourceId": "fr.fire.sisXXX.cga-XXX.resource.VSR268",
+        "orgId": "fr.fire.sisXXX.cgo-XXX",
+        "state": {
+          "status": "REN-BASE",
+          "datetime": "2026-03-13T10:45:00+02:00",
+          "availability": false
+        },
+        "vehicleType": "SIS",
+        "position": {
+          "datetime": "2026-03-13T10:45:00+02:00",
+          "coord": {
+            "lat": 48.84532,
+            "lon": 2.31559
+          }
+        },
+        "freetext": "Véhicule VSR"
+      },
+      {
+        "team": {
+          "medicalLevel": "MED",
+          "name": "Equipe VSAV 1"
+        },
+        "name": "VSAV 1",
+        "datetime": "2026-03-13T10:30:00+02:00",
+        "resourceId": "fr.fire.sisXXX.cga-XXX.resource.VSAV1",
+        "orgId": "fr.fire.sisXXX.cgo-XXX",
+        "state": {
+          "status": "FINPEC",
+          "datetime": "2026-03-13T10:45:00+02:00",
+          "availability": false
+        },
+        "vehicleType": "SIS"
+      },
+      {
+        "team": {
+          "medicalLevel": "MED",
+          "name": "Equipe VSAV 2"
+        },
+        "name": "VSAV 2",
+        "datetime": "2026-03-13T10:40:00+02:00",
+        "resourceId": "fr.fire.sisXXX.cga-XXX.resource.VSAV2",
+        "orgId": "fr.fire.sisXXX.cgo-XXX",
+        "state": {
+          "status": "RETOUR",
+          "datetime": "2026-03-13T10:45:00+02:00",
+          "availability": false
+        },
+        "vehicleType": "SIS"
+      }        
+    ],
+    "caseId": "fr.fire.CGA_national.SC-20240813-CGA_national-AT517"
+  }
+}
