@@ -23,7 +23,9 @@
             "lon": 2.31559
           }
         },
-        "freetext": "Véhicule VSR"
+        "freetext": [
+          "Véhicule VSR"
+        ]
       }
     ],
     "caseId": "fr.fire.CGA_national.SC-20240813-CGA_national-AT517"

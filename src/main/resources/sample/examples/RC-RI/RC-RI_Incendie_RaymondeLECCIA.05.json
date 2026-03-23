@@ -23,7 +23,9 @@
             "lon": 2.31559
           }
         },
-        "freetext": "Véhicule VSR"
+        "freetext": [
+          "Véhicule VSR"
+        ]
       },
       {
         "team": {
