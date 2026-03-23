@@ -57,7 +57,7 @@ def _get_last_by_case_id(
     """Return the most recently persisted message of *message_type* for *case_id*, or ``None``."""
     if not isinstance(case_id, str) or not case_id:
         logger.warning("Invalid case_id provided: %r", case_id)
-        return None
+        raise ValueError(f"Invalid case_id: {case_id!r}")
 
     logger.info("Querying last %s message for caseId=%s", message_type, case_id)
 
@@ -117,7 +117,7 @@ def get_rs_messages_by_case_id(
     """
     if not isinstance(case_id, str) or not case_id:
         logger.warning("Invalid case_id provided: %r", case_id)
-        return None, []
+        raise ValueError(f"Invalid case_id: {case_id!r}")
 
     rs_ri = get_last_rs_ri_by_case_id(case_id)
     rs_sr = get_last_rs_sr_per_resource_by_case_id(case_id)
@@ -136,7 +136,7 @@ def get_last_rs_sr_per_resource_by_case_id(
     """Return the most recently persisted RS-SR document for each resource attached to a *case_id*."""
     if not isinstance(case_id, str) or not case_id:
         logger.warning("Invalid case_id provided: %r", case_id)
-        return None
+        raise ValueError(f"Invalid case_id: {case_id!r}")
 
     collection = get_db()[_COLLECTION]
 

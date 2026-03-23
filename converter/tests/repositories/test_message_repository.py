@@ -176,11 +176,10 @@ class TestGetLastRcRiByCaseId:
         assert result is None
 
     @pytest.mark.parametrize("bad_input", [None, ""])
-    def test_returns_none_for_invalid_case_id(self, real_db, bad_input):
+    def test_raises_error_for_invalid_case_id(self, real_db, bad_input):
         """Should return None immediately for invalid input without querying MongoDB."""
-        result = get_last_rc_ri_by_case_id(bad_input)
-
-        assert result is None
+        with pytest.raises(ValueError, match="Invalid case_id"):
+            get_last_rc_ri_by_case_id(bad_input)
 
     def test_raises_on_mongodb_error(self, mock_db):
         """Should re-raise MongoDB exceptions after logging."""
@@ -390,11 +389,10 @@ class TestGetLastRsSrByCaseId:
         assert result == []
 
     @pytest.mark.parametrize("bad_input", [None, ""])
-    def test_returns_none_for_invalid_case_id(self, real_db, bad_input):
+    def test_raises_error_for_invalid_case_id(self, real_db, bad_input):
         """Should return None immediately for invalid input without querying MongoDB."""
-        result = get_last_rs_sr_per_resource_by_case_id(bad_input)
-
-        assert result is None
+        with pytest.raises(ValueError, match="Invalid case_id"):
+            get_last_rs_sr_per_resource_by_case_id(bad_input)
 
     def test_raises_on_mongodb_error(self, mock_db):
         """Should re-raise MongoDB exceptions after logging."""
