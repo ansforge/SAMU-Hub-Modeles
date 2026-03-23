@@ -1,4 +1,4 @@
-"""Unit tests for converter.repository.get_last_rc_ri_by_case_id."""
+"""Unit tests for converter.repository methods"""
 
 from datetime import datetime
 from pathlib import Path
@@ -14,7 +14,7 @@ from converter.models.persisted_message import PersistedMessage
 from converter.repositories.message_repository import (
     get_last_rc_ri_by_case_id,
     get_last_rs_ri_by_case_id,
-    get_last_rs_sr_by_case_id,
+    get_last_rs_sr_per_resource_by_case_id,
 )
 
 _RC_RI_CASE_ID = "fr.health.samu800.DRFR158002421400215"
@@ -79,7 +79,6 @@ def _make_doc(
 ) -> dict:
     """Build a document with the given payload, message type and distributionID."""
     payload = copy.deepcopy(payload)
-    # line 82 below
     payload["distributionID"] = distribution_id
     return {
         "type": messageType,
@@ -267,7 +266,7 @@ class TestGetLastRsRiByCaseId:
         """Should return None when no RS-RI document exists for the given caseId."""
         real_db["messages"].insert_one(
             {
-                "type": "ResourcesInfoCisuWrapper",
+                "type": _RS_RI_TYPE,
                 "arrivedAt": datetime(2024, 8, 1),
                 "payload": _make_rs_ri_payload(
                     _OTHER_RS_RI_CASE_ID,
@@ -351,7 +350,7 @@ class TestGetLastRsSrByCaseId:
                 same_resource_other_case_rs_sr,
             ]
         )
-        result = get_last_rs_sr_by_case_id(_RS_RI_CASE_ID)
+        result = get_last_rs_sr_per_resource_by_case_id(_RS_RI_CASE_ID)
 
         assert result is not None
         assert isinstance(result, list)
@@ -387,19 +386,19 @@ class TestGetLastRsSrByCaseId:
         )
 
     def test_returns_empty_list_when_none_found(self, real_db):
-        result = get_last_rs_sr_by_case_id("nonexistent_case")
+        result = get_last_rs_sr_per_resource_by_case_id("nonexistent_case")
         assert result == []
 
     @pytest.mark.parametrize("bad_input", [None, ""])
     def test_returns_none_for_invalid_case_id(self, real_db, bad_input):
         """Should return None immediately for invalid input without querying MongoDB."""
-        result = get_last_rs_sr_by_case_id(bad_input)
+        result = get_last_rs_sr_per_resource_by_case_id(bad_input)
 
-        assert result == []
+        assert result is None
 
     def test_raises_on_mongodb_error(self, mock_db):
         """Should re-raise MongoDB exceptions after logging."""
         mock_db["messages"].aggregate.side_effect = RuntimeError("connection refused")
 
         with pytest.raises(RuntimeError, match="connection refused"):
-            get_last_rs_sr_by_case_id(_RS_RI_CASE_ID)
+            get_last_rs_sr_per_resource_by_case_id(_RS_RI_CASE_ID)

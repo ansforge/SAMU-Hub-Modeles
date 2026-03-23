@@ -12,14 +12,11 @@ _COLLECTION = "messages"
 
 _DISTRIBUTION_ID_PATH = ".".join(["payload", "distributionID"])
 
+_EDXL_BASE_PATH = "payload.content.jsonContent.embeddedJsonContent.message"
 _RC_RI_TYPE = "ResourcesInfoCisuWrapper"
 _RC_RI_CASE_ID_PATH = ".".join(
     [
-        "payload",
-        "content",
-        "jsonContent",
-        "embeddedJsonContent",
-        "message",
+        _EDXL_BASE_PATH,
         "resourcesInfoCisu",
         "caseId",
     ]
@@ -28,11 +25,7 @@ _RC_RI_CASE_ID_PATH = ".".join(
 _RS_RI_TYPE = "ResourcesInfoWrapper"
 _RS_RI_CASE_ID_PATH = ".".join(
     [
-        "payload",
-        "content",
-        "jsonContent",
-        "embeddedJsonContent",
-        "message",
+        _EDXL_BASE_PATH,
         "resourcesInfo",
         "caseId",
     ]
@@ -41,22 +34,14 @@ _RS_RI_CASE_ID_PATH = ".".join(
 _RS_SR_TYPE = "ResourcesStatusWrapper"
 _RS_SR_CASE_ID_PATH = ".".join(
     [
-        "payload",
-        "content",
-        "jsonContent",
-        "embeddedJsonContent",
-        "message",
+        _EDXL_BASE_PATH,
         "resourcesStatus",
         "caseId",
     ]
 )
 _RS_SR_RESOURCE_ID_PATH = ".".join(
     [
-        "payload",
-        "content",
-        "jsonContent",
-        "embeddedJsonContent",
-        "message",
+        _EDXL_BASE_PATH,
         "resourcesStatus",
         "resourceId",
     ]
@@ -135,7 +120,7 @@ def get_rs_messages_by_case_id(
         return None, []
 
     rs_ri = get_last_rs_ri_by_case_id(case_id)
-    rs_sr = get_last_rs_sr_by_case_id(case_id)
+    rs_sr = get_last_rs_sr_per_resource_by_case_id(case_id)
 
     return rs_ri, rs_sr
 
@@ -145,8 +130,14 @@ def get_last_rs_ri_by_case_id(case_id: str) -> PersistedMessage | None:
     return _get_last_by_case_id(case_id, _RS_RI_TYPE, _RS_RI_CASE_ID_PATH)
 
 
-def get_last_rs_sr_by_case_id(case_id: str) -> list[PersistedMessage]:
+def get_last_rs_sr_per_resource_by_case_id(
+    case_id: str,
+) -> list[PersistedMessage] | None:
     """Return the most recently persisted RS-SR document for each resource attached to a *case_id*."""
+    if not isinstance(case_id, str) or not case_id:
+        logger.warning("Invalid case_id provided: %r", case_id)
+        return None
+
     collection = get_db()[_COLLECTION]
 
     pipeline: Sequence[Mapping[str, Any]] = [
