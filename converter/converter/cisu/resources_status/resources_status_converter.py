@@ -7,7 +7,7 @@ from converter.cisu.resources_info.resources_info_cisu_helper import (
     merge_info_and_resources,
 )
 
-from typing import Any, Dict, List
+from typing import Any, Dict
 
 
 class ResourcesStatusConverter(BaseCISUConverter):
