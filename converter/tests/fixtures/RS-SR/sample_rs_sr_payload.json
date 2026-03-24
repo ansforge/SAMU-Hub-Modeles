@@ -1,0 +1,21 @@
+{
+  "distributionID": "fr.health.samu440.abc345",
+  "content": [
+    {
+      "jsonContent": {
+        "embeddedJsonContent": {
+          "message": {
+            "resourcesStatus": {
+              "caseId": "fr.health.samu440.DRFR154402413800236",
+              "resourceId": "fr.fire.sis076.cgo-076.resource.VLM1",
+              "state": {
+                "datetime": "2024-05-18T18:46:00+02:00",
+                "status": "DECISION"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
