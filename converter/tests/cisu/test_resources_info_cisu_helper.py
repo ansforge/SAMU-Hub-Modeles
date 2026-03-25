@@ -7,19 +7,19 @@ from converter.cisu.resources_info.resources_info_cisu_helper import (
 
 def build_rs_ri(resources):
     return {
-        "content": {
+        "content": [{
             "jsonContent": {
                 "embeddedJsonContent": {
                     "message": {"resourcesInfo": {"resource": resources}}
                 }
             }
-        }
+        }]
     }
 
 
 def build_rs_sr(resource_id, state):
     return {
-        "content": {
+        "content": [{
             "jsonContent": {
                 "embeddedJsonContent": {
                     "message": {
@@ -30,7 +30,7 @@ def build_rs_sr(resource_id, state):
                     }
                 }
             }
-        }
+        }]
     }
 
 
@@ -59,7 +59,7 @@ def test_merge_success():
 
     assert result is not None
 
-    resources = result["content"]["jsonContent"]["embeddedJsonContent"]["message"][
+    resources = result["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
         "resourcesInfo"
     ]["resource"]
 
@@ -142,7 +142,7 @@ def test_duplicate_resource_id_last_wins():
 
     result = merge_info_and_resources(rs_ri, rs_sr_list)
 
-    resources = result["content"]["jsonContent"]["embeddedJsonContent"]["message"][
+    resources = result["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
         "resourcesInfo"
     ]["resource"]
 

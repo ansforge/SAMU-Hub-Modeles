@@ -16,7 +16,7 @@ def merge_info_and_resources(
     """
 
     try:
-        resources = rs_ri["content"]["jsonContent"]["embeddedJsonContent"]["message"][
+        resources = rs_ri["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
             "resourcesInfo"
         ]["resource"]
     except KeyError:
@@ -26,7 +26,7 @@ def merge_info_and_resources(
 
     for rs_sr in rs_sr_list:
         try:
-            resource_status = rs_sr["content"]["jsonContent"]["embeddedJsonContent"][
+            resource_status = rs_sr["content"][0]["jsonContent"]["embeddedJsonContent"][
                 "message"
             ]["resourceStatus"]
             resource_id = resource_status["resourceId"]
@@ -37,12 +37,15 @@ def merge_info_and_resources(
     # we override each resource.state of RS-RI with state from latest RS-SR, except if missing -> in this case we return nothing
     for resource in resources:
         resource_id = resource.get("resourceId")
+        rs_sr_state = resource_state_by_id.get(resource_id)
 
-        if not resource_id or resource_id not in resource_state_by_id:
+        # resource has no state in RS-RI and no RS-SR has been emitted yet
+        if "state" not in resource and rs_sr_state is None:
             return None
 
-        # state is an array in RS-RI
-        resource["state"] = [resource_state_by_id[resource_id]]
+        # a RS-SR has been emitted, we set the RS-RI resource state or override it if present
+        if rs_sr_state is not None:
+            resource["state"] = [rs_sr_state]
 
     # transform RS-RI to RC-RI
     return ResourcesInfoCISUConverter.from_rs_to_cisu(rs_ri)
