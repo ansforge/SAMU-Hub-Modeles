@@ -1,4 +1,3 @@
-import pytest
 from unittest.mock import patch, MagicMock
 
 from converter.cisu.resources_status.resources_status_converter import (

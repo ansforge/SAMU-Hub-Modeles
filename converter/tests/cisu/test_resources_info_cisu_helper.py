@@ -88,6 +88,6 @@ def test_duplicate_resource_id_last_wins():
         {"resourceId": "r1", "state": {"status": "NEW"}},
     ]
 
-    result = merge_info_and_resources(resources, resources_status_list)
+    resources = merge_info_and_resources(resources, resources_status_list)
 
     assert resources[0]["state"] == [{"status": "NEW"}]
