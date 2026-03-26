@@ -5,39 +5,6 @@ from converter.cisu.resources_info.resources_info_cisu_helper import (
 )
 
 
-def build_rs_ri(resources):
-    return {
-        "content": [
-            {
-                "jsonContent": {
-                    "embeddedJsonContent": {
-                        "message": {"resourcesInfo": {"resource": resources}}
-                    }
-                }
-            }
-        ]
-    }
-
-
-def build_rs_sr(resource_id, state):
-    return {
-        "content": [
-            {
-                "jsonContent": {
-                    "embeddedJsonContent": {
-                        "message": {
-                            "resourceStatus": {
-                                "resourceId": resource_id,
-                                "state": state,
-                            }
-                        }
-                    }
-                }
-            }
-        ]
-    }
-
-
 @pytest.fixture(autouse=True)
 def mock_converter(monkeypatch):
     monkeypatch.setattr(
@@ -47,107 +14,80 @@ def mock_converter(monkeypatch):
 
 
 def test_merge_success():
-    rs_ri = build_rs_ri(
-        [
-            {"resourceId": "r1"},
-            {"resourceId": "r2"},
-        ]
-    )
-
-    rs_sr_list = [
-        build_rs_sr("r1", {"status": "OK"}),
-        build_rs_sr("r2", {"status": "KO"}),
+    resources = [
+        {"resourceId": "r1"},
+        {"resourceId": "r2"},
     ]
 
-    result = merge_info_and_resources(rs_ri, rs_sr_list)
+    rs_status_list = [
+        {"resourceId": "r1", "state": {"status": "OK"}},
+        {"resourceId": "r2", "state": {"status": "KO"}},
+    ]
+
+    result = merge_info_and_resources(resources, rs_status_list)
 
     assert result is not None
-
-    resources = result["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
-        "resourcesInfo"
-    ]["resource"]
 
     assert resources[0]["state"] == [{"status": "OK"}]
     assert resources[1]["state"] == [{"status": "KO"}]
 
 
-def test_missing_resources_info():
-    rs_ri = {}
-    rs_sr_list = []
-
-    result = merge_info_and_resources(rs_ri, rs_sr_list)
-
-    assert result is None
-
-
 def test_missing_state_for_resource():
-    rs_ri = build_rs_ri(
-        [
-            {"resourceId": "r1"},
-            {"resourceId": "r2"},
-        ]
-    )
+    resources = [
+        {"resourceId": "r1"},
+        {"resourceId": "r2"},
+    ]
 
-    rs_sr_list = [
-        build_rs_sr("r1", {"status": "OK"}),
+    resources_status_list = [
+        {"resourceId": "r1", "state": {"status": "OK"}},
         # r2 manquant
     ]
 
-    result = merge_info_and_resources(rs_ri, rs_sr_list)
+    result = merge_info_and_resources(resources, resources_status_list)
 
     assert result is None
 
 
 def test_missing_resource_id():
-    rs_ri = build_rs_ri(
-        [
-            {"resourceId": "r1"},
-            {},  # pas de resourceId
-        ]
-    )
-
-    rs_sr_list = [
-        build_rs_sr("r1", {"status": "OK"}),
+    resources = [
+        {"resourceId": "r1"},
+        {},  # pas de resourceId
     ]
 
-    result = merge_info_and_resources(rs_ri, rs_sr_list)
+    resources_status_list = [
+        {"resourceId": "r1", "state": {"status": "OK"}},
+    ]
+
+    result = merge_info_and_resources(resources, resources_status_list)
 
     assert result is None
 
 
-def test_invalid_rs_sr_ignored():
-    rs_ri = build_rs_ri(
-        [
-            {"resourceId": "r1"},
-        ]
-    )
-
-    rs_sr_list = [
-        {},  # invalide
-        build_rs_sr("r1", {"status": "OK"}),
+def test_invalid_rs_status_ignored():
+    resources = [
+        {"resourceId": "r1"},
     ]
 
-    result = merge_info_and_resources(rs_ri, rs_sr_list)
+    resources_status_list = [
+        {},  # invalide
+        {"resourceId": "r1", "state": {"status": "OK"}},
+    ]
+
+    result = merge_info_and_resources(resources, resources_status_list)
 
     assert result is not None
 
 
 def test_duplicate_resource_id_last_wins():
-    rs_ri = build_rs_ri(
-        [
-            {"resourceId": "r1"},
-        ]
-    )
-
-    rs_sr_list = [
-        build_rs_sr("r1", {"status": "OLD"}),
-        build_rs_sr("r1", {"status": "NEW"}),
+    resources = [
+        {"resourceId": "r1"},
     ]
 
-    result = merge_info_and_resources(rs_ri, rs_sr_list)
+    resources_status_list = [
+        {"resourceId": "r1", "state": {"status": "OLD"}},
+        {"resourceId": "r1", "state": {"status": "NEW"}},
+    ]
 
-    resources = result["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
-        "resourcesInfo"
-    ]["resource"]
+    result = merge_info_and_resources(resources, resources_status_list)
 
     assert resources[0]["state"] == [{"status": "NEW"}]
