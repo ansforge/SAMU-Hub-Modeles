@@ -6,6 +6,9 @@ from converter.repositories.message_repository import (
 from converter.cisu.resources_info.resources_info_cisu_helper import (
     merge_info_and_resources,
 )
+from converter.cisu.resources_info.resources_info_cisu_converter import (
+    ResourcesInfoCISUConverter,
+)
 
 from typing import Any, Dict
 
@@ -38,7 +41,10 @@ class ResourcesStatusConverter(BaseCISUConverter):
         rs_ri_dict = rs_ri.payload
         rs_sr_dicts = [msg.payload for msg in rs_sr_list]
 
-        # build RC-RI from RS-RI & RS-SRs
-        merged_result = merge_info_and_resources(rs_ri_dict, rs_sr_dicts)
+        # merge RS-SRs in RS-RI
+        merged_rs_ri = merge_info_and_resources(rs_ri_dict, rs_sr_dicts)
 
-        return merged_result
+        if merged_rs_ri is None:
+            return None
+
+        return ResourcesInfoCISUConverter.from_rs_to_cisu(merged_rs_ri)

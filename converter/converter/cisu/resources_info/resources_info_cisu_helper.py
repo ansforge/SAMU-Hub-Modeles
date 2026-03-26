@@ -1,8 +1,3 @@
-from converter.cisu.resources_info.resources_info_cisu_converter import (
-    ResourcesInfoCISUConverter,
-)
-
-
 def merge_info_and_resources(
     rs_ri: dict,
     rs_sr_list: list[dict],
@@ -16,9 +11,9 @@ def merge_info_and_resources(
     """
 
     try:
-        resources = rs_ri["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
-            "resourcesInfo"
-        ]["resource"]
+        resources = rs_ri["content"][0]["jsonContent"]["embeddedJsonContent"][
+            "message"
+        ]["resourcesInfo"]["resource"]
     except KeyError:
         return None
 
@@ -48,4 +43,4 @@ def merge_info_and_resources(
             resource["state"] = [rs_sr_state]
 
     # transform RS-RI to RC-RI
-    return ResourcesInfoCISUConverter.from_rs_to_cisu(rs_ri)
+    return rs_ri

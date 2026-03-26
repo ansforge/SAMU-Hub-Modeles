@@ -35,7 +35,8 @@ def test_from_rs_to_cisu_happy_path():
     mock_rs_sr_2 = MagicMock()
     mock_rs_sr_2.payload = {"sr": "data2"}
 
-    expected_result = [{"merged": "ok"}]
+    merged_rs_ri = {"merged: rs_ri"}
+    expected_result = {"final": "rc_ri"}
 
     with (
         patch(
@@ -48,8 +49,12 @@ def test_from_rs_to_cisu_happy_path():
         ) as mock_get_sr,
         patch(
             "converter.cisu.resources_status.resources_status_converter.merge_info_and_resources",
-            return_value=expected_result,
+            return_value=merged_rs_ri,
         ) as mock_merge,
+        patch(
+            "converter.cisu.resources_status.resources_status_converter.ResourcesInfoCISUConverter.from_rs_to_cisu",
+            return_value=expected_result,
+        ) as mock_convert,
     ):
         result = ResourcesStatusConverter.from_rs_to_cisu(edxl_json)
         assert result == expected_result
@@ -59,6 +64,7 @@ def test_from_rs_to_cisu_happy_path():
         mock_merge.assert_called_once_with(
             {"ri": "data"}, [{"sr": "data1"}, {"sr": "data2"}]
         )
+        mock_convert.assert_called_once_with(merged_rs_ri)
 
 
 def test_from_rs_to_cisu_missing_case_id():

@@ -7,30 +7,34 @@ from converter.cisu.resources_info.resources_info_cisu_helper import (
 
 def build_rs_ri(resources):
     return {
-        "content": [{
-            "jsonContent": {
-                "embeddedJsonContent": {
-                    "message": {"resourcesInfo": {"resource": resources}}
+        "content": [
+            {
+                "jsonContent": {
+                    "embeddedJsonContent": {
+                        "message": {"resourcesInfo": {"resource": resources}}
+                    }
                 }
             }
-        }]
+        ]
     }
 
 
 def build_rs_sr(resource_id, state):
     return {
-        "content": [{
-            "jsonContent": {
-                "embeddedJsonContent": {
-                    "message": {
-                        "resourceStatus": {
-                            "resourceId": resource_id,
-                            "state": state,
+        "content": [
+            {
+                "jsonContent": {
+                    "embeddedJsonContent": {
+                        "message": {
+                            "resourceStatus": {
+                                "resourceId": resource_id,
+                                "state": state,
+                            }
                         }
                     }
                 }
             }
-        }]
+        ]
     }
 
 
