@@ -54,11 +54,8 @@ class ResourcesStatusConverter(BaseCISUConverter):
         resources = get_field_value(
             rs_ri_content, ResourcesInfoCISUConstants.RESOURCE_PATH
         )
-        resources_status_list = []
-        for rs_sr in rs_sr_content_list:
-            resources_status_list.append(rs_sr)
 
-        merged_resources = merge_info_and_resources(resources, resources_status_list)
+        merged_resources = merge_info_and_resources(resources, rs_sr_content_list)
 
         set_value(rs_ri, ResourcesInfoCISUConstants.RESOURCE_PATH, merged_resources)
 
