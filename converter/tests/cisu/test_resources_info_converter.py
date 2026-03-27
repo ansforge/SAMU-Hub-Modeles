@@ -1,5 +1,4 @@
 import copy
-from datetime import datetime
 from unittest import TestCase
 from unittest.mock import patch
 
@@ -8,47 +7,47 @@ import pytest
 from converter.cisu.resources_info.resources_info_cisu_converter import (
     ResourcesInfoCISUConverter,
 )
-from converter.models.persisted_message import PersistedMessage
 from tests.constants import TestConstants
 from tests.test_helpers import TestHelper, get_file_endpoint
 from jsonschema import validate
+from tests.cisu.helpers import (
+    RC_RI_WITH_POSITION_EDXL,
+    get_cisu_content,
+    get_edxl_message,
+    make_rc_ri_with_resources,
+    make_rs_ri_edxl,
+    persisted,
+    persisted_rs_ri_and_rs_sr,
+)
 
 RS_RI_SCHEMA = TestHelper.load_schema("RS-RI.schema.json")
 
-usecase_files_with_empty_state = [
-    "RS-RI_FuiteDeGaz_AliceGregoireNORMAND.06.json",
-    "RS-RI_Incendie_RaymondeLECCIA.04.json",
+_PATCH_GET_LAST_RC_RI_BY_CASE_ID = "converter.cisu.resources_info.resources_info_cisu_converter.get_last_rc_ri_by_case_id"
+_PATCH_GET_RS_MESSAGES_BY_CASE_ID = "converter.cisu.resources_info.resources_info_cisu_converter.get_rs_messages_by_case_id"
+
+usecase_files_returning_no_converted_messages = [
     "RS-RI_Secondaire_RobertVermande.03.json",
     "RS-RI_partageRessources_LolaHalimi.03c.json",
+    "RS-RI_partageRessources_MonsieurX.03.json",
 ]
 
-usecase_files_with_unsupported_vehicle_type = [
-    "RS-RI_partageRessources_MonsieurX.03.json",  # contains TSU.AMB, not mappable to CISU (only SIS/SMUR allowed)
-]
 all_usecase_files = TestHelper.get_json_files(
     TestConstants.RS_RI_TAG, tag=TestConstants.V3_GITHUB_TAG
 )
 all_file_names = [f["name"] for f in all_usecase_files]
 
-# Dictionnaire des cas d'erreur : file_name -> message attendu
-ERROR_CASES = {
-    name: "No states found in resource, mandatory for CISU conversion."
-    for name in usecase_files_with_empty_state
-}
-
 TEST_CASES = [
-    (name, ValueError, ERROR_CASES[name]) if name in ERROR_CASES else (name, None, None)
+    (name, name in usecase_files_returning_no_converted_messages)
     for name in all_file_names
-    if name not in usecase_files_with_unsupported_vehicle_type
 ]
 
 
 @pytest.mark.parametrize(
-    "file_name, expected_exception, expected_message",
+    "file_name, should_return_emtpy_list",
     TEST_CASES,
     ids=[c[0] for c in TEST_CASES],  # rend les sorties pytest lisibles
 )
-def test_rs_to_cisu(file_name, expected_exception, expected_message):
+def test_rs_to_cisu(file_name, should_return_emtpy_list):
     """Test RS → CISU conversion for both success and expected error cases."""
 
     usecase_file = next(f for f in all_usecase_files if f["name"] == file_name)
@@ -56,8 +55,7 @@ def test_rs_to_cisu(file_name, expected_exception, expected_message):
     edxl_json = TestHelper.create_edxl_json_from_sample(
         TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH, usecase_file["path"]
     )
-
-    if expected_exception is None:
+    with patch(_PATCH_GET_RS_MESSAGES_BY_CASE_ID, return_value=(None, [])):
         # Cas nominal
         rc_schema_endpoint = get_file_endpoint(
             TestConstants.V3_GITHUB_TAG,
@@ -67,32 +65,34 @@ def test_rs_to_cisu(file_name, expected_exception, expected_message):
 
         result = ResourcesInfoCISUConverter.from_rs_to_cisu(edxl_json)
 
-        usecase_name = rc_schema["title"]
-        converted_message = result["content"][0]["jsonContent"]["embeddedJsonContent"][
-            "message"
-        ][usecase_name]
-
-        validate(instance=converted_message, schema=rc_schema)
-
-    else:
-        # Cas d'erreur attendu
-        with pytest.raises(expected_exception, match=expected_message):
-            ResourcesInfoCISUConverter.from_rs_to_cisu(edxl_json)
+        if should_return_emtpy_list:
+            assert result == [], (
+                f"Conversion of message {file_name} should return empty response."
+            )
+        else:
+            usecase_name = rc_schema["title"]
+            converted_message = get_edxl_message(result)[usecase_name]
+            validate(instance=converted_message, schema=rc_schema)
 
 
-@pytest.mark.parametrize(
-    "file_name",
-    usecase_files_with_unsupported_vehicle_type,
-)
-def test_rs_to_cisu_returns_empty_list_when_no_cisu_compatible_resource(file_name):
-    """Quand toutes les ressources ont un vehicleType non supporté, from_rs_to_cisu
-    doit retourner [] au lieu de lever une erreur."""
-    usecase_file = next(f for f in all_usecase_files if f["name"] == file_name)
-    edxl_json = TestHelper.create_edxl_json_from_sample(
-        TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH, usecase_file["path"]
-    )
-    result = ResourcesInfoCISUConverter.from_rs_to_cisu(edxl_json)
-    assert result == []
+# @pytest.mark.parametrize(
+#     "file_name",
+#     usecase_files_with_unsupported_vehicle_type,
+# )
+# def test_rs_to_cisu_returns_empty_list_when_no_cisu_compatible_resource(file_name):
+#     """Quand toutes les ressources ont un vehicleType non supporté, from_rs_to_cisu
+#     doit retourner [] au lieu de lever une erreur."""
+#     usecase_file = next(f for f in all_usecase_files if f["name"] == file_name)
+#     edxl_json = TestHelper.create_edxl_json_from_sample(
+#         TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH, usecase_file["path"]
+#     )
+
+#     with patch(
+#         _PATCH_GET_RS_MESSAGES_BY_CASE_ID,
+#         return_value=(edxl_json, []),
+#     ):
+#         result = ResourcesInfoCISUConverter.from_rs_to_cisu(edxl_json)
+#         assert result == []
 
 
 def test_rs_to_cisu_should_delete_patient_id():
@@ -100,7 +100,8 @@ def test_rs_to_cisu_should_delete_patient_id():
         TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH,
         "tests/fixtures/RS-RI/RS-RI_V3.0_patient_id_deletion.json",
     )
-    cisu_raw_message = ResourcesInfoCISUConverter.from_rs_to_cisu(rs_raw_message)
+    with patch(_PATCH_GET_RS_MESSAGES_BY_CASE_ID, return_value=(None, [])):
+        cisu_raw_message = ResourcesInfoCISUConverter.from_rs_to_cisu(rs_raw_message)
     cisu_message = ResourcesInfoCISUConverter.copy_cisu_input_use_case_content(
         cisu_raw_message
     )
@@ -179,16 +180,7 @@ def test_translate_vehicule_type_to_cisu(rs_vehicule_type, expected):
 # RC-RI → RS (from_cisu_to_rs) — split logic
 # ---------------------------------------------------------------------------
 
-_PATCH_TARGET = "converter.cisu.resources_info.resources_info_cisu_converter.get_last_rc_ri_by_case_id"
-
-_RC_RI_WITH_POSITION_EDXL = TestHelper.create_edxl_json_from_sample(
-    TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
-    "tests/fixtures/RC-RI/RC-RI_V3.0_with_position.json",
-)
-
-_CASE_ID = _RC_RI_WITH_POSITION_EDXL["content"][0]["jsonContent"][
-    "embeddedJsonContent"
-]["message"]["resourcesInfoCisu"]["caseId"]
+_CASE_ID = get_cisu_content(RC_RI_WITH_POSITION_EDXL)["caseId"]
 
 
 class TestBuildRsSrFromResource:
@@ -203,11 +195,9 @@ class TestBuildRsSrFromResource:
 
     def test_rs_sr_content_is_correct(self):
         result = ResourcesInfoCISUConverter._build_rs_sr_from_resource(
-            _RC_RI_WITH_POSITION_EDXL, self._RESOURCE, _CASE_ID
+            RC_RI_WITH_POSITION_EDXL, self._RESOURCE, _CASE_ID
         )
-        rs_sr = result["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
-            "resourcesStatus"
-        ]
+        rs_sr = get_edxl_message(result)["resourcesStatus"]
         assert rs_sr["caseId"] == _CASE_ID
         assert rs_sr["resourceId"] == self._RESOURCE["resourceId"]
         assert rs_sr["state"] == self._RESOURCE["state"]
@@ -215,16 +205,16 @@ class TestBuildRsSrFromResource:
     def test_rs_sr_does_not_contain_cisu_key(self):
         """The RS-SR message envelope must not contain the original CISU key."""
         result = ResourcesInfoCISUConverter._build_rs_sr_from_resource(
-            _RC_RI_WITH_POSITION_EDXL, self._RESOURCE, _CASE_ID
+            RC_RI_WITH_POSITION_EDXL, self._RESOURCE, _CASE_ID
         )
-        message = result["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]
+        message = get_edxl_message(result)
         assert "resourcesInfoCisu" not in message
 
 
 def test_from_cisu_to_rs_new_case_id():
     """With an unknown caseId, from_cisu_to_rs must return 1 RS-RI + 1 RS-SR per resource."""
-    with patch(_PATCH_TARGET, return_value=None):
-        results = ResourcesInfoCISUConverter.from_cisu_to_rs(_RC_RI_WITH_POSITION_EDXL)
+    with patch(_PATCH_GET_LAST_RC_RI_BY_CASE_ID, return_value=None):
+        results = ResourcesInfoCISUConverter.from_cisu_to_rs(RC_RI_WITH_POSITION_EDXL)
 
     # fixture has 2 resources → 1 RS-RI + 2 RS-SR = 3 messages
     assert isinstance(results, list), "result must be a list"
@@ -232,15 +222,13 @@ def test_from_cisu_to_rs_new_case_id():
         f"expected 3 messages (1 RS-RI + 2 RS-SR), got {len(results)}"
     )
 
-    first_message = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"][
-        "message"
-    ]
+    first_message = get_edxl_message(results[0])
     assert "resourcesInfo" in first_message, (
         "first message must be a RS-RI (resourcesInfo key expected)"
     )
 
     for i, rs_sr in enumerate(results[1:], start=1):
-        message = rs_sr["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]
+        message = get_edxl_message(rs_sr)
         assert "resourcesStatus" in message, (
             f"message {i} must be a RS-SR (resourcesStatus key expected)"
         )
@@ -256,9 +244,7 @@ def test_from_cisu_to_rs_new_case_id():
     dist_ids = [msg["distributionID"] for msg in results]
     assert len(dist_ids) == len(set(dist_ids)), "all distributionIDs must be unique"
 
-    resources_info = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"][
-        "message"
-    ]["resourcesInfo"]
+    resources_info = get_edxl_message(results[0])["resourcesInfo"]
     for resource in resources_info["resource"]:
         assert "position" not in resource, (
             f"RS-RI resource {resource.get('resourceId')} must not contain a position field"
@@ -289,19 +275,10 @@ _RESOURCE_NEW = {
 }
 
 
-def _make_rc_ri_with_resources(resources):
-    """Return a copy of the RC-RI fixture with the given resource list."""
-    edxl = copy.deepcopy(_RC_RI_WITH_POSITION_EDXL)
-    edxl["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
-        "resourcesInfoCisu"
-    ]["resource"] = resources
-    return edxl
-
-
 class TestHasResourcesBeenUpdated:
     def test_no_change(self):
         """Identical resource lists → no flag raised, no modified resources."""
-        edxl = _make_rc_ri_with_resources(
+        edxl = make_rc_ri_with_resources(
             [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
         )
         result = ResourcesInfoCISUConverter._has_resources_been_updated(edxl, edxl)
@@ -315,15 +292,13 @@ class TestHasResourcesBeenUpdated:
 
     def test_status_changed(self):
         """A status change → flag stays False, changed resource appears in modified_status_resources in its new version."""
-        ref = _make_rc_ri_with_resources(
+        ref = make_rc_ri_with_resources(
             [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
         )
         updated_vlm1 = copy.deepcopy(_RESOURCE_VLM1)
         updated_vlm1["state"]["status"] = "DISP"
         updated_vlm1["state"]["datetime"] = "2024-08-01T18:00:00+02:00"
-        cmp = _make_rc_ri_with_resources(
-            [updated_vlm1, copy.deepcopy(_RESOURCE_VSAV3A)]
-        )
+        cmp = make_rc_ri_with_resources([updated_vlm1, copy.deepcopy(_RESOURCE_VSAV3A)])
 
         result = ResourcesInfoCISUConverter._has_resources_been_updated(ref, cmp)
 
@@ -346,10 +321,10 @@ class TestHasResourcesBeenUpdated:
 
     def test_resource_added(self):
         """A new resource → flag raised and new resource appears in modified_status_resources."""
-        ref = _make_rc_ri_with_resources(
+        ref = make_rc_ri_with_resources(
             [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
         )
-        cmp = _make_rc_ri_with_resources(
+        cmp = make_rc_ri_with_resources(
             [
                 copy.deepcopy(_RESOURCE_VLM1),
                 copy.deepcopy(_RESOURCE_VSAV3A),
@@ -370,10 +345,10 @@ class TestHasResourcesBeenUpdated:
 
     def test_resource_removed(self):
         """A removed resource → flag raised, removed resource absent from modified_status_resources."""
-        ref = _make_rc_ri_with_resources(
+        ref = make_rc_ri_with_resources(
             [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
         )
-        cmp = _make_rc_ri_with_resources([copy.deepcopy(_RESOURCE_VLM1)])
+        cmp = make_rc_ri_with_resources([copy.deepcopy(_RESOURCE_VLM1)])
 
         result = ResourcesInfoCISUConverter._has_resources_been_updated(ref, cmp)
 
@@ -391,32 +366,23 @@ class TestHasResourcesBeenUpdated:
 # ---------------------------------------------------------------------------
 
 
-def _persisted(edxl: dict) -> PersistedMessage:
-    """Wrap an EDXL dict in a PersistedMessage as the repository would return it."""
-    return PersistedMessage(
-        message_type="RC-RI",
-        payload=edxl,
-        arrived_at=datetime(2024, 8, 1, 14, 0, 0),
-    )
-
-
 def test_from_cisu_to_rs_known_case_id_status_changed_only():
     """Known caseId + only a status change → exactly one RS-SR, no RS-RI."""
-    ref_edxl = _make_rc_ri_with_resources(
+    ref_edxl = make_rc_ri_with_resources(
         [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
     )
     updated_vlm1 = copy.deepcopy(_RESOURCE_VLM1)
     updated_vlm1["state"]["status"] = "DISP"
-    incoming_edxl = _make_rc_ri_with_resources(
+    incoming_edxl = make_rc_ri_with_resources(
         [updated_vlm1, copy.deepcopy(_RESOURCE_VSAV3A)]
     )
 
-    with patch(_PATCH_TARGET, return_value=_persisted(ref_edxl)):
+    with patch(_PATCH_GET_LAST_RC_RI_BY_CASE_ID, return_value=persisted(ref_edxl)):
         results = ResourcesInfoCISUConverter.from_cisu_to_rs(incoming_edxl)
 
     assert isinstance(results, list), "from_cisu_to_rs must return a list"
     assert len(results) == 1, f"expected 1 RS-SR, got {len(results)}"
-    message = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]
+    message = get_edxl_message(results[0])
     assert "resourcesStatus" in message, "expected RS-SR (resourcesStatus key)"
     assert "resourcesInfo" not in message, (
         "a status-only change must not produce a RS-RI"
@@ -428,10 +394,10 @@ def test_from_cisu_to_rs_known_case_id_status_changed_only():
 
 def test_from_cisu_to_rs_known_case_id_resource_added():
     """Known caseId + new resource → one RS-RI and one RS-SR for the new resource."""
-    ref_edxl = _make_rc_ri_with_resources(
+    ref_edxl = make_rc_ri_with_resources(
         [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
     )
-    incoming_edxl = _make_rc_ri_with_resources(
+    incoming_edxl = make_rc_ri_with_resources(
         [
             copy.deepcopy(_RESOURCE_VLM1),
             copy.deepcopy(_RESOURCE_VSAV3A),
@@ -439,22 +405,18 @@ def test_from_cisu_to_rs_known_case_id_resource_added():
         ]
     )
 
-    with patch(_PATCH_TARGET, return_value=_persisted(ref_edxl)):
+    with patch(_PATCH_GET_LAST_RC_RI_BY_CASE_ID, return_value=persisted(ref_edxl)):
         results = ResourcesInfoCISUConverter.from_cisu_to_rs(incoming_edxl)
 
     assert isinstance(results, list), "from_cisu_to_rs must return a list"
     assert len(results) == 2, f"expected RS-RI + RS-SR, got {len(results)}"
 
-    first_message = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"][
-        "message"
-    ]
+    first_message = get_edxl_message(results[0])
     assert "resourcesInfo" in first_message, (
         "first message must be RS-RI when the engaged resource list has changed"
     )
 
-    second_message = results[1]["content"][0]["jsonContent"]["embeddedJsonContent"][
-        "message"
-    ]
+    second_message = get_edxl_message(results[1])
     assert "resourcesStatus" in second_message, (
         "second message must be a RS-SR for the newly added resource"
     )
@@ -465,19 +427,19 @@ def test_from_cisu_to_rs_known_case_id_resource_added():
 
 def test_from_cisu_to_rs_known_case_id_resource_removed():
     """Known caseId + resource removed → one RS-RI, no RS-SR."""
-    ref_edxl = _make_rc_ri_with_resources(
+    ref_edxl = make_rc_ri_with_resources(
         [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
     )
-    incoming_edxl = _make_rc_ri_with_resources([copy.deepcopy(_RESOURCE_VLM1)])
+    incoming_edxl = make_rc_ri_with_resources([copy.deepcopy(_RESOURCE_VLM1)])
 
-    with patch(_PATCH_TARGET, return_value=_persisted(ref_edxl)):
+    with patch(_PATCH_GET_LAST_RC_RI_BY_CASE_ID, return_value=persisted(ref_edxl)):
         results = ResourcesInfoCISUConverter.from_cisu_to_rs(incoming_edxl)
 
     assert isinstance(results, list), "from_cisu_to_rs must return a list"
     assert len(results) == 1, (
         f"expected exactly 1 RS-RI (no RS-SR for a removed resource), got {len(results)}"
     )
-    message = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]
+    message = get_edxl_message(results[0])
     assert "resourcesInfo" in message, (
         "when a resource is removed the RS-RI must be produced to reflect the new engaged resource list"
     )
@@ -485,14 +447,79 @@ def test_from_cisu_to_rs_known_case_id_resource_removed():
 
 def test_from_cisu_to_rs_known_case_id_no_change():
     """Known caseId + no resource or status change → empty list."""
-    ref_edxl = _make_rc_ri_with_resources(
+    ref_edxl = make_rc_ri_with_resources(
         [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
     )
-    incoming_edxl = _make_rc_ri_with_resources(
+    incoming_edxl = make_rc_ri_with_resources(
         [copy.deepcopy(_RESOURCE_VLM1), copy.deepcopy(_RESOURCE_VSAV3A)]
     )
 
-    with patch(_PATCH_TARGET, return_value=_persisted(ref_edxl)):
+    with patch(_PATCH_GET_LAST_RC_RI_BY_CASE_ID, return_value=persisted(ref_edxl)):
         results = ResourcesInfoCISUConverter.from_cisu_to_rs(incoming_edxl)
 
     assert results == [], f"expected no messages, got {len(results)}"
+
+
+# ---------------------------------------------------------------------------
+# from_rs_to_cisu — RS-RI + RS-SR merge logic
+# ---------------------------------------------------------------------------
+
+
+def test_from_rs_to_cisu_no_persisted_rs_sr():
+    """No persisted RS-SR should return original state."""
+    edxl, _, _ = make_rs_ri_edxl()
+
+    with patch(_PATCH_GET_RS_MESSAGES_BY_CASE_ID, return_value=(None, [])):
+        result = ResourcesInfoCISUConverter.from_rs_to_cisu(edxl)
+
+    rc_ri = get_cisu_content(result)
+    assert rc_ri["resource"][0]["state"]["status"] == "RET-BASE"
+    # Two resources present originaly but only one valid vehicle type, so 1 resource expected
+    assert (len(rc_ri["resource"])) == 1
+
+
+def test_from_rs_to_cisu_no_state_but_persisted_rs_sr():
+    """A persisted RS-SR should return persisted state if no original state."""
+    edxl, rs_ri, rs_sr_edxl = make_rs_ri_edxl(remove_state=True)
+
+    with patch(
+        _PATCH_GET_RS_MESSAGES_BY_CASE_ID,
+        return_value=persisted_rs_ri_and_rs_sr(rs_ri, [rs_sr_edxl]),
+    ):
+        result = ResourcesInfoCISUConverter.from_rs_to_cisu(edxl)
+
+    assert "state" not in rs_ri["resource"][0]
+    assert get_cisu_content(result)["resource"][0]["state"]["status"] == "RETOUR"
+
+
+def test_from_rs_to_cisu_latest_persisted_state():
+    """A persisted RS-SR should return the latest state (persisted state is more recent)."""
+    later_datetime = "2025-05-18T18:46:00+02:00"
+    edxl, rs_ri, rs_sr_edxl = make_rs_ri_edxl(rs_sr_datetime=later_datetime)
+
+    with patch(
+        _PATCH_GET_RS_MESSAGES_BY_CASE_ID,
+        return_value=persisted_rs_ri_and_rs_sr(rs_ri, [rs_sr_edxl]),
+    ):
+        result = ResourcesInfoCISUConverter.from_rs_to_cisu(edxl)
+
+    rc_ri = get_cisu_content(result)
+    assert rc_ri["resource"][0]["state"]["status"] == "RETOUR"
+    assert rc_ri["resource"][0]["state"]["datetime"] == later_datetime
+
+
+def test_from_rs_to_cisu_latest_original_state():
+    """A persisted RS-SR should return the latest state (original state is more recent)."""
+    earlier_datetime = "2023-05-18T18:46:00+02:00"
+    edxl, rs_ri, rs_sr_edxl = make_rs_ri_edxl(rs_sr_datetime=earlier_datetime)
+    current_datetime = rs_ri["resource"][0]["state"][0]["datetime"]
+
+    with patch(
+        _PATCH_GET_RS_MESSAGES_BY_CASE_ID,
+        return_value=persisted_rs_ri_and_rs_sr(rs_ri, [rs_sr_edxl]),
+    ):
+        result = ResourcesInfoCISUConverter.from_rs_to_cisu(edxl)
+
+    rc_ri = get_cisu_content(result)
+    assert rc_ri["resource"][0]["state"]["status"] == "RET-BASE"
+    assert rc_ri["resource"][0]["state"]["datetime"] == current_datetime
