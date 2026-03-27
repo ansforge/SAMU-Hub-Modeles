@@ -6,11 +6,24 @@ from typing import Any, Dict, List, TypedDict
 from converter.cisu.resources_info.resources_info_cisu_constants import (
     ResourcesInfoCISUConstants,
 )
-from converter.repositories.message_repository import get_last_rc_ri_by_case_id
+from converter.cisu.resources_info.resources_info_cisu_helper import (
+    enrich_rs_ri_with_rs_srs,
+    get_latest_state,
+)
+from converter.repositories.message_repository import (
+    get_last_rc_ri_by_case_id,
+    get_rs_messages_by_case_id,
+)
 from converter.utils import get_field_value, set_value, delete_paths
 import logging
 
 logger = logging.getLogger(__name__)
+
+
+class ConversionError(ValueError):
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
 
 
 class ResourceUpdateResult(TypedDict):
@@ -201,19 +214,43 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         return messages
 
     @classmethod
-    def from_rs_to_cisu(
-        cls, edxl_json: Dict[str, Any]
-    ) -> Dict[str, Any] | list[Dict[str, Any]]:
+    def from_rs_to_cisu(cls, edxl_json: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Mother function that takes a RS-RI message and returns a RC-RI message
+        This functions manages:
+        - taking the RS-RI as param
+        - fetches potential peristed RS-SR in the db
+        - merges different resources (following métier rules)
+        - makes the conversion from rs to cisu
+        - returns the converted message
+        """
+
         logger.info("Converting from RS to CISU format for Resources Info message.")
         logger.debug(f"Message content: {edxl_json}")
         output_json = cls.copy_rs_input_content(edxl_json)
-        output_use_case_json = cls.copy_rs_input_use_case_content(edxl_json)
+        current_use_case = cls.copy_rs_input_use_case_content(edxl_json)
 
+        case_id = get_field_value(current_use_case, "caseId")
+
+        _, persisted_rs_sr = get_rs_messages_by_case_id(case_id)
+        rs_sr_use_cases = [
+            # Hardcoded RS_SR use case to avoid circular dependency
+            # TODO: Fix
+            cls._copy_input_use_case_content(pm.payload, "resourcesStatus")
+            for pm in persisted_rs_sr
+        ]
+        enriched = enrich_rs_ri_with_rs_srs(current_use_case, rs_sr_use_cases)
+
+        return cls.convert_single_rs_ri(output_json, enriched)
+
+    @classmethod
+    def convert_single_rs_ri(
+        cls, output_json: Dict[str, Any], output_use_case_json: Dict[str, Any]
+    ):
         resources = get_field_value(
             output_use_case_json, ResourcesInfoCISUConstants.RESOURCE_PATH
         )
-
-        converted_resources = cls.convert_resources_to_cisu(resources)
+        converted_resources = cls._convert_resources_to_cisu(resources)
 
         if len(converted_resources) < 1:
             logger.info(
@@ -230,66 +267,67 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         return cls.format_cisu_output_json(output_json, output_use_case_json)
 
     @classmethod
-    def convert_resources_to_cisu(
+    def _convert_resources_to_cisu(
         cls, resources: list[Dict[str, Any]]
     ) -> list[Dict[str, Any]]:
         converted_resources = []
 
         for index, resource in enumerate(resources):
-            logger.debug(f"Processing resource: {resource}")
-            rs_vehicle_type = get_field_value(
-                resource, ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH
-            )
+            logger.debug("Processing resource: {resource}")
 
-            cisu_vehicle_type = cls.translate_to_cisu_vehicle_type(rs_vehicle_type)
+            try:
+                vehicle_type = cls.translate_to_cisu_vehicle_type(
+                    get_field_value(
+                        resource, ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH
+                    )
+                )
+                if vehicle_type is None:
+                    continue
 
-            if not cisu_vehicle_type:  # if we couldn't map the vehicleType on a SIS known type, we continue to filter the whole resource out
+                set_value(
+                    resource,
+                    ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH,
+                    vehicle_type,
+                )
+
+                current_resource_path = (
+                    f"{ResourcesInfoCISUConstants.RESOURCE_PATH}[{index}]"
+                )
+                current_state_path = (
+                    f"{current_resource_path}.{ResourcesInfoCISUConstants.STATE_PATH}"
+                )
+                logger.info(
+                    "Transforming state to singleton for CISU at path %s",
+                    current_state_path,
+                )
+                cls.keep_last_state(resource)
+                delete_paths(resource, [ResourcesInfoCISUConstants.PATIENT_ID_KEY])
+                converted_resources.append(resource)
+            except ConversionError:
                 continue
-
-            set_value(
-                resource,
-                ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH,
-                cisu_vehicle_type,
-            )
-
-            current_resource_path = (
-                f"{ResourcesInfoCISUConstants.RESOURCE_PATH}[{index}]"
-            )
-            current_state_path = (
-                f"{current_resource_path}.{ResourcesInfoCISUConstants.STATE_PATH}"
-            )
-            logger.info(
-                "Transforming state to singleton for CISU at path %s",
-                current_state_path,
-            )
-            cls.keep_last_state(resource)
-
-            delete_paths(resource, [ResourcesInfoCISUConstants.PATIENT_ID_KEY])
-
-            converted_resources.append(resource)
 
         return converted_resources
 
     @classmethod
     def translate_to_cisu_vehicle_type(cls, rs_vehicle_type: str) -> str | None:
+        """Translate a RS vehicle type to its CISU equivalent, or None if not mappable."""
         if rs_vehicle_type.startswith(ResourcesInfoCISUConstants.VEHICLE_TYPE_SIS):
             return ResourcesInfoCISUConstants.VEHICLE_TYPE_SIS
-        elif rs_vehicle_type.startswith(ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR):
+        if rs_vehicle_type.startswith(ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR):
             return ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR
-        else:
-            logger.info(
-                "Removing resource because vehicleType '%s' is not supported",
-                rs_vehicle_type,
-            )
-            return None
+        logger.info("vehicleType '%s' is not mappable to CISU", rs_vehicle_type)
+        return None
 
     @classmethod
     def keep_last_state(cls, resource: Dict[str, Any]) -> None:
         states = get_field_value(resource, ResourcesInfoCISUConstants.STATE_PATH)
         if not states or len(states) == 0:
-            raise ValueError(
+            raise ConversionError(
                 "No states found in resource, mandatory for CISU conversion."
             )
 
-        latest_state = sorted(states, key=lambda x: x.get("datetime", ""))[-1]
-        set_value(resource, ResourcesInfoCISUConstants.STATE_PATH, latest_state)
+        set_value(
+            resource,
+            ResourcesInfoCISUConstants.STATE_PATH,
+            get_latest_state(states),
+        )
