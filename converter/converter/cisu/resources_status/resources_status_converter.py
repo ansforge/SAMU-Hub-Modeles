@@ -9,6 +9,12 @@ from converter.cisu.resources_info.resources_info_cisu_helper import (
 from converter.cisu.resources_info.resources_info_cisu_converter import (
     ResourcesInfoCISUConverter,
 )
+from converter.cisu.resources_status.resources_status_constants import (
+    ResourcesStatusConstants,
+)
+from converter.cisu.resources_info.resources_info_cisu_constants import (
+    ResourcesInfoCISUConstants,
+)
 
 from typing import Any, Dict
 
@@ -25,38 +31,35 @@ class ResourcesStatusConverter(BaseCISUConverter):
         return "resourcesInfoCisu"
 
     @classmethod
-    def from_rs_to_cisu(cls, edxl_json: Dict[str, Any]) -> Dict[str, Any]:
+    def from_rs_to_cisu(
+        cls, edxl_json: Dict[str, Any]
+    ) -> Dict[str, Any] | list[Dict[str, Any]]:
         content = cls.copy_rs_input_use_case_content(edxl_json)
-        case_id = get_field_value(content, "$.caseId")
+        case_id = get_field_value(content, ResourcesStatusConstants.CASE_ID)
 
         persisted_rs_ri = get_last_rs_ri_by_case_id(case_id)
-        if persisted_rs_ri is None:  # No RS-RI persisted yet, we return an empty object
-            return {}
+        if persisted_rs_ri is None:  # No RS-RI persisted yet, we return an empty list
+            return []
 
         persisted_rs_sr_list = get_last_rs_sr_per_resource_by_case_id(case_id)
 
         rs_ri = persisted_rs_ri.payload
-        rs_sr = [msg.payload for msg in persisted_rs_sr_list]
+        rs_ri_content = ResourcesInfoCISUConverter.copy_rs_input_use_case_content(rs_ri)
+        rs_sr_content_list = [
+            cls.copy_rs_input_use_case_content(msg.payload)
+            for msg in persisted_rs_sr_list
+        ]
 
         # merge RS-SRs in RS-RI
-        resources = get_field_value(rs_ri, "$.resource")
-        resources_status_list = cls.extract_resource_status_list(rs_sr)
+        resources = get_field_value(
+            rs_ri_content, ResourcesInfoCISUConstants.RESOURCE_PATH
+        )
+        resources_status_list = []
+        for rs_sr in rs_sr_content_list:
+            resources_status_list.append(rs_sr)
 
-        merged_rs_ri = merge_info_and_resources(resources, resources_status_list)
+        merged_resources = merge_info_and_resources(resources, resources_status_list)
 
-        if merged_rs_ri is None:
-            return {}
-
-        set_value(rs_ri, "path", merged_rs_ri)
+        set_value(rs_ri, ResourcesInfoCISUConstants.RESOURCE_PATH, merged_resources)
 
         return ResourcesInfoCISUConverter.from_rs_to_cisu(rs_ri)
-
-    @staticmethod
-    def extract_resource_status_list(rs_sr_list: list[dict]) -> list[dict]:
-        result = []
-
-        for rs_sr in rs_sr_list:
-            resource_status = get_field_value(rs_sr, "$.resourceStatus")
-            result.append(resource_status)
-
-        return result

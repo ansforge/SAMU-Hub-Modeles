@@ -43,9 +43,14 @@ def test_missing_state_for_resource():
         # r2 manquant
     ]
 
+    expected_result = [
+        {"resourceId": "r1", "state": [{"status": "OK"}]},
+        {"resourceId": "r2"},
+    ]
+
     result = merge_info_and_resources(resources, resources_status_list)
 
-    assert result is None
+    assert result == expected_result
 
 
 def test_missing_resource_id():
@@ -57,10 +62,10 @@ def test_missing_resource_id():
     resources_status_list = [
         {"resourceId": "r1", "state": {"status": "OK"}},
     ]
-
+    expected_result = [{"resourceId": "r1", "state": [{"status": "OK"}]}, {}]
     result = merge_info_and_resources(resources, resources_status_list)
 
-    assert result is None
+    assert result == expected_result
 
 
 def test_invalid_rs_status_ignored():

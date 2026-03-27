@@ -3,6 +3,9 @@ from unittest.mock import patch, MagicMock
 from converter.cisu.resources_status.resources_status_converter import (
     ResourcesStatusConverter,
 )
+from converter.cisu.resources_info.resources_info_cisu_constants import (
+    ResourcesInfoCISUConstants,
+)
 
 
 def build_valid_edxl(case_id="CASE123"):
@@ -56,9 +59,8 @@ def test_from_rs_to_cisu_happy_path():
             side_effect=mock_get_field_value,
         ) as mock_get_field,
         patch(
-            "converter.cisu.resources_status.resources_status_converter.ResourcesStatusConverter.extract_resource_status_list",
-            return_value=[{"sr": "data1"}, {"sr": "data2"}],
-        ) as mock_extract_status,
+            "converter.cisu.resources_status.resources_status_converter.set_value"
+        ) as mock_set_value,
         patch(
             "converter.cisu.resources_status.resources_status_converter.merge_info_and_resources",
             return_value=merged_rs_ri,
@@ -67,6 +69,14 @@ def test_from_rs_to_cisu_happy_path():
             "converter.cisu.resources_status.resources_status_converter.ResourcesInfoCISUConverter.from_rs_to_cisu",
             return_value=expected_result,
         ) as mock_convert,
+        patch(
+            "converter.cisu.resources_status.resources_status_converter.ResourcesStatusConverter.copy_rs_input_use_case_content",
+            side_effect=lambda x: x,
+        ),
+        patch(
+            "converter.cisu.resources_status.resources_status_converter.ResourcesInfoCISUConverter.copy_rs_input_use_case_content",
+            side_effect=lambda x: x,
+        ),
     ):
         result = ResourcesStatusConverter.from_rs_to_cisu(edxl_json)
 
@@ -76,15 +86,18 @@ def test_from_rs_to_cisu_happy_path():
         mock_get_sr.assert_called_once_with("CASE123")
 
         mock_get_field.assert_any_call(mock_rs_ri.payload, "$.resource")
-        mock_extract_status.assert_called_once_with([{"sr": "data1"}, {"sr": "data2"}])
 
         mock_merge.assert_called_once_with(
             {"ri": "data"}, [{"sr": "data1"}, {"sr": "data2"}]
         )
 
-        mock_convert.assert_called_once_with(
-            {"ri": "data", "path": {"merged": "rs_ri"}}
+        mock_set_value.assert_called_once_with(
+            mock_rs_ri.payload,
+            ResourcesInfoCISUConstants.RESOURCE_PATH,
+            merged_rs_ri,
         )
+
+        mock_convert.assert_called_once_with(mock_rs_ri.payload)
 
 
 def test_from_rs_to_cisu_no_rs_ri():
@@ -95,4 +108,4 @@ def test_from_rs_to_cisu_no_rs_ri():
         return_value=None,
     ):
         result = ResourcesStatusConverter.from_rs_to_cisu(edxl_json)
-        assert result == {}
+        assert result == []
