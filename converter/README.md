@@ -60,6 +60,7 @@ FLASK_APP=converter.converter \
 FLASK_ENV=development \
 FLASK_DEBUG=1 \
 uv run python -m flask run --port 8083
+# in a Linux environment, add --host 0.0.0.0
 ```
 
 *Notes :*
