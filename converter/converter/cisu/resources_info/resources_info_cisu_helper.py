@@ -1,7 +1,7 @@
 def merge_info_and_resources(
     resources: list[dict],
     resources_status_list: list[dict],
-) -> list[dict] | None:
+) -> list[dict]:
     """
     Enrichit une liste de resources avec les états provenant des resources_status.
 
