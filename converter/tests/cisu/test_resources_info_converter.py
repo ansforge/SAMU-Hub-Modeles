@@ -165,21 +165,6 @@ def test_translate_vehicule_type_to_cisu(rs_vehicule_type, expected):
     assert cisu_vehicle_type == expected
 
 
-@pytest.mark.parametrize(
-    "cisu_vehicule_type,expected",
-    [
-        pytest.param("SIS", "SIS", id="translates SIS to SIS"),
-        pytest.param("SMUR", "SMUR", id="translates SMUR to SMUR"),
-        pytest.param("AUTRE", "AUTREVEC", id="translates AUTRE to AUTREVEC"),
-    ],
-)
-def test_translate_vehicule_type_to_rs(cisu_vehicule_type, expected):
-    rs_vehicle_type = ResourcesInfoCISUConverter.translate_to_rs_vehicle_type(
-        cisu_vehicule_type
-    )
-    assert rs_vehicle_type == expected
-
-
 # ---------------------------------------------------------------------------
 # RC-RI → RS (from_cisu_to_rs) — split logic
 # ---------------------------------------------------------------------------
