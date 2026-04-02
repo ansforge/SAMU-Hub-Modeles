@@ -53,16 +53,6 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
             state = get_field_value(resource, ResourcesInfoCISUConstants.STATE_PATH)
             set_value(resource, ResourcesInfoCISUConstants.STATE_PATH, [state])
 
-            cisu_vehicle_type = get_field_value(
-                resource, ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH
-            )
-            rs_vehicle_type = cls.translate_to_rs_vehicle_type(cisu_vehicle_type)
-            set_value(
-                resource,
-                ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH,
-                rs_vehicle_type,
-            )
-
             # RS-RI does not carry GPS position — remove it if present
             delete_paths(resource, [ResourcesInfoCISUConstants.POSITION_KEY])
 
@@ -290,12 +280,6 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
                 rs_vehicle_type,
             )
             return None
-
-    @classmethod
-    def translate_to_rs_vehicle_type(cls, cisu_vehicle_type: str) -> str:
-        if cisu_vehicle_type == ResourcesInfoCISUConstants.VEHICULE_TYPE_OTHER:
-            return ResourcesInfoCISUConstants.RS_VEHICULE_TYPE_AUTREVEC
-        return cisu_vehicle_type
 
     @classmethod
     def keep_last_state(cls, resource: Dict[str, Any]) -> None:
