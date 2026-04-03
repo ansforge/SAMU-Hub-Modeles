@@ -1,111 +1,111 @@
-from unittest.mock import patch, MagicMock
+import copy
+import json
+from pathlib import Path
+from unittest.mock import patch
 
 from converter.cisu.resources_status.resources_status_converter import (
     ResourcesStatusConverter,
 )
-from converter.cisu.resources_info.resources_info_cisu_constants import (
-    ResourcesInfoCISUConstants,
-)
+
+RS_RI_PAYLOAD = json.load(Path("tests/fixtures/RS-RI/sample_rs_ri_payload.json").open())
+RS_SR_PAYLOAD = json.load(Path("tests/fixtures/RS-SR/sample_rs_sr_payload.json").open())
+_CASE_ID = "CASE123"
+_RESOURCE_ID_1 = "fr.fire.sis076.cgo-076.resource.VLM1"
+_RESOURCE_ID_2 = "fr.fire.sis076.cgo-076.resource.VLM2"
 
 
-def build_valid_edxl(case_id="CASE123"):
-    # we just need the mandatory path here
-    return {
-        "content": [
-            {
-                "jsonContent": {
-                    "embeddedJsonContent": {
-                        "message": {"resourcesStatus": {"caseId": case_id}}
-                    }
-                }
-            }
-        ]
-    }
+def make_rs_ri(case_id: str):
+    edxl = copy.deepcopy(RS_RI_PAYLOAD)
+    edxl["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
+        "resourcesInfo"
+    ]["caseId"] = case_id
+    return edxl
 
 
-def test_from_rs_to_cisu_happy_path():
-    edxl_json = build_valid_edxl()
+def make_rs_sr(case_id: str, resource_id: str, status: str):
+    edxl = copy.deepcopy(RS_SR_PAYLOAD)
+    rs = edxl["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
+        "resourcesStatus"
+    ]
 
-    mock_rs_ri = MagicMock()
-    mock_rs_ri.payload = {"ri": "data"}
+    rs["caseId"] = case_id
+    rs["resourceId"] = resource_id
+    rs["state"]["status"] = status
 
-    mock_rs_sr_1 = MagicMock()
-    mock_rs_sr_1.payload = {"sr": "data1"}
+    return edxl
 
-    mock_rs_sr_2 = MagicMock()
-    mock_rs_sr_2.payload = {"sr": "data2"}
 
-    merged_rs_ri = {"merged": "rs_ri"}
-    expected_result = {"final": "rc_ri"}
+def persisted(edxl):
+    return type("Msg", (), {"payload": edxl})
 
-    def mock_get_field_value(input_data, path):
-        if path == "$.caseId":
-            return "CASE123"
-        if path == "$.resource":
-            return {"ri": "data"}
-        return None
+
+def extract_resources_from_result(result):
+    return result["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
+        "resourcesInfoCisu"
+    ]["resource"]
+
+
+def test_from_rs_to_cisu_real_data():
+    rs_ri = make_rs_ri(_CASE_ID)
+
+    rs_sr_old_1 = make_rs_sr(
+        _CASE_ID,
+        _RESOURCE_ID_1,
+        "DECISION",
+    )
+
+    rs_sr_old_2 = make_rs_sr(
+        _CASE_ID,
+        _RESOURCE_ID_2,
+        "DECISION",
+    )
+
+    rs_sr_new = make_rs_sr(
+        _CASE_ID,
+        _RESOURCE_ID_1,
+        "ARRIVEE",
+    )
 
     with (
         patch(
             "converter.cisu.resources_status.resources_status_converter.get_last_rs_ri_by_case_id",
-            return_value=mock_rs_ri,
-        ) as mock_get_ri,
+            return_value=persisted(rs_ri),
+        ),
         patch(
             "converter.cisu.resources_status.resources_status_converter.get_last_rs_sr_per_resource_by_case_id",
-            return_value=[mock_rs_sr_1, mock_rs_sr_2],
-        ) as mock_get_sr,
-        patch(
-            "converter.cisu.resources_status.resources_status_converter.get_field_value",
-            side_effect=mock_get_field_value,
-        ) as mock_get_field,
-        patch(
-            "converter.cisu.resources_status.resources_status_converter.set_value"
-        ) as mock_set_value,
-        patch(
-            "converter.cisu.resources_status.resources_status_converter.merge_info_and_resources",
-            return_value=merged_rs_ri,
-        ) as mock_merge,
-        patch(
-            "converter.cisu.resources_status.resources_status_converter.ResourcesInfoCISUConverter.from_rs_to_cisu",
-            return_value=expected_result,
-        ) as mock_convert,
-        patch(
-            "converter.cisu.resources_status.resources_status_converter.ResourcesStatusConverter.copy_rs_input_use_case_content",
-            side_effect=lambda x: x,
-        ),
-        patch(
-            "converter.cisu.resources_status.resources_status_converter.ResourcesInfoCISUConverter.copy_rs_input_use_case_content",
-            side_effect=lambda x: x,
+            return_value=[
+                persisted(rs_sr_old_1),
+                persisted(rs_sr_old_2),
+                persisted(rs_sr_new),
+            ],
         ),
     ):
-        result = ResourcesStatusConverter.from_rs_to_cisu(edxl_json)
+        result = ResourcesStatusConverter.from_rs_to_cisu(rs_sr_new)
 
-        assert result == expected_result
+    assert result is not None
+    assert result != []
 
-        mock_get_ri.assert_called_once_with("CASE123")
-        mock_get_sr.assert_called_once_with("CASE123")
+    resources = extract_resources_from_result(result)
 
-        mock_get_field.assert_any_call(mock_rs_ri.payload, "$.resource")
+    assert len(resources) == 2
 
-        mock_merge.assert_called_once_with(
-            {"ri": "data"}, [{"sr": "data1"}, {"sr": "data2"}]
-        )
+    vlm1 = next(r for r in resources if r["resourceId"] == _RESOURCE_ID_1)
+    assert vlm1["state"]["status"] == "ARRIVEE"
 
-        mock_set_value.assert_called_once_with(
-            mock_rs_ri.payload,
-            ResourcesInfoCISUConstants.RESOURCE_PATH,
-            merged_rs_ri,
-        )
-
-        mock_convert.assert_called_once_with(mock_rs_ri.payload)
+    vlm2 = next(r for r in resources if r["resourceId"] == _RESOURCE_ID_2)
+    assert vlm2["state"].get("status") == "DECISION"
 
 
 def test_from_rs_to_cisu_no_rs_ri():
-    edxl_json = build_valid_edxl()
+    rs_sr_new = make_rs_sr(
+        _CASE_ID,
+        _RESOURCE_ID_1,
+        "ARRIVEE",
+    )
 
     with patch(
         "converter.cisu.resources_status.resources_status_converter.get_last_rs_ri_by_case_id",
         return_value=None,
     ):
-        result = ResourcesStatusConverter.from_rs_to_cisu(edxl_json)
+        result = ResourcesStatusConverter.from_rs_to_cisu(rs_sr_new)
         assert result == []

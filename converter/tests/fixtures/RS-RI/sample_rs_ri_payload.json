@@ -10,12 +10,12 @@
                 {
                   "datetime": "2024-08-01T16:40:00+02:00",
                   "resourceId": "fr.fire.sis076.cgo-076.resource.VLM1",
-                  "vehicleType": "LIB.AUTREPRO"
+                  "vehicleType": "SMUR.VLM"
                 },
                 {
                   "datetime": "2024-08-01T16:40:00+02:00",
                   "resourceId": "fr.fire.sis076.cgo-076.resource.VLM2",
-                  "vehicleType": "LIB.AUTREPRO"
+                  "vehicleType": "SMUR.VLM"
                 }
               ],
               "caseId": "fr.health.samu440.DRFR154402413800236"
