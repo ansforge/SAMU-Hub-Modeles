@@ -7,7 +7,7 @@ strict digraph {
                 <TR>
                 <TD ><B>errorCode</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet errorCode</I></TD></TR><TR><TD BORDER="0" >statusCode <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >statusString <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet errorCode</I></TD></TR><TR><TD BORDER="0" >statusCode <I>integer</I> : [1..1] </TD></TR><TR><TD BORDER="0" >statusString <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	errorCode -> error [headlabel=1 taillabel=1]
 	sourceMessage [label=<<TABLE>
