@@ -57,6 +57,11 @@ class ResourcesStatusConverter(BaseCISUConverter):
 
         merged_resources = merge_info_and_resources(resources, rs_sr_content_list)
 
-        set_value(rs_ri, ResourcesInfoCISUConstants.RESOURCE_PATH, merged_resources)
+        set_value(
+            rs_ri_content, ResourcesInfoCISUConstants.RESOURCE_PATH, merged_resources
+        )
+        merged_rs_ri = ResourcesInfoCISUConverter.format_rs_output_json(
+            rs_ri, rs_ri_content
+        )
 
-        return ResourcesInfoCISUConverter.from_rs_to_cisu(rs_ri)
+        return ResourcesInfoCISUConverter.from_rs_to_cisu(merged_rs_ri)
