@@ -32,19 +32,14 @@ all_file_names = [f["name"] for f in all_usecase_files]
 
 # Dictionnaire des cas d'erreur : file_name -> message attendu
 ERROR_CASES = {
-    **{
-        name: "No states found in resource, mandatory for CISU conversion."
-        for name in usecase_files_with_empty_state
-    },
-    **{
-        name: "At least one resource must have a CISU compatible vehicleType."
-        for name in usecase_files_with_unsupported_vehicle_type
-    },
+    name: "No states found in resource, mandatory for CISU conversion."
+    for name in usecase_files_with_empty_state
 }
 
 TEST_CASES = [
     (name, ValueError, ERROR_CASES[name]) if name in ERROR_CASES else (name, None, None)
     for name in all_file_names
+    if name not in usecase_files_with_unsupported_vehicle_type
 ]
 
 
@@ -83,6 +78,21 @@ def test_rs_to_cisu(file_name, expected_exception, expected_message):
         # Cas d'erreur attendu
         with pytest.raises(expected_exception, match=expected_message):
             ResourcesInfoCISUConverter.from_rs_to_cisu(edxl_json)
+
+
+@pytest.mark.parametrize(
+    "file_name",
+    usecase_files_with_unsupported_vehicle_type,
+)
+def test_rs_to_cisu_returns_empty_list_when_no_cisu_compatible_resource(file_name):
+    """Quand toutes les ressources ont un vehicleType non supporté, from_rs_to_cisu
+    doit retourner [] au lieu de lever une erreur."""
+    usecase_file = next(f for f in all_usecase_files if f["name"] == file_name)
+    edxl_json = TestHelper.create_edxl_json_from_sample(
+        TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH, usecase_file["path"]
+    )
+    result = ResourcesInfoCISUConverter.from_rs_to_cisu(edxl_json)
+    assert result == []
 
 
 def test_rs_to_cisu_should_delete_patient_id():
