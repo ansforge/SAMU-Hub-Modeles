@@ -201,7 +201,7 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         return messages
 
     @classmethod
-    def from_rs_to_cisu(cls, edxl_json: Dict[str, Any]) -> Dict[str, Any]:
+    def from_rs_to_cisu(cls, edxl_json: Dict[str, Any]) -> Dict[str, Any] | list[Dict[str, Any]]:
         logger.info("Converting from RS to CISU format for Resources Info message.")
         logger.debug(f"Message content: {edxl_json}")
         output_json = cls.copy_rs_input_content(edxl_json)
@@ -214,10 +214,8 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         converted_resources = cls.convert_resources_to_cisu(resources)
 
         if len(converted_resources) < 1:
-            raise ValueError(
-                "Could not map resources to CISU. "
-                "At least one resource must have a CISU compatible vehicleType. "
-            )
+            logger.info("No CISU-compatible resources remain after filtering — returning empty list.")
+            return []
 
         set_value(
             output_use_case_json,
