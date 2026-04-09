@@ -38,8 +38,8 @@ class ResourcesStatusConverter(BaseCISUConverter):
         case_id = get_field_value(content, ResourcesStatusConstants.CASE_ID)
 
         persisted_rs_ri = get_last_rs_ri_by_case_id(case_id)
-        if persisted_rs_ri is None:  # No RS-RI persisted yet, we return an empty list
-            return []
+        if persisted_rs_ri is None:
+            raise ValueError(f"No RS-RI found for caseId: {case_id!r}")
 
         persisted_rs_sr_list = get_last_rs_sr_per_resource_by_case_id(case_id)
 
