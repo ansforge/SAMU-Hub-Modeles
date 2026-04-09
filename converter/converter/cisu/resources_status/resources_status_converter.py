@@ -1,10 +1,9 @@
 from converter.cisu.base_cisu_converter import BaseCISUConverter
 from converter.repositories.message_repository import (
-    get_last_rs_ri_by_case_id,
-    get_last_rs_sr_per_resource_by_case_id,
+    get_rs_messages_by_case_id,
 )
 from converter.cisu.resources_info.resources_info_cisu_helper import (
-    merge_info_and_resources,
+    enrich_rs_ri_with_rs_srs,
 )
 from converter.cisu.resources_info.resources_info_cisu_converter import (
     ResourcesInfoCISUConverter,
@@ -12,13 +11,9 @@ from converter.cisu.resources_info.resources_info_cisu_converter import (
 from converter.cisu.resources_status.resources_status_constants import (
     ResourcesStatusConstants,
 )
-from converter.cisu.resources_info.resources_info_cisu_constants import (
-    ResourcesInfoCISUConstants,
-)
-
 from typing import Any, Dict
 
-from converter.utils import get_field_value, set_value
+from converter.utils import get_field_value
 
 
 class ResourcesStatusConverter(BaseCISUConverter):
@@ -34,34 +29,24 @@ class ResourcesStatusConverter(BaseCISUConverter):
     def from_rs_to_cisu(
         cls, edxl_json: Dict[str, Any]
     ) -> Dict[str, Any] | list[Dict[str, Any]]:
-        content = cls.copy_rs_input_use_case_content(edxl_json)
-        case_id = get_field_value(content, ResourcesStatusConstants.CASE_ID)
+        current_use_case = cls.copy_rs_input_use_case_content(edxl_json)
+        case_id = get_field_value(current_use_case, ResourcesStatusConstants.CASE_ID)
 
-        persisted_rs_ri = get_last_rs_ri_by_case_id(case_id)
-        if persisted_rs_ri is None:
+        rs_ri_msg, persisted_rs_sr = get_rs_messages_by_case_id(case_id)
+        if rs_ri_msg is None:
             raise ValueError(f"No RS-RI found for caseId: {case_id!r}")
 
-        persisted_rs_sr_list = get_last_rs_sr_per_resource_by_case_id(case_id)
+        rs_ri = rs_ri_msg.payload
 
-        rs_ri = persisted_rs_ri.payload
-        rs_ri_content = ResourcesInfoCISUConverter.copy_rs_input_use_case_content(rs_ri)
-        rs_sr_content_list = [
-            cls.copy_rs_input_use_case_content(msg.payload)
-            for msg in persisted_rs_sr_list
+        rs_sr_use_cases = [
+            cls.copy_rs_input_use_case_content(pm.payload) for pm in persisted_rs_sr
         ]
+        rs_sr_use_cases.append(current_use_case)
 
-        # merge RS-SRs in RS-RI
-        resources = get_field_value(
-            rs_ri_content, ResourcesInfoCISUConstants.RESOURCE_PATH
+        output_json = ResourcesInfoCISUConverter.copy_rs_input_content(rs_ri)
+        rs_ri_use_case = ResourcesInfoCISUConverter.copy_rs_input_use_case_content(
+            rs_ri
         )
+        enriched = enrich_rs_ri_with_rs_srs(rs_ri_use_case, rs_sr_use_cases)
 
-        merged_resources = merge_info_and_resources(resources, rs_sr_content_list)
-
-        set_value(
-            rs_ri_content, ResourcesInfoCISUConstants.RESOURCE_PATH, merged_resources
-        )
-        merged_rs_ri = ResourcesInfoCISUConverter.format_rs_output_json(
-            rs_ri, rs_ri_content
-        )
-
-        return ResourcesInfoCISUConverter.from_rs_to_cisu(merged_rs_ri)
+        return ResourcesInfoCISUConverter.convert_single_rs_ri(output_json, enriched)
