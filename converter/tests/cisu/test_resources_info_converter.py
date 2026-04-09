@@ -246,6 +246,15 @@ def test_from_cisu_to_rs_new_case_id():
         )
 
     dist_ids = [msg["distributionID"] for msg in results]
+    message_ids = [
+        msg["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]["messageId"]
+        for msg in results
+    ]
+
+    for i in range(len(dist_ids)):
+        assert dist_ids[i] == message_ids[i], (
+            "distributionIDs and messageIds must be equal"
+        )
     assert len(dist_ids) == len(set(dist_ids)), "all distributionIDs must be unique"
 
     resources_info = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"][
