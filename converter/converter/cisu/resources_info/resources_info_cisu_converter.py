@@ -70,8 +70,8 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         )
         output_json = cls.copy_cisu_input_content(edxl_json)
 
-        # Generate a new distributionID for the RS-SR message
-        output_json["distributionID"] = f"{edxl_json['senderID']}_{uuid.uuid4()}"
+        # Set a new distributionID for the RS-SR message
+        cls.set_distribution_id(output_json, f"{edxl_json['senderID']}_{uuid.uuid4()}")
 
         output_use_case_json = {
             "caseId": case_id,
