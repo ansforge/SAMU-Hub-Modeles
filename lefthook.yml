@@ -1,0 +1,10 @@
+pre-commit:
+  parallel: true
+  commands:
+    converter-format-fix:
+      root: "converter/"
+      run: uv run ruff format .
+      stage_fixed: true
+    converter-type-check:
+      root: "converter/"
+      run: uv run --active mypy .

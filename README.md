@@ -68,13 +68,12 @@ Les contributions, *issues* & *pull requests* sont les bienvenues !
 
 ### Pre-commit
 
-Ce projet utilise [pre-commit](https://pre-commit.com/) pour faciliter le travail du développeur et qu'il détecte des erreurs de format/lint/typing le plus rapidement possible.
-Pour l'utiliser en local, exécuter les commandes suivantes :
+Des hooks Git sont définis pour simplifier le travail des développeurs.
 
-```bash
-pip install pre-commit
-pre-commit install
-```
+Pour les installer :
+
+- Installer [lefthook](https://lefthook.dev/installation/index.html)
+- Lancer à la racine du dépôt `lefthook install`
 
 Avant chaque commit, les hooks seront exécutés automatiquement et le commit sera annulé si des erreurs sont détectées.
 

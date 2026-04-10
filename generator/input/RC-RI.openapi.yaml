@@ -303,11 +303,20 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/resource/0/position/datetime
-          description: "A valoriser avec la date et heure associ\xE9e \xE0 la position"
+          description: "Date et heure de la derni\xE8re position connue"
           pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
+        speed:
+          type: number
+          title: Vitesse
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/resource/0/position/speed
+          description: "Vitesse de la ressource enregistr\xE9e, exprim\xE9e en km/h"
+          examples:
+          - 34
         coord:
           $ref: '#/components/schemas/coord'
       additionalProperties: false
@@ -368,7 +377,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/resource/0/position/coord/lat
-          description: A valoriser avec la latitude de la position
+          description: "Derni\xE8re coordonn\xE9e x connue de la ressource, entre\
+            \ \u221290 and +90"
           examples:
           - '48.866667'
         lon:
@@ -377,11 +387,23 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/resource/0/position/coord/lon
-          description: A valoriser avec la longitude de la position
+          description: "Derni\xE8re coordonn\xE9e y connue de la ressource, entre\
+            \ \u2212180 and +180"
           examples:
           - '2.333333'
+        height:
+          type: number
+          title: Altitude
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/resource/0/position/coord/height
+          description: "Derni\xE8re coordonn\xE9e z connue de la ressource, en m\xE8\
+            tres sans bornes"
+          examples:
+          - 120
       additionalProperties: false
       example: example.json#/resource/0/position/coord
       examples:
       - lat: '48.866667'
         lon: '2.333333'
+        height: 120

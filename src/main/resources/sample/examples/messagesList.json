@@ -732,7 +732,6 @@
       {
         "file": "RC-RI/RC-RI_FemmeEnceinte_DelphineVigneau.02.json",
         "icon": "mdi-human-pregnant",
-        "context": "Pas de test suivant: RC-SR - Delphine Vigneau.03",
         "name": "Delphine VIGNEAU.03",
         "environment": "Engagement d'un SMUR par le SAMU 44"
       },
@@ -740,22 +739,62 @@
         "file": "RC-RI/RC-RI_FuiteDeGaz_AliceGregoireNORMAND.02.json",
         "icon": "mdi-molecule-co2",
         "name": "Alice et Grégoire NORMAND.02",
-        "context": "Pas de test suivant: RC-SR - Alice et Grégoire NORMAND.03",
         "environment": "Partage des ressources engagées avec le SDIS"
       },
       {
         "file": "RC-RI/RC-RI_FuiteDeGaz_AliceGregoireNORMAND.05.json",
         "icon": "mdi-molecule-co2",
         "name": "Alice et Grégoire NORMAND.05",
-        "context": "Pas de test suivant: RC-SR - Alice et Grégoire NORMAND.06",
-        "environment": "Engagenement d'un VSAV avec le détail de l'équipe"
+        "environment": "Engagement d'un VSAV avec le détail de l'équipe"
       },
       {
         "file": "RC-RI/RC-RI_Incendie_RaymondeLECCIA.02.json",
         "icon": "mdi-fire-truck",
         "name": "Raymonde LECCIA.02",
-        "environment": "Détail des ressources SIS mobilisées pour l'intervention"
-      }
+        "environment": "Engagement d'une ressource SIS",
+        "context": "Pas de test suivant: RC-RI Incendie_RaymondeLECCIA.03"
+      },
+      {
+        "file": "RC-RI/RC-RI_Incendie_RaymondeLECCIA.03.json",
+        "icon": "mdi-fire-truck",
+        "name": "Raymonde LECCIA.03",
+        "environment": "Changement du statut de la ressource SIS",
+        "context": "Pas de test suivant: RC-RI Incendie_RaymondeLECCIA.04"
+      },
+      {
+        "file": "RC-RI/RC-RI_Incendie_RaymondeLECCIA.04.json",
+        "icon": "mdi-fire-truck",
+        "name": "Raymonde LECCIA.04",
+        "environment": "Modification du détail de la ressource SIS",
+        "context": "Pas de test suivant: RC-RI Incendie_RaymondeLECCIA.05"
+      },
+      {
+        "file": "RC-RI/RC-RI_Incendie_RaymondeLECCIA.05.json",
+        "icon": "mdi-fire-truck",
+        "name": "Raymonde LECCIA.05",
+        "environment": "Engagement d'une seconde ressource SIS",
+        "context": "Pas de test suivant: RC-RI Incendie_RaymondeLECCIA.06"
+      },
+      {
+        "file": "RC-RI/RC-RI_Incendie_RaymondeLECCIA.06.json",
+        "icon": "mdi-fire-truck",
+        "name": "Raymonde LECCIA.06",
+        "environment": "Modification du statut de la 1ère ressource SIS",
+        "context": "Pas de test suivant: RC-RI Incendie_RaymondeLECCIA.07"
+      },
+      {
+        "file": "RC-RI/RC-RI_Incendie_RaymondeLECCIA.07.json",
+        "icon": "mdi-fire-truck",
+        "name": "Raymonde LECCIA.07",
+        "environment": "Engagement d'une 3ème ressource SIS et modification du statut de la 2ème ressource",
+        "context": "Pas de test suivant: RC-RI Incendie_RaymondeLECCIA.08"
+      },
+      {
+        "file": "RC-RI/RC-RI_Incendie_RaymondeLECCIA.08.json",
+        "icon": "mdi-fire-truck",
+        "name": "Raymonde LECCIA.08",
+        "environment": "Modification des statuts de toutes les ressources"
+      }                                    
     ]
   },
   
