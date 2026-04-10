@@ -1,5 +1,6 @@
 import copy
 import json
+import pytest
 from pathlib import Path
 from unittest.mock import patch
 
@@ -107,5 +108,5 @@ def test_from_rs_to_cisu_no_rs_ri():
         "converter.cisu.resources_status.resources_status_converter.get_last_rs_ri_by_case_id",
         return_value=None,
     ):
-        result = ResourcesStatusConverter.from_rs_to_cisu(rs_sr_new)
-        assert result == []
+        with pytest.raises(ValueError, match="No RS-RI found for caseId"):
+            ResourcesStatusConverter.from_rs_to_cisu(rs_sr_new)
