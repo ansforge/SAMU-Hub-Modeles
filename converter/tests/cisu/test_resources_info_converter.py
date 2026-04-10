@@ -245,16 +245,15 @@ def test_from_cisu_to_rs_new_case_id():
             f"message {i} must be a RS-SR (resourcesStatus key expected)"
         )
 
-    dist_ids = [msg["distributionID"] for msg in results]
-    message_ids = [
-        msg["content"][0]["jsonContent"]["embeddedJsonContent"]["message"]["messageId"]
-        for msg in results
-    ]
+    for msg in results:
+        dist_id = msg["distributionID"]
+        msg_id = msg["content"][0]["jsonContent"]["embeddedJsonContent"]["message"][
+            "messageId"
+        ]
 
-    for i in range(len(dist_ids)):
-        assert dist_ids[i] == message_ids[i], (
-            "distributionIDs and messageIds must be equal"
-        )
+        assert dist_id == msg_id, f"distributionID '{dist_id}' != messageId '{msg_id}'"
+
+    dist_ids = [msg["distributionID"] for msg in results]
     assert len(dist_ids) == len(set(dist_ids)), "all distributionIDs must be unique"
 
     resources_info = results[0]["content"][0]["jsonContent"]["embeddedJsonContent"][
