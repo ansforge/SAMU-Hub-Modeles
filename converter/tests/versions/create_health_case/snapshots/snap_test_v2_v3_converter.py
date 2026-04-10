@@ -26,7 +26,7 @@ snapshots["TestSnapshotV2V3Converter::test_snapshot_V2_to_V3_upgrade 1"] = """{
       "jsonContent": {
         "embeddedJsonContent": {
           "message": {
-            "messageId": "2608323d-507d-4cbf-bf74-52007f8124ea",
+            "messageId": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
             "sender": {
               "name": "samuA",
               "URI": "hubsante:fr.health.samuA"
@@ -416,7 +416,7 @@ snapshots["TestSnapshotV2V3Converter::test_snapshot_V3_to_V2_bis_downgrade 1"] =
       "jsonContent": {
         "embeddedJsonContent": {
           "message": {
-            "messageId": "2608323d-507d-4cbf-bf74-52007f8124ea",
+            "messageId": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
             "sender": {
               "name": "samuA",
               "URI": "hubsante:fr.health.samuA"
@@ -707,7 +707,7 @@ snapshots["TestSnapshotV2V3Converter::test_snapshot_V3_to_V2_downgrade 1"] = """
       "jsonContent": {
         "embeddedJsonContent": {
           "message": {
-            "messageId": "2608323d-507d-4cbf-bf74-52007f8124ea",
+            "messageId": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
             "sender": {
               "name": "samuA",
               "URI": "hubsante:fr.health.samuA"
