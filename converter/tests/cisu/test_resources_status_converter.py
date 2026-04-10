@@ -1,6 +1,5 @@
 import pytest
 from unittest.mock import patch
-import pytest
 
 from converter.cisu.resources_status.resources_status_converter import (
     ResourcesStatusConverter,
@@ -80,13 +79,13 @@ def test_from_rs_to_cisu_no_rs_ri():
 
 def test_from_rs_to_cisu_resource_not_in_rs_ri():
     unknown_resource_id = "fr.fire.sis076.cgo-076.resource.UNKNOWN_VLM"
-    rs_sr = make_rs_sr(_CASE_ID, unknown_resource_id, "ARRIVEE")
-    rs_ri = make_rs_ri(_CASE_ID)  # RS-RI only has VLM1 and VLM2
+    rs_sr = make_rs_sr_from_sample(_CASE_ID, unknown_resource_id, "ARRIVEE")
+    rs_ri = make_rs_ri_from_sample(_CASE_ID)
 
     with (
         patch(
-            "converter.cisu.resources_status.resources_status_converter.get_last_rs_ri_by_case_id",
-            return_value=persisted(rs_ri),
+            _PATCH_GET_RS_MESSAGES,
+            return_value=persisted_rs_ri_and_rs_sr(rs_ri, []),
         ),
         pytest.raises(
             ValueError,

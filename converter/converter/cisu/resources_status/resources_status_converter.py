@@ -39,11 +39,18 @@ class ResourcesStatusConverter(BaseCISUConverter):
         if rs_ri_msg is None:
             raise ValueError(f"No RS-RI found for caseId: {case_id!r}")
 
-        resource_id = get_field_value(current_use_case, ResourcesStatusConstants.RESOURCE_ID)
+        resource_id = get_field_value(
+            current_use_case, ResourcesStatusConstants.RESOURCE_ID
+        )
         rs_ri = rs_ri_msg.payload
         rs_ri_content = ResourcesInfoCISUConverter.copy_rs_input_use_case_content(rs_ri)
-        resources = get_field_value(rs_ri_content, ResourcesInfoCISUConstants.RESOURCE_PATH) or []
-        resource_ids_in_rs_ri = {r.get(ResourcesInfoCISUConstants.RESOURCE_ID_KEY) for r in resources}
+        resources = (
+            get_field_value(rs_ri_content, ResourcesInfoCISUConstants.RESOURCE_PATH)
+            or []
+        )
+        resource_ids_in_rs_ri = {
+            r.get(ResourcesInfoCISUConstants.RESOURCE_ID_KEY) for r in resources
+        }
 
         if resource_id not in resource_ids_in_rs_ri:
             raise ValueError(
