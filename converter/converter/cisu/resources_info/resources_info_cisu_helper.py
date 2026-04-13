@@ -1,38 +1,55 @@
-def merge_info_and_resources(
-    resources: list[dict],
-    resources_status_list: list[dict],
-) -> list[dict]:
-    """
-    Enrichit une liste de resources avec les états provenant des resources_status.
+from converter.utils import get_field_value, set_value
+from converter.cisu.resources_info.resources_info_cisu_constants import (
+    ResourcesInfoCISUConstants,
+)
+import logging
 
-    Args:
-        resources: liste de resources (issues du RS-RI déjà extraites)
-        resources_status_list: liste de resourceStatus (issues des RS-SR déjà extraites)
+logger = logging.getLogger(__name__)
 
-    Returns:
-        - resources enrichies si un resource_status a été trouvé ; resource inchangée dans le cas contraire
-    """
 
-    resource_state_by_resource_id: dict[str, dict] = {}
+def enrich_rs_ri_with_rs_srs(rs_ri: dict, rs_sr_list: list[dict]) -> dict:
+    """Enrich RS-RI resources with state from a list of RS-SR messages (in-place + return)."""
 
-    for resource_status in resources_status_list:
-        resource_id = resource_status.get("resourceId")
-        state = resource_status.get("state")
+    if not rs_sr_list:
+        return rs_ri
 
-        if resource_id is not None and state is not None:
-            resource_state_by_resource_id[resource_id] = state
+    rs_ri_resources = get_field_value(rs_ri, ResourcesInfoCISUConstants.RESOURCE_PATH)
+    sr_by_resource_id = {sr.get("resourceId"): sr for sr in rs_sr_list}
 
-    for resource in resources:
+    for resource in rs_ri_resources:
         resource_id = resource.get("resourceId")
-        if isinstance(resource_id, str):
-            rs_sr_state = resource_state_by_resource_id.get(resource_id)
+        persisted_sr = sr_by_resource_id.get(resource_id)
+        if persisted_sr is None:
+            continue
+
+        persisted_state = persisted_sr.get("state")
+        if persisted_state is None:
+            logger.warning(
+                f"No state found in persisted rs-sr for resourceId: {resource_id}"
+            )
+            continue
+
+        current_states = get_field_value(
+            resource, ResourcesInfoCISUConstants.STATE_PATH
+        )
+        if current_states is None or len(current_states) == 0:
+            set_value(
+                resource,
+                ResourcesInfoCISUConstants.STATE_PATH,
+                [persisted_state],
+            )
+
         else:
-            rs_sr_state = None
+            latest_state = get_latest_state([*current_states, persisted_state])
+            set_value(
+                resource,
+                ResourcesInfoCISUConstants.STATE_PATH,
+                [latest_state],
+            )
 
-        # override or set state from RS-SR
-        if rs_sr_state is not None:
-            resource["state"] = [
-                rs_sr_state
-            ]  # we override the RS-RI state array by a single array with last state only
+    return rs_ri
 
-    return resources
+
+def get_latest_state(states: list[dict]) -> dict:
+    """Return the state with the most recent datetime from a list of states."""
+    return sorted(states, key=lambda x: x.get("datetime", ""))[-1]
