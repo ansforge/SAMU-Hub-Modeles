@@ -5,6 +5,7 @@ from unittest.mock import patch
 import pytest
 
 from converter.cisu.resources_info.resources_info_cisu_converter import (
+    ConversionError,
     ResourcesInfoCISUConverter,
 )
 from tests.constants import TestConstants
@@ -120,21 +121,21 @@ class TestKeepLatestState(TestCase):
                 {"datetime": "2025-01-02T08:00:00Z"},
             ]
         }
-        ResourcesInfoCISUConverter.keep_last_state(resource)
+        ResourcesInfoCISUConverter._keep_last_state(resource)
 
         expected_resource = {"state": {"datetime": "2025-01-02T12:00:00Z"}}
 
         assert resource == expected_resource
 
     def test_keep_last_state_should_raise_exception_if_state_empty(self):
-        with pytest.raises(ValueError):
+        with pytest.raises(ConversionError):
             resource = {"state": []}
-            ResourcesInfoCISUConverter.keep_last_state(resource)
+            ResourcesInfoCISUConverter._keep_last_state(resource)
 
     def test_keep_last_state_should_raise_exception_if_state_undefined(self):
-        with pytest.raises(ValueError):
+        with pytest.raises(ConversionError):
             resource = {}
-            ResourcesInfoCISUConverter.keep_last_state(resource)
+            ResourcesInfoCISUConverter._keep_last_state(resource)
 
 
 def test_cisu_to_rs_breaking_changes():
@@ -164,16 +165,26 @@ def test_cisu_to_rs_breaking_changes():
         pytest.param("SIS.DRAGON", "SIS", id="translates SIS.DRAGON to SIS"),
         pytest.param("SMUR", "SMUR", id="translates SMUR to SMUR"),
         pytest.param("SMUR.VLM", "SMUR", id="translates SMUR.VLM to SMUR"),
-        pytest.param("AUTREVEC", None, id="AUTREVEC is not mappable to CISU"),
-        pytest.param("FSI.HELIFSI ", None, id="FSI.HELIFSI is not mappable to CISU"),
-        pytest.param("TSU.VSL", None, id="TSU.VSL is not mappable to CISU"),
     ],
 )
 def test_translate_vehicule_type_to_cisu(rs_vehicule_type, expected):
-    cisu_vehicle_type = ResourcesInfoCISUConverter.translate_to_cisu_vehicle_type(
-        rs_vehicule_type
-    )
-    assert cisu_vehicle_type == expected
+    resource = {"vehicleType": rs_vehicule_type}
+    ResourcesInfoCISUConverter._translate_to_cisu_vehicle_type(resource)
+    assert resource["vehicleType"] == expected
+
+
+@pytest.mark.parametrize(
+    "rs_vehicule_type",
+    [
+        pytest.param("AUTREVEC", id="AUTREVEC is not mappable to CISU"),
+        pytest.param("FSI.HELIFSI", id="FSI.HELIFSI is not mappable to CISU"),
+        pytest.param("TSU.VSL", id="TSU.VSL is not mappable to CISU"),
+    ],
+)
+def test_translate_vehicule_type_to_cisu_raises_on_unmappable(rs_vehicule_type):
+    resource = {"vehicleType": rs_vehicule_type}
+    with pytest.raises(ConversionError):
+        ResourcesInfoCISUConverter._translate_to_cisu_vehicle_type(resource)
 
 
 # ---------------------------------------------------------------------------
