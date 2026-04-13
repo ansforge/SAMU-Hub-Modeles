@@ -276,20 +276,6 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
             logger.debug("Processing resource: {resource}")
 
             try:
-                vehicle_type = cls.translate_to_cisu_vehicle_type(
-                    get_field_value(
-                        resource, ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH
-                    )
-                )
-                if vehicle_type is None:
-                    continue
-
-                set_value(
-                    resource,
-                    ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH,
-                    vehicle_type,
-                )
-
                 current_resource_path = (
                     f"{ResourcesInfoCISUConstants.RESOURCE_PATH}[{index}]"
                 )
@@ -300,8 +286,11 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
                     "Transforming state to singleton for CISU at path %s",
                     current_state_path,
                 )
-                cls.keep_last_state(resource)
-                delete_paths(resource, [ResourcesInfoCISUConstants.PATIENT_ID_KEY])
+
+                cls._translate_to_cisu_vehicle_type(resource)
+                cls._keep_last_state(resource)
+                cls._remove_patient_id(resource)
+
                 converted_resources.append(resource)
             except ConversionError:
                 continue
@@ -309,17 +298,41 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         return converted_resources
 
     @classmethod
-    def translate_to_cisu_vehicle_type(cls, rs_vehicle_type: str) -> str | None:
-        """Translate a RS vehicle type to its CISU equivalent, or None if not mappable."""
-        if rs_vehicle_type.startswith(ResourcesInfoCISUConstants.VEHICLE_TYPE_SIS):
-            return ResourcesInfoCISUConstants.VEHICLE_TYPE_SIS
-        if rs_vehicle_type.startswith(ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR):
-            return ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR
-        logger.info("vehicleType '%s' is not mappable to CISU", rs_vehicle_type)
-        return None
+    def _remove_patient_id(cls, resource):
+        delete_paths(resource, [ResourcesInfoCISUConstants.PATIENT_ID_KEY])
 
     @classmethod
-    def keep_last_state(cls, resource: Dict[str, Any]) -> None:
+    def _translate_to_cisu_vehicle_type(cls, resource: Dict[str, Any]) -> None:
+        """Translate a RS vehicle type to its CISU equivalent, or None if not mappable."""
+
+        vehicle_type = get_field_value(
+            resource, ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH
+        )
+
+        if vehicle_type is None:
+            raise ConversionError(
+                f"No vehicle found in RS resource for resource: {resource.get('resourceId')}."
+            )
+
+        if vehicle_type.startswith(ResourcesInfoCISUConstants.VEHICLE_TYPE_SIS):
+            set_value(
+                resource,
+                ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH,
+                ResourcesInfoCISUConstants.VEHICLE_TYPE_SIS,
+            )
+        elif vehicle_type.startswith(ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR):
+            set_value(
+                resource,
+                ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH,
+                ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR,
+            )
+        else:
+            raise ConversionError(
+                f"No valid vehicle found for resource: {resource.get('resourceId')}."
+            )
+
+    @classmethod
+    def _keep_last_state(cls, resource: Dict[str, Any]) -> None:
         states = get_field_value(resource, ResourcesInfoCISUConstants.STATE_PATH)
         if not states or len(states) == 0:
             raise ConversionError(
