@@ -15,6 +15,10 @@ from typing import Any, Dict
 
 from converter.utils import get_field_value
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class ResourcesStatusConverter(BaseCISUConverter):
     @classmethod
@@ -29,6 +33,11 @@ class ResourcesStatusConverter(BaseCISUConverter):
     def from_rs_to_cisu(
         cls, edxl_json: Dict[str, Any]
     ) -> Dict[str, Any] | list[Dict[str, Any]]:
+        logger.info(
+            "Received RS-SR message with distributionID: %s for CISU conversion",
+            edxl_json.get("distributionID"),
+        )
+
         current_use_case = cls.copy_rs_input_use_case_content(edxl_json)
         case_id = get_field_value(current_use_case, ResourcesStatusConstants.CASE_ID)
 
@@ -38,15 +47,14 @@ class ResourcesStatusConverter(BaseCISUConverter):
 
         rs_ri = rs_ri_msg.payload
 
-        rs_sr_use_cases = [
-            cls.copy_rs_input_use_case_content(pm.payload) for pm in persisted_rs_sr
-        ]
-        rs_sr_use_cases.append(current_use_case)
+        rs_sr_edxl_list = [pm.payload for pm in persisted_rs_sr]
+        rs_sr_edxl_list.append(edxl_json)
 
         output_json = ResourcesInfoCISUConverter.copy_rs_input_content(rs_ri)
-        rs_ri_use_case = ResourcesInfoCISUConverter.copy_rs_input_use_case_content(
-            rs_ri
+
+        enriched = enrich_rs_ri_with_rs_srs(
+            rs_ri_edxl=rs_ri,
+            rs_sr_edxl_list=rs_sr_edxl_list,
         )
-        enriched = enrich_rs_ri_with_rs_srs(rs_ri_use_case, rs_sr_use_cases)
 
         return ResourcesInfoCISUConverter.convert_single_rs_ri(output_json, enriched)
