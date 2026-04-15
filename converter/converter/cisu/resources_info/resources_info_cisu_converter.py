@@ -73,7 +73,11 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
 
     @classmethod
     def _build_rs_sr_from_resource(
-        cls, edxl_json: Dict[str, Any], resource: Dict[str, Any], case_id: str
+        cls,
+        edxl_json: Dict[str, Any],
+        resource: Dict[str, Any],
+        case_id: str,
+        use_original_distribution_id: bool = False,
     ) -> Dict[str, Any]:
         """Build an RS-SR from a single RC-RI resource, reusing the EDXL envelope."""
         logger.info(
@@ -83,8 +87,10 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         )
         output_json = cls.copy_cisu_input_content(edxl_json)
 
-        # Set a new distributionID for the RS-SR message
-        cls.set_distribution_id(output_json, f"{edxl_json['senderID']}_{uuid.uuid4()}")
+        if not use_original_distribution_id:
+            cls.set_distribution_id(
+                output_json, f"{edxl_json['senderID']}_{uuid.uuid4()}"
+            )
 
         output_use_case_json = {
             "caseId": case_id,
@@ -200,12 +206,17 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
             rs_ri = cls._build_rs_ri_from_cisu(edxl_json)
             messages.append(rs_ri)
 
-        for resource in modified_status_resources:
+        for idx, resource in enumerate(modified_status_resources):
             logger.info(
                 "Resource %s has a modified status — adding RS-SR to output.",
                 resource.get("resourceId"),
             )
-            rs_sr = cls._build_rs_sr_from_resource(edxl_json, resource, case_id)
+            should_use_original_distribution_id = (
+                not engaged_resources_updated and idx == 0
+            )
+            rs_sr = cls._build_rs_sr_from_resource(
+                edxl_json, resource, case_id, should_use_original_distribution_id
+            )
             messages.append(rs_sr)
 
         if not messages:
