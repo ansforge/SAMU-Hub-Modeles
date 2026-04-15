@@ -1,3 +1,4 @@
+from converter.conversion_mixin import ConversionMixin
 from converter.utils import get_field_value, set_value
 from converter.cisu.resources_info.resources_info_cisu_constants import (
     ResourcesInfoCISUConstants,
@@ -6,26 +7,61 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+_DISTRIBUTION_ID_KEY = ConversionMixin.EDXL_DISTRIBUTION_ID_KEY
 
-def enrich_rs_ri_with_rs_srs(rs_ri: dict, rs_sr_list: list[dict]) -> dict:
-    """Enrich RS-RI resources with state from a list of RS-SR messages (in-place + return)."""
 
-    if not rs_sr_list:
-        return rs_ri
+def enrich_rs_ri_with_rs_srs(
+    rs_ri_edxl: dict,
+    rs_sr_edxl_list: list[dict],
+) -> dict:
+    """Enrich RS-RI resources with state from RS-SR messages.
+    Receives full EDXL envelopes, extracts use cases and distribution IDs internally.
+    Centralizes all distribution-ID logging for both RS-RI and RS-SR conversion flows.
+    """
+    rs_ri_distribution_id = rs_ri_edxl.get(_DISTRIBUTION_ID_KEY)
+    rs_sr_distribution_ids = [sr.get(_DISTRIBUTION_ID_KEY) for sr in rs_sr_edxl_list]
 
-    rs_ri_resources = get_field_value(rs_ri, ResourcesInfoCISUConstants.RESOURCE_PATH)
-    sr_by_resource_id = {sr.get("resourceId"): sr for sr in rs_sr_list}
+    logger.info(
+        "Persisted RS-SRs found for RS-RI message with distributionID: %s -> %s",
+        rs_ri_distribution_id,
+        rs_sr_distribution_ids,
+    )
+
+    rs_ri_use_case = ConversionMixin._copy_input_use_case_content(
+        rs_ri_edxl, "resourcesInfo"
+    )
+
+    if not rs_sr_edxl_list:
+        return rs_ri_use_case
+
+    rs_sr_entries = [
+        (
+            ConversionMixin._copy_input_use_case_content(sr, "resourcesStatus"),
+            sr.get(_DISTRIBUTION_ID_KEY),
+        )
+        for sr in rs_sr_edxl_list
+    ]
+    sr_by_resource_id = {
+        use_case.get("resourceId"): (use_case, dist_id)
+        for use_case, dist_id in rs_sr_entries
+    }
+
+    rs_ri_resources = get_field_value(
+        rs_ri_use_case, ResourcesInfoCISUConstants.RESOURCE_PATH
+    )
+    used_sr_distribution_ids = []
 
     for resource in rs_ri_resources:
         resource_id = resource.get("resourceId")
-        persisted_sr = sr_by_resource_id.get(resource_id)
-        if persisted_sr is None:
+        entry = sr_by_resource_id.get(resource_id)
+        if entry is None:
             continue
 
+        persisted_sr, sr_dist_id = entry
         persisted_state = persisted_sr.get("state")
         if persisted_state is None:
             logger.warning(
-                f"No state found in persisted rs-sr for resourceId: {resource_id}"
+                "No state found in persisted RS-SR for resourceId: %s", resource_id
             )
             continue
 
@@ -38,7 +74,6 @@ def enrich_rs_ri_with_rs_srs(rs_ri: dict, rs_sr_list: list[dict]) -> dict:
                 ResourcesInfoCISUConstants.STATE_PATH,
                 [persisted_state],
             )
-
         else:
             latest_state = get_latest_state([*current_states, persisted_state])
             set_value(
@@ -47,7 +82,16 @@ def enrich_rs_ri_with_rs_srs(rs_ri: dict, rs_sr_list: list[dict]) -> dict:
                 [latest_state],
             )
 
-    return rs_ri
+        used_sr_distribution_ids.append(sr_dist_id)
+
+    logger.info(
+        "Enriched RS-RI (%s) with %s RS-SR (%s) before conversion",
+        rs_ri_distribution_id,
+        len(used_sr_distribution_ids),
+        used_sr_distribution_ids,
+    )
+
+    return rs_ri_use_case
 
 
 def get_latest_state(states: list[dict]) -> dict:

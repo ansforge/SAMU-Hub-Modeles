@@ -227,19 +227,24 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
 
         logger.info("Converting from RS to CISU format for Resources Info message.")
         logger.debug(f"Message content: {edxl_json}")
+
+        logger.info(
+            "Received RS-RI message with distributionID: %s for CISU conversion",
+            edxl_json.get("distributionID"),
+        )
+
         output_json = cls.copy_rs_input_content(edxl_json)
         current_use_case = cls.copy_rs_input_use_case_content(edxl_json)
 
         case_id = get_field_value(current_use_case, "caseId")
 
         _, persisted_rs_sr = get_rs_messages_by_case_id(case_id)
-        rs_sr_use_cases = [
-            # Hardcoded RS_SR use case to avoid circular dependency
-            # TODO: Fix
-            cls._copy_input_use_case_content(pm.payload, "resourcesStatus")
-            for pm in persisted_rs_sr
-        ]
-        enriched = enrich_rs_ri_with_rs_srs(current_use_case, rs_sr_use_cases)
+        rs_sr_edxls = [pm.payload for pm in persisted_rs_sr]
+
+        enriched = enrich_rs_ri_with_rs_srs(
+            rs_ri_edxl=edxl_json,
+            rs_sr_edxl_list=rs_sr_edxls,
+        )
 
         return cls.convert_single_rs_ri(output_json, enriched)
 
