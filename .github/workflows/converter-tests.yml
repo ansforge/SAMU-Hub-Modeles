@@ -63,11 +63,6 @@ jobs:
           path: tools/converter/htmlcov
           retention-days: 7
 
-      - name: Run ReportGenerator for test coverage
-        uses: danielpalme/ReportGenerator-GitHub-Action@5.1.23
-        with:
-          reports: ./converter/coverage.xml
-          targetdir: coveragereport
 
       - name: Pytest coverage comment
         uses: MishaKav/pytest-coverage-comment@v1.1.53
