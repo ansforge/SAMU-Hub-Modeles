@@ -237,6 +237,9 @@ def test_from_cisu_to_rs_new_case_id():
     assert "resourcesInfo" in first_message, (
         "first message must be a RS-RI (resourcesInfo key expected)"
     )
+    assert results[0]["distributionID"] == RC_RI_WITH_POSITION_EDXL["distributionID"], (
+        "Converted RS-RI doesn't have the same distributionID as original RC-RI"
+    )
 
     for i, rs_sr in enumerate(results[1:], start=1):
         message = get_edxl_message(rs_sr)
@@ -393,6 +396,10 @@ def test_from_cisu_to_rs_known_case_id_status_changed_only():
 
     assert isinstance(results, list), "from_cisu_to_rs must return a list"
     assert len(results) == 1, f"expected 1 RS-SR, got {len(results)}"
+    assert results[0]["distributionID"] == RC_RI_WITH_POSITION_EDXL["distributionID"], (
+        "Converted RS-SR doesn't have the same distributionID as original RC-RI"
+    )
+
     message = get_edxl_message(results[0])
     assert "resourcesStatus" in message, "expected RS-SR (resourcesStatus key)"
     assert "resourcesInfo" not in message, (
@@ -421,6 +428,9 @@ def test_from_cisu_to_rs_known_case_id_resource_added():
 
     assert isinstance(results, list), "from_cisu_to_rs must return a list"
     assert len(results) == 2, f"expected RS-RI + RS-SR, got {len(results)}"
+    assert results[0]["distributionID"] == RC_RI_WITH_POSITION_EDXL["distributionID"], (
+        "Converted RS-RI doesn't have the same distributionID as original RC-RI"
+    )
 
     first_message = get_edxl_message(results[0])
     assert "resourcesInfo" in first_message, (
