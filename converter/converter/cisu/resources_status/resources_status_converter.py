@@ -39,23 +39,8 @@ class ResourcesStatusConverter(BaseCISUConverter):
         if rs_ri_msg is None:
             raise ValueError(f"No RS-RI found for caseId: {case_id!r}")
 
-        resource_id = get_field_value(
-            current_use_case, ResourcesStatusConstants.RESOURCE_ID
-        )
         rs_ri = rs_ri_msg.payload
-        rs_ri_content = ResourcesInfoCISUConverter.copy_rs_input_use_case_content(rs_ri)
-        resources = (
-            get_field_value(rs_ri_content, ResourcesInfoCISUConstants.RESOURCE_PATH)
-            or []
-        )
-        resource_ids_in_rs_ri = {
-            r.get(ResourcesInfoCISUConstants.RESOURCE_ID_KEY) for r in resources
-        }
-
-        if resource_id not in resource_ids_in_rs_ri:
-            raise ValueError(
-                f"Resource '{resource_id}' from RS-SR not found in RS-RI for caseId '{case_id}'"
-            )
+        cls.check_resource_belongs_to_case(rs_ri, current_use_case)
 
         rs_sr_use_cases = [
             cls.copy_rs_input_use_case_content(pm.payload) for pm in persisted_rs_sr
@@ -69,3 +54,26 @@ class ResourcesStatusConverter(BaseCISUConverter):
         enriched = enrich_rs_ri_with_rs_srs(rs_ri_use_case, rs_sr_use_cases)
 
         return ResourcesInfoCISUConverter.convert_single_rs_ri(output_json, enriched)
+
+    @classmethod
+    def check_resource_belongs_to_case(
+        cls, rs_ri: Dict[str, Any], rs_sr_use_case: Dict[str, Any]
+    ) -> None:
+        case_id = get_field_value(rs_sr_use_case, ResourcesStatusConstants.CASE_ID)
+        resource_id = get_field_value(
+            rs_sr_use_case, ResourcesStatusConstants.RESOURCE_ID
+        )
+
+        rs_ri_content = ResourcesInfoCISUConverter.copy_rs_input_use_case_content(rs_ri)
+        resources = (
+            get_field_value(rs_ri_content, ResourcesInfoCISUConstants.RESOURCE_PATH)
+            or []
+        )
+        resource_ids_in_rs_ri = {
+            r.get(ResourcesInfoCISUConstants.RESOURCE_ID_KEY) for r in resources
+        }
+
+        if resource_id not in resource_ids_in_rs_ri:
+            raise ValueError(
+                f"Resource '{resource_id}' from RS-SR not found in RS-RI for caseId '{case_id}'"
+            )
