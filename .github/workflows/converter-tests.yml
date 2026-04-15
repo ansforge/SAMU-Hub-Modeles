@@ -65,7 +65,7 @@ jobs:
 
 
       - name: Pytest coverage comment
-        uses: MishaKav/pytest-coverage-comment@v1.1.53
+        uses: MishaKav/pytest-coverage-comment@v1.7.1
         with:
           pytest-xml-coverage-path: ./converter/coverage.xml
           title: "Converter - python code coverage"
