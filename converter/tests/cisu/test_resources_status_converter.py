@@ -75,3 +75,21 @@ def test_from_rs_to_cisu_no_rs_ri():
     ):
         with pytest.raises(ValueError, match="No RS-RI found for caseId"):
             ResourcesStatusConverter.from_rs_to_cisu(rs_sr_new)
+
+
+def test_from_rs_to_cisu_resource_not_in_rs_ri():
+    unknown_resource_id = "fr.fire.sis076.cgo-076.resource.UNKNOWN_VLM"
+    rs_sr = make_rs_sr_from_sample(_CASE_ID, unknown_resource_id, "ARRIVEE")
+    rs_ri = make_rs_ri_from_sample(_CASE_ID)
+
+    with (
+        patch(
+            _PATCH_GET_RS_MESSAGES,
+            return_value=persisted_rs_ri_and_rs_sr(rs_ri, []),
+        ),
+        pytest.raises(
+            ValueError,
+            match=f"Resource '{unknown_resource_id}' from RS-SR not found in RS-RI for caseId '{_CASE_ID}'",
+        ),
+    ):
+        ResourcesStatusConverter.from_rs_to_cisu(rs_sr)
