@@ -9,6 +9,7 @@ from converter.cisu.resources_info.resources_info_cisu_constants import (
 from converter.cisu.resources_info.resources_info_cisu_helper import (
     enrich_rs_ri_with_rs_srs,
     get_latest_state,
+    log_cisu_to_rs_converted_messages_ids,
 )
 from converter.repositories.message_repository import (
     get_last_rc_ri_by_case_id,
@@ -181,6 +182,9 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
                 converted_messages.append(
                     cls._build_rs_sr_from_resource(edxl_json, resource, case_id)
                 )
+            log_cisu_to_rs_converted_messages_ids(
+                edxl_json, converted_messages[0], converted_messages[1:]
+            )
             return converted_messages
 
         # Known caseId — compare resources and emit only what changed
@@ -196,15 +200,16 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
             "modified_status_resources"
         ]
 
-        messages: List[Dict[str, Any]] = []
+        converted_rs_ri = None
 
         if engaged_resources_updated:
             logger.info(
                 "Resources added/removed for caseId %s — adding RS-RI to output.",
                 case_id,
             )
-            rs_ri = cls._build_rs_ri_from_cisu(edxl_json)
-            messages.append(rs_ri)
+            converted_rs_ri = cls._build_rs_ri_from_cisu(edxl_json)
+
+        converted_rs_sr_messages: List[Dict[str, Any]] = []
 
         for idx, resource in enumerate(modified_status_resources):
             logger.info(
@@ -217,12 +222,18 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
             rs_sr = cls._build_rs_sr_from_resource(
                 edxl_json, resource, case_id, should_use_original_distribution_id
             )
-            messages.append(rs_sr)
+            converted_rs_sr_messages.append(rs_sr)
 
-        if not messages:
-            logger.info("No resource changes detected for caseId %s.", case_id)
+        converted_messages = []
+        if converted_rs_ri is not None:
+            converted_messages.append(converted_rs_ri)
+        converted_messages += converted_rs_sr_messages
 
-        return messages
+        log_cisu_to_rs_converted_messages_ids(
+            edxl_json, converted_rs_ri, converted_rs_sr_messages
+        )
+
+        return converted_messages
 
     @classmethod
     def from_rs_to_cisu(cls, edxl_json: Dict[str, Any]) -> Dict[str, Any]:

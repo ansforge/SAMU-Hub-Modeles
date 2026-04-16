@@ -1,5 +1,6 @@
 from converter.cisu.resources_info.resources_info_cisu_helper import (
     enrich_rs_ri_with_rs_srs,
+    log_cisu_to_rs_converted_messages_ids,
 )
 
 
@@ -124,3 +125,58 @@ def test_current_state_and_persisted_rs_sr():
     assert result is not None
     assert result["resource"][0]["state"][0]["status"] == "PENDING"
     assert result["resource"][1]["state"][0]["status"] == "DONE2"
+
+
+class TestLogCisuToRsConvertedMessagesIds:
+    def test_with_rs_ri_and_rs_srs(self, caplog):
+        original = {"distributionID": "orig-123"}
+        rs_ri = {"distributionID": "ri-456"}
+        rs_sr_list = [
+            {"distributionID": "sr-1"},
+            {"distributionID": "sr-2"},
+        ]
+
+        with caplog.at_level("INFO"):
+            log_cisu_to_rs_converted_messages_ids(original, rs_ri, rs_sr_list)
+
+        assert len(caplog.records) == 1
+        assert caplog.records[0].message == (
+            "Converted RC-RI with distributionID orig-123 into RS-RI ri-456 and 2 RS-SR(s) ['sr-1', 'sr-2']"
+        )
+
+    def test_without_rs_ri(self, caplog):
+        original = {"distributionID": "orig-123"}
+        rs_sr_list = [
+            {"distributionID": "sr-1"},
+        ]
+
+        with caplog.at_level("INFO"):
+            log_cisu_to_rs_converted_messages_ids(original, None, rs_sr_list)
+
+        assert len(caplog.records) == 1
+        assert caplog.records[0].message == (
+            "Converted RC-RI with distributionID orig-123 into 1 RS-SR(s) ['sr-1']"
+        )
+
+    def test_with_rs_ri_and_no_rs_srs(self, caplog):
+        original = {"distributionID": "orig-123"}
+        rs_ri = {"distributionID": "ri-456"}
+
+        with caplog.at_level("INFO"):
+            log_cisu_to_rs_converted_messages_ids(original, rs_ri, [])
+
+        assert len(caplog.records) == 1
+        assert caplog.records[0].message == (
+            "Converted RC-RI with distributionID orig-123 into RS-RI ri-456"
+        )
+
+    def test_without_rs_ri_and_no_rs_srs(self, caplog):
+        original = {"distributionID": "orig-123"}
+
+        with caplog.at_level("INFO"):
+            log_cisu_to_rs_converted_messages_ids(original, None, [])
+
+        assert len(caplog.records) == 1
+        assert caplog.records[0].message == (
+            "No RS message produced when converting RC-RI with distributionId orig-123."
+        )
