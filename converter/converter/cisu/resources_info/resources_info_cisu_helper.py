@@ -97,3 +97,26 @@ def enrich_rs_ri_with_rs_srs(
 def get_latest_state(states: list[dict]) -> dict:
     """Return the state with the most recent datetime from a list of states."""
     return sorted(states, key=lambda x: x.get("datetime", ""))[-1]
+
+
+def log_cisu_to_rs_converted_messages_ids(
+    original_message: dict, rs_ri: dict | None, rs_sr_list: list[dict]
+) -> None:
+    if rs_ri is None and len(rs_sr_list) == 0:
+        logger.info(
+            f"No RS message produced when converting RC-RI with distributionId {original_message.get('distributionID')}."
+        )
+
+    else:
+        log_message = f"Converted RC-RI with distributionID {original_message.get('distributionID')} into"
+
+        if rs_ri is not None:
+            log_message += f" RS-RI {rs_ri.get('distributionID')}"
+
+        if rs_sr_list:
+            if rs_ri is not None:
+                log_message += " and"
+            rs_sr_ids = [rs_sr.get("distributionID") for rs_sr in rs_sr_list]
+            log_message += f" {len(rs_sr_list)} RS-SR(s) {rs_sr_ids}"
+
+        logger.info(log_message)
