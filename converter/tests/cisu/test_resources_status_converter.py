@@ -51,6 +51,8 @@ def test_from_rs_to_cisu_real_data():
     assert result is not None
     assert result != []
 
+    assert result["distributionID"] == rs_sr_new["distributionID"]
+
     resources = get_cisu_resources(result)
 
     assert len(resources) == 2
