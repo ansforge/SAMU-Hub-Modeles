@@ -54,7 +54,7 @@ class ResourcesStatusConverter(BaseCISUConverter):
         rs_sr_edxl_list = [pm.payload for pm in persisted_rs_sr]
         rs_sr_edxl_list.append(edxl_json)
 
-        output_json = ResourcesInfoCISUConverter.copy_rs_input_content(rs_ri)
+        output_json = cls.copy_rs_input_content(edxl_json)
 
         enriched = enrich_rs_ri_with_rs_srs(
             rs_ri_edxl=rs_ri,
