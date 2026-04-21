@@ -52,7 +52,7 @@ components:
       - statusString
       properties:
         statusCode:
-          type: number
+          type: integer
           title: Code d'erreur
           x-health-only: false
           x-cols: 6
