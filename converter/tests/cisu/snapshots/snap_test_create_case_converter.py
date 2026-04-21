@@ -28,7 +28,7 @@ snapshots[
       "jsonContent": {
         "embeddedJsonContent": {
           "message": {
-            "messageId": "2608323d-507d-4cbf-bf74-52007f8124ea",
+            "messageId": "fr.fire.sdisZ_2608323d-507d-4cbf-bf74-52007f8124ea",
             "sender": {
               "name": "sdisZ",
               "URI": "hubsante:fr.fire.sdisZ"
@@ -196,7 +196,7 @@ snapshots[
       "jsonContent": {
         "embeddedJsonContent": {
           "message": {
-            "messageId": "2608323d-507d-4cbf-bf74-52007f8124ea",
+            "messageId": "fr.fire.sdisZ_2608323d-507d-4cbf-bf74-52007f8124ea",
             "sender": {
               "name": "sdisZ",
               "URI": "hubsante:fr.fire.sdisZ"
@@ -364,7 +364,7 @@ snapshots[
       "jsonContent": {
         "embeddedJsonContent": {
           "message": {
-            "messageId": "2608323d-507d-4cbf-bf74-52007f8124ea",
+            "messageId": "fr.fire.sdisZ_2608323d-507d-4cbf-bf74-52007f8124ea",
             "sender": {
               "name": "sdisZ",
               "URI": "hubsante:fr.fire.sdisZ"
@@ -420,7 +420,7 @@ snapshots[
       "jsonContent": {
         "embeddedJsonContent": {
           "message": {
-            "messageId": "2608323d-507d-4cbf-bf74-52007f8124ea",
+            "messageId": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
             "sender": {
               "name": "samuA",
               "URI": "hubsante:fr.health.samuA"
@@ -638,7 +638,7 @@ snapshots[
       "jsonContent": {
         "embeddedJsonContent": {
           "message": {
-            "messageId": "2608323d-507d-4cbf-bf74-52007f8124ea",
+            "messageId": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
             "sender": {
               "name": "samuA",
               "URI": "hubsante:fr.health.samuA"
@@ -880,7 +880,7 @@ snapshots[
       "jsonContent": {
         "embeddedJsonContent": {
           "message": {
-            "messageId": "2608323d-507d-4cbf-bf74-52007f8124ea",
+            "messageId": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
             "sender": {
               "name": "samuA",
               "URI": "hubsante:fr.health.samuA"

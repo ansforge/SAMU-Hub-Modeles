@@ -111,7 +111,8 @@ def test_convert_edxl_versions(client, source_version, target_version):
     )
 
     assert response.status_code == 200
-    assert "edxl" in response.json
+    assert "converted_messages" in response.json
+    assert isinstance(response.json["converted_messages"], list)
 
 
 @pytest.mark.parametrize(
@@ -138,12 +139,13 @@ def test_convert_from_cisu(client, rs_target_version):
 
     # Verify response
     assert response.status_code == 200
-    assert "edxl" in response.json
+    assert "converted_messages" in response.json
+    assert isinstance(response.json["converted_messages"], list)
 
     # Verify message is converted
-    message = response.json["edxl"]["content"][0]["jsonContent"]["embeddedJsonContent"][
-        "message"
-    ]
+    message = response.json["converted_messages"][0]["content"][0]["jsonContent"][
+        "embeddedJsonContent"
+    ]["message"]
     assert "createCaseHealth" in message
     assert "createCase" not in message
 
@@ -172,12 +174,13 @@ def test_convert_to_cisu(client, rs_source_version):
 
     # Verify response
     assert response.status_code == 200
-    assert "edxl" in response.json
+    assert "converted_messages" in response.json
+    assert isinstance(response.json["converted_messages"], list)
 
     # Verify converted is converted
-    message = response.json["edxl"]["content"][0]["jsonContent"]["embeddedJsonContent"][
-        "message"
-    ]
+    message = response.json["converted_messages"][0]["content"][0]["jsonContent"][
+        "embeddedJsonContent"
+    ]["message"]
     assert "createCase" in message
     assert "createCaseHealth" not in message
 
@@ -218,11 +221,23 @@ def test_convert_to_cisu_with_invalid_cisu_source_version(client):
     assert "Unknown source version" in response.json["error"]
 
 
-def test_health_endpoint(client):
+def test_health_endpoint(client, mocker):
+    mock_db = mocker.MagicMock()
+    app.extensions["mongodb_db"] = mock_db
+
     response = client.get("/health")
-    expected_response = {
-        "status": "UP",
-    }
 
     assert response.status_code == 200
-    assert expected_response == response.json
+    assert response.json == {"status": "UP", "components": {"mongodb": "UP"}}
+    mock_db.command.assert_called_once_with("ping")
+
+
+def test_health_endpoint_mongodb_down(client, mocker):
+    mock_db = mocker.MagicMock()
+    mock_db.command.side_effect = Exception("connection refused")
+    app.extensions["mongodb_db"] = mock_db
+
+    response = client.get("/health")
+
+    assert response.status_code == 200
+    assert response.json == {"status": "DEGRADED", "components": {"mongodb": "DOWN"}}

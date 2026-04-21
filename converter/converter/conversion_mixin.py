@@ -7,6 +7,8 @@ class ConversionMixin:
     JSON_CONTENT_KEY = "jsonContent"
     EMBEDDED_JSON_CONTENT_KEY = "embeddedJsonContent"
     MESSAGE_KEY = "message"
+    EDXL_DISTRIBUTION_ID_KEY = "distributionID"
+    RC_DE_MESSAGE_ID_KEY = "messageId"
 
     @classmethod
     def _copy_input_content(
@@ -48,3 +50,14 @@ class ConversionMixin:
             cls.EMBEDDED_JSON_CONTENT_KEY
         ][cls.MESSAGE_KEY][message_type] = output_use_case_json
         return output_json
+
+    @classmethod
+    def set_distribution_id(
+        cls,
+        edxl_json: Dict[str, Any],
+        distribution_id: str,
+    ) -> None:
+        edxl_json[cls.EDXL_DISTRIBUTION_ID_KEY] = distribution_id
+        edxl_json[cls.CONTENT_KEY][0][cls.JSON_CONTENT_KEY][
+            cls.EMBEDDED_JSON_CONTENT_KEY
+        ][cls.MESSAGE_KEY][cls.RC_DE_MESSAGE_ID_KEY] = distribution_id
