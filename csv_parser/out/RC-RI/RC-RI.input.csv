@@ -17,7 +17,7 @@ fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1",resourceId,1..1,,string,"REGEX:
 OU - si un ID unique de la demande n'était pas disponible : 
 {OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}","fr.health.samu770.request.1249875
 fr.health.samu690.request.DRFR15690242370035.3",requestId,0..1,,string,"REGEX: ^([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}$"
-,ID Mission local,,,,,"A valoriser avec le numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur",DRFR15DDXAAJJJ0000.M001,missionId,0..1,,string,
+,ID Opération,,,,,"A valoriser avec le numéro d'opération unique du central d’appel (PSAP, …) qui a déclenché le vecteur",DRFR15DDXAAJJJ0000.M001,operationId,0..1,,string,
 ,ID Organisation propriétaire,,,,,"A valoriser avec l'identifiant de l'organisation à laquelle appartient la ressource, normé comme suit : 
 {pays}.{domaine}.{organisation}",fr.health.samu440,orgId,0..1,,string,
 ,Nom du centre d’affectation,,,,,A valoriser avec le lieu de garage principal,CHU Nantes,centerName,0..1,,string,
