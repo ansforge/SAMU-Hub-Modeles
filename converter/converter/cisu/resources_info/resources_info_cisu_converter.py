@@ -15,7 +15,7 @@ from converter.repositories.message_repository import (
     get_last_rc_ri_by_case_id,
     get_rs_messages_by_case_id,
 )
-from converter.utils import get_field_value, set_value, delete_paths
+from converter.utils import get_field_value, set_value, delete_paths, switch_field_name
 import logging
 
 logger = logging.getLogger(__name__)
@@ -69,6 +69,13 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
 
             # RS-RI does not carry GPS position — remove it if present
             delete_paths(resource, [ResourcesInfoCISUConstants.POSITION_KEY])
+
+            # Map operationId to missionId
+            switch_field_name(
+                resource,
+                ResourcesInfoCISUConstants.OPERATION_ID_PATH,
+                ResourcesInfoCISUConstants.MISSION_ID_PATH,
+            )
 
         return cls.format_rs_output_json(output_json, output_use_case_json)
 
@@ -317,12 +324,21 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
                 cls._translate_to_cisu_vehicle_type(resource)
                 cls._keep_last_state(resource)
                 cls._remove_patient_id(resource)
+                cls._replace_operation_id_by_mission_id(resource)
 
                 converted_resources.append(resource)
             except ConversionError:
                 continue
 
         return converted_resources
+
+    @classmethod
+    def _replace_operation_id_by_mission_id(cls, resource):
+        switch_field_name(
+            resource,
+            ResourcesInfoCISUConstants.MISSION_ID_PATH,
+            ResourcesInfoCISUConstants.OPERATION_ID_PATH,
+        )
 
     @classmethod
     def _remove_patient_id(cls, resource):
