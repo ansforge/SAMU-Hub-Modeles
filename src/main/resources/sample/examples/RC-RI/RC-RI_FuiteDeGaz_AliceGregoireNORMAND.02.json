@@ -15,7 +15,8 @@
           "status": "DECLENCHE",
           "datetime": "2024-05-18T18:10:00+02:00",
           "availability": false
-        }
+        },
+        "operationId": "DRFR15DDXAAJJJ0000.M001"
       },
       {
         "team": {
@@ -31,7 +32,8 @@
           "status": "DECLENCHE",
           "datetime": "2024-05-18T18:20:00+02:00",
           "availability": false
-        }
+        },
+        "operationId": "DRFR15DDXAAJJJ0000.M001"
       }      
     ],
     "caseId": "fr.health.samu440.DRFR154402413800236"
