@@ -4,6 +4,7 @@
   <resource>
     <datetime>2024-05-18T18:20:00+02:00</datetime>
     <resourceId>fr.health.samu440.resource.VLM2</resourceId>
+    <missionId>DRFR15DDXAAJJJ0000.M001</missionId>
     <orgId>fr.health.samu440</orgId>
     <vehicleType>SMUR.VLM</vehicleType>
     <name>VLM2</name>

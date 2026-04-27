@@ -4,6 +4,7 @@
   <resource>
     <datetime>2024-05-18T18:22:00+02:00</datetime>
     <resourceId>fr.health.samu440.resource.VLM1</resourceId>
+    <operationId>DRFR15DDXAAJJJ0000.M001</operationId>
     <orgId>fr.health.samu440</orgId>
     <vehicleType>SMUR</vehicleType>
     <name>VLM1</name>
@@ -20,6 +21,7 @@
   <resource>
     <datetime>2024-05-18T18:22:00+02:00</datetime>
     <resourceId>fr.health.samu440.resource.VLM2</resourceId>
+    <operationId>DRFR15DDXAAJJJ0000.M001</operationId>
     <orgId>fr.health.samu440</orgId>
     <vehicleType>SMUR</vehicleType>
     <name>VLM2</name>
