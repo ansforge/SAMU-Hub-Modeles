@@ -46,6 +46,8 @@ module Cisuresourcesinfo
 
     attr_accessor :state
 
+    attr_accessor :position
+
     attr_accessor :contact
 
     attr_accessor :freetext
@@ -86,6 +88,7 @@ module Cisuresourcesinfo
         :'center_city' => :'centerCity',
         :'team' => :'team',
         :'state' => :'state',
+        :'position' => :'position',
         :'contact' => :'contact',
         :'freetext' => :'freetext'
       }
@@ -110,6 +113,7 @@ module Cisuresourcesinfo
         :'center_city' => :'String',
         :'team' => :'Team',
         :'state' => :'State',
+        :'position' => :'Position',
         :'contact' => :'Contact',
         :'freetext' => :'Array<String>'
       }
@@ -188,6 +192,10 @@ module Cisuresourcesinfo
         self.state = nil
       end
 
+      if attributes.key?(:'position')
+        self.position = attributes[:'position']
+      end
+
       if attributes.key?(:'contact')
         self.contact = attributes[:'contact']
       end
@@ -253,7 +261,7 @@ module Cisuresourcesinfo
       return false if @resource_id !~ Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$/)
       return false if !@request_id.nil? && @request_id !~ Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}$/)
       return false if @vehicle_type.nil?
-      vehicle_type_validator = EnumAttributeValidator.new('String', ["SMUR", "SIS", "AUTRE"])
+      vehicle_type_validator = EnumAttributeValidator.new('String', ["SMUR", "SIS"])
       return false unless vehicle_type_validator.valid?(@vehicle_type)
       return false if !@center_city.nil? && @center_city !~ Regexp.new(/^[0-9]{5}$/)
       return false if @state.nil?
@@ -308,7 +316,7 @@ module Cisuresourcesinfo
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] vehicle_type Object to be assigned
     def vehicle_type=(vehicle_type)
-      validator = EnumAttributeValidator.new('String', ["SMUR", "SIS", "AUTRE"])
+      validator = EnumAttributeValidator.new('String', ["SMUR", "SIS"])
       unless validator.valid?(vehicle_type)
         fail ArgumentError, "invalid value for \"vehicle_type\", must be one of #{validator.allowable_values}."
       end
@@ -346,6 +354,7 @@ module Cisuresourcesinfo
           center_city == o.center_city &&
           team == o.team &&
           state == o.state &&
+          position == o.position &&
           contact == o.contact &&
           freetext == o.freetext
     end
@@ -359,7 +368,7 @@ module Cisuresourcesinfo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [datetime, resource_id, request_id, mission_id, org_id, center_name, vehicle_type, name, center_city, team, state, contact, freetext].hash
+      [datetime, resource_id, request_id, mission_id, org_id, center_name, vehicle_type, name, center_city, team, state, position, contact, freetext].hash
     end
 
     # Builds the object from hash

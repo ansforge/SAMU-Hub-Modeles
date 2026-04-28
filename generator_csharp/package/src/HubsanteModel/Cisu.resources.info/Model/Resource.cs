@@ -48,13 +48,7 @@ namespace HubsanteModel/Cisu.resources.info.Model
             /// Enum SIS for value: SIS
             /// </summary>
             [EnumMember(Value = "SIS")]
-            SIS = 2,
-
-            /// <summary>
-            /// Enum AUTRE for value: AUTRE
-            /// </summary>
-            [EnumMember(Value = "AUTRE")]
-            AUTRE = 3
+            SIS = 2
         }
 
 
@@ -86,9 +80,10 @@ namespace HubsanteModel/Cisu.resources.info.Model
         /// <param name="centerCity">A valoriser avec le code INSEE de la commune du centre d&#39;affectation.</param>
         /// <param name="team">team.</param>
         /// <param name="state">state (required).</param>
+        /// <param name="position">position.</param>
         /// <param name="contact">contact.</param>
         /// <param name="freetext">freetext.</param>
-        public Resource(DateTime datetime = default(DateTime), string resourceId = default(string), string requestId = default(string), string missionId = default(string), string orgId = default(string), string centerName = default(string), VehicleTypeEnum vehicleType = default(VehicleTypeEnum), string name = default(string), string centerCity = default(string), Team team = default(Team), State state = default(State), Contact contact = default(Contact), List<string> freetext = default(List<string>))
+        public Resource(DateTime datetime = default(DateTime), string resourceId = default(string), string requestId = default(string), string missionId = default(string), string orgId = default(string), string centerName = default(string), VehicleTypeEnum vehicleType = default(VehicleTypeEnum), string name = default(string), string centerCity = default(string), Team team = default(Team), State state = default(State), Position position = default(Position), Contact contact = default(Contact), List<string> freetext = default(List<string>))
         {
             this.Datetime = datetime;
             // to ensure "resourceId" is required (not null)
@@ -111,6 +106,7 @@ namespace HubsanteModel/Cisu.resources.info.Model
             this.Name = name;
             this.CenterCity = centerCity;
             this.Team = team;
+            this.Position = position;
             this.Contact = contact;
             this.Freetext = freetext;
         }
@@ -205,6 +201,12 @@ namespace HubsanteModel/Cisu.resources.info.Model
         public State State { get; set; }
 
         /// <summary>
+        /// Gets or Sets Position
+        /// </summary>
+        [DataMember(Name = "position", EmitDefaultValue = false)]
+        public Position Position { get; set; }
+
+        /// <summary>
         /// Gets or Sets Contact
         /// </summary>
         [DataMember(Name = "contact", EmitDefaultValue = false)]
@@ -235,6 +237,7 @@ namespace HubsanteModel/Cisu.resources.info.Model
             sb.Append("  CenterCity: ").Append(CenterCity).Append("\n");
             sb.Append("  Team: ").Append(Team).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
+            sb.Append("  Position: ").Append(Position).Append("\n");
             sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  Freetext: ").Append(Freetext).Append("\n");
             sb.Append("}\n");

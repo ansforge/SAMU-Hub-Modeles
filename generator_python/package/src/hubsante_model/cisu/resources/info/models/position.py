@@ -17,18 +17,28 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
-from hubsante_model.cisu.resources.status.models.resources_status_cisu import ResourcesStatusCisu
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, field_validator
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from hubsante_model.cisu.resources.info.models.coord import Coord
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ResourcesStatusCisuWrapper(BaseModel):
+class Position(BaseModel):
     """
-    ResourcesStatusCisuWrapper
+    Position
     """ # noqa: E501
-    resources_status_cisu: ResourcesStatusCisu = Field(alias="resourcesStatusCisu")
-    __properties: ClassVar[List[str]] = ["resourcesStatusCisu"]
+    datetime: str = Field(description="Date et heure de la dernière position connue")
+    speed: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Vitesse de la ressource enregistrée, exprimée en km/h")
+    coord: Coord
+    __properties: ClassVar[List[str]] = ["datetime", "speed", "coord"]
+
+    @field_validator('datetime')
+    def datetime_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", value):
+            raise ValueError(r"must validate the regular expression /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +58,7 @@ class ResourcesStatusCisuWrapper(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ResourcesStatusCisuWrapper from a JSON string"""
+        """Create an instance of Position from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,14 +79,14 @@ class ResourcesStatusCisuWrapper(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of resources_status_cisu
-        if self.resources_status_cisu:
-            _dict['resourcesStatusCisu'] = self.resources_status_cisu.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of coord
+        if self.coord:
+            _dict['coord'] = self.coord.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ResourcesStatusCisuWrapper from a dict"""
+        """Create an instance of Position from a dict"""
         if obj is None:
             return None
 
@@ -84,7 +94,9 @@ class ResourcesStatusCisuWrapper(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "resourcesStatusCisu": ResourcesStatusCisu.from_dict(obj["resourcesStatusCisu"]) if obj.get("resourcesStatusCisu") is not None else None
+            "datetime": obj.get("datetime"),
+            "speed": obj.get("speed"),
+            "coord": Coord.from_dict(obj["coord"]) if obj.get("coord") is not None else None
         })
         return _obj
 
