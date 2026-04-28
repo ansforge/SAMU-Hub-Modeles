@@ -21,7 +21,8 @@
             "datetime": "2024-05-18T18:19:00+02:00",
             "status": "DECISION"
           }
-        ]
+        ],
+        "missionId": "DRFR15DDXAAJJJ0000.M001"
       },
       {
         "team": {
@@ -32,7 +33,8 @@
         "orgId": "fr.fire.sdis044.cgo-044",
         "vehicleType": "SIS.VSAV",
         "name": "VSAV3",
-        "centerCity": "44109"
+        "centerCity": "44109",
+        "missionId": "DRFR15DDXAAJJJ0000.M001"
       }
     ],
     "caseId": "fr.health.samu440.DRFR154402413800236"

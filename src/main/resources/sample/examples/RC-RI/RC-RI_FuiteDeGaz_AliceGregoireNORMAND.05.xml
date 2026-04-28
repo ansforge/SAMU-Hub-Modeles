@@ -4,6 +4,7 @@
   <resource>
     <datetime>2024-05-18T18:20:00+02:00</datetime>
     <resourceId>fr.fire.sis044.cgo-044.resource.VSAV2</resourceId>
+    <operationId>DRFR15DDXAAJJJ0000.M001</operationId>
     <orgId>fr.fire.sdis44.cgo-044</orgId>
     <vehicleType>SIS</vehicleType>
     <name>VSAV2</name>

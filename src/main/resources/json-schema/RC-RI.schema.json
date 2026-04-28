@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-RI.schema.json#",
-    "version": "26.03.23",
+    "version": "26.04.28",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesInfoCisu",
@@ -69,13 +69,13 @@
                     "description": "A valoriser avec l'identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), normé comme suit :\n{orgID}.request.{ID unique de la demande dans le système émetteur}\nOU - si un ID unique de la demande n'était pas disponible : \n{OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}",
                     "pattern": "^([a-zA-Z0-9_-]+\\.){3,8}request(\\.[a-zA-Z0-9_-]+){1,2}$"
                 },
-                "missionId": {
+                "operationId": {
                     "type": "string",
-                    "title": "ID Mission local",
+                    "title": "ID Opération",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/resource/0/missionId",
-                    "description": "A valoriser avec le numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur"
+                    "example": "example.json#/resource/0/operationId",
+                    "description": "A valoriser avec le numéro d'opération unique du central d’appel (PSAP, …) qui a déclenché le vecteur"
                 },
                 "orgId": {
                     "type": "string",

@@ -53,9 +53,9 @@ OU - si un ID unique de la demande n'était pas disponible :
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="missionId" type="string">
+            <element minOccurs="0" name="operationId" type="string">
                 <annotation>
-                    <documentation>A valoriser avec le numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur</documentation>
+                    <documentation>A valoriser avec le numéro d'opération unique du central d’appel (PSAP, …) qui a déclenché le vecteur</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="orgId" type="string">
