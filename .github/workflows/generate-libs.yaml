@@ -165,9 +165,21 @@ jobs:
             mv "$dir"/lib/hubsanteModel/models/* "gem/lib/hubsanteModel/models/$package/"
             rmdir "$dir/lib/hubsanteModel/models" && rmdir "$dir/lib/hubsanteModel" && rmdir "$dir/lib" && rmdir "$dir"
           done;
+          
+          OUTPUT_FILE="gem/lib/hubsanteModel/hubsante_model.rb"
+  
+          echo "# Auto-generated file - DO NOT EDIT" > "$OUTPUT_FILE"
+          echo "" >> "$OUTPUT_FILE"
+  
+          find gem/lib/hubsanteModel/models -type f -name "*.rb" \
+            | sort \
+            | sed 's|gem/lib/||' \
+            | sed 's|\.rb$||' \
+            | while read -r file; do
+                echo "require '$file'" >> "$OUTPUT_FILE"
+              done
 
           # Add key gem files
-          cp hubsante_model.rb gem/lib/hubsanteModel/
           cp hubsante_model.gemspec gem/
       
 #      - name: Ruby - Set up
