@@ -38,7 +38,7 @@
         "resourceId": "fr.fire.sis076.cgo-076.resource.VSAV3A",
         "requestId": "fr.fire.sis076.cgo-076.request.177",
         "centerName": "Centre de Secours 76 - A",
-        "missionId": "fr.fire.sis076.cgo-076.mission.177",
+        "operationId": "fr.fire.sis076.cgo-076.mission.177",
         "centerCity": "75011",
         "orgId": "fr.fire.sdis76.cgo-076",
         "name": "VSAV 76 - 22D8",
