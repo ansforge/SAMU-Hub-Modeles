@@ -58,4 +58,4 @@ ENV PROMETHEUS_MULTIPROC_DIR=/tmp/prometheus_metrics
 ENV FLASK_ENV=production
 
 # Use Gunicorn for production deployment
-CMD ["uv", "run", "--no-dev", "gunicorn", "-c", "gunicorn.conf.py", "-w", "4", "-b", "0.0.0.0:8080", "converter.converter:app"]
+CMD ["uv", "run", "--no-dev", "gunicorn", "-c", "gunicorn.conf.py", "-w", "2", "-b", "0.0.0.0:8080", "converter.converter:app"]
