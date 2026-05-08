@@ -33,13 +33,13 @@ import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.config.Constants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class EnvelopeValidatorTest extends AbstractValidatorTest{
+class EnvelopeValidatorTest extends AbstractValidatorTest{
     
     private static final Logger log = LoggerFactory.getLogger(EnvelopeValidatorTest.class);
 
     @Test
     @DisplayName("check EDXL envelope schemas availability")
-    public void checkEdxlEnvelopeSchemasAvailability() {
+    void checkEdxlEnvelopeSchemasAvailability() {
         assertDoesNotThrow(() -> new File(Thread.currentThread().getContextClassLoader()
                 .getResource("json-schema/" + ENVELOPE_SCHEMA).getFile()));
 
@@ -50,7 +50,7 @@ public class EnvelopeValidatorTest extends AbstractValidatorTest{
     //region Fails validation
     @Test
     @DisplayName("All failing envelope tests must throw corresponding error messages")
-    public void batchFailingValidation() throws IOException {
+    void batchFailingValidation() throws IOException {
         boolean areAllTestsPassing = true;
         log.info("Running batch failing validation tests for schema: {}", "EDXL-DE");
         String folderPath = Objects.requireNonNull(TestMessagesHelper.class.getClassLoader().getResource("sample/failing/EDXL-DE")).getFile();
