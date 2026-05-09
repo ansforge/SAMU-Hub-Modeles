@@ -50,7 +50,7 @@ public class EnvelopeValidatorTest extends AbstractValidatorTest{
     //region Fails validation
     @Test
     @DisplayName("All failing envelope tests must throw corresponding error messages")
-    public void batchFailingValidation() throws IOException {
+    void batchFailingValidation() throws IOException {
         boolean areAllTestsPassing = true;
         log.info("Running batch failing validation tests for schema: {}", "EDXL-DE");
         String folderPath = Objects.requireNonNull(TestMessagesHelper.class.getClassLoader().getResource("sample/failing/EDXL-DE")).getFile();
