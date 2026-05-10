@@ -39,7 +39,7 @@ public class EnvelopeValidatorTest extends AbstractValidatorTest{
 
     @Test
     @DisplayName("check EDXL envelope schemas availability")
-    public void checkEdxlEnvelopeSchemasAvailability() {
+    void checkEdxlEnvelopeSchemasAvailability() {
         assertDoesNotThrow(() -> new File(Thread.currentThread().getContextClassLoader()
                 .getResource("json-schema/" + ENVELOPE_SCHEMA).getFile()));
 
