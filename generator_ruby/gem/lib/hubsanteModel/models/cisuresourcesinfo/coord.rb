@@ -13,14 +13,23 @@ Generator version: 7.10.0
 require 'date'
 require 'time'
 
-module Cisuresourcesstatus
-  class ResourcesStatusCisuWrapper
-    attr_accessor :resources_status_cisu
+module Cisuresourcesinfo
+  class Coord
+    # Dernière coordonnée x connue de la ressource, entre −90 and +90
+    attr_accessor :lat
+
+    # Dernière coordonnée y connue de la ressource, entre −180 and +180
+    attr_accessor :lon
+
+    # Dernière coordonnée z connue de la ressource, en mètres sans bornes
+    attr_accessor :height
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'resources_status_cisu' => :'resourcesStatusCisu'
+        :'lat' => :'lat',
+        :'lon' => :'lon',
+        :'height' => :'height'
       }
     end
 
@@ -32,7 +41,9 @@ module Cisuresourcesstatus
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'resources_status_cisu' => :'ResourcesStatusCisu'
+        :'lat' => :'Float',
+        :'lon' => :'Float',
+        :'height' => :'Float'
       }
     end
 
@@ -46,21 +57,31 @@ module Cisuresourcesstatus
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Cisuresourcesstatus::ResourcesStatusCisuWrapper` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Cisuresourcesinfo::Coord` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Cisuresourcesstatus::ResourcesStatusCisuWrapper`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Cisuresourcesinfo::Coord`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'resources_status_cisu')
-        self.resources_status_cisu = attributes[:'resources_status_cisu']
+      if attributes.key?(:'lat')
+        self.lat = attributes[:'lat']
       else
-        self.resources_status_cisu = nil
+        self.lat = nil
+      end
+
+      if attributes.key?(:'lon')
+        self.lon = attributes[:'lon']
+      else
+        self.lon = nil
+      end
+
+      if attributes.key?(:'height')
+        self.height = attributes[:'height']
       end
     end
 
@@ -69,8 +90,12 @@ module Cisuresourcesstatus
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @resources_status_cisu.nil?
-        invalid_properties.push('invalid value for "resources_status_cisu", resources_status_cisu cannot be nil.')
+      if @lat.nil?
+        invalid_properties.push('invalid value for "lat", lat cannot be nil.')
+      end
+
+      if @lon.nil?
+        invalid_properties.push('invalid value for "lon", lon cannot be nil.')
       end
 
       invalid_properties
@@ -80,7 +105,8 @@ module Cisuresourcesstatus
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @resources_status_cisu.nil?
+      return false if @lat.nil?
+      return false if @lon.nil?
       true
     end
 
@@ -89,7 +115,9 @@ module Cisuresourcesstatus
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          resources_status_cisu == o.resources_status_cisu
+          lat == o.lat &&
+          lon == o.lon &&
+          height == o.height
     end
 
     # @see the `==` method
@@ -101,7 +129,7 @@ module Cisuresourcesstatus
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [resources_status_cisu].hash
+      [lat, lon, height].hash
     end
 
     # Builds the object from hash
@@ -165,7 +193,7 @@ module Cisuresourcesstatus
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Cisuresourcesstatus.const_get(type)
+        klass = Cisuresourcesinfo.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

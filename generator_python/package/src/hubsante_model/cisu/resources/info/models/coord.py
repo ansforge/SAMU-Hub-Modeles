@@ -17,34 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
-class State(BaseModel):
+class Coord(BaseModel):
     """
-    State
+    Coord
     """ # noqa: E501
-    datetime: str = Field(description="A valoriser avec la date et heure d'engagement de changement vers le nouveau statut")
-    status: StrictStr = Field(description="A valoriser avec le statut du vecteur. Cf nomenclature associée.")
-    availability: Optional[StrictBool] = Field(default=None, description="A valoriser de manière à indiquer la disponibilité du vecteur. TRUE = DISPONIBLE FALSE = INDISPONIBLE VIDE = INCONNU")
-    __properties: ClassVar[List[str]] = ["datetime", "status", "availability"]
-
-    @field_validator('datetime')
-    def datetime_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$", value):
-            raise ValueError(r"must validate the regular expression /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/")
-        return value
-
-    @field_validator('status')
-    def status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['DECISION', 'DECLENCHE', 'DEPART', 'ANNULE', 'ARRIVEE', 'PEC', 'BILAN', 'ORIENTAT', 'TRANSP', 'ETAPE1', 'TRANSP2', 'ETAPE2', 'TRANSP3', 'DESTIN', 'FINPEC', 'RETOUR', 'RET-BASE', 'REN-BASE']):
-            raise ValueError("must be one of enum values ('DECISION', 'DECLENCHE', 'DEPART', 'ANNULE', 'ARRIVEE', 'PEC', 'BILAN', 'ORIENTAT', 'TRANSP', 'ETAPE1', 'TRANSP2', 'ETAPE2', 'TRANSP3', 'DESTIN', 'FINPEC', 'RETOUR', 'RET-BASE', 'REN-BASE')")
-        return value
+    lat: Union[StrictFloat, StrictInt] = Field(description="Dernière coordonnée x connue de la ressource, entre −90 and +90")
+    lon: Union[StrictFloat, StrictInt] = Field(description="Dernière coordonnée y connue de la ressource, entre −180 and +180")
+    height: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Dernière coordonnée z connue de la ressource, en mètres sans bornes")
+    __properties: ClassVar[List[str]] = ["lat", "lon", "height"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -64,7 +49,7 @@ class State(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of State from a JSON string"""
+        """Create an instance of Coord from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -89,7 +74,7 @@ class State(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of State from a dict"""
+        """Create an instance of Coord from a dict"""
         if obj is None:
             return None
 
@@ -97,9 +82,9 @@ class State(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "datetime": obj.get("datetime"),
-            "status": obj.get("status"),
-            "availability": obj.get("availability")
+            "lat": obj.get("lat"),
+            "lon": obj.get("lon"),
+            "height": obj.get("height")
         })
         return _obj
 

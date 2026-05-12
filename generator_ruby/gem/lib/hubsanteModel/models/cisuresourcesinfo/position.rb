@@ -13,22 +13,22 @@ Generator version: 7.10.0
 require 'date'
 require 'time'
 
-module Cisuresourcesstatus
-  class ResourcesStatusCisu
-    # A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier).  Il est valorisé comme suit lors de sa création :  {pays}.{domaine}.{organisation}.{senderCaseId}  Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.
-    attr_accessor :case_id
+module Cisuresourcesinfo
+  class Position
+    # Date et heure de la dernière position connue
+    attr_accessor :datetime
 
-    # A valoriser avec l'identifiant partagé unique de la ressource engagée , normé comme suit : {orgID}.R.{ID unique de la ressource partagée} Ou, uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire : {orgID}.R.{ID du dossier partagé}.{numéro d’ordre chronologique ressource}  N.B. Il s'agit de l'orgId de l'organisation à qui appartient la ressource
-    attr_accessor :resource_id
+    # Vitesse de la ressource enregistrée, exprimée en km/h
+    attr_accessor :speed
 
-    attr_accessor :state
+    attr_accessor :coord
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'case_id' => :'caseId',
-        :'resource_id' => :'resourceId',
-        :'state' => :'state'
+        :'datetime' => :'datetime',
+        :'speed' => :'speed',
+        :'coord' => :'coord'
       }
     end
 
@@ -40,9 +40,9 @@ module Cisuresourcesstatus
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'case_id' => :'String',
-        :'resource_id' => :'String',
-        :'state' => :'State'
+        :'datetime' => :'Time',
+        :'speed' => :'Float',
+        :'coord' => :'Coord'
       }
     end
 
@@ -56,33 +56,31 @@ module Cisuresourcesstatus
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Cisuresourcesstatus::ResourcesStatusCisu` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Cisuresourcesinfo::Position` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Cisuresourcesstatus::ResourcesStatusCisu`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Cisuresourcesinfo::Position`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'case_id')
-        self.case_id = attributes[:'case_id']
+      if attributes.key?(:'datetime')
+        self.datetime = attributes[:'datetime']
       else
-        self.case_id = nil
+        self.datetime = nil
       end
 
-      if attributes.key?(:'resource_id')
-        self.resource_id = attributes[:'resource_id']
-      else
-        self.resource_id = nil
+      if attributes.key?(:'speed')
+        self.speed = attributes[:'speed']
       end
 
-      if attributes.key?(:'state')
-        self.state = attributes[:'state']
+      if attributes.key?(:'coord')
+        self.coord = attributes[:'coord']
       else
-        self.state = nil
+        self.coord = nil
       end
     end
 
@@ -91,26 +89,17 @@ module Cisuresourcesstatus
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @case_id.nil?
-        invalid_properties.push('invalid value for "case_id", case_id cannot be nil.')
+      if @datetime.nil?
+        invalid_properties.push('invalid value for "datetime", datetime cannot be nil.')
       end
 
-      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.?){4,10}$/)
-      if @case_id !~ pattern
-        invalid_properties.push("invalid value for \"case_id\", must conform to the pattern #{pattern}.")
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      if @datetime !~ pattern
+        invalid_properties.push("invalid value for \"datetime\", must conform to the pattern #{pattern}.")
       end
 
-      if @resource_id.nil?
-        invalid_properties.push('invalid value for "resource_id", resource_id cannot be nil.')
-      end
-
-      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$/)
-      if @resource_id !~ pattern
-        invalid_properties.push("invalid value for \"resource_id\", must conform to the pattern #{pattern}.")
-      end
-
-      if @state.nil?
-        invalid_properties.push('invalid value for "state", state cannot be nil.')
+      if @coord.nil?
+        invalid_properties.push('invalid value for "coord", coord cannot be nil.')
       end
 
       invalid_properties
@@ -120,42 +109,25 @@ module Cisuresourcesstatus
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @case_id.nil?
-      return false if @case_id !~ Regexp.new(/^([a-zA-Z0-9_-]+\.?){4,10}$/)
-      return false if @resource_id.nil?
-      return false if @resource_id !~ Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$/)
-      return false if @state.nil?
+      return false if @datetime.nil?
+      return false if @datetime !~ Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      return false if @coord.nil?
       true
     end
 
     # Custom attribute writer method with validation
-    # @param [Object] case_id Value to be assigned
-    def case_id=(case_id)
-      if case_id.nil?
-        fail ArgumentError, 'case_id cannot be nil'
+    # @param [Object] datetime Value to be assigned
+    def datetime=(datetime)
+      if datetime.nil?
+        fail ArgumentError, 'datetime cannot be nil'
       end
 
-      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.?){4,10}$/)
-      if case_id !~ pattern
-        fail ArgumentError, "invalid value for \"case_id\", must conform to the pattern #{pattern}."
+      pattern = Regexp.new(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}$/)
+      if datetime !~ pattern
+        fail ArgumentError, "invalid value for \"datetime\", must conform to the pattern #{pattern}."
       end
 
-      @case_id = case_id
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] resource_id Value to be assigned
-    def resource_id=(resource_id)
-      if resource_id.nil?
-        fail ArgumentError, 'resource_id cannot be nil'
-      end
-
-      pattern = Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$/)
-      if resource_id !~ pattern
-        fail ArgumentError, "invalid value for \"resource_id\", must conform to the pattern #{pattern}."
-      end
-
-      @resource_id = resource_id
+      @datetime = datetime
     end
 
     # Checks equality by comparing each attribute.
@@ -163,9 +135,9 @@ module Cisuresourcesstatus
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          case_id == o.case_id &&
-          resource_id == o.resource_id &&
-          state == o.state
+          datetime == o.datetime &&
+          speed == o.speed &&
+          coord == o.coord
     end
 
     # @see the `==` method
@@ -177,7 +149,7 @@ module Cisuresourcesstatus
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [case_id, resource_id, state].hash
+      [datetime, speed, coord].hash
     end
 
     # Builds the object from hash
@@ -241,7 +213,7 @@ module Cisuresourcesstatus
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Cisuresourcesstatus.const_get(type)
+        klass = Cisuresourcesinfo.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

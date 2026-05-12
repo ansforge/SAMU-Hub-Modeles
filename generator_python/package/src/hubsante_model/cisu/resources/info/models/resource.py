@@ -22,6 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from hubsante_model.cisu.resources.info.models.contact import Contact
+from hubsante_model.cisu.resources.info.models.position import Position
 from hubsante_model.cisu.resources.info.models.state import State
 from hubsante_model.cisu.resources.info.models.team import Team
 from typing import Optional, Set
@@ -34,7 +35,7 @@ class Resource(BaseModel):
     datetime: str = Field(description="A valoriser avec la date et heure d'engagement de la ressource/du vecteur")
     resource_id: Annotated[str, Field(strict=True)] = Field(description="A valoriser avec l'identifiant partagé unique de la ressource engagée, normé comme suit : {orgID}.resource.{ID unique de la ressource partagée} OU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire : {orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}", alias="resourceId")
     request_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="A valoriser avec l'identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), normé comme suit : {orgID}.request.{ID unique de la demande dans le système émetteur} OU - si un ID unique de la demande n'était pas disponible :  {OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}", alias="requestId")
-    mission_id: Optional[StrictStr] = Field(default=None, description="A valoriser avec le numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur", alias="missionId")
+    operation_id: Optional[StrictStr] = Field(default=None, description="A valoriser avec le numéro d'opération unique du central d’appel (PSAP, …) qui a déclenché le vecteur", alias="operationId")
     org_id: Optional[StrictStr] = Field(default=None, description="A valoriser avec l'identifiant de l'organisation à laquelle appartient la ressource, normé comme suit :  {pays}.{domaine}.{organisation}", alias="orgId")
     center_name: Optional[StrictStr] = Field(default=None, description="A valoriser avec le lieu de garage principal", alias="centerName")
     vehicle_type: StrictStr = Field(description="A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée", alias="vehicleType")
@@ -42,9 +43,10 @@ class Resource(BaseModel):
     center_city: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="A valoriser avec le code INSEE de la commune du centre d'affectation", alias="centerCity")
     team: Optional[Team] = None
     state: State
+    position: Optional[Position] = None
     contact: Optional[Contact] = None
     freetext: Optional[List[StrictStr]] = None
-    __properties: ClassVar[List[str]] = ["datetime", "resourceId", "requestId", "missionId", "orgId", "centerName", "vehicleType", "name", "centerCity", "team", "state", "contact", "freetext"]
+    __properties: ClassVar[List[str]] = ["datetime", "resourceId", "requestId", "operationId", "orgId", "centerName", "vehicleType", "name", "centerCity", "team", "state", "position", "contact", "freetext"]
 
     @field_validator('datetime')
     def datetime_validate_regular_expression(cls, value):
@@ -73,8 +75,8 @@ class Resource(BaseModel):
     @field_validator('vehicle_type')
     def vehicle_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['SMUR', 'SIS', 'AUTRE']):
-            raise ValueError("must be one of enum values ('SMUR', 'SIS', 'AUTRE')")
+        if value not in set(['SMUR', 'SIS']):
+            raise ValueError("must be one of enum values ('SMUR', 'SIS')")
         return value
 
     @field_validator('center_city')
@@ -132,6 +134,9 @@ class Resource(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of state
         if self.state:
             _dict['state'] = self.state.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of position
+        if self.position:
+            _dict['position'] = self.position.to_dict()
         # override the default output from pydantic by calling `to_dict()` of contact
         if self.contact:
             _dict['contact'] = self.contact.to_dict()
@@ -150,7 +155,7 @@ class Resource(BaseModel):
             "datetime": obj.get("datetime"),
             "resourceId": obj.get("resourceId"),
             "requestId": obj.get("requestId"),
-            "missionId": obj.get("missionId"),
+            "operationId": obj.get("operationId"),
             "orgId": obj.get("orgId"),
             "centerName": obj.get("centerName"),
             "vehicleType": obj.get("vehicleType"),
@@ -158,6 +163,7 @@ class Resource(BaseModel):
             "centerCity": obj.get("centerCity"),
             "team": Team.from_dict(obj["team"]) if obj.get("team") is not None else None,
             "state": State.from_dict(obj["state"]) if obj.get("state") is not None else None,
+            "position": Position.from_dict(obj["position"]) if obj.get("position") is not None else None,
             "contact": Contact.from_dict(obj["contact"]) if obj.get("contact") is not None else None,
             "freetext": obj.get("freetext")
         })
