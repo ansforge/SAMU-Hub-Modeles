@@ -84,7 +84,7 @@ jobs:
             rmdir "$dir/lib/hubsanteModel/models" && rmdir "$dir/lib/hubsanteModel" && rmdir "$dir/lib" && rmdir "$dir"
           done;
 
-          OUTPUT_FILE="gem/lib/hubsanteModel/hubsante_model.rb"
+          OUTPUT_FILE="hubsante_model.rb"
           
           echo "# Auto-generated file - DO NOT EDIT" > "$OUTPUT_FILE"
           echo "" >> "$OUTPUT_FILE"
@@ -98,6 +98,7 @@ jobs:
               done
           
           # Add key gem files
+          cp $OUTPUT_FILE gem/lib/hubsanteModel/
           cp hubsante_model.gemspec gem/
 
       - name: C# - Generate classes
