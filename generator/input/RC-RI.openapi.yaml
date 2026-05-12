@@ -99,6 +99,16 @@ components:
           - 'fr.health.samu770.request.1249875
 
             fr.health.samu690.request.DRFR15690242370035.3'
+        missionId:
+          type: string
+          title: ID Mission local
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/resource/0/missionId
+          description: "A valoriser avec le num\xE9ro de mission unique du central\
+            \ d\u2019appel (PSAP, \u2026) qui a d\xE9clench\xE9 le vecteur"
+          examples:
+          - DRFR15DDXAAJJJ0000.M001
         operationId:
           type: string
           title: "ID Op\xE9ration"

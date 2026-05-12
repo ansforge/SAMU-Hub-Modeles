@@ -35,6 +35,7 @@ class Resource(BaseModel):
     datetime: str = Field(description="A valoriser avec la date et heure d'engagement de la ressource/du vecteur")
     resource_id: Annotated[str, Field(strict=True)] = Field(description="A valoriser avec l'identifiant partagé unique de la ressource engagée, normé comme suit : {orgID}.resource.{ID unique de la ressource partagée} OU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire : {orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}", alias="resourceId")
     request_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="A valoriser avec l'identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), normé comme suit : {orgID}.request.{ID unique de la demande dans le système émetteur} OU - si un ID unique de la demande n'était pas disponible :  {OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}", alias="requestId")
+    mission_id: Optional[StrictStr] = Field(default=None, description="A valoriser avec le numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur", alias="missionId")
     operation_id: Optional[StrictStr] = Field(default=None, description="A valoriser avec le numéro d'opération unique du central d’appel (PSAP, …) qui a déclenché le vecteur", alias="operationId")
     org_id: Optional[StrictStr] = Field(default=None, description="A valoriser avec l'identifiant de l'organisation à laquelle appartient la ressource, normé comme suit :  {pays}.{domaine}.{organisation}", alias="orgId")
     center_name: Optional[StrictStr] = Field(default=None, description="A valoriser avec le lieu de garage principal", alias="centerName")
@@ -46,7 +47,7 @@ class Resource(BaseModel):
     position: Optional[Position] = None
     contact: Optional[Contact] = None
     freetext: Optional[List[StrictStr]] = None
-    __properties: ClassVar[List[str]] = ["datetime", "resourceId", "requestId", "operationId", "orgId", "centerName", "vehicleType", "name", "centerCity", "team", "state", "position", "contact", "freetext"]
+    __properties: ClassVar[List[str]] = ["datetime", "resourceId", "requestId", "missionId", "operationId", "orgId", "centerName", "vehicleType", "name", "centerCity", "team", "state", "position", "contact", "freetext"]
 
     @field_validator('datetime')
     def datetime_validate_regular_expression(cls, value):
@@ -155,6 +156,7 @@ class Resource(BaseModel):
             "datetime": obj.get("datetime"),
             "resourceId": obj.get("resourceId"),
             "requestId": obj.get("requestId"),
+            "missionId": obj.get("missionId"),
             "operationId": obj.get("operationId"),
             "orgId": obj.get("orgId"),
             "centerName": obj.get("centerName"),

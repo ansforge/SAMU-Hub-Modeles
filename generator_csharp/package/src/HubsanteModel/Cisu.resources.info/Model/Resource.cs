@@ -72,6 +72,7 @@ namespace HubsanteModel/Cisu.resources.info.Model
         /// <param name="datetime">A valoriser avec la date et heure d&#39;engagement de la ressource/du vecteur (required).</param>
         /// <param name="resourceId">A valoriser avec l&#39;identifiant partagé unique de la ressource engagée, normé comme suit : {orgID}.resource.{ID unique de la ressource partagée} OU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l&#39;organisation propriétaire : {orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource} (required).</param>
         /// <param name="requestId">A valoriser avec l&#39;identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), normé comme suit : {orgID}.request.{ID unique de la demande dans le système émetteur} OU - si un ID unique de la demande n&#39;était pas disponible :  {OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}.</param>
+        /// <param name="missionId">A valoriser avec le numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur.</param>
         /// <param name="operationId">A valoriser avec le numéro d&#39;opération unique du central d’appel (PSAP, …) qui a déclenché le vecteur.</param>
         /// <param name="orgId">A valoriser avec l&#39;identifiant de l&#39;organisation à laquelle appartient la ressource, normé comme suit :  {pays}.{domaine}.{organisation}.</param>
         /// <param name="centerName">A valoriser avec le lieu de garage principal.</param>
@@ -83,7 +84,7 @@ namespace HubsanteModel/Cisu.resources.info.Model
         /// <param name="position">position.</param>
         /// <param name="contact">contact.</param>
         /// <param name="freetext">freetext.</param>
-        public Resource(DateTime datetime = default(DateTime), string resourceId = default(string), string requestId = default(string), string operationId = default(string), string orgId = default(string), string centerName = default(string), VehicleTypeEnum vehicleType = default(VehicleTypeEnum), string name = default(string), string centerCity = default(string), Team team = default(Team), State state = default(State), Position position = default(Position), Contact contact = default(Contact), List<string> freetext = default(List<string>))
+        public Resource(DateTime datetime = default(DateTime), string resourceId = default(string), string requestId = default(string), string missionId = default(string), string operationId = default(string), string orgId = default(string), string centerName = default(string), VehicleTypeEnum vehicleType = default(VehicleTypeEnum), string name = default(string), string centerCity = default(string), Team team = default(Team), State state = default(State), Position position = default(Position), Contact contact = default(Contact), List<string> freetext = default(List<string>))
         {
             this.Datetime = datetime;
             // to ensure "resourceId" is required (not null)
@@ -100,6 +101,7 @@ namespace HubsanteModel/Cisu.resources.info.Model
             }
             this.State = state;
             this.RequestId = requestId;
+            this.MissionId = missionId;
             this.OperationId = operationId;
             this.OrgId = orgId;
             this.CenterName = centerName;
@@ -137,6 +139,16 @@ namespace HubsanteModel/Cisu.resources.info.Model
         */
         [DataMember(Name = "requestId", EmitDefaultValue = false)]
         public string RequestId { get; set; }
+
+        /// <summary>
+        /// A valoriser avec le numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur
+        /// </summary>
+        /// <value>A valoriser avec le numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur</value>
+        /*
+        <example>example.json#/resource/0/missionId</example>
+        */
+        [DataMember(Name = "missionId", EmitDefaultValue = false)]
+        public string MissionId { get; set; }
 
         /// <summary>
         /// A valoriser avec le numéro d&#39;opération unique du central d’appel (PSAP, …) qui a déclenché le vecteur
@@ -229,6 +241,7 @@ namespace HubsanteModel/Cisu.resources.info.Model
             sb.Append("  Datetime: ").Append(Datetime).Append("\n");
             sb.Append("  ResourceId: ").Append(ResourceId).Append("\n");
             sb.Append("  RequestId: ").Append(RequestId).Append("\n");
+            sb.Append("  MissionId: ").Append(MissionId).Append("\n");
             sb.Append("  OperationId: ").Append(OperationId).Append("\n");
             sb.Append("  OrgId: ").Append(OrgId).Append("\n");
             sb.Append("  CenterName: ").Append(CenterName).Append("\n");

@@ -50,12 +50,13 @@ import java.util.Objects;
  */
 @JsonPropertyOrder(
     {Resource.JSON_PROPERTY_DATETIME, Resource.JSON_PROPERTY_RESOURCE_ID,
-     Resource.JSON_PROPERTY_REQUEST_ID, Resource.JSON_PROPERTY_OPERATION_ID,
-     Resource.JSON_PROPERTY_ORG_ID, Resource.JSON_PROPERTY_CENTER_NAME,
-     Resource.JSON_PROPERTY_VEHICLE_TYPE, Resource.JSON_PROPERTY_NAME,
-     Resource.JSON_PROPERTY_CENTER_CITY, Resource.JSON_PROPERTY_TEAM,
-     Resource.JSON_PROPERTY_STATE, Resource.JSON_PROPERTY_POSITION,
-     Resource.JSON_PROPERTY_CONTACT, Resource.JSON_PROPERTY_FREETEXT})
+     Resource.JSON_PROPERTY_REQUEST_ID, Resource.JSON_PROPERTY_MISSION_ID,
+     Resource.JSON_PROPERTY_OPERATION_ID, Resource.JSON_PROPERTY_ORG_ID,
+     Resource.JSON_PROPERTY_CENTER_NAME, Resource.JSON_PROPERTY_VEHICLE_TYPE,
+     Resource.JSON_PROPERTY_NAME, Resource.JSON_PROPERTY_CENTER_CITY,
+     Resource.JSON_PROPERTY_TEAM, Resource.JSON_PROPERTY_STATE,
+     Resource.JSON_PROPERTY_POSITION, Resource.JSON_PROPERTY_CONTACT,
+     Resource.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("resource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -68,6 +69,9 @@ public class Resource {
 
   public static final String JSON_PROPERTY_REQUEST_ID = "requestId";
   private String requestId;
+
+  public static final String JSON_PROPERTY_MISSION_ID = "missionId";
+  private String missionId;
 
   public static final String JSON_PROPERTY_OPERATION_ID = "operationId";
   private String operationId;
@@ -213,6 +217,30 @@ public class Resource {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRequestId(String requestId) {
     this.requestId = requestId;
+  }
+
+  public Resource missionId(String missionId) {
+
+    this.missionId = missionId;
+    return this;
+  }
+
+  /**
+   * A valoriser avec le numéro de mission unique du central d’appel (PSAP, …)
+   *qui a déclenché le vecteur
+   * @return missionId
+   **/
+  @JsonProperty(JSON_PROPERTY_MISSION_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getMissionId() {
+    return missionId;
+  }
+
+  @JsonProperty(JSON_PROPERTY_MISSION_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMissionId(String missionId) {
+    this.missionId = missionId;
   }
 
   public Resource operationId(String operationId) {
@@ -499,6 +527,7 @@ public class Resource {
     return Objects.equals(this.datetime, resource.datetime) &&
         Objects.equals(this.resourceId, resource.resourceId) &&
         Objects.equals(this.requestId, resource.requestId) &&
+        Objects.equals(this.missionId, resource.missionId) &&
         Objects.equals(this.operationId, resource.operationId) &&
         Objects.equals(this.orgId, resource.orgId) &&
         Objects.equals(this.centerName, resource.centerName) &&
@@ -514,9 +543,9 @@ public class Resource {
 
   @Override
   public int hashCode() {
-    return Objects.hash(datetime, resourceId, requestId, operationId, orgId,
-                        centerName, vehicleType, name, centerCity, team, state,
-                        position, contact, freetext);
+    return Objects.hash(datetime, resourceId, requestId, missionId, operationId,
+                        orgId, centerName, vehicleType, name, centerCity, team,
+                        state, position, contact, freetext);
   }
 
   @Override
@@ -529,6 +558,9 @@ public class Resource {
         .append("\n");
     sb.append("    requestId: ")
         .append(toIndentedString(requestId))
+        .append("\n");
+    sb.append("    missionId: ")
+        .append(toIndentedString(missionId))
         .append("\n");
     sb.append("    operationId: ")
         .append(toIndentedString(operationId))
