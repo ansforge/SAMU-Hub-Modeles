@@ -24,6 +24,9 @@ module Cisuresourcesinfo
     # A valoriser avec l'identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), normé comme suit : {orgID}.request.{ID unique de la demande dans le système émetteur} OU - si un ID unique de la demande n'était pas disponible :  {OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}
     attr_accessor :request_id
 
+    # A valoriser avec le numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur
+    attr_accessor :mission_id
+
     # A valoriser avec le numéro d'opération unique du central d’appel (PSAP, …) qui a déclenché le vecteur
     attr_accessor :operation_id
 
@@ -80,6 +83,7 @@ module Cisuresourcesinfo
         :'datetime' => :'datetime',
         :'resource_id' => :'resourceId',
         :'request_id' => :'requestId',
+        :'mission_id' => :'missionId',
         :'operation_id' => :'operationId',
         :'org_id' => :'orgId',
         :'center_name' => :'centerName',
@@ -105,6 +109,7 @@ module Cisuresourcesinfo
         :'datetime' => :'Time',
         :'resource_id' => :'String',
         :'request_id' => :'String',
+        :'mission_id' => :'String',
         :'operation_id' => :'String',
         :'org_id' => :'String',
         :'center_name' => :'String',
@@ -154,6 +159,10 @@ module Cisuresourcesinfo
 
       if attributes.key?(:'request_id')
         self.request_id = attributes[:'request_id']
+      end
+
+      if attributes.key?(:'mission_id')
+        self.mission_id = attributes[:'mission_id']
       end
 
       if attributes.key?(:'operation_id')
@@ -346,6 +355,7 @@ module Cisuresourcesinfo
           datetime == o.datetime &&
           resource_id == o.resource_id &&
           request_id == o.request_id &&
+          mission_id == o.mission_id &&
           operation_id == o.operation_id &&
           org_id == o.org_id &&
           center_name == o.center_name &&
@@ -368,7 +378,7 @@ module Cisuresourcesinfo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [datetime, resource_id, request_id, operation_id, org_id, center_name, vehicle_type, name, center_city, team, state, position, contact, freetext].hash
+      [datetime, resource_id, request_id, mission_id, operation_id, org_id, center_name, vehicle_type, name, center_city, team, state, position, contact, freetext].hash
     end
 
     # Builds the object from hash
