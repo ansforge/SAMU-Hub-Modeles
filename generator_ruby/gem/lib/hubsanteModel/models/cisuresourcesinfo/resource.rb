@@ -24,8 +24,8 @@ module Cisuresourcesinfo
     # A valoriser avec l'identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), normé comme suit : {orgID}.request.{ID unique de la demande dans le système émetteur} OU - si un ID unique de la demande n'était pas disponible :  {OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}
     attr_accessor :request_id
 
-    # A valoriser avec le numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur
-    attr_accessor :mission_id
+    # A valoriser avec le numéro d'opération unique du central d’appel (PSAP, …) qui a déclenché le vecteur
+    attr_accessor :operation_id
 
     # A valoriser avec l'identifiant de l'organisation à laquelle appartient la ressource, normé comme suit :  {pays}.{domaine}.{organisation}
     attr_accessor :org_id
@@ -45,6 +45,8 @@ module Cisuresourcesinfo
     attr_accessor :team
 
     attr_accessor :state
+
+    attr_accessor :position
 
     attr_accessor :contact
 
@@ -78,7 +80,7 @@ module Cisuresourcesinfo
         :'datetime' => :'datetime',
         :'resource_id' => :'resourceId',
         :'request_id' => :'requestId',
-        :'mission_id' => :'missionId',
+        :'operation_id' => :'operationId',
         :'org_id' => :'orgId',
         :'center_name' => :'centerName',
         :'vehicle_type' => :'vehicleType',
@@ -86,6 +88,7 @@ module Cisuresourcesinfo
         :'center_city' => :'centerCity',
         :'team' => :'team',
         :'state' => :'state',
+        :'position' => :'position',
         :'contact' => :'contact',
         :'freetext' => :'freetext'
       }
@@ -102,7 +105,7 @@ module Cisuresourcesinfo
         :'datetime' => :'Time',
         :'resource_id' => :'String',
         :'request_id' => :'String',
-        :'mission_id' => :'String',
+        :'operation_id' => :'String',
         :'org_id' => :'String',
         :'center_name' => :'String',
         :'vehicle_type' => :'String',
@@ -110,6 +113,7 @@ module Cisuresourcesinfo
         :'center_city' => :'String',
         :'team' => :'Team',
         :'state' => :'State',
+        :'position' => :'Position',
         :'contact' => :'Contact',
         :'freetext' => :'Array<String>'
       }
@@ -152,8 +156,8 @@ module Cisuresourcesinfo
         self.request_id = attributes[:'request_id']
       end
 
-      if attributes.key?(:'mission_id')
-        self.mission_id = attributes[:'mission_id']
+      if attributes.key?(:'operation_id')
+        self.operation_id = attributes[:'operation_id']
       end
 
       if attributes.key?(:'org_id')
@@ -186,6 +190,10 @@ module Cisuresourcesinfo
         self.state = attributes[:'state']
       else
         self.state = nil
+      end
+
+      if attributes.key?(:'position')
+        self.position = attributes[:'position']
       end
 
       if attributes.key?(:'contact')
@@ -253,7 +261,7 @@ module Cisuresourcesinfo
       return false if @resource_id !~ Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}resource(\.[a-zA-Z0-9_-]+){1,2}$/)
       return false if !@request_id.nil? && @request_id !~ Regexp.new(/^([a-zA-Z0-9_-]+\.){3,8}request(\.[a-zA-Z0-9_-]+){1,2}$/)
       return false if @vehicle_type.nil?
-      vehicle_type_validator = EnumAttributeValidator.new('String', ["SMUR", "SIS", "AUTRE"])
+      vehicle_type_validator = EnumAttributeValidator.new('String', ["SMUR", "SIS"])
       return false unless vehicle_type_validator.valid?(@vehicle_type)
       return false if !@center_city.nil? && @center_city !~ Regexp.new(/^[0-9]{5}$/)
       return false if @state.nil?
@@ -308,7 +316,7 @@ module Cisuresourcesinfo
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] vehicle_type Object to be assigned
     def vehicle_type=(vehicle_type)
-      validator = EnumAttributeValidator.new('String', ["SMUR", "SIS", "AUTRE"])
+      validator = EnumAttributeValidator.new('String', ["SMUR", "SIS"])
       unless validator.valid?(vehicle_type)
         fail ArgumentError, "invalid value for \"vehicle_type\", must be one of #{validator.allowable_values}."
       end
@@ -338,7 +346,7 @@ module Cisuresourcesinfo
           datetime == o.datetime &&
           resource_id == o.resource_id &&
           request_id == o.request_id &&
-          mission_id == o.mission_id &&
+          operation_id == o.operation_id &&
           org_id == o.org_id &&
           center_name == o.center_name &&
           vehicle_type == o.vehicle_type &&
@@ -346,6 +354,7 @@ module Cisuresourcesinfo
           center_city == o.center_city &&
           team == o.team &&
           state == o.state &&
+          position == o.position &&
           contact == o.contact &&
           freetext == o.freetext
     end
@@ -359,7 +368,7 @@ module Cisuresourcesinfo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [datetime, resource_id, request_id, mission_id, org_id, center_name, vehicle_type, name, center_city, team, state, contact, freetext].hash
+      [datetime, resource_id, request_id, operation_id, org_id, center_name, vehicle_type, name, center_city, team, state, position, contact, freetext].hash
     end
 
     # Builds the object from hash
