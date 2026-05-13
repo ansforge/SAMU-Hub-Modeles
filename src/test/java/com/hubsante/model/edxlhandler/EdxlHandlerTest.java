@@ -192,7 +192,7 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
 
     @Test
     @DisplayName("all json example files deserialize to same object xml example files deserialize to")
-    public void jsonAndXmlExampleFilesDeserializeToSameObject() {
+    void jsonAndXmlExampleFilesDeserializeToSameObject() {
         String rootFolder = TestMessagesHelper.class.getClassLoader().getResource("sample/examples").getFile();
 
         File[] subFolders = new File(rootFolder).listFiles(File::isDirectory);
@@ -239,7 +239,7 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
 
     @Test
     @DisplayName("serialized Xml EdxlMessages should contain xlink type")
-    public void serializedXmlEdxlMessagesShouldContainXlinkType() throws IOException {
+    void serializedXmlEdxlMessagesShouldContainXlinkType() throws IOException {
         File jsonMessage = new File(TestMessagesHelper.class.getClassLoader().getResource("sample/valid/RC-EDA/RC-EDA.json").getFile());
         String json = new String(Files.readAllBytes(jsonMessage.toPath()), StandardCharsets.UTF_8);
         EdxlMessage message = converter.deserializeJsonEDXL(json);

@@ -37,11 +37,11 @@ import static com.hubsante.model.config.Constants.FULL_XSD;
 import static org.junit.jupiter.api.Assertions.fail;
 
 @Slf4j
-public class UseCaseValidatorTest extends AbstractValidatorTest {
+class UseCaseValidatorTest extends AbstractValidatorTest {
 
     @Test
     @DisplayName("all examples files passing")
-    public void examplesBundlePassingTest() {
+    void examplesBundlePassingTest() {
         String rootFolder = TestMessagesHelper.class.getClassLoader().getResource("sample/examples").getFile();
         File[] subFolders = new File(rootFolder).listFiles(File::isDirectory);
         assert subFolders != null;
