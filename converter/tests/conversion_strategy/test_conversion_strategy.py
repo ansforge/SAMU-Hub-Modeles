@@ -4,9 +4,11 @@ from converter.conversion_strategy.conversion_strategy import conversion_strateg
 
 
 class TestConversionStrategy(unittest.TestCase):
-    @patch("converter.conversion_strategy.conversion_strategy.cisu_conversion_strategy")
+    @patch(
+        "converter.conversion_strategy.conversion_strategy.cisu_transcoding_strategy"
+    )
     def test_conversion_strategy_with_cisu_conversion(
-        self, mock_cisu_conversion_strategy
+        self, mock_cisu_transcoding_strategy
     ):
         edxl_json = {}
         source_version = "source_version"
@@ -17,7 +19,7 @@ class TestConversionStrategy(unittest.TestCase):
             edxl_json, source_version, target_version, is_cisu_conversion
         )
 
-        mock_cisu_conversion_strategy.assert_called_once_with(
+        mock_cisu_transcoding_strategy.assert_called_once_with(
             edxl_json, source_version, target_version
         )
 
