@@ -89,7 +89,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
         "converter.cisu_transcoders.create_case.create_case_cisu_converter.CreateCaseCISUConverter.from_cisu_to_rs"
     )
     @patch(
-        "converter.conversion_strategy.cisu_transcoding_strategy.health_conversion_strategy"
+        "converter.conversion_strategy.cisu_transcoding_strategy.health_version_conversion_strategy"
     )
     def test_cisu_to_rs_conversion_strategy_should_convert_create_case_message(
         self, mock_health_convert_strategy, mock_convert
@@ -102,7 +102,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
         "converter.cisu_transcoders.resources_info.resources_info_cisu_converter.ResourcesInfoCISUConverter.from_cisu_to_rs"
     )
     @patch(
-        "converter.conversion_strategy.cisu_transcoding_strategy.health_conversion_strategy"
+        "converter.conversion_strategy.cisu_transcoding_strategy.health_version_conversion_strategy"
     )
     def test_cisu_to_rs_conversion_strategy_should_convert_resources_info_message(
         self, mock_health_convert_strategy, mock_convert
@@ -115,7 +115,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
         "converter.cisu_transcoders.reference.reference_converter.ReferenceConverter.from_cisu_to_rs"
     )
     @patch(
-        "converter.conversion_strategy.cisu_transcoding_strategy.health_conversion_strategy"
+        "converter.conversion_strategy.cisu_transcoding_strategy.health_version_conversion_strategy"
     )
     def test_cisu_to_rs_conversion_strategy_should_convert_reference_message(
         self, mock_health_convert_strategy, mock_convert
@@ -129,7 +129,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
         return_value=None,
     )
     @patch(
-        "converter.conversion_strategy.cisu_transcoding_strategy.health_conversion_strategy",
+        "converter.conversion_strategy.cisu_transcoding_strategy.health_version_conversion_strategy",
         side_effect=lambda msg, *_: msg,
     )
     def test_cisu_to_rs_resources_info_returns_list(
@@ -148,7 +148,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
         )
 
         assert isinstance(result, list)
-        # health_conversion_strategy must be called once per produced message
+        # health_version_conversion_strategy must be called once per produced message
         assert mock_health_convert_strategy.call_count == len(result)
 
     def test_rs_to_cisu_transcoding_strategy_should_raise_error_with_invalid_target_version(
