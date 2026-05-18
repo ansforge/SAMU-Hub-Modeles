@@ -1,16 +1,20 @@
 import unittest
 from unittest.mock import patch
 
-from converter.versions.create_case_health.v1_v2.utils import validate_diagnosis_code
+from converter.health_version_converters.create_case_health.v1_v2.utils import (
+    validate_diagnosis_code,
+)
 
-from converter.versions.create_case_health.v1_v2.utils import (
+from converter.health_version_converters.create_case_health.v1_v2.utils import (
     update_language,
     get_field_value,
     set_value,
 )
-from converter.versions.create_case_health.constants import Constants
+from converter.health_version_converters.create_case_health.constants import Constants
 
-from converter.versions.create_case_health.v1_v2.utils import add_to_initial_alert_notes
+from converter.health_version_converters.create_case_health.v1_v2.utils import (
+    add_to_initial_alert_notes,
+)
 
 
 class TestValidateDiagnosisCode(unittest.TestCase):
