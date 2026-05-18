@@ -1,4 +1,6 @@
-from converter.versions.identical_message_converter import IdenticalMessageConverter
+from converter.health_version_converters.identical_message_converter import (
+    IdenticalMessageConverter,
+)
 from tests.constants import TestConstants
 from tests.test_helpers import TestHelper, get_file_endpoint
 
