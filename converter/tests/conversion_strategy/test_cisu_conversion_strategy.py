@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 
-from converter.cisu.constants import CISUConstants
+from converter.cisu_transcoders.constants import CISUConstants
 from converter.conversion_strategy.cisu_conversion_strategy import (
     cisu_conversion_strategy,
     compute_message_direction,
@@ -48,7 +48,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
         cisu_conversion_strategy(edxl_json, source_version, target_version)
 
     @patch(
-        "converter.cisu.create_case.create_case_cisu_converter.CreateCaseCISUConverter.from_rs_to_cisu"
+        "converter.cisu_transcoders.create_case.create_case_cisu_converter.CreateCaseCISUConverter.from_rs_to_cisu"
     )
     def test_rs_to_cisu_conversion_strategy_should_convert_create_case_message(
         self, mock_convert
@@ -57,7 +57,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
         mock_convert.assert_called_once()
 
     @patch(
-        "converter.cisu.resources_info.resources_info_cisu_converter.ResourcesInfoCISUConverter.from_rs_to_cisu"
+        "converter.cisu_transcoders.resources_info.resources_info_cisu_converter.ResourcesInfoCISUConverter.from_rs_to_cisu"
     )
     def test_rs_to_cisu_conversion_strategy_should_convert_resources_info_message(
         self, mock_convert
@@ -66,7 +66,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
         mock_convert.assert_called_once()
 
     @patch(
-        "converter.cisu.reference.reference_converter.ReferenceConverter.from_rs_to_cisu"
+        "converter.cisu_transcoders.reference.reference_converter.ReferenceConverter.from_rs_to_cisu"
     )
     def test_rs_to_cisu_conversion_strategy_should_convert_reference_message(
         self, mock_convert
@@ -86,7 +86,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
         cisu_conversion_strategy(edxl_json, source_version, target_version)
 
     @patch(
-        "converter.cisu.create_case.create_case_cisu_converter.CreateCaseCISUConverter.from_cisu_to_rs"
+        "converter.cisu_transcoders.create_case.create_case_cisu_converter.CreateCaseCISUConverter.from_cisu_to_rs"
     )
     @patch(
         "converter.conversion_strategy.cisu_conversion_strategy.health_conversion_strategy"
@@ -99,7 +99,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
         mock_health_convert_strategy.assert_called_once()
 
     @patch(
-        "converter.cisu.resources_info.resources_info_cisu_converter.ResourcesInfoCISUConverter.from_cisu_to_rs"
+        "converter.cisu_transcoders.resources_info.resources_info_cisu_converter.ResourcesInfoCISUConverter.from_cisu_to_rs"
     )
     @patch(
         "converter.conversion_strategy.cisu_conversion_strategy.health_conversion_strategy"
@@ -112,7 +112,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
         mock_health_convert_strategy.assert_called_once()
 
     @patch(
-        "converter.cisu.reference.reference_converter.ReferenceConverter.from_cisu_to_rs"
+        "converter.cisu_transcoders.reference.reference_converter.ReferenceConverter.from_cisu_to_rs"
     )
     @patch(
         "converter.conversion_strategy.cisu_conversion_strategy.health_conversion_strategy"
@@ -125,7 +125,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
         mock_health_convert_strategy.assert_called_once()
 
     @patch(
-        "converter.cisu.resources_info.resources_info_cisu_converter.get_last_rc_ri_by_case_id",
+        "converter.cisu_transcoders.resources_info.resources_info_cisu_converter.get_last_rc_ri_by_case_id",
         return_value=None,
     )
     @patch(
