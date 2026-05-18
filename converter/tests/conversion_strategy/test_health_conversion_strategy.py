@@ -47,7 +47,7 @@ class TestConversionStrategy(unittest.TestCase):
         return source_version, target_version, edxl_json
 
     @patch(
-        "converter.versions.create_case_health.create_case_health_converter.CreateHealthCaseConverter.convert"
+        "converter.health_version_converters.create_case_health.create_case_health_converter.CreateHealthCaseConverter.convert"
     )
     def test_health_conversion_strategy_should_convert_create_case_health_message(
         self, mock_convert
@@ -56,7 +56,7 @@ class TestConversionStrategy(unittest.TestCase):
         mock_convert.assert_called_once_with(*args)
 
     @patch(
-        "converter.versions.create_case_health.create_case_health_update_converter.CreateHealthUpdateCaseConverter.convert"
+        "converter.health_version_converters.create_case_health.create_case_health_update_converter.CreateHealthUpdateCaseConverter.convert"
     )
     def test_health_conversion_strategy_should_convert_create_case_health_update_message(
         self, mock_convert
@@ -65,7 +65,7 @@ class TestConversionStrategy(unittest.TestCase):
         mock_convert.assert_called_once_with(*args)
 
     @patch(
-        "converter.versions.reference.reference_converter.ReferenceConverter.convert"
+        "converter.health_version_converters.reference.reference_converter.ReferenceConverter.convert"
     )
     def test_health_conversion_strategy_should_convert_reference_message(
         self, mock_convert
@@ -73,7 +73,7 @@ class TestConversionStrategy(unittest.TestCase):
         args = self.run_health_conversion_strategy(TestConstants.RC_REF_TAG)
         mock_convert.assert_called_once_with(*args)
 
-    @patch("converter.versions.error_converter.ErrorConverter.convert")
+    @patch("converter.health_version_converters.error_converter.ErrorConverter.convert")
     def test_health_conversion_strategy_should_convert_error_message(
         self, mock_convert
     ):
@@ -81,7 +81,7 @@ class TestConversionStrategy(unittest.TestCase):
         mock_convert.assert_called_once_with(*args)
 
     @patch(
-        "converter.versions.resources_status.resources_status_converter.ResourcesStatusConverter.convert"
+        "converter.health_version_converters.resources_status.resources_status_converter.ResourcesStatusConverter.convert"
     )
     def test_health_conversion_strategy_should_convert_resources_status_message(
         self, mock_convert
@@ -90,7 +90,7 @@ class TestConversionStrategy(unittest.TestCase):
         mock_convert.assert_called_once_with(*args)
 
     @patch(
-        "converter.versions.resources_info.resources_info_converter.ResourcesInfoConverter.convert"
+        "converter.health_version_converters.resources_info.resources_info_converter.ResourcesInfoConverter.convert"
     )
     def test_health_conversion_strategy_should_convert_resources_info_message(
         self, mock_convert
@@ -99,7 +99,7 @@ class TestConversionStrategy(unittest.TestCase):
         mock_convert.assert_called_once_with(*args)
 
     @patch(
-        "converter.versions.resources_response.resources_response_converter.ResourcesResponseConverter.convert"
+        "converter.health_version_converters.resources_response.resources_response_converter.ResourcesResponseConverter.convert"
     )
     def test_health_conversion_strategy_should_convert_resources_response_message(
         self, mock_convert
@@ -108,7 +108,7 @@ class TestConversionStrategy(unittest.TestCase):
         mock_convert.assert_called_once_with(*args)
 
     @patch(
-        "converter.versions.resources_request.resources_request_converter.ResourcesRequestConverter.convert"
+        "converter.health_version_converters.resources_request.resources_request_converter.ResourcesRequestConverter.convert"
     )
     def test_health_conversion_strategy_should_convert_resources_request_message(
         self, mock_convert
@@ -117,7 +117,7 @@ class TestConversionStrategy(unittest.TestCase):
         mock_convert.assert_called_once_with(*args)
 
     @patch(
-        "converter.versions.resources_engagement.resources_engagement_converter.ResourcesEngagementConverter.convert"
+        "converter.health_version_converters.resources_engagement.resources_engagement_converter.ResourcesEngagementConverter.convert"
     )
     def test_health_conversion_strategy_should_convert_resources_engagement_message(
         self, mock_convert
@@ -126,7 +126,7 @@ class TestConversionStrategy(unittest.TestCase):
         mock_convert.assert_called_once_with(*args)
 
     @patch(
-        "converter.versions.geo_positions_update.geo_positions_update_converter.GeoPositionsUpdateConverter.convert"
+        "converter.health_version_converters.geo_positions_update.geo_positions_update_converter.GeoPositionsUpdateConverter.convert"
     )
     def test_health_conversion_strategy_should_convert_geo_positions_update_message(
         self, mock_convert
@@ -135,7 +135,7 @@ class TestConversionStrategy(unittest.TestCase):
         mock_convert.assert_called_once_with(*args)
 
     @patch(
-        "converter.versions.identical_message_converter.IdenticalMessageConverter.convert"
+        "converter.health_version_converters.identical_message_converter.IdenticalMessageConverter.convert"
     )
     def test_health_conversion_strategy_should_convert_geo_resources_requests_message(
         self, mock_convert
@@ -144,7 +144,7 @@ class TestConversionStrategy(unittest.TestCase):
         mock_convert.assert_called_once_with(*args)
 
     @patch(
-        "converter.versions.geo_resources_details.geo_resources_details_converter.GeoResourcesDetailsConverter.convert"
+        "converter.health_version_converters.geo_resources_details.geo_resources_details_converter.GeoResourcesDetailsConverter.convert"
     )
     def test_health_conversion_strategy_should_convert_geo_resources_details_message(
         self, mock_convert

@@ -1,17 +1,17 @@
 import logging
 
-from converter.cisu.create_case.create_case_cisu_converter import (
+from converter.cisu_transcoders.create_case.create_case_cisu_converter import (
     CreateCaseCISUConverter,
 )
-from converter.cisu.reference.reference_converter import ReferenceConverter
-from converter.cisu.resources_info.resources_info_cisu_converter import (
+from converter.cisu_transcoders.reference.reference_converter import ReferenceConverter
+from converter.cisu_transcoders.resources_info.resources_info_cisu_converter import (
     ResourcesInfoCISUConverter,
 )
-from converter.cisu.resources_status.resources_status_converter import (
+from converter.cisu_transcoders.resources_status.resources_status_converter import (
     ResourcesStatusConverter,
 )
 from converter.constants import Constants
-from converter.cisu.constants import CISUConstants
+from converter.cisu_transcoders.constants import CISUConstants
 from converter.conversion_strategy.health_conversion_strategy import (
     health_conversion_strategy,
 )

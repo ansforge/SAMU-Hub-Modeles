@@ -1,31 +1,35 @@
-from converter.versions.create_case_health.create_case_health_update_converter import (
+from converter.health_version_converters.create_case_health.create_case_health_update_converter import (
     CreateHealthUpdateCaseConverter,
 )
-from converter.versions.error_converter import ErrorConverter
-from converter.versions.identical_message_converter import IdenticalMessageConverter
-from converter.versions.geo_resources_details.geo_resources_details_converter import (
+from converter.health_version_converters.error_converter import ErrorConverter
+from converter.health_version_converters.identical_message_converter import (
+    IdenticalMessageConverter,
+)
+from converter.health_version_converters.geo_resources_details.geo_resources_details_converter import (
     GeoResourcesDetailsConverter,
 )
-from converter.versions.reference.reference_converter import ReferenceConverter
-from converter.versions.create_case_health.create_case_health_converter import (
+from converter.health_version_converters.reference.reference_converter import (
+    ReferenceConverter,
+)
+from converter.health_version_converters.create_case_health.create_case_health_converter import (
     CreateHealthCaseConverter,
 )
-from converter.versions.resources_info.resources_info_converter import (
+from converter.health_version_converters.resources_info.resources_info_converter import (
     ResourcesInfoConverter,
 )
-from converter.versions.resources_request.resources_request_converter import (
+from converter.health_version_converters.resources_request.resources_request_converter import (
     ResourcesRequestConverter,
 )
-from converter.versions.resources_response.resources_response_converter import (
+from converter.health_version_converters.resources_response.resources_response_converter import (
     ResourcesResponseConverter,
 )
-from converter.versions.resources_status.resources_status_converter import (
+from converter.health_version_converters.resources_status.resources_status_converter import (
     ResourcesStatusConverter,
 )
-from converter.versions.resources_engagement.resources_engagement_converter import (
+from converter.health_version_converters.resources_engagement.resources_engagement_converter import (
     ResourcesEngagementConverter,
 )
-from converter.versions.geo_positions_update.geo_positions_update_converter import (
+from converter.health_version_converters.geo_positions_update.geo_positions_update_converter import (
     GeoPositionsUpdateConverter,
 )
 import logging

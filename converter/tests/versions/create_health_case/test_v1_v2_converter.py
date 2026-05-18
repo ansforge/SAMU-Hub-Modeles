@@ -4,7 +4,7 @@ from unittest.mock import patch
 import pytest
 
 from converter.utils import get_field_value, extract_message_content
-from converter.versions.create_case_health.create_case_health_converter import (
+from converter.health_version_converters.create_case_health.create_case_health_converter import (
     CreateHealthCaseConverter,
 )
 from tests.constants import TestConstants
@@ -80,7 +80,9 @@ class TestSnapshotV1V2Converter(TestCase):
 
         self.assertMatchSnapshot(json.dumps(output_data, indent=2))
 
-    @patch("converter.versions.create_case_health.v1_v2.utils.datetime")
+    @patch(
+        "converter.health_version_converters.create_case_health.v1_v2.utils.datetime"
+    )
     @patch("converter.utils.random")
     def test_snapshot_V2_to_V1_downgrade(self, mock_choices, mock_datetime):
         mock_choices.choices.side_effect = [

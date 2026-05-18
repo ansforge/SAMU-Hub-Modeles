@@ -1,6 +1,8 @@
 import json
 from snapshottest import TestCase
-from converter.versions.reference.reference_converter import ReferenceConverter
+from converter.health_version_converters.reference.reference_converter import (
+    ReferenceConverter,
+)
 from tests.constants import TestConstants
 from tests.test_helpers import TestHelper
 

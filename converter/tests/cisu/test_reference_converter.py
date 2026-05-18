@@ -1,6 +1,6 @@
 import json
 from snapshottest import TestCase
-from converter.cisu.reference.reference_converter import ReferenceConverter
+from converter.cisu_transcoders.reference.reference_converter import ReferenceConverter
 from tests.constants import TestConstants
 from tests.test_helpers import TestHelper
 
