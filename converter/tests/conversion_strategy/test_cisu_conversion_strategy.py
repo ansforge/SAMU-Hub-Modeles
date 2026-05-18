@@ -43,7 +43,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
             TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH, message_json_path
         )
         source_version = "v1"
-        target_version = "v3"
+        target_version = CISUConstants.MAINTAINED_CISU_VERSION
 
         cisu_transcoding_strategy(edxl_json, source_version, target_version)
 
@@ -80,7 +80,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
         edxl_json = TestHelper.create_edxl_json_from_sample(
             TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH, message_json_path
         )
-        source_version = "v3"
+        source_version = CISUConstants.MAINTAINED_CISU_VERSION
         target_version = "v3"
 
         cisu_transcoding_strategy(edxl_json, source_version, target_version)
@@ -164,7 +164,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
 
         with self.assertRaisesRegex(
             ValueError,
-            "Unknown target version v1. Must be: v3",
+            f"Unknown target version v1. Must be: {CISUConstants.MAINTAINED_CISU_VERSION}",
         ):
             cisu_transcoding_strategy(edxl_json, "v1", invalid_target_version)
 
@@ -181,7 +181,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
 
         with self.assertRaisesRegex(
             ValueError,
-            "Unknown source version v1. Must be: v3",
+            f"Unknown source version v1. Must be: {CISUConstants.MAINTAINED_CISU_VERSION}",
         ):
             cisu_transcoding_strategy(edxl_json, invalid_source_version, "v1")
 
