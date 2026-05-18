@@ -1,4 +1,5 @@
 import pytest
+from converter.cisu_transcoders.constants import CISUConstants
 from converter.converter import app
 from tests.constants import TestConstants
 from tests.test_helpers import TestHelper
@@ -134,7 +135,7 @@ def test_convert_from_cisu(client, rs_target_version):
     response = client.post(
         "/convert",
         json={
-            "sourceVersion": "v3",
+            "sourceVersion": CISUConstants.MAINTAINED_CISU_VERSION,
             "targetVersion": rs_target_version,
             "edxl": edxl_json,
             "cisuConversion": True,
@@ -171,7 +172,7 @@ def test_convert_to_cisu(client, rs_source_version):
         "/convert",
         json={
             "sourceVersion": rs_source_version,
-            "targetVersion": "v3",
+            "targetVersion": CISUConstants.MAINTAINED_CISU_VERSION,
             "edxl": edxl_json,
             "cisuConversion": True,
             "type": "CISUTranscoding",

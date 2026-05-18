@@ -42,7 +42,7 @@ def cisu_transcoding_strategy(edxl_json, source_version, target_version):
             )
 
         rs_json_message = health_version_conversion_strategy(
-            edxl_json, source_version, CISUConstants.MAINTAINED_CISU_VERSION
+            edxl_json, source_version, CISUConstants.MAINTAINED_HEALTH_CISU_VERSION
         )
 
         return selected_strategy.from_rs_to_cisu(rs_json_message)
@@ -60,7 +60,7 @@ def cisu_transcoding_strategy(edxl_json, source_version, target_version):
             rc_json_messages = [rc_json_messages]
         return [
             health_version_conversion_strategy(
-                msg, CISUConstants.MAINTAINED_CISU_VERSION, target_version
+                msg, CISUConstants.MAINTAINED_HEALTH_CISU_VERSION, target_version
             )
             for msg in rc_json_messages
         ]
