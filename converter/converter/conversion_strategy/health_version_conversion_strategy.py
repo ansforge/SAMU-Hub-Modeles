@@ -40,7 +40,9 @@ from converter.utils import (
 )
 
 
-def health_conversion_strategy(edxl_json, source_version: str, target_version: str):
+def health_version_conversion_strategy(
+    edxl_json, source_version: str, target_version: str
+):
     logging.info(
         f"Health Conversion initiated from {source_version} to {target_version}"
     )

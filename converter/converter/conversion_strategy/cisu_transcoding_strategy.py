@@ -12,8 +12,8 @@ from converter.cisu_transcoders.resources_status.resources_status_converter impo
 )
 from converter.constants import Constants
 from converter.cisu_transcoders.constants import CISUConstants
-from converter.conversion_strategy.health_conversion_strategy import (
-    health_conversion_strategy,
+from converter.conversion_strategy.health_version_conversion_strategy import (
+    health_version_conversion_strategy,
 )
 from converter.utils import (
     get_recipient,
@@ -41,7 +41,7 @@ def cisu_transcoding_strategy(edxl_json, source_version, target_version):
                 f"Unknown target version {target_version}. Must be: {CISUConstants.MAINTAINED_CISU_VERSION}"
             )
 
-        rs_json_message = health_conversion_strategy(
+        rs_json_message = health_version_conversion_strategy(
             edxl_json, source_version, CISUConstants.MAINTAINED_CISU_VERSION
         )
 
@@ -59,7 +59,7 @@ def cisu_transcoding_strategy(edxl_json, source_version, target_version):
         if not isinstance(rc_json_messages, list):
             rc_json_messages = [rc_json_messages]
         return [
-            health_conversion_strategy(
+            health_version_conversion_strategy(
                 msg, CISUConstants.MAINTAINED_CISU_VERSION, target_version
             )
             for msg in rc_json_messages
