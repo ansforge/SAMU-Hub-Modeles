@@ -185,6 +185,59 @@ class TestCisuConversionStrategy(unittest.TestCase):
         ):
             cisu_transcoding_strategy(edxl_json, invalid_source_version, "v1")
 
+    @patch(
+        "converter.cisu_transcoders.create_case.create_case_cisu_converter.CreateCaseCISUConverter.from_rs_to_cisu"
+    )
+    @patch(
+        "converter.conversion_strategy.cisu_transcoding_strategy.health_version_conversion_strategy",
+        side_effect=lambda edxl, *_: edxl,
+    )
+    def test_rs_to_cisu_bridge_targets_maintained_health_cisu_version(
+        self, mock_health_convert_strategy, _mock_convert
+    ):
+        """TO_CISU bridge must target MAINTAINED_HEALTH_CISU_VERSION (RS-side), not MAINTAINED_CISU_VERSION (CISU-side)."""
+        message_json_path = TestHelper.get_json_files(TestConstants.RS_EDA_TAG)[0][
+            "path"
+        ]
+        edxl_json = TestHelper.create_edxl_json_from_sample(
+            TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH, message_json_path
+        )
+
+        cisu_transcoding_strategy(
+            edxl_json, "v1", CISUConstants.MAINTAINED_CISU_VERSION
+        )
+
+        mock_health_convert_strategy.assert_called_once_with(
+            edxl_json, "v1", CISUConstants.MAINTAINED_HEALTH_CISU_VERSION
+        )
+
+    @patch(
+        "converter.cisu_transcoders.create_case.create_case_cisu_converter.CreateCaseCISUConverter.from_cisu_to_rs",
+        side_effect=lambda edxl: edxl,
+    )
+    @patch(
+        "converter.conversion_strategy.cisu_transcoding_strategy.health_version_conversion_strategy",
+        side_effect=lambda msg, *_: msg,
+    )
+    def test_cisu_to_rs_bridge_sources_from_maintained_health_cisu_version(
+        self, mock_health_convert_strategy, _mock_convert
+    ):
+        """FROM_CISU bridge must source from MAINTAINED_HEALTH_CISU_VERSION (RS-side), not MAINTAINED_CISU_VERSION (CISU-side)."""
+        message_json_path = TestHelper.get_json_files(TestConstants.RC_EDA_TAG)[0][
+            "path"
+        ]
+        edxl_json = TestHelper.create_edxl_json_from_sample(
+            TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH, message_json_path
+        )
+
+        cisu_transcoding_strategy(
+            edxl_json, CISUConstants.MAINTAINED_CISU_VERSION, "v1"
+        )
+
+        mock_health_convert_strategy.assert_called_once_with(
+            edxl_json, CISUConstants.MAINTAINED_HEALTH_CISU_VERSION, "v1"
+        )
+
 
 class TestComputeMessageDirection(unittest.TestCase):
     def test_compute_message_direction_should_return_to_cisu_when_sender_is_health_and_not_recipient(
