@@ -43,7 +43,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
             TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH, message_json_path
         )
         source_version = "v1"
-        target_version = CISUConstants.MAINTAINED_CISU_VERSION
+        target_version = CISUConstants.CISU_EXPECTED_MODEL_VERSION
 
         cisu_transcoding_strategy(edxl_json, source_version, target_version)
 
@@ -80,7 +80,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
         edxl_json = TestHelper.create_edxl_json_from_sample(
             TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH, message_json_path
         )
-        source_version = CISUConstants.MAINTAINED_CISU_VERSION
+        source_version = CISUConstants.CISU_EXPECTED_MODEL_VERSION
         target_version = "v3"
 
         cisu_transcoding_strategy(edxl_json, source_version, target_version)
@@ -144,7 +144,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
         )
 
         result = cisu_transcoding_strategy(
-            edxl_json, CISUConstants.MAINTAINED_CISU_VERSION, "v3"
+            edxl_json, CISUConstants.CISU_EXPECTED_MODEL_VERSION, "v3"
         )
 
         assert isinstance(result, list)
@@ -164,7 +164,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
 
         with self.assertRaisesRegex(
             ValueError,
-            f"Unknown target version v1. Must be: {CISUConstants.MAINTAINED_CISU_VERSION}",
+            f"Unknown target version v1. Must be: {CISUConstants.CISU_EXPECTED_MODEL_VERSION}",
         ):
             cisu_transcoding_strategy(edxl_json, "v1", invalid_target_version)
 
@@ -181,7 +181,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
 
         with self.assertRaisesRegex(
             ValueError,
-            f"Unknown source version v1. Must be: {CISUConstants.MAINTAINED_CISU_VERSION}",
+            f"Unknown source version v1. Must be: {CISUConstants.CISU_EXPECTED_MODEL_VERSION}",
         ):
             cisu_transcoding_strategy(edxl_json, invalid_source_version, "v1")
 
@@ -195,7 +195,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
     def test_rs_to_cisu_bridge_targets_maintained_health_cisu_version(
         self, mock_health_convert_strategy, _mock_convert
     ):
-        """TO_CISU bridge must target MAINTAINED_HEALTH_CISU_VERSION (RS-side), not MAINTAINED_CISU_VERSION (CISU-side)."""
+        """TO_CISU bridge must target HEALTH_EXPECTED_VERSION_FOR_CISU_CONVERSION (RS-side), not CISU_EXPECTED_MODEL_VERSION (CISU-side)."""
         message_json_path = TestHelper.get_json_files(TestConstants.RS_EDA_TAG)[0][
             "path"
         ]
@@ -204,11 +204,11 @@ class TestCisuConversionStrategy(unittest.TestCase):
         )
 
         cisu_transcoding_strategy(
-            edxl_json, "v1", CISUConstants.MAINTAINED_CISU_VERSION
+            edxl_json, "v1", CISUConstants.CISU_EXPECTED_MODEL_VERSION
         )
 
         mock_health_convert_strategy.assert_called_once_with(
-            edxl_json, "v1", CISUConstants.MAINTAINED_HEALTH_CISU_VERSION
+            edxl_json, "v1", CISUConstants.HEALTH_EXPECTED_VERSION_FOR_CISU_CONVERSION
         )
 
     @patch(
@@ -222,7 +222,7 @@ class TestCisuConversionStrategy(unittest.TestCase):
     def test_cisu_to_rs_bridge_sources_from_maintained_health_cisu_version(
         self, mock_health_convert_strategy, _mock_convert
     ):
-        """FROM_CISU bridge must source from MAINTAINED_HEALTH_CISU_VERSION (RS-side), not MAINTAINED_CISU_VERSION (CISU-side)."""
+        """FROM_CISU bridge must source from HEALTH_EXPECTED_VERSION_FOR_CISU_CONVERSION (RS-side), not CISU_EXPECTED_MODEL_VERSION (CISU-side)."""
         message_json_path = TestHelper.get_json_files(TestConstants.RC_EDA_TAG)[0][
             "path"
         ]
@@ -231,11 +231,11 @@ class TestCisuConversionStrategy(unittest.TestCase):
         )
 
         cisu_transcoding_strategy(
-            edxl_json, CISUConstants.MAINTAINED_CISU_VERSION, "v1"
+            edxl_json, CISUConstants.CISU_EXPECTED_MODEL_VERSION, "v1"
         )
 
         mock_health_convert_strategy.assert_called_once_with(
-            edxl_json, CISUConstants.MAINTAINED_HEALTH_CISU_VERSION, "v1"
+            edxl_json, CISUConstants.HEALTH_EXPECTED_VERSION_FOR_CISU_CONVERSION, "v1"
         )
 
 
