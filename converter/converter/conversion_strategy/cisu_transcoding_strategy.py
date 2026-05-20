@@ -36,13 +36,15 @@ def cisu_transcoding_strategy(edxl_json, source_version, target_version):
         logger.info(
             "Conversion RS -> CISU",
         )
-        if target_version != CISUConstants.MAINTAINED_CISU_VERSION:
+        if target_version != CISUConstants.CISU_EXPECTED_MODEL_VERSION:
             raise ValueError(
-                f"Unknown target version {target_version}. Must be: {CISUConstants.MAINTAINED_CISU_VERSION}"
+                f"Unknown target version {target_version}. Must be: {CISUConstants.CISU_EXPECTED_MODEL_VERSION}"
             )
 
         rs_json_message = health_version_conversion_strategy(
-            edxl_json, source_version, CISUConstants.MAINTAINED_HEALTH_CISU_VERSION
+            edxl_json,
+            source_version,
+            CISUConstants.HEALTH_EXPECTED_VERSION_FOR_CISU_CONVERSION,
         )
 
         return selected_strategy.from_rs_to_cisu(rs_json_message)
@@ -50,9 +52,9 @@ def cisu_transcoding_strategy(edxl_json, source_version, target_version):
         logger.info(
             "Conversion CISU -> RS",
         )
-        if source_version != CISUConstants.MAINTAINED_CISU_VERSION:
+        if source_version != CISUConstants.CISU_EXPECTED_MODEL_VERSION:
             raise ValueError(
-                f"Unknown source version {source_version}. Must be: {CISUConstants.MAINTAINED_CISU_VERSION}"
+                f"Unknown source version {source_version}. Must be: {CISUConstants.CISU_EXPECTED_MODEL_VERSION}"
             )
 
         rc_json_messages = selected_strategy.from_cisu_to_rs(edxl_json)
@@ -60,7 +62,9 @@ def cisu_transcoding_strategy(edxl_json, source_version, target_version):
             rc_json_messages = [rc_json_messages]
         return [
             health_version_conversion_strategy(
-                msg, CISUConstants.MAINTAINED_HEALTH_CISU_VERSION, target_version
+                msg,
+                CISUConstants.HEALTH_EXPECTED_VERSION_FOR_CISU_CONVERSION,
+                target_version,
             )
             for msg in rc_json_messages
         ]
