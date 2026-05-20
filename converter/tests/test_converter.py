@@ -1,4 +1,5 @@
 import pytest
+from converter.cisu_transcoders.constants import CISUConstants
 from converter.converter import app
 from tests.constants import TestConstants
 from tests.test_helpers import TestHelper
@@ -21,7 +22,7 @@ def test_convert_invalid_content_type(client):
 
 def test_convert_missing_required_fields(client):
     """Test sending request without required fields"""
-    response = client.post("/convert", json={})
+    response = client.post("/convert", json={"type": "HealthVersionConversion"})
     assert response.status_code == 400
     assert "Missing required fields" in response.json["error"]
 
@@ -43,6 +44,7 @@ def test_convert_cisu_invalid_direction(client):
             "targetVersion": "v3",
             "edxl": envelope["edxl"],
             "cisuConversion": True,
+            "type": "CISUTranscoding",
         },
     )
     assert response.status_code == 400
@@ -60,6 +62,7 @@ def test_convert_version_with_invalid_source_version(client):
             "targetVersion": "v1",
             "edxl": edxl_json,
             "cisuConversion": False,
+            "type": "HealthVersionConversion",
         },
     )
 
@@ -78,6 +81,7 @@ def test_convert_version_with_invalid_target_version(client):
             "targetVersion": "v4",
             "edxl": edxl_json,
             "cisuConversion": False,
+            "type": "HealthVersionConversion",
         },
     )
 
@@ -107,6 +111,7 @@ def test_convert_edxl_versions(client, source_version, target_version):
             "targetVersion": target_version,
             "edxl": edxl_json,
             "cisuConversion": False,
+            "type": "HealthVersionConversion",
         },
     )
 
@@ -130,10 +135,11 @@ def test_convert_from_cisu(client, rs_target_version):
     response = client.post(
         "/convert",
         json={
-            "sourceVersion": "v3",
+            "sourceVersion": CISUConstants.CISU_EXPECTED_MODEL_VERSION,
             "targetVersion": rs_target_version,
             "edxl": edxl_json,
             "cisuConversion": True,
+            "type": "CISUTranscoding",
         },
     )
 
@@ -166,9 +172,10 @@ def test_convert_to_cisu(client, rs_source_version):
         "/convert",
         json={
             "sourceVersion": rs_source_version,
-            "targetVersion": "v3",
+            "targetVersion": CISUConstants.CISU_EXPECTED_MODEL_VERSION,
             "edxl": edxl_json,
             "cisuConversion": True,
+            "type": "CISUTranscoding",
         },
     )
 
@@ -196,6 +203,7 @@ def test_convert_to_cisu_with_invalid_cisu_target_version(client):
             "targetVersion": "v2",
             "edxl": edxl_json,
             "cisuConversion": True,
+            "type": "CISUTranscoding",
         },
     )
 
@@ -214,6 +222,7 @@ def test_convert_to_cisu_with_invalid_cisu_source_version(client):
             "targetVersion": "v1",
             "edxl": edxl_json,
             "cisuConversion": True,
+            "type": "CISUTranscoding",
         },
     )
 

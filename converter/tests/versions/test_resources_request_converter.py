@@ -1,6 +1,6 @@
 import json
 from snapshottest import TestCase
-from converter.versions.resources_request.resources_request_converter import (
+from converter.health_version_converters.resources_request.resources_request_converter import (
     ResourcesRequestConverter,
 )
 from tests.constants import TestConstants

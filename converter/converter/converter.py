@@ -14,6 +14,7 @@ from converter.utils import (
 )
 from converter.logging_config import configure_logging, LoggingKeys
 from converter.database import init_db, get_db
+from converter.constants import ConversionType
 
 configure_logging()
 
@@ -64,7 +65,14 @@ def convert():
     source_version = req_data.get("sourceVersion")
     target_version = req_data.get("targetVersion")
     edxl_json = req_data.get("edxl")
-    is_cisu_conversion = req_data.get("cisuConversion", False)
+    conversion_type = req_data.get("type")
+
+    try:
+        conversion_type = ConversionType(conversion_type)
+    except ValueError:
+        return raise_error(
+            f'Conversion type "{conversion_type}" must be one of {[t.value for t in ConversionType]}'
+        )
 
     # Store data in request context to be used in logs
     try:
@@ -87,7 +95,7 @@ def convert():
 
     try:
         converted_messages = conversion_strategy(
-            edxl_json, source_version, target_version, is_cisu_conversion
+            edxl_json, source_version, target_version, conversion_type
         )
     except ValueError as e:
         return raise_error(str(e))
