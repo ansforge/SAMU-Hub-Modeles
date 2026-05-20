@@ -67,12 +67,12 @@ def convert():
     edxl_json = req_data.get("edxl")
     conversion_type = req_data.get("type")
 
-    valid = [t.value for t in ConversionType]
-    if conversion_type not in valid:
+    try:
+        conversion_type = ConversionType(conversion_type)
+    except ValueError:
         return raise_error(
-            f'Conversion type "{conversion_type}" must be one of {valid}'
+            f'Conversion type "{conversion_type}" must be one of {[t.value for t in ConversionType]}'
         )
-    conversion_type = ConversionType(conversion_type)
 
     # Store data in request context to be used in logs
     try:
