@@ -4,6 +4,8 @@ import os
 from prometheus_flask_exporter.multiprocess import GunicornInternalPrometheusMetrics
 from prometheus_flask_exporter import PrometheusMetrics
 from pymongo import timeout
+from pydantic import BaseModel, ConfigDict, Field, ValidationError
+from typing import Any
 
 from converter.conversion_strategy.conversion_strategy import conversion_strategy
 from converter.utils import (
@@ -31,9 +33,34 @@ else:
 logger = logging.getLogger(__name__)
 
 
+class ConvertRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    source_version: str = Field(alias="sourceVersion")
+    target_version: str = Field(alias="targetVersion")
+    edxl: dict[str, Any]
+    type: ConversionType
+
+
 def raise_error(message, code: int = 400):
     logger.error(message)
     return jsonify({"error": message}), code
+
+
+def format_validation_error(e):
+    errors = e.errors()
+    missing = [err["loc"][0] for err in errors if err["type"] == "missing"]
+    if missing:
+        return f"Missing required fields: {', '.join(str(f) for f in missing)}"
+
+    extra = [err["loc"][0] for err in errors if err["type"] == "extra_forbidden"]
+    if extra:
+        return f"Unknown fields: {', '.join(str(f) for f in extra)}"
+
+    for err in errors:
+        if err["loc"][0] == "type":
+            return f"Conversion type must be one of {[t.value for t in ConversionType]}"
+
+    return "Invalid request payload"
 
 
 def extract_message_type_from_payload():
@@ -59,20 +86,17 @@ def extract_message_type_from_payload():
 def convert():
     if not request.is_json:
         return raise_error("Content-Type must be application/json")
-
-    req_data = request.get_json()
-    logger.debug(f"Received conversion request: {req_data}")
-    source_version = req_data.get("sourceVersion")
-    target_version = req_data.get("targetVersion")
-    edxl_json = req_data.get("edxl")
-    conversion_type = req_data.get("type")
-
     try:
-        conversion_type = ConversionType(conversion_type)
-    except ValueError:
-        return raise_error(
-            f'Conversion type "{conversion_type}" must be one of {[t.value for t in ConversionType]}'
-        )
+        req_data = ConvertRequest.model_validate(request.get_json())
+    except ValidationError as e:
+        return raise_error(format_validation_error(e))
+
+    logger.debug(f"Received conversion request: {req_data}")
+
+    source_version = req_data.source_version
+    target_version = req_data.target_version
+    edxl_json = req_data.edxl
+    conversion_type = req_data.type
 
     # Store data in request context to be used in logs
     try:
@@ -87,11 +111,6 @@ def convert():
         )
     except Exception:
         pass
-
-    if not source_version or not target_version or not edxl_json:
-        return raise_error(
-            f"Missing required fields: sourceVersion={source_version}, targetVersion={target_version}, edxl present={edxl_json is not None}"
-        )
 
     try:
         converted_messages = conversion_strategy(
