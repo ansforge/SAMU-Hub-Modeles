@@ -135,7 +135,7 @@ def test_convert_from_cisu(client, rs_target_version):
     response = client.post(
         "/convert",
         json={
-            "sourceVersion": CISUConstants.MAINTAINED_CISU_VERSION,
+            "sourceVersion": CISUConstants.CISU_EXPECTED_MODEL_VERSION,
             "targetVersion": rs_target_version,
             "edxl": edxl_json,
             "cisuConversion": True,
@@ -172,7 +172,7 @@ def test_convert_to_cisu(client, rs_source_version):
         "/convert",
         json={
             "sourceVersion": rs_source_version,
-            "targetVersion": CISUConstants.MAINTAINED_CISU_VERSION,
+            "targetVersion": CISUConstants.CISU_EXPECTED_MODEL_VERSION,
             "edxl": edxl_json,
             "cisuConversion": True,
             "type": "CISUTranscoding",
