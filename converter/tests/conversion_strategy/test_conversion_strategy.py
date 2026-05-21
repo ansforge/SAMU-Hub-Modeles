@@ -1,6 +1,5 @@
 import unittest
 from unittest.mock import patch
-import pytest
 from converter.conversion_strategy.conversion_strategy import conversion_strategy
 from converter.constants import ConversionType
 
@@ -39,22 +38,6 @@ class TestConversionStrategy(unittest.TestCase):
         mock_health_version_conversion_strategy.assert_called_once_with(
             edxl_json, source_version, target_version
         )
-
-    def test_conversion_strategy_with_cisu_version_conversion_raises_not_implemented(
-        self,
-    ):
-        edxl_json = {}
-        source_version = "source_version"
-        target_version = "target_version"
-        conversion_type = ConversionType.CISUVersionConversion
-
-        with pytest.raises(
-            NotImplementedError,
-            match="Conversion strategy 'cisu_version_conversion_strategy' not yet implemented.",
-        ):
-            conversion_strategy(
-                edxl_json, source_version, target_version, conversion_type
-            )
 
     @patch(
         "converter.conversion_strategy.conversion_strategy.health_version_conversion_strategy"
