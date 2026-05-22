@@ -100,3 +100,43 @@ curl -X POST http://localhost:8080/convert \
   -H "Content-Type: application/json" \
   -d "$(jq --argjson usecase "$(cat ../src/main/resources/sample/examples/RS-EDA/RS-EDA-SMUR_FemmeEnceinte_DelphineVigneau.01.json)" '.sourceVersion = "v3" | .targetVersion = "v3" | .cisuConversion = true | .edxl.content[0].jsonContent.embeddedJsonContent.message |= (. + $usecase)' tests/fixtures/EDXL/edxl_envelope_health_to_fire.json)"
 ```
+
+### Helper script — `scripts/call_convert.sh`
+
+Executable helper to call `/convert` quickly without building the payload by hand.
+
+**Prerequisite**: local-dev setup running (see [launch local dev setup](https://github.com/ansforge/SAMU-Hub-Config/blob/main/tools/local-dev/README.md)).
+
+Usage:
+
+```bash
+scripts/call_convert.sh <sourceVersion> <targetVersion> <type> <useCase> [options]
+```
+
+Positional args:
+- `sourceVersion`, `targetVersion`: `v1` | `v2` | `v3` | `vactive`
+- `type`: `HealthVersionConversion` | `CISUTranscoding` | `CISUVersionConversion` (see `ConversionType` in `converter/constants.py`)
+- `useCase`: local path to a JSON file **or** `http(s)://` URL of the message payload
+
+Options:
+- `--envelope <path|url>`: EDXL envelope file or URL (default: `tests/fixtures/EDXL/edxl_envelope_health_to_health.json`)
+- `--converter_url <url>`: converter base URL, `/convert` is appended (default: `http://localhost:8083`)
+- `-h`, `--help`: show usage
+
+Examples:
+
+```bash
+# Local fixture, default envelope (health-to-health)
+scripts/call_convert.sh v3 v2 HealthVersionConversion tests/fixtures/RS-RI/RS-RI_V3.0_exhaustive_fill.json
+
+# CISU transcoding with a custom envelope
+scripts/call_convert.sh v3 vactive CISUTranscoding ./tests/fixtures/RC-EDA/RC-EDA_required_fields.json \
+  --envelope tests/fixtures/EDXL/edxl_envelope_fire_to_health.json
+
+# Remote payload via URL
+scripts/call_convert.sh v3 vactive CISUTranscoding https://raw.githubusercontent.com/org/repo/main/sample.json
+
+# Override endpoint (e.g. staging)
+scripts/call_convert.sh v3 vactive CISUTranscoding ./sample.json \
+  --converter_url https://staging.example.com
+```
