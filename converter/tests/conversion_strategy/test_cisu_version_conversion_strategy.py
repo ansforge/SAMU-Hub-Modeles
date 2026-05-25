@@ -48,7 +48,7 @@ class TestCisuVersionConversionStrategy(unittest.TestCase):
 
         with self.assertRaisesRegex(
             ValueError,
-            "Perimeter translation for message type 'notSupportedMessageType' is not implemented.",
+            "CISU Version conversion for message type 'notSupportedMessageType' is not implemented.",
         ):
             cisu_version_conversion_strategy(edxl_json, V3, VACTIVE)
 
