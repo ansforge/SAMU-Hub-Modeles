@@ -1,61 +1,54 @@
-# Use Python 3.11 slim as base image
-FROM python:3.11-slim
+# Build stage: the -dev image includes tools needed to install packages.
+FROM dhi.io/python:3.14-alpine3.23-dev AS builder
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Install system dependencies and uv
+RUN pip install --quiet --root-user-action=ignore uv
+# Use copy mode since the cache and build filesystem are on different volumes.
+ENV UV_LINK_MODE=copy
+
+WORKDIR /app
+
+# Install dependencies into a virtual environment using cache and bind mounts
+# so neither uv nor the lock files need to be copied into the image.
+RUN --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --frozen --no-dev --no-install-project
+
+# Create metrics directory during first stage because mkdir
+# is not available in non dev base image
+RUN mkdir -p /prometheus_metrics
+
+# Runtime stage: minimal DHI image with no shell or package manager,
+# already runs as the nonroot user.
+FROM dhi.io/python:3.14-alpine3.23
 
 ARG CONVERTER_VERSION
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    UV_CACHE_DIR=/opt/uv-cache \
-    UV_LINK_MODE=copy
+# Prevent Python from buffering stdout/stderr so logs appear immediately.
+ENV PYTHONUNBUFFERED=1
+# Activate the virtual environment copied from the build stage.
+ENV PATH="/app/.venv/bin:$PATH"
 
-# Install system dependencies and uv
-RUN apt-get update && apt-get install -y \
-    curl \
-    ca-certificates \
-    && rm -rf /var/lib/apt/lists/* \
-    && curl -LsSf https://astral.sh/uv/install.sh | sh \
-    && mv /root/.local/bin/uv /usr/local/bin/uv \
-    && mv /root/.local/bin/uvx /usr/local/bin/uvx
+WORKDIR /app
 
-# Create non-root user and group
-RUN groupadd -r -g 1000 converter && \
-    useradd -r -u 1000 -g converter -m -d /home/converter converter
+# Copy the pre-built virtual environment and application source code.
+COPY --from=builder /app/.venv /app/.venv
+COPY . .
 
-# Create and set up working directory
-WORKDIR /home/converter/app
-
-# Create UV cache directory with proper permissions and set ownership of working directory
-RUN mkdir -p $UV_CACHE_DIR && \
-    chown -R converter:converter $UV_CACHE_DIR && \
-    chown -R converter:converter /home/converter/app
-
-# Switch to non-root user
-USER converter
-
-# Copy dependency files first for better layer caching
-COPY --chown=converter:converter pyproject.toml uv.lock ./
-
-# Install dependencies using uv
-RUN uv sync --frozen --no-dev
-
-# Copy application code
-COPY --chown=converter:converter . .
-
-# Expose port
+# Make port 8080 available to the world outside this container
 EXPOSE 8080
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8080/health || exit 1
-
+ENV FLASK_ENV=production
 ENV CONVERTER_VERSION=${CONVERTER_VERSION}
 
 # Flask Prometheus Exporter setup
-RUN mkdir /tmp/prometheus_metrics
+COPY --from=builder --chown=nonroot:nonroot /prometheus_metrics /tmp/prometheus_metrics
 ENV PROMETHEUS_MULTIPROC_DIR=/tmp/prometheus_metrics
 
-ENV FLASK_ENV=production
-
 # Use Gunicorn for production deployment
-CMD ["uv", "run", "--no-dev", "gunicorn", "-c", "gunicorn.conf.py", "-w", "2", "-b", "0.0.0.0:8080", "converter.converter:app"]
+CMD ["gunicorn", "-c", "gunicorn.conf.py", "-w", "2", "-b", "0.0.0.0:8080", "converter.converter:app"]
