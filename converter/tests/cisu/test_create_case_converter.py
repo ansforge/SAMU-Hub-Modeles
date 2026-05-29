@@ -6,7 +6,6 @@ from converter.cisu.create_case.create_case_cisu_converter import (
 from tests.constants import TestConstants
 from tests.test_helpers import TestHelper
 import json
-from snapshottest import TestCase
 from datetime import datetime
 
 # Load schemas once for all tests
@@ -67,19 +66,14 @@ def test_to_cisu_conversion_v3():
     )
 
 
-class TestSnapshotCreateCaseConverter(TestCase):
-    def setUp(self):
-        self.edxl_envelope_health_to_fire_path = (
-            TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH
-        )
-        self.edxl_envelope_fire_to_health_path = (
-            TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH
-        )
-        self.fixtures_folder_path = "tests/fixtures/"
+class TestSnapshotCreateCaseConverter:
+    edxl_envelope_health_to_fire_path = TestConstants.EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH
+    edxl_envelope_fire_to_health_path = TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH
+    fixtures_folder_path = "tests/fixtures/"
 
     @patch("converter.cisu.create_case.create_case_cisu_converter.datetime")
     @patch("converter.cisu.create_case.create_case_cisu_converter.random")
-    def test_snapshot_RS_EDA_exhaustive_message(self, mock_choices, mock_now):
+    def test_snapshot_RS_EDA_exhaustive_message(self, mock_choices, mock_now, snapshot):
         mock_now.now.return_value = datetime(2024, 2, 10, 12, 34, 56)
         mock_now.strftime = datetime.strftime
 
@@ -92,10 +86,10 @@ class TestSnapshotCreateCaseConverter(TestCase):
         converter = CreateCaseCISUConverter
 
         output_data = converter.from_rs_to_cisu(message)
-        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+        assert json.dumps(output_data, indent=2) == snapshot
 
     @patch("converter.cisu.create_case.create_case_cisu_converter.random")
-    def test_snapshot_RC_EDA_exhaustive_message(self, mock_choices):
+    def test_snapshot_RC_EDA_exhaustive_message(self, mock_choices, snapshot):
         mock_choices.choices.side_effect = ["f5de7hj", "a3b2YH8", "c9d8jk9", "he9i0kz"]
 
         message = TestHelper.create_edxl_json_from_sample(
@@ -105,11 +99,13 @@ class TestSnapshotCreateCaseConverter(TestCase):
         converter = CreateCaseCISUConverter
 
         output_data = converter.from_cisu_to_rs(message)
-        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+        assert json.dumps(output_data, indent=2) == snapshot
 
     @patch("converter.cisu.create_case.create_case_cisu_converter.datetime")
     @patch("converter.cisu.create_case.create_case_cisu_converter.random")
-    def test_snapshot_RS_EDA_required_field_message(self, mock_choices, mock_now):
+    def test_snapshot_RS_EDA_required_field_message(
+        self, mock_choices, mock_now, snapshot
+    ):
         mock_now.now.return_value = datetime(2024, 2, 10, 12, 34, 56)
         mock_now.strftime = datetime.strftime
 
@@ -122,10 +118,10 @@ class TestSnapshotCreateCaseConverter(TestCase):
         converter = CreateCaseCISUConverter
 
         output_data = converter.from_rs_to_cisu(message)
-        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+        assert json.dumps(output_data, indent=2) == snapshot
 
     @patch("converter.cisu.create_case.create_case_cisu_converter.random")
-    def test_snapshot_RC_EDA_required_field_message(self, mock_choices):
+    def test_snapshot_RC_EDA_required_field_message(self, mock_choices, snapshot):
         mock_choices.choices.side_effect = ["f5de7hj", "a3b2YH8", "c9d8jk9", "he9i0kz"]
 
         message = TestHelper.create_edxl_json_from_sample(
@@ -136,11 +132,13 @@ class TestSnapshotCreateCaseConverter(TestCase):
 
         output_data = converter.from_cisu_to_rs(message)
 
-        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+        assert json.dumps(output_data, indent=2) == snapshot
 
     @patch("converter.cisu.create_case.create_case_cisu_converter.datetime")
     @patch("converter.cisu.create_case.create_case_cisu_converter.random")
-    def test_snapshot_RS_EDA_exhaustive_bis_message(self, mock_choices, mock_now):
+    def test_snapshot_RS_EDA_exhaustive_bis_message(
+        self, mock_choices, mock_now, snapshot
+    ):
         mock_now.now.return_value = datetime(2024, 2, 10, 12, 34, 56)
         mock_now.strftime = datetime.strftime
 
@@ -154,10 +152,10 @@ class TestSnapshotCreateCaseConverter(TestCase):
         converter = CreateCaseCISUConverter
 
         output_data = converter.from_rs_to_cisu(message)
-        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+        assert json.dumps(output_data, indent=2) == snapshot
 
     @patch("converter.cisu.create_case.create_case_cisu_converter.random")
-    def test_snapshot_RC_EDA_exhaustive_bis_message(self, mock_choices):
+    def test_snapshot_RC_EDA_exhaustive_bis_message(self, mock_choices, snapshot):
         mock_choices.choices.side_effect = ["f5de7hj", "a3b2YH8", "c9d8jk9", "he9i0kz"]
 
         message = TestHelper.create_edxl_json_from_sample(
@@ -168,10 +166,10 @@ class TestSnapshotCreateCaseConverter(TestCase):
 
         output_data = converter.from_cisu_to_rs(message)
 
-        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+        assert json.dumps(output_data, indent=2) == snapshot
 
 
-class TestVictimsCount(TestCase):
+class TestVictimsCount(unittest.TestCase):
     def setUp(self):
         self.fixtures_folder_path = "tests/fixtures/"
         self.converter = CreateCaseCISUConverter

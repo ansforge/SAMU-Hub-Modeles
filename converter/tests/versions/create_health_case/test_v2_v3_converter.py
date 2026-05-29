@@ -5,7 +5,6 @@ from converter.versions.create_case_health.create_case_health_converter import (
 )
 from tests.constants import TestConstants
 from tests.test_helpers import TestHelper, get_file_endpoint
-from snapshottest import TestCase
 
 
 def test_V2_to_V3_upgrade():
@@ -38,9 +37,9 @@ def test_V3_to_V2_downgrade():
     )
 
 
-class TestSnapshotV2V3Converter(TestCase):
+class TestSnapshotV2V3Converter:
     @patch("converter.utils.random")
-    def test_snapshot_V2_to_V3_upgrade(self, mock_choices):
+    def test_snapshot_V2_to_V3_upgrade(self, mock_choices, snapshot):
         mock_choices.choices.side_effect = [
             "f5de7hj",
             "a3b2YH8",
@@ -58,10 +57,10 @@ class TestSnapshotV2V3Converter(TestCase):
             "tests/fixtures/RS-EDA/RS-EDA_V2.0_exhaustive_fill.json",
         )
         output_data = CreateHealthCaseConverter.convert_v2_to_v3(message)
-        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+        assert json.dumps(output_data, indent=2) == snapshot
 
     @patch("converter.utils.random")
-    def test_snapshot_V3_to_V2_downgrade(self, mock_choices):
+    def test_snapshot_V3_to_V2_downgrade(self, mock_choices, snapshot):
         mock_choices.choices.side_effect = [
             "f5de7hj",
             "a3b2YH8",
@@ -80,10 +79,10 @@ class TestSnapshotV2V3Converter(TestCase):
         )
 
         output_data = CreateHealthCaseConverter.convert_v3_to_v2(message)
-        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+        assert json.dumps(output_data, indent=2) == snapshot
 
     @patch("converter.utils.random")
-    def test_snapshot_V3_to_V2_bis_downgrade(self, mock_choices):
+    def test_snapshot_V3_to_V2_bis_downgrade(self, mock_choices, snapshot):
         mock_choices.choices.side_effect = [
             "f5de7hj",
             "a3b2YH8",
@@ -102,4 +101,4 @@ class TestSnapshotV2V3Converter(TestCase):
         )
 
         output_data = CreateHealthCaseConverter.convert_v3_to_v2(message)
-        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+        assert json.dumps(output_data, indent=2) == snapshot
