@@ -50,6 +50,19 @@ uv run pytest -rP
 
 Note : the tests download files (json samples & schemas) using the Github API. To avoid hammering the API leading to tests failure, a cache system has been added for the tests runner. To invalidate the cache and download the files again, delete the `schemas_and_samples_cache.sqlite` file at the root of the repository.
 
+#### Snapshot Tests
+
+Converter outputs are pinned with snapshot tests powered by [syrupy](https://github.com/syrupy-project/syrupy). Each snapshot test serializes the converted message and asserts it equals `snapshot`. Snapshots are stored as `.ambr` files in a `__snapshots__/` directory next to each test module; syrupy links a test to its snapshot by the test file path plus the `Class.method` name, so renaming a test class or method orphans its snapshot. After a deliberate change to a converter's output, update the recorded snapshots and review the diff before committing:
+
+```bash
+# Update all snapshots
+uv run pytest --snapshot-update
+# Update only the snapshots for a given test module
+uv run pytest tests/cisu/test_create_case_converter.py --snapshot-update
+# List snapshots that are no longer used by any test
+uv run pytest --snapshot-details
+```
+
 ### Running the Service
 
 Development mode:
