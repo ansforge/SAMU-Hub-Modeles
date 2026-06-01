@@ -19,10 +19,6 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv sync --frozen --no-dev --no-install-project
 
-# Create metrics directory during first stage because mkdir
-# is not available in non dev base image
-RUN mkdir -p /prometheus_metrics
-
 # Runtime stage: minimal DHI image with no shell or package manager,
 # already runs as the nonroot user.
 FROM dhi.io/python:3.14-alpine3.23
@@ -46,8 +42,7 @@ EXPOSE 8080
 ENV FLASK_ENV=production
 ENV CONVERTER_VERSION=${CONVERTER_VERSION}
 
-# Flask Prometheus Exporter setup
-COPY --from=builder --chown=nonroot:nonroot /prometheus_metrics /tmp/prometheus_metrics
+# Flask Prometheus Exporter setup.
 ENV PROMETHEUS_MULTIPROC_DIR=/tmp/prometheus_metrics
 
 # Use Gunicorn for production deployment
