@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from converter.cisu.create_case.create_case_cisu_converter import (
+from converter.cisu_transcoders.create_case.create_case_cisu_converter import (
     CreateCaseCISUConverter,
 )
 from tests.constants import TestConstants
@@ -71,8 +71,8 @@ class TestSnapshotCreateCaseConverter:
     edxl_envelope_fire_to_health_path = TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH
     fixtures_folder_path = "tests/fixtures/"
 
-    @patch("converter.cisu.create_case.create_case_cisu_converter.datetime")
-    @patch("converter.cisu.create_case.create_case_cisu_converter.random")
+    @patch("converter.cisu_transcoders.create_case.create_case_cisu_converter.datetime")
+    @patch("converter.cisu_transcoders.create_case.create_case_cisu_converter.random")
     def test_snapshot_RS_EDA_exhaustive_message(self, mock_choices, mock_now, snapshot):
         mock_now.now.return_value = datetime(2024, 2, 10, 12, 34, 56)
         mock_now.strftime = datetime.strftime
@@ -88,7 +88,7 @@ class TestSnapshotCreateCaseConverter:
         output_data = converter.from_rs_to_cisu(message)
         assert json.dumps(output_data, indent=2) == snapshot
 
-    @patch("converter.cisu.create_case.create_case_cisu_converter.random")
+    @patch("converter.cisu_transcoders.create_case.create_case_cisu_converter.random")
     def test_snapshot_RC_EDA_exhaustive_message(self, mock_choices, snapshot):
         mock_choices.choices.side_effect = ["f5de7hj", "a3b2YH8", "c9d8jk9", "he9i0kz"]
 
@@ -101,8 +101,8 @@ class TestSnapshotCreateCaseConverter:
         output_data = converter.from_cisu_to_rs(message)
         assert json.dumps(output_data, indent=2) == snapshot
 
-    @patch("converter.cisu.create_case.create_case_cisu_converter.datetime")
-    @patch("converter.cisu.create_case.create_case_cisu_converter.random")
+    @patch("converter.cisu_transcoders.create_case.create_case_cisu_converter.datetime")
+    @patch("converter.cisu_transcoders.create_case.create_case_cisu_converter.random")
     def test_snapshot_RS_EDA_required_field_message(
         self, mock_choices, mock_now, snapshot
     ):
@@ -120,7 +120,7 @@ class TestSnapshotCreateCaseConverter:
         output_data = converter.from_rs_to_cisu(message)
         assert json.dumps(output_data, indent=2) == snapshot
 
-    @patch("converter.cisu.create_case.create_case_cisu_converter.random")
+    @patch("converter.cisu_transcoders.create_case.create_case_cisu_converter.random")
     def test_snapshot_RC_EDA_required_field_message(self, mock_choices, snapshot):
         mock_choices.choices.side_effect = ["f5de7hj", "a3b2YH8", "c9d8jk9", "he9i0kz"]
 
@@ -134,8 +134,8 @@ class TestSnapshotCreateCaseConverter:
 
         assert json.dumps(output_data, indent=2) == snapshot
 
-    @patch("converter.cisu.create_case.create_case_cisu_converter.datetime")
-    @patch("converter.cisu.create_case.create_case_cisu_converter.random")
+    @patch("converter.cisu_transcoders.create_case.create_case_cisu_converter.datetime")
+    @patch("converter.cisu_transcoders.create_case.create_case_cisu_converter.random")
     def test_snapshot_RS_EDA_exhaustive_bis_message(
         self, mock_choices, mock_now, snapshot
     ):
@@ -154,7 +154,7 @@ class TestSnapshotCreateCaseConverter:
         output_data = converter.from_rs_to_cisu(message)
         assert json.dumps(output_data, indent=2) == snapshot
 
-    @patch("converter.cisu.create_case.create_case_cisu_converter.random")
+    @patch("converter.cisu_transcoders.create_case.create_case_cisu_converter.random")
     def test_snapshot_RC_EDA_exhaustive_bis_message(self, mock_choices, snapshot):
         mock_choices.choices.side_effect = ["f5de7hj", "a3b2YH8", "c9d8jk9", "he9i0kz"]
 
