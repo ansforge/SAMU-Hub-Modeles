@@ -9,7 +9,6 @@ from converter.versions.create_case_health.create_case_health_converter import (
 )
 from tests.constants import TestConstants
 from tests.test_helpers import TestHelper, get_file_endpoint
-from snapshottest import TestCase
 from jsonschema import validate
 
 
@@ -51,9 +50,9 @@ def test_V2_to_V1_downgrade():
     )
 
 
-class TestSnapshotV1V2Converter(TestCase):
+class TestSnapshotV1V2Converter:
     @patch("converter.utils.random")
-    def test_snapshot_V1_to_V2_upgrade(self, mock_choices):
+    def test_snapshot_V1_to_V2_upgrade(self, mock_choices, snapshot):
         mock_choices.choices.side_effect = [
             "f5de7hj",
             "a3b2YH8",
@@ -78,11 +77,11 @@ class TestSnapshotV1V2Converter(TestCase):
         )
         output_data = CreateHealthCaseConverter.convert_v1_to_v2(message)
 
-        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+        assert json.dumps(output_data, indent=2) == snapshot
 
     @patch("converter.versions.create_case_health.v1_v2.utils.datetime")
     @patch("converter.utils.random")
-    def test_snapshot_V2_to_V1_downgrade(self, mock_choices, mock_datetime):
+    def test_snapshot_V2_to_V1_downgrade(self, mock_choices, mock_datetime, snapshot):
         mock_choices.choices.side_effect = [
             "f5de7hj",
             "a3b2YH8",
@@ -102,9 +101,7 @@ class TestSnapshotV1V2Converter(TestCase):
             "tests/fixtures/RS-EDA/RS-EDA_V2.0_exhaustive_fill_bis.json",
         )
         output_data = CreateHealthCaseConverter.convert_v2_to_v1(message)
-
-        self.maxDiff = None
-        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+        assert json.dumps(output_data, indent=2) == snapshot
 
 
 def test_upgrade_with_unknown_v2_language_code():

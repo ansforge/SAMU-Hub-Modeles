@@ -3,12 +3,12 @@ name = "converter"
 version = "0.1.0"
 description = "Converter service for SAMU-Hub-Modeles"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
     "flask>=3.1.2",
     "pymongo>=4.16",
     "gunicorn>=23.0.0",
-    "jsonpath-ng>=1.7.0",
+    "jsonpath-ng==1.7.0",
     "prometheus-flask-exporter>=0.23.2",
     "pydantic>=2.11.9",
     "python-json-logger>=4.0.0",
@@ -56,10 +56,10 @@ dev = [
     "types-requests>=2.32.4.20250913",
     "requests>=2.32.5",
     "requests-cache>=1.2.1",
-    "snapshottest>=0.6.0",
+    "syrupy>=5.2.0",
     "mongomock>=4.1.2",
 ]
 
 [[tool.mypy.overrides]]
-module = ["snapshottest.*", "jsonpath_ng.*", "prometheus_flask_exporter.*"]
+module = ["jsonpath_ng.*", "prometheus_flask_exporter.*"]
 ignore_missing_imports = true

@@ -1,5 +1,4 @@
 import json
-from snapshottest import TestCase
 from converter.versions.resources_status.resources_status_converter import (
     ResourcesStatusConverter,
 )
@@ -67,59 +66,59 @@ def test_V3_to_V2_downgrade():
     )
 
 
-class TestSnapshotV1V2Converter(TestCase):
-    def test_exhaustive_snapshot_V1_to_V2_upgrade(self):
+class TestSnapshotV1V2Converter:
+    def test_exhaustive_snapshot_V1_to_V2_upgrade(self, snapshot):
         message = TestHelper.create_edxl_json_from_sample(
             TestConstants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
             "tests/fixtures/RS-SR/RS-SR_V1.0_exhaustive_fill.json",
         )
         output_data = ResourcesStatusConverter.convert_v1_to_v2(message)
-        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+        assert json.dumps(output_data, indent=2) == snapshot
 
-    def test_required_fields_snapshot_V1_to_V2_upgrade(self):
+    def test_required_fields_snapshot_V1_to_V2_upgrade(self, snapshot):
         message = TestHelper.create_edxl_json_from_sample(
             TestConstants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
             "tests/fixtures/RS-SR/RS-SR_V1.0_required_fields.json",
         )
         output_data = ResourcesStatusConverter.convert_v1_to_v2(message)
-        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+        assert json.dumps(output_data, indent=2) == snapshot
 
-    def test_exhaustive_snapshot_V2_to_V1_upgrade(self):
+    def test_exhaustive_snapshot_V2_to_V1_upgrade(self, snapshot):
         message = TestHelper.create_edxl_json_from_sample(
             TestConstants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
             "tests/fixtures/RS-SR/RS-SR_V2.0_exhaustive_fill.json",
         )
         output_data = ResourcesStatusConverter.convert_v2_to_v1(message)
-        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+        assert json.dumps(output_data, indent=2) == snapshot
 
-    def test_exhaustive_snapshot_V2_to_V3_upgrade(self):
+    def test_exhaustive_snapshot_V2_to_V3_upgrade(self, snapshot):
         message = TestHelper.create_edxl_json_from_sample(
             TestConstants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
             "tests/fixtures/RS-SR/RS-SR_V2.0_exhaustive_fill.json",
         )
         output_data = ResourcesStatusConverter.convert_v2_to_v3(message)
-        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+        assert json.dumps(output_data, indent=2) == snapshot
 
-    def test_required_fields_snapshot_V2_to_V3_upgrade(self):
+    def test_required_fields_snapshot_V2_to_V3_upgrade(self, snapshot):
         message = TestHelper.create_edxl_json_from_sample(
             TestConstants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
             "tests/fixtures/RS-SR/RS-SR_V2.0_required_fields.json",
         )
         output_data = ResourcesStatusConverter.convert_v2_to_v3(message)
-        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+        assert json.dumps(output_data, indent=2) == snapshot
 
-    def test_exhaustive_snapshot_V3_to_V2_downgrade(self):
+    def test_exhaustive_snapshot_V3_to_V2_downgrade(self, snapshot):
         message = TestHelper.create_edxl_json_from_sample(
             TestConstants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
             "tests/fixtures/RS-SR/RS-SR_V3.0_exhaustive_fill.json",
         )
         output_data = ResourcesStatusConverter.convert_v3_to_v2(message)
-        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+        assert json.dumps(output_data, indent=2) == snapshot
 
-    def test_required_fields_snapshot_V3_to_V2_downgrade(self):
+    def test_required_fields_snapshot_V3_to_V2_downgrade(self, snapshot):
         message = TestHelper.create_edxl_json_from_sample(
             TestConstants.EDXL_HEALTH_TO_HEALTH_ENVELOPE_PATH,
             "tests/fixtures/RS-SR/RS-SR_V3.0_required_fields.json",
         )
         output_data = ResourcesStatusConverter.convert_v3_to_v2(message)
-        self.assertMatchSnapshot(json.dumps(output_data, indent=2))
+        assert json.dumps(output_data, indent=2) == snapshot
