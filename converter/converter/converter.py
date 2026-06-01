@@ -20,9 +20,9 @@ configure_logging()
 app = Flask(__name__)
 init_db(app)
 
-is_prod = os.getenv("FLASK_ENV") == "production"
-
-if is_prod:
+multiproc_dir = os.getenv("PROMETHEUS_MULTIPROC_DIR")
+if multiproc_dir:
+    os.makedirs(multiproc_dir, exist_ok=True)
     metrics = GunicornInternalPrometheusMetrics(app)
 else:
     metrics = PrometheusMetrics(app)
