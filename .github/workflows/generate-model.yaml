@@ -150,7 +150,7 @@ jobs:
         uses: actions/setup-node@v4
         if: steps.filter.outputs.parsing_required == 'true'
         with:
-          node-version: 16
+          node-version: 24
 
       - name: Install openapi-generator-cli
         if: steps.filter.outputs.parsing_required == 'true'
