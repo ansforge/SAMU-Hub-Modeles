@@ -59,11 +59,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install node env 🏗
-        uses: actions/setup-node@v4
-        with:
-          node-version: 16
-
       #      - name: Python - Prepare package files
       #        working-directory: ./generator_python/
       #        run: |
