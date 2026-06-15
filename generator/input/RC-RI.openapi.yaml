@@ -150,7 +150,7 @@ components:
           - VECTEUR_SANTE
           - SIS
           examples:
-          - SMUR
+          - VECTEUR_SANTE
         name:
           type: string
           title: Nom du vecteur
