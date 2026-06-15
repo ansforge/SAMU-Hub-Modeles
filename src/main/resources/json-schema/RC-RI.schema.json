@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-RI.schema.json#",
-    "version": "26.05.12",
+    "version": "26.06.15",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesInfoCisu",
@@ -109,7 +109,7 @@
                     "example": "example.json#/resource/0/vehicleType",
                     "description": "A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée",
                     "enum": [
-                        "SMUR",
+                        "VECTEUR_SANTE",
                         "SIS"
                     ]
                 },
