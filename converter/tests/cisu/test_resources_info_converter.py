@@ -162,10 +162,14 @@ def test_cisu_to_rs_breaking_changes():
 @pytest.mark.parametrize(
     "rs_vehicule_type,expected",
     [
-        pytest.param("SIS", "SIS", id="translates SIS to SIS"),
-        pytest.param("SIS.DRAGON", "SIS", id="translates SIS.DRAGON to SIS"),
-        pytest.param("SMUR", "SMUR", id="translates SMUR to SMUR"),
-        pytest.param("SMUR.VLM", "SMUR", id="translates SMUR.VLM to SMUR"),
+        pytest.param("SIS", "VECTEUR_SANTE", id="translates SIS to VECTEUR_SANTE"),
+        pytest.param(
+            "SIS.DRAGON", "VECTEUR_SANTE", id="translates SIS.DRAGON to VECTEUR_SANTE"
+        ),
+        pytest.param("SMUR", "VECTEUR_SANTE", id="translates SMUR to VECTEUR_SANTE"),
+        pytest.param(
+            "SMUR.VLM", "VECTEUR_SANTE", id="translates SMUR.VLM to VECTEUR_SANTE"
+        ),
     ],
 )
 def test_translate_vehicule_type_to_cisu(rs_vehicule_type, expected):
@@ -175,17 +179,17 @@ def test_translate_vehicule_type_to_cisu(rs_vehicule_type, expected):
 
 
 @pytest.mark.parametrize(
-    "rs_vehicule_type",
+    "rs_vehicule_type,expected",
     [
-        pytest.param("AUTREVEC", id="AUTREVEC is not mappable to CISU"),
-        pytest.param("FSI.HELIFSI", id="FSI.HELIFSI is not mappable to CISU"),
-        pytest.param("TSU.VSL", id="TSU.VSL is not mappable to CISU"),
+        pytest.param("SIS", "SIS", id="translates SIS to SIS"),
+        pytest.param("VECTEUR_SANTE", "SIS", id="translates VECTEUR_SANTE to SIS"),
+        pytest.param("unsuported", "SIS", id="translates unsuported to SIS"),
     ],
 )
-def test_translate_vehicule_type_to_cisu_raises_on_unmappable(rs_vehicule_type):
+def test_translate_vehicule_type_to_samu(rs_vehicule_type, expected):
     resource = {"vehicleType": rs_vehicule_type}
-    with pytest.raises(ConversionError):
-        ResourcesInfoCISUConverter._translate_to_cisu_vehicle_type(resource)
+    ResourcesInfoCISUConverter._translate_to_samu_vehicle_type(resource)
+    assert resource["vehicleType"] == expected
 
 
 # ---------------------------------------------------------------------------
