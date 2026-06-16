@@ -346,33 +346,31 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
 
     @classmethod
     def _translate_to_cisu_vehicle_type(cls, resource: Dict[str, Any]) -> None:
-        """Translate a RS vehicle type to its CISU equivalent, or None if not mappable."""
+        """Translate a RS vehicle type to its CISU equivalent. Throws an error if no vehicleType is provided."""
 
         vehicle_type = get_field_value(
             resource, ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH
         )
+        resourceId = get_field_value(
+            resource, ResourcesInfoCISUConstants.RESOURCE_ID_KEY
+        )
 
         if vehicle_type is None:
             raise ConversionError(
-                f"No vehicle found in RS resource for resource: {resource.get('resourceId')}."
+                f"No vehicle found in RS resource for resource: {resourceId}."
             )
 
-        if vehicle_type.startswith(ResourcesInfoCISUConstants.VEHICLE_TYPE_SIS):
-            set_value(
-                resource,
-                ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH,
-                ResourcesInfoCISUConstants.VEHICLE_TYPE_SIS,
-            )
-        elif vehicle_type.startswith(ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR):
-            set_value(
-                resource,
-                ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH,
-                ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR,
-            )
-        else:
-            raise ConversionError(
-                f"No valid vehicle found for resource: {resource.get('resourceId')}."
-            )
+        logger.info(
+            "Replacing vehicleType %s with %s for ressource with id %s",
+            vehicle_type,
+            ResourcesInfoCISUConstants.VEHICLE_TYPE_VECTEUR_SANTE,
+            resourceId,
+        )
+        set_value(
+            resource,
+            ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH,
+            ResourcesInfoCISUConstants.VEHICLE_TYPE_VECTEUR_SANTE,
+        )
 
     @classmethod
     def _keep_last_state(cls, resource: Dict[str, Any]) -> None:
