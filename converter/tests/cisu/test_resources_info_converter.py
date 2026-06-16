@@ -500,8 +500,8 @@ def test_from_rs_to_cisu_no_persisted_rs_sr():
 
     rc_ri = get_cisu_content(result)
     assert rc_ri["resource"][0]["state"]["status"] == "RET-BASE"
-    # Two resources present originaly but only one valid vehicle type, so 1 resource expected
-    assert (len(rc_ri["resource"])) == 1
+    # Two resources present originaly and both are translated in the destination RC-RI
+    assert (len(rc_ri["resource"])) == 2
 
 
 def test_from_rs_to_cisu_no_state_but_persisted_rs_sr():
