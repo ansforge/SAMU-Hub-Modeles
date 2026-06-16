@@ -26,10 +26,11 @@ RS_RI_SCHEMA = TestHelper.load_schema("RS-RI.schema.json")
 _PATCH_GET_LAST_RC_RI_BY_CASE_ID = "converter.cisu.resources_info.resources_info_cisu_converter.get_last_rc_ri_by_case_id"
 _PATCH_GET_RS_MESSAGES_BY_CASE_ID = "converter.cisu.resources_info.resources_info_cisu_converter.get_rs_messages_by_case_id"
 
+# These usecases does not contain the minimal infomations to trigger
+# the traduction of a valid RC-RI (no state on resource).
 usecase_files_returning_no_converted_messages = [
     "RS-RI_Secondaire_RobertVermande.03.json",
     "RS-RI_partageRessources_LolaHalimi.03c.json",
-    "RS-RI_partageRessources_MonsieurX.03.json",
 ]
 
 all_usecase_files = TestHelper.get_json_files(
