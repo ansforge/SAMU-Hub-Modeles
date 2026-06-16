@@ -77,6 +77,8 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
                 ResourcesInfoCISUConstants.MISSION_ID_PATH,
             )
 
+            cls._translate_to_samu_vehicle_type(resource)
+
         return cls.format_rs_output_json(output_json, output_use_case_json)
 
     @classmethod
@@ -156,6 +158,34 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         return ResourceUpdateResult(
             engaged_resources_updated=engaged_resources_updated,
             modified_status_resources=modified_status_resources,
+        )
+
+    @classmethod
+    def _translate_to_samu_vehicle_type(cls, resource: Dict[str, Any]) -> None:
+        """Translate a CISU vehicle type to its SAMU equivalent. Throws an error if no vehicleType is provided."""
+
+        vehicle_type = get_field_value(
+            resource, ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH
+        )
+        resourceId = get_field_value(
+            resource, ResourcesInfoCISUConstants.RESOURCE_ID_KEY
+        )
+
+        if vehicle_type is None:
+            raise ConversionError(
+                f"No vehicle found in CISU resource for resource: {resourceId}."
+            )
+
+        logger.info(
+            "Replacing vehicleType %s with %s for ressource with id %s",
+            vehicle_type,
+            ResourcesInfoCISUConstants.VEHICLE_TYPE_SIS,
+            resourceId,
+        )
+        set_value(
+            resource,
+            ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH,
+            ResourcesInfoCISUConstants.VEHICLE_TYPE_SIS,
         )
 
     @classmethod
