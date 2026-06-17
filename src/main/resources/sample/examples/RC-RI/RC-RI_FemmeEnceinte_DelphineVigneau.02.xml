@@ -5,7 +5,7 @@
     <datetime>2024-05-26T13:22:00+02:00</datetime>
     <resourceId>fr.health.samu440.resource.VLM4</resourceId>
     <orgId>fr.health.samu440</orgId>
-    <vehicleType>SMUR</vehicleType>
+    <vehicleType>VECTEUR_SANTE</vehicleType>
     <name>VLM4</name>
     <team>
       <medicalLevel>MED</medicalLevel>
