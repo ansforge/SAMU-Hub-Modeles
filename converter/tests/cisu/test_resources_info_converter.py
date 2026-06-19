@@ -26,10 +26,11 @@ RS_RI_SCHEMA = TestHelper.load_schema("RS-RI.schema.json")
 _PATCH_GET_LAST_RC_RI_BY_CASE_ID = "converter.cisu.resources_info.resources_info_cisu_converter.get_last_rc_ri_by_case_id"
 _PATCH_GET_RS_MESSAGES_BY_CASE_ID = "converter.cisu.resources_info.resources_info_cisu_converter.get_rs_messages_by_case_id"
 
+# These usecases does not contain the minimal infomations to trigger
+# the traduction of a valid RC-RI (no state on resource).
 usecase_files_returning_no_converted_messages = [
     "RS-RI_Secondaire_RobertVermande.03.json",
     "RS-RI_partageRessources_LolaHalimi.03c.json",
-    "RS-RI_partageRessources_MonsieurX.03.json",
 ]
 
 all_usecase_files = TestHelper.get_json_files(
@@ -161,10 +162,14 @@ def test_cisu_to_rs_breaking_changes():
 @pytest.mark.parametrize(
     "rs_vehicule_type,expected",
     [
-        pytest.param("SIS", "SIS", id="translates SIS to SIS"),
-        pytest.param("SIS.DRAGON", "SIS", id="translates SIS.DRAGON to SIS"),
-        pytest.param("SMUR", "SMUR", id="translates SMUR to SMUR"),
-        pytest.param("SMUR.VLM", "SMUR", id="translates SMUR.VLM to SMUR"),
+        pytest.param("SIS", "VECTEUR_SANTE", id="translates SIS to VECTEUR_SANTE"),
+        pytest.param(
+            "SIS.DRAGON", "VECTEUR_SANTE", id="translates SIS.DRAGON to VECTEUR_SANTE"
+        ),
+        pytest.param("SMUR", "VECTEUR_SANTE", id="translates SMUR to VECTEUR_SANTE"),
+        pytest.param(
+            "SMUR.VLM", "VECTEUR_SANTE", id="translates SMUR.VLM to VECTEUR_SANTE"
+        ),
     ],
 )
 def test_translate_vehicule_type_to_cisu(rs_vehicule_type, expected):
@@ -174,17 +179,17 @@ def test_translate_vehicule_type_to_cisu(rs_vehicule_type, expected):
 
 
 @pytest.mark.parametrize(
-    "rs_vehicule_type",
+    "rs_vehicule_type,expected",
     [
-        pytest.param("AUTREVEC", id="AUTREVEC is not mappable to CISU"),
-        pytest.param("FSI.HELIFSI", id="FSI.HELIFSI is not mappable to CISU"),
-        pytest.param("TSU.VSL", id="TSU.VSL is not mappable to CISU"),
+        pytest.param("SIS", "SIS", id="translates SIS to SIS"),
+        pytest.param("VECTEUR_SANTE", "SIS", id="translates VECTEUR_SANTE to SIS"),
+        pytest.param("unsuported", "SIS", id="translates unsuported to SIS"),
     ],
 )
-def test_translate_vehicule_type_to_cisu_raises_on_unmappable(rs_vehicule_type):
+def test_translate_vehicule_type_to_samu(rs_vehicule_type, expected):
     resource = {"vehicleType": rs_vehicule_type}
-    with pytest.raises(ConversionError):
-        ResourcesInfoCISUConverter._translate_to_cisu_vehicle_type(resource)
+    ResourcesInfoCISUConverter._translate_to_samu_vehicle_type(resource)
+    assert resource["vehicleType"] == expected
 
 
 # ---------------------------------------------------------------------------
@@ -495,8 +500,8 @@ def test_from_rs_to_cisu_no_persisted_rs_sr():
 
     rc_ri = get_cisu_content(result)
     assert rc_ri["resource"][0]["state"]["status"] == "RET-BASE"
-    # Two resources present originaly but only one valid vehicle type, so 1 resource expected
-    assert (len(rc_ri["resource"])) == 1
+    # Two resources present originaly and both are translated in the destination RC-RI
+    assert (len(rc_ri["resource"])) == 2
 
 
 def test_from_rs_to_cisu_no_state_but_persisted_rs_sr():

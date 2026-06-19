@@ -5,7 +5,7 @@
       {
         "resourceId": "fr.health.samu800.resource.VLM1",
         "orgId": "fr.health.samu800",
-        "vehicleType": "SMUR",
+        "vehicleType": "VECTEUR_SANTE",
         "name": "VLM 800-1",
         "state": {
           "datetime": "2024-08-01T16:42:00+02:00",
