@@ -80,3 +80,7 @@ class CreateCaseCISUConstants:
     REFERENCE_VERSION_PATH = "$.referenceVersion"
 
     CREATION_PATH = "$.creation"
+
+    ADDITIONAL_INFORMATION_PATH = "$.additionalInformation"
+    CUSTOM_MAP_PATH = f"{ADDITIONAL_INFORMATION_PATH}.customMap"
+    INITIAL_ALERT_CALL_TAKER_ORG_PATH = f"{INITIAL_ALERT_CALL_TAKER_PATH}.organization"

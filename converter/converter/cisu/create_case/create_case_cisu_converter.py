@@ -1,4 +1,4 @@
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 import copy
 import random
 import string
@@ -9,8 +9,11 @@ from yaml import dump
 from converter.cisu.create_case.create_case_cisu_constants import (
     CreateCaseCISUConstants,
 )
+
 from converter.cisu.utils import add_to_initial_alert_notes
 from converter.constants import Constants
+from pydantic import BaseModel, Field
+
 from converter.utils import (
     delete_paths,
     get_field_value,
@@ -24,6 +27,25 @@ from converter.cisu.base_cisu_converter import BaseCISUConverter
 import logging
 
 logger = logging.getLogger(__name__)
+
+
+class CustomMap(BaseModel):
+    key: str = Field(
+        ...,
+        description="A valoriser avec le nom de la balise",
+    )
+    value: str = Field(
+        ...,
+        description="A valoriser avec la valeur associée à la clé",
+    )
+    label: Optional[str] = Field(
+        None,
+        description="A valoriser avec le libellé correspondant",
+    )
+    freetext: Optional[str] = Field(
+        None,
+        description="Informations complémentaires sur le contexte / utilisation de cette correspondance additionnelle",
+    )
 
 
 class CreateCaseCISUConverter(BaseCISUConverter):
@@ -165,6 +187,63 @@ class CreateCaseCISUConverter(BaseCISUConverter):
                 json_data, CreateCaseCISUConstants.MEDICAL_NOTE_PATH, medical_notes
             )
 
+        def clear_custom_map(json_data: Dict[str, Any]):
+            """clear the RC-EDA customMap field"""
+            initial_custom_map_array = get_field_value(
+                json_data, CreateCaseCISUConstants.CUSTOM_MAP_PATH
+            )
+            if initial_custom_map_array:
+                logger.debug("Found existing customMap in message. Clearing it.")
+                set_value(
+                    json_data,
+                    CreateCaseCISUConstants.CUSTOM_MAP_PATH,
+                    [],
+                )
+
+        def add_to_custom_map(json_data: Dict[str, Any], custom_map_entry: CustomMap):
+            initial_custom_map_array = get_field_value(
+                json_data, CreateCaseCISUConstants.CUSTOM_MAP_PATH
+            )
+            if not initial_custom_map_array:
+                initial_custom_map_array = []
+
+            # RC-EDA model forces cardinality of max 3 items for customMap field
+            if len(initial_custom_map_array) >= 3:
+                raise ValueError("The customMap already contains 3 items.")
+
+            initial_custom_map_array.append(custom_map_entry.model_dump())
+
+            set_value(
+                json_data,
+                CreateCaseCISUConstants.CUSTOM_MAP_PATH,
+                initial_custom_map_array,
+            )
+
+        def get_call_taker_org(json_data: Dict[str, Any]):
+            return get_field_value(
+                json_data, CreateCaseCISUConstants.INITIAL_ALERT_CALL_TAKER_ORG_PATH
+            )
+
+        def add_call_taker_org_to_custom_map(json_data: Dict[str, Any]):
+            logger.debug("Adding initialAlert callTaker organization as customMap")
+
+            # get initialalert.calltaker.organization from RC-EDA
+            calltaker_org = get_call_taker_org(json_data)
+
+            if calltaker_org is not None:
+                logger.debug("Adding initialAlert callTaker organization as customMap")
+                # create the customMap item
+                initialalert_calltaker = CustomMap(
+                    key="initialalert.calltaker.organization",
+                    label="Identifiant SDIS",
+                    value=calltaker_org,
+                    freetext="",
+                )
+
+                add_to_custom_map(json_data, initialalert_calltaker)
+
+            return json_data
+
         # Create independent envelope copy without usecase for output
         output_json = cls.copy_cisu_input_content(input_json)
 
@@ -190,6 +269,9 @@ class CreateCaseCISUConverter(BaseCISUConverter):
         merge_notes_freetext(output_use_case_json)
 
         add_victims_to_medical_notes(output_use_case_json, sender_id)
+
+        clear_custom_map(output_use_case_json)
+        add_call_taker_org_to_custom_map(output_use_case_json)
 
         # - Delete paths - /!\ It must be the last step
         logger.debug("Removing unnecessary paths")
