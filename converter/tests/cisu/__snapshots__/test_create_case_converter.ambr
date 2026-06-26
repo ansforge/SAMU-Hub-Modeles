@@ -144,8 +144,10 @@
                 "additionalInformation": {
                   "customMap": [
                     {
-                      "key": "COMMERCIAL",
-                      "value": "IKEA Nantes"
+                      "key": "initialalert.calltaker.organization",
+                      "value": "fr.health.samu440",
+                      "label": "Identifiant SDIS",
+                      "freetext": ""
                     }
                   ]
                 },
@@ -313,8 +315,10 @@
                 "additionalInformation": {
                   "customMap": [
                     {
-                      "key": "COMMERCIAL",
-                      "value": "IKEA Nantes"
+                      "key": "initialalert.calltaker.organization",
+                      "value": "fr.health.samu440",
+                      "label": "Identifiant SDIS",
+                      "freetext": ""
                     }
                   ]
                 },
