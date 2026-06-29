@@ -147,7 +147,9 @@ class CreateCaseCISUConverter(BaseCISUConverter):
 
         def add_victims_to_medical_notes(json_data: Dict[str, Any], sender_id: str):
             logger.debug("Adding victims to medical notes")
-            field_value = get_field_value(json_data, "$.qualification.victims")
+            field_value = get_field_value(
+                json_data, CreateCaseCISUConstants.QUALIFICATION_VICTIMS_PATH
+            )
 
             if field_value is None:
                 return
@@ -158,6 +160,44 @@ class CreateCaseCISUConverter(BaseCISUConverter):
                 CreateCaseCISUConstants.MEDICAL_NOTE_KEY_TRANSLATIONS,
             )
             add_object_to_medical_notes(json_data, translated_text, sender_id)
+
+        def add_victim_count_to_custom_map(json_data: Dict[str, Any]):
+            logger.debug("Adding victims count to customMap")
+
+            count = get_field_value(
+                json_data, CreateCaseCISUConstants.QUALIFICATION_VICTIM_COUNT_PATH
+            )
+
+            if count is None:
+                return
+
+            victim_count = CustomMap(
+                key="qualification.victims.count",
+                label="Nombre de patients-victimes",
+                value=count,
+                freetext="Indique le nombre de victimes selon la nomenclature du référentiel CISU",
+            )
+
+            add_to_custom_map(json_data, victim_count)
+
+        def add_main_victim_to_custom_map(json_data: Dict[str, Any]):
+            logger.debug("Adding main victim to customMap")
+
+            main_victim = get_field_value(
+                json_data, CreateCaseCISUConstants.QUALIFICATION_MAIN_VICTIM_PATH
+            )
+
+            if main_victim is None:
+                return
+
+            main_victim = CustomMap(
+                key="qualification.victims.mainVictim",
+                label="Type du patient-victime principal",
+                value=main_victim,
+                freetext="Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours) selon la nomenclature du référentiel CISU",
+            )
+
+            add_to_custom_map(json_data, main_victim)
 
         def add_object_to_medical_notes(
             json_data: Dict[str, Any], note_text: str, sender_id: str
@@ -271,6 +311,9 @@ class CreateCaseCISUConverter(BaseCISUConverter):
         add_victims_to_medical_notes(output_use_case_json, sender_id)
 
         clear_custom_map(output_use_case_json)
+
+        add_victim_count_to_custom_map(output_use_case_json)
+        add_main_victim_to_custom_map(output_use_case_json)
         add_call_taker_org_to_custom_map(output_use_case_json)
 
         # - Delete paths - /!\ It must be the last step
