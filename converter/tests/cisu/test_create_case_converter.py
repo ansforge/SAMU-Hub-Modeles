@@ -3,6 +3,7 @@ from unittest.mock import patch
 from converter.cisu.create_case.create_case_cisu_converter import (
     CreateCaseCISUConverter,
 )
+from tests.cisu.helpers import get_edxl_message
 from tests.constants import TestConstants
 from tests.test_helpers import TestHelper
 import json
@@ -14,18 +15,32 @@ RS_EDA_SCHEMA = TestHelper.load_schema("RS-EDA.schema.json")
 RC_EDA_SCHEMA = TestHelper.load_schema("RC-EDA.schema.json")
 
 
+def additional_validation(result):
+    "Global additional validation (previously validate_health_format)"
+    assert "owner" in result, "Health format must contain owner field"
+    assert "additionalInformation" in result, (
+        "field additionalInformation should be present"
+    )
+    assert "customMap" in result["additionalInformation"], (
+        "field customMap should be present in additionalInformation"
+    )
+    custom_map_keys = [
+        entry["key"] for entry in result["additionalInformation"]["customMap"]
+    ]
+    assert "initialalert.calltaker.organization" in custom_map_keys, (
+        "initialalert.calltaker.organization must be present in customMap"
+    )
+
+
 def test_from_cisu_conversion_local():
     """Test conversion from CISU to Health format"""
-
-    def validate_health_format(result):
-        assert "owner" in result, "Health format must contain owner field"
 
     TestHelper.conversion_tests_runner(
         sample_dir=TestConstants.RC_EDA_TAG,
         envelope_file=TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
         converter_method=CreateCaseCISUConverter.from_cisu_to_rs,
         target_schema=RS_EDA_SCHEMA,
-        additional_validation=validate_health_format,
+        additional_validation=additional_validation,
     )
 
 
@@ -42,15 +57,12 @@ def test_to_cisu_conversion_local():
 def test_from_cisu_conversion_v3():
     """Test conversion from CISU to Health format"""
 
-    def validate_health_format(result):
-        assert "owner" in result, "Health format must contain owner field"
-
     TestHelper.conversion_tests_runner(
         sample_dir=TestConstants.RC_EDA_TAG,
         envelope_file=TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
         converter_method=CreateCaseCISUConverter.from_cisu_to_rs,
         target_schema=RS_EDA_SCHEMA,
-        additional_validation=validate_health_format,
+        additional_validation=additional_validation,
         online_tag="main",  # ToDo: migrate to "v3" once tag is available
     )
 
@@ -152,6 +164,7 @@ class TestSnapshotCreateCaseConverter:
         converter = CreateCaseCISUConverter
 
         output_data = converter.from_rs_to_cisu(message)
+
         assert json.dumps(output_data, indent=2) == snapshot
 
     @patch("converter.cisu.create_case.create_case_cisu_converter.random")
@@ -165,7 +178,6 @@ class TestSnapshotCreateCaseConverter:
         converter = CreateCaseCISUConverter
 
         output_data = converter.from_cisu_to_rs(message)
-
         assert json.dumps(output_data, indent=2) == snapshot
 
 
@@ -217,6 +229,86 @@ class TestVictimsCount(unittest.TestCase):
         self.assertEqual(
             self.converter.get_victim_count(self.converter, patients), {"count": "0"}
         )
+
+
+class TestInitialCallTaker(unittest.TestCase):
+    def setUp(self):
+        self.fixtures_folder_path = "tests/fixtures/RC-EDA/"
+        self.converter = CreateCaseCISUConverter
+
+    def test_initial_calltaker(self):
+
+        message = TestHelper.create_edxl_json_from_sample(
+            TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
+            self.fixtures_folder_path + "RC-EDA_exhaustive_fill.json",
+        )
+
+        result_edxl = self.converter.from_cisu_to_rs(message)
+        result = get_edxl_message(result_edxl)["createCaseHealth"]
+
+        custom_map = result["additionalInformation"]["customMap"]
+        calltaker_entry = next(
+            (
+                e
+                for e in custom_map
+                if e["key"] == "initialalert.calltaker.organization"
+            ),
+            None,
+        )
+
+        self.assertIsNotNone(
+            calltaker_entry, "initialalert.calltaker.organization must be in customMap"
+        )
+        self.assertEqual(calltaker_entry["label"], "Identifiant SDIS")
+        self.assertIsNotNone(calltaker_entry["value"])
+
+    def test_custom_map_cleared_before_calltaker_added(self):
+        message = TestHelper.create_edxl_json_from_sample(
+            TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
+            self.fixtures_folder_path + "RC-EDA_exhaustive_fill.json",
+        )
+
+        get_edxl_message(message)["createCase"].setdefault("additionalInformation", {})[
+            "customMap"
+        ] = [
+            {"key": "existing.key", "label": "Existing", "value": "val", "freetext": ""}
+        ]
+
+        result_edxl = self.converter.from_cisu_to_rs(message)
+        custom_map = get_edxl_message(result_edxl)["createCaseHealth"][
+            "additionalInformation"
+        ]["customMap"]
+        self.assertEqual(len(custom_map), 1)
+        self.assertEqual(custom_map[0]["key"], "initialalert.calltaker.organization")
+
+    def test_no_additional_information_if_empty_cutom_map_initially(self):
+        message = TestHelper.create_edxl_json_from_sample(
+            TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
+            self.fixtures_folder_path + "RC-EDA_required_fields.json",
+        )
+        result_edxl = self.converter.from_cisu_to_rs(message)
+        additional_information = get_edxl_message(result_edxl)["createCaseHealth"].get(
+            "additionalInformation"
+        )
+        self.assertIsNone(additional_information)
+
+    def test_no_additional_information_if_calltaker_not_provided(self):
+        message = TestHelper.create_edxl_json_from_sample(
+            TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
+            self.fixtures_folder_path + "RC-EDA_required_fields.json",
+        )
+
+        get_edxl_message(message)["createCase"].setdefault("additionalInformation", {})[
+            "customMap"
+        ] = [
+            {"key": "existing.key", "label": "Existing", "value": "val", "freetext": ""}
+        ]
+
+        result_edxl = self.converter.from_cisu_to_rs(message)
+        custom_map = get_edxl_message(result_edxl)["createCaseHealth"][
+            "additionalInformation"
+        ]["customMap"]
+        self.assertEqual(len(custom_map), 0)
 
 
 if __name__ == "__main__":
