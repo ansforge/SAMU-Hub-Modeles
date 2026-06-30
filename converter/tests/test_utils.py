@@ -10,6 +10,7 @@ from converter.utils import (
     translate_key_words,
     update_json_value,
     set_value,
+    extract_case_id,
     extract_message_type_from_message_content,
     switch_field_name,
 )
@@ -69,6 +70,29 @@ def test_format_object_nested():
         "  - Condition: GRAVE"
     )
     assert result == expected
+
+
+def _edxl_with_message(message):
+    return {"content": [{"jsonContent": {"embeddedJsonContent": {"message": message}}}]}
+
+
+def test_extract_case_id_present():
+    edxl = _edxl_with_message({"resourcesInfo": {"caseId": "case-123"}})
+    assert extract_case_id(edxl) == "case-123"
+
+
+def test_extract_case_id_absent():
+    edxl = _edxl_with_message({"technicalNoreq": {"optionalStringField": "value"}})
+    assert extract_case_id(edxl) is None
+
+
+def test_extract_case_id_empty_string():
+    edxl = _edxl_with_message({"resourcesInfo": {"caseId": ""}})
+    assert extract_case_id(edxl) is None
+
+
+def test_extract_case_id_malformed_payload():
+    assert extract_case_id({}) is None
 
 
 class TestDeletePaths(unittest.TestCase):
