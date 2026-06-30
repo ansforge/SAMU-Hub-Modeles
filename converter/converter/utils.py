@@ -47,6 +47,21 @@ def extract_message_type_from_message_content(
     return filtered_keys[0]
 
 
+def extract_case_id(edxl_json) -> Optional[str]:
+    """Best-effort extraction of the business caseId, used as a span label.
+
+    The caseId lives directly under the use-case object (e.g. ``resourcesInfo.caseId``).
+    Returns ``None`` when the message carries no caseId.
+    """
+    try:
+        message_content = extract_message_content(edxl_json)
+        message_type = extract_message_type_from_message_content(message_content)
+        case_id = message_content.get(message_type, {}).get("caseId")
+        return case_id if isinstance(case_id, str) and case_id else None
+    except Exception:
+        return None
+
+
 def delete_paths(data: Dict[str, Any], paths: List[str]) -> None:
     """
     Safely deletes keys in a dictionary based on dot-separated paths.
