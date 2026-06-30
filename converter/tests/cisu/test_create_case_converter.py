@@ -30,6 +30,12 @@ def additional_validation(result):
     assert "initialalert.calltaker.organization" in custom_map_keys, (
         "initialalert.calltaker.organization must be present in customMap"
     )
+    assert "qualification.victims.count" in custom_map_keys, (
+        "qualification.victims.count must be present in customMap"
+    )
+    assert "qualification.victims.mainVictim" in custom_map_keys, (
+        "qualification.victims.mainVictim must be present in customMap"
+    )
 
 
 def test_from_cisu_conversion_local():
@@ -231,7 +237,7 @@ class TestVictimsCount(unittest.TestCase):
         )
 
 
-class TestInitialCallTaker(unittest.TestCase):
+class TestCustomMap(unittest.TestCase):
     def setUp(self):
         self.fixtures_folder_path = "tests/fixtures/RC-EDA/"
         self.converter = CreateCaseCISUConverter
@@ -262,7 +268,51 @@ class TestInitialCallTaker(unittest.TestCase):
         self.assertEqual(calltaker_entry["label"], "Identifiant SDIS")
         self.assertIsNotNone(calltaker_entry["value"])
 
-    def test_custom_map_cleared_before_calltaker_added(self):
+    def test_victim_count(self):
+        message = TestHelper.create_edxl_json_from_sample(
+            TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
+            self.fixtures_folder_path + "RC-EDA_exhaustive_fill.json",
+        )
+
+        result_edxl = self.converter.from_cisu_to_rs(message)
+        result = get_edxl_message(result_edxl)["createCaseHealth"]
+
+        custom_map = result["additionalInformation"]["customMap"]
+        victim_count_entry = next(
+            (e for e in custom_map if e["key"] == "qualification.victims.count"),
+            None,
+        )
+
+        self.assertIsNotNone(
+            victim_count_entry, "qualification.victims.count must be in customMap"
+        )
+        self.assertEqual(victim_count_entry["label"], "Nombre de patients-victimes")
+        self.assertIsNotNone(victim_count_entry["value"])
+
+    def test_main_victim(self):
+        message = TestHelper.create_edxl_json_from_sample(
+            TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
+            self.fixtures_folder_path + "RC-EDA_exhaustive_fill.json",
+        )
+
+        result_edxl = self.converter.from_cisu_to_rs(message)
+        result = get_edxl_message(result_edxl)["createCaseHealth"]
+
+        custom_map = result["additionalInformation"]["customMap"]
+        main_victim_entry = next(
+            (e for e in custom_map if e["key"] == "qualification.victims.mainVictim"),
+            None,
+        )
+
+        self.assertIsNotNone(
+            main_victim_entry, "qualification.victims.mainVictim must be in customMap"
+        )
+        self.assertEqual(
+            main_victim_entry["label"], "Type du patient-victime principal"
+        )
+        self.assertIsNotNone(main_victim_entry["value"])
+
+    def test_custom_map_cleared_before_custom_map_infos_added(self):
         message = TestHelper.create_edxl_json_from_sample(
             TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH,
             self.fixtures_folder_path + "RC-EDA_exhaustive_fill.json",
@@ -278,8 +328,10 @@ class TestInitialCallTaker(unittest.TestCase):
         custom_map = get_edxl_message(result_edxl)["createCaseHealth"][
             "additionalInformation"
         ]["customMap"]
-        self.assertEqual(len(custom_map), 1)
-        self.assertEqual(custom_map[0]["key"], "initialalert.calltaker.organization")
+        self.assertEqual(len(custom_map), 3)
+        self.assertEqual(custom_map[0]["key"], "qualification.victims.count")
+        self.assertEqual(custom_map[1]["key"], "qualification.victims.mainVictim")
+        self.assertEqual(custom_map[2]["key"], "initialalert.calltaker.organization")
 
     def test_no_additional_information_if_empty_cutom_map_initially(self):
         message = TestHelper.create_edxl_json_from_sample(
