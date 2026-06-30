@@ -1,4 +1,9 @@
+import os
 from unittest.mock import MagicMock, patch
+
+# Disable OpenTelemetry tracing during tests (no exporter connections, no Flask
+# instrumentation). Must be set before the app module is imported below.
+os.environ.setdefault("OTEL_SDK_DISABLED", "true")
 
 # Patch init_db before the app module is imported, so it doesn't attempt
 # to connect to MongoDB during tests.
