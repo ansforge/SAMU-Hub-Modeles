@@ -19,8 +19,10 @@ from converter.tracing import configure_tracing, tag_current_span
 configure_logging()
 
 app = Flask(__name__)
-init_db(app)
+# Configure tracing BEFORE init_db: PymongoInstrumentor patches MongoClient.__init__, so it
+# must run before init_db() creates the client, otherwise MongoDB commands emit no spans.
 configure_tracing(app)
+init_db(app)
 
 multiproc_dir = os.getenv("PROMETHEUS_MULTIPROC_DIR")
 if multiproc_dir:
