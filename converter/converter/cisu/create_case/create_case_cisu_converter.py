@@ -175,7 +175,6 @@ class CreateCaseCISUConverter(BaseCISUConverter):
                 key="qualification.victims.count",
                 label="Nombre de patients-victimes",
                 value=count,
-                freetext="Indique le nombre de victimes selon la nomenclature du référentiel CISU",
             )
 
             add_to_custom_map(json_data, victim_count)
@@ -194,7 +193,6 @@ class CreateCaseCISUConverter(BaseCISUConverter):
                 key="qualification.victims.mainVictim",
                 label="Type du patient-victime principal",
                 value=main_victim,
-                freetext="Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours) selon la nomenclature du référentiel CISU",
             )
 
             add_to_custom_map(json_data, main_victim)
@@ -251,7 +249,9 @@ class CreateCaseCISUConverter(BaseCISUConverter):
             if len(initial_custom_map_array) >= 3:
                 raise ValueError("The customMap already contains 3 items.")
 
-            initial_custom_map_array.append(custom_map_entry.model_dump())
+            initial_custom_map_array.append(
+                custom_map_entry.model_dump(exclude_none=True)
+            )
 
             set_value(
                 json_data,
@@ -277,7 +277,6 @@ class CreateCaseCISUConverter(BaseCISUConverter):
                     key="initialalert.calltaker.organization",
                     label="Identifiant SDIS",
                     value=calltaker_org,
-                    freetext="",
                 )
 
                 add_to_custom_map(json_data, initialalert_calltaker)
