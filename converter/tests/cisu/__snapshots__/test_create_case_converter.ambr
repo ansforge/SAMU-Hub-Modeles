@@ -146,20 +146,17 @@
                     {
                       "key": "qualification.victims.count",
                       "value": "1",
-                      "label": "Nombre de patients-victimes",
-                      "freetext": "Indique le nombre de victimes selon la nomenclature du r\u00e9f\u00e9rentiel CISU"
+                      "label": "Nombre de patients-victimes"
                     },
                     {
                       "key": "qualification.victims.mainVictim",
                       "value": "ADULTE",
-                      "label": "Type du patient-victime principal",
-                      "freetext": "Identifie le type de la principale victime (celle dont l'\u00e9tat de sant\u00e9 provoque le d\u00e9clenchement de l'envoi des secours) selon la nomenclature du r\u00e9f\u00e9rentiel CISU"
+                      "label": "Type du patient-victime principal"
                     },
                     {
                       "key": "initialalert.calltaker.organization",
                       "value": "fr.health.samu440",
-                      "label": "Identifiant SDIS",
-                      "freetext": ""
+                      "label": "Identifiant SDIS"
                     }
                   ]
                 },
@@ -329,20 +326,17 @@
                     {
                       "key": "qualification.victims.count",
                       "value": "1",
-                      "label": "Nombre de patients-victimes",
-                      "freetext": "Indique le nombre de victimes selon la nomenclature du r\u00e9f\u00e9rentiel CISU"
+                      "label": "Nombre de patients-victimes"
                     },
                     {
                       "key": "qualification.victims.mainVictim",
                       "value": "ADULTE",
-                      "label": "Type du patient-victime principal",
-                      "freetext": "Identifie le type de la principale victime (celle dont l'\u00e9tat de sant\u00e9 provoque le d\u00e9clenchement de l'envoi des secours) selon la nomenclature du r\u00e9f\u00e9rentiel CISU"
+                      "label": "Type du patient-victime principal"
                     },
                     {
                       "key": "initialalert.calltaker.organization",
                       "value": "fr.health.samu440",
-                      "label": "Identifiant SDIS",
-                      "freetext": ""
+                      "label": "Identifiant SDIS"
                     }
                   ]
                 },

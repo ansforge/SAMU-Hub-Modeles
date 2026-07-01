@@ -60,6 +60,11 @@ dev = [
     "mongomock>=4.1.2",
 ]
 
+[tool.mypy]
+plugins = [
+    "pydantic.mypy"
+]
+
 [[tool.mypy.overrides]]
 module = ["jsonpath_ng.*", "prometheus_flask_exporter.*"]
 ignore_missing_imports = true
