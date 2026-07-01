@@ -4,7 +4,7 @@ from unittest.mock import patch
 
 import pytest
 
-from converter.cisu.resources_info.resources_info_cisu_converter import (
+from converter.cisu_transcoders.resources_info.resources_info_cisu_converter import (
     ConversionError,
     ResourcesInfoCISUConverter,
 )
@@ -23,8 +23,8 @@ from tests.cisu.helpers import (
 
 RS_RI_SCHEMA = TestHelper.load_schema("RS-RI.schema.json")
 
-_PATCH_GET_LAST_RC_RI_BY_CASE_ID = "converter.cisu.resources_info.resources_info_cisu_converter.get_last_rc_ri_by_case_id"
-_PATCH_GET_RS_MESSAGES_BY_CASE_ID = "converter.cisu.resources_info.resources_info_cisu_converter.get_rs_messages_by_case_id"
+_PATCH_GET_LAST_RC_RI_BY_CASE_ID = "converter.cisu_transcoders.resources_info.resources_info_cisu_converter.get_last_rc_ri_by_case_id"
+_PATCH_GET_RS_MESSAGES_BY_CASE_ID = "converter.cisu_transcoders.resources_info.resources_info_cisu_converter.get_rs_messages_by_case_id"
 
 # These usecases does not contain the minimal infomations to trigger
 # the traduction of a valid RC-RI (no state on resource).
@@ -145,7 +145,7 @@ def test_cisu_to_rs_breaking_changes():
         "tests/fixtures/RC-RI/RC-RI_V3.0_exhaustive_fill.json",
     )
     with patch(
-        "converter.cisu.resources_info.resources_info_cisu_converter.get_last_rc_ri_by_case_id",
+        "converter.cisu_transcoders.resources_info.resources_info_cisu_converter.get_last_rc_ri_by_case_id",
         return_value=None,
     ):
         results = ResourcesInfoCISUConverter.from_cisu_to_rs(cisu_raw_message)
