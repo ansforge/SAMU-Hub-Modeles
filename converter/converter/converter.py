@@ -5,19 +5,16 @@ from prometheus_flask_exporter.multiprocess import GunicornInternalPrometheusMet
 from prometheus_flask_exporter import PrometheusMetrics
 from pymongo import timeout
 
-from opentelemetry import trace
-
 from converter.conversion_strategy.conversion_strategy import conversion_strategy
 from converter.utils import (
     get_sender,
     get_recipient,
-    extract_case_id,
     extract_message_type_from_message_content,
     extract_message_content,
 )
 from converter.logging_config import configure_logging, LoggingKeys
 from converter.database import init_db, get_db
-from converter.tracing import configure_tracing, CASE_ID_ATTRIBUTE
+from converter.tracing import configure_tracing, tag_current_span
 
 configure_logging()
 
@@ -71,7 +68,7 @@ def convert():
     edxl_json = req_data.get("edxl")
     is_cisu_conversion = req_data.get("cisuConversion", False)
 
-    # Store data in request context to be used in logs & traces
+    # Store data in request context to be used in logs
     try:
         setattr(g, LoggingKeys.DISTRIBUTION_ID.value, edxl_json.get("distributionID"))
         setattr(g, LoggingKeys.SENDER_ID.value, get_sender(edxl_json))
@@ -82,11 +79,11 @@ def convert():
             LoggingKeys.MESSAGE_TYPE.value,
             extract_message_type_from_message_content(message_content),
         )
-        case_id = extract_case_id(edxl_json)
-        if case_id:
-            trace.get_current_span().set_attribute(CASE_ID_ATTRIBUTE, case_id)
     except Exception:
         pass
+
+    # Label the trace span independently, so a malformed field above never prevents tagging.
+    tag_current_span(edxl_json)
 
     if not source_version or not target_version or not edxl_json:
         return raise_error(
