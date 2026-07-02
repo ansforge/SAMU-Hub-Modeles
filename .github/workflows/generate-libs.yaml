@@ -24,7 +24,7 @@ jobs:
       - name: Install node env 🏗
         uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 24
 
       - name: Install openapi-generator-cli
         run: npm install -g @openapitools/openapi-generator-cli
@@ -79,10 +79,13 @@ jobs:
           # Move generated classes to the correct location
           for dir in gem/*/; do
             package=$(basename "$dir")
+          
+            [ "$package" = "lib" ] && continue
+          
             mkdir -p "gem/lib/hubsanteModel/models/$package/"
             mv "$dir"/lib/hubsanteModel/models/* "gem/lib/hubsanteModel/models/$package/"
             rmdir "$dir/lib/hubsanteModel/models" && rmdir "$dir/lib/hubsanteModel" && rmdir "$dir/lib" && rmdir "$dir"
-          done;
+          done
 
           OUTPUT_FILE="hubsante_model.rb"
           
