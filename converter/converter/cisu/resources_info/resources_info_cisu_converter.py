@@ -393,13 +393,13 @@ class ResourcesInfoCISUConverter(BaseCISUConverter):
         logger.info(
             "Replacing vehicleType %s with %s for ressource with id %s",
             vehicle_type,
-            ResourcesInfoCISUConstants.VEHICLE_TYPE_VECTEUR_SANTE,
+            ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR,
             resourceId,
         )
         set_value(
             resource,
             ResourcesInfoCISUConstants.VEHICLE_TYPE_PATH,
-            ResourcesInfoCISUConstants.VEHICLE_TYPE_VECTEUR_SANTE,
+            ResourcesInfoCISUConstants.VEHICLE_TYPE_SMUR,
         )
 
     @classmethod
