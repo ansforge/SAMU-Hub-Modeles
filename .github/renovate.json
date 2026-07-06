@@ -15,12 +15,14 @@
       "description": "Mises à jour des GitHub Actions",
       "matchManagers": ["github-actions"],
       "groupName": "github-actions updates",
-      "separateMajorMinor": false
+      "separateMajorMinor": false,
+      "enabled": true
     },
     {
       "description": "Mises à jour des dépendances - Converter",
       "matchFileNames": ["converter/**"],
-      "groupName": "converter updates"
+      "groupName": "converter updates",
+      "enabled": true
     }
   ]
 }
