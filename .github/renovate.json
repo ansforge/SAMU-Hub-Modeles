@@ -1,0 +1,28 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "schedule": ["on monday"],
+  "prHourlyLimit": 0,
+  "minimumReleaseAge": "14 days",
+  "automerge": false,
+  "packageRules": [
+    {
+      "description": "Desactivation globale de renovate",
+      "matchFileNames": ["*/**"],
+      "enabled": false
+    },
+    {
+      "description": "Mises à jour des GitHub Actions",
+      "matchManagers": ["github-actions"],
+      "groupName": "github-actions updates",
+      "separateMajorMinor": false,
+      "enabled": true
+    },
+    {
+      "description": "Mises à jour des dépendances - Converter",
+      "matchFileNames": ["converter/**"],
+      "groupName": "converter updates",
+      "enabled": true
+    }
+  ]
+}
