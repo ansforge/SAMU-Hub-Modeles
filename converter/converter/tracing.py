@@ -68,4 +68,6 @@ def configure_tracing(app) -> None:
 
     FlaskInstrumentor().instrument_app(app)
     PymongoInstrumentor().instrument()
-    logger.info("OpenTelemetry tracing configured for service 'converter'")
+    logger.info(
+        f"OpenTelemetry tracing configured for service '{resource.attributes.get(SERVICE_NAME)}'"
+    )
