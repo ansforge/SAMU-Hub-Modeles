@@ -1,6 +1,6 @@
 import json
 from unittest.mock import patch
-from converter.versions.create_case_health.create_case_health_converter import (
+from converter.health_version_converters.create_case_health.create_case_health_converter import (
     CreateHealthCaseConverter,
 )
 from tests.constants import TestConstants
