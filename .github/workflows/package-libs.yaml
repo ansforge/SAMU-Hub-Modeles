@@ -59,11 +59,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install node env 🏗
-        uses: actions/setup-node@v4
-        with:
-          node-version: 16
-
       #      - name: Python - Prepare package files
       #        working-directory: ./generator_python/
       #        run: |
@@ -113,6 +108,12 @@ jobs:
         with:
           ruby-version: '3.0'
           bundler-cache: true
+      
+      - name: Ruby - add key gem files
+        working-directory: ./generator_ruby
+        run: |
+          cp hubsante_model.rb gem/lib/hubsanteModel/
+          cp hubsante_model.gemspec gem/
 
       - name: Ruby - Build Gem
         working-directory: ./generator_ruby/gem/
