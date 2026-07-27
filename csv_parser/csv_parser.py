@@ -977,6 +977,8 @@ if __name__ == '__main__':
     parser.add_argument('-n', '--name', required=True, help='The name to be given to the schema folder/file')
     parser.add_argument('-v', '--version', help='The version number to be used in model. Defaults to today.')
     parser.add_argument('-f', '--filter', default=False, help='If present, only 15-18 fields will be kept')
+    parser.add_argument('-m', '--model-type', required=True, help='The rootElement name for this schema (see out/schemas.yaml).')
+    parser.add_argument('-p', '--filepath', required=True, help='Path to the Excel file containing the sheet (e.g. models/model.xlsx).')
     args = parser.parse_args()
 
-    run(args.sheet, args.name, args.version, args.filter)
+    run(args.sheet, args.name, args.version, args.filter, args.model_type, args.filepath)
