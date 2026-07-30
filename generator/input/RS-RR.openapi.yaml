@@ -86,6 +86,7 @@ components:
           example: example.json#/response/answer
           description: "A valoriser avec la r\xE9ponse apport\xE9e. Cf Nomenclature\
             \ associ\xE9e\nACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE"
+          x-nomenclature: HubSante.reponseDemande
           enum:
           - ACCEPTEE
           - PARTIELLE
@@ -104,6 +105,7 @@ components:
             ponse \"Partielle\" car le d\xE9lai souhait\xE9 ne peut pas \xEAtre respect\xE9\
             ,  \xE0 valoriser obligatoirement avec le d\xE9lai de r\xE9ponse maximum\
             \ auquel s'engage l'exp\xE9diteur de la r\xE9ponse,\n"
+          x-nomenclature: HubSante.delai
           enum:
           - DEL0
           - ASAP

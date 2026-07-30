@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-RI.schema.json#",
-    "version": "26.06.15",
+    "version": "26.07.30",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesInfoCisu",
@@ -172,6 +172,7 @@
                     "x-cols": 6,
                     "example": "example.json#/resource/0/team/medicalLevel",
                     "description": "A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature associée",
+                    "x-nomenclature": "HubSante.typePEC",
                     "enum": [
                         "MED",
                         "PARAMED",
@@ -218,6 +219,7 @@
                     "x-cols": 6,
                     "example": "example.json#/resource/0/state/status",
                     "description": "A valoriser avec le statut du vecteur. Cf nomenclature associée.",
+                    "x-nomenclature": "HubSante.statutVecteur",
                     "enum": [
                         "DECISION",
                         "DECLENCHE",
@@ -300,6 +302,7 @@
                     "x-cols": 6,
                     "example": "example.json#/resource/0/contact/type",
                     "description": "A valoriser avec le type de l'URI utilisée. Cf nomenclature associée.",
+                    "x-nomenclature": "HubSante.typeCom",
                     "enum": [
                         "EMAIL",
                         "FAX",
