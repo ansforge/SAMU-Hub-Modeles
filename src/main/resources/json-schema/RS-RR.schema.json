@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RR.schema.json#",
-    "version": "26.06.15",
+    "version": "26.07.30",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesResponse",
@@ -62,6 +62,7 @@
                     "x-cols": 6,
                     "example": "example.json#/response/answer",
                     "description": "A valoriser avec la réponse apportée. Cf Nomenclature associée\nACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE",
+                    "x-nomenclature": "HubSante.reponseDemande",
                     "enum": [
                         "ACCEPTEE",
                         "PARTIELLE",
@@ -76,6 +77,7 @@
                     "x-cols": 6,
                     "example": "example.json#/response/deadline",
                     "description": "A valoriser avec le délai de réponse auquel s'engage l'expéditeur (cf. nomenclature) \nCas particulier : en cas de réponse \"Partielle\" car le délai souhaité ne peut pas être respecté,  à valoriser obligatoirement avec le délai de réponse maximum auquel s'engage l'expéditeur de la réponse,\n",
+                    "x-nomenclature": "HubSante.delai",
                     "enum": [
                         "DEL0",
                         "ASAP",

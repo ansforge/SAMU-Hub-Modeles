@@ -413,6 +413,7 @@ components:
             \ le code r\xE9ponse choisi est vien \"VALIDE\"\nDans le cadre d'une mission\
             \ d\xE9crivant les op\xE9rations en cours :\n- reprendre la nomenclature\
             \ EMSI pour caract\xE9riser la mission en cours."
+          x-nomenclature: EMSI-MISSION.TYPE
           enum:
           - SAV/ASC
           - FR_MED/REGLTN
@@ -732,6 +733,7 @@ components:
           example: example.json#/RESOURCE/0/UM
           description: "Dans le cadre d'un \xE9change d'op\xE9ration, optionnel. Unit\xE9\
             \ de mesure pour des ressources consommables"
+          x-nomenclature: EMSI-RESOURCE.UM
           enum:
           - LSV
           - OTH
@@ -982,6 +984,7 @@ components:
             example: example.json#/EVENT/ETYPE/CATEGORY/0
             description: "Le champ peut ne pas \xEAtre interpr\xE9t\xE9 ou renseign\xE9\
               \ avec une valeur comme 'UKN' = 'UNKOWN'\nA constituer depuis ref_mapping_EMSI<ETYPE><CATEGORY>_NEXSIS"
+            x-nomenclature: EMSI-EVENT.ETYPE.CATEGORY
             enum:
             - ASB
             - ASR
@@ -1080,6 +1083,7 @@ components:
               \ combinaison du code ACTOR et du code TYPE.\nLe transcodage entre ces\
               \ deux nomenclature est d\xE9crit dans l'annexe \"R\xE9f\xE9rentiel\
               \ Effets \xE0 Obtenir - correspondance EMSI\""
+            x-nomenclature: EMSI-EVENT.ETYPE.ACTOR
             enum:
             - ANI
             - BEV
@@ -1259,6 +1263,7 @@ components:
           x-cols: 6
           example: example.json#/EVENT/ETYPE/ENV
           description: Optionnel
+          x-nomenclature: EMSI-EVENT.ETYPE.ENV
           enum:
           - CDIS
           - DIS
@@ -1488,6 +1493,7 @@ components:
             \ depuis ref_mapping_EMSI_EVENT_EGEO_TYPE_NEXSIS_\n/!\\ plusieurs champs\
             \ NEXSIS\n/!\\ plusieurs valeurs par champs d'o\xF9 un groupe<EGEO> \xE0\
             \ cr\xE9er par type diff\xE9rents"
+          x-nomenclature: EMSI-EVENT.EGEO.TYPE
           enum:
           - AIR
           - CMB
@@ -1582,6 +1588,7 @@ components:
             description: "Optionnel\nLa localisation de l'affaire est transmise en\
               \ amont dans un message RC-EDA et le lieu souhait\xE9 pour l'intervention\
               \ est syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION"
+            x-nomenclature: EMSI-EVENT.EGEO.WEATHER
             enum:
             - HUM
             - ICY
@@ -1798,6 +1805,7 @@ components:
               \ de ressource :\n- Un v\xE9hicule,\n- Le personnel mobilis\xE9,\n-\
               \ Des consommables/ du mat\xE9riel,\n- Un lieu ou une organisation (non\
               \ utilis\xE9 pour le moment)\nVoir nomenclature EMSI associ\xE9e"
+            x-nomenclature: EMSI-RESOURCE.RTYPE.CLASS
             enum:
             - FAC
             - HUM

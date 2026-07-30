@@ -53,6 +53,7 @@ components:
           description: "Nomenclature permettant d'identifier les diff\xE9rentes \xE9\
             tapes d'int\xE9gration et de consultation du message dans le syst\xE8\
             me \xE9metteur"
+          x-nomenclature: HubSante.etape
           enum:
           - RECU
           - ERREUR

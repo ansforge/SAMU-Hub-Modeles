@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "EMSI.schema.json#",
-    "version": "26.06.15",
+    "version": "26.07.30",
     "example": "example.json#",
     "type": "object",
     "title": "emsi",
@@ -355,6 +355,7 @@
                     "x-cols": 6,
                     "example": "example.json#/MISSION/0/TYPE",
                     "description": "Le champ MISSION TYPE permet d'identifier l'effet à obtenir souhaité à partir de la combinaison du code ACTOR et du code TYPE.\n=> La table de transcodage permettant d'identifier les concourants et les effets à obtenir à partir d'un code EMSI est fournie en annexe \"Référentiel Effets à Obtenir - correspondance EMSI\".\nDans le cadre d'une réponse à DC :\n- reprendre le type de la DC si le code réponse choisi est vien \"VALIDE\"\nDans le cadre d'une mission décrivant les opérations en cours :\n- reprendre la nomenclature EMSI pour caractériser la mission en cours.",
+                    "x-nomenclature": "EMSI-MISSION.TYPE",
                     "enum": [
                         "SAV/ASC",
                         "FR_MED/REGLTN",
@@ -583,6 +584,7 @@
                     "x-cols": 6,
                     "example": "example.json#/RESOURCE/0/UM",
                     "description": "Dans le cadre d'un échange d'opération, optionnel. Unité de mesure pour des ressources consommables",
+                    "x-nomenclature": "EMSI-RESOURCE.UM",
                     "enum": [
                         "LSV",
                         "OTH",
@@ -804,6 +806,7 @@
                         "x-cols": 6,
                         "example": "example.json#/EVENT/ETYPE/CATEGORY/0",
                         "description": "Le champ peut ne pas être interprété ou renseigné avec une valeur comme 'UKN' = 'UNKOWN'\nA constituer depuis ref_mapping_EMSI<ETYPE><CATEGORY>_NEXSIS",
+                        "x-nomenclature": "EMSI-EVENT.ETYPE.CATEGORY",
                         "enum": [
                             "ASB",
                             "ASR",
@@ -890,6 +893,7 @@
                         "x-cols": 6,
                         "example": "example.json#/EVENT/ETYPE/ACTOR/0",
                         "description": "Dans de futures versions de NexSIS, les demandes de concours seront diffusées à plusieurs partenaires. Seul le système de la force concernée par la demande de concours devra répondre effectivement à la demande. Ce système de la force concernée sera identifié comme le \"concourant\" à la demande de concours.\nLe libellé du champ ACTOR permet d'identifier le concourant souhaité dans la demande de concours. Pour les premières implémentations du contrat d'interface 15-18, il n'y a pas de nécessité pour les systèmes récepteurs de filtrer les demandes de concours reçues via le Hub Santé.\nLe champ MISSION TYPE permet en complément d'identifier l'effet à obtenir souhaité à partir de la combinaison du code ACTOR et du code TYPE.\nLe transcodage entre ces deux nomenclature est décrit dans l'annexe \"Référentiel Effets à Obtenir - correspondance EMSI\"",
+                        "x-nomenclature": "EMSI-EVENT.ETYPE.ACTOR",
                         "enum": [
                             "ANI",
                             "BEV",
@@ -1069,6 +1073,7 @@
                     "x-cols": 6,
                     "example": "example.json#/EVENT/ETYPE/ENV",
                     "description": "Optionnel",
+                    "x-nomenclature": "EMSI-EVENT.ETYPE.ENV",
                     "enum": [
                         "CDIS",
                         "DIS",
@@ -1268,6 +1273,7 @@
                     "x-cols": 6,
                     "example": "example.json#/EVENT/EGEO/0/TYPE",
                     "description": "Optionnel\nLa localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l'intervention est systématiquement reprécisé dans un objet MISSION.\nA constituer depuis ref_mapping_EMSI_EVENT_EGEO_TYPE_NEXSIS_\n/!\\ plusieurs champs NEXSIS\n/!\\ plusieurs valeurs par champs d'où un groupe<EGEO> à créer par type différents",
+                    "x-nomenclature": "EMSI-EVENT.EGEO.TYPE",
                     "enum": [
                         "AIR",
                         "CMB",
@@ -1360,6 +1366,7 @@
                         "x-cols": 6,
                         "example": "example.json#/EVENT/EGEO/0/WEATHER/0",
                         "description": "Optionnel\nLa localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l'intervention est systématiquement reprécisé dans un objet MISSION",
+                        "x-nomenclature": "EMSI-EVENT.EGEO.WEATHER",
                         "enum": [
                             "HUM",
                             "ICY",
@@ -1553,6 +1560,7 @@
                         "x-cols": 6,
                         "example": "example.json#/RESOURCE/0/RTYPE/RCLASS/0",
                         "description": "Permet d'indiquer la classe de l'objet RESOURCE. Plusieurs niveau de détails sont fournis par la nomenclature associée.\nLe premier niveau permet notamment de décrire la classe principale de ressource :\n- Un véhicule,\n- Le personnel mobilisé,\n- Des consommables/ du matériel,\n- Un lieu ou une organisation (non utilisé pour le moment)\nVoir nomenclature EMSI associée",
+                        "x-nomenclature": "EMSI-RESOURCE.RTYPE.CLASS",
                         "enum": [
                             "FAC",
                             "HUM",

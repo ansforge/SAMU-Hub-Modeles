@@ -46,6 +46,7 @@ components:
           example: example.json#/status
           description: "A valoriser avec l'\xE9tat d'annulation de la demande le cas\
             \ \xE9ch\xE9ant"
+          x-nomenclature: HubSante.etatDemande
           enum:
           - ANNULEE
           examples:
@@ -99,6 +100,7 @@ components:
           example: example.json#/request/convention
           description: "A valoriser avec le cadre conventionnel de la demande. Cf\
             \ nomenclature associ\xE9e"
+          x-nomenclature: HubSante.cadre
           enum:
           - DRSIS
           - MISSION
@@ -120,6 +122,7 @@ components:
           example: example.json#/request/purpose
           description: "A valoriser avec le motif de la demande de ressource aupr\xE8\
             s du partenaire. Cf Nomenclature associ\xE9e."
+          x-nomenclature: HubSante.effet
           enum:
           - SAP
           - REGUL
@@ -143,6 +146,7 @@ components:
           example: example.json#/request/deadline
           description: "A valoriser avec le d\xE9lai d'intervention maximum souhait\xE9\
             \ (cf. nomenclature associ\xE9e)"
+          x-nomenclature: HubSante.delai
           enum:
           - DEL0
           - ASAP
