@@ -5,6 +5,17 @@
   "prHourlyLimit": 0,
   "minimumReleaseAge": "14 days",
   "automerge": false,
+  "registryAliases": {
+    "dhi.io": "dhi.io"
+  },
+  "hostRules": [
+    {
+      "matchHost": "dhi.io",
+      "hostType": "docker",
+      "username": "{{ secrets.DHI_USERNAME }}",
+      "password": "{{ secrets.DHI_PASSWORD }}"
+    }
+  ],
   "packageRules": [
     {
       "description": "Desactivation globale de renovate",
