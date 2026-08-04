@@ -58,6 +58,8 @@ dev = [
     "requests-cache>=1.2.1",
     "syrupy>=5.2.0",
     "mongomock>=4.1.2",
+    "openpyxl>=3.1.5",
+    "types-openpyxl>=3.1.5.20260724",
 ]
 
 [tool.mypy]
