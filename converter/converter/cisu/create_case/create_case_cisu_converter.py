@@ -24,6 +24,34 @@ from converter.utils import (
     set_value,
 )
 from converter.cisu.base_cisu_converter import BaseCISUConverter
+from converter.nomenclatures.utils import (
+    apply_nomenclature_mapping,
+    apply_nomenclature_mapping_to_list,
+)
+from converter.nomenclatures.from_cisu_to_rs.whats_happen import (
+    MAP as CISU_TO_RS_WHATS_HAPPEN_MAP,
+)
+from converter.nomenclatures.from_cisu_to_rs.health_motive import (
+    MAP as CISU_TO_RS_HEALTH_MOTIVE_MAP,
+)
+from converter.nomenclatures.from_cisu_to_rs.risk_threat import (
+    MAP as CISU_TO_RS_RISK_THREAT_MAP,
+)
+from converter.nomenclatures.from_cisu_to_rs.location_kind import (
+    MAP as CISU_TO_RS_LOCATION_KIND_MAP,
+)
+from converter.nomenclatures.from_rs_to_cisu.whats_happen import (
+    MAP as RS_TO_CISU_WHATS_HAPPEN_MAP,
+)
+from converter.nomenclatures.from_rs_to_cisu.health_motive import (
+    MAP as RS_TO_CISU_HEALTH_MOTIVE_MAP,
+)
+from converter.nomenclatures.from_rs_to_cisu.risk_threat import (
+    MAP as RS_TO_CISU_RISK_THREAT_MAP,
+)
+from converter.nomenclatures.from_rs_to_cisu.location_kind import (
+    MAP as RS_TO_CISU_LOCATION_KIND_MAP,
+)
 import logging
 
 logger = logging.getLogger(__name__)
@@ -283,6 +311,29 @@ class CreateCaseCISUConverter(BaseCISUConverter):
 
             return json_data
 
+        def apply_qualification_nomenclature_mappings(json_data: Dict[str, Any]):
+            logger.debug("Applying qualification nomenclature mappings")
+            apply_nomenclature_mapping(
+                json_data,
+                CreateCaseCISUConstants.QUALIFICATION_WHATS_HAPPEN_PATH,
+                CISU_TO_RS_WHATS_HAPPEN_MAP,
+            )
+            apply_nomenclature_mapping(
+                json_data,
+                CreateCaseCISUConstants.QUALIFICATION_HEALTH_MOTIVE_PATH,
+                CISU_TO_RS_HEALTH_MOTIVE_MAP,
+            )
+            apply_nomenclature_mapping_to_list(
+                json_data,
+                CreateCaseCISUConstants.QUALIFICATION_RISK_THREAT_PATH,
+                CISU_TO_RS_RISK_THREAT_MAP,
+            )
+            apply_nomenclature_mapping(
+                json_data,
+                CreateCaseCISUConstants.QUALIFICATION_LOCATION_KIND_PATH,
+                CISU_TO_RS_LOCATION_KIND_MAP,
+            )
+
         # Create independent envelope copy without usecase for output
         output_json = cls.copy_cisu_input_content(input_json)
 
@@ -299,6 +350,8 @@ class CreateCaseCISUConverter(BaseCISUConverter):
 
         set_default_location_freetext(output_use_case_json)
         add_location_detail(output_use_case_json)
+
+        apply_qualification_nomenclature_mappings(output_use_case_json)
 
         add_case_priority(output_use_case_json)
         add_to_initial_alert_notes(
@@ -388,6 +441,29 @@ class CreateCaseCISUConverter(BaseCISUConverter):
                         CreateCaseCISUConstants.DEFAULT_LOCATION_EXTERNAL_INFO_TYPE,
                     )
 
+        def apply_qualification_nomenclature_mappings(json_data: Dict[str, Any]):
+            logger.debug("Applying qualification nomenclature mappings")
+            apply_nomenclature_mapping(
+                json_data,
+                CreateCaseCISUConstants.QUALIFICATION_WHATS_HAPPEN_PATH,
+                RS_TO_CISU_WHATS_HAPPEN_MAP,
+            )
+            apply_nomenclature_mapping(
+                json_data,
+                CreateCaseCISUConstants.QUALIFICATION_HEALTH_MOTIVE_PATH,
+                RS_TO_CISU_HEALTH_MOTIVE_MAP,
+            )
+            apply_nomenclature_mapping_to_list(
+                json_data,
+                CreateCaseCISUConstants.QUALIFICATION_RISK_THREAT_PATH,
+                RS_TO_CISU_RISK_THREAT_MAP,
+            )
+            apply_nomenclature_mapping(
+                json_data,
+                CreateCaseCISUConstants.QUALIFICATION_LOCATION_KIND_PATH,
+                RS_TO_CISU_LOCATION_KIND_MAP,
+            )
+
         # Create independent envelope copy without usecase for output
         output_json = cls.copy_rs_input_content(input_json)
 
@@ -419,6 +495,8 @@ class CreateCaseCISUConverter(BaseCISUConverter):
             CreateCaseCISUConstants.LOCATION_COUNTRY_PATH,
             CreateCaseCISUConstants.DEFAULT_LOCATION_COUNTRY,
         )
+
+        apply_qualification_nomenclature_mappings(output_usecase_json)
 
         if not is_field_completed(
             output_usecase_json, CreateCaseCISUConstants.QUALIFICATION_WHATS_HAPPEN_PATH
