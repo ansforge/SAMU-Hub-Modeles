@@ -14,10 +14,14 @@ from converter.utils import (
 )
 from converter.logging_config import configure_logging, LoggingKeys
 from converter.database import init_db, get_db
+from converter.tracing import configure_tracing, tag_current_span
 
 configure_logging()
 
 app = Flask(__name__)
+# Configure tracing BEFORE init_db: PymongoInstrumentor patches MongoClient.__init__, so it
+# must run before init_db() creates the client, otherwise MongoDB commands emit no spans.
+configure_tracing(app)
 init_db(app)
 
 multiproc_dir = os.getenv("PROMETHEUS_MULTIPROC_DIR")
@@ -79,6 +83,8 @@ def convert():
         )
     except Exception:
         pass
+
+    tag_current_span(edxl_json)
 
     if not source_version or not target_version or not edxl_json:
         return raise_error(
