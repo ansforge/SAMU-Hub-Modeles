@@ -42,13 +42,14 @@ Entry = dict[str, str]  # {"code": ..., "label": ...}
 def _read_rows(input_path: Path) -> list[dict[str, str | None]]:
     # utf-8-sig strips the leading BOM some spreadsheet tools add on CSV export.
     with input_path.open(encoding="utf-8-sig", newline="") as f:
-        reader = csv.DictReader(f)
+        reader = csv.DictReader(f, delimiter=";")
         # Empty CSV fields decode as "" (unlike empty xlsx cells, which are
         # None) — normalize them so a blank "Code à transmettre" still means
         # "no entry" rather than an empty-string code.
         return [
             {key: (value if value else None) for key, value in row.items()}
             for row in reader
+            if any(value for key, value in row.items() if key)
         ]
 
 
