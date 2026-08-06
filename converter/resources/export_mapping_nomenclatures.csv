@@ -1,5 +1,5 @@
 ﻿Champ,Balise,Version code reçu,Code reçu,Libellé reçu,Version code transmis,Code à transmettre,Libellé à transmettre,VALIDATION ANSC,VALIDATION ANS,Observation
-Circonstances Natures de Faits,$.qualification.whatsHappen,1.9,C02.05.03,Atteinte aux personnesPsychiatrique,2.3,Autre ,"Problème psychiatrique, menace de suicide",OK,OK,
+Circonstances Natures de Faits,$.qualification.whatsHappen,1.9,C02.05.03,Atteinte aux personnesPsychiatrique,2.3,C02.18.00,"Problème psychiatrique, menace de suicide",OK,OK,
 Circonstances Natures de Faits,$.qualification.whatsHappen,1.9,C02.16.02,Atteinte aux personnesAutre type d’atteinte aux personnes,2.3,C02.16.00,Autre atteinte aux personnes,OK,OK,
 Circonstances Natures de Faits,$.qualification.whatsHappen,1.9,C04.07.00,Feu à l'air libre,2.3,C04.08.00,Autre type d’incendie,OK,OK,
 Circonstances Natures de Faits,$.qualification.whatsHappen,1.9,C04.07.01,IncendieFeu de produits de classe A,2.3,C04.08.00,Autre type d’incendie,OK,OK,
