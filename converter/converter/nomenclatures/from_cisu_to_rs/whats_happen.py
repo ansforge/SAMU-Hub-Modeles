@@ -2,7 +2,7 @@
 
 MAP: dict[str, dict[str, str] | None] = {
     "C02.05.03": {
-        "code": "Autre ",
+        "code": "C02.18.00",
         "label": "Problème psychiatrique, menace de suicide",
     },
     "C02.16.02": {"code": "C02.16.00", "label": "Autre atteinte aux personnes"},
