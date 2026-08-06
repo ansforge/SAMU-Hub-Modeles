@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate CISU<->RS nomenclature maps from the mapping Excel file.
+"""Generate CISU<->RS nomenclature maps from the mapping CSV export.
 
 Produces n = x*y Python modules under converter/nomenclatures/, one per
 combination of direction (x) and balise (y). Each module exposes a MAP dict
@@ -8,12 +8,11 @@ keyed by the received code, valued by the {code, label} to transmit.
 
 from __future__ import annotations
 
+import csv
 import re
 import subprocess
 import sys
 from pathlib import Path
-
-from openpyxl import load_workbook
 
 # Protocol version codes as they appear in the "Version code reçu" / "Version
 # code transmis" columns. Update here if a protocol's version changes.
@@ -28,7 +27,9 @@ DIRECTIONS = {
 }
 
 DEFAULT_INPUT = (
-    Path(__file__).resolve().parent.parent / "resources" / "mapping_nomenclatures.xlsx"
+    Path(__file__).resolve().parent.parent
+    / "resources"
+    / "export_mapping_nomenclatures.csv"
 )
 DEFAULT_OUTPUT_DIR = (
     Path(__file__).resolve().parent.parent / "converter" / "nomenclatures"
@@ -39,26 +40,16 @@ Entry = dict[str, str]  # {"code": ..., "label": ...}
 
 
 def _read_rows(input_path: Path) -> list[dict[str, str | None]]:
-    workbook = load_workbook(input_path, read_only=True, data_only=True)
-    sheet = workbook.active
-    if sheet is None:
-        raise ValueError("Workbook contains no active worksheet")
-
-    raw_rows = list(sheet.iter_rows(values_only=True))
-    workbook.close()
-
-    header = [str(cell).strip() if cell is not None else "" for cell in raw_rows[0]]
-    rows = []
-    for raw_row in raw_rows[1:]:
-        if all(cell is None for cell in raw_row):
-            continue
-        row = {
-            header[i]: (None if cell is None else str(cell))
-            for i, cell in enumerate(raw_row)
-            if i < len(header)
-        }
-        rows.append(row)
-    return rows
+    # utf-8-sig strips the leading BOM some spreadsheet tools add on CSV export.
+    with input_path.open(encoding="utf-8-sig", newline="") as f:
+        reader = csv.DictReader(f)
+        # Empty CSV fields decode as "" (unlike empty xlsx cells, which are
+        # None) — normalize them so a blank "Code à transmettre" still means
+        # "no entry" rather than an empty-string code.
+        return [
+            {key: (value if value else None) for key, value in row.items()}
+            for row in reader
+        ]
 
 
 def _slug(balise: str) -> str:
