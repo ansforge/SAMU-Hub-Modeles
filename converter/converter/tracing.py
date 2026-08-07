@@ -23,6 +23,8 @@ SENDER_ATTRIBUTE = "hubsante.sender"
 RECIPIENT_ATTRIBUTE = "hubsante.recipient"
 USE_CASE_ATTRIBUTE = "hubsante.use_case"
 
+EXCLUDED_URLS = "/health,/metrics"
+
 
 def is_tracing_enabled() -> bool:
     return os.getenv("OTEL_SDK_DISABLED", "false").strip().lower() != "true"
@@ -66,7 +68,7 @@ def configure_tracing(app) -> None:
     provider.add_span_processor(BatchSpanProcessor(OTLPSpanExporter()))
     trace.set_tracer_provider(provider)
 
-    FlaskInstrumentor().instrument_app(app)
+    FlaskInstrumentor().instrument_app(app, excluded_urls=EXCLUDED_URLS)
     PymongoInstrumentor().instrument()
     logger.info(
         f"OpenTelemetry tracing configured for service '{resource.attributes.get(SERVICE_NAME)}'"
