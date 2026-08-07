@@ -1,5 +1,7 @@
 import copy
+import io
 import re
+import zipfile
 from enum import StrEnum
 import pandas as pd
 import json
@@ -13,6 +15,20 @@ import uml_generator
 import os
 
 from pathlib import Path
+
+
+def save_docx_deterministic(doc, path):
+    # python-docx stamps every zip entry with the current time, so fix it to get byte-identical
+    # output for identical content instead of a spurious diff on every run
+    buffer = io.BytesIO()
+    doc.save(buffer)
+    buffer.seek(0)
+    with zipfile.ZipFile(buffer, 'r') as zin, zipfile.ZipFile(path, 'w', zipfile.ZIP_DEFLATED) as zout:
+        for item in zin.infolist():
+            data = zin.read(item.filename)
+            item.date_time = (2000, 1, 1, 0, 0, 0)
+            item.create_system = 0
+            zout.writestr(item, data)
 # Improving panda printing | Ref.: https://stackoverflow.com/a/11711637
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
@@ -35,9 +51,9 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         UNDERLINE = '\033[4m'
         END = '\033[0m'
 
-    version = version or date.today().strftime("%y.%m.%d")
+    explicit_version = version
     print(f"{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}"
-          f"Building version {version} of {perimeter_filter} {sheet} sheet "
+          f"Building {perimeter_filter} {sheet} sheet "
           f"into {name} schema..."
           f"{Color.END}")
 
@@ -149,13 +165,40 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     for i in sorted(params['perimeterColumns'], reverse=True):
         df.drop(df.columns[i], axis=1, inplace=True)
 
-    # Storing input data in a file to track versions
+    # Storing input data in a file to track versions.
     # Before storing, we keep only useful columns and we also do not want to write line index to the file (index=False)
     INPUT_CSV_COLUMNS = REQUIRED_COLUMNS.copy()
     INPUT_CSV_COLUMNS.remove("ID")
     if perimeter_filter:
         INPUT_CSV_COLUMNS.remove(perimeter_filter)
-    df[INPUT_CSV_COLUMNS].to_csv(f'out/{name}/{name}.input.csv', index=False)
+    input_csv_path = f'out/{name}/{name}.input.csv'
+    new_input_csv = df[INPUT_CSV_COLUMNS].to_csv(index=False)
+
+    previous_input_csv = None
+    if os.path.exists(input_csv_path):
+        with open(input_csv_path, encoding='utf-8') as f:
+            previous_input_csv = f.read()
+
+    # Previously generated schema still carries the version assigned last time this content changed
+    previous_version = None
+    previous_schema_path = f'../src/main/resources/json-schema/{name}.schema.json'
+    if os.path.exists(previous_schema_path):
+        with open(previous_schema_path, encoding='utf-8') as f:
+            previous_version = json.load(f).get('version')
+
+    # Only bump the version when the sheet's content actually changed, otherwise reuse the
+    # previous one so untouched sheets aren't re-dated by a change on a neighboring sheet
+    if explicit_version:
+        version = explicit_version
+    elif previous_version and previous_input_csv == new_input_csv:
+        version = previous_version
+        print(f"No content change detected for {name}, keeping version {version}.")
+    else:
+        version = date.today().strftime("%y.%m.%d")
+        print(f"Content change detected for {name}, bumping version to {version}.")
+
+    with open(input_csv_path, 'w', encoding='utf-8') as f:
+        f.write(new_input_csv)
 
     # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
     df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(
@@ -852,7 +895,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     # Then all Json Schema definitions are types tables
     for elem_name, definition in json_schema['definitions'].items():
         def_to_table(elem_name, definition, title=f"Type {elem_name}", doc=doc)
-    doc.save(f'out/{name}/{name}.schema.docx')
+    save_docx_deterministic(doc, f'out/{name}/{name}.schema.docx')
 
     print('Docx tables generated.')
 

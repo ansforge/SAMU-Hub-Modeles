@@ -3,6 +3,25 @@ from datetime import date
 import graphviz  # doctest: +NO_EXE
 import json
 import os
+import re
+
+
+def normalize_pdf_creation_date(pdf_path):
+    # Graphviz stamps the current time in /CreationDate, so fix it to get a byte-identical PDF
+    # for an unchanged diagram. Keep the replacement the same length as the original so the
+    # PDF's internal xref byte offsets stay valid.
+    with open(pdf_path, 'rb') as f:
+        data = f.read()
+
+    def _replacement(match):
+        fixed = "D:20000101000000+00'00"
+        original_length = len(match.group(1))
+        placeholder = (fixed * 2)[:original_length]
+        return b'/CreationDate (' + placeholder.encode() + b')'
+
+    data = re.sub(rb'/CreationDate \(([^)]*)\)', _replacement, data)
+    with open(pdf_path, 'wb') as f:
+        f.write(data)
 
 
 # UTILS
@@ -162,7 +181,8 @@ def run(model, root_name, version=date.today().strftime("%y.%m.%d")):
         parse_root_node(dot, root_name, json_in, json_in["definitions"], {}, id_ignore=["newAlert", "alertLocation"])
         print("Rendering " + os.path.join("out", model, model + ".uml_diagram.pdf") + " ...")
         dot.edge_attr.update(arrowhead='odiamond', arrowtail='none')
-        dot.render(os.path.join("out", model, model + ".uml_diagram"))
+        pdf_path = dot.render(os.path.join("out", model, model + ".uml_diagram"))
+        normalize_pdf_creation_date(pdf_path)
         print("Done.")
     return
 
