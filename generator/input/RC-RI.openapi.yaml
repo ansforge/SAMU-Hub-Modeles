@@ -147,10 +147,10 @@ components:
           description: "A valoriser avec le type de vecteur mobilis\xE9 : cf. nomenclature\
             \ associ\xE9e"
           enum:
-          - VECTEUR_SANTE
+          - SMUR
           - SIS
           examples:
-          - VECTEUR_SANTE
+          - SMUR
         name:
           type: string
           title: Nom du vecteur

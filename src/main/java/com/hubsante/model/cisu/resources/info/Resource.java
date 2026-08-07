@@ -86,7 +86,7 @@ public class Resource {
    * A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée
    */
   public enum VehicleTypeEnum {
-    VECTEUR_SANTE("VECTEUR_SANTE"),
+    SMUR("SMUR"),
 
     SIS("SIS");
 
