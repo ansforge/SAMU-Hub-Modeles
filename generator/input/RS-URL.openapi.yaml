@@ -26,8 +26,8 @@ components:
           example: example.json#/caseId
           description: "Identifiant partag\xE9 du dossier, g\xE9n\xE9r\xE9 une seule\
             \ fois par le syst\xE8me du partenaire qui recoit la primo-demande de\
-            \ secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit lors\
-            \ de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+            \ secours (cr\xE9ateur du dossier). TEMP modification TEST\nIl est valoris\xE9\
+            \ comme suit lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
             \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
             e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
