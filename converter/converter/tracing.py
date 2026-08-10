@@ -4,6 +4,7 @@ from opentelemetry import trace
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.pymongo import PymongoInstrumentor
+from opentelemetry.instrumentation.utils import suppress_instrumentation
 from opentelemetry.sdk.resources import SERVICE_NAME, SERVICE_VERSION, Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
@@ -23,7 +24,10 @@ SENDER_ATTRIBUTE = "hubsante.sender"
 RECIPIENT_ATTRIBUTE = "hubsante.recipient"
 USE_CASE_ATTRIBUTE = "hubsante.use_case"
 
+# Regexes matched against the request URL: probe/scrape endpoints get no Flask span.
 EXCLUDED_URLS = "/health,/metrics"
+
+untraced = suppress_instrumentation
 
 
 def is_tracing_enabled() -> bool:
