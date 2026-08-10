@@ -14,7 +14,7 @@ from converter.utils import (
 )
 from converter.logging_config import configure_logging, LoggingKeys
 from converter.database import init_db, get_db
-from converter.tracing import configure_tracing, tag_current_span
+from converter.tracing import configure_tracing, tag_current_span, untraced
 
 configure_logging()
 
@@ -106,7 +106,7 @@ def convert():
 @app.route("/health", methods=["GET"])
 def health_check():
     try:
-        with timeout(5):
+        with untraced(), timeout(5):
             get_db().command("ping")
             db_status = "UP"
     except Exception:
