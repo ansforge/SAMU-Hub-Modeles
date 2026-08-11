@@ -14,16 +14,25 @@ import subprocess
 import sys
 from pathlib import Path
 
-# Protocol version codes as they appear in the "Version code reçu" / "Version
-# code transmis" columns. Update here if a protocol's version changes.
-PROTOCOL_VERSIONS = {
-    "cisu": "1.9",
-    "rs": "2.3",
-}
+# Version codes as they appear in the "Version code reçu" / "Version code
+# transmis" columns. Update here if a version changes.
+VERSIONS = ["1.9", "2.3"]
+
+
+def _version_slug(version: str) -> str:
+    # Dots aren't valid in a Python package name, hence the "v" prefix and
+    # underscore-separated segments (e.g. "1.9" -> "v1_9").
+    return "v" + version.replace(".", "_")
+
 
 DIRECTIONS = {
-    (PROTOCOL_VERSIONS["cisu"], PROTOCOL_VERSIONS["rs"]): "from_cisu_to_rs",
-    (PROTOCOL_VERSIONS["rs"], PROTOCOL_VERSIONS["cisu"]): "from_rs_to_cisu",
+    (
+        from_version,
+        to_version,
+    ): f"from_{_version_slug(from_version)}_to_{_version_slug(to_version)}"
+    for from_version in VERSIONS
+    for to_version in VERSIONS
+    if from_version != to_version
 }
 
 DEFAULT_INPUT = (
