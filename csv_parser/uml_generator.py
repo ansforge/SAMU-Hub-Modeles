@@ -3,6 +3,18 @@ from datetime import date
 import graphviz  # doctest: +NO_EXE
 import json
 import os
+import pikepdf
+
+
+def normalize_pdf_creation_date(pdf_path):
+    # Newer cairo (as used on GitHub Actions' Graphviz build) packs /Info into a compressed
+    # object stream, so a raw byte-level regex can't reach /CreationDate; go through pikepdf
+    # instead, and ask it for a content-derived /ID on save so that doesn't reintroduce the drift.
+    with pikepdf.open(pdf_path, allow_overwriting_input=True) as pdf:
+        pdf.docinfo['/CreationDate'] = pikepdf.String("D:20000101000000+00'00")
+        if '/ModDate' in pdf.docinfo:
+            del pdf.docinfo['/ModDate']
+        pdf.save(pdf_path, deterministic_id=True)
 
 
 # UTILS
@@ -162,7 +174,8 @@ def run(model, root_name, version=date.today().strftime("%y.%m.%d")):
         parse_root_node(dot, root_name, json_in, json_in["definitions"], {}, id_ignore=["newAlert", "alertLocation"])
         print("Rendering " + os.path.join("out", model, model + ".uml_diagram.pdf") + " ...")
         dot.edge_attr.update(arrowhead='odiamond', arrowtail='none')
-        dot.render(os.path.join("out", model, model + ".uml_diagram"))
+        pdf_path = dot.render(os.path.join("out", model, model + ".uml_diagram"))
+        normalize_pdf_creation_date(pdf_path)
         print("Done.")
     return
 
