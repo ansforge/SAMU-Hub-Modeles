@@ -27,7 +27,7 @@ jobs:
           node-version: 16
 
       - name: Install openapi-generator-cli
-        run: npm install -g @openapitools/openapi-generator-cli
+        run: npm install -g @openapitools/openapi-generator-cli@2.9.0
 
       - name: Cleaning output directories
         run: |
@@ -44,7 +44,7 @@ jobs:
           # named file structure in the ./config/** directories
           # generator-config.json (if exists) -> usecase.generator-config.json -> wrapper.generator-config.json
           # Add "| head -n 1" after sort for faster iterations while developing
-          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli generate -c "$file" --skip-validate-spec; done
+          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli@2.9.0 generate -c "$file" --skip-validate-spec; done
 
           # There seems to be a bug in the handling of datetime & field_validator import in OpenAPI Generator
           # ToDo: fix this cleanly with OpenAPI Generator Config
@@ -71,7 +71,7 @@ jobs:
           # This means that since the order of class generation is important, it's necessary to maintain an adequately 
           # named file structure in the ./config/** directories
           # generator-config.json (if exists) -> usecase.generator-config.json -> wrapper.generator-config.json
-          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli generate -c "$file" --skip-validate-spec; done
+          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli@2.9.0 generate -c "$file" --skip-validate-spec; done
           
       - name: Ruby - Prepare Gem files
         working-directory: ./generator_ruby
@@ -111,7 +111,7 @@ jobs:
           # This means that since the order of class generation is important, it's necessary to maintain an adequately 
           # named file structure in the ./config/** directories
           # generator-config.json (if exists) -> usecase.generator-config.json -> wrapper.generator-config.json
-          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli generate -c "$file" --skip-validate-spec; done
+          find ./config/ -type f | sort -n | while read -r file; do npx @openapitools/openapi-generator-cli@2.9.0 generate -c "$file" --skip-validate-spec; done
 
       - name: Commit and push changes
         if: ${{ !env.ACT }}
