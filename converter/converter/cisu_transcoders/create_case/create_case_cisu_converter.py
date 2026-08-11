@@ -27,28 +27,28 @@ from converter.nomenclatures.utils import (
     apply_nomenclature_mapping,
     apply_nomenclature_mapping_to_list,
 )
-from converter.nomenclatures.from_cisu_to_rs.whats_happen import (
+from converter.nomenclatures.from_v1_9_to_v2_3.whats_happen import (
     MAP as CISU_TO_RS_WHATS_HAPPEN_MAP,
 )
-from converter.nomenclatures.from_cisu_to_rs.health_motive import (
+from converter.nomenclatures.from_v1_9_to_v2_3.health_motive import (
     MAP as CISU_TO_RS_HEALTH_MOTIVE_MAP,
 )
-from converter.nomenclatures.from_cisu_to_rs.risk_threat import (
+from converter.nomenclatures.from_v1_9_to_v2_3.risk_threat import (
     MAP as CISU_TO_RS_RISK_THREAT_MAP,
 )
-from converter.nomenclatures.from_cisu_to_rs.location_kind import (
+from converter.nomenclatures.from_v1_9_to_v2_3.location_kind import (
     MAP as CISU_TO_RS_LOCATION_KIND_MAP,
 )
-from converter.nomenclatures.from_rs_to_cisu.whats_happen import (
+from converter.nomenclatures.from_v2_3_to_v1_9.whats_happen import (
     MAP as RS_TO_CISU_WHATS_HAPPEN_MAP,
 )
-from converter.nomenclatures.from_rs_to_cisu.health_motive import (
+from converter.nomenclatures.from_v2_3_to_v1_9.health_motive import (
     MAP as RS_TO_CISU_HEALTH_MOTIVE_MAP,
 )
-from converter.nomenclatures.from_rs_to_cisu.risk_threat import (
+from converter.nomenclatures.from_v2_3_to_v1_9.risk_threat import (
     MAP as RS_TO_CISU_RISK_THREAT_MAP,
 )
-from converter.nomenclatures.from_rs_to_cisu.location_kind import (
+from converter.nomenclatures.from_v2_3_to_v1_9.location_kind import (
     MAP as RS_TO_CISU_LOCATION_KIND_MAP,
 )
 
