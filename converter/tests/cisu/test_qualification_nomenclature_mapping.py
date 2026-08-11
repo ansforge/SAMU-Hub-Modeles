@@ -10,7 +10,7 @@ produce the expected replace/remove behaviour.
 
 import copy
 
-from converter.cisu.create_case.create_case_cisu_converter import (
+from converter.cisu_transcoders.create_case.create_case_cisu_converter import (
     CreateCaseCISUConverter,
 )
 from tests.cisu.helpers import get_edxl_message

@@ -22,7 +22,7 @@ from converter.utils import (
     translate_key_words,
     set_value,
 )
-from converter.cisu.base_cisu_converter import BaseCISUConverter
+from converter.cisu_transcoders.base_cisu_converter import BaseCISUConverter
 from converter.nomenclatures.utils import (
     apply_nomenclature_mapping,
     apply_nomenclature_mapping_to_list,
