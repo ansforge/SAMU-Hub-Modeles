@@ -75,8 +75,8 @@ public class DocumentLink {
 
   /**
    * Identifiant partagé du dossier, généré une seule fois par le système du
-   *partenaire qui recoit la primo-demande de secours (créateur du dossier).  Il
-   *est valorisé comme suit lors de sa création :
+   *partenaire qui recoit la primo-demande de secours (créateur du dossier).
+   *TEMP modification TEST Il est valorisé comme suit lors de sa création :
    *{pays}.{domaine}.{organisation}.{senderCaseId}  Il doit pouvoir être généré
    *de façon décentralisée et ne présenter aucune ambiguïté.  Il doit être
    *unique dans l&#39;ensemble des systèmes : le numéro de dossier fourni par
