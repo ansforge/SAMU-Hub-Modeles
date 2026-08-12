@@ -112,12 +112,20 @@ def build_maps(
     return maps
 
 
-def _module_source(entries: dict[str, Entry | None]) -> str:
+def _map_name(direction: str, balise: str) -> str:
+    # direction is e.g. "from_v1_9_to_v2_3" -> "V1_9_TO_V2_3"; balise slug
+    # e.g. "risk_threat" -> "RISK_THREAT". Combined: "V1_9_TO_V2_3_RISK_THREAT_MAP".
+    direction_part = direction.removeprefix("from_").upper()
+    balise_part = _slug(balise).upper()
+    return f"{direction_part}_{balise_part}_MAP"
+
+
+def _module_source(entries: dict[str, Entry | None], map_name: str) -> str:
     sorted_entries = dict(sorted(entries.items()))
     return (
         '"""Auto-generated nomenclature mapping. '
         'Do not edit by hand — regenerate via scripts/generate_nomenclatures_maps.py."""\n\n'
-        f"MAP: dict[str, dict[str, str] | None] = {sorted_entries!r}\n"
+        f"{map_name}: dict[str, dict[str, str] | None] = {sorted_entries!r}\n"
     )
 
 
@@ -129,7 +137,9 @@ def write_maps(
         module_dir = output_dir / direction
         module_dir.mkdir(parents=True, exist_ok=True)
         module_path = module_dir / f"{_slug(balise)}.py"
-        module_path.write_text(_module_source(entries), encoding="utf-8")
+        module_path.write_text(
+            _module_source(entries, _map_name(direction, balise)), encoding="utf-8"
+        )
         written.append(module_path)
     return written
 
