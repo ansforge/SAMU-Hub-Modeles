@@ -1,6 +1,6 @@
 """Auto-generated nomenclature mapping. Do not edit by hand — regenerate via scripts/generate_nomenclatures_maps.py."""
 
-MAP: dict[str, dict[str, str] | None] = {
+V1_9_TO_V2_3_HEALTH_MOTIVE_MAP: dict[str, dict[str, str] | None] = {
     "M20.00": {"code": "M08.00.00", "label": "Personne inconsciente "},
     "M22.00": {"code": "M08.00.00", "label": "Personne inconsciente "},
     "M22.01": {"code": "M08.01.00", "label": "Personne en arrêt ventilatoire"},

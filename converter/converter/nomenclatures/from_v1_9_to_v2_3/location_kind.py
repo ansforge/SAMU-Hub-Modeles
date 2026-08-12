@@ -1,6 +1,6 @@
 """Auto-generated nomenclature mapping. Do not edit by hand — regenerate via scripts/generate_nomenclatures_maps.py."""
 
-MAP: dict[str, dict[str, str] | None] = {
+V1_9_TO_V2_3_LOCATION_KIND_MAP: dict[str, dict[str, str] | None] = {
     "L02.02.04": {
         "code": "L02.02.03",
         "label": "Aire de repos ou de service sur voie rapide",
