@@ -1,5 +1,5 @@
 import logging
-from converter.cisu_version_converters.create_case.rc_eda_version_converter import (
+from converter.cisu_version_converters.create_case.create_case_version_converter import (
     CreateCaseVersionConverter,
 )
 from converter.cisu_version_converters.resources_info_cisu.resources_info_cisu_version_converter import (
