@@ -25,6 +25,24 @@ class BaseCISUVersionConverter(ConversionMixin):
         )
 
     @classmethod
+    def copy_input_content(cls, edxl_json: Dict[str, Any]) -> Dict[str, Any]:
+        return cls._copy_input_content(edxl_json, cls.get_message_type())
+
+    @classmethod
+    def copy_input_use_case_content(cls, edxl_json: Dict[str, Any]) -> Dict[str, Any]:
+        return cls._copy_input_use_case_content(edxl_json, cls.get_message_type())
+
+    @classmethod
+    def format_output_json(
+        cls,
+        output_json: Dict[str, Any],
+        output_use_case_json: Dict[str, Any],
+    ) -> Dict[str, Any]:
+        return cls._format_output_json(
+            output_json, output_use_case_json, cls.get_message_type()
+        )
+
+    @classmethod
     def convert(
         cls, source_version: str, target_version: str, edxl_json: Dict[str, Any]
     ):
