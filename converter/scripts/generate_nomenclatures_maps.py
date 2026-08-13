@@ -14,16 +14,25 @@ import subprocess
 import sys
 from pathlib import Path
 
-# Protocol version codes as they appear in the "Version code reçu" / "Version
-# code transmis" columns. Update here if a protocol's version changes.
-PROTOCOL_VERSIONS = {
-    "cisu": "1.9",
-    "rs": "2.3",
-}
+# Version codes as they appear in the "Version code reçu" / "Version code
+# transmis" columns. Update here if a version changes.
+VERSIONS = ["1.9", "2.3"]
+
+
+def _version_slug(version: str) -> str:
+    # Dots aren't valid in a Python package name, hence the "v" prefix and
+    # underscore-separated segments (e.g. "1.9" -> "v1_9").
+    return "v" + version.replace(".", "_")
+
 
 DIRECTIONS = {
-    (PROTOCOL_VERSIONS["cisu"], PROTOCOL_VERSIONS["rs"]): "from_cisu_to_rs",
-    (PROTOCOL_VERSIONS["rs"], PROTOCOL_VERSIONS["cisu"]): "from_rs_to_cisu",
+    (
+        from_version,
+        to_version,
+    ): f"from_{_version_slug(from_version)}_to_{_version_slug(to_version)}"
+    for from_version in VERSIONS
+    for to_version in VERSIONS
+    if from_version != to_version
 }
 
 DEFAULT_INPUT = (
@@ -103,12 +112,20 @@ def build_maps(
     return maps
 
 
-def _module_source(entries: dict[str, Entry | None]) -> str:
+def _map_name(direction: str, balise: str) -> str:
+    # direction is e.g. "from_v1_9_to_v2_3" -> "V1_9_TO_V2_3"; balise slug
+    # e.g. "risk_threat" -> "RISK_THREAT". Combined: "V1_9_TO_V2_3_RISK_THREAT_MAP".
+    direction_part = direction.removeprefix("from_").upper()
+    balise_part = _slug(balise).upper()
+    return f"{direction_part}_{balise_part}_MAP"
+
+
+def _module_source(entries: dict[str, Entry | None], map_name: str) -> str:
     sorted_entries = dict(sorted(entries.items()))
     return (
         '"""Auto-generated nomenclature mapping. '
         'Do not edit by hand — regenerate via scripts/generate_nomenclatures_maps.py."""\n\n'
-        f"MAP: dict[str, dict[str, str] | None] = {sorted_entries!r}\n"
+        f"{map_name}: dict[str, dict[str, str] | None] = {sorted_entries!r}\n"
     )
 
 
@@ -120,7 +137,9 @@ def write_maps(
         module_dir = output_dir / direction
         module_dir.mkdir(parents=True, exist_ok=True)
         module_path = module_dir / f"{_slug(balise)}.py"
-        module_path.write_text(_module_source(entries), encoding="utf-8")
+        module_path.write_text(
+            _module_source(entries, _map_name(direction, balise)), encoding="utf-8"
+        )
         written.append(module_path)
     return written
 

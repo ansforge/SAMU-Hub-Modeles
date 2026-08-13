@@ -1,6 +1,6 @@
 """Auto-generated nomenclature mapping. Do not edit by hand — regenerate via scripts/generate_nomenclatures_maps.py."""
 
-MAP: dict[str, dict[str, str] | None] = {
+V2_3_TO_V1_9_WHATS_HAPPEN_MAP: dict[str, dict[str, str] | None] = {
     "C02.17.00": {"code": "C10.02.01", "label": "Mort suspecte"},
     "C02.17.01": {"code": "C10.02.01", "label": "Mort suspecte"},
     "C02.17.02": {"code": "C10.02.01", "label": "Mort suspecte"},

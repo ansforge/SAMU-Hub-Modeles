@@ -1,6 +1,6 @@
 """Auto-generated nomenclature mapping. Do not edit by hand — regenerate via scripts/generate_nomenclatures_maps.py."""
 
-MAP: dict[str, dict[str, str] | None] = {
+V2_3_TO_V1_9_RISK_THREAT_MAP: dict[str, dict[str, str] | None] = {
     "R17": {"code": "R37", "label": "Situation instable/indéterminée"},
     "R18": {"code": "R37", "label": "Situation instable/indéterminée"},
     "R60": {"code": "R13", "label": "Risque d'explosion, présence de gaz"},

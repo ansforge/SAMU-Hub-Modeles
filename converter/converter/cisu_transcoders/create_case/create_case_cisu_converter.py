@@ -27,29 +27,29 @@ from converter.nomenclatures.utils import (
     apply_nomenclature_mapping,
     apply_nomenclature_mapping_to_list,
 )
-from converter.nomenclatures.from_cisu_to_rs.whats_happen import (
-    MAP as CISU_TO_RS_WHATS_HAPPEN_MAP,
+from converter.nomenclatures.from_v1_9_to_v2_3.whats_happen import (
+    V1_9_TO_V2_3_WHATS_HAPPEN_MAP,
 )
-from converter.nomenclatures.from_cisu_to_rs.health_motive import (
-    MAP as CISU_TO_RS_HEALTH_MOTIVE_MAP,
+from converter.nomenclatures.from_v1_9_to_v2_3.health_motive import (
+    V1_9_TO_V2_3_HEALTH_MOTIVE_MAP,
 )
-from converter.nomenclatures.from_cisu_to_rs.risk_threat import (
-    MAP as CISU_TO_RS_RISK_THREAT_MAP,
+from converter.nomenclatures.from_v1_9_to_v2_3.risk_threat import (
+    V1_9_TO_V2_3_RISK_THREAT_MAP,
 )
-from converter.nomenclatures.from_cisu_to_rs.location_kind import (
-    MAP as CISU_TO_RS_LOCATION_KIND_MAP,
+from converter.nomenclatures.from_v1_9_to_v2_3.location_kind import (
+    V1_9_TO_V2_3_LOCATION_KIND_MAP,
 )
-from converter.nomenclatures.from_rs_to_cisu.whats_happen import (
-    MAP as RS_TO_CISU_WHATS_HAPPEN_MAP,
+from converter.nomenclatures.from_v2_3_to_v1_9.whats_happen import (
+    V2_3_TO_V1_9_WHATS_HAPPEN_MAP,
 )
-from converter.nomenclatures.from_rs_to_cisu.health_motive import (
-    MAP as RS_TO_CISU_HEALTH_MOTIVE_MAP,
+from converter.nomenclatures.from_v2_3_to_v1_9.health_motive import (
+    V2_3_TO_V1_9_HEALTH_MOTIVE_MAP,
 )
-from converter.nomenclatures.from_rs_to_cisu.risk_threat import (
-    MAP as RS_TO_CISU_RISK_THREAT_MAP,
+from converter.nomenclatures.from_v2_3_to_v1_9.risk_threat import (
+    V2_3_TO_V1_9_RISK_THREAT_MAP,
 )
-from converter.nomenclatures.from_rs_to_cisu.location_kind import (
-    MAP as RS_TO_CISU_LOCATION_KIND_MAP,
+from converter.nomenclatures.from_v2_3_to_v1_9.location_kind import (
+    V2_3_TO_V1_9_LOCATION_KIND_MAP,
 )
 
 import logging
@@ -316,22 +316,22 @@ class CreateCaseCISUConverter(BaseCISUConverter):
             apply_nomenclature_mapping(
                 json_data,
                 CreateCaseCISUConstants.QUALIFICATION_WHATS_HAPPEN_PATH,
-                CISU_TO_RS_WHATS_HAPPEN_MAP,
+                V1_9_TO_V2_3_WHATS_HAPPEN_MAP,
             )
             apply_nomenclature_mapping(
                 json_data,
                 CreateCaseCISUConstants.QUALIFICATION_HEALTH_MOTIVE_PATH,
-                CISU_TO_RS_HEALTH_MOTIVE_MAP,
+                V1_9_TO_V2_3_HEALTH_MOTIVE_MAP,
             )
             apply_nomenclature_mapping_to_list(
                 json_data,
                 CreateCaseCISUConstants.QUALIFICATION_RISK_THREAT_PATH,
-                CISU_TO_RS_RISK_THREAT_MAP,
+                V1_9_TO_V2_3_RISK_THREAT_MAP,
             )
             apply_nomenclature_mapping(
                 json_data,
                 CreateCaseCISUConstants.QUALIFICATION_LOCATION_KIND_PATH,
-                CISU_TO_RS_LOCATION_KIND_MAP,
+                V1_9_TO_V2_3_LOCATION_KIND_MAP,
             )
 
         # Create independent envelope copy without usecase for output
@@ -446,22 +446,22 @@ class CreateCaseCISUConverter(BaseCISUConverter):
             apply_nomenclature_mapping(
                 json_data,
                 CreateCaseCISUConstants.QUALIFICATION_WHATS_HAPPEN_PATH,
-                RS_TO_CISU_WHATS_HAPPEN_MAP,
+                V2_3_TO_V1_9_WHATS_HAPPEN_MAP,
             )
             apply_nomenclature_mapping(
                 json_data,
                 CreateCaseCISUConstants.QUALIFICATION_HEALTH_MOTIVE_PATH,
-                RS_TO_CISU_HEALTH_MOTIVE_MAP,
+                V2_3_TO_V1_9_HEALTH_MOTIVE_MAP,
             )
             apply_nomenclature_mapping_to_list(
                 json_data,
                 CreateCaseCISUConstants.QUALIFICATION_RISK_THREAT_PATH,
-                RS_TO_CISU_RISK_THREAT_MAP,
+                V2_3_TO_V1_9_RISK_THREAT_MAP,
             )
             apply_nomenclature_mapping(
                 json_data,
                 CreateCaseCISUConstants.QUALIFICATION_LOCATION_KIND_PATH,
-                RS_TO_CISU_LOCATION_KIND_MAP,
+                V2_3_TO_V1_9_LOCATION_KIND_MAP,
             )
 
         # Create independent envelope copy without usecase for output
