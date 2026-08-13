@@ -1,6 +1,6 @@
 """Auto-generated nomenclature mapping. Do not edit by hand — regenerate via scripts/generate_nomenclatures_maps.py."""
 
-MAP: dict[str, dict[str, str] | None] = {
+V1_9_TO_V2_3_WHATS_HAPPEN_MAP: dict[str, dict[str, str] | None] = {
     "C02.05.03": {
         "code": "C02.18.00",
         "label": "Problème psychiatrique, menace de suicide",

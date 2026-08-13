@@ -1,6 +1,6 @@
 """Auto-generated nomenclature mapping. Do not edit by hand — regenerate via scripts/generate_nomenclatures_maps.py."""
 
-MAP: dict[str, dict[str, str] | None] = {
+V2_3_TO_V1_9_LOCATION_KIND_MAP: dict[str, dict[str, str] | None] = {
     "L01.01.05": {"code": "L01.01.00", "label": "Maison particulière, pavillon"},
     "L01.02.13": {
         "code": "L01.02.00",
