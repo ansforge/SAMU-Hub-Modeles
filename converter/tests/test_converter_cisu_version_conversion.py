@@ -16,6 +16,9 @@ from unittest.mock import patch
 import pytest
 
 from converter.converter import app
+from converter.cisu_version_converters.create_case.create_case_version_converter import (
+    CreateCaseVersionConverter,
+)
 from tests.constants import TestConstants
 from tests.test_helpers import TestHelper
 
@@ -29,17 +32,13 @@ def client():
         yield client
 
 
-@pytest.mark.parametrize(
-    "source_version, target_version",
-    [("v3", "vactive"), ("vactive", "v3")],
-)
 @patch(
-    "converter.conversion_strategy.cisu_version_conversion_strategy.CreateCaseVersionConverter.convert"
+    "converter.conversion_strategy.cisu_version_conversion_strategy.CreateCaseVersionConverter.convert_v3_to_vactive",
+    side_effect=CreateCaseVersionConverter.convert_v3_to_vactive,
 )
-def test_convert_endpoint_routes_cisu_version_conversion_to_create_case_version_converter(
-    mock_convert, client, source_version, target_version
+def test_convert_routing_cisu_version_create_case_v3_to_vactive(
+    mock_convert_v3_to_vactive, client
 ):
-    mock_convert.return_value = {"fake": "converted-message"}
     message = TestHelper.create_edxl_json_from_sample(
         TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH, BASE_MESSAGE_PATH
     )
@@ -47,13 +46,39 @@ def test_convert_endpoint_routes_cisu_version_conversion_to_create_case_version_
     response = client.post(
         "/convert",
         json={
-            "sourceVersion": source_version,
-            "targetVersion": target_version,
+            "sourceVersion": "v3",
+            "targetVersion": "vactive",
             "type": "CISUVersionConversion",
             "edxl": message,
         },
     )
 
     assert response.status_code == 200
-    mock_convert.assert_called_once_with(source_version, target_version, message)
-    assert response.json["converted_messages"] == [{"fake": "converted-message"}]
+    mock_convert_v3_to_vactive.assert_called_once_with(message)
+    assert len(response.json["converted_messages"]) == 1
+
+
+@patch(
+    "converter.conversion_strategy.cisu_version_conversion_strategy.CreateCaseVersionConverter.convert_vactive_to_v3",
+    side_effect=CreateCaseVersionConverter.convert_vactive_to_v3,
+)
+def test_convert_routing_cisu_version_create_case_vactive_to_v3(
+    mock_convert_vactive_to_v3, client
+):
+    message = TestHelper.create_edxl_json_from_sample(
+        TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH, BASE_MESSAGE_PATH
+    )
+
+    response = client.post(
+        "/convert",
+        json={
+            "sourceVersion": "vactive",
+            "targetVersion": "v3",
+            "type": "CISUVersionConversion",
+            "edxl": message,
+        },
+    )
+
+    assert response.status_code == 200
+    mock_convert_vactive_to_v3.assert_called_once_with(message)
+    assert len(response.json["converted_messages"]) == 1
