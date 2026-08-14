@@ -1,4 +1,5 @@
 import os
+import json
 import pandas as pd
 import datetime
 import docx
@@ -171,6 +172,50 @@ def export_docx_nomenclature(params_in, df_nomenclature_in, folder_output):
     return
 
 
+# export .json (json schema) for a nomenclature
+# each code becomes a oneOf entry, title = deepest non-empty level label, description = Commentaire or Description
+def export_json_schema_nomenclature(params_in, df_nomenclature_in, folder_output):
+    entries = []
+    for _, row in df_nomenclature_in.iterrows():
+        title = None
+        for level in range(params_in["levels"], 0, -1):
+            level_value = row.get("Libellé niveau " + str(level))
+            if pd.notna(level_value) and str(level_value).strip() != "":
+                title = str(level_value).strip()
+                break
+        code = str(row["Code"])
+        entry = {"const": code, "title": title if title else code}
+
+        description = row.get("Commentaire")
+        if pd.isna(description) or str(description).strip() == "":
+            description = row.get("Description")
+        if pd.notna(description) and str(description).strip() != "":
+            entry["description"] = str(description).strip()
+
+        entries.append(entry)
+
+    schema = {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "title": params_in["nomenclature_id"],
+        "type": "string",
+        "oneOf": entries,
+    }
+    if params_in.get("nomenclature_description"):
+        schema["description"] = params_in["nomenclature_description"]
+
+    file_out = params_in["nomenclature_id"] + ".json"
+    # create json_schema dir if not exist
+    try:
+        os.mkdir(os.path.join(folder_output, "json_schema"))
+        print("Creating folder " + str(os.path.join(folder_output, "json_schema")) + " ...")
+    except FileExistsError:
+        pass
+    # export
+    with open(os.path.join(folder_output, "json_schema", file_out), "w", encoding="utf-8") as f:
+        json.dump(schema, f, ensure_ascii=False, indent=4)
+    return
+
+
 # transform sommaire dataframe to a doc
 def df_sommaire_to_doc(df_sommaire_in, doc=None, style='Medium Shading 1 Accent 1'):
     if doc is None:
@@ -278,6 +323,7 @@ def parse_excel(filename_in, df_sommaire_in, folder_output):
         export_csv_nomenclature(params_i, df_nomenclature_i, folder_output)
         export_pdf_nomenclature(params_i, df_nomenclature_i, folder_output)
         export_docx_nomenclature(params_i, df_nomenclature_i, folder_output)
+        export_json_schema_nomenclature(params_i, df_nomenclature_i, folder_output)
     return df_sommaire_in
 
 
