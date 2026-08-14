@@ -7,13 +7,13 @@ For the UML generator (run automatically within the CSV parser), in addition to 
 # Usage
 ## CSV Parser
 ```bash
-# Params to specify the sheet and version
+# -s/--sheet, -n/--name, -m/--model-type, -p/--filepath are required
+# -v/--version defaults to today (YY.MM.DD), -f/--filter defaults to False
 # by default, integrate uml generation process
-python csv_parser.py -s RC-DE -v 0.5  
-python csv_parser.py --sheet RC-DE --version 0.5
-# Defaults to RC-EDA and today (YY.MM.DD)
-python csv_parser.py
+python csv_parser.py -s RC-DE -n toto -v 0.5 -m distributionElement -p models/model.xlsx
+python csv_parser.py --sheet RC-DE --name toto --version 0.5 --model-type distributionElement --filepath models/model.xlsx
 ```
+`--model-type` (rootElement) and `--filepath` (source xlsx) are looked up per sheet in `out/schemas.yaml`.
 
 ## Full pipeline
 The full pipeline is defined in the GitHub action. 
