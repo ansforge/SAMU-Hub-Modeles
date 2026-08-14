@@ -24,7 +24,7 @@ arguments optionnels
 ### Génération
 
 Un dossier par numéro de version est généré (si le dossier pour une numéro de version existe déjà, il est écrasé).
-Les nomenclatures sont générées en .pdf et .csv (délimiteur ; et encodage utf-8) vers le dossier OUTPUT.
+Les nomenclatures sont générées en .pdf, .csv (délimiteur ; et encodage utf-8) et .json (json schema) vers le dossier OUTPUT.
 Le numéro de version est ajouté au nom des fichiers.
 Un sommaire est généré automatiquement à la racine du dossier.
 
