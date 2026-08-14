@@ -1,0 +1,37 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "EMSI-RGEO.POSITION.TYPE",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "POINT",
+            "title": "Point géographique unique",
+            "description": "Point géographique unique"
+        },
+        {
+            "const": "CERCLE",
+            "title": "Un cercle défini par le centre et n'importe quel point de la circonférence",
+            "description": "Un cercle défini par le centre et n'importe quel point de la circonférence"
+        },
+        {
+            "const": "SURFACE",
+            "title": "Une liste de points formant une ligne",
+            "description": "Une liste de points formant une ligne"
+        },
+        {
+            "const": "GRID",
+            "title": "Une surface fermée",
+            "description": "Une surface fermée"
+        },
+        {
+            "const": "POLYGON",
+            "title": "Une liste de points formant une ligne fermée",
+            "description": "Une liste de points formant une ligne fermée"
+        },
+        {
+            "const": "ELLIPSE",
+            "title": "Une ellipse définie par 3 points : la position des 2 foyers et une position sur le contour.",
+            "description": "Une ellipse définie par 3 points : la position des 2 foyers et une position sur le contour."
+        }
+    ]
+}

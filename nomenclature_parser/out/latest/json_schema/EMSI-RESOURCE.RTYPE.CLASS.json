@@ -1,0 +1,3009 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "EMSI-RESOURCE.RTYPE.CLASS",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "FAC",
+            "title": "Facilité",
+            "description": "Un terme désignant quelque chose de conçu, construit, installé, etc., pour servir une fonction spécifique offrant une commodité ou un service."
+        },
+        {
+            "const": "HUM",
+            "title": "Ressources humaines",
+            "description": "Une source de soutien ou d'aide, en particulier, celle qui peut être facilement sollicitée en cas de besoin."
+        },
+        {
+            "const": "MAT",
+            "title": "Matériel",
+            "description": "Une substance ou des substances dont une chose est faite ou composée pour être fournie en soutien et en assistance en cas d'urgence."
+        },
+        {
+            "const": "ORG",
+            "title": "Organisation",
+            "description": "Une organisation qui fournit un soutien ou une assistance en cas d'urgence."
+        },
+        {
+            "const": "FAC/BRIDGE",
+            "title": "Pont",
+            "description": "Une structure qui enjambe et permet le passage au-dessus d'une rivière, d'un gouffre, d'une route, ou similaire."
+        },
+        {
+            "const": "FAC/BUILDN",
+            "title": "Bâtiment",
+            "description": "Une structure permanente ou temporaire offrant une construction fermée sur un terrain, ayant un toit et généralement des fenêtres, et souvent plusieurs niveaux, utilisée pour une grande variété d'activités, comme la vie, le divertissement, ou la fabrication."
+        },
+        {
+            "const": "FAC/DEPOT",
+            "title": "Dépôt",
+            "description": "\"Un endroit où les fournitures et les matériaux sont stockés en vue de leur distribution.\""
+        },
+        {
+            "const": "FAC/NETWK",
+            "title": "Réseau",
+            "description": "Réseau"
+        },
+        {
+            "const": "FAC/OPR",
+            "title": "Installation opérationnelle",
+            "description": "Installation opérationnelle"
+        },
+        {
+            "const": "FAC/OTH",
+            "title": "Autre type d'installation",
+            "description": "Autre type d'installation"
+        },
+        {
+            "const": "FAC/WATFIR",
+            "title": "Approvisionnements en eau et en mousse",
+            "description": "Approvisionnements en eau et en mousse"
+        },
+        {
+            "const": "FAC/BRIDGE/MILVHL",
+            "title": "Militaire, lancé depuis un véhicule",
+            "description": "Un pont transporté sur un véhicule et déployé depuis le véhicule pour une utilisation immédiate."
+        },
+        {
+            "const": "FAC/BUILDN/BARRCK",
+            "title": "Caserne",
+            "description": "Un bâtiment ou un groupe de bâtiments utilisé pour loger des personnes."
+        },
+        {
+            "const": "FAC/BUILDN/BUNKER",
+            "title": "Bunker",
+            "description": "Une chambre fortifiée."
+        },
+        {
+            "const": "FAC/BUILDN/COB",
+            "title": "Bâtiment de communications",
+            "description": "Un bâtiment dans lequel les signaux de communication sont traités ou contrôlés."
+        },
+        {
+            "const": "FAC/BUILDN/CTT",
+            "title": "Tour de contrôle",
+            "description": "Une structure semblable à une tour qui abrite les personnes et l'équipement utilisés pour contrôler la circulation aérienne, ferroviaire, ou maritime."
+        },
+        {
+            "const": "FAC/BUILDN/DAM",
+            "title": "Barrage/écluse",
+            "description": "Une barrière permanente traversant un cours d'eau utilisée pour retenir l'eau ou en contrôler l'écoulement."
+        },
+        {
+            "const": "FAC/BUILDN/GYMNAS",
+            "title": "Gymnase",
+            "description": "Bâtiment utilisé pour des activités sportives."
+        },
+        {
+            "const": "FAC/BUILDN/HANGAR",
+            "title": "Hangar",
+            "description": "Un espace couvert, un hangar ou un abri."
+        },
+        {
+            "const": "FAC/BUILDN/HOUSE",
+            "title": "Maison",
+            "description": "Un logement utilisé comme résidence pour une ou plusieurs personnes."
+        },
+        {
+            "const": "FAC/BUILDN/HUT",
+            "title": "Cabane",
+            "description": "Une petite maison simple ou rudimentaire."
+        },
+        {
+            "const": "FAC/BUILDN/INDINS",
+            "title": "Installation industrielle",
+            "description": "Une installation contenant des usines et/ou des installations productives."
+        },
+        {
+            "const": "FAC/BUILDN/OFFICE",
+            "title": "Bureau",
+            "description": "Un endroit où des activités commerciales, professionnelles ou de secrétariat sont menées."
+        },
+        {
+            "const": "FAC/BUILDN/SCHOOL",
+            "title": "École",
+            "description": "Une institution où l'enseignement est dispensé - Bâtiment éducatif."
+        },
+        {
+            "const": "FAC/BUILDN/SHD",
+            "title": "Hangar",
+            "description": "Une installation de stockage généralement caractérisée par un ou plusieurs côtés ouverts, des piliers de soutien et un toit."
+        },
+        {
+            "const": "FAC/BUILDN/SHLSUR",
+            "title": "Abri de surface",
+            "description": "Une structure fortifiée construite en surface, utilisée pour abriter du personnel et/ou de l'équipement."
+        },
+        {
+            "const": "FAC/BUILDN/SHLUND",
+            "title": "Abri souterrain",
+            "description": "Une structure fortifiée construite sous terre, utilisée pour abriter du personnel et/ou de l'équipement."
+        },
+        {
+            "const": "FAC/BUILDN/SHOP",
+            "title": "Boutique",
+            "description": "Un petit magasin de détail ou un département spécialisé dans un grand magasin."
+        },
+        {
+            "const": "FAC/BUILDN/TOW",
+            "title": "Tour (non de communications)",
+            "description": "Une structure relativement haute."
+        },
+        {
+            "const": "FAC/BUILDN/TUN",
+            "title": "Tunnel",
+            "description": "Un passage souterrain ou sous-marin, ouvert aux deux extrémités."
+        },
+        {
+            "const": "FAC/BUILDN/WALL",
+            "title": "Mur",
+            "description": "Une structure verticale continue."
+        },
+        {
+            "const": "FAC/BUILDN/WTW",
+            "title": "Château d'eau",
+            "description": "Un conteneur surélevé et sa structure de support utilisés pour stocker de l'eau."
+        },
+        {
+            "const": "FAC/DEPOT/BIO",
+            "title": "Dépôt biologique",
+            "description": "Une zone utilisée pour le stockage d'agents biologiques."
+        },
+        {
+            "const": "FAC/DEPOT/CBRN",
+            "title": "Dépôt CBRN",
+            "description": "Une zone utilisée pour le stockage d'agents nucléaires, biologiques ou chimiques."
+        },
+        {
+            "const": "FAC/DEPOT/CHM",
+            "title": "Dépôt chimique",
+            "description": "Une zone utilisée pour le stockage de produits chimiques."
+        },
+        {
+            "const": "FAC/DEPOT/ENG",
+            "title": "Dépôt du génie",
+            "description": "Une zone utilisée pour le stockage d'équipements de génie."
+        },
+        {
+            "const": "FAC/DEPOT/MED",
+            "title": "Dépôt médical",
+            "description": "Une zone utilisée pour le stockage de fournitures médicales."
+        },
+        {
+            "const": "FAC/DEPOT/MUN",
+            "title": "Dépôt de munitions",
+            "description": "Une zone utilisée pour le stockage de munitions."
+        },
+        {
+            "const": "FAC/DEPOT/POL",
+            "title": "Dépôt de carburants, huiles et lubrifiants",
+            "description": "Une zone utilisée pour le stockage de pétrole, d'huile et/ou de lubrifiants."
+        },
+        {
+            "const": "FAC/NETWK/ADSL",
+            "title": "ADSL",
+            "description": "Ligne d'abonné numérique asynchrone : un réseau de connexion de données à haut débit."
+        },
+        {
+            "const": "FAC/NETWK/ATM",
+            "title": "Réseau de communication à commutation de modes asynchrones",
+            "description": "La commutation de modes asynchrones (ATM) est un réseau de commutation de cellules et un protocole de couche de liaison de données qui encode le trafic de données en cellules de taille fixe (53 octets, dont 48 octets de données et 5 octets d'informations d'en-tête)."
+        },
+        {
+            "const": "FAC/NETWK/CTZALT",
+            "title": "Alerte aux citoyens",
+            "description": "Alerte ou avertissement aux citoyens souvent par diffusion radio."
+        },
+        {
+            "const": "FAC/NETWK/EMGNWK",
+            "title": "Réseau de communication d'urgence",
+            "description": "Un réseau téléphonique privé assure un système de communication robuste entre les organismes d'intervention."
+        },
+        {
+            "const": "FAC/NETWK/GPRS",
+            "title": "GPRS",
+            "description": "2e génération du réseau de téléphonie mobile public (peut être utilisée pour la transmission de la voix et/ou des données)."
+        },
+        {
+            "const": "FAC/NETWK/GSM",
+            "title": "GSM public/commercial",
+            "description": "1ère génération du réseau de téléphonie mobile public (peut être utilisée pour la transmission de la voix et/ou des données)."
+        },
+        {
+            "const": "FAC/NETWK/INTRAN",
+            "title": "Intranet",
+            "description": "Auto-défini"
+        },
+        {
+            "const": "FAC/NETWK/INTRNT",
+            "title": "Internet",
+            "description": "Auto-défini"
+        },
+        {
+            "const": "FAC/NETWK/ISDN",
+            "title": "Réseau numérique à intégration de services (RNIS)",
+            "description": "Le Réseau numérique à intégration de services (RNIS) est un système de réseau téléphonique commuté par circuit, conçu pour permettre la transmission numérique de la voix et des données sur des fils de cuivre téléphoniques ordinaires."
+        },
+        {
+            "const": "FAC/NETWK/LAN",
+            "title": "Réseau local",
+            "description": "Auto-défini"
+        },
+        {
+            "const": "FAC/NETWK/PAMR",
+            "title": "PAMR",
+            "description": "Réseau de radio mobile analogique privé : utilisé par des organisations privées et des organismes de secours/sécurité."
+        },
+        {
+            "const": "FAC/NETWK/PDMR",
+            "title": "PDMR",
+            "description": "Réseau de radio mobile numérique privé : utilisé par des organisations privées et des organismes de secours/sécurité."
+        },
+        {
+            "const": "FAC/NETWK/PGSM",
+            "title": "Réseau GSM privé",
+            "description": "Réseau de téléphonie mobile de 1ère génération installé à usage privé (peut être utilisé pour la transmission de la voix et/ou des données)."
+        },
+        {
+            "const": "FAC/NETWK/PSTN",
+            "title": "RTPC",
+            "description": "Réseau téléphonique public commuté (peut être utilisé pour la transmission de la voix et/ou des données)."
+        },
+        {
+            "const": "FAC/NETWK/RADEHF",
+            "title": "Très haute fréquence",
+            "description": "Réseau radio avec une fréquence de 30 gigahertz à 300 gigahertz. (THF)"
+        },
+        {
+            "const": "FAC/NETWK/RADHF",
+            "title": "Haute fréquence",
+            "description": "Réseau radio avec une fréquence de 3 mégahertz à 30 mégahertz. (HF)"
+        },
+        {
+            "const": "FAC/NETWK/RADIO",
+            "title": "Radio",
+            "description": "Réseau de diffusion radio publique"
+        },
+        {
+            "const": "FAC/NETWK/RADLF",
+            "title": "Basse fréquence",
+            "description": "Réseau radio avec une fréquence de 30 kilohertz à 300 kilohertz. (BF)"
+        },
+        {
+            "const": "FAC/NETWK/RADMF",
+            "title": "Moyenne fréquence",
+            "description": "Réseau radio avec une fréquence de 300 kilohertz à 3 000 kilohertz. (MF)"
+        },
+        {
+            "const": "FAC/NETWK/RADSHF",
+            "title": "Très haute fréquence",
+            "description": "Réseau radio avec une fréquence de 3 gigahertz à 30 gigahertz. (THF)"
+        },
+        {
+            "const": "FAC/NETWK/RADUHF",
+            "title": "Ultra haute fréquence",
+            "description": "Réseau radio avec une fréquence de 300 mégahertz à 3 000 mégahertz. (UHF)"
+        },
+        {
+            "const": "FAC/NETWK/RADVHF",
+            "title": "Très haute fréquence",
+            "description": "Réseau radio avec une fréquence de 30 mégahertz à 300 mégahertz. (VHF)"
+        },
+        {
+            "const": "FAC/NETWK/RADVLF",
+            "title": "Très basse fréquence",
+            "description": "Réseau radio avec une fréquence de 3 kilohertz à 30 kilohertz. (VLF)"
+        },
+        {
+            "const": "FAC/NETWK/RAYNET",
+            "title": "Réseau des radioamateurs pour les situations d'urgence",
+            "description": "Réseau des radioamateurs pour les situations d'urgence"
+        },
+        {
+            "const": "FAC/NETWK/RELAY",
+            "title": "Installation de relais",
+            "description": "Une installation organisée, équipée et située dans le but d'étendre la couverture des communications électroniques et de la détection."
+        },
+        {
+            "const": "FAC/NETWK/SDSL",
+            "title": "SDSL",
+            "description": "Ligne d'abonné numérique synchrone : un réseau de connexion de données à haut débit."
+        },
+        {
+            "const": "FAC/NETWK/TV",
+            "title": "Télévision",
+            "description": "Réseau de télévision"
+        },
+        {
+            "const": "FAC/NETWK/UMTS",
+            "title": "UMTS",
+            "description": "3e génération du réseau de téléphonie mobile public (peut être utilisée pour la transmission de la voix et/ou des données)."
+        },
+        {
+            "const": "FAC/NETWK/VDSL",
+            "title": "VDSL",
+            "description": "Very High Rate DSL : la prochaine génération de transmission rapide de données."
+        },
+        {
+            "const": "FAC/NETWK/WAN",
+            "title": "Réseau étendu",
+            "description": "Auto-défini"
+        },
+        {
+            "const": "FAC/NETWK/WIMAX",
+            "title": "WiMax",
+            "description": "Worldwide Interoperability for Microwave Access, Inc. (groupe promouvant la norme de bande large sans fil IEEE 802.16)"
+        },
+        {
+            "const": "FAC/NETWK/WLAN",
+            "title": "Réseau local sans fil",
+            "description": "Auto-défini"
+        },
+        {
+            "const": "FAC/OPR/AMBFAC",
+            "title": "Installation d'ambulance",
+            "description": "L'endroit où se trouvent les véhicules d'ambulance."
+        },
+        {
+            "const": "FAC/OPR/BDHOLD",
+            "title": "Zone de conservation des corps",
+            "description": "Une zone proche du lieu de l'urgence où les morts peuvent être temporairement conservés avant d'être transférés à la morgue d'urgence ou à la morgue."
+        },
+        {
+            "const": "FAC/OPR/CAMP",
+            "title": "Camp",
+            "description": "Un hébergement basé sur un certain nombre de tentes ou de huttes."
+        },
+        {
+            "const": "FAC/OPR/CASBUR",
+            "title": "Bureau des victimes",
+            "description": "Point central de contact et d'information pour tous les dossiers et les données relatifs aux victimes. (D'après le Manuel des procédures en cas d'incident majeur, 7e édition, publié en 2007 par le London Emergency Services Liaison Panel (LESLP).) Également appelé centre de crise CENTRO DE APOIO POPLIACOS SINISTRZDA (Portugal) ou bureau de crise Cabinete crise (Portugal)."
+        },
+        {
+            "const": "FAC/OPR/CASCLR",
+            "title": "Centre de tri des victimes",
+            "description": "Un espace aménagé lors d'un incident majeur par le service d'ambulance pour trier et traiter les victimes et diriger leur évacuation."
+        },
+        {
+            "const": "FAC/OPR/CASCOL",
+            "title": "Point de rassemblement des victimes",
+            "description": "Un emplacement spécifique où les victimes sont regroupées en vue de leur transport vers un établissement de traitement médical. Également appelé Point de chargement des ambulances."
+        },
+        {
+            "const": "FAC/OPR/CP",
+            "title": "Poste de commandement",
+            "description": "Un quartier général d'unité ou de sous-unité où le commandant et le personnel mènent leurs activités."
+        },
+        {
+            "const": "FAC/OPR/CSCLPT",
+            "title": "Point de rassemblement des victimes",
+            "description": "Un emplacement spécifique où les victimes sont regroupées en vue de leur transport vers un établissement de traitement médical."
+        },
+        {
+            "const": "FAC/OPR/CVCLPT",
+            "title": "Point de rassemblement des civils",
+            "description": "Un emplacement spécifique où les civils sont regroupés."
+        },
+        {
+            "const": "FAC/OPR/DEBRDP",
+            "title": "Décharge de débris",
+            "description": "Terme utilisé pour décrire un espace où les débris de l'incident seraient déposés sur le site de l'incident."
+        },
+        {
+            "const": "FAC/OPR/DECONP",
+            "title": "Installation de décontamination",
+            "description": "Un endroit où le personnel et/ou le matériel peuvent être nettoyés après une contamination potentielle par des matières radioactives, biologiques ou chimiques."
+        },
+        {
+            "const": "FAC/OPR/DISBED",
+            "title": "Lits pour personnes ayant des troubles d'apprentissage",
+            "description": "Fourniture d'hébergement pour les personnes ayant des troubles d'apprentissage."
+        },
+        {
+            "const": "FAC/OPR/DOCFAC",
+            "title": "Maison médicale",
+            "description": "L'installation qui reçoit les patients ordinaires pendant les heures de travail."
+        },
+        {
+            "const": "FAC/OPR/EMMORT",
+            "title": "Morgue d'urgence",
+            "description": "Structures temporaires ou transformation de structures existantes ayant pour fonction de fournir un espace où peuvent avoir lieu les examens post-mortem et l'identification des victimes, et, si nécessaire, de fournir une capacité de conservation des corps avant leur retrait du site de l'incident."
+        },
+        {
+            "const": "FAC/OPR/EQPOOL",
+            "title": "Piscine d'équipement",
+            "description": "Terme utilisé pour décrire un espace destiné à stocker des équipements de réserve sur le site de l'incident."
+        },
+        {
+            "const": "FAC/OPR/EVASSP",
+            "title": "Point de rassemblement des évacués",
+            "description": "Un espace aménagé lors d'un incident situé près de la scène où les évacués peuvent être dirigés pour être regroupés avant d'être transportés vers des centres de repos."
+        },
+        {
+            "const": "FAC/OPR/FACAIR",
+            "title": "Base/facilité militaire, aéroport/base aérienne",
+            "description": "Une installation utilisée comme base militaire préparée pour l'hébergement, le décollage et l'atterrissage des avions."
+        },
+        {
+            "const": "FAC/OPR/FACMIL",
+            "title": "Base/facilité militaire",
+            "description": "Une installation utilisée comme base militaire."
+        },
+        {
+            "const": "FAC/OPR/FACNAV",
+            "title": "Base/facilité militaire, port de mer/base navale",
+            "description": "Une installation utilisée comme base navale et où les navires peuvent charger ou décharger leur cargaison."
+        },
+        {
+            "const": "FAC/OPR/FAMFRD",
+            "title": "Centre de réception pour les familles et les amis",
+            "description": "Espace sécurisé établi par la police, réservé à l'accueil et à l'entretien des familles et des amis arrivant sur les lieux de l'incident."
+        },
+        {
+            "const": "FAC/OPR/FIRFAC",
+            "title": "Installation des services d'incendie",
+            "description": "Auto-descriptif"
+        },
+        {
+            "const": "FAC/OPR/FSAAMM",
+            "title": "Zone de stockage de munitions sur le terrain",
+            "description": "Un groupe de sites de stockage sur le terrain contenant des munitions et des explosifs."
+        },
+        {
+            "const": "FAC/OPR/GERBED",
+            "title": "Lits pour personnes âgées",
+            "description": "Terme désignant l'hébergement pour les personnes âgées."
+        },
+        {
+            "const": "FAC/OPR/HOLD",
+            "title": "Zone de rétention",
+            "description": "Terme utilisé pour décrire un espace sûr près de la zone d'opérations utilisé pour stocker une réserve de ressources avant d'être affecté à une tâche."
+        },
+        {
+            "const": "FAC/OPR/HPD",
+            "title": "Héliport",
+            "description": "Une zone aménagée utilisée pour le décollage et l'atterrissage des hélicoptères et d'autres aéronefs à décollage et atterrissage vertical."
+        },
+        {
+            "const": "FAC/OPR/HPT",
+            "title": "Héliport",
+            "description": "Un endroit désigné pour l'atterrissage et le décollage des hélicoptères, y compris ses bâtiments et ses installations."
+        },
+        {
+            "const": "FAC/OPR/HSP",
+            "title": "Établissement médical, hôpital",
+            "description": "Un établissement médical fixe capable de fournir des soins aux patients hospitalisés."
+        },
+        {
+            "const": "FAC/OPR/HSPFLD",
+            "title": "Établissement médical/hôpital de campagne",
+            "description": "Une structure temporaire érigée sur ou près du site de l'incident pour fournir des soins médicaux."
+        },
+        {
+            "const": "FAC/OPR/HSPFLD2",
+            "title": "Établissement médical, hôpital de campagne",
+            "description": "Un établissement médical mobile capable de fournir des soins aux patients hospitalisés."
+        },
+        {
+            "const": "FAC/OPR/IRM",
+            "title": "Imagerie, Radiodiagnostic",
+            "description": "Installations de radiologie pour les ressources médicales."
+        },
+        {
+            "const": "FAC/OPR/MARSHAL",
+            "title": "Aire de regroupement",
+            "description": "Un emplacement à proximité du site de l'événement où les unités, le personnel, l'équipement, le matériel et les fournitures associées arrivant sont réassemblés, rendus à la disposition du commandant et préparés pour un déplacement ultérieur."
+        },
+        {
+            "const": "FAC/OPR/MATBED",
+            "title": "Lits de maternité",
+            "description": "Lits dans les services de maternité d'un hôpital."
+        },
+        {
+            "const": "FAC/OPR/MEDBED",
+            "title": "Lits médicaux (généraux)",
+            "description": "Lits dans les services de médecine générale d'un hôpital ou d'un autre établissement médical."
+        },
+        {
+            "const": "FAC/OPR/MEDSPT",
+            "title": "Soutien médical",
+            "description": "Une installation qui accueille du personnel médical chargé de traiter des personnes malades ou blessées."
+        },
+        {
+            "const": "FAC/OPR/MOBLCP",
+            "title": "Poste de commandement mobile",
+            "description": "Le poste de commandement mobile d'une unité/formation."
+        },
+        {
+            "const": "FAC/OPR/OPCTCN",
+            "title": "Centre de commandement et de contrôle opérationnel",
+            "description": "Centre de commandement et de contrôle opérationnel : normalement éloigné de la zone des opérations, il soutient directement l'incident. Également connu sous le nom de Contrôle Silver au Royaume-Uni."
+        },
+        {
+            "const": "FAC/OPR/PHARMA",
+            "title": "Pharmacie",
+            "description": "Installations de distribution de médicaments."
+        },
+        {
+            "const": "FAC/OPR/POLFAC",
+            "title": "Commissariat de police",
+            "description": "Bâtiment ou locaux utilisés comme installation pour les ressources policières, l'équipement, et où les personnes en état d'arrestation sont conduites."
+        },
+        {
+            "const": "FAC/OPR/POLPT",
+            "title": "Point de ravitaillement en carburant (POL)",
+            "description": "Une installation de distribution de pétrole et de produits associés."
+        },
+        {
+            "const": "FAC/OPR/REFARE",
+            "title": "Zone de regroupement de réfugiés",
+            "description": "Zone spécialisée utilisée comme zone de regroupement pour les réfugiés."
+        },
+        {
+            "const": "FAC/OPR/RRRSPT",
+            "title": "Point de réarmement, de ravitaillement et de réapprovisionnement",
+            "description": "Un point désigné par lequel une unité passe pour recevoir du carburant, des munitions et d'autres fournitures nécessaires pour poursuivre les opérations de combat."
+        },
+        {
+            "const": "FAC/OPR/SITLOG",
+            "title": "Site logistique",
+            "description": "Une installation pour le stockage, la maintenance, la recherche ou l'élimination de matériel."
+        },
+        {
+            "const": "FAC/OPR/SPTARE",
+            "title": "Zone de soutien",
+            "description": "Une zone désignée dans laquelle des éléments de soutien et certains éléments du personnel se trouvent pour soutenir une unité."
+        },
+        {
+            "const": "FAC/OPR/SRVCNT",
+            "title": "Centre de réception des survivants",
+            "description": "Un espace sécurisé où les survivants indemnes peuvent être conduits pour se mettre à l'abri."
+        },
+        {
+            "const": "FAC/OPR/STCOCN",
+            "title": "Centre de coordination stratégique",
+            "description": "Le groupe de coordination stratégique et les cellules de soutien pour aider le Commandant Gold à mettre en œuvre sa stratégie."
+        },
+        {
+            "const": "FAC/OPR/STCTCN",
+            "title": "Centre de commandement et de contrôle stratégique",
+            "description": "Commandement et contrôle stratégique pour traiter les considérations opérationnelles plus larges d'un incident majeur ou d'une urgence, y compris les intervenants d'urgence. Également connu sous le nom de Contrôle Gold au Royaume-Uni."
+        },
+        {
+            "const": "FAC/OPR/TCCTCN",
+            "title": "Centre de commandement et de contrôle tactique",
+            "description": "Centre de commandement et de contrôle tactique sur le site des opérations. Également connu sous le nom de Contrôle Bronze au Royaume-Uni."
+        },
+        {
+            "const": "FAC/OTH/ACCOM",
+            "title": "Unité d'hébergement",
+            "description": "Une quantité d'espace de vie distinct et séparé."
+        },
+        {
+            "const": "FAC/OTH/AIRFLD",
+            "title": "Aérodrome",
+            "description": "Une installation qui est un espace préparé pour l'hébergement, le décollage et l'atterrissage des avions."
+        },
+        {
+            "const": "FAC/OTH/BANK",
+            "title": "Banque",
+            "description": "Un établissement où l'argent est conservé à des fins d'épargne ou commerciales."
+        },
+        {
+            "const": "FAC/OTH/BATH",
+            "title": "Bain",
+            "description": "Une installation utilisée pour l'hygiène personnelle."
+        },
+        {
+            "const": "FAC/OTH/CAN",
+            "title": "Canal",
+            "description": "Un cours d'eau artificiel ou naturel amélioré utilisé pour le transport."
+        },
+        {
+            "const": "FAC/OTH/CEM",
+            "title": "Cimetière/nécropole/terrain funéraire",
+            "description": "Une zone de terrain pour l'enterrement des morts."
+        },
+        {
+            "const": "FAC/OTH/DCH",
+            "title": "Fossé",
+            "description": "Un canal construit dans le but de l'irrigation ou du drainage."
+        },
+        {
+            "const": "FAC/OTH/ELCINS",
+            "title": "Installation électronique",
+            "description": "Une installation dont la fonction essentielle repose sur l'utilisation d'équipement électronique."
+        },
+        {
+            "const": "FAC/OTH/ELCSPL",
+            "title": "Alimentation électrique",
+            "description": "Une installation contenant l'équipement utilisé pour la production et/ou la distribution d'électricité."
+        },
+        {
+            "const": "FAC/OTH/EQIMFT",
+            "title": "Équipement, fabrication",
+            "description": "Une installation généralement utilisée spécifiquement pour soutenir la fabrication d'équipement."
+        },
+        {
+            "const": "FAC/OTH/FACGOV",
+            "title": "Leadership gouvernemental",
+            "description": "Une installation utilisée pour soutenir les fonctions de leadership gouvernemental."
+        },
+        {
+            "const": "FAC/OTH/FACPOW",
+            "title": "Installation de service, de recherche, d'utilité, d'installation électrique",
+            "description": "Une installation généralement utilisée pour soutenir les fonctions de service, de recherche ou d'utilité en soutien de l'électricité."
+        },
+        {
+            "const": "FAC/OTH/FACTEC",
+            "title": "Installation de service, de recherche, d'utilité, d'installation de recherche technologique",
+            "description": "Une installation généralement utilisée pour soutenir les fonctions de service, de recherche ou d'utilité en soutien de la recherche technologique."
+        },
+        {
+            "const": "FAC/OTH/FACTEL",
+            "title": "Installation de service, de recherche, d'utilité, d'installation de télécommunications",
+            "description": "Une installation généralement utilisée pour soutenir les fonctions de service, de recherche ou d'utilité en soutien des télécommunications."
+        },
+        {
+            "const": "FAC/OTH/FACTRN",
+            "title": "Installation de transport",
+            "description": "Une installation utilisée pour soutenir les fonctions de transport."
+        },
+        {
+            "const": "FAC/OTH/FATST",
+            "title": "Installation de service, de recherche, d'utilité, de service d'eau potable public",
+            "description": "Une installation généralement utilisée pour soutenir les fonctions de service, de recherche ou d'utilité en soutien des services d'eau potable publics."
+        },
+        {
+            "const": "FAC/OTH/FERINS",
+            "title": "Installation de traversée",
+            "description": "Une installation (y compris les terminaux et les embarcations) permettant de déplacer du matériel et du personnel d'un côté d'une étendue d'eau à l'autre."
+        },
+        {
+            "const": "FAC/OTH/FHPT",
+            "title": "Point de distribution de carburant",
+            "description": "Une installation de ravitaillement en produits pétroliers (POL)."
+        },
+        {
+            "const": "FAC/OTH/LGRLPT",
+            "title": "Point de libération logistique",
+            "description": "Le point le long de la voie d'approvisionnement où l'unité soutenue rencontre l'unité de soutien pour transférer des fournitures."
+        },
+        {
+            "const": "FAC/OTH/MAINTF",
+            "title": "Installation de maintenance",
+            "description": "Une installation contenant les ressources et l'infrastructure permettant de l'utiliser pour la réparation et l'entretien de l'équipement."
+        },
+        {
+            "const": "FAC/OTH/PTL",
+            "title": "Ligne de transmission électrique",
+            "description": "Un système de câbles aériens et de leurs supports qui transmettent l'électricité sur une distance."
+        },
+        {
+            "const": "FAC/OTH/RES",
+            "title": "Réservoir",
+            "description": "Une enceinte ou une zone artificielle conçue pour le stockage de l'eau."
+        },
+        {
+            "const": "FAC/OTH/VST",
+            "title": "Aire de stationnement pour véhicules",
+            "description": "Une zone de terrain ouverte utilisée pour stocker ou stationner des véhicules ou des embarcations (y compris les véhicules de loisirs)."
+        },
+        {
+            "const": "FAC/OTH/WATSPL",
+            "title": "Approvisionnement en eau",
+            "description": "Une installation contenant l'équipement utilisé pour le stockage et/ou la distribution de l'eau."
+        },
+        {
+            "const": "FAC/OTH/WSHFAC",
+            "title": "Installation de lavage",
+            "description": "Une installation pour laver le personnel et/ou l'équipement."
+        },
+        {
+            "const": "FAC/WATFIR/FOMBLK",
+            "title": "Stockage en vrac de mousse",
+            "description": "Le stockage de grandes quantités de concentré de mousse, soit sur place à un risque identifié, soit à des emplacements stratégiques pour une utilisation lors d'incidents d'urgence."
+        },
+        {
+            "const": "FAC/WATFIR/HYDRNT",
+            "title": "Installation de stockage d'hydrants",
+            "description": "Installation de stockage d'hydrants."
+        },
+        {
+            "const": "FAC/WATFIR/TOWNMN",
+            "title": "Emplacement des conduites principales de la ville",
+            "description": "Un réseau de conduites qui alimente les bornes d'incendie."
+        },
+        {
+            "const": "HUM/CAPAB",
+            "title": "Capacité",
+            "description": "Les ressources potentielles qui peuvent être utilisées ou développées."
+        },
+        {
+            "const": "HUM/PERSON",
+            "title": "Personne",
+            "description": "Personne."
+        },
+        {
+            "const": "HUM/UNIT",
+            "title": "Unité",
+            "description": "Unité."
+        },
+        {
+            "const": "HUM/CAPAB/AMB",
+            "title": "Capacité d'ambulance",
+            "description": "Capacité d'ambulance."
+        },
+        {
+            "const": "HUM/CAPAB/FIR",
+            "title": "Capacité de lutte contre l'incendie",
+            "description": "Capacité de lutte contre l'incendie."
+        },
+        {
+            "const": "HUM/CAPAB/MED",
+            "title": "Capacité médicale",
+            "description": "Capacité médicale."
+        },
+        {
+            "const": "HUM/CAPAB/MIL",
+            "title": "Capacité militaire",
+            "description": "Capacité militaire."
+        },
+        {
+            "const": "HUM/CAPAB/POL",
+            "title": "Fonctions de police",
+            "description": "Fonctions de police."
+        },
+        {
+            "const": "HUM/CAPAB/TRP",
+            "title": "Capacité de transport",
+            "description": "Capacité de transport."
+        },
+        {
+            "const": "HUM/CAPAB/AMB/INCOFF",
+            "title": "Officier des incidents d'ambulance",
+            "description": "L'officier du service d'ambulance ayant la responsabilité globale lors d'un incident majeur, qui travaille en étroite collaboration avec l'officier des incidents médicaux."
+        },
+        {
+            "const": "HUM/CAPAB/AMB/PARAMD",
+            "title": "Paramédic d'ambulance",
+            "description": "Les paramédicaux sont les professionnels de la santé les plus expérimentés du service d'ambulance lors d'un accident ou d'une urgence médicale. Ils travaillent seuls ou avec un technicien d'ambulance."
+        },
+        {
+            "const": "HUM/CAPAB/AMB/SAFOFF",
+            "title": "Officier de sécurité d'ambulance",
+            "description": "L'officier responsable de la surveillance des opérations et de la garantie de la sécurité du personnel placé sous sa responsabilité."
+        },
+        {
+            "const": "HUM/CAPAB/AMB/TECHNIC",
+            "title": "Technicien d'ambulance",
+            "description": "Les techniciens travaillent aux côtés d'un paramédical et fournissent des soins d'urgence essentiels."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/BACOFF",
+            "title": "Officier principal de contrôle des appareils respiratoires",
+            "description": "Terme désignant une personne responsable de la fourniture de ressources adéquates pour les appareils respiratoires lors d'un incident majeur. Ce système de contrôle est utilisé lorsqu'il y a plus d'un poste de contrôle d'appareils respiratoires."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/BAEOFF",
+            "title": "Officier de contrôle d'entrée des appareils respiratoires",
+            "description": "Terme désignant un système visant à garantir la sécurité des équipes d'appareils respiratoires."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/COMOFF",
+            "title": "Officier des communications",
+            "description": "Terme désignant une personne responsable de garantir une communication radio efficace sur le site de l'incident."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/CONOFF",
+            "title": "Officier de contrôle",
+            "description": "Terme désignant une personne responsable de la coordination d'une unité de contrôle ou d'une unité de commandement d'incident sur le site de l'incident."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/DECOFF",
+            "title": "Officier de décontamination",
+            "description": "Terme désignant une personne responsable de la gestion du processus de décontamination et des procédures sur le site de l'incident."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/FINOFF",
+            "title": "Officier d'enquête incendie",
+            "description": "Terme désignant une personne chargée d'enquêter sur la cause de l'incendie. Cela peut également être désigné sous le nom d'analyste du feu (Pays-Bas)."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/FOMOFF",
+            "title": "Officier de la mousse",
+            "description": "Terme désignant une personne responsable de garantir des quantités appropriées et suffisantes de mousse pour la lutte contre l'incendie sur le site de l'incident."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/HAZOFF",
+            "title": "Officier des matières dangereuses",
+            "description": "Terme désignant une personne responsable de l'évaluation de la nature et du risque pour les intervenants d'urgence et d'autres personnes des matières dangereuses impliquées dans l'incident d'urgence."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/INCCOM",
+            "title": "Commandant de l'incident",
+            "description": "Terme désignant une personne ayant la responsabilité globale d'un incident d'urgence. Également connu sous le nom de « OIC » (voir utilisation alternative pour Commandement d'Incident Opérationnel) et COMANDO INCIDETE — Portugal."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/LIAOFF",
+            "title": "Officier de liaison",
+            "description": "Terme désignant une personne responsable d'assurer la liaison avec les intervenants d'urgence, avant, après et pendant une urgence."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/LOGOFF",
+            "title": "Officier logistique",
+            "description": "Terme désignant une personne responsable de garantir la fourniture de ressources."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/MAROFF",
+            "title": "Officier de rassemblement",
+            "description": "Terme désignant une personne responsable de la coordination des ressources arrivant et quittant le site de l'incident."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/MEDOFF",
+            "title": "Officier des médias",
+            "description": "Terme désignant une personne responsable de la liaison avec les médias sur le site de l'incident."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/OPRCOM",
+            "title": "Commandant des opérations",
+            "description": "Individu responsable de la gestion et du soutien d'un incident au sein d'un environnement de Commandement Opérationnel situé à distance des opérations sur le terrain de l'incident. Le Commandement Opérationnel assure le lien entre les besoins de commandement tactique et les problèmes de commandement stratégique."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/SAFOFF",
+            "title": "Officier de sécurité",
+            "description": "Terme désignant une personne responsable de la gestion de la sécurité des intervenants d'urgence sur le site de l'incident. Sécurité sur le site Veilig Werkers (Pays-Bas)."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/SALOFF",
+            "title": "Officier de sauvetage",
+            "description": "Terme désignant une personne responsable de garantir la protection des biens touchés par l'incident/événement."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/SECCOM",
+            "title": "Commandant de secteur",
+            "description": "Terme désignant une personne ayant la responsabilité des opérations de lutte contre l'incendie ou de sauvetage dans une zone géographique particulière du site de l'incident."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/STAOFF",
+            "title": "Officier de stabilité",
+            "description": "Individu responsable de la surveillance de la stabilité d'un navire pendant les opérations de lutte contre l'incendie."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/STRCOM",
+            "title": "Commandant stratégique",
+            "description": "Terme désignant une personne responsable de la gestion stratégique d'un incident."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/TACCOM",
+            "title": "Commandant tactique/sur place",
+            "description": "Terme désignant une personne responsable de la gestion et de la coordination d'un incident dans un environnement tactique sur le site de l'incident."
+        },
+        {
+            "const": "HUM/CAPAB/FIR/WATOFF",
+            "title": "Officier de l'eau",
+            "description": "Terme désignant une personne responsable de garantir la fourniture de quantités adéquates d'eau pour la lutte contre l'incendie sur le site de l'incident."
+        },
+        {
+            "const": "HUM/CAPAB/MED/ANSPHY",
+            "title": "Médecin anesthésiste",
+            "description": "Une capacité médicale identifiée comme un médecin spécialisé dans l'administration d'un agent provoquant la perte de sensation, avec ou sans perte de conscience."
+        },
+        {
+            "const": "HUM/CAPAB/MED/DNTPHY",
+            "title": "Médecin dentiste",
+            "description": "Une capacité médicale identifiée comme un médecin traitant la prévention et le traitement des maladies et des malformations des dents, des gencives et de la cavité buccale, ainsi que l'extraction, la correction et le remplacement des parties cariées, endommagées ou perdues, notamment les opérations de restauration et de couronnement des dents, le redressement des dents et la fabrication de prothèses dentaires artificielles."
+        },
+        {
+            "const": "HUM/CAPAB/MED/DOCTOR",
+            "title": "Médecin",
+            "description": "Une personne autorisée à pratiquer la médecine, en tant que médecin, chirurgien ou dentiste."
+        },
+        {
+            "const": "HUM/CAPAB/MED/GYNPHY",
+            "title": "Médecin en gynécologie",
+            "description": "Une capacité médicale identifiée comme un médecin spécialisé dans une branche de la médecine qui traite des maladies et des soins physiques de routine du système reproductif des femmes."
+        },
+        {
+            "const": "HUM/CAPAB/MED/HDNPHY",
+            "title": "Médecin en tête/cou",
+            "description": "Une capacité médicale identifiée comme un médecin spécialisé en psychologie."
+        },
+        {
+            "const": "HUM/CAPAB/MED/INMPHY",
+            "title": "Médecin en médecine interne",
+            "description": "Une capacité médicale identifiée comme un médecin spécialisé en pathologie, qui est l'étude scientifique de la nature des maladies et de leurs causes, processus, développement et conséquences."
+        },
+        {
+            "const": "HUM/CAPAB/MED/NURSE",
+            "title": "Infirmier",
+            "description": "Une personne éduquée et formée pour prendre soin des malades ou des infirmes."
+        },
+        {
+            "const": "HUM/CAPAB/MED/ORTPHY",
+            "title": "Médecin en orthopédie",
+            "description": "Une capacité médicale identifiée comme un médecin spécialisé dans la correction des déformations ou des troubles fonctionnels du système squelettique, en particulier des extrémités et de la colonne vertébrale, ainsi que des structures associées, telles que les muscles et les ligaments."
+        },
+        {
+            "const": "HUM/CAPAB/MED/OTHPHY",
+            "title": "Autre médecin",
+            "description": "Une capacité médicale identifiée comme un médecin spécialisé en chirurgie."
+        },
+        {
+            "const": "HUM/CAPAB/MED/PRCPHY",
+            "title": "Médecin de soins primaires",
+            "description": "Personne médicalement formée capable de référer des personnes à des spécialistes selon les besoins au sein du système médical."
+        },
+        {
+            "const": "HUM/CAPAB/MED/PSYPHY",
+            "title": "Médecin en psychologie",
+            "description": "Personne formée médicalement dans la science de l'esprit ou des états mentaux et de leurs processus."
+        },
+        {
+            "const": "HUM/CAPAB/MED/PTHPHY",
+            "title": "Médecin en pathologie",
+            "description": "Personne formée médicalement dans la science ou l'étude de l'origine, de la nature et du déroulement des maladies."
+        },
+        {
+            "const": "HUM/CAPAB/MED/RADPHY",
+            "title": "Médecin en radiologie",
+            "description": "Personne spécialement formée qui prend des radiographies pour l'examen ou la photographie d'organes, d'os, etc."
+        },
+        {
+            "const": "HUM/CAPAB/MED/SURPHY",
+            "title": "Médecin en chirurgie",
+            "description": "Médecin spécialement formé qui réalise des opérations."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/AUTCDR",
+            "title": "Commandant autorisé",
+            "description": "Une capacité militaire identifiée comme l'officier dûment nommé responsable d'une unité, d'un poste, d'un camp ou d'une opération."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/INTOFF",
+            "title": "Officier du renseignement",
+            "description": "Une capacité militaire qui est identifiée comme l'officier responsable des activités liées à la collecte et à l'analyse d'informations sur un ennemi réel ou potentiel."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/LIAISN",
+            "title": "Officier de liaison",
+            "description": "Une capacité militaire responsable des tâches de liaison."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OF1",
+            "title": "OF-1",
+            "description": "La spécification d'une capacité militaire comme étant appropriée au grade d'officier de Lieutenant/Second Lieutenant."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OF10",
+            "title": "OF-10",
+            "description": "La spécification d'une capacité militaire comme étant appropriée au grade d'officier de Field Marshal."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OF2",
+            "title": "OF-2",
+            "description": "La spécification d'une capacité militaire comme étant appropriée au grade d'officier de Capitaine."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OF3",
+            "title": "OF-3",
+            "description": "La spécification d'une capacité militaire comme étant appropriée au grade d'officier de Major."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OF4",
+            "title": "OF-4",
+            "description": "La spécification d'une capacité militaire comme étant appropriée au grade d'officier de Lieutenant Colonel."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OF5",
+            "title": "OF-5",
+            "description": "La spécification d'une capacité militaire comme étant appropriée au grade d'officier de Colonel."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OF6",
+            "title": "OF-6",
+            "description": "La spécification d'une capacité militaire comme étant appropriée au grade d'officier de Brigadier."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OF7",
+            "title": "OF-7",
+            "description": "La spécification d'une capacité militaire comme étant appropriée au grade d'officier de Major Général."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OF8",
+            "title": "OF-8",
+            "description": "La spécification d'une capacité militaire comme étant appropriée au grade d'officier de Lieutenant Général."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OF9",
+            "title": "OF-9",
+            "description": "La spécification d'une capacité militaire comme étant appropriée au grade d'officier de Général."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OFFR",
+            "title": "Officier, non spécifié autrement",
+            "description": "La spécification d'une capacité militaire comme étant appropriée pour un individu investi d'une autorité au moyen d'une commission dans les forces armées."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OPSOFF",
+            "title": "Officier des opérations",
+            "description": "Une capacité militaire qui est identifiée comme l'officier responsable des activités liées à la planification et à la direction des opérations militaires."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OR1",
+            "title": "OR-1",
+            "description": "La spécification d'une capacité militaire comme étant appropriée pour le grade de Soldat (Classe 4)."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OR2",
+            "title": "OR-2",
+            "description": "La spécification d'une capacité militaire comme étant appropriée pour le grade de Soldat (Classe 1-3)."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OR3",
+            "title": "OR-3",
+            "description": "La spécification d'une capacité militaire comme étant appropriée pour le grade de Caporal-chef."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OR4",
+            "title": "OR-4",
+            "description": "La spécification d'une capacité militaire comme étant appropriée pour le grade de Caporal."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OR5",
+            "title": "OR-5",
+            "description": "La spécification d'une capacité militaire comme étant appropriée pour le grade de Sergent (Débutant)."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OR6",
+            "title": "OR-6",
+            "description": "La spécification d'une capacité militaire comme étant appropriée pour le grade de Sergent (3 ans d'ancienneté)."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OR7",
+            "title": "OR-7",
+            "description": "La spécification d'une capacité militaire comme étant appropriée pour le grade de Sergent-chef."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OR8",
+            "title": "OR-8",
+            "description": "La spécification d'une capacité militaire comme étant appropriée pour le grade d'Adjudant-chef."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OR9",
+            "title": "OR-9",
+            "description": "La spécification d'une capacité militaire comme étant appropriée pour le grade d'Adjudant."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/OTHR",
+            "title": "Sous-officiers",
+            "description": "La spécification d'une capacité militaire comme étant appropriée pour un individu qui ne détient pas une commission d'officier dans les forces armées."
+        },
+        {
+            "const": "HUM/CAPAB/MIL/POC",
+            "title": "Point de contact",
+            "description": "Une capacité militaire responsable de coordonner les détails pour chaque élément de support requis."
+        },
+        {
+            "const": "HUM/CAPAB/POL/BMBOFF",
+            "title": "Officier de déminage",
+            "description": "Il devrait s'agir d'une unité spécialisée."
+        },
+        {
+            "const": "HUM/CAPAB/POL/CASOFF",
+            "title": "Officier du Bureau des Victimes",
+            "description": "Officier du Bureau des Victimes"
+        },
+        {
+            "const": "HUM/CAPAB/POL/COFF",
+            "title": "Officier du Cordon",
+            "description": "Veille à ce que le public en général et les médias ne franchissent pas la ligne de cordon."
+        },
+        {
+            "const": "HUM/CAPAB/POL/DETCTV",
+            "title": "Détective",
+            "description": "Personne en charge des enquêtes."
+        },
+        {
+            "const": "HUM/CAPAB/POL/DIVER",
+            "title": "Plongeur de la police",
+            "description": "Effectue des opérations de recherche et de récupération dans le but de récupérer des corps/objets immergés dans l'eau."
+        },
+        {
+            "const": "HUM/CAPAB/POL/MOM",
+            "title": "Responsable des Opérations Mortuaires",
+            "description": "En charge des équipes de la morgue et sera déployé dans la zone \"humide\" de la morgue. Cette personne assurera la liaison entre l'Officier de Documentation de la Morgue et le médecin légiste en chef tout en veillant à ce que la politique de procédure de la morgue décidée soit mise en œuvre. Le Responsable des Opérations Mortuaires supervisera la collecte de toutes les données, échantillons et biens personnels saisis sur les défunts ou les restes, en veillant à ce que la documentation concernant chaque corps/partie de corps traitée soit compilée avec précision et soumise à l'Officier de Documentation de la Morgue."
+        },
+        {
+            "const": "HUM/CAPAB/POL/PIO",
+            "title": "Officier de Police d'Incident",
+            "description": "Commandant Silver ou sur le terrain, responsable des décisions au niveau tactique. [Extrait du Manuel de Procédure des Grands Incidents, 7ème édition, publié en 2007 par le London Emergency Services Liaison Panel (LESLP).]"
+        },
+        {
+            "const": "HUM/CAPAB/POL/PMR",
+            "title": "Représentant Médias de la Police",
+            "description": "Désigné par le commandant de l'incident général pour être responsable de la diffusion d'informations au nom de la police. [Extrait du Manuel de Procédure des Grands Incidents, 7ème édition, publié en 2007 par le London Emergency Services Liaison Panel (LESLP).]"
+        },
+        {
+            "const": "HUM/CAPAB/POL/RDINV",
+            "title": "Enquêteur d'Accidents Routiers",
+            "description": "Effectue des enquêtes détaillées sur les accidents de la route."
+        },
+        {
+            "const": "HUM/CAPAB/POL/SCO",
+            "title": "Officier de la Scène de Crime",
+            "description": "Se rend sur les lieux du crime pour collecter des preuves."
+        },
+        {
+            "const": "HUM/CAPAB/POL/SIO",
+            "title": "Officier Principal des Enquêtes",
+            "description": "Officier de police supérieur chargé par Gold de prendre en charge tous les aspects de l'enquête policière. [Extrait du Manuel de Procédure des Grands Incidents, 7ème édition, publié en 2007 par le London Emergency Services Liaison Panel (LESLP).]"
+        },
+        {
+            "const": "HUM/CAPAB/POL/STTTK",
+            "title": "Preneur de Déclarations",
+            "description": "L'officier qui interroge les témoins et enregistre leurs déclarations."
+        },
+        {
+            "const": "HUM/CAPAB/TRP/AIRFW",
+            "title": "Air, aile fixe",
+            "description": "La capacité de piloter un avion."
+        },
+        {
+            "const": "HUM/CAPAB/TRP/AIRRW",
+            "title": "Air, aile rotative",
+            "description": "La capacité de piloter un hélicoptère."
+        },
+        {
+            "const": "HUM/CAPAB/TRP/AMPH",
+            "title": "Amphibie",
+            "description": "La capacité de piloter un véhicule amphibie."
+        },
+        {
+            "const": "HUM/CAPAB/TRP/LNDRAI",
+            "title": "Terre, ferroviaire",
+            "description": "La capacité de piloter un train."
+        },
+        {
+            "const": "HUM/CAPAB/TRP/LNDWHL",
+            "title": "Terre, à roues",
+            "description": "La capacité de piloter un véhicule terrestre (voiture, camion, moto, etc.)."
+        },
+        {
+            "const": "HUM/CAPAB/TRP/SEASS",
+            "title": "Mer, sous-marin",
+            "description": "La capacité de piloter un sous-marin."
+        },
+        {
+            "const": "HUM/CAPAB/TRP/SEASUR",
+            "title": "Mer, surface",
+            "description": "La capacité de piloter un navire."
+        },
+        {
+            "const": "HUM/PERSON/CFIROF",
+            "title": "Chef des Pompiers",
+            "description": "Une personne qui a la responsabilité de la réglementation, de la discipline et du contrôle d'un service d'incendie et de secours pour une zone donnée."
+        },
+        {
+            "const": "HUM/PERSON/GOVEMP",
+            "title": "Employé Gouvernemental",
+            "description": "Une personne qui représente une Organisation Gouvernementale et qui n'est pas un membre en uniforme d'une force armée régulière."
+        },
+        {
+            "const": "HUM/PERSON/INTLCT",
+            "title": "Intellectuel",
+            "description": "Une personne qui est un être intellectuel, une personne possédant ou censée posséder des pouvoirs intellectuels supérieurs."
+        },
+        {
+            "const": "HUM/PERSON/JRNLST",
+            "title": "Journaliste",
+            "description": "Une personne qui gagne sa vie en éditant ou en écrivant pour un journal public."
+        },
+        {
+            "const": "HUM/PERSON/MEDIA",
+            "title": "Média",
+            "description": "Une personne qui fait des reportages pour les médias de masse (notamment la télévision, la radio et les journaux)."
+        },
+        {
+            "const": "HUM/PERSON/NONGVE",
+            "title": "Employé d'ONG",
+            "description": "Une personne qui représente une Organisation Non Gouvernementale et qui n'est pas un membre en uniforme d'une force armée régulière."
+        },
+        {
+            "const": "HUM/PERSON/POLCHF",
+            "title": "Chef de Police",
+            "description": "Une personne qui a la responsabilité de la réglementation, de la discipline et du contrôle d'une communauté pour l'application de la loi et le maintien de l'ordre public."
+        },
+        {
+            "const": "HUM/PERSON/VILELD",
+            "title": "Ancien du Village",
+            "description": "Une personne d'âge mûr et d'expérience dont les conseils sont donc recherchés et valorisés."
+        },
+        {
+            "const": "HUM/PERSON/WRITER",
+            "title": "Écrivain",
+            "description": "Une personne qui pratique ou exécute l'écriture."
+        },
+        {
+            "const": "HUM/UNIT/AIRLSN",
+            "title": "Officier de Liaison Aérienne",
+            "description": "Un officier de l'armée de l'air tactique ou de l'aviation navale attaché à une unité ou formation terrestre ou navale en tant que conseiller tactique."
+        },
+        {
+            "const": "HUM/UNIT/C2",
+            "title": "Unité de Commandement et de Contrôle",
+            "description": "Unité spécialisée utilisée comme centre de commandement et de contrôle sur le terrain d'un incident."
+        },
+        {
+            "const": "HUM/UNIT/CBRN",
+            "title": "NRBC",
+            "description": "Un type d'unité dont la principale désignation est la défense nucléaire, biologique et chimique."
+        },
+        {
+            "const": "HUM/UNIT/CONST",
+            "title": "Construction",
+            "description": "Un type d'unité dont la désignation indique une capacité à construire diverses installations en soutien direct des opérations militaires."
+        },
+        {
+            "const": "HUM/UNIT/CRSMAN",
+            "title": "Équipe de Gestion de Crise",
+            "description": "Personnel réuni sous l'autorité du chef de la direction pour gérer et coordonner la réponse de l'administration locale à une urgence."
+        },
+        {
+            "const": "HUM/UNIT/DISID",
+            "title": "Équipe d'Identification des Catastrophes",
+            "description": "Équipe utilisée pour identifier les corps lors d'une catastrophe."
+        },
+        {
+            "const": "HUM/UNIT/EMPOFF",
+            "title": "Officier de Planification des Urgences",
+            "description": "Un officier de l'autorité locale impliqué dans la liaison de la planification préalable avec les services d'urgence PROTECCAO-CIVIL (Portugal)."
+        },
+        {
+            "const": "HUM/UNIT/ENG",
+            "title": "Ingénieur",
+            "description": "Un type d'unité dont la désignation principale est la construction majeure, la démolition et des projets de camouflage étendus."
+        },
+        {
+            "const": "HUM/UNIT/ENVOFF",
+            "title": "Agent de Protection de l'Environnement",
+            "description": "Un terme pour décrire une personne qui serait responsable de la coordination de toutes les mesures visant à protéger l'environnement tout au long du déroulement de l'incident d'urgence."
+        },
+        {
+            "const": "HUM/UNIT/FINANC",
+            "title": "Finance",
+            "description": "Un type d'unité qui fournit des services de paiement et de droits."
+        },
+        {
+            "const": "HUM/UNIT/FIXWNG",
+            "title": "Aile fixe",
+            "description": "Un type d'unité dont la désignation indique l'utilisation d'actifs à aile fixe dans le régime aérien."
+        },
+        {
+            "const": "HUM/UNIT/GUID",
+            "title": "Unité de Guidage",
+            "description": "Unité pour accueillir et envoyer des équipes de soutien."
+        },
+        {
+            "const": "HUM/UNIT/HELCTR",
+            "title": "Hélicoptère",
+            "description": "Un type d'unité dont la désignation indique l'utilisation d'actifs à aile rotative dans le régime aérien."
+        },
+        {
+            "const": "HUM/UNIT/LAWENF",
+            "title": "Forces de l'Ordre",
+            "description": "Un type d'unité dont la désignation principale est la fourniture de services de maintien de l'ordre."
+        },
+        {
+            "const": "HUM/UNIT/LNDSPT",
+            "title": "Soutien à l'Atterrissage",
+            "description": "Un type d'unité dont la désignation principale est la fourniture de services de soutien à l'atterrissage."
+        },
+        {
+            "const": "HUM/UNIT/LOG",
+            "title": "Logistique",
+            "description": "Un type d'unité dont la désignation principale est la planification et la réalisation du mouvement et de la maintenance des forces."
+        },
+        {
+            "const": "HUM/UNIT/MAGRSP",
+            "title": "Équipe d'Intervention Multi-Agences",
+            "description": "Intervention en cas d'urgence par plusieurs services d'urgence. Aussi connu sous le nom de Coopération Multi-Agences (Portugal) et Incident en Co-intervention."
+        },
+        {
+            "const": "HUM/UNIT/MAINT",
+            "title": "Maintenance",
+            "description": "Un type d'unité dont la désignation principale est la réparation et la maintenance de l'équipement."
+        },
+        {
+            "const": "HUM/UNIT/MDSADV",
+            "title": "Équipe de Conseil en Cas de Catastrophe Majeure",
+            "description": "Une équipe de service de police disponible en cas de besoin immédiat pour donner des conseils sur la gestion d'incidents majeurs."
+        },
+        {
+            "const": "HUM/UNIT/MEDCL",
+            "title": "Médical",
+            "description": "Un type d'unité dont la désignation principale est la fourniture de services médicaux et dentaires et l'évacuation des blessés."
+        },
+        {
+            "const": "HUM/UNIT/MST",
+            "title": "Équipe Chirurgicale Mobile",
+            "description": "Une unité de services de santé spécialisée qui intervient sur les lieux pour effectuer des interventions d'urgence sur place."
+        },
+        {
+            "const": "HUM/UNIT/MSURTM",
+            "title": "Équipe Chirurgicale Mobile",
+            "description": "Une unité de services de santé spécialisée qui intervient sur les lieux pour effectuer des interventions d'urgence sur place."
+        },
+        {
+            "const": "HUM/UNIT/NAVAL",
+            "title": "Naval",
+            "description": "Un type d'unité dont la désignation indique une utilisation dans le régime naval."
+        },
+        {
+            "const": "HUM/UNIT/POL",
+            "title": "Unités de Police",
+            "description": "Unités de Police"
+        },
+        {
+            "const": "HUM/UNIT/PSYCH",
+            "title": "Psychologique",
+            "description": "Un type d'unité qui fournit un traitement lié à l'état mental et émotionnel d'une personne."
+        },
+        {
+            "const": "HUM/UNIT/RAILWY",
+            "title": "Ferroviaire",
+            "description": "Un type d'unité dont la désignation indique une utilisation sur ou le long d'une voie ferrée."
+        },
+        {
+            "const": "HUM/UNIT/RECCE",
+            "title": "Reconnaissance",
+            "description": "Un type d'unité dont la désignation principale est d'obtenir, par observation visuelle ou d'autres méthodes de détection, des informations sur les activités et les ressources d'un danger ou d'une menace potentielle, ou de recueillir des données sur les caractéristiques météorologiques, hydrographiques ou géographiques d'une zone particulière."
+        },
+        {
+            "const": "HUM/UNIT/RELCHP",
+            "title": "Religieux/Aumônier",
+            "description": "Un type d'unité qui fournit des services religieux."
+        },
+        {
+            "const": "HUM/UNIT/RIVERN",
+            "title": "Fluvial",
+            "description": "Un type d'unité dont la désignation indique une utilisation sur ou le long d'une rivière."
+        },
+        {
+            "const": "HUM/UNIT/SAR",
+            "title": "Recherche et Sauvetage",
+            "description": "Un type d'unité qui fournit des capacités et un soutien de recherche et de sauvetage."
+        },
+        {
+            "const": "HUM/UNIT/SECPOL",
+            "title": "Police de Sécurité",
+            "description": "Un type d'unité qui fournit des services de police de sécurité."
+        },
+        {
+            "const": "HUM/UNIT/SHRPAT",
+            "title": "Patrouille Côtière",
+            "description": "Un type d'unité qui fournit des services de patrouille côtière."
+        },
+        {
+            "const": "HUM/UNIT/SPECIA",
+            "title": "Unités de Police Spécialisées",
+            "description": "Unités spécialisées: couvre également les conseillers scientifiques. La description détaillée sera fournie dans la zone de texte libre. Exemples : Conseiller scientifique et technique qualifié dans les incidents impliquant des substances dangereuses et/ou radioactives, spécialistes des armes à feu, etc."
+        },
+        {
+            "const": "HUM/UNIT/SURG",
+            "title": "Chirurgical",
+            "description": "Un type d'unité qui fournit des services chirurgicaux."
+        },
+        {
+            "const": "HUM/UNIT/TRAUMA",
+            "title": "Équipe de Traumatologie",
+            "description": "Équipe médicale d'urgence qui intervient sur les lieux. Irlande : aussi connue sous le nom de Groupe d'Urgence Médicale MUG."
+        },
+        {
+            "const": "HUM/UNIT/TRNPTN",
+            "title": "Transport",
+            "description": "Un type d'unité dont la désignation principale est la fourniture de transport pour le personnel et/ou le matériel."
+        },
+        {
+            "const": "HUM/UNIT/VET",
+            "title": "Vétérinaire",
+            "description": "Un type d'unité qui fournit des soins médicaux ou chirurgicaux aux animaux."
+        },
+        {
+            "const": "HUM/UNIT/WLFCOR",
+            "title": "Équipe de Coordination du Bien-être",
+            "description": "Service chargé de s'occuper des besoins en matière de bien-être à long terme des personnes blessées dans ou touchées par l'incident."
+        },
+        {
+            "const": "HUM/UNIT/POL/AIRSPT",
+            "title": "Unité de Soutien Aérien",
+            "description": "Utilisation d'hélicoptères pour aider à la recherche de personnes disparues, à la recherche de véhicules, à la photographie aérienne pour la surveillance, à l'éclairage de scène et au transport rapide de ressources spécialisées."
+        },
+        {
+            "const": "HUM/UNIT/POL/MNTPOL",
+            "title": "Police Montée",
+            "description": "Une unité de police spécialisée montée sur des chevaux utilisée normalement pour le contrôle des foules Unités de choc de la police, créées pour gérer les troubles publics au Portugal. Voir aussi l'Unité de l'Ordre Public."
+        },
+        {
+            "const": "HUM/UNIT/POL/PUBORD",
+            "title": "Unité de l'Ordre Public",
+            "description": "Comprend des conseillers tactiques, des instructeurs et des agents formés capables de fournir une réponse lors de situations d'ordre public, de manifestations, de marches ou de troubles. Plus fréquemment, les membres de l'équipe, répartis dans toute la force, sont utilisés pour aider les agents opérationnels à répondre à diverses situations, des opérations anti-drogue aux prises d'otages et aux manifestations publiques, en passant par des détenus plus fréquemment violents."
+        },
+        {
+            "const": "HUM/UNIT/POL/RDSPT",
+            "title": "Unité de Soutien Routier",
+            "description": "Responsable de l'application de la loi, de la gestion des incidents tels que les collisions et les dangers, et de l'éducation du public sur la sécurité routière et la législation."
+        },
+        {
+            "const": "HUM/UNIT/POL/SPCLST",
+            "title": "Unités Spécialisées",
+            "description": "Y compris les Armes à feu, les Empreintes digitales, différents types de la Police Scientifique (notamment la Biologie, la Botanique, la Chimie, la Toxicologie, la Psychiatrie, la Psychologie)."
+        },
+        {
+            "const": "HUM/UNIT/SAR/CSAR",
+            "title": "SAR en Grotte",
+            "description": "Équipes spécialisées de recherche et de sauvetage en grotte."
+        },
+        {
+            "const": "HUM/UNIT/SAR/MSAR",
+            "title": "SAR en Montagne",
+            "description": "Équipes spécialisées de recherche et de sauvetage en montagne."
+        },
+        {
+            "const": "HUM/UNIT/SAR/RSAR",
+            "title": "SAR Radiologique (pour les installations nucléaires)"
+        },
+        {
+            "const": "HUM/UNIT/SAR/RST",
+            "title": "Équipe de Sauvetage en Milieu Urbain",
+            "description": "Équipe de sauvetage spécialisée formée aux sauvetages en surface et sous terre."
+        },
+        {
+            "const": "HUM/UNIT/SAR/SSAR",
+            "title": "SAR en Mer",
+            "description": "Équipes de recherche et de sauvetage en mer au large."
+        },
+        {
+            "const": "HUM/UNIT/SAR/USAR",
+            "title": "SAR Urbain",
+            "description": "Équipes de recherche et de sauvetage spécialisées formées pour travailler en milieu urbain."
+        },
+        {
+            "const": "HUM/UNIT/SAR/WSAR",
+            "title": "SAR en Eau",
+            "description": "Intérieur (rivières, lacs, etc.)."
+        },
+        {
+            "const": "HUM/UNIT/SAR/USAR/CANIN",
+            "title": "Équipes Canines",
+            "description": "Équipes canines utilisées dans les opérations de recherche et de sauvetage."
+        },
+        {
+            "const": "HUM/UNIT/SAR/USAR/DETEC",
+            "title": "Équipes de Détection",
+            "description": "Équipes de détection"
+        },
+        {
+            "const": "MAT/CM",
+            "title": "Consommable",
+            "description": "Consommable"
+        },
+        {
+            "const": "MAT/EQ",
+            "title": "Équipement",
+            "description": "Équipement"
+        },
+        {
+            "const": "MAT/VEH",
+            "title": "Véhicule",
+            "description": "Véhicule"
+        },
+        {
+            "const": "MAT/CM/ABSAG",
+            "title": "Agent Absorbant",
+            "description": "Agent absorbant"
+        },
+        {
+            "const": "MAT/CM/BIOAGN",
+            "title": "Agent Biologique",
+            "description": "Toute bactérie, virus ou toxine pouvant être utilisé en soins biologiques."
+        },
+        {
+            "const": "MAT/CM/CHMAGN",
+            "title": "Agent Chimique",
+            "description": "Un agent qui provoque des réactions chimiques."
+        },
+        {
+            "const": "MAT/CM/CON",
+            "title": "Matériaux de Construction",
+            "description": "Tout matériau pouvant être utilisé dans la construction."
+        },
+        {
+            "const": "MAT/CM/EXTAG",
+            "title": "Agent d'Extinction",
+            "description": "Agent d'extinction"
+        },
+        {
+            "const": "MAT/CM/FOO",
+            "title": "Nourriture",
+            "description": "Matériel à utiliser comme nourriture sous forme solide ou liquide."
+        },
+        {
+            "const": "MAT/CM/FUEL",
+            "title": "Carburant",
+            "description": "Une source d'énergie pour les moteurs, les centrales électriques ou les réacteurs : Le kérosène est utilisé comme carburant pour les moteurs à réaction."
+        },
+        {
+            "const": "MAT/CM/FUSE",
+            "title": "Fusible",
+            "description": "Un dispositif qui amorce une chaîne explosive."
+        },
+        {
+            "const": "MAT/CM/LUBRIC",
+            "title": "Lubrifiant",
+            "description": "Un matériau, généralement de l'huile, utilisé pour lubrifier les machines."
+        },
+        {
+            "const": "MAT/CM/MATING",
+            "title": "Revêtement de sol",
+            "description": "Acier ou autre matériau utilisé pour construire une surface de support au sol."
+        },
+        {
+            "const": "MAT/CM/MEDICN",
+            "title": "Médicament",
+            "description": "Toute substance ou substances utilisées pour traiter une maladie ou une affection, médicament, remède."
+        },
+        {
+            "const": "MAT/CM/MEDSPL",
+            "title": "Fournitures Médicales",
+            "description": "Fournitures pour le traitement des blessures, des maladies et des affections, y compris les médicaments."
+        },
+        {
+            "const": "MAT/CM/MEGPHN",
+            "title": "Mégaphone",
+            "description": "Un instrument pour transporter le son sur de longues distances."
+        },
+        {
+            "const": "MAT/CM/MONEY",
+            "title": "Argent",
+            "description": "La monnaie officielle, les pièces de monnaie et les billets de banque négociables émis par un gouvernement."
+        },
+        {
+            "const": "MAT/CM/OIL",
+            "title": "Pétrole",
+            "description": "Une substance ayant les caractéristiques suivantes (ou la plupart d'entre elles) : à savoir celles d'être liquide à température ordinaire, d'une consistance visqueuse et d'une sensation lisse et collante (onctueuse), plus légère que l'eau et insoluble dans celle-ci, soluble dans l'alcool et l'éther, inflammable, chimiquement neutre."
+        },
+        {
+            "const": "MAT/CM/PAINT",
+            "title": "Peinture",
+            "description": "Une substance composée de matière colorante solide dissoute dans un véhicule liquide, tel que l'eau ou l'huile, utilisée pour donner une couleur en étant étalée sur une surface."
+        },
+        {
+            "const": "MAT/CM/PAPER",
+            "title": "Papier",
+            "description": "Une substance composée de fibres entrelacées en une structure compacte."
+        },
+        {
+            "const": "MAT/CM/PPE",
+            "title": "Équipement de Protection Personnelle",
+            "description": "Un terme désignant des vêtements et un équipement fabriqués pour prévenir les risques pour le personnel liés aux vapeurs, aux gaz et aux particules provenant de déchets dangereux."
+        },
+        {
+            "const": "MAT/CM/RATCO",
+            "title": "Rations de Combat",
+            "description": "Un paquet de portions fixes de nourriture alloué aux personnes."
+        },
+        {
+            "const": "MAT/CM/RATFR",
+            "title": "Rations Fraîches",
+            "description": "Nourriture fraîche allouée aux personnes."
+        },
+        {
+            "const": "MAT/CM/RATTI",
+            "title": "Rations en Conserve",
+            "description": "Nourriture conservée dans un contenant alloué aux personnes."
+        },
+        {
+            "const": "MAT/CM/RETAG",
+            "title": "Agent Retardateur",
+            "description": "Agent retardateur"
+        },
+        {
+            "const": "MAT/CM/TIMBER",
+            "title": "Bois",
+            "description": "Bois utilisé pour la construction"
+        },
+        {
+            "const": "MAT/CM/UNIFRM",
+            "title": "Uniforme",
+            "description": "Une tenue distinctive de coupe uniforme, de matériaux et de couleur portée par tous les membres d'une force navale, militaire ou autre à laquelle elle est reconnue comme appartenant proprement et de manière particulière."
+        },
+        {
+            "const": "MAT/CM/WIRE",
+            "title": "Fil",
+            "description": "Un brin ou une tige métallique souple fabriqué en plusieurs longueurs et diamètres."
+        },
+        {
+            "const": "MAT/CM/WTREXT",
+            "title": "Eau",
+            "description": "H2O pouvant être utilisée comme agent extincteur"
+        },
+        {
+            "const": "MAT/CM/WTRPOT",
+            "title": "Eau Potable",
+            "description": "H2O qui a été filtrée et traitée pour éliminer les poisons ou les toxines nuisibles aux êtres humains."
+        },
+        {
+            "const": "MAT/CM/ABSAG/CHM",
+            "title": "Absorbant Chimique",
+            "description": "Substance spécialisée utilisée pour absorber les produits chimiques."
+        },
+        {
+            "const": "MAT/CM/ABSAG/PHY",
+            "title": "Absorbant Physique",
+            "description": "Substance spécialisée utilisée pour absorber les matériaux dangereux"
+        },
+        {
+            "const": "MAT/CM/EXTAG/CO2",
+            "title": "CO2",
+            "description": "Agent extincteur spécialisé souvent utilisé dans les installations fixes et les extincteurs portables conçus pour étouffer un incendie en éliminant l'oxygène."
+        },
+        {
+            "const": "MAT/CM/EXTAG/DRYMIN",
+            "title": "Minéraux Secs",
+            "description": "Matériaux incombustibles utilisés dans les extincteurs."
+        },
+        {
+            "const": "MAT/CM/EXTAG/FATFIR",
+            "title": "Extincteur pour feux de graisse",
+            "description": "Extincteur spécialisé adapté à l'extinction des feux de graisse."
+        },
+        {
+            "const": "MAT/CM/EXTAG/FOAM",
+            "title": "Concentré de Mousse",
+            "description": "Concentré de mousse utilisé pour éteindre les feux de liquides inflammables, conçu pour étouffer un incendie en éliminant l'oxygène."
+        },
+        {
+            "const": "MAT/CM/EXTAG/HALON",
+            "title": "Halon",
+            "description": "Agent extincteur spécialisé qui a été remplacé en raison de préoccupations environnementales."
+        },
+        {
+            "const": "MAT/CM/EXTAG/INERT",
+            "title": "Agent Inerte",
+            "description": "Agent extincteur utilisé pour les feux spécialisés en raison de la nature du feu ou des éléments impliqués."
+        },
+        {
+            "const": "MAT/CM/EXTAG/METPWD",
+            "title": "Poudre Métallique",
+            "description": "Poudre spécialisée utilisée pour éteindre un large éventail de feux."
+        },
+        {
+            "const": "MAT/CM/EXTAG/POWDER",
+            "title": "Poudre",
+            "description": "Poudre spécialisée utilisée pour éteindre un large éventail de feux."
+        },
+        {
+            "const": "MAT/CM/EXTAG/FOAM/AFFF",
+            "title": "AFFF (Agent Extincteur Moussant Film-Formant Aqueux)",
+            "description": "Mousse extinctrice spécialisée utilisée sur les feux de liquides inflammables, conçue pour étouffer un incendie en éliminant l'oxygène."
+        },
+        {
+            "const": "MAT/CM/EXTAG/FOAM/AFFFAR",
+            "title": "AFFF (Résistant à l'Alcool)",
+            "description": "Mousse extinctrice spécialisée utilisée sur les feux de liquides inflammables, conçue pour étouffer un incendie en éliminant l'oxygène."
+        },
+        {
+            "const": "MAT/CM/EXTAG/FOAM/OTH",
+            "title": "Autres (liste complète à fournir)"
+        },
+        {
+            "const": "MAT/CM/FUEL/AVNFU",
+            "title": "Carburant pour Aviation",
+            "description": "Une fraction de pétrole utilisée comme carburant dans les moteurs d'avion."
+        },
+        {
+            "const": "MAT/CM/FUEL/DIESEL",
+            "title": "Carburant Diesel",
+            "description": "Une fraction de pétrole destinée à être utilisée comme carburant dans les moteurs diesel."
+        },
+        {
+            "const": "MAT/CM/FUEL/KEROS",
+            "title": "Kérosène",
+            "description": "Un mélange d'hydrocarbures liquides, un produit commercial de la distillation du pétrole destiné à être utilisé dans les moteurs à kérosène."
+        },
+        {
+            "const": "MAT/CM/FUEL/LPG",
+            "title": "Gaz de Pétrole Liquéfié",
+            "description": "Un gaz liquéfié par compression, composé d'hydrocarbures inflammables, tels que le propane et le butane, obtenu comme sous-produit de la raffinerie du pétrole ou du gaz naturel."
+        },
+        {
+            "const": "MAT/CM/FUEL/NATGAS",
+            "title": "Gaz Naturel",
+            "description": "Un gaz inflammable, composé principalement de méthane et d'autres hydrocarbures, se trouvant naturellement sous terre et utilisé comme combustible."
+        },
+        {
+            "const": "MAT/CM/FUEL/PETROL",
+            "title": "Essence",
+            "description": "Un produit pétrolier raffiné destiné à être utilisé comme carburant dans les moteurs à essence."
+        },
+        {
+            "const": "MAT/CM/MEDICN/1STAID",
+            "title": "Premiers Soins",
+            "description": "La fourniture de soins limités pour une maladie ou une blessure, qui sont prodigués à un patient malade ou blessé jusqu'à ce que des soins médicaux définitifs puissent être obtenus."
+        },
+        {
+            "const": "MAT/CM/MEDICN/AMPHTM",
+            "title": "Amphétamine",
+            "description": "Un médicament de synthèse utilisé surtout comme stimulant."
+        },
+        {
+            "const": "MAT/CM/MEDICN/BLOOD",
+            "title": "Sang",
+            "description": "Le liquide rouge circulant dans les artères et les veines de l'homme et des animaux supérieurs, par lequel les tissus sont constamment nourris et renouvelés."
+        },
+        {
+            "const": "MAT/CM/MEDICN/BNDDR",
+            "title": "Bandages/pansements",
+            "description": "Matériel médical appliqué pour couvrir et protéger une blessure."
+        },
+        {
+            "const": "MAT/CM/MEDICN/KTMINE",
+            "title": "Kétamine",
+            "description": "Un médicament anesthésique et analgésique, également utilisé (de manière illicite) comme hallucinogène."
+        },
+        {
+            "const": "MAT/CM/MEDICN/MORFIN",
+            "title": "Morphine",
+            "description": "Un médicament analgésique et narcotique obtenu à partir de l'opium et utilisé médicalement pour soulager la douleur."
+        },
+        {
+            "const": "MAT/CM/MEDICN/WTRMED",
+            "title": "Eau, propre à un usage médical",
+            "description": "H2O qui a été filtrée et traitée pour éliminer les poisons ou les toxines nuisibles pour les humains et qui a également été stérilisée pour pouvoir être utilisée à des fins médicales."
+        },
+        {
+            "const": "MAT/CM/PPE/CBRNKIT",
+            "title": "Kit CBRN",
+            "description": "L'équipement personnel et/ou les fournitures médicales délivrés à une personne pour la protection contre la contamination ou l'exposition nucléaire, biologique ou chimique."
+        },
+        {
+            "const": "MAT/CM/PPE/CLOTH",
+            "title": "Vêtements de Protection",
+            "description": "Vêtements de protection"
+        },
+        {
+            "const": "MAT/CM/PPE/RESP",
+            "title": "Protection Respiratoire",
+            "description": "Protection respiratoire"
+        },
+        {
+            "const": "MAT/CM/PPE/SURCOT",
+            "title": "Surcot",
+            "description": "Pièce spécialisée de vêtement utilisée pour assurer une grande visibilité du porteur et identifier un rôle fonctionnel sur le site de l'incident."
+        },
+        {
+            "const": "MAT/CM/PPE/CLOTH/CHEMCL",
+            "title": "Vêtements de Protection Chimique",
+            "description": "Vêtements de protection chimique"
+        },
+        {
+            "const": "MAT/CM/PPE/CLOTH/FFCLO",
+            "title": "Vêtements contre les Incendies de Forêt (y compris un type spécial de bottes et de casques)"
+        },
+        {
+            "const": "MAT/CM/PPE/CLOTH/FKIT",
+            "title": "Kit Anti-incendie",
+            "description": "Vêtements de lutte contre l'incendie structurels, y compris des bottes, des gants, un casque, une tunique et des jambières."
+        },
+        {
+            "const": "MAT/CM/PPE/CLOTH/CHEMCL/CHEMB",
+            "title": "Bottes Chimiques",
+            "description": "Équipement de protection individuelle utilisé pour protéger les pieds lors du travail dans des environnements dangereux."
+        },
+        {
+            "const": "MAT/CM/PPE/CLOTH/CHEMCL/CHEMG",
+            "title": "Gants Chimiques",
+            "description": "Équipement de protection individuelle utilisé pour protéger les mains lors du travail dans des environnements dangereux."
+        },
+        {
+            "const": "MAT/CM/PPE/CLOTH/CHEMCL/GASSU",
+            "title": "Combi-étanche au gaz",
+            "description": "Équipement de protection individuelle spécialisé utilisé en conjonction avec un appareil respiratoire dans certains environnements dangereux offrant le plus haut niveau de protection individuelle."
+        },
+        {
+            "const": "MAT/CM/PPE/CLOTH/CHEMCL/LIQSU",
+            "title": "Combi-étanche aux liquides",
+            "description": "Équipement de protection individuelle spécialisé utilisé dans certains environnements dangereux conçu pour résister à la pénétration des liquides."
+        },
+        {
+            "const": "MAT/CM/PPE/CLOTH/CHEMCL/SPLASU",
+            "title": "Combi-étanche aux éclaboussures",
+            "description": "Équipement de protection individuelle spécialisé utilisé dans certains environnements dangereux pour offrir une protection et faciliter la décontamination."
+        },
+        {
+            "const": "MAT/CM/PPE/CLOTH/CHEMCL/TEMPSU",
+            "title": "Tissu de Protection Haute Température",
+            "description": "Équipement de protection individuelle spécialisé utilisé dans certains environnements dangereux conçu pour résister à des températures extrêmes."
+        },
+        {
+            "const": "MAT/EQ/CBRN",
+            "title": "Équipement CBRN",
+            "description": "Équipement CBRN"
+        },
+        {
+            "const": "MAT/EQ/ELC",
+            "title": "Équipement Électronique",
+            "description": "Équipement électronique"
+        },
+        {
+            "const": "MAT/EQ/ENG",
+            "title": "Équipement d'Ingénierie",
+            "description": "Équipement d'ingénierie"
+        },
+        {
+            "const": "MAT/EQ/OTH",
+            "title": "Autre Équipement",
+            "description": "Autre équipement"
+        },
+        {
+            "const": "MAT/EQ/POLICE",
+            "title": "Équipement Spécifique de la Police",
+            "description": "Équipement spécifique de la police"
+        },
+        {
+            "const": "MAT/EQ/CBRN/ABICHM",
+            "title": "Détecteur Automatique de Produits Chimiques et Biologiques",
+            "description": "Un système automatisé de détection et d'alarme chimique et biologique sans surveillance."
+        },
+        {
+            "const": "MAT/EQ/CBRN/ABIDET",
+            "title": "Détecteur Automatique de Produits Biologiques",
+            "description": "Un système automatisé de détection et d'alarme biologique sans surveillance."
+        },
+        {
+            "const": "MAT/EQ/CBRN/ACHDET",
+            "title": "Détecteur Automatique de Produits Chimiques",
+            "description": "Un système automatisé de détection et d'alarme chimique sans surveillance."
+        },
+        {
+            "const": "MAT/EQ/CBRN/ARDDET",
+            "title": "Détecteur Automatique de Radiations",
+            "description": "Un détecteur de radiations sans surveillance."
+        },
+        {
+            "const": "MAT/EQ/CBRN/BIOINT",
+            "title": "Détecteur Biologique Intégré",
+            "description": "Un système intégré de détection, d'alarme et d'identification biologique."
+        },
+        {
+            "const": "MAT/EQ/CBRN/BIOSTO",
+            "title": "Système de Détection à Distance de Produits Biologiques",
+            "description": "Un détecteur capable de détecter à distance une contamination biologique."
+        },
+        {
+            "const": "MAT/EQ/CBRN/CBRNDEC",
+            "title": "Véhicule de Décontamination CBRN",
+            "description": "Un véhicule équipé principalement pour décontaminer des personnes ou de l'équipement contaminés par une exposition CBRN."
+        },
+        {
+            "const": "MAT/EQ/CBRN/CBRNREC",
+            "title": "Véhicule de Reconnaissance CBRN",
+            "description": "Un véhicule équipé principalement pour effectuer une observation visuelle ou d'autres méthodes de détection, d'informations sur une zone potentiellement contaminée par un événement CBRN."
+        },
+        {
+            "const": "MAT/EQ/CBRN/CHMMON",
+            "title": "Moniteur de Produits Chimiques",
+            "description": "Un détecteur chimique portable."
+        },
+        {
+            "const": "MAT/EQ/CBRN/MSSPTR",
+            "title": "Spectromètre de Masse",
+            "description": "Un appareil utilisé pour enregistrer et mesurer les spectres de masse des particules, notamment en tant que méthode d'analyse."
+        },
+        {
+            "const": "MAT/EQ/CBRN/RDSPTR",
+            "title": "Spectromètre de Radiations",
+            "description": "Un appareil utilisé pour enregistrer et mesurer les spectres d'énergie des radiations, notamment en tant que méthode d'analyse."
+        },
+        {
+            "const": "MAT/EQ/ELC/AMTRAD",
+            "title": "Dispositif de Radio Amateur",
+            "description": "La transmission et la réception d'ondes électromagnétiques radiofréquences en tant que moyen de communication, généralement en tant que passe-temps."
+        },
+        {
+            "const": "MAT/EQ/ELC/C3I",
+            "title": "C3I",
+            "description": "Équipement spécialement conçu pour être utilisé pour C3I (Command, Control, Communications, and Intelligence - Commandement, Contrôle, Communications et Renseignement)."
+        },
+        {
+            "const": "MAT/EQ/ELC/COMSYS",
+            "title": "Système de Communication",
+            "description": "Un terme pour désigner l'équipement permettant au personnel de communiquer. Cela inclurait les systèmes de sonorisation, les dispositifs de radiodiffusion, les systèmes d'échange téléphonique, les systèmes de radiodiffusion vidéo, les systèmes de recherche de personnes, etc."
+        },
+        {
+            "const": "MAT/EQ/ELC/COMVEH",
+            "title": "Véhicule de Communication",
+            "description": "Un véhicule équipé de dispositifs de communication."
+        },
+        {
+            "const": "MAT/EQ/ELC/MULTIRE",
+            "title": "Dispositif d'Enregistrement Multimédia (et équipement de transmission, y compris la vidéosurveillance)",
+            "description": "Un dispositif d'enregistrement multimédia avec équipement de transmission, y compris la vidéosurveillance."
+        },
+        {
+            "const": "MAT/EQ/ELC/NAV",
+            "title": "Navigation",
+            "description": "Un groupe d'équipements et/ou d'instruments de navigation interreliés conçus pour aider au déplacement d'un point à un autre."
+        },
+        {
+            "const": "MAT/EQ/ELC/NAVRAD",
+            "title": "Radar de Navigation",
+            "description": "Un radar utilisé pour surveiller les paramètres en mouvement d'un navire."
+        },
+        {
+            "const": "MAT/EQ/ELC/OTH",
+            "title": "Autre (à suivre)",
+            "description": "Autre (à continuer)"
+        },
+        {
+            "const": "MAT/EQ/ELC/POWGN",
+            "title": "Générateur d'Énergie",
+            "description": "Unité portable utilisée pour générer de l'électricité."
+        },
+        {
+            "const": "MAT/EQ/ELC/RIDD",
+            "title": "Dispositif de Détection à Distance des Intrusions",
+            "description": "Un terme pour décrire un équipement utilisé pour détecter des objets se déplaçant dans une zone d'intérêt ou à l'intérieur de celle-ci."
+        },
+        {
+            "const": "MAT/EQ/ELC/SEN",
+            "title": "Capteur",
+            "description": "Un dispositif qui détecte ou mesure une propriété physique et enregistre, indique ou répond d'une autre manière à cette propriété. (sous-types à définir)"
+        },
+        {
+            "const": "MAT/EQ/ELC/SONAR",
+            "title": "Sonar - Système de Navigation et de Localisation par Son",
+            "description": "Un dispositif sonique utilisé principalement pour la détection et la localisation sous-marine."
+        },
+        {
+            "const": "MAT/EQ/ELC/THIMC",
+            "title": "Caméras d'Images Thermiques",
+            "description": "Équipement thermique spécialisé utilisé pour repérer les sources de chaleur lors d'incidents."
+        },
+        {
+            "const": "MAT/EQ/ELC/VIBRA",
+            "title": "Vibraphone",
+            "description": "Équipement électronique utilisé lors des opérations de recherche et de sauvetage d'urgence pour détecter tout son émis par le personnel éventuellement piégé."
+        },
+        {
+            "const": "MAT/EQ/ELC/COMSYS/MEGPHN",
+            "title": "Megaphone",
+            "description": "Dispositif portable, généralement tenu à la main, en forme d'entonnoir, dont l'application est d'envoyer la voix naturelle d'une personne dans une direction ciblée à des fins spécifiques (de Wikipédia)."
+        },
+        {
+            "const": "MAT/EQ/ELC/COMSYS/PAGER",
+            "title": "Système de Pager",
+            "description": "Un dispositif de télécommunication personnel simple pour les messages courts. Un pager numérique unidirectionnel ne peut recevoir qu'un message composé de quelques chiffres."
+        },
+        {
+            "const": "MAT/EQ/ELC/COMSYS/PMRRDIO",
+            "title": "Système de Radio PMR",
+            "description": "Les radios mobiles privées (PMR) au Royaume-Uni et radios mobiles terrestres (LMR) en Amérique du Nord sont des systèmes de communication radio de terrain qui utilisent des radios portables, mobiles, de base et des consoles de répartition, et sont parfois basés sur des normes telles que MPT-1327, TETRA, TETRAPOL et APCO 25 qui sont conçues pour être utilisées spécifiquement par des organisations spécifiques (de Wikipédia)."
+        },
+        {
+            "const": "MAT/EQ/ELC/COMSYS/PUBADD",
+            "title": "Système de Sonorisation",
+            "description": "Système d'amplification électronique avec mélangeur, amplificateur et haut-parleurs, utilisé pour renforcer un son donné et distribuer le 'son' au grand public autour d'un bâtiment (de Wikipédia)."
+        },
+        {
+            "const": "MAT/EQ/ELC/COMSYS/RDBRCT",
+            "title": "Équipement de Radiodiffusion",
+            "description": "Équipement de transmission d'informations à un public relativement large, utilisant les fréquences radio AM et/ou FM."
+        },
+        {
+            "const": "MAT/EQ/ENG/BRIDGG",
+            "title": "Pontage",
+            "description": "Équipement conçu pour traverser des lacunes et d'autres obstacles."
+        },
+        {
+            "const": "MAT/EQ/ENG/CNSTVE",
+            "title": "Véhicule de Construction",
+            "description": "Un véhicule utilisé dans l'industrie de la construction."
+        },
+        {
+            "const": "MAT/EQ/ENG/CONST",
+            "title": "Construction",
+            "description": "Équipement et ressources utilisés pour construire une installation."
+        },
+        {
+            "const": "MAT/EQ/ENG/DOZER",
+            "title": "Bulldozer",
+            "description": "Un tracteur à chenilles lourd équipé d'une large lame en acier à l'avant, utilisé pour éliminer les obstacles, niveler les surfaces inégales, etc."
+        },
+        {
+            "const": "MAT/EQ/ENG/ERTHMV",
+            "title": "Engin de Terrassement",
+            "description": "Un véhicule conçu pour l'excavation ou le déplacement de grandes quantités de terre."
+        },
+        {
+            "const": "MAT/EQ/ENG/FIRFGT",
+            "title": "Extinction d'Incendie",
+            "description": "Un véhicule conçu pour transporter des pompiers et de l'équipement sur les lieux d'un incident."
+        },
+        {
+            "const": "MAT/EQ/ENG/INTEL",
+            "title": "Équipement de Renseignement (surveillance, etc.)",
+            "description": "Équipement de renseignement (surveillance, etc.)."
+        },
+        {
+            "const": "MAT/EQ/ENG/MINECL",
+            "title": "Déminage",
+            "description": "Équipement dont le but est de retirer ou de détruire des mines."
+        },
+        {
+            "const": "MAT/EQ/ENG/MINEDT",
+            "title": "Détection de Mines",
+            "description": "Équipement dont le but est de détecter la présence de mines."
+        },
+        {
+            "const": "MAT/EQ/ENG/MINEMR",
+            "title": "Balisage de Champ de Mines",
+            "description": "Équipement utilisé pour délimiter un champ de mines."
+        },
+        {
+            "const": "MAT/EQ/ENG/WPNPRT",
+            "title": "Armes et Protection contre les Armes",
+            "description": "Armes et protection contre les armes"
+        },
+        {
+            "const": "MAT/EQ/ENG/FIRFGT/BRHTAP",
+            "title": "Appareil de Respiration",
+            "description": "Équipement autonome utilisé pour maintenir la vie du porteur lorsqu'il pénètre dans une atmosphère non respirable."
+        },
+        {
+            "const": "MAT/EQ/ENG/FIRFGT/CEAR",
+            "title": "Cellule d'Assistance Respiratoire",
+            "description": "Cellule d'assistance respiratoire"
+        },
+        {
+            "const": "MAT/EQ/ENG/FIRFGT/CEC",
+            "title": "Cellule de Compression",
+            "description": "Cellule de compression"
+        },
+        {
+            "const": "MAT/EQ/ENG/FIRFGT/CECH",
+            "title": "Cellule d'Intervention Chimique",
+            "description": "Cellule d'intervention chimique"
+        },
+        {
+            "const": "MAT/EQ/ENG/FIRFGT/CEEV",
+            "title": "Cellule d'Éclairage et de Ventilation",
+            "description": "Cellule d'éclairage et de ventilation"
+        },
+        {
+            "const": "MAT/EQ/ENG/FIRFGT/CEM",
+            "title": "Cellule d'Émulsion",
+            "description": "Cellule d'émulsion"
+        },
+        {
+            "const": "MAT/EQ/ENG/FIRFGT/CEPC",
+            "title": "Cellule de Commandement et de Contrôle",
+            "description": "Cellule de commandement et de contrôle"
+        },
+        {
+            "const": "MAT/EQ/ENG/FIRFGT/CEPO",
+            "title": "Cellule de Poudre",
+            "description": "Cellule de poudre"
+        },
+        {
+            "const": "MAT/EQ/ENG/FIRFGT/CEPOL",
+            "title": "Cellule Antipollution",
+            "description": "Cellule antipollution"
+        },
+        {
+            "const": "MAT/EQ/ENG/FIRFGT/CER",
+            "title": "Cellule d'Intervention en Radioactivité",
+            "description": "Cellule d'intervention en radioactivité"
+        },
+        {
+            "const": "MAT/EQ/ENG/FIRFGT/CESD",
+            "title": "Cellule de Sauvetage et de Déblai",
+            "description": "Cellule de sauvetage et de déblai"
+        },
+        {
+            "const": "MAT/EQ/ENG/FIRFGT/GRDMON",
+            "title": "Moniteur au Sol",
+            "description": "Section terrestre pour l'application de grandes quantités d'eau ou de mousse sur un incendie."
+        },
+        {
+            "const": "MAT/EQ/ENG/FIRFGT/MPR",
+            "title": "Pompe motorisée sur une Remorque",
+            "description": "Pompe mobile utilisée dans les opérations de lutte contre les incendies pour le déplacement de l'eau depuis n'importe quel endroit donné vers les lieux de l'incident. Elle sert également à évacuer l'eau des zones inondées."
+        },
+        {
+            "const": "MAT/EQ/ENG/FIRFGT/RAR",
+            "title": "Poste Médical Avancé",
+            "description": "Poste Médical Avancé"
+        },
+        {
+            "const": "MAT/EQ/ENG/FIRFGT/UMIR",
+            "title": "Unité Mobile d'Intervention Chimique",
+            "description": "Unité mobile d'intervention chimique"
+        },
+        {
+            "const": "MAT/EQ/ENG/FIRFGT/VAMUR",
+            "title": "Unité Mobile d'Intervention en Radioactivité",
+            "description": "Unité mobile d'intervention en radioactivité"
+        },
+        {
+            "const": "MAT/EQ/ENG/INTEL/CAMERA",
+            "title": "Caméra",
+            "description": "Dispositif utilisé pour capturer des images sous forme de photographies fixes."
+        },
+        {
+            "const": "MAT/EQ/ENG/INTEL/CCTVCM",
+            "title": "Caméra de Vidéosurveillance",
+            "description": "La vidéosurveillance en circuit fermé est l'utilisation de caméras vidéo pour transmettre un signal à un ensemble spécifique de moniteurs. Les systèmes de vidéosurveillance peuvent fonctionner en continu ou uniquement au besoin pour surveiller un événement particulier, par exemple, une surveillance."
+        },
+        {
+            "const": "MAT/EQ/ENG/INTEL/CDVDOG",
+            "title": "Chien de Cadavre",
+            "description": "Entraîné à détecter l'odeur de corps en décomposition."
+        },
+        {
+            "const": "MAT/EQ/ENG/INTEL/FSPDCM",
+            "title": "Caméra de Vitesse Fixe",
+            "description": "Un système comprenant une caméra et un dispositif de contrôle de véhicule utilisé pour détecter et identifier les véhicules en infraction avec la limite de vitesse ou toute autre exigence légale en matière de circulation routière."
+        },
+        {
+            "const": "MAT/EQ/ENG/INTEL/FTFLCM",
+            "title": "Caméra de Feu Rouge Fixe",
+            "description": "Utilisée pour détecter les véhicules qui traversent une ligne d'arrêt ou un emplacement d'arrêt désigné après l'affichage d'un feu rouge."
+        },
+        {
+            "const": "MAT/EQ/ENG/INTEL/PSPDCM",
+            "title": "Caméra de Vitesse Portable",
+            "description": "Caméra de Vitesse Portable"
+        },
+        {
+            "const": "MAT/EQ/ENG/INTEL/TCKDOG",
+            "title": "Chien de Poursuite",
+            "description": "Localiser des suspects ou retrouver des personnes ou des objets disparus."
+        },
+        {
+            "const": "MAT/EQ/ENG/WPNPRT/BALVST",
+            "title": "Gilet Pare-balles",
+            "description": "Un élément d'armure qui absorbe l'impact des projectiles tirés par des armes à feu et des fragments explosifs tirés vers le torse."
+        },
+        {
+            "const": "MAT/EQ/ENG/WPNPRT/BATON",
+            "title": "Matraque",
+            "description": "Type d'arme contondante"
+        },
+        {
+            "const": "MAT/EQ/ENG/WPNPRT/ENFDOG",
+            "title": "Chien de Maintien de l'Ordre Public",
+            "description": "Un chien utilisé pour maintenir l'ordre public en poursuivant et en retenant des suspects."
+        },
+        {
+            "const": "MAT/EQ/ENG/WPNPRT/FIREARM",
+            "title": "Arme à Feu",
+            "description": "Un dispositif qui peut être utilisé comme arme et qui tire soit un seul projectile, soit plusieurs projectiles propulsés à grande vitesse par les gaz produits par une combustion rapide d'une charge propulsive."
+        },
+        {
+            "const": "MAT/EQ/ENG/WPNPRT/HNDCUF",
+            "title": "Menottes",
+            "description": "Un dispositif de retenue conçu pour attacher étroitement les poignets d'un individu."
+        },
+        {
+            "const": "MAT/EQ/ENG/WPNPRT/OFFPRT",
+            "title": "Protection de l'Officier",
+            "description": "Protection de l'Officier"
+        },
+        {
+            "const": "MAT/EQ/ENG/WPNPRT/PRSCNT",
+            "title": "Contrôle des Prisonniers",
+            "description": "Contrôle des Prisonniers"
+        },
+        {
+            "const": "MAT/EQ/OTH/BLNKT",
+            "title": "Couverture",
+            "description": "Un grand morceau rectangulaire de tissu doux, souvent avec des bords cousus, utilisé notamment pour se réchauffer comme couverture de lit."
+        },
+        {
+            "const": "MAT/EQ/OTH/CONTNR",
+            "title": "Conteneur",
+            "description": "Un récipient dans lequel un matériau est retenu ou transporté."
+        },
+        {
+            "const": "MAT/EQ/OTH/CUTING",
+            "title": "Équipement de Coupe",
+            "description": "Équipement spécialisé utilisé pour la coupe - cela peut être manuel, hydraulique, à air comprimé ou électrique. Equipamento Corte (Portugal)."
+        },
+        {
+            "const": "MAT/EQ/OTH/TANK",
+            "title": "Réservoir",
+            "description": "Un grand réceptacle ou chambre de stockage, notamment pour les liquides ou les gaz."
+        },
+        {
+            "const": "MAT/EQ/OTH/TENT",
+            "title": "Tente",
+            "description": "Un abri portable en peaux, en toile, en plastique ou similaire, supporté par un ou plusieurs poteaux ou un cadre et souvent fixé par des cordes attachées à des piquets dans le sol."
+        },
+        {
+            "const": "MAT/EQ/OTH/WATPUR",
+            "title": "Purificateur d'Eau",
+            "description": "Dispositif utilisé pour obtenir de l'eau pure, exempte de tout élément qui la dégrade, la pollue, l'altère ou la contamine."
+        },
+        {
+            "const": "MAT/EQ/POLICE/BRTEST",
+            "title": "Contrôle Routier — Test d'Alcoolémie",
+            "description": "Dispositif utilisé pour mesurer le taux d'alcool dans l'haleine d'un conducteur et évaluer si la quantité est supérieure à la limite légale."
+        },
+        {
+            "const": "MAT/EQ/POLICE/CONE",
+            "title": "Contrôle Routier — Cône",
+            "description": "Objet en plastique ou en caoutchouc en forme de cône utilisé comme marqueur temporaire ou barrière routière, par exemple pour fermer une partie d'une route après un accident."
+        },
+        {
+            "const": "MAT/EQ/POLICE/LAMP",
+            "title": "Contrôle Routier — Lampe",
+            "description": "Contrôle Routier — Lampe"
+        },
+        {
+            "const": "MAT/EQ/POLICE/STINGER",
+            "title": "Contrôle Routier — Herse",
+            "description": "Dispositif couvert de pointes et pouvant être jeté sur la route pour crever les pneus d'une automobile."
+        },
+        {
+            "const": "MAT/EQ/POLICE/TORCH",
+            "title": "Lampe-Torche",
+            "description": "Un projecteur électrique portable ou une lampe de poche."
+        },
+        {
+            "const": "MAT/EQ/POLICE/UNFRMC",
+            "title": "Article de Uniforme — Vêtement",
+            "description": "Article de Uniforme — Vêtement"
+        },
+        {
+            "const": "MAT/EQ/POLICE/UNFRMN",
+            "title": "Article de Uniforme — Non Vêtement",
+            "description": "Article de Uniforme — Non Vêtement"
+        },
+        {
+            "const": "MAT/VEH/AIRCRF",
+            "title": "Avion",
+            "description": "Avion"
+        },
+        {
+            "const": "MAT/VEH/HORSE",
+            "title": "Cheval",
+            "description": "Employé pour des tâches spécialisées allant de la patrouille des parcs au maintien de l'ordre en cas d'émeute."
+        },
+        {
+            "const": "MAT/VEH/RAILVE",
+            "title": "Véhicules à Wagons",
+            "description": "Véhicules ferroviaires"
+        },
+        {
+            "const": "MAT/VEH/ROADVE",
+            "title": "Véhicules Routiers",
+            "description": "Véhicules routiers"
+        },
+        {
+            "const": "MAT/VEH/VESSEL",
+            "title": "Navires",
+            "description": "Navires"
+        },
+        {
+            "const": "MAT/VEH/AIRCRF/AIRTRS",
+            "title": "Transport Aérien",
+            "description": "Transport par voie aérienne"
+        },
+        {
+            "const": "MAT/VEH/AIRCRF/CMDCTL",
+            "title": "Avion de Commandement et de Contrôle",
+            "description": "Un avion conçu et équipé pour permettre à un commandant d'exercer l'autorité et la direction sur les forces assignées et rattachées dans l'accomplissement de la mission."
+        },
+        {
+            "const": "MAT/VEH/AIRCRF/HEL",
+            "title": "Hélicoptère",
+            "description": "Porte-hélicoptères."
+        },
+        {
+            "const": "MAT/VEH/AIRCRF/HELCMD",
+            "title": "Hélicoptère de Commandement et de Contrôle",
+            "description": "Un hélicoptère conçu et équipé pour permettre à un commandant d'exercer l'autorité et la direction sur les forces assignées et rattachées dans l'accomplissement de la mission."
+        },
+        {
+            "const": "MAT/VEH/AIRCRF/HELMED",
+            "title": "Hélicoptère d'Évacuation Médicale",
+            "description": "Un hélicoptère conçu et équipé pour effectuer une évacuation médicale."
+        },
+        {
+            "const": "MAT/VEH/AIRCRF/HELREC",
+            "title": "Hélicoptère de Reconnaissance",
+            "description": "Hélicoptère utilisé à des fins de reconnaissance."
+        },
+        {
+            "const": "MAT/VEH/AIRCRF/MEDEVC",
+            "title": "Avion d'Évacuation Médicale",
+            "description": "Un avion conçu et équipé pour effectuer une évacuation médicale."
+        },
+        {
+            "const": "MAT/VEH/AIRCRF/PLANE",
+            "title": "Avion",
+            "description": "Porte-avions"
+        },
+        {
+            "const": "MAT/VEH/AIRCRF/POLHEL",
+            "title": "Hélicoptère de Police",
+            "description": "Communément utilisé pour le contrôle de la circulation, le soutien au sol, les opérations de recherche et de sauvetage, les poursuites de voitures à grande vitesse et le maintien de l'ordre en cas d'émeute. Normalement équipé de variantes telles que la vision nocturne, les caméras de surveillance et l'infrarouge."
+        },
+        {
+            "const": "MAT/VEH/AIRCRF/RECCE",
+            "title": "Avion de Reconnaissance",
+            "description": "Un avion utilisé à des fins de reconnaissance."
+        },
+        {
+            "const": "MAT/VEH/AIRCRF/SAR",
+            "title": "Avion de Recherche et de Sauvetage",
+            "description": "Un avion conçu et équipé pour rechercher et ramener toute personne ou groupe de personnes perdus ou incapables."
+        },
+        {
+            "const": "MAT/VEH/AIRCRF/TANKER",
+            "title": "Avion-citerne",
+            "description": "Un avion utilisé pour transporter de l'eau en vrac, notamment pour la lutte contre les incendies de forêt."
+        },
+        {
+            "const": "MAT/VEH/AIRCRF/UAV",
+            "title": "Véhicule aérien sans pilote",
+            "description": "Un aéronef sans pilote qui effectue sa mission en étant contrôlé depuis un endroit distant via une liaison de communication."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/LCMDSE",
+            "title": "Locomotive, Diesel/Électrique",
+            "description": "Une locomotive qui utilise un moteur diesel pour produire de l'électricité pour le moteur électrique qui alimente la locomotive en énergie de traction."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/LCMDSL",
+            "title": "Locomotive Diesel",
+            "description": "Une locomotive qui utilise des moteurs diesel comme source d'énergie de traction."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/LCMELC",
+            "title": "Locomotive Électrique",
+            "description": "Une locomotive qui utilise des moteurs électriques comme source d'énergie de traction, l'électricité étant fournie par une source externe, généralement via un pantographe (câble électrique aérien)."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/LCMSTM",
+            "title": "Locomotive à Vapeur",
+            "description": "Une locomotive qui utilise le principe du chauffage de l'eau au-dessus de son point d'ébullition pour produire de la vapeur, l'expansion dans un récipient hermétiquement clos devenant la source d'énergie de la locomotive."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/LCMTND",
+            "title": "Locomotive à Tender",
+            "description": "Un tender de locomotive est utilisé pour transporter du charbon et de l'eau pour une locomotive à vapeur lorsqu'il ne fait pas partie intégrante de la conception de la locomotive."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/LCMTVE",
+            "title": "Locomotive",
+            "description": "Un moteur détachable monté sur roues utilisé pour tirer des trains."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/RLDEQP",
+            "title": "Équipement Ferroviaire",
+            "description": "Équipement mobile qui utilise des rails pour se déplacer, par exemple, les grues de chantier naval."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/RLLSTK",
+            "title": "Matériel Roulant",
+            "description": "Terme générique pour les wagons, qu'ils soient de voyageurs, de marchandises ou spécialisés, qui sont utilisés pour former un train."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/TRAM",
+            "title": "Tramway",
+            "description": "Un véhicule de transport de passagers qui circule sur des rails le long de routes, avec un minimum de travaux de terrassement, généralement alimenté par l'électricité provenant de câbles aériens via un pantographe."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/WGNART",
+            "title": "Wagon Transporteur Articulé",
+            "description": "Matériel roulant spécialement conçu pour transporter un camion articulé par rail (par exemple EUROSTAR)."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/WGNBRK",
+            "title": "Wagon de Frein",
+            "description": "Matériel roulant utilisé pour aider au contrôle d'un train formé, qui, lorsqu'il est utilisé, est doté d'appareils de freinage auxiliaires et manuels."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/WGNCAR",
+            "title": "Wagon de Transport de Voitures",
+            "description": "Matériel roulant spécialement conçu pour transporter des voitures civiles ou militaires par voie ferrée (par exemple EURORAIL)."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/WGNCRG",
+            "title": "Wagon de Marchandises (à parois)",
+            "description": "Matériel roulant utilisé pour déplacer des équipements ou des marchandises en boîtes ou en palettes, et fermé par des portes fixes coulissantes ou articulées."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/WGNCSS",
+            "title": "Wagon de Marchandises à Parois Coulissantes",
+            "description": "Matériel roulant utilisé pour déplacer des équipements ou des marchandises en boîtes ou en palettes, et fermé par des panneaux latéraux à rideaux coulissants."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/WGNCTL",
+            "title": "Wagon de Bétail",
+            "description": "Matériel roulant utilisé pour déplacer du bétail par voie ferrée."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/WGNFLB",
+            "title": "Wagon à Plateau",
+            "description": "Matériel"
+        },
+        {
+            "const": "MAT/VEH/RAILVE/WGNFUL",
+            "title": "Wagon, carburant en vrac",
+            "description": "Matériel roulant utilisé pour transporter du carburant en vrac par voie ferrée. (Également souvent appelé wagons-citernes.)"
+        },
+        {
+            "const": "MAT/VEH/RAILVE/WGNHPR",
+            "title": "Wagon, trémie",
+            "description": "Matériel roulant utilisé pour transporter des matériaux en vrac en vrac par voie ferrée et déchargé par gravité à travers des portes inférieures. (Les minéraux ou les denrées alimentaires, par exemple les céréales, sont des marchandises typiques.)"
+        },
+        {
+            "const": "MAT/VEH/RAILVE/WGNISO",
+            "title": "Wagon, conteneur(s) ISO",
+            "description": "Matériel roulant utilisé pour déplacer des conteneurs ISO standard, qu'il s'agisse de conteneurs simples ou multiples."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/WGNLQD",
+            "title": "Wagon, liquide",
+            "description": "Matériel roulant utilisé pour transporter des liquides en vrac par voie ferrée."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/WGNMNR",
+            "title": "Wagon, minéral",
+            "description": "Matériel roulant utilisé pour transporter des minéraux en vrac par voie ferrée avec des installations de déchargement des deux côtés."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/WGNOPC",
+            "title": "Wagon, conteneur ouvert",
+            "description": "Matériel roulant utilisé pour déplacer des articles en vrac par voie ferrée."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/WGNPAS",
+            "title": "Wagon, voyageurs",
+            "description": "Matériel roulant utilisé pour le transport de voyageurs."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/WGNRFG",
+            "title": "Wagon, réfrigéré",
+            "description": "Matériel roulant utilisé pour transporter des cargaisons réfrigérées par voie ferrée."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/WGNRPR",
+            "title": "Wagon, réparation et entretien de voies ferrées",
+            "description": "Matériel roulant utilisé pour réparer (remplacer les voies ferrées) ou entretenir la voie ferrée et le lit de la voie."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/WGNSPP",
+            "title": "Wagon, à usage spécial",
+            "description": "Matériel roulant utilisé pour déplacer des charges spécialisées ou surdimensionnées par voie ferrée, par exemple des MBT, d'autres charges surdimensionnées."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/WGNWAT",
+            "title": "Wagon, eau potable",
+            "description": "Matériel roulant utilisé pour transporter de l'eau potable par voie ferrée."
+        },
+        {
+            "const": "MAT/VEH/RAILVE/WGNWFL",
+            "title": "Wagon, warflat",
+            "description": "Matériel roulant utilisé pour transporter des charges militaires spécifiques, par exemple des AIFV (Warrior britannique)."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/AMBUL",
+            "title": "Ambulance",
+            "description": "Un véhicule pour le transport de personnes malades, blessées, incapacitées ou blessées."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/AUTOMO",
+            "title": "Automobile",
+            "description": "Un véhicule de passagers automoteur."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/BICYCL",
+            "title": "Bicyclette",
+            "description": "Un véhicule à deux roues maintenu dans un cadre l'une derrière l'autre, propulsé par des pédales et dirigé avec un guidon fixé à la roue avant."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/BUS",
+            "title": "Autobus",
+            "description": "Un grand véhicule routier de transport de passagers."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/CCTRCK",
+            "title": "Camion tout-terrain",
+            "description": "Un véhicule automobile utilisé pour transporter des charges sur de longues distances."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/CRANE",
+            "title": "Grue",
+            "description": "Dispositif de levage mécanique."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/FRFGTN",
+            "title": "Lutte contre l'incendie",
+            "description": "Un véhicule conçu pour transporter des pompiers et leur équipement sur les lieux d'urgence."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/HETVEH",
+            "title": "Transport d'équipement lourd",
+            "description": "Un véhicule conçu pour transporter des articles encombrants ou lourds."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/MAINT",
+            "title": "Entretien",
+            "description": "Un véhicule dont la fonction principale est de fournir des installations de soutien matériel."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/MHVEH",
+            "title": "Manutention de matériel",
+            "description": "Un véhicule dont la fonction principale est de fournir des installations de manutention de matériel."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/MILUV",
+            "title": "Utilitaire militaire",
+            "description": "Un petit véhicule militaire robuste à quatre roues motrices."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/MOTCYC",
+            "title": "Motocyclette",
+            "description": "Un véhicule à deux roues en tandem, automoteur et parfois équipé d'une side-car avec une troisième roue."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/POD",
+            "title": "Unité portable",
+            "description": "Terme utilisé pour décrire un conteneur portable fournissant un équipement ou des installations spécialisés, ou fournissant un logement pour le personnel."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/POLICE",
+            "title": "Véhicule de police",
+            "description": "Terme utilisé pour décrire un véhicule destiné à transporter des ressources et de l'équipement de police."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/SEMI",
+            "title": "Semi-remorque",
+            "description": "Une remorque routière qui a un système de roues à l'arrière seulement et qui est couplée à un tracteur approprié pour former un camion articulé."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/TRACTR",
+            "title": "Tracteur",
+            "description": "Un véhicule motorisé qui tire ou entraîne des machines."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/TRAILR",
+            "title": "Remorque",
+            "description": "Un véhicule conçu pour être remorqué par un autre véhicule. Les remorques spécifiques de lutte contre l'incendie sont détaillées dans une section spécifique (cf. Matériel/Véhicule/Véhicules routiers/Types de remorques de lutte contre l'incendie)."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/TRLBUS",
+            "title": "Trolleybus",
+            "description": "Un bus alimenté par l'électricité obtenue à partir d'un câble aérien au moyen d'une roue trolley."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/TRUCK",
+            "title": "Camion",
+            "description": "Un véhicule automobile utilisé pour le transport de marchandises."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/FRFGTN/AERIAL",
+            "title": "Appareils aériens",
+            "description": "Cette catégorie comprend les échelles et les plates-formes."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/FRFGTN/BREATH",
+            "title": "Support pour appareils respiratoires",
+            "description": "Véhicules équipés de supports pour appareils respiratoires."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/FRFGTN/C3",
+            "title": "Commande, contrôle et communications",
+            "description": "Véhicules spécifiquement équipés pour la commande, le contrôle et les communications."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/FRFGTN/FRF",
+            "title": "Véhicule de lutte contre l'incendie",
+            "description": "Véhicule ou remorque spécifiquement équipé pour éteindre les incendies. Les capacités de ce véhicule sont détaillées dans l'élément RESSOURCE/TYPE/CAPACITÉ (sur route/hors route, capacité de la pompe, capacité du réservoir, effectif de l'équipage, camion ou remorque)."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/FRFGTN/HAZMAT",
+            "title": "Hazmat et CBRN",
+            "description": "Véhicules spécifiquement équipés pour la gestion de matières dangereuses."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/FRFGTN/OTHR",
+            "title": "Autres types de véhicules de lutte contre l'incendie",
+            "description": "Par exemple : véhicules aéroportuaires, véhicules d'enquête, logistique."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/FRFGTN/PERCAR",
+            "title": "Transport de personnel",
+            "description": "Véhicules dont la fonction principale est de transporter du personnel."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/FRFGTN/PUMP",
+            "title": "Véhicule de pompage",
+            "description": "Véhicule pour le pompage de grandes quantités de liquides, non destiné à l'extinction."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/FRFGTN/RSC",
+            "title": "Secours",
+            "description": "Véhicules utilisés pour sauver des vies ou prévenir les blessures."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/POLICE/COMLIA",
+            "title": "Véhicule de liaison communautaire",
+            "description": "Une voiture de production standard, visiblement marquée, mais sans dispositifs d'alarme visuels et sonores."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/POLICE/DOGUNT",
+            "title": "Véhicule pour unité canine",
+            "description": "Utilisé pour transporter des chiens de police vers et depuis les incidents ou les missions."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/POLICE/GENPUR",
+            "title": "Véhicule de gestion du trafic routier",
+            "description": "Une voiture marquée avec 2 membres d'équipage en uniforme. Équipée de panneaux de signalisation de base pour la gestion du trafic routier."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/POLICE/HAZMAT",
+            "title": "Véhicule de gestion de matières dangereuses",
+            "description": "Une voiture de haute performance marquée avec 2 membres d'équipage et équipée de panneaux de signalisation pour la gestion du trafic routier. L'un des membres d'équipage sera formé pour conseiller sur la gestion des déversements ou des émissions de matières dangereuses, par exemple des produits chimiques."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/POLICE/MBIKE",
+            "title": "Moto de police",
+            "description": "Utilisée pour faire respecter les lois sur la circulation et escorter des véhicules."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/POLICE/PATROL",
+            "title": "Voiture de patrouille",
+            "description": "Transporte les policiers ordinaires entre leurs missions (prise de déclarations, visite de témoins, etc.), sera très probablement équipée de signaux lumineux et sonores."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/POLICE/RSPONSE",
+            "title": "Voiture d'intervention",
+            "description": "Presque exclusivement utilisée pour répondre aux incidents d'urgence, conçue pour se déplacer rapidement et peut transporter un équipement spécialisé."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/POLICE/TRAFFIC",
+            "title": "Véhicule de haute performance pour la gestion du trafic routier",
+            "description": "Une voiture de haute performance marquée avec 2 membres d'équipage et équipée de panneaux de signalisation pour la gestion du trafic routier."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/POLICE/TRANSIT",
+            "title": "Véhicule de transit",
+            "description": "Un transporteur de personnel avec un sergent et 6 agents de police pris parmi les agents de service qui peuvent être envoyés sur les lieux d'un incident dans l'heure."
+        },
+        {
+            "const": "MAT/VEH/ROADVE/POLICE/VAN",
+            "title": "Fourgon de police",
+            "description": "Utilisé par la police pour transporter les personnes arrêtées et les détenus."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/AIRCAR",
+            "title": "Porte-avions",
+            "description": "Un navire conçu pour soutenir et faire fonctionner des avions, engager des attaques contre des cibles en mer ou à terre, et mener des opérations durables en soutien d'autres forces."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/AMPH",
+            "title": "Amphibie",
+            "description": "Un véhicule conçu pour se déplacer sur la terre et sur l'eau."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/BARGE",
+            "title": "Chaland",
+            "description": "Un long bateau à fond plat pour le transport de marchandises sur les canaux, les rivières, etc."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/BARSHP",
+            "title": "Navire de caserne",
+            "description": "Un navire autopropulsé utilisé comme installation de base mobile et navire de soutien pour les équipages d'autres navires et sans installations de réparation."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/BRDGBT",
+            "title": "Bateau de franchissement",
+            "description": "Un bateau utilisé pour soutenir un pont."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/CNTSHP",
+            "title": "Navire porte-conteneurs",
+            "description": "Un navire spécialement construit et équipé pour transporter des conteneurs standard."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/CSRSHP",
+            "title": "Navire de réception de victimes",
+            "description": "Un navire non déclaré au CICR/Croissant-Rouge, fournissant un traitement médical et chirurgical et des soins infirmiers aux personnes malades ou blessées."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/CSTSHP",
+            "title": "Navire de transport de victimes",
+            "description": "Un navire, non déclaré au CICR/Croissant-Rouge et non protégé, dont le but principal est de prendre en charge les victimes en post-opération pendant le transport hors du théâtre."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/DPSMVS",
+            "title": "Navire de plongée profonde",
+            "description": "Un navire capable de plonger profondément dans l'eau pour des missions d'investigation, de sauvetage et de récupération."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/FERRY",
+            "title": "Ferry",
+            "description": "Un navire ou un bateau utilisé pour le transport de passagers ou de marchandises."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/FIRBOT",
+            "title": "Bateau de lutte contre l'incendie",
+            "description": "Un navire de port largement équipé pour la lutte contre l'incendie."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/FLTCRN",
+            "title": "Grue flottante",
+            "description": "Un navire de type barge, généralement non autopropulsé, équipé d'une grue."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/FLTDRG",
+            "title": "Dragueur flottant",
+            "description": "Un navire utilisé comme drague."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/FLTDRY",
+            "title": "Cale sèche flottante",
+            "description": "Une cale sèche flottante capable d'accueillir ou de réparer des navires."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/FREBLK",
+            "title": "Cargo en vrac, navire",
+            "description": "Un navire conçu pour transporter des marchandises solides dans des cales."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/FRELIQ",
+            "title": "Cargo liquide, navire",
+            "description": "Un navire conçu pour transporter des marchandises liquides."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/HOSSHP",
+            "title": "Navire hôpital",
+            "description": "Un navire, déclaré au CICR/Croissant-Rouge et protégé en conséquence, fournissant des soins médicaux et chirurgicaux ainsi que des soins infirmiers aux personnes malades ou blessées."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/HOVCRF",
+            "title": "Aéroglisseur",
+            "description": "Un véhicule ou un engin qui peut être soutenu par un coussin d'air expulsé vers le bas contre une surface située juste en dessous, et qui peut en principe se déplacer sur n'importe quelle surface relativement lisse (comme une étendue d'eau, des marais, un terrain doucement incliné) tout en n'ayant aucun contact significatif avec elle."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/ICEBRK",
+            "title": "Brise-glace",
+            "description": "Un navire spécialement conçu ou adapté pour briser une voie à travers la glace."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/LAUNCH",
+            "title": "Lance",
+            "description": "Un petit navire utilisé dans les eaux abritées pour le transport de personnel."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/LGHTER",
+            "title": "Chaland",
+            "description": "Un navire de type barge utilisé pour charger et décharger des navires ou pour transporter des charges sur de courtes distances."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/LNDCRF",
+            "title": "Bateau de débarquement",
+            "description": "L'un des plusieurs types de navires de guerre amphibies spécialement conçus pour débarquer des troupes et de l'équipement."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/MERSHP",
+            "title": "Navire marchand",
+            "description": "Un navire non militaire conçu pour transporter des marchandises ou des passagers."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/MOBLS",
+            "title": "Navire de logistique mobile",
+            "description": "Un navire de guerre conçu pour l'assistance logistique."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/OILER",
+            "title": "Pétrolier",
+            "description": "Un navire conçu pour fournir du carburant à d'autres navires en mer."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/PASSGR",
+            "title": "Navire de passagers",
+            "description": "Un navire marchand conçu pour transporter des personnes."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/PATVES",
+            "title": "Patrouilleur/coupeur de garde-côtière",
+            "description": "Un navire conçu pour une ou plusieurs des fonctions suivantes : défense côtière, protection de la vie et des biens en mer, et application des lois douanières, de l'immigration et de la navigation."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/POLSPD",
+            "title": "Bateau de police rapide",
+            "description": "Bateau de police rapide"
+        },
+        {
+            "const": "MAT/VEH/VESSEL/PRV",
+            "title": "Navire de récupération de la pollution",
+            "description": "Navire de récupération de la pollution"
+        },
+        {
+            "const": "MAT/VEH/VESSEL/RAFT",
+            "title": "Radeau",
+            "description": "Une structure flottante plate en bois ou d'autres matériaux pour le transport de personnes ou de marchandises."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/RPRSHP",
+            "title": "Navire de réparation",
+            "description": "Un navire utilisé comme installation de réparation mobile."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/SAILVS",
+            "title": "Voilier",
+            "description": "Un navire de surface dont la principale force motrice est l'énergie éolienne."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/SALSHP",
+            "title": "Navire de sauvetage",
+            "description": "Un navire d'au moins 40 mètres de long utilisé pour fournir des services de sauvetage mobiles, de réparation, de plongée et de secours."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/SMLLBO",
+            "title": "Bateau, petit",
+            "description": "Un petit navire ouvert destiné à traverser la surface de l'eau, généralement propulsé par des rames, bien que parfois par une voile."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/SUBMAR",
+            "title": "Sous-marin",
+            "description": "Un navire de guerre capable de fonctionner sous l'eau et généralement équipé de torpilles, de missiles et d'un périscope."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/TANKER",
+            "title": "Pétrolier",
+            "description": "Un navire conçu pour transporter des liquides, notamment des huiles minérales, en vrac."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/TENDER",
+            "title": "Navire de soutien",
+            "description": "Un navire conçu pour fournir un soutien logistique et des installations de dépôt à d'autres navires."
+        },
+        {
+            "const": "MAT/VEH/VESSEL/TUGBOT",
+            "title": "Remorqueur",
+            "description": "Un petit bateau puissant pour remorquer de plus grands navires."
+        },
+        {
+            "const": "ORG/AMBUL",
+            "title": "Ambulances",
+            "description": "Service médical spécialisé fournissant un traitement d'urgence et le transport depuis un incident vers une installation médicale."
+        },
+        {
+            "const": "ORG/CIVP",
+            "title": "Protection civile",
+            "description": "Organisation fournissant des dispositions de protection civile pour les citoyens en dehors du contexte militaire."
+        },
+        {
+            "const": "ORG/COASTG",
+            "title": "Agence maritime et des garde-côtes",
+            "description": "Agence maritime et des garde-côtes"
+        },
+        {
+            "const": "ORG/DOCTOR",
+            "title": "Organisation médicale",
+            "description": "Organisation fournissant des services médicaux, par exemple des médecins."
+        },
+        {
+            "const": "ORG/ENVAGC",
+            "title": "Agence de l'environnement",
+            "description": "Agence responsable de tous les aspects de la pollution et des dommages à l'environnement."
+        },
+        {
+            "const": "ORG/FIRFS",
+            "title": "Services d'incendie",
+            "description": "Services d'incendie"
+        },
+        {
+            "const": "ORG/GEND",
+            "title": "Gendarmerie",
+            "description": "Organisation ayant des missions similaires à celles de la police en dehors des zones urbaines."
+        },
+        {
+            "const": "ORG/HOSP",
+            "title": "Hôpitaux",
+            "description": "Bâtiment abritant des installations médicales."
+        },
+        {
+            "const": "ORG/IDCOM",
+            "title": "Commission d'identification",
+            "description": "Un groupe représentant tous les aspects du processus d'identification, mis en place pour examiner et déterminer l'identité des personnes décédées."
+        },
+        {
+            "const": "ORG/LCRESF",
+            "title": "Forum de résilience local",
+            "description": "Le groupe de tous les intervenants de catégorie 1 et de catégorie 2 dans une zone géographique de la police."
+        },
+        {
+            "const": "ORG/LOCAUT",
+            "title": "Autorité locale",
+            "description": "Terme désignant l'organisation gouvernementale locale responsable de la prestation de services publics dans une zone géographique."
+        },
+        {
+            "const": "ORG/MARAGC",
+            "title": "Agence maritime et des garde-côtes",
+            "description": "Cela comprend la mobilisation, l'organisation et l'affectation de ressources adéquates pour répondre aux personnes en détresse en mer ou aux personnes exposées à un risque de blessure ou de décès sur les falaises et le littoral. Exemples : L'Agence maritime et des garde-côtes (MCA) au Royaume-Uni est responsable de l'initiation et de la coordination des opérations de recherche et de sauvetage maritimes civiles (SAR). Également connue sous le nom de Ryhswaterstrat Coast Gand (Pays-Bas) — Insea."
+        },
+        {
+            "const": "ORG/METAGC",
+            "title": "Agence météorologique",
+            "description": "Organisation fournissant des informations sur la météo."
+        },
+        {
+            "const": "ORG/MIL",
+            "title": "Militaire",
+            "description": "Terme utilisé pour décrire les forces armées."
+        },
+        {
+            "const": "ORG/NGO",
+            "title": "Organisation humanitaire non gouvernementale",
+            "description": "Organisations caritatives telles que la Croix-Rouge, Oxfam, etc."
+        },
+        {
+            "const": "ORG/POLCNG",
+            "title": "Groupe consultatif de la communauté policière",
+            "description": "Organisation représentant un groupe communautaire spécifique dans ses relations avec la police."
+        },
+        {
+            "const": "ORG/POLICE",
+            "title": "Police",
+            "description": "Organisation chargée de maintenir la loi et l'ordre."
+        },
+        {
+            "const": "ORG/RGRESF",
+            "title": "Forum régional de résilience",
+            "description": "Un forum créé par un bureau du gouvernement pour discuter de la résilience civile d'un point de vue régional."
+        },
+        {
+            "const": "ORG/SPADPV",
+            "title": "Fournisseurs de conseils spécialisés",
+            "description": "Quelques exemples : Chemet — Un programme administré par le Bureau météorologique fournissant des informations sur les conditions météorologiques telles qu'elles affectent un incident impliquant des produits chimiques dangereux. Bellwin Scheme — Programme britannique fournissant une aide financière aux autorités locales en cas de catastrophe majeure. Chemdata — Système informatique spécialisé pour obtenir des informations sur les matières dangereuses. Tremcard — Carte d'action d'urgence transportée dans les véhicules transportant des matières dangereuses. Code Kemmler — Code d'action d'urgence pour la manipulation de matières dangereuses. Hazchem — Système informatique spécialisé pour obtenir des informations sur les matières dangereuses. Code d'action d'urgence — Code d'action d'urgence sur les côtés et l'arrière des véhicules transportant des matières dangereuses. Fournit des conseils sur les méthodes d'atténuation, l'évacuation et le numéro de contact. Numéro ONU — Base de données répertoriant les propriétés et les procédures d'action d'urgence pour les produits chimiques et les matières dangereuses."
+        },
+        {
+            "const": "ORG/TRS",
+            "title": "Services de sauvetage technique",
+            "description": "Par exemple, le THW en Allemagne."
+        },
+        {
+            "const": "ORG/WATAGC",
+            "title": "Fournisseurs d'eau",
+            "description": "Fournisseurs d'eau : Un terme utilisé pour décrire les entreprises ayant l'obligation légale de fournir de l'eau. NUTS — Description néerlandaise des fournisseurs d'eau et d'autres fournisseurs de services publics."
+        }
+    ]
+}

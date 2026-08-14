@@ -54,11 +54,6 @@ components:
           description: "Sert \xE0 indiquer \xE0 quelle fili\xE8re du CRRA destinataire\
             \ le dossier doit \xEAtre adress\xE9/affich\xE9, lorsque celle-ci est\
             \ sp\xE9cifique ou d\xE9di\xE9e."
-          enum:
-          - AMU
-          - NEONAT
-          - PSY
-          - SNP
           examples:
           - AMU
         qualification:
@@ -302,6 +297,7 @@ components:
           example: example.json#/decision/0/decisionType
           description: "A valoriser avec le type de d\xE9cision prise (cf.nomenclature\
             \ associ\xE9e)"
+          x-nomenclature: HubSante.typeDecision
           enum:
           - CONSEIL
           - PMT
@@ -320,6 +316,7 @@ components:
           description: "A valoriser avec le type de ressource souhait\xE9e ou engag\xE9\
             e (cf.nomenclature associ\xE9e) - en fonction du type de d\xE9cision.\n\
             A fournir obligatoirement pour une d\xE9cision d'intervention ou de transport/orientation."
+          x-nomenclature: HubSante.typeRessource
           enum:
           - SMUR
           - SMUR.ADULT
@@ -376,6 +373,7 @@ components:
           example: example.json#/decision/0/orientationType
           description: "Indique le type de destination en cas de d\xE9cision d'orientation\
             \ (cf. nomenclature associ\xE9e)"
+          x-nomenclature: HubSante.typeOrientation
           enum:
           - URGENCES
           - REA-USI
@@ -458,6 +456,7 @@ components:
             \ partag\xE9 \xE0 titre indicatif uniquement\nSp\xE9cificit\xE9 15-SMUR\
             \ : \xE0 utiliser \xE0 minima pour transmettre le statut CLOTURE \xE0\
             \ la tablette"
+          x-nomenclature: HubSante.etat
           enum:
           - PROGRAM
           - ACTIF
@@ -476,6 +475,7 @@ components:
           example: example.json#/qualification/details/priority
           description: "D\xE9crit la priorit\xE9 de r\xE9gulation m\xE9dicale du dossier\
             \ : P0, P1, P2, P3"
+          x-nomenclature: HubSante.priorite
           enum:
           - P0
           - P1
@@ -494,6 +494,7 @@ components:
             \ au cours de l'acte de r\xE9gulation m\xE9dicale : s'il y a plusieurs\
             \ niveaux de soins diff\xE9rents pour chaque patient, on indique ici le\
             \ niveau le plus grave.\ncf.nomenclature associ\xE9e."
+          x-nomenclature: HubSante.niveauSoin
           enum:
           - R1
           - R2
@@ -523,6 +524,7 @@ components:
           x-cols: 6
           example: example.json#/location/externalInfo/0/freetext
           description: "A valoriser avec le syst\xE8me fournissant le localisant"
+          x-nomenclature: HubSante.systeme
           enum:
           - BAN
           - IGN
@@ -538,6 +540,7 @@ components:
           description: "A valoriser avec la d\xE9finition du type d'objet dans le\
             \ syst\xE8me\n\nExemple : SIG NexSIS / OSM ont plusieurs types de donn\xE9\
             es (EGA, POI, tron\xE7on de route, \u2026)"
+          x-nomenclature: HubSante.objetSource
           enum:
           - MANUEL
           - CARTE
@@ -673,6 +676,7 @@ components:
           x-cols: 6
           example: example.json#/patient/0/detail/careLevel
           description: "A valoriser avec le niveau de soins sp\xE9cifique au patient"
+          x-nomenclature: HubSante.niveauSoin
           enum:
           - R1
           - R2
@@ -742,6 +746,7 @@ components:
           x-cols: 6
           example: example.json#/patient/0/administrativeFile/externalId/0/source
           description: Type de l'identifiant fourni
+          x-nomenclature: HubSante.typeIdPatient
           enum:
           - NIR
           - SINUS
@@ -854,6 +859,7 @@ components:
           example: example.json#/patient/0/administrativeFile/generalPractitioner/contact/0/type
           description: "A valoriser avec le type de l'URI utilis\xE9e.  Cf nomenclature\
             \ associ\xE9e."
+          x-nomenclature: HubSante.typeCom
           enum:
           - EMAIL
           - FAX
@@ -914,6 +920,7 @@ components:
           x-cols: 6
           example: example.json#/patient/0/identity/strictFeatures/sex
           description: A valoriser avec le sexe du patient
+          x-nomenclature: HubSante.sexe
           enum:
           - M
           - F
@@ -1026,6 +1033,7 @@ components:
           example: example.json#/medicalNote/0/operator/role
           description: "A valoriser avec le r\xF4le de l'op\xE9rateur au sein de l'entit\xE9\
             \ \xE9mettrice du message : "
+          x-nomenclature: HubSante.role
           enum:
           - AMBULANCIER
           - ARM
@@ -1087,6 +1095,7 @@ components:
           example: example.json#/decision/0/destination/externalLocationId/0/source
           description: "A valoriser avec le type de l'identifiant fourni. Cf nomenclature\
             \ associ\xE9e."
+          x-nomenclature: HubSante.idLieu
           enum:
           - FINESS_ADMINISTRATIF
           - FINESS_GEOGRAPHIQUE

@@ -1,0 +1,272 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "EMSI-EVENT.ETYPE.LOCTYPE",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "COAST",
+            "title": "Zone côtière",
+            "description": "La terre adjacente à la mer, le rivage."
+        },
+        {
+            "const": "INW",
+            "title": "Voie navigable intérieure",
+            "description": "Un plan d'eau, tel qu'une rivière, un canal ou un lac. Il peut être navigable s'il est suffisamment profond et large pour qu'un navire puisse passer sans obstacles."
+        },
+        {
+            "const": "NAT",
+            "title": "Environnement naturel/rural",
+            "description": "Environnement naturel/rural"
+        },
+        {
+            "const": "OSEA",
+            "title": "Haute mer",
+            "description": "Haute mer"
+        },
+        {
+            "const": "OTH",
+            "title": "Autre",
+            "description": "Autre"
+        },
+        {
+            "const": "PRIVAT",
+            "title": "Privé",
+            "description": "L'emplacement de l'événement est une propriété privée, ce qui signifie que l'accès à l'emplacement peut nécessiter l'autorisation du propriétaire."
+        },
+        {
+            "const": "RAIL",
+            "title": "Infrastructure ferroviaire",
+            "description": "Infrastructure ferroviaire"
+        },
+        {
+            "const": "ROAD",
+            "title": "Infrastructure routière",
+            "description": "Surface lissée ou pavée, conçue pour le déplacement par véhicule motorisé et autres véhicules."
+        },
+        {
+            "const": "UDGN",
+            "title": "Souterrain",
+            "description": "Lieu souterrain"
+        },
+        {
+            "const": "URB",
+            "title": "Zone urbaine",
+            "description": "Lieu en zone urbaine"
+        },
+        {
+            "const": "COAST/BNK",
+            "title": "Plage/bord de l'eau",
+            "description": "Limite entre la terre et l'eau"
+        },
+        {
+            "const": "COAST/CLF",
+            "title": "Falaise",
+            "description": "Soit l'incident se trouve sur la falaise, soit sur une bande étroite entre la falaise et l'eau."
+        },
+        {
+            "const": "COAST/CSTW",
+            "title": "Eaux côtières",
+            "description": "La mer, mais avec des dangers potentiels de navigation. Entre la haute mer et la terre."
+        },
+        {
+            "const": "COAST/EST",
+            "title": "Estuaire",
+            "description": "Eau libre, mais avec des dangers de navigation dépendant des marées. Eaux de marée à l'embouchure d'une rivière ou d'un fjord."
+        },
+        {
+            "const": "COAST/FEN",
+            "title": "Fen",
+            "description": "Un accès en bateau est probablement nécessaire dans les zones humides avec de l'eau libre."
+        },
+        {
+            "const": "INW/BOG",
+            "title": "Marais",
+            "description": "Accès difficile aux zones humides avec peu d'eau libre."
+        },
+        {
+            "const": "INW/CAN",
+            "title": "Canal",
+            "description": "Voie navigable, potentiellement avec un accès en bord de l'eau. Voie navigable artificielle."
+        },
+        {
+            "const": "INW/ICELK",
+            "title": "Lac gelé",
+            "description": "Lac ou étang recouvert de glace"
+        },
+        {
+            "const": "INW/LKE",
+            "title": "Lac",
+            "description": "Lac ou étang, y compris un loch et une mer intérieure"
+        },
+        {
+            "const": "INW/RIV",
+            "title": "Rivière",
+            "description": "Traversée limitée par des ponts ou en bateau. Supérieure à 5 mètres."
+        },
+        {
+            "const": "NAT/CRP",
+            "title": "Culture",
+            "description": "Terres arables"
+        },
+        {
+            "const": "NAT/GRS",
+            "title": "Prairie",
+            "description": "Pâturages et prairies ouvertes, y compris les parcs."
+        },
+        {
+            "const": "NAT/HFR",
+            "title": "Forêt dense",
+            "description": "Caractérisée par une forêt dense, avec des arbres généralement de plus de 20 mètres. Accès par la route uniquement."
+        },
+        {
+            "const": "NAT/HLS",
+            "title": "Coteau",
+            "description": "Zones montagneuses avec un accès routier limité"
+        },
+        {
+            "const": "NAT/HMT",
+            "title": "Haute montagne",
+            "description": "Montagne au-dessus de la zone accessible par un véhicule"
+        },
+        {
+            "const": "NAT/LMT",
+            "title": "Versant de montagne",
+            "description": "Zones montagneuses avec un accès routier limité"
+        },
+        {
+            "const": "NAT/SSSI",
+            "title": "Sites d'intérêt scientifique",
+            "description": "Sites désignés d'intérêt scientifique spécial (SDISS)"
+        },
+        {
+            "const": "OSEA/OFF",
+            "title": "Haute mer",
+            "description": "L'installation est en mer, y compris les plates-formes pétrolières et gazières, les plates-formes d'hébergement associées. Également des jetées."
+        },
+        {
+            "const": "OTH/CUT",
+            "title": "Découpe",
+            "description": "Accès limité sur le côté, peut présenter un risque d'incendie. Une route, une voie ferrée ou un canal en contrebas du niveau du sol."
+        },
+        {
+            "const": "OTH/ELV",
+            "title": "Section surélevée",
+            "description": "Pas d'accès sur les côtés. Une route, une voie ferrée ou un canal surélevé par rapport au niveau du sol normal par un pont ou un viaduc."
+        },
+        {
+            "const": "OTH/EMB",
+            "title": "Section surélevée par remblai",
+            "description": "L'accès est limité sur le côté, peut présenter un risque d'incendie. Une route, une voie ferrée ou un canal surélevé par un remblai."
+        },
+        {
+            "const": "OTH/LFR",
+            "title": "Bois",
+            "description": "Caractérisée par une forêt ouverte. Peu d'accès pour les véhicules hors route."
+        },
+        {
+            "const": "OTH/SRB",
+            "title": "Broussaille",
+            "description": "Caractérisée par des buissons et des arbres occasionnels. Accès limité potentiel pour les véhicules."
+        },
+        {
+            "const": "PRIVAT/OWNRSC",
+            "title": "Privé",
+            "description": "Propriété privée appartenant à une organisation qui possède une équipe de secours privée (par exemple, un site industriel avec un service d'incendie interne)."
+        },
+        {
+            "const": "RAIL/TRK",
+            "title": "Voie ferrée",
+            "description": "La voie ferrée limite l'accès sur les côtés et est difficile à parcourir. Une voie ferrée à écartement standard."
+        },
+        {
+            "const": "ROAD/1RD",
+            "title": "Route à sens unique",
+            "description": "Route à sens unique, limitant la direction d'accès. Une route à sens unique (qui ne fait pas partie d'une voie à double sens), y compris les bretelles d'accès sur les échangeurs."
+        },
+        {
+            "const": "ROAD/DCA",
+            "title": "Voie à double sens",
+            "description": "Voie à double sens, y compris une autoroute ou une autoroute de manière à ce que l'approche soit dans une direction appropriée. Une route divisée en deux, de sorte que la traversée des voies n'est pas pratique."
+        },
+        {
+            "const": "ROAD/NOR",
+            "title": "Terrain libre",
+            "description": "Zone sans route ou chemin, mais pouvant être accessible en partie à la plupart des véhicules. Une zone que les véhicules routiers peuvent être en mesure de traverser, mais sans route ou chemin."
+        },
+        {
+            "const": "ROAD/PTH",
+            "title": "Chemin",
+            "description": "Sentier pédestre. Un itinéraire inadapté aux véhicules routiers."
+        },
+        {
+            "const": "ROAD/RRD",
+            "title": "Route restreinte",
+            "description": "Route non adaptée à tous les véhicules, par exemple en raison d'un pont bas. Une route avec une restriction notifiée sur la circulation, telle qu'une restriction de hauteur, une restriction de poids, etc."
+        },
+        {
+            "const": "ROAD/SRD",
+            "title": "Route secondaire",
+            "description": "Route secondaire qui peut limiter l'accès aux gros véhicules, au trafic ou empêcher les véhicules de tourner. Une route qui est limitée par sa largeur, ou, dans les zones urbaines, par des voitures garées, de sorte que la circulation dans un sens doit permettre à la circulation dans l'autre sens de passer."
+        },
+        {
+            "const": "ROAD/TRK",
+            "title": "Chemin de roulement",
+            "description": "Hors route, mais avec une surface dure pour les véhicules. Un chemin non goudronné qui est praticable par des véhicules légers."
+        },
+        {
+            "const": "UDGN/MIN",
+            "title": "Mine",
+            "description": "Travaux souterrains, éventuellement abandonnés"
+        },
+        {
+            "const": "UDGN/TUN",
+            "title": "Tunnel",
+            "description": "Tunnel. Une route, une voie ferrée ou un canal dans un tunnel."
+        },
+        {
+            "const": "UDGN/UND",
+            "title": "Bâtiment souterrain",
+            "description": "Bâtiment souterrain/zone commerciale/industrielle"
+        },
+        {
+            "const": "URB/ASR",
+            "title": "Zone d'assemblage",
+            "description": "Une zone d'assemblage ou récréative"
+        },
+        {
+            "const": "URB/HOSP",
+            "title": "Hôpital",
+            "description": "Établissement de santé (hôpital, maison de retraite, etc.)"
+        },
+        {
+            "const": "URB/IND",
+            "title": "Zone industrielle",
+            "description": "Zone industrielle"
+        },
+        {
+            "const": "URB/MALL",
+            "title": "Centre commercial",
+            "description": "L'emplacement de l'événement est un centre commercial"
+        },
+        {
+            "const": "URB/OFF",
+            "title": "Zone de bureaux",
+            "description": "Zone de bureaux"
+        },
+        {
+            "const": "URB/PRK",
+            "title": "Emplacement de parc",
+            "description": "Emplacement de parc"
+        },
+        {
+            "const": "URB/RES",
+            "title": "Zone résidentielle",
+            "description": "Zone résidentielle (maison, habitation résidentielle, etc.)"
+        },
+        {
+            "const": "URB/STRT",
+            "title": "Rue",
+            "description": "Zone publique (rue, par exemple)"
+        }
+    ]
+}

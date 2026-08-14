@@ -1,0 +1,774 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.lieu",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "L01.00.00",
+            "title": "Domicile"
+        },
+        {
+            "const": "L01.01.00",
+            "title": "Maison particulière, pavillon"
+        },
+        {
+            "const": "L01.01.01",
+            "title": "A l'intérieur",
+            "description": "A renseigner en l’absence d’information plus précise sur la pièce où se situe la personne concernée"
+        },
+        {
+            "const": "L01.01.02",
+            "title": "A l'extérieur",
+            "description": "Abords, terrasse, jardin, … non couvert"
+        },
+        {
+            "const": "L01.01.03",
+            "title": "Piscine, bassin",
+            "description": "Privée, enterrée ou non, fixe ou non"
+        },
+        {
+            "const": "L01.01.04",
+            "title": "Dépendance",
+            "description": "Abri indépendant du domicile de type garage, atelier, abri de jardin, grange, etc."
+        },
+        {
+            "const": "L01.02.00",
+            "title": "Lieu d'habitation collectif ou foyer d'hébergement"
+        },
+        {
+            "const": "L01.02.01",
+            "title": "A l'intérieur de l'immeuble (sans précision)",
+            "description": "A renseigner en l’absence d’information plus précise sur la pièce où se situe la personne concernée"
+        },
+        {
+            "const": "L01.02.02",
+            "title": "A l'extérieur",
+            "description": "Abords, terrasse, jardin, … non couvert"
+        },
+        {
+            "const": "L01.02.03",
+            "title": "Appartement"
+        },
+        {
+            "const": "L01.02.04",
+            "title": "Entrée, couloir, espaces communs (hors escalier)"
+        },
+        {
+            "const": "L01.02.05",
+            "title": "Ascenseur"
+        },
+        {
+            "const": "L01.02.06",
+            "title": "Cave, sous-sol, garage, parking"
+        },
+        {
+            "const": "L01.02.07",
+            "title": "Toiture"
+        },
+        {
+            "const": "L01.02.08",
+            "title": "Comble"
+        },
+        {
+            "const": "L01.02.09",
+            "title": "Piscine",
+            "description": "Privée, enterrée ou non, fixe ou non"
+        },
+        {
+            "const": "L01.02.10",
+            "title": "Escaliers"
+        },
+        {
+            "const": "L01.02.11",
+            "title": "Local technique (chaufferie, gaine d'ascenseur)"
+        },
+        {
+            "const": "L01.02.12",
+            "title": "Dépendance"
+        },
+        {
+            "const": "L01.03.00",
+            "title": "Habitat spécifique"
+        },
+        {
+            "const": "L01.03.01",
+            "title": "Péniche"
+        },
+        {
+            "const": "L01.03.02",
+            "title": "Mobil-home"
+        },
+        {
+            "const": "L01.03.03",
+            "title": "Habitat précaire"
+        },
+        {
+            "const": "L01.04.00",
+            "title": "Autre type de domicile"
+        },
+        {
+            "const": "L02.00.00",
+            "title": "Circulation/transport"
+        },
+        {
+            "const": "L02.01.00",
+            "title": "Voie publique hors voie rapide",
+            "description": "Voie sans aucune séparation de chaussée"
+        },
+        {
+            "const": "L02.02.00",
+            "title": "Voie rapide"
+        },
+        {
+            "const": "L02.02.01",
+            "title": "Voie rapide hors autoroute",
+            "description": "Voie rapide présentant au moins 2 X 2 voies"
+        },
+        {
+            "const": "L02.02.02",
+            "title": "Voie d’autoroute"
+        },
+        {
+            "const": "L02.02.03",
+            "title": "Aire de repos ou de service"
+        },
+        {
+            "const": "L02.02.04",
+            "title": "Hôtel sur autoroute"
+        },
+        {
+            "const": "L02.02.05",
+            "title": "Tunnel"
+        },
+        {
+            "const": "L02.03.00",
+            "title": "Voie ferrée"
+        },
+        {
+            "const": "L02.03.01",
+            "title": "Voie ferrée souterraine ou couverte"
+        },
+        {
+            "const": "L02.03.02",
+            "title": "Voie ferrée aérienne"
+        },
+        {
+            "const": "L02.03.03",
+            "title": "Tunnel"
+        },
+        {
+            "const": "L02.04.00",
+            "title": "Voie fluviale"
+        },
+        {
+            "const": "L02.05.00",
+            "title": "A bord d’un moyen de transport"
+        },
+        {
+            "const": "L02.05.01",
+            "title": "Véhicule léger, fourgon",
+            "description": "Catégorie de véhicules qui regroupe les voitures de tourisme et les véhicules utilitaires (jusqu'à 3,5 tonnes)"
+        },
+        {
+            "const": "L02.05.02",
+            "title": "Véhicule routier de marchandises",
+            "description": "Poids lourd de plus de 3,5 tonnes affecté au transport de biens et embarquant donc un nombre réduit de passagers"
+        },
+        {
+            "const": "L02.05.03",
+            "title": "Véhicule routier de transport en commun",
+            "description": "Véhicule de grande dimension affecté au transport de passagers (Bus car autocar)"
+        },
+        {
+            "const": "L02.05.04",
+            "title": "Véhicule militaire"
+        },
+        {
+            "const": "L02.05.05",
+            "title": "Convoi exceptionnel"
+        },
+        {
+            "const": "L02.05.06",
+            "title": "Métro"
+        },
+        {
+            "const": "L02.05.07",
+            "title": "Tramway"
+        },
+        {
+            "const": "L02.05.08",
+            "title": "Aéronef de marchandises",
+            "description": "Tout moyen de transport de marchandises par voie aérienne embarquant au moins 1 pilote à son bord"
+        },
+        {
+            "const": "L02.05.09",
+            "title": "Aéronef de voyageurs",
+            "description": "Tout moyen de transport de personnes par voie aérienne embarquant au moins 1 pilote à son bord"
+        },
+        {
+            "const": "L02.05.10",
+            "title": "Aeronef militaire",
+            "description": "Tout moyen de transport militaire par voie aérienne embarquant au moins 1 pilote à son bord"
+        },
+        {
+            "const": "L02.05.11",
+            "title": "Bateau de marchandises",
+            "description": "Tout moyen de transport de marchandises par voie ferroviaire"
+        },
+        {
+            "const": "L02.05.12",
+            "title": "Bateau de voyageurs",
+            "description": "Tout moyen de transport de personnes par voie ferroviaire"
+        },
+        {
+            "const": "L02.05.13",
+            "title": "Sous-marin"
+        },
+        {
+            "const": "L02.05.14",
+            "title": "Train de voyageurs"
+        },
+        {
+            "const": "L02.05.15",
+            "title": "Train de marchandises"
+        },
+        {
+            "const": "L02.05.16",
+            "title": "Téléphérique, télésiege"
+        },
+        {
+            "const": "L02.06.00",
+            "title": "Aéroport / aérodrome"
+        },
+        {
+            "const": "L02.06.01",
+            "title": "Aéroport - zone non accessible au public ou zone coté piste"
+        },
+        {
+            "const": "L02.06.02",
+            "title": "Aéroport - zone publique (salle d'enregistrement)"
+        },
+        {
+            "const": "L02.06.03",
+            "title": "Aéroport - zone sous contrôle de la Douane",
+            "description": "En attente de retours DGGN"
+        },
+        {
+            "const": "L02.06.04",
+            "title": "Piste de décollage",
+            "description": "En attente de retours DGGN"
+        },
+        {
+            "const": "L02.06.05",
+            "title": "Voie d'accès aux pistes",
+            "description": "En attente de retours DGGN"
+        },
+        {
+            "const": "L02.06.06",
+            "title": "Aérodrome – toutes zones"
+        },
+        {
+            "const": "L02.06.07",
+            "title": "CRNA",
+            "description": "Centre régional de la navigation aérienne"
+        },
+        {
+            "const": "L02.06.08",
+            "title": "PCZAR",
+            "description": "Zone critique à accès réglementé"
+        },
+        {
+            "const": "L02.07.00",
+            "title": "Gare ferroviaire et routière",
+            "description": "Dont billetterie"
+        },
+        {
+            "const": "L02.07.01",
+            "title": "Hall de gare"
+        },
+        {
+            "const": "L02.07.02",
+            "title": "Quai de gare"
+        },
+        {
+            "const": "L02.08.00",
+            "title": "Autre type de lieu lié à la circulation ou au transport"
+        },
+        {
+            "const": "L03.00.00",
+            "title": "Local d’activité professionnelle"
+        },
+        {
+            "const": "L03.01.00",
+            "title": "Local administratif",
+            "description": "Ex : Bureau, back-office administratif d’un local commercial"
+        },
+        {
+            "const": "L03.02.00",
+            "title": "Local agricole"
+        },
+        {
+            "const": "L03.03.00",
+            "title": "Local artisanal",
+            "description": "Lieu d’activité professionnelle impliquant un nombre réduit de travailleurs manuels (ex : caractère familial)"
+        },
+        {
+            "const": "L03.04.00",
+            "title": "Local industriel",
+            "description": "Lieu d’activité professionnelle collective, équipement lourds"
+        },
+        {
+            "const": "L03.05.00",
+            "title": "Autre local d’activité professionnelle"
+        },
+        {
+            "const": "L04.00.00",
+            "title": "Lieu accueillant du public"
+        },
+        {
+            "const": "L04.01.00",
+            "title": "Espace public non couvert",
+            "description": "Ex : square, parc"
+        },
+        {
+            "const": "L04.02.00",
+            "title": "Centre commercial / magasin"
+        },
+        {
+            "const": "L04.02.01",
+            "title": "Boutique"
+        },
+        {
+            "const": "L04.02.02",
+            "title": "Grande surface"
+        },
+        {
+            "const": "L04.02.03",
+            "title": "Centre commercial"
+        },
+        {
+            "const": "L04.03.00",
+            "title": "Parc de stationnement ouvert au public"
+        },
+        {
+            "const": "L04.03.01",
+            "title": "Parking souterrain"
+        },
+        {
+            "const": "L04.03.02",
+            "title": "Parking couvert"
+        },
+        {
+            "const": "L04.03.03",
+            "title": "Parking aérien"
+        },
+        {
+            "const": "L04.04.00",
+            "title": "Lieu de culte"
+        },
+        {
+            "const": "L04.05.00",
+            "title": "Cimetière"
+        },
+        {
+            "const": "L04.06.00",
+            "title": "Espace évènementiel et/ou culturel"
+        },
+        {
+            "const": "L04.06.01",
+            "title": "Cinéma / théâtre / salle de concert"
+        },
+        {
+            "const": "L04.06.02",
+            "title": "Musée / monument touristique"
+        },
+        {
+            "const": "L04.06.03",
+            "title": "Parc des expositions"
+        },
+        {
+            "const": "L04.06.04",
+            "title": "Parc d’attractions / fête foraine"
+        },
+        {
+            "const": "L04.06.05",
+            "title": "Zoo"
+        },
+        {
+            "const": "L04.07.00",
+            "title": "Établissement de santé"
+        },
+        {
+            "const": "L04.07.01",
+            "title": "A l’intérieur",
+            "description": "Ex : enceinte d’un hôpital, clinique ou cure thermale"
+        },
+        {
+            "const": "L04.07.02",
+            "title": "A l’extérieur",
+            "description": "Ex : jardin, abords d’un hôpital, clinique ou cure thermale"
+        },
+        {
+            "const": "L04.07.03",
+            "title": "Lieu privatif de liberté dans l’établissement de santé",
+            "description": "Dont psychiatrie, unité hospitalière sécurisée interrégionale (UHSI)"
+        },
+        {
+            "const": "L04.08.00",
+            "title": "Local de profession de santé",
+            "description": "Dont centres et cabinets « individuels »"
+        },
+        {
+            "const": "L04.08.01",
+            "title": "Cabinet médical ou paramédical"
+        },
+        {
+            "const": "L04.08.02",
+            "title": "Pharmacie, laboratoire de biologie médicale (LBM)"
+        },
+        {
+            "const": "L04.09.00",
+            "title": "Établissement médico-social"
+        },
+        {
+            "const": "L04.09.01",
+            "title": "Établissement d’hébergement de personnes âgées et/ou dépendantes (EHPAD), résidence autonomie"
+        },
+        {
+            "const": "L04.09.02",
+            "title": "Etablissement pour personnes handicapées"
+        },
+        {
+            "const": "L04.10.00",
+            "title": "Lieu de soins provisoires, tente, PMA"
+        },
+        {
+            "const": "L04.11.00",
+            "title": "Enceinte sportive"
+        },
+        {
+            "const": "L04.11.01",
+            "title": "Stade"
+        },
+        {
+            "const": "L04.11.02",
+            "title": "Piscine, bassin",
+            "description": "Privée, enterrée ou non, fixe ou non"
+        },
+        {
+            "const": "L04.11.03",
+            "title": "Gymnase"
+        },
+        {
+            "const": "L04.11.04",
+            "title": "Circuit ou installation pour sport motorisé"
+        },
+        {
+            "const": "L04.12.00",
+            "title": "Hébergement touristique"
+        },
+        {
+            "const": "L04.12.01",
+            "title": "Hôtel"
+        },
+        {
+            "const": "L04.12.02",
+            "title": "Camping et hôtel de plein air"
+        },
+        {
+            "const": "L04.12.03",
+            "title": "Résidence / club de vacances"
+        },
+        {
+            "const": "L04.12.04",
+            "title": "Refuge de montagne"
+        },
+        {
+            "const": "L04.13.00",
+            "title": "Lieu d’enseignement"
+        },
+        {
+            "const": "L04.13.01",
+            "title": "Ecole maternelle et élémentaire"
+        },
+        {
+            "const": "L04.13.02",
+            "title": "Collège"
+        },
+        {
+            "const": "L04.13.03",
+            "title": "Lycée"
+        },
+        {
+            "const": "L04.13.04",
+            "title": "Université"
+        },
+        {
+            "const": "L04.14.00",
+            "title": "Lieu de restauration / bar"
+        },
+        {
+            "const": "L04.14.01",
+            "title": "Etablissement de nuit",
+            "description": "Ex : discothèque, club privé"
+        },
+        {
+            "const": "L04.14.02",
+            "title": "Bar / restaurant",
+            "description": "Dont bar dansant"
+        },
+        {
+            "const": "L04.15.00",
+            "title": "Crèche, garderie, centres de loisirs pour enfants"
+        },
+        {
+            "const": "L04.16.00",
+            "title": "Autre lieu accueillant du public"
+        },
+        {
+            "const": "L05.00.00",
+            "title": "Milieu naturel"
+        },
+        {
+            "const": "L05.01.00",
+            "title": "Plaine et campagne"
+        },
+        {
+            "const": "L05.01.01",
+            "title": "Champ",
+            "description": "Etendue cultivée pouvant présenter un risque d’incendie ou une difficulté d’accessibilité / visibilité (ex : champ de maïs ou autres plants de grande hauteur)"
+        },
+        {
+            "const": "L05.01.02",
+            "title": "Prairie",
+            "description": "Etendue non cultivée et découverte facile d’accès et offrant une bonne visibilité"
+        },
+        {
+            "const": "L05.01.03",
+            "title": "Milieu forestier, broussailles",
+            "description": "Etendue couverte d’arbres ou de broussailles et pouvant présenter un risque d’incendie ou une difficulté d’accessibilité / visibilité"
+        },
+        {
+            "const": "L05.01.04",
+            "title": "Haute forêt",
+            "description": "Etendue couverte d’arbres située en milieu montagneux et pouvant présenter un risque d’incendie ou une difficulté d’accessibilité / visibilité"
+        },
+        {
+            "const": "L05.02.00",
+            "title": "Espace montagneux ou vallonné"
+        },
+        {
+            "const": "L05.02.01",
+            "title": "Zone vallonnée",
+            "description": "Zone potentiellement difficile d’accès par voie carrossable"
+        },
+        {
+            "const": "L05.02.02",
+            "title": "Moyenne montagne – hors voies de circulation",
+            "description": "Zone potentiellement difficile d’accès par voie carrossable"
+        },
+        {
+            "const": "L05.02.03",
+            "title": "Haute montagne",
+            "description": "Zone potentiellement difficile d’accès par voie carrossable"
+        },
+        {
+            "const": "L05.02.04",
+            "title": "Domaine skiable",
+            "description": "Zone potentiellement difficile d’accès par voie carrossable"
+        },
+        {
+            "const": "L05.03.00",
+            "title": "Milieu aquatique en eau douce"
+        },
+        {
+            "const": "L05.03.01",
+            "title": "Cours d’eau : canal, rivière, fleuve"
+        },
+        {
+            "const": "L05.03.02",
+            "title": "Plan d’eau : étang, marais, lac"
+        },
+        {
+            "const": "L05.04.00",
+            "title": "Milieu maritime"
+        },
+        {
+            "const": "L05.04.01",
+            "title": "Littoral, plage, berge"
+        },
+        {
+            "const": "L05.04.02",
+            "title": "Zone de baignade"
+        },
+        {
+            "const": "L05.04.03",
+            "title": "Port, quai, embarcadère"
+        },
+        {
+            "const": "L05.04.04",
+            "title": "Eaux côtières"
+        },
+        {
+            "const": "L05.04.05",
+            "title": "Haute mer"
+        },
+        {
+            "const": "L05.04.06",
+            "title": "Falaise"
+        },
+        {
+            "const": "L05.05.00",
+            "title": "Milieu naturel souterrain"
+        },
+        {
+            "const": "L05.06.00",
+            "title": "Milieu naturel sous-marin"
+        },
+        {
+            "const": "L05.07.00",
+            "title": "Autre type de milieu naturel"
+        },
+        {
+            "const": "L06.00.00",
+            "title": "Zone ou site particulier"
+        },
+        {
+            "const": "L06.01.00",
+            "title": "Site industriel"
+        },
+        {
+            "const": "L06.01.01",
+            "title": "Site de stockage ou de production pétro-chimique"
+        },
+        {
+            "const": "L06.01.02",
+            "title": "Site de stockage ou de production d’explosifs"
+        },
+        {
+            "const": "L06.01.03",
+            "title": "Entrepôts de stockage"
+        },
+        {
+            "const": "L06.01.04",
+            "title": "Silo"
+        },
+        {
+            "const": "L06.01.05",
+            "title": "Site de stockage ou de production agro-alimentaire"
+        },
+        {
+            "const": "L06.01.06",
+            "title": "Déchets et traitement de déchets"
+        },
+        {
+            "const": "L06.01.07",
+            "title": "Laboratoire P3/P4",
+            "description": "> Agents pathogènes de classe 3 (P3) : pouvant générer une grave maladie humaine ou animale, non transmissible d’un individu à l’autre, et pour laquelle il existe un traitement et des mesures préventives efficaces. Risque élevé pour la personne, faible pour la collectivité.  \n> Agents pathogènes de classe 4 (P4) : pouvant générer une grave maladie humaine ou animale, transmissible par aérosols et sans vaccin protecteur ou traitement médical efficace. Risque élevé pour la personne et pour la collectivité."
+        },
+        {
+            "const": "L06.01.08",
+            "title": "Autre type de site industriel"
+        },
+        {
+            "const": "L06.02.00",
+            "title": "Site de production transport d'énergie",
+            "description": "Dont parc éolien, barrage, etc."
+        },
+        {
+            "const": "L06.03.00",
+            "title": "Site nucléaire"
+        },
+        {
+            "const": "L06.03.01",
+            "title": "Centrale nucléaire de production d’électricité"
+        },
+        {
+            "const": "L06.03.02",
+            "title": "Site de production de radio-éléments"
+        },
+        {
+            "const": "L06.03.03",
+            "title": "Site militaire"
+        },
+        {
+            "const": "L06.03.04",
+            "title": "Site stockant ou utilisant des sources nucléaires ou radiologiques",
+            "description": "Ex : équipements de santé nucléaire"
+        },
+        {
+            "const": "L06.03.05",
+            "title": "Site stockant des déchets nucléaires"
+        },
+        {
+            "const": "L06.04.00",
+            "title": "Établissement pénitentiaire, prison, maison d'arrêt, lieu de rétention"
+        },
+        {
+            "const": "L06.05.00",
+            "title": "Chantier"
+        },
+        {
+            "const": "L06.05.01",
+            "title": "Chantier de surface",
+            "description": "Chantier situé au niveau du sol ou en hauteur"
+        },
+        {
+            "const": "L06.05.02",
+            "title": "Chantier souterrain"
+        },
+        {
+            "const": "L06.06.00",
+            "title": "Administration publique"
+        },
+        {
+            "const": "L06.06.01",
+            "title": "Local de police, gendarmerie, pompiers"
+        },
+        {
+            "const": "L06.06.02",
+            "title": "Enceinte militaire",
+            "description": "Hors gendarmerie"
+        },
+        {
+            "const": "L06.06.03",
+            "title": "Justice",
+            "description": "Ex : tribunaux"
+        },
+        {
+            "const": "L06.06.04",
+            "title": "Autre bâtiment officiel d’État",
+            "description": "Préfecture, Ministère, ambassades, …"
+        },
+        {
+            "const": "L06.07.00",
+            "title": "Zone de rassemblement"
+        },
+        {
+            "const": "L06.07.01",
+            "title": "Zone de rassemblement festif",
+            "description": "Ex : teknival"
+        },
+        {
+            "const": "L06.07.02",
+            "title": "Autre zone de rassemblement"
+        },
+        {
+            "const": "L07.00.00",
+            "title": "Divers"
+        },
+        {
+            "const": "L07.01.00",
+            "title": "Autre lieu d'intervention"
+        },
+        {
+            "const": "L07.01.01",
+            "title": "Site sensible"
+        },
+        {
+            "const": "L07.02.00",
+            "title": "Lieu indéterminé"
+        }
+    ],
+    "description": "Décrit le type de lieu où se situe l'affaire/dossier"
+}

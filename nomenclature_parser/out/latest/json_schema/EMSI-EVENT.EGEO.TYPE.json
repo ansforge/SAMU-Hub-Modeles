@@ -1,0 +1,402 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "EMSI-EVENT.EGEO.TYPE",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "AIR",
+            "title": "Zone Aérienne",
+            "description": "Zone Aérienne"
+        },
+        {
+            "const": "CMB",
+            "title": "Zone de Combat",
+            "description": "Zone liée au combat"
+        },
+        {
+            "const": "DGR",
+            "title": "Zone Polluée/Dangereuse",
+            "description": "Zone polluée/dangereuse"
+        },
+        {
+            "const": "FLAME",
+            "title": "Zone en Combustion",
+            "description": "Zone en combustion"
+        },
+        {
+            "const": "GEN",
+            "title": "Zone à Usage Général",
+            "description": "Zone à usage général"
+        },
+        {
+            "const": "PLUME",
+            "title": "Panache de fumée",
+            "description": "Traînées d'émissions dangereuses d'un incident influencées par le vent et d'autres conditions météorologiques chargées de particules et autres polluants."
+        },
+        {
+            "const": "SMOKE",
+            "title": "Fumée",
+            "description": "Nuage de particules résultant d'une combustion suspendu dans un gaz chaud qui peut potentiellement affecter les personnes."
+        },
+        {
+            "const": "VULN",
+            "title": "Zone Vulnérable",
+            "description": "Zone où les gens seront à risque."
+        },
+        {
+            "const": "AIR/COR",
+            "title": "Couloir Aérien",
+            "description": "Un itinéraire aérien restreint."
+        },
+        {
+            "const": "AIR/FLDZ",
+            "title": "Zone d'Aérodrome",
+            "description": "Aucune définition fournie"
+        },
+        {
+            "const": "AIR/LZ",
+            "title": "Zone d'Atterrissage",
+            "description": "Espace aérien réservé spécifiquement pour les opérations d'atterrissage par voie aérienne."
+        },
+        {
+            "const": "AIR/NOFLZN",
+            "title": "Zone Sans Vol",
+            "description": "Espace aérien de dimensions spécifiques réservé pour un objectif précis dans lequel aucune opération aérienne n'est permise, sauf autorisation du commandant approprié et de l'agence de contrôle."
+        },
+        {
+            "const": "AIR/PZ",
+            "title": "Zone de récupération",
+            "description": "Une zone prévue pour récupérer des troupes et/ou du matériel par hélicoptère."
+        },
+        {
+            "const": "AIR/UAVASP",
+            "title": "Espace aérien pour véhicule aérien sans pilote",
+            "description": "Un espace créé spécifiquement pour les opérations de véhicules aériens sans pilote."
+        },
+        {
+            "const": "CMB/CZ",
+            "title": "Zone de combat",
+            "description": "Une zone créée spécifiquement pour les besoins des forces de combat."
+        },
+        {
+            "const": "CMB/DNGR",
+            "title": "Zone de danger",
+            "description": "Une zone avec des dimensions définies où des activités dangereuses peuvent se produire à des moments spécifiés."
+        },
+        {
+            "const": "CMB/EXTZN",
+            "title": "Zone d'extraction",
+            "description": "Une zone spécifiée utilisée pour la livraison de matériel et/ou de fournitures par un moyen d'extraction depuis un avion volant très près du sol."
+        },
+        {
+            "const": "CMB/IMPTPT",
+            "title": "Point d'impact",
+            "description": "Le point où un projectile, une bombe ou un véhicule rentrant frappe la terre."
+        },
+        {
+            "const": "DGR/BIO",
+            "title": "Zone contaminée biologiquement",
+            "description": "Une zone dans laquelle l'utilisation d'agents biologiques peut causer des victimes chez l'homme ou les animaux et endommager les plantes ou le matériel."
+        },
+        {
+            "const": "DGR/BOMB",
+            "title": "Zone de bombardement",
+            "description": "Pas de définition donnée."
+        },
+        {
+            "const": "DGR/CBRNHZ",
+            "title": "Zone de risque CBRN (Chimique, Biologique, Radiologique, Nucléaire)",
+            "description": "Le contour prédit ou confirmé de la zone de risque CBRN."
+        },
+        {
+            "const": "DGR/CBRNRSD",
+            "title": "Zone CBRN de lecture/détection",
+            "description": "Le point où une lecture, un échantillon ou une détection de CBRN est effectuée."
+        },
+        {
+            "const": "DGR/CHM",
+            "title": "Zone contaminée chimiquement",
+            "description": "Une zone où une libération accidentelle ou délibérée de produits chimiques nocifs peut causer des dommages aux humains ou aux animaux. Par exemple, l'incident de Seveso en Italie."
+        },
+        {
+            "const": "DGR/HZD",
+            "title": "Zone de danger",
+            "description": "La zone prévue où le personnel non protégé risque d'être affecté par la libération d'un matériau dangereux."
+        },
+        {
+            "const": "DGR/MIND",
+            "title": "Zone minée",
+            "description": "Pas de définition donnée."
+        },
+        {
+            "const": "DGR/NGA",
+            "title": "Zone sans accès",
+            "description": "Une zone qui n'est pas praticable."
+        },
+        {
+            "const": "DGR/NGACIV",
+            "title": "Zone sans accès civil, militaire",
+            "description": "Une zone où l'accès est déterminé par une autorité civile ou militaire."
+        },
+        {
+            "const": "DGR/NUKCNL",
+            "title": "Ligne de dose nucléaire",
+            "description": "Le contour dans lequel une dose de radiation nucléaire spécifiée est prévue ou confirmée."
+        },
+        {
+            "const": "DGR/OBSGEN",
+            "title": "Obstacle général",
+            "description": "Une mesure de contrôle utilisée pour indiquer la présence d'un obstacle potentiel."
+        },
+        {
+            "const": "DGR/PRHBAR",
+            "title": "Zone interdite",
+            "description": "Une zone avec des dimensions définies, souvent dans les eaux territoriales d'un État, où la présence est interdite."
+        },
+        {
+            "const": "DGR/RAD",
+            "title": "Zone radioactive",
+            "description": "Une zone où des matériaux radioactifs ou des dispositifs produisant des radiations sont utilisés pour causer des dommages ou restreindre l'utilisation du terrain."
+        },
+        {
+            "const": "DGR/RADCLD",
+            "title": "Contour de détection radiologique",
+            "description": "Le contour représentant un nuage radioactif."
+        },
+        {
+            "const": "DGR/RSTR",
+            "title": "Zone restreinte",
+            "description": "Une zone avec des dimensions définies, généralement au-dessus de la terre ou des eaux territoriales d'un État, où la présence est limitée conformément à certaines conditions spécifiées."
+        },
+        {
+            "const": "DGR/SGA",
+            "title": "Zone à circulation ralentie",
+            "description": "Une zone où la circulation est difficile."
+        },
+        {
+            "const": "DGR/SITKIL",
+            "title": "Site de prétendues tueries",
+            "description": "Un endroit où des allégations de tueries ont eu lieu."
+        },
+        {
+            "const": "DGR/UNXOD",
+            "title": "Zone d'engin explosif non explosé",
+            "description": "Un endroit où un engin explosif qui n'a pas explosé se trouve, posant ainsi un risque pour les opérations, les installations ou le personnel."
+        },
+        {
+            "const": "GEN/AOR",
+            "title": "Zone de responsabilité",
+            "description": "Un territoire ou une zone spécifiquement assignée à un commandant pour le développement, la maintenance, le contrôle des mouvements et la conduite des opérations."
+        },
+        {
+            "const": "GEN/ASYGEN",
+            "title": "Zone d'assemblage général",
+            "description": "Une zone où les troupes sont rassemblées avant une action."
+        },
+        {
+            "const": "GEN/ASYSPL",
+            "title": "Zone d'assemblage, fournitures",
+            "description": "Dans une installation de fournitures, la grande zone utilisée pour rassembler et combiner des composants en kits complets, unités ou assemblages."
+        },
+        {
+            "const": "GEN/BDYOR",
+            "title": "Frontière, organisation",
+            "description": "Une ligne délimitant des zones de surface (ou espace aérien) pour faciliter la coordination entre unités adjacentes."
+        },
+        {
+            "const": "GEN/BDYPOA",
+            "title": "Frontière, politique/administrative",
+            "description": "Une localisation qui délimite des zones où des responsabilités politiques ou administratives sont définies."
+        },
+        {
+            "const": "GEN/BDYPT",
+            "title": "Point de frontière",
+            "description": "Un point sur une frontière."
+        },
+        {
+            "const": "GEN/CKPGEN",
+            "title": "Point de contrôle",
+            "description": "Un emplacement sur la surface de la Terre utilisé pour contrôler le mouvement."
+        },
+        {
+            "const": "GEN/CNTPTL",
+            "title": "Point de contact, terrain",
+            "description": "Un point de localisation identifiable où deux ou plusieurs unités sont censées établir un contact."
+        },
+        {
+            "const": "GEN/COLDZ",
+            "title": "Zone de commandement",
+            "description": "La zone où le poste de commandement et les fonctions de support associées sont localisées."
+        },
+        {
+            "const": "GEN/COMCKP",
+            "title": "Point de communication",
+            "description": "Un point de commandement qui ordonne de faire rapport à la centrale de contrôle en cas d'incident."
+        },
+        {
+            "const": "GEN/COMLOW",
+            "title": "Site Seveso seuil supérieur",
+            "description": "COMAH (Directive Seveso) : indique un site où la totalité de la production et/ou du stockage de produits chimiques dangereux dépasse le seuil supérieur indiqué dans la directive."
+        },
+        {
+            "const": "GEN/COMMZ",
+            "title": "Zone de communication",
+            "description": "Une zone définissant la partie arrière du théâtre d'opérations (contiguë à la zone de combat) contenant les lignes de communication, les établissements pour les approvisionnements et les évacuations, et d'autres ressources nécessaires pour la prise en charge immédiate."
+        },
+        {
+            "const": "GEN/COMUP",
+            "title": "Site Seveso au-dessus du seuil supérieur",
+            "description": "COMAH (Directive Seveso) : indique un site où la quantité de production et/ou de stockage de produits chimiques dangereux excède le seuil supérieur indiqué par la directive."
+        },
+        {
+            "const": "GEN/CONTAR",
+            "title": "Zone contrôlée",
+            "description": "Une zone réglementée."
+        },
+        {
+            "const": "GEN/CORDON",
+            "title": "Cordon",
+            "description": "Peut être physique ou improvisé, par exemple, la zone de sauvetage ou une section. D'après le Manuel des Grands Incidents 7ème édition, publié en 2007 par le London Emergency Services Liaison Panel (LESLP), le terme \"cordon\" est utilisé pour décrire une zone restreinte autour d'un lieu d'incident sur le terrain. Les cordons peuvent être décrits comme Cordon interne, Cordon externe ou Cordon de circulation."
+        },
+        {
+            "const": "GEN/CRDPNT",
+            "title": "Point de coordination",
+            "description": "Point désigné à partir duquel des unités/formations adjacentes coordonnent leurs actions et leur contrôle."
+        },
+        {
+            "const": "GEN/DIVRT",
+            "title": "Diversion",
+            "description": "Itinéraire de diversion. Une alternative à un itinéraire posant problème. Également appelé détour."
+        },
+        {
+            "const": "GEN/DROPPT",
+            "title": "Point de départ",
+            "description": "Aucune définition donnée."
+        },
+        {
+            "const": "GEN/ENTPT",
+            "title": "Point d'entrée",
+            "description": "Un point désigné pour l'utilisation par des véhicules ou du personnel entrant dans une zone, lieu ou volume."
+        },
+        {
+            "const": "GEN/EVENT",
+            "title": "Zone d'événement",
+            "description": "La zone où se produit l'événement d'intérêt."
+        },
+        {
+            "const": "GEN/EXITPT",
+            "title": "Point de sortie",
+            "description": "Un point désigné pour l'utilisation par des véhicules ou du personnel quittant une zone, lieu ou volume."
+        },
+        {
+            "const": "GEN/FWCTPT",
+            "title": "Point de commande avant",
+            "description": "Terme utilisé pour décrire le point de commande le plus avancé lors d'un incident. Également appelé Commande Avancée."
+        },
+        {
+            "const": "GEN/HOTZ",
+            "title": "Zone chaude",
+            "description": "Zone immédiatement entourant une libération de matières dangereuses qui écarte suffisamment pour éviter des effets néfastes."
+        },
+        {
+            "const": "GEN/INCGRD",
+            "title": "Lieu d'incident au sol",
+            "description": "Emplacement de l'incident d'urgence. Également connu sous le nom de Théâtre ou Scène d'Opérations."
+        },
+        {
+            "const": "GEN/LA",
+            "title": "Zone d'atterrissage",
+            "description": "Partie de l'objectif où se déroule l'opération d'atterrissage, qu'il s'agisse d'une opération amphibie ou aérienne."
+        },
+        {
+            "const": "GEN/LIMARE",
+            "title": "Accès limité",
+            "description": "Une indication pour montrer où le personnel ou l'équipement ne peuvent pas accéder."
+        },
+        {
+            "const": "GEN/LOCAT",
+            "title": "Lieu d'incident",
+            "description": "Lieu d'un incident d'urgence. Ce lieu peut être identifié par une adresse complète et, si possible, une référence spatiale. Exemple : Rue et numéro, ville, district, code postal."
+        },
+        {
+            "const": "GEN/MSR",
+            "title": "Itinéraire d'approvisionnement",
+            "description": "L'itinéraire ou les itinéraires désignés couvrant une zone d'opérations où la majorité du trafic se déplace pour soutenir les opérations."
+        },
+        {
+            "const": "GEN/PSSGPT",
+            "title": "Point de passage",
+            "description": "Un lieu spécifiquement désigné par lequel les unités passeront les unes après les autres, que ce soit en avance ou en retrait."
+        },
+        {
+            "const": "GEN/PTINT",
+            "title": "Point d'intérêt",
+            "description": "Aucune définition donnée."
+        },
+        {
+            "const": "GEN/RCNSAR",
+            "title": "Point de reconnaissance",
+            "description": "Aucune définition donnée."
+        },
+        {
+            "const": "GEN/RNDZPT",
+            "title": "Route",
+            "description": "Un emplacement prédéterminé établi par une pré-planification ou défini dynamiquement pendant l'urgence."
+        },
+        {
+            "const": "GEN/ROUTE",
+            "title": "Itinéraire sécurisé",
+            "description": "Une localisation linéaire qui prescrit le parcours à suivre d'un point d'origine spécifique à une destination spécifique."
+        },
+        {
+            "const": "GEN/SAFERT",
+            "title": "Zone sécurisée",
+            "description": "Itinéraire jugé sûr pour garantir un accès et une sortie sûrs depuis et vers un lieu spécifique."
+        },
+        {
+            "const": "GEN/SAFZ",
+            "title": "Zone de sécurité",
+            "description": "Aucune définition donnée."
+        },
+        {
+            "const": "GEN/SARPNT",
+            "title": "Point de recherche et sauvetage",
+            "description": "Un point de référence utilisé lors des opérations de recherche et de sauvetage."
+        },
+        {
+            "const": "GEN/SEARAR",
+            "title": "Zone de recherche",
+            "description": "Une zone à examiner minutieusement pour localiser quelque chose, y compris des personnes et/ou des équipements."
+        },
+        {
+            "const": "GEN/SPRISK",
+            "title": "Zone à risque spécifique",
+            "description": "Le terme pour indiquer que l'intervenant d'urgence devrait être conscient des considérations spécifiques en matière de risque pour un domaine précis."
+        },
+        {
+            "const": "GEN/STRTPT",
+            "title": "Point de départ",
+            "description": "Un point bien défini sur un itinéraire auquel le mouvement des véhicules commence à être sous le contrôle du commandant."
+        },
+        {
+            "const": "GEN/SUPARE",
+            "title": "Zone d'approvisionnement",
+            "description": "Une zone où des unités d'approvisionnement, des dépôts et des décharges peuvent être situés."
+        },
+        {
+            "const": "GEN/SUPPT",
+            "title": "Point d'approvisionnement",
+            "description": "Tout point spécifique où les fournitures sont délivrées en détail."
+        },
+        {
+            "const": "GEN/TRSTRT",
+            "title": "Itinéraire de transit",
+            "description": "Un couloir temporaire de dimensions définies."
+        },
+        {
+            "const": "GEN/WARMZ",
+            "title": "Zone tiède",
+            "description": "La zone où la décontamination du personnel et de l'équipement et le soutien de la zone chaude ont lieu."
+        }
+    ]
+}

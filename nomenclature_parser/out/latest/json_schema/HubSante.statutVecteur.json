@@ -1,0 +1,98 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.statutVecteur",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "DECISION",
+            "title": "Décision",
+            "description": "00-DECISION"
+        },
+        {
+            "const": "DECLENCHE",
+            "title": "Déclenché",
+            "description": "Déclenchement de l’intervention selon le dispositif habituel prévu"
+        },
+        {
+            "const": "DEPART",
+            "title": "Début d’intervention",
+            "description": "01-PARTI"
+        },
+        {
+            "const": "ANNULE",
+            "title": "Annulation  de l’intervention",
+            "description": "Annulation d'une mission déjà engagée avant arrivée sur les lieux"
+        },
+        {
+            "const": "ARRIVEE",
+            "title": "Arrivée sur les lieux",
+            "description": "02-SLL"
+        },
+        {
+            "const": "PEC",
+            "title": "Début de prise en charge",
+            "description": "Arrivée auprès du patient/victime d'au moins un membre de l'équipe d'intervention et début de prise en charge"
+        },
+        {
+            "const": "BILAN",
+            "title": "Transmission du bilan",
+            "description": "03-MESSAGE"
+        },
+        {
+            "const": "ORIENTAT",
+            "title": "Transmission de la destination",
+            "description": "L’orientation du patient/victime est transmise à l’équipe d'intervention"
+        },
+        {
+            "const": "TRANSP",
+            "title": "Départ des lieux",
+            "description": "05-TRANSPORT"
+        },
+        {
+            "const": "ETAPE1",
+            "title": "Etape de transit 1",
+            "description": "Arrivée à la première étape du moyen de transport avec le patient en charge dans le cas d’un transit notamment vers un lieu d’examen ou d’imagerie"
+        },
+        {
+            "const": "TRANSP2",
+            "title": "Départ étape 1",
+            "description": "Départ de la première étape du moyen de transport, en charge du patient/victime"
+        },
+        {
+            "const": "ETAPE2",
+            "title": "Etape de transit 2",
+            "description": "Arrivée à la deuxième étape du moyen de transport avec le patient/victime en charge dans le cas d’un transit notamment vers un lieu d’examen ou d’imagerie"
+        },
+        {
+            "const": "TRANSP3",
+            "title": "Départ étape 2",
+            "description": "Départ de la deuxième étape du moyen de transport, en charge du patient/victime"
+        },
+        {
+            "const": "DESTIN",
+            "title": "Arrivée à destination",
+            "description": "06-DESTIN"
+        },
+        {
+            "const": "FINPEC",
+            "title": "Fin de prise en charge",
+            "description": "24-FIN MED"
+        },
+        {
+            "const": "RETOUR",
+            "title": "Quitte la destination",
+            "description": "25-QTTE HOP"
+        },
+        {
+            "const": "RET-BASE",
+            "title": "Retour à la base",
+            "description": "L'équipe et en route vers sa base"
+        },
+        {
+            "const": "REN-BASE",
+            "title": "Rentrée à la base",
+            "description": "L’équipe est de retour à sa base"
+        }
+    ],
+    "description": "Décrit le statut du vecteur/véhicule mobilisé"
+}

@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.objetSource",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "MANUEL",
+            "title": "MANUEL"
+        },
+        {
+            "const": "CARTE",
+            "title": "CARTE"
+        },
+        {
+            "const": "AUTRE",
+            "title": "AUTRE"
+        },
+        {
+            "const": "PHOTO",
+            "title": "PHOTO"
+        },
+        {
+            "const": "SITE_INTERNET",
+            "title": "SITE_INTERNET"
+        }
+    ],
+    "description": "Décrit le type d'objet dans le système"
+}

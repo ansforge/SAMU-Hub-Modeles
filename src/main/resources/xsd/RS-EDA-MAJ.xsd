@@ -23,18 +23,10 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
 </documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="perimeter">
+            <element minOccurs="0" name="perimeter" type="string">
                 <annotation>
                     <documentation>Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée.</documentation>
                 </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="AMU"/>
-                        <enumeration value="NEONAT"/>
-                        <enumeration value="PSY"/>
-                        <enumeration value="SNP"/>
-                    </restriction>
-                </simpleType>
             </element>
             <element minOccurs="0" name="qualification" type="x:qualification"/>
             <element minOccurs="0" name="location" type="x:location"/>

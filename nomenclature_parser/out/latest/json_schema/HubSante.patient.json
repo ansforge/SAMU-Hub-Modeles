@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.patient",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "NOURRISSON",
+            "title": "NOURRISSON"
+        },
+        {
+            "const": "ENFANT",
+            "title": "ENFANT"
+        },
+        {
+            "const": "ADULTE",
+            "title": "ADULTE"
+        },
+        {
+            "const": "SENIOR",
+            "title": "SENIOR"
+        },
+        {
+            "const": "ENCEINTE",
+            "title": "ENCEINTE"
+        }
+    ],
+    "description": "Décrit le type de patient/victime principal"
+}

@@ -1,0 +1,103 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.origine",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "15",
+            "title": "Ligne 15",
+            "description": "Le requérant a contacté directement le CRRA en composant le 15."
+        },
+        {
+            "const": "116117",
+            "title": "Ligne PDSA",
+            "description": "Le requérant a contacté directement le CRRA en composant le numéro d’une ligne PDSA (116117 et autres lignes encore fonctionnelles)"
+        },
+        {
+            "const": "AUTOCOM",
+            "title": "Ligne hôpital",
+            "description": "Le requérant a contacté directement le CRRA en composant un numéro interne de l’établissement de santé siège du Samu Centre 15."
+        },
+        {
+            "const": "112",
+            "title": "Ligne 112",
+            "description": "Le requérant a contacté directement le CRRA en composant le numéro 112"
+        },
+        {
+            "const": "115",
+            "title": "Ligne 115",
+            "description": "Le requérant a contacté directement le CRRA en composant le numéro 115"
+        },
+        {
+            "const": "CRRA",
+            "title": "CRRA (autres lignes)",
+            "description": "Le requérant a contacté directement le CRRA en composant un autre numéro pour contacter le Samu – Centre 15."
+        },
+        {
+            "const": "AUTREC15",
+            "title": "Autre CRRA",
+            "description": "Le requérant a contacté en premier un autre Samu Centre 15 qui a retransmis l’appel au CRRA"
+        },
+        {
+            "const": "CTA-CONF",
+            "title": "CTA-CODIS en conf",
+            "description": "Le requérant a contacté en premier le ou les CTA CODIS correspondant(s) habituel(s) du Samu qui a retransmis l’appel au CRRA ; appel avec mise en interconnexion par conférence."
+        },
+        {
+            "const": "CTA-PI",
+            "title": "CTA-CODIS pour info",
+            "description": "Le requérant a contacté en premier le ou les CTA CODIS correspondant(s) habituel(s) du Samu qui a retransmis l’appel au CRRA ; appel avec simple information."
+        },
+        {
+            "const": "AUTRECTA",
+            "title": "Autre CTA-CODIS",
+            "description": "Le requérant a contacté en premier un CTA CODIS distant qui n’est pas un correspondant habituel du Samu qui a retransmis l’appel au CRRA."
+        },
+        {
+            "const": "CNR",
+            "title": "CNR 114",
+            "description": "Le requérant a contacté en premier le centre national relais pour les sourds et malentendants qui a retransmis l’appel au CRRA."
+        },
+        {
+            "const": "FDO",
+            "title": "CORG, CIC",
+            "description": "Le requérant a contacté en premier un standard de forces de l’ordre (police, gendarmerie, …) qui a retransmis l’appel au CRRA."
+        },
+        {
+            "const": "SNATED",
+            "title": "Ligne 119 (SNATED)",
+            "description": "Le requérant a contacté en premier le standard de la protection de l’enfance qui a retransmis l’appel au CRRA."
+        },
+        {
+            "const": "PDSSOS",
+            "title": "Asso PDSA et SOS",
+            "description": "Le requérant a contacté en premier un standard d’une association de PDSA, type SOS médecins ou autres qui a retransmis l’appel au CRRA."
+        },
+        {
+            "const": "TELASSIST",
+            "title": "Téléassistance",
+            "description": "Le requérant a contacté en premier une structure de télésurveillance ou d’assistance médicale qui a retransmis l’appel au CRRA."
+        },
+        {
+            "const": "CROSS",
+            "title": "CROSS",
+            "description": "Le requérant a contacté en premier une structure publique d’urgence type CROSS maritime qui a retransmis l’appel au CRRA."
+        },
+        {
+            "const": "PUBLIC",
+            "title": "Autre centre d'appel",
+            "description": "Le requérant a contacté en premier une structure publique d’urgence type associations ne participant pas à la PDSA, … qui a retransmis l’appel au CRRA."
+        },
+        {
+            "const": "DATA",
+            "title": "Flux Data ECall",
+            "description": "L’appel est arrivé au CRRA via un flux de données(flux e-call : système d'appel d'urgence automatique)"
+        },
+        {
+            "const": "AUTRE",
+            "title": "Autre structure",
+            "description": "Si le central d’appel d’urgence est déterminé mais ne fait pas partie des choix précédents ou lorsque l’information n’est pas disponible."
+        }
+    ],
+    "description": "Décrit l'origine de l'appel"
+}

@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.filiere",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "AMU",
+            "title": "Aide Médicale d'Urgence",
+            "description": "Filière dédiée à l'aide médicale d'urgence"
+        },
+        {
+            "const": "NEONAT",
+            "title": "Néonatalité",
+            "description": "Filière dédiée à la néonatalité"
+        },
+        {
+            "const": "PSY",
+            "title": "Psychiatrie",
+            "description": "Filière dédiée à la psychiatrie"
+        },
+        {
+            "const": "SNP",
+            "title": "Soins Non Programmés",
+            "description": "Filière dédiée aux soins non programmés"
+        }
+    ],
+    "description": "Décrit la filière compétente pour traiter le dossier."
+}

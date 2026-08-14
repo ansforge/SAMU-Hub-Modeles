@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "EMSI-CONTEXT.SECLASS",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "CONFID",
+            "title": "Confidentiel"
+        },
+        {
+            "const": "CONFID",
+            "title": "Restreint",
+            "description": "CODE MAUVAIS  ERREUR DANS EMSI"
+        },
+        {
+            "const": "SECRET",
+            "title": "Secret"
+        },
+        {
+            "const": "TOPSRT",
+            "title": "très secret"
+        },
+        {
+            "const": "UNCLAS",
+            "title": "Non classifié"
+        },
+        {
+            "const": "UNMARK",
+            "title": "non marqué"
+        }
+    ]
+}

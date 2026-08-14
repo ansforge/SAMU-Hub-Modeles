@@ -1,0 +1,246 @@
+[
+  {
+    "label": "EMSI-CONTEXT.LEVEL",
+    "schemaName": "EMSI-CONTEXT.LEVEL.json"
+  },
+  {
+    "label": "EMSI-CONTEXT.LINK_ROLE",
+    "schemaName": "EMSI-CONTEXT.LINK_ROLE.json"
+  },
+  {
+    "label": "EMSI-CONTEXT.MODE",
+    "schemaName": "EMSI-CONTEXT.MODE.json"
+  },
+  {
+    "label": "EMSI-CONTEXT.MSGTYPE",
+    "schemaName": "EMSI-CONTEXT.MSGTYPE.json"
+  },
+  {
+    "label": "EMSI-CONTEXT.SECLASS",
+    "schemaName": "EMSI-CONTEXT.SECLASS.json"
+  },
+  {
+    "label": "EMSI-EVENT.CAUSE",
+    "schemaName": "EMSI-EVENT.CAUSE.json"
+  },
+  {
+    "label": "EMSI-EVENT.EGEO.TYPE",
+    "schemaName": "EMSI-EVENT.EGEO.TYPE.json"
+  },
+  {
+    "label": "EMSI-EVENT.EGEO.WEATHER",
+    "schemaName": "EMSI-EVENT.EGEO.WEATHER.json"
+  },
+  {
+    "label": "EMSI-EVENT.ETYPE.ACTOR",
+    "schemaName": "EMSI-EVENT.ETYPE.ACTOR.json"
+  },
+  {
+    "label": "EMSI-EVENT.ETYPE.CATEGORY",
+    "schemaName": "EMSI-EVENT.ETYPE.CATEGORY.json"
+  },
+  {
+    "label": "EMSI-EVENT.ETYPE.ENV",
+    "schemaName": "EMSI-EVENT.ETYPE.ENV.json"
+  },
+  {
+    "label": "EMSI-EVENT.ETYPE.LOCTYPE",
+    "schemaName": "EMSI-EVENT.ETYPE.LOCTYPE.json"
+  },
+  {
+    "label": "EMSI-EVENT.POSITION.TYPE",
+    "schemaName": "EMSI-EVENT.POSITION.TYPE.json"
+  },
+  {
+    "label": "EMSI-EVENT.RISK_ASSESSMNT",
+    "schemaName": "EMSI-EVENT.RISK_ASSESSMNT.json"
+  },
+  {
+    "label": "EMSI-EVENT.SCALE",
+    "schemaName": "EMSI-EVENT.SCALE.json"
+  },
+  {
+    "label": "EMSI-EVENT.SOURCE",
+    "schemaName": "EMSI-EVENT.SOURCE.json"
+  },
+  {
+    "label": "EMSI-EVENT.STATUS",
+    "schemaName": "EMSI-EVENT.STATUS.json"
+  },
+  {
+    "label": "EMSI-MISSION.TYPE",
+    "schemaName": "EMSI-MISSION.TYPE.json"
+  },
+  {
+    "label": "EMSI-RESOURCE.RTYPE.CAPABILITY",
+    "schemaName": "EMSI-RESOURCE.RTYPE.CAPABILITY.json"
+  },
+  {
+    "label": "EMSI-RESOURCE.RTYPE.CLASS",
+    "schemaName": "EMSI-RESOURCE.RTYPE.CLASS.json"
+  },
+  {
+    "label": "EMSI-RESOURCE.UM",
+    "schemaName": "EMSI-RESOURCE.UM.json"
+  },
+  {
+    "label": "EMSI-RGEO.POSITION.TYPE",
+    "schemaName": "EMSI-RGEO.POSITION.TYPE.json"
+  },
+  {
+    "label": "HubSante.attribution",
+    "schemaName": "HubSante.attribution.json"
+  },
+  {
+    "label": "HubSante.cadre",
+    "schemaName": "HubSante.cadre.json"
+  },
+  {
+    "label": "HubSante.canal",
+    "schemaName": "HubSante.canal.json"
+  },
+  {
+    "label": "HubSante.communication",
+    "schemaName": "HubSante.communication.json"
+  },
+  {
+    "label": "HubSante.delai",
+    "schemaName": "HubSante.delai.json"
+  },
+  {
+    "label": "HubSante.effet",
+    "schemaName": "HubSante.effet.json"
+  },
+  {
+    "label": "HubSante.etape",
+    "schemaName": "HubSante.etape.json"
+  },
+  {
+    "label": "HubSante.etat",
+    "schemaName": "HubSante.etat.json"
+  },
+  {
+    "label": "HubSante.etatDemande",
+    "schemaName": "HubSante.etatDemande.json"
+  },
+  {
+    "label": "HubSante.fait",
+    "schemaName": "HubSante.fait.json"
+  },
+  {
+    "label": "HubSante.filiere",
+    "schemaName": "HubSante.filiere.json"
+  },
+  {
+    "label": "HubSante.idLieu",
+    "schemaName": "HubSante.idLieu.json"
+  },
+  {
+    "label": "HubSante.intervention",
+    "schemaName": "HubSante.intervention.json"
+  },
+  {
+    "label": "HubSante.langue",
+    "schemaName": "HubSante.langue.json"
+  },
+  {
+    "label": "HubSante.lieu",
+    "schemaName": "HubSante.lieu.json"
+  },
+  {
+    "label": "HubSante.motif",
+    "schemaName": "HubSante.motif.json"
+  },
+  {
+    "label": "HubSante.nbVictimes",
+    "schemaName": "HubSante.nbVictimes.json"
+  },
+  {
+    "label": "HubSante.niveauSoin",
+    "schemaName": "HubSante.niveauSoin.json"
+  },
+  {
+    "label": "HubSante.objetSource",
+    "schemaName": "HubSante.objetSource.json"
+  },
+  {
+    "label": "HubSante.origine",
+    "schemaName": "HubSante.origine.json"
+  },
+  {
+    "label": "HubSante.patient",
+    "schemaName": "HubSante.patient.json"
+  },
+  {
+    "label": "HubSante.precision",
+    "schemaName": "HubSante.precision.json"
+  },
+  {
+    "label": "HubSante.priorite",
+    "schemaName": "HubSante.priorite.json"
+  },
+  {
+    "label": "HubSante.reponseDemande",
+    "schemaName": "HubSante.reponseDemande.json"
+  },
+  {
+    "label": "HubSante.risque",
+    "schemaName": "HubSante.risque.json"
+  },
+  {
+    "label": "HubSante.role",
+    "schemaName": "HubSante.role.json"
+  },
+  {
+    "label": "HubSante.sexe",
+    "schemaName": "HubSante.sexe.json"
+  },
+  {
+    "label": "HubSante.signalement",
+    "schemaName": "HubSante.signalement.json"
+  },
+  {
+    "label": "HubSante.statutVecteur",
+    "schemaName": "HubSante.statutVecteur.json"
+  },
+  {
+    "label": "HubSante.systeme",
+    "schemaName": "HubSante.systeme.json"
+  },
+  {
+    "label": "HubSante.typeAppelant",
+    "schemaName": "HubSante.typeAppelant.json"
+  },
+  {
+    "label": "HubSante.typeCom",
+    "schemaName": "HubSante.typeCom.json"
+  },
+  {
+    "label": "HubSante.typeDecision",
+    "schemaName": "HubSante.typeDecision.json"
+  },
+  {
+    "label": "HubSante.typeIdPatient",
+    "schemaName": "HubSante.typeIdPatient.json"
+  },
+  {
+    "label": "HubSante.typeOrientation",
+    "schemaName": "HubSante.typeOrientation.json"
+  },
+  {
+    "label": "HubSante.typePEC",
+    "schemaName": "HubSante.typePEC.json"
+  },
+  {
+    "label": "HubSante.typeRessource",
+    "schemaName": "HubSante.typeRessource.json"
+  },
+  {
+    "label": "HubSante.typeVecteur",
+    "schemaName": "HubSante.typeVecteur.json"
+  },
+  {
+    "label": "ISO 3166-ISO3166-2",
+    "schemaName": "ISO 3166-ISO3166-2.json"
+  }
+]

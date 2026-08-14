@@ -1,0 +1,240 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.motif",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "M01.00",
+            "title": "Détresse vitale"
+        },
+        {
+            "const": "M01.01",
+            "title": "Suspicion d’arrêt cardiaque, mort subite"
+        },
+        {
+            "const": "M01.02",
+            "title": "Altération de la conscience",
+            "description": "Dont inconscient, coma"
+        },
+        {
+            "const": "M01.03",
+            "title": "Détresse respiratoire",
+            "description": "Difficulté pour parler, s’étouffe, sueur, étouffement, fausse route"
+        },
+        {
+            "const": "M02.00",
+            "title": "Blessure"
+        },
+        {
+            "const": "M02.01",
+            "title": "Saignements",
+            "description": "Ex : Epistaxis (saignements du nez), hémoptysie (rejet de sang par la bouche)"
+        },
+        {
+            "const": "M02.02",
+            "title": "Hémorragie sévère liée à un traumatisme",
+            "description": "Plaie vasculaire externe ou extériorisée / Persistance malgré compression"
+        },
+        {
+            "const": "M02.03",
+            "title": "Hypothermie, gelure, coup de chaleur, insolation"
+        },
+        {
+            "const": "M02.04",
+            "title": "Brûlure grave",
+            "description": "Brûlure grave si localisation cervico-faciale et supérieure au 1er degré\nBrûlure de 3e degré : La peau peut être cartonnée, blanche ou noire, insensible à la douleur"
+        },
+        {
+            "const": "M02.05",
+            "title": "Brûlure sans critère de gravité",
+            "description": "> Brûlure de 1er degré : La peau est rouge mais physiquement intacte (ni cloques ni arrachement)\n> Brûlure superficielle ou profonde de 2e degré : Présence de cloques remplies ou percées entourées d’une zone rouge."
+        },
+        {
+            "const": "M02.06",
+            "title": "Traumatisme bénin, petite plaie, lésion bénigne"
+        },
+        {
+            "const": "M02.07",
+            "title": "Traumatisme sérieux, plaie intermédiaire"
+        },
+        {
+            "const": "M02.08",
+            "title": "Traumatisme grave, plaie délabrante"
+        },
+        {
+            "const": "M02.09",
+            "title": "Section complète de membre, de doigts"
+        },
+        {
+            "const": "M02.10",
+            "title": "Ecrasement de membre ou du tronc"
+        },
+        {
+            "const": "M03.00",
+            "title": "Problème médical"
+        },
+        {
+            "const": "M03.01",
+            "title": "Accouchement imminent ou en cours",
+            "description": "Dont accouchement réalisé"
+        },
+        {
+            "const": "M03.02",
+            "title": "Autre problème obstétrique non hémorragique",
+            "description": "Yc. 1er trimestre de grossesse"
+        },
+        {
+            "const": "M03.03",
+            "title": "Saignements gynécologiques"
+        },
+        {
+            "const": "M03.04",
+            "title": "Saignements obstétricaux"
+        },
+        {
+            "const": "M03.05",
+            "title": "Problème gynécologique et uro-génital"
+        },
+        {
+            "const": "M03.06",
+            "title": "Douleur thoracique"
+        },
+        {
+            "const": "M03.07",
+            "title": "Problème neurologique hors AVC, épilepsie",
+            "description": "Dont convulsions persistantes\nAVC : accident vasculaire-cérébral"
+        },
+        {
+            "const": "M03.08",
+            "title": "Signes d’AVC",
+            "description": "Absent des référentiels actuels mais maintenu au vu de la hausse des cas constatés"
+        },
+        {
+            "const": "M03.09",
+            "title": "Malaise sans perte de connaissance initiale"
+        },
+        {
+            "const": "M03.10",
+            "title": "Malaise avec perte de connaissance initiale",
+            "description": "Dont syncope"
+        },
+        {
+            "const": "M03.11",
+            "title": "Céphalée, migraines"
+        },
+        {
+            "const": "M03.12",
+            "title": "Gêne respiratoire",
+            "description": "Corps étranger dans les voies aériennes, dyspnée, toux, asthme"
+        },
+        {
+            "const": "M03.13",
+            "title": "Autre problème cardio-vasculaire",
+            "description": "Ex : palpitations, hypertension, HTA (hyper tension artérielle)"
+        },
+        {
+            "const": "M03.14",
+            "title": "Fièvre, problème infectieux"
+        },
+        {
+            "const": "M03.15",
+            "title": "Problème allergique",
+            "description": "En cas de problème allergique, si signe prédominant grave, ce dernier est à privilégier (ex : en cas d’oedeme, privilégier détresse respiratoire plutôt que problème allergique)"
+        },
+        {
+            "const": "M03.16",
+            "title": "Problème psychiatrique",
+            "description": "Dont personne dépressive suicidaire"
+        },
+        {
+            "const": "M03.17",
+            "title": "Agitation, anxiété, spasmophilie"
+        },
+        {
+            "const": "M03.18",
+            "title": "Saignements",
+            "description": "Ex : Epistaxis (saignements du nez), hémoptysie (rejet de sang par la bouche)"
+        },
+        {
+            "const": "M03.19",
+            "title": "Hémorragie sévère",
+            "description": "Hématémèse (vomissement de sang), plaie vasculaire externe ou extériorisée / Persistance malgré compression"
+        },
+        {
+            "const": "M03.20",
+            "title": "Douleur abdominale isolée"
+        },
+        {
+            "const": "M03.21",
+            "title": "Trouble digestif",
+            "description": "Ex : Constipation, diarrhée, vomissement"
+        },
+        {
+            "const": "M03.22",
+            "title": "Autre douleur"
+        },
+        {
+            "const": "M04.00",
+            "title": "Intoxications"
+        },
+        {
+            "const": "M04.01",
+            "title": "Intoxication volontaire et sevrage",
+            "description": "Médicament, gaz, produit chimique, état de manque, toxicomanie"
+        },
+        {
+            "const": "M04.02",
+            "title": "Intoxication involontaire ou accidentelle à des produits toxiques"
+        },
+        {
+            "const": "M04.03",
+            "title": "Ébriété, ivresse"
+        },
+        {
+            "const": "M04.04",
+            "title": "Intoxication éthylique aiguë",
+            "description": "Intoxication éthylique aïgue issue de l’instruction DGOS/R2/DGSCGC/2016/399 du 30/11/16"
+        },
+        {
+            "const": "M05.00",
+            "title": "Problème ou détresse sociale"
+        },
+        {
+            "const": "M05.01",
+            "title": "Problème social ou sanitaire"
+        },
+        {
+            "const": "M05.02",
+            "title": "Altération de l’état général – misère physiologique et incurie",
+            "description": "Incurie : négligence extrême"
+        },
+        {
+            "const": "M06.00",
+            "title": "Autre type de demande"
+        },
+        {
+            "const": "M06.01",
+            "title": "Décès certain, demande de certificat de décès"
+        },
+        {
+            "const": "M06.02",
+            "title": "Demande de conseil médical, certificats - ordonnance"
+        },
+        {
+            "const": "M06.03",
+            "title": "Personne restant à terre suite à une chute",
+            "description": "Relevage"
+        },
+        {
+            "const": "M06.04",
+            "title": "Autres motifs ou pas de motif identifié",
+            "description": "Dont demande de transfert, de retour au domicile, de transport pour greffe ou transplantation, pour obésité avec nécessité de recours à des moyens bariatriques"
+        },
+        {
+            "const": "M07.00",
+            "title": "Non renseigné",
+            "description": "Valeur par défaut"
+        }
+    ],
+    "description": "Décrit le motif de recours médico-secouriste."
+}

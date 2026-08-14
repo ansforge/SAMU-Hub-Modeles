@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.typeCom",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "EMAIL",
+            "title": "EMAIL"
+        },
+        {
+            "const": "FAX",
+            "title": "FAX"
+        },
+        {
+            "const": "MSS",
+            "title": "MSS"
+        },
+        {
+            "const": "POSTAL",
+            "title": "POSTAL"
+        },
+        {
+            "const": "RADIO",
+            "title": "RADIO"
+        },
+        {
+            "const": "TEL",
+            "title": "TEL"
+        },
+        {
+            "const": "WEB",
+            "title": "WEB"
+        }
+    ],
+    "description": "Décrit le type de contact"
+}

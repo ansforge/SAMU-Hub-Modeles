@@ -1,0 +1,150 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.typeAppelant",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "SUJET",
+            "title": "Le patient lui-même",
+            "description": "Le patient lui-même, victime de l’événement signalé et bénéficiaire des moyens qui pourraient être décidés même s’il a une des fonctions ou titres ci-dessous."
+        },
+        {
+            "const": "FAMILLE",
+            "title": "Famille ou proche du patient",
+            "description": "Requérant qui se présente comme membre de la famille ou proche (concubin, compagnon, colocataire, ...) de la victime de l’événement signalé même s’il a un des titres ou une des fonctions ci-dessous."
+        },
+        {
+            "const": "TIERS",
+            "title": "Autre particulier ou passant",
+            "description": "Particulier qui n’a pas une des fonctions ou titres ci-dessous et qui ne fait pas partie de la famille de la victime."
+        },
+        {
+            "const": "POMPIER",
+            "title": "Pompier",
+            "description": "Le requérant est un pompier professionnel ou volontaire en activité et agissant dans le cadre de sa profession au moment de l’appel."
+        },
+        {
+            "const": "AMBULANC",
+            "title": "Ambulancier",
+            "description": "Le requérant est un ambulancier agissant dans le cadre de sa profession au moment de l’appel."
+        },
+        {
+            "const": "AMBULANC.AASC",
+            "title": "Secouriste aasc",
+            "description": "Pour tout secouriste actif d'une association aggrée de sécurité civile et n’est pas un professionnel de santé."
+        },
+        {
+            "const": "AMBULANC.AUTRESEC",
+            "title": "Autre secouriste",
+            "description": "Secouriste du travail ou requerant qui se revendique secouriste"
+        },
+        {
+            "const": "SECOUR",
+            "title": "Secouriste actif",
+            "description": "Pour tout secouriste actif ( secouriste du travail ou agissant pour une association de secourisme) mais uniquement s’il est en activité et n’est pas un professionnel de santé."
+        },
+        {
+            "const": "MED",
+            "title": "Médecin",
+            "description": "Regroupe les médecins de toute spécialité, de tout statut mais uniquement s’ils sont en activité et agissent dans le cadre de leur profession au moment de l’appel."
+        },
+        {
+            "const": "MED.MEDSOS",
+            "title": "Médecin SOS ou association PDS",
+            "description": "Déclinaison du type Médecin : Regroupe les médecins SOS, uniquement s’ils sont en activité et agissent dans le cadre de leur profession au moment de l’appel."
+        },
+        {
+            "const": "MED.MRL",
+            "title": "Médecin régulateur libéral",
+            "description": "Déclinaison du type Médecin : Regroupe les demandes issues des médecins régulateurs généralistes lorsque le DRM n’est pas encore créé dans le SI-Samu (par exemple quand il a été jusque-là uniquement renseigné dans un SI-PDSA)."
+        },
+        {
+            "const": "MED.EFFML",
+            "title": "Effecteur de médecine libérale",
+            "description": "Déclinaison du type Médecin : Regroupe les demandes issues des médecins effecteurs de médecine générale (hors médecins de SOS ou association de PDSA) lorsque le DRM n’est pas encore créé dans le SI-Samu (par exemple quand il a été jusque-là uniquement renseigné dans un SI-PDSA)."
+        },
+        {
+            "const": "SANTE",
+            "title": "Autre acteur de santé",
+            "description": "Regroupe tous les autres professionnels de santé, de toute spécialité, de tout statut mais uniquement s’ils sont en activité et agissent dans le cadre de leur profession au moment de l’appel."
+        },
+        {
+            "const": "SANTE.INF",
+            "title": "Infirmier",
+            "description": "Regroupe les infirmiers de toute spécialité, de tout statut mais uniquement s’ils sont en activité et agissent dans le cadre de leur profession au moment de l’appel."
+        },
+        {
+            "const": "SANTE.AIDESOIN",
+            "title": "Aide-soignant",
+            "description": "Regroupe les aides-soignants, de tout statut mais uniquement s’ils sont en activité et agissent dans le cadre de leur profession au moment de l’appel."
+        },
+        {
+            "const": "SANTE.SF",
+            "title": "Sage-femme",
+            "description": "Regroupe les sage-femmes, de tout statut mais uniquement s’ils sont en activité et agissent dans le cadre de leur profession au moment de l’appel."
+        },
+        {
+            "const": "SANTE.AIDEDOM",
+            "title": "Aide à domicile",
+            "description": "Regroupe les aides à domicile, de tout statut mais uniquement s’ils sont en activité et agissent dans le cadre de leur profession au moment de l’appel."
+        },
+        {
+            "const": "SANTE.PHARMA",
+            "title": "Pharmacien",
+            "description": "Regroupe les pharmaciens, de tout statut mais uniquement s’ils sont en activité et agissent dans le cadre de leur profession au moment de l’appel."
+        },
+        {
+            "const": "SANTE.DENTISTE",
+            "title": "Dentiste",
+            "description": "Regroupe les dentistes, de tout statut mais uniquement s’ils sont en activité et agissent dans le cadre de leur profession au moment de l’appel."
+        },
+        {
+            "const": "SANTE.LABO",
+            "title": "Personnel de laboratoire",
+            "description": "Regroupe lespersonnels de laboratoires, de tout statut mais uniquement s’ils sont en activité et agissent dans le cadre de leur profession au moment de l’appel."
+        },
+        {
+            "const": "FDO-MILI",
+            "title": "Policier Gendarme Militaire",
+            "description": "Regroupe tout policier, gendarme, militaire de tout statut et de tout grade mais uniquement s’il est en activité et n’est pas un professionnel de santé ou un secouriste actif."
+        },
+        {
+            "const": "FDO-MILI.POL",
+            "title": "Policier"
+        },
+        {
+            "const": "FDO-MILI.GENDARM",
+            "title": "Gendarme"
+        },
+        {
+            "const": "FDO-MILI.MILI",
+            "title": "Militaire"
+        },
+        {
+            "const": "ADM-TUTL",
+            "title": "Membre d'une autorité administrative",
+            "description": "L’appelant est issu d’une autorité administrative (de tutelle) et appelle les services d’urgence dans le cadre de ses fonctions (ex : ARS, Ministère de la santé, HAS…)"
+        },
+        {
+            "const": "VIP",
+            "title": "VIP",
+            "description": "Personne publique, de notoriété ou élus Mais qui n'est pas une autorité administrative"
+        },
+        {
+            "const": "OBJCONNC",
+            "title": "Objets connectés",
+            "description": "L’appelant initial n’est pas une personne physique mais un objet connecté en mesure de passer des appels d’urgences (ex : automobile dans le cadre des appels e-call)"
+        },
+        {
+            "const": "AUTRE",
+            "title": "Autre type d’appelant",
+            "description": "Pour toutes les fonctions non prévues ci-dessus."
+        },
+        {
+            "const": "INCONNU",
+            "title": "Type d'appelant indéterminé",
+            "description": "Si la fonction ou le titre de l'appelant est inconnu."
+        }
+    ],
+    "description": "Décrit le type de requérant/appelant"
+}

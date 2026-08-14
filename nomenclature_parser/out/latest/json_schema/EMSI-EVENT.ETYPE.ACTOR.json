@@ -1,0 +1,731 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "EMSI-EVENT.ETYPE.ACTOR",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "ANI",
+            "title": "Animaux",
+            "description": "L'élément de texte libre contiendra des informations détaillées sur l'espèce et d'autres caractéristiques."
+        },
+        {
+            "const": "BEV",
+            "title": "Environnement bâti",
+            "description": "Environnement bâti"
+        },
+        {
+            "const": "PPL",
+            "title": "Personnes",
+            "description": "Personnes"
+        },
+        {
+            "const": "VEH",
+            "title": "Véhicules",
+            "description": "Véhicules"
+        },
+        {
+            "const": "ANI/CON",
+            "title": "Statut : contaminé",
+            "description": "Enragé"
+        },
+        {
+            "const": "ANI/DEA",
+            "title": "Statut : décédé",
+            "description": "Un animal qui a perdu la vie."
+        },
+        {
+            "const": "ANI/DGR",
+            "title": "Animal potentiellement dangereux",
+            "description": "S'applique aux animaux domestiques et aux animaux sauvages."
+        },
+        {
+            "const": "ANI/FRM",
+            "title": "Animal de ferme et d'écurie",
+            "description": "Un animal de ferme"
+        },
+        {
+            "const": "ANI/HRD",
+            "title": "Taille du groupe : troupeau",
+            "description": "Un grand nombre d'animaux."
+        },
+        {
+            "const": "ANI/INJ",
+            "title": "Statut : blessé",
+            "description": "Nécessitant une forme de traitement médical."
+        },
+        {
+            "const": "ANI/LIV",
+            "title": "Statut : vivant",
+            "description": "Ayant la vie"
+        },
+        {
+            "const": "ANI/PET",
+            "title": "Animal domestique",
+            "description": "Un animal de compagnie."
+        },
+        {
+            "const": "ANI/PRO",
+            "title": "Espèces protégées",
+            "description": "Animaux menacés et protégés par la loi."
+        },
+        {
+            "const": "ANI/SPC",
+            "title": "Expertise spécifique requise",
+            "description": "Berger"
+        },
+        {
+            "const": "ANI/WLD",
+            "title": "Animal sauvage",
+            "description": "Un animal sauvage."
+        },
+        {
+            "const": "BEV/ASR",
+            "title": "Assemblée et loisirs",
+            "description": "Rassemblement et loisirs."
+        },
+        {
+            "const": "BEV/IND",
+            "title": "Industriel",
+            "description": "Industriel"
+        },
+        {
+            "const": "BEV/NRES",
+            "title": "Stockage et autres non-résidentiels",
+            "description": "Stockage et autres non résidentiels."
+        },
+        {
+            "const": "BEV/OFF",
+            "title": "Bureau",
+            "description": "Bureau"
+        },
+        {
+            "const": "BEV/OTH",
+            "title": "Autre",
+            "description": "Autre"
+        },
+        {
+            "const": "BEV/RESDW",
+            "title": "Logements résidentiels",
+            "description": "Appartements"
+        },
+        {
+            "const": "BEV/RESIN",
+            "title": "Institutions résidentielles",
+            "description": "Établissements de soins, par exemple les hôpitaux"
+        },
+        {
+            "const": "BEV/RESINT",
+            "title": "Institution résidentielle",
+            "description": "Hôpital"
+        },
+        {
+            "const": "BEV/RESOTH",
+            "title": "Autre résidentiel",
+            "description": "Hôtels"
+        },
+        {
+            "const": "BEV/SHP",
+            "title": "Magasin et commercial",
+            "description": "Magasin et commerce"
+        },
+        {
+            "const": "PPL/1",
+            "title": "Personne",
+            "description": "Une seule personne."
+        },
+        {
+            "const": "PPL/ADU",
+            "title": "Adulte - plus de 18 ans",
+            "description": "Cette catégorie a été définie pour les personnes qui ont l'air d'avoir plus de 18 ans. Notez que cet âge n'a pas été défini pour des raisons légales."
+        },
+        {
+            "const": "PPL/CHD",
+            "title": "Enfant",
+            "description": "Enfant ou enfants"
+        },
+        {
+            "const": "PPL/CNT",
+            "title": "Contaminé",
+            "description": "Termes utilisés pour décrire quand quelque chose ou quelqu'un est devenu contaminé, par exemple par une contamination chimique ou lorsque quelque chose a été corrompu par contact ou association."
+        },
+        {
+            "const": "PPL/DED",
+            "title": "Décédé",
+            "description": "Terme utilisé pour décrire une personne ou un animal privé de vie."
+        },
+        {
+            "const": "PPL/EVC",
+            "title": "Évacué",
+            "description": "Terme utilisé pour décrire une personne évacuée d'un endroit dangereux."
+        },
+        {
+            "const": "PPL/GND",
+            "title": "Genre",
+            "description": "Genre"
+        },
+        {
+            "const": "PPL/GRP",
+            "title": "Groupe de personnes",
+            "description": "Un groupe de personnes qui peuvent agir de concert ou non."
+        },
+        {
+            "const": "PPL/HST",
+            "title": "Manifestant",
+            "description": "Manifestant"
+        },
+        {
+            "const": "PPL/INT",
+            "title": "Ivre",
+            "description": "Affecté par une substance qui intoxique."
+        },
+        {
+            "const": "PPL/OTH",
+            "title": "Autre",
+            "description": "Y compris des emplois spécifiques tels que les étudiants."
+        },
+        {
+            "const": "PPL/PRS",
+            "title": "Prisonnier",
+            "description": "Prisonnier"
+        },
+        {
+            "const": "PPL/SNS",
+            "title": "Sensibilité culturelle ou politique",
+            "description": "Sensibilité culturelle ou politique"
+        },
+        {
+            "const": "PPL/VIO",
+            "title": "Comportement violent",
+            "description": "Comportement violent"
+        },
+        {
+            "const": "PPL/VLN",
+            "title": "Vulnérabilité distinctive",
+            "description": "Capable d'être blessé ou vulnérable aux blessures."
+        },
+        {
+            "const": "PPL/WTN",
+            "title": "Témoin",
+            "description": "Personne qui a effectivement vu un événement ou quelque chose se produire."
+        },
+        {
+            "const": "PPL/CHD/BAB",
+            "title": "Bébé (moins de 12 mois)",
+            "description": "Bébé (moins de 12 mois)"
+        },
+        {
+            "const": "PPL/CHD/CHILD",
+            "title": "Enfant : entre 3 et 10 ans",
+            "description": "Un enfant a environ entre 3 ans et 10 ans."
+        },
+        {
+            "const": "PPL/CHD/INF",
+            "title": "BÉBÉ (entre 1 et 3 ans)",
+            "description": "Moins de 3 ans (mobilité et compréhension réduites)"
+        },
+        {
+            "const": "PPL/CHD/YOUTH",
+            "title": "JEUNESSE incluant approximativement de 13 ans à ADULTE",
+            "description": "JEUNESSE inclut approximativement de 13 ans à ADULTE."
+        },
+        {
+            "const": "PPL/GND/FML",
+            "title": "Femme",
+            "description": "Personne de sexe féminin"
+        },
+        {
+            "const": "PPL/GND/MAL",
+            "title": "Homme",
+            "description": "Personne de sexe masculin"
+        },
+        {
+            "const": "PPL/GND/UND",
+            "title": "Indéterminé",
+            "description": "Le genre ne peut pas être visuellement déterminé."
+        },
+        {
+            "const": "PPL/HST/PCF",
+            "title": "Menace envers un manifestant pacifique",
+            "description": "Le manifestant, bien que pacifique, pourrait devenir menaçant."
+        },
+        {
+            "const": "PPL/HST/SUI",
+            "title": "Personne tentant de se suicider",
+            "description": "Personne qui a tenté ou tenté de se suicider."
+        },
+        {
+            "const": "PPL/HST/THT",
+            "title": "Menace envers un manifestant sans arme",
+            "description": "Manifestant agissant de manière menaçante sans arme."
+        },
+        {
+            "const": "PPL/HST/WPN",
+            "title": "Menace envers un manifestant armé",
+            "description": "Manifestant agissant de manière menaçante avec une arme."
+        },
+        {
+            "const": "PPL/PRS/CST",
+            "title": "Prisonnier(s) sous garde",
+            "description": "Personne arrêtée ou détenue dans un endroit sécurisé."
+        },
+        {
+            "const": "PPL/PRS/ESC",
+            "title": "Prisonnier(s) en fuite",
+            "description": "Prisonnier évadé d'une forme d'environnement sécurisé."
+        },
+        {
+            "const": "PPL/PRS/HGS",
+            "title": "Prisonnier(s) à haute sécurité",
+            "description": "Prisonnier présentant un risque de sécurité élevé."
+        },
+        {
+            "const": "PPL/SNS/ETH",
+            "title": "Sensibilité ethnique",
+            "description": "Sensibilité ethnique"
+        },
+        {
+            "const": "PPL/SNS/FOR",
+            "title": "Nationalité",
+            "description": "Le statut d'appartenance à une nation particulière."
+        },
+        {
+            "const": "PPL/SNS/LAN",
+            "title": "Langue préférée",
+            "description": "La langue choisie."
+        },
+        {
+            "const": "PPL/SNS/REL",
+            "title": "Sensibilité religieuse",
+            "description": "Sensibilité religieuse"
+        },
+        {
+            "const": "PPL/SNS/VIP",
+            "title": "VIP",
+            "description": "La royauté"
+        },
+        {
+            "const": "PPL/VLN/BLD",
+            "title": "Personne aveugle",
+            "description": "Personne aveugle ou malvoyante."
+        },
+        {
+            "const": "PPL/VLN/DEF",
+            "title": "Personne sourde",
+            "description": "Personne sourde ou malentendante."
+        },
+        {
+            "const": "PPL/VLN/DSB",
+            "title": "Personnes handicapées",
+            "description": "Personnes atteintes d'une forme de handicap physique."
+        },
+        {
+            "const": "PPL/VLN/ELD",
+            "title": "Personnes âgées",
+            "description": "Terme utilisé pour décrire une personne de plus de 65 ans."
+        },
+        {
+            "const": "PPL/VLN/INJ",
+            "title": "Personne blessée",
+            "description": "Personne blessée"
+        },
+        {
+            "const": "PPL/VLN/LDF",
+            "title": "Personne ayant des difficultés d'apprentissage",
+            "description": "Terme utilisé pour décrire les personnes ayant des difficultés d'apprentissage."
+        },
+        {
+            "const": "PPL/VLN/OBS",
+            "title": "Personne obèse",
+            "description": "Obèse"
+        },
+        {
+            "const": "PPL/VLN/PAT",
+            "title": "Patient",
+            "description": "Y compris sous médication"
+        },
+        {
+            "const": "PPL/VLN/PGN",
+            "title": "Femme enceinte",
+            "description": "Terme utilisé pour décrire une femme enceinte."
+        },
+        {
+            "const": "PPL/VLN/SLFPRS",
+            "title": "Personnes se présentant d'elles-mêmes",
+            "description": "Présentateurs autonomes : Membres du public contaminés se présentant eux-mêmes dans les services d'accident et d'urgence (A&E) des hôpitaux et d'autres établissements de santé."
+        },
+        {
+            "const": "PPL/VLN/UNC",
+            "title": "Personne inconsciente",
+            "description": "Personne inconsciente et ne répondant pas aux stimuli."
+        },
+        {
+            "const": "VEH/AIR",
+            "title": "Véhicule aérien",
+            "description": "Véhicule aérien"
+        },
+        {
+            "const": "VEH/ANI",
+            "title": "Animaux",
+            "description": "Véhicules tirés ou poussés par un animal"
+        },
+        {
+            "const": "VEH/BIC",
+            "title": "Bicyclette",
+            "description": "Forme de transport normalement propulsée par des pédales."
+        },
+        {
+            "const": "VEH/CAR",
+            "title": "Véhicule - voiture",
+            "description": "Tout véhicule routier pour 7 passagers ou moins"
+        },
+        {
+            "const": "VEH/EMG",
+            "title": "Véhicule - urgence",
+            "description": "Tout véhicule de service d'urgence identifié comme tel"
+        },
+        {
+            "const": "VEH/MBK",
+            "title": "Véhicule - motocyclette",
+            "description": "Véhicule routier à deux roues motorisées ou à trois roues sans cabine."
+        },
+        {
+            "const": "VEH/MIL",
+            "title": "Véhicule - militaire",
+            "description": "Un véhicule routier militaire ou des véhicules, y compris un véhicule adapté à partir de l'usage civil"
+        },
+        {
+            "const": "VEH/OTH",
+            "title": "Autres types de véhicules",
+            "description": "Autres types de véhicules."
+        },
+        {
+            "const": "VEH/TRK",
+            "title": "Camion",
+            "description": "Grand véhicule utilisé pour le transport en vrac de marchandises."
+        },
+        {
+            "const": "VEH/TRN",
+            "title": "Train",
+            "description": "Un véhicule autopropulsé"
+        },
+        {
+            "const": "VEH/VES",
+            "title": "Vaisseau",
+            "description": "Terme utilisé pour décrire une embarcation voyageant sur l'eau."
+        },
+        {
+            "const": "VEH/AIR/ARM",
+            "title": "Aéronef militaire (armé)",
+            "description": "Aéronef militaire portant des armes en service."
+        },
+        {
+            "const": "VEH/AIR/FLBA",
+            "title": "Ballon flottant",
+            "description": "Ballon propulsé par les éléments."
+        },
+        {
+            "const": "VEH/AIR/FRG",
+            "title": "Aéronef avec une charge de fret",
+            "description": "Ballon propulsé par les éléments"
+        },
+        {
+            "const": "VEH/AIR/FXBA",
+            "title": "Ballon fixe",
+            "description": "Un ballon qui est maintenu en position et ne peut pas bouger."
+        },
+        {
+            "const": "VEH/AIR/GLD",
+            "title": "Planeur",
+            "description": "Aéronef sans moteur."
+        },
+        {
+            "const": "VEH/AIR/HEL",
+            "title": "Hélicoptères",
+            "description": "Y compris les sous-catégories : ultra-léger"
+        },
+        {
+            "const": "VEH/AIR/HVY",
+            "title": "Aéronef lourd",
+            "description": "Terme utilisé pour décrire un aéronef capable de transporter des charges lourdes."
+        },
+        {
+            "const": "VEH/AIR/JET",
+            "title": "Moteur à réaction",
+            "description": "Terme utilisé pour décrire un véhicule propulsé par un moteur à réaction."
+        },
+        {
+            "const": "VEH/AIR/LGT",
+            "title": "Petit aéronef",
+            "description": "Petit aéronef ne transportant normalement pas de gros passagers."
+        },
+        {
+            "const": "VEH/AIR/MIL",
+            "title": "Aéronef militaire",
+            "description": "Aéronef militaire"
+        },
+        {
+            "const": "VEH/AIR/ORD",
+            "title": "Munitions",
+            "description": "Y compris les fusées"
+        },
+        {
+            "const": "VEH/AIR/OTH",
+            "title": "Autre",
+            "description": "Y compris les engins spatiaux"
+        },
+        {
+            "const": "VEH/AIR/PAS",
+            "title": "Aéronef transportant des passagers",
+            "description": "Aéronef transportant des passagers, souvent mais pas exclusivement à usage commercial."
+        },
+        {
+            "const": "VEH/AIR/PRBA",
+            "title": "Ballon propulsé",
+            "description": "Ballon avec un moteur intégré."
+        },
+        {
+            "const": "VEH/AIR/PST",
+            "title": "Moteur à piston",
+            "description": "Terme utilisé pour décrire une source d'énergie mécanique générée par un piston."
+        },
+        {
+            "const": "VEH/AIR/RKT",
+            "title": "Moteur-fusée",
+            "description": "Terme utilisé pour décrire une source d'énergie mécanique générée par une fusée."
+        },
+        {
+            "const": "VEH/AIR/SEA",
+            "title": "Atterrissage spécifique à la mer",
+            "description": "Aéronef capable d'atterrir sur l'eau."
+        },
+        {
+            "const": "VEH/AIR/SNO",
+            "title": "Atterrissage spécifique à la neige",
+            "description": "Aéronef capable d'atterrir sur la neige."
+        },
+        {
+            "const": "VEH/AIR/TNK",
+            "title": "Avion-citerne",
+            "description": "Aéronef spécialisé utilisé pour le transport de carburant."
+        },
+        {
+            "const": "VEH/AIR/UAV",
+            "title": "UAV",
+            "description": "Véhicule aérien sans pilote"
+        },
+        {
+            "const": "VEH/AIR/ULG",
+            "title": "Avion ultra-léger",
+            "description": "Aéronef ultra-léger"
+        },
+        {
+            "const": "VEH/OTH/HIL",
+            "title": "Véhicules de montagne",
+            "description": "Remontée mécanique"
+        },
+        {
+            "const": "VEH/OTH/SNO",
+            "title": "Véhicules de neige",
+            "description": "Motoneiges"
+        },
+        {
+            "const": "VEH/TRK/ART",
+            "title": "Camion articulé",
+            "description": "Grand véhicule avec remorque"
+        },
+        {
+            "const": "VEH/TRK/EXC",
+            "title": "Charge exceptionnelle",
+            "description": "Charge extrêmement lourde nécessitant une escorte spécialisée."
+        },
+        {
+            "const": "VEH/TRK/HZD",
+            "title": "Camion-citerne avec chargement dangereux",
+            "description": "Véhicule"
+        },
+        {
+            "const": "VEH/TRK/NHZ",
+            "title": "Camion-citerne avec chargement non dangereux"
+        },
+        {
+            "const": "VEH/TRK/NUK",
+            "title": "Charge nucléaire"
+        },
+        {
+            "const": "VEH/TRK/REF",
+            "title": "Camion réfrigéré"
+        },
+        {
+            "const": "VEH/TRK/UND",
+            "title": "Camion-citerne avec chargement non défini"
+        },
+        {
+            "const": "VEH/TRN/3RL",
+            "title": "Moteur à électricité sur 3e rail"
+        },
+        {
+            "const": "VEH/TRN/DSL",
+            "title": "Moteur diesel"
+        },
+        {
+            "const": "VEH/TRN/HZD",
+            "title": "Train avec chargement dangereux"
+        },
+        {
+            "const": "VEH/TRN/LOC",
+            "title": "Catégorie de train : locomotive seule"
+        },
+        {
+            "const": "VEH/TRN/NHZ",
+            "title": "Train avec chargement non dangereux"
+        },
+        {
+            "const": "VEH/TRN/NUK",
+            "title": "Train avec chargement nucléaire"
+        },
+        {
+            "const": "VEH/TRN/OVH",
+            "title": "Moteur électrique"
+        },
+        {
+            "const": "VEH/TRN/PAS",
+            "title": "Train avec passagers"
+        },
+        {
+            "const": "VEH/TRN/REF",
+            "title": "Train avec chargement réfrigéré"
+        },
+        {
+            "const": "VEH/TRN/STM",
+            "title": "Moteur à vapeur"
+        },
+        {
+            "const": "VEH/TRN/TRM",
+            "title": "Tramways et chemins de fer légers"
+        },
+        {
+            "const": "VEH/TRN/UDG",
+            "title": "Train souterrain"
+        },
+        {
+            "const": "VEH/TRN/UND",
+            "title": "Train avec chargement non défini"
+        },
+        {
+            "const": "VEH/TRN/VIP",
+            "title": "Train avec VIP"
+        },
+        {
+            "const": "VEH/TRN/VLT",
+            "title": "Catégorie de train : train très long"
+        },
+        {
+            "const": "VEH/VES/AMB",
+            "title": "Ambulance"
+        },
+        {
+            "const": "VEH/VES/BOT",
+            "title": "Catégorie de vaisseau : bateau"
+        },
+        {
+            "const": "VEH/VES/CNO",
+            "title": "Catégorie de vaisseau : canoë ou kayak"
+        },
+        {
+            "const": "VEH/VES/CRG",
+            "title": "Catégorie de chargement : cargaison"
+        },
+        {
+            "const": "VEH/VES/DSL",
+            "title": "Moteur diesel"
+        },
+        {
+            "const": "VEH/VES/FLO",
+            "title": "Statut flottant"
+        },
+        {
+            "const": "VEH/VES/FRY",
+            "title": "Catégorie de vaisseau : ferry"
+        },
+        {
+            "const": "VEH/VES/HOV",
+            "title": "Catégorie de vaisseau : aéroglisseur"
+        },
+        {
+            "const": "VEH/VES/HZD",
+            "title": "Catégorie de chargement : camion-citerne avec chargement dangereux"
+        },
+        {
+            "const": "VEH/VES/JSK",
+            "title": "Catégorie de vaisseau : jet-ski"
+        },
+        {
+            "const": "VEH/VES/LEI",
+            "title": "Usage : loisirs"
+        },
+        {
+            "const": "VEH/VES/LIS",
+            "title": "Statut d'inclinaison"
+        },
+        {
+            "const": "VEH/VES/MIL",
+            "title": "Catégorie de chargement : militaire"
+        },
+        {
+            "const": "VEH/VES/MPW",
+            "title": "Moteur à propulsion humaine"
+        },
+        {
+            "const": "VEH/VES/NHZ",
+            "title": "Catégorie de camion-citerne : camion-citerne avec chargement non dangereux"
+        },
+        {
+            "const": "VEH/VES/NUK",
+            "title": "Moteur nucléaire"
+        },
+        {
+            "const": "VEH/VES/PAS",
+            "title": "Catégorie de chargement : passager"
+        },
+        {
+            "const": "VEH/VES/POL",
+            "title": "Usage : police"
+        },
+        {
+            "const": "VEH/VES/PTL",
+            "title": "Moteur à essence"
+        },
+        {
+            "const": "VEH/VES/RSC",
+            "title": "Usage : secours"
+        },
+        {
+            "const": "VEH/VES/SAI",
+            "title": "Moteur à voile"
+        },
+        {
+            "const": "VEH/VES/SBM",
+            "title": "Catégorie de vaisseau : sous-marin"
+        },
+        {
+            "const": "VEH/VES/SINK",
+            "title": "Statut de naufrage"
+        },
+        {
+            "const": "VEH/VES/SPC",
+            "title": "Catégorie de vaisseau : spécial (par exemple, bateau de prison)"
+        },
+        {
+            "const": "VEH/VES/STE",
+            "title": "Moteur à vapeur"
+        },
+        {
+            "const": "VEH/VES/SUNK",
+            "title": "Statut de naufrage"
+        },
+        {
+            "const": "VEH/VES/UNM",
+            "title": "Catégorie de vaisseau : sans équipage"
+        }
+    ]
+}
