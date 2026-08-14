@@ -216,6 +216,20 @@ def export_json_schema_nomenclature(params_in, df_nomenclature_in, folder_output
     return
 
 
+# export nomenclaturesList.json (same {label, schemaName} shape as sample/examples/messagesList.json)
+# must run before export_sommaire, which renames df_sommaire_in's columns in place
+def export_nomenclatures_list(df_sommaire_in):
+    entries = sorted(
+        [{"label": row["nomenclature_id"], "schemaName": row["nomenclature_id"] + ".json"}
+         for _, row in df_sommaire_in.iterrows()],
+        key=lambda entry: entry["label"]
+    )
+    output_dir = os.path.join("..", "src", "main", "resources", "sample", "examples")
+    with open(os.path.join(output_dir, "nomenclaturesList.json"), "w", encoding="utf-8") as f:
+        json.dump(entries, f, ensure_ascii=False, indent=2)
+    return
+
+
 # transform sommaire dataframe to a doc
 def df_sommaire_to_doc(df_sommaire_in, doc=None, style='Medium Shading 1 Accent 1'):
     if doc is None:
@@ -345,6 +359,7 @@ def parse_folder(folder_in, folder_output):
         else:
             print(filename + " is not a valid nomenclature file.")
     print("Processing summary ...")
+    export_nomenclatures_list(df_sommaire)
     export_sommaire(df_sommaire, folder_output)
     print("Job done.")
     return
