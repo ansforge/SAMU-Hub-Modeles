@@ -1,0 +1,170 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.risque",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "R01",
+            "title": "Dommage exclusivement matériel",
+            "description": "Usage métier DGGN permettant la graduation matériel / corporel / mortel"
+        },
+        {
+            "const": "R02",
+            "title": "Auteur(s) en fuite"
+        },
+        {
+            "const": "R03",
+            "title": "Présence d’individu(s) ou public menaçant"
+        },
+        {
+            "const": "R04",
+            "title": "Présence d’individu(s) muni(s) d’une arme blanche"
+        },
+        {
+            "const": "R05",
+            "title": "Présence d’individu(s) muni(s) d’une arme à feu"
+        },
+        {
+            "const": "R06",
+            "title": "Suspicion d'attaque terroriste"
+        },
+        {
+            "const": "R07",
+            "title": "Présence de matière ou matériel dangereux",
+            "description": "Ex : armes, matière dangereuse non identifiée"
+        },
+        {
+            "const": "R08",
+            "title": "Présence de matière radiologique ou nucléaire civile ou militaire",
+            "description": "A saisir si le caractère civil ou militaire n’est pas connu"
+        },
+        {
+            "const": "R09",
+            "title": "Présence de matière radiologique ou nucléaire civile"
+        },
+        {
+            "const": "R10",
+            "title": "Présence de matière radiologique ou nucléaire militaire"
+        },
+        {
+            "const": "R11",
+            "title": "Présence de matière bactériologique"
+        },
+        {
+            "const": "R12",
+            "title": "Présence de matière chimique"
+        },
+        {
+            "const": "R13",
+            "title": "Risque d'explosion, présence de gaz"
+        },
+        {
+            "const": "R14",
+            "title": "Risque lié à l'incendie"
+        },
+        {
+            "const": "R15",
+            "title": "Risque d'effondrement"
+        },
+        {
+            "const": "R16",
+            "title": "Présence d'animal dangereux"
+        },
+        {
+            "const": "R17",
+            "title": "Nuée d'insectes"
+        },
+        {
+            "const": "R18",
+            "title": "Inondation"
+        },
+        {
+            "const": "R19",
+            "title": "Risque électrique/ risque lié à une ligne HT ou THT",
+            "description": "HT / THT : Haute Tension / Très Haute Tension"
+        },
+        {
+            "const": "R20",
+            "title": "Difficulté d’accès sur site",
+            "description": "Ex : milieu montagneux hors voie carrossable"
+        },
+        {
+            "const": "R21",
+            "title": "Difficulté d’accès au patient/victime",
+            "description": "Ex : porte verrouillée"
+        },
+        {
+            "const": "R22",
+            "title": "Gêne à la circulation"
+        },
+        {
+            "const": "R23",
+            "title": "Implication d’une autorité",
+            "description": "En vue d’un traitement avec remontée hiérarchique"
+        },
+        {
+            "const": "R24",
+            "title": "Implication d’un agent public",
+            "description": "En vue d’un traitement sans remontée hiérarchique systématique"
+        },
+        {
+            "const": "R25",
+            "title": "Implication d’une personnalité",
+            "description": "Ex : VIP"
+        },
+        {
+            "const": "R26",
+            "title": "Implication de plusieurs personnes (2 à 10)",
+            "description": "En vue de permettre aux forces de sécurité d’adapter leur dispositif d’intervention. Les autres informations contextuelles (nature des personnes impliquées, attitude, …) sont à qualifier en champ libre. A aborder par l’opérateur en même temps que le nombre de patients/victimes."
+        },
+        {
+            "const": "R27",
+            "title": "Implication de nombreuses personnes (11 et+)",
+            "description": "En vue de permettre aux forces de sécurité d’adapter leur dispositif d’intervention. Les autres informations contextuelles (nature des personnes impliquées, attitude, …) sont à qualifier en champ libre. A aborder par l’opérateur en même temps que le nombre de patients/victimes."
+        },
+        {
+            "const": "R28",
+            "title": "Patient/Victime incarcéré"
+        },
+        {
+            "const": "R29",
+            "title": "Patient/Victime décédé"
+        },
+        {
+            "const": "R30",
+            "title": "Patient/Victime blessé"
+        },
+        {
+            "const": "R31",
+            "title": "Patient/Victime dans l'eau"
+        },
+        {
+            "const": "R32",
+            "title": "Patient/Victime confiné"
+        },
+        {
+            "const": "R33",
+            "title": "Patient/Victime violent"
+        },
+        {
+            "const": "R34",
+            "title": "Patient/Victime vulnérable",
+            "description": "Ex : personnes mineures"
+        },
+        {
+            "const": "R35",
+            "title": "Patient/Victime contagieux",
+            "description": "Ex : prise en charge de patients tuberculeux"
+        },
+        {
+            "const": "R36",
+            "title": "Discrimination raciale, religieuse, sexiste ou autre"
+        },
+        {
+            "const": "R37",
+            "title": "Situation instable/indéterminée",
+            "description": "En vue d’alerter les professionnels intervenant sur place d'un possible risque de dégradation de la situation (ex: reconnaissance sur site non achevée)"
+        }
+    ],
+    "description": "Décrit les risques, menaces ou sensibilités de l'affaire/dossier"
+}

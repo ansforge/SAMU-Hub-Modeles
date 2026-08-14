@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.etatDemande",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "ANNULEE",
+            "title": "Annulation de la demande de ressources",
+            "description": "La demande de concours est annulée dans son intégralité"
+        }
+    ],
+    "description": "Décrit l'état de l'annulation de demande de ressources"
+}

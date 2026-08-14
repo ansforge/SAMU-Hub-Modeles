@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-DR.schema.json#",
-    "version": "26.07.29",
+    "version": "26.08.14",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesRequest",
@@ -30,6 +30,7 @@
             "x-cols": 6,
             "example": "example.json#/status",
             "description": "A valoriser avec l'état d'annulation de la demande le cas échéant",
+            "x-nomenclature": "HubSante.etatDemande",
             "enum": [
                 "ANNULEE"
             ]
@@ -73,6 +74,7 @@
                     "x-cols": 6,
                     "example": "example.json#/request/convention",
                     "description": "A valoriser avec le cadre conventionnel de la demande. Cf nomenclature associée",
+                    "x-nomenclature": "HubSante.cadre",
                     "enum": [
                         "DRSIS",
                         "MISSION",
@@ -93,6 +95,7 @@
                     "x-cols": 6,
                     "example": "example.json#/request/purpose",
                     "description": "A valoriser avec le motif de la demande de ressource auprès du partenaire. Cf Nomenclature associée.",
+                    "x-nomenclature": "HubSante.effet",
                     "enum": [
                         "SAP",
                         "REGUL",
@@ -115,6 +118,7 @@
                     "x-cols": 6,
                     "example": "example.json#/request/deadline",
                     "description": "A valoriser avec le délai d'intervention maximum souhaité (cf. nomenclature associée)",
+                    "x-nomenclature": "HubSante.delai",
                     "enum": [
                         "DEL0",
                         "ASAP",

@@ -1,0 +1,17 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "EMSI-CONTEXT.LINK_ROLE",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "ADDSTO",
+            "title": "Ajout",
+            "description": "Le nouveau fichier EMSI ajoute des informations au fichier EMSI auquel il est lié"
+        },
+        {
+            "const": "SPRSDS",
+            "title": "Remplace",
+            "description": "Le nouveau fichier EMSI remplace le fichier EMSI auquel il est lié."
+        }
+    ]
+}

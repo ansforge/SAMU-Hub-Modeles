@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "26.07.29",
+    "version": "26.08.14",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -176,6 +176,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/country",
+                    "x-nomenclature": "ISO 3166-ISO3166-2",
                     "enum": [
                         "AF",
                         "AX",
@@ -472,6 +473,7 @@
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/reporting",
                     "description": "Permet d'attirer l'attention des forces partenaires sur une affaire pour le faire sortir du lot.\nEventuellement automatisé en fonction des critères saisis et de leur paramétrage, ou renseigné par l'opérateur. \nPrend les valeurs définies dans la nomenclature CISU :\n- standard : STANDARD\n- signalé : ATTENTION\nLes systèmes peuvent proposer des fonctionnalités faisant ressortir les dossiers avec le libellé ATTENTION",
+                    "x-nomenclature": "HubSante.signalement",
                     "enum": [
                         "STANDARD",
                         "ATTENTION"
@@ -661,6 +663,7 @@
                     "x-cols": 6,
                     "example": "example.json#/qualification/victims/count",
                     "description": "Indique le nombre de victimes selon la nomenclature du référentiel CISU",
+                    "x-nomenclature": "HubSante.nbVictimes",
                     "enum": [
                         "0",
                         "1",
@@ -677,6 +680,7 @@
                     "x-cols": 6,
                     "example": "example.json#/qualification/victims/mainVictim",
                     "description": "Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.",
+                    "x-nomenclature": "HubSante.patient",
                     "enum": [
                         "NOURRISSON",
                         "ENFANT",
@@ -714,6 +718,7 @@
                     "x-cols": 6,
                     "example": "example.json#/location/externalLocationId/0/source",
                     "description": "A valoriser avec le type de l'identifiant fourni. Cf nomenclature associée.",
+                    "x-nomenclature": "HubSante.idLieu",
                     "enum": [
                         "FINESS_ADMINISTRATIF",
                         "FINESS_GEOGRAPHIQUE",
@@ -943,6 +948,7 @@
                     "x-cols": 6,
                     "example": "example.json#/location/externalInfo/0/freetext",
                     "description": "A valoriser avec le système fournissant le localisant",
+                    "x-nomenclature": "HubSante.systeme",
                     "enum": [
                         "BAN",
                         "IGN",
@@ -956,6 +962,7 @@
                     "x-cols": 6,
                     "example": "example.json#/location/externalInfo/0/type",
                     "description": "A valoriser avec la définition du type d'objet dans le système\n\nExemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)",
+                    "x-nomenclature": "HubSante.objetSource",
                     "enum": [
                         "MANUEL",
                         "CARTE",
@@ -1087,6 +1094,7 @@
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/point/coord/precision",
                     "description": "Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.\nVILLE : Précision à l'échelle de la ville, \nRUE : Précision à l'échelle de la rue, \nADRESSE : Adresse précise, \nEXACTE : Point coordonnée GPS exact, \nINCONNUE : Précision de la localisation non évaluable par l'émetteur",
+                    "x-nomenclature": "HubSante.precision",
                     "enum": [
                         "VILLE",
                         "RUE",
@@ -1150,6 +1158,7 @@
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/language",
                     "description": "A valoriser avec la langue parlée par le requérant. \ncf.nomenclature associée.",
+                    "x-nomenclature": "HubSante.langue",
                     "enum": [
                         "aa",
                         "ab",
@@ -1343,6 +1352,7 @@
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/type",
                     "description": "A valoriser avec la relation du requérant avec l'incident / le patient / la victime.\ncf. nomenclature associée.",
+                    "x-nomenclature": "HubSante.typeAppelant",
                     "enum": [
                         "SUJET",
                         "FAMILLE",
@@ -1382,6 +1392,7 @@
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/communication",
                     "description": "A valoriser avec la nature des éventuelles difficultés de communication rencontrées par le requérant. \ncf.nomenclature associée.",
+                    "x-nomenclature": "HubSante.communication",
                     "enum": [
                         "AUCUNE",
                         "MUET",
@@ -1537,6 +1548,7 @@
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerContact/channel",
                     "description": "A valoriser avec  l'origine du canal établi : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL",
+                    "x-nomenclature": "HubSante.canal",
                     "enum": [
                         "APPLICATION",
                         "BAU",
@@ -1553,6 +1565,7 @@
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerContact/type",
                     "description": "A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.",
+                    "x-nomenclature": "HubSante.typeCom",
                     "enum": [
                         "EMAIL",
                         "FAX",

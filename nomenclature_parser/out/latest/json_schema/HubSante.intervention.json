@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.intervention",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "T1",
+            "title": "Primaire",
+            "description": "Prise en charge médicale spécialisée d’un ou de plusieurs patients ne se\ntrouvant pas admis dans un établissement de santé et dont l’état requiert de façon urgente une\nexpertise médicale pour des soins d’urgences ou de réanimation et pour leur orientation."
+        },
+        {
+            "const": "T2-INTER",
+            "title": "Transfert Inter Hospitalier",
+            "description": "Prise en charge médicale spécialisée d’un patient hospitalisé ou pris en charge par un service (d’urgences ou non), au sein d’un établissement de santé vers un établissement de santé ne faisant pas partie de la même entité juridique, que le transport ait finalement lieu ou non."
+        },
+        {
+            "const": "T2-INTRA",
+            "title": "Transfert Intra Hospitalier",
+            "description": "Prise en charge médicale spécialisée d’un patient hospitalisé ou pris en charge par un service (d’urgences ou non), au sein d’un établissement de santé vers n même établissement de santé ou entre deux établissements de santé appartenant à la même entité juridique."
+        },
+        {
+            "const": "T3",
+            "title": "Retour",
+            "description": "Prise en charge médicale spécialisée d’un patient hospitalisé en vue de son retour à son domicile ou dans une structure n’étant pas un établissement de santé (par exemple un EHPAD)."
+        },
+        {
+            "const": "T4",
+            "title": "Rapat/Evasan",
+            "description": "Prise en charge médicale spécialisée d’un patient en vue de son transport le plus souvent vers un établissement de soins, par exemple dans le cadre d’un rapprochement familial."
+        }
+    ],
+    "description": "Décrit le type d'intervention (primaire, secondaire, etc.)"
+}

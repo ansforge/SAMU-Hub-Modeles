@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "EMSI-EVENT.CAUSE",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "ACC",
+            "title": "Accidentel"
+        },
+        {
+            "const": "DEL",
+            "title": "Délibéré"
+        },
+        {
+            "const": "NAT",
+            "title": "Naturel"
+        }
+    ]
+}

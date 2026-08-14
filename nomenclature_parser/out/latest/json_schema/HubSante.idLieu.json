@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.idLieu",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "FINESS_ADMINISTRATIF",
+            "title": "FINESS_ADMINISTRATIF"
+        },
+        {
+            "const": "FINESS_GEOGRAPHIQUE",
+            "title": "FINESS_GEOGRAPHIQUE"
+        },
+        {
+            "const": "SIREN",
+            "title": "SIREN"
+        },
+        {
+            "const": "SIRET",
+            "title": "SIRET"
+        },
+        {
+            "const": "APE_NAF",
+            "title": "APE_NAF"
+        }
+    ],
+    "description": "Décrit le type d'idenfiant possible pour un lieu  (société / établissement)"
+}

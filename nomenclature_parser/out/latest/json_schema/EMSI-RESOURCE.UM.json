@@ -1,0 +1,257 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "EMSI-RESOURCE.UM",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "LSV",
+            "title": "Unités de longueur, surface et volume",
+            "description": "Unités de longueur, surface et volume"
+        },
+        {
+            "const": "OTH",
+            "title": "Autres unités",
+            "description": "Autres unités"
+        },
+        {
+            "const": "PKG",
+            "title": "Unités de conditionnement",
+            "description": "Unités de conditionnement"
+        },
+        {
+            "const": "TIM",
+            "title": "Unités de date et heure",
+            "description": "Unités de date et heure"
+        },
+        {
+            "const": "WGT",
+            "title": "Unités de poids",
+            "description": "Unités de poids"
+        },
+        {
+            "const": "LSV/CM",
+            "title": "Mètre cube",
+            "description": "Une unité internationale standard"
+        },
+        {
+            "const": "LSV/CMH",
+            "title": "Mètre cube(s) par heure",
+            "description": "Unités de mètres cubes divisés par le temps écoulé en heures"
+        },
+        {
+            "const": "LSV/CNTLTR",
+            "title": "Centilitre",
+            "description": "Une unité internationale standard de capacité dans le système métrique"
+        },
+        {
+            "const": "LSV/DEG",
+            "title": "Degré",
+            "description": "Un des 360 segments égaux d'un cercle"
+        },
+        {
+            "const": "LSV/HCTLTR",
+            "title": "Hectolitre",
+            "description": "Une unité internationale standard de capacité dans le système métrique"
+        },
+        {
+            "const": "LSV/HCTMTR",
+            "title": "Hectomètre",
+            "description": "Une unité internationale standard de surface dans le système métrique"
+        },
+        {
+            "const": "LSV/KM",
+            "title": "Kilomètre",
+            "description": "1 000 mètres"
+        },
+        {
+            "const": "LSV/KPH",
+            "title": "Kilomètre(s) par heure",
+            "description": "Unités de 1 000 mètres divisés par le temps écoulé en heures"
+        },
+        {
+            "const": "LSV/LI",
+            "title": "Litre",
+            "description": "Une unité internationale standard de capacité dans le système métrique"
+        },
+        {
+            "const": "LSV/LTPRHR",
+            "title": "Litre(s) par heure",
+            "description": "Unités de litres divisés par le temps écoulé en heures"
+        },
+        {
+            "const": "LSV/LTPRMN",
+            "title": "Litre(s) par minute",
+            "description": "Unités de litres divisés par le temps écoulé en minutes"
+        },
+        {
+            "const": "LSV/METRE",
+            "title": "Mètre",
+            "description": "Une unité internationale standard de longueur dans le système métrique"
+        },
+        {
+            "const": "LSV/MILLTR",
+            "title": "Millilitre",
+            "description": "Une unité internationale standard de capacité dans le système métrique"
+        },
+        {
+            "const": "LSV/MILMTR",
+            "title": "Millimètre",
+            "description": "Une unité internationale standard de surface dans le système métrique"
+        },
+        {
+            "const": "LSV/SMH",
+            "title": "Mètre carré(s) par heure",
+            "description": "Unités de mètres carrés divisés par le temps écoulé en heures"
+        },
+        {
+            "const": "LSV/SQM",
+            "title": "Mètre carré",
+            "description": "Une unité internationale standard de surface dans le système métrique"
+        },
+        {
+            "const": "OTH/COIL",
+            "title": "Bobine",
+            "description": "Une série d'anneaux ou de spirales connectés"
+        },
+        {
+            "const": "OTH/DOZEN",
+            "title": "Douzaine",
+            "description": "Un ensemble de 12"
+        },
+        {
+            "const": "OTH/EA",
+            "title": "Chacun",
+            "description": "Individuellement"
+        },
+        {
+            "const": "OTH/GROSS",
+            "title": "Brut",
+            "description": "Un groupe de 144"
+        },
+        {
+            "const": "OTH/MANHUR",
+            "title": "Heure de travail",
+            "description": "Une heure considérée en termes de la quantité de travail qu'une personne peut accomplir pendant cette période."
+        },
+        {
+            "const": "OTH/MHPRHR",
+            "title": "Heure de travail(s) par heure",
+            "description": "Unités d'heures de travail divisées par le temps écoulé en heures"
+        },
+        {
+            "const": "PKG/BALE",
+            "title": "Balle",
+            "description": "Un gros paquet de matériel souvent enveloppé"
+        },
+        {
+            "const": "PKG/BARREL",
+            "title": "Baril",
+            "description": "Un grand conteneur cylindrique ayant un dessus et un fond plats de diamètre égal."
+        },
+        {
+            "const": "PKG/BLK",
+            "title": "En vrac",
+            "description": "Distribué en masse (généralement pour les liquides)."
+        },
+        {
+            "const": "PKG/BOX",
+            "title": "Boîte",
+            "description": "Un conteneur rectangulaire ayant généralement un couvercle."
+        },
+        {
+            "const": "PKG/CASE",
+            "title": "Caisse",
+            "description": "Un conteneur."
+        },
+        {
+            "const": "PKG/CONTNR",
+            "title": "Conteneur",
+            "description": "Un récipient pour contenir ou transporter des matériaux"
+        },
+        {
+            "const": "PKG/CRATE",
+            "title": "Caisse",
+            "description": "Un conteneur, comme une caisse en bois à lattes."
+        },
+        {
+            "const": "PKG/DRM",
+            "title": "Tonneau",
+            "description": "Un récipient pour contenir ou transporter des matériaux ou des liquides"
+        },
+        {
+            "const": "PKG/JERCAN",
+            "title": "Jerrican",
+            "description": "Un récipient qui contient 20 litres"
+        },
+        {
+            "const": "PKG/PAK",
+            "title": "Sac",
+            "description": "Sac pour transporter l'équipement personnel"
+        },
+        {
+            "const": "PKG/PAL",
+            "title": "Palette",
+            "description": "Distribué en unités de palettes standard de l'OTAN"
+        },
+        {
+            "const": "PKG/RATION",
+            "title": "Ration",
+            "description": "Une portion fixe"
+        },
+        {
+            "const": "TIM/DAY",
+            "title": "Jour",
+            "description": "La date et l'heure sont définies avec une précision d'une journée"
+        },
+        {
+            "const": "TIM/HR",
+            "title": "Heure",
+            "description": "Une unité de durée de 3 600 secondes"
+        },
+        {
+            "const": "TIM/MINUTE",
+            "title": "Minute",
+            "description": "Une unité internationale standard de temps."
+        },
+        {
+            "const": "TIM/MON",
+            "title": "Mois",
+            "description": "La date et l'heure sont définies avec une précision d'un mois."
+        },
+        {
+            "const": "TIM/SECOND",
+            "title": "Seconde",
+            "description": "Une unité internationale standard de temps."
+        },
+        {
+            "const": "TIM/WEK",
+            "title": "Semaine",
+            "description": "La date et l'heure sont définies avec une précision d'une semaine."
+        },
+        {
+            "const": "TIM/YEA",
+            "title": "An",
+            "description": "La date et l'heure sont définies avec une précision d'un an."
+        },
+        {
+            "const": "WGT/CNTGRM",
+            "title": "Centigramme",
+            "description": "Une unité internationale standard"
+        },
+        {
+            "const": "WGT/GRAM",
+            "title": "Gramme",
+            "description": "Une unité métrique de masse et de poids équivalente à 1 000e de kilogramme"
+        },
+        {
+            "const": "WGT/KG",
+            "title": "Kilogramme",
+            "description": "1 000 grammes"
+        },
+        {
+            "const": "WGT/KGH",
+            "title": "Kilogramme(s) par heure",
+            "description": "Unités de 1 000 grammes divisées par le temps éc"
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "EMSI-EVENT.RISK_ASSESSMNT",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "INCREA",
+            "title": "Croissant"
+        },
+        {
+            "const": "DECREA",
+            "title": "Décroissant"
+        },
+        {
+            "const": "STABLE",
+            "title": "Stable"
+        }
+    ]
+}

@@ -1,0 +1,106 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "EMSI-MISSION.TYPE",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "SAV/ASC",
+            "title": "Demander une prise en charge secouriste",
+            "description": "Lorsque ce type est sélectionné, le champ MISSION.PRIORITY doit être complété pour que le partenaire distingue la prise en charge secouriste non urgente (priorité = 1) de la prise en charge secouriste urgente (priorité = 5)."
+        },
+        {
+            "const": "FR_MED/REGLTN",
+            "title": "Demander une régulation médicale",
+            "description": "S'agit d'une demande de solicitation du SAMU en vue s'assurer une régulation médicale pour engager ou non des ressources"
+        },
+        {
+            "const": "GEN/SUPRTN",
+            "title": "Demander un soutien médico psychologique",
+            "description": "S'agit d'une demande d'engagement de ressources en vue d'apporter à un patient/victime un soutien médico psychologique"
+        },
+        {
+            "const": "SAV/AR/FR_MED",
+            "title": "Demander une prise en charge médicale",
+            "description": "S'agit d'une demande d'engagement de ressources en vue de prendre en charge un patient/victime par une équipe médicale"
+        },
+        {
+            "const": "SAV/AR/FR_PARAMD",
+            "title": "Demander une prise en charge para médicale",
+            "description": "S'agit d'une demande d'engagement de ressources en vue de prendre en charge un patient/victime par une équipe para médicale"
+        },
+        {
+            "const": "SAV",
+            "title": "Autre demande de concours au SAMU",
+            "description": "S'agit d'une demande au SAMU, autre que celles déjà existants (ex. prise en charge d'un problème médico social)"
+        },
+        {
+            "const": "GEN/TRNSPN",
+            "title": "Demander le transport d'une personne",
+            "description": "S'agit du transport d'un patient/victime vers un établissement de santé (ES) à l'aide d'un moyen adapté."
+        },
+        {
+            "const": "SAV/SARCSL",
+            "title": "Demander la recherche de personne(s) ensevelie(s)",
+            "description": "Patient/Victime piégé sous des matériaux/matières dont l'abord est rendu difficile (ex. avalanche, silo à grain, fontis, structure, etc.)"
+        },
+        {
+            "const": "SAV/ASC/FR_PPL/LIFT",
+            "title": "Demander de relever une personne",
+            "description": "Patient/victime au sol dans l'incapacité de se relever par elle-même ou l'aide de ses proches."
+        },
+        {
+            "const": "GEN/RECVRY",
+            "title": "Demander d'extraire ou degager une personne",
+            "description": "Patient/victime bloqué à libérer (ex. désincarcération, personne dans un ascenseur, etc.)."
+        },
+        {
+            "const": "SAV/RHD",
+            "title": "Demander un appui pour évacuation"
+        },
+        {
+            "const": "FFST/FR_FIRE",
+            "title": "Lutter contre l'incendie"
+        },
+        {
+            "const": "FSTT/RRHAZ/FR_CO",
+            "title": "Demander une levée de doute CO"
+        },
+        {
+            "const": "CBRN/TSA",
+            "title": "Demander une levée de doute NRBC"
+        },
+        {
+            "const": "INT/RECCE/FR_SMLL",
+            "title": "Demander une levée de doute d'odeur/fumée suspecte"
+        },
+        {
+            "const": "FSTT/TA",
+            "title": "Demander un appui technique"
+        },
+        {
+            "const": "SAV/AR/FR_PPL/GRP",
+            "title": "Demander une prise en charge de nombreuses victimes"
+        },
+        {
+            "const": "INT/RECCE",
+            "title": "Autre demande de concours au SIS"
+        },
+        {
+            "const": "GEN/TRNSPN/FR_SECNDRY",
+            "title": "Demander un transfert interétablissement",
+            "description": "S'agit du transport d'un patient/victime d'un établissement de santé vers un autre à l'aide d'un moyen adapté."
+        },
+        {
+            "const": "OPR/LOG",
+            "title": "Demander une aide au brancardage"
+        },
+        {
+            "const": "SAV/AR/FR_PPL/OBS",
+            "title": "Demander un transport bariatrique"
+        },
+        {
+            "const": "FSTT/TA/FR_CLRACCSS",
+            "title": "Demander l'ouverture d'accès"
+        }
+    ]
+}

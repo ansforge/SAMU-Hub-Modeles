@@ -1,0 +1,350 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "EMSI-EVENT.ETYPE.CATEGORY",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "ASB",
+            "title": "Comportement antisocial"
+        },
+        {
+            "const": "ASR",
+            "title": "Assistance ou sauvetage pour les personnes/les animaux"
+        },
+        {
+            "const": "EXP",
+            "title": "Explosion"
+        },
+        {
+            "const": "FIR",
+            "title": "Incendie"
+        },
+        {
+            "const": "FLD",
+            "title": "Inondation"
+        },
+        {
+            "const": "GND",
+            "title": "Événement au sol"
+        },
+        {
+            "const": "HLT",
+            "title": "Santé"
+        },
+        {
+            "const": "POL",
+            "title": "Pollution"
+        },
+        {
+            "const": "PSW",
+            "title": "Sécurité publique/bien-être"
+        },
+        {
+            "const": "TRP",
+            "title": "Transport"
+        },
+        {
+            "const": "ASB/ABV",
+            "title": "Véhicule abandonné",
+            "description": "Véhicule qui a été laissé sans surveillance."
+        },
+        {
+            "const": "ASR/ATM",
+            "title": "Fumée/atmosphère non respirable",
+            "description": "Atmosphère qui nécessite un équipement de respiration spécialisé pour maintenir la vie."
+        },
+        {
+            "const": "ASR/HGT",
+            "title": "Sauvetage en hauteur",
+            "description": "Sauvetage d'urgence à partir d'une hauteur au-delà de la portée normale de l'équipement de sauvetage standard."
+        },
+        {
+            "const": "ASR/ICE",
+            "title": "Sauvetage sur la glace",
+            "description": "Sauvetage d'une victime de, sur ou sous la glace."
+        },
+        {
+            "const": "ASR/MAR",
+            "title": "Naufragé",
+            "description": "Personnes dans une position ou une situation où l'auto-sauvetage est impossible."
+        },
+        {
+            "const": "ASR/SIL",
+            "title": "Sauvetage dans des silos/sable",
+            "description": "Opérations de sauvetage à l'intérieur de silos."
+        },
+        {
+            "const": "ASR/TRP",
+            "title": "Piégé",
+            "description": "Situation dans laquelle une victime ne peut pas s'auto-sauver."
+        },
+        {
+            "const": "ASR/UDG",
+            "title": "Sauvetage souterrain",
+            "description": "Opérations de sauvetage en-dessous du niveau du sol."
+        },
+        {
+            "const": "ASR/WAT",
+            "title": "Sauvetage dans l'eau",
+            "description": "Opérations de sauvetage dans l'eau"
+        },
+        {
+            "const": "EXP/AER",
+            "title": "Aérosols",
+            "description": "Une suspension gazeuse de fines particules solides ou liquides, conditionnée sous pression avec un propulseur gazeux pour être libérée sous forme de fines particules en spray."
+        },
+        {
+            "const": "EXP/AMM",
+            "title": "Munitions",
+            "description": "Explosifs utilisés dans des armes comme les balles, les obus, etc."
+        },
+        {
+            "const": "EXP/BLEVE",
+            "title": "BLEVE",
+            "description": "Explosion de vapeur de liquide bouillant qui se dilate"
+        },
+        {
+            "const": "EXP/CHM",
+            "title": "Produits chimiques",
+            "description": "Substance produite par ou utilisée dans un processus chimique"
+        },
+        {
+            "const": "EXP/CYL",
+            "title": "Bouteilles",
+            "description": "Bouteilles contenant une forme de gaz comprimé comme le butane"
+        },
+        {
+            "const": "EXP/DST",
+            "title": "Poussière",
+            "description": "Particules fines de substances combustibles visibles à l'œil nu formant un nuage dépassant les concentrations minimales d'explosion"
+        },
+        {
+            "const": "EXP/FRW",
+            "title": "Feux d'artifice",
+            "description": "Un dispositif combustible ou explosif pour produire un affichage spectaculaire de lumière ou un bruit fort, utilisé pour la signalisation ou dans le cadre d'une célébration"
+        },
+        {
+            "const": "EXP/GAS",
+            "title": "Explosion de gaz",
+            "description": "Explosion due à une accumulation de gaz"
+        },
+        {
+            "const": "EXP/HGHFLM",
+            "title": "Hautement inflammable",
+            "description": "Un terme générique utilisé pour décrire tout matériau/substance hautement inflammable"
+        },
+        {
+            "const": "EXP/HPP",
+            "title": "Produits à haute pression (y compris la vapeur...)"
+        },
+        {
+            "const": "EXP/IMP",
+            "title": "Dispositifs improvisés",
+            "description": "Molotov, lettres piégées, ..."
+        },
+        {
+            "const": "EXP/LPG",
+            "title": "Gaz de pétrole liquéfié (LPG)",
+            "description": "Gaz de pétrole liquéfié"
+        },
+        {
+            "const": "EXP/NUK",
+            "title": "Nucléaire (y compris certaines bombes sales)"
+        },
+        {
+            "const": "EXP/PRD",
+            "title": "Produits commerciaux",
+            "description": "Dynamite, TNT, SEMTEX, ..."
+        },
+        {
+            "const": "EXP/UKN",
+            "title": "Inconnu",
+            "description": "Terme utilisé lorsque la source de quelque chose n'est pas connue"
+        },
+        {
+            "const": "FIR/CLA",
+            "title": "Classe de feu A",
+            "description": "Organique — papier, bois, etc. Utiliser de l'eau."
+        },
+        {
+            "const": "FIR/CLB",
+            "title": "Classe de feu B",
+            "description": "Liquides/gaz inflammables. Utiliser des produits chimiques secs ou des couvertures anti-feu."
+        },
+        {
+            "const": "FIR/CLC",
+            "title": "Classe de feu C",
+            "description": "Équipement électrique ou câblage sous tension. Utiliser du CO2 ou de la poudre sèche."
+        },
+        {
+            "const": "FIR/CLD",
+            "title": "Classe de feu D",
+            "description": "Feux métalliques (magnésium, sodium, titane). Utiliser un agent sec, comme du sable ou une poudre sèche spéciale, comme un agent d'extinction à base de chlorure de sodium sec pressurisé à l'azote."
+        },
+        {
+            "const": "FIR/UKN",
+            "title": "Feu — inconnu",
+            "description": "Un feu impliquant une substance inconnue"
+        },
+        {
+            "const": "FLD/FLS",
+            "title": "Inondation — flash",
+            "description": "Inondation provoquée par des conditions météorologiques extrêmes"
+        },
+        {
+            "const": "FLD/PLN",
+            "title": "Inondation — plaine",
+            "description": "Inondation provoquée par la montée de l'eau sur une zone"
+        },
+        {
+            "const": "FLD/TID",
+            "title": "Inondation — marée",
+            "description": "Inondation où les dommages sont initialement causés par l'impact d'une vague ou de l'eau, comme un tsunami"
+        },
+        {
+            "const": "GND/AVL",
+            "title": "Avalanche",
+            "description": "Avalanche"
+        },
+        {
+            "const": "GND/EQK",
+            "title": "Tremblement de terre",
+            "description": "Tremblement de terre (impact donné par l'élément ÉCHELLE)"
+        },
+        {
+            "const": "GND/GEY",
+            "title": "Geyser",
+            "description": "Terme utilisé pour décrire une caractéristique naturelle qui fait jaillir de l'eau (souvent chaude) dans les airs à intervalles réguliers"
+        },
+        {
+            "const": "GND/LDS",
+            "title": "Éboulement",
+            "description": "La chute ou le glissement vers le bas d'une masse de sol, de détritus ou de roche sur ou depuis une pente raide"
+        },
+        {
+            "const": "GND/MUD",
+            "title": "Glissement de boue",
+            "description": "Un glissement de boue"
+        },
+        {
+            "const": "GND/SUB",
+            "title": "Subsidence",
+            "description": "Terme utilisé pour décrire l'affaissement dans le sol ou dans un bâtiment"
+        },
+        {
+            "const": "GND/VUL",
+            "title": "Éruption volcanique",
+            "description": "Incident résultant de l'activité volcanique"
+        },
+        {
+            "const": "HLT/EPI",
+            "title": "Épidémie",
+            "description": "Propagation rapide ou augmentation de l'occurrence de quelque chose"
+        },
+        {
+            "const": "HLT/FMN",
+            "title": "Famine",
+            "description": "Pénurie extrême et générale de nourriture, comme dans un pays ou une grande zone géographique"
+        },
+        {
+            "const": "HLT/NDS",
+            "title": "Maladie notifiable",
+            "description": "par exemple, la méningite"
+        },
+        {
+            "const": "POL/BIO",
+            "title": "Pollution — biologique",
+            "description": "L'introduction de substances ou de produits biologiques nocifs dans l'environnement"
+        },
+        {
+            "const": "POL/CHM",
+            "title": "Pollution — chimique",
+            "description": "L'introduction de substances chimiques nocives ou de produits dans l'environnement"
+        },
+        {
+            "const": "POL/NUK",
+            "title": "Pollution — nucléaire",
+            "description": "L'introduction de substances ou de produits nucléaires nocifs dans l'environnement"
+        },
+        {
+            "const": "POL/RAD",
+            "title": "Pollution radioactive",
+            "description": "L'introduction de substances radioactives nocives ou de produits dans l'environnement"
+        },
+        {
+            "const": "PSW/ALM",
+            "title": "Alarme",
+            "description": "Signal indiquant un incident potentiel"
+        },
+        {
+            "const": "PSW/ASY",
+            "title": "Questions d'asile",
+            "description": "Concernant les individus en quête de refuge, en particulier l'asile politique, dans un pays étranger"
+        },
+        {
+            "const": "PSW/DEM",
+            "title": "Manifestation",
+            "description": "La manifestation est autorisée par les autorités, la protestation ne l'est pas"
+        },
+        {
+            "const": "PSW/IMM",
+            "title": "Immigration illégale",
+            "description": "Personnes entrant dans un pays sans les autorisations nécessaires"
+        },
+        {
+            "const": "PSW/MEV",
+            "title": "Événement majeur",
+            "description": "Un événement très important qui provoque une forme de perturbation"
+        },
+        {
+            "const": "PSW/MIS",
+            "title": "Personne disparue",
+            "description": "Personne disparue d'un endroit donné"
+        },
+        {
+            "const": "PSW/PKG",
+            "title": "Objet/paquet suspect",
+            "description": "cf. le document sur les règles de comptage du NSIR"
+        },
+        {
+            "const": "PSW/PRO",
+            "title": "Protestation",
+            "description": "La manifestation est autorisée"
+        },
+        {
+            "const": "PSW/PRSUIT",
+            "title": "Poursuite",
+            "description": "Terme utilisé pour décrire la tentative de rattraper une personne ou un véhicule"
+        },
+        {
+            "const": "PSW/RIOT",
+            "title": "Émeute",
+            "description": "Manifestation ou protestation où les autorités n'ont pas le contrôle"
+        },
+        {
+            "const": "PSW/SUS",
+            "title": "Circonstances suspectes",
+            "description": "cf. le document sur les règles de comptage du NSIR"
+        },
+        {
+            "const": "PSW/WNG",
+            "title": "Avertissement",
+            "description": "Signal indiquant un incident imminent"
+        },
+        {
+            "const": "TRP/BRK",
+            "title": "Panne",
+            "description": "Panne, usure ou perte soudaine de la capacité à fonctionner efficacement, comme d'une machine"
+        },
+        {
+            "const": "TRP/COL",
+            "title": "Collision",
+            "description": "L'acte de se heurter, une rencontre violente"
+        },
+        {
+            "const": "TRP/CRS",
+            "title": "Accident",
+            "description": "Le terme \"accident\" est utilisé pour décrire quelque chose qui a échoué soudainement. Cela peut être lié à des accidents de véhicules, d'aéronefs, etc."
+        }
+    ]
+}

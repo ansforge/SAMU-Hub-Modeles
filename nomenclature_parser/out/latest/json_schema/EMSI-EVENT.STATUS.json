@@ -1,0 +1,27 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "EMSI-EVENT.STATUS",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "NST",
+            "title": "Intervention non démarré",
+            "description": "Des alertes ont été reçues pour cette affaire mais aucune action (engagements de ressource, conseils etc) n’est encore déclenchée"
+        },
+        {
+            "const": "IPR",
+            "title": "En cours",
+            "description": "L’affaire est en cours de résolution."
+        },
+        {
+            "const": "STOP",
+            "title": "En pause",
+            "description": "L’affaire est en pause pour le partenaire. Peut correspondre au cas d’une mise en veille."
+        },
+        {
+            "const": "COM",
+            "title": "Complétée",
+            "description": "La situation d’urgence est sous maîtrise du partenaire qui considère qu’il n’y a plus de besoin d’échanges sur cette affaire. Lorsqu’un partenaire clôt une affaire, il renvoie un code \"COM\" à son partenaire."
+        }
+    ]
+}

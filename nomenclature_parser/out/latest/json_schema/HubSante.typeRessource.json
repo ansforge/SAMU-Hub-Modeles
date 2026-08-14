@@ -1,0 +1,156 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.typeRessource",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "SMUR",
+            "title": "Smur",
+            "description": "Ressources des SMUR"
+        },
+        {
+            "const": "SMUR.ADULT",
+            "title": "Smur Généraliste",
+            "description": "UMH"
+        },
+        {
+            "const": "SMUR.PED",
+            "title": "Smur Pédiatrique ou Néonat",
+            "description": "UMH-PED"
+        },
+        {
+            "const": "SMUR.UMH-S",
+            "title": "Smur Spécialisé",
+            "description": "UMH-S"
+        },
+        {
+            "const": "SMUR.CUMP",
+            "title": "Cellule d'Urgence Médico Psychologique",
+            "description": "CUMP"
+        },
+        {
+            "const": "HOSPIT",
+            "title": "Hospitaliers (hors Smur)",
+            "description": "Ressources relevant des établissements de santé, public ou privé, hors des ressources du SMUR"
+        },
+        {
+            "const": "LIBERAL",
+            "title": "Professionnels Libéraux",
+            "description": "Ressources relevant de la prise en charge par des professionnels libéraux"
+        },
+        {
+            "const": "LIBERAL.MG",
+            "title": "Médecin Généraliste"
+        },
+        {
+            "const": "LIBERAL.PHARM",
+            "title": "Pharmacien"
+        },
+        {
+            "const": "LIBERAL.INF",
+            "title": "Infirmier"
+        },
+        {
+            "const": "LIBERAL.KINE",
+            "title": "Kinésithérapeuthes"
+        },
+        {
+            "const": "LIBERAL.SOS",
+            "title": "Association de permanence de soins"
+        },
+        {
+            "const": "LIBERAL.MMG",
+            "title": "Maison médicale de garde"
+        },
+        {
+            "const": "LIBERAL.MSPD",
+            "title": "Maison de Santé Pluri Disciplinaire"
+        },
+        {
+            "const": "LIBERAL.MCS",
+            "title": "Médecin Correspondant de Samu"
+        },
+        {
+            "const": "LIBERAL.SPEMED",
+            "title": "Médecin autre spécialité"
+        },
+        {
+            "const": "LIBERAL.DENT",
+            "title": "Dentiste"
+        },
+        {
+            "const": "LIBERAL.LABO",
+            "title": "Laboratoire d'analyses médicales"
+        },
+        {
+            "const": "LIBERAL.AUTREPRO",
+            "title": "Autre professionnel de santé"
+        },
+        {
+            "const": "TSU",
+            "title": "Ambulanciers privés (Transporteurs Sanitaires Urgent)",
+            "description": "Ressources relevant des sociétés d'ambulances privées"
+        },
+        {
+            "const": "SIS",
+            "title": "Pompiers",
+            "description": "Ressources relevant des services d'incendie et de secours"
+        },
+        {
+            "const": "SIS.MEDSP",
+            "title": "Medecin Sapeur-Pompier"
+        },
+        {
+            "const": "SIS.ISP",
+            "title": "Infirmier Sapeur-Pompier"
+        },
+        {
+            "const": "SIS.SP",
+            "title": "Secouriste"
+        },
+        {
+            "const": "AASC",
+            "title": "Sécurité civile, secouriste",
+            "description": "Ensemble des ressources fixes ou mobiles relevant des organisations de secourisme"
+        },
+        {
+            "const": "FDO",
+            "title": "Force de l'Ordre et douanes",
+            "description": "Ensemble des ressources fixes ou mobiles relevant des forces de l’ordre (police nationale, municipale, gendarmerie nationaux et douanes)"
+        },
+        {
+            "const": "FDO.PN",
+            "title": "Police Nationale"
+        },
+        {
+            "const": "FDO.GEND",
+            "title": "Gendarmerie Nationale"
+        },
+        {
+            "const": "FDO.PM",
+            "title": "Police Municipale"
+        },
+        {
+            "const": "FDO.DOUANES",
+            "title": "Douane"
+        },
+        {
+            "const": "AUTRE",
+            "title": "Autres ressources",
+            "description": "Autres ressources ne relevant d’aucune autre catégorie définie"
+        },
+        {
+            "const": "AUTRE.ADM",
+            "title": "Institutions administratives et sociales"
+        },
+        {
+            "const": "AUTRE.DAE",
+            "title": "Défibrillateur Automatique"
+        },
+        {
+            "const": "AUTRE.AUTRE",
+            "title": "Autre moyen"
+        }
+    ],
+    "description": "Décrit le type de moyen/ressources, dans un sens plus large que type de vecteur/véhicule. N.B. dans OPG pour les message EMSI.\n"
+}

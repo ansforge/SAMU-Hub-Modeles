@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.nbVictimes",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "0",
+            "title": "0"
+        },
+        {
+            "const": "1",
+            "title": "1"
+        },
+        {
+            "const": "PLUSIEURS",
+            "title": "PLUSIEURS"
+        },
+        {
+            "const": "BEAUCOUP",
+            "title": "BEAUCOUP"
+        },
+        {
+            "const": "INCONNU",
+            "title": "INCONNU"
+        },
+        {
+            "const": "NON DEFINI",
+            "title": "NON DEFINI"
+        }
+    ],
+    "description": "Décrit le nombre de patient/victimes"
+}

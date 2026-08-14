@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.priorite",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "P0",
+            "title": "Urgence vitale",
+            "description": "Régulation médicale pour une urgence vitale"
+        },
+        {
+            "const": "P1",
+            "title": "Prioritaire",
+            "description": "Régulation médicale urgente et prioritaire"
+        },
+        {
+            "const": "P2",
+            "title": "Non Urgent",
+            "description": "Régulation médicale non urgente (valeur attribuée par défaut)"
+        },
+        {
+            "const": "P3",
+            "title": "Différé",
+            "description": "Régulation médicale différée"
+        },
+        {
+            "const": "NR",
+            "title": "Non régulé",
+            "description": "Pas d’acte de régulation médicale"
+        }
+    ],
+    "description": "Décrit la priorité de régulation médicale."
+}

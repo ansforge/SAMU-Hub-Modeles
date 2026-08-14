@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "EMSI-CONTEXT.MSGTYPE",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "ACK",
+            "title": "Reçu et accepté",
+            "description": "Accuse réception et acceptation du/des message(s) identifié(s) en référence"
+        },
+        {
+            "const": "ALERT",
+            "title": "Alerte",
+            "description": "Information initiale nécessitant l'attention des destinataires ciblés"
+        },
+        {
+            "const": "CANCEL",
+            "title": "Annulé",
+            "description": "Annule le(s) message(s) précédent(s) identifié(s) en référence"
+        },
+        {
+            "const": "ERROR",
+            "title": "Erreur",
+            "description": "Indique le rejet du/des message(s) identifié(s) en référence"
+        },
+        {
+            "const": "UPDATE",
+            "title": "Mis à jour",
+            "description": "Met à jour et remplace le(s) message(s) précédent(s) identifié(s) en référence."
+        }
+    ]
+}

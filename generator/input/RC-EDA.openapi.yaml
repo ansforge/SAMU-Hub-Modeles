@@ -194,6 +194,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/country
+          x-nomenclature: ISO 3166-ISO3166-2
           enum:
           - AF
           - AX
@@ -518,6 +519,7 @@ components:
             \ CISU :\n- standard : STANDARD\n- signal\xE9 : ATTENTION\nLes syst\xE8\
             mes peuvent proposer des fonctionnalit\xE9s faisant ressortir les dossiers\
             \ avec le libell\xE9 ATTENTION"
+          x-nomenclature: HubSante.signalement
           enum:
           - STANDARD
           - ATTENTION
@@ -714,6 +716,7 @@ components:
           example: example.json#/qualification/victims/count
           description: "Indique le nombre de victimes selon la nomenclature du r\xE9\
             f\xE9rentiel CISU"
+          x-nomenclature: HubSante.nbVictimes
           enum:
           - '0'
           - '1'
@@ -733,6 +736,7 @@ components:
             tat de sant\xE9 provoque le d\xE9clenchement de l'envoi des secours).\
             \ Prend les valeurs du r\xE9f\xE9rentiel CISU. Entre dans la d\xE9termination\
             \ des partenaires impliqu\xE9s par NexSIS."
+          x-nomenclature: HubSante.patient
           enum:
           - NOURRISSON
           - ENFANT
@@ -773,6 +777,7 @@ components:
           example: example.json#/location/externalLocationId/0/source
           description: "A valoriser avec le type de l'identifiant fourni. Cf nomenclature\
             \ associ\xE9e."
+          x-nomenclature: HubSante.idLieu
           enum:
           - FINESS_ADMINISTRATIF
           - FINESS_GEOGRAPHIQUE
@@ -1049,6 +1054,7 @@ components:
           x-cols: 6
           example: example.json#/location/externalInfo/0/freetext
           description: "A valoriser avec le syst\xE8me fournissant le localisant"
+          x-nomenclature: HubSante.systeme
           enum:
           - BAN
           - IGN
@@ -1064,6 +1070,7 @@ components:
           description: "A valoriser avec la d\xE9finition du type d'objet dans le\
             \ syst\xE8me\n\nExemple : SIG NexSIS / OSM ont plusieurs types de donn\xE9\
             es (EGA, POI, tron\xE7on de route, \u2026)"
+          x-nomenclature: HubSante.objetSource
           enum:
           - MANUEL
           - CARTE
@@ -1216,6 +1223,7 @@ components:
             chelle de la rue, \nADRESSE : Adresse pr\xE9cise, \nEXACTE : Point coordonn\xE9\
             e GPS exact, \nINCONNUE : Pr\xE9cision de la localisation non \xE9valuable\
             \ par l'\xE9metteur"
+          x-nomenclature: HubSante.precision
           enum:
           - VILLE
           - RUE
@@ -1292,6 +1300,7 @@ components:
           example: example.json#/initialAlert/caller/language
           description: "A valoriser avec la langue parl\xE9e par le requ\xE9rant.\
             \ \ncf.nomenclature associ\xE9e."
+          x-nomenclature: HubSante.langue
           enum:
           - aa
           - ab
@@ -1486,6 +1495,7 @@ components:
           example: example.json#/initialAlert/caller/type
           description: "A valoriser avec la relation du requ\xE9rant avec l'incident\
             \ / le patient / la victime.\ncf. nomenclature associ\xE9e."
+          x-nomenclature: HubSante.typeAppelant
           enum:
           - SUJET
           - FAMILLE
@@ -1527,6 +1537,7 @@ components:
           description: "A valoriser avec la nature des \xE9ventuelles difficult\xE9\
             s de communication rencontr\xE9es par le requ\xE9rant. \ncf.nomenclature\
             \ associ\xE9e."
+          x-nomenclature: HubSante.communication
           enum:
           - AUCUNE
           - MUET
@@ -1712,6 +1723,7 @@ components:
           example: example.json#/initialAlert/caller/callerContact/channel
           description: "A valoriser avec  l'origine du canal \xE9tabli : PERSONNE,\
             \ APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL"
+          x-nomenclature: HubSante.canal
           enum:
           - APPLICATION
           - BAU
@@ -1729,6 +1741,7 @@ components:
           example: example.json#/initialAlert/caller/callerContact/type
           description: "A valoriser avec le type de l'URI utilis\xE9e.  Cf nomenclature\
             \ associ\xE9e."
+          x-nomenclature: HubSante.typeCom
           enum:
           - EMAIL
           - FAX

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "26.07.29",
+    "version": "26.08.14",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -47,13 +47,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/perimeter",
-            "description": "Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée.",
-            "enum": [
-                "AMU",
-                "NEONAT",
-                "PSY",
-                "SNP"
-            ]
+            "description": "Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée."
         },
         "interventionType": {
             "type": "string",
@@ -62,6 +56,7 @@
             "x-cols": 6,
             "example": "example.json#/interventionType",
             "description": "A valoriser en indiquant s'il s'agit d'un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH)",
+            "x-nomenclature": "HubSante.intervention",
             "enum": [
                 "T1",
                 "T2-INTER",
@@ -125,6 +120,7 @@
                     "x-cols": 6,
                     "example": "example.json#/qualification/origin",
                     "description": "A valoriser avec le numéro de provenance de l'appel.",
+                    "x-nomenclature": "HubSante.origine",
                     "enum": [
                         "15",
                         "116117",
@@ -380,6 +376,7 @@
                     "x-cols": 6,
                     "example": "example.json#/decision/0/decisionType",
                     "description": "A valoriser avec le type de décision prise (cf.nomenclature associée)",
+                    "x-nomenclature": "HubSante.typeDecision",
                     "enum": [
                         "CONSEIL",
                         "PMT",
@@ -395,6 +392,7 @@
                     "x-cols": 6,
                     "example": "example.json#/decision/0/resourceType",
                     "description": "A valoriser avec le type de ressource souhaitée ou engagée (cf.nomenclature associée) - en fonction du type de décision.\nA fournir obligatoirement pour une décision d'intervention ou de transport/orientation.",
+                    "x-nomenclature": "HubSante.typeRessource",
                     "enum": [
                         "SMUR",
                         "SMUR.ADULT",
@@ -447,6 +445,7 @@
                     "x-cols": 6,
                     "example": "example.json#/decision/0/orientationType",
                     "description": "Indique le type de destination en cas de décision d'orientation (cf. nomenclature associée)",
+                    "x-nomenclature": "HubSante.typeOrientation",
                     "enum": [
                         "URGENCES",
                         "REA-USI",
@@ -620,6 +619,7 @@
                     "x-cols": 6,
                     "example": "example.json#/qualification/details/status",
                     "description": "A valoriser avec l'état du dossier dans le système émetteur\nSpécificité 15-15 : peut être ignoré en réception, partagé à titre indicatif uniquement\nSpécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE à la tablette",
+                    "x-nomenclature": "HubSante.etat",
                     "enum": [
                         "PROGRAM",
                         "ACTIF",
@@ -637,6 +637,7 @@
                     "x-cols": 6,
                     "example": "example.json#/qualification/details/attribution",
                     "description": "Décrit le type de professionnel médical à qui le dossier est attribué : médecin généraliste, médecin urgentiste etc.",
+                    "x-nomenclature": "HubSante.attribution",
                     "enum": [
                         "DRM",
                         "DRM.MRU",
@@ -687,6 +688,7 @@
                     "x-cols": 6,
                     "example": "example.json#/qualification/details/priority",
                     "description": "Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3",
+                    "x-nomenclature": "HubSante.priorite",
                     "enum": [
                         "P0",
                         "P1",
@@ -702,6 +704,7 @@
                     "x-cols": 6,
                     "example": "example.json#/qualification/details/careLevel",
                     "description": "Décrit le niveau de soins global du dossier identifié au cours de l'acte de régulation médicale : s'il y a plusieurs niveaux de soins différents pour chaque patient, on indique ici le niveau le plus grave.\ncf.nomenclature associée.",
+                    "x-nomenclature": "HubSante.niveauSoin",
                     "enum": [
                         "R1",
                         "R2",
@@ -730,6 +733,7 @@
                     "x-cols": 6,
                     "example": "example.json#/location/externalLocationId/0/source",
                     "description": "A valoriser avec le type de l'identifiant fourni. Cf nomenclature associée.",
+                    "x-nomenclature": "HubSante.idLieu",
                     "enum": [
                         "FINESS_ADMINISTRATIF",
                         "FINESS_GEOGRAPHIQUE",
@@ -945,6 +949,7 @@
                     "x-cols": 6,
                     "example": "example.json#/location/externalInfo/0/freetext",
                     "description": "A valoriser avec le système fournissant le localisant",
+                    "x-nomenclature": "HubSante.systeme",
                     "enum": [
                         "BAN",
                         "IGN",
@@ -958,6 +963,7 @@
                     "x-cols": 6,
                     "example": "example.json#/location/externalInfo/0/type",
                     "description": "A valoriser avec la définition du type d'objet dans le système\n\nExemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)",
+                    "x-nomenclature": "HubSante.objetSource",
                     "enum": [
                         "MANUEL",
                         "CARTE",
@@ -1116,6 +1122,7 @@
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/point/coord/precision",
                     "description": "Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.\nVILLE : Précision à l'échelle de la ville, \nRUE : Précision à l'échelle de la rue, \nADRESSE : Adresse précise, \nEXACTE : Point coordonnée GPS exact, \nINCONNUE : Précision de la localisation non évaluable par l'émetteur",
+                    "x-nomenclature": "HubSante.precision",
                     "enum": [
                         "VILLE",
                         "RUE",
@@ -1179,6 +1186,7 @@
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/language",
                     "description": "A valoriser avec la langue parlée par le requérant. \ncf.nomenclature associée.",
+                    "x-nomenclature": "HubSante.langue",
                     "enum": [
                         "aa",
                         "ab",
@@ -1372,6 +1380,7 @@
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/type",
                     "description": "A valoriser avec la relation du requérant avec l'incident / le patient / la victime.\ncf. nomenclature associée.",
+                    "x-nomenclature": "HubSante.typeAppelant",
                     "enum": [
                         "SUJET",
                         "FAMILLE",
@@ -1411,6 +1420,7 @@
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/communication",
                     "description": "A valoriser avec la nature des éventuelles difficultés de communication rencontrées par le requérant. \ncf.nomenclature associée.",
+                    "x-nomenclature": "HubSante.communication",
                     "enum": [
                         "AUCUNE",
                         "MUET",
@@ -1456,6 +1466,7 @@
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerContact/channel",
                     "description": "A valoriser avec  l'origine du canal établi : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL",
+                    "x-nomenclature": "HubSante.canal",
                     "enum": [
                         "APPLICATION",
                         "BAU",
@@ -1472,6 +1483,7 @@
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerContact/type",
                     "description": "A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.",
+                    "x-nomenclature": "HubSante.typeCom",
                     "enum": [
                         "EMAIL",
                         "FAX",
@@ -1607,6 +1619,7 @@
                     "x-cols": 6,
                     "example": "example.json#/patient/0/detail/careLevel",
                     "description": "A valoriser avec le niveau de soins spécifique au patient",
+                    "x-nomenclature": "HubSante.niveauSoin",
                     "enum": [
                         "R1",
                         "R2",
@@ -1671,6 +1684,7 @@
                     "x-cols": 6,
                     "example": "example.json#/patient/0/administrativeFile/externalId/0/source",
                     "description": "Type de l'identifiant fourni",
+                    "x-nomenclature": "HubSante.typeIdPatient",
                     "enum": [
                         "NIR",
                         "SINUS",
@@ -1738,6 +1752,7 @@
                     "x-cols": 6,
                     "example": "example.json#/patient/0/administrativeFile/generalPractitioner/contact/0/type",
                     "description": "A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.",
+                    "x-nomenclature": "HubSante.typeCom",
                     "enum": [
                         "EMAIL",
                         "FAX",
@@ -1791,6 +1806,7 @@
                     "x-cols": 6,
                     "example": "example.json#/patient/0/identity/strictFeatures/sex",
                     "description": "A valoriser avec le sexe du patient",
+                    "x-nomenclature": "HubSante.sexe",
                     "enum": [
                         "M",
                         "F",
@@ -1888,6 +1904,7 @@
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/operator/role",
                     "description": "A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ",
+                    "x-nomenclature": "HubSante.role",
                     "enum": [
                         "AMBULANCIER",
                         "ARM",

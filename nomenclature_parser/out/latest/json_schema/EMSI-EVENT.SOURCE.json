@@ -1,0 +1,27 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "EMSI-EVENT.SOURCE",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "COMFOR ",
+            "title": "Prévision informatique",
+            "description": "Prévision informatique"
+        },
+        {
+            "const": "HUMDED ",
+            "title": "Déduction humaine",
+            "description": "Déduction humaine"
+        },
+        {
+            "const": "HUMOBS ",
+            "title": "Observation humaine",
+            "description": "Observation humaine"
+        },
+        {
+            "const": "SENSOR ",
+            "title": "Observation par capteur",
+            "description": "Observation par capteur"
+        }
+    ]
+}

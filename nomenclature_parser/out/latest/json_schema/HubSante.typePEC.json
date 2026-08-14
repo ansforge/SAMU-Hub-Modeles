@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.typePEC",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "MED",
+            "title": "Médicalisé",
+            "description": "L'équipage du vecteur est composé d'au moins un médecin"
+        },
+        {
+            "const": "PARAMED",
+            "title": "Paramédicalisé",
+            "description": "L'équipage du vecteur ne comporte pas de médecin. Il est uniquement composé d'infirmier(e)s."
+        },
+        {
+            "const": "SECOURS",
+            "title": "Secouriste",
+            "description": "L'équipage du vecteur ne comporte que des secouristes professionnnels ni médecin, ni infimier"
+        },
+        {
+            "const": "SANS",
+            "title": "Sans soins",
+            "description": "Le moyen de transport ne comporte aucun acteur de santé (transport par moyen personnel, taxi, transport en commun, ...)"
+        }
+    ],
+    "description": "Décrit le niveau de prise en charge exigé."
+}

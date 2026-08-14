@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.niveauSoin",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "R1",
+            "title": "Urgence Vitale",
+            "description": "Urgence vitale patente ou latente imposant l’envoi du Smur"
+        },
+        {
+            "const": "R2",
+            "title": "Urgence vraie",
+            "description": "Urgence vraie sans détresse vitale nécessitant l’envoi d’un médecin, d’une ambulance ou d’un VSAV. Le délai d’intervention est immédiat par défaut ou contractualisé entre le médecin régulateur et le requérant"
+        },
+        {
+            "const": "R3",
+            "title": "Continuité de soins",
+            "description": "Situation relevant de la continuité de soins. Le délai ne constituant pas un facteur de risque"
+        },
+        {
+            "const": "R4",
+            "title": "Conseil ou PMT",
+            "description": "Situation pouvant être traitée par un conseil médical ou prescription médicamenteuse par téléphone"
+        }
+    ],
+    "description": "Décrit le niveau de soins : le plus grave est retenu pour qualifier le dossier/affaire. Pour chaque patient/victime, le motif spécifique est indiqué."
+}

@@ -1,0 +1,1294 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.fait",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "C01.00.00",
+            "title": "Accident de la circulation",
+            "description": "Accidents de circulation : gendarmerie/police/pompiers/SAMU sont les entités concernées si au moins une victime. Si aucune victime, l’entité concernée est la gendarmerie ou la police."
+        },
+        {
+            "const": "C01.01.00",
+            "title": "Accident routier"
+        },
+        {
+            "const": "C01.01.01",
+            "title": "Véhicule léger, fourgon",
+            "description": "Catégorie de véhicules qui regroupe les voitures de tourisme et les véhicules utilitaires (jusqu'à 3,5 tonnes)"
+        },
+        {
+            "const": "C01.01.02",
+            "title": "Camion de marchandises",
+            "description": "Poids lourd de plus de 3,5 tonnes affecté au transport de biens et embarquant donc un nombre réduit de passagers"
+        },
+        {
+            "const": "C01.01.03",
+            "title": "Bus car autocar",
+            "description": "Véhicule de grande dimension affecté au transport de passagers"
+        },
+        {
+            "const": "C01.01.04",
+            "title": "2-roues",
+            "description": "L’implication d'un 2 roues « l'emporte » sur les autres types de moyens routiers"
+        },
+        {
+            "const": "C01.01.05",
+            "title": "Piéton"
+        },
+        {
+            "const": "C01.01.06",
+            "title": "Carambolage",
+            "description": "Série de chocs, de collisions impliquant 4 véhicules et plus"
+        },
+        {
+            "const": "C01.02.00",
+            "title": "Accident ferroviaire"
+        },
+        {
+            "const": "C01.02.01",
+            "title": "Train de voyageurs",
+            "description": "L’implication d'un train « l'emporte » sur les moyens routiers"
+        },
+        {
+            "const": "C01.02.02",
+            "title": "Train de marchandises",
+            "description": "Tout moyen de transport de marchandises par voie ferroviaire"
+        },
+        {
+            "const": "C01.03.00",
+            "title": "Accident maritime ou fluvial"
+        },
+        {
+            "const": "C01.03.01",
+            "title": "Bateau de voyageurs",
+            "description": "Tout moyen de transport de personnes par voie maritime, avec ou sans moteur (voilier, navire de plaisance, paquebot de croisière, …)"
+        },
+        {
+            "const": "C01.03.02",
+            "title": "Bateau de marchandises",
+            "description": "Tout moyen de transport de marchandises par voie maritime, avec ou sans moteur (barque, navire de pêche, cargo, …)"
+        },
+        {
+            "const": "C01.04.00",
+            "title": "Accident aérien"
+        },
+        {
+            "const": "C01.04.01",
+            "title": "Aéronef de marchandises",
+            "description": "Tout moyen de transport de marchandises par voie aérienne embarquant au moins 1 pilote à son bord"
+        },
+        {
+            "const": "C01.04.02",
+            "title": "Aéronef de voyageurs",
+            "description": "Tout moyen de transport de personnes par voie aérienne embarquant au moins 1 pilote à son bord"
+        },
+        {
+            "const": "C01.04.03",
+            "title": "Aéronef militaire",
+            "description": "Tout moyen de transport militaire par voie aérienne embarquant au moins 1 pilote à son bord"
+        },
+        {
+            "const": "C01.04.04",
+            "title": "Drone",
+            "description": "Petit avion sans équipage embarqué, télécommandé ou programmé"
+        },
+        {
+            "const": "C01.05.00",
+            "title": "Autre type d’accident de circulation"
+        },
+        {
+            "const": "C02.00.00",
+            "title": "Atteinte aux personnes"
+        },
+        {
+            "const": "C02.01.00",
+            "title": "Attentat",
+            "description": "Un ou plusieurs actes de violence de nature à mettre en péril les institutions de la République ou à porter atteinte à l'intégrité du territoire national (Article 412-1 du Code Pénal) - Dont attentat sur autorité / tuerie planifiée"
+        },
+        {
+            "const": "C02.02.00",
+            "title": "Prise d’otage",
+            "description": "Détention de personnes contre leur volonté, le plus souvent dans un but revendicatif"
+        },
+        {
+            "const": "C02.03.00",
+            "title": "Homicide ou infanticide"
+        },
+        {
+            "const": "C02.03.01",
+            "title": "Homicide",
+            "description": "Meurtre volontaire ou involontaire d’un autre être humain"
+        },
+        {
+            "const": "C02.03.02",
+            "title": "Infanticide",
+            "description": "Meurtre volontaire ou involontaire d’un autre être humain âgé de moins de 15 ans"
+        },
+        {
+            "const": "C02.04.00",
+            "title": "Enlèvement / séquestration"
+        },
+        {
+            "const": "C02.04.01",
+            "title": "Alerte enlèvement",
+            "description": "> Enlèvement d’un enfant sujet au déclenchement du dispositif Alerte Enlèvement par le procureur de la République territorialement compétent\n> 4 critères de déclenchement :\n* Enlèvement avéré (il ne s’agit pas d’une disparition, même inquiétante)\n* La victime est mineure\n* La vie ou l’intégrité physique de l’enfant est en danger"
+        },
+        {
+            "const": "C02.04.02",
+            "title": "Enlèvement",
+            "description": "Enlèvement d’une personne (il ne s’agit pas d’une disparition, même inquiétante)"
+        },
+        {
+            "const": "C02.04.03",
+            "title": "Séquestration",
+            "description": "Action de retenir une personne enfermée contre son gré en dehors de toute autorité légale en usant de violence, de ruse ou de la menace"
+        },
+        {
+            "const": "C02.05.00",
+            "title": "Pathologie / maladie"
+        },
+        {
+            "const": "C02.05.01",
+            "title": "Médicale",
+            "description": "Tout problème médical autre qu’obstétrique ou psychiatrique (liste détaillée disponible dans les motifs de recours médico-secouriste)"
+        },
+        {
+            "const": "C02.05.02",
+            "title": "Obstétrique",
+            "description": "Tout problème médical relatif à la grossesse et à l'accouchement"
+        },
+        {
+            "const": "C02.05.03",
+            "title": "Psychiatrique",
+            "description": "Tout problème médical relatif à un problème psychiatrique (dont HDT / HO / Hospitalisation sans consentement)"
+        },
+        {
+            "const": "C02.06.00",
+            "title": "Épidémie / TIAC"
+        },
+        {
+            "const": "C02.06.01",
+            "title": "Intoxication alimentaire collective (TIAC)",
+            "description": "Apparition d’au moins deux cas similaires d’une symptomatologie, en général gastro-intestinale, dont on peut rapporter la cause à une même origine alimentaire"
+        },
+        {
+            "const": "C02.07.00",
+            "title": "Personne exposée (à)"
+        },
+        {
+            "const": "C02.07.01",
+            "title": "à la chaleur, canicule"
+        },
+        {
+            "const": "C02.07.02",
+            "title": "au froid"
+        },
+        {
+            "const": "C02.07.03",
+            "title": "aux flammes, à la fumée"
+        },
+        {
+            "const": "C02.07.04",
+            "title": "à produits chimiques ou toxiques / Accident technologique / Intervention à caractère NRBC",
+            "description": "NRBC : nucléaire, radiologique, biologique et/ou chimique"
+        },
+        {
+            "const": "C02.07.05",
+            "title": "Electrisation, foudroiement"
+        },
+        {
+            "const": "C02.08.00",
+            "title": "Traumatisme / Accident"
+        },
+        {
+            "const": "C02.08.01",
+            "title": "Accident avec machine professionnelle / Accident du travail",
+            "description": "A l’occasion et par le fait du travail dans un milieu professionnel"
+        },
+        {
+            "const": "C02.08.02",
+            "title": "Accident domestique",
+            "description": "> Tout accident (traumatisme, intoxication, brûlure, …) survenu à l’intérieur d’un domicile ou de ses dépendances, impliquant une ou plusieurs victimes qui se livraient à une occupation non rémunérée\n> Dont électroménager, appareil domestique, jouet"
+        },
+        {
+            "const": "C02.08.03",
+            "title": "Autre accident (hors sport et loisirs)"
+        },
+        {
+            "const": "C02.08.04",
+            "title": "Par arme à feu"
+        },
+        {
+            "const": "C02.08.05",
+            "title": "Par objet tranchant ou perforant"
+        },
+        {
+            "const": "C02.08.06",
+            "title": "Blessures, piqûre, morsure d'animaux"
+        },
+        {
+            "const": "C02.08.07",
+            "title": "Pendaison / strangulation accidentelle"
+        },
+        {
+            "const": "C02.08.08",
+            "title": "Etouffement / fausse route"
+        },
+        {
+            "const": "C02.09.00",
+            "title": "Accident de sport ou de loisirs"
+        },
+        {
+            "const": "C02.09.01",
+            "title": "Accident de chasse"
+        },
+        {
+            "const": "C02.09.02",
+            "title": "Accident de plongée"
+        },
+        {
+            "const": "C02.09.03",
+            "title": "Accident de spéléologie"
+        },
+        {
+            "const": "C02.09.04",
+            "title": "Accident en montagne"
+        },
+        {
+            "const": "C02.09.05",
+            "title": "Accident de parachutisme ou deltaplane"
+        },
+        {
+            "const": "C02.09.06",
+            "title": "Accident de pêche"
+        },
+        {
+            "const": "C02.09.07",
+            "title": "Autre accident de sport ou de loisirs"
+        },
+        {
+            "const": "C02.10.00",
+            "title": "Noyade"
+        },
+        {
+            "const": "C02.11.00",
+            "title": "Chute"
+        },
+        {
+            "const": "C02.11.01",
+            "title": "Chute de grande hauteur",
+            "description": "Chute de plus de 3 mètre (ou 1 étage)"
+        },
+        {
+            "const": "C02.11.02",
+            "title": "Chute de faible hauteur",
+            "description": "Départ réflexe si personne reste à terre."
+        },
+        {
+            "const": "C02.12.00",
+            "title": "Ensevelissement"
+        },
+        {
+            "const": "C02.13.00",
+            "title": "Tentative de suicide avec risque imminent"
+        },
+        {
+            "const": "C02.13.01",
+            "title": "Médicamenteuse"
+        },
+        {
+            "const": "C02.13.02",
+            "title": "(par) Pendaison/ strangulation volontaire"
+        },
+        {
+            "const": "C02.13.03",
+            "title": "(par) Immolation"
+        },
+        {
+            "const": "C02.13.04",
+            "title": "(par) Arme à feu"
+        },
+        {
+            "const": "C02.13.05",
+            "title": "(par) Phlébotomie ou objet tranchant ou perforant"
+        },
+        {
+            "const": "C02.13.06",
+            "title": "(par) Défenestration"
+        },
+        {
+            "const": "C02.13.07",
+            "title": "(par) Suicide sur rails"
+        },
+        {
+            "const": "C02.13.08",
+            "title": "Autre type de tentative de suicide"
+        },
+        {
+            "const": "C02.14.00",
+            "title": "Atteinte sexuelle"
+        },
+        {
+            "const": "C02.14.01",
+            "title": "Suspicion de viol"
+        },
+        {
+            "const": "C02.14.02",
+            "title": "Agression sexuelle",
+            "description": "Toute atteinte sexuelle sans pénétration commise sur une victime avec violence, contrainte ou menace. Par exemple, des attouchements."
+        },
+        {
+            "const": "C02.14.03",
+            "title": "Exhibition sexuelle"
+        },
+        {
+            "const": "C02.14.04",
+            "title": "Harcèlement sexuel",
+            "description": "Fait d'imposer à une personne, de façon répétée, des propos ou comportements à connotation sexuelle qui :\n> portent atteinte à sa dignité en raison de leur caractère dégradant ou humiliant,\n> ou créent à son encontre une situation intimidante, hostile ou offensante.\nEst assimilée au harcèlement sexuel toute forme de pression grave (même non répétée) dans le but réel ou apparent d'obtenir un acte sexuel, au profit de l'auteur des faits ou d'un tiers."
+        },
+        {
+            "const": "C02.15.00",
+            "title": "Agression ou violence"
+        },
+        {
+            "const": "C02.15.01",
+            "title": "Rixe ou bagarre",
+            "description": "> Rixe : Querelle violente, généralement publique, accompagnée de menaces et de coups\n> Bagarre : Échange de coups ; rixe provoquant une mêlée et un tumulte"
+        },
+        {
+            "const": "C02.15.02",
+            "title": "Agression ou violence physique",
+            "description": "Dont agression sur autorité / agent public et dont violences sport"
+        },
+        {
+            "const": "C02.15.03",
+            "title": "Agression verbale",
+            "description": "Dont agression sur autorité / agent public et incivilités"
+        },
+        {
+            "const": "C02.15.04",
+            "title": "Violences intra familiales"
+        },
+        {
+            "const": "C02.15.05",
+            "title": "Voie de fait",
+            "description": "En droit pénal, violence envers une personne, lorsque cette violence n'est pas qualifiée de blessure"
+        },
+        {
+            "const": "C02.15.06",
+            "title": "Autre agression ou menace",
+            "description": "Dont menace, outrage rébellion, incident frontière"
+        },
+        {
+            "const": "C02.16.00",
+            "title": "Autre atteinte aux personnes"
+        },
+        {
+            "const": "C02.16.01",
+            "title": "Jeux dangereux"
+        },
+        {
+            "const": "C02.16.02",
+            "title": "Autre type d’atteinte aux personnes"
+        },
+        {
+            "const": "C02.16.03",
+            "title": "Altercation – Incivilité"
+        },
+        {
+            "const": "C03.00.00",
+            "title": "Atteinte aux biens / animal"
+        },
+        {
+            "const": "C03.01.00",
+            "title": "Dégradation volontaire de lieux, biens ou véhicules"
+        },
+        {
+            "const": "C03.01.01",
+            "title": "Dégradation de bâtiment ou de local",
+            "description": "Dont sabotage (sans atteinte de personne) et TAGS"
+        },
+        {
+            "const": "C03.01.02",
+            "title": "Dégradation de véhicule"
+        },
+        {
+            "const": "C03.01.03",
+            "title": "Dégradations d’autres biens"
+        },
+        {
+            "const": "C03.01.04",
+            "title": "Jets de projectiles – Caillassages"
+        },
+        {
+            "const": "C03.01.05",
+            "title": "Profanation de cimetière ou lieu de culte"
+        },
+        {
+            "const": "C03.02.00",
+            "title": "Vol"
+        },
+        {
+            "const": "C03.02.01",
+            "title": "Vol à l’arraché",
+            "description": "Vol avec violence commis en arrachant de force à la victime un objet convoité"
+        },
+        {
+            "const": "C03.02.02",
+            "title": "Vol à la portière",
+            "description": "Vol commis en ouvrant ou en brisant une portière de véhicule"
+        },
+        {
+            "const": "C03.02.03",
+            "title": "Vol à l’étalage"
+        },
+        {
+            "const": "C03.02.04",
+            "title": "Vol à la roulotte",
+            "description": "Vol commis dans un véhicule ou dans une roulotte"
+        },
+        {
+            "const": "C03.02.05",
+            "title": "Vol de véhicule"
+        },
+        {
+            "const": "C03.02.06",
+            "title": "Vol de carburant"
+        },
+        {
+            "const": "C03.02.07",
+            "title": "Vol de DAB ou dans DAB",
+            "description": "DAB : Distributeur automatique de billets"
+        },
+        {
+            "const": "C03.02.08",
+            "title": "Vol de fret"
+        },
+        {
+            "const": "C03.02.09",
+            "title": "Vol de métaux"
+        },
+        {
+            "const": "C03.02.10",
+            "title": "Vol par ruse"
+        },
+        {
+            "const": "C03.02.11",
+            "title": "Vol d’armes"
+        },
+        {
+            "const": "C03.02.12",
+            "title": "Vol à main armée",
+            "description": "Dont autorité / commerce / édifice public / résidence / société"
+        },
+        {
+            "const": "C03.02.13",
+            "title": "Vol avec violences, extorsion, racket",
+            "description": "Regroupement possible avec VAMA / Car jacking ?"
+        },
+        {
+            "const": "C03.02.14",
+            "title": "Car jacking",
+            "description": "La piraterie routière ou carjacking est un vol de voiture ou autres véhicules motorisés avec menaces ou violence sur le conducteur du véhicule"
+        },
+        {
+            "const": "C03.02.15",
+            "title": "Autre type de vol"
+        },
+        {
+            "const": "C03.03.00",
+            "title": "Cambriolage"
+        },
+        {
+            "const": "C03.03.01",
+            "title": "Home jacking",
+            "description": "Le home-jacking consiste à s'introduire dans le domicile d'un particulier afin d'y récupérer les clés de sa voiture et repartir avec le véhicule"
+        },
+        {
+            "const": "C03.03.02",
+            "title": "Autre type de cambriolage"
+        },
+        {
+            "const": "C03.04.00",
+            "title": "Intrusion"
+        },
+        {
+            "const": "C03.04.01",
+            "title": "Violation de domicile"
+        },
+        {
+            "const": "C03.04.02",
+            "title": "Déclenchement d’alarme intrusion"
+        },
+        {
+            "const": "C03.05.00",
+            "title": "Escroquerie – filouterie – grivèlerie",
+            "description": "> Filouterie : Escroquerie, vol\n> Grivèlerie : Délit qui consiste à consommer sans payer, dans un café, un restaurant, un hôtel.*"
+        },
+        {
+            "const": "C03.06.00",
+            "title": "Autre atteinte aux biens"
+        },
+        {
+            "const": "C03.07.00",
+            "title": "Disparition d'animal"
+        },
+        {
+            "const": "C03.08.00",
+            "title": "Découverte / divagation d'animal"
+        },
+        {
+            "const": "C03.09.00",
+            "title": "Découverte d’animal mort / carcasse d’animal"
+        },
+        {
+            "const": "C03.10.00",
+            "title": "Hyménoptères",
+            "description": "Ex : abeilles"
+        },
+        {
+            "const": "C03.11.00",
+            "title": "Animal en difficulté / blessé"
+        },
+        {
+            "const": "C03.12.00",
+            "title": "Animal dangereux ou sauvage"
+        },
+        {
+            "const": "C03.13.00",
+            "title": "Epizootie",
+            "description": "Ex : grippe aviaire"
+        },
+        {
+            "const": "C03.14.00",
+            "title": "Braconnage"
+        },
+        {
+            "const": "C03.15.00",
+            "title": "Autre fait d’animal"
+        },
+        {
+            "const": "C04.00.00",
+            "title": "Incendie",
+            "description": "En cas d’incendie et d’explosion, c’est le type d’explosion qui doit être saisi"
+        },
+        {
+            "const": "C04.01.00",
+            "title": "Incendie d'un moyen de transport / véhicule"
+        },
+        {
+            "const": "C04.01.01",
+            "title": "Véhicule léger, fourgon",
+            "description": "Catégorie de véhicules qui regroupe les voitures de tourisme et les véhicules utilitaires (jusqu'à 3,5 tonnes)"
+        },
+        {
+            "const": "C04.01.02",
+            "title": "Camion de marchandises",
+            "description": "Poids lourd de plus de 3,5 tonnes affecté au transport de biens et embarquant donc un nombre réduit de passagers"
+        },
+        {
+            "const": "C04.01.03",
+            "title": "Bus car autocar",
+            "description": "Véhicule de grande dimension affecté au transport de passagers"
+        },
+        {
+            "const": "C04.01.04",
+            "title": "2-roues",
+            "description": "Motorisé ou non motorisé"
+        },
+        {
+            "const": "C04.01.05",
+            "title": "Train de voyageurs",
+            "description": "Tout moyen de transport de personnes par voie ferroviaire"
+        },
+        {
+            "const": "C04.01.06",
+            "title": "Train de marchandises",
+            "description": "Tout moyen de transport de marchandises par voie ferroviaire"
+        },
+        {
+            "const": "C04.01.07",
+            "title": "Bateau de voyageurs",
+            "description": "Tout moyen de transport de personnes par voie maritime, avec ou sans moteur (voilier, navire de plaisance, paquebot de croisière, …)"
+        },
+        {
+            "const": "C04.01.08",
+            "title": "Bateau de marchandises",
+            "description": "Tout moyen de transport de marchandises par voie maritime, avec ou sans moteur (barque, navire de pêche, cargo, …)"
+        },
+        {
+            "const": "C04.01.09",
+            "title": "Aéronef de marchandises",
+            "description": "Tout moyen de transport de marchandises par voie aérienne embarquant au moins 1 pilote à son bord"
+        },
+        {
+            "const": "C04.01.10",
+            "title": "Aéronef de voyageurs",
+            "description": "Tout moyen de transport de personnes par voie aérienne embarquant au moins 1 pilote à son bord"
+        },
+        {
+            "const": "C04.01.11",
+            "title": "Aéronef militaire",
+            "description": "Tout moyen de transport militaire par voie aérienne embarquant au moins 1 pilote à son bord"
+        },
+        {
+            "const": "C04.02.00",
+            "title": "Incendie d'un bâtiment / local"
+        },
+        {
+            "const": "C04.02.01",
+            "title": "Bâtiment d’habitation"
+        },
+        {
+            "const": "C04.02.02",
+            "title": "Bâtiment de bureaux"
+        },
+        {
+            "const": "C04.02.03",
+            "title": "Bâtiment industriel"
+        },
+        {
+            "const": "C04.02.04",
+            "title": "Bâtiment de production transport d'énergie"
+        },
+        {
+            "const": "C04.03.00",
+            "title": "Incendie en milieu agricole"
+        },
+        {
+            "const": "C04.04.00",
+            "title": "Incendie en milieu industriel"
+        },
+        {
+            "const": "C04.05.00",
+            "title": "Incendie de forêt / végétation"
+        },
+        {
+            "const": "C04.06.00",
+            "title": "Feux de poubelles"
+        },
+        {
+            "const": "C04.07.00",
+            "title": "Feux de matériaux à l’air libre"
+        },
+        {
+            "const": "C04.07.01",
+            "title": "Feu de produits de classe A",
+            "description": "Feu de matériaux solides dont la combustion forme des braises (cellulose, bois, papier, carton, tissu, fourrage, coton, etc.)"
+        },
+        {
+            "const": "C04.07.02",
+            "title": "Feu de produits de classe B",
+            "description": "Feu de liquides et solides liquéfiables (hydrocarbures, goudron, brai, bougies, graisses, huiles, peintures, vernis, alcools, cétones, solvants et produits chimiques divers)"
+        },
+        {
+            "const": "C04.07.03",
+            "title": "Feu de produits de classe C",
+            "description": "Feux de gaz (gaz naturels, gaz de pétrole liquéfiés comme le butane ou le propane, ou d'autres produits à l'état gazeux comme des produits chimiques, etc.)"
+        },
+        {
+            "const": "C04.07.04",
+            "title": "Feu de produits de classe D",
+            "description": "Feux de métaux"
+        },
+        {
+            "const": "C04.08.00",
+            "title": "Autre type d’incendie"
+        },
+        {
+            "const": "C04.09.00",
+            "title": "Alarme incendie"
+        },
+        {
+            "const": "C05.00.00",
+            "title": "Explosion",
+            "description": "En cas d’incendie et d’explosion, c’est le type d’explosion qui doit être saisi"
+        },
+        {
+            "const": "C05.00.01",
+            "title": "Explosion d'un moyen de transport / véhicule"
+        },
+        {
+            "const": "C05.00.02",
+            "title": "Explosion d'un bâtiment / local"
+        },
+        {
+            "const": "C05.00.03",
+            "title": "Explosion d’un silo / lieu de stockage"
+        },
+        {
+            "const": "C05.00.04",
+            "title": "Explosion d’un(e) substance / engin explosif"
+        },
+        {
+            "const": "C05.00.05",
+            "title": "Autre type d’explosion"
+        },
+        {
+            "const": "C06.00.00",
+            "title": "Suspicion d'infractions"
+        },
+        {
+            "const": "C06.01.00",
+            "title": "Prostitution / Racolage",
+            "description": "(sans atteinte de personne)"
+        },
+        {
+            "const": "C06.02.00",
+            "title": "Détention d’arme"
+        },
+        {
+            "const": "C06.03.00",
+            "title": "Infractions au code de la route"
+        },
+        {
+            "const": "C06.03.01",
+            "title": "Stationnement dangereux"
+        },
+        {
+            "const": "C06.03.02",
+            "title": "Conduite délictueuse ou dangereuse"
+        },
+        {
+            "const": "C06.03.03",
+            "title": "Conduite en état alcoolique"
+        },
+        {
+            "const": "C06.03.04",
+            "title": "Stationnement irrégulier sensible"
+        },
+        {
+            "const": "C06.03.05",
+            "title": "Délit de fuite"
+        },
+        {
+            "const": "C06.03.06",
+            "title": "Conduite à contre-sens"
+        },
+        {
+            "const": "C06.04.00",
+            "title": "Infractions à la législation sur le travail"
+        },
+        {
+            "const": "C06.04.01",
+            "title": "Infractions à la législation sur les professions réglementées"
+        },
+        {
+            "const": "C06.04.02",
+            "title": "Vente à la sauvette",
+            "description": "Les ventes à la sauvette sont des ventes qui sont faites sans autorisation sur le domaine public"
+        },
+        {
+            "const": "C06.05.00",
+            "title": "Trafic de stupéfiants"
+        },
+        {
+            "const": "C06.06.00",
+            "title": "Affaire liée a la législation sur les séjours en France"
+        },
+        {
+            "const": "C06.06.01",
+            "title": "Remise  - découverte ESI",
+            "description": "ESI : étranger en situation irrégulière"
+        },
+        {
+            "const": "C06.07.00",
+            "title": "Occupation illégale d’un lieu"
+        },
+        {
+            "const": "C06.07.01",
+            "title": "Squat"
+        },
+        {
+            "const": "C06.07.02",
+            "title": "Lieu de culte clandestin"
+        },
+        {
+            "const": "C06.08.00",
+            "title": "Autres Infractions"
+        },
+        {
+            "const": "C06.08.01",
+            "title": "Infraction aérienne"
+        },
+        {
+            "const": "C06.08.02",
+            "title": "infraction comportement voyageur"
+        },
+        {
+            "const": "C06.08.03",
+            "title": "Fausse monnaie",
+            "description": "Contrefaçon frauduleuse de la monnaie (pièces, billets)"
+        },
+        {
+            "const": "C06.08.04",
+            "title": "Orpaillage",
+            "description": "Prospection et extraction artisanale de l’or dans les rivières."
+        },
+        {
+            "const": "C06.08.05",
+            "title": "Jeux illégaux",
+            "description": "Ex : jeux d’argent et paris clandestins"
+        },
+        {
+            "const": "C06.08.06",
+            "title": "Non respect décision de justice"
+        },
+        {
+            "const": "C07.00.00",
+            "title": "Ordre public"
+        },
+        {
+            "const": "C07.01.00",
+            "title": "Alerte à la bombe",
+            "description": "Violences collectives en milieu urbain"
+        },
+        {
+            "const": "C07.02.00",
+            "title": "Violence urbaine"
+        },
+        {
+            "const": "C07.03.00",
+            "title": "Différends et litiges inter-personnels"
+        },
+        {
+            "const": "C07.03.01",
+            "title": "Différend familial"
+        },
+        {
+            "const": "C07.03.02",
+            "title": "Non représentation d’enfant",
+            "description": "Refus de représenter un enfant mineur à la personne en droit de le réclamer"
+        },
+        {
+            "const": "C07.03.03",
+            "title": "Différend de voisinage"
+        },
+        {
+            "const": "C07.03.04",
+            "title": "Autres différends",
+            "description": "Dont locatifs, usagers et personnes chargées d'une mission de service public"
+        },
+        {
+            "const": "C07.03.05",
+            "title": "Litiges",
+            "description": "Dont litiges commerciaux, droit du travail"
+        },
+        {
+            "const": "C07.04.00",
+            "title": "Rassemblement"
+        },
+        {
+            "const": "C07.04.01",
+            "title": "Grève"
+        },
+        {
+            "const": "C07.04.02",
+            "title": "Manifestation"
+        },
+        {
+            "const": "C07.04.03",
+            "title": "Free party / rave party / teknival"
+        },
+        {
+            "const": "C07.04.04",
+            "title": "Autre rassemblement"
+        },
+        {
+            "const": "C07.05.00",
+            "title": "Ivresse publique et manifeste"
+        },
+        {
+            "const": "C07.06.00",
+            "title": "OVNI- PAN",
+            "description": "> OVNI = Objet volant non identifié\n> PAN = Phénomène aérospatial non identifié"
+        },
+        {
+            "const": "C07.07.00",
+            "title": "Nuisances particulières"
+        },
+        {
+            "const": "C07.07.01",
+            "title": "Obstacle"
+        },
+        {
+            "const": "C07.07.02",
+            "title": "Nuisance aéronautique"
+        },
+        {
+            "const": "C07.07.03",
+            "title": "Tapage"
+        },
+        {
+            "const": "C07.07.04",
+            "title": "Ouverture intempestives de bouches incendies"
+        },
+        {
+            "const": "C07.07.05",
+            "title": "Perturbateurs - indésirables"
+        },
+        {
+            "const": "C07.08.00",
+            "title": "Détournement"
+        },
+        {
+            "const": "C07.08.01",
+            "title": "Détournement d’aéronef"
+        },
+        {
+            "const": "C07.08.02",
+            "title": "Détournement de navire"
+        },
+        {
+            "const": "C07.08.03",
+            "title": "Détournement de véhicule"
+        },
+        {
+            "const": "C07.09.00",
+            "title": "Comportement suspect ou dangereux"
+        },
+        {
+            "const": "C07.09.01",
+            "title": "Forcené",
+            "description": "Personne intensément violente"
+        },
+        {
+            "const": "C07.09.02",
+            "title": "Personne dangereuse"
+        },
+        {
+            "const": "C07.09.03",
+            "title": "Personne suspecte rôdeur"
+        },
+        {
+            "const": "C07.09.05",
+            "title": "Piéton sur autoroute voie rapide"
+        },
+        {
+            "const": "C07.10.00",
+            "title": "Véhicule suspect"
+        },
+        {
+            "const": "C07.11.00",
+            "title": "Colis, bagages ou enveloppes suspects"
+        },
+        {
+            "const": "C07.12.00",
+            "title": "Coups de feu"
+        },
+        {
+            "const": "C07.13.00",
+            "title": "Autres troubles à l’ordre public"
+        },
+        {
+            "const": "C07.13.01",
+            "title": "Mutinerie / incident en centre de détention"
+        },
+        {
+            "const": "C07.13.02",
+            "title": "Rodéo automobile",
+            "description": "Course bruyante et agitée d'autos, de motos"
+        },
+        {
+            "const": "C07.13.03",
+            "title": "Attroupement"
+        },
+        {
+            "const": "C07.13.04",
+            "title": "Blocage de site"
+        },
+        {
+            "const": "C07.13.05",
+            "title": "Survol illicite"
+        },
+        {
+            "const": "C07.13.06",
+            "title": "Incident"
+        },
+        {
+            "const": "C07.13.07",
+            "title": "Autre trouble à l’ordre public",
+            "description": "dont personne excitée"
+        },
+        {
+            "const": "C08.00.00",
+            "title": "Aléas naturel / environnemental / météorologique"
+        },
+        {
+            "const": "C08.01.00",
+            "title": "Inondation"
+        },
+        {
+            "const": "C08.02.00",
+            "title": "Avalanche"
+        },
+        {
+            "const": "C08.03.00",
+            "title": "Tremblement de terre"
+        },
+        {
+            "const": "C08.04.00",
+            "title": "Foudre"
+        },
+        {
+            "const": "C08.05.00",
+            "title": "Tempête"
+        },
+        {
+            "const": "C08.06.00",
+            "title": "Éboulement / effondrement"
+        },
+        {
+            "const": "C08.07.00",
+            "title": "Affaissement de la chaussée",
+            "description": "A préciser ?"
+        },
+        {
+            "const": "C08.08.00",
+            "title": "Pollution"
+        },
+        {
+            "const": "C08.08.01",
+            "title": "Pollution terrestre"
+        },
+        {
+            "const": "C08.08.02",
+            "title": "Pollution aquatique"
+        },
+        {
+            "const": "C08.09.00",
+            "title": "Intempérie importante"
+        },
+        {
+            "const": "C08.10.00",
+            "title": "Autre aléas naturel / environnemental / météorologique"
+        },
+        {
+            "const": "C08.10.01",
+            "title": "Catastrophe naturelle"
+        },
+        {
+            "const": "C09.00.00",
+            "title": "Aléas technologique ou technique"
+        },
+        {
+            "const": "C09.01.00",
+            "title": "Électricité"
+        },
+        {
+            "const": "C09.01.01",
+            "title": "Court-circuit"
+        },
+        {
+            "const": "C09.01.02",
+            "title": "Panne électrique"
+        },
+        {
+            "const": "C09.01.03",
+            "title": "Fil électrique tombé"
+        },
+        {
+            "const": "C09.01.04",
+            "title": "Rupture / Arrachement de câble (ou support)"
+        },
+        {
+            "const": "C09.02.00",
+            "title": "Fuite d’eau"
+        },
+        {
+            "const": "C09.03.00",
+            "title": "Fuite de gaz"
+        },
+        {
+            "const": "C09.03.01",
+            "title": "Fuite de gaz importante"
+        },
+        {
+            "const": "C09.04.00",
+            "title": "Fuite d’autres fluides"
+        },
+        {
+            "const": "C09.04.01",
+            "title": "Fuite de fluides liquides"
+        },
+        {
+            "const": "C09.04.02",
+            "title": "Fuite de fluides gazeux"
+        },
+        {
+            "const": "C09.05.00",
+            "title": "Immeuble en péril"
+        },
+        {
+            "const": "C09.06.00",
+            "title": "Panne d’ascenseur"
+        },
+        {
+            "const": "C09.07.00",
+            "title": "Chaudière surchauffée"
+        },
+        {
+            "const": "C09.08.00",
+            "title": "Autre aléas technologique"
+        },
+        {
+            "const": "C10.00.00",
+            "title": "Disparitions et découvertes"
+        },
+        {
+            "const": "C10.01.00",
+            "title": "Disparition ou découverte d’individu"
+        },
+        {
+            "const": "C10.01.01",
+            "title": "Fuite de malfaiteur / évasion",
+            "description": "Personnes recherchées pour raison judiciaire"
+        },
+        {
+            "const": "C10.01.02",
+            "title": "Fuite de personnes avec troubles psychiatriques/neurologiques"
+        },
+        {
+            "const": "C10.01.03",
+            "title": "Disparition de personne vulnérable",
+            "description": "Dont mineurs et personnes âgées et/ou handicapées"
+        },
+        {
+            "const": "C10.01.04",
+            "title": "Absence de réponse aux appels"
+        },
+        {
+            "const": "C10.01.05",
+            "title": "Autre disparition inquiétante",
+            "description": "Dont retard inquiétant"
+        },
+        {
+            "const": "C10.01.06",
+            "title": "Fugue"
+        },
+        {
+            "const": "C10.01.07",
+            "title": "Recherche secours investigation"
+        },
+        {
+            "const": "C10.01.08",
+            "title": "Découverte de personne égarée",
+            "description": "Dont mineurs, majeurs et personnes sur autoroute"
+        },
+        {
+            "const": "C10.02.00",
+            "title": "Découverte de cadavre"
+        },
+        {
+            "const": "C10.02.01",
+            "title": "Mort a priori suspecte",
+            "description": "Ex : recueil de témoignage direct ou indirect relatant un probable homicide"
+        },
+        {
+            "const": "C10.02.02",
+            "title": "Mort a priori naturelle",
+            "description": "Ex : recueil de témoignage direct ou indirect relatant un probable accident"
+        },
+        {
+            "const": "C10.03.00",
+            "title": "Disparition ou découverte d’objet"
+        },
+        {
+            "const": "C10.03.01",
+            "title": "Disparition d'objet",
+            "description": "Dont perte"
+        },
+        {
+            "const": "C10.03.02",
+            "title": "Découverte d’objet",
+            "description": "Dont coffre-fort"
+        },
+        {
+            "const": "C10.04.00",
+            "title": "Disparition ou découverte d’engin explosif"
+        },
+        {
+            "const": "C10.04.01",
+            "title": "Disparition d’engin explosif"
+        },
+        {
+            "const": "C10.04.02",
+            "title": "Découverte d’engin explosif"
+        },
+        {
+            "const": "C10.05.00",
+            "title": "Découverte de stupéfiants"
+        },
+        {
+            "const": "C10.06.00",
+            "title": "Découverte d’armes"
+        },
+        {
+            "const": "C10.07.00",
+            "title": "Découverte de véhicule volé"
+        },
+        {
+            "const": "C10.08.00",
+            "title": "Autre découverte"
+        },
+        {
+            "const": "C11.00.00",
+            "title": "Autre nature de fait"
+        },
+        {
+            "const": "C11.01.00",
+            "title": "Alarme",
+            "description": "Dont télésurveillance et RAMSES"
+        },
+        {
+            "const": "C11.02.00",
+            "title": "Demande de sécurisation"
+        },
+        {
+            "const": "C11.02.01",
+            "title": "Protection de Drop Zone"
+        },
+        {
+            "const": "C11.02.02",
+            "title": "Visite sensible autorité / convoi escorte"
+        },
+        {
+            "const": "C11.03.00",
+            "title": "Demande d’information et d’orientation"
+        },
+        {
+            "const": "C11.03.01",
+            "title": "Demande de renseignement"
+        },
+        {
+            "const": "C11.03.02",
+            "title": "Conseil et orientation"
+        },
+        {
+            "const": "C11.04.00",
+            "title": "Appels malveillants, appels anonymes intempestifs"
+        },
+        {
+            "const": "C11.05.00",
+            "title": "Dépannage / panne"
+        },
+        {
+            "const": "C11.05.01",
+            "title": "Echouement, naufrage"
+        },
+        {
+            "const": "C11.05.02",
+            "title": "Dépannage véhicule"
+        },
+        {
+            "const": "C11.05.03",
+            "title": "Porte verrouillée"
+        },
+        {
+            "const": "C11.06.00",
+            "title": "Autre nature de fait"
+        }
+    ],
+    "description": "Décrit la nature de fait de l'affaire/dossier"
+}

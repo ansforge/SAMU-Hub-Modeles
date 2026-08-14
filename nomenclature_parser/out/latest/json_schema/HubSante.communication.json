@@ -1,0 +1,53 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.communication",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "AUCUNE",
+            "title": "Aucune difficulté de communication",
+            "description": "Aucune difficulté de communication rencontrée entre l’appelant et la personne qualifiant ou régulant le dossier."
+        },
+        {
+            "const": "MUET",
+            "title": "Muet ou malentendant (troubles de la parole ou de l'audition)",
+            "description": "Difficultés de communication liées aux caractéristiques de l’appelant, muet ou ayant des troubles prononcés de l’élocution, malentendant ou ayant des troubles prononcés de l’audition ne lui permettant pas d’interagir dans de bonnes conditions avec son interlocuteur du CRRA"
+        },
+        {
+            "const": "VISION",
+            "title": "Malvoyant, troubles de la vision",
+            "description": "Difficultés de communication liées aux caractéristiques de l’appelant, malvoyant ou ayant des troubles prononcés de la vue ne lui permettant pas de décrire correctement la situation pour laquelle il appelle"
+        },
+        {
+            "const": "LANGUE",
+            "title": "Barrière de la langue (langue étrangère)",
+            "description": "Difficultés de communication avec l’appelant liées au fait que l’appelant ne comprend pas ou mal le français ou ne le parle pas ou mal"
+        },
+        {
+            "const": "PANIQUE",
+            "title": "Panique de l’appelant",
+            "description": "Difficultés de communication avec l’appelant liées à une situation de stress extrême ou de panique de l’appelant, du patient ou de l’entourage ne lui permettant pas de décrire correctement la situation pour laquelle il appelle"
+        },
+        {
+            "const": "HOSTILE",
+            "title": "Appelant hostile, agressif",
+            "description": "Difficultés de communication avec l’appelant liées à une situation d’hostilité ou d’agressivité de l’appelant ne permettant pas une bonne compréhension du problème pour lequel il appelle"
+        },
+        {
+            "const": "AGITE",
+            "title": "Incohérence, agitation, intoxication",
+            "description": "Patient psychiatrique ayant des difficultés pour exprimer sa plainte ou patient alcoolisé, agité et incohérent dans l’incapacité de formuler les raisons de son appel"
+        },
+        {
+            "const": "AUTRE",
+            "title": "Autres difficultés de communication",
+            "description": "Autres troubles humains ou techniques, de l’appelant ou de l’entourage, empêchant la bonne interaction entre l’appelant et la personne qualifiant ou régulant le dossier et la bonne compréhension de la situation pour laquelle il appelle"
+        },
+        {
+            "const": "IMPOSS",
+            "title": "Absence de communication",
+            "description": "Pas de communication possible avec l’appelant (ex : pas d'echange vocal, appel raccroché prématurement sans contre appel possible, ...)"
+        }
+    ],
+    "description": "Décrit les difficultés de communication potentielles du requérant/appelant"
+}

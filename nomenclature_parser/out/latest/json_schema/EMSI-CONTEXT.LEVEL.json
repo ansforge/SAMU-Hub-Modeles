@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "EMSI-CONTEXT.LEVEL",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "STRTGC",
+            "title": "Stratégique"
+        },
+        {
+            "const": "OPR",
+            "title": "Opérationnel"
+        },
+        {
+            "const": "TACTCL",
+            "title": "Tactique"
+        }
+    ]
+}
