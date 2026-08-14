@@ -573,7 +573,8 @@
                     "x-cols": 6,
                     "example": "example.json#/qualification/whatsHappen/code",
                     "description": "A valoriser avec le code de la nomenclature associée",
-                    "pattern": "^C\\d{2}(\\.\\d{2}){2}$"
+                    "pattern": "^C\\d{2}(\\.\\d{2}){2}$",
+                    "x-nomenclature": "HubSante.fait"
                 },
                 "label": {
                     "type": "string",
@@ -604,7 +605,8 @@
                     "x-cols": 6,
                     "example": "example.json#/qualification/locationKind/code",
                     "description": "A valoriser avec le code de la nomenclature associée",
-                    "pattern": "^L\\d{2}(\\.\\d{2}){2}$"
+                    "pattern": "^L\\d{2}(\\.\\d{2}){2}$",
+                    "x-nomenclature": "HubSante.lieu"
                 },
                 "label": {
                     "type": "string",
@@ -635,7 +637,8 @@
                     "x-cols": 6,
                     "example": "example.json#/qualification/healthMotive/code",
                     "description": "A valoriser avec le code de la nomenclature associée",
-                    "pattern": "^M\\d{2}\\.\\d{2}(\\.\\d{2})?$"
+                    "pattern": "^M\\d{2}\\.\\d{2}(\\.\\d{2})?$",
+                    "x-nomenclature": "HubSante.motif"
                 },
                 "label": {
                     "type": "string",
