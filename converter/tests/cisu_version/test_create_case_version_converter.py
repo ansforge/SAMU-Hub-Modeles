@@ -12,6 +12,11 @@ is only exercised on the scenarios it actually contains: as of this writing,
 riskThreat's v1.9->2.3 map (used by convert_vactive_to_v3) has no entry
 mapped to a value (its single entry maps to None) -- those scenarios are
 legitimately absent, not skipped by omission.
+
+Each (field, direction) case also checks both qualification containers --
+the top-level "qualification" and "initialAlert.qualification" -- within the
+same test, since both are handled by the same loop in
+apply_qualification_nomenclature_mappings and don't warrant separate test IDs.
 """
 
 import pytest
@@ -141,6 +146,16 @@ def _build_cases():
     return cases
 
 
+QUALIFICATION_CONTAINERS = ["qualification", "initialAlert.qualification"]
+
+
+def _get_container(create_case, container_path, *, create):
+    node = create_case
+    for part in container_path.split("."):
+        node = node.setdefault(part, {}) if create else node.get(part, {})
+    return node
+
+
 @pytest.mark.parametrize(
     "field, is_list, method_name, injected_code, expected",
     _build_cases(),
@@ -150,19 +165,25 @@ def test_nomenclature_mapping(field, is_list, method_name, injected_code, expect
         TestConstants.EDXL_FIRE_TO_HEALTH_ENVELOPE_PATH, BASE_MESSAGE_PATH
     )
     injected_value = {"code": injected_code, "label": "Libellé de test"}
-    qualification = get_edxl_message(message)["createCase"]["qualification"]
-    qualification[field] = [injected_value] if is_list else injected_value
+    create_case = get_edxl_message(message)["createCase"]
+    for container_path in QUALIFICATION_CONTAINERS:
+        qualification = _get_container(create_case, container_path, create=True)
+        qualification[field] = [injected_value] if is_list else injected_value
 
     convert = getattr(CreateCaseVersionConverter, method_name)
     result = convert(message)
 
-    result_qualification = get_edxl_message(result)["createCase"]["qualification"]
+    result_create_case = get_edxl_message(result)["createCase"]
+    for container_path in QUALIFICATION_CONTAINERS:
+        result_qualification = _get_container(
+            result_create_case, container_path, create=False
+        )
 
-    if expected == REMOVED:
-        assert field not in result_qualification
-    elif expected == UNCHANGED:
-        expected_field_value = [injected_value] if is_list else injected_value
-        assert result_qualification[field] == expected_field_value
-    else:
-        expected_field_value = [expected] if is_list else expected
-        assert result_qualification[field] == expected_field_value
+        if expected == REMOVED:
+            assert field not in result_qualification
+        elif expected == UNCHANGED:
+            expected_field_value = [injected_value] if is_list else injected_value
+            assert result_qualification[field] == expected_field_value
+        else:
+            expected_field_value = [expected] if is_list else expected
+            assert result_qualification[field] == expected_field_value

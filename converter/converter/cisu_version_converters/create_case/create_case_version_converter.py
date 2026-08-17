@@ -43,56 +43,70 @@ class CreateCaseVersionConverter(BaseCISUVersionConverter):
 
     @classmethod
     def convert_v3_to_vactive(cls, edxl_json: Dict[str, Any]) -> Dict[str, Any]:
+        def apply_qualification_nomenclature_mappings(json_data: Dict[str, Any]):
+            for qualification_path in (
+                CreateCaseCISUConstants.QUALIFICATION_PATH,
+                CreateCaseCISUConstants.INITIAL_ALERT_QUALIFICATION_PATH,
+            ):
+                apply_nomenclature_mapping(
+                    json_data,
+                    f"{qualification_path}.whatsHappen",
+                    V2_3_TO_V1_9_WHATS_HAPPEN_MAP,
+                )
+                apply_nomenclature_mapping(
+                    json_data,
+                    f"{qualification_path}.healthMotive",
+                    V2_3_TO_V1_9_HEALTH_MOTIVE_MAP,
+                )
+                apply_nomenclature_mapping_to_list(
+                    json_data,
+                    f"{qualification_path}.riskThreat",
+                    V2_3_TO_V1_9_RISK_THREAT_MAP,
+                )
+                apply_nomenclature_mapping(
+                    json_data,
+                    f"{qualification_path}.locationKind",
+                    V2_3_TO_V1_9_LOCATION_KIND_MAP,
+                )
+
         output_json = cls.copy_input_content(edxl_json)
         output_use_case_json = cls.copy_input_use_case_content(edxl_json)
 
-        apply_nomenclature_mapping(
-            output_use_case_json,
-            CreateCaseCISUConstants.QUALIFICATION_WHATS_HAPPEN_PATH,
-            V2_3_TO_V1_9_WHATS_HAPPEN_MAP,
-        )
-        apply_nomenclature_mapping(
-            output_use_case_json,
-            CreateCaseCISUConstants.QUALIFICATION_HEALTH_MOTIVE_PATH,
-            V2_3_TO_V1_9_HEALTH_MOTIVE_MAP,
-        )
-        apply_nomenclature_mapping_to_list(
-            output_use_case_json,
-            CreateCaseCISUConstants.QUALIFICATION_RISK_THREAT_PATH,
-            V2_3_TO_V1_9_RISK_THREAT_MAP,
-        )
-        apply_nomenclature_mapping(
-            output_use_case_json,
-            CreateCaseCISUConstants.QUALIFICATION_LOCATION_KIND_PATH,
-            V2_3_TO_V1_9_LOCATION_KIND_MAP,
-        )
+        apply_qualification_nomenclature_mappings(output_use_case_json)
 
         return cls.format_output_json(output_json, output_use_case_json)
 
     @classmethod
     def convert_vactive_to_v3(cls, edxl_json: Dict[str, Any]) -> Dict[str, Any]:
+        def apply_qualification_nomenclature_mappings(json_data: Dict[str, Any]):
+            for qualification_path in (
+                CreateCaseCISUConstants.QUALIFICATION_PATH,
+                CreateCaseCISUConstants.INITIAL_ALERT_QUALIFICATION_PATH,
+            ):
+                apply_nomenclature_mapping(
+                    json_data,
+                    f"{qualification_path}.whatsHappen",
+                    V1_9_TO_V2_3_WHATS_HAPPEN_MAP,
+                )
+                apply_nomenclature_mapping(
+                    json_data,
+                    f"{qualification_path}.healthMotive",
+                    V1_9_TO_V2_3_HEALTH_MOTIVE_MAP,
+                )
+                apply_nomenclature_mapping_to_list(
+                    json_data,
+                    f"{qualification_path}.riskThreat",
+                    V1_9_TO_V2_3_RISK_THREAT_MAP,
+                )
+                apply_nomenclature_mapping(
+                    json_data,
+                    f"{qualification_path}.locationKind",
+                    V1_9_TO_V2_3_LOCATION_KIND_MAP,
+                )
+
         output_json = cls.copy_input_content(edxl_json)
         output_use_case_json = cls.copy_input_use_case_content(edxl_json)
 
-        apply_nomenclature_mapping(
-            output_use_case_json,
-            CreateCaseCISUConstants.QUALIFICATION_WHATS_HAPPEN_PATH,
-            V1_9_TO_V2_3_WHATS_HAPPEN_MAP,
-        )
-        apply_nomenclature_mapping(
-            output_use_case_json,
-            CreateCaseCISUConstants.QUALIFICATION_HEALTH_MOTIVE_PATH,
-            V1_9_TO_V2_3_HEALTH_MOTIVE_MAP,
-        )
-        apply_nomenclature_mapping_to_list(
-            output_use_case_json,
-            CreateCaseCISUConstants.QUALIFICATION_RISK_THREAT_PATH,
-            V1_9_TO_V2_3_RISK_THREAT_MAP,
-        )
-        apply_nomenclature_mapping(
-            output_use_case_json,
-            CreateCaseCISUConstants.QUALIFICATION_LOCATION_KIND_PATH,
-            V1_9_TO_V2_3_LOCATION_KIND_MAP,
-        )
+        apply_qualification_nomenclature_mappings(output_use_case_json)
 
         return cls.format_output_json(output_json, output_use_case_json)
