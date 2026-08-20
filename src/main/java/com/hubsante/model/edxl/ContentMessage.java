@@ -22,10 +22,6 @@ package com.hubsante.model.edxl;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import com.hubsante.model.technical.Technical;
-import com.hubsante.model.technical.TechnicalWrapper;
-import com.hubsante.model.technical.noreq.TechnicalNoreq;
-import com.hubsante.model.technical.noreq.TechnicalNoreqWrapper;
 import com.hubsante.model.rcde.DistributionElement;
 import com.hubsante.model.cisu.CreateCase;
 import com.hubsante.model.cisu.CreateCaseWrapper;
@@ -65,6 +61,10 @@ import com.hubsante.model.sas.Appointment;
 import com.hubsante.model.sas.AppointmentWrapper;
 
 
+import com.hubsante.model.technical.Technical;
+import com.hubsante.model.technical.TechnicalWrapper;
+import com.hubsante.model.technical.noreq.TechnicalNoreq;
+import com.hubsante.model.technical.noreq.TechnicalNoreqWrapper;
 import com.hubsante.model.report.ErrorWrapper;
 import com.hubsante.model.custom.CustomMessage;
 import java.util.Map;
@@ -73,8 +73,6 @@ import java.util.stream.Stream;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({ 
-        @JsonSubTypes.Type(TechnicalWrapper.class),
-        @JsonSubTypes.Type(TechnicalNoreqWrapper.class),
         @JsonSubTypes.Type(CreateCaseWrapper.class),
         @JsonSubTypes.Type(CreateCaseHealthWrapper.class),
         @JsonSubTypes.Type(CreateCaseHealthUpdateWrapper.class),
@@ -93,6 +91,8 @@ import java.util.stream.Stream;
         @JsonSubTypes.Type(GeoResourcesRequestWrapper.class),
         @JsonSubTypes.Type(GeoResourcesDetailsWrapper.class),
         @JsonSubTypes.Type(AppointmentWrapper.class),
+        @JsonSubTypes.Type(TechnicalWrapper.class),
+        @JsonSubTypes.Type(TechnicalNoreqWrapper.class),
         @JsonSubTypes.Type(ErrorWrapper.class),
         @JsonSubTypes.Type(CustomMessage.class)
 })
@@ -117,8 +117,6 @@ public class ContentMessage {
     public static class UseCaseHelper {
         public static final Map<String,String> useCases = Stream.of(new String[][] {
                   
-                  {"technical", Technical.class.getCanonicalName()},
-                  {"technicalNoreq", TechnicalNoreq.class.getCanonicalName()},
                   {"distributionElement", DistributionElement.class.getCanonicalName()},
                   {"createCase", CreateCase.class.getCanonicalName()},
                   {"createCaseHealth", CreateCaseHealth.class.getCanonicalName()},
@@ -138,6 +136,8 @@ public class ContentMessage {
                   {"geoResourcesRequest", GeoResourcesRequest.class.getCanonicalName()},
                   {"geoResourcesDetails", GeoResourcesDetails.class.getCanonicalName()},
                   {"appointment", Appointment.class.getCanonicalName()},
+                  {"technical", Technical.class.getCanonicalName()},
+                  {"technicalNoreq", TechnicalNoreq.class.getCanonicalName()},
                   {"error", ErrorWrapper.class.getCanonicalName()},
                   {"customContent", CustomMessage.class.getCanonicalName()}
         }).collect(Collectors.toMap(useCaseData -> useCaseData[0], useCaseData -> useCaseData[1]));

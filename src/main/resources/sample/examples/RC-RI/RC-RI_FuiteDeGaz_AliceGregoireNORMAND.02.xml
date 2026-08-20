@@ -6,7 +6,7 @@
     <resourceId>fr.health.samu440.resource.VLM1</resourceId>
     <operationId>DRFR15DDXAAJJJ0000.M001</operationId>
     <orgId>fr.health.samu440</orgId>
-    <vehicleType>SMUR</vehicleType>
+    <vehicleType>VECTEUR_SANTE</vehicleType>
     <name>VLM1</name>
     <centerCity>44109</centerCity>
     <team>
@@ -23,7 +23,7 @@
     <resourceId>fr.health.samu440.resource.VLM2</resourceId>
     <operationId>DRFR15DDXAAJJJ0000.M001</operationId>
     <orgId>fr.health.samu440</orgId>
-    <vehicleType>SMUR</vehicleType>
+    <vehicleType>VECTEUR_SANTE</vehicleType>
     <name>VLM2</name>
     <centerCity>44109</centerCity>
     <team>

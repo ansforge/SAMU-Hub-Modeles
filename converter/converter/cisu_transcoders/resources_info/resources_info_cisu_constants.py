@@ -11,4 +11,4 @@ class ResourcesInfoCISUConstants:
     POSITION_KEY = "position"
 
     VEHICLE_TYPE_SIS = "SIS"
-    VEHICLE_TYPE_SMUR = "SMUR"
+    VEHICLE_TYPE_VECTEUR_SANTE = "VECTEUR_SANTE"
