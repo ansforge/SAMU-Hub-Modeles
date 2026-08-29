@@ -9,7 +9,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
 
     - name: Set up zip
       run: sudo apt-get install zip -y
@@ -60,7 +60,7 @@ jobs:
         zip -r bundle.zip "$bundle_name"
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: Bundle-zip
         path: bundle.zip
