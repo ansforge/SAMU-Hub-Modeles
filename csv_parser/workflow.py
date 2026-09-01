@@ -12,7 +12,8 @@ parser = argparse.ArgumentParser(
     prog='Workflow Automator',
     description='Automates the build workflow for the model (schemas, classes... )',
 )
-parser.add_argument('-s', '--stage', required=True, choices=['parser_and_mv', 'test_case_parser', 'output_schemas_yaml'],
+parser.add_argument('-s', '--stage', required=True,
+                    choices=['parser_and_mv', 'test_case_parser', 'output_schemas_yaml', 'clean_orphans'],
                     help='The workflow stage to run')
 args = parser.parse_args()
 
@@ -87,6 +88,31 @@ def test_case_parser():
     # Generate test-cases.json
     test_case_generator.run(perimeters)
 
+def clean_orphans():
+    # Must run after output_schemas_yaml, since it relies on the freshly regenerated
+    # out/schemas.yaml to know which schemas are still current
+    print("Cleaning up orphaned generated schemas...")
+    with open('out/schemas.yaml', 'r') as file:
+        schemas_yaml = yaml.safe_load(file)
+    current_names = {schema['schema'] for schema in schemas_yaml['schemas']}
+
+    # EDXL-DE-* files are manually maintained and not produced by this pipeline
+    json_schema_dir = '../src/main/resources/json-schema'
+    for filename in os.listdir(json_schema_dir):
+        if not filename.endswith('.schema.json') or filename.startswith('EDXL-DE-'):
+            continue
+        name = filename[:-len('.schema.json')]
+        if name not in current_names:
+            print(f"Removing orphaned schema file: {filename}")
+            os.remove(os.path.join(json_schema_dir, filename))
+
+    # Remove orphaned csv_parser/out/{name} directories
+    for dirname in os.listdir('out'):
+        dirpath = os.path.join('out', dirname)
+        if os.path.isdir(dirpath) and dirname not in current_names:
+            print(f"Removing orphaned output directory: out/{dirname}")
+            shutil.rmtree(dirpath)
+
 def output_schemas_yaml():
     print("Generating schemas.yaml file...")
     # Iterate over every non-# sheet in the models folder and extract the mini-tables starting at A1 which contain
@@ -154,5 +180,7 @@ elif args.stage == 'test_case_parser':
     test_case_parser()
 elif args.stage == 'output_schemas_yaml':
     output_schemas_yaml()
+elif args.stage == 'clean_orphans':
+    clean_orphans()
 else:
     exit(1)
