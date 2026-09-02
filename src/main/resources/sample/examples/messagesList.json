@@ -721,6 +721,39 @@
         "victims": "1 patient",
         "victim": "Homme, 55 ans",
         "medicalSituation": "Douleur thoracique constrictive - Urgence cardiaque avec code 3 niveaux (M02.01.01)"
+      },
+      {
+        "file": "RC-EDA/RC-EDA-Nomenclature-cas1.json",
+        "icon": "mdi-fire-truck",
+        "context": "Accident de drone; Implication d’un élu",
+        "name": "Nomenclature - Cas 1",
+        "caller": "Christine MICHEL appelle le 18 pour un incendie chez sa voisine, les pompiers découvrent la jeune femme en arrêt cardiaque",
+        "environment": "EHPAD / résidence autonomie",
+        "victims": "1 victime découverte par les pompiers, urgence vitale",
+        "victim": "Femme non-identifiée",
+        "medicalSituation": "Traumatisme tête - cou"
+      },
+      {
+        "file": "RC-EDA/RC-EDA-Nomenclature-cas2.json",
+        "icon": "mdi-fire-truck",
+        "context": "Disparitions et découvertesMort a priori naturelle; Difficulté d’accès sur site",
+        "name": "Nomenclature - Cas 2",
+        "caller": "Christine MICHEL appelle le 18 pour un incendie chez sa voisine, les pompiers découvrent la jeune femme en arrêt cardiaque",
+        "environment": "Port, quai, embarcadère",
+        "victims": "1 victime découverte par les pompiers, urgence vitale",
+        "victim": "Femme non-identifiée",
+        "medicalSituation": "Médicamenteuse - Somnolence"
+      },
+      {
+        "file": "RC-EDA/RC-EDA-Nomenclature-cas3.json",
+        "icon": "mdi-fire-truck",
+        "context": "Decouverte de cadavre; Discrimination raciale, religieuse, sexiste ou autre",
+        "name": "Nomenclature - Cas 3",
+        "caller": "Christine MICHEL appelle le 18 pour un incendie chez sa voisine, les pompiers découvrent la jeune femme en arrêt cardiaque",
+        "environment": "CRNA",
+        "victims": "1 victime découverte par les pompiers, urgence vitale",
+        "victim": "Femme non-identifiée",
+        "medicalSituation": "Suspicion AVC / AIT - Avec céphalées ou vomissements"
       }
     ]
   },
