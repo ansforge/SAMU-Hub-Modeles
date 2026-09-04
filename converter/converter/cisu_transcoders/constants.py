@@ -1,0 +1,5 @@
+class CISUConstants:
+    TO_CISU = "to_CISU"
+    FROM_CISU = "from_CISU"
+    CISU_EXPECTED_MODEL_VERSION = "vactive"
+    HEALTH_EXPECTED_VERSION_FOR_CISU_CONVERSION = "v3"

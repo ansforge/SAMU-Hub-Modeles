@@ -1,0 +1,57 @@
+name: Converter Generate Nomenclatures
+
+on:
+  pull_request:
+    branches:
+      - '**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: converter
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+
+      - name: Check for changes requiring nomenclatures generation
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            nomenclatures:
+              - 'converter/resources/export_mapping_nomenclatures.csv'
+              - 'converter/scripts/generate_nomenclatures_maps.py'
+
+      - name: Set up Python
+        if: steps.filter.outputs.nomenclatures == 'true'
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.14'
+
+      - name: Install uv
+        if: steps.filter.outputs.nomenclatures == 'true'
+        uses: astral-sh/setup-uv@v3
+
+      - name: Install dependencies
+        if: steps.filter.outputs.nomenclatures == 'true'
+        run: uv sync
+
+      - name: Generate nomenclatures maps
+        if: steps.filter.outputs.nomenclatures == 'true'
+        run: uv run scripts/generate_nomenclatures_maps.py
+
+      - name: Commit and push changes
+        if: steps.filter.outputs.nomenclatures == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: '⚙️ Auto-génération du CSV et des maps de nomenclatures'
+          file_pattern: 'converter/resources/export_mapping_nomenclatures.csv converter/converter/nomenclatures/**/*.py'

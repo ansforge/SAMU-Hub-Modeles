@@ -1,4 +1,4 @@
-from converter.versions.create_case_health.create_case_health_update_converter import (
+from converter.health_version_converters.create_case_health.create_case_health_update_converter import (
     CreateHealthUpdateCaseConverter,
 )
 from tests.constants import TestConstants

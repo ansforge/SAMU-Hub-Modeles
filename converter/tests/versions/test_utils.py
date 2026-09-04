@@ -1,6 +1,6 @@
 import unittest
 
-from converter.versions.utils import (
+from converter.health_version_converters.utils import (
     reverse_map_to_new_value,
 )
 

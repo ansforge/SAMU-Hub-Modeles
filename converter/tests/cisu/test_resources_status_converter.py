@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import patch
 
-from converter.cisu.resources_status.resources_status_converter import (
+from converter.cisu_transcoders.resources_status.resources_status_converter import (
     ResourcesStatusConverter,
 )
 from tests.cisu.helpers import (
@@ -15,7 +15,7 @@ _CASE_ID = "CASE123"
 _RESOURCE_ID_1 = "fr.fire.sis076.cgo-076.resource.VLM1"
 _RESOURCE_ID_2 = "fr.fire.sis076.cgo-076.resource.VLM2"
 
-_PATCH_GET_RS_MESSAGES = "converter.cisu.resources_status.resources_status_converter.get_rs_messages_by_case_id"
+_PATCH_GET_RS_MESSAGES = "converter.cisu_transcoders.resources_status.resources_status_converter.get_rs_messages_by_case_id"
 
 
 def test_from_rs_to_cisu_real_data():

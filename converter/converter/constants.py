@@ -1,3 +1,6 @@
+from enum import Enum
+
+
 class Constants:
     FR_HEALTH_PREFIX = "fr.health"
 
@@ -17,3 +20,9 @@ class Constants:
     }
 
     MEDICAL_NOTE_RANDOM_ID_LENGTH = 7
+
+
+class ConversionType(Enum):
+    CISUVersionConversion = "CISUVersionConversion"
+    HealthVersionConversion = "HealthVersionConversion"
+    CISUTranscoding = "CISUTranscoding"

@@ -1,7 +1,7 @@
 class TestConstants:
     V1_GITHUB_TAG = "release/1.x-maintenance"
     V2_GITHUB_TAG = "release/2.x-maintenance"
-    V3_GITHUB_TAG = "main"
+    V3_GITHUB_TAG = "feat/15-nexsis-conversion-strategy"
 
     EDXL_HEALTH_TO_FIRE_ENVELOPE_PATH = (
         "tests/fixtures/EDXL/edxl_envelope_health_to_fire.json"

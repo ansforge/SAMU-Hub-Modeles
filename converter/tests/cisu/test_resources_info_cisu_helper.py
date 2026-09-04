@@ -1,4 +1,4 @@
-from converter.cisu.resources_info.resources_info_cisu_helper import (
+from converter.cisu_transcoders.resources_info.resources_info_cisu_helper import (
     enrich_rs_ri_with_rs_srs,
     log_cisu_to_rs_converted_messages_ids,
 )
