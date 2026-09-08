@@ -73,7 +73,7 @@ def test_from_cisu_to_rs_health_motive_mapped_code_is_replaced():
     )
     assert qualification["healthMotive"] == {
         "code": "M08.00.00",
-        "label": "Personne inconsciente ",
+        "label": "Personne inconsciente",
     }
 
 
