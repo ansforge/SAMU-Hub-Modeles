@@ -54,11 +54,16 @@ def _read_rows(input_path: Path) -> list[dict[str, str | None]]:
         reader = csv.DictReader(f, delimiter=";")
         # Empty CSV fields decode as "" (unlike empty xlsx cells, which are
         # None) — normalize them so a blank "Code à transmettre" still means
-        # "no entry" rather than an empty-string code.
+        # "no entry" rather than an empty-string code. Values are also trimmed
+        # so stray leading/trailing spaces missed in the CSV don't leak into
+        # codes or labels (a whitespace-only field then normalizes to None).
         return [
-            {key: (value if value else None) for key, value in row.items()}
+            {
+                key: (value.strip() or None if isinstance(value, str) else value)
+                for key, value in row.items()
+            }
             for row in reader
-            if any(value for key, value in row.items() if key)
+            if any(value and value.strip() for key, value in row.items() if key)
         ]
 
 

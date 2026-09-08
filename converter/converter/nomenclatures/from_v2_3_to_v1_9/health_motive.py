@@ -57,7 +57,7 @@ V2_3_TO_V1_9_HEALTH_MOTIVE_MAP: dict[str, dict[str, str] | None] = {
         "code": "M30.97",
         "label": "Autres troubles - Autre trouble sans signe de gravité identifié",
     },
-    "M11.00.00": {"code": "M31.11 ", "label": "Difficultés respiratoires"},
+    "M11.00.00": {"code": "M31.11", "label": "Difficultés respiratoires"},
     "M11.01.00": {"code": "M31.01", "label": "Détresse respiratoire"},
     "M11.01.01": {
         "code": "M31.02",
@@ -67,7 +67,7 @@ V2_3_TO_V1_9_HEALTH_MOTIVE_MAP: dict[str, dict[str, str] | None] = {
         "code": "M31.03",
         "label": "Détresse respiratoire - Epuisement respiratoire chez un nourrisson ou signes de lutte",
     },
-    "M11.02.00": {"code": "M31.11 ", "label": "Difficultés respiratoires"},
+    "M11.02.00": {"code": "M31.11", "label": "Difficultés respiratoires"},
     "M11.02.01": {
         "code": "M31.12",
         "label": "Difficultés respiratoires - Respiration bruyante",
