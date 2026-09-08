@@ -303,11 +303,11 @@ Motif de recours médico secouriste;$.qualification.healthMotive;2.3;M10.02.02;B
 Motif de recours médico secouriste;$.qualification.healthMotive;2.3;M10.02.03;Pression Artérielle < 90 mmHg;1.9;M30.95;Autres troubles - Tension artérielle < 90 mm Hg;OK;OK;;;;;;
 Motif de recours médico secouriste;$.qualification.healthMotive;2.3;M10.02.04;Pression Artérielle > 160 mmHg;1.9;M30.96;Autres troubles - Tension artérielle > 160 mm Hg;OK;OK;;;;;;
 Motif de recours médico secouriste;$.qualification.healthMotive;2.3;M10.02.05;Autre trouble sans signe de gravité;1.9;M30.97;Autres troubles - Autre trouble sans signe de gravité identifié;OK;OK;;;;;;
-Motif de recours médico secouriste;$.qualification.healthMotive;2.3;M11.00.00;Problème respiratoire;1.9;M31.11 ;Difficultés respiratoires;OK;OK;;;;;;
+Motif de recours médico secouriste;$.qualification.healthMotive;2.3;M11.00.00;Problème respiratoire;1.9;M31.11;Difficultés respiratoires;OK;OK;;;;;;
 Motif de recours médico secouriste;$.qualification.healthMotive;2.3;M11.01.00;Détresse respiratoire;1.9;M31.01;Détresse respiratoire;OK;OK;;;;;;
 Motif de recours médico secouriste;$.qualification.healthMotive;2.3;M11.01.01;Détresse respiratoire avec asphyxie;1.9;M31.02;Détresse respiratoire - Etat asphyxique (moins de 4 syllabes ou mots courts, cyanose), ou obstruction complète;OK;OK;;;;;;
 Motif de recours médico secouriste;$.qualification.healthMotive;2.3;M11.01.02;Epuisement respiratoire chez un nourrisson ;1.9;M31.03;Détresse respiratoire - Epuisement respiratoire chez un nourrisson ou signes de lutte;OK;OK;;;;;;
-Motif de recours médico secouriste;$.qualification.healthMotive;2.3;M11.02.00;Difficultés respiratoires;1.9;M31.11 ;Difficultés respiratoires;OK;OK;;;;;;
+Motif de recours médico secouriste;$.qualification.healthMotive;2.3;M11.02.00;Difficultés respiratoires;1.9;M31.11;Difficultés respiratoires;OK;OK;;;;;;
 Motif de recours médico secouriste;$.qualification.healthMotive;2.3;M11.02.01;Respiration bruyante;1.9;M31.12;Difficultés respiratoires - Respiration bruyante;OK;OK;;;;;;
 Motif de recours médico secouriste;$.qualification.healthMotive;2.3;M11.02.02;Difficultés respiratoires avec sueurs ou altération de conscience;1.9;M31.13;Difficultés respiratoires - Sueurs et/ou troubles de conscience;OK;OK;;;;;;
 Motif de recours médico secouriste;$.qualification.healthMotive;2.3;M11.02.03;Difficultés respiratoires sans signe de gravité;1.9;M31.19;Difficultés respiratoires - Difficultés respiratoires sans signe de gravité identifié;OK;OK;;;;;;
