@@ -18,12 +18,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.head_ref || github.ref_name }}
 
       - name: Check for changes requiring nomenclatures generation
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@v4
         id: filter
         with:
           filters: |
@@ -33,13 +33,13 @@ jobs:
 
       - name: Set up Python
         if: steps.filter.outputs.nomenclatures == 'true'
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v7
         with:
           python-version: '3.14'
 
       - name: Install uv
         if: steps.filter.outputs.nomenclatures == 'true'
-        uses: astral-sh/setup-uv@v3
+        uses: astral-sh/setup-uv@v10.0.1
 
       - name: Install dependencies
         if: steps.filter.outputs.nomenclatures == 'true'
@@ -51,7 +51,7 @@ jobs:
 
       - name: Commit and push changes
         if: steps.filter.outputs.nomenclatures == 'true'
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: '⚙️ Auto-génération du CSV et des maps de nomenclatures'
           file_pattern: 'converter/resources/export_mapping_nomenclatures.csv converter/converter/nomenclatures/**/*.py'
