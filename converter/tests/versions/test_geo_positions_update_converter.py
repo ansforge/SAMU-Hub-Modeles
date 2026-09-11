@@ -1,4 +1,4 @@
-from converter.versions.geo_positions_update.geo_positions_update_converter import (
+from converter.health_version_converters.geo_positions_update.geo_positions_update_converter import (
     GeoPositionsUpdateConverter,
 )
 from tests.constants import TestConstants

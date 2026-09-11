@@ -1,5 +1,5 @@
 import json
-from converter.versions.resources_response.resources_response_converter import (
+from converter.health_version_converters.resources_response.resources_response_converter import (
     ResourcesResponseConverter,
 )
 from tests.constants import TestConstants

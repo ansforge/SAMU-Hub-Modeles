@@ -1,4 +1,4 @@
-from converter.cisu.utils import add_object_to_initial_alert_notes
+from converter.cisu_transcoders.utils import add_object_to_initial_alert_notes
 
 
 def test_add_note_to_existing_notes():

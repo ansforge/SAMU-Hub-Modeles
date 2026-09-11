@@ -1,4 +1,4 @@
-from converter.cisu.identical_cisu_converter import IdenticalCISUConverter
+from converter.cisu_transcoders.identical_cisu_converter import IdenticalCISUConverter
 
 mock_message = {"message": {"content": "This is a mock CISU message.", "status": "200"}}
 

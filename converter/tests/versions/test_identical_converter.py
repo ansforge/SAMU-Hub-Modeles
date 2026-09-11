@@ -1,5 +1,7 @@
 import pytest
-from converter.versions.identical_message_converter import IdenticalMessageConverter
+from converter.health_version_converters.identical_message_converter import (
+    IdenticalMessageConverter,
+)
 
 mock_message = {"error": {"code": 500}}
 test_cases = [

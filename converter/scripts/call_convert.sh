@@ -7,18 +7,18 @@ CONVERTER_URL_DEFAULT="http://localhost:8083"
 
 usage() {
   cat >&2 <<EOF
-Usage: $(basename "$0") <sourceVersion> <targetVersion> <useCase> [options]
+Usage: $(basename "$0") <sourceVersion> <targetVersion> <type> <useCase> [options]
 
 Positional arguments:
   sourceVersion    e.g. v1, v2, v3, vactive (passed as-is)
   targetVersion    e.g. v1, v2, v3, vactive (passed as-is)
+  type             HealthVersionConversion | CISUTranscoding | CISUVersionConversion
   useCase          path to a JSON file OR http(s) URL of the message payload
 
 Options:
   --envelope <path|url>     EDXL envelope file or URL
                             (default: tests/fixtures/EDXL/edxl_envelope_health_to_health.json)
   --converter_url <url>     Converter base URL (default: http://localhost:8083)
-  --no-cisu                 Disable CISU conversion
   -h, --help                Show this message
 
 Example:
@@ -28,7 +28,6 @@ EOF
 
 ENVELOPE="$ENVELOPE_DEFAULT"
 CONVERTER_URL="$CONVERTER_URL_DEFAULT"
-CISU_CONVERSION=true
 POSITIONAL=()
 
 while [[ $# -gt 0 ]]; do
@@ -39,8 +38,6 @@ while [[ $# -gt 0 ]]; do
     --converter_url)
       [[ $# -ge 2 ]] || { echo "Error: --converter_url requires a value" >&2; usage; exit 1; }
       CONVERTER_URL="$2"; shift 2;;
-    --no-cisu)
-      CISU_CONVERSION=false; shift;;
     -h|--help)
       usage; exit 0;;
     --*)
@@ -50,15 +47,16 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-if [[ ${#POSITIONAL[@]} -ne 3 ]]; then
-  echo "Error: expected 3 positional arguments, got ${#POSITIONAL[@]}" >&2
+if [[ ${#POSITIONAL[@]} -ne 4 ]]; then
+  echo "Error: expected 4 positional arguments, got ${#POSITIONAL[@]}" >&2
   usage
   exit 1
 fi
 
 SOURCE_VERSION="${POSITIONAL[0]}"
 TARGET_VERSION="${POSITIONAL[1]}"
-USECASE="${POSITIONAL[2]}"
+TYPE="${POSITIONAL[2]}"
+USECASE="${POSITIONAL[3]}"
 
 for dep in jq curl; do
   if ! command -v "$dep" >/dev/null 2>&1; then
@@ -92,11 +90,11 @@ PAYLOAD=$(jq -n \
   --argjson usecase "$USECASE_JSON" \
   --arg sourceVersion "$SOURCE_VERSION" \
   --arg targetVersion "$TARGET_VERSION" \
-  --argjson cisuConversion "$CISU_CONVERSION" \
+  --arg type "$TYPE" \
   '{
     sourceVersion: $sourceVersion,
     targetVersion: $targetVersion,
-    cisuConversion: $cisuConversion,
+    type: $type,
     edxl: ($envelope.edxl | .content[0].jsonContent.embeddedJsonContent.message |= (. + $usecase))
   }')
 

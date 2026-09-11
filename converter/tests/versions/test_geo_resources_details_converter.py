@@ -1,4 +1,4 @@
-from converter.versions.geo_resources_details.geo_resources_details_converter import (
+from converter.health_version_converters.geo_resources_details.geo_resources_details_converter import (
     GeoResourcesDetailsConverter,
 )
 from tests.constants import TestConstants

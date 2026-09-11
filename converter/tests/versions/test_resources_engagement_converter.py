@@ -1,4 +1,4 @@
-from converter.versions.resources_engagement.resources_engagement_converter import (
+from converter.health_version_converters.resources_engagement.resources_engagement_converter import (
     ResourcesEngagementConverter,
 )
 from tests.constants import TestConstants
