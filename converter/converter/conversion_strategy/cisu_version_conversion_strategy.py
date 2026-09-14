@@ -5,6 +5,9 @@ from converter.cisu_version_converters.create_case.create_case_version_converter
 from converter.cisu_version_converters.resources_info_cisu.resources_info_cisu_version_converter import (
     ResourcesInfoCISUVersionConverter,
 )
+from converter.cisu_version_converters.reference.reference_version_converter import (
+    ReferenceCISUVersionConverter,
+)
 from converter.utils import (
     extract_message_type_from_message_content,
     extract_message_content,
@@ -31,7 +34,7 @@ def select_conversion_strategy(message_content):
     elif "resourcesInfoCisu" in message_content:
         return ResourcesInfoCISUVersionConverter
     elif "reference" in message_content:
-        return IdenticalCISUVersionConverter
+        return ReferenceCISUVersionConverter
     elif "error" in message_content:
         return IdenticalCISUVersionConverter
     else:
