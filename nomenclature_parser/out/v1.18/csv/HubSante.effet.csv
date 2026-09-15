@@ -1,0 +1,13 @@
+,code,label_n1,label_n2,description,commentaire
+0,SAP,Demander une prise en charge secouriste ,,Demander l'intervention d'une équipe secouriste / ambulance privée,
+1,REGUL,Demander une régulation médicale,,"Demander la régulation médicale du dossier par un médecin régulateur (cas de partage d'activité - exemples : régulation spécialisée, régulation déportée la nuit, délestage, atypie locale )",
+2,CUMP,Demander un soutien médico psychologique,,Demander l'intervention de la CUMP,
+3,SMUR,Demander une prise en charge de médecine d'urgence,,Demander l'intervention d'une équipe SMUR,
+4,MG,Demander une prise en charge de médecine générale,,Demander l'obtention d'une consultation ou une visite du MG (uniquement pour lien 15-15),
+5,PARAMED,Demander une prise en charge para médicale,,Demander l'intervention d'une équipe paramédicale (UMHP).,
+6,SAMU,Autre demande de concours au SAMU,,Détails à préciser dans le texte libre de la demande de ressources,
+7,RELEVE,Demander de relever une personne,,Demander de relever une personne,
+8,NOVI,Demander une prise en charge de nombreux patients/victimes,,Demander une prise en charge de nombreux patients/victimes,
+9,TIH,Demander un transfert interétablissement,,Demander un transfert interétablissement,
+10,BRANCARD,Demander une aide au brancardage ,,Demander une aide au brancardage ,
+11,BARIA,Demander un transport bariatrique,,Demander un transport bariatrique,

@@ -1,0 +1,5 @@
+,code,label_n1,Libellé niveau 2,Libellé niveau 3,description,commentaire
+0,M,Masculin,,,Qualifie les individus de sexe masculin,
+1,F,Féminin,,,Qualifie les individus de sexe féminin,
+2,O,"Autre sexe (ni masculin, ni féminin)",,,"Qualifie les individus de troisième genre (individu considéré comme n ’étant ni homme ni femme, à la fois homme et femme, ou neutre)",
+3,UN,Inconnu,,,Le sexe de la personne n'est pas connu,
