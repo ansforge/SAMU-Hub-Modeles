@@ -445,7 +445,7 @@ class TestUpdateJsonValue(unittest.TestCase):
         assert args[0] == "Updating value from %s to %s at path $.%s"
         assert args[1] == "P1"
         assert args[2] == "P2"
-        assert str(args[3]) == "qualification.details.priority"
+        assert str(args[3]) == "((qualification.details).priority)"
 
 
 class TestAddToMedicalNotes(unittest.TestCase):
