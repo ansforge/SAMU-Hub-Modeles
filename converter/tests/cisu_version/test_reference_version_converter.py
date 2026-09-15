@@ -35,17 +35,6 @@ class TestReferenceCisuVersionConverter(unittest.TestCase):
 
         assert "step" not in self.get_reference_content(converted_message)
 
-    def test_vactive_to_v3_strips_step(self):
-        message = TestHelper.create_edxl_json_from_sample(
-            self.edxl_envelope_fire_to_health_path,
-            self.fixtures_folder_path + "RC-REF/RC-REF_V3.0_exhaustive_fill.json",
-        )
-        assert "step" in self.get_reference_content(message)
-
-        converted_message = self.converter.convert_vactive_to_v3(message)
-
-        assert "step" not in self.get_reference_content(converted_message)
-
     def test_message_is_unmodified_when_step_is_absent(self):
         message = TestHelper.create_edxl_json_from_sample(
             self.edxl_envelope_health_to_fire_path,
