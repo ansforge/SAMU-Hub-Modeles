@@ -19,6 +19,8 @@ import com.hubsante.model.rcde.DistributionElement;
 import com.hubsante.model.rcde.Recipient;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.time.OffsetDateTime;
 import java.time.temporal.ChronoUnit;
@@ -31,8 +33,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DistributionElementBuilderTest {
     private final static String MESSAGE_ID = "id-12345";
-    private final String SENDER_ID = "sender-x";
-    private final List<Recipient> RECIPIENT_LIST = Stream.of(new Recipient().name("recipient-y").URI("hubex:recipient-y")).collect(Collectors.toList());
+    private final static String SENDER_ID = "fr.health.samu-x";
+    private final static String SENDER_NAME = "samu-x";
+    private final List<Recipient> RECIPIENT_LIST = Stream.of(new Recipient().name("recipient-y").URI("hubex:fr.health.recipient-y")).collect(Collectors.toList());
 
 
     @Test
@@ -42,7 +45,8 @@ public class DistributionElementBuilderTest {
                 .build();
 
         assertEquals(MESSAGE_ID, actual.getMessageId());
-        assertEquals(SENDER_ID, actual.getSender().getName());
+        assertEquals(SENDER_NAME, actual.getSender().getName());
+        assertEquals("hubex:" + SENDER_ID, actual.getSender().getURI());
         assertNotNull(actual.getSentAt());
         assertEquals(DistributionElement.KindEnum.REPORT, actual.getKind());
         assertEquals(DistributionElement.StatusEnum.ACTUAL, actual.getStatus());
@@ -52,7 +56,7 @@ public class DistributionElementBuilderTest {
     @Test
     @DisplayName("should not build a RC-DE without at least one recipient")
     public void shouldNotBuildRC_DEwithoutRecipient() {
-        DistributionElementBuilder builder = new DistributionElementBuilder(MESSAGE_ID, "samu-x", new ArrayList<>());
+        DistributionElementBuilder builder = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, new ArrayList<>());
 
         assertThrows(IllegalArgumentException.class, builder::build);
     }
@@ -100,11 +104,49 @@ public class DistributionElementBuilderTest {
     @DisplayName("should build a RC-DE with provided recipient list")
     public void shouldBuildRC_DEwithProvidedRecipientList() {
         List<Recipient> providedRecipientList = new ArrayList<>();
-        providedRecipientList.add(new Recipient().name("samu-z").URI("hubex:samu-z"));
-        providedRecipientList.add(new Recipient().name("samu-y").URI("hubex:samu-y"));
-        DistributionElement actual = new DistributionElementBuilder(MESSAGE_ID, "samu-x", providedRecipientList)
+        providedRecipientList.add(new Recipient().name("samu-z").URI("hubex:fr.health.samu-z"));
+        providedRecipientList.add(new Recipient().name("samu-y").URI("hubex:fr.health.samu-y"));
+        DistributionElement actual = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, providedRecipientList)
                 .build();
 
         assertEquals(2, actual.getRecipient().size());
+    }
+
+    @ParameterizedTest
+    @DisplayName("should truncate the country and domain parts of the senderId to build the sender name")
+    @CsvSource({
+            "fr.health.samu-xxx, samu-xxx",
+            "fr.health.samu-xxx.yyy, samu-xxx.yyy",
+            "fr.fire.sdis-xxx, sdis-xxx"
+    })
+    public void shouldTruncateSenderIdToBuildSenderName(String senderId, String expectedName) {
+        DistributionElement actual = new DistributionElementBuilder(MESSAGE_ID, senderId, RECIPIENT_LIST).build();
+
+        assertEquals(expectedName, actual.getSender().getName());
+        assertEquals("hubex:" + senderId, actual.getSender().getURI());
+    }
+
+    @ParameterizedTest
+    @DisplayName("should leave a malformed senderId unchanged in the sender name")
+    @CsvSource({
+            "sender-x",
+            "health.samu-xxx",
+            "fr.health.",
+            "..",
+            ".",
+            "''"
+    })
+    public void shouldNotTruncateMalformedSenderId(String senderId) {
+        DistributionElement actual = new DistributionElementBuilder(MESSAGE_ID, senderId, RECIPIENT_LIST).build();
+
+        assertEquals(senderId, actual.getSender().getName());
+        assertEquals("hubex:" + senderId, actual.getSender().getURI());
+    }
+
+    @Test
+    @DisplayName("should not build a RC-DE with a null senderId")
+    public void shouldNotBuildRC_DEwithNullSenderId() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new DistributionElementBuilder(MESSAGE_ID, null, RECIPIENT_LIST));
     }
 }
