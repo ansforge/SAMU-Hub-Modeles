@@ -75,11 +75,6 @@ components:
           description: "Sert \xE0 indiquer \xE0 quelle fili\xE8re du CRRA destinataire\
             \ le dossier doit \xEAtre adress\xE9/affich\xE9, lorsque celle-ci est\
             \ sp\xE9cifique ou d\xE9di\xE9e."
-          enum:
-          - AMU
-          - NEONAT
-          - PSY
-          - SNP
           examples:
           - AMU
         interventionType:

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "26.08.14",
+    "version": "26.09.17",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -47,13 +47,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/perimeter",
-            "description": "Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée.",
-            "enum": [
-                "AMU",
-                "NEONAT",
-                "PSY",
-                "SNP"
-            ]
+            "description": "Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée."
         },
         "interventionType": {
             "type": "string",
