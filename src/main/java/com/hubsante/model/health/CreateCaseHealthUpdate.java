@@ -75,8 +75,46 @@ public class CreateCaseHealthUpdate {
   public static final String JSON_PROPERTY_SENDER_CASE_ID = "senderCaseId";
   private String senderCaseId;
 
+  /**
+   * Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être
+   * adressé/affiché, lorsque celle-ci est spécifique ou dédiée.
+   */
+  public enum PerimeterEnum {
+    AMU("AMU"),
+
+    NEONAT("NEONAT"),
+
+    PSY("PSY"),
+
+    SNP("SNP");
+
+    private String value;
+
+    PerimeterEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static PerimeterEnum fromValue(String value) {
+      for (PerimeterEnum b : PerimeterEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_PERIMETER = "perimeter";
-  private String perimeter;
+  private PerimeterEnum perimeter;
 
   public static final String JSON_PROPERTY_QUALIFICATION = "qualification";
   private Qualification qualification;
@@ -162,7 +200,7 @@ public class CreateCaseHealthUpdate {
     this.senderCaseId = senderCaseId;
   }
 
-  public CreateCaseHealthUpdate perimeter(String perimeter) {
+  public CreateCaseHealthUpdate perimeter(PerimeterEnum perimeter) {
 
     this.perimeter = perimeter;
     return this;
@@ -176,13 +214,13 @@ public class CreateCaseHealthUpdate {
   @JsonProperty(JSON_PROPERTY_PERIMETER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getPerimeter() {
+  public PerimeterEnum getPerimeter() {
     return perimeter;
   }
 
   @JsonProperty(JSON_PROPERTY_PERIMETER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPerimeter(String perimeter) {
+  public void setPerimeter(PerimeterEnum perimeter) {
     this.perimeter = perimeter;
   }
 

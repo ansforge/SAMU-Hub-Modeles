@@ -33,7 +33,13 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/perimeter",
-            "description": "Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée."
+            "description": "Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée.",
+            "enum": [
+                "AMU",
+                "NEONAT",
+                "PSY",
+                "SNP"
+            ]
         },
         "qualification": {
             "$ref": "#/definitions/qualification"
