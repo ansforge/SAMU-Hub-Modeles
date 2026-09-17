@@ -13,7 +13,6 @@
         xmlns:createCaseHealth="urn:emergency:eda:1.9:createCaseHealth"
         xmlns:createCaseHealthUpdate="urn:emergency:eda:1.9:createCaseHealthUpdate"
         xmlns:reference="urn:emergency:eda:1.9:reference"
-        xmlns:emsi="urn:emergency:eda:1.9:emsi"
         xmlns:resourcesInfo="urn:emergency:eda:1.9:resourcesinfo"
         xmlns:resourcesInfoCisu="urn:emergency:eda:1.9:resourcesinfocisu"
         xmlns:resourcesEngagement="urn:emergency:eda:1.9:resourcesengagement"
@@ -42,7 +41,6 @@
     <xs:import namespace="urn:emergency:eda:1.9:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:createCaseHealthUpdate" schemaLocation="RS-EDA-MAJ.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:reference" schemaLocation="RC-REF.xsd"/>
-    <xs:import namespace="urn:emergency:eda:1.9:emsi" schemaLocation="EMSI.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:resourcesinfo" schemaLocation="RS-RI.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:resourcesinfocisu" schemaLocation="RC-RI.xsd"/>
     <xs:import namespace="urn:emergency:eda:1.9:resourcesengagement" schemaLocation="RS-ER.xsd"/>
@@ -82,7 +80,6 @@
                         <xs:element ref="createCaseHealth:createCaseHealth"/>
                         <xs:element ref="createCaseHealthUpdate:createCaseHealthUpdate"/>
                         <xs:element ref="reference:reference"/>
-                        <xs:element ref="emsi:emsi"/>
                         <xs:element ref="resourcesInfo:resourcesInfo"/>
                         <xs:element ref="resourcesInfoCisu:resourcesInfoCisu"/>
                         <xs:element ref="resourcesEngagement:resourcesEngagement"/>

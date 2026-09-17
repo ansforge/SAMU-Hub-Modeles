@@ -88,18 +88,6 @@ schemas:
   customExtendPackage: null
   file: model.xlsx
   header: Y
-  package: emsi
-  perimeter: 15-15
-  rootElement: emsi
-  schema: EMSI
-  sheet: EMSI
-  subschema: N
-  xmlns: eda:1.9:emsi
-- automaticGeneration: Y
-  customExtendClass: null
-  customExtendPackage: null
-  file: model.xlsx
-  header: Y
   package: resources.info
   perimeter: 15-15
   rootElement: resourcesInfo

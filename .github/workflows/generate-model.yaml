@@ -182,7 +182,6 @@ jobs:
           rm -r ./src/main/java/com/hubsante/model/rcde || true
           rm -r ./src/main/java/com/hubsante/model/cisu || true
           rm -r ./src/main/java/com/hubsante/model/health || true
-          rm -r ./src/main/java/com/hubsante/model/emsi || true
           rm -r ./src/main/java/com/hubsante/model/geolocation || true
           rm -r ./src/main/java/com/hubsante/model/resources || true
           rm -r ./src/main/java/com/hubsante/model/rpis || true

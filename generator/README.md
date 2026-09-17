@@ -19,7 +19,7 @@ npx @openapitools/openapi-generator-cli generate -c .\cisu-root-messages-config.
 Le premier appel applique le template principal à toutes les classes, le second écrase les classes XmlRootElement en appliquant le second template. Il est donc crucial de s'assurer d'appliquer les appels au générateur dans le bon ordre.
 
 
-Il faudrait également disposer de plusieurs configurations, pour isoler la génération du modèle par domaine fonctionnel : EDXL, CISU, EMSI, le 15-15 à venir...
+Il faudrait également disposer de plusieurs configurations, pour isoler la génération du modèle par domaine fonctionnel : EDXL, CISU, le 15-15 à venir...
 
 Ainsi on peut ne rebuilder que le modèle concerné, sans avoir à rebuilder tout le projet, au fur et à mesure des itérations.
 
@@ -35,9 +35,4 @@ npx @openapitools/openapi-generator-cli generate -c ..\config\common\common.dist
 npx @openapitools/openapi-generator-cli generate -c ..\config\RC-EDA\RC-EDA.generator-config.json --skip-validate-spec
 
 npx @openapitools/openapi-generator-cli generate -c ..\config\RC-EDA\RC-EDA.wrapper.generator-config.json --skip-validate-spec
-
-# emsi
-npx @openapitools/openapi-generator-cli generate -c ..\config\EMSI-DC\EMSI-DC.generator-config.json --skip-validate-spec
-
-npx @openapitools/openapi-generator-cli generate -c ..\config\EMSI-DC\EMSI-DC.wrapper.generator-config.json --skip-validate-spec
 ```

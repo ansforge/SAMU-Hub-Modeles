@@ -1,6 +1,6 @@
 graphviz==0.21
 jsonpath_ng==1.7.0
-pandas==2.3.0
+pandas==2.3.3
 pikepdf==10.11.0
 python_docx==1.2.0
 PyYAML==6.0.3

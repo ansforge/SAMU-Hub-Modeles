@@ -25,7 +25,7 @@ public class TestMessagesHelper {
     /**
      * Allows to get a valid sample message as a JSON String
      *
-     * @param message type of the message (RC-EDA, RS-INFO, EMSI-DC, etc.)
+     * @param message type of the message (RC-EDA, RS-INFO, etc.)
      * @return the sample message as a JSON String
      * @throws IOException if a sample message of the specified message type does not exist
      */
@@ -36,7 +36,7 @@ public class TestMessagesHelper {
     /**
      * Allows to get a valid sample message as a JSON or XML String
      *
-     * @param message type of the message (RC-EDA, RS-INFO, EMSI-DC, etc.)
+     * @param message type of the message (RC-EDA, RS-INFO, etc.)
      * @param isXML   whether the message is XML or JSON
      * @return the sample message as a JSON or XML String
      * @throws IOException if a sample message of the specified message type and format does not exist
@@ -56,7 +56,7 @@ public class TestMessagesHelper {
      * Allows to get an invalid sample message as a JSON String
      *
      * @param messagePath complete filename of the invalid message template (RC-EDA-missing-required-fields.json,
-     *                    RS-ERROR-missing-required-fields.json, EMSI-DC-missing-required-fields.json, etc.)
+     *                    RS-ERROR-missing-required-fields.json, etc.)
      * @return the sample invalid message as a JSON String
      * @throws IOException if the specified filename does not correspond to an existing invalid sample message
      */
