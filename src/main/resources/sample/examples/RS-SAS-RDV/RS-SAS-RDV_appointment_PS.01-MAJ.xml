@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<appointment xmlns="urn:emergency:eda:1.9:appointment">
+  <appointmentId>2d2db05f-e2b0-4169-be8f-891806da2c74</appointmentId>
+  <method>UpdateAppointment</method>
+  <created>2025-06-17T10:15:00+02:00</created>
+  <start>2025-06-17T14:00:00+02:00</start>
+  <end>2025-06-17T14:20:00+02:00</end>
+  <status>cancelled</status>
+  <orientationCategory>PS</orientationCategory>
+  <practitioner>
+    <rppsId>810005681340</rppsId>
+    <lastName>MOREL</lastName>
+    <firstName>Didier</firstName>
+    <specialityCode>SM54</specialityCode>
+    <specialityUrl>https://mos.esante.gouv.fr/NOS/TRE_R38-SpecialiteOrdinale/FHIR/TRE-R38-SpecialiteOrdinale</specialityUrl>
+    <professionCode>10</professionCode>
+    <professionUrl>https://mos.esante.gouv.fr/NOS/TRE_G15-ProfessionSante/FHIR/TRE-G15-ProfessionSante</professionUrl>
+  </practitioner>
+  <regulator>
+    <regulatorId>3620100057/70326SR</regulatorId>
+    <regulatorName>RICART</regulatorName>
+    <regulatorFirstname>Pauline</regulatorFirstname>
+    <regulatorEmail>pauline.ricart@ghsas.fr</regulatorEmail>
+  </regulator>
+</appointment>
