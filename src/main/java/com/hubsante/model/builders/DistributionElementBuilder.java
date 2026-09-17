@@ -23,10 +23,14 @@ import com.hubsante.model.rcde.Sender;
 import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static java.time.temporal.ChronoUnit.SECONDS;
 
 public class DistributionElementBuilder {
+    private static final Pattern SENDER_ID_PATTERN = Pattern.compile("[^.]+\\.[^.]+\\.(?<client>.+)");
+
     private String messageId;
     private Sender sender;
     private OffsetDateTime sentAt;
@@ -37,7 +41,8 @@ public class DistributionElementBuilder {
     /*
     * Builder for DistributionElement
     * @param messageId the message id
-    * @param senderId the sender (will construct a Sender with name = senderId and URI = hubex:senderId)
+    * @param senderId the fully qualified sender id, of the form <country>.<domain>.<client>
+    *                 (will construct a Sender with name = client part of senderId, and URI = hubex:senderId)
     * @param recipients the recipients (must contain at least one recipient)
     *
     * default values:
@@ -54,12 +59,22 @@ public class DistributionElementBuilder {
             throw new IllegalArgumentException("messageId, senderId and recipients cannot be null");
         }
         this.messageId = messageId;
-        this.sender = new Sender().name(senderId).URI("hubex:" + senderId);
+        this.sender = new Sender().name(extractClientPart(senderId)).URI("hubex:" + senderId);
         this.sentAt = OffsetDateTime.now();
         this.kind = DistributionElement.KindEnum.REPORT;
         this.status = DistributionElement.StatusEnum.ACTUAL;
         this.recipients = recipients;
     }
+
+    /*
+     * Extracts the client part of a fully qualified sender id.
+     * Non conforming client ids are returned unchanged.
+     */
+    private static String extractClientPart(String senderId) {
+        Matcher matcher = SENDER_ID_PATTERN.matcher(senderId);
+        return matcher.matches() ? matcher.group("client") : senderId;
+    }
+
     public DistributionElementBuilder sender(Sender sender) {
         this.sender = sender;
         return this;
