@@ -21,7 +21,6 @@ import com.hubsante.model.reference.ReferenceWrapper;
 import com.hubsante.model.rcde.Sender;
 import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.edxl.EdxlMessage;
-import com.hubsante.model.emsi.EmsiWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,13 +48,6 @@ public class Sanitizer {
                 createCaseWrapper.setSender(sanitizeSender());
                 sanitizeRecipients(createCaseWrapper.getRecipient());
                 return createCaseWrapper;
-
-            case "EmsiWrapper":
-                EmsiWrapper emsiWrapper = (EmsiWrapper) contentMessage;
-                emsiWrapper.setMessageId("messageId");
-                emsiWrapper.setSender(sanitizeSender());
-                sanitizeRecipients(emsiWrapper.getRecipient());
-                return emsiWrapper;
 
             case "ReferenceWrapper":
                 ReferenceWrapper referenceWrapper = (ReferenceWrapper) contentMessage;
