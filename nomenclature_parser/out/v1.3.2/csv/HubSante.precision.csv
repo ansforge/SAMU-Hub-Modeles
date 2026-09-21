@@ -1,0 +1,6 @@
+,code,label_n1,Libellé niveau 2,description,commentaire
+0,VILLE,VILLE,,Précision à l'échelle de la ville,
+1,RUE,RUE,,Précision à l'échelle de la rue,
+2,ADRESSE,ADRESSE,,Adresse précise,
+3,EXACTE,EXACTE,,Point coordonnée GPS exact,
+4,INCONNUE,INCONNUE,,Précision de la localisation non évaluable par l'émetteur,
