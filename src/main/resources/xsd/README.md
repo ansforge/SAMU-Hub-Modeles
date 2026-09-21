@@ -16,4 +16,4 @@ To allow it we need to import the namespace where `cisuXMLContentType`lays and d
 As we want to maintain modularity with the xsd, we use an intermediary: cisuXMLContentType, with its own xsd, where all the sub-xsd are
 referenced.
 
-The cisuXMLContentType is an element named "message", combining all the attributes of an RC-DE and a specific use case (emsi, createCase, createCaseHealth, etc)
+The cisuXMLContentType is an element named "message", combining all the attributes of an RC-DE and a specific use case (createCase, createCaseHealth, etc)

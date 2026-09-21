@@ -1,0 +1,19 @@
+,code,label_n1,Libellé niveau 2,Libellé niveau 3,description,commentaire
+0,DECISION,Décision,,,Prise de décision de recours à la ressource sollicitée (gerer au niveau du PSAP),00-DECISION
+1,DECLENCHE,Déclenché,,,Déclenchement de l’intervention selon le dispositif habituel prévu,
+2,DEPART,Début d’intervention,,,Départ de la base ou de réengagement de la ressource pour se rendre sur le lieu d'intervention,01-PARTI
+3,ANNULE,Annulation  de l’intervention,,,Annulation d'une mission déjà engagée avant arrivée sur les lieux,
+4,ARRIVEE,Arrivée sur les lieux,,,Arrivée à l’adresse du lieu d’intervention,02-SLL
+5,PEC,Début de prise en charge,,,Arrivée auprès du patient/victime d'au moins un membre de l'équipe d'intervention et début de prise en charge,
+6,BILAN,Transmission du bilan,,,Le bilan est transmis en vue de l’orientation du patient/victime,03-MESSAGE
+7,ORIENTAT,Transmission de la destination,,,L’orientation du patient/victime est transmise à l’équipe d'intervention,
+8,TRANSP,Départ des lieux,,,Départ de l’adresse du lieu d’intervention du moyen assurant le transport du patient/victime,05-TRANSPORT
+9,ETAPE1,Etape de transit 1,,,Arrivée à la première étape du moyen de transport avec le patient en charge dans le cas d’un transit notamment vers un lieu d’examen ou d’imagerie,
+10,TRANSP2,Départ étape 1,,,"Départ de la première étape du moyen de transport, en charge du patient/victime",
+11,ETAPE2,Etape de transit 2,,,Arrivée à la deuxième étape du moyen de transport avec le patient/victime en charge dans le cas d’un transit notamment vers un lieu d’examen ou d’imagerie,
+12,TRANSP3,Départ étape 2,,,"Départ de la deuxième étape du moyen de transport, en charge du patient/victime",
+13,DESTIN,Arrivée à destination,,,Arrivée du moyen de transport à l’entrée du service ou se fera le relais de prise en charge du patient/victime,06-DESTIN
+14,FINPEC,Fin de prise en charge,,,La responsabilité de la prise en charge du patient/victime s’achève,24-FIN MED
+15,RETOUR,Quitte la destination,,,L’équipe d'intervention quitte le lieu de destination du patient/victime ou le lieu d’intervention (en l’absence de transport du patient/victime). La ressource est disponible pour être réengagée,25-QTTE HOP
+16,RET-BASE,Retour à la base,,,L'équipe et en route vers sa base,
+17,REN-BASE,Rentrée à la base,,,L’équipe est de retour à sa base,

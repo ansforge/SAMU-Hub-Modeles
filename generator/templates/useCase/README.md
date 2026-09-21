@@ -1,4 +1,4 @@
-this templates are used to generate the model class of the **Use Case** classes (just below the wrappers, such as *Emsi*, *CreateCase*, *CreateCaseHealth*, etc.)
+this templates are used to generate the model class of the **Use Case** classes (just below the wrappers, such as *CreateCase*, *CreateCaseHealth*, etc.)
 
 It contains the same annotations as in the child classes, plus:
 - the import of jackson xml annotations
