@@ -98,7 +98,8 @@
         "victim": "Homme, 55 ans",
         "medicalSituation": "Douleur thoracique constrictive avec irradiation bras gauche - Urgence cardiaque avec code 3 niveaux (M02.01.01)"
       }
-    ]
+    ],
+    "perimeters": ["15-15", "15-smur"]
   },
   {
     "label": "RS-ER",
@@ -140,7 +141,8 @@
         "context": "Pas de test suivant : RS-EDA-MAJ - Raymonde LECCIA.06",
         "environment": "Demande d’engagement d’un SMUR"
       }
-    ]
+    ],
+    "perimeters": ["15-smur"]
   },
   {
     "label": "RS-EDA-MAJ",
@@ -258,7 +260,8 @@
         "context": "Fin du cas d'usage",
         "environment": "Clôture du dossier"
       }
-    ]
+    ],
+    "perimeters": ["15-15", "15-smur"]
   },
   {
     "label": "RS-RI",
@@ -347,7 +350,8 @@
         "context": "Pas de test suivant : RS-ER - Raymonde LECCIA.05",
         "environment": "Détail des ressources SMUR mobilisées pour l’intervention"
       }
-    ]
+    ],
+    "perimeters": ["15-15", "15-smur"]
   },
   {
     "label": "RS-DR",
@@ -382,7 +386,8 @@
         "context": "Pas de test suivant : RS-RR - Raymonde LECCIA.03",
         "environment": "Demande d’un SMUR pour personne inanimée dans un incendie"
       }
-    ]
+    ],
+    "perimeters": ["15-15"]
   },
   {
     "label": "RS-RR",
@@ -417,7 +422,8 @@
         "context": "Pas de test suivant : RS-RI - Raymonde LECCIA.04",
         "environment": "Réponse à la demande d'un SMUR pour personne inanimée dans un incendie"
       }
-    ]
+    ],
+    "perimeters": ["15-15"]
   },
   {
     "label": "RS-SR",
@@ -527,7 +533,8 @@
         "context": "Pas de test suivant: RS-BPV - Grégoire NORMAND.14a et Alice NORMAND.14b",
         "environment": "Rentrée du SMUR à la base"
       }
-    ]
+    ],
+    "perimeters": ["15-15", "15-smur"]
   },
   {
     "label": "RS-RPIS",
@@ -580,7 +587,8 @@
         "name": "Intoxication CO.03 (CISU v2)",
         "medicalSituation": "Exemple avec codes CISU v2 - Intoxication au monoxyde de carbone"
       }
-    ]
+    ],
+    "perimeters": ["15-smur"]
   },
   {
     "label": "RS-BPV",
@@ -629,7 +637,8 @@
         "context": "Pas de test suivant: RS-RPIS - Alice NORMAND.15b",
         "environment": "Partage du bilan final du patient"
       }
-    ]
+    ],
+    "perimeters": ["15-smur"]
   },
   {
     "label": "RS-URL",
@@ -671,7 +680,8 @@
         "context": "Pas de test suivant: RS-RI - Alice et Grégoire NORMAND.06",
         "environment": "Partage du lien url vers le bilan du patient"
       }
-    ]
+    ],
+    "perimeters": ["15-smur"]
   },
   {
     "label": "RC-EDA",
@@ -722,7 +732,8 @@
         "victim": "Homme, 55 ans",
         "medicalSituation": "Douleur thoracique constrictive - Urgence cardiaque avec code 3 niveaux (M02.01.01)"
       }
-    ]
+    ],
+    "perimeters": ["15-nexsis"]
   },
   {
     "label": "RC-RI",
@@ -794,8 +805,9 @@
         "icon": "mdi-fire-truck",
         "name": "Raymonde LECCIA.08",
         "environment": "Modification des statuts de toutes les ressources"
-      }                                    
-    ]
+      }
+    ],
+    "perimeters": ["15-nexsis"]
   },
   {
     "label": "GEO-POS",
@@ -820,7 +832,8 @@
         "name": "03 Positions Updates",
         "context": "Partage de mises à jour des positions"
       }
-    ]
+    ],
+    "perimeters": ["15-15", "15-gps", "15-smur"]
   },
   {
     "label": "GEO-RES",
@@ -833,7 +846,8 @@
         "name": "Resources Details",
         "context": "Partage des détails de ressources"
       }
-    ]
+    ],
+    "perimeters": ["15-15", "15-gps", "15-smur"]
   },
   {
     "label": "GEO-REQ",
@@ -846,7 +860,8 @@
         "name": "Resources Request",
         "context": "Demande de partage des détails des ressources"
       }
-    ]
+    ],
+    "perimeters": ["15-15", "15-gps", "15-smur"]
   },
   {
     "label": "RS-SAS-RDV",
@@ -895,6 +910,7 @@
         "name": "01 CDS Dentaire",
         "context": "Cas création RDV CDS non interfacé (structure sans PS)"
       }
-    ]
+    ],
+    "perimeters": ["15-sas"]
   }
 ]
