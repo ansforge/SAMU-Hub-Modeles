@@ -35,6 +35,11 @@ public class {{classname}}{{#vendorExtensions.x-implements}}{{#-first}}implement
 {{/serializableModel}}
     @JacksonXmlProperty(isAttribute = true)
     String xmlns = "urn:emergency:{{xmlns}}";
+
+    @Override
+    public String getUseCaseName() {
+        return "{{useCaseName}}";
+    }
 {{#vars}}
     {{#isEnum}}
         {{^isContainer}}
