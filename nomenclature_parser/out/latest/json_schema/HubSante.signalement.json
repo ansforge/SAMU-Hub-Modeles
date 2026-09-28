@@ -1,0 +1,16 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.signalement",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "STANDARD",
+            "title": "STANDARD"
+        },
+        {
+            "const": "ATTENTION",
+            "title": "ATTENTION"
+        }
+    ],
+    "description": "Décrit le niveau de signalement de l'alerte"
+}

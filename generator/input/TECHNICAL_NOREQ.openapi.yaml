@@ -162,6 +162,7 @@ components:
           x-cols: 6
           example: example.json#/nomenclatureField
           description: Enum from extenal nomenclature file
+          x-nomenclature: HubSante.sexe
           enum:
           - M
           - F

@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.precision",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "VILLE",
+            "title": "VILLE",
+            "description": "Précision à l'échelle de la ville"
+        },
+        {
+            "const": "RUE",
+            "title": "RUE",
+            "description": "Précision à l'échelle de la rue"
+        },
+        {
+            "const": "ADRESSE",
+            "title": "ADRESSE",
+            "description": "Adresse précise"
+        },
+        {
+            "const": "EXACTE",
+            "title": "EXACTE",
+            "description": "Point coordonnée GPS exact"
+        },
+        {
+            "const": "INCONNUE",
+            "title": "INCONNUE",
+            "description": "Précision de la localisation non évaluable par l'émetteur"
+        }
+    ],
+    "description": "Décrit le niveau de précision des coordonnées GPS envoyées"
+}

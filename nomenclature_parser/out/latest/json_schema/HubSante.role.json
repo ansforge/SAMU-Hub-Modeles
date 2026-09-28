@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.role",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "AMBULANCIER",
+            "title": "Ambulancier",
+            "description": "L'opérateur est un ambulancier"
+        },
+        {
+            "const": "ARM",
+            "title": "ARM",
+            "description": "L'opérateur est un ARM"
+        },
+        {
+            "const": "INFIRMIER",
+            "title": "Infirmier",
+            "description": "L'opérateur est un infirmier"
+        },
+        {
+            "const": "MEDECIN",
+            "title": "Médecin",
+            "description": "L'opérateur est un médecin"
+        },
+        {
+            "const": "PILOTE",
+            "title": "Pilote",
+            "description": "L'opérateur est un pilote d'aéronef"
+        },
+        {
+            "const": "TCM",
+            "title": "Technicien de bord",
+            "description": "Assistant du pilote"
+        },
+        {
+            "const": "AUTRE",
+            "title": "Autre",
+            "description": "Le rôle de l'opérateur est connu, mais n'est pas détaillé dans la liste des valeurs fournie"
+        },
+        {
+            "const": "INCONNU",
+            "title": "Inconnu",
+            "description": "Le rôle de l'opérateur est inconnu"
+        }
+    ],
+    "description": "Décrit le rôle de l'opérateur dans l'organisation à laquelle il appartient"
+}

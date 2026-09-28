@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.typeIdPatient",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "NIR",
+            "title": "NIR",
+            "description": "Numéro d'identification NIR ou NIA"
+        },
+        {
+            "const": "SINUS",
+            "title": "SINUS",
+            "description": "Numéro d'identification SINUS"
+        },
+        {
+            "const": "DOSSARD",
+            "title": "DOSSARD",
+            "description": "Numéro de dossard"
+        },
+        {
+            "const": "PLACE",
+            "title": "PLACE",
+            "description": "Numéro de place"
+        },
+        {
+            "const": "AUTRE",
+            "title": "AUTRE",
+            "description": "Autre identifiant"
+        }
+    ],
+    "description": "Décrit le type d'identifiant fourni"
+}

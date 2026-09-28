@@ -210,6 +210,7 @@ components:
           example: example.json#/resource/0/team/medicalLevel
           description: "A valoriser avec le  niveau de m\xE9dicalisation du vecteur.\
             \ Cf. nomenclature associ\xE9e"
+          x-nomenclature: HubSante.typePEC
           enum:
           - MED
           - PARAMED
@@ -261,6 +262,7 @@ components:
           example: example.json#/resource/0/state/status
           description: "A valoriser avec le statut du vecteur. Cf nomenclature associ\xE9\
             e."
+          x-nomenclature: HubSante.statutVecteur
           enum:
           - DECISION
           - DECLENCHE
@@ -346,6 +348,7 @@ components:
           example: example.json#/resource/0/contact/type
           description: "A valoriser avec le type de l'URI utilis\xE9e. Cf nomenclature\
             \ associ\xE9e."
+          x-nomenclature: HubSante.typeCom
           enum:
           - EMAIL
           - FAX
