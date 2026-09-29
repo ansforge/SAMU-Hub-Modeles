@@ -261,6 +261,72 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
     }
 
     @Test
+    @DisplayName("all json example files survive a JSON and XML serialization round trip")
+    public void examplesSerializationRoundTrip() {
+        AtomicBoolean allPass = new AtomicBoolean(true);
+
+        getJsonExampleFiles().forEach(file -> {
+            try {
+                String fullJson = wrapExample(file);
+                endToEndDeserializationCheck(fullJson, false);
+
+                String fullXml = converter.serializeXmlEDXL(converter.deserializeJsonEDXL(fullJson));
+                endToEndDeserializationCheck(fullXml, true);
+                log.info("File {} has been successfully round tripped", file.getName());
+            } catch (IOException | RuntimeException | AssertionFailedError e) {
+                allPass.set(false);
+                log.error("File {} could not be round tripped: {}", file.getName(), e.getMessage());
+            }
+        });
+
+        if (!allPass.get()) {
+            fail("Some files could not be round tripped");
+        }
+    }
+
+    @Test
+    @DisplayName("use case name matches the example root element and is not serialized")
+    public void useCaseNameMatchesRootElementAndIsNotSerialized() {
+        AtomicBoolean allPass = new AtomicBoolean(true);
+
+        getJsonExampleFiles().forEach(file -> {
+            try {
+                String useCaseName = converter.jsonMapper.readTree(file).fieldNames().next();
+                EdxlMessage message = converter.deserializeJsonEDXL(wrapExample(file));
+
+                assertEquals(useCaseName, message.getFirstContentMessage().getUseCaseName());
+                assertFalse(converter.serializeJsonEDXL(message).contains("useCaseName"), "useCaseName found in JSON");
+                assertFalse(converter.serializeXmlEDXL(message).contains("useCaseName"), "useCaseName found in XML");
+            } catch (IOException | AssertionFailedError e) {
+                allPass.set(false);
+                log.error("File {} has an invalid use case name: {}", file.getName(), e.getMessage());
+            }
+        });
+
+        if (!allPass.get()) {
+            fail("Some files have an invalid use case name");
+        }
+    }
+
+    private List<File> getJsonExampleFiles() {
+        String rootFolder = TestMessagesHelper.class.getClassLoader().getResource("sample/examples").getFile();
+        File[] subFolders = new File(rootFolder).listFiles(File::isDirectory);
+        assert subFolders != null;
+
+        return Arrays.stream(subFolders)
+                .flatMap(folder -> Arrays.stream(Objects.requireNonNull(folder.listFiles())))
+                .filter(file -> file.getName().endsWith(".json"))
+                .collect(Collectors.toList());
+    }
+
+    private String wrapExample(File file) throws IOException {
+        String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+        if (Arrays.stream(useCasesWithNoRcDe).anyMatch(file.getName()::contains))
+            return wrapUseCaseMessageWithoutDistributionElement(useCaseJson);
+        return wrapUseCaseMessage(useCaseJson);
+    }
+
+    @Test
     @DisplayName("XXE injection should succeed in vulnerable config and fail in safe config")
     public void testXXEDifferentialBehavior() throws Exception {
         String xml = getInvalidMessage("EDXL-DE/external-entity.xml");
