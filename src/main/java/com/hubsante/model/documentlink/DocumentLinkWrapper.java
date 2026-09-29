@@ -56,6 +56,11 @@ import java.util.Objects;
 public class DocumentLinkWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:eda:1.9";
+
+  @Override
+  public String getUseCaseName() {
+    return "documentLink";
+  }
   public static final String JSON_PROPERTY_DOCUMENT_LINK = "documentLink";
   private DocumentLink documentLink;
 

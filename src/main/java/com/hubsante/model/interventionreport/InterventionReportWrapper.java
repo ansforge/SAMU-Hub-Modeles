@@ -57,6 +57,11 @@ import java.util.Objects;
 public class InterventionReportWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:eda:1.9";
+
+  @Override
+  public String getUseCaseName() {
+    return "interventionReport";
+  }
   public static final String JSON_PROPERTY_INTERVENTION_REPORT =
       "interventionReport";
   private InterventionReport interventionReport;

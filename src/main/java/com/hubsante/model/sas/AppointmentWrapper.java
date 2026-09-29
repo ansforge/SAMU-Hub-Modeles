@@ -56,6 +56,11 @@ import java.util.Objects;
 public class AppointmentWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:eda:1.9";
+
+  @Override
+  public String getUseCaseName() {
+    return "appointment";
+  }
   public static final String JSON_PROPERTY_APPOINTMENT = "appointment";
   private Appointment appointment;
 

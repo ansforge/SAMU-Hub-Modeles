@@ -56,6 +56,11 @@ import java.util.Objects;
 public class ResourcesInfoWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:eda:1.9";
+
+  @Override
+  public String getUseCaseName() {
+    return "resourcesInfo";
+  }
   public static final String JSON_PROPERTY_RESOURCES_INFO = "resourcesInfo";
   private ResourcesInfo resourcesInfo;
 

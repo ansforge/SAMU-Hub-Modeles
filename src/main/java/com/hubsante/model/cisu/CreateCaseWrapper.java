@@ -56,6 +56,11 @@ import java.util.Objects;
 public class CreateCaseWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:eda:1.9";
+
+  @Override
+  public String getUseCaseName() {
+    return "createCase";
+  }
   public static final String JSON_PROPERTY_CREATE_CASE = "createCase";
   private CreateCase createCase;
 

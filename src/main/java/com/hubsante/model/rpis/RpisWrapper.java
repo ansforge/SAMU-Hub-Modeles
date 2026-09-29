@@ -56,6 +56,11 @@ import java.util.Objects;
 public class RpisWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:eda:1.9";
+
+  @Override
+  public String getUseCaseName() {
+    return "rpis";
+  }
   public static final String JSON_PROPERTY_RPIS = "rpis";
   private Rpis rpis;
 
