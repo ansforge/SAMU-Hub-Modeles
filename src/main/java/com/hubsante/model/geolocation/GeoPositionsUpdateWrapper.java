@@ -57,6 +57,11 @@ import java.util.Objects;
 public class GeoPositionsUpdateWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:eda:1.9";
+
+  @Override
+  public String getUseCaseName() {
+    return "geoPositionsUpdate";
+  }
   public static final String JSON_PROPERTY_GEO_POSITIONS_UPDATE =
       "geoPositionsUpdate";
   private GeoPositionsUpdate geoPositionsUpdate;
