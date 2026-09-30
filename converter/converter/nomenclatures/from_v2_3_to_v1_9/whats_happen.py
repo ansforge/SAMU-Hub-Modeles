@@ -1,6 +1,56 @@
 """Auto-generated nomenclature mapping. Do not edit by hand — regenerate via scripts/generate_nomenclatures_maps.py."""
 
 V2_3_TO_V1_9_WHATS_HAPPEN_MAP: dict[str, dict[str, str] | None] = {
+    "C01.06.00": {
+        "code": "C04.01.00",
+        "label": "Incendie d'un moyen de transport / véhicule",
+    },
+    "C01.06.01": {"code": "C04.01.01", "label": "IncendieVéhicule léger, fourgon"},
+    "C01.06.02": {"code": "C04.01.02", "label": "IncendieCamion de marchandises"},
+    "C01.06.03": {"code": "C04.01.03", "label": "IncendieBus car autocar"},
+    "C01.06.04": {
+        "code": "C04.01.00",
+        "label": "Incendie d'un moyen de transport / véhicule",
+    },
+    "C01.06.05": {
+        "code": "C04.01.00",
+        "label": "Incendie d'un moyen de transport / véhicule",
+    },
+    "C02.06.02": {
+        "code": "C02.07.03",
+        "label": "Personne exposée (à) aux flammes, à la fumée",
+    },
+    "C02.07.06": {
+        "code": "C02.07.05",
+        "label": "Atteinte aux personnesElectrisation, foudroiement",
+    },
+    "C02.07.07": {
+        "code": "C02.07.04",
+        "label": "Personne exposée (à)à produits chimiques ou toxiques / Accident technologique / Intervention à caractère NRBC",
+    },
+    "C02.10.01": {"code": "C02.10.00", "label": "Noyade"},
+    "C02.10.02": {"code": "C02.10.00", "label": "Noyade"},
+    "C02.10.03": {"code": "C02.10.00", "label": "Noyade"},
+    "C02.10.04": {
+        "code": "C11.05.01",
+        "label": "Autre nature de faitEchouement, naufrage",
+    },
+    "C02.12.01": {"code": "C08.06.00", "label": "Éboulement / effondrement"},
+    "C02.12.02": {"code": "C08.06.00", "label": "Éboulement / effondrement"},
+    "C02.12.03": {"code": "C02.16.02", "label": "Autre atteinte aux personnes"},
+    "C02.12.04": {"code": "C02.16.02", "label": "Autre atteinte aux personnes"},
+    "C02.12.05": {"code": "C02.16.02", "label": "Autre atteinte aux personnes"},
+    "C02.12.06": {"code": "C02.16.02", "label": "Autre atteinte aux personnes"},
+    "C02.12.07": {"code": "C02.11.00", "label": "Chute"},
+    "C02.13.09": {
+        "code": "C02.13.00",
+        "label": "Tentative de suicide avec risque imminent",
+    },
+    "C02.15.07": {"code": "C02.15.00", "label": "Agression ou violence"},
+    "C02.15.08": {
+        "code": "C02.15.06",
+        "label": "Agression ou violence, Autre agression ou menace",
+    },
     "C02.17.00": {"code": "C10.02.01", "label": "Mort suspecte"},
     "C02.17.01": {"code": "C10.02.01", "label": "Mort suspecte"},
     "C02.17.02": {"code": "C10.02.01", "label": "Mort suspecte"},
