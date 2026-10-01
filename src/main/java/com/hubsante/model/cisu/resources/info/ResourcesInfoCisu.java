@@ -49,7 +49,8 @@ import java.util.Objects;
 @JsonTypeName("resourcesInfoCisu")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ResourcesInfoCisu {
+public class ResourcesInfoCisu
+    implements com.hubsante.model.edxl.UseCaseWithCaseId {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:eda:1.9:resourcesinfocisu";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";

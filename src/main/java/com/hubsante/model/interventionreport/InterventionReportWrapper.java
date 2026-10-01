@@ -34,11 +34,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.edxl.UseCaseWithCaseId;
 import com.hubsante.model.interventionreport.InterventionReport;
 import com.hubsante.model.rcde.DistributionElement;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * InterventionReportWrapper
@@ -62,6 +64,14 @@ public class InterventionReportWrapper extends DistributionElement {
   public String getUseCaseName() {
     return "interventionReport";
   }
+
+  @Override
+  public Optional<String> getCaseId() {
+    return interventionReport instanceof UseCaseWithCaseId useCaseWithCaseId
+        ? Optional.ofNullable(useCaseWithCaseId.getCaseId())
+        : Optional.empty();
+  }
+
   public static final String JSON_PROPERTY_INTERVENTION_REPORT =
       "interventionReport";
   private InterventionReport interventionReport;

@@ -66,6 +66,8 @@ components:
             $ref: '#/components/schemas/document'
           minItems: 1
       additionalProperties: false
+      x-implements:
+      - com.hubsante.model.edxl.UseCaseWithCaseId
     document:
       type: object
       title: Documents

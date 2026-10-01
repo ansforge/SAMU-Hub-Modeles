@@ -34,11 +34,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.edxl.UseCaseWithCaseId;
 import com.hubsante.model.rcde.DistributionElement;
 import com.hubsante.model.sas.Appointment;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * AppointmentWrapper
@@ -61,6 +63,14 @@ public class AppointmentWrapper extends DistributionElement {
   public String getUseCaseName() {
     return "appointment";
   }
+
+  @Override
+  public Optional<String> getCaseId() {
+    return appointment instanceof UseCaseWithCaseId useCaseWithCaseId
+        ? Optional.ofNullable(useCaseWithCaseId.getCaseId())
+        : Optional.empty();
+  }
+
   public static final String JSON_PROPERTY_APPOINTMENT = "appointment";
   private Appointment appointment;
 
