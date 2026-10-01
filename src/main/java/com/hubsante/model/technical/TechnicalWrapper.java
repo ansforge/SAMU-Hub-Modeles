@@ -34,11 +34,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.edxl.UseCaseWithCaseId;
 import com.hubsante.model.rcde.DistributionElement;
 import com.hubsante.model.technical.Technical;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * TechnicalWrapper
@@ -56,6 +58,19 @@ import java.util.Objects;
 public class TechnicalWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:eda:1.9";
+
+  @Override
+  public String getUseCaseName() {
+    return "technical";
+  }
+
+  @Override
+  public Optional<String> getCaseId() {
+    return technical instanceof UseCaseWithCaseId useCaseWithCaseId
+        ? Optional.ofNullable(useCaseWithCaseId.getCaseId())
+        : Optional.empty();
+  }
+
   public static final String JSON_PROPERTY_TECHNICAL = "technical";
   private Technical technical;
 

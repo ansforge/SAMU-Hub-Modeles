@@ -51,6 +51,8 @@ components:
           examples:
           - ANNULEE
       additionalProperties: false
+      x-implements:
+      - com.hubsante.model.edxl.UseCaseWithCaseId
     request:
       type: object
       title: Demande de ressource
