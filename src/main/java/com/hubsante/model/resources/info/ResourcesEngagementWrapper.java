@@ -34,11 +34,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.edxl.UseCaseWithCaseId;
 import com.hubsante.model.rcde.DistributionElement;
 import com.hubsante.model.resources.info.ResourcesEngagement;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * ResourcesEngagementWrapper
@@ -62,6 +64,14 @@ public class ResourcesEngagementWrapper extends DistributionElement {
   public String getUseCaseName() {
     return "resourcesEngagement";
   }
+
+  @Override
+  public Optional<String> getCaseId() {
+    return resourcesEngagement instanceof UseCaseWithCaseId useCaseWithCaseId
+        ? Optional.ofNullable(useCaseWithCaseId.getCaseId())
+        : Optional.empty();
+  }
+
   public static final String JSON_PROPERTY_RESOURCES_ENGAGEMENT =
       "resourcesEngagement";
   private ResourcesEngagement resourcesEngagement;

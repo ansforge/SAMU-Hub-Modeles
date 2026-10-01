@@ -34,11 +34,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.edxl.UseCaseWithCaseId;
 import com.hubsante.model.health.CreateCaseHealthUpdate;
 import com.hubsante.model.rcde.DistributionElement;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * CreateCaseHealthUpdateWrapper
@@ -62,6 +64,14 @@ public class CreateCaseHealthUpdateWrapper extends DistributionElement {
   public String getUseCaseName() {
     return "createCaseHealthUpdate";
   }
+
+  @Override
+  public Optional<String> getCaseId() {
+    return createCaseHealthUpdate instanceof UseCaseWithCaseId useCaseWithCaseId
+        ? Optional.ofNullable(useCaseWithCaseId.getCaseId())
+        : Optional.empty();
+  }
+
   public static final String JSON_PROPERTY_CREATE_CASE_HEALTH_UPDATE =
       "createCaseHealthUpdate";
   private CreateCaseHealthUpdate createCaseHealthUpdate;

@@ -35,10 +35,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.edxl.ContentMessage;
+import com.hubsante.model.edxl.UseCaseWithCaseId;
 import com.hubsante.model.technical.noreq.TechnicalNoreq;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * TechnicalNoreqWrapper
@@ -55,6 +57,14 @@ public class TechnicalNoreqWrapper extends ContentMessage {
   public String getUseCaseName() {
     return "technicalNoreq";
   }
+
+  @Override
+  public Optional<String> getCaseId() {
+    return technicalNoreq instanceof UseCaseWithCaseId useCaseWithCaseId
+        ? Optional.ofNullable(useCaseWithCaseId.getCaseId())
+        : Optional.empty();
+  }
+
   public static final String JSON_PROPERTY_TECHNICAL_NOREQ = "technicalNoreq";
   private TechnicalNoreq technicalNoreq;
 
