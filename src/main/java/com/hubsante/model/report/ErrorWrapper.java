@@ -35,10 +35,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.edxl.ContentMessage;
+import com.hubsante.model.edxl.UseCaseWithCaseId;
 import com.hubsante.model.report.Error;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * ErrorWrapper
@@ -55,6 +57,14 @@ public class ErrorWrapper extends ContentMessage {
   public String getUseCaseName() {
     return "error";
   }
+
+  @Override
+  public Optional<String> getCaseId() {
+    return error instanceof UseCaseWithCaseId useCaseWithCaseId
+        ? Optional.ofNullable(useCaseWithCaseId.getCaseId())
+        : Optional.empty();
+  }
+
   public static final String JSON_PROPERTY_ERROR = "error";
   private Error error;
 
