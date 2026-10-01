@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
@@ -213,6 +214,29 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
 
         if (!allPass.get()) {
             fail("Some files have an invalid use case name");
+        }
+    }
+
+    @Test
+    @DisplayName("case id matches the example root caseId when provided")
+    public void caseIdMatchesRootCaseId() {
+        AtomicBoolean allPass = new AtomicBoolean(true);
+
+        getJsonExampleFiles().forEach(file -> {
+            try {
+                JsonNode rootCaseId = converter.jsonMapper.readTree(file).elements().next().get("caseId");
+                Optional<String> expectedCaseId = Optional.ofNullable(rootCaseId).map(JsonNode::asText);
+                EdxlMessage message = converter.deserializeJsonEDXL(wrapExample(file));
+
+                assertEquals(expectedCaseId, message.getFirstContentMessage().getCaseId());
+            } catch (IOException | AssertionFailedError e) {
+                allPass.set(false);
+                log.error("File {} does't have expected case id: {}", file.getName(), e.getMessage());
+            }
+        });
+
+        if (!allPass.get()) {
+            fail("Some files have unexpected case id");
         }
     }
 
