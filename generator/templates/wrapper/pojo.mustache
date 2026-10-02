@@ -35,6 +35,20 @@ public class {{classname}}{{#vendorExtensions.x-implements}}{{#-first}}implement
 {{/serializableModel}}
     @JacksonXmlProperty(isAttribute = true)
     String xmlns = "urn:emergency:cisu:2.0";
+
+    @Override
+    public String getUseCaseName() {
+        return "{{useCaseName}}";
+    }
+
+    @Override
+    public Optional<String> getCaseId() {
+        return {{#vars}}{{name}}{{/vars}} instanceof UseCaseWithCaseId useCaseWithCaseId
+            ? Optional.ofNullable(useCaseWithCaseId.getCaseId())
+            : Optional.empty();
+    }
+
+
 {{#vars}}
     {{#isEnum}}
         {{^isContainer}}

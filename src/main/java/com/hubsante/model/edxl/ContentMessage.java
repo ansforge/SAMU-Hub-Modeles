@@ -1,5 +1,5 @@
 /**
- * Copyright © 2023-2025 Agence du Numerique en Sante (ANS)
+ * Copyright © 2023-2026 Agence du Numerique en Sante (ANS)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package com.hubsante.model.edxl;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.hubsante.model.cisu.CreateCaseWrapper;
@@ -32,6 +33,8 @@ import com.hubsante.model.resources.request.ResourcesRequestWrapper;
 import com.hubsante.model.resources.response.ResourcesResponseWrapper;
 import com.hubsante.model.resources.status.ResourcesStatusWrapper;
 import com.hubsante.model.rpis.RpisWrapper;
+
+import java.util.Optional;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({
@@ -67,5 +70,15 @@ public class ContentMessage {
     @Override
     public int hashCode() {
         return 0;
+    }
+
+    @JsonIgnore
+    public String getUseCaseName() {
+        return "unknown";
+    }
+
+    @JsonIgnore
+    public Optional<String> getCaseId() {
+        return Optional.empty();
     }
 }
