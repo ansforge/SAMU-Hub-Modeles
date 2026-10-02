@@ -694,6 +694,9 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         root_definition = {key: json_schema[key] for key in json_schema if key not in [
             '$schema', 'definitions', 'version', 'id'
         ]}
+        # Allows retrieving the caseId from any ContentMessage (cf. ContentMessage#getCaseId)
+        if 'caseId' in root_definition.get('properties', {}):
+            root_definition['x-implements'] = ['com.hubsante.model.edxl.UseCaseWithCaseId']
         definitions = {
             **{MODEL_TYPE: root_definition},
             **definitions

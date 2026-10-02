@@ -34,6 +34,8 @@ import com.hubsante.model.resources.response.ResourcesResponseWrapper;
 import com.hubsante.model.resources.status.ResourcesStatusWrapper;
 import com.hubsante.model.rpis.RpisWrapper;
 
+import java.util.Optional;
+
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({
         @JsonSubTypes.Type(CreateCaseWrapper.class),
@@ -73,5 +75,10 @@ public class ContentMessage {
     @JsonIgnore
     public String getUseCaseName() {
         return "unknown";
+    }
+
+    @JsonIgnore
+    public Optional<String> getCaseId() {
+        return Optional.empty();
     }
 }
