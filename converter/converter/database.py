@@ -34,8 +34,12 @@ def init_db(app: Flask) -> None:
                 connection_message = f"{connection_message} using user {username}"
             logger.info(connection_message)
     except Exception as e:
-        logger.error(f"Failed to connect to MongoDB: {e}")
-        raise
+        # The MongoDB connection is not required for the app to start
+        logger.error(
+            f"Failed to connect to MongoDB at startup: {e}. The application will "
+            "start anyway and MongoDB-dependent features will be unavailable until "
+            "the connection is restored."
+        )
 
     app.extensions["mongodb_client"] = client
     app.extensions["mongodb_db"] = db
