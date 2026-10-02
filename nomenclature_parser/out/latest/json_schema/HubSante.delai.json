@@ -1,0 +1,63 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.delai",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "DEL0",
+            "title": "Immédiatement",
+            "description": "1"
+        },
+        {
+            "const": "ASAP",
+            "title": "Dès que disponible",
+            "description": "2"
+        },
+        {
+            "const": "30M",
+            "title": "Délai maxi 30 minutes",
+            "description": "3"
+        },
+        {
+            "const": "45M",
+            "title": "Délai maxi 45 minutes",
+            "description": "4"
+        },
+        {
+            "const": "1H",
+            "title": "Délai maxi 1 heure",
+            "description": "5"
+        },
+        {
+            "const": "2H",
+            "title": "Délai maxi 2 heures",
+            "description": "6"
+        },
+        {
+            "const": "4H",
+            "title": "Délai maxi 4 heures",
+            "description": "7"
+        },
+        {
+            "const": "8H",
+            "title": "Délai maxi 8 heures",
+            "description": "8"
+        },
+        {
+            "const": "12H",
+            "title": "Délai maxi 12 heures",
+            "description": "9"
+        },
+        {
+            "const": "24H",
+            "title": "Délai maxi 24 heures",
+            "description": "10"
+        },
+        {
+            "const": "RDV",
+            "title": "HH:MM",
+            "description": "11"
+        }
+    ],
+    "description": "Décrit le délai d'intervention attendu ou souhaité pour une ressource ou un vecteur."
+}

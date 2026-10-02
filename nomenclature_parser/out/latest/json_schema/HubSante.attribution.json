@@ -1,0 +1,205 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.attribution",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "DRM",
+            "title": "DRM",
+            "description": "Dossier de régulation médicale"
+        },
+        {
+            "const": "DRM.MRU",
+            "title": "DRM MRU",
+            "description": "Dossier de type médecine d’urgence"
+        },
+        {
+            "const": "DRM.MRU.MU",
+            "title": "Régulation MU",
+            "description": "Dossier de type médecine d’urgence régulé par un médecin urgentiste. Le dossier devient de type DRM"
+        },
+        {
+            "const": "DRM.MRU.INDISPMU",
+            "title": "Régulation ML par indisponibilité MU",
+            "description": "Dossier de type médecine d'urgence régulé par un médecin libéral du fait de l’indisponibilité des MU. Le dossier devient de type DRM"
+        },
+        {
+            "const": "DRM.MRU.SSE",
+            "title": "Régulation de crise - NOVI",
+            "description": "Dossier relevant de la gestion de crise – NOmbreuses Victimes. Le dossier devient de type DRM"
+        },
+        {
+            "const": "DRM.MRU.PLANBLAN",
+            "title": "Régulation Plan Blanc",
+            "description": "Dossier régulé dans le cadre d’ un dispositif plan blanc. Le dossier devient de type DRM"
+        },
+        {
+            "const": "DRM.MRU.PCSAMU",
+            "title": "Régulation par un PC mobile",
+            "description": "Dossier régulé depuis un poste de commandement  mobile. Le dossier devient de type DRM"
+        },
+        {
+            "const": "DRM.SPE",
+            "title": "DRM SPE"
+        },
+        {
+            "const": "DRM.SPE.DENT",
+            "title": "Régulation dentaire",
+            "description": "Dossier régulé par un chirurgien dentiste au sein du CRRA. Le dossier devient de type DRM"
+        },
+        {
+            "const": "DRM.SPE.GERIA",
+            "title": "Régulation gériatrique",
+            "description": "Dossier régulé par un gériatre au sein du CRRA. Le dossier devient de type DRM"
+        },
+        {
+            "const": "DRM.SPE.PEDIA",
+            "title": "Régulation pédiatrie",
+            "description": "Dossier régulé par un pédiatre au sein du CRRA. Le dossier devient de type DRM"
+        },
+        {
+            "const": "DRM.SPE.OBST",
+            "title": "Régulation obstétrique",
+            "description": "Dossier relevant d'une coordination périnatale. Le dossier devient de type DRM"
+        },
+        {
+            "const": "DRM.SPE.PSY",
+            "title": "Régulation psychiatrie",
+            "description": "Dossier régulé par un psychiatre au sein du CRRA. Le dossier devient de type DRM"
+        },
+        {
+            "const": "DRM.SPE.TOXICOL",
+            "title": "Régulation toxicologique",
+            "description": "Dossier régulé par un toxicologue au sein du CRRA. Le dossier devient de type DRM"
+        },
+        {
+            "const": "DRM.SPE.AUTRESPE",
+            "title": "Régulation autre spécialité"
+        },
+        {
+            "const": "DRM.MRL",
+            "title": "DRM MRL",
+            "description": "Dossier de type médecine libérale"
+        },
+        {
+            "const": "DRM.MRL.MG",
+            "title": "Régulation ML",
+            "description": "Dossier de type médecine libérale régulé par un médecin libéral. Le dossier devient de type DRM"
+        },
+        {
+            "const": "DRM.MRL.INDISPMG",
+            "title": "Régulation MU par indisponibilité ML",
+            "description": "Dossier de type médecine libérale régulé par un médecin urgentiste du fait de l’indisponibilité des ML. Le dossier devient de type DRM"
+        },
+        {
+            "const": "DRM.MRL.ABSML",
+            "title": "Régulation MU par absence de régulation ML",
+            "description": "Dossier de type médecine libérale régulé par un médecin urgentiste du fait de l’absence de régulation ML. Le dossier devient de type DRM"
+        },
+        {
+            "const": "DR",
+            "title": "DR",
+            "description": "Dossier de régulation"
+        },
+        {
+            "const": "DR.DREG",
+            "title": "Dossier Régulation",
+            "description": "Dossier de régulation"
+        },
+        {
+            "const": "DR.DREG.DRARM",
+            "title": "Pas d’acte de régulation médicale - Prise en charge ARM",
+            "description": "Dossier ne relevant pas de la régulation médicale et pas dans le cadre des autre cas identifié (voir cas suivant). Le dossier est de type DR"
+        },
+        {
+            "const": "DR.DREG.DRDAC",
+            "title": "Pas d’acte de régulation médicale - Prise en charge DAC"
+        },
+        {
+            "const": "DR.DREG.DRMED",
+            "title": "Pas d’acte de régulation médicale - Transmission d'informations sur un médecin (procédure dégradée)",
+            "description": "Dossier ne relevant pas de la régulation médicale – réponse apportée à une demande de renseignements sur un médecin. Le dossier est de type DR"
+        },
+        {
+            "const": "DR.DREG.DRPHARMA",
+            "title": "Pas d’acte de régulation médicale - Transmission d'informations sur une pharmacie",
+            "description": "Dossier ne relevant pas de la régulation médicale – réponse apportée à une demande de renseignements sur une pharmacie. Le dossier est de type DR"
+        },
+        {
+            "const": "DR.DREG.DRDENT",
+            "title": "Pas d’acte de régulation médicale - Transmission d'informations sur un dentiste",
+            "description": "Dossier ne relevant pas de la régulation médicale – réponse apportée à une demande de renseignements sur un dentiste. Le dossier est de type DR"
+        },
+        {
+            "const": "DR.DREG.DRINFO",
+            "title": "Pas d’acte de régulation médicale - Information générale",
+            "description": "Dossier ne relevant pas de la régulation médicale – réponse apportée à une demande de renseignements d’ordre général. Le dossier est de type DR"
+        },
+        {
+            "const": "DR.DREG.DOS-SIS",
+            "title": "Pas d’acte de régulation médicale - Appel pour les pompiers",
+            "description": "Dossier ne rentrant pas dans le cadre des missions du Samu et confié aux pompiers. Le dossier est de type DR"
+        },
+        {
+            "const": "DR.DREG.DOS-FDO",
+            "title": "Pas d’acte de régulation médicale - Appel pour les forces de l’ordre",
+            "description": "Dossier ne rentrant pas dans le cadre des missions du Samu et confié aux forces de l'ordre. Le dossier est de type DR"
+        },
+        {
+            "const": "D",
+            "title": "D",
+            "description": "Dossier"
+        },
+        {
+            "const": "D.D-MALV",
+            "title": "Erreur / Malveillant",
+            "description": "Dossier de type erreur ou appel malveillant"
+        },
+        {
+            "const": "D.D-MALV.ERR",
+            "title": "Erreur de numéro, erreur d'acheminement",
+            "description": "Le requérant s’est trompé de numéro de téléphone ou a mal été orienté par un interlocuteur précédent. Le dossier reste de type D"
+        },
+        {
+            "const": "D.D-MALV.NRP",
+            "title": "Appel raccroché / pas de réponse",
+            "description": "L’appel est raccroché ou sans réponse de l’appelant à l’ouverture du dossier. Le dossier reste de type D"
+        },
+        {
+            "const": "D.D-MALV.MALV",
+            "title": "Appel malveillant, canular",
+            "description": "Appel malveillant : insultes, canular, fausses informations. Il ne s’agit pas d’une erreur de numéro. Le dossier reste de type D"
+        },
+        {
+            "const": "D.D-MALV.FAX",
+            "title": "Tonalité de fax, porteuse",
+            "description": "Tonalité de fax ou d’une porteuse  présente au décroché. Le dossier reste de type D"
+        },
+        {
+            "const": "D.D-MALV.ITERATIF",
+            "title": "Dossier existant, appel itératif (hors SI-Samu)",
+            "description": "Appels pour un dossier déjà existant. Entraine la recherche et l’ouverture du dossier préexistant avec rattachement de l’appel à ce dossier (option à supprimer dès l'intégration au SI-Samu)"
+        },
+        {
+            "const": "D.D-IDENT",
+            "title": "Appel identifié",
+            "description": "Dossier en rapport avec un appel qui n'est ni un DR ni un DRM"
+        },
+        {
+            "const": "D.D-IDENT.ADMIN",
+            "title": "Appel administratif",
+            "description": "Dossier ne relevant pas de la régulation médicale – et concerne la gestion administrative d’un dossier clôturé. Le dossier reste de type D"
+        },
+        {
+            "const": "D.D-IDENT.PERSO",
+            "title": "Appel personnel",
+            "description": "L’appel concerne une communication pour un membre du personnel et a un caractère privé. Le dossier reste de type D"
+        },
+        {
+            "const": "D.D-IDENT.AUTRE",
+            "title": "Autre type d’appel",
+            "description": "Autre type d’appel non régulé et relevant pas d’un problème médical, social ou sanitaire. Le dossier reste de type D"
+        }
+    ],
+    "description": "Décrit le type de dossier, et son attribution"
+}

@@ -1,0 +1,769 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.motif",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "M08.00.00",
+            "title": "Personne inconsciente"
+        },
+        {
+            "const": "M08.01.00",
+            "title": "Personne en arrêt ventilatoire"
+        },
+        {
+            "const": "M08.02.00",
+            "title": "Personne en arrêt cardio-respiratoire"
+        },
+        {
+            "const": "M08.03.00",
+            "title": "Personne inconsciente qui respire"
+        },
+        {
+            "const": "M09.00.00",
+            "title": "Hémorragies / Saignements"
+        },
+        {
+            "const": "M09.01.00",
+            "title": "Hémorragie ne pouvant être stoppée"
+        },
+        {
+            "const": "M09.01.01",
+            "title": "Epitaxis non stoppée par compression"
+        },
+        {
+            "const": "M09.02.00",
+            "title": "Hémorragie extériorisée"
+        },
+        {
+            "const": "M09.02.01",
+            "title": "Hémorragie digestive (haute ou basse) extériorirée"
+        },
+        {
+            "const": "M09.02.02",
+            "title": "Hémorragie extériorisée avec malaise"
+        },
+        {
+            "const": "M09.02.03",
+            "title": "Crache du sang hémoptysie"
+        },
+        {
+            "const": "M09.02.04",
+            "title": "Saignement stoppé par compression"
+        },
+        {
+            "const": "M09.02.05",
+            "title": "Epistaxis stoppée par compression"
+        },
+        {
+            "const": "M09.03.00",
+            "title": "Saignements bénins"
+        },
+        {
+            "const": "M09.03.01",
+            "title": "Saignement bénin sans signe de gravité identifié"
+        },
+        {
+            "const": "M10.00.00",
+            "title": "Problème circulatoire"
+        },
+        {
+            "const": "M10.01.00",
+            "title": "Palpitations"
+        },
+        {
+            "const": "M10.02.00",
+            "title": "Autres troubles circulatoires"
+        },
+        {
+            "const": "M10.02.01",
+            "title": "Patient/victime choquée par défibrillateur implanté"
+        },
+        {
+            "const": "M10.02.02",
+            "title": "Bradycardie < 50 ou tachycardie > 150"
+        },
+        {
+            "const": "M10.02.03",
+            "title": "Pression Artérielle < 90 mmHg"
+        },
+        {
+            "const": "M10.02.04",
+            "title": "Pression Artérielle > 160 mmHg"
+        },
+        {
+            "const": "M10.02.05",
+            "title": "Autre trouble sans signe de gravité"
+        },
+        {
+            "const": "M11.00.00",
+            "title": "Problème respiratoire"
+        },
+        {
+            "const": "M11.01.00",
+            "title": "Détresse respiratoire"
+        },
+        {
+            "const": "M11.01.01",
+            "title": "Détresse respiratoire avec asphyxie",
+            "description": "Moins de 4 syllabes ou mots courts, cyanose), ou obstruction complète"
+        },
+        {
+            "const": "M11.01.02",
+            "title": "Epuisement respiratoire chez un nourrisson"
+        },
+        {
+            "const": "M11.02.00",
+            "title": "Difficultés respiratoires"
+        },
+        {
+            "const": "M11.02.01",
+            "title": "Respiration bruyante"
+        },
+        {
+            "const": "M11.02.02",
+            "title": "Difficultés respiratoires avec sueurs ou altération de conscience"
+        },
+        {
+            "const": "M11.02.03",
+            "title": "Difficultés respiratoires sans signe de gravité"
+        },
+        {
+            "const": "M11.03.00",
+            "title": "Autres problèmes respiratoires"
+        },
+        {
+            "const": "M11.03.01",
+            "title": "Problème isolé d'appareillage respiratoire ou canule"
+        },
+        {
+            "const": "M11.03.02",
+            "title": "Corps étranger expulsé des poumons"
+        },
+        {
+            "const": "M11.03.03",
+            "title": "Problème respiratoire avec obstruction partielle"
+        },
+        {
+            "const": "M11.03.04",
+            "title": "Autres problème respiratoire sans signe de gravité"
+        },
+        {
+            "const": "M12.00.00",
+            "title": "Problème neurologique"
+        },
+        {
+            "const": "M12.01.00",
+            "title": "Suspicion AVC / AIT"
+        },
+        {
+            "const": "M12.01.01",
+            "title": "Suspicion AVC / AIT avec trouble de conscience"
+        },
+        {
+            "const": "M12.01.02",
+            "title": "Suspicion AVC / AIT sans céphalée ou vomissement ni trouble de la conscience"
+        },
+        {
+            "const": "M12.01.03",
+            "title": "Suspicion AVC / AIT avec disparition des signes d'AVC à l'appel"
+        },
+        {
+            "const": "M12.02.00",
+            "title": "Convulsions persistantes"
+        },
+        {
+            "const": "M12.03.00",
+            "title": "Convulsion"
+        },
+        {
+            "const": "M12.03.01",
+            "title": "Convulsions chez une femme enceinte"
+        },
+        {
+            "const": "M12.03.02",
+            "title": "Convulsions avec fièvre chez l'enfant"
+        },
+        {
+            "const": "M12.03.03",
+            "title": "En cours de réveil après convulsions"
+        },
+        {
+            "const": "M12.04.00",
+            "title": "Trouble de la conscience"
+        },
+        {
+            "const": "M12.04.01",
+            "title": "Trouble de la conscience chez un diabétique"
+        },
+        {
+            "const": "M12.04.02",
+            "title": "Trouble de la conscience avec perte de connaissance initiale"
+        },
+        {
+            "const": "M12.04.03",
+            "title": "Somnolent et capable de parler ou de répondre à des ordres simples"
+        },
+        {
+            "const": "M12.04.04",
+            "title": "Confusion, désorientation"
+        },
+        {
+            "const": "M12.04.05",
+            "title": "Autre trouble de la conscience sans signe de gravité"
+        },
+        {
+            "const": "M12.05.00",
+            "title": "Malaise"
+        },
+        {
+            "const": "M12.05.01",
+            "title": "Malaise sans signe de gravité"
+        },
+        {
+            "const": "M12.05.02",
+            "title": "Malaise au cours d'un effort"
+        },
+        {
+            "const": "M12.05.03",
+            "title": "Malaise avec perte de connaissance initiale"
+        },
+        {
+            "const": "M12.05.04",
+            "title": "Malaise avec trouble de la conscience"
+        },
+        {
+            "const": "M12.06.00",
+            "title": "Autre motif neurologique"
+        },
+        {
+            "const": "M12.06.01",
+            "title": "Céphalées isolées"
+        },
+        {
+            "const": "M12.06.02",
+            "title": "Céphalées avec vomissement"
+        },
+        {
+            "const": "M12.06.03",
+            "title": "Autre motif neurologique sans signe de gravité"
+        },
+        {
+            "const": "M13.00.00",
+            "title": "Traumatisme"
+        },
+        {
+            "const": "M13.01.00",
+            "title": "Personne restant à terre suite à une chute"
+        },
+        {
+            "const": "M13.02.00",
+            "title": "Polytraumatisme / traumatisme sévère"
+        },
+        {
+            "const": "M13.03.00",
+            "title": "Traumatisme tête / cou"
+        },
+        {
+            "const": "M13.03.01",
+            "title": "Traumatisme tête / cou avec perte de connaissance initiale ou troubles de la conscience"
+        },
+        {
+            "const": "M13.03.02",
+            "title": "Traumatisme tête / cou sans signe de gravité"
+        },
+        {
+            "const": "M13.04.00",
+            "title": "Traumatisme thorax"
+        },
+        {
+            "const": "M13.04.01",
+            "title": "Traumatisme thorax avec gêne respiratoire"
+        },
+        {
+            "const": "M13.04.02",
+            "title": "Traumatisme thorax sans signe de gravité"
+        },
+        {
+            "const": "M13.05.00",
+            "title": "Traumatisme abdomen / bassin"
+        },
+        {
+            "const": "M13.05.01",
+            "title": "Traumatisme abdomen / bassin violent"
+        },
+        {
+            "const": "M13.05.02",
+            "title": "Traumatisme abdomen / bassin sans signe de gravité"
+        },
+        {
+            "const": "M13.06.00",
+            "title": "Traumatisme membres"
+        },
+        {
+            "const": "M13.06.01",
+            "title": "Traumatisme membre avec amputation"
+        },
+        {
+            "const": "M13.06.02",
+            "title": "Fracture ouverte de membre"
+        },
+        {
+            "const": "M13.06.03",
+            "title": "Fracture fermée de membre"
+        },
+        {
+            "const": "M13.06.04",
+            "title": "Traumatisme avec déformation de membre"
+        },
+        {
+            "const": "M13.06.05",
+            "title": "Traumatisme de membres sans signe de gravité"
+        },
+        {
+            "const": "M13.07.00",
+            "title": "Traumatisme doigts - orteils"
+        },
+        {
+            "const": "M13.07.01",
+            "title": "Traumatisme doigts / orteils avec amputation"
+        },
+        {
+            "const": "M13.07.02",
+            "title": "Fracture ouverte de doigts / orteils"
+        },
+        {
+            "const": "M13.07.03",
+            "title": "Fracture fermée doigts / orteils"
+        },
+        {
+            "const": "M13.07.04",
+            "title": "Traumatisme doigts / orteils  avec déformation"
+        },
+        {
+            "const": "M13.07.05",
+            "title": "Traumatisme doigts / orteils  sans signe de gravité"
+        },
+        {
+            "const": "M14.00.00",
+            "title": "Plaies"
+        },
+        {
+            "const": "M14.01.00",
+            "title": "Plaie pénétrante"
+        },
+        {
+            "const": "M14.01.01",
+            "title": "Plaie pénétrante étendue"
+        },
+        {
+            "const": "M14.01.02",
+            "title": "Plaies pénétrantes multiples"
+        },
+        {
+            "const": "M14.01.03",
+            "title": "Plaie grave du crâne (scalp)"
+        },
+        {
+            "const": "M14.01.04",
+            "title": "Plaie grave du visage"
+        },
+        {
+            "const": "M14.01.05",
+            "title": "Plaie grave du cou"
+        },
+        {
+            "const": "M14.01.06",
+            "title": "Plaie grave du thorax - abdomen"
+        },
+        {
+            "const": "M14.01.07",
+            "title": "Plaie grave avec pâleur/soif/prostration"
+        },
+        {
+            "const": "M14.02.00",
+            "title": "Morsure"
+        },
+        {
+            "const": "M14.02.01",
+            "title": "Morsure grave"
+        },
+        {
+            "const": "M14.02.02",
+            "title": "Morsure sans signe de gravité"
+        },
+        {
+            "const": "M15.00.00",
+            "title": "Brûlures"
+        },
+        {
+            "const": "M15.01.00",
+            "title": "Brûlure thermique"
+        },
+        {
+            "const": "M15.01.01",
+            "title": "Brûlure thermique grave (étendue / circulaire / tronc / face / cou)"
+        },
+        {
+            "const": "M15.01.02",
+            "title": "Brûlure thermique à l'œil"
+        },
+        {
+            "const": "M15.01.03",
+            "title": "Brûlure thermique sans signe de gravité"
+        },
+        {
+            "const": "M15.02.00",
+            "title": "Brûlure chimique"
+        },
+        {
+            "const": "M15.02.01",
+            "title": "Brûlure chimique grave (étendue / circulaire / tronc / face / cou)"
+        },
+        {
+            "const": "M15.02.02",
+            "title": "Brûlure à l'œil"
+        },
+        {
+            "const": "M15.02.03",
+            "title": "Brûlure chimique sans signe de gravité"
+        },
+        {
+            "const": "M15.03.00",
+            "title": "Gelure"
+        },
+        {
+            "const": "M15.03.01",
+            "title": "Gelure grave"
+        },
+        {
+            "const": "M15.03.02",
+            "title": "Gelure sans signe de gravité"
+        },
+        {
+            "const": "M16.00.00",
+            "title": "Intoxication"
+        },
+        {
+            "const": "M16.01.00",
+            "title": "Intoxication au CO / fumées"
+        },
+        {
+            "const": "M16.01.01",
+            "title": "Intoxication au CO / fumées avec convulsions / troubles de la conscience"
+        },
+        {
+            "const": "M16.01.02",
+            "title": "Intoxication au CO / fumées avec vomissements, céphalées"
+        },
+        {
+            "const": "M16.01.03",
+            "title": "Intoxication au CO / fumées sans signe de gravité"
+        },
+        {
+            "const": "M16.02.00",
+            "title": "Intoxication éthylique / prise de stupéfiants"
+        },
+        {
+            "const": "M16.02.01",
+            "title": "Intoxication éthylique / prise de stupéfiants avec convulsions ou coma"
+        },
+        {
+            "const": "M16.02.02",
+            "title": "Intoxication éthylique / prise de stupéfiants avec somnolence"
+        },
+        {
+            "const": "M16.02.03",
+            "title": "Intoxication éthylique / prise de stupéfiants sans signe de gravité"
+        },
+        {
+            "const": "M16.03.00",
+            "title": "Intoxication médicamenteuse"
+        },
+        {
+            "const": "M16.03.01",
+            "title": "Intoxication médicamenteuse avec convulsions ou coma"
+        },
+        {
+            "const": "M16.03.02",
+            "title": "Intoxication médicamenteuse avec détresse respiratoire"
+        },
+        {
+            "const": "M16.03.03",
+            "title": "Intoxication médicamenteuse avec somnolence"
+        },
+        {
+            "const": "M16.03.04",
+            "title": "Intoxication médicamenteuse sans signe de gravité"
+        },
+        {
+            "const": "M16.04.00",
+            "title": "Intoxication chimique / venimeuse"
+        },
+        {
+            "const": "M16.04.01",
+            "title": "Intoxication chimique / venimeuse avec convulsions / troubles de la conscience"
+        },
+        {
+            "const": "M16.04.02",
+            "title": "Intoxication chimique / venimeuse avec détresse respiratoire ou toux"
+        },
+        {
+            "const": "M16.04.03",
+            "title": "Intoxication chimique / venimeuse sans signe de gravité"
+        },
+        {
+            "const": "M17.00.00",
+            "title": "Douleurs"
+        },
+        {
+            "const": "M17.01.00",
+            "title": "Céphalées"
+        },
+        {
+            "const": "M17.01.01",
+            "title": "Céphalées avec troubles de conscience"
+        },
+        {
+            "const": "M17.01.02",
+            "title": "Céphalées chez la femme enceinte"
+        },
+        {
+            "const": "M17.01.03",
+            "title": "Céphalées sans signe de gravité"
+        },
+        {
+            "const": "M17.02.00",
+            "title": "Douleurs abdominales"
+        },
+        {
+            "const": "M17.02.01",
+            "title": "Douleurs abdominales sans signe de gravité"
+        },
+        {
+            "const": "M17.03.00",
+            "title": "Douleur thoracique"
+        },
+        {
+            "const": "M17.03.01",
+            "title": "Douleur thoracique  -  cas d'usage n°1"
+        },
+        {
+            "const": "M17.03.02",
+            "title": "Douleur thoracique  -  cas d'usage n°2"
+        },
+        {
+            "const": "M17.03.03",
+            "title": "Douleur thoracique  - cas d'usage n°3"
+        },
+        {
+            "const": "M17.04.00",
+            "title": "Douleurs ostéoarticulaires"
+        },
+        {
+            "const": "M17.04.01",
+            "title": "Douleurs ostéoarticulaires ou de membre"
+        },
+        {
+            "const": "M17.04.02",
+            "title": "Douleur ostéoarticulaire sans signe de gravité"
+        },
+        {
+            "const": "M17.05.00",
+            "title": "Autres douleurs"
+        },
+        {
+            "const": "M17.05.01",
+            "title": "Douleurs dentaires"
+        },
+        {
+            "const": "M17.05.02",
+            "title": "Douleurs oculaires"
+        },
+        {
+            "const": "M17.05.03",
+            "title": "Douleurs ORL (nez / gorge / oreilles)"
+        },
+        {
+            "const": "M17.05.04",
+            "title": "Autres douleurs sans signe de gravité"
+        },
+        {
+            "const": "M18.00.00",
+            "title": "Accouchement / problème obstétrique"
+        },
+        {
+            "const": "M18.01.00",
+            "title": "Accouchement réalisé ou imminent"
+        },
+        {
+            "const": "M18.01.01",
+            "title": "Accouchement imminent avec bébé visible"
+        },
+        {
+            "const": "M18.01.02",
+            "title": "Accouchement réalisé"
+        },
+        {
+            "const": "M18.01.03",
+            "title": "Accouchement imminent - Sent le bébé descendre ou envie de pousser"
+        },
+        {
+            "const": "M18.01.04",
+            "title": "Accouchement imminent - Contractions < 5 min avec ou sans perte des eaux"
+        },
+        {
+            "const": "M18.01.05",
+            "title": "Accouchement imminent - Contractions entre 5 et 10 min avec ou sans perte des eaux"
+        },
+        {
+            "const": "M18.01.06",
+            "title": "Accouchement imminent - Perte des eaux"
+        },
+        {
+            "const": "M18.01.07",
+            "title": "Accouchement imminent - Contractions et hémorragies"
+        },
+        {
+            "const": "M18.02.00",
+            "title": "Autre problème obstétrical"
+        },
+        {
+            "const": "M18.02.01",
+            "title": "Saignement / hémorragie au décours d'une grossesse"
+        },
+        {
+            "const": "M18.02.02",
+            "title": "Douleurs abdominales chez une femme enceinte"
+        },
+        {
+            "const": "M18.02.03",
+            "title": "Autre problème obstétrical  avec saignement / hémorragie"
+        },
+        {
+            "const": "M18.02.04",
+            "title": "Problème obstétrical avec anomalie de résultat biologique"
+        },
+        {
+            "const": "M18.02.05",
+            "title": "Autre problème obstétrical sans signe de gravité"
+        },
+        {
+            "const": "M19.00.00",
+            "title": "Autres affections"
+        },
+        {
+            "const": "M19.01.00",
+            "title": "Accident exposition aux risques biologiques"
+        },
+        {
+            "const": "M19.02.00",
+            "title": "Allergies"
+        },
+        {
+            "const": "M19.02.01",
+            "title": "Allergies avec gonflement du visage, du cou ou modification de la voix"
+        },
+        {
+            "const": "M19.02.02",
+            "title": "Allergies avec sensation de malaise / problème digestif"
+        },
+        {
+            "const": "M19.02.03",
+            "title": "Allergies avec éruption généralisée"
+        },
+        {
+            "const": "M19.02.04",
+            "title": "Allergies  avec perte de connaissance initiale ou altération de la inconscience"
+        },
+        {
+            "const": "M19.02.05",
+            "title": "Allergies avec difficultés respiratoires"
+        },
+        {
+            "const": "M19.02.06",
+            "title": "Allergies sans signe de gravité"
+        },
+        {
+            "const": "M19.03.00",
+            "title": "Anomalie de la glycémie"
+        },
+        {
+            "const": "M19.04.00",
+            "title": "Demande de conseil médical ou ordonnance"
+        },
+        {
+            "const": "M19.05.00",
+            "title": "Fièvre"
+        },
+        {
+            "const": "M19.06.00",
+            "title": "Trouble digestif"
+        },
+        {
+            "const": "M19.06.01",
+            "title": "Trouble digestif avec hémorragie digestive"
+        },
+        {
+            "const": "M19.06.02",
+            "title": "Trouble digestif avec trouble du transit (diarrhée / vomissement)"
+        },
+        {
+            "const": "M19.06.03",
+            "title": "Problème de poche digestive"
+        },
+        {
+            "const": "M19.06.04",
+            "title": "Trouble digestif sans douleur"
+        },
+        {
+            "const": "M19.06.05",
+            "title": "Troubles digestifs sans signe de gravité"
+        },
+        {
+            "const": "M19.07.00",
+            "title": "Problème psychiatrique / social"
+        },
+        {
+            "const": "M19.07.01",
+            "title": "Misère physiologique ou incurie"
+        },
+        {
+            "const": "M19.07.02",
+            "title": "Agitation / crise nerveuse / comportement violent"
+        },
+        {
+            "const": "M19.07.03",
+            "title": "Etat de manque / Sevrage"
+        },
+        {
+            "const": "M19.07.04",
+            "title": "Problème social ou sanitaire"
+        },
+        {
+            "const": "M19.08.00",
+            "title": "Problème infectieux"
+        },
+        {
+            "const": "M20.00.00",
+            "title": "Décès certain"
+        },
+        {
+            "const": "M20.01.00",
+            "title": "Corps en décomposition"
+        },
+        {
+            "const": "M20.02.00",
+            "title": "Décés déclaré par un professionnel de santé"
+        },
+        {
+            "const": "M20.03.00",
+            "title": "Rigidité cadavérique et corps froid"
+        },
+        {
+            "const": "M20.04.00",
+            "title": "Tête séparée du tronc"
+        }
+    ],
+    "description": "Décrit le motif de recours médico-secouriste."
+}

@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.typeOrientation",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "URGENCES",
+            "title": "Service d’urgences d’un établissement de sante"
+        },
+        {
+            "const": "REA-USI",
+            "title": "Service de réanimation ou de soins intensifs"
+        },
+        {
+            "const": "SANTE",
+            "title": "Autres services d’un établissement de sante"
+        },
+        {
+            "const": "CABINET",
+            "title": "Cabinet d’un professionnel de sante"
+        },
+        {
+            "const": "DOMICILE",
+            "title": "Domicile"
+        },
+        {
+            "const": "EPHAD",
+            "title": "EPHAD ou Long séjour"
+        },
+        {
+            "const": "AUTRE",
+            "title": "Autre"
+        }
+    ],
+    "description": "Décrit la filière compétente pour traiter le dossier."
+}

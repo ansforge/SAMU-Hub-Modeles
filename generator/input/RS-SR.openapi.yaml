@@ -86,6 +86,7 @@ components:
           example: example.json#/state/status
           description: "A valoriser avec le statut du vecteur. Cf nomenclature associ\xE9\
             e."
+          x-nomenclature: HubSante.statutVecteur
           enum:
           - DECISION
           - DECLENCHE

@@ -1,0 +1,316 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.typeVecteur",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "AASC",
+            "title": "AASC"
+        },
+        {
+            "const": "AASC.VLSC",
+            "title": "Vehicule Leger de Sécurité Civile",
+            "description": "Hybride"
+        },
+        {
+            "const": "AASC.VPSP",
+            "title": "Véhicule de Premiers Secours à Personnes",
+            "description": "Transporte"
+        },
+        {
+            "const": "AASC.AUTRESC",
+            "title": "Autre vecteur de Sécurité Civile",
+            "description": "Hybride"
+        },
+        {
+            "const": "AUTREVEC",
+            "title": "AUTRE"
+        },
+        {
+            "const": "AUTREVEC.APIED",
+            "title": "A pied",
+            "description": "Transporte"
+        },
+        {
+            "const": "AUTREVEC.AVION",
+            "title": "Avion",
+            "description": "Transporte"
+        },
+        {
+            "const": "AUTREVEC.PERSO",
+            "title": "Moyen personnel sans précsion",
+            "description": "Transporte"
+        },
+        {
+            "const": "AUTREVEC.TAXI",
+            "title": "Taxi et assimilés",
+            "description": "Transporte"
+        },
+        {
+            "const": "AUTREVEC.TRAIN",
+            "title": "Train",
+            "description": "Transporte"
+        },
+        {
+            "const": "AUTREVEC.TRANSP",
+            "title": "Transports en commun",
+            "description": "Transporte"
+        },
+        {
+            "const": "AUTREVEC.AUTRE",
+            "title": "Autre vecteur sans transport",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "AUTREVEC.AUTRETRA",
+            "title": "Autre vecteur de transport",
+            "description": "Transporte"
+        },
+        {
+            "const": "FSI",
+            "title": "FSI"
+        },
+        {
+            "const": "FSI.HELIFSI",
+            "title": "Hélicoptère Forces de l’Ordre",
+            "description": "Hybride"
+        },
+        {
+            "const": "FSI.VLFSI",
+            "title": "VL des FSI",
+            "description": "Hybride"
+        },
+        {
+            "const": "FSI.FFSI",
+            "title": "Fourgon des FSI",
+            "description": "Hybride"
+        },
+        {
+            "const": "FSI.VHFSI",
+            "title": "Autre vecteur des FSI",
+            "description": "Hybride"
+        },
+        {
+            "const": "LIB",
+            "title": "LIB"
+        },
+        {
+            "const": "LIB.MEDV",
+            "title": "Médecin",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "LIB.INF",
+            "title": "Infirmier",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "LIB.AUTREPRO",
+            "title": "Autre professionnel de santé",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SIS",
+            "title": "SIS"
+        },
+        {
+            "const": "SIS.DRAGON",
+            "title": "Hélicoptère sécurité civile",
+            "description": "Transporte"
+        },
+        {
+            "const": "SIS.AVSC",
+            "title": "Avion sécurité civile",
+            "description": "Transporte"
+        },
+        {
+            "const": "SIS.FEUSIS",
+            "title": "Moyens incendie du SIS",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SIS.GRIMP",
+            "title": "Vehicule du GRIMP et montagne",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SIS.NAVISIS",
+            "title": "Moyen nautique du SIS",
+            "description": "Hybride"
+        },
+        {
+            "const": "SIS.PCSIS",
+            "title": "Poste de commandement",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SIS.SRSIS",
+            "title": "Moyens de secours routiers du SIS",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SIS.VCH",
+            "title": "Véhicule intervention chimique",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SIS.VLCG",
+            "title": "Véhicule léger chef de groupe",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SIS.VLISP",
+            "title": "Véhicule léger infirmier SP",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SIS.VLMSP",
+            "title": "Véhicule léger Médecin SP",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SIS.VLSIS",
+            "title": "Véhicule léger autre usage",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SIS.VPL",
+            "title": "Véhicule plongeurs",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SIS.VPMA",
+            "title": "Véhicule du Poste Médical Avancé",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SIS.VR",
+            "title": "Véhicule intervention radioactivité",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SIS.VSAV",
+            "title": "Véhicule de secours et d'assistance aux victimes",
+            "description": "Transporte"
+        },
+        {
+            "const": "SIS.MOYSSE",
+            "title": "Autre moyen SSE",
+            "description": "Hybride"
+        },
+        {
+            "const": "SIS.AUTRESIS",
+            "title": "Autre moyen du SIS",
+            "description": "Hybride"
+        },
+        {
+            "const": "SMUR",
+            "title": "SMUR"
+        },
+        {
+            "const": "SMUR.VLM",
+            "title": "Véhicule Léger Médicalisé",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SMUR.VL",
+            "title": "Véhicule de liaison Smur",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SMUR.PSM1",
+            "title": "Véhicule logistique transport PSM1",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SMUR.PSM2",
+            "title": "Véhicule logistique transport PSM2",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SMUR.PSM3",
+            "title": "Véhicule logistique transport PSM3",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SMUR.PSMP",
+            "title": "Véhicule logistique transport PSM pédiatrique",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SMUR.VPC",
+            "title": "Véhicule Poste de Commandement et ou d’évacuation SAMU",
+            "description": "Ne transporte pas"
+        },
+        {
+            "const": "SMUR.AR",
+            "title": "Ambulance de réanimation",
+            "description": "Transporte"
+        },
+        {
+            "const": "SMUR.AR-BAR",
+            "title": "Ambulance de réanimation Bariatrique",
+            "description": "Transporte"
+        },
+        {
+            "const": "SMUR.AR-PED",
+            "title": "Ambulance de réanimation Pédiatrique",
+            "description": "Transporte"
+        },
+        {
+            "const": "SMUR.HELISMUR",
+            "title": "HéliSmur",
+            "description": "Transporte"
+        },
+        {
+            "const": "SMUR.HELISAN",
+            "title": "Hélicoptère de transport sanitaire",
+            "description": "Transporte"
+        },
+        {
+            "const": "SMUR.AVSMUR",
+            "title": "Avion Smur",
+            "description": "Transporte"
+        },
+        {
+            "const": "SMUR.AVSAN",
+            "title": "Avion de transport sanitaire",
+            "description": "Transporte"
+        },
+        {
+            "const": "SMUR.NAVISMUR",
+            "title": "NaviSmur",
+            "description": "Transporte"
+        },
+        {
+            "const": "TSU",
+            "title": "TSU"
+        },
+        {
+            "const": "TSU.VSL",
+            "title": "Véhicule Sanitaire Léger",
+            "description": "Transporte"
+        },
+        {
+            "const": "TSU.AMB-GV",
+            "title": "Ambulance privée grand contenant - type A",
+            "description": "Transporte"
+        },
+        {
+            "const": "TSU.AMB-PV",
+            "title": "Ambulance privée petit contenant - type C",
+            "description": "Transporte"
+        },
+        {
+            "const": "TSU.AMB-BAR",
+            "title": "Ambulance privée - type bariatrique",
+            "description": "Transporte"
+        },
+        {
+            "const": "TSU.AMB",
+            "title": "Ambulance de catégorie non définie",
+            "description": "Transporte"
+        }
+    ],
+    "description": "Décrit le type de vecteur/véhicule ou de ressource mobilisée, avec plus de précision que simplement le type de ressources. Utilisée exclusivement en inter-santé (cf. EMSI-OPG pour 15-NexSIS)"
+}
