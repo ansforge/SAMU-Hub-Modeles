@@ -15,6 +15,7 @@
  */
 package com.hubsante.model.edxl;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.hubsante.model.cisu.CreateCaseWrapper;
@@ -67,5 +68,10 @@ public class ContentMessage {
     @Override
     public int hashCode() {
         return 0;
+    }
+
+    @JsonIgnore
+    public String getUseCaseName() {
+        return "unknown";
     }
 }
