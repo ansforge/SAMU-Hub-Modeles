@@ -33,4 +33,5 @@ def test_init_db_does_not_raise_and_logs_error_on_connection_failure(mocker):
     assert app.extensions["mongodb_client"] is mock_client
     assert app.extensions["mongodb_db"] is mock_client.__getitem__.return_value
     logger_error.assert_called_once()
-    assert "Failed to connect to MongoDB at startup" in logger_error.call_args[0][0]
+    assert "[MongoDB] Connection failed at startup" in logger_error.call_args[0][0]
+    assert logger_error.call_args.kwargs["extra"] == {"mongodb_status": "DOWN"}
