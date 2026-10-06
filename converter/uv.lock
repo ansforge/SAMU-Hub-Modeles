@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.10"
 resolution-markers = [
     "python_full_version >= '3.15'",
@@ -265,7 +265,7 @@ dev = [
 requires-dist = [
     { name = "flask", specifier = ">=3.1.2" },
     { name = "gunicorn", specifier = ">=23.0.0" },
-    { name = "jsonpath-ng", specifier = "==1.8.0" },
+    { name = "jsonpath-ng", specifier = "==1.9.0" },
     { name = "opentelemetry-exporter-otlp-proto-http", specifier = ">=1.43.0" },
     { name = "opentelemetry-instrumentation-flask", specifier = ">=0.64b0" },
     { name = "opentelemetry-instrumentation-pymongo", specifier = ">=0.64b0" },
@@ -428,7 +428,7 @@ name = "exceptiongroup"
 version = "1.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "typing-extensions", marker = "python_full_version < '3.11'" },
+    { name = "typing-extensions" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/50/79/66800aadf48771f6b62f7eb014e352e5d06856655206165d775e675a02c9/exceptiongroup-1.3.1.tar.gz", hash = "sha256:8b412432c6055b0b7d14c310000ae93352ed6754f70fa8f7c34141f91c4e3219", size = 30371, upload-time = "2025-11-21T23:01:54.787Z" }
 wheels = [
@@ -517,11 +517,11 @@ wheels = [
 
 [[package]]
 name = "jsonpath-ng"
-version = "1.8.0"
+version = "1.9.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/32/58/250751940d75c8019659e15482d548a4aa3b6ce122c515102a4bfdac50e3/jsonpath_ng-1.8.0.tar.gz", hash = "sha256:54252968134b5e549ea5b872f1df1168bd7defe1a52fed5a358c194e1943ddc3", size = 74513, upload-time = "2026-02-24T14:42:06.182Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/4e/ef/f320c80029173a7156dd34fe6eaba761329cbdb018cbca8a6bed2d9fc74e/jsonpath_ng-1.9.0.tar.gz", hash = "sha256:0790eea49bdd75198dbc319aba969ce9350b0d96cda6e498dba62334f53979c9", size = 78042, upload-time = "2026-10-05T18:15:13.58Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/03/99/33c7d78a3fb70d545fd5411ac67a651c81602cc09c9cf0df383733f068c5/jsonpath_ng-1.8.0-py3-none-any.whl", hash = "sha256:b8dde192f8af58d646fc031fac9c99fe4d00326afc4148f1f043c601a8cfe138", size = 67844, upload-time = "2026-02-28T00:53:19.637Z" },
+    { url = "https://files.pythonhosted.org/packages/f6/dc/68bee5d3344c785da2a3b420b52c16af758ab6eb7bb1fd6c79464183c7c8/jsonpath_ng-1.9.0-py3-none-any.whl", hash = "sha256:c563c5e8afb055488f2ecd5775f52c6950bb6202602b055f2293e012e3059fb4", size = 68196, upload-time = "2026-10-05T18:15:12.449Z" },
 ]
 
 [[package]]
