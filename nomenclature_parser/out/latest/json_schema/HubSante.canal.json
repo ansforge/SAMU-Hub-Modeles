@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.canal",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "APPLICATION",
+            "title": "APPLICATION"
+        },
+        {
+            "const": "BAU",
+            "title": "BAU"
+        },
+        {
+            "const": "DAU",
+            "title": "DAU"
+        },
+        {
+            "const": "DEFIBRILLATEUR",
+            "title": "DEFIBRILLATEUR"
+        },
+        {
+            "const": "ECALL",
+            "title": "ECALL"
+        },
+        {
+            "const": "PERSONNE",
+            "title": "PERSONNE"
+        }
+    ],
+    "description": "Décrit le type de canal utilisé pour le contact"
+}

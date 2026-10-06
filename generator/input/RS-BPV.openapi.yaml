@@ -92,6 +92,7 @@ components:
           example: example.json#/redactor/role
           description: "A valoriser avec le r\xF4le du r\xE9dacteur du bilan (ex.\
             \ m\xE9decin, infirmier, ambulancier). "
+          x-nomenclature: HubSante.role
           enum:
           - AMBULANCIER
           - ARM
@@ -184,6 +185,7 @@ components:
           example: example.json#/patient/sex
           description: "Sexe du patient, suivant le libell\xE9 court de la nomenclature\
             \ SI-SAMU-NOMENC_SEXE"
+          x-nomenclature: HubSante.sexe
           enum:
           - M
           - F
@@ -314,6 +316,7 @@ components:
           x-cols: 6
           example: example.json#/patient/externalId/0/source
           description: Type de l'identifiant fourni
+          x-nomenclature: HubSante.typeIdPatient
           enum:
           - NIR
           - SINUS

@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.reponseDemande",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "ACCEPTEE",
+            "title": "ACCEPTEE",
+            "description": "La demande est acceptée, sans réserve ni modifications. Si un délai maximum était indiqué dans la demande, alors celui si est considéré comme accepté."
+        },
+        {
+            "const": "PARTIELLE",
+            "title": "PARTIELLE",
+            "description": "La demande est acceptée, avec réserves ou modifications. Par exemple, si le délai de réponse est différent de celui souhaité dans la demande. Toute modification ou réserve doit être précisée dans la réponse (en freetext si l'information ne peut pas être communiquée de manière structurée)"
+        },
+        {
+            "const": "REFUSEE",
+            "title": "REFUSEE",
+            "description": "La demande est refusée, le motif de refus est à préciser dans le freetext"
+        },
+        {
+            "const": "DIFFEREE",
+            "title": "DIFFEREE",
+            "description": "La demande a été reçue mais n'est pas encore traitée. La réponse sera envoyée ultérieurement."
+        }
+    ],
+    "description": "Décrit la réponse à une demande de ressources"
+}

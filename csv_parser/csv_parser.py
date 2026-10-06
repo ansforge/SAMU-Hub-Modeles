@@ -97,9 +97,9 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             'perimeterColumns': perimeter_columns
         }
 
-    def get_nomenclature(elem):
+    def get_nomenclature(elem, col='Détails de format'):
         # filename to target (.csv format)
-        nomenclature_name = elem['Détails de format'][elem['Détails de format'].index(':')+1:].strip()
+        nomenclature_name = elem[col][elem[col].index(':')+1:].strip()
         path_file = ''
         nomenclature_files = os.listdir(os.path.join("..", "nomenclature_parser", "out", "latest", "csv"))
         file_extension = ".csv"
@@ -118,7 +118,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             print(f'Known nomenclatures are {nomenclature_files}')
             print("Check if some nomenclature files disappeared. If so, last run of nomenclature_parser.py likely failed.")
             exit(1)
-        return L_ret
+        return nomenclature_name, L_ret
 
     params = get_params_from_sheet(sheet)
     # Schema name is in name = RC-EDA (or RS-EDA) for instance
@@ -145,7 +145,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     # Column validation
     REQUIRED_COLUMNS = [
         *[f"Donnée (Niveau {i})" for i in range(1, DATA_DEPTH + 1)],
-        'ID', 'Description', 'Exemples', 'Balise', 'Cardinalité', 'Objet', 'Format (ou type)', 'Détails de format',
+        'ID', 'Description', 'Exemples', 'Balise', 'Cardinalité', 'Objet', 'Format (ou type)', 'Détails de format', 'Nomenclature',
         *([perimeter_filter] if perimeter_filter else [])
     ]
     if not (set(REQUIRED_COLUMNS) <= set(df.columns)):
@@ -212,12 +212,12 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
                 return i
         return 0
 
-    def format_codeandlabel_properties(child, parent):
-        code_file = parent['Détails de format']
-        """ For 'Code', set code file name to the 'Détails de format' column, remove it from parent """
+    def format_codeandlabel_properties(child, parent, col='Détails de format'):
+        code_file = parent[col]
+        """ For 'Code', set code file name to the column, remove it from parent """
         if child['Balise'] == "code":
-            child['Détails de format'] = code_file
-            df.loc[parent.ID-1, 'Détails de format'] = 'nan'
+            child[col] = code_file
+            df.loc[parent.ID-1, col] = 'nan'
         """Set the level of the child to be the level of the parent + 1"""
         if find_data_level(child) != find_data_level(parent)+1:
             child = shift_child_data_levels(child, parent)
@@ -256,7 +256,9 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
                     # the level of data of each property to be equal to the row's level + 1
                     prop_cpy = first_codeandlabel_properties[i - 1].copy()
                     prop_cpy['ID'] = row['ID']+i/10
-                    df.loc[index + i/10] = format_codeandlabel_properties(prop_cpy, row)
+                    prop_cpy = format_codeandlabel_properties(prop_cpy, row)
+                    prop_cpy = format_codeandlabel_properties(prop_cpy, row, col='Nomenclature')
+                    df.loc[index + i/10] = prop_cpy
 
     df.sort_index(axis=0, ascending=True, inplace=True, kind='quicksort')
     df.reset_index(drop=True, inplace=True)
@@ -527,9 +529,9 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         'additionalProperties': is_allowing_additional_properties(name)
     }
 
-    def has_format_details(elem, details):
+    def has_format_details(elem, details, col='Détails de format'):
         """Does elem have a format details starting with details?"""
-        return str(elem['Détails de format']) != 'nan' and elem['Détails de format'].startswith(details)
+        return str(elem[col]) != 'nan' and elem[col].startswith(details)
 
     def type_matching(child):
         """Get the matching type for a given type name"""
@@ -541,8 +543,9 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         elif typeName == 'phoneNumber':
             return 'string', r'^tel:([#\+\*]|37000|00+)?[0-9]{2,15}$', None
         else:
-            if has_format_details(child, FormatFlags.REGEX):
-                return typeName, child['Détails de format'][child['Détails de format'].index(':')+1:].strip(), None
+            col = 'Détails de format'
+            if has_format_details(child, FormatFlags.REGEX, col):
+                return typeName, child[col][child[col].index(':')+1:].strip(), None
             else:
                 return typeName, None, None
 
@@ -579,7 +582,14 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             childDetails['enum'] = child['Détails de format'][child['Détails de format'].index(':')+1:].strip().split(', ')
         # key word nomenclature trigger search over nomenclature folder for matching file
         if has_format_details(child, FormatFlags.NOMENCLATURE):
-            childDetails['enum'] = get_nomenclature(child)
+            nomenclature_name, nomenclature_codes = get_nomenclature(child)
+            childDetails['x-nomenclature'] = nomenclature_name
+            childDetails['enum'] = nomenclature_codes
+        if has_format_details(child, FormatFlags.NOMENCLATURE, "Nomenclature"):
+            nomenclature_name, _ = get_nomenclature(child, "Nomenclature")
+            if 'x-nomenclature' in childDetails:
+                print(f"{Color.ORANGE}WARNING: Field 'Nomenclature' defined twice for child '{child['full_name']}', overwritting nomenclature with {nomenclature_name}")
+            childDetails['x-nomenclature'] = nomenclature_name
         properties = definitions['properties']
         if is_array(child):
             properties[child['name']] = {
@@ -1020,6 +1030,8 @@ if __name__ == '__main__':
     parser.add_argument('-n', '--name', required=True, help='The name to be given to the schema folder/file')
     parser.add_argument('-v', '--version', help='The version number to be used in model. Defaults to today.')
     parser.add_argument('-f', '--filter', default=False, help='If present, only 15-18 fields will be kept')
+    parser.add_argument('-m', '--model-type', required=True, help='The rootElement name for this schema (see out/schemas.yaml).')
+    parser.add_argument('-p', '--filepath', required=True, help='Path to the Excel file containing the sheet (e.g. models/model.xlsx).')
     args = parser.parse_args()
 
-    run(args.sheet, args.name, args.version, args.filter)
+    run(args.sheet, args.name, args.version, args.filter, args.model_type, args.filepath)

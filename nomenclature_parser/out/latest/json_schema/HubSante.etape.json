@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.etape",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "RECU",
+            "title": "Dossier reçu",
+            "description": "Le dossier a bien été reçu et est en cours d'intégration"
+        },
+        {
+            "const": "ERREUR",
+            "title": "Dossier en erreur",
+            "description": "La création ou intégration du dossier est en erreur"
+        },
+        {
+            "const": "INTEGRE",
+            "title": "Dossier intégré",
+            "description": "Le dossier est bien créé et intégré dans le système de destination finale"
+        },
+        {
+            "const": "CONSULTE",
+            "title": "Dossier consulté",
+            "description": "Le dossier a été ouvert  par un utilisateur humain (à la première ouverture uniquement)"
+        },
+        {
+            "const": "SUPPRIME",
+            "title": "Dossier supprimé",
+            "description": "Le dossier dossier a été effacé/supprimé dans le système émetteur"
+        }
+    ],
+    "description": "Décrit les différentes étapes d'intégration et de consultation du dossier dans un système"
+}

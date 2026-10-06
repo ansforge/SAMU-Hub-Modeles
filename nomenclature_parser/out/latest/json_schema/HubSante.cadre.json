@@ -1,0 +1,58 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.cadre",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "DRSIS",
+            "title": "Départ réflexe SIS",
+            "description": "Engagement d'un moyen du SIS dans le cadre strict des départs réflexes prévu à l'annexe 1 du réferentiel SAP-AMU (Situations cliniques, circonstances particulières, Voie Publique)"
+        },
+        {
+            "const": "MISSION",
+            "title": "Propres missions",
+            "description": "Engagement d'un moyen du partenaire résultant de ses missions propres (hors départ reflexe du SIS)"
+        },
+        {
+            "const": "ITSP",
+            "title": "Carence pour ITSP",
+            "description": "Engagement d'un VSAV par carence résultant d'une Indisponibilité de Transporteur sanitaire Privé"
+        },
+        {
+            "const": "CARENCE",
+            "title": "Carence pour autre motif",
+            "description": "Engagement d'un VSAV par carence résultant d'un autre motif"
+        },
+        {
+            "const": "CONVENT",
+            "title": "Convention locale",
+            "description": "Engagement d'un moyen du partenaire, hors mission propre et hors carence, mais prévu dans une convention départementale ou régionale (notamment convention bi-tripartite)"
+        },
+        {
+            "const": "SPE",
+            "title": "Convention spécifique",
+            "description": "Engagement d'un moyen du partenaire résultant d'une convention spécifique (transport bariatrique, ….)"
+        },
+        {
+            "const": "HORS",
+            "title": "Hors de ses missions",
+            "description": "Engagement d'un moyen du partenaire hors cadre conventionnel, hors de ses missions et hors d'un cadre conventionnel"
+        },
+        {
+            "const": "AUTRE1",
+            "title": "Autre cas 1",
+            "description": "Engagement d'un partenaire dans un nouveau cadre ou en test"
+        },
+        {
+            "const": "AUTRE2",
+            "title": "Autre cas 2",
+            "description": "Engagement d'un partenaire dans un nouveau cadre ou en test"
+        },
+        {
+            "const": "AUTRE3",
+            "title": "Autre cas 3",
+            "description": "Engagement d'un partenaire dans un nouveau cadre ou en test"
+        }
+    ],
+    "description": "Décrit le cadre conventionnel dans lequel s'inscrit une demande de ressources. Codes inter-santé uniquement (voir EMSI pour lien 15-Nexsis). "
+}

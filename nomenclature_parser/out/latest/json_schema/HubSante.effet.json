@@ -1,0 +1,68 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.effet",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "SAP",
+            "title": "Demander une prise en charge secouriste",
+            "description": "Demander l'intervention d'une équipe secouriste / ambulance privée"
+        },
+        {
+            "const": "REGUL",
+            "title": "Demander une régulation médicale",
+            "description": "Demander la régulation médicale du dossier par un médecin régulateur (cas de partage d'activité - exemples : régulation spécialisée, régulation déportée la nuit, délestage, atypie locale )"
+        },
+        {
+            "const": "CUMP",
+            "title": "Demander un soutien médico psychologique",
+            "description": "Demander l'intervention de la CUMP"
+        },
+        {
+            "const": "SMUR",
+            "title": "Demander une prise en charge de médecine d'urgence",
+            "description": "Demander l'intervention d'une équipe SMUR"
+        },
+        {
+            "const": "MG",
+            "title": "Demander une prise en charge de médecine générale",
+            "description": "Demander l'obtention d'une consultation ou une visite du MG (uniquement pour lien 15-15)"
+        },
+        {
+            "const": "PARAMED",
+            "title": "Demander une prise en charge para médicale",
+            "description": "Demander l'intervention d'une équipe paramédicale (UMHP)."
+        },
+        {
+            "const": "SAMU",
+            "title": "Autre demande de concours au SAMU",
+            "description": "Détails à préciser dans le texte libre de la demande de ressources"
+        },
+        {
+            "const": "RELEVE",
+            "title": "Demander de relever une personne",
+            "description": "Demander de relever une personne"
+        },
+        {
+            "const": "NOVI",
+            "title": "Demander une prise en charge de nombreux patients/victimes",
+            "description": "Demander une prise en charge de nombreux patients/victimes"
+        },
+        {
+            "const": "TIH",
+            "title": "Demander un transfert interétablissement",
+            "description": "Demander un transfert interétablissement"
+        },
+        {
+            "const": "BRANCARD",
+            "title": "Demander une aide au brancardage",
+            "description": "Demander une aide au brancardage"
+        },
+        {
+            "const": "BARIA",
+            "title": "Demander un transport bariatrique",
+            "description": "Demander un transport bariatrique"
+        }
+    ],
+    "description": "Décrit les effets à obtenir utilisés uniquement entre SAMU, en intersanté."
+}

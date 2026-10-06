@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.sexe",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "M",
+            "title": "Masculin",
+            "description": "Qualifie les individus de sexe masculin"
+        },
+        {
+            "const": "F",
+            "title": "Féminin",
+            "description": "Qualifie les individus de sexe féminin"
+        },
+        {
+            "const": "O",
+            "title": "Autre sexe (ni masculin, ni féminin)",
+            "description": "Qualifie les individus de troisième genre (individu considéré comme n ’étant ni homme ni femme, à la fois homme et femme, ou neutre)"
+        },
+        {
+            "const": "UN",
+            "title": "Inconnu",
+            "description": "Le sexe de la personne n'est pas connu"
+        }
+    ],
+    "description": "Décrit le sexe du patient"
+}

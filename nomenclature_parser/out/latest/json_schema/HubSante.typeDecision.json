@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "HubSante.typeDecision",
+    "type": "string",
+    "oneOf": [
+        {
+            "const": "CONSEIL",
+            "title": "#Conseil Médical",
+            "description": "Conduite à tenir donnée à distance par le médecin régulateur sans intervention d’un tiers. Le conseil médical peut être donné à la demande du patient ou à chaque fois que le médecin régulateur juge que l’appel ne nécessite pas un examen médical. Cette décision peut être accompagnée ou non d’une prescription médicamenteuse téléphonique."
+        },
+        {
+            "const": "PMT",
+            "title": "#PMT",
+            "description": "Réalisation d'une prescription médicamenteuse téléphonique"
+        },
+        {
+            "const": "INTER",
+            "title": "#Intervention",
+            "description": "Décision qui implique l’envoi d’un moyen d’intervention (ressource mobile) : Smur, médical, paramédical, pompier ous transporteur sanitaire."
+        },
+        {
+            "const": "ORIENT",
+            "title": "#Orientation Transport",
+            "description": "La décision d’orientation est caractérisée par le fait de renseigner la destination du patient (vers un acteur de santé, vers une structure ou activité de soins, vers un autre lieu). La décision de transport permet, en complément, de décider de la prise en charge du transport du patient vers ce lieu de destination et de décider du niveau de soin du transport."
+        },
+        {
+            "const": "PASPLUS",
+            "title": "#Décision",
+            "description": "En raison des décisions déjà prises par un tiers, des éventuels moyens d’intervention déjà présents sur place, le médecin régulateur en charge de la régulation du dossier ne prend pas de décision supplémentaire en attendant l’évolution de la situation."
+        }
+    ],
+    "description": "Décrit le type de décision prise"
+}
