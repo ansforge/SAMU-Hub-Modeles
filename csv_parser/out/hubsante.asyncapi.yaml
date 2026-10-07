@@ -376,6 +376,8 @@ components:
         additionalInformation:
           $ref: '#/components/schemas/additionalInformation'
       additionalProperties: false
+      x-implements:
+      - com.hubsante.model.edxl.UseCaseWithCaseId
     qualification:
       type: object
       title: Qualification
@@ -2622,6 +2624,8 @@ components:
         additionalInformation:
           $ref: '#/components/schemas/additionalInformation'
       additionalProperties: false
+      x-implements:
+      - com.hubsante.model.edxl.UseCaseWithCaseId
     patient:
       type: object
       title: Patient
@@ -3373,6 +3377,8 @@ components:
         additionalInformation:
           $ref: '#/components/schemas/additionalInformation'
       additionalProperties: false
+      x-implements:
+      - com.hubsante.model.edxl.UseCaseWithCaseId
     emsi:
       $id: classpath:/json-schema/schema#
       x-id: EMSI.schema.json#
@@ -5955,6 +5961,8 @@ components:
             $ref: '#/components/schemas/resource'
           minItems: 1
       additionalProperties: false
+      x-implements:
+      - com.hubsante.model.edxl.UseCaseWithCaseId
     team:
       type: object
       title: "Composition de l'\xE9quipage"
@@ -6113,6 +6121,8 @@ components:
           examples:
           - ANNULEE
       additionalProperties: false
+      x-implements:
+      - com.hubsante.model.edxl.UseCaseWithCaseId
     request:
       type: object
       title: Demande de ressource
@@ -6289,6 +6299,8 @@ components:
         response:
           $ref: '#/components/schemas/response'
       additionalProperties: false
+      x-implements:
+      - com.hubsante.model.edxl.UseCaseWithCaseId
     response:
       type: object
       title: "R\xE9ponse \xE0 la demande de ressources"
@@ -7026,6 +7038,8 @@ components:
           examples:
           - 'FALSE'
       additionalProperties: false
+      x-implements:
+      - com.hubsante.model.edxl.UseCaseWithCaseId
       examples:
       - caseId: fr.health.samu440.DRFR15440241550012
         resourceId: 'fr.health.samu770.resource.VLM250 ;
