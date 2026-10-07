@@ -1,5 +1,5 @@
 /**
- * Copyright © 2023-2025 Agence du Numerique en Sante (ANS)
+ * Copyright © 2023-2026 Agence du Numerique en Sante (ANS)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,11 +34,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.edxl.UseCaseWithCaseId;
 import com.hubsante.model.rcde.DistributionElement;
 import com.hubsante.model.rpis.Rpis;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * RpisWrapper
@@ -56,6 +58,19 @@ import java.util.Objects;
 public class RpisWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";
+
+  @Override
+  public String getUseCaseName() {
+    return "rpis";
+  }
+
+  @Override
+  public Optional<String> getCaseId() {
+    return rpis instanceof UseCaseWithCaseId useCaseWithCaseId
+        ? Optional.ofNullable(useCaseWithCaseId.getCaseId())
+        : Optional.empty();
+  }
+
   public static final String JSON_PROPERTY_RPIS = "rpis";
   private Rpis rpis;
 

@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.hubsante.model.exception;
+package com.hubsante.model.edxl;
 
-public class ValidationException extends Exception {
-    public ValidationException(String message) {
-        super(message);
-    }
+/**
+ * Implemented by use case models carrying a caseId field, so that it can be retrieved
+ * from any ContentMessage without knowing its concrete type.
+ */
+public interface UseCaseWithCaseId {
+    String getCaseId();
 }
