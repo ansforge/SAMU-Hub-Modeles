@@ -19,6 +19,7 @@ import com.ctc.wstx.stax.WstxInputFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.hubsante.model.TestMessagesHelper;
@@ -28,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.opentest4j.AssertionFailedError;
 
 import javax.xml.stream.XMLInputFactory;
 import java.io.File;
@@ -38,15 +40,16 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.Utils.createCustomJavaTimeModule;
+import static com.hubsante.model.Utils.getJsonMapper;
 import static com.hubsante.model.Utils.getXmlMapper;
 import static com.hubsante.model.config.Constants.FULL_SCHEMA;
 import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessage;
@@ -55,6 +58,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
+
+    private final ObjectMapper jsonMapper = getJsonMapper();
+
+    // EMSI examples hold empty arrays, which are deserialized as null after a JSON round trip
+    private static final List<String> examplesNotJsonRoundTrippable = List.of("EMSI");
 
     @Test
     @DisplayName("should consistently deserialize EDXL with several content objects")
@@ -79,22 +87,13 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
     @Test
     @DisplayName("all examples files deserializing")
     public void examplesBundlePassingTest() {
-        String rootFolder = TestMessagesHelper.class.getClassLoader().getResource("sample/examples").getFile();
-        File[] subFolders = new File(rootFolder).listFiles(File::isDirectory);
-        assert subFolders != null;
-
-        List<File> files = new ArrayList<>();
-        Arrays.stream(subFolders).forEach(folder -> {
-            if (!folder.getName().equals("work-in-progress")) {
-                files.addAll(Arrays.asList(Objects.requireNonNull(folder.listFiles())));
-            }});
+        List<File> files = getJsonExampleFiles();
 
         AtomicBoolean allPass = new AtomicBoolean(true);
 
         files.forEach(file -> {
             try {
-                String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-                String fullJson = wrapUseCaseMessage(useCaseJson);
+                String fullJson = wrapExample(file);
 
                 converter.deserializeJsonEDXL(fullJson);
                 log.info("File {} has been successfully deserialized", file.getName());
@@ -157,6 +156,101 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
     public void deserializationOfMessageWithUnknownPropertyNotAtRootLevelFails() throws IOException {
         String json = getInvalidMessage("EDXL-DE/unknown-property-deep.json");
         assertThrows(UnrecognizedPropertyException.class, () -> converter.deserializeJsonEDXL(json));
+    }
+
+    @Test
+    @DisplayName("all json example files survive a JSON and XML serialization round trip")
+    public void examplesSerializationRoundTrip() {
+        AtomicBoolean allPass = new AtomicBoolean(true);
+
+        getJsonExampleFiles().forEach(file -> {
+            try {
+                String fullJson = wrapExample(file);
+                if (!isExampleIn(file, examplesNotJsonRoundTrippable)) {
+                    endToEndDeserializationCheck(fullJson, false);
+                }
+
+                String fullXml = converter.serializeXmlEDXL(converter.deserializeJsonEDXL(fullJson));
+                endToEndDeserializationCheck(fullXml, true);
+                
+                log.info("File {} has been successfully round tripped", file.getName());
+            } catch (IOException | RuntimeException | AssertionFailedError e) {
+                allPass.set(false);
+                log.error("File {} could not be round tripped: {}", file.getName(), e.getMessage());
+            }
+        });
+
+        if (!allPass.get()) {
+            fail("Some files could not be round tripped");
+        }
+    }
+
+    @Test
+    @DisplayName("use case name matches the example root element and is not serialized")
+    public void useCaseNameMatchesRootElementAndIsNotSerialized() {
+        AtomicBoolean allPass = new AtomicBoolean(true);
+
+        getJsonExampleFiles().forEach(file -> {
+            try {
+                String useCaseName = jsonMapper.readTree(file).fieldNames().next();
+                EdxlMessage message = converter.deserializeJsonEDXL(wrapExample(file));
+
+                assertEquals(useCaseName, message.getFirstContentMessage().getUseCaseName());
+                assertFalse(converter.serializeJsonEDXL(message).contains("useCaseName"), "useCaseName found in JSON");
+                assertFalse(converter.serializeXmlEDXL(message).contains("useCaseName"), "useCaseName found in XML");
+            } catch (IOException | AssertionFailedError e) {
+                allPass.set(false);
+                log.error("File {} has an invalid use case name: {}", file.getName(), e.getMessage());
+            }
+        });
+
+        if (!allPass.get()) {
+            fail("Some files have an invalid use case name");
+        }
+    }
+
+    @Test
+    @DisplayName("case id matches the example root caseId when provided")
+    public void caseIdMatchesRootCaseId() {
+        AtomicBoolean allPass = new AtomicBoolean(true);
+
+        getJsonExampleFiles().forEach(file -> {
+            try {
+                JsonNode rootCaseId = jsonMapper.readTree(file).elements().next().get("caseId");
+                Optional<String> expectedCaseId = Optional.ofNullable(rootCaseId).map(JsonNode::asText);
+                EdxlMessage message = converter.deserializeJsonEDXL(wrapExample(file));
+
+                assertEquals(expectedCaseId, message.getFirstContentMessage().getCaseId());
+            } catch (IOException | AssertionFailedError e) {
+                allPass.set(false);
+                log.error("File {} doesn't have expected case id: {}", file.getName(), e.getMessage());
+            }
+        });
+
+        if (!allPass.get()) {
+            fail("Some files have unexpected case id");
+        }
+    }
+
+    private List<File> getJsonExampleFiles() {
+        String rootFolder = TestMessagesHelper.class.getClassLoader().getResource("sample/examples").getFile();
+        File[] subFolders = new File(rootFolder).listFiles(File::isDirectory);
+        assert subFolders != null;
+
+        return Arrays.stream(subFolders)
+                .filter(folder -> !folder.getName().equals("work-in-progress"))
+                .flatMap(folder -> Arrays.stream(Objects.requireNonNull(folder.listFiles())))
+                .filter(file -> file.getName().endsWith(".json"))
+                .collect(Collectors.toList());
+    }
+
+    private boolean isExampleIn(File file, List<String> foldersOrFiles) {
+        return foldersOrFiles.contains(file.getParentFile().getName()) || foldersOrFiles.contains(file.getName());
+    }
+
+    private String wrapExample(File file) throws IOException {
+        String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+        return wrapUseCaseMessage(useCaseJson);
     }
 
     @Test
