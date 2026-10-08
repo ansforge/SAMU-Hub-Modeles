@@ -21,7 +21,7 @@ _RC_RI_CASE_ID = "fr.health.samu800.DRFR158002421400215"
 _OTHER_RC_RI_CASE_ID = "fr.health.samu800.OTHERUNRELATEDCASE"
 _DIST_ID_A = "fr.health.samu800.abc123"
 _DIST_ID_B = "fr.health.samu800.def456"
-_RC_RI_TYPE = "ResourcesInfoCisuWrapper"
+_RC_RI_TYPES = ["ResourcesInfoCisuWrapper", "resourcesInfoCisu"]
 _RC_RI_PAYLOAD = json.load(
     Path("tests/fixtures/RC-RI/sample_rc_ri_payload.json").open()
 )
@@ -30,11 +30,11 @@ _RS_RI_CASE_ID = "fr.health.samu440.DRFR154402413800236"
 _OTHER_RS_RI_CASE_ID = "fr.health.samu440.OTHERUNRELATEDCASE"
 _RS_SR_RESOURCE_ID_1 = "fr.fire.sis076.cgo-076.resource.VLM1"
 _RS_SR_RESOURCE_ID_2 = "fr.fire.sis076.cgo-076.resource.VLM2"
-_RS_RI_TYPE = "ResourcesInfoWrapper"
+_RS_RI_TYPES = ["ResourcesInfoWrapper", "resourcesInfo"]
 _RS_RI_PAYLOAD = json.load(
     Path("tests/fixtures/RS-RI/sample_rs_ri_payload.json").open()
 )
-_RS_SR_TYPE = "ResourcesStatusWrapper"
+_RS_SR_TYPES = ["ResourcesStatusWrapper", "resourcesStatus"]
 _RS_SR_PAYLOAD = json.load(
     Path("tests/fixtures/RS-SR/sample_rs_sr_payload.json").open()
 )
@@ -190,10 +190,13 @@ class TestGetLastRcRiByCaseId:
 
     # --- exclude_distribution_id ---
 
-    def test_returns_none_when_only_matching_document_is_excluded(self, real_db):
+    @pytest.mark.parametrize("rc_ri_type", _RC_RI_TYPES)
+    def test_returns_none_when_only_matching_document_is_excluded(
+        self, real_db, rc_ri_type
+    ):
         """When the only matching document is excluded, should return None."""
         real_db["messages"].insert_one(
-            _make_doc(_RC_RI_PAYLOAD, _RC_RI_TYPE, _DIST_ID_A, datetime(2024, 8, 1))
+            _make_doc(_RC_RI_PAYLOAD, rc_ri_type, _DIST_ID_A, datetime(2024, 8, 1))
         )
 
         result = get_last_rc_ri_by_case_id(
@@ -202,15 +205,18 @@ class TestGetLastRcRiByCaseId:
 
         assert result is None
 
-    def test_returns_previous_when_most_recent_document_is_excluded(self, real_db):
+    @pytest.mark.parametrize("rc_ri_type", _RC_RI_TYPES)
+    def test_returns_previous_when_most_recent_document_is_excluded(
+        self, real_db, rc_ri_type
+    ):
         """When the most recent document is excluded, should return the previous one."""
         real_db["messages"].insert_many(
             [
                 _make_doc(
-                    _RC_RI_PAYLOAD, _RC_RI_TYPE, _DIST_ID_A, datetime(2024, 1, 1)
+                    _RC_RI_PAYLOAD, rc_ri_type, _DIST_ID_A, datetime(2024, 1, 1)
                 ),  # old
                 _make_doc(
-                    _RC_RI_PAYLOAD, _RC_RI_TYPE, _DIST_ID_B, datetime(2024, 8, 1)
+                    _RC_RI_PAYLOAD, rc_ri_type, _DIST_ID_B, datetime(2024, 8, 1)
                 ),  # new
             ]
         )
@@ -222,16 +228,13 @@ class TestGetLastRcRiByCaseId:
         assert result is not None
         assert result.payload["distributionID"] == _DIST_ID_A
 
-    def test_exclude_none_behaves_normally(self, real_db):
+    @pytest.mark.parametrize("rc_ri_type", _RC_RI_TYPES)
+    def test_exclude_none_behaves_normally(self, real_db, rc_ri_type):
         """Passing exclude_distribution_id=None must not filter anything."""
         real_db["messages"].insert_many(
             [
-                _make_doc(
-                    _RC_RI_PAYLOAD, _RC_RI_TYPE, _DIST_ID_A, datetime(2024, 8, 1)
-                ),
-                _make_doc(
-                    _RC_RI_PAYLOAD, _RC_RI_TYPE, _DIST_ID_B, datetime(2024, 3, 1)
-                ),
+                _make_doc(_RC_RI_PAYLOAD, rc_ri_type, _DIST_ID_A, datetime(2024, 8, 1)),
+                _make_doc(_RC_RI_PAYLOAD, rc_ri_type, _DIST_ID_B, datetime(2024, 3, 1)),
             ]
         )
 
@@ -242,12 +245,13 @@ class TestGetLastRcRiByCaseId:
 
 
 class TestGetLastRsRiByCaseId:
-    def test_returns_document_when_found(self, real_db):
+    @pytest.mark.parametrize("rs_ri_type", _RS_RI_TYPES)
+    def test_returns_document_when_found(self, real_db, rs_ri_type):
         """Should return a PersistedMessage built from the found document and conform to RS-RI schema."""
         arrived_at = datetime(2024, 8, 1, 14, 0, 0)
         real_db["messages"].insert_one(
             {
-                "type": _RS_RI_TYPE,
+                "type": rs_ri_type,
                 "arrivedAt": arrived_at,
                 "payload": _RS_RI_PAYLOAD,
             }
@@ -257,15 +261,16 @@ class TestGetLastRsRiByCaseId:
 
         assert result is not None
         assert isinstance(result, PersistedMessage)
-        assert result.message_type == _RS_RI_TYPE
+        assert result.message_type == rs_ri_type
         assert result.arrived_at == arrived_at
         assert result.payload == _RS_RI_PAYLOAD
 
-    def test_returns_none_when_not_found(self, real_db):
+    @pytest.mark.parametrize("rs_ri_type", _RS_RI_TYPES)
+    def test_returns_none_when_not_found(self, real_db, rs_ri_type):
         """Should return None when no RS-RI document exists for the given caseId."""
         real_db["messages"].insert_one(
             {
-                "type": _RS_RI_TYPE,
+                "type": rs_ri_type,
                 "arrivedAt": datetime(2024, 8, 1),
                 "payload": _make_rs_ri_payload(
                     _OTHER_RS_RI_CASE_ID,
@@ -277,17 +282,18 @@ class TestGetLastRsRiByCaseId:
 
         assert result is None
 
-    def test_returns_most_recent_document(self, real_db):
+    @pytest.mark.parametrize("rs_ri_type", _RS_RI_TYPES)
+    def test_returns_most_recent_document(self, real_db, rs_ri_type):
         """Should return the document with the latest arrivedAt among multiple matches."""
         real_db["messages"].insert_many(
             [
                 {
-                    "type": _RS_RI_TYPE,
+                    "type": rs_ri_type,
                     "arrivedAt": datetime(2024, 1, 1),
                     "payload": _RS_RI_PAYLOAD,
                 },
                 {
-                    "type": _RS_RI_TYPE,
+                    "type": rs_ri_type,
                     "arrivedAt": datetime(2024, 8, 1),  # le plus récent
                     "payload": _RS_RI_PAYLOAD,
                 },
@@ -300,41 +306,42 @@ class TestGetLastRsRiByCaseId:
 
 
 class TestGetLastRsSrByCaseId:
-    def test_returns_documents_when_found(self, real_db):
+    @pytest.mark.parametrize("rs_sr_type", _RS_SR_TYPES)
+    def test_returns_documents_when_found(self, real_db, rs_sr_type):
         """Should return a list of PersistedMessage built from the found documents and conform to RS-SR schema."""
         rs_sr_1 = {
-            "type": _RS_SR_TYPE,
+            "type": rs_sr_type,
             "arrivedAt": datetime(2024, 8, 1, 14),
             "payload": _make_rs_sr_payload(_RS_RI_CASE_ID, _RS_SR_RESOURCE_ID_1),
         }
         rs_sr_2_v1 = {
-            "type": _RS_SR_TYPE,
+            "type": rs_sr_type,
             "arrivedAt": datetime(2024, 8, 1, 14),
             "payload": _make_rs_sr_payload(_RS_RI_CASE_ID, _RS_SR_RESOURCE_ID_2),
         }
         rs_sr_2_v2 = {
-            "type": _RS_SR_TYPE,
+            "type": rs_sr_type,
             "arrivedAt": datetime(2024, 8, 1, 16),
             "payload": _make_rs_sr_payload(
                 _RS_RI_CASE_ID, _RS_SR_RESOURCE_ID_2, status="DECLENCHE"
             ),
         }
         rs_sr_2_v3 = {
-            "type": _RS_SR_TYPE,
+            "type": rs_sr_type,
             "arrivedAt": datetime(2024, 8, 1, 17),
             "payload": _make_rs_sr_payload(
                 _RS_RI_CASE_ID, _RS_SR_RESOURCE_ID_2, status="DEPART"
             ),
         }
         rs_sr_2_v4 = {
-            "type": _RS_SR_TYPE,
+            "type": rs_sr_type,
             "arrivedAt": datetime(2024, 8, 1, 18),
             "payload": _make_rs_sr_payload(
                 _RS_RI_CASE_ID, _RS_SR_RESOURCE_ID_2, status="ANNULE"
             ),
         }
         same_resource_other_case_rs_sr = {
-            "type": _RS_SR_TYPE,
+            "type": rs_sr_type,
             "arrivedAt": datetime(2024, 8, 1, 19),
             "payload": _make_rs_sr_payload(_OTHER_RS_RI_CASE_ID, _RS_SR_RESOURCE_ID_1),
         }
