@@ -35,10 +35,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.documentlink.DocumentLink;
+import com.hubsante.model.edxl.UseCaseWithCaseId;
 import com.hubsante.model.rcde.DistributionElement;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * DocumentLinkWrapper
@@ -56,6 +58,19 @@ import java.util.Objects;
 public class DocumentLinkWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:eda:1.9";
+
+  @Override
+  public String getUseCaseName() {
+    return "documentLink";
+  }
+
+  @Override
+  public Optional<String> getCaseId() {
+    return documentLink instanceof UseCaseWithCaseId useCaseWithCaseId
+        ? Optional.ofNullable(useCaseWithCaseId.getCaseId())
+        : Optional.empty();
+  }
+
   public static final String JSON_PROPERTY_DOCUMENT_LINK = "documentLink";
   private DocumentLink documentLink;
 

@@ -42,6 +42,8 @@ components:
             $ref: '#/components/schemas/resource'
           minItems: 1
       additionalProperties: false
+      x-implements:
+      - com.hubsante.model.edxl.UseCaseWithCaseId
     resource:
       type: object
       title: Ressource

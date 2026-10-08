@@ -18,6 +18,7 @@
     "openApiNullable": true,
     "supportUrlQuery": false,
     "xmlns": "eda:1.9",
-    "enablePostProcessFile": true
+    "enablePostProcessFile": true,
+    "useCaseName": "documentLink"
   }
 }
