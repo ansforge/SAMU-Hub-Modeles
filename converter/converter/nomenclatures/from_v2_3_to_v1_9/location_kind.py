@@ -49,6 +49,7 @@ V2_3_TO_V1_9_LOCATION_KIND_MAP: dict[str, dict[str, str] | None] = {
     "L05.03.04": {"code": "L05.03.00", "label": "Milieu aquatique en eau douce"},
     "L05.03.05": {"code": "L05.03.00", "label": "Milieu aquatique en eau douce"},
     "L05.04.07": {"code": "L05.04.00", "label": "Milieu maritime"},
+    "L05.08.00": {"code": "L05.01.03", "label": "Milieu forestier"},
     "L06.01.09": {"code": "L06.01.00", "label": "Site industriel"},
     "L06.01.10": {"code": "L06.01.00", "label": "Site industriel"},
     "L06.02.01": {
