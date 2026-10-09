@@ -1,9 +1,16 @@
 import logging
+import os
 
 from prometheus_client import Gauge
 from pymongo import monitoring
 
 logger = logging.getLogger(__name__)
+
+# In multiprocess mode, creating a Gauge opens a file in this directory immediately, and
+# this module is imported before converter.py gets a chance to create it.
+_multiproc_dir = os.getenv("PROMETHEUS_MULTIPROC_DIR")
+if _multiproc_dir:
+    os.makedirs(_multiproc_dir, exist_ok=True)
 
 # "livemin": with several gunicorn workers, report 0 as soon as one live worker is down.
 MONGODB_UP = Gauge(
