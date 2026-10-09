@@ -14,8 +14,9 @@ MONGODB_UP = Gauge(
 
 
 class MongoHeartbeatLogger(monitoring.ServerHeartbeatListener):
-    """Logs MongoDB connection loss/recovery based on PyMongo's own background server
-    monitoring, instead of polling MongoDB ourselves."""
+    """Logs MongoDB connection loss/recovery and exposes it as the converter_mongodb_up
+    gauge, based on PyMongo's own background server monitoring, instead of polling
+    MongoDB ourselves."""
 
     def __init__(self) -> None:
         self._is_up = True
@@ -24,11 +25,13 @@ class MongoHeartbeatLogger(monitoring.ServerHeartbeatListener):
         pass
 
     def succeeded(self, event: monitoring.ServerHeartbeatSucceededEvent) -> None:
+        MONGODB_UP.set(1)
         if not self._is_up:
             logger.info("[MongoDB] Connection restored", extra={"mongodb_status": "UP"})
         self._is_up = True
 
     def failed(self, event: monitoring.ServerHeartbeatFailedEvent) -> None:
+        MONGODB_UP.set(0)
         if self._is_up:
             logger.error(
                 f"[MongoDB] Connection lost: {event.reply}",
