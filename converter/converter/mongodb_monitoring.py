@@ -1,8 +1,16 @@
 import logging
 
+from prometheus_client import Gauge
 from pymongo import monitoring
 
 logger = logging.getLogger(__name__)
+
+# "livemin": with several gunicorn workers, report 0 as soon as one live worker is down.
+MONGODB_UP = Gauge(
+    "converter_mongodb_up",
+    "1 if the MongoDB connection is healthy, 0 otherwise",
+    multiprocess_mode="livemin",
+)
 
 
 class MongoHeartbeatLogger(monitoring.ServerHeartbeatListener):
