@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 
-from converter.mongodb_monitoring import MongoHeartbeatLogger
+from converter.mongodb_monitoring import MONGODB_UP, MongoHeartbeatLogger
 
 
 def test_heartbeat_logger_logs_error_on_first_failure(mocker):
@@ -43,3 +43,13 @@ def test_heartbeat_logger_does_not_log_when_already_up(mocker):
     listener.succeeded(MagicMock())
 
     logger_info.assert_not_called()
+
+
+def test_heartbeat_logger_updates_mongodb_up_gauge():
+    listener = MongoHeartbeatLogger()
+
+    listener.failed(MagicMock(reply=Exception("down")))
+    assert MONGODB_UP._value.get() == 0
+
+    listener.succeeded(MagicMock())
+    assert MONGODB_UP._value.get() == 1

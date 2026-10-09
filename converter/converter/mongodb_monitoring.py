@@ -1,13 +1,29 @@
 import logging
+import os
 
+from prometheus_client import Gauge
 from pymongo import monitoring
 
 logger = logging.getLogger(__name__)
 
+# In multiprocess mode, creating a Gauge opens a file in this directory immediately, and
+# this module is imported before converter.py gets a chance to create it.
+_multiproc_dir = os.getenv("PROMETHEUS_MULTIPROC_DIR")
+if _multiproc_dir:
+    os.makedirs(_multiproc_dir, exist_ok=True)
+
+# "livemin": with several gunicorn workers, report 0 as soon as one live worker is down.
+MONGODB_UP = Gauge(
+    "converter_mongodb_up",
+    "1 if the MongoDB connection is healthy, 0 otherwise",
+    multiprocess_mode="livemin",
+)
+
 
 class MongoHeartbeatLogger(monitoring.ServerHeartbeatListener):
-    """Logs MongoDB connection loss/recovery based on PyMongo's own background server
-    monitoring, instead of polling MongoDB ourselves."""
+    """Logs MongoDB connection loss/recovery and exposes it as the converter_mongodb_up
+    gauge, based on PyMongo's own background server monitoring, instead of polling
+    MongoDB ourselves."""
 
     def __init__(self) -> None:
         self._is_up = True
@@ -16,11 +32,13 @@ class MongoHeartbeatLogger(monitoring.ServerHeartbeatListener):
         pass
 
     def succeeded(self, event: monitoring.ServerHeartbeatSucceededEvent) -> None:
+        MONGODB_UP.set(1)
         if not self._is_up:
             logger.info("[MongoDB] Connection restored", extra={"mongodb_status": "UP"})
         self._is_up = True
 
     def failed(self, event: monitoring.ServerHeartbeatFailedEvent) -> None:
+        MONGODB_UP.set(0)
         if self._is_up:
             logger.error(
                 f"[MongoDB] Connection lost: {event.reply}",
