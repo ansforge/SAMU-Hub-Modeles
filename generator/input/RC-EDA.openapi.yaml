@@ -106,6 +106,8 @@ components:
         additionalInformation:
           $ref: '#/components/schemas/additionalInformation'
       additionalProperties: false
+      x-implements:
+      - com.hubsante.model.edxl.UseCaseWithCaseId
     qualification:
       type: object
       title: Qualification

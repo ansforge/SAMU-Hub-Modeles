@@ -18,6 +18,7 @@
     "openApiNullable": true,
     "supportUrlQuery": false,
     "enablePostProcessFile": true,
+    "useCaseName": "error",
     "customExtend": {
       "package": "com.hubsante.model.edxl",
       "className": "ContentMessage"

@@ -1,5 +1,5 @@
 /**
- * Copyright © 2023-2025 Agence du Numerique en Sante (ANS)
+ * Copyright © 2023-2026 Agence du Numerique en Sante (ANS)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,7 +48,8 @@ import java.util.Objects;
 @JsonTypeName("resourcesRequest")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ResourcesRequest {
+public class ResourcesRequest
+    implements com.hubsante.model.edxl.UseCaseWithCaseId {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0:resourcesRequest";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";

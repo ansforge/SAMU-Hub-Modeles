@@ -1,5 +1,5 @@
 /**
- * Copyright © 2023-2025 Agence du Numerique en Sante (ANS)
+ * Copyright © 2023-2026 Agence du Numerique en Sante (ANS)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,10 +35,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.edxl.ContentMessage;
+import com.hubsante.model.edxl.UseCaseWithCaseId;
 import com.hubsante.model.report.Error;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * ErrorWrapper
@@ -50,6 +52,19 @@ import java.util.Objects;
 public class ErrorWrapper extends ContentMessage {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";
+
+  @Override
+  public String getUseCaseName() {
+    return "error";
+  }
+
+  @Override
+  public Optional<String> getCaseId() {
+    return error instanceof UseCaseWithCaseId useCaseWithCaseId
+        ? Optional.ofNullable(useCaseWithCaseId.getCaseId())
+        : Optional.empty();
+  }
+
   public static final String JSON_PROPERTY_ERROR = "error";
   private Error error;
 

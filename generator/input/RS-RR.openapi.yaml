@@ -58,6 +58,8 @@ components:
         response:
           $ref: '#/components/schemas/response'
       additionalProperties: false
+      x-implements:
+      - com.hubsante.model.edxl.UseCaseWithCaseId
     response:
       type: object
       title: "R\xE9ponse \xE0 la demande de ressources"
