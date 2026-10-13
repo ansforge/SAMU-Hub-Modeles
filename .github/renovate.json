@@ -34,5 +34,8 @@
       "schedule": ["* * 21-30 * 1"],
       "groupName": "converter dependencies"
     }
-  ]
+  ],
+  "vulnerabilityAlerts": {
+    "groupName": "security updates"
+  }
 }
