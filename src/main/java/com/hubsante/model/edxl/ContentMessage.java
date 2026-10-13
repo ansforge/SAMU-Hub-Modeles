@@ -19,6 +19,7 @@
  
 package com.hubsante.model.edxl;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -66,6 +67,7 @@ import com.hubsante.model.sas.AppointmentWrapper;
 import com.hubsante.model.report.ErrorWrapper;
 import com.hubsante.model.custom.CustomMessage;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -109,6 +111,16 @@ public class ContentMessage {
     @Override
     public int hashCode() {
         return 0;
+    }
+
+    @JsonIgnore
+    public String getUseCaseName() {
+        return "unknown";
+    }
+
+    @JsonIgnore
+    public Optional<String> getCaseId() {
+        return Optional.empty();
     }
 
     public static class UseCaseHelper {

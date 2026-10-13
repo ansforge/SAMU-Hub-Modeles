@@ -19,6 +19,7 @@
     "supportUrlQuery": false,
     "xmlns": "eda:1.9",
     "enablePostProcessFile": true,
+    "useCaseName": "distributionElement",
     "customExtend": {
       "package": "com.hubsante.model.edxl",
       "className": "ContentMessage"

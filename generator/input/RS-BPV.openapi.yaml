@@ -66,6 +66,8 @@ components:
         evaluation:
           $ref: '#/components/schemas/evaluation'
       additionalProperties: false
+      x-implements:
+      - com.hubsante.model.edxl.UseCaseWithCaseId
     redactor:
       type: object
       title: "Professionnel de sant\xE9 qui r\xE9alise le bilan"

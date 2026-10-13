@@ -50,7 +50,7 @@ import java.util.Objects;
 @JsonTypeName("documentLink")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class DocumentLink {
+public class DocumentLink implements com.hubsante.model.edxl.UseCaseWithCaseId {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:eda:1.9:documentlink";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";

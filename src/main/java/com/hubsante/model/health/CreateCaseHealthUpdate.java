@@ -66,7 +66,8 @@ import java.util.Objects;
 @JsonTypeName("createCaseHealthUpdate")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class CreateCaseHealthUpdate {
+public class CreateCaseHealthUpdate
+    implements com.hubsante.model.edxl.UseCaseWithCaseId {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:eda:1.9:createCaseHealthUpdate";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";

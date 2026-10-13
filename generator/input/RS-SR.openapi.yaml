@@ -57,6 +57,8 @@ components:
         state:
           $ref: '#/components/schemas/state'
       additionalProperties: false
+      x-implements:
+      - com.hubsante.model.edxl.UseCaseWithCaseId
     state:
       type: object
       title: Etat vecteur

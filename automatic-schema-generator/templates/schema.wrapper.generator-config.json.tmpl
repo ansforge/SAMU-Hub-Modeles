@@ -18,7 +18,8 @@
     "openApiNullable": true,
     "supportUrlQuery": false,
     "xmlns": "eda:1.9",
-    "enablePostProcessFile": true{{ if .customExtendPackage}},
+    "enablePostProcessFile": true,
+    "useCaseName": "{{ .rootElement }}"{{ if .customExtendPackage }},
     "customExtend": {
       "package": "{{ .customExtendPackage }}",
       "className": "{{ .customExtendClass }}"

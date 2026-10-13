@@ -33,10 +33,14 @@ jobs:
               - 'nomenclature_parser/**'
               - 'csv_parser/json_schema2xsd/**'
               - 'src/main/resources/sample/examples/**'
+              - 'automatic-schema-generator/templates/**'
+              - 'automatic-schema-generator/automatic-generator.sh'
+              - 'generator/templates/**'
+              - 'generator/config/manual/**'
             test_case_parsing_required:
               - 'csv_parser/test_case_generator.py'
               - 'csv_parser/workflow.py'
-              - 'csv_parser/test-cases-sources/**'
+              - 'csv_parser/test-case-sources/**'
 
       - name: Install Graphviz
         if: steps.filter.outputs.parsing_required == 'true'
