@@ -1,13 +1,43 @@
 import logging
+import os
 
+from prometheus_client import Gauge
 from pymongo import monitoring
 
 logger = logging.getLogger(__name__)
 
+# Ensure the Prometheus multiprocess directory exists before creating the Gauge.
+_multiproc_dir = os.getenv("PROMETHEUS_MULTIPROC_DIR")
+if _multiproc_dir:
+    os.makedirs(_multiproc_dir, exist_ok=True)
+
+# "livemin": with several gunicorn workers, report 0 as soon as one live worker is down.
+MONGODB_UP = Gauge(
+    "converter_mongodb_up",
+    "1 if the MongoDB connection is healthy, 0 otherwise",
+    multiprocess_mode="livemin",
+)
+
+# State of the current process only (the gauge above is aggregated across workers).
+# False until the first successful heartbeat.
+_mongodb_up = False
+
+
+def is_mongodb_up() -> bool:
+    """Whether MongoDB is reachable according to the latest heartbeat, without querying it."""
+    return _mongodb_up
+
+
+def _set_mongodb_up(value: bool) -> None:
+    global _mongodb_up
+    _mongodb_up = value
+    MONGODB_UP.set(1 if value else 0)
+
 
 class MongoHeartbeatLogger(monitoring.ServerHeartbeatListener):
-    """Logs MongoDB connection loss/recovery based on PyMongo's own background server
-    monitoring, instead of polling MongoDB ourselves."""
+    """Logs MongoDB connection loss/recovery and exposes it as the converter_mongodb_up
+    gauge, based on PyMongo's own background server monitoring, instead of polling
+    MongoDB ourselves."""
 
     def __init__(self) -> None:
         self._is_up = True
@@ -16,11 +46,13 @@ class MongoHeartbeatLogger(monitoring.ServerHeartbeatListener):
         pass
 
     def succeeded(self, event: monitoring.ServerHeartbeatSucceededEvent) -> None:
+        _set_mongodb_up(True)
         if not self._is_up:
             logger.info("[MongoDB] Connection restored", extra={"mongodb_status": "UP"})
         self._is_up = True
 
     def failed(self, event: monitoring.ServerHeartbeatFailedEvent) -> None:
+        _set_mongodb_up(False)
         if self._is_up:
             logger.error(
                 f"[MongoDB] Connection lost: {event.reply}",

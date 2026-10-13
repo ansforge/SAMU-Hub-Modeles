@@ -3,7 +3,6 @@ import logging
 import os
 from prometheus_flask_exporter.multiprocess import GunicornInternalPrometheusMetrics
 from prometheus_flask_exporter import PrometheusMetrics
-from pymongo import timeout
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 from typing import Any
 
@@ -15,8 +14,9 @@ from converter.utils import (
     extract_message_content,
 )
 from converter.logging_config import configure_logging, LoggingKeys
-from converter.database import init_db, get_db
-from converter.tracing import configure_tracing, tag_current_span, untraced
+from converter.database import init_db
+from converter.mongodb_monitoring import is_mongodb_up
+from converter.tracing import configure_tracing, tag_current_span
 from converter.constants import ConversionType
 
 configure_logging()
@@ -132,12 +132,9 @@ def convert():
 
 @app.route("/health", methods=["GET"])
 def health_check():
-    try:
-        with untraced(), timeout(5):
-            get_db().command("ping")
-            db_status = "UP"
-    except Exception:
-        db_status = "DOWN"
+    # Based on pymongo's background heartbeats rather than a ping: answers instantly even
+    # when MongoDB is unreachable, so probes never block a worker on the DB.
+    db_status = "UP" if is_mongodb_up() else "DOWN"
 
     status = "UP" if db_status == "UP" else "DEGRADED"
     return jsonify(
