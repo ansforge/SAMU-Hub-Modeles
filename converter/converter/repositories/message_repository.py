@@ -13,7 +13,7 @@ _COLLECTION = "messages"
 _DISTRIBUTION_ID_PATH = ".".join(["payload", "distributionID"])
 
 _EDXL_BASE_PATH = "payload.content.jsonContent.embeddedJsonContent.message"
-_RC_RI_TYPE = "ResourcesInfoCisuWrapper"
+_RC_RI_TYPES = ["ResourcesInfoCisuWrapper", "resourcesInfoCisu"]
 _RC_RI_CASE_ID_PATH = ".".join(
     [
         _EDXL_BASE_PATH,
@@ -22,7 +22,7 @@ _RC_RI_CASE_ID_PATH = ".".join(
     ]
 )
 
-_RS_RI_TYPE = "ResourcesInfoWrapper"
+_RS_RI_TYPES = ["ResourcesInfoWrapper", "resourcesInfo"]
 _RS_RI_CASE_ID_PATH = ".".join(
     [
         _EDXL_BASE_PATH,
@@ -31,7 +31,7 @@ _RS_RI_CASE_ID_PATH = ".".join(
     ]
 )
 
-_RS_SR_TYPE = "ResourcesStatusWrapper"
+_RS_SR_TYPES = ["ResourcesStatusWrapper", "resourcesStatus"]
 _RS_SR_CASE_ID_PATH = ".".join(
     [
         _EDXL_BASE_PATH,
@@ -50,7 +50,7 @@ _RS_SR_RESOURCE_ID_PATH = ".".join(
 
 def _get_last_by_case_id(
     case_id: str,
-    message_type: str,
+    message_types: list[str],
     case_id_path: str,
     exclude_distribution_id: str | None = None,
 ) -> PersistedMessage | None:
@@ -59,10 +59,10 @@ def _get_last_by_case_id(
         logger.warning("Invalid case_id provided: %r", case_id)
         raise ValueError(f"Invalid case_id: {case_id!r}")
 
-    logger.info("Querying last %s message for caseId=%s", message_type, case_id)
+    logger.info("Querying last %s message for caseId=%s", message_types, case_id)
 
     collection = get_db()[_COLLECTION]
-    query: dict = {"type": message_type, case_id_path: case_id}
+    query: dict = {"type": {"$in": message_types}, case_id_path: case_id}
 
     if exclude_distribution_id:
         query[_DISTRIBUTION_ID_PATH] = {"$ne": exclude_distribution_id}
@@ -71,17 +71,17 @@ def _get_last_by_case_id(
         document = collection.find_one(query, sort=[("arrivedAt", DESCENDING)])
     except Exception:
         logger.exception(
-            "Error querying %s message for caseId=%s", message_type, case_id
+            "Error querying %s message for caseId=%s", message_types, case_id
         )
         raise
 
     if document is None:
-        logger.info("No %s message found for caseId=%s", message_type, case_id)
+        logger.info("No %s message found for caseId=%s", message_types, case_id)
         return None
 
     logger.info(
         "Found %s message for caseId=%s (arrivedAt=%s)",
-        message_type,
+        message_types,
         case_id,
         document.get("arrivedAt"),
     )
@@ -90,7 +90,7 @@ def _get_last_by_case_id(
     except (KeyError, TypeError) as exc:
         logger.error(
             "Corrupted %s document for caseId=%s (id=%s): %s",
-            message_type,
+            message_types,
             case_id,
             document.get("_id"),
             exc,
@@ -103,7 +103,7 @@ def get_last_rc_ri_by_case_id(
 ) -> PersistedMessage | None:
     """Return the most recently persisted RC-RI document for *case_id*, or ``None``."""
     return _get_last_by_case_id(
-        case_id, _RC_RI_TYPE, _RC_RI_CASE_ID_PATH, exclude_distribution_id
+        case_id, _RC_RI_TYPES, _RC_RI_CASE_ID_PATH, exclude_distribution_id
     )
 
 
@@ -127,7 +127,7 @@ def get_rs_messages_by_case_id(
 
 def get_last_rs_ri_by_case_id(case_id: str) -> PersistedMessage | None:
     """Return the most recently persisted RS-RI document for *case_id*, or ``None``."""
-    return _get_last_by_case_id(case_id, _RS_RI_TYPE, _RS_RI_CASE_ID_PATH)
+    return _get_last_by_case_id(case_id, _RS_RI_TYPES, _RS_RI_CASE_ID_PATH)
 
 
 def get_last_rs_sr_per_resource_by_case_id(
@@ -143,7 +143,7 @@ def get_last_rs_sr_per_resource_by_case_id(
     pipeline: Sequence[Mapping[str, Any]] = [
         {
             "$match": {
-                "type": _RS_SR_TYPE,
+                "type": {"$in": _RS_SR_TYPES},
                 _RS_SR_CASE_ID_PATH: case_id,
             }
         },
