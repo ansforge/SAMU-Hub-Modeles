@@ -34,7 +34,7 @@ jobs:
           python-version: "3.14"
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v10.1.0
+        uses: astral-sh/setup-uv@v10.2.0
 
       - name: Install dependencies
         run: |
@@ -65,7 +65,7 @@ jobs:
 
 
       - name: Pytest coverage comment
-        uses: MishaKav/pytest-coverage-comment@v1.12.2
+        uses: MishaKav/pytest-coverage-comment@v1.12.3
         with:
           pytest-xml-coverage-path: ./converter/coverage.xml
           title: "Converter - python code coverage"
