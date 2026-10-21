@@ -37,6 +37,7 @@ jobs:
               - 'automatic-schema-generator/automatic-generator.sh'
               - 'generator/templates/**'
               - 'generator/config/manual/**'
+              - 'specs-index/**'
             test_case_parsing_required:
               - 'csv_parser/test_case_generator.py'
               - 'csv_parser/workflow.py'
@@ -131,6 +132,16 @@ jobs:
           rsync -a --remove-source-files output/edxl ../src/main/java/com/hubsante/model
           rsync -a --remove-source-files output/json-schema ../src/main/resources
           rsync -a --remove-source-files output/xsd ../src/main/resources
+
+      - name: Install specs-index python requirements
+        working-directory: ./specs-index
+        if: steps.filter.outputs.parsing_required == 'true'
+        run: pip install -r ./requirements.txt
+
+      - name: Run the specs index generator
+        working-directory: ./specs-index
+        if: steps.filter.outputs.parsing_required == 'true'
+        run: python specs_index_generator.py
 
       - name: Install JDK
         uses: actions/setup-java@v6
