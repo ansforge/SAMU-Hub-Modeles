@@ -1,0 +1,4980 @@
+{
+  "position": [
+    {
+      "schema": "GEO-POS",
+      "path": "position",
+      "schemaLabel": "geoPositionsUpdate",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RC-RI",
+      "path": "resource.position",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Position du vecteur"
+    }
+  ],
+  "resourceId": [
+    {
+      "schema": "GEO-POS",
+      "path": "position.resourceId",
+      "schemaLabel": "geoPositionsUpdate",
+      "schemaTitle": "Identifiant de la ressource partagé"
+    },
+    {
+      "schema": "GEO-REQ",
+      "path": "resourceId",
+      "schemaLabel": "geoResourcesRequest",
+      "schemaTitle": null
+    },
+    {
+      "schema": "GEO-RES",
+      "path": "resource.resourceId",
+      "schemaLabel": "geoResourcesDetails",
+      "schemaTitle": "Identifiant de la ressource partagé"
+    },
+    {
+      "schema": "RC-RI",
+      "path": "resource.resourceId",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "ID Ressource partagé"
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.resourceId",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "ID Ressource partagé"
+    },
+    {
+      "schema": "RS-SR",
+      "path": "resourceId",
+      "schemaLabel": "resourcesStatus",
+      "schemaTitle": "ID Ressource partagé"
+    }
+  ],
+  "datetime": [
+    {
+      "schema": "GEO-POS",
+      "path": "position.datetime",
+      "schemaLabel": "geoPositionsUpdate",
+      "schemaTitle": "Date et heure de réception des coordonnées"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "location.geometry.datetime",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Heure du dernier relevé"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.geometry.datetime",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Heure du dernier relevé"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.geometry.datetime",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Heure du dernier relevé"
+    },
+    {
+      "schema": "RC-RI",
+      "path": "resource.datetime",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Date/heure de déclenchement"
+    },
+    {
+      "schema": "RC-RI",
+      "path": "resource.state.datetime",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Date/heure de changement de statut"
+    },
+    {
+      "schema": "RC-RI",
+      "path": "resource.position.datetime",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Date/heure de la position"
+    },
+    {
+      "schema": "RS-DR",
+      "path": "request.datetime",
+      "schemaLabel": "resourcesRequest",
+      "schemaTitle": "Date Heure de création de la demande"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.geometry.datetime",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Heure du dernier relevé"
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.datetime",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "Date/heure de déclenchement"
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.state.datetime",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "Date/heure de changement de statut"
+    },
+    {
+      "schema": "RS-RR",
+      "path": "response.datetime",
+      "schemaLabel": "resourcesResponse",
+      "schemaTitle": "Date Heure de réponse"
+    },
+    {
+      "schema": "RS-SR",
+      "path": "state.datetime",
+      "schemaLabel": "resourcesStatus",
+      "schemaTitle": "Date/heure de changement de statut"
+    }
+  ],
+  "coord": [
+    {
+      "schema": "GEO-POS",
+      "path": "position.coord",
+      "schemaLabel": "geoPositionsUpdate",
+      "schemaTitle": "Coordonnées"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "location.geometry.point.coord",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Coordonnées"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.geometry.point.coord",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Coordonnées"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.geometry.point.coord",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Coordonnées"
+    },
+    {
+      "schema": "RC-RI",
+      "path": "resource.position.coord",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Coordonnées de la position"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.geometry.point.coord",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Coordonnées"
+    }
+  ],
+  "lat": [
+    {
+      "schema": "GEO-POS",
+      "path": "position.coord.lat",
+      "schemaLabel": "geoPositionsUpdate",
+      "schemaTitle": "Latitude "
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "location.geometry.point.coord.lat",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Latitude"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.geometry.point.coord.lat",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Latitude"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.geometry.point.coord.lat",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Latitude"
+    },
+    {
+      "schema": "RC-RI",
+      "path": "resource.position.coord.lat",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Latitude"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.geometry.point.coord.lat",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Latitude"
+    }
+  ],
+  "lon": [
+    {
+      "schema": "GEO-POS",
+      "path": "position.coord.lon",
+      "schemaLabel": "geoPositionsUpdate",
+      "schemaTitle": "Longitude"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "location.geometry.point.coord.lon",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Longitude"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.geometry.point.coord.lon",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Longitude"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.geometry.point.coord.lon",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Longitude"
+    },
+    {
+      "schema": "RC-RI",
+      "path": "resource.position.coord.lon",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Longitude"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.geometry.point.coord.lon",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Longitude"
+    }
+  ],
+  "height": [
+    {
+      "schema": "GEO-POS",
+      "path": "position.coord.height",
+      "schemaLabel": "geoPositionsUpdate",
+      "schemaTitle": "Altitude"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "location.geometry.point.coord.height",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Altitude "
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.geometry.point.coord.height",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Altitude "
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.geometry.point.coord.height",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Altitude "
+    },
+    {
+      "schema": "RC-RI",
+      "path": "resource.position.coord.height",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Altitude"
+    },
+    {
+      "schema": "RS-BPV",
+      "path": "patient.height",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Taille"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.detail.height",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Taille"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.geometry.point.coord.height",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Altitude "
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.detail.height",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Taille"
+    }
+  ],
+  "speed": [
+    {
+      "schema": "GEO-POS",
+      "path": "position.speed",
+      "schemaLabel": "geoPositionsUpdate",
+      "schemaTitle": "Vitesse de la ressource"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "location.geometry.point.coord.speed",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Vitesse"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.geometry.point.coord.speed",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Vitesse"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.geometry.point.coord.speed",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Vitesse"
+    },
+    {
+      "schema": "RC-RI",
+      "path": "resource.position.speed",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Vitesse"
+    }
+  ],
+  "cap": [
+    {
+      "schema": "GEO-POS",
+      "path": "position.cap",
+      "schemaLabel": "geoPositionsUpdate",
+      "schemaTitle": "Direction de la ressource"
+    }
+  ],
+  "move": [
+    {
+      "schema": "GEO-POS",
+      "path": "position.move",
+      "schemaLabel": "geoPositionsUpdate",
+      "schemaTitle": "Mouvement de la ressource"
+    }
+  ],
+  "engineOn": [
+    {
+      "schema": "GEO-POS",
+      "path": "position.engineOn",
+      "schemaLabel": "geoPositionsUpdate",
+      "schemaTitle": "Etat du moteur de la ressource"
+    }
+  ],
+  "groundStatus": [
+    {
+      "schema": "GEO-POS",
+      "path": "position.groundStatus",
+      "schemaLabel": "geoPositionsUpdate",
+      "schemaTitle": "Etat de l'hélicoptère"
+    }
+  ],
+  "status": [
+    {
+      "schema": "GEO-POS",
+      "path": "position.status",
+      "schemaLabel": "geoPositionsUpdate",
+      "schemaTitle": "Statut de la ressource"
+    },
+    {
+      "schema": "RC-RI",
+      "path": "resource.state.status",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Statut du vecteur"
+    },
+    {
+      "schema": "RS-DR",
+      "path": "status",
+      "schemaLabel": "resourcesRequest",
+      "schemaTitle": "Etat annulation"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "qualification.details.status",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Etat du dossier"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "qualification.details.status",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Etat du dossier"
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.state.status",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "Statut du vecteur"
+    },
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "status",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Statut du rendez-vous"
+    },
+    {
+      "schema": "RS-SR",
+      "path": "state.status",
+      "schemaLabel": "resourcesStatus",
+      "schemaTitle": "Statut du vecteur"
+    }
+  ],
+  "engagedStatus": [
+    {
+      "schema": "GEO-POS",
+      "path": "position.engagedStatus",
+      "schemaLabel": "geoPositionsUpdate",
+      "schemaTitle": "Statut de la ressource engagée"
+    }
+  ],
+  "resource": [
+    {
+      "schema": "GEO-RES",
+      "path": "resource",
+      "schemaLabel": "geoResourcesDetails",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RC-RI",
+      "path": "resource",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-ER",
+      "path": "resource",
+      "schemaLabel": "resourcesEngagement",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": null
+    }
+  ],
+  "orgId": [
+    {
+      "schema": "GEO-RES",
+      "path": "resource.orgId",
+      "schemaLabel": "geoResourcesDetails",
+      "schemaTitle": "Identifiant de l'organisation propriétaire"
+    },
+    {
+      "schema": "RC-RI",
+      "path": "resource.orgId",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "ID Organisation propriétaire"
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.orgId",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "ID Organisation propriétaire"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "context.orgId",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Identifiant de l'organisation du SAMU qui engage le SMUR"
+    }
+  ],
+  "name": [
+    {
+      "schema": "GEO-RES",
+      "path": "resource.name",
+      "schemaLabel": "geoResourcesDetails",
+      "schemaTitle": "Nom de la ressource"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "location.name",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nom du lieu"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "location.detailedAddress.wayName.name",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nom"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "location.city.name",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nom de la commune"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.name",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nom du lieu"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.detailedAddress.wayName.name",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nom"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.city.name",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nom de la commune"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.name",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nom du lieu"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.detailedAddress.wayName.name",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nom"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.city.name",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nom de la commune"
+    },
+    {
+      "schema": "RC-RI",
+      "path": "resource.name",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Nom du vecteur"
+    },
+    {
+      "schema": "RC-RI",
+      "path": "resource.team.name",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Nom"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.name",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Nom du lieu"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.detailedAddress.highway.name",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Nom"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.detailedAddress.wayName.name",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Nom"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.city.name",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Nom de la commune"
+    },
+    {
+      "schema": "RS-ER",
+      "path": "resource.name",
+      "schemaLabel": "resourcesEngagement",
+      "schemaTitle": "Nom du vecteur"
+    },
+    {
+      "schema": "RS-ER",
+      "path": "resource.team.name",
+      "schemaLabel": "resourcesEngagement",
+      "schemaTitle": "Nom"
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.name",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "Nom du vecteur"
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.team.name",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "Nom"
+    },
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "organization.name",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Nom de la structure"
+    }
+  ],
+  "resourceType": [
+    {
+      "schema": "GEO-RES",
+      "path": "resource.resourceType",
+      "schemaLabel": "geoResourcesDetails",
+      "schemaTitle": "Type de ressource"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "decision.resourceType",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Type de ressource"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "decision.resourceType",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Type de ressource"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "orientation.decision.resourceType",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Moyen de transport"
+    }
+  ],
+  "nature": [
+    {
+      "schema": "GEO-RES",
+      "path": "resource.nature",
+      "schemaLabel": "geoResourcesDetails",
+      "schemaTitle": "Nature de la ressource"
+    }
+  ],
+  "mobility": [
+    {
+      "schema": "GEO-RES",
+      "path": "resource.mobility",
+      "schemaLabel": "geoResourcesDetails",
+      "schemaTitle": "Mobilité de la ressource"
+    }
+  ],
+  "capacity": [
+    {
+      "schema": "GEO-RES",
+      "path": "resource.capacity",
+      "schemaLabel": "geoResourcesDetails",
+      "schemaTitle": "Capacités de la ressource"
+    }
+  ],
+  "contacts": [
+    {
+      "schema": "GEO-RES",
+      "path": "resource.contacts",
+      "schemaLabel": "geoResourcesDetails",
+      "schemaTitle": null
+    }
+  ],
+  "type": [
+    {
+      "schema": "GEO-RES",
+      "path": "resource.contacts.type",
+      "schemaLabel": "geoResourcesDetails",
+      "schemaTitle": "Type de contact"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "location.detailedAddress.wayName.type",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "location.externalInfo.type",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type "
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.caller.callerContact.type",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type de contact"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.caller.callbackContact.type",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type de contact"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.caller.type",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type de requérant"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.detailedAddress.wayName.type",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.externalInfo.type",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type "
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.callTaker.calltakerContact.type",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type de contact"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.caller.callerContact.type",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type de contact"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.caller.callbackContact.type",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type de contact"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.caller.type",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type de requérant"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.detailedAddress.wayName.type",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.externalInfo.type",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type "
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.callTaker.calltakerContact.type",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type de contact"
+    },
+    {
+      "schema": "RC-RI",
+      "path": "resource.contact.type",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Type de contact "
+    },
+    {
+      "schema": "RS-BPV",
+      "path": "evaluation.parameter.type",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Type de constante"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "location.externalInfo.type",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Type "
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.administrativeFile.generalPractitioner.contact.type",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Type de contact"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.detailedAddress.wayName.type",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Type"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.externalInfo.type",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Type "
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.caller.callerContact.type",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Type de contact"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.caller.callbackContact.type",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Type de contact"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.caller.type",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Type de requérant"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.administrativeFile.generalPractitioner.contact.type",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Type de contact"
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.contact.type",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "Type de contact "
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.location.type",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Type de lieu d’intervention"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "orientation.type",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Type de devenir du patient"
+    }
+  ],
+  "details": [
+    {
+      "schema": "GEO-RES",
+      "path": "resource.contacts.details",
+      "schemaLabel": "geoResourcesDetails",
+      "schemaTitle": "Détails de contact"
+    },
+    {
+      "schema": "RC-RI",
+      "path": "resource.contact.details",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "URI du contact"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "qualification.details",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Détails du dossier "
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "qualification.details",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Détails du dossier "
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.contact.details",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "URI du contact"
+    }
+  ],
+  "caseId": [
+    {
+      "schema": "RC-EDA",
+      "path": "caseId",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Identifiant affaire/dossier"
+    },
+    {
+      "schema": "RC-RI",
+      "path": "caseId",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Identifiant affaire/dossier"
+    },
+    {
+      "schema": "RS-BPV",
+      "path": "caseId",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Identifiant partagé du dossier "
+    },
+    {
+      "schema": "RS-DR",
+      "path": "caseId",
+      "schemaLabel": "resourcesRequest",
+      "schemaTitle": "Identifiant affaire/dossier"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "caseId",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Identifiant affaire/dossier"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "caseId",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Identifiant affaire/dossier"
+    },
+    {
+      "schema": "RS-ER",
+      "path": "caseId",
+      "schemaLabel": "resourcesEngagement",
+      "schemaTitle": "Identifiant affaire/dossier"
+    },
+    {
+      "schema": "RS-RI",
+      "path": "caseId",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "Identifiant affaire/dossier"
+    },
+    {
+      "schema": "RS-RR",
+      "path": "caseId",
+      "schemaLabel": "resourcesResponse",
+      "schemaTitle": "Identifiant affaire/dossier"
+    },
+    {
+      "schema": "RS-SR",
+      "path": "caseId",
+      "schemaLabel": "resourcesStatus",
+      "schemaTitle": "Identifiant affaire/dossier"
+    },
+    {
+      "schema": "RS-URL",
+      "path": "caseId",
+      "schemaLabel": "documentLink",
+      "schemaTitle": "Identifiant partagé du dossier de régulation médicale (DRM)"
+    }
+  ],
+  "senderCaseId": [
+    {
+      "schema": "RC-EDA",
+      "path": "senderCaseId",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Identifiant local de l'affaire/dossier"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "senderCaseId",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Identifiant local de l'affaire/dossier"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "senderCaseId",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Identifiant local de l'affaire/dossier"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "context.senderCaseId",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Identifiant local du dossier de régulation médicale (DRM)"
+    }
+  ],
+  "creation": [
+    {
+      "schema": "RC-EDA",
+      "path": "creation",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Date Heure de création de l'affaire/dossier"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.notes.creation",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Date et heure de l'information complémentaire"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.notes.creation",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Date et heure de l'information complémentaire"
+    },
+    {
+      "schema": "RS-BPV",
+      "path": "creation",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Date et heure de l'envoi du bilan"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "initialAlert.notes.creation",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Date et heure de l'information complémentaire"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "medicalNote.creation",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Date Heure de l'observation"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "decision.creation",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Date Heure de la décision"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "creation",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Date Heure de création de l'affaire/dossier"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.notes.creation",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Date et heure de l'information complémentaire"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "medicalNote.creation",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Date Heure de l'observation"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "decision.creation",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Date Heure de la décision"
+    }
+  ],
+  "referenceVersion": [
+    {
+      "schema": "RC-EDA",
+      "path": "referenceVersion",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Version des nomenclatures du référentiel CISU"
+    }
+  ],
+  "qualification": [
+    {
+      "schema": "RC-EDA",
+      "path": "qualification",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Qualification"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.qualification",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Qualification"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.qualification",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Qualification"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "qualification",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Qualification"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "qualification",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Qualification"
+    }
+  ],
+  "riskThreat": [
+    {
+      "schema": "RC-EDA",
+      "path": "qualification.riskThreat",
+      "schemaLabel": "createCase",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.qualification.riskThreat",
+      "schemaLabel": "createCase",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.qualification.riskThreat",
+      "schemaLabel": "createCase",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "qualification.riskThreat",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "qualification.riskThreat",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": null
+    }
+  ],
+  "code": [
+    {
+      "schema": "RC-EDA",
+      "path": "qualification.riskThreat.code",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "qualification.whatsHappen.code",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "qualification.locationKind.code",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "qualification.healthMotive.code",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.qualification.riskThreat.code",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.qualification.whatsHappen.code",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.qualification.locationKind.code",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.qualification.healthMotive.code",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.qualification.riskThreat.code",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.qualification.whatsHappen.code",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.qualification.locationKind.code",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.qualification.healthMotive.code",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "qualification.riskThreat.code",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.hypothesis.mainDiagnosis.code",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.hypothesis.otherDiagnosis.code",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "qualification.riskThreat.code",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "qualification.whatsHappen.code",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "qualification.locationKind.code",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "qualification.healthMotive.code",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.hypothesis.mainDiagnosis.code",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.hypothesis.otherDiagnosis.code",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "regulation.whatsHappen.code",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "regulation.healthMotive.code",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Code"
+    },
+    {
+      "schema": "RS-URL",
+      "path": "code",
+      "schemaLabel": "documentLink",
+      "schemaTitle": "Code d'accès au bilan"
+    }
+  ],
+  "label": [
+    {
+      "schema": "RC-EDA",
+      "path": "qualification.riskThreat.label",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "qualification.whatsHappen.label",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "qualification.locationKind.label",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "qualification.healthMotive.label",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.qualification.riskThreat.label",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.qualification.whatsHappen.label",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.qualification.locationKind.label",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.qualification.healthMotive.label",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.qualification.riskThreat.label",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.qualification.whatsHappen.label",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.qualification.locationKind.label",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.qualification.healthMotive.label",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "additionalInformation.customMap.label",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RS-BPV",
+      "path": "redactor.label",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Label"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "qualification.riskThreat.label",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.hypothesis.mainDiagnosis.label",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.hypothesis.otherDiagnosis.label",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "medicalNote.operator.label",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Label"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "decision.operator.label",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Label"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "additionalInformation.customMap.label",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "qualification.riskThreat.label",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "qualification.whatsHappen.label",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "qualification.locationKind.label",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "qualification.healthMotive.label",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.hypothesis.mainDiagnosis.label",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.hypothesis.otherDiagnosis.label",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "medicalNote.operator.label",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Label"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "decision.operator.label",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Label"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "additionalInformation.customMap.label",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Libellé"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "regulation.whatsHappen.label",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Libellé court"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "regulation.healthMotive.label",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Libellé court"
+    }
+  ],
+  "whatsHappen": [
+    {
+      "schema": "RC-EDA",
+      "path": "qualification.whatsHappen",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nature de fait"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.qualification.whatsHappen",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nature de fait"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.qualification.whatsHappen",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nature de fait"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "qualification.whatsHappen",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Nature de fait"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "regulation.whatsHappen",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Circonstances ayant données lieu à l’appel"
+    }
+  ],
+  "locationKind": [
+    {
+      "schema": "RC-EDA",
+      "path": "qualification.locationKind",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type de lieu"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.qualification.locationKind",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type de lieu"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.qualification.locationKind",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type de lieu"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "qualification.locationKind",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Type de lieu"
+    }
+  ],
+  "healthMotive": [
+    {
+      "schema": "RC-EDA",
+      "path": "qualification.healthMotive",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Motif de recours médico-secouriste"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.qualification.healthMotive",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Motif de recours médico-secouriste"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.qualification.healthMotive",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Motif de recours médico-secouriste"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "qualification.healthMotive",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Motif de recours médico-secouriste"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "regulation.healthMotive",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Motif de recours "
+    }
+  ],
+  "victims": [
+    {
+      "schema": "RC-EDA",
+      "path": "qualification.victims",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Patients-Victimes"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.qualification.victims",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Patients-Victimes"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.qualification.victims",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Patients-Victimes"
+    }
+  ],
+  "count": [
+    {
+      "schema": "RC-EDA",
+      "path": "qualification.victims.count",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nombre de patients-victimes"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.qualification.victims.count",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nombre de patients-victimes"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.qualification.victims.count",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nombre de patients-victimes"
+    }
+  ],
+  "mainVictim": [
+    {
+      "schema": "RC-EDA",
+      "path": "qualification.victims.mainVictim",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type du patient-victime principal"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.qualification.victims.mainVictim",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type du patient-victime principal"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.qualification.victims.mainVictim",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type du patient-victime principal"
+    }
+  ],
+  "freetext": [
+    {
+      "schema": "RC-EDA",
+      "path": "qualification.victims.freetext",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Informations complémentaires sur les patients-victimes"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "location.externalInfo.freetext",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nom de la source"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "location.freetext",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Informations complémentaires sur la localisation"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.notes.freetext",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Commentaire/Observations"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.caller.freetext",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Informations complémentaires sur le requérant"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.externalInfo.freetext",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nom de la source"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.freetext",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Informations complémentaires sur la localisation"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.qualification.victims.freetext",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Informations complémentaires sur les patients-victimes"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.notes.freetext",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Commentaire/Observations"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.caller.freetext",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Informations complémentaires sur le requérant"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.externalInfo.freetext",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nom de la source"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.freetext",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Informations complémentaires sur la localisation"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.qualification.victims.freetext",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Informations complémentaires sur les patients-victimes"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "freetext",
+      "schemaLabel": "createCase",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "additionalInformation.customMap.freetext",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Détails"
+    },
+    {
+      "schema": "RC-RI",
+      "path": "resource.freetext",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-BPV",
+      "path": "evaluation.freetext",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-DR",
+      "path": "request.freetext",
+      "schemaLabel": "resourcesRequest",
+      "schemaTitle": "Précisions sur la demande"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "location.externalInfo.freetext",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Nom de la source"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "initialAlert.notes.freetext",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Commentaire/Observations"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "medicalNote.freetext",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Observations et commentaires"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "decision.destination.freetext",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Informations complémentaires sur la localisation"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "freetext",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Informations supplémentaires modifiées"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "additionalInformation.customMap.freetext",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Détails"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.externalInfo.freetext",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Nom de la source"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.freetext",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Informations complémentaires sur la localisation"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.notes.freetext",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Commentaire/Observations"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.caller.freetext",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Informations complémentaires sur le requérant"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "medicalNote.freetext",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Observations et commentaires"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "decision.destination.freetext",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Informations complémentaires sur la localisation"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "additionalInformation.customMap.freetext",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Détails"
+    },
+    {
+      "schema": "RS-ER",
+      "path": "resource.freetext",
+      "schemaLabel": "resourcesEngagement",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.freetext",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-RR",
+      "path": "response.freetext",
+      "schemaLabel": "resourcesResponse",
+      "schemaTitle": "Précisions sur la réponse"
+    }
+  ],
+  "location": [
+    {
+      "schema": "RC-EDA",
+      "path": "location",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Localisation"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Localisation"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Localisation"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "location",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Localisation"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Localisation"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.location",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Lieu d'intervention"
+    }
+  ],
+  "locID": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.locID",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Identifiant technique de localisation"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.locID",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Identifiant technique de localisation"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.locID",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Identifiant technique de localisation"
+    }
+  ],
+  "locLabel": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.locLabel",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Résumé de la localisation"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.locLabel",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Résumé de la localisation"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.locLabel",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Résumé de la localisation"
+    }
+  ],
+  "externalLocationId": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.externalLocationId",
+      "schemaLabel": "createCase",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.externalLocationId",
+      "schemaLabel": "createCase",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.externalLocationId",
+      "schemaLabel": "createCase",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "decision.destination.externalLocationId",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.externalLocationId",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "decision.destination.externalLocationId",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": null
+    }
+  ],
+  "source": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.externalLocationId.source",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Source  /  type d'identifiant"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.externalLocationId.source",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Source  /  type d'identifiant"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.externalLocationId.source",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Source  /  type d'identifiant"
+    },
+    {
+      "schema": "RS-BPV",
+      "path": "patient.externalId.source",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Source  /  type d'identifiant"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.administrativeFile.externalId.source",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Source  /  type d'identifiant"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "decision.destination.externalLocationId.source",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Source  /  type d'identifiant"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.externalLocationId.source",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Source  /  type d'identifiant"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.administrativeFile.externalId.source",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Source  /  type d'identifiant"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "decision.destination.externalLocationId.source",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Source  /  type d'identifiant"
+    }
+  ],
+  "value": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.externalLocationId.value",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Identifiant"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.externalLocationId.value",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Identifiant"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.externalLocationId.value",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Identifiant"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "additionalInformation.customMap.value",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Valeur"
+    },
+    {
+      "schema": "RS-BPV",
+      "path": "patient.externalId.value",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Identifiant"
+    },
+    {
+      "schema": "RS-BPV",
+      "path": "evaluation.parameter.value",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Valeur de la dernière constante prise"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.administrativeFile.externalId.value",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Identifiant"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "decision.destination.externalLocationId.value",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Identifiant"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "additionalInformation.customMap.value",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Valeur"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.externalLocationId.value",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Identifiant"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.administrativeFile.externalId.value",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Identifiant"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "decision.destination.externalLocationId.value",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Identifiant"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "additionalInformation.customMap.value",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Valeur"
+    }
+  ],
+  "detailedAddress": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.detailedAddress",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Détails de l'adresse"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.detailedAddress",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Détails de l'adresse"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.detailedAddress",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Détails de l'adresse"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.detailedAddress",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Détails de l'adresse"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.location.detailedAddress",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Adresse de l'intervention"
+    }
+  ],
+  "complete": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.detailedAddress.complete",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Numéro, type et nom de voie"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "location.detailedAddress.wayName.complete",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type et nom"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.caller.detailedName.complete",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Prénom et nom"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.detailedAddress.complete",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Numéro, type et nom de voie"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.detailedAddress.wayName.complete",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type et nom"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.caller.detailedName.complete",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Prénom et nom"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.detailedAddress.complete",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Numéro, type et nom de voie"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.detailedAddress.wayName.complete",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type et nom"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.administrativeFile.generalPractitioner.detailedName.complete",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Prénom et nom"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.identity.nonStrictFeatures.complete",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Prénom et nom"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.detailedAddress.complete",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Numéro, type et nom de voie"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.detailedAddress.wayName.complete",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Type et nom"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.caller.detailedName.complete",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Prénom et nom"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.administrativeFile.generalPractitioner.detailedName.complete",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Prénom et nom"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.identity.nonStrictFeatures.complete",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Prénom et nom"
+    }
+  ],
+  "number": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.detailedAddress.number",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Numéro dans la voie"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.detailedAddress.number",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Numéro dans la voie"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.detailedAddress.number",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Numéro dans la voie"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.detailedAddress.number",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Numéro dans la voie"
+    }
+  ],
+  "wayName": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.detailedAddress.wayName",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type et nom de voie"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.detailedAddress.wayName",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type et nom de voie"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.detailedAddress.wayName",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type et nom de voie"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.detailedAddress.wayName",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Type et nom de voie"
+    }
+  ],
+  "city": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.city",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Détails de la commune"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.city",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Détails de la commune"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.city",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Détails de la commune"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.city",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Détails de la commune"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "patient.residentialAddress.city",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Nom de la commune"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.location.detailedAddress.city",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Nom de la commune"
+    }
+  ],
+  "inseeCode": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.city.inseeCode",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Code INSEE de la commune"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.city.inseeCode",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Code INSEE de la commune"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.city.inseeCode",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Code INSEE de la commune"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.city.inseeCode",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Code INSEE de la commune"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "patient.residentialAddress.inseeCode",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Code INSEE de la commune de résidence"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.location.detailedAddress.inseeCode",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Code INSEE de la commune"
+    }
+  ],
+  "detail": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.city.detail",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Complément de commune"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.caller.callerContact.detail",
+      "schemaLabel": "createCase",
+      "schemaTitle": "URI du contact"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.caller.callbackContact.detail",
+      "schemaLabel": "createCase",
+      "schemaTitle": "URI du contact"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.city.detail",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Complément de commune"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.callTaker.calltakerContact.detail",
+      "schemaLabel": "createCase",
+      "schemaTitle": "URI du contact"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.caller.callerContact.detail",
+      "schemaLabel": "createCase",
+      "schemaTitle": "URI du contact"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.caller.callbackContact.detail",
+      "schemaLabel": "createCase",
+      "schemaTitle": "URI du contact"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.city.detail",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Complément de commune"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.callTaker.calltakerContact.detail",
+      "schemaLabel": "createCase",
+      "schemaTitle": "URI du contact"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.administrativeFile.generalPractitioner.contact.detail",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "URI du contact"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.detail",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Informations patient"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.caller.callerContact.detail",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "URI du contact"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.caller.callbackContact.detail",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "URI du contact"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.administrativeFile.generalPractitioner.contact.detail",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "URI du contact"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.detail",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Informations patient"
+    }
+  ],
+  "access": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.access",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Détails d'accès"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.access",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Détails d'accès"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.access",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Détails d'accès"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.access",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Détails d'accès"
+    }
+  ],
+  "floor": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.access.floor",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Etage"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.access.floor",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Etage"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.access.floor",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Etage"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.access.floor",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Etage"
+    }
+  ],
+  "roomNumber": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.access.roomNumber",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Numéro de porte"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.access.roomNumber",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Numéro de porte"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.access.roomNumber",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Numéro de porte"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.access.roomNumber",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Numéro de porte"
+    }
+  ],
+  "interphone": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.access.interphone",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Interphone"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.access.interphone",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Interphone"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.access.interphone",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Interphone"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.access.interphone",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Interphone"
+    }
+  ],
+  "accessCode": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.access.accessCode",
+      "schemaLabel": "createCase",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.access.accessCode",
+      "schemaLabel": "createCase",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.access.accessCode",
+      "schemaLabel": "createCase",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.access.accessCode",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": null
+    }
+  ],
+  "elevator": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.access.elevator",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Ascenseur/escalier"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.access.elevator",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Ascenseur/escalier"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.access.elevator",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Ascenseur/escalier"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.access.elevator",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Ascenseur/escalier"
+    }
+  ],
+  "buildingName": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.access.buildingName",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Bâtiment"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.access.buildingName",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Bâtiment"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.access.buildingName",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Bâtiment"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.access.buildingName",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Bâtiment"
+    }
+  ],
+  "entrance": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.access.entrance",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Entrée"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.access.entrance",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Entrée"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.access.entrance",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Entrée"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.access.entrance",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Entrée"
+    }
+  ],
+  "entity": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.access.entity",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Service"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.access.entity",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Service"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.access.entity",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Service"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.access.entity",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Service"
+    }
+  ],
+  "phoneNumber": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.access.phoneNumber",
+      "schemaLabel": "createCase",
+      "schemaTitle": "N° de téléphone du lieu"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.access.phoneNumber",
+      "schemaLabel": "createCase",
+      "schemaTitle": "N° de téléphone du lieu"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.access.phoneNumber",
+      "schemaLabel": "createCase",
+      "schemaTitle": "N° de téléphone du lieu"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.access.phoneNumber",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "N° de téléphone du lieu"
+    }
+  ],
+  "geometry": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.geometry",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Géometrie associée"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.geometry",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Géometrie associée"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.geometry",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Géometrie associée"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.geometry",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Géometrie associée"
+    }
+  ],
+  "point": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.geometry.point",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Point "
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.geometry.point",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Point "
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.geometry.point",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Point "
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.geometry.point",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Point "
+    }
+  ],
+  "heading": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.geometry.point.coord.heading",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Cap"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.geometry.point.coord.heading",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Cap"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.geometry.point.coord.heading",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Cap"
+    }
+  ],
+  "precision": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.geometry.point.coord.precision",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Précision"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.geometry.point.coord.precision",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Précision"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.geometry.point.coord.precision",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Précision"
+    },
+    {
+      "schema": "RS-BPV",
+      "path": "evaluation.parameter.precision",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Précision sur la mesure"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.geometry.point.coord.precision",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Précision"
+    }
+  ],
+  "sketch": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.geometry.sketch",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Formes géométriques"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.geometry.sketch",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Formes géométriques"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.geometry.sketch",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Formes géométriques"
+    }
+  ],
+  "externalInfo": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.externalInfo",
+      "schemaLabel": "createCase",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.externalInfo",
+      "schemaLabel": "createCase",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.externalInfo",
+      "schemaLabel": "createCase",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "location.externalInfo",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.externalInfo",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": null
+    }
+  ],
+  "uri": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.externalInfo.uri",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Identifiant"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.externalInfo.uri",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Identifiant"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.externalInfo.uri",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Identifiant"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "location.externalInfo.uri",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Identifiant"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "location.externalInfo.uri",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Identifiant"
+    }
+  ],
+  "country": [
+    {
+      "schema": "RC-EDA",
+      "path": "location.country",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Pays"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.location.country",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Pays"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.location.country",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Pays"
+    }
+  ],
+  "initialAlert": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Alerte initiale"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "initialAlert",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Alerte initiale"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Alerte initiale"
+    }
+  ],
+  "id": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.id",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Identifiant alerte"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.id",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Identifiant alerte"
+    }
+  ],
+  "reception": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.reception",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Date et heure de réception de l'alerte"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.reception",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Date et heure de réception de l'alerte"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.reception",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Date et heure de réception de l'alerte"
+    }
+  ],
+  "reporting": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.reporting",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Signalement"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.reporting",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Signalement"
+    }
+  ],
+  "notes": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.notes",
+      "schemaLabel": "createCase",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.notes",
+      "schemaLabel": "createCase",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "initialAlert.notes",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.notes",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": null
+    }
+  ],
+  "caller": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.caller",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Requérant"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.caller",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Requérant"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.caller",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Requérant"
+    }
+  ],
+  "callerContact": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.caller.callerContact",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Contact"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.caller.callerContact",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Contact"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.caller.callerContact",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Contact"
+    }
+  ],
+  "channel": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.caller.callerContact.channel",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Canal"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.caller.callbackContact.channel",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Canal"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.callTaker.calltakerContact.channel",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Canal"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.caller.callerContact.channel",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Canal"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.caller.callbackContact.channel",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Canal"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.callTaker.calltakerContact.channel",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Canal"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.caller.callerContact.channel",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Canal"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.caller.callbackContact.channel",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Canal"
+    }
+  ],
+  "callbackContact": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.caller.callbackContact",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Contact"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.caller.callbackContact",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Contact"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.caller.callbackContact",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Contact"
+    }
+  ],
+  "language": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.caller.language",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Langue parlée"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.caller.language",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Langue parlée"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.caller.language",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Langue parlée"
+    }
+  ],
+  "communication": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.caller.communication",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Difficulté de communication"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.caller.communication",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Difficulté de communication"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.caller.communication",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Difficulté de communication"
+    }
+  ],
+  "detailedName": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.caller.detailedName",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Prénom & nom usuel"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.caller.detailedName",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Prénom & nom usuel"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.administrativeFile.generalPractitioner.detailedName",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Prénom & nom usuel"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.caller.detailedName",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Prénom & nom usuel"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.administrativeFile.generalPractitioner.detailedName",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Prénom & nom usuel"
+    }
+  ],
+  "lastName": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.caller.detailedName.lastName",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nom"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.caller.detailedName.lastName",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Nom"
+    },
+    {
+      "schema": "RS-BPV",
+      "path": "patient.lastName",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Nom usuel"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.administrativeFile.generalPractitioner.detailedName.lastName",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Nom"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.identity.nonStrictFeatures.lastName",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Nom"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.caller.detailedName.lastName",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Nom"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.administrativeFile.generalPractitioner.detailedName.lastName",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Nom"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.identity.nonStrictFeatures.lastName",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Nom"
+    },
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "practitioner.lastName",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Nom du PS"
+    }
+  ],
+  "firstName": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.caller.detailedName.firstName",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Prénom"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.caller.detailedName.firstName",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Prénom"
+    },
+    {
+      "schema": "RS-BPV",
+      "path": "patient.firstName",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Prénom usuel"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.administrativeFile.generalPractitioner.detailedName.firstName",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Prénom"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.identity.nonStrictFeatures.firstName",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Prénom"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "initialAlert.caller.detailedName.firstName",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Prénom"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.administrativeFile.generalPractitioner.detailedName.firstName",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Prénom"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.identity.nonStrictFeatures.firstName",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Prénom"
+    },
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "practitioner.firstName",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Prénom du PS"
+    }
+  ],
+  "callTaker": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.callTaker",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Agent"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.callTaker",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Agent"
+    }
+  ],
+  "organization": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.callTaker.organization",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Service d'urgence"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.callTaker.organization",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Service d'urgence"
+    },
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "organization",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Structure"
+    }
+  ],
+  "controlRoom": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.callTaker.controlRoom",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Centre d'appels"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.callTaker.controlRoom",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Centre d'appels"
+    }
+  ],
+  "role": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.callTaker.role",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Rôle agent"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.callTaker.role",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Rôle agent"
+    },
+    {
+      "schema": "RS-BPV",
+      "path": "redactor.role",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Rôle"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "medicalNote.operator.role",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Rôle"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "decision.operator.role",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Rôle"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "medicalNote.operator.role",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Rôle"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "decision.operator.role",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Rôle"
+    }
+  ],
+  "calltakerContact": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.callTaker.calltakerContact",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Contact"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.callTaker.calltakerContact",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Contact"
+    }
+  ],
+  "calltakerId": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.callTaker.calltakerId",
+      "schemaLabel": "createCase",
+      "schemaTitle": "ID de l'agent"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.callTaker.calltakerId",
+      "schemaLabel": "createCase",
+      "schemaTitle": "ID de l'agent"
+    }
+  ],
+  "attachment": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.attachment",
+      "schemaLabel": "createCase",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.attachment",
+      "schemaLabel": "createCase",
+      "schemaTitle": null
+    }
+  ],
+  "description": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.attachment.description",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type ou description pj"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.attachment.description",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type ou description pj"
+    }
+  ],
+  "mimeType": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.attachment.mimeType",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type MIME"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.attachment.mimeType",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Type MIME"
+    }
+  ],
+  "size": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.attachment.size",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Taille approximative"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.attachment.size",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Taille approximative"
+    }
+  ],
+  "URI": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.attachment.URI",
+      "schemaLabel": "createCase",
+      "schemaTitle": "URI"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.attachment.URI",
+      "schemaLabel": "createCase",
+      "schemaTitle": "URI"
+    }
+  ],
+  "derefURI": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.attachment.derefURI",
+      "schemaLabel": "createCase",
+      "schemaTitle": "URI base 64"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.attachment.derefURI",
+      "schemaLabel": "createCase",
+      "schemaTitle": "URI base 64"
+    }
+  ],
+  "digest": [
+    {
+      "schema": "RC-EDA",
+      "path": "initialAlert.attachment.digest",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Hash"
+    },
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert.attachment.digest",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Hash"
+    }
+  ],
+  "newAlert": [
+    {
+      "schema": "RC-EDA",
+      "path": "newAlert",
+      "schemaLabel": "createCase",
+      "schemaTitle": null
+    }
+  ],
+  "additionalInformation": [
+    {
+      "schema": "RC-EDA",
+      "path": "additionalInformation",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Informations complémentaires"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "additionalInformation",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Informations complémentaires"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "additionalInformation",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Informations complémentaires"
+    }
+  ],
+  "customMap": [
+    {
+      "schema": "RC-EDA",
+      "path": "additionalInformation.customMap",
+      "schemaLabel": "createCase",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "additionalInformation.customMap",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "additionalInformation.customMap",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": null
+    }
+  ],
+  "key": [
+    {
+      "schema": "RC-EDA",
+      "path": "additionalInformation.customMap.key",
+      "schemaLabel": "createCase",
+      "schemaTitle": "Clé"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "additionalInformation.customMap.key",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Clé"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "additionalInformation.customMap.key",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Clé"
+    }
+  ],
+  "distributionID": [
+    {
+      "schema": "RC-REF",
+      "path": "distributionID",
+      "schemaLabel": "reference",
+      "schemaTitle": "Identifiant du message référencé"
+    }
+  ],
+  "refused": [
+    {
+      "schema": "RC-REF",
+      "path": "refused",
+      "schemaLabel": "reference",
+      "schemaTitle": "Indicateur de refus de message"
+    }
+  ],
+  "errorDistributionID": [
+    {
+      "schema": "RC-REF",
+      "path": "errorDistributionID",
+      "schemaLabel": "reference",
+      "schemaTitle": "Identifiant du message d'erreur lié"
+    }
+  ],
+  "step": [
+    {
+      "schema": "RC-REF",
+      "path": "step",
+      "schemaLabel": "reference",
+      "schemaTitle": "Etape d'intégration du message"
+    }
+  ],
+  "requestId": [
+    {
+      "schema": "RC-RI",
+      "path": "resource.requestId",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "ID Demande partagé"
+    },
+    {
+      "schema": "RS-DR",
+      "path": "request.requestId",
+      "schemaLabel": "resourcesRequest",
+      "schemaTitle": "ID Demande partagé"
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.requestId",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "ID Demande partagé"
+    },
+    {
+      "schema": "RS-RR",
+      "path": "requestId",
+      "schemaLabel": "resourcesResponse",
+      "schemaTitle": "ID Demande partagé"
+    }
+  ],
+  "missionId": [
+    {
+      "schema": "RC-RI",
+      "path": "resource.missionId",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "ID Mission local"
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.missionId",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "ID Mission local"
+    }
+  ],
+  "operationId": [
+    {
+      "schema": "RC-RI",
+      "path": "resource.operationId",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "ID Opération"
+    }
+  ],
+  "centerName": [
+    {
+      "schema": "RC-RI",
+      "path": "resource.centerName",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Nom du centre d’affectation"
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.centerName",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "Nom du centre d’affectation"
+    }
+  ],
+  "vehicleType": [
+    {
+      "schema": "RC-RI",
+      "path": "resource.vehicleType",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Type de vecteur"
+    },
+    {
+      "schema": "RS-ER",
+      "path": "resource.vehicleType",
+      "schemaLabel": "resourcesEngagement",
+      "schemaTitle": "Type de vecteur"
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.vehicleType",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "Type de vecteur"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "orientation.decision.vehicleType",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Type de vecteur de transport"
+    }
+  ],
+  "centerCity": [
+    {
+      "schema": "RC-RI",
+      "path": "resource.centerCity",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Commune du centre d’affectation"
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.centerCity",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "Commune du centre d’affectation"
+    }
+  ],
+  "team": [
+    {
+      "schema": "RC-RI",
+      "path": "resource.team",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Equipe vecteur"
+    },
+    {
+      "schema": "RS-ER",
+      "path": "resource.team",
+      "schemaLabel": "resourcesEngagement",
+      "schemaTitle": "Equipe vecteur"
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.team",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "Equipe vecteur"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.team",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Composition de l'équipage"
+    }
+  ],
+  "medicalLevel": [
+    {
+      "schema": "RC-RI",
+      "path": "resource.team.medicalLevel",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Type"
+    },
+    {
+      "schema": "RS-ER",
+      "path": "resource.team.medicalLevel",
+      "schemaLabel": "resourcesEngagement",
+      "schemaTitle": "Type"
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.team.medicalLevel",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "Type"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "regulation.medicalLevel",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Niveau de médicalisation initial"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "orientation.decision.medicalLevel",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Niveau de médicalisation du transport"
+    }
+  ],
+  "state": [
+    {
+      "schema": "RC-RI",
+      "path": "resource.state",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Etat vecteur"
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.state",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-SR",
+      "path": "state",
+      "schemaLabel": "resourcesStatus",
+      "schemaTitle": "Etat vecteur"
+    }
+  ],
+  "availability": [
+    {
+      "schema": "RC-RI",
+      "path": "resource.state.availability",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Disponibilité du vecteur"
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.state.availability",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "Disponibilité du vecteur"
+    },
+    {
+      "schema": "RS-SR",
+      "path": "state.availability",
+      "schemaLabel": "resourcesStatus",
+      "schemaTitle": "Disponibilité du vecteur"
+    }
+  ],
+  "contact": [
+    {
+      "schema": "RC-RI",
+      "path": "resource.contact",
+      "schemaLabel": "resourcesInfoCisu",
+      "schemaTitle": "Contact"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.administrativeFile.generalPractitioner.contact",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.administrativeFile.generalPractitioner.contact",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.contact",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "Contact"
+    }
+  ],
+  "reportId": [
+    {
+      "schema": "RS-BPV",
+      "path": "reportId",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Identifiant du bilan"
+    }
+  ],
+  "redactor": [
+    {
+      "schema": "RS-BPV",
+      "path": "redactor",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Professionnel de santé qui réalise le bilan"
+    }
+  ],
+  "patient": [
+    {
+      "schema": "RS-BPV",
+      "path": "patient",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Patient"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "patient",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Patient"
+    }
+  ],
+  "patientId": [
+    {
+      "schema": "RS-BPV",
+      "path": "patient.patientId",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "ID partagé du patient"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.patientId",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "ID patient partagé"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "medicalNote.patientId",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "ID patient partagé"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "decision.patientId",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "ID patient partagé"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.patientId",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "ID patient partagé"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "medicalNote.patientId",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "ID patient partagé"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "decision.patientId",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "ID patient partagé"
+    },
+    {
+      "schema": "RS-RI",
+      "path": "resource.patientId",
+      "schemaLabel": "resourcesInfo",
+      "schemaTitle": "ID partagé du patient transporté"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "patient.patientId",
+      "schemaLabel": "rpis",
+      "schemaTitle": "ID Patient"
+    },
+    {
+      "schema": "RS-URL",
+      "path": "patientId",
+      "schemaLabel": "documentLink",
+      "schemaTitle": "Identifiant partagé du patient"
+    }
+  ],
+  "birthName": [
+    {
+      "schema": "RS-BPV",
+      "path": "patient.birthName",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Nom de naissance"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.identity.strictFeatures.birthName",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Nom de naissance"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.identity.strictFeatures.birthName",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Nom de naissance"
+    }
+  ],
+  "birthDate": [
+    {
+      "schema": "RS-BPV",
+      "path": "patient.birthDate",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Date de naissance"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.identity.strictFeatures.birthDate",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Date de naissance"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.identity.strictFeatures.birthDate",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Date de naissance"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "patient.birthDate",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Date de naissance"
+    }
+  ],
+  "age": [
+    {
+      "schema": "RS-BPV",
+      "path": "patient.age",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Age"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.detail.age",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Age"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.detail.age",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Age"
+    }
+  ],
+  "sex": [
+    {
+      "schema": "RS-BPV",
+      "path": "patient.sex",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Sexe"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.identity.strictFeatures.sex",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Sexe "
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.identity.strictFeatures.sex",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Sexe "
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "patient.sex",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Sexe"
+    }
+  ],
+  "externalId": [
+    {
+      "schema": "RS-BPV",
+      "path": "patient.externalId",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.administrativeFile.externalId",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.administrativeFile.externalId",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": null
+    }
+  ],
+  "weight": [
+    {
+      "schema": "RS-BPV",
+      "path": "patient.weight",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Poids"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.detail.weight",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Poids"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.detail.weight",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Poids"
+    }
+  ],
+  "evaluation": [
+    {
+      "schema": "RS-BPV",
+      "path": "evaluation",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Evaluation / Diagnostic médical"
+    }
+  ],
+  "procedure": [
+    {
+      "schema": "RS-BPV",
+      "path": "evaluation.procedure",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.procedure",
+      "schemaLabel": "rpis",
+      "schemaTitle": null
+    }
+  ],
+  "mainDiagnosis": [
+    {
+      "schema": "RS-BPV",
+      "path": "evaluation.mainDiagnosis",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Diagnostic principal SMUR"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.hypothesis.mainDiagnosis",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Hypothèse de régulation médicale principale"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.hypothesis.mainDiagnosis",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Hypothèse de régulation médicale principale"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.mainDiagnosis",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Diagnostic principal SMUR"
+    }
+  ],
+  "associatedDiagnosis": [
+    {
+      "schema": "RS-BPV",
+      "path": "evaluation.associatedDiagnosis",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.associatedDiagnosis",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Diagnostic associé  SMUR"
+    }
+  ],
+  "parameter": [
+    {
+      "schema": "RS-BPV",
+      "path": "evaluation.parameter",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": null
+    }
+  ],
+  "medicalHistory": [
+    {
+      "schema": "RS-BPV",
+      "path": "evaluation.medicalHistory",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Antécédents"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.detail.medicalHistory",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Antécédents"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.detail.medicalHistory",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Antécédents"
+    }
+  ],
+  "treatment": [
+    {
+      "schema": "RS-BPV",
+      "path": "evaluation.treatment",
+      "schemaLabel": "interventionReport",
+      "schemaTitle": "Traitement"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.detail.treatment",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Traitements"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.detail.treatment",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Traitements"
+    }
+  ],
+  "request": [
+    {
+      "schema": "RS-DR",
+      "path": "request",
+      "schemaLabel": "resourcesRequest",
+      "schemaTitle": "Demande de ressource"
+    }
+  ],
+  "convention": [
+    {
+      "schema": "RS-DR",
+      "path": "request.convention",
+      "schemaLabel": "resourcesRequest",
+      "schemaTitle": "Cadre conventionnel"
+    }
+  ],
+  "purpose": [
+    {
+      "schema": "RS-DR",
+      "path": "request.purpose",
+      "schemaLabel": "resourcesRequest",
+      "schemaTitle": "Effet à obtenir"
+    }
+  ],
+  "deadline": [
+    {
+      "schema": "RS-DR",
+      "path": "request.deadline",
+      "schemaLabel": "resourcesRequest",
+      "schemaTitle": "Délai d'intervention"
+    },
+    {
+      "schema": "RS-RR",
+      "path": "response.deadline",
+      "schemaLabel": "resourcesResponse",
+      "schemaTitle": "Délai d'intervention"
+    }
+  ],
+  "perimeter": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "perimeter",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Filière"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "perimeter",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Filière"
+    }
+  ],
+  "priority": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "qualification.details.priority",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Priorité de régulation médicale"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "qualification.details.priority",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Priorité de régulation médicale"
+    }
+  ],
+  "careLevel": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "qualification.details.careLevel",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Niveau de soins du dossier"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.detail.careLevel",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Niveau de soin du patient"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "qualification.details.careLevel",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Niveau de soins du dossier"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.detail.careLevel",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Niveau de soin du patient"
+    }
+  ],
+  "owner": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "owner",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "CRRA traitant"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "owner",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "CRRA traitant"
+    }
+  ],
+  "administrativeFile": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.administrativeFile",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Dossier administratif"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.administrativeFile",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Dossier administratif"
+    }
+  ],
+  "generalPractitioner": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.administrativeFile.generalPractitioner",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Médecin traitant "
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.administrativeFile.generalPractitioner",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Médecin traitant "
+    }
+  ],
+  "rppsId": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.administrativeFile.generalPractitioner.rppsId",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Identifiant RPPS"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.administrativeFile.generalPractitioner.rppsId",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Identifiant RPPS"
+    },
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "practitioner.rppsId",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Identifiant RPPS"
+    }
+  ],
+  "identity": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.identity",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Identité"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.identity",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Identité"
+    }
+  ],
+  "strictFeatures": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.identity.strictFeatures",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Traits stricts de l'identité"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.identity.strictFeatures",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Traits stricts de l'identité"
+    }
+  ],
+  "nonStrictFeatures": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.identity.nonStrictFeatures",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Prénom & nom usuel"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.identity.nonStrictFeatures",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Prénom & nom usuel"
+    }
+  ],
+  "hypothesis": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.hypothesis",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Hypothèses de régulation médicale"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.hypothesis",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Hypothèses de régulation médicale"
+    }
+  ],
+  "otherDiagnosis": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "patient.hypothesis.otherDiagnosis",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "patient.hypothesis.otherDiagnosis",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": null
+    }
+  ],
+  "medicalNote": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "medicalNote",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "medicalNote",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": null
+    }
+  ],
+  "operator": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "medicalNote.operator",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Professionnel de santé qui réalise l'observation"
+    },
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "decision.operator",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Professionnel de santé qui réalise l'observation"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "medicalNote.operator",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Professionnel de santé qui réalise l'observation"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "decision.operator",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Professionnel de santé qui réalise l'observation"
+    }
+  ],
+  "medicalNoteId": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "medicalNote.medicalNoteId",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "ID Observation"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "medicalNote.medicalNoteId",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "ID Observation"
+    }
+  ],
+  "decision": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "decision",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "decision",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": null
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "orientation.decision",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Transport"
+    }
+  ],
+  "decisionType": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "decision.decisionType",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Type de décision"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "decision.decisionType",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Type de décision"
+    }
+  ],
+  "medicalTransport": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "decision.medicalTransport",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Transport médicalisé"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "decision.medicalTransport",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Transport médicalisé"
+    }
+  ],
+  "orientationType": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "decision.orientationType",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Type d'orientation"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "decision.orientationType",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Type d'orientation"
+    }
+  ],
+  "destination": [
+    {
+      "schema": "RS-EDA-MAJ",
+      "path": "decision.destination",
+      "schemaLabel": "createCaseHealthUpdate",
+      "schemaTitle": "Localisation de la destination d'orientation"
+    },
+    {
+      "schema": "RS-EDA",
+      "path": "decision.destination",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Localisation de la destination d'orientation"
+    },
+    {
+      "schema": "RS-RPIS",
+      "path": "orientation.destination",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Destination"
+    }
+  ],
+  "interventionType": [
+    {
+      "schema": "RS-EDA",
+      "path": "interventionType",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Type d'intervention"
+    }
+  ],
+  "origin": [
+    {
+      "schema": "RS-EDA",
+      "path": "qualification.origin",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Origine de l'appel"
+    }
+  ],
+  "attribution": [
+    {
+      "schema": "RS-EDA",
+      "path": "qualification.details.attribution",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Attribution du dossier"
+    }
+  ],
+  "highway": [
+    {
+      "schema": "RS-EDA",
+      "path": "location.detailedAddress.highway",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Autoroute"
+    }
+  ],
+  "pk": [
+    {
+      "schema": "RS-EDA",
+      "path": "location.detailedAddress.highway.pk",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Point kilométrique"
+    }
+  ],
+  "direction": [
+    {
+      "schema": "RS-EDA",
+      "path": "location.detailedAddress.highway.direction",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Sens"
+    }
+  ],
+  "isAml": [
+    {
+      "schema": "RS-EDA",
+      "path": "location.geometry.point.isAml",
+      "schemaLabel": "createCaseHealth",
+      "schemaTitle": "Dispositif AML"
+    }
+  ],
+  "errorCode": [
+    {
+      "schema": "RS-ERROR",
+      "path": "errorCode",
+      "schemaLabel": "error",
+      "schemaTitle": "Erreur"
+    }
+  ],
+  "statusCode": [
+    {
+      "schema": "RS-ERROR",
+      "path": "errorCode.statusCode",
+      "schemaLabel": "error",
+      "schemaTitle": "Code d'erreur"
+    }
+  ],
+  "statusString": [
+    {
+      "schema": "RS-ERROR",
+      "path": "errorCode.statusString",
+      "schemaLabel": "error",
+      "schemaTitle": "Titre d'erreur"
+    }
+  ],
+  "errorCause": [
+    {
+      "schema": "RS-ERROR",
+      "path": "errorCause",
+      "schemaLabel": "error",
+      "schemaTitle": "Cause d'erreur"
+    }
+  ],
+  "sourceMessage": [
+    {
+      "schema": "RS-ERROR",
+      "path": "sourceMessage",
+      "schemaLabel": "error",
+      "schemaTitle": "Message source"
+    }
+  ],
+  "referencedDistributionID": [
+    {
+      "schema": "RS-ERROR",
+      "path": "referencedDistributionID",
+      "schemaLabel": "error",
+      "schemaTitle": "DistributionID referencé"
+    }
+  ],
+  "context": [
+    {
+      "schema": "RS-RPIS",
+      "path": "context",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Evènement"
+    }
+  ],
+  "creationDate": [
+    {
+      "schema": "RS-RPIS",
+      "path": "context.creationDate",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Date et heure de création du dossier de régulation"
+    }
+  ],
+  "decisionDate": [
+    {
+      "schema": "RS-RPIS",
+      "path": "context.decisionDate",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Date et heure de la décision d’engagement du SMUR"
+    }
+  ],
+  "ressourceFinessLegal": [
+    {
+      "schema": "RS-RPIS",
+      "path": "context.ressourceFinessLegal",
+      "schemaLabel": "rpis",
+      "schemaTitle": "FINESS juridique "
+    }
+  ],
+  "ressourceFinessGeo": [
+    {
+      "schema": "RS-RPIS",
+      "path": "context.ressourceFinessGeo",
+      "schemaLabel": "rpis",
+      "schemaTitle": "FINESS géographique "
+    }
+  ],
+  "ressourceStructure": [
+    {
+      "schema": "RS-RPIS",
+      "path": "context.ressourceStructure",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Type de structure SMUR"
+    }
+  ],
+  "regulation": [
+    {
+      "schema": "RS-RPIS",
+      "path": "regulation",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Régulation médicale"
+    }
+  ],
+  "residentialAddress": [
+    {
+      "schema": "RS-RPIS",
+      "path": "patient.residentialAddress",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Adresse de résidence"
+    }
+  ],
+  "intervention": [
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Intervention"
+    }
+  ],
+  "finessGeo": [
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.location.finessGeo",
+      "schemaLabel": "rpis",
+      "schemaTitle": "FINESS géographique de l’établissement "
+    }
+  ],
+  "service": [
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.location.service",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Unité fonctionnelle "
+    }
+  ],
+  "doctor": [
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.team.doctor",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Médecin"
+    }
+  ],
+  "nurse": [
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.team.nurse",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Infirmier"
+    }
+  ],
+  "driver": [
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.team.driver",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Ambulancier/Pilote"
+    }
+  ],
+  "smurStatus": [
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.smurStatus",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Statuts des horaires du SMUR"
+    }
+  ],
+  "departSmur": [
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.smurStatus.departSmur",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Date et heure du départ de la base SMUR"
+    }
+  ],
+  "arrivedSmur": [
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.smurStatus.arrivedSmur",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Date et heure de l’arrivée sur les lieux de l’intervention"
+    }
+  ],
+  "departLocation": [
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.smurStatus.departLocation",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Date et heure du départ des lieux de l’intervention"
+    }
+  ],
+  "arrivedDestination": [
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.smurStatus.arrivedDestination",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Date et heure d’arrivée à destination"
+    }
+  ],
+  "teamAvailable": [
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.smurStatus.teamAvailable",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Date et heure de disponibilité de l’équipe"
+    }
+  ],
+  "returnSmur": [
+    {
+      "schema": "RS-RPIS",
+      "path": "intervention.smurStatus.returnSmur",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Date et heure de retour à la base SMUR"
+    }
+  ],
+  "orientation": [
+    {
+      "schema": "RS-RPIS",
+      "path": "orientation",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Décision d'orientation"
+    }
+  ],
+  "destinationCountry": [
+    {
+      "schema": "RS-RPIS",
+      "path": "orientation.destination.destinationCountry",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Pays de destination"
+    }
+  ],
+  "destinationCategory": [
+    {
+      "schema": "RS-RPIS",
+      "path": "orientation.destination.destinationCategory",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Catégorie de l'établissement de destination"
+    }
+  ],
+  "healthcareType": [
+    {
+      "schema": "RS-RPIS",
+      "path": "orientation.destination.healthcareType",
+      "schemaLabel": "rpis",
+      "schemaTitle": "Type d'activité de soins de l'unité fonctionnelle de destination"
+    }
+  ],
+  "finess": [
+    {
+      "schema": "RS-RPIS",
+      "path": "orientation.destination.finess",
+      "schemaLabel": "rpis",
+      "schemaTitle": "FINESS géographique"
+    }
+  ],
+  "response": [
+    {
+      "schema": "RS-RR",
+      "path": "response",
+      "schemaLabel": "resourcesResponse",
+      "schemaTitle": "Réponse à la demande de ressources"
+    }
+  ],
+  "answer": [
+    {
+      "schema": "RS-RR",
+      "path": "response.answer",
+      "schemaLabel": "resourcesResponse",
+      "schemaTitle": "Réponse"
+    }
+  ],
+  "appointmentId": [
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "appointmentId",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Identifiant du rendez-vous"
+    }
+  ],
+  "method": [
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "method",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Méthode"
+    }
+  ],
+  "created": [
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "created",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Date et heure de la prise de rendez-vous"
+    }
+  ],
+  "start": [
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "start",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Date et heure de début du rendez-vous"
+    }
+  ],
+  "end": [
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "end",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Date et heure de fin du rendez-vous"
+    }
+  ],
+  "orientationCategory": [
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "orientationCategory",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Catégorie d'orientation"
+    }
+  ],
+  "practitioner": [
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "practitioner",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Professionnel de santé"
+    }
+  ],
+  "specialityCode": [
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "practitioner.specialityCode",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Spécialité"
+    }
+  ],
+  "specialityUrl": [
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "practitioner.specialityUrl",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Terminologie spécialité"
+    }
+  ],
+  "professionCode": [
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "practitioner.professionCode",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Profession"
+    }
+  ],
+  "professionUrl": [
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "practitioner.professionUrl",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Terminologie profession"
+    }
+  ],
+  "organizationId": [
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "organization.organizationId",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Identifiant national de la structure"
+    }
+  ],
+  "regulator": [
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "regulator",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Régulateur"
+    }
+  ],
+  "regulatorId": [
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "regulator.regulatorId",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Identifiant régulateur"
+    }
+  ],
+  "regulatorName": [
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "regulator.regulatorName",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Nom du régulateur"
+    }
+  ],
+  "regulatorFirstname": [
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "regulator.regulatorFirstname",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Prénom du régulateur"
+    }
+  ],
+  "regulatorEmail": [
+    {
+      "schema": "RS-SAS-RDV",
+      "path": "regulator.regulatorEmail",
+      "schemaLabel": "appointment",
+      "schemaTitle": "Email du régulateur"
+    }
+  ],
+  "document": [
+    {
+      "schema": "RS-URL",
+      "path": "document",
+      "schemaLabel": "documentLink",
+      "schemaTitle": null
+    }
+  ],
+  "documentType": [
+    {
+      "schema": "RS-URL",
+      "path": "document.documentType",
+      "schemaLabel": "documentLink",
+      "schemaTitle": "Type de document"
+    }
+  ],
+  "url": [
+    {
+      "schema": "RS-URL",
+      "path": "document.url",
+      "schemaLabel": "documentLink",
+      "schemaTitle": "URL"
+    }
+  ]
+}
