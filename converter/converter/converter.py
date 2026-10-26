@@ -14,9 +14,8 @@ from converter.utils import (
     extract_message_content,
 )
 from converter.logging_config import configure_logging, LoggingKeys
-from converter.database import init_db
-from converter.mongodb_monitoring import is_mongodb_up
-from converter.tracing import configure_tracing, tag_current_span
+from converter.database import init_db, get_db, check_db_access
+from converter.tracing import configure_tracing, tag_current_span, untraced
 from converter.constants import ConversionType
 
 configure_logging()
@@ -132,9 +131,18 @@ def convert():
 
 @app.route("/health", methods=["GET"])
 def health_check():
-    # Based on pymongo's background heartbeats rather than a ping: answers instantly even
-    # when MongoDB is unreachable, so probes never block a worker on the DB.
-    db_status = "UP" if is_mongodb_up() else "DOWN"
+    # Real authenticated read (not just heartbeats, which are unauthenticated): checks
+    # reachability, authentication and read access at once.
+    try:
+        with untraced():
+            check_db_access(get_db())
+        db_status = "UP"
+    except Exception as e:
+        logger.error(
+            f"[MongoDB] Health check failed: {e}",
+            extra={"mongodb_status": "DOWN"},
+        )
+        db_status = "DOWN"
 
     status = "UP" if db_status == "UP" else "DEGRADED"
     return jsonify(
