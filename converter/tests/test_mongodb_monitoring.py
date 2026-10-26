@@ -3,7 +3,6 @@ from unittest.mock import MagicMock
 from converter.mongodb_monitoring import (
     MONGODB_UP,
     MongoHeartbeatLogger,
-    is_mongodb_up,
 )
 
 NODE_1 = ("node1", 27017)
@@ -90,16 +89,6 @@ def test_heartbeat_logger_updates_mongodb_up_gauge():
     assert MONGODB_UP._value.get() == 1
 
 
-def test_is_mongodb_up_follows_heartbeats():
-    listener = MongoHeartbeatLogger()
-
-    listener.failed(_ko())
-    assert is_mongodb_up() is False
-
-    listener.succeeded(_ok())
-    assert is_mongodb_up() is True
-
-
 def test_single_node_failure_keeps_mongodb_up_and_logs_all_nodes(mocker):
     logger_error = mocker.patch("converter.mongodb_monitoring.logger.error")
     logger_warning = mocker.patch("converter.mongodb_monitoring.logger.warning")
@@ -109,7 +98,6 @@ def test_single_node_failure_keeps_mongodb_up_and_logs_all_nodes(mocker):
     listener.failed(_ko(NODE_2, "connection refused"))
 
     assert MONGODB_UP._value.get() == 1
-    assert is_mongodb_up() is True
     logger_error.assert_not_called()
     logger_warning.assert_called_once()
     message = logger_warning.call_args[0][0]
@@ -151,7 +139,6 @@ def test_all_nodes_failing_sets_mongodb_down_and_logs_once(mocker):
     listener.failed(_ko(NODE_3))
 
     assert MONGODB_UP._value.get() == 0
-    assert is_mongodb_up() is False
     logger_error.assert_called_once()
     assert (
         "node1:27017=DOWN, node2:27017=DOWN, node3:27017=DOWN"
