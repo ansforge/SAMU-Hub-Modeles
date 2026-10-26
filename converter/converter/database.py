@@ -9,8 +9,20 @@ from converter.mongodb_monitoring import register_mongodb_monitoring
 
 logger = logging.getLogger(__name__)
 
+MESSAGES_COLLECTION = "messages"
+
 # Registered once at import. Applies to all MongoClients created afterwards.
 register_mongodb_monitoring()
+
+
+def check_db_access(db: Database) -> None:
+    """Raise if MongoDB is unreachable or the credentials cannot read.
+
+    Does a real read rather than `ping`, which requires no privilege and therefore does
+    not validate authorization.
+    """
+    with timeout(5):
+        db[MESSAGES_COLLECTION].find_one({}, {"_id": 1})
 
 
 def init_db(app: Flask) -> None:
@@ -40,13 +52,12 @@ def init_db(app: Flask) -> None:
 def _ping(db: Database, username: str | None) -> bool:
     """Check the MongoDB connection, logging the outcome. Returns whether it succeeded."""
     try:
-        with timeout(5):
-            db.command("ping")
-            connection_message = "[MongoDB] Connected successfully"
-            if username is not None:
-                connection_message = f"{connection_message} using user {username}"
-            logger.info(connection_message, extra={"mongodb_status": "UP"})
-            return True
+        check_db_access(db)
+        connection_message = "[MongoDB] Connected successfully"
+        if username is not None:
+            connection_message = f"{connection_message} using user {username}"
+        logger.info(connection_message, extra={"mongodb_status": "UP"})
+        return True
     except Exception as e:
         # The MongoDB connection is not required for the app to start
         logger.error(
