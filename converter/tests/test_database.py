@@ -21,7 +21,7 @@ def test_init_db_success_logs_info_and_stores_extensions(mocker):
 def test_init_db_does_not_raise_and_logs_error_on_connection_failure(mocker):
     mock_client_cls = mocker.patch("converter.database.MongoClient")
     mock_client = mock_client_cls.return_value
-    mock_client.__getitem__.return_value.command.side_effect = Exception(
+    mock_client.__getitem__.return_value.__getitem__.return_value.find_one.side_effect = Exception(
         "connection refused"
     )
     logger_error = mocker.patch("converter.database.logger.error")

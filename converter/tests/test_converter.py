@@ -1,4 +1,5 @@
 import pytest
+from pymongo.errors import OperationFailure, ServerSelectionTimeoutError
 from converter.cisu_transcoders.constants import CISUConstants
 from converter.converter import app
 from tests.constants import TestConstants
@@ -290,17 +291,28 @@ def test_convert_to_cisu_with_invalid_cisu_source_version(client):
     assert "Unknown source version" in response.json["error"]
 
 
-def test_health_is_up_when_mongodb_is_up(client, mocker):
-    mocker.patch("converter.converter.is_mongodb_up", return_value=True)
+def test_health_is_up_when_db_access_succeeds(client, mocker):
+    mocker.patch("converter.converter.get_db")
+    check = mocker.patch("converter.converter.check_db_access")
 
     response = client.get("/health")
 
     assert response.status_code == 200
     assert response.json == {"status": "UP", "components": {"mongodb": "UP"}}
+    check.assert_called_once()
 
 
-def test_health_is_degraded_with_200_when_mongodb_is_down(client, mocker):
-    mocker.patch("converter.converter.is_mongodb_up", return_value=False)
+@pytest.mark.parametrize(
+    "error",
+    [
+        ServerSelectionTimeoutError("no server"),
+        OperationFailure("Authentication failed.", code=18),
+        OperationFailure("not authorized", code=13),
+    ],
+)
+def test_health_is_degraded_with_200_when_db_access_fails(client, mocker, error):
+    mocker.patch("converter.converter.get_db")
+    mocker.patch("converter.converter.check_db_access", side_effect=error)
 
     response = client.get("/health")
 

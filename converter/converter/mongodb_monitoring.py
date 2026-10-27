@@ -19,21 +19,6 @@ MONGODB_UP = Gauge(
     multiprocess_mode="livemin",
 )
 
-# State of the current process only (the gauge above is aggregated across workers).
-# False until the first successful heartbeat.
-_mongodb_up = False
-
-
-def is_mongodb_up() -> bool:
-    """Whether MongoDB is reachable according to the latest heartbeat, without querying it."""
-    return _mongodb_up
-
-
-def _set_mongodb_up(value: bool) -> None:
-    global _mongodb_up
-    _mongodb_up = value
-    MONGODB_UP.set(1 if value else 0)
-
 
 def _format_node(connection_id) -> str:
     if isinstance(connection_id, tuple) and len(connection_id) == 2:
@@ -76,7 +61,7 @@ class MongoHeartbeatLogger(monitoring.ServerHeartbeatListener):
             self._established = self._established or cluster_up
             self._is_up = cluster_up
             nodes_state = {n: "UP" if up else "DOWN" for n, up in self._nodes.items()}
-            _set_mongodb_up(cluster_up)
+            MONGODB_UP.set(1 if cluster_up else 0)
 
         # A node seen for the first time as UP is not a change worth logging.
         node_changed = previous != node_up and not (previous is None and node_up)

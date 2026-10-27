@@ -3,12 +3,12 @@ import logging
 from pymongo import DESCENDING
 from typing import Any, Mapping, Sequence
 
-from converter.database import get_db
+from converter.database import MESSAGES_COLLECTION, get_db
 from converter.models.persisted_message import PersistedMessage
 
 logger = logging.getLogger(__name__)
 
-_COLLECTION = "messages"
+_COLLECTION = MESSAGES_COLLECTION
 
 _DISTRIBUTION_ID_PATH = ".".join(["payload", "distributionID"])
 
