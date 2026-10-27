@@ -19,6 +19,7 @@ MONGODB_UP = Gauge(
     multiprocess_mode="livemin",
 )
 
+
 def _format_node(connection_id) -> str:
     if isinstance(connection_id, tuple) and len(connection_id) == 2:
         return f"{connection_id[0]}:{connection_id[1]}"
