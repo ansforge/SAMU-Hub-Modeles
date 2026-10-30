@@ -1,6 +1,9 @@
+import logging
 from typing import Any, Dict, Optional
 
 from converter.utils import delete_paths, get_field_value, set_value
+
+logger = logging.getLogger(__name__)
 
 
 def apply_nomenclature_mapping(
@@ -20,6 +23,12 @@ def apply_nomenclature_mapping(
         return
 
     new_value = mapping[code]
+    logger.info(
+        "Mapping nomenclature at path %s: code %r -> %r",
+        field_path,
+        code,
+        new_value if new_value is not None else "removed",
+    )
     if new_value is None:
         delete_paths(json_data, [field_path])
     else:
@@ -51,6 +60,12 @@ def apply_nomenclature_mapping_to_list(
             continue
 
         new_value = mapping[code]
+        logger.info(
+            "Mapping nomenclature item at path %s: code %r -> %r",
+            field_path,
+            code,
+            new_value if new_value is not None else "removed",
+        )
         if new_value is not None:
             updated_items.append(new_value)
 
