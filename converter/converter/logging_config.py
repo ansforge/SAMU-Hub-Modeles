@@ -16,6 +16,7 @@ class LoggingKeys(Enum):
     SENDER_ID = "senderId"
     RECIPIENT_ID = "recipientId"
     MESSAGE_TYPE = "messageType"
+    CASE_ID = "caseId"
 
 
 # Using filter to add context variable: https://docs.python.org/3/howto/logging-cookbook.html#using-filters-to-impart-contextual-information
