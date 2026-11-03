@@ -50,7 +50,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v7
         with:
-          python-version: '3.14'
+          python-version: '3.15'
 
       - name: Install nomenclature_parser python requirements
         working-directory: ./nomenclature_parser
@@ -176,7 +176,7 @@ jobs:
         uses: actions/setup-node@v7
         if: steps.filter.outputs.parsing_required == 'true'
         with:
-          node-version: 24
+          node-version: 26
 
       - name: Install openapi-generator-cli
         if: steps.filter.outputs.parsing_required == 'true'
@@ -265,7 +265,7 @@ jobs:
       - name: Setup .NET Core # Required to execute ReportGenerator
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: 10.0.401
+          dotnet-version: 10.0.402
           dotnet-quality: 'ga'
 
       - name: Run ReportGenerator for test coverage
