@@ -240,8 +240,9 @@ def set_value(data: Dict[str, Any], json_path: str, value: Any):
     keys = json_path.strip("$.").split(".")
     for key in keys[:-1]:
         data = data.setdefault(key, {})
+    previous_value = data.get(keys[-1], "<absent>")
     data[keys[-1]] = value
-    logger.info("Setting value at path %s", json_path)
+    logger.info("Setting value at path %s: %r -> %r", json_path, previous_value, value)
     return value
 
 

@@ -657,8 +657,10 @@ class TestSetValue(unittest.TestCase):
 
         # Check the log message content
         args, kwargs = mock_logger.info.call_args
-        assert args[0] == "Setting value at path %s"
+        assert args[0] == "Setting value at path %s: %r -> %r"
         assert args[1] == "$.a"
+        assert args[2] == "<absent>"
+        assert args[3] == "b"
 
 
 class TestExtractMessageTypeFromMessageContent(unittest.TestCase):

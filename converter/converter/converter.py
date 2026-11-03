@@ -12,6 +12,7 @@ from converter.utils import (
     get_recipient,
     extract_message_type_from_message_content,
     extract_message_content,
+    extract_case_id,
 )
 from converter.logging_config import configure_logging, LoggingKeys
 from converter.database import init_db, get_db, check_db_access
@@ -106,6 +107,11 @@ def convert():
         setattr(g, LoggingKeys.DISTRIBUTION_ID.value, edxl_json.get("distributionID"))
         setattr(g, LoggingKeys.SENDER_ID.value, get_sender(edxl_json))
         setattr(g, LoggingKeys.RECIPIENT_ID.value, get_recipient(edxl_json))
+        setattr(
+            g,
+            LoggingKeys.CASE_ID.value,
+            extract_case_id(edxl_json),
+        )
         message_content = extract_message_content(edxl_json)
         setattr(
             g,
