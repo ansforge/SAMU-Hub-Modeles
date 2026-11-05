@@ -28,8 +28,8 @@ Pipeline et ajout d'un schéma : `README_ADDING_SCHEMAS_TO_MODEL.md`.
 
 ## Commandes
 - Java 21 / Gradle : `./gradlew test` (`-Pfunctional` exclut les tests `*Technical*`, `-Ptechnical` ne lance qu'eux).
-- Converter (Python, uv) : `uv run pytest`, `uv run ruff format --check .`, `uv run ruff check .`, `uv run --active mypy .`.
-- Hooks : `lefthook install` (ruff + mypy sur `converter/`).
+- Converter (Python) : voir `converter/CLAUDE.md`.
+- Hooks : `lefthook install`.
 
 ## Pièges
 - Les sous-schémas doivent avoir `subschema=Y` sinon ils écrasent les classes de leur parent.
@@ -42,10 +42,10 @@ Pipeline et ajout d'un schéma : `README_ADDING_SCHEMAS_TO_MODEL.md`.
 Pour toute tâche non triviale (feature, bugfix non trivial, refactor, évolution de modèle) :
 
 0. **Confirmer le flow** : en début de tâche, demander à l'humain s'il veut bien suivre ce flow (ou une variante). Ne pas supposer.
-1. **Conception** (skill `design`) : why, definition of done vérifiable, stratégie technique, plan de tests. Attendre la validation de l'humain. Aucun code avant.
+1. **Conception** (skill `design`) : why, use cases et edge cases, critères d'acceptance, definition of done, stratégie technique (avec ADR), plan de tests. Attendre la validation de l'humain. Aucun code avant.
 2. **Implémentation + tests en TDD** (skill `tdd-implement`, agent `implementer`). Tests d'abord, couverture maximale.
-3. **Revue + validation de la DoD** (skill `review-dod`, agent `reviewer`), par un autre agent ou membre de l'équipe que l'implémenteur.
-4. **PR** (skill `prepare-pr`) : présenter commits et PR à l'humain avant d'agir.
+3. **Revue + validation des critères d'acceptance et de la DoD** (skill `review-dod`, agent `reviewer`), par un autre agent ou membre de l'équipe que l'implémenteur.
+4. **PR** (skill `prepare-pr`) : présenter commits, PR et mode opératoire de validation à l'humain avant d'agir.
 
 Tâche triviale (typo, doc mineure) : dire qu'on saute le flow et pourquoi.
 
