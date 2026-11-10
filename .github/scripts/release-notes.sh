@@ -19,7 +19,7 @@ case "$MODULE" in
     filter=(
       --exclude-path ".github/**" --exclude-path ".claude/**" --exclude-path "CLAUDE.md"
       --exclude-path "lefthook.yml" --exclude-path ".gitignore"
-      --exclude-path ".sonarcloud.properties" --exclude-path "cron.log"
+      --exclude-path ".sonarcloud.properties" --exclude-path "cron.log" --exclude-path "cliff.toml"
       --exclude-path "converter/**"
     ) ;;
   converter)
