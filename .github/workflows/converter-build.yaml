@@ -3,8 +3,18 @@ name: Build converter image
 on:
   push:
     tags:
-      - 'converter-*'
+      - "converter-*"
   workflow_dispatch:
+  # Called by release-module.yml: a tag it pushes with GITHUB_TOKEN does not
+  # trigger the push event above. The github context is the caller's there,
+  # so the tag comes as an input.
+  # doc : https://docs.github.com/en/actions/concepts/security/github_token#when-github_token-triggers-workflow-runs
+  workflow_call:
+    inputs:
+      tag:
+        description: "Tag to build, (ex: converter-2.12.1)"
+        required: true
+        type: string
 
 jobs:
   build-converter:
@@ -12,11 +22,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.tag }}
 
       - name: Extract version from tag
         id: extract-version
+        env:
+          TAG_NAME: ${{ inputs.tag || github.ref_name }}
         run: |
-          TAG_NAME="${{ github.ref_name }}"
           VERSION=${TAG_NAME#converter-}
           PATTERN="^[0-9]+\.[0-9]+\.[0-9]+(-rc\.[0-9]+)*$"
           if [[ ! "$VERSION" =~ $PATTERN ]]; then

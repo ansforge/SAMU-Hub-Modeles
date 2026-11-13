@@ -1,0 +1,109 @@
+name: Release Module
+
+# Tags one module and opens a draft release holding only that module's changes.
+
+on:
+  workflow_dispatch:
+    inputs:
+      module:
+        description: "Module to release"
+        required: true
+        type: choice
+        options: [model, converter]
+      bump:
+        description: "Version bump type"
+        required: true
+        type: choice
+        options: [patch, minor, major]
+        default: patch
+      previous_version:
+        description: "Start the notes at this version, e.g. 2.7.1 (default: latest tag of the module)"
+        required: false
+        type: string
+      dry_run:
+        description: "Only write the notes to the run summary"
+        required: false
+        type: boolean
+        default: false
+
+# Two runs of one module would compute the same tag.
+concurrency:
+  group: release-module-${{ inputs.module }}
+  cancel-in-progress: false
+
+# git-cliff lists the PRs through the API and aborts on a 403.
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  release:
+    name: Tag and draft release
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.notes.outputs.tag }}
+    env:
+      MODULE: ${{ inputs.module }}
+      BUMP: ${{ inputs.bump }}
+      PREVIOUS_VERSION: ${{ inputs.previous_version }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Explicit: detection from the git remote fails silently without an upstream.
+      GITHUB_REPO: ${{ github.repository }}
+    steps:
+      - name: Require main
+        run: |
+          if [ "$GITHUB_REF" != refs/heads/main ]; then
+            echo "::error::Release Module only runs on main, not $GITHUB_REF"
+            exit 1
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      # Pinned by SHA: this job holds a token with write access.
+      - name: Install git-cliff
+        uses: taiki-e/install-action@1e29709c0ec63babbe8f266397a465f29a825f91 # v2.87.31
+        with:
+          tool: git-cliff@2.14.2
+          fallback: none
+
+      - name: Generate notes
+        id: notes
+        run: .github/scripts/release-notes.sh
+
+      - name: Configure git
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      # The tag goes on the commit the run started from. A tag pushed with
+      # GITHUB_TOKEN triggers no workflow: the converter image is built by the
+      # build-converter job below, not by converter-build.yaml's push trigger.
+      # --latest=false: `latest` is set by hand.
+      - name: Tag and create draft release
+        if: ${{ !inputs.dry_run }}
+        env:
+          TAG: ${{ steps.notes.outputs.tag }}
+        shell: bash
+        run: |
+          git tag -a "$TAG" -m "$TAG" "$GITHUB_SHA"
+          git push origin "refs/tags/$TAG"
+          gh release create "$TAG" --draft --verify-tag --latest=false \
+            --title "$TAG" --notes-file "$RUNNER_TEMP/notes.md"
+
+  # The image is pushed before the draft is published: publish once this job is green.
+  build-converter:
+    name: Build converter image
+    needs: release
+    if: ${{ inputs.module == 'converter' && !inputs.dry_run }}
+    permissions:
+      contents: read
+      packages: write
+    uses: ./.github/workflows/converter-build.yaml
+    with:
+      tag: ${{ needs.release.outputs.tag }}
+    secrets: inherit

@@ -1,0 +1,37 @@
+# Release notes of one module, driven by .github/workflows/release-module.yml.
+
+[changelog]
+trim = true
+body = """
+# What's Changed
+
+## {{ get_env(name="MODULE") }}
+{% for group, commits in commits | group_by(attribute="group") %}
+### {{ group | striptags }}
+
+{% for commit in commits -%}
+- {{ commit.raw_message | split(pat="\n") | first }}\
+{% if commit.remote.pr_author %} by @{{ commit.remote.pr_author }}{% endif %}\
+{% if commit.raw_message is not containing("(#") %} ({{ commit.id | truncate(length=7, end="") }}){% endif %}
+{% if commit.breaking and commit.breaking_description != commit.message %}  - ⚠️ {{ commit.breaking_description }}
+{% endif %}{% endfor %}{% endfor %}
+**Full Changelog**: https://github.com/{{ remote.github.owner }}/{{ remote.github.repo }}/compare/{{ previous.version }}...{{ version }}
+"""
+
+[git]
+conventional_commits = true
+filter_unconventional = false
+protect_breaking_commits = true
+topo_order = true
+# A PR is one line: its merge commit, parsed under the PR title.
+commit_preprocessors = [
+  { pattern = '(?s)^Merge pull request #(\d+) from \S+\s+([^\n]+).*$', replace = '$2 (#$1)' },
+]
+commit_parsers = [
+  { message = "^chore\\(release\\)", skip = true },
+  { message = "^Merge ", skip = true },
+  { field = "breaking", pattern = "true", group = "<!-- 0 -->Breaking Changes" },
+  { message = "^feat", group = "<!-- 1 -->Features" },
+  { message = "^fix", group = "<!-- 2 -->Bug Fixes" },
+  { message = ".*", group = "<!-- 3 -->Chore" },
+]
