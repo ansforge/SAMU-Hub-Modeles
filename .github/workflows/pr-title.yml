@@ -1,0 +1,42 @@
+# Enforces Conventional Commits PR titles: git-cliff builds release notes from them.
+
+name: PR title
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+permissions:
+  pull-requests: read
+
+jobs:
+  semantic-title:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: amannn/action-semantic-pull-request@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            chore
+            refactor
+            docs
+            test
+            ci
+            build
+            perf
+          requireScope: true
+          # Regex, anchored by the action.
+          scopes: |
+            model
+            converter
+            generator
+            nomenclature
+            csv_parser
+            specs-index
+            ci
+            deps
+            claude
+            repo
