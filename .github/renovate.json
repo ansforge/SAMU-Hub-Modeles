@@ -12,8 +12,8 @@
     {
       "matchHost": "dhi.io",
       "hostType": "docker",
-      "username": "{{ secrets.DHI_USERNAME }}",
-      "password": "{{ secrets.DHI_PASSWORD }}"
+      "username": "{{ secrets.MEND_DHI_USERNAME }}",
+      "password": "{{ secrets.MEND_DHI_PASSWORD }}"
     }
   ],
   "includePaths": [
